@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="downloadPathPreference">download_path_preference</string>
+    <string name="useExternalPlayer">use_external_player</string>
+</resources>

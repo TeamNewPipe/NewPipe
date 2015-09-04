@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/title_activity_settings"
+    android:key="general_preferences">
+
+    <CheckBoxPreference
+        android:key="@string/useExternalPlayer"
+        android:title="@string/useExternalPlayerTitle"/>
+
+    <EditTextPreference
+        android:key="@string/downloadPathPreference"
+        android:title="@string/downloadLocation"
+        android:summary="@string/downloadLocationSummary"
+        android:dialogTitle="@string/downloadLocationDialogTitle"
+        android:defaultValue=""/>
+
+</PreferenceScreen>

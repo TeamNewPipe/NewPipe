@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ImageView android:id="@+id/list_view_watermark"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:src="@drawable/new_pipe_watermark"/>
+
+    <fragment
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/videoitem_list"
+        android:name="org.schabi.newpipe.VideoItemListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".VideoItemListActivity"
+        tools:layout="@android:layout/list_content" />
+
+</LinearLayout>
