@@ -120,7 +120,7 @@ public class PlayVideoActivity extends AppCompatActivity {
                 }
             }
         });
-        hideUi();
+        showUi();
     }
 
     @Override

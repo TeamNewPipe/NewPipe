@@ -95,19 +95,32 @@ public class YoutubeExtractor implements Extractor {
     @Override
     public String getVideoId(String videoUrl) {
         try {
-            String query = (new URI(videoUrl)).getQuery();
-            String queryElements[] = query.split("&");
-            Map<String, String> queryArguments = new HashMap<>();
-            for(String e : queryElements) {
-                String[] s = e.split("=");
-                queryArguments.put(s[0], s[1]);
+            URI uri = new URI(videoUrl);
+            if(uri.getHost().contains("youtube")) {
+                String query = uri.getQuery();
+                String queryElements[] = query.split("&");
+                Map<String, String> queryArguments = new HashMap<>();
+                for (String e : queryElements) {
+                    String[] s = e.split("=");
+                    queryArguments.put(s[0], s[1]);
+                }
+                return queryArguments.get("v");
+            } else if(uri.getHost().contains("youtu.be")) {
+                // uri.getRawPath() does somehow not return the last character.
+                // so we do a workaround instead.
+                //return uri.getRawPath();
+                String url[] = videoUrl.split("/");
+                return url[url.length-1];
+            } else {
+                Log.e(TAG, "Error could not parse url: " + videoUrl);
+
             }
-            return queryArguments.get("v");
-        } catch(Exception e) {
+        }  catch(Exception e) {
             Log.e(TAG, "Error could not parse url: " + videoUrl);
             e.printStackTrace();
             return "";
         }
+        return null;
     }
 
     @Override

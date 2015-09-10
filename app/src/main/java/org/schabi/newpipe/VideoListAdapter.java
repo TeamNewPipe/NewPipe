@@ -120,7 +120,7 @@ public class VideoListAdapter extends BaseAdapter {
         holder.itemDurationView.setText(videoList.get(position).duration);
 
         if(listView.isItemChecked(position)) {
-            convertView.setBackgroundColor(context.getResources().getColor(R.color.actionBarColorYoutube));
+            convertView.setBackgroundColor(context.getResources().getColor(R.color.primaryColorYoutube));
         } else {
             convertView.setBackgroundColor(0);
         }

@@ -4,8 +4,8 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <item name="android:actionBarStyle">@style/NewPipeActionbarTheme</item>
         <item name="actionBarStyle">@style/NewPipeActionbarTheme</item>
-        <item name="colorPrimary">@color/primaryColorYoutube</item>
-        <item name="colorPrimaryDark">@color/primaryColorDarkYoutube</item>
+        <item name="android:colorPrimary">@color/primaryColorYoutube</item>
+        <item name="android:colorPrimaryDark">@color/primaryColorDarkYoutube</item>
     </style>
 
     <style name="NewPipeActionbarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid" >

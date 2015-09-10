@@ -55,6 +55,14 @@
                     android:host="m.youtube.com"
                     android:scheme="https"
                     android:pathPrefix="/watch"/>
+                <data
+                    android:host="youtu.be"
+                    android:scheme="https"
+                    android:pathPrefix="/"/>
+                <data
+                    android:host="youtu.be"
+                    android:scheme="http"
+                    android:pathPrefix="/"/>
             </intent-filter>
         </activity>
         <activity android:name=".PlayVideoActivity"
