@@ -39,10 +39,7 @@ public class YoutubeService implements StreamingService {
     }
     @Override
     public boolean acceptUrl(String videoUrl) {
-        if(videoUrl.contains("youtube")) {
-            return true;
-        } else {
-            return false;
-        }
+        return videoUrl.contains("youtube") ||
+                videoUrl.contains("youtu.be");
     }
 }
