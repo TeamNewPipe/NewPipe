@@ -25,4 +25,6 @@
     <string name="downloadLocation">Download Verzeichnis</string>
     <string name="downloadLocationSummary">Verzeichnis in dem heruntergeladene Videos gespeichert werden.</string>
     <string name="downloadLocationDialogTitle">Download Verzeichnis eingeben</string>
+    <string name="autoPlayThroughIntentTitle">Automatisch abspielen durch Intent.</string>
+    <string name="autoPlayThroughIntentSummary">Startet ein Video automatisch wenn es von einer anderen App aufgerufen wurde.</string>
 </resources>

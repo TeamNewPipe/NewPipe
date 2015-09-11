@@ -5,7 +5,8 @@
 
     <CheckBoxPreference
         android:key="@string/useExternalPlayer"
-        android:title="@string/useExternalPlayerTitle"/>
+        android:title="@string/useExternalPlayerTitle"
+        android:defaultValue="false"/>
 
     <EditTextPreference
         android:key="@string/downloadPathPreference"
@@ -13,5 +14,11 @@
         android:summary="@string/downloadLocationSummary"
         android:dialogTitle="@string/downloadLocationDialogTitle"
         android:defaultValue=""/>
+
+    <CheckBoxPreference
+        android:key="@string/autoPlayThroughIntent"
+        android:title="@string/autoPlayThroughIntentTitle"
+        android:summary="@string/autoPlayThroughIntentSummary"
+        android:defaultValue="false" />
 
 </PreferenceScreen>

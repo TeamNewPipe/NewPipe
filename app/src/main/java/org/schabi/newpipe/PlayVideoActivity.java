@@ -41,6 +41,8 @@ import android.widget.VideoView;
 
 public class PlayVideoActivity extends AppCompatActivity {
 
+    //// TODO: 11.09.15 add "choose stream" menu 
+    
     private static final String TAG = PlayVideoActivity.class.toString();
     public static final String VIDEO_URL = "video_url";
     public static final String STREAM_URL = "stream_url";

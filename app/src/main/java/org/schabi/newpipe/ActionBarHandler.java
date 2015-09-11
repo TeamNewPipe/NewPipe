@@ -70,6 +70,7 @@ public class ActionBarHandler {
     }
 
     public void setStreams(VideoInfo.Stream[] streams) {
+        // // TODO: 11.09.15 add auto stream option 
         this.streams = streams;
         selectedStream = 0;
         String[] itemArray = new String[streams.length];
@@ -89,7 +90,7 @@ public class ActionBarHandler {
         selectedStream = i;
     }
 
-    public boolean setupMenu(Menu menu, MenuInflater inflater, Context constext) {
+    public boolean setupMenu(Menu menu, MenuInflater inflater, Context context) {
         this.context = context;
         // CAUTION set item properties programmatically otherwise it would not be accepted by
         // appcompat itemsinflater.inflate(R.menu.videoitem_detail, menu);

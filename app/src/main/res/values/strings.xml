@@ -25,4 +25,6 @@
     <string name="downloadLocation">Download location</string>
     <string name="downloadLocationSummary">Path to store downloaded videos in.</string>
     <string name="downloadLocationDialogTitle">Enter download path</string>
+    <string name="autoPlayThroughIntentTitle">Autoplay through Intent</string>
+    <string name="autoPlayThroughIntentSummary">Automatically starts a video when it was called from another app.</string>
 </resources>

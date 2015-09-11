@@ -52,7 +52,9 @@ public class VideoItemDetailFragment extends Fragment {
     public static final String ARG_ITEM_ID = "item_id";
     public static final String VIDEO_URL = "video_url";
     public static final String STREAMING_SERVICE = "streaming_service";
+    public static final String AUTO_PLAY = "auto_play";
 
+    private boolean autoPlayEnabled = false;
     private Thread extractorThread = null;
 
     private class ExtractorRunnable implements Runnable {
@@ -206,6 +208,9 @@ public class VideoItemDetailFragment extends Fragment {
                     Log.e(TAG, "Video Availeble Status not known.");
             }
 
+            if(autoPlayEnabled) {
+                ActionBarHandler.getHandler().playVideo();
+            }
         } catch (java.lang.NullPointerException e) {
             Log.w(TAG, "updateInfo(): Fragment closed before thread ended work... or else");
             e.printStackTrace();
@@ -236,6 +241,7 @@ public class VideoItemDetailFragment extends Fragment {
                     getArguments().getInt(STREAMING_SERVICE));
             extractorThread = new Thread(new ExtractorRunnable(
                     getArguments().getString(VIDEO_URL), streamingService.getExtractorClass(), this));
+            autoPlayEnabled = getArguments().getBoolean(AUTO_PLAY);
             extractorThread.start();
         } catch (Exception e) {
             e.printStackTrace();

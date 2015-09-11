@@ -2,4 +2,5 @@
 <resources>
     <string name="downloadPathPreference">download_path_preference</string>
     <string name="useExternalPlayer">use_external_player</string>
+    <string name="autoPlayThroughIntent">autoplay_through_intent</string>
 </resources>

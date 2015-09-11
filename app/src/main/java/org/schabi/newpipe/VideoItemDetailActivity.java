@@ -1,6 +1,7 @@
 package org.schabi.newpipe;
 
 import android.content.ContentProviderOperation;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
@@ -16,7 +17,7 @@ import org.schabi.newpipe.youtube.YoutubeExtractor;
 
 /**
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * ActionBarHandler.java is part of NewPipe.
+ * VideoItemDetailActivity.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -60,8 +61,7 @@ public class VideoItemDetailActivity extends AppCompatActivity {
 
         Bundle arguments = new Bundle();
         if (savedInstanceState == null) {
-            // Create the detail fragment and add it to the activity
-            // using a fragment transaction.
+            // this means the video was called though another app
             if (getIntent().getData() != null) {
                 videoUrl = getIntent().getData().toString();
                 StreamingService[] serviceList = ServiceList.getServices();
@@ -81,13 +81,18 @@ public class VideoItemDetailActivity extends AppCompatActivity {
                 }
                 arguments.putString(VideoItemDetailFragment.VIDEO_URL,
                         extractor.getVideoUrl(extractor.getVideoId(videoUrl)));
-
+                arguments.putBoolean(VideoItemDetailFragment.AUTO_PLAY,
+                        PreferenceManager.getDefaultSharedPreferences(this)
+                                .getBoolean(getString(R.string.autoPlayThroughIntent), false));
             } else {
                 videoUrl = getIntent().getStringExtra(VideoItemDetailFragment.VIDEO_URL);
                 currentStreamingService = getIntent().getIntExtra(VideoItemDetailFragment.STREAMING_SERVICE, -1);
                 arguments.putString(VideoItemDetailFragment.VIDEO_URL, videoUrl);
                 arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingService);
+                arguments.putBoolean(VideoItemDetailFragment.AUTO_PLAY, false);
             }
+            // Create the detail fragment and add it to the activity
+            // using a fragment transaction.
             VideoItemDetailFragment fragment = new VideoItemDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
