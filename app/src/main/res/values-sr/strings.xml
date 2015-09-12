@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Јутјуб цев</string>
+    <string name="title_videoitem_detail">Јутјуб цев</string>
+    <string name="nothingFound">Ништа није нађено</string>
+    <string name="viewSufix">приказа</string>
+    <string name="uploadDatePrefix">Отпремљено: </string>
+    <string name="noPlayerFound">Нема плејера токова. Можда желите да га инсталирате.</string>
+    <string name="installStreamPlayer">Инсталирај</string>
+    <string name="cancel">Одустани</string>
+    <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
+    <string name="open_in_browser">Отвори у прегледачу</string>
+    <string name="share">Дели</string>
+    <string name="play">Пусти</string>
+    <string name="download">Преузми</string>
+    <string name="search">Тражи</string>
+    <string name="settings">Поставке</string>
+    <string name="sendWith">Пошаљи помоћу</string>
+    <string name="didYouMean">Да ли сте мислили: </string>
+    <string name="searchPage">Страница претраге: </string>
+    <string name="shareDialogTitle">Подели помоћу:</string>
+    <string name="chooseBrowser">Отвори помоћу:</string>
+    <string name="screenRotation">ротација</string>
+    <string name="title_activity_settings">Поставке</string>
+    <string name="useExternalPlayerTitle">Користи спољашњи плејер</string>
+    <string name="downloadLocation">Одредиште преузимања</string>
+    <string name="downloadLocationSummary">Путања за упис преузетих видеа.</string>
+    <string name="downloadLocationDialogTitle">Унесите путању за преузимања</string>
+    <string name="autoPlayThroughIntentTitle">Аутопуштање преко Интента</string>
+    <string name="autoPlayThroughIntentSummary">Аутоматски почиње пушта видео по позиву из друге апликације.</string>
+</resources>
