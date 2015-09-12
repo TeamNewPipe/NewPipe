@@ -70,19 +70,28 @@ public class ActionBarHandler {
     }
 
     public void setStreams(VideoInfo.Stream[] streams) {
-        // // TODO: 11.09.15 add auto stream option 
         this.streams = streams;
         selectedStream = 0;
         String[] itemArray = new String[streams.length];
+        String defaultResolution = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.defaultResolutionPreference),
+                        context.getString(R.string.defaultResolutionListItem));
+        int defaultResolutionPos = 0;
+
         for(int i = 0; i < streams.length; i++) {
             itemArray[i] = streams[i].format + " " + streams[i].resolution;
+            if(defaultResolution.equals(streams[i].resolution)) {
+                defaultResolutionPos = i;
+            }
         }
 
         ArrayAdapter<String> itemAdapter = new ArrayAdapter<String>(activity.getBaseContext(),
                 android.R.layout.simple_spinner_dropdown_item, itemArray);
         if(activity != null) {
-            activity.getSupportActionBar().setListNavigationCallbacks(itemAdapter
+            ActionBar ab = activity.getSupportActionBar();
+            ab.setListNavigationCallbacks(itemAdapter
                     ,new ForamatItemSelectListener());
+            ab.setSelectedNavigationItem(defaultResolutionPos);
         }
     }
 
@@ -149,7 +158,7 @@ public class ActionBarHandler {
         // ----------- THE MAGIC MOMENT ---------------
         if(!videoTitle.isEmpty()) {
             if (PreferenceManager.getDefaultSharedPreferences(context)
-                    .getBoolean("use_external_player", false)) {
+                    .getBoolean(context.getString(R.string.useExternalPlayer), false)) {
                 Intent intent = new Intent();
                 try {
                     intent.setAction(Intent.ACTION_VIEW);

@@ -3,4 +3,12 @@
     <string name="downloadPathPreference">download_path_preference</string>
     <string name="useExternalPlayer">use_external_player</string>
     <string name="autoPlayThroughIntent">autoplay_through_intent</string>
+    <string name="defaultResolutionPreference">default_resulution_preference</string>
+    <string-array name="resolutionList">
+        <item>720p</item>
+        <item>360p</item>
+        <item>240p</item>
+        <item>144p</item>
+    </string-array>
+    <string name="defaultResolutionListItem">360p</string>
 </resources>

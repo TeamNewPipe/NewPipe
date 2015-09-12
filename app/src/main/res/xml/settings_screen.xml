@@ -21,4 +21,11 @@
         android:summary="@string/autoPlayThroughIntentSummary"
         android:defaultValue="false" />
 
+    <ListPreference
+        android:key="@string/defaultResolutionPreference"
+        android:title="@string/defaultResolutionPreferenceTitle"
+        android:entries="@array/resolutionList"
+        android:entryValues="@array/resolutionList"
+        android:defaultValue="@string/defaultResolutionListItem"/>
+
 </PreferenceScreen>

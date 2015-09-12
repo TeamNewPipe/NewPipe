@@ -27,4 +27,5 @@
     <string name="downloadLocationDialogTitle">Download Verzeichnis eingeben</string>
     <string name="autoPlayThroughIntentTitle">Automatisch abspielen durch Intent.</string>
     <string name="autoPlayThroughIntentSummary">Startet ein Video automatisch wenn es von einer anderen App aufgerufen wurde.</string>
+    <string name="defaultResolutionPreferenceTitle">Standard Auflösung</string>
 </resources>

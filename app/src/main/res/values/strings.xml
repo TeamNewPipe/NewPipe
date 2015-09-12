@@ -27,4 +27,5 @@
     <string name="downloadLocationDialogTitle">Enter download path</string>
     <string name="autoPlayThroughIntentTitle">Autoplay through Intent</string>
     <string name="autoPlayThroughIntentSummary">Automatically starts a video when it was called from another app.</string>
+    <string name="defaultResolutionPreferenceTitle">Default Resolution</string>
 </resources>
