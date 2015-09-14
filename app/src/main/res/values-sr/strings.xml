@@ -27,4 +27,5 @@
     <string name="downloadLocationDialogTitle">Унесите путању за преузимања</string>
     <string name="autoPlayThroughIntentTitle">Аутопуштање преко Интента</string>
     <string name="autoPlayThroughIntentSummary">Аутоматски почиње пушта видео по позиву из друге апликације.</string>
+    <string name="defaultResolutionPreferenceTitle">Подразумевана резолуција</string>
 </resources>
