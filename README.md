@@ -1,8 +1,6 @@
 NewPipe
 -------
 
-version 0.3
-
 
 NewPipe is a lightweight youtube frontend for android. It's supposed to be used without the youtube-api and without any google play services. NewPipe only parses the youtube website in order to gain the information it needs.
 
