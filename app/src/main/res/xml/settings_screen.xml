@@ -28,4 +28,10 @@
         android:entryValues="@array/resolutionList"
         android:defaultValue="@string/defaultResolutionListItem"/>
 
+    <CheckBoxPreference
+        android:key="@string/showPlayWidthKodiPreference"
+        android:title="@string/showPlayWithKodiTitle"
+        android:summary="@string/showPlayWithKodiSummary"
+        android:defaultValue="false" />
+
 </PreferenceScreen>

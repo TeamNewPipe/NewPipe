@@ -156,7 +156,11 @@ public class VideoItemDetailFragment extends Fragment {
             ImageView uploaderThumbnailView = (ImageView) a.findViewById(R.id.detailUploaderThumbnailView);
             ImageView thumbsUpPic = (ImageView) a.findViewById(R.id.detailThumbsUpImgView);
             ImageView thumbsDownPic = (ImageView) a.findViewById(R.id.detailThumbsDownImgView);
+            View textSeperationLine = a.findViewById(R.id.textSeperationLine);
 
+            if(textSeperationLine != null) {
+                textSeperationLine.setVisibility(View.VISIBLE);
+            }
             progressBar.setVisibility(View.GONE);
             videoTitleView.setVisibility(View.VISIBLE);
             uploaderView.setVisibility(View.VISIBLE);

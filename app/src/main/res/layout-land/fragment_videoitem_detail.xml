@@ -59,7 +59,7 @@
             android:visibility="invisible"
             android:text="Herr von Gurken" />
 
-        <View
+        <View android:id="@+id/textSeperationLine"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"

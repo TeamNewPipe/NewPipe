@@ -28,4 +28,10 @@
     <string name="autoPlayThroughIntentTitle">Automatisch abspielen durch Intent.</string>
     <string name="autoPlayThroughIntentSummary">Startet ein Video automatisch wenn es von einer anderen App aufgerufen wurde.</string>
     <string name="defaultResolutionPreferenceTitle">Standard Auflösung</string>
+    <string name="playWithKodiTitle">Mit Kodi abspielen</string>
+    <string name="koreNotFound">Kore app wurde nicht gefunden. Kore wird benötigt, um Videos mit Kodi wieder zu geben.</string>
+    <string name="installeKore">Kore installieren</string>
+    <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
+    <string name="showPlayWithKodiTitle">Zeige \"Mit Kodi abspielen\" Option</string>
+    <string name="showPlayWithKodiSummary">Zeigt eine Option an, über die man Videos mit dem Kodi Mediacenter abspielen kann.</string>
 </resources>

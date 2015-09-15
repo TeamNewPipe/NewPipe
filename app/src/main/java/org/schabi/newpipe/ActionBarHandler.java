@@ -4,7 +4,9 @@ import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
@@ -40,6 +42,8 @@ import java.io.File;
 
 public class ActionBarHandler {
     private static final String TAG = ActionBarHandler.class.toString();
+    private static final String KORE_PACKET = "org.xbmc.kore";
+
     private static ActionBarHandler handler = null;
 
     private Context context = null;
@@ -48,6 +52,8 @@ public class ActionBarHandler {
     private VideoInfo.Stream[] streams = null;
     private int selectedStream = -1;
     private String videoTitle = "";
+
+    SharedPreferences defaultPreferences = null;
 
     public static ActionBarHandler getHandler() {
         if(handler == null) {
@@ -73,7 +79,7 @@ public class ActionBarHandler {
         this.streams = streams;
         selectedStream = 0;
         String[] itemArray = new String[streams.length];
-        String defaultResolution = PreferenceManager.getDefaultSharedPreferences(context)
+        String defaultResolution = defaultPreferences
                 .getString(context.getString(R.string.defaultResolutionPreference),
                         context.getString(R.string.defaultResolutionListItem));
         int defaultResolutionPos = 0;
@@ -104,14 +110,20 @@ public class ActionBarHandler {
         // CAUTION set item properties programmatically otherwise it would not be accepted by
         // appcompat itemsinflater.inflate(R.menu.videoitem_detail, menu);
 
+        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
         inflater.inflate(R.menu.videoitem_detail, menu);
         MenuItem playItem = menu.findItem(R.id.menu_item_play);
         MenuItem shareItem = menu.findItem(R.id.menu_item_share);
+        MenuItem castItem = menu.findItem(R.id.action_play_with_kodi);
 
         MenuItemCompat.setShowAsAction(playItem, MenuItemCompat.SHOW_AS_ACTION_ALWAYS
                 | MenuItemCompat.SHOW_AS_ACTION_WITH_TEXT);
         MenuItemCompat.setShowAsAction(shareItem, MenuItemCompat.SHOW_AS_ACTION_IF_ROOM
                 | MenuItemCompat.SHOW_AS_ACTION_WITH_TEXT);
+
+        castItem.setVisible(defaultPreferences
+                .getBoolean(context.getString(R.string.showPlayWidthKodiPreference), false));
 
         return true;
     }
@@ -143,6 +155,10 @@ public class ActionBarHandler {
                 Intent intent = new Intent(context, SettingsActivity.class);
                 context.startActivity(intent);
             }
+            break;
+            case R.id.action_play_with_kodi:
+                playWithKodi();
+                break;
             default:
                 Log.e(TAG, "Menu Item not known");
         }
@@ -216,8 +232,7 @@ public class ActionBarHandler {
             DownloadManager.Request request = new DownloadManager.Request(
                     Uri.parse(streams[selectedStream].url));
             request.setDestinationUri(Uri.fromFile(new File(
-                            PreferenceManager.getDefaultSharedPreferences(context)
-                            .getString("download_path_preference", "/storage/emulated/0/NewPipe")
+                            defaultPreferences.getString("download_path_preference", "/storage/emulated/0/NewPipe")
                             + "/" + videoTitle + suffix)));
             try {
                 dm.enqueue(request);
@@ -234,6 +249,37 @@ public class ActionBarHandler {
             intent.setData(Uri.parse(webisteUrl));
 
             context.startActivity(Intent.createChooser(intent, context.getString(R.string.chooseBrowser)));
+        }
+    }
+
+    public void playWithKodi() {
+        if(!videoTitle.isEmpty()) {
+            try {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setPackage(KORE_PACKET);
+                intent.setData(Uri.parse(webisteUrl.replace("https", "http")));
+                context.startActivity(intent);
+            } catch (Exception e) {
+                e.printStackTrace();
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage(R.string.koreNotFound)
+                        .setPositiveButton(R.string.installeKore, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent();
+                                intent.setAction(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse(context.getString(R.string.fdroidKoreUrl)));
+                                context.startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                builder.create().show();
+            }
         }
     }
 }

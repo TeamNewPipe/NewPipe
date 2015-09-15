@@ -4,12 +4,12 @@
     <item android:id="@+id/menu_item_play"
         android:title="@string/play"
         app:showAsAction="always"
-        android:icon="@drawable/ai_play"/>
+        android:icon="@drawable/ic_play_arrow_black"/>
 
     <item android:id="@+id/menu_item_share"
         android:title="@string/share"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ai_share"/>
+        android:icon="@drawable/ic_share_black"/>
 
     <item android:id="@+id/menu_item_openInBrowser"
         app:showAsAction="never"
@@ -22,4 +22,9 @@
     <item android:id="@+id/action_settings"
         app:showAsAction="never"
         android:title="@string/settings"/>
+
+    <item android:id="@+id/action_play_with_kodi"
+        android:title="@string/playWithKodiTitle"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_cast_black"/>
 </menu>

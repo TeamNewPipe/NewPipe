@@ -11,4 +11,5 @@
         <item>144p</item>
     </string-array>
     <string name="defaultResolutionListItem">360p</string>
+    <string name="showPlayWidthKodiPreference">show_play_with_kodi_preference</string>
 </resources>
