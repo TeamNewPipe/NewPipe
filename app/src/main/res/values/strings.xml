@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
-    <string name="nothingFound">Noting found</string>
+    <string name="nothingFound">Nothing found</string>
     <string name="viewSufix">views</string>
     <string name="uploadDatePrefix">Uploaded at: </string>
     <string name="noPlayerFound">No StreamPlayer found. You may want to install one.</string>
