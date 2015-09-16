@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">NewPipe</string>
+    <string name="title_videoitem_detail">NewPipe</string>
+    <string name="nothingFound">Geen resultaten</string>
+    <string name="viewSufix">keer bekeken</string>
+    <string name="uploadDatePrefix">Geüpload op: </string>
+    <string name="noPlayerFound">Geen speler met streaming ondersteuning gevonden. Je wilt er misschien een installeren.</string>
+    <string name="installStreamPlayer">Installeer speler</string>
+    <string name="cancel">Annuleer</string>
+    <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
+    <string name="open_in_browser">Open in browser</string>
+    <string name="share">Deel</string>
+    <string name="play">Speel af</string>
+    <string name="download">Download</string>
+    <string name="search">Zoek</string>
+    <string name="settings">Instellingen</string>
+    <string name="sendWith">Verstuur met</string>
+    <string name="didYouMean">Bedoelde je: </string>
+    <string name="searchPage">Zoekpagina: </string>
+    <string name="shareDialogTitle">Deel met:</string>
+    <string name="chooseBrowser">Kies browser:</string>
+    <string name="screenRotation">rotatie</string>
+    <string name="title_activity_settings">Instellingen</string>
+    <string name="useExternalPlayerTitle">Gebruik externe speler</string>
+    <string name="downloadLocation">Downloadlocatie</string>
+    <string name="downloadLocationSummary">Locatie om gedownloadde videos in op te slaan.</string>
+    <string name="downloadLocationDialogTitle">Voer downloadlocatie is</string>
+    <string name="autoPlayThroughIntentTitle">Speel automatisch via Intent</string>
+    <string name="autoPlayThroughIntentSummary">Speel een video automatisch af indien geopend vanuit een andere app.</string>
+    <string name="defaultResolutionPreferenceTitle">Standaardresolutie</string>
+    <string name="playWithKodiTitle">Speel af met Kodi</string>
+    <string name="koreNotFound">Kore app niet gevonden. Kore is nodig om videos op Kodi af te spelen.</string>
+    <string name="installeKore">Installeer Kore</string>
+    <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
+    <string name="showPlayWithKodiTitle">Toon \"Speel af met Kodi\" optie</string>
+    <string name="showPlayWithKodiSummary">Toont een optie om een video op een Kodi media center af te spelen.</string>
+</resources>
