@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.text.Html;
@@ -14,9 +16,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -159,6 +163,7 @@ public class VideoItemDetailFragment extends Fragment {
             ImageView thumbsDownPic = (ImageView) a.findViewById(R.id.detailThumbsDownImgView);
             View textSeperationLine = a.findViewById(R.id.textSeperationLine);
 
+
             if(textSeperationLine != null) {
                 textSeperationLine.setVisibility(View.VISIBLE);
             }
@@ -202,7 +207,7 @@ public class VideoItemDetailFragment extends Fragment {
                     }
                     ActionBarHandler.getHandler().setStreams(streamList);
                 }
-                    break;
+                break;
                 case VideoInfo.VIDEO_UNAVAILABLE_GEMA:
                     thumbnailView.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.gruese_die_gema_unangebracht));
                     break;
@@ -257,7 +262,31 @@ public class VideoItemDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_videoitem_detail, container, false);
-
         return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceBundle) {
+        super.onActivityCreated(savedInstanceBundle);
+        FloatingActionButton playVideoButton = (FloatingActionButton) getActivity().findViewById(R.id.playVideoButton);
+
+        if(PreferenceManager.getDefaultSharedPreferences(getActivity())
+                .getBoolean(getString(R.string.leftHandLayout), false)) {
+            RelativeLayout.LayoutParams oldLayout = (RelativeLayout.LayoutParams) playVideoButton.getLayoutParams();
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+            layoutParams.setMargins(oldLayout.leftMargin, oldLayout.topMargin, oldLayout.rightMargin, oldLayout.rightMargin);
+            playVideoButton.setLayoutParams(layoutParams);
+        }
+
+        playVideoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActionBarHandler.getHandler().playVideo();
+            }
+        });
     }
 }

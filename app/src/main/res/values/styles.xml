@@ -1,11 +1,11 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <item name="android:actionBarStyle">@style/NewPipeActionbarTheme</item>
         <item name="actionBarStyle">@style/NewPipeActionbarTheme</item>
         <item name="colorPrimary">@color/primaryColorYoutube</item>
         <item name="colorPrimaryDark">@color/primaryColorDarkYoutube</item>
+        <item name="colorAccent">@color/accentColorYoutube</item>
     </style>
 
     <style name="NewPipeActionbarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid" >
