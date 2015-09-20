@@ -15,13 +15,13 @@
 
     <TextView android:id="@+id/itemVideoTitleView"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:layout_toRightOf="@id/itemThumbnailView"
         android:layout_alignParentTop="true"
         android:paddingLeft="6dp"
+        android:paddingTop="4dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/text_search_title_size"
-        android:textStyle="bold"
         />
 
     <TextView android:id="@+id/itemUploaderView"
@@ -32,6 +32,16 @@
         android:paddingLeft="6dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/text_search_uploader_size"/>
+
+    <TextView android:text="Upload date here"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/itemThumbnailView"
+        android:layout_below="@id/itemUploaderView"
+        android:paddingLeft="6dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="@dimen/text_search_uploadtime_size"
+        />
 
     <TextView android:id="@+id/itemDurationView"
         android:layout_width="wrap_content"
@@ -47,19 +57,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/text_search_duration_size"
         android:background="@drawable/durationback"
-        android:textColor="#ffffff"
+        android:textColor="#f7f7f7"
         />
-
-    <TextView android:text="Upload date here"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/itemUploaderView"
-        android:layout_below="@id/itemVideoTitleView"
-        android:paddingLeft="6dp"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="@dimen/text_search_uploadtime_size"
-        />
-
-
 
 </RelativeLayout>
