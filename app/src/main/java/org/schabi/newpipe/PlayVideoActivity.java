@@ -2,12 +2,16 @@ package org.schabi.newpipe;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
@@ -17,8 +21,11 @@ import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.VideoView;
 
 /**
@@ -50,6 +57,7 @@ public class PlayVideoActivity extends AppCompatActivity {
     private static final String POSITION = "position";
 
     private static final long HIDING_DELAY = 3000;
+    private static final long TAB_HIDING_DELAY = 100;
 
     private String videoUrl = "";
 
@@ -61,12 +69,17 @@ public class PlayVideoActivity extends AppCompatActivity {
     private View decorView;
     private boolean uiIsHidden = false;
     private static long lastUiShowTime = 0;
+    private boolean isLandscape = true;
+    private boolean hasSoftKeys = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_play_video);
+
+        isLandscape = checkIfLandscape();
+        hasSoftKeys = checkIfhasSoftKeys();
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -91,6 +104,7 @@ public class PlayVideoActivity extends AppCompatActivity {
                 videoView.seekTo(position);
                 if (position == 0) {
                     videoView.start();
+                    showUi();
                 } else {
                     videoView.pause();
                 }
@@ -113,16 +127,21 @@ public class PlayVideoActivity extends AppCompatActivity {
         decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
             @Override
             public void onSystemUiVisibilityChange(int visibility) {
-                if((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0) {
-                    uiIsHidden = false;
+                if (visibility == View.VISIBLE && uiIsHidden) {
                     showUi();
-                } else {
-                    uiIsHidden = true;
-                    hideUi();
                 }
             }
         });
-        showUi();
+
+        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
     }
 
     @Override
@@ -166,8 +185,16 @@ public class PlayVideoActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
+    public void onConfigurationChanged(Configuration config) {
+        super.onConfigurationChanged(config);
+
+        if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            isLandscape = true;
+            adjustMediaControllMetrics();
+        } else if (config.orientation == Configuration.ORIENTATION_PORTRAIT){
+            isLandscape = false;
+            adjustMediaControllMetrics();
+        }
     }
 
     @Override
@@ -187,15 +214,15 @@ public class PlayVideoActivity extends AppCompatActivity {
     private void showUi() {
         try {
             uiIsHidden = false;
-            mediaController.show();
+            mediaController.show(100000);
             actionBar.show();
-            //decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            //| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+            adjustMediaControllMetrics();
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if ((System.currentTimeMillis() - lastUiShowTime) > HIDING_DELAY) {
+                    if ((System.currentTimeMillis() - lastUiShowTime) >= HIDING_DELAY) {
                         hideUi();
                     }
                 }
@@ -210,8 +237,75 @@ public class PlayVideoActivity extends AppCompatActivity {
         uiIsHidden = true;
         actionBar.hide();
         mediaController.hide();
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        //decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-        //| View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    private void adjustMediaControllMetrics() {
+        MediaController.LayoutParams mediaControllerLayout
+                = new MediaController.LayoutParams(MediaController.LayoutParams.MATCH_PARENT,
+                MediaController.LayoutParams.WRAP_CONTENT);
+
+        if(!hasSoftKeys) {
+            mediaControllerLayout.setMargins(20, 0, 20, 20);
+        } else {
+            int width = getNavigationBarWidth();
+            int height = getNavigationBarHeight();
+            mediaControllerLayout.setMargins(width + 20, 0, width + 20, height + 20);
+        }
+        mediaController.setLayoutParams(mediaControllerLayout);
+    }
+
+    private boolean checkIfhasSoftKeys(){
+        if(Build.VERSION.SDK_INT >= 17) {
+            return getNavigationBarHeight() != 0 || getNavigationBarWidth() != 0;
+        } else {
+            return true;
+        }
+    }
+
+    private int getNavigationBarHeight() {
+        if(Build.VERSION.SDK_INT >= 17) {
+            Display d = getWindowManager().getDefaultDisplay();
+
+            DisplayMetrics realDisplayMetrics = new DisplayMetrics();
+            d.getRealMetrics(realDisplayMetrics);
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            d.getMetrics(displayMetrics);
+
+            int realHeight = realDisplayMetrics.heightPixels;
+            int displayHeight = displayMetrics.heightPixels;
+            return (realHeight - displayHeight);
+        } else {
+            return 50;
+        }
+    }
+
+    private int getNavigationBarWidth() {
+        if(Build.VERSION.SDK_INT >= 17) {
+            Display d = getWindowManager().getDefaultDisplay();
+
+            DisplayMetrics realDisplayMetrics = new DisplayMetrics();
+            d.getRealMetrics(realDisplayMetrics);
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            d.getMetrics(displayMetrics);
+
+            int realWidth = realDisplayMetrics.widthPixels;
+            int displayWidth = displayMetrics.widthPixels;
+            return (realWidth - displayWidth);
+        } else {
+            return 50;
+        }
+    }
+
+    public boolean checkIfLandscape() {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels < displayMetrics.widthPixels;
     }
 }

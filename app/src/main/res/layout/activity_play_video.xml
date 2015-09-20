@@ -9,17 +9,20 @@
     <VideoView android:id="@+id/video_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:focusable="false"/>
 
     <Button android:id="@+id/content_button"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@null" />
+        android:background="@null"
+        android:focusable="false"/>
 
     <ProgressBar android:id="@+id/play_video_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:focusable="false"/>
 
 </FrameLayout>
