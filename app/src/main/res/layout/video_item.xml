@@ -8,18 +8,21 @@
 
     <ImageView android:id="@+id/itemThumbnailView"
         android:layout_width="125dp"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/dummi_thumbnail"/>
 
     <TextView android:id="@+id/itemVideoTitleView"
         android:layout_width="wrap_content"
-        android:layout_height="55dp"
+        android:layout_height="60dp"
         android:layout_toRightOf="@id/itemThumbnailView"
         android:layout_alignParentTop="true"
         android:paddingLeft="6dp"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="@dimen/text_search_title_size"
+        android:textStyle="bold"
+        />
 
     <TextView android:id="@+id/itemUploaderView"
         android:layout_width="wrap_content"
@@ -32,10 +35,10 @@
     <TextView android:id="@+id/itemDurationView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/itemThumbnailView"
-        android:layout_below="@id/itemUploaderView"
+        android:layout_toRightOf="@id/itemUploaderView"
+        android:layout_below="@id/itemVideoTitleView"
         android:paddingLeft="6dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
 
 
 
