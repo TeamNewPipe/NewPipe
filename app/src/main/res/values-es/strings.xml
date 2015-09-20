@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">NewPipe</string>
+    <string name="title_videoitem_detail">NewPipe</string>
+    <string name="nothingFound">No se ha encontrado nada</string>
+    <string name="viewSufix">visitas</string>
+    <string name="uploadDatePrefix">Subido desde: </string>
+    <string name="noPlayerFound">No se ha encontrado ningún reproductor de vídeo. Quizás quieras instalar alguno.</string>
+    <string name="installStreamPlayer">Instalar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
+    <string name="open_in_browser">Abrir en navegador</string>
+    <string name="share">Compartir</string>
+    <string name="play">Reproducir</string>
+    <string name="download">Descargar</string>
+    <string name="search">Buscar</string>
+    <string name="settings">Ajustes</string>
+    <string name="sendWith">Enviar con</string>
+    <string name="didYouMean">Querias decir: </string>
+    <string name="searchPage">Buscar página: </string>
+    <string name="shareDialogTitle">Compartir con:</string>
+    <string name="chooseBrowser">Selecciona navegador:</string>
+    <string name="screenRotation">rotación</string>
+    <string name="title_activity_settings">Ajustes</string>
+    <string name="useExternalPlayerTitle">Usar reproductor externo</string>
+    <string name="downloadLocation">Descargar en...</string>
+    <string name="downloadLocationSummary">Donde se guardarán los vídeos descargados.</string>
+    <string name="downloadLocationDialogTitle">Localización del directorio de descargas</string>
+    <string name="autoPlayThroughIntentTitle">Reproducción automática</string>
+    <string name="autoPlayThroughIntentSummary">Reproduce los vídeos automaticamente cuando la llamada viene de otra aplicación.</string>
+    <string name="defaultResolutionPreferenceTitle">Resolución por defecto</string>
+    <string name="playWithKodiTitle">Reproducir con Kodi</string>
+    <string name="koreNotFound">Aplicación Kore no encontrada. Kore es necesario para reproducir vídeos con Kodi media center.</string>
+    <string name="installeKore">Instalar Kore</string>
+    <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
+    <string name="showPlayWithKodiTitle">Mostrar la opción \"Reproducir con Kodi\"</string>
+    <string name="showPlayWithKodiSummary">Muestra una opción para reproducir vídeo vía Kodi media center.</string>
+</resources>
