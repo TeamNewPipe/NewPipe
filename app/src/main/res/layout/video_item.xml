@@ -33,7 +33,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/text_search_uploader_size"/>
 
-    <TextView android:text="Upload date here"
+    <TextView android:text="itemUploadDateView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/itemThumbnailView"
