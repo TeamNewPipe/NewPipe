@@ -29,18 +29,27 @@ public class VideoInfo {
     public static final String F_MPEG_4 = "MPEG-4";
     public static final String F_3GPP = "3GPP";
     public static final String F_WEBM = "WebM";
+    public static final String F_M4A = "m4a";
 
     public static final int VIDEO_AVAILABLE = 0x00;
     public static final int VIDEO_UNAVAILABLE = 0x01;
     public static final int VIDEO_UNAVAILABLE_GEMA = 0x02;
 
-    public static class Stream {
-        public Stream(String u, String f, String r) {
-            url = u; format = f; resolution = r;
+    public static class VideoStream {
+        public VideoStream(String url, String format, String res) {
+            this.url = url; this.format = format; resolution = res;
         }
         public String url = "";     //url of the stream
         public String format = "";
         public String resolution = "";
+    }
+
+    public static class AudioStream {
+        public AudioStream(String url, String format) {
+            this.url = url; this.format = format;
+        }
+        public String url = "";
+        public String format = "";
     }
 
     public String id = "";
@@ -59,7 +68,8 @@ public class VideoInfo {
     public String like_count = "";
     public String dislike_count = "";
     public String average_rating = "";
-    public Stream[] streams = null;
+    public VideoStream[] videoStreams = null;
+    public AudioStream[] audioStreams = null;
     public VideoInfoItem nextVideo = null;
     public Vector<VideoInfoItem> relatedVideos = null;
     public int videoAvailableStatus = VIDEO_AVAILABLE;
