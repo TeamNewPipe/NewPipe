@@ -34,4 +34,9 @@
         android:summary="@string/showPlayWithKodiSummary"
         android:defaultValue="false" />
 
+    <CheckBoxPreference
+        android:key="@string/leftHandLayout"
+        android:title="@string/leftHandLayoutTitle"
+        android:defaultValue="false" />
+
 </PreferenceScreen>
