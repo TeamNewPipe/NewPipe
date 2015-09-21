@@ -1,16 +1,20 @@
 package org.schabi.newpipe;
 
 import android.content.ContentProviderOperation;
+import android.content.res.Configuration;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
 import org.schabi.newpipe.youtube.YoutubeExtractor;
 
@@ -39,11 +43,11 @@ public class VideoItemDetailActivity extends AppCompatActivity {
 
     private String videoUrl;
     private int currentStreamingService = -1;
+    private boolean isLandscape;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videoitem_detail);
-
 
         // Show the Up button in the action bar.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -55,6 +55,7 @@ public class YoutubeExtractor implements Extractor {
 
     public static String resolveFormat(int itag) {
         switch(itag) {
+            // video
             case 17: return VideoInfo.F_3GPP;
             case 18: return VideoInfo.F_MPEG_4;
             case 22: return VideoInfo.F_MPEG_4;
@@ -185,7 +186,7 @@ public class YoutubeExtractor implements Extractor {
             // extract stream url
             //------------------------------------
             String encoded_url_map = playerArgs.getString("url_encoded_fmt_stream_map");
-            Vector<VideoInfo.Stream> streams = new Vector<>();
+            Vector<VideoInfo.VideoStream> videoStreams = new Vector<>();
             for(String url_data_str : encoded_url_map.split(",")) {
                 Map<String, String> tags = new HashMap<>();
                 for(String raw_tag : Parser.unescapeEntities(url_data_str, true).split("&")) {
@@ -196,7 +197,7 @@ public class YoutubeExtractor implements Extractor {
                 int itag = Integer.parseInt(tags.get("itag"));
                 String streamUrl = terrible_unescape_workaround_fuck(tags.get("url"));
 
-                // if video has a signature decrypt it and add it to the url
+                // if video has a signature: decrypt it and add it to the url
                 if(tags.get("s") != null) {
                     String playerUrl = ytAssets.getString("js");
                     if(playerUrl.startsWith("//")) {
@@ -209,15 +210,15 @@ public class YoutubeExtractor implements Extractor {
                 }
 
                 if(resolveFormat(itag) != null) {
-                    streams.add(new VideoInfo.Stream(
-                            streamUrl,   //sometimes i have no idea what im programming -.-
+                    videoStreams.add(new VideoInfo.VideoStream(
+                            streamUrl,
                             resolveFormat(itag),
                             resolveResolutionString(itag)));
                 }
             }
-            videoInfo.streams = new VideoInfo.Stream[streams.size()];
-            for(int i = 0; i < streams.size(); i++) {
-                videoInfo.streams[i] = streams.get(i);
+            videoInfo.videoStreams = new VideoInfo.VideoStream[videoStreams.size()];
+            for(int i = 0; i < videoStreams.size(); i++) {
+                videoInfo.videoStreams[i] = videoStreams.get(i);
             }
 
         } catch (Exception e) {

@@ -49,7 +49,7 @@ public class ActionBarHandler {
     private Context context = null;
     private String webisteUrl = "";
     private AppCompatActivity activity;
-    private VideoInfo.Stream[] streams = null;
+    private VideoInfo.VideoStream[] videoStreams = null;
     private int selectedStream = -1;
     private String videoTitle = "";
 
@@ -75,8 +75,8 @@ public class ActionBarHandler {
         activity.getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
     }
 
-    public void setStreams(VideoInfo.Stream[] streams) {
-        this.streams = streams;
+    public void setStreams(VideoInfo.VideoStream[] streams) {
+        this.videoStreams = streams;
         selectedStream = 0;
         String[] itemArray = new String[streams.length];
         String defaultResolution = defaultPreferences
@@ -178,8 +178,8 @@ public class ActionBarHandler {
                 Intent intent = new Intent();
                 try {
                     intent.setAction(Intent.ACTION_VIEW);
-                    intent.setDataAndType(Uri.parse(streams[selectedStream].url),
-                            "video/" + streams[selectedStream].format);
+                    intent.setDataAndType(Uri.parse(videoStreams[selectedStream].url),
+                            "video/" + videoStreams[selectedStream].format);
                     context.startActivity(intent);      // HERE !!!
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -205,7 +205,7 @@ public class ActionBarHandler {
             } else {
                 Intent intent = new Intent(context, PlayVideoActivity.class);
                 intent.putExtra(PlayVideoActivity.VIDEO_TITLE, videoTitle);
-                intent.putExtra(PlayVideoActivity.STREAM_URL, streams[selectedStream].url);
+                intent.putExtra(PlayVideoActivity.STREAM_URL, videoStreams[selectedStream].url);
                 intent.putExtra(PlayVideoActivity.VIDEO_URL, webisteUrl);
                 context.startActivity(intent);
             }
@@ -217,7 +217,7 @@ public class ActionBarHandler {
         Log.d(TAG, "bla");
         if(!videoTitle.isEmpty()) {
             String suffix = "";
-            switch (streams[selectedStream].format) {
+            switch (videoStreams[selectedStream].format) {
                 case VideoInfo.F_WEBM:
                     suffix = ".webm";
                     break;
@@ -230,7 +230,7 @@ public class ActionBarHandler {
             }
             DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
             DownloadManager.Request request = new DownloadManager.Request(
-                    Uri.parse(streams[selectedStream].url));
+                    Uri.parse(videoStreams[selectedStream].url));
             request.setDestinationUri(Uri.fromFile(new File(
                             defaultPreferences.getString("download_path_preference", "/storage/emulated/0/NewPipe")
                             + "/" + videoTitle + suffix)));

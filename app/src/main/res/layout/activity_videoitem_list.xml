@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <ImageView android:id="@+id/list_view_watermark"
         android:layout_width="match_parent"
@@ -16,6 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".VideoItemListActivity"
-        tools:layout="@android:layout/list_content" />
+        tools:layout="@android:layout/list_content"/>
 
 </LinearLayout>
