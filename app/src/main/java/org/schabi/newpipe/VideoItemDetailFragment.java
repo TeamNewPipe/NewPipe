@@ -195,13 +195,13 @@ public class VideoItemDetailFragment extends Fragment {
                     ActionBarHandler.getHandler().setVideoInfo(info.webpage_url, info.title);
 
                     // parse streams
-                    Vector<VideoInfo.Stream> streamsToUse = new Vector<>();
-                    for (VideoInfo.Stream i : info.streams) {
+                    Vector<VideoInfo.VideoStream> streamsToUse = new Vector<>();
+                    for (VideoInfo.VideoStream i : info.videoStreams) {
                         if (useStream(i, streamsToUse)) {
                             streamsToUse.add(i);
                         }
                     }
-                    VideoInfo.Stream[] streamList = new VideoInfo.Stream[streamsToUse.size()];
+                    VideoInfo.VideoStream[] streamList = new VideoInfo.VideoStream[streamsToUse.size()];
                     for (int i = 0; i < streamList.length; i++) {
                         streamList[i] = streamsToUse.get(i);
                     }
@@ -227,8 +227,8 @@ public class VideoItemDetailFragment extends Fragment {
         }
     }
 
-    private boolean useStream(VideoInfo.Stream stream, Vector<VideoInfo.Stream> streams) {
-        for(VideoInfo.Stream i : streams) {
+    private boolean useStream(VideoInfo.VideoStream stream, Vector<VideoInfo.VideoStream> streams) {
+        for(VideoInfo.VideoStream i : streams) {
             if(i.resolution.equals(stream.resolution)) {
                 return false;
             }
