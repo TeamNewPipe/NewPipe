@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -271,7 +272,7 @@ public class VideoItemDetailFragment extends Fragment {
         FloatingActionButton playVideoButton = (FloatingActionButton) getActivity().findViewById(R.id.playVideoButton);
 
         if(PreferenceManager.getDefaultSharedPreferences(getActivity())
-                .getBoolean(getString(R.string.leftHandLayout), false)) {
+                .getBoolean(getString(R.string.leftHandLayout), false) && checkIfLandscape()) {
             RelativeLayout.LayoutParams oldLayout = (RelativeLayout.LayoutParams) playVideoButton.getLayoutParams();
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
                     RelativeLayout.LayoutParams.WRAP_CONTENT,
@@ -288,5 +289,11 @@ public class VideoItemDetailFragment extends Fragment {
                 ActionBarHandler.getHandler().playVideo();
             }
         });
+    }
+
+    public boolean checkIfLandscape() {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels < displayMetrics.widthPixels;
     }
 }
