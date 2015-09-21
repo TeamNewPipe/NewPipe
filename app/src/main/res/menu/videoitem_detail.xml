@@ -3,13 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/menu_item_play"
         android:title="@string/play"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:icon="@drawable/ic_play_arrow_black"/>
+
+    <item android:id="@+id/menu_item_play_audio"
+        android:title="@string/playAudio"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_headset_black" />
 
     <item android:id="@+id/menu_item_share"
         android:title="@string/share"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_share_black"/>
+
+    <item android:id="@+id/action_play_with_kodi"
+        android:title="@string/playWithKodiTitle"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_cast_black"/>
 
     <item android:id="@+id/menu_item_openInBrowser"
         app:showAsAction="never"
@@ -23,8 +33,5 @@
         app:showAsAction="never"
         android:title="@string/settings"/>
 
-    <item android:id="@+id/action_play_with_kodi"
-        android:title="@string/playWithKodiTitle"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_cast_black"/>
+
 </menu>

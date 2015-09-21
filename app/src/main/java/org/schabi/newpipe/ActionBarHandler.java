@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v4.view.MenuItemCompat;
@@ -50,6 +51,7 @@ public class ActionBarHandler {
     private String webisteUrl = "";
     private AppCompatActivity activity;
     private VideoInfo.VideoStream[] videoStreams = null;
+    private VideoInfo.AudioStream audioStream = null;
     private int selectedStream = -1;
     private String videoTitle = "";
 
@@ -75,18 +77,18 @@ public class ActionBarHandler {
         activity.getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
     }
 
-    public void setStreams(VideoInfo.VideoStream[] streams) {
-        this.videoStreams = streams;
+    public void setStreams(VideoInfo.VideoStream[] videoStreams, VideoInfo.AudioStream[] audioStreams) {
+        this.videoStreams = videoStreams;
         selectedStream = 0;
-        String[] itemArray = new String[streams.length];
+        String[] itemArray = new String[videoStreams.length];
         String defaultResolution = defaultPreferences
                 .getString(context.getString(R.string.defaultResolutionPreference),
                         context.getString(R.string.defaultResolutionListItem));
         int defaultResolutionPos = 0;
 
-        for(int i = 0; i < streams.length; i++) {
-            itemArray[i] = streams[i].format + " " + streams[i].resolution;
-            if(defaultResolution.equals(streams[i].resolution)) {
+        for(int i = 0; i < videoStreams.length; i++) {
+            itemArray[i] = VideoInfo.getNameById(videoStreams[i].format) + " " + videoStreams[i].resolution;
+            if(defaultResolution.equals(videoStreams[i].resolution)) {
                 defaultResolutionPos = i;
             }
         }
@@ -98,6 +100,27 @@ public class ActionBarHandler {
             ab.setListNavigationCallbacks(itemAdapter
                     ,new ForamatItemSelectListener());
             ab.setSelectedNavigationItem(defaultResolutionPos);
+        }
+
+        // set audioStream
+        audioStream = null;
+        String preferedFormat = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.defaultAudioFormatPreference), "webm");
+        if(preferedFormat.equals("webm")) {
+            for(VideoInfo.AudioStream s : audioStreams) {
+                if(s.format == VideoInfo.I_WEBMA) {
+                    audioStream = s;
+                }
+            }
+        } else if(preferedFormat.equals("m4a")){
+            for(VideoInfo.AudioStream s : audioStreams) {
+                Log.d(TAG, VideoInfo.getMimeById(s.format) + " : " + Integer.toString(s.bandWidth));
+                if(s.format == VideoInfo.I_M4A &&
+                        (audioStream == null || audioStream.bandWidth > s.bandWidth)) {
+                    audioStream = s;
+                    Log.d(TAG, "last choosen");
+                }
+            }
         }
     }
 
@@ -159,6 +182,9 @@ public class ActionBarHandler {
             case R.id.action_play_with_kodi:
                 playWithKodi();
                 break;
+            case R.id.menu_item_play_audio:
+                playAudio();
+                break;
             default:
                 Log.e(TAG, "Menu Item not known");
         }
@@ -179,7 +205,7 @@ public class ActionBarHandler {
                 try {
                     intent.setAction(Intent.ACTION_VIEW);
                     intent.setDataAndType(Uri.parse(videoStreams[selectedStream].url),
-                            "video/" + videoStreams[selectedStream].format);
+                            VideoInfo.getMimeById(videoStreams[selectedStream].format));
                     context.startActivity(intent);      // HERE !!!
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -216,29 +242,17 @@ public class ActionBarHandler {
     public void downloadVideo() {
         Log.d(TAG, "bla");
         if(!videoTitle.isEmpty()) {
-            String suffix = "";
-            switch (videoStreams[selectedStream].format) {
-                case VideoInfo.F_WEBM:
-                    suffix = ".webm";
-                    break;
-                case VideoInfo.F_MPEG_4:
-                    suffix = ".mp4";
-                    break;
-                case VideoInfo.F_3GPP:
-                    suffix = ".3gp";
-                    break;
-            }
-            DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-            DownloadManager.Request request = new DownloadManager.Request(
-                    Uri.parse(videoStreams[selectedStream].url));
-            request.setDestinationUri(Uri.fromFile(new File(
-                            defaultPreferences.getString("download_path_preference", "/storage/emulated/0/NewPipe")
-                            + "/" + videoTitle + suffix)));
-            try {
-                dm.enqueue(request);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            String videoSuffix = "." + VideoInfo.getSuffixById(videoStreams[selectedStream].format);
+            String audioSuffix = "." + VideoInfo.getSuffixById(audioStream.format);
+            Bundle args = new Bundle();
+            args.putString(DownloadDialog.FILE_SUFFIX_VIDEO, videoSuffix);
+            args.putString(DownloadDialog.FILE_SUFFIX_AUDIO, audioSuffix);
+            args.putString(DownloadDialog.TITLE, videoTitle);
+            args.putString(DownloadDialog.VIDEO_URL, videoStreams[selectedStream].url);
+            args.putString(DownloadDialog.AUDIO_URL, audioStream.url);
+            DownloadDialog downloadDialog = new DownloadDialog();
+            downloadDialog.setArguments(args);
+            downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
         }
     }
 
@@ -280,6 +294,36 @@ public class ActionBarHandler {
                         });
                 builder.create().show();
             }
+        }
+    }
+
+    public void playAudio() {
+        Intent intent = new Intent();
+        try {
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setDataAndType(Uri.parse(audioStream.url),
+                    VideoInfo.getMimeById(audioStream.format));
+            context.startActivity(intent);      // HERE !!!
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage(R.string.noPlayerFound)
+                    .setPositiveButton(R.string.installStreamPlayer, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent();
+                            intent.setAction(Intent.ACTION_VIEW);
+                            intent.setData(Uri.parse(context.getString(R.string.fdroidVLCurl)));
+                            context.startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Log.i(TAG, "You unlocked a secret unicorn.");
+                        }
+                    });
+            builder.create().show();
         }
     }
 }

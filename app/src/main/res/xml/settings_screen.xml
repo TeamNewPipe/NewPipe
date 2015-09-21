@@ -39,4 +39,11 @@
         android:title="@string/leftHandLayoutTitle"
         android:defaultValue="false" />
 
+    <ListPreference
+        android:key="@string/defaultAudioFormatPreference"
+        android:title="@string/defaultAudioFormatTitle"
+        android:entries="@array/audioFormatDescriptionList"
+        android:entryValues="@array/audioFormatList"
+        android:defaultValue="@string/defaultAudioFormat"/>
+
 </PreferenceScreen>

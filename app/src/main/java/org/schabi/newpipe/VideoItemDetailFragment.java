@@ -205,7 +205,7 @@ public class VideoItemDetailFragment extends Fragment {
                     for (int i = 0; i < streamList.length; i++) {
                         streamList[i] = streamsToUse.get(i);
                     }
-                    ActionBarHandler.getHandler().setStreams(streamList);
+                    ActionBarHandler.getHandler().setStreams(streamList, info.audioStreams);
                 }
                 break;
                 case VideoInfo.VIDEO_UNAVAILABLE_GEMA:
