@@ -23,6 +23,7 @@
                 android:layout_gravity="center"
                 android:indeterminate="true"/>
 
+
             <ImageView android:id="@+id/detailThumbnailView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -45,6 +46,15 @@
                 android:visibility="visible"
                 android:text="detailVideoTitleViewDUMMY"/>
 
+            <!-- THIS NEEDS TO BE STRETCHED - maybe by code? idk -->
+            <ImageView android:id="@+id/detailChannelBackground"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:layout_below="@id/detailVideoTitleView"
+                android:paddingLeft="0dp"
+                android:visibility="visible"
+                android:src="@drawable/banner" />
+
             <ImageView android:id="@+id/detailUploaderThumbnailView"
                 android:layout_width="85dp"
                 android:layout_height="100dp"
@@ -54,6 +64,7 @@
                 android:layout_alignParentLeft="true"
                 android:visibility="visible"
                 android:src="@drawable/budy" />
+
 
             <TextView android:id="@+id/detailUploaderView"
                 android:layout_width="wrap_content"
