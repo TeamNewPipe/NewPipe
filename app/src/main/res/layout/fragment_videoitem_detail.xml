@@ -1,133 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/videoitem_detail"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".VideoItemDetailFragment"
+    android:textIsSelectable="true"
     style="?android:attr/textAppearanceLarge"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:textIsSelectable="true"
-    tools:context=".VideoItemDetailFragment">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <ScrollView
+        android:id="@+id/videoitem_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <ProgressBar android:id="@+id/detailProgressBar"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:indeterminate="true"/>
+            android:layout_height="match_parent">
 
-        <ImageView android:id="@+id/detailThumbnailView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="centerInside"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:adjustViewBounds="true"
-            android:visibility="invisible"
-            android:src="@drawable/dummi_thumbnail"/>
+            <ProgressBar android:id="@+id/detailProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:indeterminate="true"/>
 
-        <TextView android:id="@+id/detailVideoTitleView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/detailThumbnailView"
-            android:layout_alignParentLeft="true"
-            android:paddingLeft="6dp"
-            android:paddingBottom="20dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:visibility="invisible"
-            android:text="Bla blabla !!!"/>
+            <ImageView android:id="@+id/detailThumbnailView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:adjustViewBounds="true"
+                android:visibility="invisible"
+                android:src="@drawable/dummi_thumbnail"/>
 
-        <ImageView android:id="@+id/detailUploaderThumbnailView"
-            android:layout_width="85dp"
-            android:layout_height="100dp"
-            android:paddingTop="25dp"
-            android:paddingLeft="2dp"
-            android:layout_below="@id/detailVideoTitleView"
-            android:layout_alignParentLeft="true"
-            android:visibility="invisible"
-            android:src="@drawable/budy" />
+            <TextView android:id="@+id/detailVideoTitleView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detailThumbnailView"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="6dp"
+                android:paddingBottom="20dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:visibility="invisible"
+                android:text="Bla blabla !!!"/>
 
-        <TextView android:id="@+id/detailUploaderView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/detailUploaderThumbnailView"
-            android:layout_alignParentLeft="true"
-            android:paddingLeft="6dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:visibility="invisible"
-            android:text="Herr von Gurken" />
+            <ImageView android:id="@+id/detailUploaderThumbnailView"
+                android:layout_width="85dp"
+                android:layout_height="100dp"
+                android:paddingTop="25dp"
+                android:paddingLeft="2dp"
+                android:layout_below="@id/detailVideoTitleView"
+                android:layout_alignParentLeft="true"
+                android:visibility="invisible"
+                android:src="@drawable/budy" />
 
-        <TextView android:id="@+id/detailViewCountView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="25dp"
-            android:layout_below="@id/detailVideoTitleView"
-            android:layout_alignParentRight="true"
-            android:paddingRight="16dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:visibility="invisible"
-            android:text="drölf views" />
+            <TextView android:id="@+id/detailUploaderView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detailUploaderThumbnailView"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="6dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="invisible"
+                android:text="Herr von Gurken" />
 
-        <TextView android:id="@+id/detailThumbsDownCountView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/detailViewCountView"
-            android:layout_alignParentRight="true"
-            android:paddingRight="16dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:visibility="invisible"
-            android:text="-5.000" />
+            <TextView android:id="@+id/detailViewCountView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="25dp"
+                android:layout_below="@id/detailVideoTitleView"
+                android:layout_alignParentRight="true"
+                android:paddingRight="16dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:visibility="invisible"
+                android:text="drölf views" />
 
-        <ImageView android:id="@+id/detailThumbsDownImgView"
-            android:layout_width="40dp"
-            android:layout_height="20dp"
-            android:layout_below="@id/detailViewCountView"
-            android:layout_toLeftOf="@id/detailThumbsDownCountView"
-            android:visibility="invisible"
-            android:src="@drawable/thumbs_down" />
+            <TextView android:id="@+id/detailThumbsDownCountView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detailViewCountView"
+                android:layout_alignParentRight="true"
+                android:paddingRight="16dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="invisible"
+                android:text="-5.000" />
 
-        <TextView android:id="@+id/detailThumbsUpCountView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/detailViewCountView"
-            android:layout_toLeftOf="@id/detailThumbsDownImgView"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:visibility="invisible"
-            android:text="∞" />
+            <ImageView android:id="@+id/detailThumbsDownImgView"
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:layout_below="@id/detailViewCountView"
+                android:layout_toLeftOf="@id/detailThumbsDownCountView"
+                android:visibility="invisible"
+                android:src="@drawable/thumbs_down" />
 
-        <ImageView android:id="@+id/detailThumbsUpImgView"
-            android:layout_width="40dp"
-            android:layout_height="20dp"
-            android:layout_below="@id/detailViewCountView"
-            android:layout_toLeftOf="@id/detailThumbsUpCountView"
-            android:visibility="invisible"
-            android:src="@drawable/thumbs_up" />
+            <TextView android:id="@+id/detailThumbsUpCountView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detailViewCountView"
+                android:layout_toLeftOf="@id/detailThumbsDownImgView"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="invisible"
+                android:text="∞" />
 
-        <TextView android:id="@+id/detailUploadDateView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/detailUploaderView"
-            android:layout_alignParentLeft="true"
-            android:paddingLeft="6dp"
-            android:paddingTop="20dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:visibility="invisible"
-            android:text="Uploaded at: 45.64.1285" />
+            <ImageView android:id="@+id/detailThumbsUpImgView"
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:layout_below="@id/detailViewCountView"
+                android:layout_toLeftOf="@id/detailThumbsUpCountView"
+                android:visibility="invisible"
+                android:src="@drawable/thumbs_up" />
 
-        <TextView android:id="@+id/detailDescriptionView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/detailUploadDateView"
-            android:layout_alignParentLeft="true"
-            android:paddingLeft="6dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:visibility="invisible"
-            android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmodtempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. "
-            />
+            <TextView android:id="@+id/detailUploadDateView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detailUploaderView"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="6dp"
+                android:paddingTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:visibility="invisible"
+                android:text="Uploaded at: 45.64.1285" />
 
-    </RelativeLayout>
+            <TextView android:id="@+id/detailDescriptionView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/detailUploadDateView"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="6dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="invisible"
+                android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmodtempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. "
+                />
 
-</ScrollView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@id/detailDescriptionView"/>
+
+        </RelativeLayout>
+    </ScrollView>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/playVideoButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/primaryColorYoutube"
+        android:src="@drawable/ic_play_arrow_black"
+        android:layout_margin="15pt"/>
+</RelativeLayout>

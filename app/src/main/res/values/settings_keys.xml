@@ -12,4 +12,5 @@
     </string-array>
     <string name="defaultResolutionListItem">360p</string>
     <string name="showPlayWidthKodiPreference">show_play_with_kodi_preference</string>
+    <string name="leftHandLayout">left_hand_layout</string>
 </resources>

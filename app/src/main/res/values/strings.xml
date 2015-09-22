@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
@@ -34,4 +35,5 @@
     <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
     <string name="showPlayWithKodiTitle">Show \"Play with Kodi\" option</string>
     <string name="showPlayWithKodiSummary">Displays an option to play a video via Kodi media center.</string>
+    <string name="leftHandLayoutTitle">Left hand friendly layout.</string>
 </resources>

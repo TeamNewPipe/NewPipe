@@ -97,6 +97,9 @@ public class YoutubeSearchEngine implements SearchEngine {
                 resultItem.uploader = item.select("div[class=\"yt-lockup-byline\"]").first()
                         .select("a").first()
                         .text();
+                resultItem.upload_date = item.select("div[class=\"yt-lockup-meta\"]").first()
+                        .select("li").first()
+                        .text();
                 Element te = item.select("div[class=\"yt-thumb video-thumb\"]").first()
                         .select("img").first();
                 resultItem.thumbnail_url = te.attr("abs:src");

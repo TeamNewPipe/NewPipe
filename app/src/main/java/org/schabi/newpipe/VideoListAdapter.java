@@ -104,6 +104,7 @@ public class VideoListAdapter extends BaseAdapter {
             holder.itemVideoTitleView = (TextView) convertView.findViewById(R.id.itemVideoTitleView);
             holder.itemUploaderView = (TextView) convertView.findViewById(R.id.itemUploaderView);
             holder.itemDurationView = (TextView) convertView.findViewById(R.id.itemDurationView);
+            holder.itemUploadDateView = (TextView) convertView.findViewById(R.id.itemUploadDateView);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -118,6 +119,7 @@ public class VideoListAdapter extends BaseAdapter {
         holder.itemVideoTitleView.setText(videoList.get(position).title);
         holder.itemUploaderView.setText(videoList.get(position).uploader);
         holder.itemDurationView.setText(videoList.get(position).duration);
+        holder.itemUploadDateView.setText(videoList.get(position).upload_date);
 
         if(listView.isItemChecked(position)) {
             convertView.setBackgroundColor(context.getResources().getColor(R.color.primaryColorYoutube));
@@ -130,6 +132,6 @@ public class VideoListAdapter extends BaseAdapter {
 
     private class ViewHolder {
         public ImageView itemThumbnailView;
-        public TextView itemVideoTitleView, itemUploaderView, itemDurationView;
+        public TextView itemVideoTitleView, itemUploaderView, itemDurationView, itemUploadDateView;
     }
 }

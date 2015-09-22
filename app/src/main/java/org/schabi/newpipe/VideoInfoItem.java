@@ -30,4 +30,5 @@ public class VideoInfoItem {
     public String thumbnail_url = "";
     public Bitmap thumbnail = null;
     public String webpage_url = "";
+    public String upload_date = "";
 }
