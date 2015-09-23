@@ -36,4 +36,13 @@
     <string name="showPlayWithKodiTitle">Zeige \"Mit Kodi abspielen\" Option</string>
     <string name="showPlayWithKodiSummary">Zeigt eine Option an, über die man Videos mit dem Kodi Mediacenter abspielen kann.</string>
     <string name="leftHandLayoutTitle">Linkshänder freundliches Layout.</string>
+    <string name="playAudio">Audio</string>
+    <string name="defaultAudioFormatTitle">Bevorzugtes Audio Format</string>
+    <string name="webMAudioDescription">WebM - freies Format</string>
+    <string name="m4aAudioDescription">m4a - bessere Qualität</string>
+    <string name="downloadDialogTitle">Herunterladen</string>
+    <string-array name="downloadOptions">
+        <item>Video</item>
+        <item>Audio</item>
+    </string-array>
 </resources>
