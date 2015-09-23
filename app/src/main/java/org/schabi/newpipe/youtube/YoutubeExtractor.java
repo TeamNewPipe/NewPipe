@@ -5,7 +5,9 @@ import org.schabi.newpipe.Extractor;
 import org.schabi.newpipe.VideoInfo;
 
 import android.util.Log;
+import android.util.Xml;
 
+import java.io.StringReader;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +24,7 @@ import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
 import org.schabi.newpipe.VideoInfoItem;
+import org.xmlpull.v1.XmlPullParser;
 
 /**
  * Created by Christian Schabesberger on 06.08.15.
@@ -53,22 +56,22 @@ public class YoutubeExtractor implements Extractor {
     // How ever if you are heading for a list showing all itag formats lock at
     // https://github.com/rg3/youtube-dl/issues/1687
 
-    public static String resolveFormat(int itag) {
+    public static int resolveFormat(int itag) {
         switch(itag) {
             // video
-            case 17: return VideoInfo.F_3GPP;
-            case 18: return VideoInfo.F_MPEG_4;
-            case 22: return VideoInfo.F_MPEG_4;
-            case 36: return VideoInfo.F_3GPP;
-            case 37: return VideoInfo.F_MPEG_4;
-            case 38: return VideoInfo.F_MPEG_4;
-            case 43: return VideoInfo.F_WEBM;
-            case 44: return VideoInfo.F_WEBM;
-            case 45: return VideoInfo.F_WEBM;
-            case 46: return VideoInfo.F_WEBM;
+            case 17: return VideoInfo.I_3GPP;
+            case 18: return VideoInfo.I_MPEG_4;
+            case 22: return VideoInfo.I_MPEG_4;
+            case 36: return VideoInfo.I_3GPP;
+            case 37: return VideoInfo.I_MPEG_4;
+            case 38: return VideoInfo.I_MPEG_4;
+            case 43: return VideoInfo.I_WEBM;
+            case 44: return VideoInfo.I_WEBM;
+            case 45: return VideoInfo.I_WEBM;
+            case 46: return VideoInfo.I_WEBM;
             default:
                 //Log.i(TAG, "Itag " + Integer.toString(itag) + " not known or not supported.");
-                return null;
+                return -1;
         }
     }
 
@@ -153,6 +156,7 @@ public class YoutubeExtractor implements Extractor {
         //-------------------------------------
         JSONObject playerArgs = null;
         JSONObject ytAssets = null;
+        String dashManifest = "";
         {
             Pattern p = Pattern.compile("ytplayer.config\\s*=\\s*(\\{.*?\\});");
             Matcher m = p.matcher(site);
@@ -180,10 +184,20 @@ public class YoutubeExtractor implements Extractor {
             videoInfo.duration = playerArgs.getInt("length_seconds");
             videoInfo.average_rating = playerArgs.getString("avg_rating");
             // View Count will be extracted from html
-            //videoInfo.view_count = playerArgs.getString("view_count");
+            dashManifest = playerArgs.getString("dashmpd");
+            String playerUrl = ytAssets.getString("js");
+            if(playerUrl.startsWith("//")) {
+                playerUrl = "https:" + playerUrl;
+            }
+            if(decryptoinCode.isEmpty()) {
+                decryptoinCode = loadDecryptioinCode(playerUrl);
+            }
+
+            // extract audio
+            videoInfo.audioStreams = parseDashManifest(dashManifest, decryptoinCode);
 
             //------------------------------------
-            // extract stream url
+            // extract video stream url
             //------------------------------------
             String encoded_url_map = playerArgs.getString("url_encoded_fmt_stream_map");
             Vector<VideoInfo.VideoStream> videoStreams = new Vector<>();
@@ -199,17 +213,13 @@ public class YoutubeExtractor implements Extractor {
 
                 // if video has a signature: decrypt it and add it to the url
                 if(tags.get("s") != null) {
-                    String playerUrl = ytAssets.getString("js");
-                    if(playerUrl.startsWith("//")) {
-                        playerUrl = "https:" + playerUrl;
-                    }
                     if(decryptoinCode.isEmpty()) {
                         decryptoinCode = loadDecryptioinCode(playerUrl);
                     }
-                    streamUrl = streamUrl + "&signature=" + decriptSignature(tags.get("s"), decryptoinCode);
+                    streamUrl = streamUrl + "&signature=" + decryptSignature(tags.get("s"), decryptoinCode);
                 }
 
-                if(resolveFormat(itag) != null) {
+                if(resolveFormat(itag) != -1) {
                     videoStreams.add(new VideoInfo.VideoStream(
                             streamUrl,
                             resolveFormat(itag),
@@ -309,6 +319,81 @@ public class YoutubeExtractor implements Extractor {
         return videoInfo;
     }
 
+    private VideoInfo.AudioStream[] parseDashManifest(String dashManifest, String decryptoinCode) {
+        if(!dashManifest.contains("/signature/")) {
+            String encryptedSig = "";
+            String decryptedSig = "";
+            try {
+                Pattern p = Pattern.compile("/s/([a-fA-F0-9\\.]+)");
+                Matcher m = p.matcher(dashManifest);
+                m.find();
+                encryptedSig = m.group(1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            decryptedSig = decryptSignature(encryptedSig, decryptoinCode);
+            dashManifest = dashManifest.replace("/s/" + encryptedSig, "/signature/" + decryptedSig);
+        }
+        String dashDoc = Downloader.download(dashManifest);
+        Vector<VideoInfo.AudioStream> audioStreams = new Vector<>();
+        try {
+            XmlPullParser parser = Xml.newPullParser();
+            parser.setInput(new StringReader(dashDoc));
+            int eventType = parser.getEventType();
+            String tagName = "";
+            String currentMimeType = "";
+            int currentBandwidth = -1;
+            int currentSamplingRate = -1;
+            boolean currentTagIsBaseUrl = false;
+            while(eventType != XmlPullParser.END_DOCUMENT) {
+                switch(eventType) {
+                    case XmlPullParser.START_TAG:
+                        tagName = parser.getName();
+                        if(tagName.equals("AdaptationSet")) {
+                            currentMimeType = parser.getAttributeValue(XmlPullParser.NO_NAMESPACE, "mimeType");
+                        } else if(tagName.equals("Representation") && currentMimeType.contains("audio")) {
+                            currentBandwidth = Integer.parseInt(
+                                    parser.getAttributeValue(XmlPullParser.NO_NAMESPACE, "bandwidth"));
+                            currentSamplingRate = Integer.parseInt(
+                                    parser.getAttributeValue(XmlPullParser.NO_NAMESPACE, "audioSamplingRate"));
+                        } else if(tagName.equals("BaseURL")) {
+                            currentTagIsBaseUrl = true;
+                        }
+
+                        break;
+                    case XmlPullParser.TEXT:
+                        if(currentTagIsBaseUrl &&
+                                (currentMimeType.contains("audio"))) {
+                            int format = -1;
+                            if(currentMimeType.equals(VideoInfo.M_WEBMA)) {
+                                format = VideoInfo.I_WEBMA;
+                            } else if(currentMimeType.equals(VideoInfo.M_M4A)) {
+                                format = VideoInfo.I_M4A;
+                            }
+                            audioStreams.add(new VideoInfo.AudioStream(parser.getText(),
+                                     format, currentBandwidth, currentSamplingRate));
+                        }
+                    case XmlPullParser.END_TAG:
+                        if(tagName.equals("AdaptationSet")) {
+                            currentMimeType = "";
+                        } else if(tagName.equals("BaseURL")) {
+                            currentTagIsBaseUrl = false;
+                        }
+                        break;
+                    default:
+                }
+                eventType = parser.next();
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        VideoInfo.AudioStream[] output = new VideoInfo.AudioStream[audioStreams.size()];
+        for(int i = 0; i < output.length; i++) {
+            output[i] = audioStreams.get(i);
+        }
+        return output;
+    }
+
     private VideoInfoItem extractVideoInfoItem(Element li) {
         VideoInfoItem info = new VideoInfoItem();
         info.webpage_url = li.select("a[class*=\"content-link\"]").first()
@@ -395,7 +480,7 @@ public class YoutubeExtractor implements Extractor {
         return decryptionCode;
     }
 
-    private String decriptSignature(String encryptedSig, String decryptoinCode) {
+    private String decryptSignature(String encryptedSig, String decryptoinCode) {
         Context context = Context.enter();
         context.setOptimizationLevel(-1);
         Object result = null;
