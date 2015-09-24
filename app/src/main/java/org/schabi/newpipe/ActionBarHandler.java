@@ -201,11 +201,17 @@ public class ActionBarHandler {
         if(!videoTitle.isEmpty()) {
             if (PreferenceManager.getDefaultSharedPreferences(context)
                     .getBoolean(context.getString(R.string.useExternalPlayer), false)) {
+
+                // External Player
                 Intent intent = new Intent();
                 try {
                     intent.setAction(Intent.ACTION_VIEW);
+
                     intent.setDataAndType(Uri.parse(videoStreams[selectedStream].url),
                             VideoInfo.getMimeById(videoStreams[selectedStream].format));
+                    intent.putExtra(Intent.EXTRA_TITLE, videoTitle);
+                    intent.putExtra("title", videoTitle);
+
                     context.startActivity(intent);      // HERE !!!
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -229,6 +235,7 @@ public class ActionBarHandler {
                     builder.create().show();
                 }
             } else {
+                // Internal Player
                 Intent intent = new Intent(context, PlayVideoActivity.class);
                 intent.putExtra(PlayVideoActivity.VIDEO_TITLE, videoTitle);
                 intent.putExtra(PlayVideoActivity.STREAM_URL, videoStreams[selectedStream].url);
