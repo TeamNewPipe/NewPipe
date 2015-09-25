@@ -310,6 +310,8 @@ public class ActionBarHandler {
             intent.setAction(Intent.ACTION_VIEW);
             intent.setDataAndType(Uri.parse(audioStream.url),
                     VideoInfo.getMimeById(audioStream.format));
+            intent.putExtra(Intent.EXTRA_TITLE, videoTitle);
+            intent.putExtra("title", videoTitle);
             context.startActivity(intent);      // HERE !!!
         } catch (Exception e) {
             e.printStackTrace();
