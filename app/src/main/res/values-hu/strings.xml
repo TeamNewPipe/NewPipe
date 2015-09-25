@@ -35,7 +35,7 @@
     <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
     <string name="showPlayWithKodiTitle">\"Lejátszás Kodi-val\" opció mutatása</string>
     <string name="showPlayWithKodiSummary">Mutat egy opciót a videók Kodi médiaközponttal való lejátszására</string>
-    <string name="leftHandLayoutTitle">Bal kezes elrendezés</string>
+    <string name="leftPlayButtonTitle">Lejátszás gomb bal oldalon mutatása</string>
     <string name="playAudio">Hang</string>
     <string name="defaultAudioFormatTitle">Alapértelmezett hang formátum</string>
     <string name="webMAudioDescription">WebM - szabad formátum</string>
