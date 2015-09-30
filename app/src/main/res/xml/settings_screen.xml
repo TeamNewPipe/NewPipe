@@ -36,7 +36,7 @@
 
     <CheckBoxPreference
         android:key="@string/leftHandLayout"
-        android:title="@string/leftHandLayoutTitle"
+        android:title="@string/leftPlayButtonTitle"
         android:defaultValue="false" />
 
     <ListPreference
