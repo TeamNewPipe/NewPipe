@@ -146,7 +146,6 @@ public class VideoItemListActivity extends AppCompatActivity
 
         SettingsActivity.initSettings(this);
 
-        // TODO: If exposing deep links into your app, handle intents here.
     }
 
     /**
