@@ -1,13 +1,11 @@
 package org.schabi.newpipe;
 
-import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
@@ -18,8 +16,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-
-import java.io.File;
 
 /**
  * Created by Christian Schabesberger on 18.08.15.
@@ -48,7 +44,7 @@ public class ActionBarHandler {
     private static ActionBarHandler handler = null;
 
     private Context context = null;
-    private String webisteUrl = "";
+    private String websiteUrl = "";
     private AppCompatActivity activity;
     private VideoInfo.VideoStream[] videoStreams = null;
     private VideoInfo.AudioStream audioStream = null;
@@ -64,7 +60,7 @@ public class ActionBarHandler {
         return handler;
     }
 
-    class ForamatItemSelectListener implements ActionBar.OnNavigationListener {
+    class FormatItemSelectListener implements ActionBar.OnNavigationListener {
         @Override
         public boolean onNavigationItemSelected(int itemPosition, long itemId) {
             selectFormatItem((int)itemId);
@@ -98,7 +94,7 @@ public class ActionBarHandler {
         if(activity != null) {
             ActionBar ab = activity.getSupportActionBar();
             ab.setListNavigationCallbacks(itemAdapter
-                    ,new ForamatItemSelectListener());
+                    ,new FormatItemSelectListener());
             ab.setSelectedNavigationItem(defaultResolutionPos);
         }
 
@@ -114,9 +110,9 @@ public class ActionBarHandler {
             }
         } else if(preferedFormat.equals("m4a")){
             for(VideoInfo.AudioStream s : audioStreams) {
-                Log.d(TAG, VideoInfo.getMimeById(s.format) + " : " + Integer.toString(s.bandWidth));
+                Log.d(TAG, VideoInfo.getMimeById(s.format) + " : " + Integer.toString(s.bandwidth));
                 if(s.format == VideoInfo.I_M4A &&
-                        (audioStream == null || audioStream.bandWidth > s.bandWidth)) {
+                        (audioStream == null || audioStream.bandwidth > s.bandwidth)) {
                     audioStream = s;
                     Log.d(TAG, "last choosen");
                 }
@@ -162,7 +158,7 @@ public class ActionBarHandler {
                 if(!videoTitle.isEmpty()) {
                     Intent intent = new Intent();
                     intent.setAction(Intent.ACTION_SEND);
-                    intent.putExtra(Intent.EXTRA_TEXT, webisteUrl);
+                    intent.putExtra(Intent.EXTRA_TEXT, websiteUrl);
                     intent.setType("text/plain");
                     context.startActivity(Intent.createChooser(intent, context.getString(R.string.shareDialogTitle)));
                 }
@@ -192,7 +188,7 @@ public class ActionBarHandler {
     }
 
     public void setVideoInfo(String websiteUrl, String videoTitle) {
-        this.webisteUrl = websiteUrl;
+        this.websiteUrl = websiteUrl;
         this.videoTitle = videoTitle;
     }
 
@@ -239,7 +235,7 @@ public class ActionBarHandler {
                 Intent intent = new Intent(context, PlayVideoActivity.class);
                 intent.putExtra(PlayVideoActivity.VIDEO_TITLE, videoTitle);
                 intent.putExtra(PlayVideoActivity.STREAM_URL, videoStreams[selectedStream].url);
-                intent.putExtra(PlayVideoActivity.VIDEO_URL, webisteUrl);
+                intent.putExtra(PlayVideoActivity.VIDEO_URL, websiteUrl);
                 context.startActivity(intent);
             }
         }
@@ -267,7 +263,7 @@ public class ActionBarHandler {
         if(!videoTitle.isEmpty()) {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(webisteUrl));
+            intent.setData(Uri.parse(websiteUrl));
 
             context.startActivity(Intent.createChooser(intent, context.getString(R.string.chooseBrowser)));
         }
@@ -278,7 +274,7 @@ public class ActionBarHandler {
             try {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setPackage(KORE_PACKET);
-                intent.setData(Uri.parse(webisteUrl.replace("https", "http")));
+                intent.setData(Uri.parse(websiteUrl.replace("https", "http")));
                 context.startActivity(intent);
             } catch (Exception e) {
                 e.printStackTrace();

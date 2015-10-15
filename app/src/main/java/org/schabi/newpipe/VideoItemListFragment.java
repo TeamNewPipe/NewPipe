@@ -13,7 +13,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.net.URL;
-import java.util.List;
 import java.util.Vector;
 
 
@@ -54,14 +53,14 @@ public class VideoItemListFragment extends ListFragment {
 
     private class ResultRunnable implements Runnable {
         private SearchEngine.Result result;
-        private int reuqestId;
+        private int requestId;
         public ResultRunnable(SearchEngine.Result result, int requestId) {
             this.result = result;
-            this.reuqestId = requestId;
+            this.requestId = requestId;
         }
         @Override
         public void run() {
-            updateListOnResult(result, reuqestId);
+            updateListOnResult(result, requestId);
         }
     }
 
@@ -213,7 +212,7 @@ public class VideoItemListFragment extends ListFragment {
             loadThumbsThread = new Thread(loadThumbsRunnable);
             loadThumbsThread.start();
         } catch(java.lang.IllegalStateException e) {
-            Log.w(TAG, "Trying to set value while activity is not existing anymore.");
+            Log.w(TAG, "Trying to set value while activity doesn't anymore.");
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -230,7 +229,7 @@ public class VideoItemListFragment extends ListFragment {
         }
         if(searchThread != null) {
             searchRunnable.terminate();
-            // No need to join, since we don't realy terminate the thread. We just demand
+            // No need to join, since we don't really terminate the thread. We just demand
             // it to post its result runnable into the gui main loop.
         }
     }

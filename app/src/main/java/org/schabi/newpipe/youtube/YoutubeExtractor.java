@@ -1,30 +1,29 @@
 package org.schabi.newpipe.youtube;
-import org.jsoup.nodes.Element;
-import org.schabi.newpipe.Downloader;
-import org.schabi.newpipe.Extractor;
-import org.schabi.newpipe.VideoInfo;
 
 import android.util.Log;
 import android.util.Xml;
+
+import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.parser.Parser;
+import org.mozilla.javascript.Context;
+import org.mozilla.javascript.Function;
+import org.mozilla.javascript.ScriptableObject;
+import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.Extractor;
+import org.schabi.newpipe.VideoInfo;
+import org.schabi.newpipe.VideoInfoItem;
+import org.xmlpull.v1.XmlPullParser;
 
 import java.io.StringReader;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
-import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-import org.json.JSONObject;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.parser.Parser;
-
-import org.mozilla.javascript.Context;
-import org.mozilla.javascript.Function;
-import org.mozilla.javascript.ScriptableObject;
-import org.schabi.newpipe.VideoInfoItem;
-import org.xmlpull.v1.XmlPullParser;
+import java.util.regex.Pattern;
 
 /**
  * Created by Christian Schabesberger on 06.08.15.
@@ -47,8 +46,6 @@ import org.xmlpull.v1.XmlPullParser;
  */
 
 public class YoutubeExtractor implements Extractor {
-
-
 
     private static final String TAG = YoutubeExtractor.class.toString();
 
@@ -93,7 +90,7 @@ public class YoutubeExtractor implements Extractor {
         }
     }
 
-    private String decryptoinCode = "";
+    private String decryptionCode = "";
     private static final String DECRYPTION_FUNC_NAME="decrypt";
 
     @Override
@@ -189,12 +186,12 @@ public class YoutubeExtractor implements Extractor {
             if(playerUrl.startsWith("//")) {
                 playerUrl = "https:" + playerUrl;
             }
-            if(decryptoinCode.isEmpty()) {
-                decryptoinCode = loadDecryptioinCode(playerUrl);
+            if(decryptionCode.isEmpty()) {
+                decryptionCode = loadDecryptionCode(playerUrl);
             }
 
             // extract audio
-            videoInfo.audioStreams = parseDashManifest(dashManifest, decryptoinCode);
+            videoInfo.audioStreams = parseDashManifest(dashManifest, decryptionCode);
 
             //------------------------------------
             // extract video stream url
@@ -213,10 +210,10 @@ public class YoutubeExtractor implements Extractor {
 
                 // if video has a signature: decrypt it and add it to the url
                 if(tags.get("s") != null) {
-                    if(decryptoinCode.isEmpty()) {
-                        decryptoinCode = loadDecryptioinCode(playerUrl);
+                    if(decryptionCode.isEmpty()) {
+                        decryptionCode = loadDecryptionCode(playerUrl);
                     }
-                    streamUrl = streamUrl + "&signature=" + decryptSignature(tags.get("s"), decryptoinCode);
+                    streamUrl = streamUrl + "&signature=" + decryptSignature(tags.get("s"), decryptionCode);
                 }
 
                 if(resolveFormat(itag) != -1) {
@@ -236,7 +233,7 @@ public class YoutubeExtractor implements Extractor {
         }
 
         //-------------------------------
-        // extrating from html page
+        // extracting from html page
         //-------------------------------
 
 
@@ -438,7 +435,7 @@ public class YoutubeExtractor implements Extractor {
         return retval;
     }
 
-    private String loadDecryptioinCode(String playerUrl) {
+    private String loadDecryptionCode(String playerUrl) {
         String playerCode = Downloader.download(playerUrl);
         String decryptionFuncName = "";
         String decryptionFunc = "";
