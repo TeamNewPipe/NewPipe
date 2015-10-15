@@ -212,7 +212,7 @@ public class VideoItemListFragment extends ListFragment {
             loadThumbsThread = new Thread(loadThumbsRunnable);
             loadThumbsThread.start();
         } catch(java.lang.IllegalStateException e) {
-            Log.w(TAG, "Trying to set value while activity doesn't anymore.");
+            Log.w(TAG, "Trying to set value while activity doesn't exist anymore.");
         } catch(Exception e) {
             e.printStackTrace();
         }
