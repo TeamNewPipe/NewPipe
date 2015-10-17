@@ -3,13 +3,11 @@ package org.schabi.newpipe;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.DisplayMetrics;
@@ -17,13 +15,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 
 import java.net.URL;
 import java.util.Vector;
@@ -216,7 +211,7 @@ public class VideoItemDetailFragment extends Fragment {
                     thumbnailView.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.not_available_monkey));
                     break;
                 default:
-                    Log.e(TAG, "Video Availeble Status not known.");
+                    Log.e(TAG, "Video Available Status not known.");
             }
 
             if(autoPlayEnabled) {
