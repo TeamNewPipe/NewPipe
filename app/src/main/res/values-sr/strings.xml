@@ -29,4 +29,20 @@
     <string name="autoPlayThroughIntentTitle">Аутопуштање преко Интента</string>
     <string name="autoPlayThroughIntentSummary">Аутоматски почиње пушта видео по позиву из друге апликације.</string>
     <string name="defaultResolutionPreferenceTitle">Подразумевана резолуција</string>
+    <string name="playWithKodiTitle">Пусти помоћу Кодија</string>
+    <string name="koreNotFound">Апликација Кор није нађена. Кор (Kore) је потребан да бисте пуштали видее у Коди медија центру.</string>
+    <string name="installeKore">Инсталирај Кор</string>
+    <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
+    <string name="showPlayWithKodiTitle">Прикажи „Пусти помоћу Кодија“</string>
+    <string name="showPlayWithKodiSummary">Приказ опције за пуштање видеа у Коди медија центру.</string>
+    <string name="leftPlayButtonTitle">Прикажи дугме за пуштање на левој страни.</string>
+    <string name="playAudio">Аудио</string>
+    <string name="defaultAudioFormatTitle">Подразумевани формат звука</string>
+    <string name="webMAudioDescription">WebM - слободни формат</string>
+    <string name="m4aAudioDescription">m4a - бољи квалитет</string>
+    <string name="downloadDialogTitle">Преузми</string>
+    <string-array name="downloadOptions">
+        <item>Видео</item>
+        <item>Аудио</item>
+    </string-array>
 </resources>
