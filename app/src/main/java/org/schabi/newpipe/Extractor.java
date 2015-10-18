@@ -1,7 +1,5 @@
 package org.schabi.newpipe;
 
-import android.graphics.Bitmap;
-
 /**
  * Created by Christian Schabesberger on 10.08.15.
  *

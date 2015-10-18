@@ -1,18 +1,17 @@
 package org.schabi.newpipe.youtube;
 
-import org.schabi.newpipe.Downloader;
-import org.schabi.newpipe.SearchEngine;
-import org.schabi.newpipe.VideoInfoItem;
-
 import android.net.Uri;
 import android.util.Log;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.SearchEngine;
+import org.schabi.newpipe.VideoInfoItem;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Christian Schabesberger on 09.08.15.

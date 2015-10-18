@@ -110,13 +110,13 @@ public class VideoInfo {
     }
 
     public static class AudioStream {
-        public AudioStream(String url, int format, int bandWidth, int samplingRate) {
+        public AudioStream(String url, int format, int bandwidth, int samplingRate) {
             this.url = url; this.format = format;
-            this.bandWidth = bandWidth; this.samplingRate = samplingRate;
+            this.bandwidth = bandwidth; this.samplingRate = samplingRate;
         }
         public String url = "";
         public int format = -1;
-        public int bandWidth = -1;
+        public int bandwidth = -1;
         public int samplingRate = -1;
 
     }

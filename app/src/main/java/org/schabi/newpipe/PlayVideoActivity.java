@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -19,15 +18,11 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
-import android.widget.SeekBar;
 import android.widget.VideoView;
 
 /**
@@ -84,7 +79,7 @@ public class PlayVideoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play_video);
 
         isLandscape = checkIfLandscape();
-        hasSoftKeys = checkIfhasSoftKeys();
+        hasSoftKeys = checkIfHasSoftKeys();
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -203,10 +198,10 @@ public class PlayVideoActivity extends AppCompatActivity {
 
         if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             isLandscape = true;
-            adjustMediaControllMetrics();
+            adjustMediaControlMetrics();
         } else if (config.orientation == Configuration.ORIENTATION_PORTRAIT){
             isLandscape = false;
-            adjustMediaControllMetrics();
+            adjustMediaControlMetrics();
         }
     }
 
@@ -229,7 +224,7 @@ public class PlayVideoActivity extends AppCompatActivity {
             uiIsHidden = false;
             mediaController.show(100000);
             actionBar.show();
-            adjustMediaControllMetrics();
+            adjustMediaControlMetrics();
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -259,7 +254,7 @@ public class PlayVideoActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-    private void adjustMediaControllMetrics() {
+    private void adjustMediaControlMetrics() {
         MediaController.LayoutParams mediaControllerLayout
                 = new MediaController.LayoutParams(MediaController.LayoutParams.MATCH_PARENT,
                 MediaController.LayoutParams.WRAP_CONTENT);
@@ -274,7 +269,7 @@ public class PlayVideoActivity extends AppCompatActivity {
         mediaController.setLayoutParams(mediaControllerLayout);
     }
 
-    private boolean checkIfhasSoftKeys(){
+    private boolean checkIfHasSoftKeys(){
         if(Build.VERSION.SDK_INT >= 17) {
             return getNavigationBarHeight() != 0 || getNavigationBarWidth() != 0;
         } else {

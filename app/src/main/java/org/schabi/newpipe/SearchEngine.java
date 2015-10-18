@@ -1,7 +1,5 @@
 package org.schabi.newpipe;
 
-import android.graphics.Bitmap;
-
 import java.util.Vector;
 
 /**
