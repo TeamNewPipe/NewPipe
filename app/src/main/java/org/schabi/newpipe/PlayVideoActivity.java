@@ -1,9 +1,10 @@
 package org.schabi.newpipe;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -17,15 +18,11 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
-import android.widget.SeekBar;
 import android.widget.VideoView;
 
 /**
@@ -72,6 +69,9 @@ public class PlayVideoActivity extends AppCompatActivity {
     private boolean isLandscape = true;
     private boolean hasSoftKeys = false;
 
+    private SharedPreferences prefs;
+    private static final String PREF_IS_LANDSCAPE = "is_landscape";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +79,7 @@ public class PlayVideoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play_video);
 
         isLandscape = checkIfLandscape();
-        hasSoftKeys = checkIfhasSoftKeys();
+        hasSoftKeys = checkIfHasSoftKeys();
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -136,12 +136,16 @@ public class PlayVideoActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+
+        prefs = getPreferences(Context.MODE_PRIVATE);
+        if(prefs.getBoolean(PREF_IS_LANDSCAPE, false) && !isLandscape) {
+            toggleOrientation();
+        }
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-
     }
 
     @Override
@@ -179,14 +183,7 @@ public class PlayVideoActivity extends AppCompatActivity {
                 startActivity(Intent.createChooser(intent, getString(R.string.shareDialogTitle)));
                 break;
             case R.id.menu_item_screen_rotation:
-                Display display = ((WindowManager) getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
-                if(display.getRotation() == Surface.ROTATION_0
-                        || display.getRotation() == Surface.ROTATION_180) {
-                    setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                } else if(display.getRotation() == Surface.ROTATION_90
-                        || display.getRotation() == Surface.ROTATION_270) {
-                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                }
+                toggleOrientation();
                 break;
             default:
                 Log.e(TAG, "Error: MenuItem not known");
@@ -201,10 +198,10 @@ public class PlayVideoActivity extends AppCompatActivity {
 
         if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             isLandscape = true;
-            adjustMediaControllMetrics();
+            adjustMediaControlMetrics();
         } else if (config.orientation == Configuration.ORIENTATION_PORTRAIT){
             isLandscape = false;
-            adjustMediaControllMetrics();
+            adjustMediaControlMetrics();
         }
     }
 
@@ -227,7 +224,7 @@ public class PlayVideoActivity extends AppCompatActivity {
             uiIsHidden = false;
             mediaController.show(100000);
             actionBar.show();
-            adjustMediaControllMetrics();
+            adjustMediaControlMetrics();
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -257,7 +254,7 @@ public class PlayVideoActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-    private void adjustMediaControllMetrics() {
+    private void adjustMediaControlMetrics() {
         MediaController.LayoutParams mediaControllerLayout
                 = new MediaController.LayoutParams(MediaController.LayoutParams.MATCH_PARENT,
                 MediaController.LayoutParams.WRAP_CONTENT);
@@ -272,7 +269,7 @@ public class PlayVideoActivity extends AppCompatActivity {
         mediaController.setLayoutParams(mediaControllerLayout);
     }
 
-    private boolean checkIfhasSoftKeys(){
+    private boolean checkIfHasSoftKeys(){
         if(Build.VERSION.SDK_INT >= 17) {
             return getNavigationBarHeight() != 0 || getNavigationBarWidth() != 0;
         } else {
@@ -318,5 +315,18 @@ public class PlayVideoActivity extends AppCompatActivity {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.heightPixels < displayMetrics.widthPixels;
+    }
+
+    private void toggleOrientation() {
+        if(isLandscape)  {
+            isLandscape = false;
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else {
+            isLandscape = true;
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+        }
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean(PREF_IS_LANDSCAPE, isLandscape);
+        editor.commit();
     }
 }
