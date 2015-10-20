@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColorYoutube">#00aafd</color>
-    <color name="primaryColorDarkYoutube">#00aaff</color>
+    <color name="primaryColorYoutube">#CD322E</color>
+    <color name="primaryColorDarkYoutube">#bc211d</color>
     <color name="accentColorYoutube">#000000</color>
     <color name="black_overlay">#66000000</color>
 </resources>

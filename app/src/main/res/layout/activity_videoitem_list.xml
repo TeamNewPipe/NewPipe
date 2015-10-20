@@ -7,8 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
-        android:src="@drawable/new_pipe_watermark"
-        android:visibility="invisible"/>
+        android:src="@drawable/newpipelogo"
+        android:visibility="visible"/>
 
     <fragment
         xmlns:tools="http://schemas.android.com/tools"
