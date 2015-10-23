@@ -242,16 +242,6 @@ public class VideoItemDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try {
-            StreamingService streamingService = ServiceList.getService(
-                    getArguments().getInt(STREAMING_SERVICE));
-            extractorThread = new Thread(new ExtractorRunnable(
-                    getArguments().getString(VIDEO_URL), streamingService.getExtractorClass(), this));
-            autoPlayEnabled = getArguments().getBoolean(AUTO_PLAY);
-            extractorThread.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -266,24 +256,38 @@ public class VideoItemDetailFragment extends Fragment {
         super.onActivityCreated(savedInstanceBundle);
         FloatingActionButton playVideoButton = (FloatingActionButton) getActivity().findViewById(R.id.playVideoButton);
 
-        if(PreferenceManager.getDefaultSharedPreferences(getActivity())
-                .getBoolean(getString(R.string.leftHandLayout), false) && checkIfLandscape()) {
-            RelativeLayout.LayoutParams oldLayout = (RelativeLayout.LayoutParams) playVideoButton.getLayoutParams();
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.WRAP_CONTENT,
-                    RelativeLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-            layoutParams.setMargins(oldLayout.leftMargin, oldLayout.topMargin, oldLayout.rightMargin, oldLayout.rightMargin);
-            playVideoButton.setLayoutParams(layoutParams);
-        }
+        if(playVideoButton != null) {
 
-        playVideoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActionBarHandler.getHandler().playVideo();
+            try {
+                StreamingService streamingService = ServiceList.getService(
+                        getArguments().getInt(STREAMING_SERVICE));
+                extractorThread = new Thread(new ExtractorRunnable(
+                        getArguments().getString(VIDEO_URL), streamingService.getExtractorClass(), this));
+                autoPlayEnabled = getArguments().getBoolean(AUTO_PLAY);
+                extractorThread.start();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        });
+
+            if (PreferenceManager.getDefaultSharedPreferences(getActivity())
+                    .getBoolean(getString(R.string.leftHandLayout), false) && checkIfLandscape()) {
+                RelativeLayout.LayoutParams oldLayout = (RelativeLayout.LayoutParams) playVideoButton.getLayoutParams();
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                layoutParams.setMargins(oldLayout.leftMargin, oldLayout.topMargin, oldLayout.rightMargin, oldLayout.bottomMargin);
+                playVideoButton.setLayoutParams(layoutParams);
+            }
+
+            playVideoButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ActionBarHandler.getHandler().playVideo();
+                }
+            });
+        }
     }
 
     public boolean checkIfLandscape() {

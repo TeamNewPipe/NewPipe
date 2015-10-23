@@ -9,19 +9,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ProgressBar android:id="@+id/detailProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"/>
+
     <ScrollView
         android:id="@+id/videoitem_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ProgressBar android:id="@+id/detailProgressBar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:indeterminate="true"/>
+            android:layout_height="wrap_content">
 
             <ImageView android:id="@+id/detailThumbnailView"
                 android:layout_width="match_parent"
@@ -39,6 +39,7 @@
                 android:layout_below="@id/detailThumbnailView"
                 android:layout_alignParentLeft="true"
                 android:paddingLeft="6dp"
+                android:paddingRight="6dp"
                 android:paddingBottom="20dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:visibility="invisible"
@@ -49,6 +50,7 @@
                 android:layout_height="100dp"
                 android:paddingTop="25dp"
                 android:paddingLeft="2dp"
+                android:paddingRight="2dp"
                 android:layout_below="@id/detailVideoTitleView"
                 android:layout_alignParentLeft="true"
                 android:visibility="invisible"
@@ -60,6 +62,7 @@
                 android:layout_below="@id/detailUploaderThumbnailView"
                 android:layout_alignParentLeft="true"
                 android:paddingLeft="6dp"
+                android:paddingRight="6dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:visibility="invisible"
                 android:text="Herr von Gurken" />
@@ -71,6 +74,7 @@
                 android:layout_below="@id/detailVideoTitleView"
                 android:layout_alignParentRight="true"
                 android:paddingRight="16dp"
+                android:paddingLeft="16dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:visibility="invisible"
                 android:text="drölf views" />
@@ -81,6 +85,7 @@
                 android:layout_below="@id/detailViewCountView"
                 android:layout_alignParentRight="true"
                 android:paddingRight="16dp"
+                android:paddingLeft="16dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:visibility="invisible"
                 android:text="-5.000" />
@@ -116,6 +121,7 @@
                 android:layout_below="@id/detailUploaderView"
                 android:layout_alignParentLeft="true"
                 android:paddingLeft="6dp"
+                android:paddingRight="6dp"
                 android:paddingTop="20dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:visibility="invisible"
@@ -127,6 +133,7 @@
                 android:layout_below="@id/detailUploadDateView"
                 android:layout_alignParentLeft="true"
                 android:paddingLeft="6dp"
+                android:paddingRight="6dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:visibility="invisible"
                 android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmodtempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. "
@@ -147,5 +154,5 @@
         android:layout_height="wrap_content"
         app:backgroundTint="@color/primaryColorYoutube"
         android:src="@drawable/ic_play_arrow_black"
-        android:layout_margin="15pt"/>
+        android:layout_margin="16dip"/>
 </RelativeLayout>
