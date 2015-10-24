@@ -294,23 +294,23 @@ public class YoutubeExtractor implements Extractor {
         // view count
         videoInfo.view_count = doc.select("div[class=\"watch-view-count\"]").first().text();
 
-        /* todo finish this code
-
+        /*
         // next video
         videoInfo.nextVideo = extractVideoInfoItem(doc.select("div[class=\"watch-sidebar-section\"]").first()
                 .select("li").first());
 
+
         int i = 0;
         // related videos
+        videoInfo.relatedVideos = new Vector<>();
         for(Element li : doc.select("ul[id=\"watch-related\"]").first().children()) {
             // first check if we have a playlist. If so leave them out
             if(li.select("a[class*=\"content-link\"]").first() != null) {
-                //videoInfo.relatedVideos.add(extractVideoInfoItem(li));
-                //i++;
-                //Log.d(TAG, Integer.toString(i));
+                videoInfo.relatedVideos.add(extractVideoInfoItem(li));
+                i++;
+                Log.d(TAG, Integer.toString(i));
             }
         }
-
         */
 
         return videoInfo;
@@ -319,7 +319,7 @@ public class YoutubeExtractor implements Extractor {
     private VideoInfo.AudioStream[] parseDashManifest(String dashManifest, String decryptoinCode) {
         if(!dashManifest.contains("/signature/")) {
             String encryptedSig = "";
-            String decryptedSig = "";
+            String decryptedSig;
             try {
                 Pattern p = Pattern.compile("/s/([a-fA-F0-9\\.]+)");
                 Matcher m = p.matcher(dashManifest);

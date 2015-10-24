@@ -140,6 +140,12 @@
                 />
 
             <View
+                android:id="@+id/nextVideoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:laoyut_below="@id/detailDescriptionView" />
+
+            <View
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_below="@id/detailDescriptionView"/>
