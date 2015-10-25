@@ -1,6 +1,7 @@
 package org.schabi.newpipe;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -15,9 +16,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.net.URL;
@@ -57,6 +61,7 @@ public class VideoItemDetailFragment extends Fragment {
 
     private boolean autoPlayEnabled = false;
     private Thread extractorThread = null;
+    private VideoInfo currentVideoInfo = null;
 
     private class ExtractorRunnable implements Runnable {
         private Handler h = new Handler();
@@ -83,6 +88,11 @@ public class VideoItemDetailFragment extends Fragment {
                                     new URL(videoInfo.uploader_thumbnail_url)
                                             .openConnection()
                                             .getInputStream()), SetThumbnailRunnable.CHANNEL_THUMBNAIL));
+                    h.post(new SetThumbnailRunnable(
+                            BitmapFactory.decodeStream(
+                                    new URL(videoInfo.nextVideo.thumbnail_url)
+                                            .openConnection()
+                                            .getInputStream()), SetThumbnailRunnable.NEXT_VIDEO_THUMBNAIL));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -103,8 +113,9 @@ public class VideoItemDetailFragment extends Fragment {
     }
 
     private class SetThumbnailRunnable implements Runnable {
-        public static final int CHANNEL_THUMBNAIL = 2;
         public static final int VIDEO_THUMBNAIL = 1;
+        public static final int CHANNEL_THUMBNAIL = 2;
+        public static final int NEXT_VIDEO_THUMBNAIL = 3;
         private Bitmap thumbnail;
         private int thumbnailId;
         public SetThumbnailRunnable(Bitmap thumbnail, int id) {
@@ -123,19 +134,25 @@ public class VideoItemDetailFragment extends Fragment {
         try {
             switch (id) {
                 case SetThumbnailRunnable.VIDEO_THUMBNAIL:
-
                     thumbnailView = (ImageView) a.findViewById(R.id.detailThumbnailView);
                     break;
                 case SetThumbnailRunnable.CHANNEL_THUMBNAIL:
                     thumbnailView = (ImageView) a.findViewById(R.id.detailUploaderThumbnailView);
                     break;
+                case SetThumbnailRunnable.NEXT_VIDEO_THUMBNAIL:
+                    FrameLayout nextVideoFrame = (FrameLayout) a.findViewById(R.id.detailNextVideoFrame);
+                    thumbnailView = (ImageView) nextVideoFrame.findViewById(R.id.itemThumbnailView);
+                    currentVideoInfo.nextVideo.thumbnail = thumbnail;
+                    break;
                 default:
                     Log.d(TAG, "Error: Thumbnail id not known");
                     return;
             }
+
             if (thumbnailView != null) {
                 thumbnailView.setImageBitmap(thumbnail);
             }
+
         } catch (java.lang.NullPointerException e) {
             // No god programm design i know. :/
             Log.w(TAG, "updateThumbnail(): Fragment closed before thread ended work");
@@ -144,7 +161,12 @@ public class VideoItemDetailFragment extends Fragment {
 
     public void updateInfo(VideoInfo info) {
         Activity a = getActivity();
+        currentVideoInfo = info;
         try {
+            VideoInfoItemViewCreator videoItemViewCreator =
+                    new VideoInfoItemViewCreator(LayoutInflater.from(getActivity()));
+
+            ScrollView contentMainView = (ScrollView) a.findViewById(R.id.detailMainContent);
             ProgressBar progressBar = (ProgressBar) a.findViewById(R.id.detailProgressBar);
             TextView videoTitleView = (TextView) a.findViewById(R.id.detailVideoTitleView);
             TextView uploaderView = (TextView) a.findViewById(R.id.detailUploaderView);
@@ -154,28 +176,14 @@ public class VideoItemDetailFragment extends Fragment {
             TextView uploadDateView = (TextView) a.findViewById(R.id.detailUploadDateView);
             TextView descriptionView = (TextView) a.findViewById(R.id.detailDescriptionView);
             ImageView thumbnailView = (ImageView) a.findViewById(R.id.detailThumbnailView);
-            ImageView uploaderThumbnailView = (ImageView) a.findViewById(R.id.detailUploaderThumbnailView);
-            ImageView thumbsUpPic = (ImageView) a.findViewById(R.id.detailThumbsUpImgView);
-            ImageView thumbsDownPic = (ImageView) a.findViewById(R.id.detailThumbsDownImgView);
-            View textSeperationLine = a.findViewById(R.id.textSeperationLine);
+            FrameLayout nextVideoFrame = (FrameLayout) a.findViewById(R.id.detailNextVideoFrame);
+            View nextVideoView = videoItemViewCreator
+                    .getViewByVideoInfoItem(null, nextVideoFrame, info.nextVideo);
+            nextVideoFrame.addView(nextVideoView);
+            Button nextVideoButton = (Button) a.findViewById(R.id.detailNextVideoButton);
 
-
-            if(textSeperationLine != null) {
-                textSeperationLine.setVisibility(View.VISIBLE);
-            }
+            contentMainView.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
-            videoTitleView.setVisibility(View.VISIBLE);
-            uploaderView.setVisibility(View.VISIBLE);
-            uploadDateView.setVisibility(View.VISIBLE);
-            viewCountView.setVisibility(View.VISIBLE);
-            thumbsUpView.setVisibility(View.VISIBLE);
-            thumbsDownView.setVisibility(View.VISIBLE);
-            uploadDateView.setVisibility(View.VISIBLE);
-            descriptionView.setVisibility(View.VISIBLE);
-            thumbnailView.setVisibility(View.VISIBLE);
-            uploaderThumbnailView.setVisibility(View.VISIBLE);
-            thumbsUpPic.setVisibility(View.VISIBLE);
-            thumbsDownPic.setVisibility(View.VISIBLE);
 
             switch (info.videoAvailableStatus) {
                 case VideoInfo.VIDEO_AVAILABLE: {
@@ -203,6 +211,18 @@ public class VideoItemDetailFragment extends Fragment {
                     }
                     ActionBarHandler.getHandler().setStreams(streamList, info.audioStreams);
                 }
+
+                nextVideoButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent detailIntent = new Intent(getActivity(), VideoItemDetailActivity.class);
+                        detailIntent.putExtra(VideoItemDetailFragment.ARG_ITEM_ID, currentVideoInfo.nextVideo.id);
+                        detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, currentVideoInfo.nextVideo.webpage_url);
+                        //todo: make id dynamic the following line is crap
+                        detailIntent.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, 0);
+                        startActivity(detailIntent);
+                    }
+                });
                 break;
                 case VideoInfo.VIDEO_UNAVAILABLE_GEMA:
                     thumbnailView.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.gruese_die_gema_unangebracht));

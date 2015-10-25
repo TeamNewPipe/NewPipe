@@ -45,4 +45,5 @@
         <item>Video</item>
         <item>Audio</item>
     </string-array>
+    <string name="nextVideoTitle">Next Video</string>
 </resources>

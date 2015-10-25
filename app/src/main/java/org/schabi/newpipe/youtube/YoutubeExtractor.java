@@ -153,7 +153,7 @@ public class YoutubeExtractor implements Extractor {
         //-------------------------------------
         JSONObject playerArgs = null;
         JSONObject ytAssets = null;
-        String dashManifest = "";
+        String dashManifest;
         {
             Pattern p = Pattern.compile("ytplayer.config\\s*=\\s*(\\{.*?\\});");
             Matcher m = p.matcher(site);
@@ -294,11 +294,9 @@ public class YoutubeExtractor implements Extractor {
         // view count
         videoInfo.view_count = doc.select("div[class=\"watch-view-count\"]").first().text();
 
-        /*
         // next video
         videoInfo.nextVideo = extractVideoInfoItem(doc.select("div[class=\"watch-sidebar-section\"]").first()
                 .select("li").first());
-
 
         int i = 0;
         // related videos
@@ -308,10 +306,8 @@ public class YoutubeExtractor implements Extractor {
             if(li.select("a[class*=\"content-link\"]").first() != null) {
                 videoInfo.relatedVideos.add(extractVideoInfoItem(li));
                 i++;
-                Log.d(TAG, Integer.toString(i));
             }
         }
-        */
 
         return videoInfo;
     }
@@ -403,11 +399,10 @@ public class YoutubeExtractor implements Extractor {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        info.title = li.select("span[class=\"title\"]").first()
-                .text();
 
+        info.title = li.select("span[class=\"title\"]").first().text();
+        info.view_count = li.select("span[class*=\"view-count\"]").first().text();
         info.uploader = li.select("span[class=\"g-hovercard\"]").first().text();
-
         info.duration = li.select("span[class=\"video-time\"]").first().text();
 
         Element img = li.select("img").first();
@@ -418,7 +413,9 @@ public class YoutubeExtractor implements Extractor {
         if(info.thumbnail_url.contains(".gif")) {
             info.thumbnail_url = img.attr("data-thumb");
         }
-
+        if(info.thumbnail_url.startsWith("//")) {
+            info.thumbnail_url = "https:" + info.thumbnail_url;
+        }
         return info;
     }
 

@@ -7,8 +7,9 @@
     android:padding="6dp">
 
     <ImageView android:id="@+id/itemThumbnailView"
-        android:layout_width="125dp"
+        android:layout_width="142dp"
         android:layout_height="80dp"
+        android:scaleType="centerCrop"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/dummi_thumbnail"/>

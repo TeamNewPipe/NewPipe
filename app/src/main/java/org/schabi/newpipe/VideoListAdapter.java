@@ -6,14 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.Vector;
 
 /**
- * Created by the-scrabi on 11.08.15.
+ * Created by Christian Schabesberger on 11.08.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
  * VideoListAdapter.java is part of NewPipe.
@@ -33,18 +31,20 @@ import java.util.Vector;
  */
 
 public class VideoListAdapter extends BaseAdapter {
-
     private static final String TAG = VideoListAdapter.class.toString();
-    private LayoutInflater inflater;
+
+    private Context context;
+    private VideoInfoItemViewCreator viewCreator;
     private Vector<VideoInfoItem> videoList = new Vector<>();
     private Vector<Boolean> downloadedThumbnailList = new Vector<>();
     VideoItemListFragment videoListFragment;
     ListView listView;
 
     public VideoListAdapter(Context context, VideoItemListFragment videoListFragment) {
-        inflater = LayoutInflater.from(context);
+        viewCreator = new VideoInfoItemViewCreator(LayoutInflater.from(context));
         this.videoListFragment = videoListFragment;
         this.listView = videoListFragment.getListView();
+        this.context = context;
     }
 
     public void addVideoList(Vector<VideoInfoItem> videos) {
@@ -96,30 +96,7 @@ public class VideoListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-        if(convertView == null) {
-            convertView = inflater.inflate(R.layout.video_item, parent, false);
-            holder = new ViewHolder();
-            holder.itemThumbnailView = (ImageView) convertView.findViewById(R.id.itemThumbnailView);
-            holder.itemVideoTitleView = (TextView) convertView.findViewById(R.id.itemVideoTitleView);
-            holder.itemUploaderView = (TextView) convertView.findViewById(R.id.itemUploaderView);
-            holder.itemDurationView = (TextView) convertView.findViewById(R.id.itemDurationView);
-            holder.itemUploadDateView = (TextView) convertView.findViewById(R.id.itemUploadDateView);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-
-        final Context context = parent.getContext();
-        if(videoList.get(position).thumbnail == null) {
-            holder.itemThumbnailView.setImageResource(R.drawable.dummi_thumbnail);
-        } else {
-            holder.itemThumbnailView.setImageBitmap(videoList.get(position).thumbnail);
-        }
-        holder.itemVideoTitleView.setText(videoList.get(position).title);
-        holder.itemUploaderView.setText(videoList.get(position).uploader);
-        holder.itemDurationView.setText(videoList.get(position).duration);
-        holder.itemUploadDateView.setText(videoList.get(position).upload_date);
+        convertView = viewCreator.getViewByVideoInfoItem(convertView, parent, videoList.get(position));
 
         if(listView.isItemChecked(position)) {
             convertView.setBackgroundColor(context.getResources().getColor(R.color.primaryColorYoutube));
@@ -128,10 +105,5 @@ public class VideoListAdapter extends BaseAdapter {
         }
 
         return convertView;
-    }
-
-    private class ViewHolder {
-        public ImageView itemThumbnailView;
-        public TextView itemVideoTitleView, itemUploaderView, itemDurationView, itemUploadDateView;
     }
 }
