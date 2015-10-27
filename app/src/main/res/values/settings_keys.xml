@@ -23,4 +23,5 @@
         <item>m4a</item>
     </string-array>
     <string name="defaultAudioFormat">m4a</string>
+    <string name="showNextVideo">show_next_video</string>
 </resources>

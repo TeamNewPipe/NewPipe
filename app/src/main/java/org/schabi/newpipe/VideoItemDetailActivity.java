@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
 /**
@@ -73,6 +74,10 @@ public class VideoItemDetailActivity extends AppCompatActivity {
                         }
                         break;
                     }
+                }
+                if(extractor == null) {
+                    Toast.makeText(this, R.string.urlNotSupportedText, Toast.LENGTH_LONG)
+                            .show();
                 }
                 arguments.putString(VideoItemDetailFragment.VIDEO_URL,
                         extractor.getVideoUrl(extractor.getVideoId(videoUrl)));

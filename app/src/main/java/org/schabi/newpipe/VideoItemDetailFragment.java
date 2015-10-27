@@ -23,6 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.content.Context;
 
 import java.net.URL;
 import java.util.Vector;
@@ -63,6 +64,8 @@ public class VideoItemDetailFragment extends Fragment {
     private Thread extractorThread = null;
     private VideoInfo currentVideoInfo = null;
 
+    private boolean showNextVideoItem = false;
+
     private class ExtractorRunnable implements Runnable {
         private Handler h = new Handler();
         private Class extractorClass;
@@ -88,11 +91,13 @@ public class VideoItemDetailFragment extends Fragment {
                                     new URL(videoInfo.uploader_thumbnail_url)
                                             .openConnection()
                                             .getInputStream()), SetThumbnailRunnable.CHANNEL_THUMBNAIL));
-                    h.post(new SetThumbnailRunnable(
-                            BitmapFactory.decodeStream(
-                                    new URL(videoInfo.nextVideo.thumbnail_url)
-                                            .openConnection()
-                                            .getInputStream()), SetThumbnailRunnable.NEXT_VIDEO_THUMBNAIL));
+                    if(showNextVideoItem) {
+                        h.post(new SetThumbnailRunnable(
+                                BitmapFactory.decodeStream(
+                                        new URL(videoInfo.nextVideo.thumbnail_url)
+                                                .openConnection()
+                                                .getInputStream()), SetThumbnailRunnable.NEXT_VIDEO_THUMBNAIL));
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -177,6 +182,8 @@ public class VideoItemDetailFragment extends Fragment {
             TextView descriptionView = (TextView) a.findViewById(R.id.detailDescriptionView);
             ImageView thumbnailView = (ImageView) a.findViewById(R.id.detailThumbnailView);
             FrameLayout nextVideoFrame = (FrameLayout) a.findViewById(R.id.detailNextVideoFrame);
+            RelativeLayout nextVideoRootFrame =
+                    (RelativeLayout) a.findViewById(R.id.detailNextVideoRootLayout);
             View nextVideoView = videoItemViewCreator
                     .getViewByVideoInfoItem(null, nextVideoFrame, info.nextVideo);
             nextVideoFrame.addView(nextVideoView);
@@ -184,6 +191,9 @@ public class VideoItemDetailFragment extends Fragment {
 
             contentMainView.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
+            if(!showNextVideoItem) {
+                nextVideoRootFrame.setVisibility(View.GONE);
+            }
 
             switch (info.videoAvailableStatus) {
                 case VideoInfo.VIDEO_AVAILABLE: {
@@ -262,6 +272,9 @@ public class VideoItemDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Context context = getActivity();
+        showNextVideoItem = PreferenceManager.getDefaultSharedPreferences(getActivity())
+                .getBoolean(context.getString(R.string.showNextVideo), true);
     }
 
     @Override

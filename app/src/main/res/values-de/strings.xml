@@ -46,4 +46,6 @@
         <item>Audio</item>
     </string-array>
     <string name="nextVideoTitle">Nächstes Video</string>
+    <string name="showNextVideoTitle">Zeige \"Nächstes Video\" Auswahl.</string>
+    <string name="urlNotSupportedText">Url wird nicht unterstützt.</string>
 </resources>

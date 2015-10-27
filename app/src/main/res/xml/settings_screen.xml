@@ -46,4 +46,9 @@
         android:entryValues="@array/audioFormatList"
         android:defaultValue="@string/defaultAudioFormat"/>
 
+    <CheckBoxPreference
+        android:key="@string/showNextVideo"
+        android:title="@string/showNextVideoTitle"
+        android:defaultValue="true" />
+
 </PreferenceScreen>
