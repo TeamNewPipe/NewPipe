@@ -1,7 +1,44 @@
-NewPipe
--------
+# NewPipe
 
+[![Translation Status](https://hosted.weblate.org/widgets/NewPipe/-/svg-badge.svg)](https://hosted.weblate.org/engage/NewPipe/)
 
-NewPipe is a lightweight youtube frontend for android. It's supposed to be used without the youtube-api and without any google play services. NewPipe only parses the youtube website in order to gain the information it needs.
+NewPipe: A free lightweight Youtube fronted for Android.
 
-This a very early version of the app, so not all functionality is implemented, and there may still be a lot of bugs. But all in all it's doing what it is supposed to do. It makes it possible to watch youtube videos. So don't be cruel to this app. It will improve...
+[![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdfilter=newpipe&fdid=org.schabi.newpipe)
+
+## Description
+
+NewPipe does not use any Google framework libraries, or the Youtube api. It only parses the website in order to gain the information it needs. Therefore this app can be used on devices without g-services installed. Also NewPipe does not store data on the Youtube website (no login), and it's free software.
+
+## Features
+
+* Search videos
+* Display general information about a video
+* Watch Youtube videos
+* Listen to Youtube videos (audio only streaming)
+* Select the streaming player to watch the video with
+* Download videos (working, but it could be better)
+* Download audio only (working but, but it could be better)
+* Open a video in Kodi
+
+## Coming Features
+
+* Shows Next/Related videos
+* Improved Downloading
+* Bookmarks
+* View history
+* Search history
+* Search channels
+* Display general information about channels
+* Subscribe to channels
+* Watch videos from a channel
+* Search/Watch Playlists
+* ... and many more
+
+### Multi service support
+Generally NewPipe is designed to not only support YouTube, but many more streaming services. How ever, right now NewPipe is not stable enough to support more than only youtube. But if all works as plant, NewPipe will get such support by the version 2.0.
+
+# Help is always welcome !!!
+Whether its about ideas, translation, design changes, code cleaning, or real heavy code changes. Help is always welcome.
+
+The more is done the better it gets!
