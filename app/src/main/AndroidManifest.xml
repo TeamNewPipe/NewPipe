@@ -34,27 +34,27 @@
                 <data
                     android:host="youtube.com"
                     android:scheme="http"
-                    android:pathPrefix="/watch"/>
+                    android:pathPattern="/?*#*/*watch"/>
                 <data
                     android:host="youtube.com"
                     android:scheme="https"
-                    android:pathPrefix="/watch"/>
+                    android:pathPattern="/?*#*/*watch"/>
                 <data
                     android:host="www.youtube.com"
                     android:scheme="http"
-                    android:pathPrefix="/watch"/>
+                    android:pathPattern="/?*#*/*watch"/>
                 <data
                     android:host="www.youtube.com"
                     android:scheme="https"
-                    android:pathPrefix="/watch"/>
+                    android:pathPattern="/?*#*/*watch"/>
                 <data
                     android:host="m.youtube.com"
                     android:scheme="http"
-                    android:pathPrefix="/watch"/>
+                    android:pathPattern="/?*#*/*watch"/>
                 <data
                     android:host="m.youtube.com"
                     android:scheme="https"
-                    android:pathPrefix="/watch"/>
+                    android:pathPattern="/?*#*/*watch"/>
                 <data
                     android:host="youtu.be"
                     android:scheme="https"
