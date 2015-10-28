@@ -98,8 +98,9 @@ public class YoutubeExtractor implements Extractor {
         try {
             URI uri = new URI(videoUrl);
             if(uri.getHost().contains("youtube")) {
-                String query = uri.getQuery();
-                String queryElements[] = query.split("&");
+                String fragment = uri.getFragment();
+                fragment = fragment.replace("/watch?", "");
+                String queryElements[] = fragment.split("&");
                 Map<String, String> queryArguments = new HashMap<>();
                 for (String e : queryElements) {
                     String[] s = e.split("=");
