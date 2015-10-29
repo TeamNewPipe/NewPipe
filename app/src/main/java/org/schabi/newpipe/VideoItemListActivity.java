@@ -63,7 +63,6 @@ public class VideoItemListActivity extends AppCompatActivity
                 //    onQueryTextSubmit to trigger twice when focus is not cleared.
                 // See: http://stackoverflow.com/questions/17874951/searchview-onquerytextsubmit-runs-twice-while-i-pressed-once
                 getCurrentFocus().clearFocus();
-                hideWatermark();
             } catch(Exception e) {
                 e.printStackTrace();
             }
@@ -75,13 +74,6 @@ public class VideoItemListActivity extends AppCompatActivity
             return true;
         }
 
-    }
-
-    private void hideWatermark() {
-        ImageView waterMark = (ImageView) findViewById(R.id.list_view_watermark);
-        if(waterMark != null) {
-            waterMark.setVisibility(View.GONE);
-        }
     }
 
     /**
@@ -109,7 +101,6 @@ public class VideoItemListActivity extends AppCompatActivity
             searchQuery = savedInstanceState.getString(QUERY);
             currentStreamingServiceId = savedInstanceState.getInt(STREAMING_SERVICE);
             if(!searchQuery.isEmpty()) {
-                hideWatermark();
                 listFragment.search(searchQuery);
             }
         }

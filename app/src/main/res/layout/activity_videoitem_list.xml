@@ -3,12 +3,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView android:id="@+id/list_view_watermark"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:src="@drawable/new_pipe_watermark"/>
-
     <fragment
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/videoitem_list"

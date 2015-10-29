@@ -190,7 +190,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="70dip"
+                android:layout_height="90dp"
                 android:layout_below="@id/detailNextVideoRootLayout"/>
 
         </RelativeLayout>

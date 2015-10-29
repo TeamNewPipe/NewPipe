@@ -42,12 +42,6 @@
         android:layout_width="0dp"
         android:layout_weight="4">
 
-        <ImageView android:id="@+id/list_view_watermark"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:src="@drawable/new_pipe_watermark"/>
-
         <FrameLayout android:id="@+id/videoitem_detail_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"  />
