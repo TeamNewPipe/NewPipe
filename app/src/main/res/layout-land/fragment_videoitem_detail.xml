@@ -190,8 +190,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="100dip"
-                android:layout_below="@id/detailNextVideoSeperationLineEnd"/>
+                android:layout_height="70dip"
+                android:layout_below="@id/detailNextVideoRootLayout"/>
 
         </RelativeLayout>
     </ScrollView>

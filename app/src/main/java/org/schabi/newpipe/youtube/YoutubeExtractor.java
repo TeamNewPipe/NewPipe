@@ -98,9 +98,13 @@ public class YoutubeExtractor implements Extractor {
         try {
             URI uri = new URI(videoUrl);
             if(uri.getHost().contains("youtube")) {
-                String fragment = uri.getFragment();
-                fragment = fragment.replace("/watch?", "");
-                String queryElements[] = fragment.split("&");
+                String query = uri.getFragment();
+                if(query == null) {
+                    query = uri.getQuery();
+                } else {
+                    query = query.replace("/watch?", "");
+                }
+                String queryElements[] = query.split("&");
                 Map<String, String> queryArguments = new HashMap<>();
                 for (String e : queryElements) {
                     String[] s = e.split("=");
@@ -181,8 +185,6 @@ public class YoutubeExtractor implements Extractor {
             videoInfo.thumbnail_url = playerArgs.getString("thumbnail_url");
             videoInfo.duration = playerArgs.getInt("length_seconds");
             videoInfo.average_rating = playerArgs.getString("avg_rating");
-            // View Count will be extracted from html
-            dashManifest = playerArgs.getString("dashmpd");
             String playerUrl = ytAssets.getString("js");
             if(playerUrl.startsWith("//")) {
                 playerUrl = "https:" + playerUrl;
@@ -192,7 +194,14 @@ public class YoutubeExtractor implements Extractor {
             }
 
             // extract audio
-            videoInfo.audioStreams = parseDashManifest(dashManifest, decryptionCode);
+            try {
+                dashManifest = playerArgs.getString("dashmpd");
+                videoInfo.audioStreams = parseDashManifest(dashManifest, decryptionCode);
+            } catch (Exception e) {
+                //todo: check if the following statement is true
+                Log.e(TAG, "Dash manifest seems not to bee available.");
+                e.printStackTrace();
+            }
 
             //------------------------------------
             // extract video stream url

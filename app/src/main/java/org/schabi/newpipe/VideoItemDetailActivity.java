@@ -33,9 +33,11 @@ public class VideoItemDetailActivity extends AppCompatActivity {
 
     private static final String TAG = VideoItemDetailActivity.class.toString();
 
+    VideoItemDetailFragment fragment;
+
     private String videoUrl;
     private int currentStreamingService = -1;
-    private boolean isLandscape;
+    private Menu menu = null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +45,6 @@ public class VideoItemDetailActivity extends AppCompatActivity {
 
         // Show the Up button in the action bar.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ActionBarHandler.getHandler().setupNavMenu(this);
 
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity
@@ -91,14 +92,27 @@ public class VideoItemDetailActivity extends AppCompatActivity {
                 arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingService);
                 arguments.putBoolean(VideoItemDetailFragment.AUTO_PLAY, false);
             }
-            // Create the detail fragment and add it to the activity
-            // using a fragment transaction.
-            VideoItemDetailFragment fragment = new VideoItemDetailFragment();
-            fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.videoitem_detail_container, fragment)
-                    .commit();
+
+        } else {
+            videoUrl = savedInstanceState.getString(VideoItemDetailFragment.VIDEO_URL);
+            currentStreamingService = savedInstanceState.getInt(VideoItemDetailFragment.STREAMING_SERVICE);
+            arguments = savedInstanceState;
         }
+
+        // Create the detail fragment and add it to the activity
+        // using a fragment transaction.
+        fragment = new VideoItemDetailFragment();
+        fragment.setArguments(arguments);
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.videoitem_detail_container, fragment)
+                .commit();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putString(VideoItemDetailFragment.VIDEO_URL, videoUrl);
+        outState.putInt(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingService);
+        outState.putBoolean(VideoItemDetailFragment.AUTO_PLAY, false);
     }
 
     @Override
@@ -117,17 +131,15 @@ public class VideoItemDetailActivity extends AppCompatActivity {
             NavUtils.navigateUpTo(this, intent);
             return true;
         } else {
-            ActionBarHandler.getHandler().onItemSelected(item, this);
+            return fragment.onOptionsItemSelected(item) ||
+                    super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public boolean onCreatePanelMenu(int featured, Menu menu) {
-        super.onCreatePanelMenu(featured, menu);
-        MenuInflater inflater = getMenuInflater();
-        ActionBarHandler.getHandler().setupMenu(menu, inflater, this);
-
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        fragment.onCreateOptionsMenu(menu, getMenuInflater());
         return true;
     }
 }

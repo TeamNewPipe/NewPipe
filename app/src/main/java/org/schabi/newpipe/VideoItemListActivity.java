@@ -41,6 +41,8 @@ public class VideoItemListActivity extends AppCompatActivity
     private String searchQuery = "";
 
     private VideoItemListFragment listFragment;
+    private VideoItemDetailFragment videoFragment = null;
+    Menu menu = null;
 
     public class SearchVideoQueryListener implements SearchView.OnQueryTextListener {
 
@@ -132,9 +134,6 @@ public class VideoItemListActivity extends AppCompatActivity
             searchView.setIconifiedByDefault(false);
             searchView.setIconified(false);
             searchView.setOnQueryTextListener(new SearchVideoQueryListener());
-
-            ActionBarHandler.getHandler().setupNavMenu(this);
-
         }
 
         SettingsActivity.initSettings(this);
@@ -160,10 +159,17 @@ public class VideoItemListActivity extends AppCompatActivity
             arguments.putString(VideoItemDetailFragment.ARG_ITEM_ID, id);
             arguments.putString(VideoItemDetailFragment.VIDEO_URL, webpage_url);
             arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingServiceId);
-            VideoItemDetailFragment fragment = new VideoItemDetailFragment();
-            fragment.setArguments(arguments);
+            videoFragment = new VideoItemDetailFragment();
+            videoFragment.setArguments(arguments);
+            videoFragment.setOnInvokeCreateOptionsMenuListener(new VideoItemDetailFragment.OnInvokeCreateOptionsMenuListener() {
+                @Override
+                public void createOptionsMenu() {
+                    menu.clear();
+                    onCreateOptionsMenu(menu);
+                }
+            });
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.videoitem_detail_container, fragment)
+                    .replace(R.id.videoitem_detail_container, videoFragment)
                     .commit();
         } else {
             // In single-pane mode, simply start the detail activity
@@ -177,10 +183,11 @@ public class VideoItemListActivity extends AppCompatActivity
     }
 
 
-    public boolean onCreatePanelMenu(int featured, Menu menu) {
-        super.onCreatePanelMenu(featured, menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        this.menu = menu;
+        MenuInflater inflater = getMenuInflater();
         if(findViewById(R.id.videoitem_detail_container) == null) {
-            MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.videoitem_list, menu);
             MenuItem searchItem = menu.findItem(R.id.action_search);
             SearchView searchView = (SearchView) searchItem.getActionView();
@@ -188,9 +195,10 @@ public class VideoItemListActivity extends AppCompatActivity
             searchView.setOnQueryTextListener(
                     new SearchVideoQueryListener());
 
+        } else if (videoFragment != null){
+            videoFragment.onCreateOptionsMenu(menu, inflater);
         } else {
-            MenuInflater inflater = getMenuInflater();
-            ActionBarHandler.getHandler().setupMenu(menu, inflater, this);
+            inflater.inflate(R.menu.videoitem_two_pannel, menu);
         }
 
         return true;
@@ -203,8 +211,8 @@ public class VideoItemListActivity extends AppCompatActivity
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
         } else {
-            ActionBarHandler.getHandler().onItemSelected(item, this);
-            return super.onOptionsItemSelected(item);
+            return videoFragment.onOptionsItemSelected(item) ||
+                    super.onOptionsItemSelected(item);
         }
         return true;
     }

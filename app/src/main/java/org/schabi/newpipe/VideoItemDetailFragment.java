@@ -9,11 +9,14 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -23,7 +26,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.content.Context;
+import android.view.MenuItem;
 
 import java.net.URL;
 import java.util.Vector;
@@ -60,11 +63,19 @@ public class VideoItemDetailFragment extends Fragment {
     public static final String STREAMING_SERVICE = "streaming_service";
     public static final String AUTO_PLAY = "auto_play";
 
+    private AppCompatActivity activity;
+    private ActionBarHandler actionBarHandler;
+
     private boolean autoPlayEnabled = false;
     private Thread extractorThread = null;
     private VideoInfo currentVideoInfo = null;
-
     private boolean showNextVideoItem = false;
+
+    public interface OnInvokeCreateOptionsMenuListener {
+        void createOptionsMenu();
+    }
+
+    private OnInvokeCreateOptionsMenuListener onInvokeCreateOptionsMenuListener = null;
 
     private class ExtractorRunnable implements Runnable {
         private Handler h = new Handler();
@@ -206,7 +217,7 @@ public class VideoItemDetailFragment extends Fragment {
                     descriptionView.setText(Html.fromHtml(info.description));
                     descriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
-                    ActionBarHandler.getHandler().setVideoInfo(info.webpage_url, info.title);
+                    actionBarHandler.setVideoInfo(info.webpage_url, info.title);
 
                     // parse streams
                     Vector<VideoInfo.VideoStream> streamsToUse = new Vector<>();
@@ -219,7 +230,7 @@ public class VideoItemDetailFragment extends Fragment {
                     for (int i = 0; i < streamList.length; i++) {
                         streamList[i] = streamsToUse.get(i);
                     }
-                    ActionBarHandler.getHandler().setStreams(streamList, info.audioStreams);
+                    actionBarHandler.setStreams(streamList, info.audioStreams);
                 }
 
                 nextVideoButton.setOnClickListener(new View.OnClickListener() {
@@ -245,7 +256,7 @@ public class VideoItemDetailFragment extends Fragment {
             }
 
             if(autoPlayEnabled) {
-                ActionBarHandler.getHandler().playVideo();
+                actionBarHandler.playVideo();
             }
         } catch (java.lang.NullPointerException e) {
             Log.w(TAG, "updateInfo(): Fragment closed before thread ended work... or else");
@@ -272,15 +283,21 @@ public class VideoItemDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Context context = getActivity();
+        activity = (AppCompatActivity) getActivity();
         showNextVideoItem = PreferenceManager.getDefaultSharedPreferences(getActivity())
-                .getBoolean(context.getString(R.string.showNextVideo), true);
+                .getBoolean(activity.getString(R.string.showNextVideo), true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_videoitem_detail, container, false);
+        actionBarHandler = new ActionBarHandler(activity);
+        actionBarHandler.setupNavMenu(activity);
+        if(onInvokeCreateOptionsMenuListener != null) {
+            onInvokeCreateOptionsMenuListener.createOptionsMenu();
+        }
+
         return rootView;
     }
 
@@ -317,7 +334,7 @@ public class VideoItemDetailFragment extends Fragment {
             playVideoButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ActionBarHandler.getHandler().playVideo();
+                    actionBarHandler.playVideo();
                 }
             });
         }
@@ -327,5 +344,19 @@ public class VideoItemDetailFragment extends Fragment {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.heightPixels < displayMetrics.widthPixels;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        actionBarHandler.setupMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return actionBarHandler.onItemSelected(item);
+    }
+
+    public void setOnInvokeCreateOptionsMenuListener(OnInvokeCreateOptionsMenuListener listener) {
+        this.onInvokeCreateOptionsMenuListener = listener;
     }
 }
