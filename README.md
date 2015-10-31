@@ -9,7 +9,7 @@ NewPipe: A free lightweight Youtube frontend for Android.
 
 ## Description
 
-NewPipe does not use any Google framework libraries, or the Youtube api. It only parses the website in order to gain the information it needs. Therefore this app can be used on devices without g-services installed. Also NewPipe does not store data on the Youtube website (no login), and it's free software.
+NewPipe does not use any Google framework libraries, or the YouTube API. It only parses the website in order to gain the information it needs. Therefore this app can be used on devices without G-services installed. Also NewPipe does not store data on the YouTube website (no login), and it's free software.
 
 ## Features
 
@@ -37,9 +37,9 @@ NewPipe does not use any Google framework libraries, or the Youtube api. It only
 * ... and many more
 
 ### Multi service support
-Generally NewPipe is designed to not only support YouTube, but many more streaming services. How ever, right now NewPipe is not stable enough to support more than only youtube. But if all works as plant, NewPipe will get such support by the version 2.0.
+Generally NewPipe is designed to not only support YouTube, but many more streaming services. However, right now NewPipe is not stable enough to support more than only YouTube. But if all works as planned, NewPipe will get such support by the version 2.0.
 
 # Help is always welcome !!!
-Whether its about ideas, translation, design changes, code cleaning, or real heavy code changes. Help is always welcome.
+Whether it's about ideas, translation, design changes, code cleaning, or real heavy code changes. Help is always welcome.
 
 The more is done the better it gets!
