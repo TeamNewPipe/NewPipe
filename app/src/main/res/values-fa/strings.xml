@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NewPipe</string>
+    <string name="title_videoitem_detail">NewPipe</string>
+    <string name="nothingFound">چیزی پیدا نشد</string>
+    <string name="viewSufix">نماها</string>
+    <string name="uploadDatePrefix">بارگذاری‌شده در: </string>
+    <string name="noPlayerFound">هیچ پخش‌کننده‌ی جریانی یافت نشد. ممکن است بخواهید یکی نصب کنید.</string>
+    <string name="installStreamPlayer">نصب کنید</string>
+    <string name="cancel">انصراف</string>
+    <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
+    <string name="open_in_browser">بازکردن در مرورگر</string>
+    <string name="share">هم‌رسانی</string>
+    <string name="play">پخش</string>
+    <string name="download">بارگیری</string>
+    <string name="search">جستجو</string>
+    <string name="settings">تنظیمات</string>
+    <string name="sendWith">فرستادن با</string>
+    <string name="didYouMean">منظورتان این است: </string>
+    <string name="searchPage">صفحه‌ی جستجو: </string>
+    <string name="shareDialogTitle">هم‌رسانی با:</string>
+    <string name="chooseBrowser">مرورگر را برگزینید:</string>
+    <string name="screenRotation">چرخش</string>
+    <string name="title_activity_settings">تنظیمات</string>
+    <string name="useExternalPlayerTitle">استفاده از پخش‌کننده‌ی خارجی</string>
+    <string name="downloadLocation">محل بارگیری</string>
+    <string name="downloadLocationSummary">مسیری که ویدئوهای دریافت شده در آن ذخیره می‌شوند.</string>
+    <string name="downloadLocationDialogTitle">مسیر دریافت را وارد کنید</string>
+    <string name="autoPlayThroughIntentTitle">پخش خودکار از Intent</string>
+    <string name="autoPlayThroughIntentSummary">ویدئو هنگامی که از برنامه‌ی دیگری فراخوانده شد خودکار پخش می‌شود.</string>
+    <string name="defaultResolutionPreferenceTitle">وضوح پیش‌فرض</string>
+    <string name="playWithKodiTitle">پخش با Kodi</string>
+    <string name="koreNotFound">برنامه‌ی Kore نصب نیست. برای پخش کردن ویدئوها با مرکز رسانه‌ی Kodi، به Kore نیاز دارید.</string>
+    <string name="installeKore">نصب Kore</string>
+    <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
+    <string name="showPlayWithKodiTitle">نمایش گزینه‌ی «پخش با Kodi»</string>
+    <string name="showPlayWithKodiSummary">گزینه‌ای برای پخش کردن ویدئو با مرکز رسانه‌ی Kodi نشان می‌دهد.</string>
+    <string name="leftPlayButtonTitle">نمایش دکمه‌ی پخش در سمت چپ.</string>
+    <string name="playAudio">صدا</string>
+    <string name="defaultAudioFormatTitle">قالب پیش‌فرض صدا</string>
+    <string name="webMAudioDescription">WebM - قالبی آزاد</string>
+    <string name="m4aAudioDescription">m4a - کیفیت بهتر</string>
+    <string name="downloadDialogTitle">دریافت</string>
+    <string-array name="downloadOptions">
+        <item>ویدئو</item>
+        <item>صدا</item>
+    </string-array>
+    <string name="nextVideoTitle">ویدئوی بعدی</string>
+    <string name="showNextVideoTitle">نمایش گزینه‌ی «ویدئوی بعدی».</string>
+    <string name="urlNotSupportedText">پیوند پشتیبانی نمی‌شود.</string>
+</resources>
