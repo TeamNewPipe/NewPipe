@@ -3,7 +3,7 @@
 [![Translation Status](https://hosted.weblate.org/widgets/NewPipe/-/svg-badge.svg)](https://hosted.weblate.org/engage/NewPipe/)
 
 [![NewPipe](https://f-droid.org/repo/icons/org.schabi.newpipe.4.png)](http://dasochan.nl/newpipe/)
-NewPipe: A free lightweight Youtube fronted for Android.
+NewPipe: A free lightweight Youtube frontend for Android.
 
 [![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdfilter=newpipe&fdid=org.schabi.newpipe)
 
