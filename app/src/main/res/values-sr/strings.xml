@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_name">Јутјуб цев</string>
     <string name="title_videoitem_detail">Јутјуб цев</string>
@@ -45,4 +45,7 @@
         <item>Видео</item>
         <item>Аудио</item>
     </string-array>
+<string name="nextVideoTitle">Следећи видео</string>
+    <string name="showNextVideoTitle">Приказ ставке „Следећи видео“.</string>
+    <string name="urlNotSupportedText">УРЛ није подржан.</string>
 </resources>
