@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
@@ -45,4 +45,7 @@
         <item>Videó</item>
         <item>Hang</item>
     </string-array>
+<string name="nextVideoTitle">Következő videó</string>
+    <string name="showNextVideoTitle">\"Következő videó\" elem mutatása</string>
+    <string name="urlNotSupportedText">A webcím nem támogatott.</string>
 </resources>
