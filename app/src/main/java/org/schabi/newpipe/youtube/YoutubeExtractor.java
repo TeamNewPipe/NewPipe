@@ -199,7 +199,7 @@ public class YoutubeExtractor implements Extractor {
                 videoInfo.audioStreams = parseDashManifest(dashManifest, decryptionCode);
             } catch (Exception e) {
                 //todo: check if the following statement is true
-                Log.e(TAG, "Dash manifest seems not to bee available.");
+                Log.e(TAG, "Dash manifest doesn't seem to be available.");
                 e.printStackTrace();
             }
 

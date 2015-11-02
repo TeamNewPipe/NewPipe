@@ -57,14 +57,14 @@ public class YoutubeSearchEngine implements SearchEngine {
         int i = 0;
         for(Element item : list.children()) {
             i++;
-            /* First we need to determine witch kind of item we are working with.
-               Youtube depicts fife different kinds if items at its search result page. These are
-               regular videos, playlists, channels, two types of video suggestions, and a no video
-               found item. Since we only want videos, we net to filter out all the others.
+            /* First we need to determine which kind of item we are working with.
+               Youtube depicts five different kinds of items on its search result page. These are
+               regular videos, playlists, channels, two types of video suggestions, and a "no video
+               found" item. Since we only want videos, we need to filter out all the others.
                An example for this can be seen here:
                https://www.youtube.com/results?search_query=asdf&page=1
 
-               We already applied a filter to the url, so we don't need to care about channels, and
+               We already applied a filter to the url, so we don't need to care about channels and
                playlists now.
             */
 
@@ -102,9 +102,9 @@ public class YoutubeSearchEngine implements SearchEngine {
                 Element te = item.select("div[class=\"yt-thumb video-thumb\"]").first()
                         .select("img").first();
                 resultItem.thumbnail_url = te.attr("abs:src");
-                // Sometimes youtube sends links to gif files witch somehow seam to not exist
+                // Sometimes youtube sends links to gif files which somehow seem to not exist
                 // anymore. Items with such gif also offer a secondary image source. So we are going
-                // to use that if we caught such an item.
+                // to use that if we've caught such an item.
                 if(resultItem.thumbnail_url.contains(".gif")) {
                     resultItem.thumbnail_url = te.attr("abs:data-thumb");
                 }
@@ -113,7 +113,6 @@ public class YoutubeSearchEngine implements SearchEngine {
                 Log.e(TAG, "GREAT FUCKING ERROR");
             }
         }
-
         return result;
     }
 }

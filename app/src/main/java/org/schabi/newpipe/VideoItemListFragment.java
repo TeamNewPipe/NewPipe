@@ -172,7 +172,8 @@ public class VideoItemListFragment extends ListFragment {
     private void startSearch(String query, int page) {
         currentRequestId++;
         terminateThreads();
-        searchRunnable = new SearchRunnable(streamingService.getSearchEngineInstance(), query, page, currentRequestId);
+        searchRunnable = new SearchRunnable(streamingService.getSearchEngineInstance(),
+                                            query, page, currentRequestId);
         searchThread = new Thread(searchRunnable);
         searchThread.start();
     }
@@ -225,10 +226,6 @@ public class VideoItemListFragment extends ListFragment {
             // No need to join, since we don't really terminate the thread. We just demand
             // it to post its result runnable into the gui main loop.
         }
-    }
-
-    void displayList() {
-
     }
 
     /**

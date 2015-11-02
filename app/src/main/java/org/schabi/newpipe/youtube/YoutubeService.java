@@ -34,11 +34,11 @@ public class YoutubeService implements StreamingService {
     }
     @Override
     public Extractor getExtractorInstance() {
-        return (Extractor) new YoutubeExtractor();
+        return new YoutubeExtractor();
     }
     @Override
     public SearchEngine getSearchEngineInstance() {
-        return (SearchEngine) new YoutubeSearchEngine();
+        return new YoutubeSearchEngine();
     }
     @Override
     public boolean acceptUrl(String videoUrl) {

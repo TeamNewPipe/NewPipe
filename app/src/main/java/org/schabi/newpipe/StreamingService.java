@@ -24,9 +24,9 @@ public interface StreamingService {
     class ServiceInfo {
         public String name = "";
     }
-    public ServiceInfo getServiceInfo();
-    public Extractor getExtractorInstance();
-    public SearchEngine getSearchEngineInstance();
+    ServiceInfo getServiceInfo();
+    Extractor getExtractorInstance();
+    SearchEngine getSearchEngineInstance();
 
     /**When a VIEW_ACTION is caught this function will test if the url delivered within the calling
     Intent was meant to be watched with this Service.
