@@ -24,12 +24,12 @@ public interface StreamingService {
     class ServiceInfo {
         public String name = "";
     }
-    ServiceInfo getServiceInfo();
-    Class getExtractorClass();
-    Class getSearchEngineClass();
+    public ServiceInfo getServiceInfo();
+    public Extractor getExtractorInstance();
+    public SearchEngine getSearchEngineInstance();
 
-    // When a VIEW_ACTION is caught this function will test if the url delivered within the calling
-    // Intent was meant to be watched with this Service.
-    // Return false if this service shall not allow to be callean through ACTIONs.
+    /**When a VIEW_ACTION is caught this function will test if the url delivered within the calling
+    Intent was meant to be watched with this Service.
+    Return false if this service shall not allow to be callean through ACTIONs.*/
     boolean acceptUrl(String videoUrl);
 }

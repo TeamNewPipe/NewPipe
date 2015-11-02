@@ -61,7 +61,7 @@ public class VideoInfoItemViewCreator {
         if(!info.upload_date.isEmpty()) {
             holder.itemUploadDateView.setText(info.upload_date);
         } else {
-            //tewak if nececeary: This is a hack preventing to have a white space in the layout :P
+            //tweak if necessary: This is a hack to prevent having white space in the layout :P
             holder.itemUploadDateView.setText(info.view_count);
         }
 

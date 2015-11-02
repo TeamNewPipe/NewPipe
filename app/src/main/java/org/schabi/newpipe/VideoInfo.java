@@ -59,7 +59,7 @@ public class VideoInfo {
 
     public static final int VIDEO_AVAILABLE = 0x00;
     public static final int VIDEO_UNAVAILABLE = 0x01;
-    public static final int VIDEO_UNAVAILABLE_GEMA = 0x02;
+    public static final int VIDEO_UNAVAILABLE_GEMA = 0x02;//German DRM organisation; sound pretty draconian
 
     public static String getNameById(int id) {
         switch(id) {
@@ -68,8 +68,7 @@ public class VideoInfo {
             case I_WEBM: return F_WEBM;
             case I_M4A: return F_M4A;
             case I_WEBMA: return F_WEBMA;
-            default: Log.e(TAG, "format not known: " +
-                    Integer.toString(id) + "call the programmer he messed it up.");
+            default: formatNotKnown(id);
         }
         return "";
     }
@@ -81,8 +80,7 @@ public class VideoInfo {
             case I_WEBM: return C_WEBM;
             case I_M4A: return C_M4A;
             case I_WEBMA: return C_WEBMA;
-            default: Log.e(TAG, "format not known: " +
-                    Integer.toString(id) + "call the programmer he messed it up.");
+            default: formatNotKnown(id);
         }
         return "";
     }
@@ -94,8 +92,7 @@ public class VideoInfo {
             case I_WEBM: return M_WEBM;
             case I_M4A: return M_M4A;
             case I_WEBMA: return M_WEBMA;
-            default: Log.e(TAG, "format not known: " +
-                    Integer.toString(id) + "call the programmer he messed it up.");
+            default: formatNotKnown(id);
         }
         return "";
     }
@@ -107,6 +104,12 @@ public class VideoInfo {
         public String url = "";     //url of the stream
         public int format = -1;
         public String resolution = "";
+    }
+
+    protected static void formatNotKnown(int id)
+    {
+        Log.e(TAG, "format not known: \"" +
+            Integer.toString(id) + "\". Call the programmer, he messed it up!");
     }
 
     public static class AudioStream {

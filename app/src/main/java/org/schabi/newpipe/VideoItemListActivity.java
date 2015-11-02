@@ -87,13 +87,11 @@ public class VideoItemListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videoitem_list);
 
-        listFragment = (VideoItemListFragment)
-                getSupportFragmentManager().findFragmentById(R.id.videoitem_list);
-
         //-------- remove this line when multiservice support is implemented ----------
         currentStreamingServiceId = ServiceList.getIdOfService("Youtube");
         //-----------------------------------------------------------------------------
-        VideoItemListFragment listFragment = (VideoItemListFragment) getSupportFragmentManager()
+
+        listFragment = (VideoItemListFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.videoitem_list);
         listFragment.setStreamingService(ServiceList.getService(currentStreamingServiceId));
 

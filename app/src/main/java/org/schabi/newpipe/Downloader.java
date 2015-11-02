@@ -1,9 +1,12 @@
 package org.schabi.newpipe;
 
+import android.widget.Toast;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.UnknownHostException;
 
 /**
  * Created by Christian Schabesberger on 14.08.15.
@@ -45,7 +48,13 @@ public class Downloader {
                 response.append(inputLine);
             }
             in.close();
-        } catch (Exception e) {
+
+        }
+        catch(UnknownHostException uhe) {//thrown when there's no internet connection
+            uhe.printStackTrace();
+            //Toast.makeText(getActivity(), uhe.getMessage(), Toast.LENGTH_LONG).show();
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         return response.toString();

@@ -50,7 +50,7 @@ public class YoutubeExtractor implements Extractor {
     private static final String TAG = YoutubeExtractor.class.toString();
 
     // These lists only contain itag formats that are supported by the common Android Video player.
-    // How ever if you are heading for a list showing all itag formats lock at
+    // How ever if you are heading for a list showing all itag formats look at
     // https://github.com/rg3/youtube-dl/issues/1687
 
     public static int resolveFormat(int itag) {
