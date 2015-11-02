@@ -2,6 +2,7 @@ package org.schabi.newpipe;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,7 +100,7 @@ public class VideoListAdapter extends BaseAdapter {
         convertView = viewCreator.getViewByVideoInfoItem(convertView, parent, videoList.get(position));
 
         if(listView.isItemChecked(position)) {
-            convertView.setBackgroundColor(context.getResources().getColor(R.color.primaryColorYoutube));
+            convertView.setBackgroundColor(ContextCompat.getColor(context,R.color.primaryColorYoutube));
         } else {
             convertView.setBackgroundColor(0);
         }
