@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Vector;
 
 
@@ -41,6 +42,11 @@ public class VideoItemListFragment extends ListFragment {
     private StreamingService streamingService = null;
     private VideoListAdapter videoListAdapter;
 
+    // activity modes
+    private static final int SEARCH_MODE = 0;
+    private static final int PRESENT_VIDEOS_MODE = 1;
+
+    private int mode = SEARCH_MODE;
     private String query = "";
     private int lastPage = 0;
 
@@ -50,6 +56,7 @@ public class VideoItemListFragment extends ListFragment {
     private LoadThumbsRunnable loadThumbsRunnable = null;
     // used to track down if results posted by threads ar still valid
     private int currentRequestId = -1;
+    private ListView list;
 
     private class ResultRunnable implements Runnable {
         private SearchEngine.Result result;
@@ -154,7 +161,18 @@ public class VideoItemListFragment extends ListFragment {
         }
     }
 
+    public void present(VideoInfoItem[] videoList) {
+        mode = PRESENT_VIDEOS_MODE;
+        setListShown(true);
+        getListView().smoothScrollToPosition(0);
+
+        // inefficient like hell i know (welcome to the world of java)
+        //todo: make this more efficient
+        updateList(new Vector<>(Arrays.asList(videoList)));
+    }
+
     public void search(String query) {
+        mode = SEARCH_MODE;
         this.query = query;
         this.lastPage = 1;
         videoListAdapter.clearVideoList();
@@ -261,6 +279,7 @@ public class VideoItemListFragment extends ListFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        list = getListView();
         videoListAdapter = new VideoListAdapter(getActivity(), this);
         setListAdapter(videoListAdapter);
 
@@ -272,8 +291,6 @@ public class VideoItemListFragment extends ListFragment {
         }
 
         getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
-            private static final float OVERSCROLL_THRESHOLD_IN_PIXELS = 100;
-            private float downY;
             long lastScrollDate = 0;
 
             @Override
@@ -282,8 +299,8 @@ public class VideoItemListFragment extends ListFragment {
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                ListView list = getListView();
-                if (list.getChildAt(0) != null
+                if (mode != PRESENT_VIDEOS_MODE
+                        && list.getChildAt(0) != null
                         && list.getLastVisiblePosition() == list.getAdapter().getCount() - 1
                         && list.getChildAt(list.getChildCount() - 1).getBottom() <= list.getHeight()) {
                     long time = System.currentTimeMillis();

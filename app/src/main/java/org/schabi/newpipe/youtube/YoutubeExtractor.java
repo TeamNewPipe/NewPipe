@@ -233,10 +233,8 @@ public class YoutubeExtractor implements Extractor {
                             resolveResolutionString(itag)));
                 }
             }
-            videoInfo.videoStreams = new VideoInfo.VideoStream[videoStreams.size()];
-            for(int i = 0; i < videoStreams.size(); i++) {
-                videoInfo.videoStreams[i] = videoStreams.get(i);
-            }
+            videoInfo.videoStreams =
+                    videoStreams.toArray(new VideoInfo.VideoStream[videoStreams.size()]);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -310,15 +308,15 @@ public class YoutubeExtractor implements Extractor {
 
         int i = 0;
         // related videos
-        videoInfo.relatedVideos = new Vector<>();
+        Vector<VideoInfoItem> relatedVideos = new Vector<>();
         for(Element li : doc.select("ul[id=\"watch-related\"]").first().children()) {
             // first check if we have a playlist. If so leave them out
             if(li.select("a[class*=\"content-link\"]").first() != null) {
-                videoInfo.relatedVideos.add(extractVideoInfoItem(li));
+                relatedVideos.add(extractVideoInfoItem(li));
                 i++;
             }
         }
-
+        videoInfo.relatedVideos = relatedVideos.toArray(new VideoInfoItem[relatedVideos.size()]);
         return videoInfo;
     }
 
@@ -390,11 +388,7 @@ public class YoutubeExtractor implements Extractor {
         } catch(Exception e) {
             e.printStackTrace();
         }
-        VideoInfo.AudioStream[] output = new VideoInfo.AudioStream[audioStreams.size()];
-        for(int i = 0; i < output.length; i++) {
-            output[i] = audioStreams.get(i);
-        }
-        return output;
+        return audioStreams.toArray(new VideoInfo.AudioStream[audioStreams.size()]);
     }
 
     private VideoInfoItem extractVideoInfoItem(Element li) {

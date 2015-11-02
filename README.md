@@ -2,7 +2,7 @@
 
 [![Translation Status](https://hosted.weblate.org/widgets/NewPipe/-/svg-badge.svg)](https://hosted.weblate.org/engage/NewPipe/)
 
-[![NewPipe](https://f-droid.org/repo/icons/org.schabi.newpipe.4.png)](http://dasochan.nl/newpipe/)
+[![NewPipe](https://f-droid.org/repo/icons/org.schabi.newpipe.5.png)](http://dasochan.nl/newpipe/)
 NewPipe: A free lightweight Youtube frontend for Android.
 
 [![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdfilter=newpipe&fdid=org.schabi.newpipe)
@@ -21,10 +21,10 @@ NewPipe does not use any Google framework libraries, or the YouTube API. It only
 * Download videos (working, but it could be better)
 * Download audio only (working but, but it could be better)
 * Open a video in Kodi
+* Show Next/Related videos
 
 ## Coming Features
 
-* Shows Next/Related videos
 * Improved Downloading
 * Bookmarks
 * View history

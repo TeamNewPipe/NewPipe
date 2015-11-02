@@ -48,4 +48,5 @@
     <string name="nextVideoTitle">Nächstes Video</string>
     <string name="showNextVideoTitle">Zeige \"Nächstes Video\" Auswahl.</string>
     <string name="urlNotSupportedText">Url wird nicht unterstützt.</string>
+    <string name="showSimilarVideosButtonText">Ähnliche Videos</string>
 </resources>

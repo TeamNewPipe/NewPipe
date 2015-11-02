@@ -69,6 +69,7 @@ public class ActionBarHandler {
     public void setStreams(VideoInfo.VideoStream[] videoStreams, VideoInfo.AudioStream[] audioStreams) {
         this.videoStreams = videoStreams;
         selectedStream = 0;
+        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
         String[] itemArray = new String[videoStreams.length];
         String defaultResolution = defaultPreferences
                 .getString(activity.getString(R.string.defaultResolutionPreference),
@@ -93,7 +94,7 @@ public class ActionBarHandler {
 
         // set audioStream
         audioStream = null;
-        String preferedFormat = PreferenceManager.getDefaultSharedPreferences(activity)
+        String preferedFormat = defaultPreferences
                 .getString(activity.getString(R.string.defaultAudioFormatPreference), "webm");
         if(preferedFormat.equals("webm")) {
             for(VideoInfo.AudioStream s : audioStreams) {
