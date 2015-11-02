@@ -140,6 +140,6 @@ public class VideoInfo {
     public VideoStream[] videoStreams = null;
     public AudioStream[] audioStreams = null;
     public VideoInfoItem nextVideo = null;
-    public Vector<VideoInfoItem> relatedVideos = null;
+    public VideoInfoItem[] relatedVideos = null;
     public int videoAvailableStatus = VIDEO_AVAILABLE;
 }

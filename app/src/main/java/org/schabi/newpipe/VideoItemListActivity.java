@@ -3,14 +3,20 @@ package org.schabi.newpipe;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+
+import java.util.Arrays;
 
 /**
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
@@ -34,9 +40,19 @@ public class VideoItemListActivity extends AppCompatActivity
         implements VideoItemListFragment.Callbacks {
 
     private static final String TAG = VideoItemListFragment.class.toString();
+
+    // arguments to give to this activity
+    public static final String VIDEO_INFO_ITEMS = "video_info_items";
+
+    // savedInstanceBundle arguments
     private static final String QUERY = "query";
     private static final String STREAMING_SERVICE = "streaming_service";
 
+    // activity modes
+    private static final int SEARCH_MODE = 0;
+    private static final int PRESENT_VIDEOS_MODE = 1;
+
+    private int mode = SEARCH_MODE;
     private int currentStreamingServiceId = -1;
     private String searchQuery = "";
 
@@ -87,17 +103,29 @@ public class VideoItemListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videoitem_list);
 
-        listFragment = (VideoItemListFragment)
-                getSupportFragmentManager().findFragmentById(R.id.videoitem_list);
-
         //-------- remove this line when multiservice support is implemented ----------
         currentStreamingServiceId = ServiceList.getIdOfService("Youtube");
         //-----------------------------------------------------------------------------
-        VideoItemListFragment listFragment = (VideoItemListFragment) getSupportFragmentManager()
+        listFragment = (VideoItemListFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.videoitem_list);
         listFragment.setStreamingService(ServiceList.getService(currentStreamingServiceId));
 
-        if(savedInstanceState != null) {
+        Bundle arguments = getIntent().getExtras();
+
+        if(arguments != null) {
+            Parcelable[] p = arguments.getParcelableArray(VIDEO_INFO_ITEMS);
+            if(p != null) {
+                mode = PRESENT_VIDEOS_MODE;
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+                //todo: make this more efficient
+                listFragment.present(Arrays.copyOf(p, p.length, VideoInfoItem[].class));
+            }
+        }
+
+
+        if(savedInstanceState != null
+                && mode != PRESENT_VIDEOS_MODE) {
             searchQuery = savedInstanceState.getString(QUERY);
             currentStreamingServiceId = savedInstanceState.getInt(STREAMING_SERVICE);
             if(!searchQuery.isEmpty()) {
@@ -120,15 +148,18 @@ public class VideoItemListActivity extends AppCompatActivity
                     .setActivateOnItemClick(true);
 
             SearchView searchView = (SearchView)findViewById(R.id.searchViewTablet);
-            // Somehow the seticonifiedbydefault property set by the layout xml is not working on
-            // the support version on SearchView, so it needs to be set programmatically.
-            searchView.setIconifiedByDefault(false);
-            searchView.setIconified(false);
-            searchView.setOnQueryTextListener(new SearchVideoQueryListener());
+            if(mode != PRESENT_VIDEOS_MODE) {
+                // Somehow the seticonifiedbydefault property set by the layout xml is not working on
+                // the support version on SearchView, so it needs to be set programmatically.
+                searchView.setIconifiedByDefault(false);
+                searchView.setIconified(false);
+                searchView.setOnQueryTextListener(new SearchVideoQueryListener());
+            } else {
+                searchView.setVisibility(View.GONE);
+            }
         }
 
         SettingsActivity.initSettings(this);
-
     }
 
     /**
@@ -178,7 +209,8 @@ public class VideoItemListActivity extends AppCompatActivity
         super.onCreateOptionsMenu(menu);
         this.menu = menu;
         MenuInflater inflater = getMenuInflater();
-        if(findViewById(R.id.videoitem_detail_container) == null) {
+        if(mode != PRESENT_VIDEOS_MODE &&
+                findViewById(R.id.videoitem_detail_container) == null) {
             inflater.inflate(R.menu.videoitem_list, menu);
             MenuItem searchItem = menu.findItem(R.id.action_search);
             SearchView searchView = (SearchView) searchItem.getActionView();
@@ -198,14 +230,23 @@ public class VideoItemListActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.action_settings) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-        } else {
-            return videoFragment.onOptionsItemSelected(item) ||
+
+        switch(id) {
+            case android.R.id.home: {
+                Intent intent = new Intent(this, VideoItemListActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                NavUtils.navigateUpTo(this, intent);
+                return true;
+            }
+            case R.id.action_settings: {
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
+            }
+            default:
+                return videoFragment.onOptionsItemSelected(item) ||
                     super.onOptionsItemSelected(item);
         }
-        return true;
     }
 
     @Override

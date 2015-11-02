@@ -81,7 +81,7 @@ public class VideoItemDetailFragment extends Fragment {
         private Handler h = new Handler();
         private Class extractorClass;
         private String videoUrl;
-        public ExtractorRunnable(String videoUrl, Class extractorClass, VideoItemDetailFragment f) {
+        public ExtractorRunnable(String videoUrl, Class extractorClass) {
             this.extractorClass = extractorClass;
             this.videoUrl = videoUrl;
         }
@@ -96,18 +96,21 @@ public class VideoItemDetailFragment extends Fragment {
                             BitmapFactory.decodeStream(
                                     new URL(videoInfo.thumbnail_url)
                                             .openConnection()
-                                            .getInputStream()), SetThumbnailRunnable.VIDEO_THUMBNAIL));
+                                            .getInputStream()),
+                            SetThumbnailRunnable.VIDEO_THUMBNAIL));
                     h.post(new SetThumbnailRunnable(
                             BitmapFactory.decodeStream(
                                     new URL(videoInfo.uploader_thumbnail_url)
                                             .openConnection()
-                                            .getInputStream()), SetThumbnailRunnable.CHANNEL_THUMBNAIL));
+                                            .getInputStream()),
+                            SetThumbnailRunnable.CHANNEL_THUMBNAIL));
                     if(showNextVideoItem) {
                         h.post(new SetThumbnailRunnable(
                                 BitmapFactory.decodeStream(
                                         new URL(videoInfo.nextVideo.thumbnail_url)
                                                 .openConnection()
-                                                .getInputStream()), SetThumbnailRunnable.NEXT_VIDEO_THUMBNAIL));
+                                                .getInputStream()),
+                                SetThumbnailRunnable.NEXT_VIDEO_THUMBNAIL));
                     }
                 }
             } catch (Exception e) {
@@ -176,29 +179,28 @@ public class VideoItemDetailFragment extends Fragment {
     }
 
     public void updateInfo(VideoInfo info) {
-        Activity a = getActivity();
         currentVideoInfo = info;
         try {
             VideoInfoItemViewCreator videoItemViewCreator =
                     new VideoInfoItemViewCreator(LayoutInflater.from(getActivity()));
 
-            ScrollView contentMainView = (ScrollView) a.findViewById(R.id.detailMainContent);
-            ProgressBar progressBar = (ProgressBar) a.findViewById(R.id.detailProgressBar);
-            TextView videoTitleView = (TextView) a.findViewById(R.id.detailVideoTitleView);
-            TextView uploaderView = (TextView) a.findViewById(R.id.detailUploaderView);
-            TextView viewCountView = (TextView) a.findViewById(R.id.detailViewCountView);
-            TextView thumbsUpView = (TextView) a.findViewById(R.id.detailThumbsUpCountView);
-            TextView thumbsDownView = (TextView) a.findViewById(R.id.detailThumbsDownCountView);
-            TextView uploadDateView = (TextView) a.findViewById(R.id.detailUploadDateView);
-            TextView descriptionView = (TextView) a.findViewById(R.id.detailDescriptionView);
-            ImageView thumbnailView = (ImageView) a.findViewById(R.id.detailThumbnailView);
-            FrameLayout nextVideoFrame = (FrameLayout) a.findViewById(R.id.detailNextVideoFrame);
+            ScrollView contentMainView = (ScrollView) activity.findViewById(R.id.detailMainContent);
+            ProgressBar progressBar = (ProgressBar) activity.findViewById(R.id.detailProgressBar);
+            TextView videoTitleView = (TextView) activity.findViewById(R.id.detailVideoTitleView);
+            TextView uploaderView = (TextView) activity.findViewById(R.id.detailUploaderView);
+            TextView viewCountView = (TextView) activity.findViewById(R.id.detailViewCountView);
+            TextView thumbsUpView = (TextView) activity.findViewById(R.id.detailThumbsUpCountView);
+            TextView thumbsDownView = (TextView) activity.findViewById(R.id.detailThumbsDownCountView);
+            TextView uploadDateView = (TextView) activity.findViewById(R.id.detailUploadDateView);
+            TextView descriptionView = (TextView) activity.findViewById(R.id.detailDescriptionView);
+            ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detailThumbnailView);
+            FrameLayout nextVideoFrame = (FrameLayout) activity.findViewById(R.id.detailNextVideoFrame);
             RelativeLayout nextVideoRootFrame =
-                    (RelativeLayout) a.findViewById(R.id.detailNextVideoRootLayout);
+                    (RelativeLayout) activity.findViewById(R.id.detailNextVideoRootLayout);
             View nextVideoView = videoItemViewCreator
                     .getViewByVideoInfoItem(null, nextVideoFrame, info.nextVideo);
             nextVideoFrame.addView(nextVideoView);
-            Button nextVideoButton = (Button) a.findViewById(R.id.detailNextVideoButton);
+            Button nextVideoButton = (Button) activity.findViewById(R.id.detailNextVideoButton);
 
             contentMainView.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
@@ -210,10 +212,12 @@ public class VideoItemDetailFragment extends Fragment {
                 case VideoInfo.VIDEO_AVAILABLE: {
                     videoTitleView.setText(info.title);
                     uploaderView.setText(info.uploader);
-                    viewCountView.setText(info.view_count + " " + a.getString(R.string.viewSufix));
+                    viewCountView.setText(info.view_count
+                            + " " + activity.getString(R.string.viewSufix));
                     thumbsUpView.setText(info.like_count);
                     thumbsDownView.setText(info.dislike_count);
-                    uploadDateView.setText(a.getString(R.string.uploadDatePrefix) + " " + info.upload_date);
+                    uploadDateView.setText(
+                            activity.getString(R.string.uploadDatePrefix) + " " + info.upload_date);
                     descriptionView.setText(Html.fromHtml(info.description));
                     descriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
@@ -236,9 +240,12 @@ public class VideoItemDetailFragment extends Fragment {
                 nextVideoButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent detailIntent = new Intent(getActivity(), VideoItemDetailActivity.class);
-                        detailIntent.putExtra(VideoItemDetailFragment.ARG_ITEM_ID, currentVideoInfo.nextVideo.id);
-                        detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, currentVideoInfo.nextVideo.webpage_url);
+                        Intent detailIntent =
+                                new Intent(getActivity(), VideoItemDetailActivity.class);
+                        detailIntent.putExtra(
+                                VideoItemDetailFragment.ARG_ITEM_ID, currentVideoInfo.nextVideo.id);
+                        detailIntent.putExtra(
+                                VideoItemDetailFragment.VIDEO_URL, currentVideoInfo.nextVideo.webpage_url);
                         //todo: make id dynamic the following line is crap
                         detailIntent.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, 0);
                         startActivity(detailIntent);
@@ -246,10 +253,12 @@ public class VideoItemDetailFragment extends Fragment {
                 });
                 break;
                 case VideoInfo.VIDEO_UNAVAILABLE_GEMA:
-                    thumbnailView.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.gruese_die_gema_unangebracht));
+                    thumbnailView.setImageBitmap(BitmapFactory.decodeResource(
+                            getResources(), R.drawable.gruese_die_gema_unangebracht));
                     break;
                 case VideoInfo.VIDEO_UNAVAILABLE:
-                    thumbnailView.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.not_available_monkey));
+                    thumbnailView.setImageBitmap(BitmapFactory.decodeResource(
+                            getResources(), R.drawable.not_available_monkey));
                     break;
                 default:
                     Log.e(TAG, "Video Available Status not known.");
@@ -304,15 +313,18 @@ public class VideoItemDetailFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceBundle) {
         super.onActivityCreated(savedInstanceBundle);
-        FloatingActionButton playVideoButton = (FloatingActionButton) getActivity().findViewById(R.id.playVideoButton);
+        FloatingActionButton playVideoButton =
+                (FloatingActionButton) getActivity().findViewById(R.id.playVideoButton);
 
+        // Sometimes when this fragment is not visible it still gets initiated
+        // then we must not try to access objects of this fragment.
+        // Otherwise the applications would crash.
         if(playVideoButton != null) {
-
             try {
                 StreamingService streamingService = ServiceList.getService(
                         getArguments().getInt(STREAMING_SERVICE));
                 extractorThread = new Thread(new ExtractorRunnable(
-                        getArguments().getString(VIDEO_URL), streamingService.getExtractorClass(), this));
+                        getArguments().getString(VIDEO_URL), streamingService.getExtractorClass()));
                 autoPlayEnabled = getArguments().getBoolean(AUTO_PLAY);
                 extractorThread.start();
             } catch (Exception e) {
@@ -321,13 +333,15 @@ public class VideoItemDetailFragment extends Fragment {
 
             if (PreferenceManager.getDefaultSharedPreferences(getActivity())
                     .getBoolean(getString(R.string.leftHandLayout), false) && checkIfLandscape()) {
-                RelativeLayout.LayoutParams oldLayout = (RelativeLayout.LayoutParams) playVideoButton.getLayoutParams();
+                RelativeLayout.LayoutParams oldLayout =
+                        (RelativeLayout.LayoutParams) playVideoButton.getLayoutParams();
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.WRAP_CONTENT,
                         RelativeLayout.LayoutParams.WRAP_CONTENT);
                 layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                 layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-                layoutParams.setMargins(oldLayout.leftMargin, oldLayout.topMargin, oldLayout.rightMargin, oldLayout.bottomMargin);
+                layoutParams.setMargins(oldLayout.leftMargin, oldLayout.topMargin,
+                        oldLayout.rightMargin, oldLayout.bottomMargin);
                 playVideoButton.setLayoutParams(layoutParams);
             }
 
@@ -335,6 +349,16 @@ public class VideoItemDetailFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     actionBarHandler.playVideo();
+                }
+            });
+
+            Button similarVideosButton = (Button) activity.findViewById(R.id.detailShowSimilarButton);
+            similarVideosButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(activity, VideoItemListActivity.class);
+                    intent.putExtra(VideoItemListActivity.VIDEO_INFO_ITEMS, currentVideoInfo.relatedVideos);
+                    activity.startActivity(intent);
                 }
             });
         }

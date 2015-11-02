@@ -37,7 +37,6 @@ public class VideoItemDetailActivity extends AppCompatActivity {
 
     private String videoUrl;
     private int currentStreamingService = -1;
-    private Menu menu = null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

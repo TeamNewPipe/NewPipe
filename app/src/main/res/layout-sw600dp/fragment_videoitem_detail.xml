@@ -188,10 +188,18 @@
                     android:layout_alignParentLeft="true" />
             </RelativeLayout>
 
+            <Button android:id="@+id/detailShowSimilarButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_below="@id/detailNextVideoRootLayout"
+                android:text="@string/showSimilarVideosButtonText"/>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
-                android:layout_below="@id/detailNextVideoRootLayout"/>
+                android:layout_below="@id/detailShowSimilarButton"/>
 
         </RelativeLayout>
     </ScrollView>
