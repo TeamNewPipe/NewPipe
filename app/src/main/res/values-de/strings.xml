@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
@@ -26,7 +26,7 @@
     <string name="downloadLocation">Download Verzeichnis</string>
     <string name="downloadLocationSummary">Verzeichnis in dem heruntergeladene Videos gespeichert werden.</string>
     <string name="downloadLocationDialogTitle">Download Verzeichnis eingeben</string>
-    <string name="autoPlayThroughIntentTitle">Automatisch abspielen durch Intent.</string>
+    <string name="autoPlayThroughIntentTitle">Automatisches abspielen durch Intent</string>
     <string name="autoPlayThroughIntentSummary">Startet ein Video automatisch wenn es von einer anderen App aufgerufen wurde.</string>
     <string name="defaultResolutionPreferenceTitle">Standard Auflösung</string>
     <string name="playWithKodiTitle">Mit Kodi abspielen</string>
