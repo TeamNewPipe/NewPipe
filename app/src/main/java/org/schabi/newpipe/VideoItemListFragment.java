@@ -72,14 +72,14 @@ public class VideoItemListFragment extends ListFragment {
     }
 
     private class SearchRunnable implements Runnable {
-        private Class engineClass = null;
+        private SearchEngine engine;
         private String query;
         private int page;
         Handler h = new Handler();
         private volatile boolean run = true;
         private int requestId;
-        public SearchRunnable(Class engineClass, String query, int page, int requestId) {
-            this.engineClass = engineClass;
+        public SearchRunnable(SearchEngine engine, String query, int page, int requestId) {
+            this.engine = engine;
             this.query = query;
             this.page = page;
             this.requestId = requestId;
@@ -89,13 +89,6 @@ public class VideoItemListFragment extends ListFragment {
         }
         @Override
         public void run() {
-            SearchEngine engine = null;
-            try {
-                engine = (SearchEngine) engineClass.newInstance();
-            } catch(Exception e) {
-                e.printStackTrace();
-                return;
-            }
             try {
                 SearchEngine.Result result = engine.search(query, page);
                 if(run) {
@@ -197,7 +190,8 @@ public class VideoItemListFragment extends ListFragment {
     private void startSearch(String query, int page) {
         currentRequestId++;
         terminateThreads();
-        searchRunnable = new SearchRunnable(streamingService.getSearchEngineClass(), query, page, currentRequestId);
+        searchRunnable = new SearchRunnable(streamingService.getSearchEngineInstance(),
+                                            query, page, currentRequestId);
         searchThread = new Thread(searchRunnable);
         searchThread.start();
     }
@@ -250,10 +244,6 @@ public class VideoItemListFragment extends ListFragment {
             // No need to join, since we don't really terminate the thread. We just demand
             // it to post its result runnable into the gui main loop.
         }
-    }
-
-    void displayList() {
-
     }
 
     /**

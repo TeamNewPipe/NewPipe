@@ -3,6 +3,7 @@ package org.schabi.newpipe.youtube;
 import android.util.Log;
 import android.util.Xml;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -50,7 +51,7 @@ public class YoutubeExtractor implements Extractor {
     private static final String TAG = YoutubeExtractor.class.toString();
 
     // These lists only contain itag formats that are supported by the common Android Video player.
-    // How ever if you are heading for a list showing all itag formats lock at
+    // How ever if you are heading for a list showing all itag formats look at
     // https://github.com/rg3/youtube-dl/issues/1687
 
     public static int resolveFormat(int itag) {
@@ -141,14 +142,7 @@ public class YoutubeExtractor implements Extractor {
 
         Document doc = Jsoup.parse(site, siteUrl);
 
-        try {
-            Pattern p = Pattern.compile("v=([0-9a-zA-Z]*)");
-            Matcher m = p.matcher(siteUrl);
-            m.find();
-            videoInfo.id = m.group(1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        videoInfo.id = matchGroup1("v=([0-9a-zA-Z]*)", siteUrl);
 
         videoInfo.age_limit = 0;
         videoInfo.webpage_url = siteUrl;
@@ -160,16 +154,14 @@ public class YoutubeExtractor implements Extractor {
         JSONObject ytAssets = null;
         String dashManifest;
         {
-            Pattern p = Pattern.compile("ytplayer.config\\s*=\\s*(\\{.*?\\});");
-            Matcher m = p.matcher(site);
-            m.find();
+            String jsonString = matchGroup1("ytplayer.config\\s*=\\s*(\\{.*?\\});", site);
 
             try {
-                playerArgs = (new JSONObject(m.group(1)))
-                        .getJSONObject("args");
-                ytAssets = (new JSONObject(m.group(1)))
-                        .getJSONObject("assets");
-            }catch (Exception e) {
+                JSONObject jsonObj = new JSONObject(jsonString);
+                playerArgs = jsonObj.getJSONObject("args");
+                ytAssets = jsonObj.getJSONObject("assets");
+            }
+            catch (Exception e) {
                 e.printStackTrace();
                 // If we fail in this part the video is most likely not available.
                 // Determining why is done later.
@@ -199,7 +191,7 @@ public class YoutubeExtractor implements Extractor {
                 videoInfo.audioStreams = parseDashManifest(dashManifest, decryptionCode);
             } catch (Exception e) {
                 //todo: check if the following statement is true
-                Log.e(TAG, "Dash manifest seems not to bee available.");
+                Log.e(TAG, "Dash manifest doesn't seem to be available.");
                 e.printStackTrace();
             }
 
@@ -263,15 +255,9 @@ public class YoutubeExtractor implements Extractor {
         // upload date
         videoInfo.upload_date = doc.select("strong[class=\"watch-time-text\"").first()
                 .text();
+
         // Try to only use date not the text around it
-        try {
-            Pattern p = Pattern.compile("([0-9.]*$)");
-            Matcher m = p.matcher(videoInfo.upload_date);
-            m.find();
-            videoInfo.upload_date = m.group(1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        videoInfo.upload_date = matchGroup1("([0-9.]*$)", videoInfo.upload_date);
 
         // description
         videoInfo.description = doc.select("p[id=\"eow-description\"]").first()
@@ -322,16 +308,9 @@ public class YoutubeExtractor implements Extractor {
 
     private VideoInfo.AudioStream[] parseDashManifest(String dashManifest, String decryptoinCode) {
         if(!dashManifest.contains("/signature/")) {
-            String encryptedSig = "";
+            String encryptedSig = matchGroup1("/s/([a-fA-F0-9\\.]+)", dashManifest);
             String decryptedSig;
-            try {
-                Pattern p = Pattern.compile("/s/([a-fA-F0-9\\.]+)");
-                Matcher m = p.matcher(dashManifest);
-                m.find();
-                encryptedSig = m.group(1);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
             decryptedSig = decryptSignature(encryptedSig, decryptoinCode);
             dashManifest = dashManifest.replace("/s/" + encryptedSig, "/signature/" + decryptedSig);
         }
@@ -396,10 +375,7 @@ public class YoutubeExtractor implements Extractor {
         info.webpage_url = li.select("a[class*=\"content-link\"]").first()
                 .attr("abs:href");
         try {
-            Pattern p = Pattern.compile("v=([0-9a-zA-Z-]*)");
-            Matcher m = p.matcher(info.webpage_url);
-            m.find();
-            info.id=m.group(1);
+            info.id = matchGroup1("v=([0-9a-zA-Z-]*)", info.webpage_url);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -446,27 +422,15 @@ public class YoutubeExtractor implements Extractor {
         String decryptionCode;
 
         try {
-            Pattern p = Pattern.compile("\\.sig\\|\\|([a-zA-Z0-9$]+)\\(");
-            Matcher m = p.matcher(playerCode);
-            m.find();
-            decryptionFuncName = m.group(1);
+            decryptionFuncName = matchGroup1("\\.sig\\|\\|([a-zA-Z0-9$]+)\\(", playerCode);
 
             String functionPattern = "(function " + decryptionFuncName.replace("$", "\\$") + "\\([a-zA-Z0-9_]*\\)\\{.+?\\})";
-            p = Pattern.compile(functionPattern);
-            m = p.matcher(playerCode);
-            m.find();
-            decryptionFunc = m.group(1);
+            decryptionFunc = matchGroup1(functionPattern, playerCode);
 
-            p = Pattern.compile(";([A-Za-z0-9_\\$]{2})\\...\\(");
-            m = p.matcher(decryptionFunc);
-            m.find();
-            helperObjectName = m.group(1);
+            helperObjectName = matchGroup1(";([A-Za-z0-9_\\$]{2})\\...\\(", decryptionFunc);
 
             String helperPattern = "(var " + helperObjectName.replace("$", "\\$") + "=\\{.+?\\}\\};)function";
-            p = Pattern.compile(helperPattern);
-            m = p.matcher(playerCode);
-            m.find();
-            helperObject = m.group(1);
+            helperObject = matchGroup1(helperPattern, playerCode);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -492,5 +456,12 @@ public class YoutubeExtractor implements Extractor {
         }
         Context.exit();
         return result.toString();
+    }
+
+    private String matchGroup1(String pattern, String input) {
+        Pattern pat = Pattern.compile(pattern);
+        Matcher mat = pat.matcher(input);
+        mat.find();
+        return mat.group(1);
     }
 }

@@ -68,6 +68,7 @@
         <activity android:name=".PlayVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/FullscreenTheme"
+            android:parentActivityName=".VideoItemDetailActivity"
             >
         </activity>
         <activity

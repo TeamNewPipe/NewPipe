@@ -1,6 +1,9 @@
 package org.schabi.newpipe.youtube;
 
 import org.schabi.newpipe.StreamingService;
+import org.schabi.newpipe.Extractor;
+import org.schabi.newpipe.SearchEngine;
+
 
 /**
  * Created by Christian Schabesberger on 23.08.15.
@@ -30,12 +33,12 @@ public class YoutubeService implements StreamingService {
         return serviceInfo;
     }
     @Override
-    public Class getExtractorClass() {
-        return YoutubeExtractor.class;
+    public Extractor getExtractorInstance() {
+        return new YoutubeExtractor();
     }
     @Override
-    public Class getSearchEngineClass() {
-        return YoutubeSearchEngine.class;
+    public SearchEngine getSearchEngineInstance() {
+        return new YoutubeSearchEngine();
     }
     @Override
     public boolean acceptUrl(String videoUrl) {

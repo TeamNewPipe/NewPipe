@@ -67,8 +67,8 @@ public class VideoItemDetailActivity extends AppCompatActivity {
                         arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, i);
                         try {
                             currentStreamingService = i;
-                            extractor = (Extractor) ServiceList.getService(i)
-                                    .getExtractorClass().newInstance();
+                            extractor = ServiceList.getService(i)
+                                    .getExtractorInstance();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -122,9 +122,9 @@ public class VideoItemDetailActivity extends AppCompatActivity {
             // activity, the Up button is shown. Use NavUtils to allow users
             // to navigate up one level in the application structure. For
             // more details, see the Navigation pattern on Android Design:
-            //
+
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-            //
+
             Intent intent = new Intent(this, VideoItemListActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             NavUtils.navigateUpTo(this, intent);

@@ -79,16 +79,16 @@ public class VideoItemDetailFragment extends Fragment {
 
     private class ExtractorRunnable implements Runnable {
         private Handler h = new Handler();
-        private Class extractorClass;
+        private Extractor extractor;
         private String videoUrl;
-        public ExtractorRunnable(String videoUrl, Class extractorClass) {
-            this.extractorClass = extractorClass;
+
+        public ExtractorRunnable(String videoUrl, Extractor extractor, VideoItemDetailFragment f) {
+            this.extractor = extractor;
             this.videoUrl = videoUrl;
         }
         @Override
         public void run() {
             try {
-                Extractor extractor = (Extractor) extractorClass.newInstance();
                 VideoInfo videoInfo = extractor.getVideoInfo(videoUrl);
                 h.post(new VideoResultReturnedRunnable(videoInfo));
                 if (videoInfo.videoAvailableStatus == VideoInfo.VIDEO_AVAILABLE) {
@@ -173,7 +173,7 @@ public class VideoItemDetailFragment extends Fragment {
             }
 
         } catch (java.lang.NullPointerException e) {
-            // No god programm design i know. :/
+            // Not good program design, I know. :/
             Log.w(TAG, "updateThumbnail(): Fragment closed before thread ended work");
         }
     }
@@ -324,7 +324,8 @@ public class VideoItemDetailFragment extends Fragment {
                 StreamingService streamingService = ServiceList.getService(
                         getArguments().getInt(STREAMING_SERVICE));
                 extractorThread = new Thread(new ExtractorRunnable(
-                        getArguments().getString(VIDEO_URL), streamingService.getExtractorClass()));
+                        getArguments().getString(VIDEO_URL), streamingService.getExtractorInstance(), this));
+
                 autoPlayEnabled = getArguments().getBoolean(AUTO_PLAY);
                 extractorThread.start();
             } catch (Exception e) {
