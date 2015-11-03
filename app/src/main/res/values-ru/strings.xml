@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NewPipe</string>
+    <string name="title_videoitem_detail">NewPipe</string>
+    <string name="nothingFound">Ничего не наидено</string>
+    <string name="viewSufix">просмотров</string>
+    <string name="uploadDatePrefix">Опубликовано: </string>
+    <string name="noPlayerFound">StreamPlayer не был найден. Вы можете его установить.</string>
+    <string name="installStreamPlayer">Установить</string>
+    <string name="cancel">Отмена</string>
+    <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
+    <string name="open_in_browser">Открыть в браузере</string>
+    <string name="share">Поделиться</string>
+    <string name="play">Воспроизвести</string>
+    <string name="download">Скачать</string>
+    <string name="search">Найти</string>
+    <string name="settings">Настройки</string>
+    <string name="sendWith">Отправить с помощью</string>
+    <string name="didYouMean">Возможно, вы имели в виду: </string>
+    <string name="searchPage">Страница поиска: </string>
+    <string name="shareDialogTitle">Поделиться с помощью:</string>
+    <string name="chooseBrowser">Выбрать браузер:</string>
+    <string name="screenRotation">поворот</string>
+    <string name="title_activity_settings">Настройки</string>
+    <string name="useExternalPlayerTitle">Использовать внешний проигрыватель</string>
+    <string name="downloadLocation">Место для загрузок</string>
+    <string name="downloadLocationSummary">Папка для хранения загруженных файлов.</string>
+    <string name="downloadLocationDialogTitle">Введите путь к папке для загрузок</string>
+    <string name="autoPlayThroughIntentTitle">Автопроигрывание через интернет</string>
+    <string name="autoPlayThroughIntentSummary">Автоматически воспроизводить видео когда оно открыто через другое приложение.</string>
+    <string name="defaultResolutionPreferenceTitle">Разрешение по-умолчанию</string>
+    <string name="playWithKodiTitle">Воспроизвести с помощью Kodi</string>
+    <string name="koreNotFound">Приложение Kore не наидено. Чтобы проигрывать видео через Kodi media center, нужен Kore.</string>
+    <string name="installeKore">Установить Kore</string>
+    <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
+    <string name="showPlayWithKodiTitle">Показывать опцию \"Воспроизвести с помощью Kodi\"</string>
+    <string name="showPlayWithKodiSummary">Показать опцию воспроизведения видео через Kodi media center.</string>
+    <string name="leftPlayButtonTitle">Показать кнопку воспроизведения слева.</string>
+    <string name="playAudio">Аудио</string>
+    <string name="defaultAudioFormatTitle">Формат аудио по-умолчанию</string>
+    <string name="webMAudioDescription">WebM - свободный формат</string>
+    <string name="m4aAudioDescription">m4a - лучшее качество</string>
+    <string name="downloadDialogTitle">Скачать</string>
+    <string-array name="downloadOptions">
+        <item>Видео</item>
+        <item>Аудио</item>
+    </string-array>
+    <string name="nextVideoTitle">Следующее видео</string>
+    <string name="showNextVideoTitle">Показать \"Следующее видео\".</string>
+    <string name="urlNotSupportedText">Адрес не поддерживается.</string>
+    <string name="showSimilarVideosButtonText">Похожие видео</string>
+</resources>
