@@ -32,4 +32,6 @@ public interface SearchEngine {
     }
 
     Result search(String query, int page);
+
+    Result suggestionList(String query);
 }

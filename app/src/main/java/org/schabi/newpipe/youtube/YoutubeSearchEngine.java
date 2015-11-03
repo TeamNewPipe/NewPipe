@@ -115,4 +115,23 @@ public class YoutubeSearchEngine implements SearchEngine {
         }
         return result;
     }
+
+    @Override
+    public Result suggestionList(String query) {
+
+//        http://suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=andro
+
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("https")
+                .authority("suggestqueries.google.com")
+                .appendPath("complete")
+                .appendPath("search")
+                .appendQueryParameter("client", "youtube")
+                .appendQueryParameter("ds", "yt")
+                .appendQueryParameter("q", query);
+        String url = builder.build().toString();
+
+        return null;
+    }
+
 }
