@@ -106,10 +106,9 @@ public class VideoInfo {
         public String resolution = "";
     }
 
-    protected static void formatNotKnown(int id)
-    {
+    protected static void formatNotKnown(int id) {
         Log.e(TAG, "format not known: \"" +
-            Integer.toString(id) + "\". Call the programmer, he messed it up!");
+            Integer.toString(id) + "\". Call the programmers, they messed it up!");
     }
 
     public static class AudioStream {

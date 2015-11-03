@@ -29,7 +29,6 @@ import android.widget.Toast;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/***/
 public class VideoItemDetailActivity extends AppCompatActivity {
 
     private static final String TAG = VideoItemDetailActivity.class.toString();
