@@ -308,11 +308,8 @@ public class YoutubeExtractor implements Extractor {
 
     private VideoInfo.AudioStream[] parseDashManifest(String dashManifest, String decryptoinCode) {
         if(!dashManifest.contains("/signature/")) {
-            String encryptedSig = "";
+            String encryptedSig = matchGroup1("/s/([a-fA-F0-9\\.]+)", dashManifest);
             String decryptedSig;
-
-            //regex methods do not throw runtime exceptions, if their arguments are valid
-            encryptedSig = matchGroup1("/s/([a-fA-F0-9\\.]+)", dashManifest);
 
             decryptedSig = decryptSignature(encryptedSig, decryptoinCode);
             dashManifest = dashManifest.replace("/s/" + encryptedSig, "/signature/" + decryptedSig);
