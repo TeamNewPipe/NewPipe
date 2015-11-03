@@ -1,3 +1,4 @@
+.gitignore
 .gradle
 /local.properties
 /.idea/workspace.xml
@@ -5,3 +6,5 @@
 .DS_Store
 /build
 /captures
+#.idea/gradle.xml
+#.idea/misc.xml
