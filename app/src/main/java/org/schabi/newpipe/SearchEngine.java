@@ -1,5 +1,6 @@
 package org.schabi.newpipe;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -33,5 +34,5 @@ public interface SearchEngine {
 
     Result search(String query, int page);
 
-    Result suggestionList(String query);
+    ArrayList<String> suggestionList(String query);
 }

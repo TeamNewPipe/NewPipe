@@ -9,9 +9,20 @@ import org.jsoup.nodes.Element;
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.SearchEngine;
 import org.schabi.newpipe.VideoInfoItem;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * Created by Christian Schabesberger on 09.08.15.
@@ -117,21 +128,63 @@ public class YoutubeSearchEngine implements SearchEngine {
     }
 
     @Override
-    public Result suggestionList(String query) {
+    public ArrayList<String> suggestionList(String query) {
 
-//        http://suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=andro
+        ArrayList<String> suggestions = new ArrayList<>();
 
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("https")
                 .authority("suggestqueries.google.com")
                 .appendPath("complete")
                 .appendPath("search")
-                .appendQueryParameter("client", "youtube")
+                .appendQueryParameter("client", "")
+                .appendQueryParameter("output", "toolbar")
                 .appendQueryParameter("ds", "yt")
                 .appendQueryParameter("q", query);
         String url = builder.build().toString();
 
-        return null;
+        String response = Downloader.download(url);
+        DocumentBuilderFactory dbFactory
+                = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = null;
+        try {
+            dBuilder = dbFactory.newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+        org.w3c.dom.Document doc = null;
+        try {
+            doc = dBuilder.parse(new InputSource(new ByteArrayInputStream(response.getBytes("utf-8"))));
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        doc.getDocumentElement().normalize();
+
+//        System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+
+        NodeList nList = doc.getElementsByTagName("CompleteSuggestion");
+
+        for (int temp = 0; temp < nList.getLength(); temp++) {
+
+            Node nNode = nList.item(temp);
+//            System.out.println("\nCurrent Element :" + nNode.getNodeName());
+
+            NodeList nList1 = doc.getElementsByTagName("suggestion");
+
+            Node nNode1 = nList1.item(temp);
+//            System.out.println("\nInside Item :" + nNode1.getNodeName());
+
+            if (nNode1.getNodeType() == Node.ELEMENT_NODE) {
+                org.w3c.dom.Element eElement = (org.w3c.dom.Element) nNode1;
+
+                System.out.println("final data : " + eElement.getAttribute("data"));
+
+                suggestions.add(eElement.getAttribute("data"));
+            }
+        }
+        return suggestions;
     }
 
 }
