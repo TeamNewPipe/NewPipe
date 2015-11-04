@@ -31,5 +31,6 @@ public interface SearchEngine {
         public Vector<VideoInfoItem> resultList = new Vector<>();
     }
 
-    Result search(String query, int page);
+    //Result search(String query, int page);
+    Result search(String query, int page, String contentCountry);
 }

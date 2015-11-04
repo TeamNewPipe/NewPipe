@@ -1,10 +1,12 @@
 package org.schabi.newpipe;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
@@ -90,7 +92,11 @@ public class VideoItemListFragment extends ListFragment {
         @Override
         public void run() {
             try {
-                SearchEngine.Result result = engine.search(query, page);
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
+                String contentCountryKey = getContext().getString(R.string.contentCountry);
+                String contentCountry = sp.getString(contentCountryKey, "");
+                SearchEngine.Result result = engine.search(query, page, contentCountry);
+                Log.i(TAG, "countryCode passed:\""+contentCountry+"\"");
                 if(run) {
                     h.post(new ResultRunnable(result, requestId));
                 }

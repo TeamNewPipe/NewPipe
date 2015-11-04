@@ -1,6 +1,7 @@
 package org.schabi.newpipe.youtube;
 
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.jsoup.Jsoup;
@@ -38,7 +39,8 @@ public class YoutubeSearchEngine implements SearchEngine {
     private static final String TAG = YoutubeSearchEngine.class.toString();
 
     @Override
-    public Result search(String query, int page) {
+    public Result search(String query, int page, String countryCode) {
+        //String contentCountry = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string., "");
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("https")
                 .authority("www.youtube.com")
@@ -46,6 +48,18 @@ public class YoutubeSearchEngine implements SearchEngine {
                 .appendQueryParameter("search_query", query)
                 .appendQueryParameter("page", Integer.toString(page))
                 .appendQueryParameter("filters", "video");
+
+        //if we've been passed a valid, non-empty country code, append it to the URL
+        if(countryCode.length() > 0) {
+            if(countryCode.length() == 2) {
+                builder.appendQueryParameter("gl", countryCode);
+                builder.appendQueryParameter("persist_gl", "1");
+                Log.i(TAG, "URI: \""+builder+"\"");
+            }
+            else {
+                Log.e(TAG, "invalid country code passed to search(): \""+countryCode+"\"");
+            }
+        }
         String url = builder.build().toString();
 
         String site = Downloader.download(url);
@@ -115,4 +129,5 @@ public class YoutubeSearchEngine implements SearchEngine {
         }
         return result;
     }
+
 }

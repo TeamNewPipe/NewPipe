@@ -24,4 +24,183 @@
     </string-array>
     <string name="defaultAudioFormat">m4a</string>
     <string name="showNextVideo">show_next_video</string>
+    <string name="contentCountry">content_country</string>
+    <!-- TODO: scrape these programmatically, then store in a local cache -->
+    <!-- alternatively, load these from some local android data store -->
+    <string-array name="countryCodes">
+        <item></item><!--NONE-->
+        <item>US</item>
+        <item>DZ</item>
+        <item>AR</item>
+        <item>AU</item>
+        <item>AT</item>
+        <item>AZ</item>
+        <item>BH</item>
+        <item>BY</item>
+        <item>BE</item>
+        <item>BA</item>
+        <item>BR</item>
+        <item>BG</item>
+        <item>CA</item>
+        <item>CL</item>
+        <item>CO</item>
+        <item>HR</item>
+        <item>CZ</item>
+        <item>DK</item>
+        <item>EG</item>
+        <item>EE</item>
+        <item>FI</item>
+        <item>FR</item>
+        <item>GE</item>
+        <item>DE</item>
+        <item>GH</item>
+        <item>GR</item>
+        <item>HK</item>
+        <item>HU</item>
+        <item>IS</item>
+        <item>IN</item>
+        <item>ID</item>
+        <item>IE</item>
+        <item>IL</item>
+        <item>IT</item>
+        <item>JP</item>
+        <item>JO</item>
+        <item>KZ</item>
+        <item>KE</item>
+        <item>KW</item>
+        <item>LV</item>
+        <item>LB</item>
+        <item>LY</item>
+        <item>LT</item>
+        <item>LU</item>
+        <item>MK</item>
+        <item>MY</item>
+        <item>MX</item>
+        <item>ME</item>
+        <item>MA</item>
+        <item>NL</item>
+        <item>NZ</item>
+        <item>NG</item>
+        <item>NO</item>
+        <item>OM</item>
+        <item>PE</item>
+        <item>PH</item>
+        <item>PL</item>
+        <item>PT</item>
+        <item>PR</item>
+        <item>QA</item>
+        <item>RO</item>
+        <item>RU</item>
+        <item>SA</item>
+        <item>SN</item>
+        <item>RS</item>
+        <item>SG</item>
+        <item>SK</item>
+        <item>SI</item>
+        <item>ZA</item>
+        <item>KR</item>
+        <item>ES</item>
+        <item>SE</item>
+        <item>CH</item>
+        <item>TW</item>
+        <item>TZ</item>
+        <item>TH</item>
+        <item>TN</item>
+        <item>TR</item>
+        <item>UG</item>
+        <item>UA</item>
+        <item>AE</item>
+        <item>GB</item>
+        <item>VN</item>
+        <item>YE</item>
+        <item>ZW</item>
+    </string-array>
+    <string-array name="countryNames">
+        <item>(None)</item>
+        <item>Worldwide (USA)</item>
+        <item>Algeria</item>
+        <item>Argentina</item>
+        <item>Australia</item>
+        <item>Austria</item>
+        <item>Azerbaijan</item>
+        <item>Bahrain</item>
+        <item>Belarus</item>
+        <item>Belgium</item>
+        <item>Bosnia and Herzegovina</item>
+        <item>Brazil</item>
+        <item>Bulgaria</item>
+        <item>Canada</item>
+        <item>Chile</item>
+        <item>Colombia</item>
+        <item>Croatia</item>
+        <item>Czech Republic</item>
+        <item>Denmark</item>
+        <item>Egypt</item>
+        <item>Estonia</item>
+        <item>Finland</item>
+        <item>France</item>
+        <item>Georgia</item>
+        <item>Germany</item>
+        <item>Ghana</item>
+        <item>Greece</item>
+        <item>Hong Kong</item>
+        <item>Hungary</item>
+        <item>Iceland</item>
+        <item>India</item>
+        <item>Indonesia</item>
+        <item>Ireland</item>
+        <item>Israel</item>
+        <item>Italy</item>
+        <item>Japan</item>
+        <item>Jordan</item>
+        <item>Kazakhstan</item>
+        <item>Kenya</item>
+        <item>Kuwait</item>
+        <item>Latvia</item>
+        <item>Lebanon</item>
+        <item>Libya</item>
+        <item>Lithuania</item>
+        <item>Luxembourg</item>
+        <item>Macedonia</item>
+        <item>Malaysia</item>
+        <item>Mexico</item>
+        <item>Montenegro</item>
+        <item>Morocco</item>
+        <item>Netherlands</item>
+        <item>New Zealand</item>
+        <item>Nigeria</item>
+        <item>Norway</item>
+        <item>Oman</item>
+        <item>Peru</item>
+        <item>Philippines</item>
+        <item>Poland</item>
+        <item>Portugal</item>
+        <item>Puerto Rico</item>
+        <item>Qatar</item>
+        <item>Romania</item>
+        <item>Russia</item>
+        <item>Saudi Arabia</item>
+        <item>Senegal</item>
+        <item>Serbia</item>
+        <item>Singapore</item>
+        <item>Slovakia</item>
+        <item>Slovenia</item>
+        <item>South Africa</item>
+        <item>South Korea</item>
+        <item>Spain</item>
+        <item>Sweden</item>
+        <item>Switzerland</item>
+        <item>Taiwan</item>
+        <item>Tanzania</item>
+        <item>Thailand</item>
+        <item>Tunisia</item>
+        <item>Turkey</item>
+        <item>Uganda</item>
+        <item>Ukraine</item>
+        <item>United Arab Emirates</item>
+        <item>United Kingdom</item>
+        <item>Vietnam</item>
+        <item>Yemen</item>
+        <item>Zimbabwe</item>
+    </string-array>
 </resources>
