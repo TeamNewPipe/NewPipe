@@ -154,9 +154,8 @@ public class YoutubeExtractor implements Extractor {
         JSONObject ytAssets = null;
         String dashManifest;
         {
-            String jsonString = matchGroup1("ytplayer.config\\s*=\\s*(\\{.*?\\});", site);
-
             try {
+                String jsonString = matchGroup1("ytplayer.config\\s*=\\s*(\\{.*?\\});", site);
                 JSONObject jsonObj = new JSONObject(jsonString);
                 playerArgs = jsonObj.getJSONObject("args");
                 ytAssets = jsonObj.getJSONObject("assets");
@@ -461,7 +460,15 @@ public class YoutubeExtractor implements Extractor {
     private String matchGroup1(String pattern, String input) {
         Pattern pat = Pattern.compile(pattern);
         Matcher mat = pat.matcher(input);
-        mat.find();
-        return mat.group(1);
+        boolean foundMatch = mat.find();
+        if(foundMatch){
+            return mat.group(1);
+        }
+        else {
+            Log.e(TAG, "failed to find pattern \""+pattern+"\"");
+            new Exception("failed to find pattern \""+pattern+"\"").printStackTrace();
+            return "";
+        }
+
     }
 }
