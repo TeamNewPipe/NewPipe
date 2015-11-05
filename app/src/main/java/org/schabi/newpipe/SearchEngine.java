@@ -1,5 +1,6 @@
 package org.schabi.newpipe;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -30,6 +31,8 @@ public interface SearchEngine {
         public String suggestion = "";
         public Vector<VideoInfoItem> resultList = new Vector<>();
     }
+
+    ArrayList<String> suggestionList(String query);
 
     //Result search(String query, int page);
     Result search(String query, int page, String contentCountry);

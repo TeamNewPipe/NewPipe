@@ -1,7 +1,6 @@
 package org.schabi.newpipe.youtube;
 
 import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.jsoup.Jsoup;
@@ -10,9 +9,20 @@ import org.jsoup.nodes.Element;
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.SearchEngine;
 import org.schabi.newpipe.VideoInfoItem;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * Created by Christian Schabesberger on 09.08.15.
@@ -128,6 +138,54 @@ public class YoutubeSearchEngine implements SearchEngine {
             }
         }
         return result;
+    }
+
+    @Override
+    public ArrayList<String> suggestionList(String query) {
+
+        ArrayList<String> suggestions = new ArrayList<>();
+
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("https")
+                .authority("suggestqueries.google.com")
+                .appendPath("complete")
+                .appendPath("search")
+                .appendQueryParameter("client", "")
+                .appendQueryParameter("output", "toolbar")
+                .appendQueryParameter("ds", "yt")
+                .appendQueryParameter("q", query);
+        String url = builder.build().toString();
+
+        String response = Downloader.download(url);
+
+        //TODO: Parse xml data using Jsoup not done
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder;
+        org.w3c.dom.Document doc = null;
+
+        try {
+            dBuilder = dbFactory.newDocumentBuilder();
+            doc = dBuilder.parse(new InputSource(new ByteArrayInputStream(response.getBytes("utf-8"))));
+            doc.getDocumentElement().normalize();
+        }catch (ParserConfigurationException | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+
+        if(doc!=null){
+            NodeList nList = doc.getElementsByTagName("CompleteSuggestion");
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+
+                NodeList nList1 = doc.getElementsByTagName("suggestion");
+                Node nNode1 = nList1.item(temp);
+                if (nNode1.getNodeType() == Node.ELEMENT_NODE) {
+                    org.w3c.dom.Element eElement = (org.w3c.dom.Element) nNode1;
+                    suggestions.add(eElement.getAttribute("data"));
+                }
+            }
+        }else {
+            Log.e(TAG, "GREAT FUCKING ERROR");
+        }
+        return suggestions;
     }
 
 }
