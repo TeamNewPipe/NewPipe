@@ -49,4 +49,5 @@
     <string name="showNextVideoTitle">Show \"Next video\" item.</string>
     <string name="urlNotSupportedText">Url not Supported.</string>
     <string name="showSimilarVideosButtonText">Similar Videos</string>
+    <string name="contentCountryTitle">Video Content Country</string>
 </resources>

@@ -51,4 +51,10 @@
         android:title="@string/showNextVideoTitle"
         android:defaultValue="true" />
 
+    <ListPreference
+        android:key="@string/contentCountry"
+        android:title="@string/contentCountryTitle"
+        android:entries="@array/countryNames"
+        android:entryValues="@array/countryCodes"
+        android:defaultValue="" /> <!-- default will include no country code in URL-->
 </PreferenceScreen>

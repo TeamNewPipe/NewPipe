@@ -321,7 +321,7 @@ public class ActionBarHandler {
                         }
                     });
             builder.create().show();
-            Log.d(TAG, "Either no Streaming player for audio was installed, or something importand crashed:");
+            Log.d(TAG, "Either no Streaming player for audio was installed, or something important crashed:");
             e.printStackTrace();
         }
     }
