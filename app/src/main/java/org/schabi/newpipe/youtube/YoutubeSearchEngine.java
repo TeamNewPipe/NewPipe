@@ -157,34 +157,33 @@ public class YoutubeSearchEngine implements SearchEngine {
         String url = builder.build().toString();
 
         String response = Downloader.download(url);
-        DocumentBuilderFactory dbFactory
-                = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = null;
+
+        //TODO: Parse xml data using Jsoup not done
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder;
+        org.w3c.dom.Document doc = null;
+
         try {
             dBuilder = dbFactory.newDocumentBuilder();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        }
-        org.w3c.dom.Document doc = null;
-        try {
             doc = dBuilder.parse(new InputSource(new ByteArrayInputStream(response.getBytes("utf-8"))));
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+            doc.getDocumentElement().normalize();
+        }catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
-        doc.getDocumentElement().normalize();
 
-        NodeList nList = doc.getElementsByTagName("CompleteSuggestion");
-        for (int temp = 0; temp < nList.getLength(); temp++) {
+        if(doc!=null){
+            NodeList nList = doc.getElementsByTagName("CompleteSuggestion");
+            for (int temp = 0; temp < nList.getLength(); temp++) {
 
-            NodeList nList1 = doc.getElementsByTagName("suggestion");
-            Node nNode1 = nList1.item(temp)
-                    ;
-            if (nNode1.getNodeType() == Node.ELEMENT_NODE) {
-                org.w3c.dom.Element eElement = (org.w3c.dom.Element) nNode1;
-                suggestions.add(eElement.getAttribute("data"));
+                NodeList nList1 = doc.getElementsByTagName("suggestion");
+                Node nNode1 = nList1.item(temp);
+                if (nNode1.getNodeType() == Node.ELEMENT_NODE) {
+                    org.w3c.dom.Element eElement = (org.w3c.dom.Element) nNode1;
+                    suggestions.add(eElement.getAttribute("data"));
+                }
             }
+        }else {
+            Log.e(TAG, "GREAT FUCKING ERROR");
         }
         return suggestions;
     }
