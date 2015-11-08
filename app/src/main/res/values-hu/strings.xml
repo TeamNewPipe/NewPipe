@@ -48,4 +48,5 @@
 <string name="nextVideoTitle">Következő videó</string>
     <string name="showNextVideoTitle">\"Következő videó\" elem mutatása</string>
     <string name="urlNotSupportedText">A webcím nem támogatott.</string>
-</resources>
+<string name="showSimilarVideosButtonText">Hasonló videók</string>
+    </resources>
