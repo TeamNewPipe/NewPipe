@@ -3,7 +3,7 @@ package org.schabi.newpipe;
 /**
  * Created by scc on 08/11/15.
  */
-public enum VideoFormat {
+public enum MediaFormat {
     //           id      name    suffix  mime type
     MPEG_4      (0x0,   "MPEG-4", "mp4", "video/mp4"),
     v3GPP        (0x1,   "3GPP",   "3gp", "video/3gpp"),
@@ -16,7 +16,7 @@ public enum VideoFormat {
     public final String suffix;
     public final String mimeType;
 
-    VideoFormat(int id, String name, String suffix, String mimeType) {
+    MediaFormat(int id, String name, String suffix, String mimeType) {
         this.id = id;
         this.name = name;
         this.suffix = suffix;
@@ -24,21 +24,21 @@ public enum VideoFormat {
     }
 
     public static String getNameById(int ident) {
-        for (VideoFormat vf : VideoFormat.values()) {
+        for (MediaFormat vf : MediaFormat.values()) {
             if(vf.id == ident) return vf.name;
         }
         return "";
     }
 
     public static String getSuffixById(int ident) {
-        for (VideoFormat vf : VideoFormat.values()) {
+        for (MediaFormat vf : MediaFormat.values()) {
             if(vf.id == ident) return vf.suffix;
         }
         return "";
     }
 
     public static String getMimeById(int ident) {
-        for (VideoFormat vf : VideoFormat.values()) {
+        for (MediaFormat vf : MediaFormat.values()) {
             if(vf.id == ident) return vf.mimeType;
         }
         return "";

@@ -77,7 +77,7 @@ public class ActionBarHandler {
         int defaultResolutionPos = 0;
 
         for(int i = 0; i < videoStreams.length; i++) {
-            itemArray[i] = VideoInfo.getNameById(videoStreams[i].format) + " " + videoStreams[i].resolution;
+            itemArray[i] = MediaFormat.getNameById(videoStreams[i].format) + " " + videoStreams[i].resolution;
             if(defaultResolution.equals(videoStreams[i].resolution)) {
                 defaultResolutionPos = i;
             }
@@ -98,14 +98,14 @@ public class ActionBarHandler {
                 .getString(activity.getString(R.string.defaultAudioFormatPreference), "webm");
         if(preferedFormat.equals("webm")) {
             for(VideoInfo.AudioStream s : audioStreams) {
-                if(s.format == VideoInfo.I_WEBMA) {
+                if(s.format == MediaFormat.WEBMA.id) {
                     audioStream = s;
                 }
             }
         } else if(preferedFormat.equals("m4a")){
             for(VideoInfo.AudioStream s : audioStreams) {
-                Log.d(TAG, VideoInfo.getMimeById(s.format) + " : " + Integer.toString(s.bandwidth));
-                if(s.format == VideoInfo.I_M4A &&
+                Log.d(TAG, MediaFormat.getMimeById(s.format) + " : " + Integer.toString(s.bandwidth));
+                if(s.format == MediaFormat.M4A.id &&
                         (audioStream == null || audioStream.bandwidth > s.bandwidth)) {
                     audioStream = s;
                     Log.d(TAG, "last choosen");
@@ -196,7 +196,7 @@ public class ActionBarHandler {
                     intent.setAction(Intent.ACTION_VIEW);
 
                     intent.setDataAndType(Uri.parse(videoStreams[selectedStream].url),
-                            VideoInfo.getMimeById(videoStreams[selectedStream].format));
+                            MediaFormat.getMimeById(videoStreams[selectedStream].format));
                     intent.putExtra(Intent.EXTRA_TITLE, videoTitle);
                     intent.putExtra("title", videoTitle);
 
@@ -237,8 +237,8 @@ public class ActionBarHandler {
     public void downloadVideo() {
         Log.d(TAG, "bla");
         if(!videoTitle.isEmpty()) {
-            String videoSuffix = "." + VideoInfo.getSuffixById(videoStreams[selectedStream].format);
-            String audioSuffix = "." + VideoInfo.getSuffixById(audioStream.format);
+            String videoSuffix = "." + MediaFormat.getSuffixById(videoStreams[selectedStream].format);
+            String audioSuffix = "." + MediaFormat.getSuffixById(audioStream.format);
             Bundle args = new Bundle();
             args.putString(DownloadDialog.FILE_SUFFIX_VIDEO, videoSuffix);
             args.putString(DownloadDialog.FILE_SUFFIX_AUDIO, audioSuffix);
@@ -297,7 +297,7 @@ public class ActionBarHandler {
         try {
             intent.setAction(Intent.ACTION_VIEW);
             intent.setDataAndType(Uri.parse(audioStream.url),
-                    VideoInfo.getMimeById(audioStream.format));
+                    MediaFormat.getMimeById(audioStream.format));
             intent.putExtra(Intent.EXTRA_TITLE, videoTitle);
             intent.putExtra("title", videoTitle);
             activity.startActivity(intent);      // HERE !!!
