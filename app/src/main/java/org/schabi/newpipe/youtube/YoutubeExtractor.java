@@ -121,7 +121,6 @@ public class YoutubeExtractor implements Extractor {
                 if (playerUrl.startsWith("//")) {
                     playerUrl = "https:" + playerUrl;
                 }
-                Log.d(TAG, playerUrl);
                 decryptionCode = loadDecryptionCode(playerUrl);
             }
 
