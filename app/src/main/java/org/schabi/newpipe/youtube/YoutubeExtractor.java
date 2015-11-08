@@ -91,8 +91,45 @@ public class YoutubeExtractor implements Extractor {
         }
     }
 
-    private String decryptionCode = "";
+
+    // static values
     private static final String DECRYPTION_FUNC_NAME="decrypt";
+
+    // cached values
+    private static volatile String decryptionCode = "";
+
+    public void initService(String site) {
+        // The Youtube service needs to be initialized by downloading the
+        // js-Youtube-player. This is done in order to get the algorithm
+        // for decrypting cryptic signatures inside certain stream urls.
+
+        // Star Wars Kid is used as a dummy video, in order to download the youtube player.
+        //String site = Downloader.download("https://www.youtube.com/watch?v=HPPj6viIBmU");
+        //-------------------------------------
+        // extracting form player args
+        //-------------------------------------
+        try {
+            String jsonString = matchGroup1("ytplayer.config\\s*=\\s*(\\{.*?\\});", site);
+            JSONObject jsonObj = new JSONObject(jsonString);
+
+            //----------------------------------
+            // load an parse description code
+            //----------------------------------
+            if (decryptionCode.isEmpty()) {
+                JSONObject ytAssets = jsonObj.getJSONObject("assets");
+                String playerUrl = ytAssets.getString("js");
+                if (playerUrl.startsWith("//")) {
+                    playerUrl = "https:" + playerUrl;
+                }
+                Log.d(TAG, playerUrl);
+                decryptionCode = loadDecryptionCode(playerUrl);
+            }
+
+        } catch (Exception e){
+            Log.d(TAG, "Could not initialize the extractor of the Youtube service.");
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public String getVideoId(String videoUrl) {
@@ -147,18 +184,18 @@ public class YoutubeExtractor implements Extractor {
         videoInfo.age_limit = 0;
         videoInfo.webpage_url = siteUrl;
 
+
+        initService(site);
+
         //-------------------------------------
         // extracting form player args
         //-------------------------------------
         JSONObject playerArgs = null;
-        JSONObject ytAssets = null;
-        String dashManifest;
         {
             try {
                 String jsonString = matchGroup1("ytplayer.config\\s*=\\s*(\\{.*?\\});", site);
                 JSONObject jsonObj = new JSONObject(jsonString);
                 playerArgs = jsonObj.getJSONObject("args");
-                ytAssets = jsonObj.getJSONObject("assets");
             }
             catch (Exception e) {
                 e.printStackTrace();
@@ -168,7 +205,24 @@ public class YoutubeExtractor implements Extractor {
             }
         }
 
+        //-----------------------
+        // load and extract audio
+        //-----------------------
         try {
+            String dashManifest = playerArgs.getString("dashmpd");
+            videoInfo.audioStreams = parseDashManifest(dashManifest, decryptionCode);
+
+        } catch (NullPointerException e) {
+            Log.e(TAG, "Could not find \"dashmpd\" upon the player args (maybe no dash manifest available).");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            //--------------------------------------------
+            // extract general information about the video
+            //--------------------------------------------
+
             videoInfo.uploader = playerArgs.getString("author");
             videoInfo.title = playerArgs.getString("title");
             //first attempt gating a small image version
@@ -176,23 +230,6 @@ public class YoutubeExtractor implements Extractor {
             videoInfo.thumbnail_url = playerArgs.getString("thumbnail_url");
             videoInfo.duration = playerArgs.getInt("length_seconds");
             videoInfo.average_rating = playerArgs.getString("avg_rating");
-            String playerUrl = ytAssets.getString("js");
-            if(playerUrl.startsWith("//")) {
-                playerUrl = "https:" + playerUrl;
-            }
-            if(decryptionCode.isEmpty()) {
-                decryptionCode = loadDecryptionCode(playerUrl);
-            }
-
-            // extract audio
-            try {
-                dashManifest = playerArgs.getString("dashmpd");
-                videoInfo.audioStreams = parseDashManifest(dashManifest, decryptionCode);
-            } catch (Exception e) {
-                //todo: check if the following statement is true
-                Log.e(TAG, "Dash manifest doesn't seem to be available.");
-                e.printStackTrace();
-            }
 
             //------------------------------------
             // extract video stream url
@@ -211,9 +248,6 @@ public class YoutubeExtractor implements Extractor {
 
                 // if video has a signature: decrypt it and add it to the url
                 if(tags.get("s") != null) {
-                    if(decryptionCode.isEmpty()) {
-                        decryptionCode = loadDecryptionCode(playerUrl);
-                    }
                     streamUrl = streamUrl + "&signature=" + decryptSignature(tags.get("s"), decryptionCode);
                 }
 
@@ -231,9 +265,9 @@ public class YoutubeExtractor implements Extractor {
             e.printStackTrace();
         }
 
-        //-------------------------------
-        // extracting from html page
-        //-------------------------------
+        //---------------------------------------
+        // extracting information from html page
+        //---------------------------------------
 
 
         // Determine what went wrong when the Video is not available
