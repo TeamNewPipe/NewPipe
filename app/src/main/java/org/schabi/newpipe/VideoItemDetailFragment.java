@@ -127,6 +127,8 @@ public class VideoItemDetailFragment extends Fragment {
         }
         @Override
         public void run() {
+            //todo: fix expired thread error:
+            // If the thread calling this runnable is expired, the following function will crash.
             updateInfo(videoInfo);
         }
     }
@@ -201,11 +203,13 @@ public class VideoItemDetailFragment extends Fragment {
                     .getViewByVideoInfoItem(null, nextVideoFrame, info.nextVideo);
             nextVideoFrame.addView(nextVideoView);
             Button nextVideoButton = (Button) activity.findViewById(R.id.detailNextVideoButton);
+            Button similarVideosButton = (Button) activity.findViewById(R.id.detailShowSimilarButton);
 
             contentMainView.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
             if(!showNextVideoItem) {
                 nextVideoRootFrame.setVisibility(View.GONE);
+                similarVideosButton.setVisibility(View.GONE);
             }
 
             switch (info.videoAvailableStatus) {
