@@ -51,7 +51,7 @@ public class VideoInfoItemViewCreator {
         }
 
         if(info.thumbnail == null) {
-            holder.itemThumbnailView.setImageResource(R.drawable.dummi_thumbnail);
+            holder.itemThumbnailView.setImageResource(R.drawable.dummy_thumbnail);
         } else {
             holder.itemThumbnailView.setImageBitmap(info.thumbnail);
         }

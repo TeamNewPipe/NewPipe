@@ -4,4 +4,10 @@
     <dimen name="text_search_duration_size">11sp</dimen>
     <dimen name="text_search_uploader_size">12sp</dimen>
     <dimen name="text_search_uploadtime_size">12sp</dimen>
+    <dimen name="text_video_title_size">14sp</dimen>
+    <dimen name="text_video_visits_size">14sp</dimen>
+    <dimen name="text_video_like_size">12sp</dimen>
+    <dimen name="text_video_uploader_size">14sp</dimen>
+    <dimen name="text_video_uploadtime_size">14sp</dimen>
+    <dimen name="text_video_description_size">14sp</dimen>
 </resources>
