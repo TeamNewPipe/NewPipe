@@ -37,7 +37,6 @@ public class Downloader {
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", USER_AGENT);
-            con.setRequestProperty("Accept-Language", "en");
 
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(con.getInputStream()));
