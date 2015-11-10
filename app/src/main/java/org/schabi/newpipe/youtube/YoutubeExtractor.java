@@ -3,7 +3,6 @@ package org.schabi.newpipe.youtube;
 import android.util.Log;
 import android.util.Xml;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -14,6 +13,7 @@ import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.Extractor;
+import org.schabi.newpipe.MediaFormat;
 import org.schabi.newpipe.VideoInfo;
 import org.schabi.newpipe.VideoInfoItem;
 import org.xmlpull.v1.XmlPullParser;
@@ -57,16 +57,16 @@ public class YoutubeExtractor implements Extractor {
     public static int resolveFormat(int itag) {
         switch(itag) {
             // video
-            case 17: return VideoInfo.I_3GPP;
-            case 18: return VideoInfo.I_MPEG_4;
-            case 22: return VideoInfo.I_MPEG_4;
-            case 36: return VideoInfo.I_3GPP;
-            case 37: return VideoInfo.I_MPEG_4;
-            case 38: return VideoInfo.I_MPEG_4;
-            case 43: return VideoInfo.I_WEBM;
-            case 44: return VideoInfo.I_WEBM;
-            case 45: return VideoInfo.I_WEBM;
-            case 46: return VideoInfo.I_WEBM;
+            case 17: return MediaFormat.v3GPP.id;
+            case 18: return MediaFormat.MPEG_4.id;
+            case 22: return MediaFormat.MPEG_4.id;
+            case 36: return MediaFormat.v3GPP.id;
+            case 37: return MediaFormat.MPEG_4.id;
+            case 38: return MediaFormat.MPEG_4.id;
+            case 43: return MediaFormat.WEBM.id;
+            case 44: return MediaFormat.WEBM.id;
+            case 45: return MediaFormat.WEBM.id;
+            case 46: return MediaFormat.WEBM.id;
             default:
                 //Log.i(TAG, "Itag " + Integer.toString(itag) + " not known or not supported.");
                 return -1;
@@ -288,8 +288,8 @@ public class YoutubeExtractor implements Extractor {
         videoInfo.upload_date = doc.select("strong[class=\"watch-time-text\"").first()
                 .text();
 
-        // Extracting the date itself from header
-        videoInfo.upload_date = matchGroup1("([A-Za-z]{3}\\s[\\d]{1,2},\\s[\\d]{4}$)", videoInfo.upload_date);
+        // Try to only use date not the text around it
+        videoInfo.upload_date = matchGroup1("([0-9.]*$)", videoInfo.upload_date);
 
         // description
         videoInfo.description = doc.select("p[id=\"eow-description\"]").first()
@@ -319,8 +319,6 @@ public class YoutubeExtractor implements Extractor {
 
         // view count
         videoInfo.view_count = doc.select("div[class=\"watch-view-count\"]").first().text();
-
-        videoInfo.view_count = matchGroup1("([0-9,]*$)", videoInfo.view_count);
 
         // next video
         videoInfo.nextVideo = extractVideoInfoItem(doc.select("div[class=\"watch-sidebar-section\"]").first()
@@ -379,13 +377,13 @@ public class YoutubeExtractor implements Extractor {
                         if(currentTagIsBaseUrl &&
                                 (currentMimeType.contains("audio"))) {
                             int format = -1;
-                            if(currentMimeType.equals(VideoInfo.M_WEBMA)) {
-                                format = VideoInfo.I_WEBMA;
-                            } else if(currentMimeType.equals(VideoInfo.M_M4A)) {
-                                format = VideoInfo.I_M4A;
+                            if(currentMimeType.equals(MediaFormat.WEBMA.mimeType)) {
+                                format = MediaFormat.WEBMA.id;
+                            } else if(currentMimeType.equals(MediaFormat.M4A.mimeType)) {
+                                format = MediaFormat.M4A.id;
                             }
                             audioStreams.add(new VideoInfo.AudioStream(parser.getText(),
-                                     format, currentBandwidth, currentSamplingRate));
+                                    format, currentBandwidth, currentSamplingRate));
                         }
                     case XmlPullParser.END_TAG:
                         if(tagName.equals("AdaptationSet")) {

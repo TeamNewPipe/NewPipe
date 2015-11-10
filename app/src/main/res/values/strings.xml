@@ -49,5 +49,5 @@
     <string name="showNextAndSimilarTitle">Show next and similar videos</string>
     <string name="urlNotSupportedText">URL not supported.</string>
     <string name="showSimilarVideosButtonText">Similar videos</string>
-    <string name="contentCountryTitle">Preferable content location</string>
+    <string name="contentCountryTitle">Preferable content language</string>
 </resources>

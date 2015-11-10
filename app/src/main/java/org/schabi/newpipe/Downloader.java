@@ -1,6 +1,7 @@
 package org.schabi.newpipe;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -29,12 +30,25 @@ import java.net.UnknownHostException;
 public class Downloader {
 
     private static final String USER_AGENT = "Mozilla/5.0";
-    public static String download(String siteUrl) {
 
-        StringBuffer response = new StringBuffer();
+    public static String download(String siteUrl, String language) {
+        String ret = "";
         try {
             URL url = new URL(siteUrl);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestProperty("Accept-Language", language);
+            ret = dl(con);
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    private static String dl(HttpURLConnection con) {
+        StringBuffer response = new StringBuffer();
+
+        try {
             con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", USER_AGENT);
 
@@ -56,5 +70,21 @@ public class Downloader {
             e.printStackTrace();
         }
         return response.toString();
+    }
+
+
+    public static String download(String siteUrl) {
+        String ret = "";
+
+        try {
+            URL url = new URL(siteUrl);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            ret = dl(con);
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return ret;
     }
 }
