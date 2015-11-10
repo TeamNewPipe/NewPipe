@@ -289,7 +289,8 @@ public class YoutubeExtractor implements Extractor {
                 .text();
 
         // Extracting the date itself from header
-        videoInfo.upload_date = matchGroup1("([A-Za-z]{3}\\s[\\d]{1,2},\\s[\\d]{4}$)", videoInfo.upload_date);
+        videoInfo.upload_date =
+                matchGroup1("([0-9]{2}\\.[0-9]{2}\\.[0-9]{4})", videoInfo.upload_date);
 
         // description
         videoInfo.description = doc.select("p[id=\"eow-description\"]").first()
@@ -459,12 +460,13 @@ public class YoutubeExtractor implements Extractor {
         try {
             decryptionFuncName = matchGroup1("\\.sig\\|\\|([a-zA-Z0-9$]+)\\(", playerCode);
 
-            String functionPattern = "(function " + decryptionFuncName.replace("$", "\\$") + "\\([a-zA-Z0-9_]*\\)\\{.+?\\})";
+            String functionPattern = "(var "+  decryptionFuncName.replace("$", "\\$") +"=function\\([a-zA-Z0-9_]*\\)\\{.+?\\})";
             decryptionFunc = matchGroup1(functionPattern, playerCode);
+            decryptionFunc += ";";
 
             helperObjectName = matchGroup1(";([A-Za-z0-9_\\$]{2})\\...\\(", decryptionFunc);
 
-            String helperPattern = "(var " + helperObjectName.replace("$", "\\$") + "=\\{.+?\\}\\};)function";
+            String helperPattern = "(var " + helperObjectName.replace("$", "\\$") + "=\\{.+?\\}\\};)";
             helperObject = matchGroup1(helperPattern, playerCode);
 
         } catch (Exception e) {
@@ -477,13 +479,13 @@ public class YoutubeExtractor implements Extractor {
         return decryptionCode;
     }
 
-    private String decryptSignature(String encryptedSig, String decryptoinCode) {
+    private String decryptSignature(String encryptedSig, String decryptionCode) {
         Context context = Context.enter();
         context.setOptimizationLevel(-1);
         Object result = null;
         try {
             ScriptableObject scope = context.initStandardObjects();
-            context.evaluateString(scope, decryptoinCode, "decryptionCode", 1, null);
+            context.evaluateString(scope, decryptionCode, "decryptionCode", 1, null);
             Function decryptionFunc = (Function) scope.get("decrypt", scope);
             result = decryptionFunc.call(context, scope, scope, new Object[]{encryptedSig});
         } catch (Exception e) {
@@ -501,7 +503,7 @@ public class YoutubeExtractor implements Extractor {
             return mat.group(1);
         }
         else {
-            Log.e(TAG, "failed to find pattern \""+pattern+"\"");
+            Log.e(TAG, "failed to find pattern \""+pattern+"\"inside of \""+input+"\"");
             new Exception("failed to find pattern \""+pattern+"\"").printStackTrace();
             return "";
         }

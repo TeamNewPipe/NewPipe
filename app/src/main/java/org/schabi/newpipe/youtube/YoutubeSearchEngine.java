@@ -64,7 +64,6 @@ public class YoutubeSearchEngine implements SearchEngine {
         //if we've been passed a valid language code, append it to the URL
         if(languageCode.length() > 0) {
           //assert Pattern.matches("[a-z]{2}(-([A-Z]{2}|[0-9]{1,3}))?", languageCode);
-                Log.i(TAG, "URI: \""+builder+"\"");
                 site  = Downloader.download(url, languageCode);
         }
         else {

@@ -104,11 +104,9 @@ public class ActionBarHandler {
             }
         } else if(preferedFormat.equals("m4a")){
             for(VideoInfo.AudioStream s : audioStreams) {
-                Log.d(TAG, MediaFormat.getMimeById(s.format) + " : " + Integer.toString(s.bandwidth));
                 if(s.format == MediaFormat.M4A.id &&
                         (audioStream == null || audioStream.bandwidth > s.bandwidth)) {
                     audioStream = s;
-                    Log.d(TAG, "last choosen");
                 }
             }
         }
@@ -125,14 +123,7 @@ public class ActionBarHandler {
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
 
         inflater.inflate(R.menu.videoitem_detail, menu);
-        MenuItem playItem = menu.findItem(R.id.menu_item_play);
-        MenuItem shareItem = menu.findItem(R.id.menu_item_share);
         MenuItem castItem = menu.findItem(R.id.action_play_with_kodi);
-
-        MenuItemCompat.setShowAsAction(playItem, MenuItemCompat.SHOW_AS_ACTION_ALWAYS
-                | MenuItemCompat.SHOW_AS_ACTION_WITH_TEXT);
-        MenuItemCompat.setShowAsAction(shareItem, MenuItemCompat.SHOW_AS_ACTION_IF_ROOM
-                | MenuItemCompat.SHOW_AS_ACTION_WITH_TEXT);
 
         castItem.setVisible(defaultPreferences
                 .getBoolean(activity.getString(R.string.showPlayWidthKodiPreference), false));
@@ -143,9 +134,6 @@ public class ActionBarHandler {
     public boolean onItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch(id) {
-            case R.id.menu_item_play:
-                playVideo();
-                return true;
             case R.id.menu_item_share:
                 if(!videoTitle.isEmpty()) {
                     Intent intent = new Intent();
@@ -235,7 +223,6 @@ public class ActionBarHandler {
     }
 
     public void downloadVideo() {
-        Log.d(TAG, "bla");
         if(!videoTitle.isEmpty()) {
             String videoSuffix = "." + MediaFormat.getSuffixById(videoStreams[selectedStream].format);
             String audioSuffix = "." + MediaFormat.getSuffixById(audioStream.format);
@@ -321,7 +308,7 @@ public class ActionBarHandler {
                         }
                     });
             builder.create().show();
-            Log.d(TAG, "Either no Streaming player for audio was installed, or something important crashed:");
+            Log.e(TAG, "Either no Streaming player for audio was installed, or something important crashed:");
             e.printStackTrace();
         }
     }
