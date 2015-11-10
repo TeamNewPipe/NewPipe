@@ -320,6 +320,8 @@ public class YoutubeExtractor implements Extractor {
         // view count
         videoInfo.view_count = doc.select("div[class=\"watch-view-count\"]").first().text();
 
+        videoInfo.view_count = matchGroup1("([0-9,]*$)", videoInfo.view_count);
+
         // next video
         videoInfo.nextVideo = extractVideoInfoItem(doc.select("div[class=\"watch-sidebar-section\"]").first()
                 .select("li").first());
