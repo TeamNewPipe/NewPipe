@@ -288,8 +288,8 @@ public class YoutubeExtractor implements Extractor {
         videoInfo.upload_date = doc.select("strong[class=\"watch-time-text\"").first()
                 .text();
 
-        // Try to only use date not the text around it
-        videoInfo.upload_date = matchGroup1("([0-9.]*$)", videoInfo.upload_date);
+        // Extracting the date itself from header
+        videoInfo.upload_date = matchGroup1("([A-Za-z]{3}\\s[\\d]{1,2},\\s[\\d]{4}$)", videoInfo.upload_date);
 
         // description
         videoInfo.description = doc.select("p[id=\"eow-description\"]").first()
@@ -319,6 +319,9 @@ public class YoutubeExtractor implements Extractor {
 
         // view count
         videoInfo.view_count = doc.select("div[class=\"watch-view-count\"]").first().text();
+
+        // Extract view count from header
+        videoInfo.view_count = matchGroup1("([\\d]*$)", videoInfo.view_count);
 
         // next video
         videoInfo.nextVideo = extractVideoInfoItem(doc.select("div[class=\"watch-sidebar-section\"]").first()

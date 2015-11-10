@@ -4,7 +4,7 @@
     <string name="title_videoitem_detail">NewPipe</string>
     <string name="nothingFound">Nothing found</string>
     <string name="viewSufix">views</string>
-    <string name="uploadDatePrefix">Uploaded at: </string>
+    <string name="uploadDatePrefix">Published on </string>
     <string name="noPlayerFound">No StreamPlayer found. You may want to install one.</string>
     <string name="installStreamPlayer">Install one</string>
     <string name="cancel">Cancel</string>
@@ -45,9 +45,9 @@
         <item>Video</item>
         <item>Audio</item>
     </string-array>
-    <string name="nextVideoTitle">Next Video</string>
-    <string name="showNextAndSimilarTitle">Show next and similar Videos.</string>
-    <string name="urlNotSupportedText">Url not Supported.</string>
-    <string name="showSimilarVideosButtonText">Similar Videos</string>
-    <string name="contentCountryTitle">Video Content Country</string>
+    <string name="nextVideoTitle">Next video</string>
+    <string name="showNextAndSimilarTitle">Show next and similar videos</string>
+    <string name="urlNotSupportedText">URL not supported.</string>
+    <string name="showSimilarVideosButtonText">Similar videos</string>
+    <string name="contentCountryTitle">Preferable content location</string>
 </resources>
