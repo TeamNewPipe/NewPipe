@@ -46,7 +46,7 @@
         <item>Audio</item>
     </string-array>
     <string name="nextVideoTitle">Next Video</string>
-    <string name="showNextVideoTitle">Show \"Next video\" item.</string>
+    <string name="showNextAndSimilarTitle">Show next and similar Videos.</string>
     <string name="urlNotSupportedText">Url not Supported.</string>
     <string name="showSimilarVideosButtonText">Similar Videos</string>
     <string name="searchLanguageTitle">Video Search Language</string>
