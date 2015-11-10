@@ -61,23 +61,17 @@ public class YoutubeSearchEngine implements SearchEngine {
 
         String site;
         String url = builder.build().toString();
-        //if we've been passed a valid, non-empty language code, append it to the URL
+        //if we've been passed a valid language code, append it to the URL
         if(languageCode.length() > 0) {
-            if(languageCode.length() == 2) {
+          //assert Pattern.matches("[a-z]{2}(-([A-Z]{2}|[0-9]{1,3}))?", languageCode);
                 Log.i(TAG, "URI: \""+builder+"\"");
                 site  = Downloader.download(url, languageCode);
-            }
-            else {
-                Log.e(TAG, "invalid language code passed to search(): \""+languageCode+"\"");
-                site = Downloader.download(url);
-            }
         }
         else {
             site = Downloader.download(url);
         }
 
 
-        //String site = Downloader.download(url);
         Document doc = Jsoup.parse(site, url);
         Result result = new Result();
         Element list = doc.select("ol[class=\"item-section\"]").first();

@@ -51,13 +51,11 @@
         android:title="@string/showNextAndSimilarTitle"
         android:defaultValue="true" />
 
-    <!-- This function is not yet available
     <ListPreference
         android:key="@string/searchLanguage"
         android:title="@string/searchLanguageTitle"
         android:entries="@array/languageNames"
         android:entryValues="@array/languageCodes"
         android:defaultValue="en" />
-
-    -->
+    
 </PreferenceScreen>
