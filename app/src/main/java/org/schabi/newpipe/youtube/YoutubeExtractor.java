@@ -20,6 +20,7 @@ import org.xmlpull.v1.XmlPullParser;
 
 import java.io.StringReader;
 import java.net.URI;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -113,7 +114,7 @@ public class YoutubeExtractor implements Extractor {
             JSONObject jsonObj = new JSONObject(jsonString);
 
             //----------------------------------
-            // load an parse description code
+            // load and parse description code
             //----------------------------------
             if (decryptionCode.isEmpty()) {
                 JSONObject ytAssets = jsonObj.getJSONObject("assets");
@@ -149,43 +150,7 @@ public class YoutubeExtractor implements Extractor {
         id = mat.group(1);
         return (id == null ? "" : id);
     }
-/*
-    @Override
-    public String getVideoId(String videoUrl) {
-        try {
-            URI uri = new URI(videoUrl);
-            if(uri.getHost().contains("youtube")) {
-                String query = uri.getFragment();
-                if(query == null) {
-                    query = uri.getQuery();
-                } else {
-                    query = query.replace("/watch?", "");
-                }
-                String queryElements[] = query.split("&");
-                Map<String, String> queryArguments = new HashMap<>();
-                for (String e : queryElements) {
-                    String[] s = e.split("=");
-                    queryArguments.put(s[0], s[1]);
-                }
-                return queryArguments.get("v");
-            } else if(uri.getHost().contains("youtu.be")) {
-                // uri.getRawPath() does somehow not return the last character.
-                // so we do a workaround instead.
-                //return uri.getRawPath();
-                String url[] = videoUrl.split("/");
-                return url[url.length-1];
-            } else {
-                Log.e(TAG, "Error could not parse url: " + videoUrl);
 
-            }
-        }  catch(Exception e) {
-            Log.e(TAG, "Error could not parse url: " + videoUrl);
-            e.printStackTrace();
-            return "";
-        }
-        return null;
-    }
-*/
     @Override
     public String getVideoUrl(String videoId) {
         return "https://www.youtube.com/watch?v=" + videoId;
@@ -198,18 +163,17 @@ public class YoutubeExtractor implements Extractor {
 
         Document doc = Jsoup.parse(site, siteUrl);
 
-        videoInfo.id = matchGroup1("v=([0-9a-zA-Z]*)", siteUrl);
+        videoInfo.id = matchGroup1("v=([0-9a-zA-Z]{10,})", siteUrl);
 
         videoInfo.age_limit = 0;
         videoInfo.webpage_url = siteUrl;
-
 
         initService(site);
 
         //-------------------------------------
         // extracting form player args
         //-------------------------------------
-        JSONObject playerArgs = null;
+        JSONObject playerArgs;
         {
             try {
                 String jsonString = matchGroup1("ytplayer.config\\s*=\\s*(\\{.*?\\});", site);
@@ -221,6 +185,8 @@ public class YoutubeExtractor implements Extractor {
                 // If we fail in this part the video is most likely not available.
                 // Determining why is done later.
                 videoInfo.videoAvailableStatus = VideoInfo.VIDEO_UNAVAILABLE;
+                //exit early, since we can't extract other args
+                return videoInfo;
             }
         }
 
@@ -244,7 +210,7 @@ public class YoutubeExtractor implements Extractor {
 
             videoInfo.uploader = playerArgs.getString("author");
             videoInfo.title = playerArgs.getString("title");
-            //first attempt gating a small image version
+            //first attempt getting a small image version
             //in the html extracting part we try to get a thumbnail with a higher resolution
             videoInfo.thumbnail_url = playerArgs.getString("thumbnail_url");
             videoInfo.duration = playerArgs.getInt("length_seconds");
@@ -263,7 +229,7 @@ public class YoutubeExtractor implements Extractor {
                 }
 
                 int itag = Integer.parseInt(tags.get("itag"));
-                String streamUrl = terrible_unescape_workaround_fuck(tags.get("url"));
+                String streamUrl = URLDecoder.decode(tags.get("url"), "UTF-8");
 
                 // if video has a signature: decrypt it and add it to the url
                 if(tags.get("s") != null) {
@@ -301,16 +267,19 @@ public class YoutubeExtractor implements Extractor {
             videoInfo.thumbnail_url = doc.select("link[itemprop=\"thumbnailUrl\"]").first()
                     .attr("abs:href");
         } catch(Exception e) {
-            Log.i(TAG, "Could not find high res Thumbnail. Use low res instead");
+            Log.i(TAG, "Could not find high res Thumbnail. Using low res instead");
         }
 
         // upload date
-        videoInfo.upload_date = doc.select("strong[class=\"watch-time-text\"").first()
-                .text();
+        //videoInfo.upload_date = doc.select("strong[class=\"watch-time-text\"").first().text();
+        videoInfo.upload_date = doc.select("meta[itemprop=datePublished]").attr("content");
 
         // Extracting the date itself from header
-        videoInfo.upload_date =
-                matchGroup1("([0-9]{2}\\.[0-9]{2}\\.[0-9]{4})", videoInfo.upload_date);
+        //videoInfo.upload_date =
+        //        matchGroup1("([0-9]{2}\\.[0-9]{2}\\.[0-9]{4})", videoInfo.upload_date);
+
+        //TODO: Format date locale-specifically
+
 
         // description
         videoInfo.description = doc.select("p[id=\"eow-description\"]").first()
@@ -321,7 +290,6 @@ public class YoutubeExtractor implements Extractor {
             videoInfo.like_count = doc.select("span[class=\"like-button-renderer \"]").first()
                     .getAllElements().select("button")
                     .select("span").get(0).text();
-
 
             // dislikes
             videoInfo.dislike_count = doc.select("span[class=\"like-button-renderer \"]").first()
@@ -339,23 +307,18 @@ public class YoutubeExtractor implements Extractor {
                 .attr("abs:data-thumb");
 
         // view count
-        videoInfo.view_count = doc.select("div[class=\"watch-view-count\"]").first().text();
-
-        // Extracting the number of views from header
-        videoInfo.view_count = matchGroup1("([0-9,]*$)", videoInfo.view_count);
+        videoInfo.view_count = doc.select("meta[itemprop=interactionCount]").attr("content");
 
         // next video
         videoInfo.nextVideo = extractVideoInfoItem(doc.select("div[class=\"watch-sidebar-section\"]").first()
                 .select("li").first());
 
-        int i = 0;
         // related videos
         Vector<VideoInfoItem> relatedVideos = new Vector<>();
         for(Element li : doc.select("ul[id=\"watch-related\"]").first().children()) {
             // first check if we have a playlist. If so leave them out
             if(li.select("a[class*=\"content-link\"]").first() != null) {
                 relatedVideos.add(extractVideoInfoItem(li));
-                i++;
             }
         }
         videoInfo.relatedVideos = relatedVideos.toArray(new VideoInfoItem[relatedVideos.size()]);
@@ -436,6 +399,7 @@ public class YoutubeExtractor implements Extractor {
             e.printStackTrace();
         }
 
+        //todo: check NullPointerException causing
         info.title = li.select("span[class=\"title\"]").first().text();
         info.view_count = li.select("span[class*=\"view-count\"]").first().text();
         info.uploader = li.select("span[class=\"g-hovercard\"]").first().text();
@@ -453,19 +417,6 @@ public class YoutubeExtractor implements Extractor {
             info.thumbnail_url = "https:" + info.thumbnail_url;
         }
         return info;
-    }
-
-    private String terrible_unescape_workaround_fuck(String shit) {
-        String[] splitAtEscape = shit.split("%");
-        String retval = "";
-        retval += splitAtEscape[0];
-        for(int i = 1; i < splitAtEscape.length; i++) {
-            String escNum = splitAtEscape[i].substring(0, 2);
-            char c = (char) Integer.parseInt(escNum,16);
-            retval += c;
-            retval += splitAtEscape[i].substring(2);
-        }
-        return retval;
     }
 
     private String loadDecryptionCode(String playerUrl) {
@@ -523,7 +474,7 @@ public class YoutubeExtractor implements Extractor {
             return mat.group(1);
         }
         else {
-            Log.e(TAG, "failed to find pattern \""+pattern+"\"inside of \""+input+"\"");
+            Log.e(TAG, "failed to find pattern \""+pattern+"\" inside of \""+input+"\"");
             new Exception("failed to find pattern \""+pattern+"\"").printStackTrace();
             return "";
         }
