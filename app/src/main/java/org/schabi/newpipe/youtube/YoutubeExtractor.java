@@ -271,12 +271,7 @@ public class YoutubeExtractor implements Extractor {
         }
 
         // upload date
-        //videoInfo.upload_date = doc.select("strong[class=\"watch-time-text\"").first().text();
         videoInfo.upload_date = doc.select("meta[itemprop=datePublished]").attr("content");
-
-        // Extracting the date itself from header
-        //videoInfo.upload_date =
-        //        matchGroup1("([0-9]{2}\\.[0-9]{2}\\.[0-9]{4})", videoInfo.upload_date);
 
         //TODO: Format date locale-specifically
 
@@ -306,7 +301,7 @@ public class YoutubeExtractor implements Extractor {
                 .select("img").first()
                 .attr("abs:data-thumb");
 
-        // view count
+        // view count TODO: format locale-specifically
         videoInfo.view_count = doc.select("meta[itemprop=interactionCount]").attr("content");
 
         // next video
