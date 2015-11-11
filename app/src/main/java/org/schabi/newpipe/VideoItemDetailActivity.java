@@ -67,8 +67,7 @@ public class VideoItemDetailActivity extends AppCompatActivity {
                         arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, i);
                         try {
                             currentStreamingService = i;
-                            extractor = ServiceList.getService(i)
-                                    .getExtractorInstance();
+                            extractor = ServiceList.getService(i).getExtractorInstance();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

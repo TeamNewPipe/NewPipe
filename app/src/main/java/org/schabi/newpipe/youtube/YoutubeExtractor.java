@@ -132,6 +132,26 @@ public class YoutubeExtractor implements Extractor {
 
     @Override
     public String getVideoId(String videoUrl) {
+        //https://www.youtube.com/watch?v=laF2D3QyAFQ
+        String id;
+        Pattern pat;
+        if(videoUrl.contains("youtube")) {
+            pat = Pattern.compile("youtube\\.com/watch\\?v=([a-zA-Z0-9_]{11})");
+        }
+        else if(videoUrl.contains("youtu.be")) {
+            pat = Pattern.compile("youtu\\.be/([a-zA-Z0-9_]{11})");
+        }
+        else {
+            Log.e(TAG, "Error could not parse url: " + videoUrl);
+            return "";
+        }
+        Matcher mat = pat.matcher(videoUrl);
+        id = mat.group(1);
+        return (id == null ? "" : id);
+    }
+/*
+    @Override
+    public String getVideoId(String videoUrl) {
         try {
             URI uri = new URI(videoUrl);
             if(uri.getHost().contains("youtube")) {
@@ -165,7 +185,7 @@ public class YoutubeExtractor implements Extractor {
         }
         return null;
     }
-
+*/
     @Override
     public String getVideoUrl(String videoId) {
         return "https://www.youtube.com/watch?v=" + videoId;
