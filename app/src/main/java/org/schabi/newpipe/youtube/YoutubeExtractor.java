@@ -133,22 +133,27 @@ public class YoutubeExtractor implements Extractor {
 
     @Override
     public String getVideoId(String videoUrl) {
-        //https://www.youtube.com/watch?v=laF2D3QyAFQ
-        String id;
+        String id = "";
         Pattern pat;
+
         if(videoUrl.contains("youtube")) {
-            pat = Pattern.compile("youtube\\.com/watch\\?v=([a-zA-Z0-9_]{11})");
+            pat = Pattern.compile("youtube\\.com/watch\\?v=([\\-a-zA-Z0-9_]{11})");
         }
         else if(videoUrl.contains("youtu.be")) {
-            pat = Pattern.compile("youtu\\.be/([a-zA-Z0-9_]{11})");
+            pat = Pattern.compile("youtu\\.be/([a-zA-Z0-9_-]{11})");
         }
         else {
             Log.e(TAG, "Error could not parse url: " + videoUrl);
             return "";
         }
         Matcher mat = pat.matcher(videoUrl);
-        id = mat.group(1);
-        return (id == null ? "" : id);
+        boolean foundMatch = mat.find();
+        if(foundMatch){
+            id = mat.group(1);
+            Log.i(TAG, "string \""+videoUrl+"\" matches!");
+        }
+        Log.i(TAG, "string \""+videoUrl+"\" does not match.");
+        return id;
     }
 
     @Override
@@ -163,7 +168,7 @@ public class YoutubeExtractor implements Extractor {
 
         Document doc = Jsoup.parse(site, siteUrl);
 
-        videoInfo.id = matchGroup1("v=([0-9a-zA-Z]{10,})", siteUrl);
+        videoInfo.id = matchGroup1("v=([0-9a-zA-Z_-]{11})", siteUrl);
 
         videoInfo.age_limit = 0;
         videoInfo.webpage_url = siteUrl;
@@ -173,7 +178,7 @@ public class YoutubeExtractor implements Extractor {
         //-------------------------------------
         // extracting form player args
         //-------------------------------------
-        JSONObject playerArgs;
+        JSONObject playerArgs = null;
         {
             try {
                 String jsonString = matchGroup1("ytplayer.config\\s*=\\s*(\\{.*?\\});", site);
@@ -185,8 +190,6 @@ public class YoutubeExtractor implements Extractor {
                 // If we fail in this part the video is most likely not available.
                 // Determining why is done later.
                 videoInfo.videoAvailableStatus = VideoInfo.VIDEO_UNAVAILABLE;
-                //exit early, since we can't extract other args
-                return videoInfo;
             }
         }
 
@@ -277,23 +280,27 @@ public class YoutubeExtractor implements Extractor {
 
 
         // description
-        videoInfo.description = doc.select("p[id=\"eow-description\"]").first()
-                .html();
-
+        videoInfo.description = doc.select("p[id=\"eow-description\"]").first().html();
+        String likesString = "";
+        String dislikesString = "";
         try {
             // likes
-            videoInfo.like_count = doc.select("span[class=\"like-button-renderer \"]").first()
-                    .getAllElements().select("button")
-                    .select("span").get(0).text();
-
+            likesString = doc.select("button.like-button-renderer-like-button").first()
+                    .select("span.yt-uix-button-content").first().text();
+            videoInfo.like_count = Integer.parseInt(likesString.replace(",", ""));
             // dislikes
-            videoInfo.dislike_count = doc.select("span[class=\"like-button-renderer \"]").first()
-                    .getAllElements().select("button")
-                    .select("span").get(2).text();
+            dislikesString = doc.select("button.like-button-renderer-dislike-button").first()
+                            .select("span.yt-uix-button-content").first().text();
+
+            videoInfo.dislike_count = Integer.parseInt(dislikesString.replace(",", ""));
+        } catch(NumberFormatException nfe) {
+            Log.e(TAG, "failed to parse likesString \""+likesString+"\" and dislikesString \""+
+            dislikesString+"\" as integers");
         } catch(Exception e) {
             // if it fails we know that the video does not offer dislikes.
-            videoInfo.like_count = "0";
-            videoInfo.dislike_count = "0";
+            e.printStackTrace();
+            videoInfo.like_count = 0;
+            videoInfo.dislike_count = 0;
         }
 
         // uploader thumbnail
@@ -301,8 +308,9 @@ public class YoutubeExtractor implements Extractor {
                 .select("img").first()
                 .attr("abs:data-thumb");
 
-        // view count TODO: format locale-specifically
-        videoInfo.view_count = doc.select("meta[itemprop=interactionCount]").attr("content");
+        // view count TODO:  locale-specific formatting
+        String viewCountString = doc.select("meta[itemprop=interactionCount]").attr("content");
+        videoInfo.view_count = Integer.parseInt(viewCountString);
 
         // next video
         videoInfo.nextVideo = extractVideoInfoItem(doc.select("div[class=\"watch-sidebar-section\"]").first()

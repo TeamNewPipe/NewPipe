@@ -2,6 +2,7 @@ package org.schabi.newpipe;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -29,6 +30,11 @@ import android.widget.TextView;
 import android.view.MenuItem;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Vector;
 
 
@@ -216,12 +222,31 @@ public class VideoItemDetailFragment extends Fragment {
                 case VideoInfo.VIDEO_AVAILABLE: {
                     videoTitleView.setText(info.title);
                     uploaderView.setText(info.uploader);
-                    viewCountView.setText(info.view_count
+
+                    Locale locale = getPreferredLocale();
+                    NumberFormat nf = NumberFormat.getInstance(locale);
+                    String localisedViewCount = nf.format(info.view_count);
+                    viewCountView.setText(localisedViewCount
                             + " " + activity.getString(R.string.viewSufix));
-                    thumbsUpView.setText(info.like_count);
-                    thumbsDownView.setText(info.dislike_count);
+
+
+                    thumbsUpView.setText(nf.format(info.like_count));
+                    thumbsDownView.setText(nf.format(info.dislike_count));
+
+                    //this is horribly convoluted
+                    //TODO: find a better way to convert YYYY-MM-DD to a locale-specific date
+                    //suggestions welcome
+                    int year  = Integer.parseInt(info.upload_date.substring(0, 4));
+                    int month = Integer.parseInt(info.upload_date.substring(5, 7));
+                    int date  = Integer.parseInt(info.upload_date.substring(8, 10));
+                    Calendar cal = Calendar.getInstance();
+                    cal.set(year, month, date);
+                    Date datum = cal.getTime();
+                    DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
+
+                    String localisedDate = df.format(datum);
                     uploadDateView.setText(
-                            activity.getString(R.string.uploadDatePrefix) + " " + info.upload_date);
+                            activity.getString(R.string.uploadDatePrefix) + " " + localisedDate);
                     descriptionView.setText(Html.fromHtml(info.description));
                     descriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
@@ -367,6 +392,23 @@ public class VideoItemDetailFragment extends Fragment {
                 }
             });
         }
+    }
+
+    public Locale getPreferredLocale() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String languageKey = getContext().getString(R.string.searchLanguage);
+        String languageCode = "en";//i know the following lines defaults languageCode to "en", but java is picky about uninitialised values
+        languageCode = sp.getString(languageKey, "en");
+
+        if(languageCode.length() == 2) {
+            return new Locale(languageCode);
+        }
+        else if(languageCode.contains("_")) {
+            String country = languageCode
+                    .substring(languageCode.indexOf("_"), languageCode.length());
+            return new Locale(languageCode.substring(0, 2), country);
+        }
+        return Locale.getDefault();
     }
 
     public boolean checkIfLandscape() {

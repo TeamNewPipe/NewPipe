@@ -2,6 +2,8 @@ package org.schabi.newpipe;
 
 import android.graphics.Bitmap;
 import android.util.Log;
+
+import java.util.Date;
 import java.util.Vector;
 
 /**
@@ -33,15 +35,15 @@ public class VideoInfo {
     public Bitmap thumbnail = null;
     public String webpage_url = "";
     public String upload_date = "";
-    public String view_count = "";
+    public long view_count = 0;
 
     public String uploader_thumbnail_url = "";
     public Bitmap uploader_thumbnail = null;
     public String description = "";
     public int duration = -1;
     public int age_limit = 0;
-    public String like_count = "";
-    public String dislike_count = "";
+    public int like_count = 0;
+    public int dislike_count = 0;
     public String average_rating = "";
     public VideoStream[] videoStreams = null;
     public AudioStream[] audioStreams = null;
@@ -64,11 +66,6 @@ public class VideoInfo {
         public String resolution = "";
     }
 
-    protected static void formatNotKnown(int id) {
-        Log.e(TAG, "format not known: \"" +
-            Integer.toString(id) + "\". Call the programmers, they messed it up!");
-    }
-
     public static class AudioStream {
         public AudioStream(String url, int format, int bandwidth, int samplingRate) {
             this.url = url; this.format = format;
@@ -78,7 +75,5 @@ public class VideoInfo {
         public int format = -1;
         public int bandwidth = -1;
         public int samplingRate = -1;
-
     }
-
 }

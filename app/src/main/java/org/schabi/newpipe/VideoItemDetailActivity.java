@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -60,6 +61,7 @@ public class VideoItemDetailActivity extends AppCompatActivity {
             // this means the video was called though another app
             if (getIntent().getData() != null) {
                 videoUrl = getIntent().getData().toString();
+                Log.i(TAG, "video URL passed:\"" + videoUrl + "\"");
                 StreamingService[] serviceList = ServiceList.getServices();
                 Extractor extractor = null;
                 for (int i = 0; i < serviceList.length; i++) {
