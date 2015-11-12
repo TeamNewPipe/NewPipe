@@ -287,12 +287,12 @@ public class YoutubeExtractor implements Extractor {
             // likes
             likesString = doc.select("button.like-button-renderer-like-button").first()
                     .select("span.yt-uix-button-content").first().text();
-            videoInfo.like_count = Integer.parseInt(likesString.replace(",", ""));
+            videoInfo.like_count = Integer.parseInt(likesString.replaceAll("[^\\d]", ""));
             // dislikes
             dislikesString = doc.select("button.like-button-renderer-dislike-button").first()
                             .select("span.yt-uix-button-content").first().text();
 
-            videoInfo.dislike_count = Integer.parseInt(dislikesString.replace(",", ""));
+            videoInfo.dislike_count = Integer.parseInt(dislikesString.replaceAll("[^\\d]", ""));
         } catch(NumberFormatException nfe) {
             Log.e(TAG, "failed to parse likesString \""+likesString+"\" and dislikesString \""+
             dislikesString+"\" as integers");
