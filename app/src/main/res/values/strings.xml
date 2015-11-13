@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
     <string name="nothingFound">Nothing found</string>
     <string name="viewSufix">views</string>
-    <string name="uploadDatePrefix">Published on </string>
-    <string name="noPlayerFound">No StreamPlayer found. You may want to install one.</string>
-    <string name="installStreamPlayer">Install one</string>
+    <string name="uploadDatePrefix">"Uploaded on "</string>
+    <string name="noPlayerFound">No stream player found. You may want to install one.</string>
+    <string name="installStreamPlayer">Install</string>
     <string name="cancel">Cancel</string>
     <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Open in browser</string>
