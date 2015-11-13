@@ -3,7 +3,6 @@ package org.schabi.newpipe.youtube;
 import android.util.Log;
 import android.util.Xml;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -14,12 +13,14 @@ import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.Extractor;
+import org.schabi.newpipe.MediaFormat;
 import org.schabi.newpipe.VideoInfo;
 import org.schabi.newpipe.VideoInfoItem;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.StringReader;
 import java.net.URI;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -57,16 +58,16 @@ public class YoutubeExtractor implements Extractor {
     public static int resolveFormat(int itag) {
         switch(itag) {
             // video
-            case 17: return VideoInfo.I_3GPP;
-            case 18: return VideoInfo.I_MPEG_4;
-            case 22: return VideoInfo.I_MPEG_4;
-            case 36: return VideoInfo.I_3GPP;
-            case 37: return VideoInfo.I_MPEG_4;
-            case 38: return VideoInfo.I_MPEG_4;
-            case 43: return VideoInfo.I_WEBM;
-            case 44: return VideoInfo.I_WEBM;
-            case 45: return VideoInfo.I_WEBM;
-            case 46: return VideoInfo.I_WEBM;
+            case 17: return MediaFormat.v3GPP.id;
+            case 18: return MediaFormat.MPEG_4.id;
+            case 22: return MediaFormat.MPEG_4.id;
+            case 36: return MediaFormat.v3GPP.id;
+            case 37: return MediaFormat.MPEG_4.id;
+            case 38: return MediaFormat.MPEG_4.id;
+            case 43: return MediaFormat.WEBM.id;
+            case 44: return MediaFormat.WEBM.id;
+            case 45: return MediaFormat.WEBM.id;
+            case 46: return MediaFormat.WEBM.id;
             default:
                 //Log.i(TAG, "Itag " + Integer.toString(itag) + " not known or not supported.");
                 return -1;
@@ -113,7 +114,7 @@ public class YoutubeExtractor implements Extractor {
             JSONObject jsonObj = new JSONObject(jsonString);
 
             //----------------------------------
-            // load an parse description code
+            // load and parse description code
             //----------------------------------
             if (decryptionCode.isEmpty()) {
                 JSONObject ytAssets = jsonObj.getJSONObject("assets");
@@ -132,38 +133,27 @@ public class YoutubeExtractor implements Extractor {
 
     @Override
     public String getVideoId(String videoUrl) {
-        try {
-            URI uri = new URI(videoUrl);
-            if(uri.getHost().contains("youtube")) {
-                String query = uri.getFragment();
-                if(query == null) {
-                    query = uri.getQuery();
-                } else {
-                    query = query.replace("/watch?", "");
-                }
-                String queryElements[] = query.split("&");
-                Map<String, String> queryArguments = new HashMap<>();
-                for (String e : queryElements) {
-                    String[] s = e.split("=");
-                    queryArguments.put(s[0], s[1]);
-                }
-                return queryArguments.get("v");
-            } else if(uri.getHost().contains("youtu.be")) {
-                // uri.getRawPath() does somehow not return the last character.
-                // so we do a workaround instead.
-                //return uri.getRawPath();
-                String url[] = videoUrl.split("/");
-                return url[url.length-1];
-            } else {
-                Log.e(TAG, "Error could not parse url: " + videoUrl);
+        String id = "";
+        Pattern pat;
 
-            }
-        }  catch(Exception e) {
+        if(videoUrl.contains("youtube")) {
+            pat = Pattern.compile("youtube\\.com/watch\\?v=([\\-a-zA-Z0-9_]{11})");
+        }
+        else if(videoUrl.contains("youtu.be")) {
+            pat = Pattern.compile("youtu\\.be/([a-zA-Z0-9_-]{11})");
+        }
+        else {
             Log.e(TAG, "Error could not parse url: " + videoUrl);
-            e.printStackTrace();
             return "";
         }
-        return null;
+        Matcher mat = pat.matcher(videoUrl);
+        boolean foundMatch = mat.find();
+        if(foundMatch){
+            id = mat.group(1);
+            Log.i(TAG, "string \""+videoUrl+"\" matches!");
+        }
+        Log.i(TAG, "string \""+videoUrl+"\" does not match.");
+        return id;
     }
 
     @Override
@@ -178,11 +168,10 @@ public class YoutubeExtractor implements Extractor {
 
         Document doc = Jsoup.parse(site, siteUrl);
 
-        videoInfo.id = matchGroup1("v=([0-9a-zA-Z]*)", siteUrl);
+        videoInfo.id = matchGroup1("v=([0-9a-zA-Z_-]{11})", siteUrl);
 
         videoInfo.age_limit = 0;
         videoInfo.webpage_url = siteUrl;
-
 
         initService(site);
 
@@ -224,7 +213,7 @@ public class YoutubeExtractor implements Extractor {
 
             videoInfo.uploader = playerArgs.getString("author");
             videoInfo.title = playerArgs.getString("title");
-            //first attempt gating a small image version
+            //first attempt getting a small image version
             //in the html extracting part we try to get a thumbnail with a higher resolution
             videoInfo.thumbnail_url = playerArgs.getString("thumbnail_url");
             videoInfo.duration = playerArgs.getInt("length_seconds");
@@ -243,7 +232,7 @@ public class YoutubeExtractor implements Extractor {
                 }
 
                 int itag = Integer.parseInt(tags.get("itag"));
-                String streamUrl = terrible_unescape_workaround_fuck(tags.get("url"));
+                String streamUrl = URLDecoder.decode(tags.get("url"), "UTF-8");
 
                 // if video has a signature: decrypt it and add it to the url
                 if(tags.get("s") != null) {
@@ -281,35 +270,37 @@ public class YoutubeExtractor implements Extractor {
             videoInfo.thumbnail_url = doc.select("link[itemprop=\"thumbnailUrl\"]").first()
                     .attr("abs:href");
         } catch(Exception e) {
-            Log.i(TAG, "Could not find high res Thumbnail. Use low res instead");
+            Log.i(TAG, "Could not find high res Thumbnail. Using low res instead");
         }
 
         // upload date
-        videoInfo.upload_date = doc.select("strong[class=\"watch-time-text\"").first()
-                .text();
+        videoInfo.upload_date = doc.select("meta[itemprop=datePublished]").attr("content");
 
-        // Try to only use date not the text around it
-        videoInfo.upload_date = matchGroup1("([0-9.]*$)", videoInfo.upload_date);
+        //TODO: Format date locale-specifically
+
 
         // description
-        videoInfo.description = doc.select("p[id=\"eow-description\"]").first()
-                .html();
-
+        videoInfo.description = doc.select("p[id=\"eow-description\"]").first().html();
+        String likesString = "";
+        String dislikesString = "";
         try {
             // likes
-            videoInfo.like_count = doc.select("span[class=\"like-button-renderer \"]").first()
-                    .getAllElements().select("button")
-                    .select("span").get(0).text();
-
-
+            likesString = doc.select("button.like-button-renderer-like-button").first()
+                    .select("span.yt-uix-button-content").first().text();
+            videoInfo.like_count = Integer.parseInt(likesString.replaceAll("[^\\d]", ""));
             // dislikes
-            videoInfo.dislike_count = doc.select("span[class=\"like-button-renderer \"]").first()
-                    .getAllElements().select("button")
-                    .select("span").get(2).text();
+            dislikesString = doc.select("button.like-button-renderer-dislike-button").first()
+                            .select("span.yt-uix-button-content").first().text();
+
+            videoInfo.dislike_count = Integer.parseInt(dislikesString.replaceAll("[^\\d]", ""));
+        } catch(NumberFormatException nfe) {
+            Log.e(TAG, "failed to parse likesString \""+likesString+"\" and dislikesString \""+
+            dislikesString+"\" as integers");
         } catch(Exception e) {
             // if it fails we know that the video does not offer dislikes.
-            videoInfo.like_count = "0";
-            videoInfo.dislike_count = "0";
+            e.printStackTrace();
+            videoInfo.like_count = 0;
+            videoInfo.dislike_count = 0;
         }
 
         // uploader thumbnail
@@ -317,21 +308,20 @@ public class YoutubeExtractor implements Extractor {
                 .select("img").first()
                 .attr("abs:data-thumb");
 
-        // view count
-        videoInfo.view_count = doc.select("div[class=\"watch-view-count\"]").first().text();
+        // view count TODO:  locale-specific formatting
+        String viewCountString = doc.select("meta[itemprop=interactionCount]").attr("content");
+        videoInfo.view_count = Integer.parseInt(viewCountString);
 
         // next video
         videoInfo.nextVideo = extractVideoInfoItem(doc.select("div[class=\"watch-sidebar-section\"]").first()
                 .select("li").first());
 
-        int i = 0;
         // related videos
         Vector<VideoInfoItem> relatedVideos = new Vector<>();
         for(Element li : doc.select("ul[id=\"watch-related\"]").first().children()) {
             // first check if we have a playlist. If so leave them out
             if(li.select("a[class*=\"content-link\"]").first() != null) {
                 relatedVideos.add(extractVideoInfoItem(li));
-                i++;
             }
         }
         videoInfo.relatedVideos = relatedVideos.toArray(new VideoInfoItem[relatedVideos.size()]);
@@ -377,13 +367,13 @@ public class YoutubeExtractor implements Extractor {
                         if(currentTagIsBaseUrl &&
                                 (currentMimeType.contains("audio"))) {
                             int format = -1;
-                            if(currentMimeType.equals(VideoInfo.M_WEBMA)) {
-                                format = VideoInfo.I_WEBMA;
-                            } else if(currentMimeType.equals(VideoInfo.M_M4A)) {
-                                format = VideoInfo.I_M4A;
+                            if(currentMimeType.equals(MediaFormat.WEBMA.mimeType)) {
+                                format = MediaFormat.WEBMA.id;
+                            } else if(currentMimeType.equals(MediaFormat.M4A.mimeType)) {
+                                format = MediaFormat.M4A.id;
                             }
                             audioStreams.add(new VideoInfo.AudioStream(parser.getText(),
-                                     format, currentBandwidth, currentSamplingRate));
+                                    format, currentBandwidth, currentSamplingRate));
                         }
                     case XmlPullParser.END_TAG:
                         if(tagName.equals("AdaptationSet")) {
@@ -412,6 +402,7 @@ public class YoutubeExtractor implements Extractor {
             e.printStackTrace();
         }
 
+        //todo: check NullPointerException causing
         info.title = li.select("span[class=\"title\"]").first().text();
         info.view_count = li.select("span[class*=\"view-count\"]").first().text();
         info.uploader = li.select("span[class=\"g-hovercard\"]").first().text();
@@ -431,19 +422,6 @@ public class YoutubeExtractor implements Extractor {
         return info;
     }
 
-    private String terrible_unescape_workaround_fuck(String shit) {
-        String[] splitAtEscape = shit.split("%");
-        String retval = "";
-        retval += splitAtEscape[0];
-        for(int i = 1; i < splitAtEscape.length; i++) {
-            String escNum = splitAtEscape[i].substring(0, 2);
-            char c = (char) Integer.parseInt(escNum,16);
-            retval += c;
-            retval += splitAtEscape[i].substring(2);
-        }
-        return retval;
-    }
-
     private String loadDecryptionCode(String playerUrl) {
         String playerCode = Downloader.download(playerUrl);
         String decryptionFuncName = "";
@@ -456,12 +434,13 @@ public class YoutubeExtractor implements Extractor {
         try {
             decryptionFuncName = matchGroup1("\\.sig\\|\\|([a-zA-Z0-9$]+)\\(", playerCode);
 
-            String functionPattern = "(function " + decryptionFuncName.replace("$", "\\$") + "\\([a-zA-Z0-9_]*\\)\\{.+?\\})";
+            String functionPattern = "(var "+  decryptionFuncName.replace("$", "\\$") +"=function\\([a-zA-Z0-9_]*\\)\\{.+?\\})";
             decryptionFunc = matchGroup1(functionPattern, playerCode);
+            decryptionFunc += ";";
 
             helperObjectName = matchGroup1(";([A-Za-z0-9_\\$]{2})\\...\\(", decryptionFunc);
 
-            String helperPattern = "(var " + helperObjectName.replace("$", "\\$") + "=\\{.+?\\}\\};)function";
+            String helperPattern = "(var " + helperObjectName.replace("$", "\\$") + "=\\{.+?\\}\\};)";
             helperObject = matchGroup1(helperPattern, playerCode);
 
         } catch (Exception e) {
@@ -474,13 +453,13 @@ public class YoutubeExtractor implements Extractor {
         return decryptionCode;
     }
 
-    private String decryptSignature(String encryptedSig, String decryptoinCode) {
+    private String decryptSignature(String encryptedSig, String decryptionCode) {
         Context context = Context.enter();
         context.setOptimizationLevel(-1);
         Object result = null;
         try {
             ScriptableObject scope = context.initStandardObjects();
-            context.evaluateString(scope, decryptoinCode, "decryptionCode", 1, null);
+            context.evaluateString(scope, decryptionCode, "decryptionCode", 1, null);
             Function decryptionFunc = (Function) scope.get("decrypt", scope);
             result = decryptionFunc.call(context, scope, scope, new Object[]{encryptedSig});
         } catch (Exception e) {
@@ -498,7 +477,7 @@ public class YoutubeExtractor implements Extractor {
             return mat.group(1);
         }
         else {
-            Log.e(TAG, "failed to find pattern \""+pattern+"\"");
+            Log.e(TAG, "failed to find pattern \""+pattern+"\" inside of \""+input+"\"");
             new Exception("failed to find pattern \""+pattern+"\"").printStackTrace();
             return "";
         }

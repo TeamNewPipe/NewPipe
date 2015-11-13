@@ -33,7 +33,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:adjustViewBounds="true"
-                android:src="@drawable/dummi_thumbnail"/>
+                android:src="@drawable/dummy_thumbnail"/>
 
             <TextView android:id="@+id/detailVideoTitleView"
                 android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
                 android:paddingRight="5dp"
                 android:layout_below="@id/detailVideoTitleView"
                 android:layout_alignParentLeft="true"
-                android:src="@drawable/budy" />
+                android:src="@drawable/buddy" />
 
             <TextView android:id="@+id/detailUploaderView"
                 android:layout_width="wrap_content"

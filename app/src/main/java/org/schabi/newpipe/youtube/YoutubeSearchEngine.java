@@ -49,7 +49,7 @@ public class YoutubeSearchEngine implements SearchEngine {
     private static final String TAG = YoutubeSearchEngine.class.toString();
 
     @Override
-    public Result search(String query, int page, String countryCode) {
+    public Result search(String query, int page, String languageCode) {
         //String contentCountry = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string., "");
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("https")
@@ -59,20 +59,18 @@ public class YoutubeSearchEngine implements SearchEngine {
                 .appendQueryParameter("page", Integer.toString(page))
                 .appendQueryParameter("filters", "video");
 
-        //if we've been passed a valid, non-empty country code, append it to the URL
-        if(countryCode.length() > 0) {
-            if(countryCode.length() == 2) {
-                builder.appendQueryParameter("gl", countryCode);
-                builder.appendQueryParameter("persist_gl", "1");
-                Log.i(TAG, "URI: \""+builder+"\"");
-            }
-            else {
-                Log.e(TAG, "invalid country code passed to search(): \""+countryCode+"\"");
-            }
-        }
+        String site;
         String url = builder.build().toString();
+        //if we've been passed a valid language code, append it to the URL
+        if(languageCode.length() > 0) {
+          //assert Pattern.matches("[a-z]{2}(-([A-Z]{2}|[0-9]{1,3}))?", languageCode);
+                site  = Downloader.download(url, languageCode);
+        }
+        else {
+            site = Downloader.download(url);
+        }
 
-        String site = Downloader.download(url);
+
         Document doc = Jsoup.parse(site, url);
         Result result = new Result();
         Element list = doc.select("ol[class=\"item-section\"]").first();

@@ -51,12 +51,11 @@
         android:title="@string/showNextAndSimilarTitle"
         android:defaultValue="true" />
 
-    <!-- This function is not yet available
     <ListPreference
-        android:key="@string/contentCountry"
-        android:title="@string/contentCountryTitle"
-        android:entries="@array/countryNames"
-        android:entryValues="@array/countryCodes"
-        android:defaultValue="" /> <!- default will include no country code in URL-->
-    -->
+        android:key="@string/searchLanguage"
+        android:title="@string/searchLanguageTitle"
+        android:entries="@array/languageNames"
+        android:entryValues="@array/languageCodes"
+        android:defaultValue="en" />
+    
 </PreferenceScreen>

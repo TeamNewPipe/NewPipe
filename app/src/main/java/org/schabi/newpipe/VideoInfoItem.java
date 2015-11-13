@@ -28,12 +28,13 @@ public class VideoInfoItem implements Parcelable {
     public String id = "";
     public String title = "";
     public String uploader = "";
-    public String duration = "";
     public String thumbnail_url = "";
     public Bitmap thumbnail = null;
     public String webpage_url = "";
     public String upload_date = "";
     public String view_count = "";
+
+    public String duration = "";
 
     protected VideoInfoItem(Parcel in) {
         id = in.readString();

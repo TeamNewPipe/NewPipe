@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/menu_item_play"
-        android:title="@string/play"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_play_arrow_black"/>
 
     <item android:id="@+id/menu_item_play_audio"
         android:title="@string/playAudio"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:icon="@drawable/ic_headset_black" />
+
+    <item android:id="@+id/menu_item_download"
+        app:showAsAction="ifRoom"
+        android:title="@string/download"
+        android:icon="@drawable/ic_file_download_black"/>
 
     <item android:id="@+id/menu_item_share"
         android:title="@string/share"
@@ -24,10 +25,6 @@
     <item android:id="@+id/menu_item_openInBrowser"
         app:showAsAction="never"
         android:title="@string/open_in_browser" />
-
-    <item android:id="@+id/menu_item_download"
-        app:showAsAction="never"
-        android:title="@string/download"/>
 
     <item android:id="@+id/action_settings"
         app:showAsAction="never"

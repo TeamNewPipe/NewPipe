@@ -103,7 +103,7 @@ public class VideoItemListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videoitem_list);
 
-        //-------- remove this line when multiservice support is implemented ----------
+        //------ todo: remove this line when multiservice support is implemented ------
         currentStreamingServiceId = ServiceList.getIdOfService("Youtube");
         //-----------------------------------------------------------------------------
 

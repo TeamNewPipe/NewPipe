@@ -93,10 +93,10 @@ public class VideoItemListFragment extends ListFragment {
         public void run() {
             try {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
-                String contentCountryKey = getContext().getString(R.string.contentCountry);
-                String contentCountry = sp.getString(contentCountryKey, "");
-                SearchEngine.Result result = engine.search(query, page, contentCountry);
-                Log.i(TAG, "countryCode passed:\""+contentCountry+"\"");
+                String searchLanguageKey = getContext().getString(R.string.searchLanguage);
+                String searchLanguage = sp.getString(searchLanguageKey, "en");
+                SearchEngine.Result result = engine.search(query, page, searchLanguage);
+                Log.i(TAG, "language code passed:\""+searchLanguage+"\"");
                 if(run) {
                     h.post(new ResultRunnable(result, requestId));
                 }

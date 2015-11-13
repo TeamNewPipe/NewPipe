@@ -12,7 +12,7 @@
         android:scaleType="centerCrop"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/dummi_thumbnail"/>
+        android:src="@drawable/dummy_thumbnail"/>
 
     <TextView android:id="@+id/itemVideoTitleView"
         android:layout_width="wrap_content"

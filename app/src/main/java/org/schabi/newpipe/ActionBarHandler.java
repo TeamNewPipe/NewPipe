@@ -77,7 +77,7 @@ public class ActionBarHandler {
         int defaultResolutionPos = 0;
 
         for(int i = 0; i < videoStreams.length; i++) {
-            itemArray[i] = VideoInfo.getNameById(videoStreams[i].format) + " " + videoStreams[i].resolution;
+            itemArray[i] = MediaFormat.getNameById(videoStreams[i].format) + " " + videoStreams[i].resolution;
             if(defaultResolution.equals(videoStreams[i].resolution)) {
                 defaultResolutionPos = i;
             }
@@ -98,17 +98,15 @@ public class ActionBarHandler {
                 .getString(activity.getString(R.string.defaultAudioFormatPreference), "webm");
         if(preferedFormat.equals("webm")) {
             for(VideoInfo.AudioStream s : audioStreams) {
-                if(s.format == VideoInfo.I_WEBMA) {
+                if(s.format == MediaFormat.WEBMA.id) {
                     audioStream = s;
                 }
             }
         } else if(preferedFormat.equals("m4a")){
             for(VideoInfo.AudioStream s : audioStreams) {
-                Log.d(TAG, VideoInfo.getMimeById(s.format) + " : " + Integer.toString(s.bandwidth));
-                if(s.format == VideoInfo.I_M4A &&
+                if(s.format == MediaFormat.M4A.id &&
                         (audioStream == null || audioStream.bandwidth > s.bandwidth)) {
                     audioStream = s;
-                    Log.d(TAG, "last choosen");
                 }
             }
         }
@@ -125,14 +123,7 @@ public class ActionBarHandler {
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
 
         inflater.inflate(R.menu.videoitem_detail, menu);
-        MenuItem playItem = menu.findItem(R.id.menu_item_play);
-        MenuItem shareItem = menu.findItem(R.id.menu_item_share);
         MenuItem castItem = menu.findItem(R.id.action_play_with_kodi);
-
-        MenuItemCompat.setShowAsAction(playItem, MenuItemCompat.SHOW_AS_ACTION_ALWAYS
-                | MenuItemCompat.SHOW_AS_ACTION_WITH_TEXT);
-        MenuItemCompat.setShowAsAction(shareItem, MenuItemCompat.SHOW_AS_ACTION_IF_ROOM
-                | MenuItemCompat.SHOW_AS_ACTION_WITH_TEXT);
 
         castItem.setVisible(defaultPreferences
                 .getBoolean(activity.getString(R.string.showPlayWidthKodiPreference), false));
@@ -143,9 +134,6 @@ public class ActionBarHandler {
     public boolean onItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch(id) {
-            case R.id.menu_item_play:
-                playVideo();
-                return true;
             case R.id.menu_item_share:
                 if(!videoTitle.isEmpty()) {
                     Intent intent = new Intent();
@@ -196,7 +184,7 @@ public class ActionBarHandler {
                     intent.setAction(Intent.ACTION_VIEW);
 
                     intent.setDataAndType(Uri.parse(videoStreams[selectedStream].url),
-                            VideoInfo.getMimeById(videoStreams[selectedStream].format));
+                            MediaFormat.getMimeById(videoStreams[selectedStream].format));
                     intent.putExtra(Intent.EXTRA_TITLE, videoTitle);
                     intent.putExtra("title", videoTitle);
 
@@ -235,10 +223,9 @@ public class ActionBarHandler {
     }
 
     public void downloadVideo() {
-        Log.d(TAG, "bla");
         if(!videoTitle.isEmpty()) {
-            String videoSuffix = "." + VideoInfo.getSuffixById(videoStreams[selectedStream].format);
-            String audioSuffix = "." + VideoInfo.getSuffixById(audioStream.format);
+            String videoSuffix = "." + MediaFormat.getSuffixById(videoStreams[selectedStream].format);
+            String audioSuffix = "." + MediaFormat.getSuffixById(audioStream.format);
             Bundle args = new Bundle();
             args.putString(DownloadDialog.FILE_SUFFIX_VIDEO, videoSuffix);
             args.putString(DownloadDialog.FILE_SUFFIX_AUDIO, audioSuffix);
@@ -297,7 +284,7 @@ public class ActionBarHandler {
         try {
             intent.setAction(Intent.ACTION_VIEW);
             intent.setDataAndType(Uri.parse(audioStream.url),
-                    VideoInfo.getMimeById(audioStream.format));
+                    MediaFormat.getMimeById(audioStream.format));
             intent.putExtra(Intent.EXTRA_TITLE, videoTitle);
             intent.putExtra("title", videoTitle);
             activity.startActivity(intent);      // HERE !!!
@@ -321,7 +308,7 @@ public class ActionBarHandler {
                         }
                     });
             builder.create().show();
-            Log.d(TAG, "Either no Streaming player for audio was installed, or something important crashed:");
+            Log.e(TAG, "Either no Streaming player for audio was installed, or something important crashed:");
             e.printStackTrace();
         }
     }
