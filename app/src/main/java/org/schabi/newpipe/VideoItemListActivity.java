@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -114,13 +115,13 @@ public class VideoItemListActivity extends AppCompatActivity
         Bundle arguments = getIntent().getExtras();
 
         if(arguments != null) {
-            Parcelable[] p = arguments.getParcelableArray(VIDEO_INFO_ITEMS);
+            //Parcelable[] p = arguments.getParcelableArray(VIDEO_INFO_ITEMS);
+            ArrayList<VideoInfoItem> p = arguments.getParcelableArrayList(VIDEO_INFO_ITEMS);
             if(p != null) {
                 mode = PRESENT_VIDEOS_MODE;
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-                //todo: make this more efficient
-                listFragment.present(Arrays.copyOf(p, p.length, VideoInfoItem[].class));
+                listFragment.present(p);
             }
         }
 

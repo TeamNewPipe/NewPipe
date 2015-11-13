@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -48,7 +49,7 @@ public class VideoListAdapter extends BaseAdapter {
         this.context = context;
     }
 
-    public void addVideoList(Vector<VideoInfoItem> videos) {
+    public void addVideoList(List<VideoInfoItem> videos) {
         videoList.addAll(videos);
         for(int i = 0; i < videos.size(); i++) {
             downloadedThumbnailList.add(false);
