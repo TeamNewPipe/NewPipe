@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
-    <string name="nothingFound">Ничего не наидено</string>
+    <string name="nothingFound">Ничего не найдено</string>
     <string name="viewSufix">просмотров</string>
     <string name="uploadDatePrefix">Опубликовано: </string>
-    <string name="noPlayerFound">StreamPlayer не был найден. Вы можете его установить.</string>
+    <string name="noPlayerFound">Ни одного потокового проигрывателя не было найдено. Установить?</string>
     <string name="installStreamPlayer">Установить</string>
     <string name="cancel">Отмена</string>
     <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
@@ -47,6 +47,8 @@
     </string-array>
     <string name="nextVideoTitle">Следующее видео</string>
     <string name="showNextVideoTitle">Показать \"Следующее видео\".</string>
-    <string name="urlNotSupportedText">Адрес не поддерживается.</string>
+    <string name="urlNotSupportedText">URL не поддерживается.</string>
     <string name="showSimilarVideosButtonText">Похожие видео</string>
+<string name="showNextAndSimilarTitle">Показывать следующее и предложенные видео</string>
+    <string name="searchLanguageTitle">Предпочитаемый язык контента</string>
 </resources>

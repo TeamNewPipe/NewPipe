@@ -46,4 +46,5 @@
     <string name="showNextVideoTitle">\"Volgende video\" weergeven</string>
     <string name="urlNotSupportedText">Url wordt niet ondersteund</string>
     <string name="showSimilarVideosButtonText">Vergelijkbare videos</string>
+    <string name="showNextAndSimilarTitle">Laat volgende en vergelijkbare videos zien</string>
     </resources>
