@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import java.net.URL;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Vector;
 
 
@@ -167,14 +168,12 @@ public class VideoItemListFragment extends ListFragment {
         }
     }
 
-    public void present(VideoInfoItem[] videoList) {
+    public void present(List<VideoInfoItem> videoList) {
         mode = PRESENT_VIDEOS_MODE;
         setListShown(true);
         getListView().smoothScrollToPosition(0);
 
-        // inefficient like hell i know (welcome to the world of java)
-        //todo: make this more efficient
-        updateList(new Vector<>(Arrays.asList(videoList)));
+        updateList(videoList);
     }
 
     public void search(String query) {
@@ -221,7 +220,7 @@ public class VideoItemListFragment extends ListFragment {
         }
     }
 
-    private void updateList(Vector<VideoInfoItem> list) {
+    private void updateList(List<VideoInfoItem> list) {
         try {
             videoListAdapter.addVideoList(list);
             terminateThreads();

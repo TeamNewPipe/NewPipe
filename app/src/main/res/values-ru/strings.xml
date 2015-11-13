@@ -4,7 +4,7 @@
     <string name="title_videoitem_detail">NewPipe</string>
     <string name="nothingFound">Ничего не найдено</string>
     <string name="viewSufix">просмотров</string>
-    <string name="uploadDatePrefix">"Опубликовано: "</string>
+    <string name="uploadDatePrefix">Опубликовано: </string>
     <string name="noPlayerFound">Ни одного потокового проигрывателя не было найдено. Установить?</string>
     <string name="installStreamPlayer">Установить</string>
     <string name="cancel">Отмена</string>

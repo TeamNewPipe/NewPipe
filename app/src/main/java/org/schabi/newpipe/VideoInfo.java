@@ -26,7 +26,7 @@ import java.util.Vector;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
+/**Info object for opened videos, ie the video ready to play.*/
 public class VideoInfo {
     public String id = "";
     public String title = "";

@@ -24,6 +24,7 @@ import android.os.Parcelable;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**Info object for previews of unopened videos, eg search results, related videos*/
 public class VideoInfoItem implements Parcelable {
     public String id = "";
     public String title = "";
