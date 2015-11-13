@@ -4,7 +4,7 @@
     <string name="title_videoitem_detail">NewPipe</string>
     <string name="nothingFound">Nichts gefunden</string>
     <string name="viewSufix">Aufrufe</string>
-    <string name="uploadDatePrefix">"Hochgeladen am "</string>
+    <string name="uploadDatePrefix">Hochgeladen am </string>
     <string name="noPlayerFound">Keinen Streamplayer gefunden. Vielleicht möchtest du einen installieren.</string>
     <string name="installStreamPlayer">Jetzt installieren</string>
     <string name="cancel">Abbrechen</string>
