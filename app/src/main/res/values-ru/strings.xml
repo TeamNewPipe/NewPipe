@@ -4,7 +4,7 @@
     <string name="title_videoitem_detail">NewPipe</string>
     <string name="nothingFound">Ничего не наидено</string>
     <string name="viewSufix">просмотров</string>
-    <string name="uploadDatePrefix">Опубликовано: </string>
+    <string name="uploadDatePrefix">"Опубликовано: "</string>
     <string name="noPlayerFound">StreamPlayer не был найден. Вы можете его установить.</string>
     <string name="installStreamPlayer">Установить</string>
     <string name="cancel">Отмена</string>
@@ -47,7 +47,8 @@
     </string-array>
     <string name="nextVideoTitle">Следующее видео</string>
     <string name="showNextVideoTitle">Показать \"Следующее видео\".</string>
-    <string name="urlNotSupportedText">Адрес не поддерживается.</string>
+    <string name="urlNotSupportedText">URL не поддерживается.</string>
     <string name="showSimilarVideosButtonText">Похожие видео</string>
 <string name="showNextAndSimilarTitle">Показывать следующее и предложенные видео</string>
-    </resources>
+    <string name="searchLanguageTitle">Предпочитаемый язык контента</string>
+</resources>
