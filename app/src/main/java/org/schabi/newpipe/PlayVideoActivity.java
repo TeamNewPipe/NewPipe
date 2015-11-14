@@ -52,6 +52,7 @@ public class PlayVideoActivity extends AppCompatActivity {
     public static final String STREAM_URL = "stream_url";
     public static final String VIDEO_TITLE = "video_title";
     private static final String POSITION = "position";
+    public static final String START_POSITION = "start_position";
 
     private static final long HIDING_DELAY = 3000;
     private static final long TAB_HIDING_DELAY = 100;

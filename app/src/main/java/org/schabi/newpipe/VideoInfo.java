@@ -50,6 +50,7 @@ public class VideoInfo {
     public VideoInfoItem nextVideo = null;
     public VideoInfoItem[] relatedVideos = null;
     public int videoAvailableStatus = VIDEO_AVAILABLE;
+    public int startPosition = 0;//in seconds
 
     private static final String TAG = VideoInfo.class.toString();
 

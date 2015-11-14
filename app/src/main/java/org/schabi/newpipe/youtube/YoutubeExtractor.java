@@ -169,6 +169,23 @@ public class YoutubeExtractor implements Extractor {
         Document doc = Jsoup.parse(site, siteUrl);
 
         videoInfo.id = matchGroup1("v=([0-9a-zA-Z_-]{11})", siteUrl);
+        String timeStamp = matchGroup1("((#|&)t=\\d{0,3}h?\\d{0,3}m?\\d{1,3}s)", siteUrl);
+        Log.i(TAG, "time stamp:"+timeStamp);
+        //videoInfo.startPosition
+
+        //TODO: test this!
+        if(timeStamp.length() > 0) {
+            String secondsString = matchGroup1("(\\d{1,3})s", timeStamp);
+            String minutesString = matchGroup1("(\\d{1,3})m", timeStamp);
+            String hoursString = matchGroup1("(\\d{1,3})h", timeStamp);
+
+            int seconds = (secondsString.length() > 0 ? Integer.parseInt(secondsString) : 0);
+            int minutes = (minutesString.length() > 0 ? Integer.parseInt(minutesString) : 0);
+            int hours =  (hoursString.length() > 0 ? Integer.parseInt(hoursString) : 0);
+
+            videoInfo.startPosition = seconds + (60*minutes) + (3600*hours);//don't trust BODMAS!
+            //the ordering varies internationally
+        }//else, leave videoInfo.startPosition as default 0
 
         videoInfo.age_limit = 0;
         videoInfo.webpage_url = siteUrl;
@@ -410,7 +427,7 @@ public class YoutubeExtractor implements Extractor {
 
         Element img = li.select("img").first();
         info.thumbnail_url = img.attr("abs:src");
-        // Sometimes youtube sends links to gif files witch somehow seam to not exist
+        // Sometimes youtube sends links to gif files which somehow sesm to not exist
         // anymore. Items with such gif also offer a secondary image source. So we are going
         // to use that if we caught such an item.
         if(info.thumbnail_url.contains(".gif")) {
