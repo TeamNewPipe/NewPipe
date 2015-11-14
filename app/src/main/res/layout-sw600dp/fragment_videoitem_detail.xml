@@ -65,7 +65,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Herr von Gurken" />
 
-            <View android:id="@+id/textSeperationLine"
+            <View android:id="@+id/textSeparationLine"
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray"

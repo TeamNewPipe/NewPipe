@@ -3,8 +3,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="?android:attr/textAppearanceLarge"
     tools:context=".VideoItemDetailFragment"
+    android:textIsSelectable="true"
+    style="?android:attr/textAppearanceLarge"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/videoitem_detail">
@@ -19,125 +20,131 @@
         android:id="@+id/detailMainContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textIsSelectable="true"
         android:visibility="invisible">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:layout_height="wrap_content">
 
-            <ImageView android:id="@+id/detailThumbnailView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:adjustViewBounds="true"
-                android:src="@drawable/dummy_thumbnail"/>
+            <RelativeLayout android:id="@+id/detailVideoInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView android:id="@+id/detailVideoTitleView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/detailThumbnailView"
-                android:layout_alignParentLeft="true"
-                android:paddingLeft="6dp"
-                android:paddingRight="6dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Bla blabla !!!"/>
+                <ImageView android:id="@+id/detailThumbnailView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/dummy_thumbnail"/>
 
-            <ImageView android:id="@+id/detailUploaderThumbnailView"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:paddingTop="25dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:layout_below="@id/detailVideoTitleView"
-                android:layout_alignParentLeft="true"
-                android:src="@drawable/buddy" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/detailThumbnailView"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp">
 
-            <TextView android:id="@+id/detailUploaderView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/detailUploaderThumbnailView"
-                android:layout_alignParentLeft="true"
-                android:paddingLeft="6dp"
-                android:paddingRight="6dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Herr von Gurken" />
+                    <TextView android:id="@+id/detailVideoTitleView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_video_title_land_size"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Video title placeholder"/>
 
-            <View android:id="@+id/textSeperationLine"
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"
-                android:layout_below="@id/detailUploaderView"
-                android:paddingTop="20dp"
-                android:layout_alignParentLeft="true" />
+                    <ImageView android:id="@+id/detailUploaderThumbnailView"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:paddingTop="5dp"
+                        android:layout_below="@id/detailVideoTitleView"
+                        android:layout_alignParentLeft="true"
+                        android:src="@drawable/buddy" />
 
-            <TextView android:id="@+id/detailViewCountView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/detailVideoTitleView"
-                android:layout_alignParentRight="true"
-                android:paddingTop="70dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="1.000.115 views" />
+                    <TextView android:id="@+id/detailUploaderView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/detailUploaderThumbnailView"
+                        android:layout_alignParentLeft="true"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_video_uploader_land_size"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="username" />
 
-            <TextView android:id="@+id/detailThumbsDownCountView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/detailViewCountView"
-                android:layout_alignParentRight="true"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="5.000" />
+                    <TextView android:id="@+id/detailViewCountView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="6dp"
+                        android:layout_below="@id/detailVideoTitleView"
+                        android:layout_alignParentRight="true"
+                        android:textSize="@dimen/text_video_views_land_size"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="81,754 views" />
 
-            <ImageView android:id="@+id/detailThumbsDownImgView"
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_below="@id/detailViewCountView"
-                android:layout_toLeftOf="@id/detailThumbsDownCountView"
-                android:src="@drawable/thumbs_down" />
+                    <TextView android:id="@+id/detailThumbsDownCountView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/detailViewCountView"
+                        android:layout_alignParentRight="true"
+                        android:textSize="@dimen/text_video_like_land_size"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="1,000" />
 
-            <TextView android:id="@+id/detailThumbsUpCountView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/detailViewCountView"
-                android:layout_toLeftOf="@id/detailThumbsDownImgView"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="111.111" />
+                    <ImageView android:id="@+id/detailThumbsDownImgView"
+                        android:layout_width="40dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/detailViewCountView"
+                        android:layout_toLeftOf="@id/detailThumbsDownCountView"
+                        android:paddingRight="10dp"
+                        android:src="@drawable/thumbs_down" />
 
-            <ImageView android:id="@+id/detailThumbsUpImgView"
-                android:layout_width="40dp"
-                android:layout_height="20dp"
-                android:layout_below="@id/detailViewCountView"
-                android:layout_toLeftOf="@id/detailThumbsUpCountView"
-                android:src="@drawable/thumbs_up" />
+                    <TextView android:id="@+id/detailThumbsUpCountView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/detailViewCountView"
+                        android:layout_toLeftOf="@id/detailThumbsDownImgView"
+                        android:paddingRight="10dp"
+                        android:textSize="@dimen/text_video_like_land_size"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="200" />
 
-            <TextView android:id="@+id/detailUploadDateView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/detailUploaderView"
-                android:layout_alignParentLeft="true"
-                android:paddingLeft="6dp"
-                android:paddingRight="6dp"
-                android:paddingTop="20dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Uploaded at: 45.64.1285" />
+                    <ImageView android:id="@+id/detailThumbsUpImgView"
+                        android:layout_width="40dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@id/detailViewCountView"
+                        android:paddingRight="10dp"
+                        android:layout_toLeftOf="@id/detailThumbsUpCountView"
+                        android:src="@drawable/thumbs_up" />
 
-            <TextView android:id="@+id/detailDescriptionView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/detailUploadDateView"
-                android:layout_alignParentLeft="true"
-                android:paddingLeft="6dp"
-                android:paddingRight="6dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmodtempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. "
-                />
+                    <TextView android:id="@+id/detailUploadDateView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/detailUploaderView"
+                        android:layout_alignParentLeft="true"
+                        android:textSize="@dimen/text_video_upload_date_land_size"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Uploaded at Jan 01 1975" />
 
+                    <TextView android:id="@+id/detailDescriptionView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/detailUploadDateView"
+                        android:layout_alignParentLeft="true"
+                        android:textSize="@dimen/text_video_description_land_size"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmodtempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. "
+                        />
+
+                </RelativeLayout>
+            </RelativeLayout>
             <RelativeLayout android:id="@+id/detailNextVideoRootLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/detailDescriptionView" >
+                android:layout_below="@id/detailVideoInfo" >
 
                 <TextView android:id="@+id/detailNextVideoTitle"
                     android:layout_width="wrap_content"
@@ -187,7 +194,6 @@
                     android:layout_below="@id/detailNextVidButtonAndContantLayout"
                     android:layout_alignParentLeft="true" />
             </RelativeLayout>
-
             <Button android:id="@+id/detailShowSimilarButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -195,12 +201,6 @@
                 android:layout_marginRight="6dp"
                 android:layout_below="@id/detailNextVideoRootLayout"
                 android:text="@string/showSimilarVideosButtonText"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:layout_below="@id/detailShowSimilarButton"/>
-
         </RelativeLayout>
     </ScrollView>
 
