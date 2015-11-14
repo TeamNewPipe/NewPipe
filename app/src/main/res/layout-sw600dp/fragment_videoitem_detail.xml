@@ -159,19 +159,10 @@
                     android:text="@string/nextVideoTitle"
                     />
 
-                <View android:id="@+id/detailNextVideoSeperationLine"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginRight="6dp"
-                    android:background="@android:color/darker_gray"
-                    android:layout_below="@id/detailNextVideoTitle"
-                    android:layout_alignParentLeft="true" />
-
                 <RelativeLayout android:id="@+id/detailNextVidButtonAndContantLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/detailNextVideoSeperationLine">
+                    android:layout_below="@id/detailNextVideoTitle">
                     <FrameLayout
                         android:id="@+id/detailNextVideoFrame"
                         android:layout_width="match_parent"
@@ -185,14 +176,6 @@
                         android:background="?attr/selectableItemBackground"/>
                 </RelativeLayout>
 
-                <View android:id="@+id/detailNextVideoSeperationLineEnd"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginRight="6dp"
-                    android:background="@android:color/darker_gray"
-                    android:layout_below="@id/detailNextVidButtonAndContantLayout"
-                    android:layout_alignParentLeft="true" />
             </RelativeLayout>
             <Button android:id="@+id/detailShowSimilarButton"
                 android:layout_width="match_parent"

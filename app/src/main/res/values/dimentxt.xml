@@ -12,6 +12,7 @@
     <dimen name="text_video_upload_date_size">14sp</dimen>
     <dimen name="text_video_description_size">14sp</dimen>
 
+
     <dimen name="text_video_title_sw600dp_size">20sp</dimen>
     <dimen name="text_video_views_sw600dp_size">16sp</dimen>
     <dimen name="text_video_like_sw600dp_size">14sp</dimen>
