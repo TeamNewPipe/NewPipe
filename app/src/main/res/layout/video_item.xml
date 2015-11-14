@@ -9,7 +9,7 @@
     <ImageView android:id="@+id/itemThumbnailView"
         android:layout_width="142dp"
         android:layout_height="80dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="6dp"
         android:scaleType="centerCrop"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -27,7 +27,7 @@
 
     <TextView android:id="@+id/itemUploaderView"
         android:layout_width="wrap_content"
-        android:layout_height="15dp"
+        android:layout_height="18dp"
         android:layout_toRightOf="@id/itemThumbnailView"
         android:layout_below="@id/itemVideoTitleView"
         android:textAppearance="?android:attr/textAppearanceSmall"
