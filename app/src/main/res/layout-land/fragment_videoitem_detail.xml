@@ -53,6 +53,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:textStyle="bold"
+                        android:paddingBottom="5dp"
                         android:textSize="@dimen/text_video_title_land_size"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Video title placeholder"/>
@@ -60,7 +61,6 @@
                     <ImageView android:id="@+id/detailUploaderThumbnailView"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:paddingTop="5dp"
                         android:layout_below="@id/detailVideoTitleView"
                         android:layout_alignParentLeft="true"
                         android:src="@drawable/buddy" />
@@ -78,7 +78,7 @@
                     <TextView android:id="@+id/detailViewCountView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="6dp"
+                        android:paddingBottom="5dp"
                         android:layout_below="@id/detailVideoTitleView"
                         android:layout_alignParentRight="true"
                         android:textSize="@dimen/text_video_views_land_size"
