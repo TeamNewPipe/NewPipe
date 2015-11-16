@@ -4,7 +4,7 @@
     <string name="title_videoitem_detail">NewPipe</string>
     <string name="nothingFound">No se ha encontrado nada</string>
     <string name="viewSufix">visitas</string>
-    <string name="uploadDatePrefix">Subido desde: </string>
+    <string name="uploadDatePrefix">Subido el </string>
     <string name="noPlayerFound">No se ha encontrado ningún reproductor de vídeo. Quizás quieras instalar alguno.</string>
     <string name="installStreamPlayer">Instalarlo</string>
     <string name="cancel">Cancelar</string>
@@ -43,7 +43,7 @@
     <string name="downloadDialogTitle">Descargar</string>
     <string name="nextVideoTitle">Siguiente vídeo</string>
     <string name="showNextVideoTitle">Mostrar la opción \"Siguiente vídeo\".</string>
-    <string name="urlNotSupportedText">Url no soportada.</string>
+    <string name="urlNotSupportedText">URL no soportada.</string>
     <string name="showSimilarVideosButtonText">Vídeos similares</string>
     <string name="contentCountryTitle">País del contenido del vídeo</string>
 </resources>

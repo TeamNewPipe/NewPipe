@@ -4,8 +4,8 @@
     <string name="title_videoitem_detail">NewPipe</string>
     <string name="nothingFound">Geen resultaten</string>
     <string name="viewSufix">keer bekeken</string>
-    <string name="uploadDatePrefix">Geüpload op: </string>
-    <string name="noPlayerFound">Geen speler met streaming ondersteuning gevonden. Misschien wil je er een installeren</string>
+    <string name="uploadDatePrefix">Geüpload op </string>
+    <string name="noPlayerFound">Geen speler met streaming ondersteuning gevonden. Misschien wil je er een installeren.</string>
     <string name="installStreamPlayer">Installeer speler</string>
     <string name="cancel">Annuleer</string>
     <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
@@ -36,7 +36,7 @@
     <string name="showPlayWithKodiTitle">Toon \"Speel af met Kodi\" optie</string>
     <string name="showPlayWithKodiSummary">Toont een optie om een video op een Kodi media center af te spelen.</string>
 <string name="contentCountryTitle">Video inhoud land</string>
-<string name="leftPlayButtonTitle">Afspeel knop aan de linker kant weergeven</string>
+<string name="leftPlayButtonTitle">Afspeel knop aan de linker kant weergeven.</string>
     <string name="playAudio">Audio</string>
     <string name="defaultAudioFormatTitle">Standaard audio formaat</string>
     <string name="webMAudioDescription">Webam - open formaat</string>
@@ -44,7 +44,7 @@
     <string name="downloadDialogTitle">Download</string>
     <string name="nextVideoTitle">Volgende video</string>
     <string name="showNextVideoTitle">\"Volgende video\" weergeven</string>
-    <string name="urlNotSupportedText">Url wordt niet ondersteund</string>
+    <string name="urlNotSupportedText">URL wordt niet ondersteund.</string>
     <string name="showSimilarVideosButtonText">Vergelijkbare videos</string>
     <string name="showNextAndSimilarTitle">Laat volgende en vergelijkbare videos zien</string>
     </resources>

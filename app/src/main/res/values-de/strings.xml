@@ -4,7 +4,7 @@
     <string name="title_videoitem_detail">NewPipe</string>
     <string name="nothingFound">Nichts gefunden</string>
     <string name="viewSufix">Aufrufe</string>
-    <string name="uploadDatePrefix">Hochgeladen am: </string>
+    <string name="uploadDatePrefix">Hochgeladen am </string>
     <string name="noPlayerFound">Keinen Streamplayer gefunden. Vielleicht möchtest du einen installieren.</string>
     <string name="installStreamPlayer">Jetzt installieren</string>
     <string name="cancel">Abbrechen</string>
@@ -46,7 +46,7 @@
         <item>Audio</item>
     </string-array>
     <string name="nextVideoTitle">Nächstes Video</string>
-    <string name="showNextAndSimilarTitle">Zeige nächstes und änliche Videos.</string>
-    <string name="urlNotSupportedText">Url wird nicht unterstützt.</string>
+    <string name="showNextAndSimilarTitle">Zeige nächstes und änliche Videos</string>
+    <string name="urlNotSupportedText">URL wird nicht unterstützt.</string>
     <string name="showSimilarVideosButtonText">Ähnliche Videos</string>
 </resources>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="autoPlayThroughIntentSummary">Démarrer automatiquement la vidéo si elle a été appellée à partir d\'une autre application.</string>
@@ -16,10 +16,10 @@
     <string name="installeKore">Installer Kore</string>
     <string name="koreNotFound">L\'application Kore est introuvable. Kore est nécessaire afin de lire des vidéos dans Kodi media center.</string>
     <string name="noPlayerFound">Aucun lecteur de streaming détecté. Vous devriez en installer un.</string>
-    <string name="nothingFound">Aucun résultat.</string>
+    <string name="nothingFound">Aucun résultat</string>
     <string name="open_in_browser">Ouvrir dans le navigateur</string>
     <string name="play">Lire</string>
-    <string name="autoPlayThroughIntentTitle">Lecture automatique via Intent.</string>
+    <string name="autoPlayThroughIntentTitle">Lecture automatique via Intent</string>
     <string name="playWithKodiTitle">Lire avec Kodi</string>
     <string name="screenRotation">rotation</string>
     <string name="search">Chercher</string>
@@ -32,7 +32,7 @@
     <string name="showPlayWithKodiTitle">Afficher l\'option \"Lire avec Kodi\"</string>
     <string name="title_activity_settings">Paramètres</string>
     <string name="title_videoitem_detail">NewPipe</string>
-    <string name="uploadDatePrefix">Envoyé le:</string>
+    <string name="uploadDatePrefix">Mise en ligne le </string>
     <string name="useExternalPlayerTitle">Utiliser un lecteur externe</string>
     <string name="viewSufix">vues</string>
 </resources>
