@@ -4,7 +4,7 @@
     <string name="title_videoitem_detail">NewPipe</string>
     <string name="nothingFound">Geen resultaten</string>
     <string name="viewSufix">keer bekeken</string>
-    <string name="uploadDatePrefix">"Geüpload op "</string>
+    <string name="uploadDatePrefix">Geüpload op </string>
     <string name="noPlayerFound">Geen speler met streaming ondersteuning gevonden. Misschien wil je er een installeren.</string>
     <string name="installStreamPlayer">Installeer speler</string>
     <string name="cancel">Annuleer</string>

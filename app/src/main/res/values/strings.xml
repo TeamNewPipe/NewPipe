@@ -4,7 +4,7 @@
     <string name="title_videoitem_detail">NewPipe</string>
     <string name="nothingFound">Nothing found</string>
     <string name="viewSufix">views</string>
-    <string name="uploadDatePrefix">"Uploaded on "</string>
+    <string name="uploadDatePrefix">Uploaded on </string>
     <string name="noPlayerFound">No stream player found. You may want to install one.</string>
     <string name="installStreamPlayer">Install</string>
     <string name="cancel">Cancel</string>

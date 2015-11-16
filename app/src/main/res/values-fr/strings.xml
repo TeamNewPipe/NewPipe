@@ -32,7 +32,7 @@
     <string name="showPlayWithKodiTitle">Afficher l\'option \"Lire avec Kodi\"</string>
     <string name="title_activity_settings">Paramètres</string>
     <string name="title_videoitem_detail">NewPipe</string>
-    <string name="uploadDatePrefix">"Mise en ligne le "</string>
+    <string name="uploadDatePrefix">Mise en ligne le </string>
     <string name="useExternalPlayerTitle">Utiliser un lecteur externe</string>
     <string name="viewSufix">vues</string>
 </resources>
