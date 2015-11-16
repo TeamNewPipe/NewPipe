@@ -4,7 +4,7 @@
     <string name="title_videoitem_detail">Јутјуб цев</string>
     <string name="nothingFound">Ништа није нађено</string>
     <string name="viewSufix">приказа</string>
-    <string name="uploadDatePrefix">"Отпремљено "</string>
+    <string name="uploadDatePrefix">"Отпремљен "</string>
     <string name="noPlayerFound">Нема плејера токова. Можда желите да га инсталирате.</string>
     <string name="installStreamPlayer">Инсталирај</string>
     <string name="cancel">Одустани</string>
