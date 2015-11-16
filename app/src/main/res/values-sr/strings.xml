@@ -4,7 +4,7 @@
     <string name="title_videoitem_detail">Јутјуб цев</string>
     <string name="nothingFound">Ништа није нађено</string>
     <string name="viewSufix">приказа</string>
-    <string name="uploadDatePrefix">Отпремљено: </string>
+    <string name="uploadDatePrefix">"Отпремљено "</string>
     <string name="noPlayerFound">Нема плејера токова. Можда желите да га инсталирате.</string>
     <string name="installStreamPlayer">Инсталирај</string>
     <string name="cancel">Одустани</string>
@@ -48,4 +48,7 @@
 <string name="nextVideoTitle">Следећи видео</string>
     <string name="showNextVideoTitle">Приказ ставке „Следећи видео“.</string>
     <string name="urlNotSupportedText">УРЛ није подржан.</string>
+<string name="showNextAndSimilarTitle">Прикажи следећи и слични видео</string>
+    <string name="showSimilarVideosButtonText">Слични видео</string>
+    <string name="searchLanguageTitle">Пожељни језик садржаја</string>
 </resources>
