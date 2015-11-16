@@ -15,9 +15,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
+
+import org.schabi.newpipe.services.SearchEngine;
+import org.schabi.newpipe.services.StreamingService;
 
 
 /**
@@ -119,9 +121,9 @@ public class VideoItemListFragment extends ListFragment {
         Handler h = new Handler();
         private volatile boolean run = true;
         private int requestId;
-        public LoadThumbsRunnable(Vector<VideoInfoItem> videoList,
+        public LoadThumbsRunnable(Vector<VideoPreviewInfo> videoList,
                                   Vector<Boolean> downloadedList, int requestId) {
-            for(VideoInfoItem item : videoList) {
+            for(VideoPreviewInfo item : videoList) {
                 thumbnailUrlList.add(item.thumbnail_url);
             }
             this.downloadedList = downloadedList;
@@ -168,7 +170,7 @@ public class VideoItemListFragment extends ListFragment {
         }
     }
 
-    public void present(List<VideoInfoItem> videoList) {
+    public void present(List<VideoPreviewInfo> videoList) {
         mode = PRESENT_VIDEOS_MODE;
         setListShown(true);
         getListView().smoothScrollToPosition(0);
@@ -220,7 +222,7 @@ public class VideoItemListFragment extends ListFragment {
         }
     }
 
-    private void updateList(List<VideoInfoItem> list) {
+    private void updateList(List<VideoPreviewInfo> list) {
         try {
             videoListAdapter.addVideoList(list);
             terminateThreads();

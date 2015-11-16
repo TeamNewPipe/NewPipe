@@ -89,6 +89,8 @@ public class PlayVideoActivity extends AppCompatActivity {
             mediaController = new MediaController(this);
         }
 
+        position = intent.getIntExtra(START_POSITION, 0)*1000;//convert from seconds to milliseconds
+
         videoView = (VideoView) findViewById(R.id.video_view);
         progressBar = (ProgressBar) findViewById(R.id.play_video_progress_bar);
         try {
@@ -147,22 +149,12 @@ public class PlayVideoActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-    }
-
-    @Override
     public boolean onCreatePanelMenu(int featured, Menu menu) {
         super.onCreatePanelMenu(featured, menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.video_player, menu);
 
         return true;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 
     @Override

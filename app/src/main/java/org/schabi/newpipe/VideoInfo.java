@@ -1,10 +1,6 @@
 package org.schabi.newpipe;
 
 import android.graphics.Bitmap;
-import android.util.Log;
-
-import java.util.Date;
-import java.util.Vector;
 
 /**
  * Created by Christian Schabesberger on 26.08.15.
@@ -27,16 +23,7 @@ import java.util.Vector;
  */
 
 /**Info object for opened videos, ie the video ready to play.*/
-public class VideoInfo {
-    public String id = "";
-    public String title = "";
-    public String uploader = "";
-    public String thumbnail_url = "";
-    public Bitmap thumbnail = null;
-    public String webpage_url = "";
-    public String upload_date = "";
-    public long view_count = 0;
-
+public class VideoInfo extends AbstractVideoInfo {
     public String uploader_thumbnail_url = "";
     public Bitmap uploader_thumbnail = null;
     public String description = "";
@@ -47,10 +34,10 @@ public class VideoInfo {
     public String average_rating = "";
     public VideoStream[] videoStreams = null;
     public AudioStream[] audioStreams = null;
-    public VideoInfoItem nextVideo = null;
-    public VideoInfoItem[] relatedVideos = null;
+    public VideoPreviewInfo nextVideo = null;
+    public VideoPreviewInfo[] relatedVideos = null;
     public int videoAvailableStatus = VIDEO_AVAILABLE;
-    public int startPosition = 0;//in seconds
+    //public int startPosition = 0;//in seconds. some metadata is not passed using a VideoInfo object!
 
     private static final String TAG = VideoInfo.class.toString();
 

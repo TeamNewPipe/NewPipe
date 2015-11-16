@@ -35,7 +35,7 @@ public class VideoInfoItemViewCreator {
         this.inflater = inflater;
     }
 
-    public View getViewByVideoInfoItem(View convertView, ViewGroup parent, VideoInfoItem info) {
+    public View getViewByVideoInfoItem(View convertView, ViewGroup parent, VideoPreviewInfo info) {
         ViewHolder holder;
         if(convertView == null) {
             convertView = inflater.inflate(R.layout.video_item, parent, false);
@@ -62,7 +62,7 @@ public class VideoInfoItemViewCreator {
             holder.itemUploadDateView.setText(info.upload_date);
         } else {
             //tweak if necessary: This is a hack to prevent having white space in the layout :P
-            holder.itemUploadDateView.setText(info.view_count);
+            holder.itemUploadDateView.setText(""+info.view_count);
         }
 
         return convertView;

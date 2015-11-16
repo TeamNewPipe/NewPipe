@@ -37,6 +37,10 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Vector;
 
+import org.schabi.newpipe.services.Extractor;
+import org.schabi.newpipe.services.ServiceList;
+import org.schabi.newpipe.services.StreamingService;
+
 
 /**
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
@@ -394,10 +398,12 @@ public class VideoItemDetailFragment extends Fragment {
         }
     }
 
+    /**Returns the java.util.Locale object which corresponds to the locale set in NewPipe's preferences.
+     * Currently not affected by the device's locale.*/
     public Locale getPreferredLocale() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
         String languageKey = getContext().getString(R.string.searchLanguage);
-        String languageCode = "en";//i know the following lines defaults languageCode to "en", but java is picky about uninitialised values
+        String languageCode = "en";//i know the following line defaults languageCode to "en", but java is picky about uninitialised values
         languageCode = sp.getString(languageKey, "en");
 
         if(languageCode.length() == 2) {

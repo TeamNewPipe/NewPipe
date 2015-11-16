@@ -1,4 +1,4 @@
-package org.schabi.newpipe.youtube;
+package org.schabi.newpipe.services.youtube;
 
 import android.util.Log;
 import android.util.Xml;
@@ -12,14 +12,13 @@ import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
 import org.schabi.newpipe.Downloader;
-import org.schabi.newpipe.Extractor;
+import org.schabi.newpipe.services.Extractor;
 import org.schabi.newpipe.MediaFormat;
 import org.schabi.newpipe.VideoInfo;
-import org.schabi.newpipe.VideoInfoItem;
+import org.schabi.newpipe.VideoPreviewInfo;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.StringReader;
-import java.net.URI;
 import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
@@ -161,6 +160,29 @@ public class YoutubeExtractor implements Extractor {
         return "https://www.youtube.com/watch?v=" + videoId;
     }
 
+    public int getStartPosition(String siteUrl){
+        String timeStamp = matchGroup1("((#|&)t=\\d{0,3}h?\\d{0,3}m?\\d{1,3}s?)", siteUrl);
+        Log.i(TAG, "time stamp:"+timeStamp);
+        //videoInfo.startPosition
+
+        //TODO: test this!
+        if(timeStamp.length() > 0) {
+            String secondsString = matchGroup1("(\\d{1,3})s", timeStamp);
+            if(secondsString.length() == 0)//try again with unspecified units as seconds
+                secondsString = matchGroup1("t=(\\d{1,3})", timeStamp);
+            String minutesString = matchGroup1("(\\d{1,3})m", timeStamp);
+            String hoursString = matchGroup1("(\\d{1,3})h", timeStamp);
+
+            int seconds = (secondsString.length() > 0 ? Integer.parseInt(secondsString) : 0);
+            int minutes = (minutesString.length() > 0 ? Integer.parseInt(minutesString) : 0);
+            int hours =   (hoursString.length()   > 0 ? Integer.parseInt(hoursString)   : 0);
+
+            return seconds + (60*minutes) + (3600*hours);//don't trust BODMAS!
+            //the ordering varies internationally
+        }//else, return default 0
+        return 0;
+    }
+
     @Override
     public VideoInfo getVideoInfo(String siteUrl) {
         String site = Downloader.download(siteUrl);
@@ -169,23 +191,6 @@ public class YoutubeExtractor implements Extractor {
         Document doc = Jsoup.parse(site, siteUrl);
 
         videoInfo.id = matchGroup1("v=([0-9a-zA-Z_-]{11})", siteUrl);
-        String timeStamp = matchGroup1("((#|&)t=\\d{0,3}h?\\d{0,3}m?\\d{1,3}s)", siteUrl);
-        Log.i(TAG, "time stamp:"+timeStamp);
-        //videoInfo.startPosition
-
-        //TODO: test this!
-        if(timeStamp.length() > 0) {
-            String secondsString = matchGroup1("(\\d{1,3})s", timeStamp);
-            String minutesString = matchGroup1("(\\d{1,3})m", timeStamp);
-            String hoursString = matchGroup1("(\\d{1,3})h", timeStamp);
-
-            int seconds = (secondsString.length() > 0 ? Integer.parseInt(secondsString) : 0);
-            int minutes = (minutesString.length() > 0 ? Integer.parseInt(minutesString) : 0);
-            int hours =  (hoursString.length() > 0 ? Integer.parseInt(hoursString) : 0);
-
-            videoInfo.startPosition = seconds + (60*minutes) + (3600*hours);//don't trust BODMAS!
-            //the ordering varies internationally
-        }//else, leave videoInfo.startPosition as default 0
 
         videoInfo.age_limit = 0;
         videoInfo.webpage_url = siteUrl;
@@ -334,14 +339,14 @@ public class YoutubeExtractor implements Extractor {
                 .select("li").first());
 
         // related videos
-        Vector<VideoInfoItem> relatedVideos = new Vector<>();
+        Vector<VideoPreviewInfo> relatedVideos = new Vector<>();
         for(Element li : doc.select("ul[id=\"watch-related\"]").first().children()) {
             // first check if we have a playlist. If so leave them out
             if(li.select("a[class*=\"content-link\"]").first() != null) {
                 relatedVideos.add(extractVideoInfoItem(li));
             }
         }
-        videoInfo.relatedVideos = relatedVideos.toArray(new VideoInfoItem[relatedVideos.size()]);
+        videoInfo.relatedVideos = relatedVideos.toArray(new VideoPreviewInfo[relatedVideos.size()]);
         return videoInfo;
     }
 
@@ -409,8 +414,8 @@ public class YoutubeExtractor implements Extractor {
         return audioStreams.toArray(new VideoInfo.AudioStream[audioStreams.size()]);
     }
 
-    private VideoInfoItem extractVideoInfoItem(Element li) {
-        VideoInfoItem info = new VideoInfoItem();
+    private VideoPreviewInfo extractVideoInfoItem(Element li) {
+        VideoPreviewInfo info = new VideoPreviewInfo();
         info.webpage_url = li.select("a[class*=\"content-link\"]").first()
                 .attr("abs:href");
         try {
@@ -421,13 +426,13 @@ public class YoutubeExtractor implements Extractor {
 
         //todo: check NullPointerException causing
         info.title = li.select("span[class=\"title\"]").first().text();
-        info.view_count = li.select("span[class*=\"view-count\"]").first().text();
+        info.view_count = Long.parseLong(li.select("span[class*=\"view-count\"]").first().text());
         info.uploader = li.select("span[class=\"g-hovercard\"]").first().text();
         info.duration = li.select("span[class=\"video-time\"]").first().text();
 
         Element img = li.select("img").first();
         info.thumbnail_url = img.attr("abs:src");
-        // Sometimes youtube sends links to gif files which somehow sesm to not exist
+        // Sometimes youtube sends links to gif files which somehow seem to not exist
         // anymore. Items with such gif also offer a secondary image source. So we are going
         // to use that if we caught such an item.
         if(info.thumbnail_url.contains(".gif")) {

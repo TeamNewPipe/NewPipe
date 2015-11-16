@@ -7,9 +7,12 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import org.schabi.newpipe.services.Extractor;
+import org.schabi.newpipe.services.ServiceList;
+import org.schabi.newpipe.services.StreamingService;
 
 
 /**
@@ -81,7 +84,7 @@ public class VideoItemDetailActivity extends AppCompatActivity {
                             .show();
                 }
                 arguments.putString(VideoItemDetailFragment.VIDEO_URL,
-                        extractor.getVideoUrl(extractor.getVideoId(videoUrl)));
+                        extractor.getVideoUrl(extractor.getVideoId(videoUrl)));//cleans URL
                 arguments.putBoolean(VideoItemDetailFragment.AUTO_PLAY,
                         PreferenceManager.getDefaultSharedPreferences(this)
                                 .getBoolean(getString(R.string.autoPlayThroughIntent), false));

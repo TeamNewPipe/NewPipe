@@ -1,13 +1,10 @@
-package org.schabi.newpipe;
-
-import java.util.ArrayList;
-import java.util.Vector;
+package org.schabi.newpipe.services;
 
 /**
  * Created by Christian Schabesberger on 10.08.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * SearchEngine.java is part of NewPipe.
+ * Extractor.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,17 +20,11 @@ import java.util.Vector;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public interface SearchEngine {
+import org.schabi.newpipe.VideoInfo;
 
-
-    class Result {
-        public String errorMessage = "";
-        public String suggestion = "";
-        public Vector<VideoInfoItem> resultList = new Vector<>();
-    }
-
-    ArrayList<String> suggestionList(String query);
-
-    //Result search(String query, int page);
-    Result search(String query, int page, String contentCountry);
+/**Scrapes information from a video streaming service (eg, YouTube). To implement*/
+public interface Extractor {
+    VideoInfo getVideoInfo(String siteUrl);
+    String getVideoUrl(String videoId);
+    String getVideoId(String videoUrl);
 }

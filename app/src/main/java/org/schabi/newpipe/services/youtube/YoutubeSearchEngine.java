@@ -1,4 +1,4 @@
-package org.schabi.newpipe.youtube;
+package org.schabi.newpipe.services.youtube;
 
 import android.net.Uri;
 import android.util.Log;
@@ -7,8 +7,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.schabi.newpipe.Downloader;
-import org.schabi.newpipe.SearchEngine;
-import org.schabi.newpipe.VideoInfoItem;
+import org.schabi.newpipe.services.SearchEngine;
+import org.schabi.newpipe.VideoPreviewInfo;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -101,7 +101,7 @@ public class YoutubeSearchEngine implements SearchEngine {
 
                 // video item type
             } else if(!((el = item.select("div[class*=\"yt-lockup-video\"").first()) == null)) {
-                VideoInfoItem resultItem = new VideoInfoItem();
+                VideoPreviewInfo resultItem = new VideoPreviewInfo();
                 Element dl = el.select("h3").first().select("a").first();
                 resultItem.webpage_url = dl.attr("abs:href");
                 try {
