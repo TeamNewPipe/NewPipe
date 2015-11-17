@@ -25,7 +25,7 @@ public interface StreamingService {
         public String name = "";
     }
     ServiceInfo getServiceInfo();
-    Extractor getExtractorInstance();
+    Extractor getExtractorInstance(String url);
     SearchEngine getSearchEngineInstance();
 
     /**When a VIEW_ACTION is caught this function will test if the url delivered within the calling

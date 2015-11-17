@@ -90,16 +90,18 @@ public class VideoItemDetailFragment extends Fragment {
     private class ExtractorRunnable implements Runnable {
         private Handler h = new Handler();
         private Extractor extractor;
+        private StreamingService service;
         private String videoUrl;
 
-        public ExtractorRunnable(String videoUrl, Extractor extractor, VideoItemDetailFragment f) {
-            this.extractor = extractor;
+        public ExtractorRunnable(String videoUrl, StreamingService service, VideoItemDetailFragment f) {
+            this.service = service;
             this.videoUrl = videoUrl;
         }
         @Override
         public void run() {
             try {
-                VideoInfo videoInfo = extractor.getVideoInfo(videoUrl);
+                this.extractor = service.getExtractorInstance(videoUrl);
+                VideoInfo videoInfo = extractor.getVideoInfo();
                 h.post(new VideoResultReturnedRunnable(videoInfo));
                 if (videoInfo.videoAvailableStatus == VideoInfo.VIDEO_AVAILABLE) {
                     h.post(new SetThumbnailRunnable(
@@ -239,7 +241,7 @@ public class VideoItemDetailFragment extends Fragment {
 
                     //this is horribly convoluted
                     //TODO: find a better way to convert YYYY-MM-DD to a locale-specific date
-                    //suggestions welcome
+                    //suggestions are welcome
                     int year  = Integer.parseInt(info.upload_date.substring(0, 4));
                     int month = Integer.parseInt(info.upload_date.substring(5, 7));
                     int date  = Integer.parseInt(info.upload_date.substring(8, 10));
@@ -255,6 +257,7 @@ public class VideoItemDetailFragment extends Fragment {
                     descriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
                     actionBarHandler.setVideoInfo(info.webpage_url, info.title);
+                    actionBarHandler.setStartPosition(info.startPosition);
 
                     // parse streams
                     Vector<VideoInfo.VideoStream> streamsToUse = new Vector<>();
@@ -357,7 +360,7 @@ public class VideoItemDetailFragment extends Fragment {
                 StreamingService streamingService = ServiceList.getService(
                         getArguments().getInt(STREAMING_SERVICE));
                 extractorThread = new Thread(new ExtractorRunnable(
-                        getArguments().getString(VIDEO_URL), streamingService.getExtractorInstance(), this));
+                        getArguments().getString(VIDEO_URL), streamingService, this));
 
                 autoPlayEnabled = getArguments().getBoolean(AUTO_PLAY);
                 extractorThread.start();

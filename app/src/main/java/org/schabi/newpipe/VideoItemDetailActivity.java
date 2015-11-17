@@ -64,27 +64,25 @@ public class VideoItemDetailActivity extends AppCompatActivity {
             // this means the video was called though another app
             if (getIntent().getData() != null) {
                 videoUrl = getIntent().getData().toString();
-                Log.i(TAG, "video URL passed:\"" + videoUrl + "\"");
+                //Log.i(TAG, "video URL passed:\"" + videoUrl + "\"");
                 StreamingService[] serviceList = ServiceList.getServices();
                 Extractor extractor = null;
                 for (int i = 0; i < serviceList.length; i++) {
                     if (serviceList[i].acceptUrl(videoUrl)) {
                         arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, i);
-                        try {
-                            currentStreamingService = i;
-                            extractor = ServiceList.getService(i).getExtractorInstance();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        currentStreamingService = i;
+                        //extractor = ServiceList.getService(i).getExtractorInstance();
                         break;
                     }
                 }
-                if(extractor == null) {
+                if(currentStreamingService == -1) {
                     Toast.makeText(this, R.string.urlNotSupportedText, Toast.LENGTH_LONG)
                             .show();
                 }
-                arguments.putString(VideoItemDetailFragment.VIDEO_URL,
-                        extractor.getVideoUrl(extractor.getVideoId(videoUrl)));//cleans URL
+                //arguments.putString(VideoItemDetailFragment.VIDEO_URL,
+                //        extractor.getVideoUrl(extractor.getVideoId(videoUrl)));//cleans URL
+                arguments.putString(VideoItemDetailFragment.VIDEO_URL, videoUrl);
+
                 arguments.putBoolean(VideoItemDetailFragment.AUTO_PLAY,
                         PreferenceManager.getDefaultSharedPreferences(this)
                                 .getBoolean(getString(R.string.autoPlayThroughIntent), false));

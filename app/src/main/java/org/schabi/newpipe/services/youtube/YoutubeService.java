@@ -33,8 +33,13 @@ public class YoutubeService implements StreamingService {
         return serviceInfo;
     }
     @Override
-    public Extractor getExtractorInstance() {
-        return new YoutubeExtractor();
+    public Extractor getExtractorInstance(String url) {
+        if(acceptUrl(url)) {
+            return new YoutubeExtractor(url);
+        }
+        else {
+            throw new IllegalArgumentException("supplied String is not a valid Youtube URL");
+        }
     }
     @Override
     public SearchEngine getSearchEngineInstance() {

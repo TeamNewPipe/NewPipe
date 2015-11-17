@@ -57,7 +57,7 @@ public class VideoInfoItemViewCreator {
         }
         holder.itemVideoTitleView.setText(info.title);
         holder.itemUploaderView.setText(info.uploader);
-        holder.itemDurationView.setText(info.duration);
+        holder.itemDurationView.setText(""+info.duration);
         if(!info.upload_date.isEmpty()) {
             holder.itemUploadDateView.setText(info.upload_date);
         } else {
