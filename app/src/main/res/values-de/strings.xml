@@ -23,10 +23,10 @@
     <string name="screenRotation">Rotation</string>
     <string name="title_activity_settings">Einstellungen</string>
     <string name="useExternalPlayerTitle">Externen Player benutzen</string>
-    <string name="downloadLocation">Download Verzeichnis</string>
+    <string name="downloadLocation">Downloadverzeichnis</string>
     <string name="downloadLocationSummary">Verzeichnis in dem heruntergeladene Videos gespeichert werden.</string>
     <string name="downloadLocationDialogTitle">Download Verzeichnis eingeben</string>
-    <string name="autoPlayThroughIntentTitle">Automatisches abspielen durch Intent</string>
+    <string name="autoPlayThroughIntentTitle">Automatisches Abspielen durch Intent</string>
     <string name="autoPlayThroughIntentSummary">Startet ein Video automatisch wenn es von einer anderen App aufgerufen wurde.</string>
     <string name="defaultResolutionPreferenceTitle">Standard Auflösung</string>
     <string name="playWithKodiTitle">Mit Kodi abspielen</string>
@@ -46,7 +46,7 @@
         <item>Audio</item>
     </string-array>
     <string name="nextVideoTitle">Nächstes Video</string>
-    <string name="showNextAndSimilarTitle">Zeige nächstes und änliche Videos</string>
+    <string name="showNextAndSimilarTitle">Zeige nächstes und ähnliche Videos</string>
     <string name="urlNotSupportedText">URL wird nicht unterstützt.</string>
     <string name="showSimilarVideosButtonText">Ähnliche Videos</string>
 </resources>
