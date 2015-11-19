@@ -494,7 +494,7 @@ public class YoutubeExtractor extends Extractor {
      * which is a subset of the fields in a full VideoInfo.*/
     private VideoPreviewInfo extractVideoPreviewInfo(Element li) {
         VideoPreviewInfo info = new VideoPreviewInfo();
-        info.webpage_url = li.select("a[class*=\"content-link\"]").first()
+        info.webpage_url = li.select("a.content-link").first()
                 .attr("abs:href");
         try {
             info.id = matchGroup1("v=([0-9a-zA-Z-]*)", info.webpage_url);
@@ -503,12 +503,21 @@ public class YoutubeExtractor extends Extractor {
         }
 
         //todo: check NullPointerException causing
-        info.title = li.select("span[class=\"title\"]").first().text();
-        info.view_count = Long.parseLong(li.select("span[class*=\"view-count\"]")
-                .first().text().replaceAll("[^\\d]", ""));
-        info.uploader = li.select("span[class=\"g-hovercard\"]").first().text();
+        info.title = li.select("span.title").first().text();
+        //this page causes the NullPointerException, after finding it by searching for "tjvg":
+        //https://www.youtube.com/watch?v=Uqg0aEhLFAg
+        String views = li.select("span.view-count").first().text();
+        Log.i(TAG, "title:"+info.title);
+        Log.i(TAG, "view count:"+views);
+        try {
+            info.view_count = Long.parseLong(li.select("span.view-count")
+                    .first().text().replaceAll("[^\\d]", ""));
+        } catch (NullPointerException e) {//related videos sometimes have no view count
+            info.view_count = 0;
+        }
+        info.uploader = li.select("span.g-hovercard").first().text();
 
-        info.duration = li.select("span[class=\"video-time\"]").first().text();
+        info.duration = li.select("span.video-time").first().text();
 
         Element img = li.select("img").first();
         info.thumbnail_url = img.attr("abs:src");

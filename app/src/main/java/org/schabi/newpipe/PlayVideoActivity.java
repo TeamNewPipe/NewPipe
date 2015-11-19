@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -86,7 +87,30 @@ public class PlayVideoActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         if(mediaController == null) {
-            mediaController = new MediaController(this);
+            //prevents back button hiding media controller controls (after showing them)
+            //instead of exiting video
+            //see http://stackoverflow.com/questions/6051825
+            //also solves https://github.com/theScrabi/NewPipe/issues/99
+            mediaController = new MediaController(this) {
+                @Override
+                public boolean dispatchKeyEvent(KeyEvent event) {
+                    int keyCode = event.getKeyCode();
+                    final boolean uniqueDown = event.getRepeatCount() == 0
+                            && event.getAction() == KeyEvent.ACTION_DOWN;
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        if (uniqueDown)
+                        {
+                            if (isShowing()) {
+                                finish();
+                            } else {
+                                hide();
+                            }
+                        }
+                        return true;
+                    }
+                    return super.dispatchKeyEvent(event);
+                }
+            };
         }
 
         position = intent.getIntExtra(START_POSITION, 0)*1000;//convert from seconds to milliseconds
