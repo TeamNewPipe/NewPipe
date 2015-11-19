@@ -1,2 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='utf-8'?>
+<resources><string name="app_name">ニューパイプ</string>
+    <string name="title_videoitem_detail">ニューパイプ</string>
+    <string name="nothingFound">何も見つかりません</string>
+    <string name="viewSufix">表示</string>
+    <string name="uploadDatePrefix">"アップロード: "</string>
+    <string name="noPlayerFound">StreamPlayer が見つかりませんでした。インストールが必要になるかもしれません.</string>
+    <string name="installStreamPlayer">インストール</string>
+    <string name="cancel">キャンセル</string>
+    <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
+    <string name="open_in_browser">ブラウザーで開く</string>
+    <string name="share">共有</string>
+    <string name="play">再生</string>
+    <string name="download">ダウンロード</string>
+    <string name="search">検索</string>
+    <string name="settings">設定</string>
+    <string name="sendWith">…送信</string>
+    <string name="didYouMean">"この意味ですか: "</string>
+    <string name="searchPage">"検索ページ: "</string>
+    <string name="shareDialogTitle">…共有:</string>
+    <string name="chooseBrowser">ブラウザーを選択:</string>
+    <string name="screenRotation">回転</string>
+    <string name="title_activity_settings">設定</string>
+    <string name="useExternalPlayerTitle">外部プレーヤーを使用する</string>
+    <string name="downloadLocation">ダウンロード場所</string>
+    <string name="downloadLocationSummary">ダウンロードしたビデオを保存する場所のパス.</string>
+    <string name="downloadLocationDialogTitle">ダウンロードのパスを入力してください</string>
+    <string name="autoPlayThroughIntentTitle">インテントで自動再生</string>
+    <string name="autoPlayThroughIntentSummary">別のアプリケーションから呼び出されたとき、自動的にビデオを開始します.</string>
+    <string name="defaultResolutionPreferenceTitle">デフォルトの解像度</string>
+    <string name="playWithKodiTitle">Kodi で再生</string>
+    <string name="koreNotFound">Kore アプリが見つかりません。 Kodi メディアセンターでビデオを再生するには Kore が必要です。</string>
+    <string name="installeKore">Kore をインストール</string>
+    <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
+    <string name="showPlayWithKodiTitle">\"Kodi で再生\" オプションを表示</string>
+    <string name="showPlayWithKodiSummary">Kodi メディアセンター経由でビデオを再生するためのオプションを表示します.</string>
+    <string name="leftPlayButtonTitle">左側に再生ボタンを表示.</string>
+    <string name="playAudio">オーディオ</string>
+    <string name="defaultAudioFormatTitle">デフォルトのオーディオ フォーマット</string>
+    <string name="webMAudioDescription">WebM - フリーフォーマット</string>
+    <string name="m4aAudioDescription">m4a - より良い品質</string>
+    <string name="downloadDialogTitle">ダウンロード</string>
+    <string name="nextVideoTitle">次のビデオ</string>
+    <string name="showNextAndSimilarTitle">次の同様のビデオを表示します</string>
+    <string name="urlNotSupportedText">URL はサポートされていません。</string>
+    <string name="showSimilarVideosButtonText">同様のビデオ</string>
+    <string name="searchLanguageTitle">望ましいコンテンツ言語</string>
+</resources>
