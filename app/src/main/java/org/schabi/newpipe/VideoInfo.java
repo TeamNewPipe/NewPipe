@@ -2,6 +2,8 @@ package org.schabi.newpipe;
 
 import android.graphics.Bitmap;
 
+import java.util.List;
+
 /**
  * Created by Christian Schabesberger on 26.08.15.
  *
@@ -41,7 +43,7 @@ public class VideoInfo extends AbstractVideoInfo {
     public int dislike_count = -1;
     public String average_rating = "";
     public VideoPreviewInfo nextVideo = null;
-    public VideoPreviewInfo[] relatedVideos = null;
+    public List<VideoPreviewInfo> relatedVideos = null;
     public int startPosition = -1;//in seconds. some metadata is not passed using a VideoInfo object!
 
     public static final int VIDEO_AVAILABLE = 0x00;

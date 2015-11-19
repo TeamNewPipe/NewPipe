@@ -32,6 +32,7 @@ import android.view.MenuItem;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -394,7 +395,12 @@ public class VideoItemDetailFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(activity, VideoItemListActivity.class);
-                    intent.putExtra(VideoItemListActivity.VIDEO_INFO_ITEMS, currentVideoInfo.relatedVideos);
+                    //todo: find more elegant way to do this - converting from List to ArrayList sucks
+                    ArrayList<VideoPreviewInfo> toParcel = new ArrayList<>(currentVideoInfo.relatedVideos);
+                    //why oh why does the parcelable array put method have to be so damn specific
+                    // about the class of its argument?
+                    //why not a List<? extends Parcelable>?
+                    intent.putParcelableArrayListExtra(VideoItemListActivity.VIDEO_INFO_ITEMS, toParcel);
                     activity.startActivity(intent);
                 }
             });

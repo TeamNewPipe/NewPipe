@@ -421,7 +421,9 @@ public class YoutubeExtractor extends Extractor {
                 relatedVideos.add(extractVideoPreviewInfo(li));
             }
         }
-        videoInfo.relatedVideos = relatedVideos.toArray(new VideoPreviewInfo[relatedVideos.size()]);
+        //todo: replace conversion
+        videoInfo.relatedVideos = relatedVideos;
+        //videoInfo.relatedVideos = relatedVideos.toArray(new VideoPreviewInfo[relatedVideos.size()]);
         return videoInfo;
     }
 
