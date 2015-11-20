@@ -32,8 +32,9 @@ import android.view.MenuItem;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Vector;
@@ -240,15 +241,14 @@ public class VideoItemDetailFragment extends Fragment {
                     thumbsUpView.setText(nf.format(info.like_count));
                     thumbsDownView.setText(nf.format(info.dislike_count));
 
-                    //this is horribly convoluted
-                    //TODO: find a better way to convert YYYY-MM-DD to a locale-specific date
-                    //suggestions are welcome
-                    int year  = Integer.parseInt(info.upload_date.substring(0, 4));
-                    int month = Integer.parseInt(info.upload_date.substring(5, 7));
-                    int date  = Integer.parseInt(info.upload_date.substring(8, 10));
-                    Calendar cal = Calendar.getInstance();
-                    cal.set(year, month, date);
-                    Date datum = cal.getTime();
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                    Date datum = null;
+                    try {
+                        datum = formatter.parse(info.upload_date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
                     DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
 
                     String localisedDate = df.format(datum);
