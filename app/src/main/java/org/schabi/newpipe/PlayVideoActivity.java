@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -52,6 +53,7 @@ public class PlayVideoActivity extends AppCompatActivity {
     public static final String STREAM_URL = "stream_url";
     public static final String VIDEO_TITLE = "video_title";
     private static final String POSITION = "position";
+    public static final String START_POSITION = "start_position";
 
     private static final long HIDING_DELAY = 3000;
     private static final long TAB_HIDING_DELAY = 100;
@@ -85,8 +87,33 @@ public class PlayVideoActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         if(mediaController == null) {
-            mediaController = new MediaController(this);
+            //prevents back button hiding media controller controls (after showing them)
+            //instead of exiting video
+            //see http://stackoverflow.com/questions/6051825
+            //also solves https://github.com/theScrabi/NewPipe/issues/99
+            mediaController = new MediaController(this) {
+                @Override
+                public boolean dispatchKeyEvent(KeyEvent event) {
+                    int keyCode = event.getKeyCode();
+                    final boolean uniqueDown = event.getRepeatCount() == 0
+                            && event.getAction() == KeyEvent.ACTION_DOWN;
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        if (uniqueDown)
+                        {
+                            if (isShowing()) {
+                                finish();
+                            } else {
+                                hide();
+                            }
+                        }
+                        return true;
+                    }
+                    return super.dispatchKeyEvent(event);
+                }
+            };
         }
+
+        position = intent.getIntExtra(START_POSITION, 0)*1000;//convert from seconds to milliseconds
 
         videoView = (VideoView) findViewById(R.id.video_view);
         progressBar = (ProgressBar) findViewById(R.id.play_video_progress_bar);
@@ -146,22 +173,12 @@ public class PlayVideoActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-    }
-
-    @Override
     public boolean onCreatePanelMenu(int featured, Menu menu) {
         super.onCreatePanelMenu(featured, menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.video_player, menu);
 
         return true;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 
     @Override

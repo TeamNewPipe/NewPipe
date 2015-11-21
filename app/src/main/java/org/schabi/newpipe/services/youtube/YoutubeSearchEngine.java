@@ -1,4 +1,4 @@
-package org.schabi.newpipe.youtube;
+package org.schabi.newpipe.services.youtube;
 
 import android.net.Uri;
 import android.util.Log;
@@ -7,8 +7,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.schabi.newpipe.Downloader;
-import org.schabi.newpipe.SearchEngine;
-import org.schabi.newpipe.VideoInfoItem;
+import org.schabi.newpipe.services.SearchEngine;
+import org.schabi.newpipe.VideoPreviewInfo;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -62,7 +62,7 @@ public class YoutubeSearchEngine implements SearchEngine {
         String site;
         String url = builder.build().toString();
         //if we've been passed a valid language code, append it to the URL
-        if(languageCode.length() > 0) {
+        if(!languageCode.isEmpty()) {
           //assert Pattern.matches("[a-z]{2}(-([A-Z]{2}|[0-9]{1,3}))?", languageCode);
                 site  = Downloader.download(url, languageCode);
         }
@@ -101,7 +101,8 @@ public class YoutubeSearchEngine implements SearchEngine {
 
                 // video item type
             } else if(!((el = item.select("div[class*=\"yt-lockup-video\"").first()) == null)) {
-                VideoInfoItem resultItem = new VideoInfoItem();
+                //todo: de-duplicate this with YoutubeExtractor.getVideoPreviewInfo()
+                VideoPreviewInfo resultItem = new VideoPreviewInfo();
                 Element dl = el.select("h3").first().select("a").first();
                 resultItem.webpage_url = dl.attr("abs:href");
                 try {
@@ -113,8 +114,9 @@ public class YoutubeSearchEngine implements SearchEngine {
                     e.printStackTrace();
                 }
                 resultItem.title = dl.text();
-                resultItem.duration = item.select("span[class=\"video-time\"]").first()
-                        .text();
+
+                resultItem.duration = item.select("span[class=\"video-time\"]").first().text();
+
                 resultItem.uploader = item.select("div[class=\"yt-lockup-byline\"]").first()
                         .select("a").first()
                         .text();
@@ -132,7 +134,7 @@ public class YoutubeSearchEngine implements SearchEngine {
                 }
                 result.resultList.add(resultItem);
             } else {
-                Log.e(TAG, "GREAT FUCKING ERROR");
+                Log.e(TAG, "unexpected element found:\""+el+"\"");
             }
         }
         return result;

@@ -1,10 +1,10 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.services;
 
 /**
- * Created by Christian Schabesberger on 10.08.15.
+ * Created by Christian Schabesberger on 23.08.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * Extractor.java is part of NewPipe.
+ * StreamingService.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,9 +20,16 @@ package org.schabi.newpipe;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+public interface StreamingService {
+    class ServiceInfo {
+        public String name = "";
+    }
+    ServiceInfo getServiceInfo();
+    Extractor getExtractorInstance(String url);
+    SearchEngine getSearchEngineInstance();
 
-public interface Extractor {
-    VideoInfo getVideoInfo(String siteUrl);
-    String getVideoUrl(String videoId);
-    String getVideoId(String videoUrl);
+    /**When a VIEW_ACTION is caught this function will test if the url delivered within the calling
+    Intent was meant to be watched with this Service.
+    Return false if this service shall not allow to be callean through ACTIONs.*/
+    boolean acceptUrl(String videoUrl);
 }

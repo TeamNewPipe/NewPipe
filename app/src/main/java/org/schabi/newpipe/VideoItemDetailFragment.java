@@ -32,10 +32,16 @@ import android.view.MenuItem;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.NumberFormat;
-import java.util.Calendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Vector;
+
+import org.schabi.newpipe.services.Extractor;
+import org.schabi.newpipe.services.ServiceList;
+import org.schabi.newpipe.services.StreamingService;
 
 
 /**
@@ -86,16 +92,18 @@ public class VideoItemDetailFragment extends Fragment {
     private class ExtractorRunnable implements Runnable {
         private Handler h = new Handler();
         private Extractor extractor;
+        private StreamingService service;
         private String videoUrl;
 
-        public ExtractorRunnable(String videoUrl, Extractor extractor, VideoItemDetailFragment f) {
-            this.extractor = extractor;
+        public ExtractorRunnable(String videoUrl, StreamingService service, VideoItemDetailFragment f) {
+            this.service = service;
             this.videoUrl = videoUrl;
         }
         @Override
         public void run() {
             try {
-                VideoInfo videoInfo = extractor.getVideoInfo(videoUrl);
+                this.extractor = service.getExtractorInstance(videoUrl);
+                VideoInfo videoInfo = extractor.getVideoInfo();
                 h.post(new VideoResultReturnedRunnable(videoInfo));
                 if (videoInfo.videoAvailableStatus == VideoInfo.VIDEO_AVAILABLE) {
                     h.post(new SetThumbnailRunnable(
@@ -233,15 +241,14 @@ public class VideoItemDetailFragment extends Fragment {
                     thumbsUpView.setText(nf.format(info.like_count));
                     thumbsDownView.setText(nf.format(info.dislike_count));
 
-                    //this is horribly convoluted
-                    //TODO: find a better way to convert YYYY-MM-DD to a locale-specific date
-                    //suggestions welcome
-                    int year  = Integer.parseInt(info.upload_date.substring(0, 4));
-                    int month = Integer.parseInt(info.upload_date.substring(5, 7));
-                    int date  = Integer.parseInt(info.upload_date.substring(8, 10));
-                    Calendar cal = Calendar.getInstance();
-                    cal.set(year, month, date);
-                    Date datum = cal.getTime();
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                    Date datum = null;
+                    try {
+                        datum = formatter.parse(info.upload_date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
                     DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
 
                     String localisedDate = df.format(datum);
@@ -251,6 +258,7 @@ public class VideoItemDetailFragment extends Fragment {
                     descriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
                     actionBarHandler.setVideoInfo(info.webpage_url, info.title);
+                    actionBarHandler.setStartPosition(info.startPosition);
 
                     // parse streams
                     Vector<VideoInfo.VideoStream> streamsToUse = new Vector<>();
@@ -353,7 +361,7 @@ public class VideoItemDetailFragment extends Fragment {
                 StreamingService streamingService = ServiceList.getService(
                         getArguments().getInt(STREAMING_SERVICE));
                 extractorThread = new Thread(new ExtractorRunnable(
-                        getArguments().getString(VIDEO_URL), streamingService.getExtractorInstance(), this));
+                        getArguments().getString(VIDEO_URL), streamingService, this));
 
                 autoPlayEnabled = getArguments().getBoolean(AUTO_PLAY);
                 extractorThread.start();
@@ -387,17 +395,24 @@ public class VideoItemDetailFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(activity, VideoItemListActivity.class);
-                    intent.putExtra(VideoItemListActivity.VIDEO_INFO_ITEMS, currentVideoInfo.relatedVideos);
+                    //todo: find more elegant way to do this - converting from List to ArrayList sucks
+                    ArrayList<VideoPreviewInfo> toParcel = new ArrayList<>(currentVideoInfo.relatedVideos);
+                    //why oh why does the parcelable array put method have to be so damn specific
+                    // about the class of its argument?
+                    //why not a List<? extends Parcelable>?
+                    intent.putParcelableArrayListExtra(VideoItemListActivity.VIDEO_INFO_ITEMS, toParcel);
                     activity.startActivity(intent);
                 }
             });
         }
     }
 
+    /**Returns the java.util.Locale object which corresponds to the locale set in NewPipe's preferences.
+     * Currently not affected by the device's locale.*/
     public Locale getPreferredLocale() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
         String languageKey = getContext().getString(R.string.searchLanguage);
-        String languageCode = "en";//i know the following lines defaults languageCode to "en", but java is picky about uninitialised values
+        String languageCode = "en";//i know the following line defaults languageCode to "en", but java is picky about uninitialised values
         languageCode = sp.getString(languageKey, "en");
 
         if(languageCode.length() == 2) {
