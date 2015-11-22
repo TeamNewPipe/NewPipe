@@ -1,10 +1,15 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.services;
+
+import org.schabi.newpipe.VideoPreviewInfo;
+
+import java.util.ArrayList;
+import java.util.Vector;
 
 /**
- * Created by Christian Schabesberger on 23.08.15.
+ * Created by Christian Schabesberger on 10.08.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * StreamingService.java is part of NewPipe.
+ * SearchEngine.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,16 +25,17 @@ package org.schabi.newpipe;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public interface StreamingService {
-    class ServiceInfo {
-        public String name = "";
-    }
-    ServiceInfo getServiceInfo();
-    Extractor getExtractorInstance();
-    SearchEngine getSearchEngineInstance();
+public interface SearchEngine {
 
-    /**When a VIEW_ACTION is caught this function will test if the url delivered within the calling
-    Intent was meant to be watched with this Service.
-    Return false if this service shall not allow to be callean through ACTIONs.*/
-    boolean acceptUrl(String videoUrl);
+
+    class Result {
+        public String errorMessage = "";
+        public String suggestion = "";
+        public Vector<VideoPreviewInfo> resultList = new Vector<>();
+    }
+
+    ArrayList<String> suggestionList(String query);
+
+    //Result search(String query, int page);
+    Result search(String query, int page, String contentCountry);
 }

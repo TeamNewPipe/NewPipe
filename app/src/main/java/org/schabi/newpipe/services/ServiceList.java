@@ -1,8 +1,8 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.services;
 
 import android.util.Log;
 
-import org.schabi.newpipe.youtube.YoutubeService;
+import org.schabi.newpipe.services.youtube.YoutubeService;
 
 /**
  * Created by Christian Schabesberger on 23.08.15.
@@ -24,6 +24,8 @@ import org.schabi.newpipe.youtube.YoutubeService;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**Provides access to the video streaming services supported by NewPipe.
+ * Currently only Youtube until the API becomes more stable.*/
 public class ServiceList {
     private static final String TAG = ServiceList.class.toString();
     private static final StreamingService[] services = {

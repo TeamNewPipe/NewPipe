@@ -21,6 +21,8 @@ package org.schabi.newpipe;
  * You should have received a copy of the GNU General Public License
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+/**Static data about various media formats support by Newpipe, eg mime type, extension*/
 public enum MediaFormat {
     //           id      name    suffix  mime type
     MPEG_4      (0x0,   "MPEG-4", "mp4", "video/mp4"),
@@ -41,6 +43,10 @@ public enum MediaFormat {
         this.mimeType = mimeType;
     }
 
+    /**Return the friendly name of the media format with the supplied id
+     * @param ident the id of the media format. Currently an arbitrary, NewPipe-specific number.
+     * @return the friendly name of the MediaFormat associated with this ids,
+     * or an empty String if none match it.*/
     public static String getNameById(int ident) {
         for (MediaFormat vf : MediaFormat.values()) {
             if(vf.id == ident) return vf.name;
@@ -48,6 +54,10 @@ public enum MediaFormat {
         return "";
     }
 
+    /**Return the file extension of the media format with the supplied id
+     * @param ident the id of the media format. Currently an arbitrary, NewPipe-specific number.
+     * @return the file extension of the MediaFormat associated with this ids,
+     * or an empty String if none match it.*/
     public static String getSuffixById(int ident) {
         for (MediaFormat vf : MediaFormat.values()) {
             if(vf.id == ident) return vf.suffix;
@@ -55,6 +65,10 @@ public enum MediaFormat {
         return "";
     }
 
+    /**Return the MIME type of the media format with the supplied id
+     * @param ident the id of the media format. Currently an arbitrary, NewPipe-specific number.
+     * @return the MIME type of the MediaFormat associated with this ids,
+     * or an empty String if none match it.*/
     public static String getMimeById(int ident) {
         for (MediaFormat vf : MediaFormat.values()) {
             if(vf.id == ident) return vf.mimeType;
