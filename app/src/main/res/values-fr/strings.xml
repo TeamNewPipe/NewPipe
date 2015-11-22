@@ -35,4 +35,14 @@
     <string name="uploadDatePrefix">Mise en ligne le </string>
     <string name="useExternalPlayerTitle">Utiliser un lecteur externe</string>
     <string name="viewSufix">vues</string>
-</resources>
+<string name="leftPlayButtonTitle">Afficher le bouton de lecture sur la gauche.</string>
+    <string name="playAudio">Audio</string>
+    <string name="defaultAudioFormatTitle">Format audio par défaut</string>
+    <string name="webMAudioDescription">WebM- format libre</string>
+    <string name="m4aAudioDescription">m4a - meilleur qualité</string>
+    <string name="downloadDialogTitle">Télécharger</string>
+    <string name="nextVideoTitle">Vidéo suivante</string>
+    <string name="showNextAndSimilarTitle">Afficher les vidéos suivantes et similaires</string>
+    <string name="urlNotSupportedText">URL non supportée.</string>
+    <string name="showSimilarVideosButtonText">Vidéos similaires</string>
+    </resources>
