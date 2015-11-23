@@ -8,7 +8,7 @@ import android.os.Parcelable;
  * Created by Christian Schabesberger on 26.08.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * VideoInfoItem.java is part of NewPipe.
+ * VideoPreviewInfo.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,19 +25,9 @@ import android.os.Parcelable;
  */
 
 /**Info object for previews of unopened videos, eg search results, related videos*/
-public class VideoInfoItem implements Parcelable {
-    public String id = "";
-    public String title = "";
-    public String uploader = "";
-    public String thumbnail_url = "";
-    public Bitmap thumbnail = null;
-    public String webpage_url = "";
-    public String upload_date = "";
-    public String view_count = "";
-
+public class VideoPreviewInfo extends AbstractVideoInfo implements Parcelable {
     public String duration = "";
-
-    protected VideoInfoItem(Parcel in) {
+    protected VideoPreviewInfo(Parcel in) {
         id = in.readString();
         title = in.readString();
         uploader = in.readString();
@@ -46,10 +36,10 @@ public class VideoInfoItem implements Parcelable {
         thumbnail = (Bitmap) in.readValue(Bitmap.class.getClassLoader());
         webpage_url = in.readString();
         upload_date = in.readString();
-        view_count = in.readString();
+        view_count = in.readLong();
     }
 
-    public VideoInfoItem() {
+    public VideoPreviewInfo() {
 
     }
 
@@ -68,19 +58,19 @@ public class VideoInfoItem implements Parcelable {
         dest.writeValue(thumbnail);
         dest.writeString(webpage_url);
         dest.writeString(upload_date);
-        dest.writeString(view_count);
+        dest.writeLong(view_count);
     }
 
     @SuppressWarnings("unused")
-    public static final Parcelable.Creator<VideoInfoItem> CREATOR = new Parcelable.Creator<VideoInfoItem>() {
+    public static final Parcelable.Creator<VideoPreviewInfo> CREATOR = new Parcelable.Creator<VideoPreviewInfo>() {
         @Override
-        public VideoInfoItem createFromParcel(Parcel in) {
-            return new VideoInfoItem(in);
+        public VideoPreviewInfo createFromParcel(Parcel in) {
+            return new VideoPreviewInfo(in);
         }
 
         @Override
-        public VideoInfoItem[] newArray(int size) {
-            return new VideoInfoItem[size];
+        public VideoPreviewInfo[] newArray(int size) {
+            return new VideoPreviewInfo[size];
         }
     };
 }

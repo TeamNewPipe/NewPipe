@@ -37,7 +37,7 @@ public class VideoListAdapter extends BaseAdapter {
 
     private Context context;
     private VideoInfoItemViewCreator viewCreator;
-    private Vector<VideoInfoItem> videoList = new Vector<>();
+    private Vector<VideoPreviewInfo> videoList = new Vector<>();
     private Vector<Boolean> downloadedThumbnailList = new Vector<>();
     VideoItemListFragment videoListFragment;
     ListView listView;
@@ -49,7 +49,7 @@ public class VideoListAdapter extends BaseAdapter {
         this.context = context;
     }
 
-    public void addVideoList(List<VideoInfoItem> videos) {
+    public void addVideoList(List<VideoPreviewInfo> videos) {
         videoList.addAll(videos);
         for(int i = 0; i < videos.size(); i++) {
             downloadedThumbnailList.add(false);
@@ -63,7 +63,7 @@ public class VideoListAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public Vector<VideoInfoItem> getVideoList() {
+    public Vector<VideoPreviewInfo> getVideoList() {
         return videoList;
     }
 

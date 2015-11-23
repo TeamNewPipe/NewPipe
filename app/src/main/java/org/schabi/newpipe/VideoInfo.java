@@ -1,10 +1,8 @@
 package org.schabi.newpipe;
 
 import android.graphics.Bitmap;
-import android.util.Log;
 
-import java.util.Date;
-import java.util.Vector;
+import java.util.List;
 
 /**
  * Created by Christian Schabesberger on 26.08.15.
@@ -27,53 +25,77 @@ import java.util.Vector;
  */
 
 /**Info object for opened videos, ie the video ready to play.*/
-public class VideoInfo {
-    public String id = "";
-    public String title = "";
-    public String uploader = "";
-    public String thumbnail_url = "";
-    public Bitmap thumbnail = null;
-    public String webpage_url = "";
-    public String upload_date = "";
-    public long view_count = 0;
+public class VideoInfo extends AbstractVideoInfo {
+    private static final String TAG = VideoInfo.class.toString();
 
     public String uploader_thumbnail_url = "";
     public Bitmap uploader_thumbnail = null;
     public String description = "";
-    public int duration = -1;
-    public int age_limit = 0;
-    public int like_count = 0;
-    public int dislike_count = 0;
-    public String average_rating = "";
     public VideoStream[] videoStreams = null;
     public AudioStream[] audioStreams = null;
-    public VideoInfoItem nextVideo = null;
-    public VideoInfoItem[] relatedVideos = null;
     public int videoAvailableStatus = VIDEO_AVAILABLE;
+    public int duration = -1;
 
-    private static final String TAG = VideoInfo.class.toString();
+    /*YouTube-specific fields
+    todo: move these to a subclass*/
+    public int age_limit = 0;
+    public int like_count = -1;
+    public int dislike_count = -1;
+    public String average_rating = "";
+    public VideoPreviewInfo nextVideo = null;
+    public List<VideoPreviewInfo> relatedVideos = null;
+    public int startPosition = -1;//in seconds. some metadata is not passed using a VideoInfo object!
 
     public static final int VIDEO_AVAILABLE = 0x00;
     public static final int VIDEO_UNAVAILABLE = 0x01;
     public static final int VIDEO_UNAVAILABLE_GEMA = 0x02;//German DRM organisation
 
-    public static class VideoStream {
-        public VideoStream(String url, int format, String res) {
-            this.url = url; this.format = format; resolution = res;
+
+    public VideoInfo() {}
+
+
+    /**Creates a new VideoInfo object from an existing AbstractVideoInfo.
+     * All the shared properties are copied to the new VideoInfo.*/
+    public VideoInfo(AbstractVideoInfo avi) {
+        this.id = avi.id;
+        this.title = avi.title;
+        this.uploader = avi.uploader;
+        this.thumbnail_url = avi.thumbnail_url;
+        this.thumbnail = avi.thumbnail;
+        this.webpage_url = avi.webpage_url;
+        this.upload_date = avi.upload_date;
+        this.upload_date = avi.upload_date;
+        this.view_count = avi.view_count;
+
+        //todo: better than this
+        if(avi instanceof VideoPreviewInfo) {//shitty String to convert code
+            String dur = ((VideoPreviewInfo)avi).duration;
+            int minutes = Integer.parseInt(dur.substring(0, dur.indexOf(":")));
+            int seconds = Integer.parseInt(dur.substring(dur.indexOf(":")+1, dur.length()));
+            this.duration = (minutes*60)+seconds;
         }
+
+    }
+
+    public static class VideoStream {
         public String url = "";     //url of the stream
         public int format = -1;
         public String resolution = "";
+
+        public VideoStream(String url, int format, String res) {
+            this.url = url; this.format = format; resolution = res;
+        }
     }
 
     public static class AudioStream {
-        public AudioStream(String url, int format, int bandwidth, int samplingRate) {
-            this.url = url; this.format = format;
-            this.bandwidth = bandwidth; this.samplingRate = samplingRate;
-        }
         public String url = "";
         public int format = -1;
         public int bandwidth = -1;
         public int samplingRate = -1;
+
+        public AudioStream(String url, int format, int bandwidth, int samplingRate) {
+            this.url = url; this.format = format;
+            this.bandwidth = bandwidth; this.samplingRate = samplingRate;
+        }
     }
 }

@@ -48,6 +48,7 @@ public class ActionBarHandler {
     private String videoTitle = "";
 
     SharedPreferences defaultPreferences = null;
+    private int startPosition;
 
     class FormatItemSelectListener implements ActionBar.OnNavigationListener {
         @Override
@@ -216,10 +217,16 @@ public class ActionBarHandler {
                 intent.putExtra(PlayVideoActivity.VIDEO_TITLE, videoTitle);
                 intent.putExtra(PlayVideoActivity.STREAM_URL, videoStreams[selectedStream].url);
                 intent.putExtra(PlayVideoActivity.VIDEO_URL, websiteUrl);
-                activity.startActivity(intent);
+                intent.putExtra(PlayVideoActivity.START_POSITION, startPosition);
+                activity.startActivity(intent);     //also HERE !!!
             }
         }
         // --------------------------------------------
+    }
+
+    public void setStartPosition(int startPositionSeconds)
+    {
+        this.startPosition = startPositionSeconds;
     }
 
     public void downloadVideo() {
