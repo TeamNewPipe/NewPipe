@@ -71,6 +71,9 @@
             android:parentActivityName=".VideoItemDetailActivity"
             >
         </activity>
+        <service android:name=".BackgroundPlayer"
+            android:exported="false" >
+        </service>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" >

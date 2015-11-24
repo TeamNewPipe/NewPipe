@@ -287,13 +287,26 @@ public class ActionBarHandler {
     }
 
     public void playAudio() {
-        Intent intent = new Intent();
+        boolean b = true;//todo: replace with preference
+        Intent intent;
+        if (b)//internal (background) music player: explicit intent
+        {
+            intent = new Intent(activity, BackgroundPlayer.class);
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setDataAndType(Uri.parse(audioStream.url),
+                    MediaFormat.getMimeById(audioStream.format));
+            intent.putExtra(Intent.EXTRA_TITLE, videoTitle);
+            intent.putExtra("title", videoTitle);
+            activity.startService(intent);
+        }
+        /*Intent intent = new Intent();
         try {
             intent.setAction(Intent.ACTION_VIEW);
             intent.setDataAndType(Uri.parse(audioStream.url),
                     MediaFormat.getMimeById(audioStream.format));
             intent.putExtra(Intent.EXTRA_TITLE, videoTitle);
             intent.putExtra("title", videoTitle);
+
             activity.startActivity(intent);      // HERE !!!
         } catch (Exception e) {
             e.printStackTrace();
@@ -317,6 +330,6 @@ public class ActionBarHandler {
             builder.create().show();
             Log.e(TAG, "Either no Streaming player for audio was installed, or something important crashed:");
             e.printStackTrace();
-        }
+        }*/
     }
 }
