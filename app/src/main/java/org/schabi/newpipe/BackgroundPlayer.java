@@ -1,6 +1,5 @@
 package org.schabi.newpipe;
 
-import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.Service;
@@ -9,17 +8,11 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.wifi.WifiManager;
-import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.IBinder;
-import android.os.Looper;
-import android.os.Message;
 import android.os.PowerManager;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
-import android.os.Process;
-import android.widget.VideoView;
 
 import java.io.IOException;
 
@@ -53,23 +46,11 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
     public BackgroundPlayer() {
         super();
-
-        VideoView v;
     }
 
     @Override
     public void onCreate() {
-        // Start up the thread running the service.  Note that we create a
-        // separate thread because the service normally runs in the process's
-        // main thread, which we don't want to block.  We also make it
-        // background priority so CPU-intensive work will not disrupt our UI.
         super.onCreate();
-        //HandlerThread thread = new HandlerThread(TAG, Process.THREAD_PRIORITY_BACKGROUND);
-        //thread.start();
-
-        // Get the HandlerThread's Looper and use it for our Handler
-        //mServiceLooper = thread.getLooper();
-        //mServiceHandler = new ServiceHandler(mServiceLooper);
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -94,13 +75,9 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
     @Override
     public void onDestroy() {
         //Toast.makeText(this, "service done", Toast.LENGTH_SHORT).show();
-        //mServiceLooper.quit();
-        //if (mMediaPlayer != null) mMediaPlayer.release();
-        //todo: call MediaPlayer.release() as soon as video is complete
     }
 
     private class PlayerThread extends Thread {
-
         private MediaPlayer mediaPlayer;
         private String source;
         private String title;
@@ -120,6 +97,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 mediaPlayer.prepare(); //We are already in a separate worker thread,
                 //so calling the blocking prepare() method should be ok
 
+                //alternatively:
                 //mediaPlayer.setOnPreparedListener(this);
                 //mediaPlayer.prepareAsync(); //prepare async to not block main thread
             } catch (IOException ioe) {
@@ -175,7 +153,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 noteMgr.notify(noteID, noteBuilder.build());
             }
             noteBuilder.setProgress(0, 0, false);//remove bar
-            //noteMgr.notify(0, noteBuilder.build());
+            noteMgr.cancel(noteID);
         }
     }
 /*
@@ -198,6 +176,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             wl.release();//release wifilock
             stopForeground(true);//remove ongoing notification
             stopSelf();
+            mp.release();
             //todo:release cpu lock
         }
     }
