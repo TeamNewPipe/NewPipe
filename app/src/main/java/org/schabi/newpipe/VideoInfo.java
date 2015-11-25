@@ -2,6 +2,8 @@ package org.schabi.newpipe;
 
 import android.graphics.Bitmap;
 
+import org.schabi.newpipe.services.AbstractVideoInfo;
+
 import java.util.List;
 
 /**

@@ -49,4 +49,7 @@
     <string name="showNextAndSimilarTitle">Zeige nächstes und ähnliche Videos</string>
     <string name="urlNotSupportedText">URL wird nicht unterstützt.</string>
     <string name="showSimilarVideosButtonText">Ähnliche Videos</string>
+    <string name="settingsCategoryVideoAudioTitle">VIDEO &amp; AUDIO</string>
+    <string name="settingsCategoryVideoInfoTittle">INFO</string>
+    <string name="settingsCategoryEtcTitle">ETC</string>
 </resources>

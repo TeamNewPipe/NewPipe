@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.schabi.newpipe.services.AbstractVideoInfo;
+
 /**
  * Created by Christian Schabesberger on 26.08.15.
  *

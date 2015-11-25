@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Categories -->
+    <string name="settingsCategoryVideoAudio">settings_categoery_video_audio</string>
+    <string name="settingsCategoryVideoInfo">settings_category_video_info</string>
+    <string name="settingsCategoryEtc">settings_category_etc</string>
+    <!-- Key values -->
     <string name="downloadPathPreference">download_path_preference</string>
     <string name="useExternalPlayer">use_external_player</string>
     <string name="autoPlayThroughIntent">autoplay_through_intent</string>

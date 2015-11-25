@@ -50,4 +50,7 @@
     <string name="urlNotSupportedText">URL not supported.</string>
     <string name="showSimilarVideosButtonText">Similar videos</string>
     <string name="searchLanguageTitle">Preferable content language</string>
+    <string name="settingsCategoryVideoAudioTitle">VIDEO &amp; AUDIO</string>
+    <string name="settingsCategoryVideoInfoTittle">INFO</string>
+    <string name="settingsCategoryEtcTitle">ETC</string>
 </resources>

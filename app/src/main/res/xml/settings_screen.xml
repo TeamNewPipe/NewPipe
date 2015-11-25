@@ -3,59 +3,75 @@
     android:title="@string/title_activity_settings"
     android:key="general_preferences">
 
-    <CheckBoxPreference
-        android:key="@string/useExternalPlayer"
-        android:title="@string/useExternalPlayerTitle"
-        android:defaultValue="false"/>
+    <PreferenceCategory
+        android:key="@string/settingsCategoryVideoAudio"
+        android:title="@string/settingsCategoryVideoAudioTitle">
 
-    <EditTextPreference
-        android:key="@string/downloadPathPreference"
-        android:title="@string/downloadLocation"
-        android:summary="@string/downloadLocationSummary"
-        android:dialogTitle="@string/downloadLocationDialogTitle"
-        android:defaultValue=""/>
+        <CheckBoxPreference
+            android:key="@string/useExternalPlayer"
+            android:title="@string/useExternalPlayerTitle"
+            android:defaultValue="false"/>
 
-    <CheckBoxPreference
-        android:key="@string/autoPlayThroughIntent"
-        android:title="@string/autoPlayThroughIntentTitle"
-        android:summary="@string/autoPlayThroughIntentSummary"
-        android:defaultValue="false" />
+        <ListPreference
+            android:key="@string/defaultResolutionPreference"
+            android:title="@string/defaultResolutionPreferenceTitle"
+            android:entries="@array/resolutionList"
+            android:entryValues="@array/resolutionList"
+            android:defaultValue="@string/defaultResolutionListItem"/>
 
-    <ListPreference
-        android:key="@string/defaultResolutionPreference"
-        android:title="@string/defaultResolutionPreferenceTitle"
-        android:entries="@array/resolutionList"
-        android:entryValues="@array/resolutionList"
-        android:defaultValue="@string/defaultResolutionListItem"/>
+        <ListPreference
+            android:key="@string/defaultAudioFormatPreference"
+            android:title="@string/defaultAudioFormatTitle"
+            android:entries="@array/audioFormatDescriptionList"
+            android:entryValues="@array/audioFormatList"
+            android:defaultValue="@string/defaultAudioFormat"/>
 
-    <CheckBoxPreference
-        android:key="@string/showPlayWidthKodiPreference"
-        android:title="@string/showPlayWithKodiTitle"
-        android:summary="@string/showPlayWithKodiSummary"
-        android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="@string/settingsCategoryVideoInfo"
+        android:title="@string/settingsCategoryVideoInfoTittle">
 
-    <CheckBoxPreference
-        android:key="@string/leftHandLayout"
-        android:title="@string/leftPlayButtonTitle"
-        android:defaultValue="false" />
+        <CheckBoxPreference
+            android:key="@string/showPlayWidthKodiPreference"
+            android:title="@string/showPlayWithKodiTitle"
+            android:summary="@string/showPlayWithKodiSummary"
+            android:defaultValue="false" />
 
-    <ListPreference
-        android:key="@string/defaultAudioFormatPreference"
-        android:title="@string/defaultAudioFormatTitle"
-        android:entries="@array/audioFormatDescriptionList"
-        android:entryValues="@array/audioFormatList"
-        android:defaultValue="@string/defaultAudioFormat"/>
+        <CheckBoxPreference
+            android:key="@string/leftHandLayout"
+            android:title="@string/leftPlayButtonTitle"
+            android:defaultValue="false" />
 
-    <CheckBoxPreference
-        android:key="@string/showNextVideo"
-        android:title="@string/showNextAndSimilarTitle"
-        android:defaultValue="true" />
+        <ListPreference
+            android:key="@string/searchLanguage"
+            android:title="@string/searchLanguageTitle"
+            android:entries="@array/languageNames"
+            android:entryValues="@array/languageCodes"
+            android:defaultValue="en" />
 
-    <ListPreference
-        android:key="@string/searchLanguage"
-        android:title="@string/searchLanguageTitle"
-        android:entries="@array/languageNames"
-        android:entryValues="@array/languageCodes"
-        android:defaultValue="en" />
-    
+        <CheckBoxPreference
+            android:key="@string/showNextVideo"
+            android:title="@string/showNextAndSimilarTitle"
+            android:defaultValue="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="@string/settingsCategoryEtc"
+        android:title="@string/settingsCategoryEtcTitle">
+
+        <EditTextPreference
+            android:key="@string/downloadPathPreference"
+            android:title="@string/downloadLocation"
+            android:summary="@string/downloadLocationSummary"
+            android:dialogTitle="@string/downloadLocationDialogTitle"
+            android:defaultValue=""/>
+
+        <CheckBoxPreference
+            android:key="@string/autoPlayThroughIntent"
+            android:title="@string/autoPlayThroughIntentTitle"
+            android:summary="@string/autoPlayThroughIntentSummary"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
 </PreferenceScreen>
