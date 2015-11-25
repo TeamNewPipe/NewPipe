@@ -72,7 +72,10 @@
             android:parentActivityName=".VideoItemDetailActivity"
             >
         </activity>
-        <service android:name=".BackgroundPlayer"
+        <!--TODO: make label a translatable string -->
+        <service
+            android:name=".BackgroundPlayer"
+            android:label="NewPipe Background Player"
             android:exported="false" >
         </service>
         <activity
