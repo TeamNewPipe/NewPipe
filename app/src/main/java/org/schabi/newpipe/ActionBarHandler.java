@@ -298,38 +298,39 @@ public class ActionBarHandler {
             intent.putExtra(Intent.EXTRA_TITLE, videoTitle);
             intent.putExtra("title", videoTitle);
             activity.startService(intent);
-        }
-        /*Intent intent = new Intent();
-        try {
-            intent.setAction(Intent.ACTION_VIEW);
-            intent.setDataAndType(Uri.parse(audioStream.url),
-                    MediaFormat.getMimeById(audioStream.format));
-            intent.putExtra(Intent.EXTRA_TITLE, videoTitle);
-            intent.putExtra("title", videoTitle);
+        } else {
+            intent = new Intent();
+            try {
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setDataAndType(Uri.parse(audioStream.url),
+                        MediaFormat.getMimeById(audioStream.format));
+                intent.putExtra(Intent.EXTRA_TITLE, videoTitle);
+                intent.putExtra("title", videoTitle);
 
-            activity.startActivity(intent);      // HERE !!!
-        } catch (Exception e) {
-            e.printStackTrace();
-            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setMessage(R.string.noPlayerFound)
-                    .setPositiveButton(R.string.installStreamPlayer, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent();
-                            intent.setAction(Intent.ACTION_VIEW);
-                            intent.setData(Uri.parse(activity.getString(R.string.fdroidVLCurl)));
-                            activity.startActivity(intent);
-                        }
-                    })
-                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Log.i(TAG, "You unlocked a secret unicorn.");
-                        }
-                    });
-            builder.create().show();
-            Log.e(TAG, "Either no Streaming player for audio was installed, or something important crashed:");
-            e.printStackTrace();
-        }*/
+                activity.startActivity(intent);      // HERE !!!
+            } catch (Exception e) {
+                e.printStackTrace();
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setMessage(R.string.noPlayerFound)
+                        .setPositiveButton(R.string.installStreamPlayer, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent();
+                                intent.setAction(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse(activity.getString(R.string.fdroidVLCurl)));
+                                activity.startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Log.i(TAG, "You unlocked a secret unicorn.");
+                            }
+                        });
+                builder.create().show();
+                Log.e(TAG, "Either no Streaming player for audio was installed, or something important crashed:");
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -509,8 +509,8 @@ public class YoutubeExtractor extends Extractor {
         //this page causes the NullPointerException, after finding it by searching for "tjvg":
         //https://www.youtube.com/watch?v=Uqg0aEhLFAg
         String views = li.select("span.view-count").first().text();
-        Log.i(TAG, "title:"+info.title);
-        Log.i(TAG, "view count:"+views);
+        //Log.i(TAG, "title:"+info.title);
+        //Log.i(TAG, "view count:"+views);
         try {
             info.view_count = Long.parseLong(li.select("span.view-count")
                     .first().text().replaceAll("[^\\d]", ""));
