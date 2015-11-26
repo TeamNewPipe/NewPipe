@@ -1,5 +1,6 @@
 package org.schabi.newpipe;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -241,6 +242,7 @@ public class VideoItemDetailFragment extends Fragment {
                     thumbsUpView.setText(nf.format(info.like_count));
                     thumbsDownView.setText(nf.format(info.dislike_count));
 
+                    @SuppressLint("SimpleDateFormat")
                     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                     Date datum = null;
                     try {
