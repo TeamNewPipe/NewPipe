@@ -15,16 +15,17 @@
         <item name="background">@color/primaryColorYoutube</item>
     </style>
 
-    <style name="FullscreenTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="PlayVideoTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowActionBarOverlay">true</item>
         <item name="windowActionBarOverlay">true</item>
-        <item name="android:actionBarStyle">@style/NewPipePlayerActionBarTheme</item>
-        <item name="actionBarStyle">@style/NewPipePlayerActionBarTheme</item>
+        <item name="android:actionBarStyle">@style/VideoPlayerActionBarTheme</item>
+        <item name="actionBarStyle">@style/VideoPlayerActionBarTheme</item>
         <item name="colorAccent">@color/primaryColorYoutube</item>
+        <item name="android:windowBackground">@android:color/black</item>
     </style>
 
-    <style name="NewPipePlayerActionBarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse" >
+    <style name="VideoPlayerActionBarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse" >
         <item name="android:displayOptions">showHome</item>
         <item name="displayOptions">showHome</item>
         <item name="android:background">@color/black_overlay</item>

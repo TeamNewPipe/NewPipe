@@ -69,7 +69,7 @@
         </activity>
         <activity android:name=".PlayVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/FullscreenTheme"
+            android:theme="@style/VideoPlayerTheme"
             android:parentActivityName=".VideoItemDetailActivity"
             tools:ignore="UnusedAttribute">
         </activity>
