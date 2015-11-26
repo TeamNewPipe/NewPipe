@@ -55,8 +55,7 @@
                         android:textStyle="bold"
                         android:paddingBottom="5dp"
                         android:textSize="@dimen/text_video_title_sw600dp_size"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Video title placeholder"/>
+                        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
                     <ImageView android:id="@+id/detailUploaderThumbnailView"
                         android:layout_width="100dp"
@@ -72,8 +71,7 @@
                         android:layout_alignParentLeft="true"
                         android:textStyle="bold"
                         android:textSize="@dimen/text_video_uploader_sw600dp_size"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="username" />
+                        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
                     <TextView android:id="@+id/detailViewCountView"
                         android:layout_width="wrap_content"
@@ -82,8 +80,7 @@
                         android:layout_below="@id/detailVideoTitleView"
                         android:layout_alignParentRight="true"
                         android:textSize="@dimen/text_video_views_sw600dp_size"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="81,754 views" />
+                        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
                     <TextView android:id="@+id/detailThumbsDownCountView"
                         android:layout_width="wrap_content"
@@ -91,8 +88,7 @@
                         android:layout_below="@id/detailViewCountView"
                         android:layout_alignParentRight="true"
                         android:textSize="@dimen/text_video_like_sw600dp_size"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="1,000" />
+                        android:textAppearance="?android:attr/textAppearanceMedium"/>
 
                     <ImageView android:id="@+id/detailThumbsDownImgView"
                         android:layout_width="40dp"
@@ -109,8 +105,7 @@
                         android:layout_toLeftOf="@id/detailThumbsDownImgView"
                         android:paddingRight="10dp"
                         android:textSize="@dimen/text_video_like_sw600dp_size"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="200" />
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     <ImageView android:id="@+id/detailThumbsUpImgView"
                         android:layout_width="40dp"
@@ -126,8 +121,7 @@
                         android:layout_below="@id/detailUploaderView"
                         android:layout_alignParentLeft="true"
                         android:textSize="@dimen/text_video_upload_date_sw600dp_size"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Uploaded at Jan 01 1975" />
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
 
                     <TextView android:id="@+id/detailDescriptionView"
                         android:layout_width="wrap_content"
@@ -135,9 +129,7 @@
                         android:layout_below="@id/detailUploadDateView"
                         android:layout_alignParentLeft="true"
                         android:textSize="@dimen/text_video_description_sw600dp_size"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmodtempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. "
-                        />
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 </RelativeLayout>
             </RelativeLayout>

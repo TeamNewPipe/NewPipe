@@ -21,9 +21,7 @@
         android:layout_toRightOf="@id/itemThumbnailView"
         android:layout_alignParentTop="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="@dimen/text_search_title_size"
-        android:text="title"
-        />
+        android:textSize="@dimen/text_search_title_size"/>
 
     <TextView android:id="@+id/itemUploaderView"
         android:layout_width="wrap_content"
@@ -31,11 +29,9 @@
         android:layout_toRightOf="@id/itemThumbnailView"
         android:layout_below="@id/itemVideoTitleView"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="@dimen/text_search_uploader_size"
-        android:text="uploader"/>
+        android:textSize="@dimen/text_search_uploader_size"/>
 
     <TextView android:id="@+id/itemUploadDateView"
-        android:text="itemUploadDateView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/itemThumbnailView"
@@ -58,8 +54,6 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/text_search_duration_size"
         android:background="@color/durationBackground"
-        android:textColor="@color/durationText"
-        android:text="duration"
-        />
+        android:textColor="@color/durationText"/>
 
 </RelativeLayout>
