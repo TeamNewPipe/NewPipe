@@ -46,9 +46,8 @@
         <item>Аудио</item>
     </string-array>
     <string name="nextVideoTitle">Следующее видео</string>
-    <string name="showNextVideoTitle">Показать \"Следующее видео\".</string>
     <string name="urlNotSupportedText">URL не поддерживается.</string>
     <string name="showSimilarVideosButtonText">Похожие видео</string>
-<string name="showNextAndSimilarTitle">Показывать следующее и предложенные видео</string>
+    <string name="showNextAndSimilarTitle">Показывать следующее и предложенные видео</string>
     <string name="searchLanguageTitle">Предпочитаемый язык контента</string>
 </resources>

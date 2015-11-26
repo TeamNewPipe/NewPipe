@@ -42,8 +42,6 @@
     <string name="m4aAudioDescription">m4a - mejor calidad</string>
     <string name="downloadDialogTitle">Descargar</string>
     <string name="nextVideoTitle">Siguiente vídeo</string>
-    <string name="showNextVideoTitle">Mostrar la opción \"Siguiente vídeo\".</string>
     <string name="urlNotSupportedText">URL no soportada.</string>
     <string name="showSimilarVideosButtonText">Vídeos similares</string>
-    <string name="contentCountryTitle">País del contenido del vídeo</string>
 </resources>

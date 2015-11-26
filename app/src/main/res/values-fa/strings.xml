@@ -46,6 +46,5 @@
         <item>صدا</item>
     </string-array>
     <string name="nextVideoTitle">ویدئوی بعدی</string>
-    <string name="showNextVideoTitle">نمایش گزینه‌ی «ویدئوی بعدی».</string>
     <string name="urlNotSupportedText">پیوند پشتیبانی نمی‌شود.</string>
 </resources>

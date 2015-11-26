@@ -35,15 +35,13 @@
     <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
     <string name="showPlayWithKodiTitle">Toon \"Speel af met Kodi\" optie</string>
     <string name="showPlayWithKodiSummary">Toont een optie om een video op een Kodi media center af te spelen.</string>
-<string name="contentCountryTitle">Video inhoud land</string>
-<string name="leftPlayButtonTitle">Afspeel knop aan de linker kant weergeven.</string>
+    <string name="leftPlayButtonTitle">Afspeel knop aan de linker kant weergeven.</string>
     <string name="playAudio">Audio</string>
     <string name="defaultAudioFormatTitle">Standaard audio formaat</string>
     <string name="webMAudioDescription">Webam - open formaat</string>
     <string name="m4aAudioDescription">m4a - betere kwaliteit</string>
     <string name="downloadDialogTitle">Download</string>
     <string name="nextVideoTitle">Volgende video</string>
-    <string name="showNextVideoTitle">\"Volgende video\" weergeven</string>
     <string name="urlNotSupportedText">URL wordt niet ondersteund.</string>
     <string name="showSimilarVideosButtonText">Vergelijkbare videos</string>
     <string name="showNextAndSimilarTitle">Laat volgende en vergelijkbare videos zien</string>

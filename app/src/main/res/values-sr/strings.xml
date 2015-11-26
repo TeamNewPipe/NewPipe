@@ -45,10 +45,9 @@
         <item>Видео</item>
         <item>Аудио</item>
     </string-array>
-<string name="nextVideoTitle">Следећи видео</string>
-    <string name="showNextVideoTitle">Приказ ставке „Следећи видео“.</string>
+    <string name="nextVideoTitle">Следећи видео</string>
     <string name="urlNotSupportedText">УРЛ није подржан.</string>
-<string name="showNextAndSimilarTitle">Прикажи следећи и слични видео</string>
+    <string name="showNextAndSimilarTitle">Прикажи следећи и слични видео</string>
     <string name="showSimilarVideosButtonText">Слични видео</string>
     <string name="searchLanguageTitle">Пожељни језик садржаја</string>
 </resources>
