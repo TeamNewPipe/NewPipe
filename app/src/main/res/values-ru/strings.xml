@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
-    <string name="viewSufix">просмотров</string>
-    <string name="uploadDatePrefix">Опубликовано: </string>
+    <string name="viewCountText">%1$s просмотров</string>
+    <string name="uploadDateText">Опубликовано: %1$s</string>
     <string name="noPlayerFound">Ни одного потокового проигрывателя не было найдено. Установить?</string>
     <string name="installStreamPlayer">Установить</string>
     <string name="cancel">Отмена</string>

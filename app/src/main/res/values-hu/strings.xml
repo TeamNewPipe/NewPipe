@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
-    <string name="viewSufix">megtekintés</string>
-    <string name="uploadDatePrefix">Feltöltve: </string>
+    <string name="viewCountText">%1$s megtekintés</string>
+    <string name="uploadDateText">Feltöltve: %1$s</string>
     <string name="noPlayerFound">Nem található lejátszó. Telepítsen egyet!</string>
     <string name="installStreamPlayer">Telepítsen egyet</string>
     <string name="cancel">Mégse</string>

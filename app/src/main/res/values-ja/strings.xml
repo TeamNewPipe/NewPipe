@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources><string name="app_name">ニューパイプ</string>
     <string name="title_videoitem_detail">ニューパイプ</string>
-    <string name="viewSufix">表示</string>
-    <string name="uploadDatePrefix">"アップロード: "</string>
+    <string name="viewCountText">%1$s 表示</string>
+    <string name="uploadDateText">"アップロード: "%1$s</string>
     <string name="noPlayerFound">StreamPlayer が見つかりませんでした。インストールが必要になるかもしれません.</string>
     <string name="installStreamPlayer">インストール</string>
     <string name="cancel">キャンセル</string>

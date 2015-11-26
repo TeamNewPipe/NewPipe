@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -197,6 +198,7 @@ public class VideoItemDetailFragment extends Fragment {
 
     public void updateInfo(VideoInfo info) {
         currentVideoInfo = info;
+        Resources res = activity.getResources();
         try {
             VideoInfoItemViewCreator videoItemViewCreator =
                     new VideoInfoItemViewCreator(LayoutInflater.from(getActivity()));
@@ -235,8 +237,11 @@ public class VideoItemDetailFragment extends Fragment {
                     Locale locale = getPreferredLocale();
                     NumberFormat nf = NumberFormat.getInstance(locale);
                     String localisedViewCount = nf.format(info.view_count);
-                    viewCountView.setText(localisedViewCount
-                            + " " + activity.getString(R.string.viewSufix));
+                    viewCountView.setText(
+                            String.format(
+                                    res.getString(R.string.viewCountText), localisedViewCount));
+                    /*viewCountView.setText(localisedViewCount
+                            + " " + activity.getString(R.string.viewSufix)); */
 
 
                     thumbsUpView.setText(nf.format(info.like_count));
@@ -255,7 +260,7 @@ public class VideoItemDetailFragment extends Fragment {
 
                     String localisedDate = df.format(datum);
                     uploadDateView.setText(
-                            activity.getString(R.string.uploadDatePrefix) + " " + localisedDate);
+                            String.format(res.getString(R.string.uploadDateText), localisedDate));
                     descriptionView.setText(Html.fromHtml(info.description));
                     descriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 

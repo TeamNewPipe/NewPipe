@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
-    <string name="viewSufix">views</string>
-    <string name="uploadDatePrefix">Uploaded on </string>
+    <string name="viewCountText">%1$s views</string>
+    <string name="uploadDateText">Uploaded on %1$s</string>
     <string name="noPlayerFound">No stream player found. You may want to install one.</string>
     <string name="installStreamPlayer">Install</string>
     <string name="cancel">Cancel</string>

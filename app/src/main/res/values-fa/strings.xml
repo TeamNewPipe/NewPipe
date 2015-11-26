@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
-    <string name="viewSufix">نماها</string>
-    <string name="uploadDatePrefix">بارگذاری‌شده در: </string>
+    <string name="viewCountText">%1$s نماها</string>
+    <string name="uploadDateText">بارگذاری‌شده در: %1$s</string>
     <string name="noPlayerFound">هیچ پخش‌کننده‌ی جریانی یافت نشد. ممکن است بخواهید یکی نصب کنید.</string>
     <string name="installStreamPlayer">نصب کنید</string>
     <string name="cancel">انصراف</string>

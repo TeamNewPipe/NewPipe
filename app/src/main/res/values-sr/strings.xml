@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">Јутјуб цев</string>
     <string name="title_videoitem_detail">Јутјуб цев</string>
-    <string name="viewSufix">приказа</string>
-    <string name="uploadDatePrefix">"Отпремљен "</string>
+    <string name="viewCountText">%1$s приказа</string>
+    <string name="uploadDateText">"Отпремљен "%1$s</string>
     <string name="noPlayerFound">Нема плејера токова. Можда желите да га инсталирате.</string>
     <string name="installStreamPlayer">Инсталирај</string>
     <string name="cancel">Одустани</string>
