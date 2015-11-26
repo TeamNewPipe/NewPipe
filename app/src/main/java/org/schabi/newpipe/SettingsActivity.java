@@ -162,7 +162,7 @@ public class SettingsActivity extends PreferenceActivity {
                     Environment.getExternalStorageDirectory().getAbsolutePath() + "/NewPipe";
             spEditor.putString(context.getString(R.string.downloadPathPreference)
                     , newPipeDownloadStorage);
-            spEditor.commit();
+            spEditor.apply();
         }
     }
 }

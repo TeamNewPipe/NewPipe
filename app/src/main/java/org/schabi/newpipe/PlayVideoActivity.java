@@ -348,6 +348,6 @@ public class PlayVideoActivity extends AppCompatActivity {
         }
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean(PREF_IS_LANDSCAPE, isLandscape);
-        editor.commit();
+        editor.apply();
     }
 }
