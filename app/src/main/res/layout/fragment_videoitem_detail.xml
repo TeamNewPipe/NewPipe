@@ -36,6 +36,7 @@
                     android:layout_height="wrap_content"
                     android:scaleType="centerInside"
                     android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:adjustViewBounds="true"
                     android:src="@drawable/dummy_thumbnail"/>
@@ -53,6 +54,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         android:textStyle="bold"
                         android:paddingBottom="3dp"
                         android:textSize="@dimen/text_video_title_size"
@@ -64,6 +66,7 @@
                         android:layout_height="80dp"
                         android:layout_below="@id/detailVideoTitleView"
                         android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         android:src="@drawable/buddy" />
 
                     <TextView android:id="@+id/detailUploaderView"
@@ -71,6 +74,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/detailUploaderThumbnailView"
                         android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         android:textStyle="bold"
                         android:textSize="@dimen/text_video_uploader_size"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -81,6 +85,7 @@
                         android:paddingBottom="3dp"
                         android:layout_below="@id/detailVideoTitleView"
                         android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:textSize="@dimen/text_video_views_size"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -89,7 +94,10 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/detailViewCountView"
                         android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:textSize="@dimen/text_video_like_size"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     <ImageView android:id="@+id/detailThumbsDownImgView"
@@ -98,7 +106,9 @@
                         android:layout_height="15dp"
                         android:layout_below="@id/detailViewCountView"
                         android:layout_toLeftOf="@id/detailThumbsDownCountView"
+                        android:layout_toStartOf="@id/detailThumbsDownCountView"
                         android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
                         android:src="@drawable/thumbs_down" />
 
                     <TextView android:id="@+id/detailThumbsUpCountView"
@@ -106,7 +116,9 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/detailViewCountView"
                         android:layout_toLeftOf="@id/detailThumbsDownImgView"
+                        android:layout_toStartOf="@id/detailThumbsDownImgView"
                         android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
                         android:textSize="@dimen/text_video_like_size"
                         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
@@ -116,7 +128,9 @@
                         android:layout_height="15dp"
                         android:layout_below="@id/detailViewCountView"
                         android:layout_toLeftOf="@id/detailThumbsUpCountView"
+                        android:layout_toStartOf="@id/detailThumbsUpImgView"
                         android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
                         android:src="@drawable/thumbs_up" />
 
                     <TextView android:id="@+id/detailUploadDateView"
@@ -124,6 +138,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/detailUploaderView"
                         android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         android:textSize="@dimen/text_video_upload_date_size"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -132,6 +147,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/detailUploadDateView"
                         android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         android:textSize="@dimen/text_video_description_size"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -151,6 +167,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:textSize="@dimen/text_video_upload_date_size"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/black"
