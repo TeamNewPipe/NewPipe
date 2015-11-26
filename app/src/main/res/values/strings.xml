@@ -53,4 +53,11 @@
     <string name="settingsCategoryVideoAudioTitle">VIDEO &amp; AUDIO</string>
     <string name="settingsCategoryVideoInfoTittle">INFO</string>
     <string name="settingsCategoryEtcTitle">ETC</string>
+
+    <!-- Content descriptions (for better accessibility) -->
+    <string name="itemThumbnailViewDescription">Video preview thumbnail</string>
+    <string name="detailThumbnailViewDescription">Video preview thumbnail</string>
+    <string name="detailUploaderThumbnailViewDescription">Uploader thumbnail</string>
+    <string name="detailThumbsDownImgViewDescription">Unlikes</string>
+    <string name="detailThumbsUpImgViewDescription">Likes</string>
 </resources>

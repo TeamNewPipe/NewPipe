@@ -7,6 +7,7 @@
     android:padding="6dp">
 
     <ImageView android:id="@+id/itemThumbnailView"
+        android:contentDescription="@string/itemThumbnailViewDescription"
         android:layout_width="142dp"
         android:layout_height="80dp"
         android:layout_marginRight="6dp"
