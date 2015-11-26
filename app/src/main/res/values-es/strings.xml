@@ -23,7 +23,7 @@
     <string name="screenRotation">rotación</string>
     <string name="title_activity_settings">Ajustes</string>
     <string name="useExternalPlayerTitle">Usar reproductor externo</string>
-    <string name="downloadLocation">Descargar en...</string>
+    <string name="downloadLocation">Descargar en&#8230;</string>
     <string name="downloadLocationSummary">Ruta donde guardar los vídeos descargados.</string>
     <string name="downloadLocationDialogTitle">Localización del directorio de descargas</string>
     <string name="autoPlayThroughIntentTitle">Reproducción automática</string>
