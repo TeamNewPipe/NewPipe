@@ -5,12 +5,11 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import org.schabi.newpipe.services.Extractor;
+import org.schabi.newpipe.services.VideoExtractor;
 import org.schabi.newpipe.services.ServiceList;
 import org.schabi.newpipe.services.StreamingService;
 
@@ -64,14 +63,13 @@ public class VideoItemDetailActivity extends AppCompatActivity {
             // this means the video was called though another app
             if (getIntent().getData() != null) {
                 videoUrl = getIntent().getData().toString();
-                //Log.i(TAG, "video URL passed:\"" + videoUrl + "\"");
                 StreamingService[] serviceList = ServiceList.getServices();
-                Extractor extractor = null;
+                VideoExtractor videoExtractor = null;
                 for (int i = 0; i < serviceList.length; i++) {
                     if (serviceList[i].acceptUrl(videoUrl)) {
                         arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, i);
                         currentStreamingService = i;
-                        //extractor = ServiceList.getService(i).getExtractorInstance();
+                        //videoExtractor = ServiceList.getService(i).getExtractorInstance();
                         break;
                     }
                 }
@@ -80,7 +78,7 @@ public class VideoItemDetailActivity extends AppCompatActivity {
                             .show();
                 }
                 //arguments.putString(VideoItemDetailFragment.VIDEO_URL,
-                //        extractor.getVideoUrl(extractor.getVideoId(videoUrl)));//cleans URL
+                //        videoExtractor.getVideoUrl(videoExtractor.getVideoId(videoUrl)));//cleans URL
                 arguments.putString(VideoItemDetailFragment.VIDEO_URL, videoUrl);
 
                 arguments.putBoolean(VideoItemDetailFragment.AUTO_PLAY,

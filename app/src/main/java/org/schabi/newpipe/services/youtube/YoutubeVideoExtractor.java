@@ -13,7 +13,7 @@ import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
 import org.schabi.newpipe.Downloader;
-import org.schabi.newpipe.services.Extractor;
+import org.schabi.newpipe.services.VideoExtractor;
 import org.schabi.newpipe.MediaFormat;
 import org.schabi.newpipe.VideoInfo;
 import org.schabi.newpipe.VideoPreviewInfo;
@@ -31,7 +31,7 @@ import java.util.regex.Pattern;
  * Created by Christian Schabesberger on 06.08.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * YoutubeExtractor.java is part of NewPipe.
+ * YoutubeVideoExtractor.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,9 +47,9 @@ import java.util.regex.Pattern;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class YoutubeExtractor extends Extractor {
+public class YoutubeVideoExtractor extends VideoExtractor {
 
-    private static final String TAG = YoutubeExtractor.class.toString();
+    private static final String TAG = YoutubeVideoExtractor.class.toString();
     private String pageContents;
     private Document doc;
     private JSONObject jsonObj;
@@ -62,7 +62,7 @@ public class YoutubeExtractor extends Extractor {
     private static volatile String decryptionCode = "";
 
 
-    public YoutubeExtractor(String pageUrl) {
+    public YoutubeVideoExtractor(String pageUrl) {
         super(pageUrl);//most common videoInfo fields are now set in our superclass, for all services
         pageContents = Downloader.download(cleanUrl(pageUrl));
         doc = Jsoup.parse(pageContents, pageUrl);

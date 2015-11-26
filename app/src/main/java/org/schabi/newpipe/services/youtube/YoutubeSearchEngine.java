@@ -101,7 +101,7 @@ public class YoutubeSearchEngine implements SearchEngine {
 
                 // video item type
             } else if(!((el = item.select("div[class*=\"yt-lockup-video\"").first()) == null)) {
-                //todo: de-duplicate this with YoutubeExtractor.getVideoPreviewInfo()
+                //todo: de-duplicate this with YoutubeVideoExtractor.getVideoPreviewInfo()
                 VideoPreviewInfo resultItem = new VideoPreviewInfo();
                 Element dl = el.select("h3").first().select("a").first();
                 resultItem.webpage_url = dl.attr("abs:href");

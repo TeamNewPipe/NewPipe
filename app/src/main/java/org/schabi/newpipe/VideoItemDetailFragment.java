@@ -39,7 +39,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Vector;
 
-import org.schabi.newpipe.services.Extractor;
+import org.schabi.newpipe.services.VideoExtractor;
 import org.schabi.newpipe.services.ServiceList;
 import org.schabi.newpipe.services.StreamingService;
 
@@ -79,7 +79,7 @@ public class VideoItemDetailFragment extends Fragment {
     private ActionBarHandler actionBarHandler;
 
     private boolean autoPlayEnabled = false;
-    private Thread extractorThread = null;
+    private Thread videoExtractorThread = null;
     private VideoInfo currentVideoInfo = null;
     private boolean showNextVideoItem = false;
 
@@ -89,21 +89,21 @@ public class VideoItemDetailFragment extends Fragment {
 
     private OnInvokeCreateOptionsMenuListener onInvokeCreateOptionsMenuListener = null;
 
-    private class ExtractorRunnable implements Runnable {
+    private class VideoExtractorRunnable implements Runnable {
         private Handler h = new Handler();
-        private Extractor extractor;
+        private VideoExtractor videoExtractor;
         private StreamingService service;
         private String videoUrl;
 
-        public ExtractorRunnable(String videoUrl, StreamingService service, VideoItemDetailFragment f) {
+        public VideoExtractorRunnable(String videoUrl, StreamingService service, VideoItemDetailFragment f) {
             this.service = service;
             this.videoUrl = videoUrl;
         }
         @Override
         public void run() {
             try {
-                this.extractor = service.getExtractorInstance(videoUrl);
-                VideoInfo videoInfo = extractor.getVideoInfo();
+                this.videoExtractor = service.getExtractorInstance(videoUrl);
+                VideoInfo videoInfo = videoExtractor.getVideoInfo();
                 h.post(new VideoResultReturnedRunnable(videoInfo));
                 if (videoInfo.videoAvailableStatus == VideoInfo.VIDEO_AVAILABLE) {
                     h.post(new SetThumbnailRunnable(
@@ -360,11 +360,11 @@ public class VideoItemDetailFragment extends Fragment {
             try {
                 StreamingService streamingService = ServiceList.getService(
                         getArguments().getInt(STREAMING_SERVICE));
-                extractorThread = new Thread(new ExtractorRunnable(
+                videoExtractorThread = new Thread(new VideoExtractorRunnable(
                         getArguments().getString(VIDEO_URL), streamingService, this));
 
                 autoPlayEnabled = getArguments().getBoolean(AUTO_PLAY);
-                extractorThread.start();
+                videoExtractorThread.start();
             } catch (Exception e) {
                 e.printStackTrace();
             }

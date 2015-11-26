@@ -4,7 +4,7 @@ package org.schabi.newpipe.services;
  * Created by Christian Schabesberger on 10.08.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * Extractor.java is part of NewPipe.
+ * VideoExtractor.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,11 +23,11 @@ package org.schabi.newpipe.services;
 import org.schabi.newpipe.VideoInfo;
 
 /**Scrapes information from a video streaming service (eg, YouTube).*/
-public abstract class Extractor {
+public abstract class VideoExtractor {
     public String pageUrl;
     public VideoInfo videoInfo;
 
-    public Extractor(String url) {
+    public VideoExtractor(String url) {
         this.pageUrl = url;
     }
 
