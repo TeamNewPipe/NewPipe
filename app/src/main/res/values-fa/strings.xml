@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
-    <string name="nothingFound">چیزی پیدا نشد</string>
     <string name="viewSufix">نماها</string>
     <string name="uploadDatePrefix">بارگذاری‌شده در: </string>
     <string name="noPlayerFound">هیچ پخش‌کننده‌ی جریانی یافت نشد. ممکن است بخواهید یکی نصب کنید.</string>
@@ -11,11 +10,9 @@
     <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">بازکردن در مرورگر</string>
     <string name="share">هم‌رسانی</string>
-    <string name="play">پخش</string>
     <string name="download">بارگیری</string>
     <string name="search">جستجو</string>
     <string name="settings">تنظیمات</string>
-    <string name="sendWith">فرستادن با</string>
     <string name="didYouMean">منظورتان این است: </string>
     <string name="searchPage">صفحه‌ی جستجو: </string>
     <string name="shareDialogTitle">هم‌رسانی با:</string>

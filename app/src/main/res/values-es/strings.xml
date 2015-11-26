@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
-    <string name="nothingFound">No se ha encontrado nada</string>
     <string name="viewSufix">visitas</string>
     <string name="uploadDatePrefix">Subido el </string>
     <string name="noPlayerFound">No se ha encontrado ningún reproductor de vídeo. Quizás quieras instalar alguno.</string>
@@ -11,11 +10,9 @@
     <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Abrir en el navegador</string>
     <string name="share">Compartir</string>
-    <string name="play">Reproducir</string>
     <string name="download">Descargar</string>
     <string name="search">Buscar</string>
     <string name="settings">Ajustes</string>
-    <string name="sendWith">Enviar con</string>
     <string name="didYouMean">"¿Querías decir?: "</string>
     <string name="searchPage">Buscar página: </string>
     <string name="shareDialogTitle">Compartir con:</string>

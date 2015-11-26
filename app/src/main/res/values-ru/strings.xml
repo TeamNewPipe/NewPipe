@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
-    <string name="nothingFound">Ничего не найдено</string>
     <string name="viewSufix">просмотров</string>
     <string name="uploadDatePrefix">Опубликовано: </string>
     <string name="noPlayerFound">Ни одного потокового проигрывателя не было найдено. Установить?</string>
@@ -11,11 +10,9 @@
     <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Открыть в браузере</string>
     <string name="share">Поделиться</string>
-    <string name="play">Воспроизвести</string>
     <string name="download">Скачать</string>
     <string name="search">Найти</string>
     <string name="settings">Настройки</string>
-    <string name="sendWith">Отправить с помощью</string>
     <string name="didYouMean">Возможно, вы имели в виду: </string>
     <string name="searchPage">Страница поиска: </string>
     <string name="shareDialogTitle">Поделиться с помощью:</string>

@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">Јутјуб цев</string>
     <string name="title_videoitem_detail">Јутјуб цев</string>
-    <string name="nothingFound">Ништа није нађено</string>
     <string name="viewSufix">приказа</string>
     <string name="uploadDatePrefix">"Отпремљен "</string>
     <string name="noPlayerFound">Нема плејера токова. Можда желите да га инсталирате.</string>
@@ -11,11 +10,9 @@
     <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Отвори у прегледачу</string>
     <string name="share">Дели</string>
-    <string name="play">Пусти</string>
     <string name="download">Преузми</string>
     <string name="search">Тражи</string>
     <string name="settings">Поставке</string>
-    <string name="sendWith">Пошаљи помоћу</string>
     <string name="didYouMean">Да ли сте мислили: </string>
     <string name="searchPage">Страница претраге: </string>
     <string name="shareDialogTitle">Подели помоћу:</string>

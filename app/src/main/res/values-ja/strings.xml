@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources><string name="app_name">ニューパイプ</string>
     <string name="title_videoitem_detail">ニューパイプ</string>
-    <string name="nothingFound">何も見つかりません</string>
     <string name="viewSufix">表示</string>
     <string name="uploadDatePrefix">"アップロード: "</string>
     <string name="noPlayerFound">StreamPlayer が見つかりませんでした。インストールが必要になるかもしれません.</string>
@@ -10,11 +9,9 @@
     <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">ブラウザーで開く</string>
     <string name="share">共有</string>
-    <string name="play">再生</string>
     <string name="download">ダウンロード</string>
     <string name="search">検索</string>
     <string name="settings">設定</string>
-    <string name="sendWith">…送信</string>
     <string name="didYouMean">"この意味ですか: "</string>
     <string name="searchPage">"検索ページ: "</string>
     <string name="shareDialogTitle">…共有:</string>

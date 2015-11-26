@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
-    <string name="nothingFound">Nincs találat</string>
     <string name="viewSufix">megtekintés</string>
     <string name="uploadDatePrefix">Feltöltve: </string>
     <string name="noPlayerFound">Nem található lejátszó. Telepítsen egyet!</string>
@@ -11,11 +10,9 @@
     <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Megnyitás böngészőben</string>
     <string name="share">Megosztás</string>
-    <string name="play">Lejátszás</string>
     <string name="download">Letöltés</string>
     <string name="search">Keresés</string>
     <string name="settings">Beállítások</string>
-    <string name="sendWith">Küldés ezzel:</string>
     <string name="didYouMean">Erre gondolt: </string>
     <string name="searchPage">Keresési lap: </string>
     <string name="shareDialogTitle">Megosztás ezzel:</string>
