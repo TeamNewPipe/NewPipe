@@ -51,4 +51,7 @@
 <string name="showNextAndSimilarTitle">Прикажи следећи и слични видео</string>
     <string name="showSimilarVideosButtonText">Слични видео</string>
     <string name="searchLanguageTitle">Пожељни језик садржаја</string>
+<string name="settingsCategoryVideoAudioTitle">ВИДЕО И АУДИО</string>
+    <string name="settingsCategoryVideoInfoTittle">ПОДАЦИ</string>
+    <string name="settingsCategoryEtcTitle">ОСТАЛО</string>
 </resources>
