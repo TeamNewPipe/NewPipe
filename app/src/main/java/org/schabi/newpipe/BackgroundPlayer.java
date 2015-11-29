@@ -2,6 +2,7 @@ package org.schabi.newpipe;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -50,6 +51,8 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
     @Override
     public void onCreate() {
+        PendingIntent pi = PendingIntent.getActivity(this, 0,
+                new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
         super.onCreate();
     }
     @Override
@@ -124,7 +127,20 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             }*/
             wifiLock.acquire();
             mediaPlayer.start();
-
+/*
+        1. For each button in the notification, create an Intent pointing to the handling class
+        2. From this, create a corresponding PendingIntent.
+        3. Then, for each button, call NotificationBuilder.addAction().
+            the exact method signature will depend on whether you just specify the icon,label etc (deprecated),
+            or if you also have to create a Notification.Action (and Notification.Action.Builder).
+            in any case, in the class referred to in the explicit intent,
+        4. Write the method body of whatever callback android says to use for a service.
+            Probably onStartCommand. But isn't that only called when startService() is? and
+            we need to call this whenever a notification button is pressed! we don't want to restart
+            the service every time the button is pressed! Oh I don't know yet....
+            see: http://www.vogella.com/tutorials/AndroidNotifications/article.html
+            and maybe also: http://stackoverflow.com/questions/10613524
+*/
             //mediaPlayer.getCurrentPosition()
             int vidLength = mediaPlayer.getDuration();
     //todo: make it so that tapping the notification brings you back to the Video's DetailActivity
