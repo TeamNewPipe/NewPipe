@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import org.schabi.newpipe.services.VideoExtractor;
 import org.schabi.newpipe.services.ServiceList;
 import org.schabi.newpipe.services.StreamingService;
 
@@ -36,7 +36,7 @@ public class VideoItemDetailActivity extends AppCompatActivity {
 
     private static final String TAG = VideoItemDetailActivity.class.toString();
 
-    VideoItemDetailFragment fragment;
+    private VideoItemDetailFragment fragment;
 
     private String videoUrl;
     private int currentStreamingService = -1;
@@ -46,7 +46,13 @@ public class VideoItemDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_videoitem_detail);
 
         // Show the Up button in the action bar.
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        try {
+            //noinspection ConstantConditions
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        } catch(Exception e) {
+            Log.d(TAG, "Could not get SupportActionBar");
+            e.printStackTrace();
+        }
 
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity
@@ -64,7 +70,7 @@ public class VideoItemDetailActivity extends AppCompatActivity {
             if (getIntent().getData() != null) {
                 videoUrl = getIntent().getData().toString();
                 StreamingService[] serviceList = ServiceList.getServices();
-                VideoExtractor videoExtractor = null;
+                //VideoExtractor videoExtractor = null;
                 for (int i = 0; i < serviceList.length; i++) {
                     if (serviceList[i].acceptUrl(videoUrl)) {
                         arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, i);

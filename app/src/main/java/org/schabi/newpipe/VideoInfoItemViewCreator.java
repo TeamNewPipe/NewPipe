@@ -26,10 +26,10 @@ import android.widget.TextView;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class VideoInfoItemViewCreator {
+class VideoInfoItemViewCreator {
     private static final String TAG = VideoInfoItemViewCreator.class.toString();
 
-    LayoutInflater inflater;
+    private final LayoutInflater inflater;
 
     public VideoInfoItemViewCreator(LayoutInflater inflater) {
         this.inflater = inflater;

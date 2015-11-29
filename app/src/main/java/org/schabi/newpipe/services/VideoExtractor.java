@@ -24,9 +24,10 @@ import org.schabi.newpipe.VideoInfo;
 
 /**Scrapes information from a video streaming service (eg, YouTube).*/
 public abstract class VideoExtractor {
-    public String pageUrl;
-    public VideoInfo videoInfo;
+    protected final String pageUrl;
+    protected VideoInfo videoInfo;
 
+    @SuppressWarnings("WeakerAccess")
     public VideoExtractor(String url) {
         this.pageUrl = url;
     }
@@ -99,17 +100,17 @@ public abstract class VideoExtractor {
         return videoInfo;
     }
 
-    public abstract String getVideoUrl(String videoId);
-    public abstract String getVideoId(String siteUrl);
-    public abstract int getTimeStamp();
-    public abstract String getTitle();
-    public abstract String getDescription();
-    public abstract String getUploader();
-    public abstract int getLength();
-    public abstract int getViews();
-    public abstract String getUploadDate();
-    public abstract String getThumbnailUrl();
-    public abstract String getUploaderThumbnailUrl();
-    public abstract VideoInfo.AudioStream[] getAudioStreams();
-    public abstract VideoInfo.VideoStream[] getVideoStreams();
+    protected abstract String getVideoUrl(String videoId);
+    protected abstract String getVideoId(String siteUrl);
+    protected abstract int getTimeStamp();
+    protected abstract String getTitle();
+    protected abstract String getDescription();
+    protected abstract String getUploader();
+    protected abstract int getLength();
+    protected abstract int getViews();
+    protected abstract String getUploadDate();
+    protected abstract String getThumbnailUrl();
+    protected abstract String getUploaderThumbnailUrl();
+    protected abstract VideoInfo.AudioStream[] getAudioStreams();
+    protected abstract VideoInfo.VideoStream[] getVideoStreams();
 }

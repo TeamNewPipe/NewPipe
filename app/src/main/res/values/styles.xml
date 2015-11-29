@@ -15,7 +15,7 @@
         <item name="background">@color/primaryColorYoutube</item>
     </style>
 
-    <style name="PlayVideoTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="VideoPlayerTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowActionBarOverlay">true</item>
         <item name="windowActionBarOverlay">true</item>

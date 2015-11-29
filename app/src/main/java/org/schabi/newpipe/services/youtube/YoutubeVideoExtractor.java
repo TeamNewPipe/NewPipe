@@ -50,8 +50,7 @@ import java.util.regex.Pattern;
 public class YoutubeVideoExtractor extends VideoExtractor {
 
     private static final String TAG = YoutubeVideoExtractor.class.toString();
-    private String pageContents;
-    private Document doc;
+    private final Document doc;
     private JSONObject jsonObj;
     private JSONObject playerArgs;
 
@@ -64,7 +63,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
 
     public YoutubeVideoExtractor(String pageUrl) {
         super(pageUrl);//most common videoInfo fields are now set in our superclass, for all services
-        pageContents = Downloader.download(cleanUrl(pageUrl));
+        String pageContents = Downloader.download(cleanUrl(pageUrl));
         doc = Jsoup.parse(pageContents, pageUrl);
 
         //attempt to load the youtube js player JSON arguments
@@ -266,6 +265,8 @@ public class YoutubeVideoExtractor extends VideoExtractor {
     /**These lists only contain itag formats that are supported by the common Android Video player.
     However if you are looking for a list showing all itag formats, look at
     https://github.com/rg3/youtube-dl/issues/1687 */
+
+    @SuppressWarnings("WeakerAccess")
     public static int resolveFormat(int itag) {
         switch(itag) {
             // video
@@ -285,6 +286,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         }
     }
 
+    @SuppressWarnings("WeakerAccess")
     public static String resolveResolutionString(int itag) {
         switch(itag) {
             case 17: return "144p";
@@ -303,6 +305,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         }
     }
 
+    @SuppressWarnings("WeakerAccess")
     @Override
     public String getVideoId(String url) {
         String id;
@@ -327,6 +330,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         return "";
     }
 
+    @SuppressWarnings("WeakerAccess")
     @Override
     public String getVideoUrl(String videoId) {
         return "https://www.youtube.com/watch?v=" + videoId;
@@ -579,7 +583,10 @@ public class YoutubeVideoExtractor extends VideoExtractor {
             e.printStackTrace();
         }
         Context.exit();
-        return result.toString();
+        if(result != null)
+            return result.toString();
+        else
+            return "";
     }
 
     private String cleanUrl(String complexUrl) {

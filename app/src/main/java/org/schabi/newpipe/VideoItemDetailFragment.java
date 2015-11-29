@@ -81,7 +81,6 @@ public class VideoItemDetailFragment extends Fragment {
     private ActionBarHandler actionBarHandler;
 
     private boolean autoPlayEnabled = false;
-    private Thread videoExtractorThread = null;
     private VideoInfo currentVideoInfo = null;
     private boolean showNextVideoItem = false;
 
@@ -92,12 +91,12 @@ public class VideoItemDetailFragment extends Fragment {
     private OnInvokeCreateOptionsMenuListener onInvokeCreateOptionsMenuListener = null;
 
     private class VideoExtractorRunnable implements Runnable {
-        private Handler h = new Handler();
+        private final Handler h = new Handler();
         private VideoExtractor videoExtractor;
-        private StreamingService service;
-        private String videoUrl;
+        private final StreamingService service;
+        private final String videoUrl;
 
-        public VideoExtractorRunnable(String videoUrl, StreamingService service, VideoItemDetailFragment f) {
+        public VideoExtractorRunnable(String videoUrl, StreamingService service) {
             this.service = service;
             this.videoUrl = videoUrl;
         }
@@ -137,7 +136,7 @@ public class VideoItemDetailFragment extends Fragment {
     }
 
     private class VideoResultReturnedRunnable implements Runnable {
-        private VideoInfo videoInfo;
+        private final VideoInfo videoInfo;
         public VideoResultReturnedRunnable(VideoInfo videoInfo) {
             this.videoInfo = videoInfo;
         }
@@ -153,8 +152,8 @@ public class VideoItemDetailFragment extends Fragment {
         public static final int VIDEO_THUMBNAIL = 1;
         public static final int CHANNEL_THUMBNAIL = 2;
         public static final int NEXT_VIDEO_THUMBNAIL = 3;
-        private Bitmap thumbnail;
-        private int thumbnailId;
+        private final Bitmap thumbnail;
+        private final int thumbnailId;
         public SetThumbnailRunnable(Bitmap thumbnail, int id) {
             this.thumbnail = thumbnail;
             this.thumbnailId = id;
@@ -165,9 +164,9 @@ public class VideoItemDetailFragment extends Fragment {
         }
     }
 
-    public void updateThumbnail(Bitmap thumbnail, int id) {
+    private void updateThumbnail(Bitmap thumbnail, int id) {
         Activity a = getActivity();
-        ImageView thumbnailView = null;
+        ImageView thumbnailView;
         try {
             switch (id) {
                 case SetThumbnailRunnable.VIDEO_THUMBNAIL:
@@ -196,7 +195,7 @@ public class VideoItemDetailFragment extends Fragment {
         }
     }
 
-    public void updateInfo(VideoInfo info) {
+    private void updateInfo(VideoInfo info) {
         currentVideoInfo = info;
         Resources res = activity.getResources();
         try {
@@ -330,8 +329,6 @@ public class VideoItemDetailFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public VideoItemDetailFragment() {
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -367,8 +364,8 @@ public class VideoItemDetailFragment extends Fragment {
             try {
                 StreamingService streamingService = ServiceList.getService(
                         getArguments().getInt(STREAMING_SERVICE));
-                videoExtractorThread = new Thread(new VideoExtractorRunnable(
-                        getArguments().getString(VIDEO_URL), streamingService, this));
+                Thread videoExtractorThread = new Thread(new VideoExtractorRunnable(
+                        getArguments().getString(VIDEO_URL), streamingService));
 
                 autoPlayEnabled = getArguments().getBoolean(AUTO_PLAY);
                 videoExtractorThread.start();
@@ -416,10 +413,12 @@ public class VideoItemDetailFragment extends Fragment {
 
     /**Returns the java.util.Locale object which corresponds to the locale set in NewPipe's preferences.
      * Currently not affected by the device's locale.*/
-    public Locale getPreferredLocale() {
+    private Locale getPreferredLocale() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
         String languageKey = getContext().getString(R.string.searchLanguage);
-        String languageCode = "en";//i know the following line defaults languageCode to "en", but java is picky about uninitialised values
+        //i know the following line defaults languageCode to "en", but java is picky about uninitialised values
+        // Schabi: well lint tels me the value is redundant. I'll suppress it for now.
+        @SuppressWarnings("UnusedAssignment") String languageCode = "en";
         languageCode = sp.getString(languageKey, "en");
 
         if(languageCode.length() == 2) {
@@ -433,7 +432,7 @@ public class VideoItemDetailFragment extends Fragment {
         return Locale.getDefault();
     }
 
-    public boolean checkIfLandscape() {
+    private boolean checkIfLandscape() {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.heightPixels < displayMetrics.widthPixels;

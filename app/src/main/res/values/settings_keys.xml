@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Categories -->
     <string name="settingsCategoryVideoAudio">settings_categoery_video_audio</string>
     <string name="settingsCategoryVideoInfo">settings_category_video_info</string>

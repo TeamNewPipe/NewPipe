@@ -95,20 +95,18 @@ public class YoutubeSearchEngine implements SearchEngine {
             // both types of spell correction item
             if(!((el = item.select("div[class*=\"spell-correction\"]").first()) == null)) {
                 result.suggestion = el.select("a").first().text();
-                // search message item
+            // search message item
             } else if(!((el = item.select("div[class*=\"search-message\"]").first()) == null)) {
                 result.errorMessage = el.text();
 
-                // video item type
+            // video item type
             } else if(!((el = item.select("div[class*=\"yt-lockup-video\"").first()) == null)) {
-                //todo: de-duplicate this with YoutubeVideoExtractor.getVideoPreviewInfo()
                 VideoPreviewInfo resultItem = new VideoPreviewInfo();
                 Element dl = el.select("h3").first().select("a").first();
                 resultItem.webpage_url = dl.attr("abs:href");
                 try {
                     Pattern p = Pattern.compile("v=([0-9a-zA-Z-]*)");
                     Matcher m = p.matcher(resultItem.webpage_url);
-                    m.find();
                     resultItem.id=m.group(1);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -134,6 +132,7 @@ public class YoutubeSearchEngine implements SearchEngine {
                 }
                 result.resultList.add(resultItem);
             } else {
+                //noinspection ConstantConditions
                 Log.e(TAG, "unexpected element found:\""+el+"\"");
             }
         }
