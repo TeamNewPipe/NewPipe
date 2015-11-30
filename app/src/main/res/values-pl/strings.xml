@@ -51,6 +51,6 @@
     <string name="itemThumbnailViewDescription">Miniaturka podglądowa wideo</string>
     <string name="detailThumbnailViewDescription">Miniaturka podglądowa wideo</string>
     <string name="detailUploaderThumbnailViewDescription">Miniaturka wysyłającego</string>
-    <string name="detailThumbsDownImgViewDescription">Łapek w dół</string>
-    <string name="detailThumbsUpImgViewDescription">Polubień</string>
+    <string name="detailThumbsDownImgViewDescription">łapek w dół</string>
+    <string name="detailThumbsUpImgViewDescription">polubień</string>
 </resources>
