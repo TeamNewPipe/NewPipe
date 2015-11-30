@@ -1,4 +1,4 @@
-# [NewPipe](http://dasochan.nl/newpipe/)
+# NewPipe
 
 [![Translation Status](https://hosted.weblate.org/widgets/NewPipe/-/svg-badge.svg)](https://hosted.weblate.org/engage/NewPipe/)
 
