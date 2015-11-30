@@ -26,7 +26,7 @@ NewPipe does not use any Google framework libraries, or the YouTube API. It only
 * Show Next/Related videos
 * Search YouTube in a specific language
 
-## Coming Features
+### Coming Features
 
 * Improved Downloading
 * Bookmarks
@@ -39,7 +39,7 @@ NewPipe does not use any Google framework libraries, or the YouTube API. It only
 * Search/Watch Playlists
 * ... and many more
 
-## Multiservice support
+### Multiservice support
 Although, right now NewPipe supports only YouTube, it's designed to support many more streaming services. The plan is, that NewPipe will get such support by the v2.0.
 
 ## Contribution
