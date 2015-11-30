@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.schabi.newpipe.services.AbstractVideoInfo;
+
 /**
  * Created by Christian Schabesberger on 26.08.15.
  *
@@ -27,6 +29,7 @@ import android.os.Parcelable;
 /**Info object for previews of unopened videos, eg search results, related videos*/
 public class VideoPreviewInfo extends AbstractVideoInfo implements Parcelable {
     public String duration = "";
+    @SuppressWarnings("WeakerAccess")
     protected VideoPreviewInfo(Parcel in) {
         id = in.readString();
         title = in.readString();

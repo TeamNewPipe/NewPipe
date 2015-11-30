@@ -32,19 +32,17 @@ import java.util.Vector;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class VideoListAdapter extends BaseAdapter {
+class VideoListAdapter extends BaseAdapter {
     private static final String TAG = VideoListAdapter.class.toString();
 
-    private Context context;
-    private VideoInfoItemViewCreator viewCreator;
+    private final Context context;
+    private final VideoInfoItemViewCreator viewCreator;
     private Vector<VideoPreviewInfo> videoList = new Vector<>();
     private Vector<Boolean> downloadedThumbnailList = new Vector<>();
-    VideoItemListFragment videoListFragment;
-    ListView listView;
+    private final ListView listView;
 
     public VideoListAdapter(Context context, VideoItemListFragment videoListFragment) {
         viewCreator = new VideoInfoItemViewCreator(LayoutInflater.from(context));
-        this.videoListFragment = videoListFragment;
         this.listView = videoListFragment.getListView();
         this.context = context;
     }
@@ -67,8 +65,8 @@ public class VideoListAdapter extends BaseAdapter {
         return videoList;
     }
 
-    public void updateDownloadedThumbnailList(int index, boolean val) {
-        downloadedThumbnailList.set(index, val);
+    public void updateDownloadedThumbnailList(int index) {
+        downloadedThumbnailList.set(index, true);
     }
 
     public Vector<Boolean> getDownloadedThumbnailList() {

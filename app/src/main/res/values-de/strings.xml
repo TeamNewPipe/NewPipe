@@ -2,20 +2,17 @@
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
-    <string name="nothingFound">Nichts gefunden</string>
-    <string name="viewSufix">Aufrufe</string>
-    <string name="uploadDatePrefix">Hochgeladen am </string>
+    <string name="viewCountText">%1$s Aufrufe</string>
+    <string name="uploadDateText">Hochgeladen am %1$s</string>
     <string name="noPlayerFound">Keinen Streamplayer gefunden. Vielleicht möchtest du einen installieren.</string>
     <string name="installStreamPlayer">Jetzt installieren</string>
     <string name="cancel">Abbrechen</string>
     <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">In Browser öffnen</string>
     <string name="share">Teilen</string>
-    <string name="play">Play</string>
     <string name="download">Download</string>
     <string name="search">Suchen</string>
     <string name="settings">Einstellungen</string>
-    <string name="sendWith">Senden mit</string>
     <string name="didYouMean">Meintest du: </string>
     <string name="searchPage">Suchseite: </string>
     <string name="shareDialogTitle">Teilen mit:</string>
@@ -23,10 +20,10 @@
     <string name="screenRotation">Rotation</string>
     <string name="title_activity_settings">Einstellungen</string>
     <string name="useExternalPlayerTitle">Externen Player benutzen</string>
-    <string name="downloadLocation">Download Verzeichnis</string>
+    <string name="downloadLocation">Downloadverzeichnis</string>
     <string name="downloadLocationSummary">Verzeichnis in dem heruntergeladene Videos gespeichert werden.</string>
     <string name="downloadLocationDialogTitle">Download Verzeichnis eingeben</string>
-    <string name="autoPlayThroughIntentTitle">Automatisches abspielen durch Intent</string>
+    <string name="autoPlayThroughIntentTitle">Automatisches Abspielen durch Intent</string>
     <string name="autoPlayThroughIntentSummary">Startet ein Video automatisch wenn es von einer anderen App aufgerufen wurde.</string>
     <string name="defaultResolutionPreferenceTitle">Standard Auflösung</string>
     <string name="playWithKodiTitle">Mit Kodi abspielen</string>
@@ -46,7 +43,11 @@
         <item>Audio</item>
     </string-array>
     <string name="nextVideoTitle">Nächstes Video</string>
-    <string name="showNextAndSimilarTitle">Zeige nächstes und änliche Videos</string>
+    <string name="showNextAndSimilarTitle">Zeige nächstes und ähnliche Videos</string>
     <string name="urlNotSupportedText">URL wird nicht unterstützt.</string>
     <string name="showSimilarVideosButtonText">Ähnliche Videos</string>
-</resources>
+    <string name="settingsCategoryVideoAudioTitle">VIDEO &amp; AUDIO</string>
+    <string name="settingsCategoryVideoInfoTittle">INFO</string>
+    <string name="settingsCategoryEtcTitle">ETC</string>
+<string name="searchLanguageTitle">Bevorzugte Sprache</string>
+    </resources>
