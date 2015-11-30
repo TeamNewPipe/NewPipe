@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -56,9 +57,9 @@ public class VideoItemListActivity extends AppCompatActivity
 
     private VideoItemListFragment listFragment;
     private VideoItemDetailFragment videoFragment = null;
-    Menu menu = null;
+    private Menu menu = null;
 
-    public class SearchVideoQueryListener implements SearchView.OnQueryTextListener {
+    private class SearchVideoQueryListener implements SearchView.OnQueryTextListener {
 
         @Override
         public boolean onQueryTextSubmit(String query) {
@@ -69,8 +70,14 @@ public class VideoItemListActivity extends AppCompatActivity
                 // hide virtual keyboard
                 InputMethodManager inputManager =
                         (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputManager.hideSoftInputFromWindow(
-                        getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                try {
+                    //noinspection ConstantConditions
+                    inputManager.hideSoftInputFromWindow(
+                            getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                } catch(NullPointerException e) {
+                    Log.e(TAG, "Could not get widget with focus");
+                    e.printStackTrace();
+                }
                 // clear focus
                 // 1. to not open up the keyboard after switching back to this
                 // 2. It's a workaround to a seeming bug by the Android OS it self, causing
@@ -116,7 +123,13 @@ public class VideoItemListActivity extends AppCompatActivity
             ArrayList<VideoPreviewInfo> p = arguments.getParcelableArrayList(VIDEO_INFO_ITEMS);
             if(p != null) {
                 mode = PRESENT_VIDEOS_MODE;
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                try {
+                    //noinspection ConstantConditions
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                } catch (NullPointerException e) {
+                    Log.e(TAG, "Could not get SupportActionBar");
+                    e.printStackTrace();
+                }
 
                 listFragment.present(p);
             }

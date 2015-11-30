@@ -2,20 +2,17 @@
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
-    <string name="nothingFound">No se ha encontrado nada</string>
-    <string name="viewSufix">visitas</string>
-    <string name="uploadDatePrefix">Subido el </string>
+    <string name="viewCountText">%1$s visitas</string>
+    <string name="uploadDateText">Subido el %1$s</string>
     <string name="noPlayerFound">No se ha encontrado ningún reproductor de vídeo. Quizás quieras instalar alguno.</string>
     <string name="installStreamPlayer">Instalarlo</string>
     <string name="cancel">Cancelar</string>
     <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Abrir en el navegador</string>
     <string name="share">Compartir</string>
-    <string name="play">Reproducir</string>
     <string name="download">Descargar</string>
     <string name="search">Buscar</string>
     <string name="settings">Ajustes</string>
-    <string name="sendWith">Enviar con</string>
     <string name="didYouMean">"¿Querías decir?: "</string>
     <string name="searchPage">Buscar página: </string>
     <string name="shareDialogTitle">Compartir con:</string>
@@ -23,7 +20,7 @@
     <string name="screenRotation">rotación</string>
     <string name="title_activity_settings">Ajustes</string>
     <string name="useExternalPlayerTitle">Usar reproductor externo</string>
-    <string name="downloadLocation">Descargar en...</string>
+    <string name="downloadLocation">Descargar en&#8230;</string>
     <string name="downloadLocationSummary">Ruta donde guardar los vídeos descargados.</string>
     <string name="downloadLocationDialogTitle">Localización del directorio de descargas</string>
     <string name="autoPlayThroughIntentTitle">Reproducción automática</string>
@@ -42,8 +39,6 @@
     <string name="m4aAudioDescription">m4a - mejor calidad</string>
     <string name="downloadDialogTitle">Descargar</string>
     <string name="nextVideoTitle">Siguiente vídeo</string>
-    <string name="showNextVideoTitle">Mostrar la opción \"Siguiente vídeo\".</string>
     <string name="urlNotSupportedText">URL no soportada.</string>
     <string name="showSimilarVideosButtonText">Vídeos similares</string>
-    <string name="contentCountryTitle">País del contenido del vídeo</string>
 </resources>

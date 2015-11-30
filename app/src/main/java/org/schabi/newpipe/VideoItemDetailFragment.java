@@ -1,8 +1,10 @@
 package org.schabi.newpipe;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -39,7 +41,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Vector;
 
-import org.schabi.newpipe.services.Extractor;
+import org.schabi.newpipe.services.VideoExtractor;
 import org.schabi.newpipe.services.ServiceList;
 import org.schabi.newpipe.services.StreamingService;
 
@@ -79,7 +81,6 @@ public class VideoItemDetailFragment extends Fragment {
     private ActionBarHandler actionBarHandler;
 
     private boolean autoPlayEnabled = false;
-    private Thread extractorThread = null;
     private VideoInfo currentVideoInfo = null;
     private boolean showNextVideoItem = false;
 
@@ -89,21 +90,21 @@ public class VideoItemDetailFragment extends Fragment {
 
     private OnInvokeCreateOptionsMenuListener onInvokeCreateOptionsMenuListener = null;
 
-    private class ExtractorRunnable implements Runnable {
-        private Handler h = new Handler();
-        private Extractor extractor;
-        private StreamingService service;
-        private String videoUrl;
+    private class VideoExtractorRunnable implements Runnable {
+        private final Handler h = new Handler();
+        private VideoExtractor videoExtractor;
+        private final StreamingService service;
+        private final String videoUrl;
 
-        public ExtractorRunnable(String videoUrl, StreamingService service, VideoItemDetailFragment f) {
+        public VideoExtractorRunnable(String videoUrl, StreamingService service) {
             this.service = service;
             this.videoUrl = videoUrl;
         }
         @Override
         public void run() {
             try {
-                this.extractor = service.getExtractorInstance(videoUrl);
-                VideoInfo videoInfo = extractor.getVideoInfo();
+                this.videoExtractor = service.getExtractorInstance(videoUrl);
+                VideoInfo videoInfo = videoExtractor.getVideoInfo();
                 h.post(new VideoResultReturnedRunnable(videoInfo));
                 if (videoInfo.videoAvailableStatus == VideoInfo.VIDEO_AVAILABLE) {
                     h.post(new SetThumbnailRunnable(
@@ -135,7 +136,7 @@ public class VideoItemDetailFragment extends Fragment {
     }
 
     private class VideoResultReturnedRunnable implements Runnable {
-        private VideoInfo videoInfo;
+        private final VideoInfo videoInfo;
         public VideoResultReturnedRunnable(VideoInfo videoInfo) {
             this.videoInfo = videoInfo;
         }
@@ -151,8 +152,8 @@ public class VideoItemDetailFragment extends Fragment {
         public static final int VIDEO_THUMBNAIL = 1;
         public static final int CHANNEL_THUMBNAIL = 2;
         public static final int NEXT_VIDEO_THUMBNAIL = 3;
-        private Bitmap thumbnail;
-        private int thumbnailId;
+        private final Bitmap thumbnail;
+        private final int thumbnailId;
         public SetThumbnailRunnable(Bitmap thumbnail, int id) {
             this.thumbnail = thumbnail;
             this.thumbnailId = id;
@@ -163,9 +164,9 @@ public class VideoItemDetailFragment extends Fragment {
         }
     }
 
-    public void updateThumbnail(Bitmap thumbnail, int id) {
+    private void updateThumbnail(Bitmap thumbnail, int id) {
         Activity a = getActivity();
-        ImageView thumbnailView = null;
+        ImageView thumbnailView;
         try {
             switch (id) {
                 case SetThumbnailRunnable.VIDEO_THUMBNAIL:
@@ -194,8 +195,9 @@ public class VideoItemDetailFragment extends Fragment {
         }
     }
 
-    public void updateInfo(VideoInfo info) {
+    private void updateInfo(VideoInfo info) {
         currentVideoInfo = info;
+        Resources res = activity.getResources();
         try {
             VideoInfoItemViewCreator videoItemViewCreator =
                     new VideoInfoItemViewCreator(LayoutInflater.from(getActivity()));
@@ -234,13 +236,17 @@ public class VideoItemDetailFragment extends Fragment {
                     Locale locale = getPreferredLocale();
                     NumberFormat nf = NumberFormat.getInstance(locale);
                     String localisedViewCount = nf.format(info.view_count);
-                    viewCountView.setText(localisedViewCount
-                            + " " + activity.getString(R.string.viewSufix));
+                    viewCountView.setText(
+                            String.format(
+                                    res.getString(R.string.viewCountText), localisedViewCount));
+                    /*viewCountView.setText(localisedViewCount
+                            + " " + activity.getString(R.string.viewSufix)); */
 
 
                     thumbsUpView.setText(nf.format(info.like_count));
                     thumbsDownView.setText(nf.format(info.dislike_count));
 
+                    @SuppressLint("SimpleDateFormat")
                     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                     Date datum = null;
                     try {
@@ -253,7 +259,7 @@ public class VideoItemDetailFragment extends Fragment {
 
                     String localisedDate = df.format(datum);
                     uploadDateView.setText(
-                            activity.getString(R.string.uploadDatePrefix) + " " + localisedDate);
+                            String.format(res.getString(R.string.uploadDateText), localisedDate));
                     descriptionView.setText(Html.fromHtml(info.description));
                     descriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
@@ -323,8 +329,6 @@ public class VideoItemDetailFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public VideoItemDetailFragment() {
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -360,11 +364,11 @@ public class VideoItemDetailFragment extends Fragment {
             try {
                 StreamingService streamingService = ServiceList.getService(
                         getArguments().getInt(STREAMING_SERVICE));
-                extractorThread = new Thread(new ExtractorRunnable(
-                        getArguments().getString(VIDEO_URL), streamingService, this));
+                Thread videoExtractorThread = new Thread(new VideoExtractorRunnable(
+                        getArguments().getString(VIDEO_URL), streamingService));
 
                 autoPlayEnabled = getArguments().getBoolean(AUTO_PLAY);
-                extractorThread.start();
+                videoExtractorThread.start();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -409,10 +413,12 @@ public class VideoItemDetailFragment extends Fragment {
 
     /**Returns the java.util.Locale object which corresponds to the locale set in NewPipe's preferences.
      * Currently not affected by the device's locale.*/
-    public Locale getPreferredLocale() {
+    private Locale getPreferredLocale() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
         String languageKey = getContext().getString(R.string.searchLanguage);
-        String languageCode = "en";//i know the following line defaults languageCode to "en", but java is picky about uninitialised values
+        //i know the following line defaults languageCode to "en", but java is picky about uninitialised values
+        // Schabi: well lint tels me the value is redundant. I'll suppress it for now.
+        @SuppressWarnings("UnusedAssignment") String languageCode = "en";
         languageCode = sp.getString(languageKey, "en");
 
         if(languageCode.length() == 2) {
@@ -426,7 +432,7 @@ public class VideoItemDetailFragment extends Fragment {
         return Locale.getDefault();
     }
 
-    public boolean checkIfLandscape() {
+    private boolean checkIfLandscape() {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.heightPixels < displayMetrics.widthPixels;

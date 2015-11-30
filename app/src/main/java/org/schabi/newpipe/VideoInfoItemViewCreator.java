@@ -26,10 +26,10 @@ import android.widget.TextView;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class VideoInfoItemViewCreator {
+class VideoInfoItemViewCreator {
     private static final String TAG = VideoInfoItemViewCreator.class.toString();
 
-    LayoutInflater inflater;
+    private final LayoutInflater inflater;
 
     public VideoInfoItemViewCreator(LayoutInflater inflater) {
         this.inflater = inflater;
@@ -57,12 +57,12 @@ public class VideoInfoItemViewCreator {
         }
         holder.itemVideoTitleView.setText(info.title);
         holder.itemUploaderView.setText(info.uploader);
-        holder.itemDurationView.setText(""+info.duration);
+        holder.itemDurationView.setText(info.duration);
         if(!info.upload_date.isEmpty()) {
             holder.itemUploadDateView.setText(info.upload_date);
         } else {
             //tweak if necessary: This is a hack to prevent having white space in the layout :P
-            holder.itemUploadDateView.setText(""+info.view_count);
+            holder.itemUploadDateView.setText(String.format("%d", info.view_count));
         }
 
         return convertView;

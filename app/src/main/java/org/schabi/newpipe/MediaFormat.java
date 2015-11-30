@@ -23,6 +23,7 @@ package org.schabi.newpipe;
  */
 
 /**Static data about various media formats support by Newpipe, eg mime type, extension*/
+
 public enum MediaFormat {
     //           id      name    suffix  mime type
     MPEG_4      (0x0,   "MPEG-4", "mp4", "video/mp4"),
@@ -32,7 +33,9 @@ public enum MediaFormat {
     WEBMA       (0x4,   "WebM",  "webm", "audio/webm");
 
     public final int id;
+    @SuppressWarnings("WeakerAccess")
     public final String name;
+    @SuppressWarnings("WeakerAccess")
     public final String suffix;
     public final String mimeType;
 

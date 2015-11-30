@@ -58,6 +58,7 @@ public class VideoInfo extends AbstractVideoInfo {
 
     /**Creates a new VideoInfo object from an existing AbstractVideoInfo.
      * All the shared properties are copied to the new VideoInfo.*/
+    @SuppressWarnings("WeakerAccess")
     public VideoInfo(AbstractVideoInfo avi) {
         this.id = avi.id;
         this.title = avi.title;
@@ -76,7 +77,6 @@ public class VideoInfo extends AbstractVideoInfo {
             int seconds = Integer.parseInt(dur.substring(dur.indexOf(":")+1, dur.length()));
             this.duration = (minutes*60)+seconds;
         }
-
     }
 
     public static class VideoStream {

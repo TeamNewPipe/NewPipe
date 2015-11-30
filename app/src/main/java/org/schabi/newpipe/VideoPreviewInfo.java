@@ -29,6 +29,7 @@ import org.schabi.newpipe.services.AbstractVideoInfo;
 /**Info object for previews of unopened videos, eg search results, related videos*/
 public class VideoPreviewInfo extends AbstractVideoInfo implements Parcelable {
     public String duration = "";
+    @SuppressWarnings("WeakerAccess")
     protected VideoPreviewInfo(Parcel in) {
         id = in.readString();
         title = in.readString();

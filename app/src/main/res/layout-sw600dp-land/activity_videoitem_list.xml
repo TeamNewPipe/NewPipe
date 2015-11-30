@@ -25,7 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:iconifiedByDefault="false"
-            android:focusable="false"/>
+            android:focusable="false"
+            tools:ignore="InconsistentLayout" />
 
         <fragment android:id="@+id/videoitem_list"
             android:name="org.schabi.newpipe.VideoItemListFragment"
@@ -44,7 +45,8 @@
 
         <FrameLayout android:id="@+id/videoitem_detail_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"  />
+            android:layout_height="match_parent"
+            tools:ignore="InconsistentLayout" />
 
     </LinearLayout>
 
