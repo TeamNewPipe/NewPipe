@@ -49,4 +49,5 @@
     <string name="settingsCategoryVideoAudioTitle">VIDEO &amp; AUDIO</string>
     <string name="settingsCategoryVideoInfoTittle">INFO</string>
     <string name="settingsCategoryEtcTitle">ETC</string>
-</resources>
+<string name="searchLanguageTitle">Bevorzugte Sprache</string>
+    </resources>
