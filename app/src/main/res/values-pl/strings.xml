@@ -27,7 +27,7 @@
     <string name="autoPlayThroughIntentSummary">Automatycznie odtwarza wideo po wywołaniu z innej aplikacji.</string>
     <string name="defaultResolutionPreferenceTitle">Domyślna rozdzielczość</string>
     <string name="playWithKodiTitle">Odtwarzaj za pośrednictwem Kodi</string>
-    <string name="koreNotFound">Aplikacja Kode nie została znaleziona. Wymagana jest do odtwarzania w Kodi.</string>
+    <string name="koreNotFound">Aplikacja Kore nie została znaleziona. Wymagana jest do odtwarzania w Kodi.</string>
     <string name="installeKore">Zainstaluj Kore</string>
     <string name="showPlayWithKodiTitle">Wyświetlaj opcję \"Odtwarzaj za pośrednictwem Kodi\"</string>
     <string name="showPlayWithKodiSummary">Wyświetla opcję do odtwarzania wideo przez aplikację Kodi.</string>
@@ -46,4 +46,11 @@
     <string name="settingsCategoryVideoInfoTittle">INFO</string>
     <string name="settingsCategoryEtcTitle">INNE</string>
 <string name="searchPage">"Szukaj strony: "</string>
-    </resources>
+    <string name="viewCountText">%1$s wyświetleń</string>
+    <string name="uploadDateText">Opublikowany %1$s</string>
+    <string name="itemThumbnailViewDescription">Miniaturka podglądowa wideo</string>
+    <string name="detailThumbnailViewDescription">Miniaturka podglądowa wideo</string>
+    <string name="detailUploaderThumbnailViewDescription">Miniaturka wysyłającego</string>
+    <string name="detailThumbsDownImgViewDescription">Łapek w dół</string>
+    <string name="detailThumbsUpImgViewDescription">Polubień</string>
+</resources>
