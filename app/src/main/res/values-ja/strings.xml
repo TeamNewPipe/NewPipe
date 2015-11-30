@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
+
 <resources><string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
     <string name="nothingFound">何も見つかりません</string>
     <string name="viewSufix">表示</string>
-    <string name="uploadDatePrefix">"ｱｯﾌﾟﾛｰﾄﾞ: "</string>
+    <string name="uploadDateText">"アップロード: "%1$s</string>
     <string name="noPlayerFound">StreamPlayer が見つかりませんでした｡ｲﾝｽﾄｰﾙが必要になるかもしれません｡</string>
     <string name="installStreamPlayer">ｲﾝｽﾄｰﾙ</string>
     <string name="cancel">取り消し</string>
@@ -45,7 +46,7 @@
     <string name="urlNotSupportedText">URL は使用できません｡</string>
     <string name="showSimilarVideosButtonText">同様の動画</string>
     <string name="searchLanguageTitle">優先される言語</string>
-<string name="settingsCategoryVideoAudioTitle">動画とｵｰﾃﾞｨｵ</string>
+    <string name="settingsCategoryVideoAudioTitle">動画とｵｰﾃﾞｨｵ</string>
     <string name="settingsCategoryVideoInfoTittle">情報</string>
     <string name="settingsCategoryEtcTitle">その他</string>
 </resources>

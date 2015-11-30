@@ -84,6 +84,7 @@ public class PlayVideoActivity extends AppCompatActivity {
         hasSoftKeys = checkIfHasSoftKeys();
 
         actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         if(mediaController == null) {
@@ -291,11 +292,9 @@ public class PlayVideoActivity extends AppCompatActivity {
     }
 
     private boolean checkIfHasSoftKeys(){
-        if(Build.VERSION.SDK_INT >= 17) {
-            return getNavigationBarHeight() != 0 || getNavigationBarWidth() != 0;
-        } else {
-            return true;
-        }
+        return Build.VERSION.SDK_INT >= 17 ||
+                getNavigationBarHeight() != 0 ||
+                getNavigationBarWidth() != 0;
     }
 
     private int getNavigationBarHeight() {
@@ -332,7 +331,7 @@ public class PlayVideoActivity extends AppCompatActivity {
         }
     }
 
-    public boolean checkIfLandscape() {
+    private boolean checkIfLandscape() {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.heightPixels < displayMetrics.widthPixels;
@@ -348,6 +347,6 @@ public class PlayVideoActivity extends AppCompatActivity {
         }
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean(PREF_IS_LANDSCAPE, isLandscape);
-        editor.commit();
+        editor.apply();
     }
 }

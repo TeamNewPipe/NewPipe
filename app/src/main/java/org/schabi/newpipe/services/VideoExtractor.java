@@ -4,7 +4,7 @@ package org.schabi.newpipe.services;
  * Created by Christian Schabesberger on 10.08.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * Extractor.java is part of NewPipe.
+ * VideoExtractor.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,11 +23,12 @@ package org.schabi.newpipe.services;
 import org.schabi.newpipe.VideoInfo;
 
 /**Scrapes information from a video streaming service (eg, YouTube).*/
-public abstract class Extractor {
-    public String pageUrl;
-    public VideoInfo videoInfo;
+public abstract class VideoExtractor {
+    protected final String pageUrl;
+    protected VideoInfo videoInfo;
 
-    public Extractor(String url) {
+    @SuppressWarnings("WeakerAccess")
+    public VideoExtractor(String url) {
         this.pageUrl = url;
     }
 
@@ -99,17 +100,17 @@ public abstract class Extractor {
         return videoInfo;
     }
 
-    public abstract String getVideoUrl(String videoId);
-    public abstract String getVideoId(String siteUrl);
-    public abstract int getTimeStamp();
-    public abstract String getTitle();
-    public abstract String getDescription();
-    public abstract String getUploader();
-    public abstract int getLength();
-    public abstract int getViews();
-    public abstract String getUploadDate();
-    public abstract String getThumbnailUrl();
-    public abstract String getUploaderThumbnailUrl();
-    public abstract VideoInfo.AudioStream[] getAudioStreams();
-    public abstract VideoInfo.VideoStream[] getVideoStreams();
+    protected abstract String getVideoUrl(String videoId);
+    protected abstract String getVideoId(String siteUrl);
+    protected abstract int getTimeStamp();
+    protected abstract String getTitle();
+    protected abstract String getDescription();
+    protected abstract String getUploader();
+    protected abstract int getLength();
+    protected abstract int getViews();
+    protected abstract String getUploadDate();
+    protected abstract String getThumbnailUrl();
+    protected abstract String getUploaderThumbnailUrl();
+    protected abstract VideoInfo.AudioStream[] getAudioStreams();
+    protected abstract VideoInfo.VideoStream[] getVideoStreams();
 }

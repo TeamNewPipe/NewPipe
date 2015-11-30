@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -36,7 +35,8 @@ import android.widget.ArrayAdapter;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class ActionBarHandler {
+
+class ActionBarHandler {
     private static final String TAG = ActionBarHandler.class.toString();
     private static final String KORE_PACKET = "org.xbmc.kore";
 
@@ -47,10 +47,11 @@ public class ActionBarHandler {
     private int selectedStream = -1;
     private String videoTitle = "";
 
-    SharedPreferences defaultPreferences = null;
+    private SharedPreferences defaultPreferences = null;
     private int startPosition;
 
-    class FormatItemSelectListener implements ActionBar.OnNavigationListener {
+    @SuppressWarnings("deprecation")
+    private class FormatItemSelectListener implements ActionBar.OnNavigationListener {
         @Override
         public boolean onNavigationItemSelected(int itemPosition, long itemId) {
             selectFormatItem((int)itemId);
@@ -62,11 +63,17 @@ public class ActionBarHandler {
         this.activity = activity;
     }
 
+    @SuppressWarnings({"deprecation", "ConstantConditions"})
     public void setupNavMenu(AppCompatActivity activity) {
         this.activity = activity;
-        activity.getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        try {
+            activity.getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        } catch(NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
+    @SuppressWarnings("deprecation")
     public void setStreams(VideoInfo.VideoStream[] videoStreams, VideoInfo.AudioStream[] audioStreams) {
         this.videoStreams = videoStreams;
         selectedStream = 0;
@@ -84,12 +91,14 @@ public class ActionBarHandler {
             }
         }
 
-        ArrayAdapter<String> itemAdapter = new ArrayAdapter<String>(activity.getBaseContext(),
+        ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(activity.getBaseContext(),
                 android.R.layout.simple_spinner_dropdown_item, itemArray);
         if(activity != null) {
             ActionBar ab = activity.getSupportActionBar();
-            ab.setListNavigationCallbacks(itemAdapter
-                    ,new FormatItemSelectListener());
+                assert ab != null : "Could not get actionbar";
+                ab.setListNavigationCallbacks(itemAdapter
+                        , new FormatItemSelectListener());
+
             ab.setSelectedNavigationItem(defaultResolutionPos);
         }
 
@@ -117,7 +126,7 @@ public class ActionBarHandler {
         selectedStream = i;
     }
 
-    public boolean setupMenu(Menu menu, MenuInflater inflater) {
+    public void setupMenu(Menu menu, MenuInflater inflater) {
         // CAUTION set item properties programmatically otherwise it would not be accepted by
         // appcompat itemsinflater.inflate(R.menu.videoitem_detail, menu);
 
@@ -128,8 +137,6 @@ public class ActionBarHandler {
 
         castItem.setVisible(defaultPreferences
                 .getBoolean(activity.getString(R.string.showPlayWidthKodiPreference), false));
-
-        return true;
     }
 
     public boolean onItemSelected(MenuItem item) {
@@ -229,7 +236,7 @@ public class ActionBarHandler {
         this.startPosition = startPositionSeconds;
     }
 
-    public void downloadVideo() {
+    private void downloadVideo() {
         if(!videoTitle.isEmpty()) {
             String videoSuffix = "." + MediaFormat.getSuffixById(videoStreams[selectedStream].format);
             String audioSuffix = "." + MediaFormat.getSuffixById(audioStream.format);
@@ -245,7 +252,7 @@ public class ActionBarHandler {
         }
     }
 
-    public void openInBrowser() {
+    private void openInBrowser() {
         if(!videoTitle.isEmpty()) {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
@@ -255,7 +262,7 @@ public class ActionBarHandler {
         }
     }
 
-    public void playWithKodi() {
+    private void playWithKodi() {
         if(!videoTitle.isEmpty()) {
             try {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -286,7 +293,7 @@ public class ActionBarHandler {
         }
     }
 
-    public void playAudio() {
+    private void playAudio() {
         Intent intent = new Intent();
         try {
             intent.setAction(Intent.ACTION_VIEW);
