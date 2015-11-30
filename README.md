@@ -44,3 +44,5 @@ Generally NewPipe is designed to not only support YouTube, but many more streami
 Whether it's about ideas, translation, design changes, code cleaning, or real heavy code changes. Help is always welcome.
 
 The more is done the better it gets!
+
+If you like to contribute to our code discussion, you can join our [Slack group](http://invite.chschtsch.ml/).
