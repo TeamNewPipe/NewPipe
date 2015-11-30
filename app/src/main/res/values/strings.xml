@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">NewPipe</string>
-    <string name="title_videoitem_detail">NewPipe</string>
+    <string name="app_name" translatable="false">NewPipe</string>
+    <string name="title_videoitem_detail" translatable="false">NewPipe</string>
     <string name="viewCountText">%1$s views</string>
     <string name="uploadDateText">Uploaded on %1$s</string>
     <string name="noPlayerFound">No stream player found. You may want to install one.</string>
     <string name="installStreamPlayer">Install</string>
     <string name="cancel">Cancel</string>
-    <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
+    <string name="fdroidVLCurl" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="share">Share</string>
     <string name="download">Download</string>
@@ -29,7 +29,7 @@
     <string name="playWithKodiTitle">Play with Kodi</string>
     <string name="koreNotFound">Kore app not found. Kore is needed to play videos with Kodi media center.</string>
     <string name="installeKore">Install Kore</string>
-    <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
+    <string name="fdroidKoreUrl" translatable="false">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
     <string name="showPlayWithKodiTitle">Show \"Play with Kodi\" option</string>
     <string name="showPlayWithKodiSummary">Displays an option to play a video via Kodi media center.</string>
     <string name="leftPlayButtonTitle">Show play button on the left side.</string>
