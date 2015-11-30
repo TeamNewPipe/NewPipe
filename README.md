@@ -1,9 +1,10 @@
 # [NewPipe](http://dasochan.nl/newpipe/)
-## A free lightweight YouTube frontend for Android
 
 [![Translation Status](https://hosted.weblate.org/widgets/NewPipe/-/svg-badge.svg)](https://hosted.weblate.org/engage/NewPipe/)
 
 [![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdfilter=newpipe&fdid=org.schabi.newpipe)
+
+A free lightweight YouTube frontend for Android
 
 ## Description
 
