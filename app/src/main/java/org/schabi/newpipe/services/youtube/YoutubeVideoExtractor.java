@@ -13,7 +13,7 @@ import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
 import org.schabi.newpipe.Downloader;
-import org.schabi.newpipe.services.Extractor;
+import org.schabi.newpipe.services.VideoExtractor;
 import org.schabi.newpipe.MediaFormat;
 import org.schabi.newpipe.VideoInfo;
 import org.schabi.newpipe.VideoPreviewInfo;
@@ -31,7 +31,7 @@ import java.util.regex.Pattern;
  * Created by Christian Schabesberger on 06.08.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * YoutubeExtractor.java is part of NewPipe.
+ * YoutubeVideoExtractor.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,11 +47,10 @@ import java.util.regex.Pattern;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class YoutubeExtractor extends Extractor {
+public class YoutubeVideoExtractor extends VideoExtractor {
 
-    private static final String TAG = YoutubeExtractor.class.toString();
-    private String pageContents;
-    private Document doc;
+    private static final String TAG = YoutubeVideoExtractor.class.toString();
+    private final Document doc;
     private JSONObject jsonObj;
     private JSONObject playerArgs;
 
@@ -62,9 +61,9 @@ public class YoutubeExtractor extends Extractor {
     private static volatile String decryptionCode = "";
 
 
-    public YoutubeExtractor(String pageUrl) {
+    public YoutubeVideoExtractor(String pageUrl) {
         super(pageUrl);//most common videoInfo fields are now set in our superclass, for all services
-        pageContents = Downloader.download(cleanUrl(pageUrl));
+        String pageContents = Downloader.download(cleanUrl(pageUrl));
         doc = Jsoup.parse(pageContents, pageUrl);
 
         //attempt to load the youtube js player JSON arguments
@@ -266,6 +265,8 @@ public class YoutubeExtractor extends Extractor {
     /**These lists only contain itag formats that are supported by the common Android Video player.
     However if you are looking for a list showing all itag formats, look at
     https://github.com/rg3/youtube-dl/issues/1687 */
+
+    @SuppressWarnings("WeakerAccess")
     public static int resolveFormat(int itag) {
         switch(itag) {
             // video
@@ -285,6 +286,7 @@ public class YoutubeExtractor extends Extractor {
         }
     }
 
+    @SuppressWarnings("WeakerAccess")
     public static String resolveResolutionString(int itag) {
         switch(itag) {
             case 17: return "144p";
@@ -303,6 +305,7 @@ public class YoutubeExtractor extends Extractor {
         }
     }
 
+    @SuppressWarnings("WeakerAccess")
     @Override
     public String getVideoId(String url) {
         String id;
@@ -327,6 +330,7 @@ public class YoutubeExtractor extends Extractor {
         return "";
     }
 
+    @SuppressWarnings("WeakerAccess")
     @Override
     public String getVideoUrl(String videoId) {
         return "https://www.youtube.com/watch?v=" + videoId;
@@ -579,7 +583,10 @@ public class YoutubeExtractor extends Extractor {
             e.printStackTrace();
         }
         Context.exit();
-        return result.toString();
+        if(result != null)
+            return result.toString();
+        else
+            return "";
     }
 
     private String cleanUrl(String complexUrl) {

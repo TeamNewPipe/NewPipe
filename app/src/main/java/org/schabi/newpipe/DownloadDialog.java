@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -42,8 +43,9 @@ public class DownloadDialog extends DialogFragment {
     public static final String FILE_SUFFIX_VIDEO = "file_suffix_video";
     public static final String AUDIO_URL = "audio_url";
     public static final String VIDEO_URL = "video_url";
-    Bundle arguments;
+    private Bundle arguments;
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         arguments = getArguments();

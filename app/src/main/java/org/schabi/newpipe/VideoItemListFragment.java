@@ -64,8 +64,8 @@ public class VideoItemListFragment extends ListFragment {
     private ListView list;
 
     private class ResultRunnable implements Runnable {
-        private SearchEngine.Result result;
-        private int requestId;
+        private final SearchEngine.Result result;
+        private final int requestId;
         public ResultRunnable(SearchEngine.Result result, int requestId) {
             this.result = result;
             this.requestId = requestId;
@@ -77,12 +77,12 @@ public class VideoItemListFragment extends ListFragment {
     }
 
     private class SearchRunnable implements Runnable {
-        private SearchEngine engine;
-        private String query;
-        private int page;
-        Handler h = new Handler();
+        private final SearchEngine engine;
+        private final String query;
+        private final int page;
+        final Handler h = new Handler();
         private volatile boolean run = true;
-        private int requestId;
+        private final int requestId;
         public SearchRunnable(SearchEngine engine, String query, int page, int requestId) {
             this.engine = engine;
             this.query = query;
@@ -116,11 +116,11 @@ public class VideoItemListFragment extends ListFragment {
     }
 
     private class LoadThumbsRunnable implements Runnable {
-        private Vector<String> thumbnailUrlList = new Vector<>();
-        private Vector<Boolean> downloadedList;
-        Handler h = new Handler();
+        private final Vector<String> thumbnailUrlList = new Vector<>();
+        private final Vector<Boolean> downloadedList;
+        final Handler h = new Handler();
         private volatile boolean run = true;
-        private int requestId;
+        private final int requestId;
         public LoadThumbsRunnable(Vector<VideoPreviewInfo> videoList,
                                   Vector<Boolean> downloadedList, int requestId) {
             for(VideoPreviewInfo item : videoList) {
@@ -139,7 +139,7 @@ public class VideoItemListFragment extends ListFragment {
         public void run() {
             for(int i = 0; i < thumbnailUrlList.size() && run; i++) {
                 if(!downloadedList.get(i)) {
-                    Bitmap thumbnail = null;
+                    Bitmap thumbnail;
                     try {
                         thumbnail = BitmapFactory.decodeStream(
                                 new URL(thumbnailUrlList.get(i)).openConnection().getInputStream());
@@ -153,9 +153,9 @@ public class VideoItemListFragment extends ListFragment {
     }
 
     private class SetThumbnailRunnable implements Runnable {
-        private int index;
-        private Bitmap thumbnail;
-        private int requestId;
+        private final int index;
+        private final Bitmap thumbnail;
+        private final int requestId;
         public SetThumbnailRunnable(int index, Bitmap thumbnail, int requestId) {
             this.index = index;
             this.thumbnail = thumbnail;
@@ -164,7 +164,7 @@ public class VideoItemListFragment extends ListFragment {
         @Override
         public void run() {
             if(requestId == currentRequestId) {
-                videoListAdapter.updateDownloadedThumbnailList(index, true);
+                videoListAdapter.updateDownloadedThumbnailList(index);
                 videoListAdapter.setThumbnail(index, thumbnail);
             }
         }
@@ -188,7 +188,7 @@ public class VideoItemListFragment extends ListFragment {
         getListView().smoothScrollToPosition(0);
     }
 
-    public void nextPage() {
+    private void nextPage() {
         lastPage++;
         Log.d(TAG, getString(R.string.searchPage) + Integer.toString(lastPage));
         startSearch(query, lastPage);
@@ -207,7 +207,7 @@ public class VideoItemListFragment extends ListFragment {
         this.streamingService = streamingService;
     }
 
-    public void updateListOnResult(SearchEngine.Result result, int requestId) {
+    private void updateListOnResult(SearchEngine.Result result, int requestId) {
         if(requestId == currentRequestId) {
             setListShown(true);
             if (result.resultList.isEmpty()) {
@@ -237,7 +237,7 @@ public class VideoItemListFragment extends ListFragment {
         }
     }
 
-    public void terminateThreads() {
+    private void terminateThreads() {
         if(loadThumbsRunnable != null && loadThumbsRunnable.isRunning()) {
             loadThumbsRunnable.terminate();
             try {
@@ -276,12 +276,7 @@ public class VideoItemListFragment extends ListFragment {
         void onItemSelected(String id);
     }
 
-    Callbacks mCallbacks = null;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    private Callbacks mCallbacks = null;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -334,33 +329,17 @@ public class VideoItemListFragment extends ListFragment {
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
-    @Override
     public void onListItemClick(ListView listView, View view, int position, long id) {
         super.onListItemClick(listView, view, position, id);
         setActivatedPosition(position);
         mCallbacks.onItemSelected(Long.toString(id));
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        /*
-        if (mActivatedPosition != ListView.INVALID_POSITION) {
-            // Serialize and persist the activated item position.
-            outState.putInt(STATE_ACTIVATED_POSITION, mActivatedPosition);
-        }
-        */
-    }
-
     /**
      * Turns on activate-on-click mode. When this mode is on, list items will be
      * given the 'activated' state when touched.
      */
-    public void setActivateOnItemClick(boolean activateOnItemClick) {
+    public void setActivateOnItemClick(@SuppressWarnings("SameParameterValue") boolean activateOnItemClick) {
         // When setting CHOICE_MODE_SINGLE, ListView will automatically
         // give items the 'activated' state when touched.
         getListView().setChoiceMode(activateOnItemClick

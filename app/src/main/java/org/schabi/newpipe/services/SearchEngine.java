@@ -31,7 +31,7 @@ public interface SearchEngine {
     class Result {
         public String errorMessage = "";
         public String suggestion = "";
-        public Vector<VideoPreviewInfo> resultList = new Vector<>();
+        public final Vector<VideoPreviewInfo> resultList = new Vector<>();
     }
 
     ArrayList<String> suggestionList(String query);

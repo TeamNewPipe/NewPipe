@@ -2,20 +2,17 @@
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
-    <string name="nothingFound">Nichts gefunden</string>
-    <string name="viewSufix">Aufrufe</string>
-    <string name="uploadDatePrefix">Hochgeladen am </string>
+    <string name="viewCountText">%1$s Aufrufe</string>
+    <string name="uploadDateText">Hochgeladen am %1$s</string>
     <string name="noPlayerFound">Keinen Streamplayer gefunden. Vielleicht möchtest du einen installieren.</string>
     <string name="installStreamPlayer">Jetzt installieren</string>
     <string name="cancel">Abbrechen</string>
     <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">In Browser öffnen</string>
     <string name="share">Teilen</string>
-    <string name="play">Play</string>
     <string name="download">Download</string>
     <string name="search">Suchen</string>
     <string name="settings">Einstellungen</string>
-    <string name="sendWith">Senden mit</string>
     <string name="didYouMean">Meintest du: </string>
     <string name="searchPage">Suchseite: </string>
     <string name="shareDialogTitle">Teilen mit:</string>
@@ -49,4 +46,7 @@
     <string name="showNextAndSimilarTitle">Zeige nächstes und ähnliche Videos</string>
     <string name="urlNotSupportedText">URL wird nicht unterstützt.</string>
     <string name="showSimilarVideosButtonText">Ähnliche Videos</string>
+    <string name="settingsCategoryVideoAudioTitle">VIDEO &amp; AUDIO</string>
+    <string name="settingsCategoryVideoInfoTittle">INFO</string>
+    <string name="settingsCategoryEtcTitle">ETC</string>
 </resources>

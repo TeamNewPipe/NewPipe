@@ -50,8 +50,8 @@ public class Downloader {
         return ret;
     }
     /**Common functionality between download(String url) and download(String url, String language)*/
-    private static String dl(HttpURLConnection con) {
-        StringBuffer response = new StringBuffer();
+    private static String dl(HttpURLConnection con) throws IOException {
+        StringBuilder response = new StringBuilder();
 
         try {
             con.setRequestMethod("GET");
@@ -71,9 +71,7 @@ public class Downloader {
             uhe.printStackTrace();
             //Toast.makeText(getActivity(), uhe.getMessage(), Toast.LENGTH_LONG).show();
         }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+
         return response.toString();
     }
 

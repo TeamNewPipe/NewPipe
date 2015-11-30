@@ -2,20 +2,17 @@
 <resources>
     <string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
-    <string name="nothingFound">Ничего не найдено</string>
-    <string name="viewSufix">просмотров</string>
-    <string name="uploadDatePrefix">Опубликовано: </string>
+    <string name="viewCountText">%1$s просмотров</string>
+    <string name="uploadDateText">Опубликовано: %1$s</string>
     <string name="noPlayerFound">Ни одного потокового проигрывателя не было найдено. Установить?</string>
     <string name="installStreamPlayer">Установить</string>
     <string name="cancel">Отмена</string>
     <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Открыть в браузере</string>
     <string name="share">Поделиться</string>
-    <string name="play">Воспроизвести</string>
     <string name="download">Скачать</string>
     <string name="search">Найти</string>
     <string name="settings">Настройки</string>
-    <string name="sendWith">Отправить с помощью</string>
     <string name="didYouMean">Возможно, вы имели в виду: </string>
     <string name="searchPage">Страница поиска: </string>
     <string name="shareDialogTitle">Поделиться с помощью:</string>
@@ -46,9 +43,8 @@
         <item>Аудио</item>
     </string-array>
     <string name="nextVideoTitle">Следующее видео</string>
-    <string name="showNextVideoTitle">Показать \"Следующее видео\".</string>
     <string name="urlNotSupportedText">URL не поддерживается.</string>
     <string name="showSimilarVideosButtonText">Похожие видео</string>
-<string name="showNextAndSimilarTitle">Показывать следующее и предложенные видео</string>
+    <string name="showNextAndSimilarTitle">Показывать следующее и предложенные видео</string>
     <string name="searchLanguageTitle">Предпочитаемый язык контента</string>
 </resources>
