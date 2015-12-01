@@ -1,13 +1,19 @@
 # NewPipe
+NewPipe: A free lightweight Youtube frontend for Android.  
 
+[![NewPipe](https://f-droid.org/repo/icons/org.schabi.newpipe.5.png)](http://dasochan.nl/newpipe/)
+
+Project status:
 [![Translation Status](https://hosted.weblate.org/widgets/NewPipe/-/svg-badge.svg)](https://hosted.weblate.org/engage/NewPipe/)
+
+## Get NewPipe
 
 [![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdfilter=newpipe&fdid=org.schabi.newpipe)
 
-A free lightweight YouTube frontend for Android
+## Screenshots
 
-[![Screenshot 1](assets/screenshot_1.png)](assets/screenshot_1.png)
-[![Screenshot 2](assets/screenshot_2.png)](assets/screenshot_2.png)
+[![Screenshot 1](<img src="assets/screenshot_1.png" width=200)](assets/screenshot_1.png)
+[![Screenshot 2](<img src="assets/screenshot_2.png" width=200)](assets/screenshot_2.png)
 
 ## Description
 
@@ -49,4 +55,10 @@ The more is done the better it gets!
 Join our discussion on slack: http://invite.chschtsch.ml/
 
 ## License
-NewPipe is licensed under [GNU General Public License v3](LICENSE).
+[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
+
+NewPipe is Free Software: You can use, study share and improve it at your
+will. Specifically you can redistribute and/or modify it under the terms of the
+[GNU General Public License](https://www.gnu.org/licenses/gpl.html) as
+published by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
