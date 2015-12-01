@@ -14,7 +14,7 @@ android:
     
     # Additional components
     - extra-android-support
-
+    - extra-android-m2repository
    
     # Emulators
     - sys-img-x86-android-23
