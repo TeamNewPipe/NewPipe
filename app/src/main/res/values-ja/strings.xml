@@ -1,5 +1,4 @@
 <?xml version='1.0' encoding='utf-8'?>
-
 <resources><string name="app_name">NewPipe</string>
     <string name="title_videoitem_detail">NewPipe</string>
     <string name="nothingFound">何も見つかりません</string>
@@ -49,4 +48,10 @@
     <string name="settingsCategoryVideoAudioTitle">動画とｵｰﾃﾞｨｵ</string>
     <string name="settingsCategoryVideoInfoTittle">情報</string>
     <string name="settingsCategoryEtcTitle">その他</string>
+<string name="viewCountText">%1$s ビュー</string>
+    <string name="itemThumbnailViewDescription">ビデオ プレビュー サムネイル</string>
+    <string name="detailThumbnailViewDescription">ビデオ プレビュー サムネイル</string>
+    <string name="detailUploaderThumbnailViewDescription">アップローダー サムネイル</string>
+    <string name="detailThumbsDownImgViewDescription">いいね解除</string>
+    <string name="detailThumbsUpImgViewDescription">いいね</string>
 </resources>
