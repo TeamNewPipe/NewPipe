@@ -13,7 +13,7 @@ A free lightweight YouTube frontend for Android
 
 NewPipe does not use any Google framework libraries, or the YouTube API. It only parses the website in order to gain the information it needs. Therefore this app can be used on devices without Google Services installed. Also, you don't need a YouTube account to use NewPipe, and it's FLOSS.
 
-## Features
+### Features
 
 * Search videos
 * Display general information about a video
