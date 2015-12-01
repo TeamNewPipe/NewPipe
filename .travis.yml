@@ -17,13 +17,13 @@ android:
     - extra-android-m2repository
    
     # Emulators
-    - sys-img-x86-android-23
-    - sys-img-x86-android-15
+    - sys-img-armeabi-v7a-android-21
+    - sys-img-armeabi-v7a-android-19
+    - sys-img-armeabi-v7a-android-15
 
 env:
   matrix:
-    - ANDROID_TARGET=android-19  ANDROID_ABI=x86
-
+    - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
 
 before_script:
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
