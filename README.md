@@ -5,7 +5,7 @@ NewPipe: A free lightweight Youtube frontend for Android.
 
 Project status:
 [![Translation Status](https://hosted.weblate.org/widgets/NewPipe/-/svg-badge.svg)](https://hosted.weblate.org/engage/NewPipe/)
-[![Build Status](https://travis-ci.org/theScrabi/NewPipe.svg)](https://travis-ci.org/theScrabi/NewPiped)
+[![Build Status](https://travis-ci.org/theScrabi/NewPipe.svg)](https://travis-ci.org/theScrabi/NewPipe)
 
 ## Get NewPipe
 
@@ -62,5 +62,4 @@ NewPipe is Free Software: You can use, study share and improve it at your
 will. Specifically you can redistribute and/or modify it under the terms of the
 [GNU General Public License](https://www.gnu.org/licenses/gpl.html) as
 published by the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
+(at your option) any later version.  
