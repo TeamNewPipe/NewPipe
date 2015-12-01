@@ -46,13 +46,13 @@ NewPipe does not use any Google framework libraries, or the YouTube API. It only
 * ... and many more
 
 ### Multiservice support
-Although, right now NewPipe supports only YouTube, it's designed to support many more streaming services. The plan is, that NewPipe will get such support by the v2.0.
+Although NewPipe only supports YouTube at the moment, it's designed to support many more streaming services. The plan is, that NewPipe will get such support by the version 2.0.
 
 ## Contribution
-Whether it's ideas, translation, design changes, code cleaning, or real heavy code changes, help is always welcome.
+Whether you have ideas, translation, design changes, code cleaning, or real heavy code changes, help is always welcome.
 The more is done the better it gets!
 
-Join our discussion on slack: http://invite.chschtsch.ml/
+Join our [Slack group](http://invite.chschtsch.ml/) if you like to get involved.
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
