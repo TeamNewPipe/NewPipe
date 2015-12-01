@@ -1,0 +1,20 @@
+language: android
+  components:
+    # Uncomment the lines below if you want to
+    # use the latest revision of Android SDK Tools
+    # - platform-tools
+    # - tools
+
+    # The BuildTools version used by NewPipe
+    - build-tools-23.0.1
+
+    # The SDK version used to compile NewPipe
+    - android-23
+    
+    # Additional components
+    - extra-android-support
+
+   
+    # Emulators
+    - sys-img-x86-android-23
+    - sys-img-x86-android-15
