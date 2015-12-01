@@ -12,8 +12,8 @@ Project status:
 
 ## Screenshots
 
-[<img src="assets/screenshot_1.png" width=200](assets/screenshot_1.png)
-[<img src="assets/screenshot_2.png" width=200](assets/screenshot_2.png)
+[<img src="assets/screenshot_1.png" width=200>](assets/screenshot_1.png)
+[<img src="assets/screenshot_2.png" width=200>](assets/screenshot_2.png)
 
 ## Description
 
