@@ -44,6 +44,6 @@
     <string name="itemThumbnailViewDescription">ビデオ プレビュー サムネイル</string>
     <string name="detailThumbnailViewDescription">ビデオ プレビュー サムネイル</string>
     <string name="detailUploaderThumbnailViewDescription">アップローダー サムネイル</string>
-    <string name="detailThumbsDownImgViewDescription">いいね解除</string>
+    <string name="detailThumbsDownImgViewDescription">残念だね</string>
     <string name="detailThumbsUpImgViewDescription">いいね</string>
 </resources>
