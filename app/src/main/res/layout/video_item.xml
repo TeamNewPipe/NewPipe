@@ -57,13 +57,15 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/video_item_search_image_height"
                 android:layout_toRightOf="@id/itemThumbnailViewContainer">
 
                 <TextView android:id="@+id/itemVideoTitleView"
-                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textSize="@dimen/video_item_search_title_text_size"/>
@@ -72,19 +74,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/video_item_search_uploader_height"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="@dimen/video_item_search_uploader_text_size"
-                    android:layout_toEndOf="@id/detailVideoTitleView"
-                    android:layout_toRightOf="@id/detailVideoTitleView"/>
+                    android:textSize="@dimen/video_item_search_uploader_text_size"/>
 
                 <TextView android:id="@+id/itemUploadDateView"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/video_item_search_upload_date_height"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="@dimen/video_item_search_upload_date_text_size"
-                    android:layout_toEndOf="@id/itemUploaderView"
-                    android:layout_toRightOf="@id/itemUploaderView"/>
+                    android:textSize="@dimen/video_item_search_upload_date_text_size"/>
 
-            </RelativeLayout>
+            </LinearLayout>
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>

@@ -11,8 +11,8 @@
     <!-- Elements Size -->
     <dimen name="video_item_search_image_width">140dp</dimen>
     <dimen name="video_item_search_image_height">80dp</dimen>
-    <dimen name="video_item_search_uploader_height">14sp</dimen>
-    <dimen name="video_item_search_upload_date_height">14sp</dimen>
+    <dimen name="video_item_search_uploader_height">16sp</dimen>
+    <dimen name="video_item_search_upload_date_height">16sp</dimen>
     <!-- Paddings & Margins -->
     <dimen name="video_item_search_card_margin">3dp</dimen>
     <dimen name="video_item_search_card_padding">6dp</dimen>
