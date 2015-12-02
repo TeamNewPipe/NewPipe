@@ -72,13 +72,15 @@
 
                 <TextView android:id="@+id/itemUploaderView"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/video_item_search_uploader_height"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textSize="@dimen/video_item_search_uploader_text_size"/>
 
                 <TextView android:id="@+id/itemUploadDateView"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/video_item_search_upload_date_height"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textSize="@dimen/video_item_search_upload_date_text_size"/>
 
