@@ -12,7 +12,7 @@
     <dimen name="video_item_search_image_width">140dp</dimen>
     <dimen name="video_item_search_image_height">80dp</dimen>
     <!-- Paddings & Margins -->
-    <dimen name="video_item_search_card_vertical_margin">3dp</dimen>
+    <dimen name="video_item_search_card_vertical_margin">2dp</dimen>
     <dimen name="video_item_search_card_horizontal_margin">6dp</dimen>
     <dimen name="video_item_search_card_padding">6dp</dimen>
     <dimen name="video_item_search_image_right_margin">6dp</dimen>
