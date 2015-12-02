@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="@dimen/video_item_search_card_radius" >
+        card_view:cardCornerRadius="@dimen/video_item_search_card_radius">
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"

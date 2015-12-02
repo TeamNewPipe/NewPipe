@@ -44,6 +44,8 @@ class VideoListAdapter extends BaseAdapter {
     public VideoListAdapter(Context context, VideoItemListFragment videoListFragment) {
         viewCreator = new VideoInfoItemViewCreator(LayoutInflater.from(context));
         this.listView = videoListFragment.getListView();
+        this.listView.setDivider(null);
+        this.listView.setDividerHeight(0);
         this.context = context;
     }
 
