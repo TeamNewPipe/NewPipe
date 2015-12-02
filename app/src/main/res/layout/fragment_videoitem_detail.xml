@@ -57,7 +57,7 @@
                         android:layout_alignParentStart="true"
                         android:textStyle="bold"
                         android:paddingBottom="3dp"
-                        android:textSize="@dimen/text_video_title_size"
+                        android:textSize="@dimen/video_item_detail_title_text_size"
                         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
                     <ImageView android:id="@+id/detailUploaderThumbnailView"
@@ -76,7 +76,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:textStyle="bold"
-                        android:textSize="@dimen/text_video_uploader_size"
+                        android:textSize="@dimen/video_item_detail_uploader_text_size"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
 
                     <TextView android:id="@+id/detailViewCountView"
@@ -86,7 +86,7 @@
                         android:layout_below="@id/detailVideoTitleView"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"
-                        android:textSize="@dimen/text_video_views_size"
+                        android:textSize="@dimen/video_item_detail_views_text_size"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
 
                     <TextView android:id="@+id/detailThumbsDownCountView"
@@ -95,7 +95,7 @@
                         android:layout_below="@id/detailViewCountView"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"
-                        android:textSize="@dimen/text_video_like_size"
+                        android:textSize="@dimen/video_item_detail_likes_text_size"
                         android:paddingRight="5dp"
                         android:paddingLeft="5dp"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -119,7 +119,7 @@
                         android:layout_toStartOf="@id/detailThumbsDownImgView"
                         android:paddingRight="5dp"
                         android:paddingLeft="5dp"
-                        android:textSize="@dimen/text_video_like_size"
+                        android:textSize="@dimen/video_item_detail_likes_text_size"
                         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
                     <ImageView android:id="@+id/detailThumbsUpImgView"
@@ -139,7 +139,7 @@
                         android:layout_below="@id/detailUploaderView"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="@dimen/text_video_upload_date_size"
+                        android:textSize="@dimen/video_item_detail_upload_date_text_size"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
 
                     <TextView android:id="@+id/detailDescriptionView"
@@ -148,7 +148,7 @@
                         android:layout_below="@id/detailUploadDateView"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="@dimen/text_video_description_size"
+                        android:textSize="@dimen/video_item_detail_description_text_size"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 </RelativeLayout>
@@ -168,7 +168,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:textSize="@dimen/text_video_upload_date_size"
+                    android:textSize="@dimen/video_item_detail_upload_date_text_size"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/black"
                     android:text="@string/nextVideoTitle"

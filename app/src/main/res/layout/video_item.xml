@@ -4,7 +4,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="6dp">
+    android:padding="@dimen/video_item_search_card_margin">
 
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -13,71 +13,76 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp" >
+        card_view:cardCornerRadius="@dimen/video_item_search_card_radius" >
 
-        <RelativeLayout
+        <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="6dp">
+            android:layout_marginRight="@dimen/video_item_search_image_right_margin"
+            android:padding="@dimen/video_item_search_card_padding">
 
-            <ImageView android:id="@+id/itemThumbnailView"
-                android:contentDescription="@string/itemThumbnailViewDescription"
-                android:layout_width="142dp"
-                android:layout_height="80dp"
-                android:layout_marginEnd="6dp"
-                android:layout_marginRight="6dp"
-                android:scaleType="centerCrop"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:src="@drawable/dummy_thumbnail"/>
-
-            <TextView android:id="@+id/itemVideoTitleView"
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:layout_toRightOf="@id/itemThumbnailView"
-                android:layout_toEndOf="@id/itemThumbnailView"
-                android:layout_alignParentTop="true"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="@dimen/text_search_title_size"/>
+                android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@id/itemThumbnailView">
-
-                <TextView android:id="@+id/itemUploaderView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="18dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="@dimen/text_search_uploader_size"/>
-
-                <TextView android:id="@+id/itemUploadDateView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="@dimen/text_search_uploadtime_size"
-                    />
+                <ImageView android:id="@+id/itemThumbnailView"
+                    android:contentDescription="@string/itemThumbnailViewDescription"
+                    android:layout_width="@dimen/video_item_search_image_width"
+                    android:layout_height="@dimen/video_item_search_image_height"
+                    android:scaleType="centerCrop"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/dummy_thumbnail"/>
 
                 <TextView android:id="@+id/itemDurationView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginEnd="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:paddingTop="1dp"
-                    android:paddingBottom="1dp"
-                    android:paddingRight="5dp"
-                    android:paddingLeft="5dp"
+                    android:layout_alignBottom="@id/itemThumbnailView"
+                    android:layout_alignRight="@id/itemThumbnailView"
+                    android:layout_alignEnd="@id/itemThumbnailView"
+                    android:layout_marginRight="@dimen/video_item_search_duration_margin"
+                    android:layout_marginEnd="@dimen/video_item_search_duration_margin"
+                    android:layout_marginBottom="@dimen/video_item_search_duration_margin"
+                    android:paddingTop="@dimen/video_item_search_duration_vertical_padding"
+                    android:paddingBottom="@dimen/video_item_search_duration_vertical_padding"
+                    android:paddingRight="@dimen/video_item_search_duration_horizontal_padding"
+                    android:paddingLeft="@dimen/video_item_search_duration_horizontal_padding"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="@dimen/text_search_duration_size"
+                    android:textSize="@dimen/video_item_search_duration_text_size"
                     android:background="@color/durationBackground"
                     android:textColor="@color/durationText"/>
 
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/video_item_search_image_height">
+
+                <TextView android:id="@+id/itemVideoTitleView"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="@dimen/video_item_search_title_text_size"/>
+
+                <TextView android:id="@+id/itemUploaderView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/video_item_search_uploader_height"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="@dimen/video_item_search_uploader_text_size"/>
+
+                <TextView android:id="@+id/itemUploadDateView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/video_item_search_upload_date_height"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="@dimen/video_item_search_upload_date_text_size"
+                    />
+
             </LinearLayout>
 
-        </RelativeLayout>
+        </LinearLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>
