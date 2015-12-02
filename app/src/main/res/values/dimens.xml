@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_search_title_size">14sp</dimen>
+    <dimen name="text_search_duration_size">11sp</dimen>
+    <dimen name="text_search_uploader_size">12sp</dimen>
+    <dimen name="text_search_uploadtime_size">12sp</dimen>
+
+    <dimen name="text_video_title_size">18sp</dimen>
+    <dimen name="text_video_views_size">14sp</dimen>
+    <dimen name="text_video_like_size">12sp</dimen>
+    <dimen name="text_video_uploader_size">14sp</dimen>
+    <dimen name="text_video_upload_date_size">14sp</dimen>
+    <dimen name="text_video_description_size">14sp</dimen>
+</resources>
