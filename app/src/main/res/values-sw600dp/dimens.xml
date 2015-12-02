@@ -10,4 +10,9 @@
     <dimen name="video_item_detail_uploader_text_size">16sp</dimen>
     <dimen name="video_item_detail_upload_date_text_size">16sp</dimen>
     <dimen name="video_item_detail_description_text_size">16sp</dimen>
+    <!-- Elements Size -->
+    <dimen name="video_item_detail_thumbnail_image_height">300dp</dimen>
+    <dimen name="video_item_detail_uploader_image_size">110dp</dimen>
+    <!-- Paddings & Margins -->
+    <dimen name="video_item_detail_info_text_padding">10sp</dimen>
 </resources>

@@ -2,8 +2,9 @@
 <resources>
     <color name="primaryColorYoutube">#cd322e</color>
     <color name="primaryColorDarkYoutube">#bc211d</color>
-    <color name="accentColorYoutube">#000000</color>
-    <color name="durationBackground">#aa000000</color>
-    <color name="durationText">#eeffffff</color>
-    <color name="black_overlay">#66000000</color>
+    <color name="accentColorYoutube">#000</color>
+    <color name="durationBackground">#a000</color>
+    <color name="durationText">#efff</color>
+    <color name="dark_overlay">#6000</color>
+    <color name="dark_image_background">#222</color>
 </resources>

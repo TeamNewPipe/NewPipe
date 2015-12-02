@@ -33,8 +33,8 @@
 
                 <ImageView android:id="@+id/itemThumbnailView"
                     android:contentDescription="@string/itemThumbnailViewDescription"
-                    android:layout_width="@dimen/video_item_search_image_width"
-                    android:layout_height="@dimen/video_item_search_image_height"
+                    android:layout_width="@dimen/video_item_search_thumbnail_image_width"
+                    android:layout_height="@dimen/video_item_search_thumbnail_image_height"
                     android:scaleType="centerCrop"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
@@ -64,7 +64,7 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="@dimen/video_item_search_image_height"
+                android:layout_height="@dimen/video_item_search_thumbnail_image_height"
                 android:layout_toRightOf="@id/itemThumbnailViewContainer">
 
                 <TextView android:id="@+id/itemVideoTitleView"

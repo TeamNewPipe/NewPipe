@@ -9,8 +9,8 @@
     <dimen name="video_item_search_uploader_text_size">12sp</dimen>
     <dimen name="video_item_search_upload_date_text_size">12sp</dimen>
     <!-- Elements Size -->
-    <dimen name="video_item_search_image_width">140dp</dimen>
-    <dimen name="video_item_search_image_height">80dp</dimen>
+    <dimen name="video_item_search_thumbnail_image_width">140dp</dimen>
+    <dimen name="video_item_search_thumbnail_image_height">85dp</dimen>
     <!-- Paddings & Margins -->
     <dimen name="video_item_search_card_vertical_margin">2dp</dimen>
     <dimen name="video_item_search_card_horizontal_margin">6dp</dimen>
@@ -32,5 +32,11 @@
     <dimen name="video_item_detail_uploader_text_size">14sp</dimen>
     <dimen name="video_item_detail_upload_date_text_size">14sp</dimen>
     <dimen name="video_item_detail_description_text_size">14sp</dimen>
+    <dimen name="video_item_detail_next_text_size">16sp</dimen>
+    <!-- Elements Size -->
+    <dimen name="video_item_detail_thumbnail_image_height">200dp</dimen>
+    <dimen name="video_item_detail_uploader_image_size">80dp</dimen>
+    <!-- Paddings & Margins -->
+    <dimen name="video_item_detail_info_text_padding">6sp</dimen>
 
 </resources>

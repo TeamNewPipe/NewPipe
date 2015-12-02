@@ -33,22 +33,20 @@
                 <ImageView android:id="@+id/detailThumbnailView"
                     android:contentDescription="@string/detailThumbnailViewDescription"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/video_item_detail_thumbnail_image_height"
                     android:scaleType="centerInside"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:adjustViewBounds="true"
+                    android:background="@color/dark_image_background"
                     android:src="@drawable/dummy_thumbnail"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/detailThumbnailView"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingLeft="5dp">
+                    android:padding="@dimen/video_item_detail_info_text_padding" >
 
                     <TextView android:id="@+id/detailVideoTitleView"
                         android:layout_width="wrap_content"
@@ -62,8 +60,8 @@
 
                     <ImageView android:id="@+id/detailUploaderThumbnailView"
                         android:contentDescription="@string/detailUploaderThumbnailViewDescription"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="@dimen/video_item_detail_uploader_image_size"
+                        android:layout_height="@dimen/video_item_detail_uploader_image_size"
                         android:layout_below="@id/detailVideoTitleView"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
@@ -157,22 +155,18 @@
             <RelativeLayout android:id="@+id/detailNextVideoRootLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
+                android:padding="@dimen/video_item_detail_info_text_padding"
                 android:layout_below="@id/detailVideoInfo" >
 
                 <TextView android:id="@+id/detailNextVideoTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:textSize="@dimen/video_item_detail_upload_date_text_size"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/video_item_detail_next_text_size"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/black"
                     android:text="@string/nextVideoTitle"
-                    />
+                    android:textAllCaps="true" />
 
                 <RelativeLayout android:id="@+id/detailNextVidButtonAndContantLayout"
                     android:layout_width="match_parent"
@@ -190,15 +184,13 @@
                         android:layout_alignBottom="@id/detailNextVideoFrame"
                         android:background="?attr/selectableItemBackground"/>
                 </RelativeLayout>
+                <Button android:id="@+id/detailShowSimilarButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/detailNextVidButtonAndContantLayout"
+                    android:text="@string/showSimilarVideosButtonText"/>
             </RelativeLayout>
 
-            <Button android:id="@+id/detailShowSimilarButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
-                android:layout_below="@id/detailNextVideoRootLayout"
-                android:text="@string/showSimilarVideosButtonText"/>
         </RelativeLayout>
     </ScrollView>
 
