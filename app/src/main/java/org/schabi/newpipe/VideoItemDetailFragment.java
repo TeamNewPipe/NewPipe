@@ -84,6 +84,9 @@ public class VideoItemDetailFragment extends Fragment {
     private VideoInfo currentVideoInfo = null;
     private boolean showNextVideoItem = false;
 
+
+    private View thumbnailWindow;
+
     public interface OnInvokeCreateOptionsMenuListener {
         void createOptionsMenu();
     }
@@ -202,7 +205,7 @@ public class VideoItemDetailFragment extends Fragment {
             VideoInfoItemViewCreator videoItemViewCreator =
                     new VideoInfoItemViewCreator(LayoutInflater.from(getActivity()));
 
-            ScrollView contentMainView = (ScrollView) activity.findViewById(R.id.detailMainContent);
+            RelativeLayout textContentLayout = (RelativeLayout) activity.findViewById(R.id.detailTextContentLayout);
             ProgressBar progressBar = (ProgressBar) activity.findViewById(R.id.detailProgressBar);
             TextView videoTitleView = (TextView) activity.findViewById(R.id.detailVideoTitleView);
             TextView uploaderView = (TextView) activity.findViewById(R.id.detailUploaderView);
@@ -221,7 +224,7 @@ public class VideoItemDetailFragment extends Fragment {
             Button nextVideoButton = (Button) activity.findViewById(R.id.detailNextVideoButton);
             Button similarVideosButton = (Button) activity.findViewById(R.id.detailShowSimilarButton);
 
-            contentMainView.setVisibility(View.VISIBLE);
+            textContentLayout.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
             if(!showNextVideoItem) {
                 nextVideoRootFrame.setVisibility(View.GONE);
@@ -239,8 +242,6 @@ public class VideoItemDetailFragment extends Fragment {
                     viewCountView.setText(
                             String.format(
                                     res.getString(R.string.viewCountText), localisedViewCount));
-                    /*viewCountView.setText(localisedViewCount
-                            + " " + activity.getString(R.string.viewSufix)); */
 
 
                     thumbsUpView.setText(nf.format(info.like_count));
@@ -336,6 +337,7 @@ public class VideoItemDetailFragment extends Fragment {
         activity = (AppCompatActivity) getActivity();
         showNextVideoItem = PreferenceManager.getDefaultSharedPreferences(getActivity())
                 .getBoolean(activity.getString(R.string.showNextVideo), true);
+
     }
 
     @Override
@@ -406,6 +408,19 @@ public class VideoItemDetailFragment extends Fragment {
                     //why not a List<? extends Parcelable>?
                     intent.putParcelableArrayListExtra(VideoItemListActivity.VIDEO_INFO_ITEMS, toParcel);
                     activity.startActivity(intent);
+                }
+            });
+
+            ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detailThumbnailView);
+            thumbnailWindow = activity.findViewById(R.id.detailVideoThumbnailWindow);
+            thumbnailView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+                // This is used to synchronize the thumbnailWindow inside the ScrollView with
+                // the actual size of the thumbnail.
+                @Override
+                public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                    Log.d(TAG, Integer.toString(right - left) + " : " + Integer.toString(bottom - top));
+                    RelativeLayout.LayoutParams newLayoutParams = new RelativeLayout.LayoutParams(right - left, bottom - top);
+                    thumbnailWindow.setLayoutParams(newLayoutParams);
                 }
             });
         }

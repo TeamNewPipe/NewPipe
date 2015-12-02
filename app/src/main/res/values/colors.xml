@@ -6,4 +6,5 @@
     <color name="durationBackground">#aa000000</color>
     <color name="durationText">#eeffffff</color>
     <color name="black_overlay">#66000000</color>
+    <color name="background_gray">#EEEEEE</color>
 </resources>
