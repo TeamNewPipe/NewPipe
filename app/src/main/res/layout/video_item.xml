@@ -15,15 +15,15 @@
         android:layout_height="wrap_content"
         card_view:cardCornerRadius="@dimen/video_item_search_card_radius">
 
-        <LinearLayout
+        <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/video_item_search_image_right_margin"
             android:padding="@dimen/video_item_search_card_padding">
 
-            <RelativeLayout
+            <RelativeLayout android:id="@+id/itemThumbnailViewContainer"
+                android:layout_marginRight="@dimen/video_item_search_image_right_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -57,10 +57,10 @@
 
             </RelativeLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
+            <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="@dimen/video_item_search_image_height">
+                android:layout_height="@dimen/video_item_search_image_height"
+                android:layout_toRightOf="@id/itemThumbnailViewContainer">
 
                 <TextView android:id="@+id/itemVideoTitleView"
                     android:layout_width="match_parent"
@@ -72,17 +72,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/video_item_search_uploader_height"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="@dimen/video_item_search_uploader_text_size"/>
+                    android:textSize="@dimen/video_item_search_uploader_text_size"
+                    android:layout_toEndOf="@id/detailVideoTitleView"
+                    android:layout_toRightOf="@id/detailVideoTitleView"/>
 
                 <TextView android:id="@+id/itemUploadDateView"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/video_item_search_upload_date_height"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textSize="@dimen/video_item_search_upload_date_text_size"
-                    />
+                    android:layout_toEndOf="@id/itemUploaderView"
+                    android:layout_toRightOf="@id/itemUploaderView"/>
 
-            </LinearLayout>
+            </RelativeLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>
