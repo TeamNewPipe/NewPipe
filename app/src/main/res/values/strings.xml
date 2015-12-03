@@ -1,21 +1,18 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">NewPipe</string>
-    <string name="title_videoitem_detail">NewPipe</string>
-    <string name="nothingFound">Nothing found</string>
-    <string name="viewSufix">views</string>
-    <string name="uploadDatePrefix">Uploaded on </string>
+    <string name="app_name" translatable="false">NewPipe</string>
+    <string name="title_videoitem_detail" translatable="false">NewPipe</string>
+    <string name="viewCountText">%1$s views</string>
+    <string name="uploadDateText">Uploaded on %1$s</string>
     <string name="noPlayerFound">No stream player found. You may want to install one.</string>
     <string name="installStreamPlayer">Install</string>
     <string name="cancel">Cancel</string>
-    <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
+    <string name="fdroidVLCurl" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="share">Share</string>
-    <string name="play">Play</string>
     <string name="download">Download</string>
     <string name="search">Search</string>
     <string name="settings">Settings</string>
-    <string name="sendWith">Send with</string>
     <string name="didYouMean">Did you mean: </string>
     <string name="searchPage">Search page: </string>
     <string name="shareDialogTitle">Share with:</string>
@@ -32,7 +29,7 @@
     <string name="playWithKodiTitle">Play with Kodi</string>
     <string name="koreNotFound">Kore app not found. Kore is needed to play videos with Kodi media center.</string>
     <string name="installeKore">Install Kore</string>
-    <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
+    <string name="fdroidKoreUrl" translatable="false">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
     <string name="showPlayWithKodiTitle">Show \"Play with Kodi\" option</string>
     <string name="showPlayWithKodiSummary">Displays an option to play a video via Kodi media center.</string>
     <string name="leftPlayButtonTitle">Show play button on the left side.</string>
@@ -50,4 +47,14 @@
     <string name="urlNotSupportedText">URL not supported.</string>
     <string name="showSimilarVideosButtonText">Similar videos</string>
     <string name="searchLanguageTitle">Preferable content language</string>
+    <string name="settingsCategoryVideoAudioTitle">VIDEO &amp; AUDIO</string>
+    <string name="settingsCategoryVideoInfoTittle">INFO</string>
+    <string name="settingsCategoryEtcTitle">ETC</string>
+
+    <!-- Content descriptions (for better accessibility) -->
+    <string name="itemThumbnailViewDescription">Video preview thumbnail</string>
+    <string name="detailThumbnailViewDescription">Video preview thumbnail</string>
+    <string name="detailUploaderThumbnailViewDescription">Uploader thumbnail</string>
+    <string name="detailThumbsDownImgViewDescription">Unlikes</string>
+    <string name="detailThumbsUpImgViewDescription">Likes</string>
 </resources>

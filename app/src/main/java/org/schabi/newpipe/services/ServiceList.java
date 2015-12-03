@@ -42,7 +42,7 @@ public class ServiceList {
     }
     public static int getIdOfService(String serviceName) {
         for(int i = 0; i < services.length; i++) {
-            if(services[i].getServiceInfo().name == serviceName) {
+            if(services[i].getServiceInfo().name.equals(serviceName)) {
                 return i;
             }
         }

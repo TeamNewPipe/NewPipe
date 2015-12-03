@@ -1,0 +1,29 @@
+language: android
+android:
+  components:
+    # The BuildTools version used by NewPipe
+    - build-tools-23.0.1
+
+    # The SDK version used to compile NewPipe
+    - android-23
+    
+    # Additional components
+    - extra-android-support
+    - extra-android-m2repository
+   
+    # Emulators
+    - sys-img-armeabi-v7a-android-21
+    - sys-img-armeabi-v7a-android-19
+    - sys-img-armeabi-v7a-android-15
+
+env:
+  global:
+    - ADB_INSTALL_TIMEOUT=8 # minutes (2 by default)
+  matrix:
+    - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+
+before_script:
+  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
