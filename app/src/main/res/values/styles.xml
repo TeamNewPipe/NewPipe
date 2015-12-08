@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/accentColorYoutube</item>
     </style>
 
+    <style name="DetailViewTheme" parent="AppTheme" >
+        <item name="colorAccent">@color/primaryColorDarkYoutube</item>
+    </style>
+
     <style name="NewPipeActionbarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid" >
         <item name="android:displayOptions">showHome</item>
         <item name="displayOptions">showHome</item>
