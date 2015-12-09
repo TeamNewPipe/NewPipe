@@ -33,7 +33,6 @@ import java.util.Vector;
  */
 
 class VideoListAdapter extends BaseAdapter {
-    private static final String TAG = VideoListAdapter.class.toString();
 
     private final Context context;
     private final VideoInfoItemViewCreator viewCreator;

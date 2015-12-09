@@ -1,13 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Јутјуб цев</string>
-    <string name="title_videoitem_detail">Јутјуб цев</string>
     <string name="viewCountText">%1$s приказа</string>
     <string name="uploadDateText">"Отпремљен "%1$s</string>
     <string name="noPlayerFound">Нема плејера токова. Можда желите да га инсталирате.</string>
     <string name="installStreamPlayer">Инсталирај</string>
     <string name="cancel">Одустани</string>
-    <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Отвори у прегледачу</string>
     <string name="share">Дели</string>
     <string name="download">Преузми</string>
@@ -29,7 +26,6 @@
     <string name="playWithKodiTitle">Пусти помоћу Кодија</string>
     <string name="koreNotFound">Апликација Кор није нађена. Кор (Kore) је потребан да бисте пуштали видее у Коди медија центру.</string>
     <string name="installeKore">Инсталирај Кор</string>
-    <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
     <string name="showPlayWithKodiTitle">Прикажи „Пусти помоћу Кодија“</string>
     <string name="showPlayWithKodiSummary">Приказ опције за пуштање видеа у Коди медија центру.</string>
     <string name="leftPlayButtonTitle">Прикажи дугме за пуштање на левој страни.</string>

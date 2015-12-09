@@ -1,13 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">NewPipe</string>
-    <string name="title_videoitem_detail">NewPipe</string>
     <string name="viewCountText">%1$s visitas</string>
     <string name="uploadDateText">Subido el %1$s</string>
     <string name="noPlayerFound">No se ha encontrado ningún reproductor de vídeo. Quizás quieras instalar alguno.</string>
     <string name="installStreamPlayer">Instalarlo</string>
     <string name="cancel">Cancelar</string>
-    <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Abrir en el navegador</string>
     <string name="share">Compartir</string>
     <string name="download">Descargar</string>
@@ -29,7 +26,6 @@
     <string name="playWithKodiTitle">Reproducir con Kodi</string>
     <string name="koreNotFound">Aplicación Kore no encontrada. Kore es necesario para reproducir vídeos con Kodi media center.</string>
     <string name="installeKore">Instalar Kore</string>
-    <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
     <string name="showPlayWithKodiTitle">Mostrar la opción \"Reproducir con Kodi\"</string>
     <string name="showPlayWithKodiSummary">Muestra una opción para reproducir el vídeo con Kodi media center.</string>
 <string name="leftPlayButtonTitle">Mostrar el botón de reproducir en el lado izquierdo.</string>

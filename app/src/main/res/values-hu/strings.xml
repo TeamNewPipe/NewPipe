@@ -1,13 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">NewPipe</string>
-    <string name="title_videoitem_detail">NewPipe</string>
     <string name="viewCountText">%1$s megtekintés</string>
     <string name="uploadDateText">Feltöltve: %1$s</string>
     <string name="noPlayerFound">Nem található lejátszó. Telepítsen egyet!</string>
     <string name="installStreamPlayer">Telepítsen egyet</string>
     <string name="cancel">Mégse</string>
-    <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Megnyitás böngészőben</string>
     <string name="share">Megosztás</string>
     <string name="download">Letöltés</string>
@@ -29,7 +26,6 @@
     <string name="playWithKodiTitle">Lejátszás Kodi-val</string>
     <string name="koreNotFound">A Kore alkalmazás nem található. A Kore szükséges a videók Kodi médiaközponttal való lejátszásához.</string>
     <string name="installeKore">Kore telepítése</string>
-    <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
     <string name="showPlayWithKodiTitle">\"Lejátszás Kodi-val\" opció mutatása</string>
     <string name="showPlayWithKodiSummary">Mutat egy opciót a videók Kodi médiaközponttal való lejátszására</string>
     <string name="leftPlayButtonTitle">Lejátszás gomb bal oldalon mutatása</string>

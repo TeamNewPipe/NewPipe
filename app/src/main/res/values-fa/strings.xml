@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">NewPipe</string>
-    <string name="title_videoitem_detail">NewPipe</string>
     <string name="viewCountText">%1$s نماها</string>
     <string name="uploadDateText">بارگذاری‌شده در: %1$s</string>
     <string name="noPlayerFound">هیچ پخش‌کننده‌ی جریانی یافت نشد. ممکن است بخواهید یکی نصب کنید.</string>
     <string name="installStreamPlayer">نصب کنید</string>
     <string name="cancel">انصراف</string>
-    <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">بازکردن در مرورگر</string>
     <string name="share">هم‌رسانی</string>
     <string name="download">بارگیری</string>
@@ -29,7 +26,6 @@
     <string name="playWithKodiTitle">پخش با Kodi</string>
     <string name="koreNotFound">برنامه‌ی Kore نصب نیست. برای پخش کردن ویدئوها با مرکز رسانه‌ی Kodi، به Kore نیاز دارید.</string>
     <string name="installeKore">نصب Kore</string>
-    <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
     <string name="showPlayWithKodiTitle">نمایش گزینه‌ی «پخش با Kodi»</string>
     <string name="showPlayWithKodiSummary">گزینه‌ای برای پخش کردن ویدئو با مرکز رسانه‌ی Kodi نشان می‌دهد.</string>
     <string name="leftPlayButtonTitle">نمایش دکمه‌ی پخش در سمت چپ.</string>
