@@ -44,7 +44,6 @@ import java.util.Vector;
 import org.schabi.newpipe.services.VideoExtractor;
 import org.schabi.newpipe.services.ServiceList;
 import org.schabi.newpipe.services.StreamingService;
-import org.schabi.newpipe.views.DetailScrollView;
 
 
 /**
@@ -440,16 +439,6 @@ public class VideoItemDetailFragment extends Fragment {
 
                     initialThumbnailPos.set(top, left);
 
-                }
-            });
-
-            DetailScrollView scrollView = (DetailScrollView) activity.findViewById(R.id.detailMainContent);
-            scrollView.setOnScrollViewListener(new DetailScrollView.OnScrollViewListener() {
-                // This is used to make the thumbnailView move half the speed than the content does
-                // while scrolling.
-                @Override
-                public void onScrollChanged(DetailScrollView v, int l, int t, int oldl, int oldt) {
-                    //Log.d(TAG, Integer.toString(l) + " : " + Integer.toString(t));
                 }
             });
         }

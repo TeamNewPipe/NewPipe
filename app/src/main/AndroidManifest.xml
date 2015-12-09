@@ -25,7 +25,7 @@
         <activity
             android:name=".VideoItemDetailActivity"
             android:label="@string/title_videoitem_detail"
-            android:theme="@style/DetailViewTheme">
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".VideoItemListActivity" />
