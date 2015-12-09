@@ -84,10 +84,9 @@ public class VideoItemDetailFragment extends Fragment {
     private VideoInfo currentVideoInfo = null;
     private boolean showNextVideoItem = false;
 
-    private ImageView thumbnailView;
     private View thumbnailWindowLayout;
     private FloatingActionButton playVideoButton;
-    private Point initialThumbnailPos = new Point(0, 0);
+    private final Point initialThumbnailPos = new Point(0, 0);
 
     public interface OnInvokeCreateOptionsMenuListener {
         void createOptionsMenu();
@@ -425,7 +424,7 @@ public class VideoItemDetailFragment extends Fragment {
                 }
             });
 
-            thumbnailView = (ImageView) activity.findViewById(R.id.detailThumbnailView);
+            ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detailThumbnailView);
             thumbnailView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
                 // This is used to synchronize the thumbnailWindowButton and the playVideoButton
                 // inside the ScrollView with the actual size of the thumbnail.
@@ -437,6 +436,7 @@ public class VideoItemDetailFragment extends Fragment {
                     thumbnailWindowLayout.setLayoutParams(newWindowLayoutParams);
 
 
+                    //noinspection SuspiciousNameCombination
                     initialThumbnailPos.set(top, left);
 
                 }

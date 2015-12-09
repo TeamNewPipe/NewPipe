@@ -8,8 +8,7 @@
     style="?android:attr/textAppearanceLarge"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/videoitem_detail"
-    android:background="@color/background_gray">
+    android:id="@+id/videoitem_detail">
 
     <ImageView android:id="@+id/detailThumbnailView"
         android:contentDescription="@string/detailThumbnailViewDescription"
