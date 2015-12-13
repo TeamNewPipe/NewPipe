@@ -1,2 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='utf-8'?>
+<resources><string name="viewCountText">시청 횟수 %1$s</string>
+    <string name="uploadDateText">%1$s에 업로드됨</string>
+    <string name="noPlayerFound">스트리밍 플레이어가 발견되지 않았습니다. 플레이어를 설치하시기 바랍니다.</string>
+    <string name="installStreamPlayer">설치</string>
+    <string name="cancel">취소</string>
+    <string name="open_in_browser">브라우저에서 열기</string>
+    <string name="share">공유</string>
+    <string name="download">다운로드</string>
+    <string name="search">검색</string>
+    <string name="settings">설정</string>
+    <string name="didYouMean">"혹시 이것을 검색하셨습니까? "</string>
+    <string name="searchPage">"검색 페이지: "</string>
+    <string name="shareDialogTitle">다음으로 공유:</string>
+    <string name="chooseBrowser">브라우저 선택:</string>
+    <string name="screenRotation">회전</string>
+    <string name="title_activity_settings">설정</string>
+    <string name="useExternalPlayerTitle">외부 플레이어 사용</string>
+    <string name="downloadLocation">다운로드 위치</string>
+    <string name="downloadLocationSummary">다운로드된 비디오가 저장될 경로를 선택하세요.</string>
+    <string name="downloadLocationDialogTitle">다운로드 경로 입력</string>
+    <string name="autoPlayThroughIntentTitle">인텐트로 경유할 경우 자동 재생</string>
+    <string name="autoPlayThroughIntentSummary">다른 앱으로부터 호출되었을 경우에 비디오를 자동으로 재생합니다.</string>
+    <string name="defaultResolutionPreferenceTitle">기본 해상도</string>
+    <string name="playWithKodiTitle">Kodi로 재생</string>
+    <string name="koreNotFound">Kore 앱이 발견되지 않았습니다. Kodi media center로 비디오를 재생하려면 Kore가 필요합니다.</string>
+    <string name="installeKore">Kore 설치</string>
+    <string name="showPlayWithKodiTitle">\"Kodi로 재생\" 옵션 표시</string>
+    <string name="showPlayWithKodiSummary">비디오를 Kodi media center를 사용해 재생하는 옵션을 표시합니다.</string>
+    <string name="leftPlayButtonTitle">재생 버튼을 왼쪽에 표시합니다.</string>
+    <string name="playAudio">오디오</string>
+    <string name="defaultAudioFormatTitle">기본 오디오 포맷</string>
+    <string name="webMAudioDescription">WebM - 무료 자유 포맷입니다</string>
+    <string name="m4aAudioDescription">m4a - 보다 나은 품질</string>
+    <string name="downloadDialogTitle">다운로드</string>
+    <string name="nextVideoTitle">다음 비디오</string>
+    <string name="showNextAndSimilarTitle">다음 및 유사한 비디오 표시</string>
+    <string name="urlNotSupportedText">지원하지 않는 URL 입니다.</string>
+    <string name="showSimilarVideosButtonText">유사한 비디오</string>
+    <string name="searchLanguageTitle">선호하는 컨텐츠 언어</string>
+    <string name="settingsCategoryVideoAudioTitle">비디오 &amp; 오디오</string>
+    <string name="settingsCategoryVideoInfoTittle">정보</string>
+    <string name="settingsCategoryEtcTitle">기타</string>
+
+    <string name="itemThumbnailViewDescription">비디오 미리보기 썸네일</string>
+    <string name="detailThumbnailViewDescription">비디오 미리보기 썸네일</string>
+    <string name="detailUploaderThumbnailViewDescription">업로더 썸네일</string>
+    <string name="detailThumbsDownImgViewDescription">싫어요</string>
+    <string name="detailThumbsUpImgViewDescription">좋아요</string>
+</resources>
