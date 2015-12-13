@@ -145,7 +145,7 @@
                     android:layout_width="30dp"
                     android:layout_height="15dp"
                     android:layout_below="@id/detailViewCountView"
-                    android:layout_toStartOf="@id/detailThumbsUpImgView"
+                    android:layout_toStartOf="@id/detailThumbsUpCountView"
                     android:paddingRight="5dp"
                     android:paddingLeft="5dp"
                     android:src="@drawable/thumbs_up" />
