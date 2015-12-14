@@ -26,6 +26,7 @@ import org.schabi.newpipe.services.youtube.YoutubeService;
 
 /**Provides access to the video streaming services supported by NewPipe.
  * Currently only Youtube until the API becomes more stable.*/
+
 @SuppressWarnings("ALL")
 public class ServiceList {
     private static final String TAG = ServiceList.class.toString();

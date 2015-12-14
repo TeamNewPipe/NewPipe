@@ -245,7 +245,6 @@ public class VideoItemDetailFragment extends Fragment {
                             String.format(
                                     res.getString(R.string.viewCountText), localisedViewCount));
 
-
                     thumbsUpView.setText(nf.format(info.like_count));
                     thumbsDownView.setText(nf.format(info.dislike_count));
 
@@ -359,8 +358,7 @@ public class VideoItemDetailFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceBundle) {
         super.onActivityCreated(savedInstanceBundle);
         Activity a = getActivity();
-        playVideoButton =
-                (FloatingActionButton) a.findViewById(R.id.playVideoButton);
+        playVideoButton = (FloatingActionButton) a.findViewById(R.id.playVideoButton);
         thumbnailWindowLayout = a.findViewById(R.id.detailVideoThumbnailWindowLayout);
         Button backgroundButton = (Button)
                 a.findViewById(R.id.detailVideoThumbnailWindowBackgroundButton);
@@ -435,7 +433,6 @@ public class VideoItemDetailFragment extends Fragment {
                     newWindowLayoutParams.height = bottom - top;
                     thumbnailWindowLayout.setLayoutParams(newWindowLayoutParams);
 
-
                     //noinspection SuspiciousNameCombination
                     initialThumbnailPos.set(top, left);
 
@@ -443,6 +440,8 @@ public class VideoItemDetailFragment extends Fragment {
             });
         }
     }
+
+
 
     /**Returns the java.util.Locale object which corresponds to the locale set in NewPipe's preferences.
      * Currently not affected by the device's locale.*/

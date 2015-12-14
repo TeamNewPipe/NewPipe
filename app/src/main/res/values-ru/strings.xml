@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="viewCountText">%1$s просмотров</string>
-    <string name="uploadDateText">Опубликовано: %1$s</string>
+    <string name="uploadDateText">Опубликовано %1$s</string>
     <string name="noPlayerFound">Ни одного потокового проигрывателя не было найдено. Установить?</string>
     <string name="installStreamPlayer">Установить</string>
     <string name="cancel">Отмена</string>

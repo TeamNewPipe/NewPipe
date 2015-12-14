@@ -29,7 +29,7 @@
     <style name="VideoPlayerActionBarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse" >
         <item name="android:displayOptions">showHome</item>
         <item name="displayOptions">showHome</item>
-        <item name="android:background">@color/black_overlay</item>
-        <item name="background">@color/black_overlay</item>
+        <item name="android:background">@color/dark_overlay</item>
+        <item name="background">@color/dark_overlay</item>
     </style>
 </resources>
