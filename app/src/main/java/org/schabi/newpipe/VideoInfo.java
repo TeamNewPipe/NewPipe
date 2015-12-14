@@ -1,7 +1,5 @@
 package org.schabi.newpipe;
 
-import android.graphics.Bitmap;
-
 import org.schabi.newpipe.services.AbstractVideoInfo;
 
 import java.util.List;
@@ -27,11 +25,10 @@ import java.util.List;
  */
 
 /**Info object for opened videos, ie the video ready to play.*/
+@SuppressWarnings("ALL")
 public class VideoInfo extends AbstractVideoInfo {
-    private static final String TAG = VideoInfo.class.toString();
 
     public String uploader_thumbnail_url = "";
-    public Bitmap uploader_thumbnail = null;
     public String description = "";
     public VideoStream[] videoStreams = null;
     public AudioStream[] audioStreams = null;
@@ -89,6 +86,7 @@ public class VideoInfo extends AbstractVideoInfo {
         }
     }
 
+    @SuppressWarnings("unused")
     public static class AudioStream {
         public String url = "";
         public int format = -1;

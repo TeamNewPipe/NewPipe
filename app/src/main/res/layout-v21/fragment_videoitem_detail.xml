@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:background="@android:color/black"
@@ -42,7 +41,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:indeterminate="true"/>
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/primaryColorDarkYoutube"
+                    android:indeterminateTintMode="src_in"/>
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/playVideoButton"
@@ -77,7 +78,6 @@
                 <TextView android:id="@+id/detailVideoTitleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:textStyle="bold"
                     android:paddingBottom="3dp"
@@ -89,7 +89,6 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_below="@id/detailVideoTitleView"
-                    android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:src="@drawable/buddy" />
 
@@ -97,7 +96,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/detailUploaderThumbnailView"
-                    android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:textStyle="bold"
                     android:textSize="@dimen/text_video_uploader_size"
@@ -108,7 +106,6 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="3dp"
                     android:layout_below="@id/detailVideoTitleView"
-                    android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:textSize="@dimen/text_video_views_size"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -117,7 +114,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/detailViewCountView"
-                    android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:textSize="@dimen/text_video_like_size"
                     android:paddingRight="5dp"
@@ -129,7 +125,6 @@
                     android:layout_width="30dp"
                     android:layout_height="15dp"
                     android:layout_below="@id/detailViewCountView"
-                    android:layout_toLeftOf="@id/detailThumbsDownCountView"
                     android:layout_toStartOf="@id/detailThumbsDownCountView"
                     android:paddingRight="5dp"
                     android:paddingLeft="5dp"
@@ -139,7 +134,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/detailViewCountView"
-                    android:layout_toLeftOf="@id/detailThumbsDownImgView"
                     android:layout_toStartOf="@id/detailThumbsDownImgView"
                     android:paddingRight="5dp"
                     android:paddingLeft="5dp"
@@ -151,8 +145,7 @@
                     android:layout_width="30dp"
                     android:layout_height="15dp"
                     android:layout_below="@id/detailViewCountView"
-                    android:layout_toLeftOf="@id/detailThumbsUpCountView"
-                    android:layout_toStartOf="@id/detailThumbsUpImgView"
+                    android:layout_toStartOf="@id/detailThumbsUpCountView"
                     android:paddingRight="5dp"
                     android:paddingLeft="5dp"
                     android:src="@drawable/thumbs_up" />
@@ -161,7 +154,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/detailUploaderView"
-                    android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:textSize="@dimen/text_video_upload_date_size"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -170,7 +162,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/detailUploadDateView"
-                    android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:textSize="@dimen/text_video_description_size"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -189,7 +180,6 @@
                     <TextView android:id="@+id/detailNextVideoTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:textSize="@dimen/text_video_upload_date_size"
                         android:textAppearance="?android:attr/textAppearanceMedium"

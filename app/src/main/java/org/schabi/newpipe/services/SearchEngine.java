@@ -25,6 +25,7 @@ import java.util.Vector;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@SuppressWarnings("ALL")
 public interface SearchEngine {
 
 

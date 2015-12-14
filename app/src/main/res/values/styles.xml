@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/primaryColorYoutube</item>
         <item name="colorPrimaryDark">@color/primaryColorDarkYoutube</item>
         <item name="colorAccent">@color/accentColorYoutube</item>
+        <item name="android:windowBackground">@color/background_gray</item>
     </style>
 
     <style name="NewPipeActionbarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid" >

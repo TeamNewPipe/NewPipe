@@ -27,8 +27,6 @@ import android.widget.TextView;
  */
 
 class VideoInfoItemViewCreator {
-    private static final String TAG = VideoInfoItemViewCreator.class.toString();
-
     private final LayoutInflater inflater;
 
     public VideoInfoItemViewCreator(LayoutInflater inflater) {
