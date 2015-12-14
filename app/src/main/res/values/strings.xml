@@ -55,6 +55,6 @@
     <string name="itemThumbnailViewDescription">Video preview thumbnail</string>
     <string name="detailThumbnailViewDescription">Video preview thumbnail</string>
     <string name="detailUploaderThumbnailViewDescription">Uploader thumbnail</string>
-    <string name="detailThumbsDownImgViewDescription">Unlikes</string>
+    <string name="detailThumbsDownImgViewDescription">Dislikes</string>
     <string name="detailThumbsUpImgViewDescription">Likes</string>
 </resources>

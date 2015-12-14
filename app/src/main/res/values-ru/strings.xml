@@ -1,13 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">NewPipe</string>
-    <string name="title_videoitem_detail">NewPipe</string>
     <string name="viewCountText">%1$s просмотров</string>
-    <string name="uploadDateText">Опубликовано: %1$s</string>
+    <string name="uploadDateText">Опубликовано %1$s</string>
     <string name="noPlayerFound">Ни одного потокового проигрывателя не было найдено. Установить?</string>
     <string name="installStreamPlayer">Установить</string>
     <string name="cancel">Отмена</string>
-    <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Открыть в браузере</string>
     <string name="share">Поделиться</string>
     <string name="download">Скачать</string>
@@ -29,7 +26,6 @@
     <string name="playWithKodiTitle">Воспроизвести с помощью Kodi</string>
     <string name="koreNotFound">Приложение Kore не наидено. Чтобы проигрывать видео через Kodi media center, нужен Kore.</string>
     <string name="installeKore">Установить Kore</string>
-    <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
     <string name="showPlayWithKodiTitle">Показывать опцию \"Воспроизвести с помощью Kodi\"</string>
     <string name="showPlayWithKodiSummary">Показать опцию воспроизведения видео через Kodi media center.</string>
     <string name="leftPlayButtonTitle">Показать кнопку воспроизведения слева.</string>

@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">NewPipe</string>
     <string name="autoPlayThroughIntentSummary">Démarrer automatiquement la vidéo si elle a été appellée à partir d\'une autre application.</string>
     <string name="cancel">Annuler</string>
     <string name="chooseBrowser">Choisir un navigateur:</string>
@@ -10,8 +9,6 @@
     <string name="downloadLocation">Emplacement des téléchargements</string>
     <string name="downloadLocationDialogTitle">Entrez l\'emplacement du téléchargement</string>
     <string name="downloadLocationSummary">Emplacement des vidéos téléchargées.</string>
-    <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
-    <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="installStreamPlayer">Installer</string>
     <string name="installeKore">Installer Kore</string>
     <string name="koreNotFound">L\'application Kore est introuvable. Kore est nécessaire afin de lire des vidéos dans Kodi media center.</string>
@@ -28,7 +25,6 @@
     <string name="showPlayWithKodiSummary">Afficher une option pour lire la vidéo avec Kodi media center.</string>
     <string name="showPlayWithKodiTitle">Afficher l\'option \"Lire avec Kodi\"</string>
     <string name="title_activity_settings">Paramètres</string>
-    <string name="title_videoitem_detail">NewPipe</string>
     <string name="uploadDateText">Mise en ligne le %1$s</string>
     <string name="useExternalPlayerTitle">Utiliser un lecteur externe</string>
     <string name="viewCountText">%1$s vues</string>

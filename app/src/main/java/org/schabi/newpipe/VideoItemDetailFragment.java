@@ -338,6 +338,7 @@ public class VideoItemDetailFragment extends Fragment {
         activity = (AppCompatActivity) getActivity();
         showNextVideoItem = PreferenceManager.getDefaultSharedPreferences(getActivity())
                 .getBoolean(activity.getString(R.string.showNextVideo), true);
+
     }
 
     @Override
@@ -431,8 +432,10 @@ public class VideoItemDetailFragment extends Fragment {
                             (RelativeLayout.LayoutParams) thumbnailWindowLayout.getLayoutParams();
                     newWindowLayoutParams.height = bottom - top;
                     thumbnailWindowLayout.setLayoutParams(newWindowLayoutParams);
+
                     //noinspection SuspiciousNameCombination
                     initialThumbnailPos.set(top, left);
+
                 }
             });
         }
