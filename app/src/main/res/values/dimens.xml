@@ -38,7 +38,7 @@
     <dimen name="video_item_detail_like_image_width">18sp</dimen>
     <!-- Paddings & Margins -->
     <dimen name="video_item_detail_info_text_padding">6sp</dimen>
-    <dimen name="video_item_detail_like_padding">6sp</dimen>
+    <dimen name="video_item_detail_like_margin">6sp</dimen>
     <dimen name="video_item_detail_play_fab_margin">20dp</dimen>
 
 </resources>
