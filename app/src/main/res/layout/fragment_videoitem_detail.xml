@@ -48,12 +48,11 @@
                     android:id="@+id/playVideoButton"
                     android:visibility="invisible"
                     android:layout_width="wrap_content"
-
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     app:backgroundTint="@color/primaryColorYoutube"
                     android:src="@drawable/ic_play_arrow_black"
-                    android:layout_margin="20dp"/>
+                    android:layout_margin="@dimen/video_item_detail_play_fab_margin"/>
 
                 <Button
                     android:id="@+id/detailVideoThumbnailWindowBackgroundButton"
@@ -142,7 +141,7 @@
                     android:layout_height="@dimen/video_item_detail_like_image_height"
                     android:layout_below="@id/detailViewCountView"
                     android:layout_toLeftOf="@id/detailThumbsUpCountView"
-                    android:layout_toStartOf="@id/detailThumbsUpImgView"
+                    android:layout_toStartOf="@id/detailThumbsUpCountView"
                     android:src="@drawable/thumbs_up" />
 
                 <TextView android:id="@+id/detailUploadDateView"
@@ -176,7 +175,6 @@
                         android:layout_centerHorizontal="true"
                         android:textSize="@dimen/video_item_detail_next_text_size"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@android:color/black"
                         android:text="@string/nextVideoTitle"
                         android:textAllCaps="true" />
 
@@ -200,8 +198,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/detailNextVidButtonAndContentLayout"
+                        android:textSize="@dimen/video_item_detail_similar_text_size"
                         android:text="@string/showSimilarVideosButtonText"/>
                 </RelativeLayout>
+
             </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
