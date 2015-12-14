@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!---->
+
     <!-- Video Item Detail View Dimensions-->
-    <!---->
     <!-- Text Size -->
     <dimen name="video_item_detail_title_text_size">20sp</dimen>
     <dimen name="video_item_detail_views_text_size">16sp</dimen>
@@ -10,9 +9,11 @@
     <dimen name="video_item_detail_uploader_text_size">16sp</dimen>
     <dimen name="video_item_detail_upload_date_text_size">16sp</dimen>
     <dimen name="video_item_detail_description_text_size">16sp</dimen>
+    <dimen name="video_item_detail_next_text_size">18sp</dimen>
     <!-- Elements Size -->
     <dimen name="video_item_detail_thumbnail_image_height">300dp</dimen>
     <dimen name="video_item_detail_uploader_image_size">110dp</dimen>
     <!-- Paddings & Margins -->
     <dimen name="video_item_detail_info_text_padding">10sp</dimen>
+
 </resources>

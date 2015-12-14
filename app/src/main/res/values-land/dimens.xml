@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!---->
+
     <!-- Video Item Search View Dimensions-->
-    <!---->
     <!-- Text Size -->
     <dimen name="video_item_search_title_text_size">22sp</dimen>
     <dimen name="video_item_search_duration_text_size">16sp</dimen>
@@ -22,9 +21,7 @@
     <!-- Miscellaneous -->
     <dimen name="video_item_search_card_radius">4dp</dimen>
 
-    <!---->
     <!-- Video Item Detail View Dimensions-->
-    <!---->
     <!-- Text Size -->
     <dimen name="video_item_detail_title_text_size">24sp</dimen>
     <dimen name="video_item_detail_views_text_size">18sp</dimen>
@@ -32,9 +29,11 @@
     <dimen name="video_item_detail_uploader_text_size">18sp</dimen>
     <dimen name="video_item_detail_upload_date_text_size">18sp</dimen>
     <dimen name="video_item_detail_description_text_size">18sp</dimen>
+    <dimen name="video_item_detail_next_text_size">20sp</dimen>
     <!-- Elements Size -->
     <dimen name="video_item_detail_thumbnail_image_height">240dp</dimen>
     <dimen name="video_item_detail_uploader_image_size">100dp</dimen>
     <!-- Paddings & Margins -->
     <dimen name="video_item_detail_info_text_padding">10sp</dimen>
+
 </resources>

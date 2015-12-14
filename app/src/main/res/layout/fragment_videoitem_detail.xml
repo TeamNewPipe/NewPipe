@@ -35,7 +35,7 @@
             <RelativeLayout
                 android:id="@+id/detailVideoThumbnailWindowLayout"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="@dimen/video_item_detail_thumbnail_image_height"
                 android:background="?attr/selectableItemBackground">
 
                 <ProgressBar android:id="@+id/detailProgressBar"
@@ -67,10 +67,7 @@
                 android:visibility="invisible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingRight="5dp"
-                android:paddingLeft="5dp"
+                android:padding="@dimen/video_item_detail_info_text_padding"
                 android:layout_below="@id/detailVideoThumbnailWindowLayout"
                 android:background="@color/background_gray">
 
@@ -80,14 +77,13 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:textStyle="bold"
-                    android:paddingBottom="3dp"
-                    android:textSize="@dimen/text_video_title_size"
+                    android:textSize="@dimen/video_item_detail_title_text_size"
                     android:textAppearance="?android:attr/textAppearanceLarge"/>
 
                 <ImageView android:id="@+id/detailUploaderThumbnailView"
                     android:contentDescription="@string/detailUploaderThumbnailViewDescription"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="@dimen/video_item_detail_uploader_image_size"
+                    android:layout_height="@dimen/video_item_detail_uploader_image_size"
                     android:layout_below="@id/detailVideoTitleView"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
@@ -100,17 +96,16 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:textStyle="bold"
-                    android:textSize="@dimen/text_video_uploader_size"
+                    android:textSize="@dimen/video_item_detail_uploader_text_size"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView android:id="@+id/detailViewCountView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="3dp"
                     android:layout_below="@id/detailVideoTitleView"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
-                    android:textSize="@dimen/text_video_views_size"
+                    android:textSize="@dimen/video_item_detail_views_text_size"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView android:id="@+id/detailThumbsDownCountView"
@@ -119,20 +114,17 @@
                     android:layout_below="@id/detailViewCountView"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
-                    android:textSize="@dimen/text_video_like_size"
-                    android:paddingRight="5dp"
-                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/video_item_detail_likes_text_size"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <ImageView android:id="@+id/detailThumbsDownImgView"
                     android:contentDescription="@string/detailThumbsDownImgViewDescription"
-                    android:layout_width="30dp"
-                    android:layout_height="15dp"
+                    android:layout_width="@dimen/video_item_detail_like_image_width"
+                    android:layout_height="@dimen/video_item_detail_like_image_height"
                     android:layout_below="@id/detailViewCountView"
                     android:layout_toLeftOf="@id/detailThumbsDownCountView"
                     android:layout_toStartOf="@id/detailThumbsDownCountView"
-                    android:paddingRight="5dp"
-                    android:paddingLeft="5dp"
+                    android:paddingLeft="@dimen/video_item_detail_like_padding"
                     android:src="@drawable/thumbs_down" />
 
                 <TextView android:id="@+id/detailThumbsUpCountView"
@@ -141,20 +133,16 @@
                     android:layout_below="@id/detailViewCountView"
                     android:layout_toLeftOf="@id/detailThumbsDownImgView"
                     android:layout_toStartOf="@id/detailThumbsDownImgView"
-                    android:paddingRight="5dp"
-                    android:paddingLeft="5dp"
-                    android:textSize="@dimen/text_video_like_size"
+                    android:textSize="@dimen/video_item_detail_likes_text_size"
                     android:textAppearance="?android:attr/textAppearanceMedium"/>
 
                 <ImageView android:id="@+id/detailThumbsUpImgView"
                     android:contentDescription="@string/detailThumbsUpImgViewDescription"
-                    android:layout_width="30dp"
-                    android:layout_height="15dp"
+                    android:layout_width="@dimen/video_item_detail_like_image_width"
+                    android:layout_height="@dimen/video_item_detail_like_image_height"
                     android:layout_below="@id/detailViewCountView"
                     android:layout_toLeftOf="@id/detailThumbsUpCountView"
                     android:layout_toStartOf="@id/detailThumbsUpImgView"
-                    android:paddingRight="5dp"
-                    android:paddingLeft="5dp"
                     android:src="@drawable/thumbs_up" />
 
                 <TextView android:id="@+id/detailUploadDateView"
@@ -163,7 +151,7 @@
                     android:layout_below="@id/detailUploaderView"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:textSize="@dimen/text_video_upload_date_size"
+                    android:textSize="@dimen/video_item_detail_upload_date_text_size"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView android:id="@+id/detailDescriptionView"
@@ -172,51 +160,48 @@
                     android:layout_below="@id/detailUploadDateView"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:textSize="@dimen/text_video_description_size"
+                    android:textSize="@dimen/video_item_detail_description_text_size"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
-                <RelativeLayout
-                    android:id="@+id/detailNextVideoRootLayout"
+                <RelativeLayout android:id="@+id/detailNextVideoRootLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
+                    android:padding="@dimen/video_item_detail_info_text_padding"
                     android:layout_below="@id/detailDescriptionView" >
 
                     <TextView android:id="@+id/detailNextVideoTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:textSize="@dimen/text_video_upload_date_size"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="@dimen/video_item_detail_next_text_size"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@android:color/black"
                         android:text="@string/nextVideoTitle"
-                        />
-                    <FrameLayout
-                        android:id="@+id/detailNextVideoFrame"
+                        android:textAllCaps="true" />
+
+                    <RelativeLayout android:id="@+id/detailNextVidButtonAndContentLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/detailNextVideoTitle"/>
-                    <Button
-                        android:id="@+id/detailNextVideoButton"
+                        android:layout_below="@id/detailNextVideoTitle">
+                        <FrameLayout
+                            android:id="@+id/detailNextVideoFrame"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <Button
+                            android:id="@+id/detailNextVideoButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignTop="@id/detailNextVideoFrame"
+                            android:layout_alignBottom="@id/detailNextVideoFrame"
+                            android:background="?attr/selectableItemBackground"/>
+                    </RelativeLayout>
+                    <Button android:id="@+id/detailShowSimilarButton"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignTop="@id/detailNextVideoFrame"
-                        android:layout_alignBottom="@id/detailNextVideoFrame"
-                        android:background="?attr/selectableItemBackground"/>
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/detailNextVidButtonAndContentLayout"
+                        android:text="@string/showSimilarVideosButtonText"/>
                 </RelativeLayout>
-
-                <Button android:id="@+id/detailShowSimilarButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_below="@id/detailNextVideoRootLayout"
-                    android:text="@string/showSimilarVideosButtonText"/>
             </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
