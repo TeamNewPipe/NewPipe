@@ -15,6 +15,10 @@ Project status:
 
 [<img src="screenshots/screenshot_1.png" width=150>](screenshots/screenshot_1.png)
 [<img src="screenshots/screenshot_2.png" width=150>](screenshots/screenshot_2.png)
+[<img src="screenshots/screenshot_3.png" width=150>](screenshots/screenshot_3.png)
+[<img src="screenshots/screenshot_4.png" width=150>](screenshots/screenshot_4.png)
+[<img src="screenshots/screenshot_5.png" width=150>](screenshots/screenshot_5.png)
+[<img src="screenshots/screenshot_6.png" width=250>](screenshots/screenshot_6.png)
 
 ## Description
 
