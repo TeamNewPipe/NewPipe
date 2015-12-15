@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="autoPlayThroughIntentSummary">Démarrer automatiquement la vidéo si elle a été appellée à partir d\'une autre application.</string>
+    <string name="autoPlayThroughIntentSummary">Démarrer automatiquement la vidéo si elle a été appelée depuis une autre application.</string>
     <string name="cancel">Annuler</string>
-    <string name="chooseBrowser">Choisir un navigateur:</string>
-    <string name="defaultResolutionPreferenceTitle">Résolution par défaut:</string>
-    <string name="didYouMean">S\'agirait-il de:</string>
+    <string name="chooseBrowser">Choisir un navigateur :</string>
+    <string name="defaultResolutionPreferenceTitle">Résolution par défaut</string>
+    <string name="didYouMean">"S\'agirait-il de : "</string>
     <string name="download">Télécharger</string>
     <string name="downloadLocation">Emplacement des téléchargements</string>
     <string name="downloadLocationDialogTitle">Entrez l\'emplacement du téléchargement</string>
@@ -17,11 +17,11 @@
     <string name="autoPlayThroughIntentTitle">Lecture automatique via Intent</string>
     <string name="playWithKodiTitle">Lire avec Kodi</string>
     <string name="screenRotation">rotation</string>
-    <string name="search">Chercher</string>
-    <string name="searchPage">Chercher dans la page:</string>
+    <string name="search">Rechercher</string>
+    <string name="searchPage">"Rechercher dans la page : "</string>
     <string name="settings">Paramètres</string>
     <string name="share">Partager</string>
-    <string name="shareDialogTitle">Partager avec:</string>
+    <string name="shareDialogTitle">Partager avec :</string>
     <string name="showPlayWithKodiSummary">Afficher une option pour lire la vidéo avec Kodi media center.</string>
     <string name="showPlayWithKodiTitle">Afficher l\'option \"Lire avec Kodi\"</string>
     <string name="title_activity_settings">Paramètres</string>
@@ -38,4 +38,13 @@
     <string name="showNextAndSimilarTitle">Afficher les vidéos suivantes et similaires</string>
     <string name="urlNotSupportedText">URL non supportée.</string>
     <string name="showSimilarVideosButtonText">Vidéos similaires</string>
+    <string name="settingsCategoryVideoAudioTitle">VIDÉO &amp; AUDIO</string>
+    <string name="settingsCategoryVideoInfoTittle">INFORMATION</string>
+    <string name="settingsCategoryEtcTitle">DIVERS</string>
+
+    <string name="itemThumbnailViewDescription">Miniature d\'aperçu vidéo</string>
+    <string name="detailThumbnailViewDescription">Miniature d\'aperçu vidéo</string>
+    <string name="detailThumbsDownImgViewDescription">Je n\'aime pas</string>
+    <string name="detailThumbsUpImgViewDescription">J\'aime</string>
+<string name="searchLanguageTitle">Langue du contenu</string>
     </resources>
