@@ -47,4 +47,5 @@
     <string name="detailThumbsDownImgViewDescription">Je n\'aime pas</string>
     <string name="detailThumbsUpImgViewDescription">J\'aime</string>
 <string name="searchLanguageTitle">Langue du contenu</string>
+    <string name="detailUploaderThumbnailViewDescription">Avatar de l\'utilisateur</string>
     </resources>
