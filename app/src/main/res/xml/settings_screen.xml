@@ -37,11 +37,6 @@
             android:summary="@string/showPlayWithKodiSummary"
             android:defaultValue="false" />
 
-        <CheckBoxPreference
-            android:key="@string/leftHandLayout"
-            android:title="@string/leftPlayButtonTitle"
-            android:defaultValue="false" />
-
         <ListPreference
             android:key="@string/searchLanguage"
             android:title="@string/searchLanguageTitle"

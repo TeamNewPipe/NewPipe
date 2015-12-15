@@ -28,7 +28,6 @@
     <string name="installeKore">Инсталирај Кор</string>
     <string name="showPlayWithKodiTitle">Прикажи „Пусти помоћу Кодија“</string>
     <string name="showPlayWithKodiSummary">Приказ опције за пуштање видеа у Коди медија центру.</string>
-    <string name="leftPlayButtonTitle">Прикажи дугме за пуштање на левој страни.</string>
     <string name="playAudio">Аудио</string>
     <string name="defaultAudioFormatTitle">Подразумевани формат звука</string>
     <string name="webMAudioDescription">WebM - слободни формат</string>

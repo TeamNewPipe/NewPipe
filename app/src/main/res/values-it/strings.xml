@@ -27,7 +27,6 @@
     <string name="installeKore">Installa Kore</string>
     <string name="showPlayWithKodiTitle">Mostra l\'opzione \"Riproduci con Kodi\"</string>
     <string name="showPlayWithKodiSummary">Mostra un opzione per riprodurre un video attraverso Kodi media center.</string>
-    <string name="leftPlayButtonTitle">Mostra pulsante di avvio sul lato sinistro.</string>
     <string name="playAudio">Audio</string>
     <string name="defaultAudioFormatTitle">Formato audio predefinito</string>
     <string name="webMAudioDescription">WedM - formato libero</string>

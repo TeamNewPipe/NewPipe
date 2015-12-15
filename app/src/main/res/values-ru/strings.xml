@@ -28,7 +28,6 @@
     <string name="installeKore">Установить Kore</string>
     <string name="showPlayWithKodiTitle">Показывать опцию \"Воспроизвести с помощью Kodi\"</string>
     <string name="showPlayWithKodiSummary">Показать опцию воспроизведения видео через Kodi media center.</string>
-    <string name="leftPlayButtonTitle">Показать кнопку воспроизведения слева.</string>
     <string name="playAudio">Аудио</string>
     <string name="defaultAudioFormatTitle">Формат аудио по-умолчанию</string>
     <string name="webMAudioDescription">WebM - свободный формат</string>

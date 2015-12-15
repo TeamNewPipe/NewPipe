@@ -27,7 +27,6 @@
     <string name="installeKore">Kore をｲﾝｽﾄｰﾙ</string>
     <string name="showPlayWithKodiTitle">\"Kodi で再生\" 設定を表示</string>
     <string name="showPlayWithKodiSummary">Kodi ﾒﾃﾞｨｱｾﾝﾀｰ経由で動画を再生するための設定を表示します.</string>
-    <string name="leftPlayButtonTitle">左側に再生ﾎﾞﾀﾝを表示.</string>
     <string name="playAudio">ｵｰﾃﾞｨｵ</string>
     <string name="defaultAudioFormatTitle">基本のｵｰﾃﾞｨｵﾌｫｰﾏｯﾄ</string>
     <string name="webMAudioDescription">.WebM - ﾌﾘｰﾌｫｰﾏｯﾄ</string>

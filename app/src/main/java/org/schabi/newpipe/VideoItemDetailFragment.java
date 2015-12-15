@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -379,20 +380,6 @@ public class VideoItemDetailFragment extends Fragment {
                 e.printStackTrace();
             }
 
-            if (PreferenceManager.getDefaultSharedPreferences(getActivity())
-                    .getBoolean(getString(R.string.leftHandLayout), false) && checkIfLandscape()) {
-                RelativeLayout.LayoutParams oldLayout =
-                        (RelativeLayout.LayoutParams) playVideoButton.getLayoutParams();
-                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
-                        RelativeLayout.LayoutParams.WRAP_CONTENT,
-                        RelativeLayout.LayoutParams.WRAP_CONTENT);
-                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-                layoutParams.setMargins(oldLayout.leftMargin, oldLayout.topMargin,
-                        oldLayout.rightMargin, oldLayout.bottomMargin);
-                playVideoButton.setLayoutParams(layoutParams);
-            }
-
             playVideoButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -422,22 +409,26 @@ public class VideoItemDetailFragment extends Fragment {
                 }
             });
 
-            ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detailThumbnailView);
-            thumbnailView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-                // This is used to synchronize the thumbnailWindowButton and the playVideoButton
-                // inside the ScrollView with the actual size of the thumbnail.
-                @Override
-                public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                    RelativeLayout.LayoutParams newWindowLayoutParams =
-                            (RelativeLayout.LayoutParams) thumbnailWindowLayout.getLayoutParams();
-                    newWindowLayoutParams.height = bottom - top;
-                    thumbnailWindowLayout.setLayoutParams(newWindowLayoutParams);
+            // todo: Fix this workaround (probably with a better design), so that older android
+            // versions don't have problems rendering the thumbnail right.
+            if(Build.VERSION.SDK_INT >= 18) {
+                ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detailThumbnailView);
+                thumbnailView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+                    // This is used to synchronize the thumbnailWindowButton and the playVideoButton
+                    // inside the ScrollView with the actual size of the thumbnail.
+                    @Override
+                    public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                        RelativeLayout.LayoutParams newWindowLayoutParams =
+                                (RelativeLayout.LayoutParams) thumbnailWindowLayout.getLayoutParams();
+                        newWindowLayoutParams.height = bottom - top;
+                        thumbnailWindowLayout.setLayoutParams(newWindowLayoutParams);
 
-                    //noinspection SuspiciousNameCombination
-                    initialThumbnailPos.set(top, left);
+                        //noinspection SuspiciousNameCombination
+                        initialThumbnailPos.set(top, left);
 
-                }
-            });
+                    }
+                });
+            }
         }
     }
 

@@ -27,7 +27,6 @@
     <string name="installeKore">Kore 설치</string>
     <string name="showPlayWithKodiTitle">\"Kodi로 재생\" 옵션 표시</string>
     <string name="showPlayWithKodiSummary">비디오를 Kodi media center를 사용해 재생하는 옵션을 표시합니다.</string>
-    <string name="leftPlayButtonTitle">재생 버튼을 왼쪽에 표시합니다.</string>
     <string name="playAudio">오디오</string>
     <string name="defaultAudioFormatTitle">기본 오디오 포맷</string>
     <string name="webMAudioDescription">WebM - 무료 자유 포맷입니다</string>

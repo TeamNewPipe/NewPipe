@@ -32,7 +32,6 @@
     <string name="fdroidKoreUrl" translatable="false">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
     <string name="showPlayWithKodiTitle">Show \"Play with Kodi\" option</string>
     <string name="showPlayWithKodiSummary">Displays an option to play a video via Kodi media center.</string>
-    <string name="leftPlayButtonTitle">Show play button on the left side.</string>
     <string name="playAudio">Audio</string>
     <string name="defaultAudioFormatTitle">Default audio format</string>
     <string name="webMAudioDescription">WebM - free format</string>

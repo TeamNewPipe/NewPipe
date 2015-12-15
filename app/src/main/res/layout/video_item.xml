@@ -28,7 +28,8 @@
             <RelativeLayout android:id="@+id/itemThumbnailViewContainer"
                 android:layout_marginRight="@dimen/video_item_search_image_right_margin"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                tools:ignore="RtlHardcoded">
 
                 <ImageView android:id="@+id/itemThumbnailView"
                     android:contentDescription="@string/itemThumbnailViewDescription"
@@ -64,12 +65,13 @@
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/video_item_search_thumbnail_image_height"
-                android:layout_toRightOf="@id/itemThumbnailViewContainer">
+                android:layout_toRightOf="@id/itemThumbnailViewContainer"
+                tools:ignore="RtlHardcoded">
 
                 <TextView android:id="@+id/itemVideoTitleView"
                     android:layout_weight="1"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="0dp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textSize="@dimen/video_item_search_title_text_size"/>
 

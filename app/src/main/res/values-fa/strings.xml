@@ -28,7 +28,6 @@
     <string name="installeKore">نصب Kore</string>
     <string name="showPlayWithKodiTitle">نمایش گزینه‌ی «پخش با Kodi»</string>
     <string name="showPlayWithKodiSummary">گزینه‌ای برای پخش کردن ویدئو با مرکز رسانه‌ی Kodi نشان می‌دهد.</string>
-    <string name="leftPlayButtonTitle">نمایش دکمه‌ی پخش در سمت چپ.</string>
     <string name="playAudio">صدا</string>
     <string name="defaultAudioFormatTitle">قالب پیش‌فرض صدا</string>
     <string name="webMAudioDescription">WebM - قالبی آزاد</string>

@@ -25,7 +25,6 @@
     <string name="installeKore">Zainstaluj Kore</string>
     <string name="showPlayWithKodiTitle">Wyświetlaj opcję \"Odtwarzaj za pośrednictwem Kodi\"</string>
     <string name="showPlayWithKodiSummary">Wyświetla opcję do odtwarzania wideo przez aplikację Kodi.</string>
-    <string name="leftPlayButtonTitle">Wyświetl przycisk odtwarzania po lewej stronie.</string>
     <string name="playAudio">Dźwięk</string>
     <string name="defaultAudioFormatTitle">Domyślny format dźwięku</string>
     <string name="webMAudioDescription">WebM - otwarty format</string>
