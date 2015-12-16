@@ -28,7 +28,6 @@
     <string name="installeKore">Установить Kore</string>
     <string name="showPlayWithKodiTitle">Показывать опцию \"Воспроизвести с помощью Kodi\"</string>
     <string name="showPlayWithKodiSummary">Показать опцию воспроизведения видео через Kodi media center.</string>
-    <string name="leftPlayButtonTitle">Показать кнопку воспроизведения слева.</string>
     <string name="playAudio">Аудио</string>
     <string name="defaultAudioFormatTitle">Формат аудио по-умолчанию</string>
     <string name="webMAudioDescription">WebM - свободный формат</string>
@@ -43,4 +42,13 @@
     <string name="showSimilarVideosButtonText">Похожие видео</string>
     <string name="showNextAndSimilarTitle">Показывать следующее и предложенные видео</string>
     <string name="searchLanguageTitle">Предпочитаемый язык контента</string>
+<string name="settingsCategoryVideoAudioTitle">ВИДЕО И АУДИО</string>
+    <string name="settingsCategoryVideoInfoTittle">ИНФОРМАЦИЯ</string>
+    <string name="settingsCategoryEtcTitle">ПРОЧЕЕ</string>
+
+    <string name="itemThumbnailViewDescription">Миниатюра видео-превью</string>
+    <string name="detailThumbnailViewDescription">Миниатюра видео-превью</string>
+    <string name="detailUploaderThumbnailViewDescription">Миниатюра аватара пользователся</string>
+    <string name="detailThumbsDownImgViewDescription">Дислайки</string>
+    <string name="detailThumbsUpImgViewDescription">Лайки</string>
 </resources>

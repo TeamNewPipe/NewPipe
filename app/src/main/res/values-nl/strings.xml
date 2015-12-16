@@ -28,7 +28,6 @@
     <string name="installeKore">Installeer Kore</string>
     <string name="showPlayWithKodiTitle">Toon \"Speel af met Kodi\" optie</string>
     <string name="showPlayWithKodiSummary">Toont een optie om een video op een Kodi media center af te spelen.</string>
-    <string name="leftPlayButtonTitle">Afspeel knop aan de linker kant weergeven.</string>
     <string name="playAudio">Audio</string>
     <string name="defaultAudioFormatTitle">Standaard audio formaat</string>
     <string name="webMAudioDescription">Webam - open formaat</string>
