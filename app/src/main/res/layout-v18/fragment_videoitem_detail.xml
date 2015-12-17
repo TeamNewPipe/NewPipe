@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".VideoItemDetailFragment"
@@ -10,12 +10,24 @@
     android:layout_height="match_parent"
     android:id="@+id/videoitem_detail">
 
+    <ImageView android:id="@+id/detailThumbnailView"
+        android:contentDescription="@string/detailThumbnailViewDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/black"
+        android:src="@drawable/dummy_thumbnail_dark"
+        tools:ignore="RtlHardcoded" />
+
     <ScrollView
         android:id="@+id/detailMainContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
-        tools:ignore="UselessParent">
+        android:visibility="visible">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -24,20 +36,8 @@
             <RelativeLayout
                 android:id="@+id/detailVideoThumbnailWindowLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/video_item_detail_thumbnail_image_height"
                 android:background="?attr/selectableItemBackground">
-
-                <ImageView android:id="@+id/detailThumbnailView"
-                    android:contentDescription="@string/detailThumbnailViewDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitCenter"
-                    android:adjustViewBounds="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:background="@android:color/black"
-                    android:src="@drawable/dummy_thumbnail_dark"/>
 
                 <ProgressBar android:id="@+id/detailProgressBar"
                     android:layout_width="wrap_content"
@@ -78,7 +78,8 @@
                     android:layout_alignParentStart="true"
                     android:textStyle="bold"
                     android:textSize="@dimen/video_item_detail_title_text_size"
-                    android:textAppearance="?android:attr/textAppearanceLarge"/>
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    tools:ignore="RtlHardcoded" />
 
                 <ImageView android:id="@+id/detailUploaderThumbnailView"
                     android:contentDescription="@string/detailUploaderThumbnailViewDescription"
@@ -87,7 +88,8 @@
                     android:layout_below="@id/detailVideoTitleView"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:src="@drawable/buddy" />
+                    android:src="@drawable/buddy"
+                    tools:ignore="RtlHardcoded" />
 
                 <TextView android:id="@+id/detailUploaderView"
                     android:layout_width="wrap_content"
@@ -97,7 +99,8 @@
                     android:layout_alignParentStart="true"
                     android:textStyle="bold"
                     android:textSize="@dimen/video_item_detail_uploader_text_size"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    tools:ignore="RtlHardcoded" />
 
                 <TextView android:id="@+id/detailViewCountView"
                     android:layout_width="wrap_content"
@@ -106,7 +109,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:textSize="@dimen/video_item_detail_views_text_size"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    tools:ignore="RtlHardcoded" />
 
                 <TextView android:id="@+id/detailThumbsDownCountView"
                     android:layout_width="wrap_content"
@@ -115,7 +119,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:textSize="@dimen/video_item_detail_likes_text_size"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    tools:ignore="RtlHardcoded" />
 
                 <ImageView android:id="@+id/detailThumbsDownImgView"
                     android:contentDescription="@string/detailThumbsDownImgViewDescription"
@@ -124,7 +129,9 @@
                     android:layout_below="@id/detailViewCountView"
                     android:layout_toLeftOf="@id/detailThumbsDownCountView"
                     android:layout_toStartOf="@id/detailThumbsDownCountView"
-                    android:src="@drawable/thumbs_down" />
+                    android:layout_marginLeft="@dimen/video_item_detail_like_margin"
+                    android:src="@drawable/thumbs_down"
+                    tools:ignore="RtlHardcoded" />
 
                 <TextView android:id="@+id/detailThumbsUpCountView"
                     android:layout_width="wrap_content"
@@ -133,7 +140,8 @@
                     android:layout_toLeftOf="@id/detailThumbsDownImgView"
                     android:layout_toStartOf="@id/detailThumbsDownImgView"
                     android:textSize="@dimen/video_item_detail_likes_text_size"
-                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    tools:ignore="RtlHardcoded" />
 
                 <ImageView android:id="@+id/detailThumbsUpImgView"
                     android:contentDescription="@string/detailThumbsUpImgViewDescription"
@@ -142,7 +150,8 @@
                     android:layout_below="@id/detailViewCountView"
                     android:layout_toLeftOf="@id/detailThumbsUpCountView"
                     android:layout_toStartOf="@id/detailThumbsUpCountView"
-                    android:src="@drawable/thumbs_up" />
+                    android:src="@drawable/thumbs_up"
+                    tools:ignore="RtlHardcoded" />
 
                 <TextView android:id="@+id/detailUploadDateView"
                     android:layout_width="wrap_content"
@@ -151,7 +160,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:textSize="@dimen/video_item_detail_upload_date_text_size"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    tools:ignore="RtlHardcoded" />
 
                 <TextView android:id="@+id/detailDescriptionView"
                     android:layout_width="wrap_content"
@@ -160,7 +170,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:textSize="@dimen/video_item_detail_description_text_size"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    tools:ignore="RtlHardcoded" />
 
 
                 <RelativeLayout android:id="@+id/detailNextVideoRootLayout"
@@ -205,4 +216,4 @@
             </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
-</FrameLayout>
+</RelativeLayout>

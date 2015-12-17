@@ -23,6 +23,8 @@ package org.schabi.newpipe.services;
 import org.schabi.newpipe.VideoInfo;
 
 /**Scrapes information from a video streaming service (eg, YouTube).*/
+
+@SuppressWarnings("ALL")
 public abstract class VideoExtractor {
     protected final String pageUrl;
     protected VideoInfo videoInfo;

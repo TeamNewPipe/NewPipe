@@ -56,7 +56,6 @@ public class PlayVideoActivity extends AppCompatActivity {
     public static final String START_POSITION = "start_position";
 
     private static final long HIDING_DELAY = 3000;
-    private static final long TAB_HIDING_DELAY = 100;
 
     private String videoUrl = "";
 

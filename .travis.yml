@@ -2,15 +2,15 @@ language: android
 android:
   components:
     # The BuildTools version used by NewPipe
-    - build-tools-23.0.1
+    - build-tools-23.0.2
 
     # The SDK version used to compile NewPipe
     - android-23
-    
+
     # Additional components
     - extra-android-support
     - extra-android-m2repository
-   
+
     # Emulators
     - sys-img-armeabi-v7a-android-21
     - sys-img-armeabi-v7a-android-19

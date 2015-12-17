@@ -1,13 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">NewPipe</string>
-    <string name="title_videoitem_detail">NewPipe</string>
     <string name="viewCountText">%1$s keer bekeken</string>
     <string name="uploadDateText">Geüpload op %1$s</string>
     <string name="noPlayerFound">Geen speler met streaming ondersteuning gevonden. Misschien wil je er een installeren.</string>
     <string name="installStreamPlayer">Installeer speler</string>
     <string name="cancel">Annuleer</string>
-    <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="share">Deel</string>
     <string name="download">Download</string>
@@ -29,10 +26,8 @@
     <string name="playWithKodiTitle">Speel af met Kodi</string>
     <string name="koreNotFound">Kore app niet gevonden. Kore is nodig om videos op Kodi af te spelen.</string>
     <string name="installeKore">Installeer Kore</string>
-    <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
     <string name="showPlayWithKodiTitle">Toon \"Speel af met Kodi\" optie</string>
     <string name="showPlayWithKodiSummary">Toont een optie om een video op een Kodi media center af te spelen.</string>
-    <string name="leftPlayButtonTitle">Afspeel knop aan de linker kant weergeven.</string>
     <string name="playAudio">Audio</string>
     <string name="defaultAudioFormatTitle">Standaard audio formaat</string>
     <string name="webMAudioDescription">Webam - open formaat</string>

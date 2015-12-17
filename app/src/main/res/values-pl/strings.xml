@@ -1,19 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
-<resources><string name="app_name">NewPipe</string>
-    <string name="title_videoitem_detail">NewPipe</string>
-    <string name="nothingFound">Brak wyników</string>
-    <string name="viewSufix">wyświetleń</string>
-    <string name="uploadDatePrefix">"Opublikowany "</string>
+<resources>
     <string name="noPlayerFound">Nie znaleziono odtwarzacza strumieniowego.</string>
     <string name="installStreamPlayer">Zainstaluj</string>
     <string name="cancel">Anuluj</string>
     <string name="open_in_browser">Otwórz w przeglądarce</string>
     <string name="share">Udostępnij</string>
-    <string name="play">Odtwórz</string>
     <string name="download">Pobierz</string>
     <string name="search">Szukaj</string>
     <string name="settings">Ustawienia</string>
-    <string name="sendWith">Wyślij za pośrednictwem</string>
     <string name="didYouMean">"Czy chodziło Ci o: "</string>
     <string name="shareDialogTitle">Udostępnij za pośrednictwem:</string>
     <string name="chooseBrowser">Wybierz przeglądarkę:</string>
@@ -31,7 +25,6 @@
     <string name="installeKore">Zainstaluj Kore</string>
     <string name="showPlayWithKodiTitle">Wyświetlaj opcję \"Odtwarzaj za pośrednictwem Kodi\"</string>
     <string name="showPlayWithKodiSummary">Wyświetla opcję do odtwarzania wideo przez aplikację Kodi.</string>
-    <string name="leftPlayButtonTitle">Wyświetl przycisk odtwarzania po lewej stronie.</string>
     <string name="playAudio">Dźwięk</string>
     <string name="defaultAudioFormatTitle">Domyślny format dźwięku</string>
     <string name="webMAudioDescription">WebM - otwarty format</string>

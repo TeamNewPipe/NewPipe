@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="org.schabi.newpipe" >
-
+    git merge
     <uses-permission android:name= "android.permission.INTERNET" />
     <uses-permission android:name= "android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -16,7 +16,7 @@
         tools:ignore="AllowBackup">
         <activity
             android:name=".VideoItemListActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +25,8 @@
         </activity>
         <activity
             android:name=".VideoItemDetailActivity"
-            android:label="@string/title_videoitem_detail" >
+            android:label="@string/title_videoitem_detail"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".VideoItemListActivity" />

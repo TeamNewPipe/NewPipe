@@ -1,20 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
-<resources><string name="app_name">NewPipe</string>
-    <string name="title_videoitem_detail">NewPipe</string>
-    <string name="nothingFound">何も見つかりません</string>
-    <string name="viewSufix">表示</string>
+<resources>
     <string name="uploadDateText">"アップロード: "%1$s</string>
     <string name="noPlayerFound">StreamPlayer が見つかりませんでした｡ｲﾝｽﾄｰﾙが必要になるかもしれません｡</string>
     <string name="installStreamPlayer">ｲﾝｽﾄｰﾙ</string>
     <string name="cancel">取り消し</string>
-    <string name="fdroidVLCurl">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">ﾌﾞﾗｳｻﾞｰで開く</string>
     <string name="share">共有</string>
-    <string name="play">再生</string>
     <string name="download">ﾀﾞｳﾝﾛｰﾄﾞ</string>
     <string name="search">検索</string>
     <string name="settings">設定</string>
-    <string name="sendWith">送信</string>
     <string name="didYouMean">"この意味ですか: "</string>
     <string name="searchPage">"検索ﾍﾟｰｼﾞ: "</string>
     <string name="shareDialogTitle">…共有:</string>
@@ -31,10 +25,8 @@
     <string name="playWithKodiTitle">Kodi で再生</string>
     <string name="koreNotFound">Kore ｱﾌﾟﾘが見つかりません｡ Kodi ﾒﾃﾞｨｱｾﾝﾀｰで動画を再生するには､ Kore が必要です｡</string>
     <string name="installeKore">Kore をｲﾝｽﾄｰﾙ</string>
-    <string name="fdroidKoreUrl">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
     <string name="showPlayWithKodiTitle">\"Kodi で再生\" 設定を表示</string>
     <string name="showPlayWithKodiSummary">Kodi ﾒﾃﾞｨｱｾﾝﾀｰ経由で動画を再生するための設定を表示します.</string>
-    <string name="leftPlayButtonTitle">左側に再生ﾎﾞﾀﾝを表示.</string>
     <string name="playAudio">ｵｰﾃﾞｨｵ</string>
     <string name="defaultAudioFormatTitle">基本のｵｰﾃﾞｨｵﾌｫｰﾏｯﾄ</string>
     <string name="webMAudioDescription">.WebM - ﾌﾘｰﾌｫｰﾏｯﾄ</string>

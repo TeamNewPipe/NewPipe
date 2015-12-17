@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -27,7 +29,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.view.MenuItem;
 
@@ -83,6 +84,10 @@ public class VideoItemDetailFragment extends Fragment {
     private boolean autoPlayEnabled = false;
     private VideoInfo currentVideoInfo = null;
     private boolean showNextVideoItem = false;
+
+    private View thumbnailWindowLayout;
+    private FloatingActionButton playVideoButton;
+    private final Point initialThumbnailPos = new Point(0, 0);
 
     public interface OnInvokeCreateOptionsMenuListener {
         void createOptionsMenu();
@@ -202,7 +207,7 @@ public class VideoItemDetailFragment extends Fragment {
             VideoInfoItemViewCreator videoItemViewCreator =
                     new VideoInfoItemViewCreator(LayoutInflater.from(getActivity()));
 
-            ScrollView contentMainView = (ScrollView) activity.findViewById(R.id.detailMainContent);
+            RelativeLayout textContentLayout = (RelativeLayout) activity.findViewById(R.id.detailTextContentLayout);
             ProgressBar progressBar = (ProgressBar) activity.findViewById(R.id.detailProgressBar);
             TextView videoTitleView = (TextView) activity.findViewById(R.id.detailVideoTitleView);
             TextView uploaderView = (TextView) activity.findViewById(R.id.detailUploaderView);
@@ -221,7 +226,8 @@ public class VideoItemDetailFragment extends Fragment {
             Button nextVideoButton = (Button) activity.findViewById(R.id.detailNextVideoButton);
             Button similarVideosButton = (Button) activity.findViewById(R.id.detailShowSimilarButton);
 
-            contentMainView.setVisibility(View.VISIBLE);
+            textContentLayout.setVisibility(View.VISIBLE);
+            playVideoButton.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
             if(!showNextVideoItem) {
                 nextVideoRootFrame.setVisibility(View.GONE);
@@ -239,9 +245,6 @@ public class VideoItemDetailFragment extends Fragment {
                     viewCountView.setText(
                             String.format(
                                     res.getString(R.string.viewCountText), localisedViewCount));
-                    /*viewCountView.setText(localisedViewCount
-                            + " " + activity.getString(R.string.viewSufix)); */
-
 
                     thumbsUpView.setText(nf.format(info.like_count));
                     thumbsDownView.setText(nf.format(info.dislike_count));
@@ -336,6 +339,7 @@ public class VideoItemDetailFragment extends Fragment {
         activity = (AppCompatActivity) getActivity();
         showNextVideoItem = PreferenceManager.getDefaultSharedPreferences(getActivity())
                 .getBoolean(activity.getString(R.string.showNextVideo), true);
+
     }
 
     @Override
@@ -354,8 +358,11 @@ public class VideoItemDetailFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceBundle) {
         super.onActivityCreated(savedInstanceBundle);
-        FloatingActionButton playVideoButton =
-                (FloatingActionButton) getActivity().findViewById(R.id.playVideoButton);
+        Activity a = getActivity();
+        playVideoButton = (FloatingActionButton) a.findViewById(R.id.playVideoButton);
+        thumbnailWindowLayout = a.findViewById(R.id.detailVideoThumbnailWindowLayout);
+        Button backgroundButton = (Button)
+                a.findViewById(R.id.detailVideoThumbnailWindowBackgroundButton);
 
         // Sometimes when this fragment is not visible it still gets initiated
         // then we must not try to access objects of this fragment.
@@ -373,21 +380,14 @@ public class VideoItemDetailFragment extends Fragment {
                 e.printStackTrace();
             }
 
-            if (PreferenceManager.getDefaultSharedPreferences(getActivity())
-                    .getBoolean(getString(R.string.leftHandLayout), false) && checkIfLandscape()) {
-                RelativeLayout.LayoutParams oldLayout =
-                        (RelativeLayout.LayoutParams) playVideoButton.getLayoutParams();
-                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
-                        RelativeLayout.LayoutParams.WRAP_CONTENT,
-                        RelativeLayout.LayoutParams.WRAP_CONTENT);
-                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-                layoutParams.setMargins(oldLayout.leftMargin, oldLayout.topMargin,
-                        oldLayout.rightMargin, oldLayout.bottomMargin);
-                playVideoButton.setLayoutParams(layoutParams);
-            }
-
             playVideoButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    actionBarHandler.playVideo();
+                }
+            });
+
+            backgroundButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     actionBarHandler.playVideo();
@@ -408,8 +408,31 @@ public class VideoItemDetailFragment extends Fragment {
                     activity.startActivity(intent);
                 }
             });
+
+            // todo: Fix this workaround (probably with a better design), so that older android
+            // versions don't have problems rendering the thumbnail right.
+            if(Build.VERSION.SDK_INT >= 18) {
+                ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detailThumbnailView);
+                thumbnailView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+                    // This is used to synchronize the thumbnailWindowButton and the playVideoButton
+                    // inside the ScrollView with the actual size of the thumbnail.
+                    @Override
+                    public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                        RelativeLayout.LayoutParams newWindowLayoutParams =
+                                (RelativeLayout.LayoutParams) thumbnailWindowLayout.getLayoutParams();
+                        newWindowLayoutParams.height = bottom - top;
+                        thumbnailWindowLayout.setLayoutParams(newWindowLayoutParams);
+
+                        //noinspection SuspiciousNameCombination
+                        initialThumbnailPos.set(top, left);
+
+                    }
+                });
+            }
         }
     }
+
+
 
     /**Returns the java.util.Locale object which corresponds to the locale set in NewPipe's preferences.
      * Currently not affected by the device's locale.*/
@@ -418,7 +441,8 @@ public class VideoItemDetailFragment extends Fragment {
         String languageKey = getContext().getString(R.string.searchLanguage);
         //i know the following line defaults languageCode to "en", but java is picky about uninitialised values
         // Schabi: well lint tels me the value is redundant. I'll suppress it for now.
-        @SuppressWarnings("UnusedAssignment") String languageCode = "en";
+        @SuppressWarnings("UnusedAssignment")
+        String languageCode = "en";
         languageCode = sp.getString(languageKey, "en");
 
         if(languageCode.length() == 2) {

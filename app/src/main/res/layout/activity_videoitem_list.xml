@@ -10,6 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".VideoItemListActivity"
-        tools:layout="@android:layout/list_content"/>
+        tools:layout="@android:layout/list_content" />
 
 </LinearLayout>
