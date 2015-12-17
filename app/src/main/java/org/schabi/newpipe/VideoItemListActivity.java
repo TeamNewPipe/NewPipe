@@ -13,9 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import java.util.ArrayList;
-
 import org.schabi.newpipe.services.ServiceList;
+
+import java.util.ArrayList;
 
 /**
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
@@ -66,24 +66,8 @@ public class VideoItemListActivity extends AppCompatActivity
             try {
                 searchQuery = query;
                 listFragment.search(query);
+                hideKeyPad();
 
-                // hide virtual keyboard
-                InputMethodManager inputManager =
-                        (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                try {
-                    //noinspection ConstantConditions
-                    inputManager.hideSoftInputFromWindow(
-                            getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                } catch(NullPointerException e) {
-                    Log.e(TAG, "Could not get widget with focus");
-                    e.printStackTrace();
-                }
-                // clear focus
-                // 1. to not open up the keyboard after switching back to this
-                // 2. It's a workaround to a seeming bug by the Android OS it self, causing
-                //    onQueryTextSubmit to trigger twice when focus is not cleared.
-                // See: http://stackoverflow.com/questions/17874951/searchview-onquerytextsubmit-runs-twice-while-i-pressed-once
-                getCurrentFocus().clearFocus();
             } catch(Exception e) {
                 e.printStackTrace();
             }
@@ -92,8 +76,32 @@ public class VideoItemListActivity extends AppCompatActivity
 
         @Override
         public boolean onQueryTextChange(String newText) {
+            listFragment.searchSuggestion(newText);
             return true;
         }
+
+    }
+
+
+    private void hideKeyPad() {
+
+        // hide virtual keyboard
+        InputMethodManager inputManager =
+                (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        try {
+            //noinspection ConstantConditions
+            inputManager.hideSoftInputFromWindow(
+                    getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        } catch(NullPointerException e) {
+            Log.e(TAG, "Could not get widget with focus");
+            e.printStackTrace();
+        }
+        // clear focus
+        // 1. to not open up the keyboard after switching back to this
+        // 2. It's a workaround to a seeming bug by the Android OS it self, causing
+        //    onQueryTextSubmit to trigger twice when focus is not cleared.
+        // See: http://stackoverflow.com/questions/17874951/searchview-onquerytextsubmit-runs-twice-while-i-pressed-once
+//        getCurrentFocus().clearFocus();
 
     }
 
@@ -216,6 +224,12 @@ public class VideoItemListActivity extends AppCompatActivity
         }
     }
 
+    @Override
+    public void onSuggestionSelected(String suggestion) {
+        listFragment.search(suggestion);
+        hideKeyPad();
+    }
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -227,8 +241,7 @@ public class VideoItemListActivity extends AppCompatActivity
             MenuItem searchItem = menu.findItem(R.id.action_search);
             SearchView searchView = (SearchView) searchItem.getActionView();
             searchView.setFocusable(false);
-            searchView.setOnQueryTextListener(
-                    new SearchVideoQueryListener());
+            searchView.setOnQueryTextListener(new SearchVideoQueryListener());
 
         } else if (videoFragment != null){
             videoFragment.onCreateOptionsMenu(menu, inflater);

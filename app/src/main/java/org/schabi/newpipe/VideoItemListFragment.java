@@ -14,12 +14,13 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.net.URL;
-import java.util.List;
-import java.util.Vector;
-
 import org.schabi.newpipe.services.SearchEngine;
 import org.schabi.newpipe.services.StreamingService;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 
 /**
@@ -210,6 +211,7 @@ public class VideoItemListFragment extends ListFragment {
     private void updateListOnResult(SearchEngine.Result result, int requestId) {
         if(requestId == currentRequestId) {
             setListShown(true);
+            setListAdapter(videoListAdapter);
             if (result.resultList.isEmpty()) {
                 Toast.makeText(getActivity(), result.errorMessage, Toast.LENGTH_LONG).show();
             } else {
@@ -246,7 +248,7 @@ public class VideoItemListFragment extends ListFragment {
                 e.printStackTrace();
             }
         }
-        if(searchThread != null) {
+        if(searchThread != null && searchRunnable!=null) {
             searchRunnable.terminate();
             // No need to join, since we don't really terminate the thread. We just demand
             // it to post its result runnable into the gui main loop.
@@ -274,6 +276,7 @@ public class VideoItemListFragment extends ListFragment {
          * Callback for when an item has been selected.
          */
         void onItemSelected(String id);
+        void onSuggestionSelected(String suggestion);
     }
 
     private Callbacks mCallbacks = null;
@@ -283,7 +286,7 @@ public class VideoItemListFragment extends ListFragment {
         super.onViewCreated(view, savedInstanceState);
         list = getListView();
         videoListAdapter = new VideoListAdapter(getActivity(), this);
-        setListAdapter(videoListAdapter);
+        suggestionListAdapter=new SuggestionListAdapter(getActivity(),this);
 
         // Restore the previously serialized activated item position.
         if (savedInstanceState != null
@@ -332,7 +335,11 @@ public class VideoItemListFragment extends ListFragment {
     public void onListItemClick(ListView listView, View view, int position, long id) {
         super.onListItemClick(listView, view, position, id);
         setActivatedPosition(position);
-        mCallbacks.onItemSelected(Long.toString(id));
+        if (suggestionListAdapter.getData()!=null && suggestionListAdapter.getData().size()>0){
+            mCallbacks.onSuggestionSelected(suggestionListAdapter.getData().get(position));
+        }else{
+            mCallbacks.onItemSelected(Long.toString(id));
+        }
     }
 
     /**
@@ -355,6 +362,101 @@ public class VideoItemListFragment extends ListFragment {
         }
 
         mActivatedPosition = position;
+    }
+
+
+    private SuggestionListAdapter suggestionListAdapter;
+    private SearchSuggestionRunnable suggestionRunnable = null;
+
+    public void searchSuggestion(String query) {
+        currentRequestId++;
+        terminateSuggestionThreads();
+        suggestionRunnable = new SearchSuggestionRunnable(streamingService.getSearchEngineInstance(), query, currentRequestId);
+        searchThread = new Thread(suggestionRunnable);
+        searchThread.start();
+    }
+
+    private class SearchSuggestionRunnable implements Runnable {
+
+        private final SearchEngine engine;
+        private final String query;
+        final Handler h = new Handler();
+        private volatile boolean run = true;
+        private final int requestId;
+
+        public SearchSuggestionRunnable(SearchEngine engine, String query, int requestId) {
+            this.engine = engine;
+            this.query = query;
+            this.requestId = requestId;
+        }
+
+        void terminate() {
+            run = false;
+        }
+
+        @Override
+        public void run() {
+            try {
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
+                String searchLanguageKey = getContext().getString(R.string.searchLanguage);
+                String searchLanguage = sp.getString(searchLanguageKey, "en");
+                ArrayList<String> result = engine.suggestionList(query, searchLanguage);
+                Log.i(TAG, "language code passed:\"" + searchLanguage + "\"");
+                if (run) {
+                    h.post(new SuggestionResultRunnable(result, requestId));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                h.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }
+    }
+
+    private class SuggestionResultRunnable implements Runnable {
+        private final ArrayList<String> result;
+        private final int requestId;
+
+        public SuggestionResultRunnable(ArrayList<String> result, int requestId) {
+            this.result = result;
+            this.requestId = requestId;
+        }
+
+        @Override
+        public void run() {
+            updateSuggestionList(result, requestId);
+        }
+    }
+
+    private void updateSuggestionList(ArrayList<String> suggestionList, int requestId) {
+        if (requestId == currentRequestId) {
+            setListAdapter(suggestionListAdapter);
+            suggestionListAdapter.clearSuggestionList();
+            updateSuggestionViewList(suggestionList);
+        }
+    }
+
+    private void updateSuggestionViewList(ArrayList<String> list) {
+        try {
+            suggestionListAdapter.addSuggestionList(list);
+            terminateSuggestionThreads();
+        } catch (IllegalStateException e) {
+            Log.w(TAG, "Trying to set value while activity doesn't exist anymore.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void terminateSuggestionThreads() {
+        if (searchThread != null && suggestionRunnable != null) {
+            suggestionRunnable.terminate();
+            // No need to join, since we don't really terminate the thread. We just demand
+            // it to post its result runnable into the gui main loop.
+        }
     }
 
 }
