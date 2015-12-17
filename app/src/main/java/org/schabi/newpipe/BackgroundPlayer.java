@@ -205,51 +205,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             }*/
 
         }
-/*          MediaMetadataCompat metaData = mMediaSession.getController().getMetadata();
-            String title = metaData.getString(MediaMetadataCompat.METADATA_KEY_TITLE);
-            String artist = metaData.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ARTIST);
-            String album = metaData.getString(MediaMetadataCompat.METADATA_KEY_ALBUM);
-            Bitmap cover = metaData.getBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART);
-            if (cover == null)
-                cover = BitmapFactory.decodeResource(VLCApplication.getAppContext().getResources(), R.drawable.icon);
-
-            Notification notification;
-//set up switch-back-to functionality
-            PendingIntent pendingIntent;
-            if (canSwitchToVideo()) {
-                // Resume VideoPlayerActivity from ACTION_REMOTE_SWITCH_VIDEO intent
-                final Intent notificationIntent = new Intent(ACTION_REMOTE_SWITCH_VIDEO);
-                pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-            } else {
-                // Resume AudioPlayerActivity
-
-                final Intent notificationIntent = getPackageManager().getLaunchIntentForPackage(getPackageName());
-                notificationIntent.setAction(AudioPlayerContainerActivity.ACTION_SHOW_PLAYER);
-                notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-                pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-            }
-            builder.setContentIntent(pendingIntent);
-
-            //set up and add media control buttons
-            PendingIntent piBackward = PendingIntent.getBroadcast(this, 0, new Intent(ACTION_REMOTE_BACKWARD), PendingIntent.FLAG_UPDATE_CURRENT);
-            PendingIntent piPlay = PendingIntent.getBroadcast(this, 0, new Intent(ACTION_REMOTE_PLAYPAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
-            PendingIntent piForward = PendingIntent.getBroadcast(this, 0, new Intent(ACTION_REMOTE_FORWARD), PendingIntent.FLAG_UPDATE_CURRENT);
-
-            builder.addAction(R.drawable.ic_previous_w, getString(R.string.previous), piBackward);
-            if (mMediaPlayer.isPlaying())
-                builder.addAction(R.drawable.ic_pause_w, getString(R.string.pause), piPlay);
-            else
-                builder.addAction(R.drawable.ic_play_w, getString(R.string.play), piPlay);
-            builder.addAction(R.drawable.ic_next_w, getString(R.string.next), piForward);
-
-            //post-start service
-            if (!AndroidUtil.isLolliPopOrLater() || mMediaPlayer.isPlaying())
-                startForeground(3, notification);
-            else {
-                stopForeground(false);
-                NotificationManagerCompat.from(this).notify(3, notification);
-            }
-        }*/
 
         private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
             @Override
