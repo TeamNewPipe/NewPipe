@@ -140,7 +140,7 @@ public class YoutubeSearchEngine implements SearchEngine {
     }
 
     @Override
-    public ArrayList<String> suggestionList(String query) {
+    public ArrayList<String> suggestionList(String query,String languageCode) {
 
         ArrayList<String> suggestions = new ArrayList<>();
 
@@ -150,6 +150,7 @@ public class YoutubeSearchEngine implements SearchEngine {
                 .appendPath("complete")
                 .appendPath("search")
                 .appendQueryParameter("client", "")
+                .appendQueryParameter("language",languageCode)
                 .appendQueryParameter("output", "toolbar")
                 .appendQueryParameter("ds", "yt")
                 .appendQueryParameter("q", query);
