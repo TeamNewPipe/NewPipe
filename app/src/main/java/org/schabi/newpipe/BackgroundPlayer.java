@@ -216,11 +216,13 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                         mediaPlayer.pause();
                     }
                     else {
+                        //reacquire CPU lock after releasing it on pause
+                        mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
                         mediaPlayer.start();
                     }
                 }
                 else if(action.equals(ACTION_STOP)) {
-                    mediaPlayer.stop();
+                    mediaPlayer.stop();//this auto-releases CPU lock
                     afterPlayCleanup();
                 }
             }
@@ -237,7 +239,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             stopForeground(true);//remove foreground status of service; make us killable
 
             stopSelf();
-            //todo:release cpu lock
         }
 
         private class EndListener implements MediaPlayer.OnCompletionListener {
