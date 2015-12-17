@@ -4,8 +4,10 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.wifi.WifiManager;
@@ -19,7 +21,6 @@ import java.io.IOException;
 
 /**
  * Created by Adam Howard on 08/11/15.
- *
  * Copyright (c) Adam Howard <achdisposable1@gmail.com> 2015
  *
  * BackgroundPlayer.java is part of NewPipe.
@@ -38,10 +39,12 @@ import java.io.IOException;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**Plays the audio stream of videos in the background. */
+/**Plays the audio stream of videos in the background.*/
 public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPreparedListener*/ {
 
     private static final String TAG = BackgroundPlayer.class.toString();
+    private static final String ACTION_STOP = TAG+".STOP";
+    private static final String ACTION_PLAYPAUSE = TAG+".PLAYPAUSE";
     //private Looper mServiceLooper;
     //private ServiceHandler mServiceHandler;
 
@@ -51,8 +54,8 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
     @Override
     public void onCreate() {
-        PendingIntent pi = PendingIntent.getActivity(this, 0,
-                new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+        /*PendingIntent pi = PendingIntent.getActivity(this, 0,
+                new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);*/
         super.onCreate();
     }
     @Override
@@ -60,8 +63,10 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         Toast.makeText(this, "Playing in background", Toast.LENGTH_SHORT).show();//todo:translation string
 
         String source = intent.getDataString();
+        //Log.i(TAG, "backgroundPLayer source:"+source);
         String videoTitle = intent.getStringExtra("title");
 
+        //do nearly everything in a separate thread
         PlayerThread player = new PlayerThread(source, videoTitle, this);
         player.start();
 
@@ -81,10 +86,15 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
     }
 
     private class PlayerThread extends Thread {
-        private MediaPlayer mediaPlayer;
+        MediaPlayer mediaPlayer;
         private String source;
         private String title;
+        private int noteID = TAG.hashCode();
         private BackgroundPlayer owner;
+        private NotificationManager noteMgr;
+        private NotificationCompat.Builder noteBuilder;
+        private WifiManager.WifiLock wifiLock;
+
         public PlayerThread(String src, String title, BackgroundPlayer owner) {
             this.source = src;
             this.title = title;
@@ -112,7 +122,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             }
 
             WifiManager wifiMgr = ((WifiManager)getSystemService(Context.WIFI_SERVICE));
-            WifiManager.WifiLock wifiLock = wifiMgr.createWifiLock(WifiManager.WIFI_MODE_FULL, TAG);
+            wifiLock = wifiMgr.createWifiLock(WifiManager.WIFI_MODE_FULL, TAG);
 
             mediaPlayer.setOnCompletionListener(new EndListener(wifiLock));//listen for end of video
 
@@ -127,49 +137,164 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             }*/
             wifiLock.acquire();
             mediaPlayer.start();
-/*
-        1. For each button in the notification, create an Intent pointing to the handling class
-        2. From this, create a corresponding PendingIntent.
-        3. Then, for each button, call NotificationBuilder.addAction().
-            the exact method signature will depend on whether you just specify the icon,label etc (deprecated),
-            or if you also have to create a Notification.Action (and Notification.Action.Builder).
-            in any case, in the class referred to in the explicit intent,
-        4. Write the method body of whatever callback android says to use for a service.
-            Probably onStartCommand. But isn't that only called when startService() is? and
-            we need to call this whenever a notification button is pressed! we don't want to restart
-            the service every time the button is pressed! Oh I don't know yet....
-            see: http://www.vogella.com/tutorials/AndroidNotifications/article.html
-            and maybe also: http://stackoverflow.com/questions/10613524
-*/
+
             //mediaPlayer.getCurrentPosition()
             int vidLength = mediaPlayer.getDuration();
-    //todo: make it so that tapping the notification brings you back to the Video's DetailActivity
-            NotificationCompat.Builder noteBuilder = new NotificationCompat.Builder(owner);
+
+            //Intent genericIntent = new Intent(owner, owner.getClass());
+
+            //PendingIntent playPI = PendingIntent.getService(owner, noteID, genericIntent, 0);
+            PendingIntent playPI = PendingIntent.getBroadcast(owner, noteID, new Intent(ACTION_PLAYPAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
+
+            NotificationCompat.Action.Builder buttonBuilder =
+                    new NotificationCompat.Action.Builder(R.drawable.ic_play_arrow_black,
+                                                    "Play", playPI);//todo:translatable string
+            NotificationCompat.Action playButton = buttonBuilder.build();
+
+            PendingIntent stopPI = PendingIntent.getBroadcast(owner, noteID,
+                    new Intent(ACTION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
+
+            IntentFilter filter = new IntentFilter();
+            filter.setPriority(Integer.MAX_VALUE);
+            filter.addAction(ACTION_PLAYPAUSE);
+            filter.addAction(ACTION_STOP);
+            registerReceiver(broadcastReceiver, filter);
+
+            //playPauseButton
+            //todo: make it so that tapping the notification brings you back to the Video's DetailActivity
+            //using setContentIntent
+            noteBuilder = new NotificationCompat.Builder(owner);
             noteBuilder
                     .setPriority(Notification.PRIORITY_LOW)
                     .setCategory(Notification.CATEGORY_TRANSPORT)
                     .setContentTitle(title)
                     .setContentText("NewPipe is playing in the background")//todo: translation string
+                    //.setAutoCancel(!mediaPlayer.isPlaying())
                     .setOngoing(true)
-                    .setProgress(vidLength, 0, false)
-                    .setSmallIcon(R.mipmap.ic_launcher);
+                    .setDeleteIntent(stopPI)
+                    //.setProgress(vidLength, 0, false) //doesn't fit with Notification.MediaStyle
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setTicker(title + " - NewPipe")
+                    .addAction(playButton);
+/*                  .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                    .setLargeIcon(cover)*/
 
-            int noteID = TAG.hashCode();
+            noteBuilder.setStyle(new NotificationCompat.MediaStyle()
+                            //.setMediaSession(mMediaSession.getSessionToken())
+                            .setShowActionsInCompactView(new int[] {0})
+                            .setShowCancelButton(true)
+                            .setCancelButtonIntent(stopPI)
+            );
+
             startForeground(noteID, noteBuilder.build());
-            NotificationManager noteMgr = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-            //update every 3s or 4 times in the video, whichever is shorter
-            int sleepTime = Math.min(3000, (int)((double)vidLength/4));
+
+            //currently decommissioned progressbar looping update code - works, but doesn't fit inside
+            //Notification.MediaStyle Notification layout.
+            noteMgr = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+            /*
+            //update every 2s or 4 times in the video, whichever is shorter
+            int sleepTime = Math.min(2000, (int)((double)vidLength/4));
             while(mediaPlayer.isPlaying()) {
+                noteBuilder.setProgress(vidLength, mediaPlayer.getCurrentPosition(), false);
+                noteMgr.notify(noteID, noteBuilder.build());
                 try {
                     Thread.sleep(sleepTime);
                 } catch (InterruptedException e) {
                     Log.d(TAG, "sleep failure");
                 }
-                noteBuilder.setProgress(vidLength, mediaPlayer.getCurrentPosition(), false);
-                noteMgr.notify(noteID, noteBuilder.build());
+            }*/
+
+        }
+/*          MediaMetadataCompat metaData = mMediaSession.getController().getMetadata();
+            String title = metaData.getString(MediaMetadataCompat.METADATA_KEY_TITLE);
+            String artist = metaData.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ARTIST);
+            String album = metaData.getString(MediaMetadataCompat.METADATA_KEY_ALBUM);
+            Bitmap cover = metaData.getBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART);
+            if (cover == null)
+                cover = BitmapFactory.decodeResource(VLCApplication.getAppContext().getResources(), R.drawable.icon);
+
+            Notification notification;
+//set up switch-back-to functionality
+            PendingIntent pendingIntent;
+            if (canSwitchToVideo()) {
+                // Resume VideoPlayerActivity from ACTION_REMOTE_SWITCH_VIDEO intent
+                final Intent notificationIntent = new Intent(ACTION_REMOTE_SWITCH_VIDEO);
+                pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            } else {
+                // Resume AudioPlayerActivity
+
+                final Intent notificationIntent = getPackageManager().getLaunchIntentForPackage(getPackageName());
+                notificationIntent.setAction(AudioPlayerContainerActivity.ACTION_SHOW_PLAYER);
+                notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+                pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             }
-            noteBuilder.setProgress(0, 0, false);//remove bar
-            noteMgr.cancel(noteID);
+            builder.setContentIntent(pendingIntent);
+
+            //set up and add media control buttons
+            PendingIntent piBackward = PendingIntent.getBroadcast(this, 0, new Intent(ACTION_REMOTE_BACKWARD), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent piPlay = PendingIntent.getBroadcast(this, 0, new Intent(ACTION_REMOTE_PLAYPAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent piForward = PendingIntent.getBroadcast(this, 0, new Intent(ACTION_REMOTE_FORWARD), PendingIntent.FLAG_UPDATE_CURRENT);
+
+            builder.addAction(R.drawable.ic_previous_w, getString(R.string.previous), piBackward);
+            if (mMediaPlayer.isPlaying())
+                builder.addAction(R.drawable.ic_pause_w, getString(R.string.pause), piPlay);
+            else
+                builder.addAction(R.drawable.ic_play_w, getString(R.string.play), piPlay);
+            builder.addAction(R.drawable.ic_next_w, getString(R.string.next), piForward);
+
+            //post-start service
+            if (!AndroidUtil.isLolliPopOrLater() || mMediaPlayer.isPlaying())
+                startForeground(3, notification);
+            else {
+                stopForeground(false);
+                NotificationManagerCompat.from(this).notify(3, notification);
+            }
+        }*/
+
+        private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+                Log.i(TAG, "received broadcast action:"+action);
+                if(action.equals(ACTION_PLAYPAUSE)) {
+                    if(mediaPlayer.isPlaying()) {
+                        mediaPlayer.pause();
+                    }
+                    else {
+                        mediaPlayer.start();
+                    }
+                }
+                else if(action.equals(ACTION_STOP)) {
+                    mediaPlayer.stop();
+                    afterPlayCleanup();
+                }
+            }
+        };
+
+        private void afterPlayCleanup() {
+            //noteBuilder.setProgress(0, 0, false);//remove progress bar
+            noteMgr.cancel(noteID);//remove notification
+            unregisterReceiver(broadcastReceiver);
+            mediaPlayer.release();//release system resources
+
+
+            wifiLock.release();//release wifilock
+            stopForeground(true);//remove foreground status of service; make us killable
+
+            stopSelf();
+            //todo:release cpu lock
+        }
+
+        private class EndListener implements MediaPlayer.OnCompletionListener {
+            private WifiManager.WifiLock wl;
+            public EndListener(WifiManager.WifiLock wifiLock) {
+                this.wl = wifiLock;
+            }
+
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                afterPlayCleanup();
+            }
         }
     }
 /*
@@ -179,21 +304,4 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
         }
     }*/
-
-
-    private class EndListener implements MediaPlayer.OnCompletionListener {
-        private WifiManager.WifiLock wl;
-        public EndListener(WifiManager.WifiLock wifiLock) {
-            this.wl = wifiLock;
-        }
-
-        @Override
-        public void onCompletion(MediaPlayer mp) {
-            wl.release();//release wifilock
-            stopForeground(true);//remove ongoing notification
-            stopSelf();
-            mp.release();
-            //todo:release cpu lock
-        }
-    }
 }
