@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/video_item_search_card_vertical_margin"
+        android:layout_marginLeft="@dimen/video_item_search_card_horizontal_margin"
+        android:layout_marginRight="@dimen/video_item_search_card_horizontal_margin"
+        android:layout_marginTop="@dimen/video_item_search_card_vertical_margin"
+        android:orientation="vertical"
+        card_view:cardCornerRadius="@dimen/video_item_search_card_radius">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/video_item_search_card_padding">
+
+            <TextView
+                android:id="@+id/suggestionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/video_item_search_duration_margin"
+                android:layout_marginEnd="@dimen/video_item_search_duration_margin"
+                android:layout_marginRight="@dimen/video_item_search_duration_margin"
+                android:paddingBottom="@dimen/video_item_search_duration_vertical_padding"
+                android:paddingLeft="@dimen/video_item_search_duration_horizontal_padding"
+                android:paddingRight="@dimen/video_item_search_duration_horizontal_padding"
+                android:paddingTop="@dimen/video_item_search_duration_vertical_padding"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/accentColorYoutube"
+                android:textSize="@dimen/video_item_search_title_text_size" />
+
+        </RelativeLayout>
+         
+    </android.support.v7.widget.CardView>
+     
+</LinearLayout>

@@ -35,7 +35,7 @@ public interface SearchEngine {
         public final Vector<VideoPreviewInfo> resultList = new Vector<>();
     }
 
-    ArrayList<String> suggestionList(String query);
+    ArrayList<String> suggestionList(String query, String contentCountry);
 
     //Result search(String query, int page);
     Result search(String query, int page, String contentCountry);
