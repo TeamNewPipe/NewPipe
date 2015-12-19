@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
@@ -63,6 +64,8 @@ public class VideoItemListFragment extends ListFragment {
     private int currentRequestId = -1;
     private ListView list;
 
+    private View footer;
+
     private class ResultRunnable implements Runnable {
         private final SearchEngine.Result result;
         private final int requestId;
@@ -112,6 +115,16 @@ public class VideoItemListFragment extends ListFragment {
                     }
                 });
             }
+            getActivity().runOnUiThread(new Runnable() {
+                                            @Override
+
+                                            public void run() {
+                                                getListView().removeFooterView(footer);
+                                            }
+                                        }
+
+            );
+
         }
     }
 
@@ -283,6 +296,9 @@ public class VideoItemListFragment extends ListFragment {
         super.onViewCreated(view, savedInstanceState);
         list = getListView();
         videoListAdapter = new VideoListAdapter(getActivity(), this);
+        footer = ((LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.paginate_footer, null, false);
+
+
         setListAdapter(videoListAdapter);
 
         // Restore the previously serialized activated item position.
@@ -291,6 +307,7 @@ public class VideoItemListFragment extends ListFragment {
                 && savedInstanceState.containsKey(STATE_ACTIVATED_POSITION)) {
             setActivatedPosition(savedInstanceState.getInt(STATE_ACTIVATED_POSITION));
         }
+
 
         getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
             long lastScrollDate = 0;
@@ -308,6 +325,7 @@ public class VideoItemListFragment extends ListFragment {
                     long time = System.currentTimeMillis();
                     if ((time - lastScrollDate) > 200) {
                         lastScrollDate = time;
+                        getListView().addFooterView(footer);
                         nextPage();
                     }
                 }
