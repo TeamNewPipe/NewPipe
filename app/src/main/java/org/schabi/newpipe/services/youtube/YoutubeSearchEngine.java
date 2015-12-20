@@ -109,7 +109,7 @@ public class YoutubeSearchEngine implements SearchEngine {
                     Matcher m = p.matcher(resultItem.webpage_url);
                     resultItem.id=m.group(1);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
                 }
                 resultItem.title = dl.text();
 

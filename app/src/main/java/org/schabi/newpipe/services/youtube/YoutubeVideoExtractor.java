@@ -75,7 +75,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         } catch (Exception e) {//if this fails, the video is most likely not available.
             // Determining why is done later.
             videoInfo.videoAvailableStatus = VideoInfo.VIDEO_UNAVAILABLE;
-            Log.d(TAG, "Could not load JSON data for Youtube video \""+pageUrl+"\". This most likely means the video is unavailable");
+            Log.e(TAG, "Could not load JSON data for Youtube video \""+pageUrl+"\". This most likely means the video is unavailable");
         }
 
         //----------------------------------
@@ -94,7 +94,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
                 }
                 decryptionCode = loadDecryptionCode(playerUrl);
             } catch (Exception e){
-                Log.d(TAG, "Could not load decryption code for the Youtube service.");
+                Log.e(TAG, "Could not load decryption code for the Youtube service.");
                 e.printStackTrace();
             }
         }
@@ -323,10 +323,10 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         }
         id = matchGroup1(pat, url);
         if(!id.isEmpty()){
-            Log.i(TAG, "string \""+url+"\" matches!");
+            //Log.i(TAG, "string \""+url+"\" matches!");
             return id;
         }
-        Log.i(TAG, "string \""+url+"\" does not match.");
+        //Log.i(TAG, "string \""+url+"\" does not match.");
         return "";
     }
 
@@ -358,7 +358,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
             int hours =   (hoursString.isEmpty()   ? 0 : Integer.parseInt(hoursString));
 
             int ret = seconds + (60*minutes) + (3600*hours);//don't trust BODMAS!
-            Log.d(TAG, "derived timestamp value:"+ret);
+            //Log.d(TAG, "derived timestamp value:"+ret);
             return ret;
             //the ordering varies internationally
         }//else, return default 0
@@ -513,8 +513,8 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         //this page causes the NullPointerException, after finding it by searching for "tjvg":
         //https://www.youtube.com/watch?v=Uqg0aEhLFAg
         String views = li.select("span.view-count").first().text();
-        Log.i(TAG, "title:"+info.title);
-        Log.i(TAG, "view count:"+views);
+        //Log.i(TAG, "title:"+info.title);
+        //Log.i(TAG, "view count:"+views);
         try {
             info.view_count = Long.parseLong(li.select("span.view-count")
                     .first().text().replaceAll("[^\\d]", ""));
@@ -551,7 +551,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         try {
             decryptionFuncName = matchGroup1("\\.sig\\|\\|([a-zA-Z0-9$]+)\\(", playerCode);
 
-            String functionPattern = "(var "+  decryptionFuncName.replace("$", "\\$") +"=function\\([a-zA-Z0-9_]*\\)\\{.+?\\})";
+            String functionPattern = "(" + decryptionFuncName.replace("$", "\\$") +"=function\\([a-zA-Z0-9_]*\\)\\{.+?\\})";
             decryptionFunc = matchGroup1(functionPattern, playerCode);
             decryptionFunc += ";";
 
@@ -565,7 +565,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         }
 
         callerFunc = callerFunc.replace("%%", decryptionFuncName);
-        decryptionCode = helperObject + decryptionFunc + callerFunc;
+        decryptionCode = helperObject + "var " + decryptionFunc + callerFunc;
 
         return decryptionCode;
     }
@@ -601,7 +601,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
             return mat.group(1);
         }
         else {
-            Log.w(TAG, "failed to find pattern \""+pattern+"\" inside of \""+input+"\"");
+            Log.e(TAG, "failed to find pattern \""+pattern+"\" inside of \""+input+"\"");
             new Exception("failed to find pattern \""+pattern+"\"").printStackTrace();
             return "";
         }
