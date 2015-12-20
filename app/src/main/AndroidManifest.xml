@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="org.schabi.newpipe" >
-
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name= "android.permission.INTERNET" />
+    <uses-permission android:name= "android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
@@ -74,6 +74,12 @@
             android:parentActivityName=".VideoItemDetailActivity"
             tools:ignore="UnusedAttribute">
         </activity>
+        <!--TODO: make label a translatable string -->
+        <service
+            android:name=".BackgroundPlayer"
+            android:label="NewPipe Background Player"
+            android:exported="false" >
+        </service>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" >

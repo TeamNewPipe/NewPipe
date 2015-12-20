@@ -371,6 +371,16 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         //todo: replace this with a call to getVideoId, if possible
         videoInfo.id = matchGroup1("v=([0-9a-zA-Z_-]{11})", pageUrl);
 
+        if(videoInfo.audioStreams == null
+                || videoInfo.audioStreams.length == 0) {
+            Log.e(TAG, "uninitialised audio streams!");
+        }
+
+        if(videoInfo.videoStreams == null
+                || videoInfo.videoStreams.length == 0) {
+            Log.e(TAG, "uninitialised video streams!");
+        }
+
         videoInfo.age_limit = 0;
 
         //average rating
@@ -445,13 +455,14 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         try {
             XmlPullParser parser = Xml.newPullParser();
             parser.setInput(new StringReader(dashDoc));
-            int eventType = parser.getEventType();
             String tagName = "";
             String currentMimeType = "";
             int currentBandwidth = -1;
             int currentSamplingRate = -1;
             boolean currentTagIsBaseUrl = false;
-            while(eventType != XmlPullParser.END_DOCUMENT) {
+            for(int eventType = parser.getEventType();
+                eventType != XmlPullParser.END_DOCUMENT;
+                eventType = parser.next() ) {
                 switch(eventType) {
                     case XmlPullParser.START_TAG:
                         tagName = parser.getName();
@@ -465,8 +476,8 @@ public class YoutubeVideoExtractor extends VideoExtractor {
                         } else if(tagName.equals("BaseURL")) {
                             currentTagIsBaseUrl = true;
                         }
-
                         break;
+
                     case XmlPullParser.TEXT:
                         if(currentTagIsBaseUrl &&
                                 (currentMimeType.contains("audio"))) {
@@ -479,16 +490,14 @@ public class YoutubeVideoExtractor extends VideoExtractor {
                             audioStreams.add(new VideoInfo.AudioStream(parser.getText(),
                                     format, currentBandwidth, currentSamplingRate));
                         }
+                        //missing break here?
                     case XmlPullParser.END_TAG:
                         if(tagName.equals("AdaptationSet")) {
                             currentMimeType = "";
                         } else if(tagName.equals("BaseURL")) {
                             currentTagIsBaseUrl = false;
-                        }
-                        break;
-                    default:
+                        }//no break needed here
                 }
-                eventType = parser.next();
             }
         } catch(Exception e) {
             e.printStackTrace();
@@ -582,10 +591,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
             e.printStackTrace();
         }
         Context.exit();
-        if(result != null)
-            return result.toString();
-        else
-            return "";
+        return (result == null ? "" : result.toString());
     }
 
     private String cleanUrl(String complexUrl) {

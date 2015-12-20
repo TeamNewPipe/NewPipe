@@ -120,6 +120,9 @@ class ActionBarHandler {
                 }
             }
         }
+        else {
+            Log.e(TAG, "FAILED to set audioStream value!");
+        }
     }
 
     private void selectFormatItem(int i) {
@@ -136,7 +139,7 @@ class ActionBarHandler {
         MenuItem castItem = menu.findItem(R.id.action_play_with_kodi);
 
         castItem.setVisible(defaultPreferences
-                .getBoolean(activity.getString(R.string.showPlayWidthKodiPreference), false));
+                .getBoolean(activity.getString(R.string.showPlayWithKodiPreference), false));
     }
 
     public boolean onItemSelected(MenuItem item) {
@@ -184,7 +187,7 @@ class ActionBarHandler {
         // ----------- THE MAGIC MOMENT ---------------
         if(!videoTitle.isEmpty()) {
             if (PreferenceManager.getDefaultSharedPreferences(activity)
-                    .getBoolean(activity.getString(R.string.useExternalPlayer), false)) {
+                    .getBoolean(activity.getString(R.string.useExternalVideoPlayer), false)) {
 
                 // External Player
                 Intent intent = new Intent();
@@ -293,37 +296,56 @@ class ActionBarHandler {
         }
     }
 
-    private void playAudio() {
-        Intent intent = new Intent();
-        try {
+    public void playAudio() {
+
+        boolean externalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
+                .getBoolean(activity.getString(R.string.useExternalAudioPlayer), false);
+        Intent intent;
+        if (!externalAudioPlayer)//internal (background) music player: explicit intent
+        {
+            intent = new Intent(activity, BackgroundPlayer.class);
+
             intent.setAction(Intent.ACTION_VIEW);
+            Log.i(TAG, "audioStream is null:" + (audioStream == null));
+            Log.i(TAG, "audioStream.url is null:"+(audioStream.url==null));
             intent.setDataAndType(Uri.parse(audioStream.url),
                     MediaFormat.getMimeById(audioStream.format));
             intent.putExtra(Intent.EXTRA_TITLE, videoTitle);
             intent.putExtra("title", videoTitle);
-            activity.startActivity(intent);      // HERE !!!
-        } catch (Exception e) {
-            e.printStackTrace();
-            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setMessage(R.string.noPlayerFound)
-                    .setPositiveButton(R.string.installStreamPlayer, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent();
-                            intent.setAction(Intent.ACTION_VIEW);
-                            intent.setData(Uri.parse(activity.getString(R.string.fdroidVLCurl)));
-                            activity.startActivity(intent);
-                        }
-                    })
-                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Log.i(TAG, "You unlocked a secret unicorn.");
-                        }
-                    });
-            builder.create().show();
-            Log.e(TAG, "Either no Streaming player for audio was installed, or something important crashed:");
-            e.printStackTrace();
+            activity.startService(intent);
+        } else {
+            intent = new Intent();
+            try {
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setDataAndType(Uri.parse(audioStream.url),
+                        MediaFormat.getMimeById(audioStream.format));
+                intent.putExtra(Intent.EXTRA_TITLE, videoTitle);
+                intent.putExtra("title", videoTitle);
+
+                activity.startActivity(intent);      // HERE !!!
+            } catch (Exception e) {
+                e.printStackTrace();
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setMessage(R.string.noPlayerFound)
+                        .setPositiveButton(R.string.installStreamPlayer, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent();
+                                intent.setAction(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse(activity.getString(R.string.fdroidVLCurl)));
+                                activity.startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Log.i(TAG, "You unlocked a secret unicorn.");
+                            }
+                        });
+                builder.create().show();
+                Log.e(TAG, "Either no Streaming player for audio was installed, or something important crashed:");
+                e.printStackTrace();
+            }
         }
     }
 }

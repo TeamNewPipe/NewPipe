@@ -19,7 +19,8 @@
     <string name="chooseBrowser">Choose browser:</string>
     <string name="screenRotation">rotation</string>
     <string name="title_activity_settings">Settings</string>
-    <string name="useExternalPlayerTitle">Use external player</string>
+    <string name="useExternalVideoPlayerTitle">Use external video player</string>
+    <string name="useExternalAudioPlayerTitle">Use external audio player</string>
     <string name="downloadLocation">Download location</string>
     <string name="downloadLocationSummary">Path to store downloaded videos in.</string>
     <string name="downloadLocationDialogTitle">Enter download path</string>

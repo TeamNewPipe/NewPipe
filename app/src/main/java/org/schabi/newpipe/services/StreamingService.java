@@ -30,6 +30,6 @@ public interface StreamingService {
 
     /**When a VIEW_ACTION is caught this function will test if the url delivered within the calling
     Intent was meant to be watched with this Service.
-    Return false if this service shall not allow to be callean through ACTIONs.*/
+    Return false if this service shall not allow to be called through ACTIONs.*/
     boolean acceptUrl(String videoUrl);
 }

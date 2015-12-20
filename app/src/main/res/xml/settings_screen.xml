@@ -8,8 +8,13 @@
         android:title="@string/settingsCategoryVideoAudioTitle">
 
         <CheckBoxPreference
-            android:key="@string/useExternalPlayer"
-            android:title="@string/useExternalPlayerTitle"
+            android:key="@string/useExternalVideoPlayer"
+            android:title="@string/useExternalVideoPlayerTitle"
+            android:defaultValue="false"/>
+
+        <CheckBoxPreference
+            android:key="@string/useExternalAudioPlayer"
+            android:title="@string/useExternalAudioPlayerTitle"
             android:defaultValue="false"/>
 
         <ListPreference
@@ -32,7 +37,7 @@
         android:title="@string/settingsCategoryVideoInfoTittle">
 
         <CheckBoxPreference
-            android:key="@string/showPlayWidthKodiPreference"
+            android:key="@string/showPlayWithKodiPreference"
             android:title="@string/showPlayWithKodiTitle"
             android:summary="@string/showPlayWithKodiSummary"
             android:defaultValue="false" />
