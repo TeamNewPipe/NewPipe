@@ -221,14 +221,18 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         };
 
         private void afterPlayCleanup() {
-            //noteBuilder.setProgress(0, 0, false);//remove progress bar
-            noteMgr.cancel(noteID);//remove notification
+            //noteBuilder.setProgress(0, 0, false);
+            //remove progress bar
+            //remove notification
+            noteMgr.cancel(noteID);
             unregisterReceiver(broadcastReceiver);
-            mediaPlayer.release();//release mediaPlayer's system resources
+            //release mediaPlayer's system resources
+            mediaPlayer.release();
 
-
-            wifiLock.release();//release wifilock
-            stopForeground(true);//remove foreground status of service; make us killable
+            //release wifilock
+            wifiLock.release();
+            //remove foreground status of service; make us killable
+            stopForeground(true);
 
             stopSelf();
         }
@@ -245,11 +249,4 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             }
         }
     }
-/*
-    private class ListenerThread extends Thread implements AudioManager.OnAudioFocusChangeListener {
-        @Override
-        public void onAudioFocusChange(int focusChange) {
-
-        }
-    }*/
 }

@@ -116,14 +116,13 @@ public class VideoItemListFragment extends ListFragment {
                 });
             }
             getActivity().runOnUiThread(new Runnable() {
-                                            @Override
-
-                                            public void run() {
-                                                getListView().removeFooterView(footer);
-                                            }
-                                        }
-
-            );
+                @Override
+                public void run() {
+                    if (android.os.Build.VERSION.SDK_INT >= 19) {
+                        getListView().removeFooterView(footer);
+                    }
+                }
+            });
 
         }
     }
@@ -198,6 +197,8 @@ public class VideoItemListFragment extends ListFragment {
         videoListAdapter.clearVideoList();
         setListShown(false);
         startSearch(query, lastPage);
+        //todo: Somehow this command is not working on older devices,
+        // although it was introduced with API level 8. Test this and find a solution.
         getListView().smoothScrollToPosition(0);
     }
 

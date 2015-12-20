@@ -301,7 +301,8 @@ class ActionBarHandler {
         boolean externalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(activity.getString(R.string.useExternalAudioPlayer), false);
         Intent intent;
-        if (!externalAudioPlayer)//internal (background) music player: explicit intent
+
+        if (!externalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 18)//internal music player: explicit intent
         {
             intent = new Intent(activity, BackgroundPlayer.class);
 
