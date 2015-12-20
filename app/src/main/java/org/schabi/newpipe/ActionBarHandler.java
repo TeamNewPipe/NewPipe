@@ -120,6 +120,9 @@ class ActionBarHandler {
                 }
             }
         }
+        else {
+            Log.e(TAG, "FAILED to set audioStream value!");
+        }
     }
 
     private void selectFormatItem(int i) {
@@ -301,6 +304,8 @@ class ActionBarHandler {
             intent = new Intent(activity, BackgroundPlayer.class);
 
             intent.setAction(Intent.ACTION_VIEW);
+            Log.i(TAG, "audioStream is null:" + (audioStream == null));
+            Log.i(TAG, "audioStream.url is null:"+(audioStream.url==null));
             intent.setDataAndType(Uri.parse(audioStream.url),
                     MediaFormat.getMimeById(audioStream.format));
             intent.putExtra(Intent.EXTRA_TITLE, videoTitle);

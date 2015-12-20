@@ -45,8 +45,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
     private static final String TAG = BackgroundPlayer.class.toString();
     private static final String ACTION_STOP = TAG+".STOP";
     private static final String ACTION_PLAYPAUSE = TAG+".PLAYPAUSE";
-    //private Looper mServiceLooper;
-    //private ServiceHandler mServiceHandler;
 
     public BackgroundPlayer() {
         super();
@@ -138,29 +136,23 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             wifiLock.acquire();
             mediaPlayer.start();
 
-            //mediaPlayer.getCurrentPosition()
-            int vidLength = mediaPlayer.getDuration();
-
-            //Intent genericIntent = new Intent(owner, owner.getClass());
-
-            //PendingIntent playPI = PendingIntent.getService(owner, noteID, genericIntent, 0);
-            PendingIntent playPI = PendingIntent.getBroadcast(owner, noteID, new Intent(ACTION_PLAYPAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
-
-            NotificationCompat.Action.Builder buttonBuilder =
-                    new NotificationCompat.Action.Builder(R.drawable.ic_play_arrow_black,
-                                                    "Play", playPI);//todo:translatable string
-            NotificationCompat.Action playButton = buttonBuilder.build();
-
-            PendingIntent stopPI = PendingIntent.getBroadcast(owner, noteID,
-                    new Intent(ACTION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
-
             IntentFilter filter = new IntentFilter();
             filter.setPriority(Integer.MAX_VALUE);
             filter.addAction(ACTION_PLAYPAUSE);
             filter.addAction(ACTION_STOP);
             registerReceiver(broadcastReceiver, filter);
 
-            //playPauseButton
+            PendingIntent playPI = PendingIntent.getBroadcast(owner, noteID, new Intent(ACTION_PLAYPAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
+
+            NotificationCompat.Action playButton = new NotificationCompat.Action.Builder
+                    (R.drawable.ic_play_arrow_white_48dp, "Play", playPI).build();
+
+            NotificationCompat.Action pauseButton = new NotificationCompat.Action.Builder
+                    (R.drawable.ic_play_arrow_white_48dp, "Pause", playPI).build();
+
+            PendingIntent stopPI = PendingIntent.getBroadcast(owner, noteID,
+                    new Intent(ACTION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
+
             //todo: make it so that tapping the notification brings you back to the Video's DetailActivity
             //using setContentIntent
             noteBuilder = new NotificationCompat.Builder(owner);
@@ -232,7 +224,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             //noteBuilder.setProgress(0, 0, false);//remove progress bar
             noteMgr.cancel(noteID);//remove notification
             unregisterReceiver(broadcastReceiver);
-            mediaPlayer.release();//release system resources
+            mediaPlayer.release();//release mediaPlayer's system resources
 
 
             wifiLock.release();//release wifilock
