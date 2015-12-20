@@ -1,2 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='utf-8'?>
+<resources><string name="viewCountText">%1$s visualizações</string>
+    <string name="uploadDateText">Carregado em %1$s</string>
+    <string name="noPlayerFound">Reprodutor não disponível. Deve instalar um reprodutor.</string>
+    <string name="installStreamPlayer">Instalar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="open_in_browser">Abrir no navegador</string>
+    <string name="share">Partilhar</string>
+    <string name="download">Descarregar</string>
+    <string name="search">Pesquisar</string>
+    <string name="settings">Definições</string>
+    <string name="didYouMean">"Será que queria dizer: "</string>
+    <string name="searchPage">"Página de pesquisa: "</string>
+    <string name="shareDialogTitle">Partilhar com:</string>
+    <string name="chooseBrowser">Escolher navegador:</string>
+    <string name="screenRotation">rotação</string>
+    <string name="title_activity_settings">Definições</string>
+    <string name="useExternalVideoPlayerTitle">Utilizar reprodutor de vídeo externo</string>
+    <string name="useExternalAudioPlayerTitle">Utilizar reprodutor de áudio externo</string>
+    <string name="downloadLocation">Local para a descarga</string>
+    <string name="downloadLocationSummary">Local para guardar os vídeos descarregados.</string>
+    <string name="downloadLocationDialogTitle">Digite o caminho</string>
+    <string name="autoPlayThroughIntentTitle">Reproduzir via Intent</string>
+    <string name="autoPlayThroughIntentSummary">Iniciar automaticamente o vídeo se for invocado por outra aplicação.</string>
+    <string name="defaultResolutionPreferenceTitle">Resolução padrão</string>
+    <string name="playWithKodiTitle">Reproduzir com Kodi</string>
+    <string name="koreNotFound">Aplicação não encontrada. Necessita do Kore para reproduzir vídeos no Kodi.</string>
+    <string name="installeKore">Instalar o Kore</string>
+    <string name="showPlayWithKodiTitle">Mostrar opção \"Reproduzir com Kodi\"</string>
+    <string name="showPlayWithKodiSummary">Mostra uma opção para reproduzir o vídeo com o Kodi.</string>
+    <string name="playAudio">Áudio</string>
+    <string name="defaultAudioFormatTitle">Formato áudio padrão</string>
+    <string name="webMAudioDescription">WebM - formato livre</string>
+    <string name="m4aAudioDescription">m4a - melhor qualidade</string>
+    <string name="downloadDialogTitle">Descarregar</string>
+    <string name="nextVideoTitle">Vídeo seguinte</string>
+    <string name="showNextAndSimilarTitle">Mostrar vídeos seguintes e similares</string>
+    <string name="urlNotSupportedText">URL não suportado.</string>
+    <string name="showSimilarVideosButtonText">Vídeos similares</string>
+    <string name="searchLanguageTitle">Idioma preferencial do conteúdo</string>
+    <string name="settingsCategoryVideoAudioTitle">Vídeo e áudio</string>
+    <string name="settingsCategoryVideoInfoTittle">Informações</string>
+    <string name="settingsCategoryEtcTitle">Outras</string>
+
+    <string name="itemThumbnailViewDescription">Miniatura de vídeos</string>
+    <string name="detailThumbnailViewDescription">Miniatura de vídeos</string>
+    <string name="detailUploaderThumbnailViewDescription">Carregador de miniaturas</string>
+    <string name="detailThumbsDownImgViewDescription">Não gosto</string>
+    <string name="detailThumbsUpImgViewDescription">Gosto</string>
+</resources>
