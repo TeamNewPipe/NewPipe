@@ -52,4 +52,6 @@
     <string name="detailThumbsUpImgViewDescription">Свиђања</string>
 <string name="useExternalVideoPlayerTitle">Користи спољашњи видео плејер</string>
     <string name="useExternalAudioPlayerTitle">Користи спољашњи аудио плејер</string>
+    <string name="backgroundPlayerStartPlayingToast">Пуштам у позадини</string>
+
     </resources>
