@@ -32,7 +32,7 @@ NewPipe does not use any Google framework libraries, or the YouTube API. It only
 * Search videos
 * Display general information about a video
 * Watch YouTube videos
-* Listen to YouTube videos (audio only streaming)
+* Listen to YouTube videos (experimental)
 * Select the streaming player to watch the video with
 * Download videos (experimental)
 * Download audio only (experimental)
