@@ -50,4 +50,6 @@
     <string name="detailUploaderThumbnailViewDescription">Сличица отпремаоца</string>
     <string name="detailThumbsDownImgViewDescription">Несвиђања</string>
     <string name="detailThumbsUpImgViewDescription">Свиђања</string>
-</resources>
+<string name="useExternalVideoPlayerTitle">Користи спољашњи видео плејер</string>
+    <string name="useExternalAudioPlayerTitle">Користи спољашњи аудио плејер</string>
+    </resources>
