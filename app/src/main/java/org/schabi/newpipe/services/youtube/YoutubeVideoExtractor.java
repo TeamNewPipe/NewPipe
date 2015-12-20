@@ -552,8 +552,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
             decryptionFuncName = matchGroup1("\\.sig\\|\\|([a-zA-Z0-9$]+)\\(", playerCode);
 
             String functionPattern = "(" + decryptionFuncName.replace("$", "\\$") +"=function\\([a-zA-Z0-9_]*\\)\\{.+?\\})";
-            decryptionFunc = matchGroup1(functionPattern, playerCode);
-            decryptionFunc += ";";
+            decryptionFunc = "var " + matchGroup1(functionPattern, playerCode) + ";";
 
             helperObjectName = matchGroup1(";([A-Za-z0-9_\\$]{2})\\...\\(", decryptionFunc);
 
@@ -565,7 +564,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         }
 
         callerFunc = callerFunc.replace("%%", decryptionFuncName);
-        decryptionCode = helperObject + "var " + decryptionFunc + callerFunc;
+        decryptionCode = helperObject + decryptionFunc + callerFunc;
 
         return decryptionCode;
     }
