@@ -139,7 +139,7 @@ class ActionBarHandler {
         MenuItem castItem = menu.findItem(R.id.action_play_with_kodi);
 
         castItem.setVisible(defaultPreferences
-                .getBoolean(activity.getString(R.string.showPlayWidthKodiPreference), false));
+                .getBoolean(activity.getString(R.string.showPlayWithKodiPreference), false));
     }
 
     public boolean onItemSelected(MenuItem item) {
@@ -187,7 +187,7 @@ class ActionBarHandler {
         // ----------- THE MAGIC MOMENT ---------------
         if(!videoTitle.isEmpty()) {
             if (PreferenceManager.getDefaultSharedPreferences(activity)
-                    .getBoolean(activity.getString(R.string.useExternalPlayer), false)) {
+                    .getBoolean(activity.getString(R.string.useExternalVideoPlayer), false)) {
 
                 // External Player
                 Intent intent = new Intent();
@@ -297,9 +297,11 @@ class ActionBarHandler {
     }
 
     public void playAudio() {
-        boolean b = true;//todo: replace with preference
+
+        boolean externalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
+                .getBoolean(activity.getString(R.string.useExternalAudioPlayer), false);
         Intent intent;
-        if (b)//internal (background) music player: explicit intent
+        if (!externalAudioPlayer)//internal (background) music player: explicit intent
         {
             intent = new Intent(activity, BackgroundPlayer.class);
 
