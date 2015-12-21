@@ -20,9 +20,6 @@ Project status:
 [<img src="screenshots/screenshot_5.png" width=150>](screenshots/screenshot_5.png)
 [<img src="screenshots/screenshot_6.png" width=250>](screenshots/screenshot_6.png)
 
-[![Screenshot 1](assets/screenshot_1.png)](assets/screenshot_1.png)
-[![Screenshot 2](assets/screenshot_2.png)](assets/screenshot_2.png)
-
 ## Description
 
 NewPipe does not use any Google framework libraries, or the YouTube API. It only parses the website in order to gain the information it needs. Therefore this app can be used on devices without Google Services installed. Also, you don't need a YouTube account to use NewPipe, and it's FLOSS.
