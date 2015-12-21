@@ -43,7 +43,7 @@
     <string name="autoPlayThroughIntentTitle">Samodejno predvajaj prek vmesnika Intent</string>
     <string name="autoPlayThroughIntentSummary">Začne samodejno predvajanje videa, ko je zagnan prek drugega programa.</string>
     <string name="showPlayWithKodiSummary">Pokaže možnost predvajanja videa preko predstavnega središča Kodi.</string>
-    <string name="settingsCategoryEtcTitle">ETC</string>
+    <string name="settingsCategoryEtcTitle">Drugo</string>
 
     <string name="detailThumbsUpImgViewDescription">Všeč mi je</string>
 <string name="detailThumbsDownImgViewDescription">Ni mi všeč</string>
