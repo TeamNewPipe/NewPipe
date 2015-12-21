@@ -46,6 +46,6 @@
     <string name="detailUploaderThumbnailViewDescription">アップローダー サムネイル</string>
     <string name="detailThumbsDownImgViewDescription">残念だね</string>
     <string name="detailThumbsUpImgViewDescription">いいね</string>
-<string name="useExternalVideoPlayerTitle">外部ビデオ プレーヤーを使用する</string>
-    <string name="useExternalAudioPlayerTitle">外部オーディオ プレーヤーを使用する</string>
+<string name="useExternalVideoPlayerTitle">外部ビデオ プレイヤーを使用する</string>
+    <string name="useExternalAudioPlayerTitle">外部オーディオ プレイヤーを使用する</string>
     </resources>
