@@ -48,4 +48,6 @@
     <string name="detailThumbsUpImgViewDescription">いいね</string>
 <string name="useExternalVideoPlayerTitle">外部ビデオ プレイヤーを使用する</string>
     <string name="useExternalAudioPlayerTitle">外部オーディオ プレイヤーを使用する</string>
+    <string name="backgroundPlayerStartPlayingToast">バックグラウンドで再生しています</string>
+
     </resources>
