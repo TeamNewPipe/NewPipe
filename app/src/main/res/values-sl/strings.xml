@@ -1,2 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='utf-8'?>
+<resources><string name="viewCountText">%1$s pogledov</string>
+    <string name="uploadDateText">Poslano %1$s</string>
+    <string name="noPlayerFound">Predvajalnika pretoka ni mogoče najti. Tak program lahko namestite ločeno.</string>
+    <string name="installStreamPlayer">Namesti</string>
+    <string name="cancel">Prekliči</string>
+    <string name="open_in_browser">Odpri v brskalniku</string>
+    <string name="share">Omogoči souporabo</string>
+    <string name="download">Prejmi</string>
+    <string name="search">Poišči</string>
+    <string name="settings">Nastavitve</string>
+    <string name="didYouMean">"Ste mislili vpisati: "</string>
+    <string name="searchPage">"Stran iskanja: "</string>
+    <string name="shareDialogTitle">Omogoči souporabo z:</string>
+    <string name="chooseBrowser">Izbor brskalnika:</string>
+    <string name="screenRotation">usmerjenost</string>
+    <string name="title_activity_settings">Nastavitve</string>
+    <string name="useExternalVideoPlayerTitle">Uporabi zunanji predvajalnik videa</string>
+    <string name="useExternalAudioPlayerTitle">Uporabi zunanji predvajalnik zvoka</string>
+    <string name="downloadLocation">Mapa za prejem</string>
+    <string name="downloadLocationSummary">Pot do mape za prejem datotek.</string>
+    <string name="downloadLocationDialogTitle">Vpis poti za prejem</string>
+    <string name="defaultResolutionPreferenceTitle">Privzeta ločljivost</string>
+    <string name="playWithKodiTitle">Predvajaj s Kodi</string>
+    <string name="koreNotFound">Programa Kore ni mogoče najti. Program omogoča predvajanje video posnetkov prek predstavnega središča Kodi.</string>
+    <string name="installeKore">Namesti program Kore</string>
+    <string name="showPlayWithKodiTitle">Pokaži možnost \"Predvajaj s Kodi\"</string>
+    <string name="defaultAudioFormatTitle">Privzet zapis zvoka</string>
+    <string name="playAudio">Zvok</string>
+    <string name="webMAudioDescription">WebM - prost zapis</string>
+    <string name="m4aAudioDescription">m4a - višja kakovost posnetkov</string>
+    <string name="downloadDialogTitle">Prejem</string>
+    <string name="nextVideoTitle">Naslednji video</string>
+    <string name="showNextAndSimilarTitle">Pokaži naslednji video in podobne posnetke</string>
+    <string name="urlNotSupportedText">Zapis naslova URL ni podprt.</string>
+    <string name="showSimilarVideosButtonText">Podobni posnetki</string>
+    <string name="searchLanguageTitle">Prednostni jezik vsebine</string>
+    <string name="settingsCategoryVideoAudioTitle">Video in Zvok</string>
+    <string name="settingsCategoryVideoInfoTittle">Podrobnosti</string>
+    <string name="itemThumbnailViewDescription">Sličica predogleda videa</string>
+    <string name="detailThumbnailViewDescription">Sličica predogleda videa</string>
+    <string name="detailUploaderThumbnailViewDescription">Sličica pošiljalnika</string>
+    <string name="autoPlayThroughIntentTitle">Samodejno predvajaj prek vmesnika Intent</string>
+    <string name="autoPlayThroughIntentSummary">Začne samodejno predvajanje videa, ko je zagnan prek drugega programa.</string>
+    <string name="showPlayWithKodiSummary">Pokaže možnost predvajanja videa preko predstavnega središča Kodi.</string>
+    <string name="settingsCategoryEtcTitle">ETC</string>
+
+    <string name="detailThumbsUpImgViewDescription">Všeč mi je</string>
+<string name="detailThumbsDownImgViewDescription">Ni mi všeč</string>
+    </resources>
