@@ -47,4 +47,6 @@
     <string name="detailThumbsUpImgViewDescription">J\'aime</string>
 <string name="searchLanguageTitle">Langue du contenu</string>
     <string name="detailUploaderThumbnailViewDescription">Avatar de l\'utilisateur</string>
+    <string name="useExternalVideoPlayerTitle">Utiliser un lecteur vidéo externe</string>
+    <string name="useExternalAudioPlayerTitle">Utiliser un lecteur audio externe</string>
     </resources>
