@@ -46,4 +46,6 @@
     <string name="detailUploaderThumbnailViewDescription">Miniaturka wysyłającego</string>
     <string name="detailThumbsDownImgViewDescription">łapek w dół</string>
     <string name="detailThumbsUpImgViewDescription">polubień</string>
-</resources>
+<string name="useExternalVideoPlayerTitle">Użyj zewnętrznego odtwarzacza wideo</string>
+    <string name="useExternalAudioPlayerTitle">Użyj zewnętrznego odtwarzacza audio</string>
+    </resources>
