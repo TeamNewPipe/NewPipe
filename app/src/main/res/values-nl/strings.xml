@@ -38,4 +38,14 @@
     <string name="showSimilarVideosButtonText">Vergelijkbare videos</string>
     <string name="showNextAndSimilarTitle">Laat volgende en vergelijkbare videos zien</string>
     <string name="searchLanguageTitle">Voorkeurs content taal</string>
-</resources>
+<string name="useExternalVideoPlayerTitle">Gebruik externe videospeler</string>
+    <string name="useExternalAudioPlayerTitle">Gebruik externe audiospeler</string>
+    <string name="settingsCategoryVideoAudioTitle">VIDEO &amp; GELUID</string>
+    <string name="settingsCategoryVideoInfoTittle">INFO</string>
+    <string name="settingsCategoryEtcTitle">ETC.</string>
+
+    <string name="itemThumbnailViewDescription">Videovoorbeeld thumbnail</string>
+    <string name="detailThumbnailViewDescription">Videovoorbeeld thumbnail</string>
+    <string name="detailUploaderThumbnailViewDescription">Uploader miniatuur</string>
+    <string name="detailThumbsDownImgViewDescription">Dislikes</string>
+    </resources>
