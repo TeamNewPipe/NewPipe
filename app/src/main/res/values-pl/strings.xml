@@ -45,7 +45,7 @@
     <string name="detailThumbnailViewDescription">Miniaturka podglądowa wideo</string>
     <string name="detailUploaderThumbnailViewDescription">Miniaturka wysyłającego</string>
     <string name="detailThumbsDownImgViewDescription">łapek w dół</string>
-    <string name="detailThumbsUpImgViewDescription">polubień</string>
+    <string name="detailThumbsUpImgViewDescription">Polubień</string>
 <string name="useExternalVideoPlayerTitle">Użyj zewnętrznego odtwarzacza wideo</string>
     <string name="useExternalAudioPlayerTitle">Użyj zewnętrznego odtwarzacza audio</string>
     </resources>
