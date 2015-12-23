@@ -57,7 +57,7 @@ Although NewPipe only supports YouTube at the moment, it's designed to support m
 Whether you have ideas, translation, design changes, code cleaning, or real heavy code changes, help is always welcome.
 The more is done the better it gets!
 
-Join our [Slack group](http://invite.chschtsch.ml/) if you like to get involved.
+If you'd like to get involved, check our [contributing notes](CONTRIBUTING.md).
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
