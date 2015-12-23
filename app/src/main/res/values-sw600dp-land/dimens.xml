@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Video Item Search View Dimensions-->
+    <!-- Text Size -->
+    <dimen name="video_item_search_title_text_size">14sp</dimen>
+    <dimen name="video_item_search_duration_text_size">11sp</dimen>
+    <dimen name="video_item_search_uploader_text_size">12sp</dimen>
+    <dimen name="video_item_search_upload_date_text_size">12sp</dimen>
+    <!-- Elements Size -->
+    <dimen name="video_item_search_thumbnail_image_width">140dp</dimen>
+    <dimen name="video_item_search_thumbnail_image_height">85dp</dimen>
+    <!-- Paddings & Margins -->
+    <dimen name="video_item_search_card_vertical_margin">3dp</dimen>
+    <dimen name="video_item_search_card_horizontal_margin">6dp</dimen>
+    <dimen name="video_item_search_card_padding">6dp</dimen>
+    <dimen name="video_item_search_image_right_margin">6dp</dimen>
+    <dimen name="video_item_search_duration_vertical_padding">1sp</dimen>
+    <dimen name="video_item_search_duration_horizontal_padding">5sp</dimen>
+    <dimen name="video_item_search_duration_margin">2sp</dimen>
+    <!-- Miscellaneous -->
+    <dimen name="video_item_search_card_radius">4dp</dimen>
+
+</resources>
