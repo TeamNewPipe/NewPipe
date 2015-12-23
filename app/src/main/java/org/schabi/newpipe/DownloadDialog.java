@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -71,6 +72,17 @@ public class DownloadDialog extends DialogFragment {
                                 break;
                             default:
                                 Log.d(TAG, "lolz");
+                        }
+                        //to avoid hard-coded string like "/storage/emulated/0/NewPipe"
+                        final File dir = new File(defaultPreferences.getString(
+                                "download_path_preference",
+                                Environment.getExternalStorageDirectory().getAbsolutePath() + "/NewPipe"));
+                        if(!dir.exists()) {
+                            boolean mkdir = dir.mkdir(); //attempt to create directory
+                            if(!mkdir && !dir.isDirectory()) {
+                                Log.e(TAG, "Cant' create directory named " + dir.toString());
+                                //TODO notify user "download directory should be changed" ?
+                            }
                         }
                         DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
                         DownloadManager.Request request = new DownloadManager.Request(
