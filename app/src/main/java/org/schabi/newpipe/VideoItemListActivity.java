@@ -190,7 +190,7 @@ public class VideoItemListActivity extends AppCompatActivity
             // adding or replacing the detail fragment using a
             // fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(VideoItemDetailFragment.ARG_ITEM_ID, id);
+            //arguments.putString(VideoItemDetailFragment.ARG_ITEM_ID, id);
             arguments.putString(VideoItemDetailFragment.VIDEO_URL, webpage_url);
             arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingServiceId);
             videoFragment = new VideoItemDetailFragment();
@@ -209,7 +209,7 @@ public class VideoItemListActivity extends AppCompatActivity
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
             Intent detailIntent = new Intent(this, VideoItemDetailActivity.class);
-            detailIntent.putExtra(VideoItemDetailFragment.ARG_ITEM_ID, id);
+            //detailIntent.putExtra(VideoItemDetailFragment.ARG_ITEM_ID, id);
             detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, webpage_url);
             detailIntent.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingServiceId);
             startActivity(detailIntent);

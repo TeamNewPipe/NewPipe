@@ -8,6 +8,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.wifi.WifiManager;
@@ -43,8 +45,22 @@ import java.io.IOException;
 public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPreparedListener*/ {
 
     private static final String TAG = BackgroundPlayer.class.toString();
-    private static final String ACTION_STOP = TAG+".STOP";
-    private static final String ACTION_PLAYPAUSE = TAG+".PLAYPAUSE";
+    private static final String ACTION_STOP = TAG + ".STOP";
+    private static final String ACTION_PLAYPAUSE = TAG + ".PLAYPAUSE";
+
+    // Extra intent arguments
+    public static final String TITLE = "title";
+    public static final String WEB_URL = "web_url";
+    public static final String SERVICE_ID = "service_id";
+    public static final String CHANNEL_NAME="channel_name";
+
+    private volatile String webUrl = "";
+    private volatile int serviceId = -1;
+    private volatile String channelName = "";
+
+    // Determines if the service is already running.
+    // Prevents launching the service twice.
+    public static volatile boolean isRunning = false;
 
     public BackgroundPlayer() {
         super();
@@ -58,15 +74,21 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this, "Playing in background", Toast.LENGTH_SHORT).show();//todo:translation string
+        Toast.makeText(this, R.string.backgroundPlayerStartPlayingToast,
+                Toast.LENGTH_SHORT).show();
 
         String source = intent.getDataString();
         //Log.i(TAG, "backgroundPLayer source:"+source);
-        String videoTitle = intent.getStringExtra("title");
+        String videoTitle = intent.getStringExtra(TITLE);
+        webUrl = intent.getStringExtra(WEB_URL);
+        serviceId = intent.getIntExtra(SERVICE_ID, -1);
+        channelName = intent.getStringExtra(CHANNEL_NAME);
 
         //do nearly everything in a separate thread
         PlayerThread player = new PlayerThread(source, videoTitle, this);
         player.start();
+
+        isRunning = true;
 
         // If we get killed after returning here, don't restart
         return START_NOT_STICKY;
@@ -81,6 +103,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
     @Override
     public void onDestroy() {
         //Toast.makeText(this, "service done", Toast.LENGTH_SHORT).show();
+        isRunning = false;
     }
 
     private class PlayerThread extends Thread {
@@ -92,6 +115,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         private NotificationManager noteMgr;
         private NotificationCompat.Builder noteBuilder;
         private WifiManager.WifiLock wifiLock;
+        private Bitmap videoThumbnail = null;
 
         public PlayerThread(String src, String title, BackgroundPlayer owner) {
             this.source = src;
@@ -102,11 +126,14 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         }
         @Override
         public void run() {
+            Resources res = getApplicationContext().getResources();
+
             mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);//cpu lock
             try {
                 mediaPlayer.setDataSource(source);
-                mediaPlayer.prepare(); //We are already in a separate worker thread,
+                //We are already in a separate worker thread,
                 //so calling the blocking prepare() method should be ok
+                mediaPlayer.prepare();
 
                 //alternatively:
                 //mediaPlayer.setOnPreparedListener(this);
@@ -119,10 +146,18 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 return;
             }
 
+            try {
+                videoThumbnail = ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail;
+            } catch (Exception e) {
+                Log.e(TAG, "Could not get video thumbnail from ActivityCommunicator");
+                e.printStackTrace();
+            }
+
             WifiManager wifiMgr = ((WifiManager)getSystemService(Context.WIFI_SERVICE));
             wifiLock = wifiMgr.createWifiLock(WifiManager.WIFI_MODE_FULL, TAG);
 
-            mediaPlayer.setOnCompletionListener(new EndListener(wifiLock));//listen for end of video
+            //listen for end of video
+            mediaPlayer.setOnCompletionListener(new EndListener(wifiLock));
 
             //get audio focus
             /*
@@ -142,43 +177,65 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             filter.addAction(ACTION_STOP);
             registerReceiver(broadcastReceiver, filter);
 
-            PendingIntent playPI = PendingIntent.getBroadcast(owner, noteID, new Intent(ACTION_PLAYPAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent playPI = PendingIntent.getBroadcast(owner, noteID,
+                    new Intent(ACTION_PLAYPAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
 
             NotificationCompat.Action playButton = new NotificationCompat.Action.Builder
                     (R.drawable.ic_play_arrow_white_48dp, "Play", playPI).build();
 
+            /*
             NotificationCompat.Action pauseButton = new NotificationCompat.Action.Builder
-                    (R.drawable.ic_play_arrow_white_48dp, "Pause", playPI).build();
+                    (R.drawable.ic_pause_white_24dp, "Pause", playPI).build();
+            */
 
             PendingIntent stopPI = PendingIntent.getBroadcast(owner, noteID,
                     new Intent(ACTION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
 
-            //todo: make it so that tapping the notification brings you back to the Video's DetailActivity
-            //using setContentIntent
             noteBuilder = new NotificationCompat.Builder(owner);
             noteBuilder
-                    .setPriority(Notification.PRIORITY_LOW)
-                    .setCategory(Notification.CATEGORY_TRANSPORT)
                     .setContentTitle(title)
-                    .setContentText("NewPipe is playing in the background")//todo: translation string
+                    //really? Id like to put something more helpful here.
+                    //.setContentText("NewPipe is playing in the background")
+                    .setContentText(channelName)
                     //.setAutoCancel(!mediaPlayer.isPlaying())
                     .setOngoing(true)
                     .setDeleteIntent(stopPI)
-                    //.setProgress(vidLength, 0, false) //doesn't fit with Notification.MediaStyle
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setTicker(title + " - NewPipe")
+                    //doesn't fit with Notification.MediaStyle
+                    //.setProgress(vidLength, 0, false)
+                    .setSmallIcon(R.drawable.ic_play_circle_filled_white_24dp)
+                    .setLargeIcon(videoThumbnail)
+                    .setTicker(
+                            String.format(res.getString(
+                                    R.string.backgroundPlayerTickerText), title))
                     .addAction(playButton);
-/*                  .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                    .setLargeIcon(cover)*/
+                    //.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                    //.setLargeIcon(cover)
+            if(android.os.Build.VERSION.SDK_INT >= 16)
+                noteBuilder.setPriority(Notification.PRIORITY_LOW);
+            if(android.os.Build.VERSION.SDK_INT >= 21)
+                noteBuilder.setCategory(Notification.CATEGORY_TRANSPORT);
 
-            noteBuilder.setStyle(new NotificationCompat.MediaStyle()
-                            //.setMediaSession(mMediaSession.getSessionToken())
-                            .setShowActionsInCompactView(new int[] {0})
-                            .setShowCancelButton(true)
-                            .setCancelButtonIntent(stopPI)
-            );
+                noteBuilder.setStyle(new NotificationCompat.MediaStyle()
+                                //.setMediaSession(mMediaSession.getSessionToken())
+                                .setShowActionsInCompactView(new int[]{0})
+                                .setShowCancelButton(true)
+                                .setCancelButtonIntent(stopPI));
+            if(videoThumbnail != null) {
+                noteBuilder.setLargeIcon(videoThumbnail);
+            }
 
-            startForeground(noteID, noteBuilder.build());
+            Notification note = noteBuilder.build();
+
+            Intent openDetailView = new Intent(getApplicationContext(),
+                    VideoItemDetailActivity.class);
+            openDetailView.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, serviceId);
+            openDetailView.putExtra(VideoItemDetailFragment.VIDEO_URL, webUrl);
+            openDetailView.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            note.contentIntent = PendingIntent.getActivity(getApplicationContext(),
+                    noteID, openDetailView,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+
+            startForeground(noteID, note);
 
             //currently decommissioned progressbar looping update code - works, but doesn't fit inside
             //Notification.MediaStyle Notification layout.
@@ -202,7 +259,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             @Override
             public void onReceive(Context context, Intent intent) {
                 String action = intent.getAction();
-                Log.i(TAG, "received broadcast action:"+action);
+                //Log.i(TAG, "received broadcast action:"+action);
                 if(action.equals(ACTION_PLAYPAUSE)) {
                     if(mediaPlayer.isPlaying()) {
                         mediaPlayer.pause();
@@ -214,7 +271,8 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                     }
                 }
                 else if(action.equals(ACTION_STOP)) {
-                    mediaPlayer.stop();//this auto-releases CPU lock
+                    //this auto-releases CPU lock
+                    mediaPlayer.stop();
                     afterPlayCleanup();
                 }
             }

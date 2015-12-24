@@ -3,6 +3,7 @@ package org.schabi.newpipe;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -40,7 +41,10 @@ class ActionBarHandler {
     private static final String TAG = ActionBarHandler.class.toString();
     private static final String KORE_PACKET = "org.xbmc.kore";
 
+    private int serviceId;
     private String websiteUrl = "";
+    private Bitmap videoThumbnail = null;
+    private String channelName = "";
     private AppCompatActivity activity;
     private VideoInfo.VideoStream[] videoStreams = null;
     private VideoInfo.AudioStream audioStream = null;
@@ -71,6 +75,18 @@ class ActionBarHandler {
         } catch(NullPointerException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setServiceId(int id) {
+        serviceId = id;
+    }
+
+    public void setSetVideoThumbnail(Bitmap bitmap) {
+        videoThumbnail = bitmap;
+    }
+
+    public void setChannelName(String name) {
+        channelName = name;
     }
 
     @SuppressWarnings("deprecation")
@@ -143,37 +159,41 @@ class ActionBarHandler {
     }
 
     public boolean onItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch(id) {
-            case R.id.menu_item_share:
-                if(!videoTitle.isEmpty()) {
+        if(!videoTitle.isEmpty()) {
+            int id = item.getItemId();
+            switch (id) {
+                case R.id.menu_item_share: {
                     Intent intent = new Intent();
                     intent.setAction(Intent.ACTION_SEND);
                     intent.putExtra(Intent.EXTRA_TEXT, websiteUrl);
                     intent.setType("text/plain");
                     activity.startActivity(Intent.createChooser(intent, activity.getString(R.string.shareDialogTitle)));
+                    return true;
+                }
+                case R.id.menu_item_openInBrowser: {
+                    openInBrowser();
                 }
                 return true;
-            case R.id.menu_item_openInBrowser: {
-                openInBrowser();
+                case R.id.menu_item_download:
+                    downloadVideo();
+                    return true;
+                case R.id.action_settings: {
+                    Intent intent = new Intent(activity, SettingsActivity.class);
+                    activity.startActivity(intent);
+                }
+                break;
+                case R.id.action_play_with_kodi:
+                    playWithKodi();
+                    return true;
+                case R.id.menu_item_play_audio:
+                    playAudio();
+                    return true;
+                default:
+                    Log.e(TAG, "Menu Item not known");
             }
-                return true;
-            case R.id.menu_item_download:
-                downloadVideo();
-                return true;
-            case R.id.action_settings: {
-                Intent intent = new Intent(activity, SettingsActivity.class);
-                activity.startActivity(intent);
-            }
-            break;
-            case R.id.action_play_with_kodi:
-                playWithKodi();
-                return true;
-            case R.id.menu_item_play_audio:
-                playAudio();
-                return true;
-            default:
-                Log.e(TAG, "Menu Item not known");
+        } else {
+            // That line may not be necessary.
+            return true;
         }
         return false;
     }
@@ -302,18 +322,24 @@ class ActionBarHandler {
                 .getBoolean(activity.getString(R.string.useExternalAudioPlayer), false);
         Intent intent;
 
-        if (!externalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 18)//internal music player: explicit intent
-        {
-            intent = new Intent(activity, BackgroundPlayer.class);
+        if (!externalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 18) {
+            //internal music player: explicit intent
+            if (!BackgroundPlayer.isRunning  && videoThumbnail != null) {
+                ActivityCommunicator.getCommunicator()
+                        .backgroundPlayerThumbnail = videoThumbnail;
+                intent = new Intent(activity, BackgroundPlayer.class);
 
-            intent.setAction(Intent.ACTION_VIEW);
-            Log.i(TAG, "audioStream is null:" + (audioStream == null));
-            Log.i(TAG, "audioStream.url is null:"+(audioStream.url==null));
-            intent.setDataAndType(Uri.parse(audioStream.url),
-                    MediaFormat.getMimeById(audioStream.format));
-            intent.putExtra(Intent.EXTRA_TITLE, videoTitle);
-            intent.putExtra("title", videoTitle);
-            activity.startService(intent);
+                intent.setAction(Intent.ACTION_VIEW);
+                Log.i(TAG, "audioStream is null:" + (audioStream == null));
+                Log.i(TAG, "audioStream.url is null:" + (audioStream.url == null));
+                intent.setDataAndType(Uri.parse(audioStream.url),
+                        MediaFormat.getMimeById(audioStream.format));
+                intent.putExtra(BackgroundPlayer.TITLE, videoTitle);
+                intent.putExtra(BackgroundPlayer.WEB_URL, websiteUrl);
+                intent.putExtra(BackgroundPlayer.SERVICE_ID, serviceId);
+                intent.putExtra(BackgroundPlayer.CHANNEL_NAME, channelName);
+                activity.startService(intent);
+            }
         } else {
             intent = new Intent();
             try {

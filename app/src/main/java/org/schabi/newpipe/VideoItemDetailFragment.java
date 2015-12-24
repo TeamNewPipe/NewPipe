@@ -73,13 +73,15 @@ public class VideoItemDetailFragment extends Fragment {
      * The fragment argument representing the item ID that this fragment
      * represents.
      */
-    public static final String ARG_ITEM_ID = "item_id";
+    //public static final String ARG_ITEM_ID = "item_id";
     public static final String VIDEO_URL = "video_url";
     public static final String STREAMING_SERVICE = "streaming_service";
     public static final String AUTO_PLAY = "auto_play";
 
     private AppCompatActivity activity;
     private ActionBarHandler actionBarHandler;
+
+    private int streamingServiceId = -1;
 
     private boolean autoPlayEnabled = false;
     private VideoInfo currentVideoInfo = null;
@@ -105,6 +107,7 @@ public class VideoItemDetailFragment extends Fragment {
             this.service = service;
             this.videoUrl = videoUrl;
         }
+
         @Override
         public void run() {
             try {
@@ -176,6 +179,7 @@ public class VideoItemDetailFragment extends Fragment {
             switch (id) {
                 case SetThumbnailRunnable.VIDEO_THUMBNAIL:
                     thumbnailView = (ImageView) a.findViewById(R.id.detailThumbnailView);
+                    actionBarHandler.setSetVideoThumbnail(thumbnail);
                     break;
                 case SetThumbnailRunnable.CHANNEL_THUMBNAIL:
                     thumbnailView = (ImageView) a.findViewById(R.id.detailUploaderThumbnailView);
@@ -238,6 +242,7 @@ public class VideoItemDetailFragment extends Fragment {
                 case VideoInfo.VIDEO_AVAILABLE: {
                     videoTitleView.setText(info.title);
                     uploaderView.setText(info.uploader);
+                    actionBarHandler.setChannelName(info.uploader);
 
                     Locale locale = getPreferredLocale();
                     NumberFormat nf = NumberFormat.getInstance(locale);
@@ -266,6 +271,7 @@ public class VideoItemDetailFragment extends Fragment {
                     descriptionView.setText(Html.fromHtml(info.description));
                     descriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
+                    actionBarHandler.setServiceId(streamingServiceId);
                     actionBarHandler.setVideoInfo(info.webpage_url, info.title);
                     actionBarHandler.setStartPosition(info.startPosition);
 
@@ -288,12 +294,12 @@ public class VideoItemDetailFragment extends Fragment {
                     public void onClick(View v) {
                         Intent detailIntent =
                                 new Intent(getActivity(), VideoItemDetailActivity.class);
-                        detailIntent.putExtra(
-                                VideoItemDetailFragment.ARG_ITEM_ID, currentVideoInfo.nextVideo.id);
+                        /*detailIntent.putExtra(
+                                VideoItemDetailFragment.ARG_ITEM_ID, currentVideoInfo.nextVideo.id); */
                         detailIntent.putExtra(
                                 VideoItemDetailFragment.VIDEO_URL, currentVideoInfo.nextVideo.webpage_url);
                         //todo: make id dynamic the following line is crap
-                        detailIntent.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, 0);
+                        detailIntent.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
                         startActivity(detailIntent);
                     }
                 });
@@ -369,8 +375,8 @@ public class VideoItemDetailFragment extends Fragment {
         // Otherwise the applications would crash.
         if(playVideoButton != null) {
             try {
-                StreamingService streamingService = ServiceList.getService(
-                        getArguments().getInt(STREAMING_SERVICE));
+                streamingServiceId = getArguments().getInt(STREAMING_SERVICE);
+                StreamingService streamingService = ServiceList.getService(streamingServiceId);
                 Thread videoExtractorThread = new Thread(new VideoExtractorRunnable(
                         getArguments().getString(VIDEO_URL), streamingService));
 

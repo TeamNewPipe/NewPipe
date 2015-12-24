@@ -50,6 +50,8 @@
     <string name="settingsCategoryVideoAudioTitle">VIDEO &amp; AUDIO</string>
     <string name="settingsCategoryVideoInfoTittle">INFO</string>
     <string name="settingsCategoryEtcTitle">ETC</string>
+    <string name="backgroundPlayerTickerText" translatable="false">%1$s - NewPipe</string>
+    <string name="backgroundPlayerStartPlayingToast">Playing in background</string>
 
     <!-- Content descriptions (for better accessibility) -->
     <string name="itemThumbnailViewDescription">Video preview thumbnail</string>
