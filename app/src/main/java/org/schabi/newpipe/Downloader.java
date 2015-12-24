@@ -7,6 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.UnknownHostException;
 
+import javax.net.ssl.HttpsURLConnection;
+
 import info.guardianproject.netcipher.NetCipher;
 
 /**
@@ -43,7 +45,7 @@ public class Downloader {
         String ret = "";
         try {
             URL url = new URL(siteUrl);
-            HttpURLConnection con = (HttpURLConnection) NetCipher.getHttpURLConnection(url);
+            HttpsURLConnection con = NetCipher.getHttpsURLConnection(url);
             con.setRequestProperty("Accept-Language", language);
             ret = dl(con);
         }
@@ -88,7 +90,7 @@ public class Downloader {
 
         try {
             URL url = new URL(siteUrl);
-            HttpURLConnection con = (HttpURLConnection) NetCipher.getHttpURLConnection(url);
+            HttpsURLConnection con = NetCipher.getHttpsURLConnection(url);
             ret = dl(con);
         }
         catch(Exception e) {
