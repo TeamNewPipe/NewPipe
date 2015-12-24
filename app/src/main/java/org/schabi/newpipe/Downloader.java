@@ -7,6 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.UnknownHostException;
 
+import info.guardianproject.netcipher.NetCipher;
+
 /**
  * Created by Christian Schabesberger on 14.08.15.
  *
@@ -37,10 +39,11 @@ public class Downloader {
      * @param language the language (usually a 2-character code) to set as the preferred language
      * @return the contents of the specified text file*/
     public static String download(String siteUrl, String language) {
+        NetCipher.useTor();
         String ret = "";
         try {
             URL url = new URL(siteUrl);
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            HttpURLConnection con = (HttpURLConnection) NetCipher.getHttpURLConnection(url);
             con.setRequestProperty("Accept-Language", language);
             ret = dl(con);
         }
@@ -81,10 +84,11 @@ public class Downloader {
  * @return the contents of the specified text file*/
     public static String download(String siteUrl) {
         String ret = "";
+        NetCipher.useTor();
 
         try {
             URL url = new URL(siteUrl);
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            HttpURLConnection con = (HttpURLConnection) NetCipher.getHttpURLConnection(url);
             ret = dl(con);
         }
         catch(Exception e) {

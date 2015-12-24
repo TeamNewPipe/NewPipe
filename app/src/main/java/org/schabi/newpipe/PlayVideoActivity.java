@@ -3,6 +3,7 @@ package org.schabi.newpipe;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.media.MediaPlayer;
@@ -25,6 +26,7 @@ import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.VideoView;
+import info.guardianproject.netcipher.NetCipher;
 
 /**
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
@@ -44,7 +46,7 @@ import android.widget.VideoView;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class PlayVideoActivity extends AppCompatActivity {
+public class PlayVideoActivity extends AppCompatActivity implements OnSharedPreferenceChangeListener {
 
     //// TODO: 11.09.15 add "choose stream" menu 
     
@@ -170,6 +172,9 @@ public class PlayVideoActivity extends AppCompatActivity {
         if(prefs.getBoolean(PREF_IS_LANDSCAPE, false) && !isLandscape) {
             toggleOrientation();
         }
+
+        setTorPreference(prefs);
+        prefs.registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -185,6 +190,13 @@ public class PlayVideoActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         videoView.pause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        prefs = getPreferences(Context.MODE_PRIVATE);
+        prefs.unregisterOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -348,4 +360,20 @@ public class PlayVideoActivity extends AppCompatActivity {
         editor.putBoolean(PREF_IS_LANDSCAPE, isLandscape);
         editor.apply();
     }
+
+    private void setTorPreference(SharedPreferences prefs) {
+        if(prefs.getBoolean(getString(R.string.useTor), false)) {
+            NetCipher.useTor();
+        } else {
+            NetCipher.setProxy(null);
+        }
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+        if(key.equals(getString(R.string.useTor))) {
+            setTorPreference(prefs);
+        }
+    }
+
 }
