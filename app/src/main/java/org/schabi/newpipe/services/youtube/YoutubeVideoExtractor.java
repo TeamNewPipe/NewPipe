@@ -155,10 +155,10 @@ public class YoutubeVideoExtractor extends VideoExtractor {
     }
 
     @Override
-    public int getViews() {
+    public long getViews() {
         try {
             String viewCountString = doc.select("meta[itemprop=interactionCount]").attr("content");
-            return Integer.parseInt(viewCountString);
+            return Long.parseLong(viewCountString);
         } catch (Exception e) {//todo: find fallback method
             Log.e(TAG, "failed to number of views");
             e.printStackTrace();

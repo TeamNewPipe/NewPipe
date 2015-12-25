@@ -109,7 +109,7 @@ public abstract class VideoExtractor {
     protected abstract String getDescription();
     protected abstract String getUploader();
     protected abstract int getLength();
-    protected abstract int getViews();
+    protected abstract long getViews();
     protected abstract String getUploadDate();
     protected abstract String getThumbnailUrl();
     protected abstract String getUploaderThumbnailUrl();
