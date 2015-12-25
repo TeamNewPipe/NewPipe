@@ -90,6 +90,7 @@ public class DownloadDialog extends DialogFragment {
                         request.setDestinationUri(Uri.fromFile(new File(
                                 defaultPreferences.getString("download_path_preference", "/storage/emulated/0/NewPipe")
                                         + "/" + title + suffix)));
+                        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
                         try {
                             dm.enqueue(request);
                         } catch (Exception e) {
