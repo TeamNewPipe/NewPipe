@@ -15,7 +15,7 @@ import org.mozilla.javascript.ScriptableObject;
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.services.VideoExtractor;
 import org.schabi.newpipe.MediaFormat;
-import org.schabi.newpipe.VideoInfo;
+import org.schabi.newpipe.services.VideoInfo;
 import org.schabi.newpipe.VideoPreviewInfo;
 import org.xmlpull.v1.XmlPullParser;
 
@@ -53,13 +53,14 @@ public class YoutubeVideoExtractor extends VideoExtractor {
     private final Document doc;
     private JSONObject jsonObj;
     private JSONObject playerArgs;
+    private int errorCode = VideoInfo.NO_ERROR;
+    private String errorMessage = "";
 
     // static values
     private static final String DECRYPTION_FUNC_NAME="decrypt";
 
     // cached values
     private static volatile String decryptionCode = "";
-
 
     public YoutubeVideoExtractor(String pageUrl) {
         super(pageUrl);//most common videoInfo fields are now set in our superclass, for all services
@@ -69,12 +70,18 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         //attempt to load the youtube js player JSON arguments
         try {
             String jsonString = matchGroup1("ytplayer.config\\s*=\\s*(\\{.*?\\});", pageContents);
+            //todo: implement this by try and catch. TESTING THE STRING AGAINST EMPTY IS CONSIDERED POOR STYLE !!!
+            if(jsonString.isEmpty()) {
+                errorCode = findErrorReason(doc);
+                return;
+            }
+
             jsonObj = new JSONObject(jsonString);
             playerArgs = jsonObj.getJSONObject("args");
 
         } catch (Exception e) {//if this fails, the video is most likely not available.
             // Determining why is done later.
-            videoInfo.videoAvailableStatus = VideoInfo.VIDEO_UNAVAILABLE;
+            videoInfo.errorCode = VideoInfo.ERROR_NO_SPECIFIED_ERROR;
             Log.e(TAG, "Could not load JSON data for Youtube video \""+pageUrl+"\". This most likely means the video is unavailable");
         }
 
@@ -367,80 +374,95 @@ public class YoutubeVideoExtractor extends VideoExtractor {
 
     @Override
     public VideoInfo getVideoInfo() {
+        //todo: @medovax i like your work, but what the fuck:
         videoInfo = super.getVideoInfo();
-        //todo: replace this with a call to getVideoId, if possible
-        videoInfo.id = matchGroup1("v=([0-9a-zA-Z_-]{11})", pageUrl);
 
-        if(videoInfo.audioStreams == null
-                || videoInfo.audioStreams.length == 0) {
-            Log.e(TAG, "uninitialised audio streams!");
-        }
+        if(errorCode == VideoInfo.NO_ERROR) {
+            //todo: replace this with a call to getVideoId, if possible
+            videoInfo.id = matchGroup1("v=([0-9a-zA-Z_-]{11})", pageUrl);
 
-        if(videoInfo.videoStreams == null
-                || videoInfo.videoStreams.length == 0) {
-            Log.e(TAG, "uninitialised video streams!");
-        }
+            if (videoInfo.audioStreams == null
+                    || videoInfo.audioStreams.length == 0) {
+                Log.e(TAG, "uninitialised audio streams!");
+            }
 
-        videoInfo.age_limit = 0;
+            if (videoInfo.videoStreams == null
+                    || videoInfo.videoStreams.length == 0) {
+                Log.e(TAG, "uninitialised video streams!");
+            }
 
-        //average rating
-        try {
-            videoInfo.average_rating = playerArgs.getString("avg_rating");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            videoInfo.age_limit = 0;
 
-        //---------------------------------------
-        // extracting information from html page
-        //---------------------------------------
+            //average rating
+            try {
+                videoInfo.average_rating = playerArgs.getString("avg_rating");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
+            //---------------------------------------
+            // extracting information from html page
+            //---------------------------------------
+
+        /* Code does not work here anymore.
         // Determine what went wrong when the Video is not available
-        if(videoInfo.videoAvailableStatus == VideoInfo.VIDEO_UNAVAILABLE) {
+        if(videoInfo.errorCode == VideoInfo.ERROR_NO_SPECIFIED_ERROR) {
             if(doc.select("h1[id=\"unavailable-message\"]").first().text().contains("GEMA")) {
                 videoInfo.videoAvailableStatus = VideoInfo.VIDEO_UNAVAILABLE_GEMA;
             }
         }
+        */
 
-        String likesString = "";
-        String dislikesString = "";
-        try {
-            // likes
-            likesString = doc.select("button.like-button-renderer-like-button").first()
-                    .select("span.yt-uix-button-content").first().text();
-            videoInfo.like_count = Integer.parseInt(likesString.replaceAll("[^\\d]", ""));
-            // dislikes
-            dislikesString = doc.select("button.like-button-renderer-dislike-button").first()
-                            .select("span.yt-uix-button-content").first().text();
+            String likesString = "";
+            String dislikesString = "";
+            try {
+                // likes
+                likesString = doc.select("button.like-button-renderer-like-button").first()
+                        .select("span.yt-uix-button-content").first().text();
+                videoInfo.like_count = Integer.parseInt(likesString.replaceAll("[^\\d]", ""));
+                // dislikes
+                dislikesString = doc.select("button.like-button-renderer-dislike-button").first()
+                        .select("span.yt-uix-button-content").first().text();
 
-            videoInfo.dislike_count = Integer.parseInt(dislikesString.replaceAll("[^\\d]", ""));
-        } catch(NumberFormatException nfe) {
-            Log.e(TAG, "failed to parse likesString \""+likesString+"\" and dislikesString \""+
-            dislikesString+"\" as integers");
-        } catch(Exception e) {
-            // if it fails we know that the video does not offer dislikes.
-            e.printStackTrace();
-            videoInfo.like_count = 0;
-            videoInfo.dislike_count = 0;
-        }
-
-        // next video
-        videoInfo.nextVideo = extractVideoPreviewInfo(doc.select("div[class=\"watch-sidebar-section\"]").first()
-                .select("li").first());
-
-        // related videos
-        Vector<VideoPreviewInfo> relatedVideos = new Vector<>();
-        for(Element li : doc.select("ul[id=\"watch-related\"]").first().children()) {
-            // first check if we have a playlist. If so leave them out
-            if(li.select("a[class*=\"content-link\"]").first() != null) {
-                relatedVideos.add(extractVideoPreviewInfo(li));
+                videoInfo.dislike_count = Integer.parseInt(dislikesString.replaceAll("[^\\d]", ""));
+            } catch (NumberFormatException nfe) {
+                Log.e(TAG, "failed to parse likesString \"" + likesString + "\" and dislikesString \"" +
+                        dislikesString + "\" as integers");
+            } catch (Exception e) {
+                // if it fails we know that the video does not offer dislikes.
+                e.printStackTrace();
+                videoInfo.like_count = 0;
+                videoInfo.dislike_count = 0;
             }
+
+            // next video
+            videoInfo.nextVideo = extractVideoPreviewInfo(doc.select("div[class=\"watch-sidebar-section\"]").first()
+                    .select("li").first());
+
+            // related videos
+            Vector<VideoPreviewInfo> relatedVideos = new Vector<>();
+            for (Element li : doc.select("ul[id=\"watch-related\"]").first().children()) {
+                // first check if we have a playlist. If so leave them out
+                if (li.select("a[class*=\"content-link\"]").first() != null) {
+                    relatedVideos.add(extractVideoPreviewInfo(li));
+                }
+            }
+            //todo: replace conversion
+            videoInfo.relatedVideos = relatedVideos;
+            //videoInfo.relatedVideos = relatedVideos.toArray(new VideoPreviewInfo[relatedVideos.size()]);
         }
-        //todo: replace conversion
-        videoInfo.relatedVideos = relatedVideos;
-        //videoInfo.relatedVideos = relatedVideos.toArray(new VideoPreviewInfo[relatedVideos.size()]);
         return videoInfo;
     }
 
+    @Override
+    public int getErrorCode() {
+        return errorCode;
+    }
+
+    @Override
+    public String getErrorMessage() {
+        return errorMessage;
+    }
 
     private VideoInfo.AudioStream[] parseDashManifest(String dashManifest, String decryptoinCode) {
         if(!dashManifest.contains("/signature/")) {
@@ -610,6 +632,13 @@ public class YoutubeVideoExtractor extends VideoExtractor {
             new Exception("failed to find pattern \""+pattern+"\"").printStackTrace();
             return "";
         }
+    }
 
+    private int findErrorReason(Document doc) {
+        errorMessage = doc.select("h1[id=\"unavailable-message\"]").first().text();
+        if(errorMessage.contains("GEMA")) {
+            return VideoInfo.ERROR_BLOCKED_BY_GEMA;
+        }
+        return VideoInfo.ERROR_NO_SPECIFIED_ERROR;
     }
 }

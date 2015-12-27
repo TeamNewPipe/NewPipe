@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,6 +32,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.net.URL;
 import java.text.DateFormat;
@@ -45,6 +47,7 @@ import java.util.Vector;
 import org.schabi.newpipe.services.VideoExtractor;
 import org.schabi.newpipe.services.ServiceList;
 import org.schabi.newpipe.services.StreamingService;
+import org.schabi.newpipe.services.VideoInfo;
 
 
 /**
@@ -114,7 +117,7 @@ public class VideoItemDetailFragment extends Fragment {
                 this.videoExtractor = service.getExtractorInstance(videoUrl);
                 VideoInfo videoInfo = videoExtractor.getVideoInfo();
                 h.post(new VideoResultReturnedRunnable(videoInfo));
-                if (videoInfo.videoAvailableStatus == VideoInfo.VIDEO_AVAILABLE) {
+                if (videoInfo.errorCode == VideoInfo.NO_ERROR) {
                     h.post(new SetThumbnailRunnable(
                             BitmapFactory.decodeStream(
                                     new URL(videoInfo.thumbnail_url)
@@ -224,22 +227,28 @@ public class VideoItemDetailFragment extends Fragment {
             FrameLayout nextVideoFrame = (FrameLayout) activity.findViewById(R.id.detailNextVideoFrame);
             RelativeLayout nextVideoRootFrame =
                     (RelativeLayout) activity.findViewById(R.id.detailNextVideoRootLayout);
-            View nextVideoView = videoItemViewCreator
-                    .getViewByVideoInfoItem(null, nextVideoFrame, info.nextVideo);
-            nextVideoFrame.addView(nextVideoView);
-            Button nextVideoButton = (Button) activity.findViewById(R.id.detailNextVideoButton);
-            Button similarVideosButton = (Button) activity.findViewById(R.id.detailShowSimilarButton);
+            Button backgroundButton = (Button)
+                    activity.findViewById(R.id.detailVideoThumbnailWindowBackgroundButton);
 
-            textContentLayout.setVisibility(View.VISIBLE);
-            playVideoButton.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
-            if(!showNextVideoItem) {
-                nextVideoRootFrame.setVisibility(View.GONE);
-                similarVideosButton.setVisibility(View.GONE);
-            }
 
-            switch (info.videoAvailableStatus) {
-                case VideoInfo.VIDEO_AVAILABLE: {
+            switch (info.errorCode) {
+                case VideoInfo.NO_ERROR: {
+                    View nextVideoView = videoItemViewCreator
+                            .getViewFromVideoInfoItem(null, nextVideoFrame, info.nextVideo);
+                    nextVideoFrame.addView(nextVideoView);
+
+
+                    Button nextVideoButton = (Button) activity.findViewById(R.id.detailNextVideoButton);
+                    Button similarVideosButton = (Button) activity.findViewById(R.id.detailShowSimilarButton);
+
+                    textContentLayout.setVisibility(View.VISIBLE);
+                    playVideoButton.setVisibility(View.VISIBLE);
+                    if (!showNextVideoItem) {
+                        nextVideoRootFrame.setVisibility(View.GONE);
+                        similarVideosButton.setVisibility(View.GONE);
+                    }
+
                     videoTitleView.setText(info.title);
                     uploaderView.setText(info.uploader);
                     actionBarHandler.setChannelName(info.uploader);
@@ -287,30 +296,41 @@ public class VideoItemDetailFragment extends Fragment {
                         streamList[i] = streamsToUse.get(i);
                     }
                     actionBarHandler.setStreams(streamList, info.audioStreams);
-                }
 
-                nextVideoButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent detailIntent =
-                                new Intent(getActivity(), VideoItemDetailActivity.class);
+                    nextVideoButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent detailIntent =
+                                    new Intent(getActivity(), VideoItemDetailActivity.class);
                         /*detailIntent.putExtra(
                                 VideoItemDetailFragment.ARG_ITEM_ID, currentVideoInfo.nextVideo.id); */
-                        detailIntent.putExtra(
-                                VideoItemDetailFragment.VIDEO_URL, currentVideoInfo.nextVideo.webpage_url);
-                        //todo: make id dynamic the following line is crap
-                        detailIntent.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
-                        startActivity(detailIntent);
-                    }
-                });
+                            detailIntent.putExtra(
+                                    VideoItemDetailFragment.VIDEO_URL, currentVideoInfo.nextVideo.webpage_url);
+                            //todo: make id dynamic the following line is crap
+                            detailIntent.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
+                            startActivity(detailIntent);
+                        }
+                    });
+                }
                 break;
-                case VideoInfo.VIDEO_UNAVAILABLE_GEMA:
+                case VideoInfo.ERROR_BLOCKED_BY_GEMA:
                     thumbnailView.setImageBitmap(BitmapFactory.decodeResource(
                             getResources(), R.drawable.gruese_die_gema_unangebracht));
+                    backgroundButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent();
+                            intent.setAction(Intent.ACTION_VIEW);
+                            intent.setData(Uri.parse(activity.getString(R.string.c3sUrl)));
+                            activity.startActivity(intent);
+                        }
+                    });
                     break;
-                case VideoInfo.VIDEO_UNAVAILABLE:
+                case VideoInfo.ERROR_NO_SPECIFIED_ERROR:
                     thumbnailView.setImageBitmap(BitmapFactory.decodeResource(
                             getResources(), R.drawable.not_available_monkey));
+                    Toast.makeText(activity, info.errorMessage, Toast.LENGTH_LONG)
+                            .show();
                     break;
                 default:
                     Log.e(TAG, "Video Available Status not known.");

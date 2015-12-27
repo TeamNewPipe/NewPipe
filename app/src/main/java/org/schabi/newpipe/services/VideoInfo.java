@@ -1,5 +1,6 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.services;
 
+import org.schabi.newpipe.VideoPreviewInfo;
 import org.schabi.newpipe.services.AbstractVideoInfo;
 
 import java.util.List;
@@ -28,11 +29,20 @@ import java.util.List;
 @SuppressWarnings("ALL")
 public class VideoInfo extends AbstractVideoInfo {
 
+    // If a video could not be parsed, this predefined error codes
+    // will be returned AND can be parsed by the frontend of the app.
+    // Error codes:
+    public final static int NO_ERROR = 0x0;
+    public final static int ERROR_NO_SPECIFIED_ERROR = 0x1;
+    // GEMA a german music colecting society.
+    public final static int ERROR_BLOCKED_BY_GEMA = 0x2;
+
     public String uploader_thumbnail_url = "";
     public String description = "";
     public VideoStream[] videoStreams = null;
     public AudioStream[] audioStreams = null;
-    public int videoAvailableStatus = VIDEO_AVAILABLE;
+    public int errorCode = NO_ERROR;
+    public String errorMessage = "";
     public int duration = -1;
 
     /*YouTube-specific fields
@@ -44,11 +54,6 @@ public class VideoInfo extends AbstractVideoInfo {
     public VideoPreviewInfo nextVideo = null;
     public List<VideoPreviewInfo> relatedVideos = null;
     public int startPosition = -1;//in seconds. some metadata is not passed using a VideoInfo object!
-
-    public static final int VIDEO_AVAILABLE = 0x00;
-    public static final int VIDEO_UNAVAILABLE = 0x01;
-    public static final int VIDEO_UNAVAILABLE_GEMA = 0x02;//German DRM organisation
-
 
     public VideoInfo() {}
 

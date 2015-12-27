@@ -33,7 +33,7 @@ class VideoInfoItemViewCreator {
         this.inflater = inflater;
     }
 
-    public View getViewByVideoInfoItem(View convertView, ViewGroup parent, VideoPreviewInfo info) {
+    public View getViewFromVideoInfoItem(View convertView, ViewGroup parent, VideoPreviewInfo info) {
         ViewHolder holder;
         if(convertView == null) {
             convertView = inflater.inflate(R.layout.video_item, parent, false);

@@ -20,8 +20,6 @@ package org.schabi.newpipe.services;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.schabi.newpipe.VideoInfo;
-
 /**Scrapes information from a video streaming service (eg, YouTube).*/
 
 @SuppressWarnings("ALL")
@@ -46,54 +44,60 @@ public abstract class VideoExtractor {
             videoInfo.webpage_url = pageUrl;
         }
 
-        if(videoInfo.title.isEmpty()) {
-            videoInfo.title = getTitle();
-        }
+        if(getErrorCode() == VideoInfo.NO_ERROR) {
 
-        if(videoInfo.duration  < 1) {
-            videoInfo.duration = getLength();
-        }
+            if (videoInfo.title.isEmpty()) {
+                videoInfo.title = getTitle();
+            }
+
+            if (videoInfo.duration < 1) {
+                videoInfo.duration = getLength();
+            }
 
 
-        if(videoInfo.uploader.isEmpty()) {
-            videoInfo.uploader = getUploader();
-        }
+            if (videoInfo.uploader.isEmpty()) {
+                videoInfo.uploader = getUploader();
+            }
 
-        if(videoInfo.description.isEmpty()) {
-            videoInfo.description = getDescription();
-        }
+            if (videoInfo.description.isEmpty()) {
+                videoInfo.description = getDescription();
+            }
 
-        if(videoInfo.view_count == -1) {
-            videoInfo.view_count = getViews();
-        }
+            if (videoInfo.view_count == -1) {
+                videoInfo.view_count = getViews();
+            }
 
-        if(videoInfo.upload_date.isEmpty()) {
-            videoInfo.upload_date = getUploadDate();
-        }
+            if (videoInfo.upload_date.isEmpty()) {
+                videoInfo.upload_date = getUploadDate();
+            }
 
-        if(videoInfo.thumbnail_url.isEmpty()) {
-            videoInfo.thumbnail_url = getThumbnailUrl();
-        }
+            if (videoInfo.thumbnail_url.isEmpty()) {
+                videoInfo.thumbnail_url = getThumbnailUrl();
+            }
 
-        if(videoInfo.id.isEmpty()) {
-            videoInfo.id = getVideoId(pageUrl);
-        }
+            if (videoInfo.id.isEmpty()) {
+                videoInfo.id = getVideoId(pageUrl);
+            }
 
-        /** Load and extract audio*/
-        if(videoInfo.audioStreams == null) {
-            videoInfo.audioStreams = getAudioStreams();
-        }
-        /** Extract video stream url*/
-        if(videoInfo.videoStreams == null) {
-            videoInfo.videoStreams = getVideoStreams();
-        }
+            /** Load and extract audio*/
+            if (videoInfo.audioStreams == null) {
+                videoInfo.audioStreams = getAudioStreams();
+            }
+            /** Extract video stream url*/
+            if (videoInfo.videoStreams == null) {
+                videoInfo.videoStreams = getVideoStreams();
+            }
 
-        if(videoInfo.uploader_thumbnail_url.isEmpty()) {
-            videoInfo.uploader_thumbnail_url = getUploaderThumbnailUrl();
-        }
+            if (videoInfo.uploader_thumbnail_url.isEmpty()) {
+                videoInfo.uploader_thumbnail_url = getUploaderThumbnailUrl();
+            }
 
-        if(videoInfo.startPosition < 0) {
-            videoInfo.startPosition = getTimeStamp();
+            if (videoInfo.startPosition < 0) {
+                videoInfo.startPosition = getTimeStamp();
+            }
+        } else {
+            videoInfo.errorCode = getErrorCode();
+            videoInfo.errorMessage = getErrorMessage();
         }
 
         //Bitmap thumbnail = null;
@@ -102,6 +106,9 @@ public abstract class VideoExtractor {
         return videoInfo;
     }
 
+
+    protected abstract int getErrorCode();
+    protected abstract String getErrorMessage();
     protected abstract String getVideoUrl(String videoId);
     protected abstract String getVideoId(String siteUrl);
     protected abstract int getTimeStamp();

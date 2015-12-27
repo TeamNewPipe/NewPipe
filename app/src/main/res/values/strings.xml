@@ -52,6 +52,7 @@
     <string name="settingsCategoryEtcTitle">ETC</string>
     <string name="backgroundPlayerTickerText" translatable="false">%1$s - NewPipe</string>
     <string name="backgroundPlayerStartPlayingToast">Playing in background</string>
+    <string name="c3sUrl" translatable="false">https://www.c3s.cc/</string>
 
     <!-- Content descriptions (for better accessibility) -->
     <string name="itemThumbnailViewDescription">Video preview thumbnail</string>
