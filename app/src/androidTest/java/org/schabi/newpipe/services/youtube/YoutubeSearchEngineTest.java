@@ -8,7 +8,7 @@ import org.schabi.newpipe.services.SearchEngine;
  * Created by the-scrabi on 29.12.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * DetailsMenuHandler.java is part of NewPipe.
+ * YoutubeSearchEngineTest.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
