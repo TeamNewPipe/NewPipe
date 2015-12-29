@@ -19,8 +19,6 @@ import java.util.Locale;
 
 public class Localization {
 
-    public static Context contextOfApplication = null;
-
     public static Locale getPreferredLocale(Context context) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
