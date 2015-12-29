@@ -1,9 +1,7 @@
 package org.schabi.newpipe;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -35,13 +33,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 import java.util.Vector;
 
 import org.schabi.newpipe.services.VideoExtractor;
@@ -235,7 +227,7 @@ public class VideoItemDetailFragment extends Fragment {
             switch (info.errorCode) {
                 case VideoInfo.NO_ERROR: {
                     View nextVideoView = videoItemViewCreator
-                            .getViewFromVideoInfoItem(null, nextVideoFrame, info.nextVideo);
+                            .getViewFromVideoInfoItem(null, nextVideoFrame, info.nextVideo, getContext());
                     nextVideoFrame.addView(nextVideoView);
 
 
@@ -253,31 +245,20 @@ public class VideoItemDetailFragment extends Fragment {
                     uploaderView.setText(info.uploader);
                     actionBarHandler.setChannelName(info.uploader);
 
-                    Locale locale = getPreferredLocale();
-                    NumberFormat nf = NumberFormat.getInstance(locale);
-                    String localisedViewCount = nf.format(info.view_count);
-                    viewCountView.setText(
-                            String.format(
-                                    res.getString(R.string.viewCountText), localisedViewCount));
+                    String localizedViewCount = Localization.localizeViewCount(info.view_count, getContext());
+                    viewCountView.setText(localizedViewCount);
 
-                    thumbsUpView.setText(nf.format(info.like_count));
-                    thumbsDownView.setText(nf.format(info.dislike_count));
+                    String localizedLikeCount = Localization.localizeNumber(info.like_count, getContext());
+                    thumbsUpView.setText(localizedLikeCount);
 
-                    @SuppressLint("SimpleDateFormat")
-                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                    Date datum = null;
-                    try {
-                        datum = formatter.parse(info.upload_date);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
+                    String localizedDislikeCount = Localization.localizeNumber(info.dislike_count, getContext());
+                    thumbsDownView.setText(localizedDislikeCount);
 
-                    DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
+                    String localizedDate = Localization.localizeDate(info.upload_date, getContext());
+                    uploadDateView.setText(localizedDate);
 
-                    String localisedDate = df.format(datum);
-                    uploadDateView.setText(
-                            String.format(res.getString(R.string.uploadDateText), localisedDate));
                     descriptionView.setText(Html.fromHtml(info.description));
+
                     descriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
                     actionBarHandler.setServiceId(streamingServiceId);
@@ -456,30 +437,6 @@ public class VideoItemDetailFragment extends Fragment {
                 });
             }
         }
-    }
-
-
-
-    /**Returns the java.util.Locale object which corresponds to the locale set in NewPipe's preferences.
-     * Currently not affected by the device's locale.*/
-    private Locale getPreferredLocale() {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String languageKey = getContext().getString(R.string.searchLanguage);
-        //i know the following line defaults languageCode to "en", but java is picky about uninitialised values
-        // Schabi: well lint tels me the value is redundant. I'll suppress it for now.
-        @SuppressWarnings("UnusedAssignment")
-        String languageCode = "en";
-        languageCode = sp.getString(languageKey, "en");
-
-        if(languageCode.length() == 2) {
-            return new Locale(languageCode);
-        }
-        else if(languageCode.contains("_")) {
-            String country = languageCode
-                    .substring(languageCode.indexOf("_"), languageCode.length());
-            return new Locale(languageCode.substring(0, 2), country);
-        }
-        return Locale.getDefault();
     }
 
     private boolean checkIfLandscape() {
