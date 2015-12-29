@@ -53,14 +53,15 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
     }
 
     public void testItemHasRightDuration() {
-        assertEquals(result.resultList.get(0).duration.contains(":"), true);
-    }
+        assertTrue(result.resultList.get(0).webpage_url,
+                result.resultList.get(0).webpage_url.contains(":"));    }
 
     public void testItemHasRightThumbnail() {
-        assertEquals(result.resultList.get(0).thumbnail_url.contains("https://"), true);
-    }
+        assertTrue(result.resultList.get(0).webpage_url,
+                result.resultList.get(0).webpage_url.contains("https://"));    }
 
     public void testItemHasRightVideoUrl() {
-        assertEquals(result.resultList.get(0).webpage_url.contains("https://"), true);
+        assertTrue(result.resultList.get(0).webpage_url,
+                result.resultList.get(0).webpage_url.contains("https://"));
     }
 }
