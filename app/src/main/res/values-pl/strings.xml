@@ -36,7 +36,7 @@
     <string name="showSimilarVideosButtonText">Podobne wideo</string>
     <string name="searchLanguageTitle">Preferowany język zawartości</string>
     <string name="settingsCategoryVideoAudioTitle">WIDEO &amp; DŹWIĘK</string>
-    <string name="settingsCategoryVideoInfoTittle">INFO</string>
+    <string name="settingsCategoryVideoInfoTitle">INFO</string>
     <string name="settingsCategoryEtcTitle">INNE</string>
 <string name="searchPage">"Szukaj strony: "</string>
     <string name="viewCountText">%1$s wyświetleń</string>

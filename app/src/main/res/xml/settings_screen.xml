@@ -5,7 +5,8 @@
 
     <PreferenceCategory
         android:key="@string/settingsCategoryVideoAudio"
-        android:title="@string/settingsCategoryVideoAudioTitle">
+        android:title="@string/settingsCategoryVideoAudioTitle"
+        android:textAllCaps="true">
 
         <CheckBoxPreference
             android:key="@string/useExternalVideoPlayer"
@@ -33,8 +34,16 @@
 
     </PreferenceCategory>
     <PreferenceCategory
-        android:key="@string/settingsCategoryVideoInfo"
-        android:title="@string/settingsCategoryVideoInfoTittle">
+        android:key="@string/settingsCategoryAppearance"
+        android:title="@string/settingsCategoryAppearanceTitle"
+        android:textAllCaps="true">
+
+        <ListPreference
+            android:key="@string/themePreference"
+            android:title="@string/themePreferenceTitle"
+            android:entries="@array/themeDescriptionList"
+            android:entryValues="@array/themeValueList"
+            android:defaultValue="@string/themeDefaultValue"/>
 
         <CheckBoxPreference
             android:key="@string/showPlayWithKodiPreference"
@@ -42,23 +51,23 @@
             android:summary="@string/showPlayWithKodiSummary"
             android:defaultValue="false" />
 
-        <ListPreference
-            android:key="@string/searchLanguage"
-            android:title="@string/searchLanguageTitle"
-            android:entries="@array/languageNames"
-            android:entryValues="@array/languageCodes"
-            android:defaultValue="en" />
-
         <CheckBoxPreference
             android:key="@string/showNextVideo"
             android:title="@string/showNextAndSimilarTitle"
             android:defaultValue="true" />
 
     </PreferenceCategory>
-
     <PreferenceCategory
-        android:key="@string/settingsCategoryEtc"
-        android:title="@string/settingsCategoryEtcTitle">
+        android:key="@string/settingsCategoryOther"
+        android:title="@string/settingsCategoryOtherTitle"
+        android:textAllCaps="true">
+
+        <ListPreference
+            android:key="@string/searchLanguage"
+            android:title="@string/searchLanguageTitle"
+            android:entries="@array/languageNames"
+            android:entryValues="@array/languageCodes"
+            android:defaultValue="en" />
 
         <EditTextPreference
             android:key="@string/downloadPathPreference"

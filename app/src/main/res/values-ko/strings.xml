@@ -38,7 +38,7 @@
     <string name="showSimilarVideosButtonText">유사한 비디오</string>
     <string name="searchLanguageTitle">선호하는 컨텐츠 언어</string>
     <string name="settingsCategoryVideoAudioTitle">비디오 &amp; 오디오</string>
-    <string name="settingsCategoryVideoInfoTittle">정보</string>
+    <string name="settingsCategoryVideoInfoTitle">정보</string>
     <string name="settingsCategoryEtcTitle">기타</string>
 
     <string name="itemThumbnailViewDescription">비디오 미리보기 썸네일</string>

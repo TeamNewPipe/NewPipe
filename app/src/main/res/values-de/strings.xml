@@ -42,7 +42,7 @@
     <string name="urlNotSupportedText">URL wird nicht unterstützt.</string>
     <string name="showSimilarVideosButtonText">Ähnliche Videos</string>
     <string name="settingsCategoryVideoAudioTitle">VIDEO &amp; AUDIO</string>
-    <string name="settingsCategoryVideoInfoTittle">INFO</string>
+    <string name="settingsCategoryVideoInfoTitle">INFO</string>
     <string name="settingsCategoryEtcTitle">ETC</string>
 <string name="searchLanguageTitle">Bevorzugte Sprache</string>
     <string name="itemThumbnailViewDescription">Video-Vorschau-Bild</string>

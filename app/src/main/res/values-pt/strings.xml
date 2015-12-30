@@ -39,7 +39,7 @@
     <string name="showSimilarVideosButtonText">Vídeos similares</string>
     <string name="searchLanguageTitle">Idioma preferencial do conteúdo</string>
     <string name="settingsCategoryVideoAudioTitle">Vídeo e áudio</string>
-    <string name="settingsCategoryVideoInfoTittle">Informações</string>
+    <string name="settingsCategoryVideoInfoTitle">Informações</string>
     <string name="settingsCategoryEtcTitle">Outras</string>
 
     <string name="itemThumbnailViewDescription">Miniatura de vídeos</string>

@@ -36,7 +36,7 @@
     <string name="showSimilarVideosButtonText">Podobni posnetki</string>
     <string name="searchLanguageTitle">Prednostni jezik vsebine</string>
     <string name="settingsCategoryVideoAudioTitle">Video in Zvok</string>
-    <string name="settingsCategoryVideoInfoTittle">Podrobnosti</string>
+    <string name="settingsCategoryVideoInfoTitle">Podrobnosti</string>
     <string name="itemThumbnailViewDescription">Sličica predogleda videa</string>
     <string name="detailThumbnailViewDescription">Sličica predogleda videa</string>
     <string name="detailUploaderThumbnailViewDescription">Sličica pošiljalnika</string>

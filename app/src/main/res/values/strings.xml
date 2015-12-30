@@ -35,8 +35,11 @@
     <string name="showPlayWithKodiSummary">Displays an option to play a video via Kodi media center.</string>
     <string name="playAudio">Audio</string>
     <string name="defaultAudioFormatTitle">Default audio format</string>
-    <string name="webMAudioDescription">WebM - free format</string>
-    <string name="m4aAudioDescription">m4a - better quality</string>
+    <string name="webMAudioDescription">WebM &#8212; free format</string>
+    <string name="m4aAudioDescription">m4a &#8212; better quality</string>
+    <string name="themePreferenceTitle">Default Resolution</string>
+    <string name="darkThemeDescription">Dark</string>
+    <string name="lightThemeDescription">Light</string>
     <string name="downloadDialogTitle">Download</string>
     <string-array name="downloadOptions">
         <item>Video</item>
@@ -47,10 +50,10 @@
     <string name="urlNotSupportedText">URL not supported.</string>
     <string name="showSimilarVideosButtonText">Similar videos</string>
     <string name="searchLanguageTitle">Preferable content language</string>
-    <string name="settingsCategoryVideoAudioTitle">VIDEO &amp; AUDIO</string>
-    <string name="settingsCategoryVideoInfoTittle">INFO</string>
-    <string name="settingsCategoryEtcTitle">ETC</string>
-    <string name="backgroundPlayerTickerText" translatable="false">%1$s - NewPipe</string>
+    <string name="settingsCategoryVideoAudioTitle">Video &amp; Audio</string>
+    <string name="settingsCategoryAppearanceTitle">Appearance</string>
+    <string name="settingsCategoryOtherTitle">Other</string>
+    <string name="backgroundPlayerTickerText" translatable="false">%1$s &#8212; NewPipe</string>
     <string name="backgroundPlayerStartPlayingToast">Playing in background</string>
     <string name="c3sUrl" translatable="false">https://www.c3s.cc/</string>
 

@@ -38,7 +38,7 @@
     <string name="showSimilarVideosButtonText">同様の動画</string>
     <string name="searchLanguageTitle">優先される言語</string>
     <string name="settingsCategoryVideoAudioTitle">動画とｵｰﾃﾞｨｵ</string>
-    <string name="settingsCategoryVideoInfoTittle">情報</string>
+    <string name="settingsCategoryVideoInfoTitle">情報</string>
     <string name="settingsCategoryEtcTitle">その他</string>
 <string name="viewCountText">%1$s ビュー</string>
     <string name="itemThumbnailViewDescription">ビデオ プレビュー サムネイル</string>

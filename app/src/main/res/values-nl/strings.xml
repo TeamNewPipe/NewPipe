@@ -41,7 +41,7 @@
 <string name="useExternalVideoPlayerTitle">Gebruik externe videospeler</string>
     <string name="useExternalAudioPlayerTitle">Gebruik externe audiospeler</string>
     <string name="settingsCategoryVideoAudioTitle">VIDEO &amp; GELUID</string>
-    <string name="settingsCategoryVideoInfoTittle">INFO</string>
+    <string name="settingsCategoryVideoInfoTitle">INFO</string>
     <string name="settingsCategoryEtcTitle">ETC.</string>
 
     <string name="itemThumbnailViewDescription">Videovoorbeeld thumbnail</string>

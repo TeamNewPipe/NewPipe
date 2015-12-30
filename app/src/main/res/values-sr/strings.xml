@@ -43,7 +43,7 @@
     <string name="showSimilarVideosButtonText">Слични видео</string>
     <string name="searchLanguageTitle">Пожељни језик садржаја</string>
 <string name="settingsCategoryVideoAudioTitle">ВИДЕО И АУДИО</string>
-    <string name="settingsCategoryVideoInfoTittle">ПОДАЦИ</string>
+    <string name="settingsCategoryVideoInfoTitle">ПОДАЦИ</string>
     <string name="settingsCategoryEtcTitle">ОСТАЛО</string>
 <string name="itemThumbnailViewDescription">Сличица видео прегледа</string>
     <string name="detailThumbnailViewDescription">Сличица видео прегледа</string>

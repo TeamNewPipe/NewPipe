@@ -38,7 +38,7 @@
     <string name="urlNotSupportedText">URL non supportée.</string>
     <string name="showSimilarVideosButtonText">Vidéos similaires</string>
     <string name="settingsCategoryVideoAudioTitle">VIDÉO &amp; AUDIO</string>
-    <string name="settingsCategoryVideoInfoTittle">INFORMATION</string>
+    <string name="settingsCategoryVideoInfoTitle">INFORMATION</string>
     <string name="settingsCategoryEtcTitle">DIVERS</string>
 
     <string name="itemThumbnailViewDescription">Miniature d\'aperçu vidéo</string>
