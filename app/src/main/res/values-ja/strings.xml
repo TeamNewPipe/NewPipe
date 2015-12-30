@@ -29,8 +29,8 @@
     <string name="showPlayWithKodiSummary">Kodi ﾒﾃﾞｨｱｾﾝﾀｰ経由で動画を再生するための設定を表示します.</string>
     <string name="playAudio">ｵｰﾃﾞｨｵ</string>
     <string name="defaultAudioFormatTitle">基本のｵｰﾃﾞｨｵﾌｫｰﾏｯﾄ</string>
-    <string name="webMAudioDescription">.WebM - ﾌﾘｰﾌｫｰﾏｯﾄ</string>
-    <string name="m4aAudioDescription">.m4a - より良い品質</string>
+    <string name="webMAudioDescription">.WebM &#8212; ﾌﾘｰﾌｫｰﾏｯﾄ</string>
+    <string name="m4aAudioDescription">.m4a &#8212; より良い品質</string>
     <string name="downloadDialogTitle">ﾀﾞｳﾝﾛｰﾄﾞ</string>
     <string name="nextVideoTitle">次の動画</string>
     <string name="showNextAndSimilarTitle">次の同様の動画を表示します｡</string>
@@ -38,8 +38,6 @@
     <string name="showSimilarVideosButtonText">同様の動画</string>
     <string name="searchLanguageTitle">優先される言語</string>
     <string name="settingsCategoryVideoAudioTitle">動画とｵｰﾃﾞｨｵ</string>
-    <string name="settingsCategoryVideoInfoTitle">情報</string>
-    <string name="settingsCategoryEtcTitle">その他</string>
 <string name="viewCountText">%1$s ビュー</string>
     <string name="itemThumbnailViewDescription">ビデオ プレビュー サムネイル</string>
     <string name="detailThumbnailViewDescription">ビデオ プレビュー サムネイル</string>

@@ -30,8 +30,8 @@
     <string name="showPlayWithKodiSummary">Показать опцию воспроизведения видео через Kodi media center.</string>
     <string name="playAudio">Аудио</string>
     <string name="defaultAudioFormatTitle">Формат аудио по-умолчанию</string>
-    <string name="webMAudioDescription">WebM - свободный формат</string>
-    <string name="m4aAudioDescription">m4a - лучшее качество</string>
+    <string name="webMAudioDescription">WebM &#8212; свободный формат</string>
+    <string name="m4aAudioDescription">m4a &#8212; лучшее качество</string>
     <string name="downloadDialogTitle">Скачать</string>
     <string-array name="downloadOptions">
         <item>Видео</item>
@@ -42,9 +42,9 @@
     <string name="showSimilarVideosButtonText">Похожие видео</string>
     <string name="showNextAndSimilarTitle">Показывать следующее и предложенные видео</string>
     <string name="searchLanguageTitle">Предпочитаемый язык контента</string>
-<string name="settingsCategoryVideoAudioTitle">ВИДЕО И АУДИО</string>
-    <string name="settingsCategoryVideoInfoTitle">ИНФОРМАЦИЯ</string>
-    <string name="settingsCategoryEtcTitle">ПРОЧЕЕ</string>
+    <string name="settingsCategoryVideoAudioTitle">Видео и Аудио</string>
+    <string name="settingsCategoryAppearanceTitle">Внешний вид</string>
+    <string name="settingsCategoryOtherTitle">Прочее</string>
 
     <string name="itemThumbnailViewDescription">Миниатюра видео-превью</string>
     <string name="detailThumbnailViewDescription">Миниатюра видео-превью</string>

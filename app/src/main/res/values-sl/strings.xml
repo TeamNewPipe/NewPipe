@@ -27,8 +27,8 @@
     <string name="showPlayWithKodiTitle">Pokaži možnost \"Predvajaj s Kodi\"</string>
     <string name="defaultAudioFormatTitle">Privzet zapis zvoka</string>
     <string name="playAudio">Zvok</string>
-    <string name="webMAudioDescription">WebM - prost zapis</string>
-    <string name="m4aAudioDescription">m4a - višja kakovost posnetkov</string>
+    <string name="webMAudioDescription">WebM &#8212; prost zapis</string>
+    <string name="m4aAudioDescription">m4a &#8212; višja kakovost posnetkov</string>
     <string name="downloadDialogTitle">Prejem</string>
     <string name="nextVideoTitle">Naslednji video</string>
     <string name="showNextAndSimilarTitle">Pokaži naslednji video in podobne posnetke</string>
@@ -43,7 +43,7 @@
     <string name="autoPlayThroughIntentTitle">Samodejno predvajaj prek vmesnika Intent</string>
     <string name="autoPlayThroughIntentSummary">Začne samodejno predvajanje videa, ko je zagnan prek drugega programa.</string>
     <string name="showPlayWithKodiSummary">Pokaže možnost predvajanja videa preko predstavnega središča Kodi.</string>
-    <string name="settingsCategoryEtcTitle">Drugo</string>
+    <string name="settingsCategoryOtherTitle">Drugo</string>
 
     <string name="detailThumbsUpImgViewDescription">Všeč mi je</string>
 <string name="detailThumbsDownImgViewDescription">Ni mi všeč</string>
