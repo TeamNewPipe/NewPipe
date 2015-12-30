@@ -37,7 +37,7 @@
     <string name="defaultAudioFormatTitle">Default audio format</string>
     <string name="webMAudioDescription">WebM &#8212; free format</string>
     <string name="m4aAudioDescription">m4a &#8212; better quality</string>
-    <string name="themePreferenceTitle">Default Resolution</string>
+    <string name="themePreferenceTitle">Theme</string>
     <string name="darkThemeDescription">Dark</string>
     <string name="lightThemeDescription">Light</string>
     <string name="downloadDialogTitle">Download</string>
