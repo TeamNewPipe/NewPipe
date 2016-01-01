@@ -2,6 +2,8 @@ package org.schabi.newpipe;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.support.annotation.LayoutRes;
@@ -12,6 +14,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import info.guardianproject.netcipher.proxy.OrbotHelper;
 
 /**
  * Created by Christian Schabesberger on 31.08.15.
@@ -52,10 +56,25 @@ public class SettingsActivity extends PreferenceActivity {
     }
 
     public static class SettingsFragment extends PreferenceFragment {
+        private CheckBoxPreference useTorCheckBox;
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_screen);
+
+            // if Orbot is installed, then default to using Tor, the user can still override
+            useTorCheckBox = (CheckBoxPreference) findPreference(getString(R.string.useTor));
+            boolean useTor = OrbotHelper.isOrbotInstalled(getActivity());
+            useTorCheckBox.setDefaultValue(useTor);
+            useTorCheckBox.setChecked(useTor);
+            useTorCheckBox.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object useTor) {
+                    App.configureTor((Boolean) useTor);
+                    return true;
+                }
+            });
         }
     }
 

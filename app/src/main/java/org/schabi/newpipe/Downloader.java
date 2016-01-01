@@ -41,7 +41,6 @@ public class Downloader {
      * @param language the language (usually a 2-character code) to set as the preferred language
      * @return the contents of the specified text file*/
     public static String download(String siteUrl, String language) {
-        NetCipher.useTor();
         String ret = "";
         try {
             URL url = new URL(siteUrl);
@@ -86,7 +85,6 @@ public class Downloader {
  * @return the contents of the specified text file*/
     public static String download(String siteUrl) {
         String ret = "";
-        NetCipher.useTor();
 
         try {
             URL url = new URL(siteUrl);
