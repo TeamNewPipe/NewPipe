@@ -1,13 +1,9 @@
 package org.schabi.newpipe;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Environment;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -147,18 +143,5 @@ public class SettingsActivity extends PreferenceActivity {
             finish();
         }
         return true;
-    }
-
-    public static void initSettings(Context context) {
-        PreferenceManager.setDefaultValues(context, R.xml.settings_screen, false);
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        if(sp.getString(context.getString(R.string.downloadPathPreference), "").isEmpty()){
-            SharedPreferences.Editor spEditor = sp.edit();
-            String newPipeDownloadStorage =
-                    Environment.getExternalStorageDirectory().getAbsolutePath() + "/NewPipe";
-            spEditor.putString(context.getString(R.string.downloadPathPreference)
-                    , newPipeDownloadStorage);
-            spEditor.apply();
-        }
     }
 }
