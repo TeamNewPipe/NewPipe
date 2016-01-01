@@ -29,43 +29,30 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".VideoItemListActivity" />
+
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="youtube.com"
-                    android:scheme="http"
-                    android:pathPattern="/?*#*/*watch"/>
-                <data
-                    android:host="youtube.com"
-                    android:scheme="https"
-                    android:pathPattern="/?*#*/*watch"/>
-                <data
-                    android:host="www.youtube.com"
-                    android:scheme="http"
-                    android:pathPattern="/?*#*/*watch"/>
-                <data
-                    android:host="www.youtube.com"
-                    android:scheme="https"
-                    android:pathPattern="/?*#*/*watch"/>
-                <data
-                    android:host="m.youtube.com"
-                    android:scheme="http"
-                    android:pathPattern="/?*#*/*watch"/>
-                <data
-                    android:host="m.youtube.com"
-                    android:scheme="https"
-                    android:pathPattern="/?*#*/*watch"/>
-                <data
-                    android:host="youtu.be"
-                    android:scheme="https"
-                    android:pathPrefix="/"/>
-                <data
-                    android:host="youtu.be"
-                    android:scheme="http"
-                    android:pathPrefix="/"/>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="youtube.com" />
+                <data android:host="m.youtube.com" />
+                <data android:host="www.youtube.com" />
+                <data android:pathPattern="/?*#*/*watch" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="youtu.be" />
+                <data android:pathPrefix="/" />
             </intent-filter>
         </activity>
         <activity android:name=".PlayVideoActivity"
