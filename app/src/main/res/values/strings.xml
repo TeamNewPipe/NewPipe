@@ -64,5 +64,5 @@
     <string name="detailThumbsDownImgViewDescription">Dislikes</string>
     <string name="detailThumbsUpImgViewDescription">Likes</string>
     <string name="useTor">Use Tor</string>
-    <string name="useTorTitle">Proxy connections via The Onion Router</string>
+    <string name="useTorSummary">Force download traffic through Tor for increased privacy (streaming videos not yet supported)</string>
 </resources>
