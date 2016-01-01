@@ -42,7 +42,7 @@
                 <data android:host="m.youtube.com" />
                 <data android:host="www.youtube.com" />
                 <data android:pathPrefix="/v/" />
-                <data android:pathPattern="/?*#*/*watch" />
+                <data android:pathPrefix="/watch" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
