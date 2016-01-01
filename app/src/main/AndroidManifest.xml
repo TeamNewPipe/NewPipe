@@ -55,6 +55,15 @@
                 <data android:host="youtu.be" />
                 <data android:pathPrefix="/" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="vnd.youtube" />
+                <data android:scheme="vnd.youtube.launch" />
+            </intent-filter>
         </activity>
         <activity android:name=".PlayVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
