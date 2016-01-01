@@ -188,6 +188,12 @@ public class PlayVideoActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        App.checkStartTor(this);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         prefs = getPreferences(Context.MODE_PRIVATE);
