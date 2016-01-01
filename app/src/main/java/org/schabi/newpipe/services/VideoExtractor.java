@@ -107,19 +107,22 @@ public abstract class VideoExtractor {
     }
 
 
-    protected abstract int getErrorCode();
-    protected abstract String getErrorMessage();
-    protected abstract String getVideoUrl(String videoId);
-    protected abstract String getVideoId(String siteUrl);
-    protected abstract int getTimeStamp();
-    protected abstract String getTitle();
-    protected abstract String getDescription();
-    protected abstract String getUploader();
-    protected abstract int getLength();
-    protected abstract long getViews();
-    protected abstract String getUploadDate();
-    protected abstract String getThumbnailUrl();
-    protected abstract String getUploaderThumbnailUrl();
-    protected abstract VideoInfo.AudioStream[] getAudioStreams();
-    protected abstract VideoInfo.VideoStream[] getVideoStreams();
+    public abstract int getErrorCode();
+    public abstract String getErrorMessage();
+
+    //todo: remove these functions, or make them static, otherwise its useles, to have them here
+    public abstract String getVideoUrl(String videoId);
+    public abstract String getVideoId(String siteUrl);
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    public abstract int getTimeStamp();
+    public abstract String getTitle();
+    public abstract String getDescription();
+    public abstract String getUploader();
+    public abstract int getLength();
+    public abstract long getViews();
+    public abstract String getUploadDate();
+    public abstract String getThumbnailUrl();
+    public abstract String getUploaderThumbnailUrl();
+    public abstract VideoInfo.AudioStream[] getAudioStreams();
+    public abstract VideoInfo.VideoStream[] getVideoStreams();
 }

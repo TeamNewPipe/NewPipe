@@ -2,7 +2,10 @@ package org.schabi.newpipe.services.youtube;
 
 import android.test.AndroidTestCase;
 
+import org.schabi.newpipe.VideoPreviewInfo;
 import org.schabi.newpipe.services.SearchEngine;
+
+import java.util.ArrayList;
 
 /**
  * Created by the-scrabi on 29.12.15.
@@ -25,18 +28,18 @@ import org.schabi.newpipe.services.SearchEngine;
  */
 
 public class YoutubeSearchEngineTest extends AndroidTestCase {
-
-    SearchEngine engine;
-    SearchEngine.Result result;
+    private SearchEngine.Result result;
+    private ArrayList<String> suggestionReply;
 
     @Override
     public void setUp() throws Exception{
         super.setUp();
-        engine = new YoutubeSearchEngine();
+        SearchEngine engine = new YoutubeSearchEngine();
         result = engine.search("https://www.youtube.com/results?search_query=bla", 0, "de");
+        suggestionReply = engine.suggestionList("hello");
     }
 
-    public void testIfNoErrorOccure() {
+    public void testIfNoErrorOccur() {
         assertEquals(result.errorMessage, "");
     }
 
@@ -44,24 +47,43 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
         assertEquals(result.resultList.size() > 0, true);
     }
 
-    public void testItemHasTitle() {
-        assertEquals(result.resultList.get(0).title.isEmpty(), false);
+    public void testItemsHaveTitle() {
+        for(VideoPreviewInfo i : result.resultList) {
+            assertEquals(i.title.isEmpty(), false);
+        }
     }
 
-    public void testItemHasUploader() {
-        assertEquals(result.resultList.get(0).uploader.isEmpty(), false);
+    public void testItemsHaveUploader() {
+        for(VideoPreviewInfo i : result.resultList) {
+            assertEquals(i.uploader.isEmpty(), false);
+        }
     }
 
-    public void testItemHasRightDuration() {
-        assertTrue(result.resultList.get(0).webpage_url,
-                result.resultList.get(0).webpage_url.contains(":"));    }
+    public void testItemsHaveRightDuration() {
+        for(VideoPreviewInfo i : result.resultList) {
+            assertTrue(i.duration, i.duration.contains(":"));
+        }
+    }
 
-    public void testItemHasRightThumbnail() {
-        assertTrue(result.resultList.get(0).webpage_url,
-                result.resultList.get(0).webpage_url.contains("https://"));    }
+    public void testItemsHaveRightThumbnail() {
+        for (VideoPreviewInfo i : result.resultList) {
+            assertTrue(i.thumbnail_url, i.thumbnail_url.contains("https://"));
+        }
+    }
 
-    public void testItemHasRightVideoUrl() {
-        assertTrue(result.resultList.get(0).webpage_url,
-                result.resultList.get(0).webpage_url.contains("https://"));
+    public void testItemsHaveRightVideoUrl() {
+        for (VideoPreviewInfo i : result.resultList) {
+            assertTrue(i.webpage_url, i.webpage_url.contains("https://"));
+        }
+    }
+
+    public void testIfSuggestionsAreReplied() {
+        assertEquals(suggestionReply.size() > 0, true);
+    }
+
+    public void testIfSuggestionsAreValid() {
+        for(String s : suggestionReply) {
+            assertTrue(s, !s.isEmpty());
+        }
     }
 }
