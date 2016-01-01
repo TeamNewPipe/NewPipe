@@ -27,6 +27,7 @@ import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.VideoView;
 import info.guardianproject.netcipher.NetCipher;
+import info.guardianproject.netcipher.proxy.OrbotHelper;
 
 /**
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
@@ -362,7 +363,8 @@ public class PlayVideoActivity extends AppCompatActivity implements OnSharedPref
     }
 
     private void setTorPreference(SharedPreferences prefs) {
-        if(prefs.getBoolean(getString(R.string.useTor), false)) {
+        // if Orbot is installed, then default to using Tor, the user can still override
+        if(prefs.getBoolean(getString(R.string.useTor), OrbotHelper.isOrbotInstalled(this))) {
             NetCipher.useTor();
         } else {
             NetCipher.setProxy(null);
