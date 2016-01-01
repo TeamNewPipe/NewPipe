@@ -74,12 +74,10 @@
             android:parentActivityName=".VideoItemDetailActivity"
             tools:ignore="UnusedAttribute">
         </activity>
-        <!--TODO: make label a translatable string -->
         <service
             android:name=".BackgroundPlayer"
-            android:label="NewPipe Background Player"
-            android:exported="false" >
-        </service>
+            android:label="@string/background_player_name"
+            android:exported="false" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" >
