@@ -7,3 +7,4 @@
 /app/app.iml
 /.idea
 /*.iml
+gradle.properties

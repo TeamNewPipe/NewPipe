@@ -57,26 +57,29 @@ public class DownloadDialog extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Context context = getActivity();
-                        SharedPreferences defaultPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+                        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
                         String suffix = "";
                         String title = arguments.getString(TITLE);
                         String url = "";
+                        String downloadFolder = "Download";
                         switch(which) {
                             case 0:     // Video
                                 suffix = arguments.getString(FILE_SUFFIX_VIDEO);
                                 url = arguments.getString(VIDEO_URL);
+                                downloadFolder = "Movies";
                                 break;
                             case 1:
                                 suffix = arguments.getString(FILE_SUFFIX_AUDIO);
                                 url = arguments.getString(AUDIO_URL);
+                                downloadFolder = "Music";
                                 break;
                             default:
                                 Log.d(TAG, "lolz");
                         }
-                        //to avoid hard-coded string like "/storage/emulated/0/NewPipe"
-                        final File dir = new File(defaultPreferences.getString(
-                                "download_path_preference",
-                                Environment.getExternalStorageDirectory().getAbsolutePath() + "/NewPipe"));
+                        //to avoid hard-coded string like "/storage/emulated/0/Movies"
+                        String downloadPath = prefs.getString(getString(R.string.downloadPathPreference),
+                                Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + downloadFolder);
+                        final File dir = new File(downloadPath);
                         if(!dir.exists()) {
                             boolean mkdir = dir.mkdir(); //attempt to create directory
                             if(!mkdir && !dir.isDirectory()) {
@@ -87,9 +90,7 @@ public class DownloadDialog extends DialogFragment {
                         DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
                         DownloadManager.Request request = new DownloadManager.Request(
                                 Uri.parse(url));
-                        request.setDestinationUri(Uri.fromFile(new File(
-                                defaultPreferences.getString("download_path_preference", "/storage/emulated/0/NewPipe")
-                                        + "/" + title + suffix)));
+                        request.setDestinationUri(Uri.fromFile(new File(dir + "/" + title + suffix)));
                         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
                         try {
                             dm.enqueue(request);
