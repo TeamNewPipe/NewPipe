@@ -1,6 +1,12 @@
 package org.schabi.newpipe;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
@@ -114,8 +120,28 @@ public class Downloader {
      * @param saveFilePath path of the directory to save the file
      * @throws IOException
      */
-    public static void downloadFile(final String fileURL, final String saveFilePath) {
-        new AsyncTask<Void, Void, Void>() {
+    public static void downloadFile(final Context context, final String fileURL, final String saveFilePath) {
+        new AsyncTask<Void, Integer, Void>() {
+
+            private NotificationManager nm;
+            private NotificationCompat.Builder builder;
+            private int notifyId = 0x1234;
+            private int fileSize = 0xffffffff;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                Drawable icon = context.getResources().getDrawable(R.mipmap.ic_launcher);
+                builder = new NotificationCompat.Builder(context)
+                        .setSmallIcon(android.R.drawable.stat_sys_download)
+                        .setLargeIcon(((BitmapDrawable) icon).getBitmap())
+                        .setContentTitle(saveFilePath.substring(saveFilePath.lastIndexOf('/') + 1))
+                        .setContentText(saveFilePath)
+                        .setProgress(fileSize, 0, false);
+                nm.notify(notifyId, builder.build());
+            }
+
             @Override
             protected Void doInBackground(Void... voids) {
                 HttpsURLConnection con = null;
@@ -125,17 +151,26 @@ public class Downloader {
 
                     // always check HTTP response code first
                     if (responseCode == HttpURLConnection.HTTP_OK) {
+                        fileSize = con.getContentLength();
                         InputStream inputStream = new BufferedInputStream(con.getInputStream());
                         FileOutputStream outputStream = new FileOutputStream(saveFilePath);
 
+                        int bufferSize = 8192;
+                        int downloaded = 0;
+
                         int bytesRead = -1;
-                        byte[] buffer = new byte[8192];
+                        byte[] buffer = new byte[bufferSize];
                         while ((bytesRead = inputStream.read(buffer)) != -1) {
                             outputStream.write(buffer, 0, bytesRead);
+                            downloaded += bytesRead;
+                            if (downloaded % 50000 < bufferSize) {
+                                publishProgress(downloaded);
+                            }
                         }
 
                         outputStream.close();
                         inputStream.close();
+                        publishProgress(bufferSize);
 
                     } else {
                         Log.i(TAG, "No file to download. Server replied HTTP code: " + responseCode);
@@ -149,6 +184,18 @@ public class Downloader {
                     }
                 }
                 return null;
+            }
+
+            @Override
+            protected void onProgressUpdate(Integer... progress) {
+                builder.setProgress(fileSize, progress[0], false);
+                nm.notify(notifyId, builder.build());
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                nm.cancel(notifyId);
             }
         }.execute();
     }
