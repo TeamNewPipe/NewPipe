@@ -61,21 +61,24 @@ public class DownloadDialog extends DialogFragment {
                         String suffix = "";
                         String title = arguments.getString(TITLE);
                         String url = "";
+                        String downloadFolder = "Download";
                         switch(which) {
                             case 0:     // Video
                                 suffix = arguments.getString(FILE_SUFFIX_VIDEO);
                                 url = arguments.getString(VIDEO_URL);
+                                downloadFolder = "Movies";
                                 break;
                             case 1:
                                 suffix = arguments.getString(FILE_SUFFIX_AUDIO);
                                 url = arguments.getString(AUDIO_URL);
+                                downloadFolder = "Music";
                                 break;
                             default:
                                 Log.d(TAG, "lolz");
                         }
                         //to avoid hard-coded string like "/storage/emulated/0/Movies"
                         String downloadPath = prefs.getString(getString(R.string.downloadPathPreference),
-                                Environment.getExternalStorageDirectory().getAbsolutePath() + "/Movies");
+                                Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + downloadFolder);
                         final File dir = new File(downloadPath);
                         if(!dir.exists()) {
                             boolean mkdir = dir.mkdir(); //attempt to create directory
