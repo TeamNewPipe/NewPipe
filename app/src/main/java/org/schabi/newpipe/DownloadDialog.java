@@ -87,15 +87,21 @@ public class DownloadDialog extends DialogFragment {
                                 //TODO notify user "download directory should be changed" ?
                             }
                         }
-                        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-                        DownloadManager.Request request = new DownloadManager.Request(
-                                Uri.parse(url));
-                        request.setDestinationUri(Uri.fromFile(new File(dir + "/" + title + suffix)));
-                        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                        try {
-                            dm.enqueue(request);
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                        String saveFilePath = dir + "/" + title + suffix;
+                        if (App.isUsingTor()) {
+                            // if using Tor, do not use DownloadManager because the proxy cannot be set
+                            Downloader.downloadFile(url, saveFilePath);
+                        } else {
+                            DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+                            DownloadManager.Request request = new DownloadManager.Request(
+                                    Uri.parse(url));
+                            request.setDestinationUri(Uri.fromFile(new File(saveFilePath)));
+                            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                            try {
+                                dm.enqueue(request);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 });

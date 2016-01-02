@@ -1,9 +1,17 @@
 package org.schabi.newpipe;
 
+import android.os.AsyncTask;
+import android.util.Log;
+
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
 
@@ -32,6 +40,7 @@ import info.guardianproject.netcipher.NetCipher;
  */
 
 public class Downloader {
+    public static final String TAG = "Downloader";
 
     private static final String USER_AGENT = "Mozilla/5.0";
 
@@ -97,4 +106,51 @@ public class Downloader {
 
         return ret;
     }
+
+    /**
+     * Downloads a file from a URL in the background using an {@link AsyncTask}.
+     *
+     * @param fileURL      HTTP URL of the file to be downloaded
+     * @param saveFilePath path of the directory to save the file
+     * @throws IOException
+     */
+    public static void downloadFile(final String fileURL, final String saveFilePath) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                HttpsURLConnection con = null;
+                try {
+                    con = NetCipher.getHttpsURLConnection(fileURL);
+                    int responseCode = con.getResponseCode();
+
+                    // always check HTTP response code first
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        InputStream inputStream = new BufferedInputStream(con.getInputStream());
+                        FileOutputStream outputStream = new FileOutputStream(saveFilePath);
+
+                        int bytesRead = -1;
+                        byte[] buffer = new byte[8192];
+                        while ((bytesRead = inputStream.read(buffer)) != -1) {
+                            outputStream.write(buffer, 0, bytesRead);
+                        }
+
+                        outputStream.close();
+                        inputStream.close();
+
+                    } else {
+                        Log.i(TAG, "No file to download. Server replied HTTP code: " + responseCode);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (con != null) {
+                        con.disconnect();
+                        con = null;
+                    }
+                }
+                return null;
+            }
+        }.execute();
+    }
+
 }

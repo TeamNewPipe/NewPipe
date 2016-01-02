@@ -39,4 +39,8 @@ public class App extends Application {
             OrbotHelper.requestStartTor(context);
         }
     }
+
+    static boolean isUsingTor() {
+        return useTor;
+    }
 }
