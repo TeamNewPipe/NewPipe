@@ -61,17 +61,17 @@ public class DownloadDialog extends DialogFragment {
                         String suffix = "";
                         String title = arguments.getString(TITLE);
                         String url = "";
-                        String downloadFolder = "Download";
+                        String downloadFolder = Environment.DIRECTORY_DOWNLOADS;
                         switch(which) {
                             case 0:     // Video
                                 suffix = arguments.getString(FILE_SUFFIX_VIDEO);
                                 url = arguments.getString(VIDEO_URL);
-                                downloadFolder = "Movies";
+                                downloadFolder = Environment.DIRECTORY_MOVIES;
                                 break;
                             case 1:
                                 suffix = arguments.getString(FILE_SUFFIX_AUDIO);
                                 url = arguments.getString(AUDIO_URL);
-                                downloadFolder = "Music";
+                                downloadFolder = Environment.DIRECTORY_MUSIC;
                                 break;
                             default:
                                 Log.d(TAG, "lolz");
