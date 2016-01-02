@@ -54,4 +54,8 @@
     <string name="useExternalAudioPlayerTitle">Користи спољашњи аудио плејер</string>
     <string name="backgroundPlayerStartPlayingToast">Пуштам у позадини</string>
 
+    <string name="background_player_name">Позадински плејер за Јутјуб цев</string>
+    <string name="loading">Учитавам</string>
+    <string name="play">Пусти</string>
+
     </resources>
