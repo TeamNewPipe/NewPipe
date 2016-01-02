@@ -17,6 +17,7 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -113,9 +114,9 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         private int noteID = TAG.hashCode();
         private BackgroundPlayer owner;
         private NotificationManager noteMgr;
-        private NotificationCompat.Builder noteBuilder;
         private WifiManager.WifiLock wifiLock;
         private Bitmap videoThumbnail = null;
+        private NotificationCompat.Builder noteBuilder;
 
         public PlayerThread(String src, String title, BackgroundPlayer owner) {
             this.source = src;
@@ -124,10 +125,9 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         }
+
         @Override
         public void run() {
-            Resources res = getApplicationContext().getResources();
-
             mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);//cpu lock
             try {
                 mediaPlayer.setDataSource(source);
@@ -177,54 +177,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             filter.addAction(ACTION_STOP);
             registerReceiver(broadcastReceiver, filter);
 
-            PendingIntent playPI = PendingIntent.getBroadcast(owner, noteID,
-                    new Intent(ACTION_PLAYPAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
-
-            NotificationCompat.Action playButton = new NotificationCompat.Action.Builder
-                    (R.drawable.ic_play_arrow_white_48dp, "Play", playPI).build();
-
-            /*
-            NotificationCompat.Action pauseButton = new NotificationCompat.Action.Builder
-                    (R.drawable.ic_pause_white_24dp, "Pause", playPI).build();
-            */
-
-            PendingIntent stopPI = PendingIntent.getBroadcast(owner, noteID,
-                    new Intent(ACTION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
-
-            noteBuilder = new NotificationCompat.Builder(owner);
-            noteBuilder
-                    .setContentTitle(title)
-                    //really? Id like to put something more helpful here.
-                    //.setContentText("NewPipe is playing in the background")
-                    .setContentText(channelName)
-                    //.setAutoCancel(!mediaPlayer.isPlaying())
-                    .setOngoing(true)
-                    .setDeleteIntent(stopPI)
-                    //doesn't fit with Notification.MediaStyle
-                    //.setProgress(vidLength, 0, false)
-                    .setSmallIcon(R.drawable.ic_play_circle_filled_white_24dp)
-                    .setLargeIcon(videoThumbnail)
-                    .setTicker(
-                            String.format(res.getString(
-                                    R.string.backgroundPlayerTickerText), title))
-                    .addAction(playButton);
-                    //.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                    //.setLargeIcon(cover)
-            if(android.os.Build.VERSION.SDK_INT >= 16)
-                noteBuilder.setPriority(Notification.PRIORITY_LOW);
-            if(android.os.Build.VERSION.SDK_INT >= 21)
-                noteBuilder.setCategory(Notification.CATEGORY_TRANSPORT);
-
-                noteBuilder.setStyle(new NotificationCompat.MediaStyle()
-                                //.setMediaSession(mMediaSession.getSessionToken())
-                                .setShowActionsInCompactView(new int[]{0})
-                                .setShowCancelButton(true)
-                                .setCancelButtonIntent(stopPI));
-            if(videoThumbnail != null) {
-                noteBuilder.setLargeIcon(videoThumbnail);
-            }
-
-            Notification note = noteBuilder.build();
+            Notification note = buildNotification();
 
             Intent openDetailView = new Intent(getApplicationContext(),
                     VideoItemDetailActivity.class);
@@ -252,7 +205,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                     Log.d(TAG, "sleep failure");
                 }
             }*/
-
         }
 
         private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -305,6 +257,94 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             public void onCompletion(MediaPlayer mp) {
                 afterPlayCleanup();
             }
+        }
+
+        private Notification buildNotification() {
+            Notification note;
+            Resources res = getApplicationContext().getResources();
+            noteBuilder = new NotificationCompat.Builder(owner);
+
+            PendingIntent playPI = PendingIntent.getBroadcast(owner, noteID,
+                    new Intent(ACTION_PLAYPAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent stopPI = PendingIntent.getBroadcast(owner, noteID,
+                    new Intent(ACTION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
+            /*
+            NotificationCompat.Action pauseButton = new NotificationCompat.Action.Builder
+                    (R.drawable.ic_pause_white_24dp, "Pause", playPI).build();
+            */
+
+            noteBuilder
+                    .setOngoing(true)
+                    .setDeleteIntent(stopPI)
+                            //doesn't fit with Notification.MediaStyle
+                            //.setProgress(vidLength, 0, false)
+                    .setSmallIcon(R.drawable.ic_play_circle_filled_white_24dp)
+                    .setTicker(
+                            String.format(res.getString(
+                                    R.string.backgroundPlayerTickerText), title));
+
+            if (android.os.Build.VERSION.SDK_INT < 21) {
+
+                NotificationCompat.Action playButton = new NotificationCompat.Action.Builder
+                        (R.drawable.ic_play_arrow_white_48dp,
+                                res.getString(R.string.play), playPI).build();
+
+                noteBuilder
+                        .setContentTitle(title)
+                                //really? Id like to put something more helpful here.
+                                //.setContentText("NewPipe is playing in the background")
+                        .setContentText(channelName)
+                                //.setAutoCancel(!mediaPlayer.isPlaying())
+                        .setDeleteIntent(stopPI)
+                                //doesn't fit with Notification.MediaStyle
+                                //.setProgress(vidLength, 0, false)
+                        .setLargeIcon(videoThumbnail)
+                        .addAction(playButton);
+                        //.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                        //.setLargeIcon(cover)
+
+                if (android.os.Build.VERSION.SDK_INT >= 16)
+                    noteBuilder.setPriority(Notification.PRIORITY_LOW);
+
+                noteBuilder.setStyle(new NotificationCompat.MediaStyle()
+                        //.setMediaSession(mMediaSession.getSessionToken())
+                        .setShowActionsInCompactView(new int[]{0})
+                        .setShowCancelButton(true)
+                        .setCancelButtonIntent(stopPI));
+                if (videoThumbnail != null) {
+                    noteBuilder.setLargeIcon(videoThumbnail);
+                }
+                note = noteBuilder.build();
+            } else {
+                RemoteViews view =
+                        new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
+                view.setImageViewBitmap(R.id.backgroundCover, videoThumbnail);
+                view.setTextViewText(R.id.backgroundSongName, title);
+                view.setTextViewText(R.id.backgroundArtist, channelName);
+                view.setOnClickPendingIntent(R.id.backgroundStop, stopPI);
+                view.setOnClickPendingIntent(R.id.backgroundPlayPause, playPI);
+
+                RemoteViews expandedView =
+                        new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
+                expandedView.setImageViewBitmap(R.id.backgroundCover, videoThumbnail);
+                expandedView.setTextViewText(R.id.backgroundSongName, title);
+                expandedView.setTextViewText(R.id.backgroundArtist, channelName);
+                expandedView.setOnClickPendingIntent(R.id.backgroundStop, stopPI);
+                expandedView.setOnClickPendingIntent(R.id.backgroundPlayPause, playPI);
+
+                noteBuilder.setCategory(Notification.CATEGORY_TRANSPORT);
+
+                //Make notification appear on lockscreen
+                noteBuilder.setVisibility(Notification.VISIBILITY_PUBLIC);
+
+                note = noteBuilder.build();
+                note.contentView = view;
+
+                //todo: This never shows up. I was not able to figure out why:
+                note.bigContentView = expandedView;
+            }
+
+            return note;
         }
     }
 }
