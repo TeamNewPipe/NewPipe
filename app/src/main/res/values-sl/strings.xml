@@ -47,4 +47,9 @@
 
     <string name="detailThumbsUpImgViewDescription">Všeč mi je</string>
 <string name="detailThumbsDownImgViewDescription">Ni mi všeč</string>
+    <string name="background_player_name">Ozadnji predvajalnik NewPipe</string>
+    <string name="loading">Nalaganje ...</string>
+    <string name="backgroundPlayerStartPlayingToast">Predvajanje v ozadju</string>
+    <string name="play">Predvajaj</string>
+
     </resources>
