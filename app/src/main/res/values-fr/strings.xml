@@ -49,4 +49,9 @@
     <string name="detailUploaderThumbnailViewDescription">Avatar de l\'utilisateur</string>
     <string name="useExternalVideoPlayerTitle">Utiliser un lecteur vidéo externe</string>
     <string name="useExternalAudioPlayerTitle">Utiliser un lecteur audio externe</string>
+    <string name="backgroundPlayerStartPlayingToast">Lecture en arrière-plan</string>
+    <string name="background_player_name">Lecteur en arrière-plan NewPipe</string>
+    <string name="loading">Chargement</string>
+    <string name="play">Lecture</string>
+
     </resources>

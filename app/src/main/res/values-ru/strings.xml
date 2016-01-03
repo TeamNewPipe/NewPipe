@@ -51,4 +51,7 @@
     <string name="detailUploaderThumbnailViewDescription">Миниатюра аватара пользователся</string>
     <string name="detailThumbsDownImgViewDescription">Дислайки</string>
     <string name="detailThumbsUpImgViewDescription">Лайки</string>
-</resources>
+<string name="useExternalVideoPlayerTitle">Использовать внешний проигрыватель для видео</string>
+    <string name="useExternalAudioPlayerTitle">Использовать внешний проигрыватель для аудио</string>
+    <string name="backgroundPlayerStartPlayingToast">Проигрывание в фоновом режиме</string>
+    </resources>

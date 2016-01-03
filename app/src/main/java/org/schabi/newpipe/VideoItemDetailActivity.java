@@ -114,6 +114,12 @@ public class VideoItemDetailActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        App.checkStartTor(this);
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putString(VideoItemDetailFragment.VIDEO_URL, videoUrl);
         outState.putInt(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingService);

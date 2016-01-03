@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:background="@color/background_notification_color"
+    tools:targetApi="jelly_bean" >
+
+    <ImageView
+        android:id="@+id/backgroundCover"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/dummy_thumbnail"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/backgroundButtons"
+        android:layout_toRightOf="@+id/backgroundCover"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/backgroundSongName"
+            style="@android:style/TextAppearance.StatusBar.EventContent.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:text="title" />
+
+        <TextView
+            android:id="@+id/backgroundArtist"
+            style="@android:style/TextAppearance.StatusBar.EventContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:text="artist" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/backgroundStop"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+        android:background="#00ffffff"
+        android:clickable="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_close_white_24dp" />
+
+    <LinearLayout
+        android:id="@+id/backgroundButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@id/backgroundCover"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/backgroundCover"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/backgroundPlayPause"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:background="#00ffffff"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_play_arrow_white_48dp" />
+    </LinearLayout>
+
+</RelativeLayout>

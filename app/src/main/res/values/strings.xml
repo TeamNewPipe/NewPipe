@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_name" translatable="false">NewPipe</string>
+    <string name="background_player_name">NewPipe Background Player</string>
     <string name="title_videoitem_detail" translatable="false">NewPipe</string>
     <string name="viewCountText">%1$s views</string>
     <string name="uploadDateText">Uploaded on %1$s</string>
@@ -10,6 +11,7 @@
     <string name="fdroidVLCurl" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="share">Share</string>
+    <string name="loading">Loading</string>
     <string name="download">Download</string>
     <string name="search">Search</string>
     <string name="settings">Settings</string>
@@ -53,6 +55,7 @@
     <string name="backgroundPlayerTickerText" translatable="false">%1$s - NewPipe</string>
     <string name="backgroundPlayerStartPlayingToast">Playing in background</string>
     <string name="c3sUrl" translatable="false">https://www.c3s.cc/</string>
+    <string name="play">Play</string>
 
     <!-- Content descriptions (for better accessibility) -->
     <string name="itemThumbnailViewDescription">Video preview thumbnail</string>
@@ -60,4 +63,6 @@
     <string name="detailUploaderThumbnailViewDescription">Uploader thumbnail</string>
     <string name="detailThumbsDownImgViewDescription">Dislikes</string>
     <string name="detailThumbsUpImgViewDescription">Likes</string>
+    <string name="useTor">Use Tor</string>
+    <string name="useTorSummary">Force download traffic through Tor for increased privacy (streaming videos not yet supported)</string>
 </resources>

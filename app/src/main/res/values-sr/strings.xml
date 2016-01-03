@@ -54,4 +54,10 @@
     <string name="useExternalAudioPlayerTitle">Користи спољашњи аудио плејер</string>
     <string name="backgroundPlayerStartPlayingToast">Пуштам у позадини</string>
 
-    </resources>
+    <string name="background_player_name">Позадински плејер за Јутјуб цев</string>
+    <string name="loading">Учитавам</string>
+    <string name="play">Пусти</string>
+
+    <string name="useTor">Користи Тор</string>
+    <string name="useTorSummary">Принудно преусмерење саобраћаја кроз Тор за доданту приватност (токови још нису подржани)</string>
+</resources>

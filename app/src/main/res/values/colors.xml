@@ -7,4 +7,5 @@
     <color name="durationText">#efff</color>
     <color name="dark_overlay">#6000</color>
     <color name="background_gray">#EEEEEE</color>
+    <color name="background_notification_color">#323232</color>
 </resources>

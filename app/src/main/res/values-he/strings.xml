@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources><string name="viewCountText">%1$s צפיות</string>
+    <string name="uploadDateText">הועלה בתאריך %1$s</string>
+    <string name="share">שתף</string>
+    <string name="search">חפש</string>
+    <string name="nextVideoTitle">הבא</string>
+    <string name="download">הורדה</string>
+    <string name="settings">הגדרות</string>
+    <string name="title_activity_settings">הגדרות</string>
+    </resources>

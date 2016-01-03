@@ -64,14 +64,18 @@
             android:key="@string/downloadPathPreference"
             android:title="@string/downloadLocation"
             android:summary="@string/downloadLocationSummary"
-            android:dialogTitle="@string/downloadLocationDialogTitle"
-            android:defaultValue=""/>
+            android:dialogTitle="@string/downloadLocationDialogTitle" />
 
         <CheckBoxPreference
             android:key="@string/autoPlayThroughIntent"
             android:title="@string/autoPlayThroughIntentTitle"
             android:summary="@string/autoPlayThroughIntentSummary"
             android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="@string/useTor"
+            android:title="@string/useTor"
+            android:summary="@string/useTorSummary" />
 
     </PreferenceCategory>
 </PreferenceScreen>
