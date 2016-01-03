@@ -135,9 +135,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 //so calling the blocking prepare() method should be ok
                 mediaPlayer.prepare();
 
-                //alternatively:
-                //mediaPlayer.setOnPreparedListener(this);
-                //mediaPlayer.prepareAsync(); //prepare async to not block main thread
             } catch (IOException ioe) {
                 ioe.printStackTrace();
                 Log.e(TAG, "video source:" + source);
