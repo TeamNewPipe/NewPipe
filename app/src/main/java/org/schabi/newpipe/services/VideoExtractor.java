@@ -107,6 +107,7 @@ public abstract class VideoExtractor {
     }
 
 
+    //todo: add licence field
     protected abstract int getErrorCode();
     protected abstract String getErrorMessage();
     protected abstract String getVideoUrl(String videoId);

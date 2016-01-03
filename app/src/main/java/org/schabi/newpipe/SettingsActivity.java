@@ -109,33 +109,24 @@ public class SettingsActivity extends PreferenceActivity  {
                     (EditTextPreference) findPreference(DOWNLOAD_PATH_PREFERENCE);
             useTorCheckBox = (CheckBoxPreference) findPreference(USE_TOR_KEY);
 
-            // if Orbot is installed, then default to using Tor, the user can still override
-            final boolean useTor = OrbotHelper.isOrbotInstalled(activity);
-            useTorCheckBox.setDefaultValue(useTor);
-            useTorCheckBox.setChecked(useTor);
-            useTorCheckBox.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object o) {
-                    boolean useTor = (Boolean) o;
-                    if (useTor) {
-                        if (OrbotHelper.isOrbotInstalled(activity)) {
-                            App.configureTor(true);
-                        } else {
-                            Intent intent = OrbotHelper.getOrbotInstallIntent(activity);
-                            activity.startActivityForResult(intent, REQUEST_INSTALL_ORBOT);
-                        }
-                    } else {
-                        App.configureTor(false);
-                    }
-                    return true;
-                }
-            });
-
             prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
                 @Override
                 public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
                                                       String key) {
+                    Activity a = getActivity();
                     updateSummary();
+
+                    if (defaultPreferences.getBoolean(USE_TOR_KEY, false)) {
+                        if (OrbotHelper.isOrbotInstalled(a)) {
+                            App.configureTor(true);
+                            OrbotHelper.requestStartTor(a);
+                        } else {
+                            Intent intent = OrbotHelper.getOrbotInstallIntent(a);
+                            a.startActivityForResult(intent, REQUEST_INSTALL_ORBOT);
+                        }
+                    } else {
+                        App.configureTor(false);
+                    }
                 }
             };
             defaultPreferences.registerOnSharedPreferenceChangeListener(prefListener);

@@ -15,10 +15,13 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        // if Orbot is installed, then default to using Tor, the user can still override
-        if (OrbotHelper.requestStartTor(this)) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            configureTor(prefs.getBoolean(getString(R.string.useTor), true));
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if(prefs.getBoolean(getString(R.string.useTorKey), false)) {
+            OrbotHelper.requestStartTor(this);
+            configureTor(true);
+        } else {
+            configureTor(false);
         }
     }
 

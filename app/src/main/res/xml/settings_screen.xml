@@ -75,7 +75,8 @@
         <CheckBoxPreference
             android:key="@string/useTorKey"
             android:title="@string/useTor"
-            android:summary="@string/useTorSummary" />
+            android:summary="@string/useTorSummary"
+            android:defaultValue="false"/>
 
     </PreferenceCategory>
 </PreferenceScreen>
