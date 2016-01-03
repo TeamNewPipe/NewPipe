@@ -188,6 +188,18 @@ public class PlayVideoActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        App.checkStartTor(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        prefs = getPreferences(Context.MODE_PRIVATE);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch(id) {

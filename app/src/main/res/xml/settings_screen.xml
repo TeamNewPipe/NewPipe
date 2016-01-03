@@ -72,5 +72,10 @@
             android:summary="@string/autoPlayThroughIntentSummary"
             android:defaultValue="false" />
 
+        <CheckBoxPreference
+            android:key="@string/useTor"
+            android:title="@string/useTor"
+            android:summary="@string/useTorSummary" />
+
     </PreferenceCategory>
 </PreferenceScreen>

@@ -61,17 +61,17 @@ public class DownloadDialog extends DialogFragment {
                         String suffix = "";
                         String title = arguments.getString(TITLE);
                         String url = "";
-                        String downloadFolder = "Download";
+                        String downloadFolder = Environment.DIRECTORY_DOWNLOADS;
                         switch(which) {
                             case 0:     // Video
                                 suffix = arguments.getString(FILE_SUFFIX_VIDEO);
                                 url = arguments.getString(VIDEO_URL);
-                                downloadFolder = "Movies";
+                                downloadFolder = Environment.DIRECTORY_MOVIES;
                                 break;
                             case 1:
                                 suffix = arguments.getString(FILE_SUFFIX_AUDIO);
                                 url = arguments.getString(AUDIO_URL);
-                                downloadFolder = "Music";
+                                downloadFolder = Environment.DIRECTORY_MUSIC;
                                 break;
                             default:
                                 Log.d(TAG, "lolz");
@@ -87,15 +87,21 @@ public class DownloadDialog extends DialogFragment {
                                 //TODO notify user "download directory should be changed" ?
                             }
                         }
-                        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-                        DownloadManager.Request request = new DownloadManager.Request(
-                                Uri.parse(url));
-                        request.setDestinationUri(Uri.fromFile(new File(dir + "/" + title + suffix)));
-                        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                        try {
-                            dm.enqueue(request);
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                        String saveFilePath = dir + "/" + title + suffix;
+                        if (App.isUsingTor()) {
+                            // if using Tor, do not use DownloadManager because the proxy cannot be set
+                            Downloader.downloadFile(getContext(), url, saveFilePath);
+                        } else {
+                            DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+                            DownloadManager.Request request = new DownloadManager.Request(
+                                    Uri.parse(url));
+                            request.setDestinationUri(Uri.fromFile(new File(saveFilePath)));
+                            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                            try {
+                                dm.enqueue(request);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 });

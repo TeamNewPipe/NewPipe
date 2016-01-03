@@ -175,6 +175,12 @@ public class VideoItemListActivity extends AppCompatActivity
         PreferenceManager.setDefaultValues(this, R.xml.settings_screen, false);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        App.checkStartTor(this);
+    }
+
     /**
      * Callback method from {@link VideoItemListFragment.Callbacks}
      * indicating that the item with the given ID was selected.
