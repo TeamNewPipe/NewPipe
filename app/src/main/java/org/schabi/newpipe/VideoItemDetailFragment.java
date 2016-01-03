@@ -287,7 +287,7 @@ public class VideoItemDetailFragment extends Fragment {
                                 VideoItemDetailFragment.ARG_ITEM_ID, currentVideoInfo.nextVideo.id); */
                             detailIntent.putExtra(
                                     VideoItemDetailFragment.VIDEO_URL, currentVideoInfo.nextVideo.webpage_url);
-                            //todo: make id dynamic the following line is crap
+
                             detailIntent.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
                             startActivity(detailIntent);
                         }
@@ -296,7 +296,7 @@ public class VideoItemDetailFragment extends Fragment {
                 break;
                 case VideoInfo.ERROR_BLOCKED_BY_GEMA:
                     thumbnailView.setImageBitmap(BitmapFactory.decodeResource(
-                            getResources(), R.drawable.gruese_die_gema_unangebracht));
+                            getResources(), R.drawable.gruese_die_gema));
                     backgroundButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
