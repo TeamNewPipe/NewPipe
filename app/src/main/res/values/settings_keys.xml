@@ -29,7 +29,8 @@
     </string-array>
     <string name="defaultAudioFormat">m4a</string>
     <string name="showNextVideo">show_next_video</string>
-    <string name="searchLanguage">search_language</string>
+    <string name="searchLanguagePreference">search_language</string>
+    <string name="useTorKey">use_tor</string>
     <!-- TODO: scrape these programmatically, then store in a local cache -->
     <!-- alternatively, load these from some local android data store -->
     <string-array name='languageCodes'>
@@ -111,6 +112,7 @@
         <item>ja</item>
         <item>ko</item>
     </string-array>
+    <string name="defaultLanguageItem">en</string>
     <string-array name='languageNames'>
         <item>Afrikaans</item>
         <item>Azərbaycan</item>

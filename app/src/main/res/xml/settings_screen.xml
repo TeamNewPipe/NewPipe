@@ -43,11 +43,11 @@
             android:defaultValue="false" />
 
         <ListPreference
-            android:key="@string/searchLanguage"
+            android:key="@string/searchLanguagePreference"
             android:title="@string/searchLanguageTitle"
             android:entries="@array/languageNames"
             android:entryValues="@array/languageCodes"
-            android:defaultValue="en" />
+            android:defaultValue="@string/defaultLanguageItem" />
 
         <CheckBoxPreference
             android:key="@string/showNextVideo"
@@ -73,9 +73,10 @@
             android:defaultValue="false" />
 
         <CheckBoxPreference
-            android:key="@string/useTor"
+            android:key="@string/useTorKey"
             android:title="@string/useTor"
-            android:summary="@string/useTorSummary" />
+            android:summary="@string/useTorSummary"
+            android:defaultValue="false"/>
 
     </PreferenceCategory>
 </PreferenceScreen>

@@ -99,8 +99,9 @@ public class VideoItemListFragment extends ListFragment {
         public void run() {
             try {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
-                String searchLanguageKey = getContext().getString(R.string.searchLanguage);
-                String searchLanguage = sp.getString(searchLanguageKey, "en");
+                String searchLanguageKey = getContext().getString(R.string.searchLanguagePreference);
+                String searchLanguage = sp.getString(searchLanguageKey,
+                        getString(R.string.defaultLanguageItem));
                 SearchEngine.Result result = engine.search(query, page, searchLanguage);
                 Log.i(TAG, "language code passed:\""+searchLanguage+"\"");
                 if(run) {
