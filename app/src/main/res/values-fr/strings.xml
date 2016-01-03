@@ -54,4 +54,6 @@
     <string name="loading">Chargement</string>
     <string name="play">Lecture</string>
 
-    </resources>
+    <string name="useTor">Utiliser Tor</string>
+    <string name="useTorSummary">Forcer le trafic de téléchargement via Tor pour plus de confidentialité (vidéos streaming non supporté)</string>
+</resources>
