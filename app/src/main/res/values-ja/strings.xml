@@ -50,4 +50,8 @@
     <string name="useExternalAudioPlayerTitle">外部オーディオ プレイヤーを使用する</string>
     <string name="backgroundPlayerStartPlayingToast">バックグラウンドで再生しています</string>
 
+    <string name="background_player_name">NewPipe バックグラウンド プレーヤー</string>
+    <string name="loading">読み込み中</string>
+    <string name="play">再生</string>
+
     </resources>
