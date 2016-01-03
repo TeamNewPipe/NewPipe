@@ -1,14 +1,19 @@
 package org.schabi.newpipe;
 
 import android.app.Activity;
+import android.app.SharedElementCallback;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.EditTextPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -40,7 +45,7 @@ import info.guardianproject.netcipher.proxy.OrbotHelper;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class SettingsActivity extends PreferenceActivity {
+public class SettingsActivity extends PreferenceActivity  {
 
     private static final int REQUEST_INSTALL_ORBOT = 0x1234;
     private AppCompatDelegate mDelegate = null;
@@ -59,17 +64,52 @@ public class SettingsActivity extends PreferenceActivity {
 
     }
 
-    public static class SettingsFragment extends PreferenceFragment {
+    public static class SettingsFragment extends PreferenceFragment{
+        SharedPreferences.OnSharedPreferenceChangeListener prefListener;
+
+        // get keys
+        String DEFAULT_RESOLUTION_PREFERENCE;
+        String DEFAULT_AUDIO_FORMAT_PREFERENCE;
+        String SEARCH_LANGUAGE_PREFERENCE;
+        String DOWNLOAD_PATH_PREFERENCE;
+        String USE_TOR_KEY;
+
+        private ListPreference defaultResolutionPreference;
+        private ListPreference defaultAudioFormatPreference;
+        private ListPreference searchLanguagePreference;
+        private EditTextPreference downloadPathPreference;
         private CheckBoxPreference useTorCheckBox;
+        private SharedPreferences defaultPreferences;
+
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_screen);
 
-            // if Orbot is installed, then default to using Tor, the user can still override
-            useTorCheckBox = (CheckBoxPreference) findPreference(getString(R.string.useTor));
             final Activity activity = getActivity();
+
+            defaultPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
+
+            // get keys
+            DEFAULT_RESOLUTION_PREFERENCE =getString(R.string.defaultResolutionPreference);
+            DEFAULT_AUDIO_FORMAT_PREFERENCE =getString(R.string.defaultAudioFormatPreference);
+            SEARCH_LANGUAGE_PREFERENCE =getString(R.string.searchLanguagePreference);
+            DOWNLOAD_PATH_PREFERENCE = getString(R.string.downloadPathPreference);
+            USE_TOR_KEY = getString(R.string.useTorKey);
+
+            // get pref objects
+            defaultResolutionPreference =
+                    (ListPreference) findPreference(DEFAULT_RESOLUTION_PREFERENCE);
+            defaultAudioFormatPreference =
+                    (ListPreference) findPreference(DEFAULT_AUDIO_FORMAT_PREFERENCE);
+            searchLanguagePreference =
+                    (ListPreference) findPreference(SEARCH_LANGUAGE_PREFERENCE);
+            downloadPathPreference =
+                    (EditTextPreference) findPreference(DOWNLOAD_PATH_PREFERENCE);
+            useTorCheckBox = (CheckBoxPreference) findPreference(USE_TOR_KEY);
+
+            // if Orbot is installed, then default to using Tor, the user can still override
             final boolean useTor = OrbotHelper.isOrbotInstalled(activity);
             useTorCheckBox.setDefaultValue(useTor);
             useTorCheckBox.setChecked(useTor);
@@ -90,6 +130,33 @@ public class SettingsActivity extends PreferenceActivity {
                     return true;
                 }
             });
+
+            prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+                @Override
+                public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+                                                      String key) {
+                    updateSummary();
+                }
+            };
+            defaultPreferences.registerOnSharedPreferenceChangeListener(prefListener);
+
+            updateSummary();
+        }
+
+        // This is used to show the status of some preference in the description
+        private void updateSummary() {
+            defaultResolutionPreference.setSummary(
+                    defaultPreferences.getString(DEFAULT_RESOLUTION_PREFERENCE,
+                            getString(R.string.defaultResolutionListItem)));
+            defaultAudioFormatPreference.setSummary(
+                    defaultPreferences.getString(DEFAULT_AUDIO_FORMAT_PREFERENCE,
+                            getString(R.string.defaultAudioFormat)));
+            searchLanguagePreference.setSummary(
+                    defaultPreferences.getString(SEARCH_LANGUAGE_PREFERENCE,
+                            getString(R.string.defaultLanguageItem)));
+            downloadPathPreference.setSummary(
+                    defaultPreferences.getString(DOWNLOAD_PATH_PREFERENCE,
+                            getString(R.string.downloadLocationSummary)));
         }
     }
 

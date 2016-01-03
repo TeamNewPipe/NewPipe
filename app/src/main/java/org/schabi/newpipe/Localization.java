@@ -1,6 +1,5 @@
 package org.schabi.newpipe;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -22,7 +21,8 @@ public class Localization {
     public static Locale getPreferredLocale(Context context) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
-        String languageCode = sp.getString(String.valueOf(R.string.searchLanguage), "en");
+        String languageCode = sp.getString(String.valueOf(R.string.searchLanguagePreference),
+                context.getString(R.string.defaultLanguageItem));
 
         if(languageCode.length() == 2) {
             return new Locale(languageCode);
