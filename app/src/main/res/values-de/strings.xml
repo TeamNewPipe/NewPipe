@@ -44,10 +44,18 @@
     <string name="settingsCategoryVideoAudioTitle">VIDEO &amp; AUDIO</string>
     <string name="settingsCategoryVideoInfoTittle">INFO</string>
     <string name="settingsCategoryEtcTitle">ETC</string>
-<string name="searchLanguageTitle">Bevorzugte Sprache</string>
+<string name="searchLanguageTitle">Bevorzugte Sprache des Inhalts</string>
     <string name="itemThumbnailViewDescription">Video-Vorschau-Bild</string>
     <string name="detailThumbnailViewDescription">Video-Vorschau-Bild</string>
     <string name="detailUploaderThumbnailViewDescription">Nutzerbild</string>
-    <string name="detailThumbsDownImgViewDescription">gefällt nicht</string>
-    <string name="detailThumbsUpImgViewDescription">gefällt</string>
+    <string name="detailThumbsDownImgViewDescription">Gefällt nicht</string>
+    <string name="detailThumbsUpImgViewDescription">Gefällt</string>
+<string name="loading">Lade</string>
+    <string name="useExternalVideoPlayerTitle">Benutze externen Videoabspieler</string>
+    <string name="useExternalAudioPlayerTitle">Benutze externen Audioabspieler</string>
+    <string name="backgroundPlayerStartPlayingToast">Spiele im Hintergrund ab</string>
+    <string name="play">Abspielen</string>
+
+    <string name="useTor">Benutze TOR</string>
+    <string name="useTorSummary">Erzwinge das Herunterladen durch TOR für verbesserte Privatsphäre (Videostream noch nicht unterstützt)</string>
 </resources>
