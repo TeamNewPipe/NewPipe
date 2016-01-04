@@ -30,8 +30,8 @@
     <string name="showPlayWithKodiSummary">Toont een optie om een video op een Kodi media center af te spelen.</string>
     <string name="playAudio">Audio</string>
     <string name="defaultAudioFormatTitle">Standaard audio formaat</string>
-    <string name="webMAudioDescription">Webam - open formaat</string>
-    <string name="m4aAudioDescription">m4a - betere kwaliteit</string>
+    <string name="webMAudioDescription">Webam &#8212; open formaat</string>
+    <string name="m4aAudioDescription">m4a &#8212; betere kwaliteit</string>
     <string name="downloadDialogTitle">Download</string>
     <string name="nextVideoTitle">Volgende video</string>
     <string name="urlNotSupportedText">URL wordt niet ondersteund.</string>
@@ -40,9 +40,7 @@
     <string name="searchLanguageTitle">Voorkeurs content taal</string>
 <string name="useExternalVideoPlayerTitle">Gebruik externe videospeler</string>
     <string name="useExternalAudioPlayerTitle">Gebruik externe audiospeler</string>
-    <string name="settingsCategoryVideoAudioTitle">VIDEO &amp; GELUID</string>
-    <string name="settingsCategoryVideoInfoTittle">INFO</string>
-    <string name="settingsCategoryEtcTitle">ETC.</string>
+    <string name="settingsCategoryVideoAudioTitle">Video &amp; Geluid</string>
 
     <string name="itemThumbnailViewDescription">Videovoorbeeld thumbnail</string>
     <string name="detailThumbnailViewDescription">Videovoorbeeld thumbnail</string>

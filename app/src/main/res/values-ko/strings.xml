@@ -29,8 +29,8 @@
     <string name="showPlayWithKodiSummary">비디오를 Kodi media center를 사용해 재생하는 옵션을 표시합니다.</string>
     <string name="playAudio">오디오</string>
     <string name="defaultAudioFormatTitle">기본 오디오 포맷</string>
-    <string name="webMAudioDescription">WebM - 무료 자유 포맷입니다</string>
-    <string name="m4aAudioDescription">m4a - 보다 나은 품질</string>
+    <string name="webMAudioDescription">WebM &#8212; 무료 자유 포맷입니다</string>
+    <string name="m4aAudioDescription">m4a &#8212; 보다 나은 품질</string>
     <string name="downloadDialogTitle">다운로드</string>
     <string name="nextVideoTitle">다음 비디오</string>
     <string name="showNextAndSimilarTitle">다음 및 유사한 비디오 표시</string>
@@ -38,8 +38,6 @@
     <string name="showSimilarVideosButtonText">유사한 비디오</string>
     <string name="searchLanguageTitle">선호하는 컨텐츠 언어</string>
     <string name="settingsCategoryVideoAudioTitle">비디오 &amp; 오디오</string>
-    <string name="settingsCategoryVideoInfoTittle">정보</string>
-    <string name="settingsCategoryEtcTitle">기타</string>
 
     <string name="itemThumbnailViewDescription">비디오 미리보기 썸네일</string>
     <string name="detailThumbnailViewDescription">비디오 미리보기 썸네일</string>

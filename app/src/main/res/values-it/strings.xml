@@ -38,7 +38,7 @@
     <string name="showSimilarVideosButtonText">Video simili</string>
     <string name="searchLanguageTitle">Lingua preferita dei contenuti</string>
     <string name="settingsCategoryVideoAudioTitle">VIDEO &amp; AUDIO</string>
-    <string name="settingsCategoryVideoInfoTittle">INFO</string>
+    <string name="settingsCategoryVideoInfoTitle">INFO</string>
     <string name="settingsCategoryEtcTitle">ETC</string>
 
     <string name="itemThumbnailViewDescription">Anteprima video</string>

@@ -30,14 +30,14 @@
     <string name="showPlayWithKodiSummary">Mutat egy opciót a videók Kodi médiaközponttal való lejátszására</string>
     <string name="playAudio">Hang</string>
     <string name="defaultAudioFormatTitle">Alapértelmezett hang formátum</string>
-    <string name="webMAudioDescription">WebM - szabad formátum</string>
-    <string name="m4aAudioDescription">m4a - jobb minőség</string>
+    <string name="webMAudioDescription">WebM &#8212; szabad formátum</string>
+    <string name="m4aAudioDescription">m4a &#8212; jobb minőség</string>
     <string name="downloadDialogTitle">Letöltés</string>
     <string-array name="downloadOptions">
         <item>Videó</item>
         <item>Hang</item>
     </string-array>
-<string name="nextVideoTitle">Következő videó</string>
+    <string name="nextVideoTitle">Következő videó</string>
     <string name="urlNotSupportedText">A webcím nem támogatott.</string>
-<string name="showSimilarVideosButtonText">Hasonló videók</string>
+    <string name="showSimilarVideosButtonText">Hasonló videók</string>
     </resources>
