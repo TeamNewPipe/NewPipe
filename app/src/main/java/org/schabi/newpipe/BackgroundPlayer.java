@@ -176,17 +176,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
             Notification note = buildNotification();
 
-            Intent openDetailView = new Intent(getApplicationContext(),
-                    VideoItemDetailActivity.class);
-            openDetailView.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, serviceId);
-            openDetailView.putExtra(VideoItemDetailFragment.VIDEO_URL, webUrl);
-            openDetailView.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-
-            note.contentIntent = PendingIntent.getActivity(getApplicationContext(),
-                    noteID, openDetailView,
-                    PendingIntent.FLAG_UPDATE_CURRENT);
-
             startForeground(noteID, note);
 
             //currently decommissioned progressbar looping update code - works, but doesn't fit inside
@@ -274,6 +263,13 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                     (R.drawable.ic_pause_white_24dp, "Pause", playPI).build();
             */
 
+            //build intent to return to video, on tapping notification
+            Intent openDetailView = new Intent(getApplicationContext(),
+                    VideoItemDetailActivity.class);
+            openDetailView.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, serviceId);
+            openDetailView.putExtra(VideoItemDetailFragment.VIDEO_URL, webUrl);
+            openDetailView.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             noteBuilder
                     .setOngoing(true)
                     .setDeleteIntent(stopPI)
@@ -282,7 +278,11 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                     .setSmallIcon(R.drawable.ic_play_circle_filled_white_24dp)
                     .setTicker(
                             String.format(res.getString(
-                                    R.string.backgroundPlayerTickerText), title));
+                                    R.string.backgroundPlayerTickerText), title))
+                    .setContentIntent(PendingIntent.getActivity(getApplicationContext(),
+                            noteID, openDetailView,
+                            PendingIntent.FLAG_UPDATE_CURRENT));
+
 
             if (android.os.Build.VERSION.SDK_INT < 21) {
 
@@ -306,7 +306,8 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                         //.setLargeIcon(cover)
 
                 //is wrapping this in an SDK version check really necessary,
-                // if we're using NotificationCompat? -medavox
+                // if we're using NotificationCompat?
+                // the compat libraries should handle this, right? -medavox
                 if (android.os.Build.VERSION.SDK_INT >= 16)
                     noteBuilder.setPriority(Notification.PRIORITY_LOW);
 
@@ -320,7 +321,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 }
                 note = noteBuilder.build();
             } else {
-                //Log.i(TAG, "API is version 21 or above");
                 RemoteViews view =
                         new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
                 view.setImageViewBitmap(R.id.backgroundCover, videoThumbnail);
