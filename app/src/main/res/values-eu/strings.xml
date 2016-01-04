@@ -1,2 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='utf-8'?>
+<resources><string name="viewCountText">%1$s ikustaldi</string>
+    <string name="uploadDateText">Argitaratze-data: %1$s</string>
+    <string name="installStreamPlayer">Instalatu</string>
+    <string name="cancel">Utzi</string>
+    <string name="open_in_browser">Nabigatzailean ireki</string>
+    <string name="share">Partekatu</string>
+    <string name="loading">Kargatzen</string>
+    <string name="download">Deskargatu</string>
+    <string name="search">Bilatu</string>
+    <string name="settings">Ezarpenak</string>
+    <string name="shareDialogTitle">Partekatu honekin:</string>
+    <string name="chooseBrowser">Nabigatzailea aukeratu:</string>
+    <string name="screenRotation">biratzea</string>
+    <string name="title_activity_settings">Ezarpenak</string>
+    <string name="downloadLocation">Deskargatzeko kokapena</string>
+    <string name="downloadLocationSummary">Deskargatutako bideoak gordetzeko lekua.</string>
+    <string name="downloadLocationDialogTitle">Sar ezazu deskargatzeko lekua</string>
+    <string name="defaultResolutionPreferenceTitle">Lehenetsitako bereizmena</string>
+    <string name="playWithKodiTitle">Kodirekin erreproduzitu</string>
+    <string name="koreNotFound">Kore aplikazioa ez da aurkitu. Kore beharrezkoa da Kodi multimedia zentroarekin bideoak erreproduzitzeko.</string>
+    <string name="installeKore">Kore instalatu</string>
+    <string name="showPlayWithKodiTitle">\"Kodirekin erreproduzitu\" aukera erakutsi</string>
+    <string name="showPlayWithKodiSummary">Kodi multimedia zentroarekin bideoa erreproduzitzeko aukera erakusten du.</string>
+    <string name="playAudio">Audioa</string>
+    <string name="defaultAudioFormatTitle">Audio formatu lehenetsia</string>
+    <string name="webMAudioDescription">WebM - formatu askea</string>
+    <string name="m4aAudioDescription">m4a - kalitate hobea</string>
+    <string name="downloadDialogTitle">Deskargatu</string>
+    <string name="nextVideoTitle">Hurrengo bideoa</string>
+    <string name="showNextAndSimilarTitle">Hurrengo bideoa eta antzekoak erakutsi</string>
+    <string name="urlNotSupportedText">URLa ez da onartzen.</string>
+    <string name="showSimilarVideosButtonText">Antzeko bideoak</string>
+    <string name="searchLanguageTitle">Edukiaren hizkuntz lehenetsia</string>
+    <string name="settingsCategoryVideoAudioTitle">BIDEOA ETA AUDIOA</string>
+    <string name="settingsCategoryVideoInfoTittle">INFORMAZIOA</string>
+    <string name="settingsCategoryEtcTitle">ETAB</string>
+    <string name="play">Erreproduzitu</string>
+
+    <string name="itemThumbnailViewDescription">Bideoaren aurreikuspen argazkitxoa</string>
+    <string name="detailThumbnailViewDescription">Bideoaren aurreikuspen argazkitxoa</string>
+    <string name="detailUploaderThumbnailViewDescription">Igotzailearen argazkitxoa</string>
+    <string name="detailThumbsDownImgViewDescription">Ez dute gustoko</string>
+    <string name="detailThumbsUpImgViewDescription">Gustoko dute</string>
+    <string name="useTor">Tor erabili</string>
+    <string name="useTorSummary">Trafikoa Tor bidez deskargatzea behartzen du pribatutasuna hobetzeko (jario bideoak ez daude oraindik onartuta)</string>
+<string name="background_player_name">NewPipe atzeko planoko erreproduzitzailea</string>
+    <string name="noPlayerFound">Jario erreproduzitzailerik ez da aurkitu. Agian bat instalatu nahi dezakezu.</string>
+    <string name="didYouMean">"Hau esan nahi al zenuen: "</string>
+    <string name="searchPage">"Orrialdea bilatu: "</string>
+    <string name="useExternalVideoPlayerTitle">Kanpoko bideo erreproduzitzailea erabili</string>
+    <string name="useExternalAudioPlayerTitle">Kanpoko audio erreproduzitzailea erabili</string>
+    <string name="autoPlayThroughIntentTitle">Intent bidez automatikoki erreproduzitu</string>
+    <string name="autoPlayThroughIntentSummary">Bideoa automatikoki hasten du beste aplikazio batetik deitu denean.</string>
+    <string name="backgroundPlayerStartPlayingToast">Atzeko planoan erreproduzitzen</string>
+    </resources>
