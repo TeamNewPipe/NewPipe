@@ -1,23 +1,23 @@
 package org.schabi.newpipe;
 
-import android.app.Notification;
+
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
 
@@ -47,7 +47,6 @@ import info.guardianproject.netcipher.NetCipher;
 
 public class Downloader {
     public static final String TAG = "Downloader";
-
     private static final String USER_AGENT = "Mozilla/5.0";
 
     /**Download the text file at the supplied URL as in download(String),
@@ -59,7 +58,7 @@ public class Downloader {
         String ret = "";
         try {
             URL url = new URL(siteUrl);
-            HttpsURLConnection con = NetCipher.getHttpsURLConnection(url);
+            HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
             con.setRequestProperty("Accept-Language", language);
             ret = dl(con);
         }
@@ -68,8 +67,9 @@ public class Downloader {
         }
         return ret;
     }
+
     /**Common functionality between download(String url) and download(String url, String language)*/
-    private static String dl(HttpURLConnection con) throws IOException {
+    private static String dl(HttpsURLConnection con) throws IOException {
         StringBuilder response = new StringBuilder();
 
         try {
