@@ -181,6 +181,8 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             openDetailView.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, serviceId);
             openDetailView.putExtra(VideoItemDetailFragment.VIDEO_URL, webUrl);
             openDetailView.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
             note.contentIntent = PendingIntent.getActivity(getApplicationContext(),
                     noteID, openDetailView,
                     PendingIntent.FLAG_UPDATE_CURRENT);
@@ -204,6 +206,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             }*/
         }
 
+        /**Handles button presses from the notification. */
         private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -214,7 +217,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                         mediaPlayer.pause();
                     }
                     else {
-                        //reacquire CPU lock after releasing it on pause
+                        //reacquire CPU lock after auto-releasing it on pause
                         mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
                         mediaPlayer.start();
                     }
@@ -228,8 +231,9 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         };
 
         private void afterPlayCleanup() {
-            //noteBuilder.setProgress(0, 0, false);
             //remove progress bar
+            //noteBuilder.setProgress(0, 0, false);
+
             //remove notification
             noteMgr.cancel(noteID);
             unregisterReceiver(broadcastReceiver);
@@ -238,7 +242,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
             //release wifilock
             wifiLock.release();
-            //remove foreground status of service; make us killable
+            //remove foreground status of service; make BackgroundPlayer killable
             stopForeground(true);
 
             stopSelf();
@@ -289,6 +293,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 noteBuilder
                         .setContentTitle(title)
                                 //really? Id like to put something more helpful here.
+                                //was more of a placeholder than anything else. -medavox
                                 //.setContentText("NewPipe is playing in the background")
                         .setContentText(channelName)
                                 //.setAutoCancel(!mediaPlayer.isPlaying())
@@ -300,6 +305,8 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                         //.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                         //.setLargeIcon(cover)
 
+                //is wrapping this in an SDK version check really necessary,
+                // if we're using NotificationCompat? -medavox
                 if (android.os.Build.VERSION.SDK_INT >= 16)
                     noteBuilder.setPriority(Notification.PRIORITY_LOW);
 
@@ -313,6 +320,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 }
                 note = noteBuilder.build();
             } else {
+                //Log.i(TAG, "API is version 21 or above");
                 RemoteViews view =
                         new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
                 view.setImageViewBitmap(R.id.backgroundCover, videoThumbnail);
@@ -321,8 +329,10 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 view.setOnClickPendingIntent(R.id.backgroundStop, stopPI);
                 view.setOnClickPendingIntent(R.id.backgroundPlayPause, playPI);
 
+                //possibly found the expandedView problem,
+                //but can't test it as I don't have a 5.0 device. -medavox
                 RemoteViews expandedView =
-                        new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
+                        new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification_expanded);
                 expandedView.setImageViewBitmap(R.id.backgroundCover, videoThumbnail);
                 expandedView.setTextViewText(R.id.backgroundSongName, title);
                 expandedView.setTextViewText(R.id.backgroundArtist, channelName);
