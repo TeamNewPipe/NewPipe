@@ -54,4 +54,6 @@
     <string name="loading">読み込み中</string>
     <string name="play">再生</string>
 
-    </resources>
+    <string name="useTor">Tor を使用する</string>
+    <string name="useTorSummary">強制的に Tor を経由したプライバシーを高めたトラフィックでダウンロードします (ビデオのストリーミングはまだサポートされていません)</string>
+</resources>
