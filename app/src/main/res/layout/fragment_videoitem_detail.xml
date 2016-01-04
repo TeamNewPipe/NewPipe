@@ -124,6 +124,7 @@
                     android:layout_below="@id/detailViewCountView"
                     android:layout_toLeftOf="@id/detailThumbsDownCountView"
                     android:layout_toStartOf="@id/detailThumbsDownCountView"
+                    android:layout_marginLeft="@dimen/video_item_detail_like_margin"
                     android:src="@drawable/thumbs_down" />
 
                 <TextView android:id="@+id/detailThumbsUpCountView"

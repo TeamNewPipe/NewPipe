@@ -30,8 +30,8 @@
     <string name="showPlayWithKodiSummary">Приказ опције за пуштање видеа у Коди медија центру.</string>
     <string name="playAudio">Аудио</string>
     <string name="defaultAudioFormatTitle">Подразумевани формат звука</string>
-    <string name="webMAudioDescription">WebM - слободни формат</string>
-    <string name="m4aAudioDescription">m4a - бољи квалитет</string>
+    <string name="webMAudioDescription">WebM &#8212; слободни формат</string>
+    <string name="m4aAudioDescription">m4a &#8212; бољи квалитет</string>
     <string name="downloadDialogTitle">Преузми</string>
     <string-array name="downloadOptions">
         <item>Видео</item>
@@ -42,10 +42,9 @@
     <string name="showNextAndSimilarTitle">Прикажи следећи и слични видео</string>
     <string name="showSimilarVideosButtonText">Слични видео</string>
     <string name="searchLanguageTitle">Пожељни језик садржаја</string>
-<string name="settingsCategoryVideoAudioTitle">ВИДЕО И АУДИО</string>
-    <string name="settingsCategoryVideoInfoTittle">ПОДАЦИ</string>
-    <string name="settingsCategoryEtcTitle">ОСТАЛО</string>
-<string name="itemThumbnailViewDescription">Сличица видео прегледа</string>
+    <string name="settingsCategoryVideoAudioTitle">Видео и Аудио</string>
+    <string name="settingsCategoryOtherTitle">ОСТАЛО</string>
+    <string name="itemThumbnailViewDescription">Сличица видео прегледа</string>
     <string name="detailThumbnailViewDescription">Сличица видео прегледа</string>
     <string name="detailUploaderThumbnailViewDescription">Сличица отпремаоца</string>
     <string name="detailThumbsDownImgViewDescription">Несвиђања</string>

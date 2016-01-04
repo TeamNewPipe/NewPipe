@@ -8,7 +8,7 @@
     <string name="download">Pobierz</string>
     <string name="search">Szukaj</string>
     <string name="settings">Ustawienia</string>
-    <string name="didYouMean">"Czy chodziło Ci o: "</string>
+    <string name="didYouMean">Czy chodziło Ci o: </string>
     <string name="shareDialogTitle">Udostępnij za pośrednictwem:</string>
     <string name="chooseBrowser">Wybierz przeglądarkę:</string>
     <string name="screenRotation">obrót</string>
@@ -27,18 +27,17 @@
     <string name="showPlayWithKodiSummary">Wyświetla opcję do odtwarzania wideo przez aplikację Kodi.</string>
     <string name="playAudio">Dźwięk</string>
     <string name="defaultAudioFormatTitle">Domyślny format dźwięku</string>
-    <string name="webMAudioDescription">WebM - otwarty format</string>
-    <string name="m4aAudioDescription">m4a - lepsza jakość</string>
+    <string name="webMAudioDescription">WebM &#8212; otwarty format</string>
+    <string name="m4aAudioDescription">m4a &#8212; lepsza jakość</string>
     <string name="downloadDialogTitle">Pobierz</string>
     <string name="nextVideoTitle">Następne wideo</string>
     <string name="showNextAndSimilarTitle">Wyświetl następne i podobne wideo</string>
     <string name="urlNotSupportedText">Niewspierany URL.</string>
     <string name="showSimilarVideosButtonText">Podobne wideo</string>
     <string name="searchLanguageTitle">Preferowany język zawartości</string>
-    <string name="settingsCategoryVideoAudioTitle">WIDEO &amp; DŹWIĘK</string>
-    <string name="settingsCategoryVideoInfoTittle">INFO</string>
-    <string name="settingsCategoryEtcTitle">INNE</string>
-<string name="searchPage">"Szukaj strony: "</string>
+    <string name="settingsCategoryVideoAudioTitle">Wideo &amp; Dźwięk</string>
+
+    <string name="searchPage">"Szukaj strony: "</string>
     <string name="viewCountText">%1$s wyświetleń</string>
     <string name="uploadDateText">Opublikowany %1$s</string>
     <string name="itemThumbnailViewDescription">Miniaturka podglądowa wideo</string>

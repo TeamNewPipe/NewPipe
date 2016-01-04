@@ -1,4 +1,4 @@
-#Contributing
+#Contribution
 
 This document contains guidelines on making contributions to NewPipe.
 
@@ -16,7 +16,7 @@ This document contains guidelines on making contributions to NewPipe.
  compatibility with all git tools
 * [This guide](http://chris.beams.io/posts/git-commit/) goes more in depth on what makes a good commit message
 
-## Translating
+## Translation
 
 * NewPipe can be translated on [weblate](https://hosted.weblate.org/projects/newpipe/strings/)
 
@@ -30,4 +30,4 @@ This document contains guidelines on making contributions to NewPipe.
 ## Communication
 
 * For the time being, [Slack](http://invite.chschtsch.ml/) is being used for project communication
-* Feel free to post suggestions, changes ideas etc!
+* Feel free to post suggestions, changes, ideas etc!
