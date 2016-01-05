@@ -23,6 +23,10 @@ public class App extends Application {
         } else {
             configureTor(false);
         }
+
+        // DO NOT REMOVE THIS FUNCTION!!!
+        // Otherwise downloadPathPreference has invalid value.
+        SettingsActivity.initSettings(this);
     }
 
     /**
