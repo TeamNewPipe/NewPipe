@@ -30,7 +30,6 @@ public class YoutubeVideoExtractorGemaTest extends AndroidTestCase {
 
     // Deaktivate this Test Case bevore uploading it githup, otherwise CI will fail.
     private static final boolean testActive = false;
-    //
 
 
     private YoutubeVideoExtractor extractor;
