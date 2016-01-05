@@ -1,39 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Categories -->
-    <string name="settingsCategoryVideoAudio">settings_categoery_video_audio</string>
-    <string name="settingsCategoryVideoInfo">settings_category_video_info</string>
-    <string name="settingsCategoryEtc">settings_category_etc</string>
+    <string name="settings_category_video_audio">settings_category_video_audio</string>
+    <string name="settings_category_appearance">settings_category_appearance</string>
+    <string name="settings_category_other">settings_category_other</string>
     <!-- Key values -->
-    <string name="downloadPathPreference">download_path_preference</string>
-    <string name="useExternalVideoPlayer">use_external_video_player</string>
-    <string name="useExternalAudioPlayer">use_external_audio_player</string>
-    <string name="autoPlayThroughIntent">autoplay_through_intent</string>
-    <string name="defaultResolutionPreference">default_resolution_preference</string>
-    <string-array name="resolutionList">
+    <string name="download_path_key">download_path</string>
+    <string name="use_external_video_player_key">use_external_video_player</string>
+    <string name="use_external_audio_player_key">use_external_audio_player</string>
+    <string name="autoplay_through_intent_key">autoplay_through_intent</string>
+
+    <string name="default_resolution_key">default_resolution_preference</string>
+    <string name="default_resolution_value">360p</string>
+    <string-array name="resolution_list">
         <item>720p</item>
         <item>360p</item>
         <item>240p</item>
         <item>144p</item>
     </string-array>
-    <string name="defaultResolutionListItem">360p</string>
-    <string name="showPlayWithKodiPreference">show_play_with_kodi_preference</string>
-    <string name="defaultAudioFormatPreference">default_audio_format</string>
-    <string-array name="audioFormatDescriptionList">
-        <item>@string/webMAudioDescription</item>
-        <item>@string/m4aAudioDescription</item>
+
+    <string name="show_play_with_kodi_key">show_play_with_kodi</string>
+
+    <string name="theme_key">theme</string>
+    <string name="default_theme_value">0</string>
+    <string-array name="theme_description_list">
+        <item>@string/dark_theme_title</item>
+        <item>@string/light_theme_title</item>
     </string-array>
-    <string-array name="audioFormatList">
+    <string-array name="theme_list">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <string name="default_audio_format_key">default_audio_format</string>
+    <string name="default_audio_format_value">m4a</string>
+    <string-array name="audio_format_description_list">
+        <item>@string/webm_description</item>
+        <item>@string/m4a_description</item>
+    </string-array>
+    <string-array name="audio_format_list">
         <item>webm</item>
         <item>m4a</item>
     </string-array>
-    <string name="defaultAudioFormat">m4a</string>
-    <string name="showNextVideo">show_next_video</string>
-    <string name="searchLanguagePreference">search_language</string>
-    <string name="useTorKey">use_tor</string>
+
+    <string name="show_next_video_key">show_next_video</string>
+    <string name="default_language_value">en</string>
+    <string name="search_language_key">search_language</string>
     <!-- TODO: scrape these programmatically, then store in a local cache -->
     <!-- alternatively, load these from some local android data store -->
-    <string-array name='languageCodes'>
+    <string-array name="language_codes">
         <item>af</item>
         <item>az</item>
         <item>id</item>
@@ -112,8 +127,7 @@
         <item>ja</item>
         <item>ko</item>
     </string-array>
-    <string name="defaultLanguageItem">en</string>
-    <string-array name='languageNames'>
+    <string-array name="language_names">
         <item>Afrikaans</item>
         <item>Azərbaycan</item>
         <item>Bahasa Indonesia</item>
@@ -192,4 +206,5 @@
         <item>日本語</item>
         <item>한국어</item>
     </string-array>
+    <string name="use_tor_key">use_tor</string>
 </resources>

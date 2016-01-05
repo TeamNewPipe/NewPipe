@@ -21,8 +21,8 @@ public class Localization {
     public static Locale getPreferredLocale(Context context) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
-        String languageCode = sp.getString(String.valueOf(R.string.searchLanguagePreference),
-                context.getString(R.string.defaultLanguageItem));
+        String languageCode = sp.getString(String.valueOf(R.string.search_language_key),
+                context.getString(R.string.default_language_value));
 
         if(languageCode.length() == 2) {
             return new Locale(languageCode);
@@ -39,7 +39,7 @@ public class Localization {
         Locale locale = getPreferredLocale(context);
 
         Resources res = context.getResources();
-        String viewsString = res.getString(R.string.viewCountText);
+        String viewsString = res.getString(R.string.view_count_text);
 
         NumberFormat nf = NumberFormat.getInstance(locale);
         String formattedViewCount = nf.format(viewCount);
@@ -69,7 +69,7 @@ public class Localization {
 
     public static String localizeDate(String date, Context context) {
         Resources res = context.getResources();
-        String dateString = res.getString(R.string.uploadDateText);
+        String dateString = res.getString(R.string.upload_date_text);
 
         String formattedDate = formatDate(date, context);
         return String.format(dateString, formattedDate);

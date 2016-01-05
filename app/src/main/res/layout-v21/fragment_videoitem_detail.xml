@@ -11,7 +11,7 @@
     android:id="@+id/videoitem_detail">
 
     <ImageView android:id="@+id/detailThumbnailView"
-        android:contentDescription="@string/detailThumbnailViewDescription"
+        android:contentDescription="@string/detail_thumbnail_view_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:indeterminate="true"
-                    android:indeterminateTint="@color/primaryColorYoutube"
+                    android:indeterminateTint="@color/light_youtube_primary_color"
                     android:indeterminateTintMode="src_in"/>
 
                 <android.support.design.widget.FloatingActionButton
@@ -53,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    app:backgroundTint="@color/primaryColorYoutube"
+                    app:backgroundTint="@color/light_youtube_primary_color"
                     android:src="@drawable/ic_play_arrow_black"
                     android:layout_margin="@dimen/video_item_detail_play_fab_margin"/>
 
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/video_item_detail_info_text_padding"
                 android:layout_below="@id/detailVideoThumbnailWindowLayout"
-                android:background="@color/background_gray">
+                android:background="@color/light_background_color">
 
                 <TextView android:id="@+id/detailVideoTitleView"
                     android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
                     tools:ignore="RtlHardcoded" />
 
                 <ImageView android:id="@+id/detailUploaderThumbnailView"
-                    android:contentDescription="@string/detailUploaderThumbnailViewDescription"
+                    android:contentDescription="@string/detail_uploader_thumbnail_view_description"
                     android:layout_width="@dimen/video_item_detail_uploader_image_size"
                     android:layout_height="@dimen/video_item_detail_uploader_image_size"
                     android:layout_below="@id/detailVideoTitleView"
@@ -125,7 +125,7 @@
                     tools:ignore="RtlHardcoded" />
 
                 <ImageView android:id="@+id/detailThumbsDownImgView"
-                    android:contentDescription="@string/detailThumbsDownImgViewDescription"
+                    android:contentDescription="@string/detail_dislikes_img_view_description"
                     android:layout_width="@dimen/video_item_detail_like_image_width"
                     android:layout_height="@dimen/video_item_detail_like_image_height"
                     android:layout_below="@id/detailViewCountView"
@@ -146,7 +146,7 @@
                     tools:ignore="RtlHardcoded" />
 
                 <ImageView android:id="@+id/detailThumbsUpImgView"
-                    android:contentDescription="@string/detailThumbsUpImgViewDescription"
+                    android:contentDescription="@string/detail_likes_img_view_description"
                     android:layout_width="@dimen/video_item_detail_like_image_width"
                     android:layout_height="@dimen/video_item_detail_like_image_height"
                     android:layout_below="@id/detailViewCountView"
@@ -188,7 +188,7 @@
                         android:layout_centerHorizontal="true"
                         android:textSize="@dimen/video_item_detail_next_text_size"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="@string/nextVideoTitle"
+                        android:text="@string/next_video_title"
                         android:textAllCaps="true" />
 
                     <RelativeLayout android:id="@+id/detailNextVidButtonAndContentLayout"
@@ -212,7 +212,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/detailNextVidButtonAndContentLayout"
                         android:textSize="@dimen/video_item_detail_similar_text_size"
-                        android:text="@string/showSimilarVideosButtonText"/>
+                        android:text="@string/similar_videos_btn_text"/>
                 </RelativeLayout>
 
             </RelativeLayout>

@@ -211,7 +211,7 @@ public class PlayVideoActivity extends AppCompatActivity {
                 intent.setAction(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_TEXT, videoUrl);
                 intent.setType("text/plain");
-                startActivity(Intent.createChooser(intent, getString(R.string.shareDialogTitle)));
+                startActivity(Intent.createChooser(intent, getString(R.string.share_dialog_title)));
                 break;
             case R.id.menu_item_screen_rotation:
                 toggleOrientation();

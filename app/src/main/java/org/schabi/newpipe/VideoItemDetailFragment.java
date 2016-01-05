@@ -302,7 +302,7 @@ public class VideoItemDetailFragment extends Fragment {
                         public void onClick(View v) {
                             Intent intent = new Intent();
                             intent.setAction(Intent.ACTION_VIEW);
-                            intent.setData(Uri.parse(activity.getString(R.string.c3sUrl)));
+                            intent.setData(Uri.parse(activity.getString(R.string.c3s_url)));
                             activity.startActivity(intent);
                         }
                     });
@@ -345,7 +345,7 @@ public class VideoItemDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         activity = (AppCompatActivity) getActivity();
         showNextVideoItem = PreferenceManager.getDefaultSharedPreferences(getActivity())
-                .getBoolean(activity.getString(R.string.showNextVideo), true);
+                .getBoolean(activity.getString(R.string.show_next_video_key), true);
 
     }
 

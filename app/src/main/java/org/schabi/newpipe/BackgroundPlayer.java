@@ -75,7 +75,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this, R.string.backgroundPlayerStartPlayingToast,
+        Toast.makeText(this, R.string.background_player_playing_toast,
                 Toast.LENGTH_SHORT).show();
 
         String source = intent.getDataString();
@@ -278,7 +278,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                     .setSmallIcon(R.drawable.ic_play_circle_filled_white_24dp)
                     .setTicker(
                             String.format(res.getString(
-                                    R.string.backgroundPlayerTickerText), title))
+                                    R.string.background_player_time_text), title))
                     .setContentIntent(PendingIntent.getActivity(getApplicationContext(),
                             noteID, openDetailView,
                             PendingIntent.FLAG_UPDATE_CURRENT));
@@ -288,7 +288,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
                 NotificationCompat.Action playButton = new NotificationCompat.Action.Builder
                         (R.drawable.ic_play_arrow_white_48dp,
-                                res.getString(R.string.play), playPI).build();
+                                res.getString(R.string.play_btn_text), playPI).build();
 
                 noteBuilder
                         .setContentTitle(title)

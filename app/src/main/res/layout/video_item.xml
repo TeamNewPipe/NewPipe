@@ -32,7 +32,7 @@
                 tools:ignore="RtlHardcoded">
 
                 <ImageView android:id="@+id/itemThumbnailView"
-                    android:contentDescription="@string/itemThumbnailViewDescription"
+                    android:contentDescription="@string/list_thumbnail_view_description"
                     android:layout_width="@dimen/video_item_search_thumbnail_image_width"
                     android:layout_height="@dimen/video_item_search_thumbnail_image_height"
                     android:scaleType="centerCrop"
@@ -56,8 +56,8 @@
                     android:paddingLeft="@dimen/video_item_search_duration_horizontal_padding"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textSize="@dimen/video_item_search_duration_text_size"
-                    android:background="@color/durationBackground"
-                    android:textColor="@color/durationText"/>
+                    android:background="@color/duration_dackground_color"
+                    android:textColor="@color/duration_text_color"/>
 
             </RelativeLayout>
 
