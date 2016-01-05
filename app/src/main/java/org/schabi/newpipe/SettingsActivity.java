@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
@@ -241,5 +242,18 @@ public class SettingsActivity extends PreferenceActivity  {
             finish();
         }
         return true;
+    }
+
+    public static void initSettings(Context context) {
+        PreferenceManager.setDefaultValues(context, R.xml.settings_screen, false);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        if(sp.getString(context.getString(R.string.downloadPathPreference), "").isEmpty()){
+            SharedPreferences.Editor spEditor = sp.edit();
+            String newPipeDownloadStorage =
+                    Environment.getExternalStorageDirectory().getAbsolutePath() + "/NewPipe";
+            spEditor.putString(context.getString(R.string.downloadPathPreference)
+                    , newPipeDownloadStorage);
+            spEditor.apply();
+        }
     }
 }

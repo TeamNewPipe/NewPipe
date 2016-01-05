@@ -81,12 +81,14 @@ public class DownloadDialog extends DialogFragment {
                                 Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + downloadFolder);
                         final File dir = new File(downloadPath);
                         if(!dir.exists()) {
-                            boolean mkdir = dir.mkdir(); //attempt to create directory
+                            //attempt to create directory
+                            boolean mkdir = dir.mkdir();
                             if(!mkdir && !dir.isDirectory()) {
                                 Log.e(TAG, "Cant' create directory named " + dir.toString());
                                 //TODO notify user "download directory should be changed" ?
                             }
                         }
+
                         String saveFilePath = dir + "/" + title + suffix;
                         if (App.isUsingTor()) {
                             // if using Tor, do not use DownloadManager because the proxy cannot be set
