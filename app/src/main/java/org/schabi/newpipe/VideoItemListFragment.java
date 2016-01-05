@@ -66,6 +66,9 @@ public class VideoItemListFragment extends ListFragment {
 
     private View footer;
 
+    // used to suppress request for loading a new page while another page is already loading.
+    private boolean loadingNextPage = true;
+
     private class ResultRunnable implements Runnable {
         private final SearchEngine.Result result;
         private final int requestId;
@@ -76,6 +79,9 @@ public class VideoItemListFragment extends ListFragment {
         @Override
         public void run() {
             updateListOnResult(result, requestId);
+            if (android.os.Build.VERSION.SDK_INT >= 19) {
+                getListView().removeFooterView(footer);
+            }
         }
     }
 
@@ -84,7 +90,7 @@ public class VideoItemListFragment extends ListFragment {
         private final String query;
         private final int page;
         final Handler h = new Handler();
-        private volatile boolean run = true;
+        private volatile boolean runs = true;
         private final int requestId;
         public SearchRunnable(SearchEngine engine, String query, int page, int requestId) {
             this.engine = engine;
@@ -93,7 +99,7 @@ public class VideoItemListFragment extends ListFragment {
             this.requestId = requestId;
         }
         void terminate() {
-            run = false;
+            runs = false;
         }
         @Override
         public void run() {
@@ -104,7 +110,7 @@ public class VideoItemListFragment extends ListFragment {
                         getString(R.string.defaultLanguageItem));
                 SearchEngine.Result result = engine.search(query, page, searchLanguage);
                 Log.i(TAG, "language code passed:\""+searchLanguage+"\"");
-                if(run) {
+                if(runs) {
                     h.post(new ResultRunnable(result, requestId));
                 }
             } catch(Exception e) {
@@ -116,15 +122,6 @@ public class VideoItemListFragment extends ListFragment {
                     }
                 });
             }
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (android.os.Build.VERSION.SDK_INT >= 19) {
-                        getListView().removeFooterView(footer);
-                    }
-                }
-            });
-
         }
     }
 
@@ -204,6 +201,7 @@ public class VideoItemListFragment extends ListFragment {
     }
 
     private void nextPage() {
+        loadingNextPage = true;
         lastPage++;
         Log.d(TAG, getString(R.string.searchPage) + Integer.toString(lastPage));
         startSearch(query, lastPage);
@@ -249,6 +247,8 @@ public class VideoItemListFragment extends ListFragment {
             Log.w(TAG, "Trying to set value while activity doesn't exist anymore.");
         } catch(Exception e) {
             e.printStackTrace();
+        } finally {
+            loadingNextPage = false;
         }
     }
 
@@ -325,7 +325,8 @@ public class VideoItemListFragment extends ListFragment {
                         && list.getLastVisiblePosition() == list.getAdapter().getCount() - 1
                         && list.getChildAt(list.getChildCount() - 1).getBottom() <= list.getHeight()) {
                     long time = System.currentTimeMillis();
-                    if ((time - lastScrollDate) > 200) {
+                    if ((time - lastScrollDate) > 200
+                            && !loadingNextPage) {
                         lastScrollDate = time;
                         getListView().addFooterView(footer);
                         nextPage();
