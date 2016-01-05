@@ -99,7 +99,7 @@ class VideoListAdapter extends BaseAdapter {
         convertView = viewCreator.getViewFromVideoInfoItem(convertView, parent, videoList.get(position), context);
 
         if(listView.isItemChecked(position)) {
-            convertView.setBackgroundColor(ContextCompat.getColor(context,R.color.primaryColorYoutube));
+            convertView.setBackgroundColor(ContextCompat.getColor(context,R.color.light_youtube_primary_color));
         } else {
             convertView.setBackgroundColor(0);
         }

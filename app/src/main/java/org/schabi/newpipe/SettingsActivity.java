@@ -1,7 +1,6 @@
 package org.schabi.newpipe;
 
 import android.app.Activity;
-import android.app.SharedElementCallback;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,7 +10,6 @@ import android.os.Environment;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
-import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -86,18 +84,18 @@ public class SettingsActivity extends PreferenceActivity  {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.settings_screen);
+            addPreferencesFromResource(R.xml.settings);
 
             final Activity activity = getActivity();
 
             defaultPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
 
             // get keys
-            DEFAULT_RESOLUTION_PREFERENCE =getString(R.string.defaultResolutionPreference);
-            DEFAULT_AUDIO_FORMAT_PREFERENCE =getString(R.string.defaultAudioFormatPreference);
-            SEARCH_LANGUAGE_PREFERENCE =getString(R.string.searchLanguagePreference);
-            DOWNLOAD_PATH_PREFERENCE = getString(R.string.downloadPathPreference);
-            USE_TOR_KEY = getString(R.string.useTorKey);
+            DEFAULT_RESOLUTION_PREFERENCE =getString(R.string.default_resolution_key);
+            DEFAULT_AUDIO_FORMAT_PREFERENCE =getString(R.string.default_audio_format_key);
+            SEARCH_LANGUAGE_PREFERENCE =getString(R.string.search_language_key);
+            DOWNLOAD_PATH_PREFERENCE = getString(R.string.download_path_key);
+            USE_TOR_KEY = getString(R.string.use_tor_key);
 
             // get pref objects
             defaultResolutionPreference =
@@ -139,16 +137,16 @@ public class SettingsActivity extends PreferenceActivity  {
         private void updateSummary() {
             defaultResolutionPreference.setSummary(
                     defaultPreferences.getString(DEFAULT_RESOLUTION_PREFERENCE,
-                            getString(R.string.defaultResolutionListItem)));
+                            getString(R.string.default_resolution_value)));
             defaultAudioFormatPreference.setSummary(
                     defaultPreferences.getString(DEFAULT_AUDIO_FORMAT_PREFERENCE,
-                            getString(R.string.defaultAudioFormat)));
+                            getString(R.string.default_audio_format_value)));
             searchLanguagePreference.setSummary(
                     defaultPreferences.getString(SEARCH_LANGUAGE_PREFERENCE,
-                            getString(R.string.defaultLanguageItem)));
+                            getString(R.string.default_language_value)));
             downloadPathPreference.setSummary(
                     defaultPreferences.getString(DOWNLOAD_PATH_PREFERENCE,
-                            getString(R.string.downloadLocationSummary)));
+                            getString(R.string.download_path_summary)));
         }
     }
 
@@ -248,13 +246,13 @@ public class SettingsActivity extends PreferenceActivity  {
     }
 
     public static void initSettings(Context context) {
-        PreferenceManager.setDefaultValues(context, R.xml.settings_screen, false);
+        PreferenceManager.setDefaultValues(context, R.xml.settings, false);
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        if(sp.getString(context.getString(R.string.downloadPathPreference), "").isEmpty()){
+        if(sp.getString(context.getString(R.string.download_path_key), "").isEmpty()){
             SharedPreferences.Editor spEditor = sp.edit();
             String newPipeDownloadStorage =
                     Environment.getExternalStorageDirectory().getAbsolutePath() + "/NewPipe";
-            spEditor.putString(context.getString(R.string.downloadPathPreference)
+            spEditor.putString(context.getString(R.string.download_path_key)
                     , newPipeDownloadStorage);
             spEditor.apply();
         }

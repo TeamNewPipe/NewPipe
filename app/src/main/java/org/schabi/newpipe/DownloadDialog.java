@@ -52,8 +52,8 @@ public class DownloadDialog extends DialogFragment {
         arguments = getArguments();
         super.onCreateDialog(savedInstanceState);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.downloadDialogTitle)
-                .setItems(R.array.downloadOptions, new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.download_dialog_title)
+                .setItems(R.array.download_options, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Context context = getActivity();
@@ -77,7 +77,7 @@ public class DownloadDialog extends DialogFragment {
                                 Log.d(TAG, "lolz");
                         }
                         //to avoid hard-coded string like "/storage/emulated/0/Movies"
-                        String downloadPath = prefs.getString(getString(R.string.downloadPathPreference),
+                        String downloadPath = prefs.getString(getString(R.string.download_path_key),
                                 Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + downloadFolder);
                         final File dir = new File(downloadPath);
                         if(!dir.exists()) {

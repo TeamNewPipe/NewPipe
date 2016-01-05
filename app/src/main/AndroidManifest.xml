@@ -84,7 +84,7 @@
             android:exported="false" />
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" >
+            android:label="@string/settings_activity_title" >
         </activity>
         <activity
             android:name=".PanicResponderActivity"

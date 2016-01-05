@@ -1,43 +1,43 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="viewCountText">%1$s megtekintés</string>
-    <string name="uploadDateText">Feltöltve: %1$s</string>
-    <string name="noPlayerFound">Nem található lejátszó. Telepítsen egyet!</string>
-    <string name="installStreamPlayer">Telepítsen egyet</string>
+    <string name="view_count_text">%1$s megtekintés</string>
+    <string name="upload_date_text">Feltöltve: %1$s</string>
+    <string name="no_player_found">Nem található lejátszó. Telepítsen egyet!</string>
+    <string name="install">Telepítsen egyet</string>
     <string name="cancel">Mégse</string>
     <string name="open_in_browser">Megnyitás böngészőben</string>
     <string name="share">Megosztás</string>
     <string name="download">Letöltés</string>
     <string name="search">Keresés</string>
     <string name="settings">Beállítások</string>
-    <string name="didYouMean">Erre gondolt: </string>
-    <string name="searchPage">Keresési lap: </string>
-    <string name="shareDialogTitle">Megosztás ezzel:</string>
-    <string name="chooseBrowser">Válasszon böngészőt:</string>
-    <string name="screenRotation">forgatás</string>
-    <string name="title_activity_settings">Beállítások</string>
+    <string name="did_you_mean">Erre gondolt: </string>
+    <string name="search_page">Keresési lap: </string>
+    <string name="share_dialog_title">Megosztás ezzel:</string>
+    <string name="choose_browser">Válasszon böngészőt:</string>
+    <string name="screen_rotation">forgatás</string>
+    <string name="settings_activity_title">Beállítások</string>
     <string name="useExternalPlayerTitle">Külső lejátszó használata</string>
-    <string name="downloadLocation">Letöltések helye</string>
-    <string name="downloadLocationSummary">Útvonal a letöltött videók tárolásához</string>
-    <string name="downloadLocationDialogTitle">Adja meg a letöltési útvonalat</string>
-    <string name="autoPlayThroughIntentTitle">Automatikus lejátszás Intent-en keresztül</string>
-    <string name="autoPlayThroughIntentSummary">Automatikusan elindítja a videót, ha az külső alkalmazásból volt hívva</string>
-    <string name="defaultResolutionPreferenceTitle">Alapértelmezett felbontás</string>
-    <string name="playWithKodiTitle">Lejátszás Kodi-val</string>
-    <string name="koreNotFound">A Kore alkalmazás nem található. A Kore szükséges a videók Kodi médiaközponttal való lejátszásához.</string>
+    <string name="download_path_title">Letöltések helye</string>
+    <string name="download_path_summary">Útvonal a letöltött videók tárolásához</string>
+    <string name="download_path_dialog_title">Adja meg a letöltési útvonalat</string>
+    <string name="autoplay_through_intent_title">Automatikus lejátszás Intent-en keresztül</string>
+    <string name="autoplay_through_intent_summary">Automatikusan elindítja a videót, ha az külső alkalmazásból volt hívva</string>
+    <string name="default_resolution_title">Alapértelmezett felbontás</string>
+    <string name="play_with_kodi_title">Lejátszás Kodi-val</string>
+    <string name="kore_not_found">A Kore alkalmazás nem található. A Kore szükséges a videók Kodi médiaközponttal való lejátszásához.</string>
     <string name="installeKore">Kore telepítése</string>
-    <string name="showPlayWithKodiTitle">\"Lejátszás Kodi-val\" opció mutatása</string>
-    <string name="showPlayWithKodiSummary">Mutat egy opciót a videók Kodi médiaközponttal való lejátszására</string>
-    <string name="playAudio">Hang</string>
-    <string name="defaultAudioFormatTitle">Alapértelmezett hang formátum</string>
-    <string name="webMAudioDescription">WebM - szabad formátum</string>
-    <string name="m4aAudioDescription">m4a - jobb minőség</string>
-    <string name="downloadDialogTitle">Letöltés</string>
+    <string name="show_play_with_kodi_title">\"Lejátszás Kodi-val\" opció mutatása</string>
+    <string name="show_play_with_kodi_summary">Mutat egy opciót a videók Kodi médiaközponttal való lejátszására</string>
+    <string name="play_audio">Hang</string>
+    <string name="default_audio_format_title">Alapértelmezett hang formátum</string>
+    <string name="webm_description">WebM &#8212; szabad formátum</string>
+    <string name="m4a_description">m4a &#8212; jobb minőség</string>
+    <string name="download_dialog_title">Letöltés</string>
     <string-array name="downloadOptions">
         <item>Videó</item>
         <item>Hang</item>
     </string-array>
-<string name="nextVideoTitle">Következő videó</string>
-    <string name="urlNotSupportedText">A webcím nem támogatott.</string>
-<string name="showSimilarVideosButtonText">Hasonló videók</string>
-    </resources>
+    <string name="next_video_title">Következő videó</string>
+    <string name="url_not_supported_toast">A webcím nem támogatott.</string>
+    <string name="similar_videos_btn_text">Hasonló videók</string>
+</resources>

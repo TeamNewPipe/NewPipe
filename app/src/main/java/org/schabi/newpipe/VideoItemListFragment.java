@@ -105,9 +105,9 @@ public class VideoItemListFragment extends ListFragment {
         public void run() {
             try {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
-                String searchLanguageKey = getContext().getString(R.string.searchLanguagePreference);
+                String searchLanguageKey = getContext().getString(R.string.search_language_key);
                 String searchLanguage = sp.getString(searchLanguageKey,
-                        getString(R.string.defaultLanguageItem));
+                        getString(R.string.default_language_value));
                 SearchEngine.Result result = engine.search(query, page, searchLanguage);
                 Log.i(TAG, "language code passed:\""+searchLanguage+"\"");
                 if(runs) {
@@ -204,7 +204,7 @@ public class VideoItemListFragment extends ListFragment {
     private void nextPage() {
         loadingNextPage = true;
         lastPage++;
-        Log.d(TAG, getString(R.string.searchPage) + Integer.toString(lastPage));
+        Log.d(TAG, getString(R.string.search_page) + Integer.toString(lastPage));
         startSearch(query, lastPage);
     }
 
@@ -228,7 +228,7 @@ public class VideoItemListFragment extends ListFragment {
                 Toast.makeText(getActivity(), result.errorMessage, Toast.LENGTH_LONG).show();
             } else {
                 if (!result.suggestion.isEmpty()) {
-                    Toast.makeText(getActivity(), getString(R.string.didYouMean) + result.suggestion + " ?",
+                    Toast.makeText(getActivity(), getString(R.string.did_you_mean) + result.suggestion + " ?",
                             Toast.LENGTH_LONG).show();
                 }
                 updateList(result.resultList);

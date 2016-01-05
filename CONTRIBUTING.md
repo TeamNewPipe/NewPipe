@@ -1,11 +1,11 @@
-#Contributing
+#Contribution
 
 This document contains guidelines on making contributions to NewPipe.
 
 ## Programming
 
 * Follow the [Google Style Guidelines](https://google.github.io/styleguide/javaguide.html)
-* Make a new feature on a seperate branch, not on the master branch
+* Make a new feature on a separate branch, not on the master branch
 * Make a [pull request](https://github.com/theScrabi/NewPipe/pulls) if you're done with your changes
 * When submitting changes, you agree that your code will be GPLv3 licensed
 
@@ -16,7 +16,7 @@ This document contains guidelines on making contributions to NewPipe.
  compatibility with all git tools
 * [This guide](http://chris.beams.io/posts/git-commit/) goes more in depth on what makes a good commit message
 
-## Translating
+## Translation
 
 * NewPipe can be translated on [weblate](https://hosted.weblate.org/projects/newpipe/strings/)
 
@@ -30,4 +30,4 @@ This document contains guidelines on making contributions to NewPipe.
 ## Communication
 
 * For the time being, [Slack](http://invite.chschtsch.ml/) is being used for project communication
-* Feel free to post suggestions, changes ideas etc!
+* Feel free to post suggestions, changes, ideas etc!

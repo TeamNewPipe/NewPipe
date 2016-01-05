@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/settings_activity_title"
+    android:key="general_preferences">
+
+    <PreferenceCategory
+        android:key="@string/settings_category_video_audio"
+        android:title="@string/settings_category_video_audio_title"
+        android:textAllCaps="true">
+
+        <CheckBoxPreference
+            android:key="@string/use_external_video_player_key"
+            android:title="@string/use_external_video_player_title"
+            android:defaultValue="false"/>
+
+        <CheckBoxPreference
+            android:key="@string/use_external_audio_player_key"
+            android:title="@string/use_external_audio_player_title"
+            android:defaultValue="false"/>
+
+        <ListPreference
+            android:key="@string/default_resolution_key"
+            android:title="@string/default_resolution_title"
+            android:entries="@array/resolution_list"
+            android:entryValues="@array/resolution_list"
+            android:defaultValue="@string/default_resolution_value"/>
+
+        <ListPreference
+            android:key="@string/default_audio_format_key"
+            android:title="@string/default_audio_format_title"
+            android:summary="%s"
+            android:entries="@array/audio_format_description_list"
+            android:entryValues="@array/audio_format_list"
+            android:defaultValue="@string/default_audio_format_value"/>
+
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="@string/settings_category_appearance"
+        android:title="@string/settings_category_appearance_title"
+        android:textAllCaps="true">
+
+        <ListPreference
+            android:key="@string/theme_key"
+            android:title="@string/theme_title"
+            android:summary="%s"
+            android:entries="@array/theme_description_list"
+            android:entryValues="@array/theme_list"
+            android:defaultValue="@string/default_theme_value"/>
+
+        <CheckBoxPreference
+            android:key="@string/show_play_with_kodi_key"
+            android:title="@string/show_play_with_kodi_title"
+            android:summary="@string/show_play_with_kodi_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="@string/show_next_video_key"
+            android:title="@string/show_next_and_similar_title"
+            android:defaultValue="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="@string/settings_category_other"
+        android:title="@string/settings_category_other_title"
+        android:textAllCaps="true">
+
+        <ListPreference
+            android:key="@string/search_language_key"
+            android:title="@string/search_language_title"
+            android:summary="%s"
+            android:entries="@array/language_names"
+            android:entryValues="@array/language_codes"
+            android:defaultValue="@string/default_language_value" />
+
+        <EditTextPreference
+            android:key="@string/download_path_key"
+            android:title="@string/download_path_title"
+            android:summary="@string/download_path_summary"
+            android:dialogTitle="@string/download_path_dialog_title" />
+
+        <CheckBoxPreference
+            android:key="@string/autoplay_through_intent_key"
+            android:title="@string/autoplay_through_intent_title"
+            android:summary="@string/autoplay_through_intent_summary"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="@string/use_tor_key"
+            android:title="@string/use_tor_title"
+            android:summary="@string/use_tor_summary"
+            android:defaultValue="false"/>
+
+    </PreferenceCategory>
+</PreferenceScreen>

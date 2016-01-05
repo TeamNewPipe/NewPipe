@@ -35,7 +35,7 @@ public class App extends Application {
         super.onCreate();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if(prefs.getBoolean(getString(R.string.useTorKey), false)) {
+        if(prefs.getBoolean(getString(R.string.use_tor_key), false)) {
             OrbotHelper.requestStartTor(this);
             configureTor(true);
         } else {

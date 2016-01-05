@@ -172,7 +172,7 @@ public class VideoItemListActivity extends AppCompatActivity
             }
         }
 
-        PreferenceManager.setDefaultValues(this, R.xml.settings_screen, false);
+        PreferenceManager.setDefaultValues(this, R.xml.settings, false);
     }
 
     @Override
