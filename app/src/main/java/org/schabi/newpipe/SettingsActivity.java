@@ -245,13 +245,13 @@ public class SettingsActivity extends PreferenceActivity  {
     }
 
     public static void initSettings(Context context) {
-        PreferenceManager.setDefaultValues(context, R.xml.settings_screen, false);
+        PreferenceManager.setDefaultValues(context, R.xml.settings, false);
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        if(sp.getString(context.getString(R.string.downloadPathPreference), "").isEmpty()){
+        if(sp.getString(context.getString(R.string.download_path_key), "").isEmpty()){
             SharedPreferences.Editor spEditor = sp.edit();
             String newPipeDownloadStorage =
                     Environment.getExternalStorageDirectory().getAbsolutePath() + "/NewPipe";
-            spEditor.putString(context.getString(R.string.downloadPathPreference)
+            spEditor.putString(context.getString(R.string.download_path_key)
                     , newPipeDownloadStorage);
             spEditor.apply();
         }
