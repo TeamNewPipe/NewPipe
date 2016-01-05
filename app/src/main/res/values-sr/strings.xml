@@ -30,8 +30,8 @@
     <string name="show_play_with_kodi_summary">Приказ опције за пуштање видеа у Коди медија центру.</string>
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Подразумевани формат звука</string>
-    <string name="webm_description">WebM &#8212; слободни формат</string>
-    <string name="m4a_description">m4a &#8212; бољи квалитет</string>
+    <string name="webm_description">WebM — слободни формат</string>
+    <string name="m4a_description">m4a — бољи квалитет</string>
     <string name="download_dialog_title">Преузми</string>
     <string-array name="downloadOptions">
         <item>Видео</item>
@@ -59,4 +59,11 @@
 
     <string name="use_tor_title">Користи Тор</string>
     <string name="use_tor_summary">Принудно преусмерење саобраћаја кроз Тор за доданту приватност (токови још нису подржани)</string>
-</resources>
+<string name="theme_title">Тема</string>
+    <string name="dark_theme_title">Тамна</string>
+    <string name="light_theme_title">Светла</string>
+
+    <string name="settings_category_appearance_title">Изглед</string>
+    <string name="network_error">Грешка мреже</string>
+
+    </resources>
