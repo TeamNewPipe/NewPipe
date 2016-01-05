@@ -118,7 +118,7 @@ public class VideoItemListFragment extends ListFragment {
                 h.post(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getActivity(), getString(R.string.networkError),
+                        Toast.makeText(getActivity(), getString(R.string.network_error),
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
