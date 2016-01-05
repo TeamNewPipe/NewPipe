@@ -118,7 +118,8 @@ public class VideoItemListFragment extends ListFragment {
                 h.post(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getActivity(), "Network Error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), getString(R.string.networkError),
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -298,7 +299,8 @@ public class VideoItemListFragment extends ListFragment {
         super.onViewCreated(view, savedInstanceState);
         list = getListView();
         videoListAdapter = new VideoListAdapter(getActivity(), this);
-        footer = ((LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.paginate_footer, null, false);
+        footer = ((LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE))
+                .inflate(R.layout.paginate_footer, null, false);
 
 
         setListAdapter(videoListAdapter);
@@ -319,7 +321,8 @@ public class VideoItemListFragment extends ListFragment {
             }
 
             @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            public void onScroll(AbsListView view, int firstVisibleItem,
+                                 int visibleItemCount, int totalItemCount) {
                 if (mode != PRESENT_VIDEOS_MODE
                         && list.getChildAt(0) != null
                         && list.getLastVisiblePosition() == list.getAdapter().getCount() - 1
