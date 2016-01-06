@@ -30,8 +30,8 @@
     <string name="show_play_with_kodi_summary">Mostra uma opção para reproduzir o vídeo com o Kodi.</string>
     <string name="play_audio">Áudio</string>
     <string name="default_audio_format_title">Formato áudio padrão</string>
-    <string name="webm_description">WebM &#8212; formato livre</string>
-    <string name="m4a_description">m4a &#8212; melhor qualidade</string>
+    <string name="webm_description">WebM — formato livre</string>
+    <string name="m4a_description">m4a — melhor qualidade</string>
     <string name="download_dialog_title">Descarregar</string>
     <string name="next_video_title">Vídeo seguinte</string>
     <string name="show_next_and_similar_title">Mostrar vídeos seguintes e similares</string>
@@ -47,4 +47,18 @@
     <string name="detail_uploader_thumbnail_view_description">Carregador de miniaturas</string>
     <string name="detail_dislikes_img_view_description">Não gosto</string>
     <string name="detail_likes_img_view_description">Gosto</string>
+<string name="background_player_name">Reprodutor de fundo NewPipe</string>
+    <string name="loading">A carregar</string>
+    <string name="theme_title">Tema</string>
+    <string name="dark_theme_title">Escuro</string>
+    <string name="light_theme_title">Claro</string>
+
+    <string name="settings_category_appearance_title">Aparência</string>
+    <string name="settings_category_other_title">Outra</string>
+    <string name="background_player_playing_toast">A reproduzir em segundo plano</string>
+    <string name="play_btn_text">Reproduzir</string>
+    <string name="network_error">Erro de rede</string>
+
+    <string name="use_tor_title">Utilizar Tor</string>
+    <string name="use_tor_summary">Utilizar a rede Tor para ter mais privacidade (ainda não é suportada a transmissão de vídeos)</string>
 </resources>
