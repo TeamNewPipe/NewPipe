@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="autoplay_through_intent_summary">Démarrer automatiquement la vidéo si elle a été appelée depuis une autre application.</string>
+    <string name="autoplay_through_intent_summary">Lire automatiquement une vidéo si elle a été appelée depuis une autre application</string>
     <string name="cancel">Annuler</string>
     <string name="choose_browser">Choisir un navigateur :</string>
     <string name="default_resolution_title">Résolution par défaut</string>
@@ -8,11 +8,11 @@
     <string name="download">Télécharger</string>
     <string name="download_path_title">Emplacement des téléchargements</string>
     <string name="download_path_dialog_title">Entrez l\'emplacement du téléchargement</string>
-    <string name="download_path_summary">Emplacement des vidéos téléchargées.</string>
+    <string name="download_path_summary">Chemin des vidéos téléchargées</string>
     <string name="install">Installer</string>
     <string name="installeKore">Installer Kore</string>
-    <string name="kore_not_found">L\'application Kore est introuvable. Kore est nécessaire afin de lire des vidéos dans Kodi media center.</string>
-    <string name="no_player_found">Aucun lecteur de streaming détecté. Vous devriez en installer un.</string>
+    <string name="kore_not_found">L\'application Kore est introuvable. Installer Kore ?</string>
+    <string name="no_player_found">Aucun lecteur streaming trouvé. Installer VLC ?</string>
     <string name="open_in_browser">Ouvrir dans le navigateur</string>
     <string name="autoplay_through_intent_title">Lecture automatique via Intent</string>
     <string name="play_with_kodi_title">Lire avec Kodi</string>
@@ -22,7 +22,7 @@
     <string name="settings">Paramètres</string>
     <string name="share">Partager</string>
     <string name="share_dialog_title">Partager avec :</string>
-    <string name="show_play_with_kodi_summary">Afficher une option pour lire la vidéo avec Kodi media center.</string>
+    <string name="show_play_with_kodi_summary">Afficher une option pour lire la vidéo via Kodi media center</string>
     <string name="show_play_with_kodi_title">Afficher l\'option \"Lire avec Kodi\"</string>
     <string name="settings_activity_title">Paramètres</string>
     <string name="upload_date_text">Mise en ligne le %1$s</string>
@@ -30,12 +30,12 @@
     <string name="view_count_text">%1$s vues</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio par défaut</string>
-    <string name="webm_description">WebM &#8212; format libre</string>
-    <string name="m4a_description">m4a &#8212; meilleur qualité</string>
+    <string name="webm_description">WebM — format libre</string>
+    <string name="m4a_description">m4a — meilleur qualité</string>
     <string name="download_dialog_title">Télécharger</string>
     <string name="next_video_title">Vidéo suivante</string>
     <string name="show_next_and_similar_title">Afficher les vidéos suivantes et similaires</string>
-    <string name="url_not_supported_toast">URL non supportée.</string>
+    <string name="url_not_supported_toast">URL non supportée</string>
     <string name="similar_videos_btn_text">Vidéos similaires</string>
     <string name="settings_category_video_audio_title">Vidéo &amp; Audio</string>
     <string name="settings_category_other_title">Divers</string>
@@ -55,4 +55,11 @@
 
     <string name="use_tor_title">Utiliser Tor</string>
     <string name="use_tor_summary">Forcer le trafic de téléchargement via Tor pour plus de confidentialité (vidéos streaming non supporté)</string>
-</resources>
+<string name="theme_title">Thème</string>
+    <string name="dark_theme_title">Sombre</string>
+    <string name="light_theme_title">Clair</string>
+
+    <string name="settings_category_appearance_title">Apparence</string>
+    <string name="network_error">Erreur réseau</string>
+
+    </resources>
