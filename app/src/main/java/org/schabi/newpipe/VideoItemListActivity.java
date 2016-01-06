@@ -3,6 +3,7 @@ package org.schabi.newpipe;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -171,7 +172,13 @@ public class VideoItemListActivity extends AppCompatActivity
             }
         }
 
-        SettingsActivity.initSettings(this);
+        PreferenceManager.setDefaultValues(this, R.xml.settings, false);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        App.checkStartTor(this);
     }
 
     /**

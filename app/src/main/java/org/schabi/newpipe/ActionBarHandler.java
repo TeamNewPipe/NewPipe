@@ -99,8 +99,8 @@ class ActionBarHandler {
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
         String[] itemArray = new String[videoStreams.length];
         String defaultResolution = defaultPreferences
-                .getString(activity.getString(R.string.defaultResolutionPreference),
-                        activity.getString(R.string.defaultResolutionListItem));
+                .getString(activity.getString(R.string.default_resolution_key),
+                        activity.getString(R.string.default_resolution_value));
         int defaultResolutionPos = 0;
 
         for(int i = 0; i < videoStreams.length; i++) {
@@ -124,7 +124,7 @@ class ActionBarHandler {
         // set audioStream
         audioStream = null;
         String preferedFormat = defaultPreferences
-                .getString(activity.getString(R.string.defaultAudioFormatPreference), "webm");
+                .getString(activity.getString(R.string.default_audio_format_key), "webm");
         if(preferedFormat.equals("webm")) {
             for(VideoInfo.AudioStream s : audioStreams) {
                 if(s.format == MediaFormat.WEBMA.id) {
@@ -158,7 +158,7 @@ class ActionBarHandler {
         MenuItem castItem = menu.findItem(R.id.action_play_with_kodi);
 
         castItem.setVisible(defaultPreferences
-                .getBoolean(activity.getString(R.string.showPlayWithKodiPreference), false));
+                .getBoolean(activity.getString(R.string.show_play_with_kodi_key), false));
     }
 
     public boolean onItemSelected(MenuItem item) {
@@ -170,7 +170,7 @@ class ActionBarHandler {
                     intent.setAction(Intent.ACTION_SEND);
                     intent.putExtra(Intent.EXTRA_TEXT, websiteUrl);
                     intent.setType("text/plain");
-                    activity.startActivity(Intent.createChooser(intent, activity.getString(R.string.shareDialogTitle)));
+                    activity.startActivity(Intent.createChooser(intent, activity.getString(R.string.share_dialog_title)));
                     return true;
                 }
                 case R.id.menu_item_openInBrowser: {
@@ -210,7 +210,7 @@ class ActionBarHandler {
         // ----------- THE MAGIC MOMENT ---------------
         if(!videoTitle.isEmpty()) {
             if (PreferenceManager.getDefaultSharedPreferences(activity)
-                    .getBoolean(activity.getString(R.string.useExternalVideoPlayer), false)) {
+                    .getBoolean(activity.getString(R.string.use_external_video_player_key), false)) {
 
                 // External Player
                 Intent intent = new Intent();
@@ -226,13 +226,13 @@ class ActionBarHandler {
                 } catch (Exception e) {
                     e.printStackTrace();
                     AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                    builder.setMessage(R.string.noPlayerFound)
-                            .setPositiveButton(R.string.installStreamPlayer, new DialogInterface.OnClickListener() {
+                    builder.setMessage(R.string.no_player_found)
+                            .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     Intent intent = new Intent();
                                     intent.setAction(Intent.ACTION_VIEW);
-                                    intent.setData(Uri.parse(activity.getString(R.string.fdroidVLCurl)));
+                                    intent.setData(Uri.parse(activity.getString(R.string.fdroid_vlc_url)));
                                     activity.startActivity(intent);
                                 }
                             })
@@ -284,7 +284,7 @@ class ActionBarHandler {
             intent.setAction(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(websiteUrl));
 
-            activity.startActivity(Intent.createChooser(intent, activity.getString(R.string.chooseBrowser)));
+            activity.startActivity(Intent.createChooser(intent, activity.getString(R.string.choose_browser)));
         }
     }
 
@@ -298,13 +298,13 @@ class ActionBarHandler {
             } catch (Exception e) {
                 e.printStackTrace();
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                builder.setMessage(R.string.koreNotFound)
-                        .setPositiveButton(R.string.installeKore, new DialogInterface.OnClickListener() {
+                builder.setMessage(R.string.kore_not_found)
+                        .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent();
                                 intent.setAction(Intent.ACTION_VIEW);
-                                intent.setData(Uri.parse(activity.getString(R.string.fdroidKoreUrl)));
+                                intent.setData(Uri.parse(activity.getString(R.string.fdroid_kore_url)));
                                 activity.startActivity(intent);
                             }
                         })
@@ -322,7 +322,7 @@ class ActionBarHandler {
     public void playAudio() {
 
         boolean externalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
-                .getBoolean(activity.getString(R.string.useExternalAudioPlayer), false);
+                .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
         Intent intent;
 
         if (!externalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 18) {
@@ -356,13 +356,13 @@ class ActionBarHandler {
             } catch (Exception e) {
                 e.printStackTrace();
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                builder.setMessage(R.string.noPlayerFound)
-                        .setPositiveButton(R.string.installStreamPlayer, new DialogInterface.OnClickListener() {
+                builder.setMessage(R.string.no_player_found)
+                        .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent();
                                 intent.setAction(Intent.ACTION_VIEW);
-                                intent.setData(Uri.parse(activity.getString(R.string.fdroidVLCurl)));
+                                intent.setData(Uri.parse(activity.getString(R.string.fdroid_vlc_url)));
                                 activity.startActivity(intent);
                             }
                         })

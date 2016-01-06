@@ -17,6 +17,7 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -74,7 +75,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this, R.string.backgroundPlayerStartPlayingToast,
+        Toast.makeText(this, R.string.background_player_playing_toast,
                 Toast.LENGTH_SHORT).show();
 
         String source = intent.getDataString();
@@ -113,9 +114,9 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         private int noteID = TAG.hashCode();
         private BackgroundPlayer owner;
         private NotificationManager noteMgr;
-        private NotificationCompat.Builder noteBuilder;
         private WifiManager.WifiLock wifiLock;
         private Bitmap videoThumbnail = null;
+        private NotificationCompat.Builder noteBuilder;
 
         public PlayerThread(String src, String title, BackgroundPlayer owner) {
             this.source = src;
@@ -124,10 +125,9 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         }
+
         @Override
         public void run() {
-            Resources res = getApplicationContext().getResources();
-
             mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);//cpu lock
             try {
                 mediaPlayer.setDataSource(source);
@@ -135,9 +135,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 //so calling the blocking prepare() method should be ok
                 mediaPlayer.prepare();
 
-                //alternatively:
-                //mediaPlayer.setOnPreparedListener(this);
-                //mediaPlayer.prepareAsync(); //prepare async to not block main thread
             } catch (IOException ioe) {
                 ioe.printStackTrace();
                 Log.e(TAG, "video source:" + source);
@@ -177,63 +174,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             filter.addAction(ACTION_STOP);
             registerReceiver(broadcastReceiver, filter);
 
-            PendingIntent playPI = PendingIntent.getBroadcast(owner, noteID,
-                    new Intent(ACTION_PLAYPAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
-
-            NotificationCompat.Action playButton = new NotificationCompat.Action.Builder
-                    (R.drawable.ic_play_arrow_white_48dp, "Play", playPI).build();
-
-            /*
-            NotificationCompat.Action pauseButton = new NotificationCompat.Action.Builder
-                    (R.drawable.ic_pause_white_24dp, "Pause", playPI).build();
-            */
-
-            PendingIntent stopPI = PendingIntent.getBroadcast(owner, noteID,
-                    new Intent(ACTION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
-
-            noteBuilder = new NotificationCompat.Builder(owner);
-            noteBuilder
-                    .setContentTitle(title)
-                    //really? Id like to put something more helpful here.
-                    //.setContentText("NewPipe is playing in the background")
-                    .setContentText(channelName)
-                    //.setAutoCancel(!mediaPlayer.isPlaying())
-                    .setOngoing(true)
-                    .setDeleteIntent(stopPI)
-                    //doesn't fit with Notification.MediaStyle
-                    //.setProgress(vidLength, 0, false)
-                    .setSmallIcon(R.drawable.ic_play_circle_filled_white_24dp)
-                    .setLargeIcon(videoThumbnail)
-                    .setTicker(
-                            String.format(res.getString(
-                                    R.string.backgroundPlayerTickerText), title))
-                    .addAction(playButton);
-                    //.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                    //.setLargeIcon(cover)
-            if(android.os.Build.VERSION.SDK_INT >= 16)
-                noteBuilder.setPriority(Notification.PRIORITY_LOW);
-            if(android.os.Build.VERSION.SDK_INT >= 21)
-                noteBuilder.setCategory(Notification.CATEGORY_TRANSPORT);
-
-                noteBuilder.setStyle(new NotificationCompat.MediaStyle()
-                                //.setMediaSession(mMediaSession.getSessionToken())
-                                .setShowActionsInCompactView(new int[]{0})
-                                .setShowCancelButton(true)
-                                .setCancelButtonIntent(stopPI));
-            if(videoThumbnail != null) {
-                noteBuilder.setLargeIcon(videoThumbnail);
-            }
-
-            Notification note = noteBuilder.build();
-
-            Intent openDetailView = new Intent(getApplicationContext(),
-                    VideoItemDetailActivity.class);
-            openDetailView.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, serviceId);
-            openDetailView.putExtra(VideoItemDetailFragment.VIDEO_URL, webUrl);
-            openDetailView.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            note.contentIntent = PendingIntent.getActivity(getApplicationContext(),
-                    noteID, openDetailView,
-                    PendingIntent.FLAG_UPDATE_CURRENT);
+            Notification note = buildNotification();
 
             startForeground(noteID, note);
 
@@ -252,9 +193,9 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                     Log.d(TAG, "sleep failure");
                 }
             }*/
-
         }
 
+        /**Handles button presses from the notification. */
         private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -265,7 +206,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                         mediaPlayer.pause();
                     }
                     else {
-                        //reacquire CPU lock after releasing it on pause
+                        //reacquire CPU lock after auto-releasing it on pause
                         mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
                         mediaPlayer.start();
                     }
@@ -279,8 +220,9 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         };
 
         private void afterPlayCleanup() {
-            //noteBuilder.setProgress(0, 0, false);
             //remove progress bar
+            //noteBuilder.setProgress(0, 0, false);
+
             //remove notification
             noteMgr.cancel(noteID);
             unregisterReceiver(broadcastReceiver);
@@ -289,7 +231,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
             //release wifilock
             wifiLock.release();
-            //remove foreground status of service; make us killable
+            //remove foreground status of service; make BackgroundPlayer killable
             stopForeground(true);
 
             stopSelf();
@@ -305,6 +247,111 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             public void onCompletion(MediaPlayer mp) {
                 afterPlayCleanup();
             }
+        }
+
+        private Notification buildNotification() {
+            Notification note;
+            Resources res = getApplicationContext().getResources();
+            noteBuilder = new NotificationCompat.Builder(owner);
+
+            PendingIntent playPI = PendingIntent.getBroadcast(owner, noteID,
+                    new Intent(ACTION_PLAYPAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent stopPI = PendingIntent.getBroadcast(owner, noteID,
+                    new Intent(ACTION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
+            /*
+            NotificationCompat.Action pauseButton = new NotificationCompat.Action.Builder
+                    (R.drawable.ic_pause_white_24dp, "Pause", playPI).build();
+            */
+
+            //build intent to return to video, on tapping notification
+            Intent openDetailView = new Intent(getApplicationContext(),
+                    VideoItemDetailActivity.class);
+            openDetailView.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, serviceId);
+            openDetailView.putExtra(VideoItemDetailFragment.VIDEO_URL, webUrl);
+            openDetailView.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            noteBuilder
+                    .setOngoing(true)
+                    .setDeleteIntent(stopPI)
+                            //doesn't fit with Notification.MediaStyle
+                            //.setProgress(vidLength, 0, false)
+                    .setSmallIcon(R.drawable.ic_play_circle_filled_white_24dp)
+                    .setTicker(
+                            String.format(res.getString(
+                                    R.string.background_player_time_text), title))
+                    .setContentIntent(PendingIntent.getActivity(getApplicationContext(),
+                            noteID, openDetailView,
+                            PendingIntent.FLAG_UPDATE_CURRENT));
+
+
+            if (android.os.Build.VERSION.SDK_INT < 21) {
+
+                NotificationCompat.Action playButton = new NotificationCompat.Action.Builder
+                        (R.drawable.ic_play_arrow_white_48dp,
+                                res.getString(R.string.play_btn_text), playPI).build();
+
+                noteBuilder
+                        .setContentTitle(title)
+                                //really? Id like to put something more helpful here.
+                                //was more of a placeholder than anything else. -medavox
+                                //.setContentText("NewPipe is playing in the background")
+                        .setContentText(channelName)
+                                //.setAutoCancel(!mediaPlayer.isPlaying())
+                        .setDeleteIntent(stopPI)
+                                //doesn't fit with Notification.MediaStyle
+                                //.setProgress(vidLength, 0, false)
+                        .setLargeIcon(videoThumbnail)
+                        .addAction(playButton);
+                        //.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                        //.setLargeIcon(cover)
+
+                //is wrapping this in an SDK version check really necessary,
+                // if we're using NotificationCompat?
+                // the compat libraries should handle this, right? -medavox
+                if (android.os.Build.VERSION.SDK_INT >= 16)
+                    noteBuilder.setPriority(Notification.PRIORITY_LOW);
+
+                noteBuilder.setStyle(new NotificationCompat.MediaStyle()
+                        //.setMediaSession(mMediaSession.getSessionToken())
+                        .setShowActionsInCompactView(new int[]{0})
+                        .setShowCancelButton(true)
+                        .setCancelButtonIntent(stopPI));
+                if (videoThumbnail != null) {
+                    noteBuilder.setLargeIcon(videoThumbnail);
+                }
+                note = noteBuilder.build();
+            } else {
+                RemoteViews view =
+                        new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
+                view.setImageViewBitmap(R.id.backgroundCover, videoThumbnail);
+                view.setTextViewText(R.id.backgroundSongName, title);
+                view.setTextViewText(R.id.backgroundArtist, channelName);
+                view.setOnClickPendingIntent(R.id.backgroundStop, stopPI);
+                view.setOnClickPendingIntent(R.id.backgroundPlayPause, playPI);
+
+                //possibly found the expandedView problem,
+                //but can't test it as I don't have a 5.0 device. -medavox
+                RemoteViews expandedView =
+                        new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification_expanded);
+                expandedView.setImageViewBitmap(R.id.backgroundCover, videoThumbnail);
+                expandedView.setTextViewText(R.id.backgroundSongName, title);
+                expandedView.setTextViewText(R.id.backgroundArtist, channelName);
+                expandedView.setOnClickPendingIntent(R.id.backgroundStop, stopPI);
+                expandedView.setOnClickPendingIntent(R.id.backgroundPlayPause, playPI);
+
+                noteBuilder.setCategory(Notification.CATEGORY_TRANSPORT);
+
+                //Make notification appear on lockscreen
+                noteBuilder.setVisibility(Notification.VISIBILITY_PUBLIC);
+
+                note = noteBuilder.build();
+                note.contentView = view;
+
+                //todo: This never shows up. I was not able to figure out why:
+                note.bigContentView = expandedView;
+            }
+
+            return note;
         }
     }
 }

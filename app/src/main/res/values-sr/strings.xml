@@ -1,57 +1,69 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="viewCountText">%1$s приказа</string>
-    <string name="uploadDateText">"Отпремљен "%1$s</string>
-    <string name="noPlayerFound">Нема плејера токова. Можда желите да га инсталирате.</string>
-    <string name="installStreamPlayer">Инсталирај</string>
+    <string name="view_count_text">%1$s приказа</string>
+    <string name="upload_date_text">"Отпремљен "%1$s</string>
+    <string name="no_player_found">Нема плејера токова. Можда желите да га инсталирате.</string>
+    <string name="install">Инсталирај</string>
     <string name="cancel">Одустани</string>
     <string name="open_in_browser">Отвори у прегледачу</string>
     <string name="share">Дели</string>
     <string name="download">Преузми</string>
     <string name="search">Тражи</string>
     <string name="settings">Поставке</string>
-    <string name="didYouMean">Да ли сте мислили: </string>
-    <string name="searchPage">Страница претраге: </string>
-    <string name="shareDialogTitle">Подели помоћу:</string>
-    <string name="chooseBrowser">Отвори помоћу:</string>
-    <string name="screenRotation">ротација</string>
-    <string name="title_activity_settings">Поставке</string>
+    <string name="did_you_mean">Да ли сте мислили: </string>
+    <string name="search_page">Страница претраге: </string>
+    <string name="share_dialog_title">Подели помоћу:</string>
+    <string name="choose_browser">Отвори помоћу:</string>
+    <string name="screen_rotation">ротација</string>
+    <string name="settings_activity_title">Поставке</string>
     <string name="useExternalPlayerTitle">Користи спољашњи плејер</string>
-    <string name="downloadLocation">Одредиште преузимања</string>
-    <string name="downloadLocationSummary">Путања за упис преузетих видеа.</string>
-    <string name="downloadLocationDialogTitle">Унесите путању за преузимања</string>
-    <string name="autoPlayThroughIntentTitle">Аутопуштање преко Интента</string>
-    <string name="autoPlayThroughIntentSummary">Аутоматски почиње пушта видео по позиву из друге апликације.</string>
-    <string name="defaultResolutionPreferenceTitle">Подразумевана резолуција</string>
-    <string name="playWithKodiTitle">Пусти помоћу Кодија</string>
-    <string name="koreNotFound">Апликација Кор није нађена. Кор (Kore) је потребан да бисте пуштали видее у Коди медија центру.</string>
+    <string name="download_path_title">Одредиште преузимања</string>
+    <string name="download_path_summary">Путања за упис преузетих видеа.</string>
+    <string name="download_path_dialog_title">Унесите путању за преузимања</string>
+    <string name="autoplay_through_intent_title">Аутопуштање преко Интента</string>
+    <string name="autoplay_through_intent_summary">Аутоматски почиње пушта видео по позиву из друге апликације.</string>
+    <string name="default_resolution_title">Подразумевана резолуција</string>
+    <string name="play_with_kodi_title">Пусти помоћу Кодија</string>
+    <string name="kore_not_found">Апликација Кор није нађена. Кор (Kore) је потребан да бисте пуштали видее у Коди медија центру.</string>
     <string name="installeKore">Инсталирај Кор</string>
-    <string name="showPlayWithKodiTitle">Прикажи „Пусти помоћу Кодија“</string>
-    <string name="showPlayWithKodiSummary">Приказ опције за пуштање видеа у Коди медија центру.</string>
-    <string name="playAudio">Аудио</string>
-    <string name="defaultAudioFormatTitle">Подразумевани формат звука</string>
-    <string name="webMAudioDescription">WebM - слободни формат</string>
-    <string name="m4aAudioDescription">m4a - бољи квалитет</string>
-    <string name="downloadDialogTitle">Преузми</string>
+    <string name="show_play_with_kodi_title">Прикажи „Пусти помоћу Кодија“</string>
+    <string name="show_play_with_kodi_summary">Приказ опције за пуштање видеа у Коди медија центру.</string>
+    <string name="play_audio">Аудио</string>
+    <string name="default_audio_format_title">Подразумевани формат звука</string>
+    <string name="webm_description">WebM — слободни формат</string>
+    <string name="m4a_description">m4a — бољи квалитет</string>
+    <string name="download_dialog_title">Преузми</string>
     <string-array name="downloadOptions">
         <item>Видео</item>
         <item>Аудио</item>
     </string-array>
-    <string name="nextVideoTitle">Следећи видео</string>
-    <string name="urlNotSupportedText">УРЛ није подржан.</string>
-    <string name="showNextAndSimilarTitle">Прикажи следећи и слични видео</string>
-    <string name="showSimilarVideosButtonText">Слични видео</string>
-    <string name="searchLanguageTitle">Пожељни језик садржаја</string>
-<string name="settingsCategoryVideoAudioTitle">ВИДЕО И АУДИО</string>
-    <string name="settingsCategoryVideoInfoTittle">ПОДАЦИ</string>
-    <string name="settingsCategoryEtcTitle">ОСТАЛО</string>
-<string name="itemThumbnailViewDescription">Сличица видео прегледа</string>
-    <string name="detailThumbnailViewDescription">Сличица видео прегледа</string>
-    <string name="detailUploaderThumbnailViewDescription">Сличица отпремаоца</string>
-    <string name="detailThumbsDownImgViewDescription">Несвиђања</string>
-    <string name="detailThumbsUpImgViewDescription">Свиђања</string>
-<string name="useExternalVideoPlayerTitle">Користи спољашњи видео плејер</string>
-    <string name="useExternalAudioPlayerTitle">Користи спољашњи аудио плејер</string>
-    <string name="backgroundPlayerStartPlayingToast">Пуштам у позадини</string>
+    <string name="next_video_title">Следећи видео</string>
+    <string name="url_not_supported_toast">УРЛ није подржан.</string>
+    <string name="show_next_and_similar_title">Прикажи следећи и слични видео</string>
+    <string name="similar_videos_btn_text">Слични видео</string>
+    <string name="search_language_title">Пожељни језик садржаја</string>
+    <string name="settings_category_video_audio_title">Видео и Аудио</string>
+    <string name="settings_category_other_title">Остало</string>
+    <string name="list_thumbnail_view_description">Сличица видео прегледа</string>
+    <string name="detail_thumbnail_view_description">Сличица видео прегледа</string>
+    <string name="detail_uploader_thumbnail_view_description">Сличица отпремаоца</string>
+    <string name="detail_dislikes_img_view_description">Несвиђања</string>
+    <string name="detail_likes_img_view_description">Свиђања</string>
+    <string name="use_external_video_player_title">Користи спољашњи видео плејер</string>
+    <string name="use_external_audio_player_title">Користи спољашњи аудио плејер</string>
+    <string name="background_player_playing_toast">Пуштам у позадини</string>
+
+    <string name="background_player_name">Позадински плејер за Јутјуб цев</string>
+    <string name="loading">Учитавам</string>
+    <string name="play_btn_text">Пусти</string>
+
+    <string name="use_tor_title">Користи Тор</string>
+    <string name="use_tor_summary">Принудно преусмерење саобраћаја кроз Тор за доданту приватност (токови још нису подржани)</string>
+<string name="theme_title">Тема</string>
+    <string name="dark_theme_title">Тамна</string>
+    <string name="light_theme_title">Светла</string>
+
+    <string name="settings_category_appearance_title">Изглед</string>
+    <string name="network_error">Грешка мреже</string>
 
     </resources>

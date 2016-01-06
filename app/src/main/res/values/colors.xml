@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColorYoutube">#cd322e</color>
-    <color name="primaryColorDarkYoutube">#bc211d</color>
-    <color name="accentColorYoutube">#000</color>
-    <color name="durationBackground">#a000</color>
-    <color name="durationText">#efff</color>
-    <color name="dark_overlay">#6000</color>
-    <color name="background_gray">#EEEEEE</color>
+    <!-- Light Theme -->
+    <color name="light_background_color">#EEEEEE</color>
+    <color name="light_youtube_primary_color">#CD322E</color>
+    <color name="light_youtube_dark_color">#BC211D</color>
+    <color name="light_youtube_accent_color">#000000</color>
+
+    <!-- Dark Theme -->
+    <color name="dark_background_color">#222222</color>
+    <color name="dark_youtube_primary_color">#CD322E</color>
+    <color name="dark_youtube_dark_color">#BC211D</color>
+    <color name="dark_youtube_accent_color">#FFFFFF</color>
+
+    <!-- Miscellaneous -->
+    <color name="duration_dackground_color">#AA000000</color>
+    <color name="duration_text_color">#EEFFFFFF</color>
+    <color name="video_overlay_color">#66000000</color>
+    <color name="background_notification_color">#323232</color>
 </resources>

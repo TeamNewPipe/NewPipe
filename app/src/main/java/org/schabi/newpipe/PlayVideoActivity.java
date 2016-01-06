@@ -188,6 +188,18 @@ public class PlayVideoActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        App.checkStartTor(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        prefs = getPreferences(Context.MODE_PRIVATE);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch(id) {
@@ -199,7 +211,7 @@ public class PlayVideoActivity extends AppCompatActivity {
                 intent.setAction(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_TEXT, videoUrl);
                 intent.setType("text/plain");
-                startActivity(Intent.createChooser(intent, getString(R.string.shareDialogTitle)));
+                startActivity(Intent.createChooser(intent, getString(R.string.share_dialog_title)));
                 break;
             case R.id.menu_item_screen_rotation:
                 toggleOrientation();

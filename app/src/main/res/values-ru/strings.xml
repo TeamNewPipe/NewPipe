@@ -1,54 +1,57 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="viewCountText">%1$s просмотров</string>
-    <string name="uploadDateText">Опубликовано %1$s</string>
-    <string name="noPlayerFound">Ни одного потокового проигрывателя не было найдено. Установить?</string>
-    <string name="installStreamPlayer">Установить</string>
+    <string name="view_count_text">%1$s просмотров</string>
+    <string name="upload_date_text">Опубликовано %1$s</string>
+    <string name="no_player_found">Ни одного потокового проигрывателя не было найдено. Установить?</string>
+    <string name="install">Установить</string>
     <string name="cancel">Отмена</string>
     <string name="open_in_browser">Открыть в браузере</string>
     <string name="share">Поделиться</string>
     <string name="download">Скачать</string>
     <string name="search">Найти</string>
     <string name="settings">Настройки</string>
-    <string name="didYouMean">Возможно, вы имели в виду: </string>
-    <string name="searchPage">Страница поиска: </string>
-    <string name="shareDialogTitle">Поделиться с помощью:</string>
-    <string name="chooseBrowser">Выбрать браузер:</string>
-    <string name="screenRotation">поворот</string>
-    <string name="title_activity_settings">Настройки</string>
+    <string name="did_you_mean">Возможно, вы имели в виду: </string>
+    <string name="search_page">Страница поиска: </string>
+    <string name="share_dialog_title">Поделиться с помощью:</string>
+    <string name="choose_browser">Выбрать браузер:</string>
+    <string name="screen_rotation">поворот</string>
+    <string name="settings_activity_title">Настройки</string>
     <string name="useExternalPlayerTitle">Использовать внешний проигрыватель</string>
-    <string name="downloadLocation">Место для загрузок</string>
-    <string name="downloadLocationSummary">Папка для хранения загруженных файлов.</string>
-    <string name="downloadLocationDialogTitle">Введите путь к папке для загрузок</string>
-    <string name="autoPlayThroughIntentTitle">Автопроигрывание через интернет</string>
-    <string name="autoPlayThroughIntentSummary">Автоматически воспроизводить видео когда оно открыто через другое приложение.</string>
-    <string name="defaultResolutionPreferenceTitle">Разрешение по-умолчанию</string>
-    <string name="playWithKodiTitle">Воспроизвести с помощью Kodi</string>
-    <string name="koreNotFound">Приложение Kore не наидено. Чтобы проигрывать видео через Kodi media center, нужен Kore.</string>
+    <string name="download_path_title">Место для загрузок</string>
+    <string name="download_path_summary">Папка для хранения загруженных файлов.</string>
+    <string name="download_path_dialog_title">Введите путь к папке для загрузок</string>
+    <string name="autoplay_through_intent_title">Автопроигрывание через интернет</string>
+    <string name="autoplay_through_intent_summary">Автоматически воспроизводить видео когда оно открыто через другое приложение.</string>
+    <string name="default_resolution_title">Разрешение по-умолчанию</string>
+    <string name="play_with_kodi_title">Воспроизвести с помощью Kodi</string>
+    <string name="kore_not_found">Приложение Kore не наидено. Чтобы проигрывать видео через Kodi media center, нужен Kore.</string>
     <string name="installeKore">Установить Kore</string>
-    <string name="showPlayWithKodiTitle">Показывать опцию \"Воспроизвести с помощью Kodi\"</string>
-    <string name="showPlayWithKodiSummary">Показать опцию воспроизведения видео через Kodi media center.</string>
-    <string name="playAudio">Аудио</string>
-    <string name="defaultAudioFormatTitle">Формат аудио по-умолчанию</string>
-    <string name="webMAudioDescription">WebM - свободный формат</string>
-    <string name="m4aAudioDescription">m4a - лучшее качество</string>
-    <string name="downloadDialogTitle">Скачать</string>
+    <string name="show_play_with_kodi_title">Показывать опцию \"Воспроизвести с помощью Kodi\"</string>
+    <string name="show_play_with_kodi_summary">Показать опцию воспроизведения видео через Kodi media center.</string>
+    <string name="play_audio">Аудио</string>
+    <string name="default_audio_format_title">Формат аудио по-умолчанию</string>
+    <string name="webm_description">WebM &#8212; свободный формат</string>
+    <string name="m4a_description">m4a &#8212; лучшее качество</string>
+    <string name="download_dialog_title">Скачать</string>
     <string-array name="downloadOptions">
         <item>Видео</item>
         <item>Аудио</item>
     </string-array>
-    <string name="nextVideoTitle">Следующее видео</string>
-    <string name="urlNotSupportedText">URL не поддерживается.</string>
-    <string name="showSimilarVideosButtonText">Похожие видео</string>
-    <string name="showNextAndSimilarTitle">Показывать следующее и предложенные видео</string>
-    <string name="searchLanguageTitle">Предпочитаемый язык контента</string>
-<string name="settingsCategoryVideoAudioTitle">ВИДЕО И АУДИО</string>
-    <string name="settingsCategoryVideoInfoTittle">ИНФОРМАЦИЯ</string>
-    <string name="settingsCategoryEtcTitle">ПРОЧЕЕ</string>
+    <string name="next_video_title">Следующее видео</string>
+    <string name="url_not_supported_toast">URL не поддерживается.</string>
+    <string name="similar_videos_btn_text">Похожие видео</string>
+    <string name="show_next_and_similar_title">Показывать следующее и предложенные видео</string>
+    <string name="search_language_title">Предпочитаемый язык контента</string>
+    <string name="settings_category_video_audio_title">Видео и Аудио</string>
+    <string name="settings_category_appearance_title">Внешний вид</string>
+    <string name="settings_category_other_title">Другое</string>
 
-    <string name="itemThumbnailViewDescription">Миниатюра видео-превью</string>
-    <string name="detailThumbnailViewDescription">Миниатюра видео-превью</string>
-    <string name="detailUploaderThumbnailViewDescription">Миниатюра аватара пользователся</string>
-    <string name="detailThumbsDownImgViewDescription">Дислайки</string>
-    <string name="detailThumbsUpImgViewDescription">Лайки</string>
-</resources>
+    <string name="list_thumbnail_view_description">Миниатюра видео-превью</string>
+    <string name="detail_thumbnail_view_description">Миниатюра видео-превью</string>
+    <string name="detail_uploader_thumbnail_view_description">Миниатюра аватара пользователся</string>
+    <string name="detail_dislikes_img_view_description">Дислайки</string>
+    <string name="detail_likes_img_view_description">Лайки</string>
+<string name="use_external_video_player_title">Использовать внешний проигрыватель для видео</string>
+    <string name="use_external_audio_player_title">Использовать внешний проигрыватель для аудио</string>
+    <string name="background_player_playing_toast">Проигрывание в фоновом режиме</string>
+    </resources>

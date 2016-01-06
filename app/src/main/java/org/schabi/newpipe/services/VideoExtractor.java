@@ -106,7 +106,7 @@ public abstract class VideoExtractor {
         return videoInfo;
     }
 
-
+    //todo: add licence field
     public abstract int getErrorCode();
     public abstract String getErrorMessage();
 

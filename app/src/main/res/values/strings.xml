@@ -1,63 +1,72 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_name" translatable="false">NewPipe</string>
+    <string name="background_player_name">NewPipe Background Player</string>
     <string name="title_videoitem_detail" translatable="false">NewPipe</string>
-    <string name="viewCountText">%1$s views</string>
-    <string name="uploadDateText">Uploaded on %1$s</string>
-    <string name="noPlayerFound">No stream player found. You may want to install one.</string>
-    <string name="installStreamPlayer">Install</string>
+    <string name="view_count_text">%1$s views</string>
+    <string name="upload_date_text">Uploaded on %1$s</string>
+    <string name="no_player_found">No stream player found. Install VLC?</string>
+    <string name="install">Install</string>
     <string name="cancel">Cancel</string>
-    <string name="fdroidVLCurl" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
+    <string name="fdroid_vlc_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="share">Share</string>
+    <string name="loading">Loading</string>
     <string name="download">Download</string>
     <string name="search">Search</string>
     <string name="settings">Settings</string>
-    <string name="didYouMean">Did you mean: </string>
-    <string name="searchPage">Search page: </string>
-    <string name="shareDialogTitle">Share with:</string>
-    <string name="chooseBrowser">Choose browser:</string>
-    <string name="screenRotation">rotation</string>
-    <string name="title_activity_settings">Settings</string>
-    <string name="useExternalVideoPlayerTitle">Use external video player</string>
-    <string name="useExternalAudioPlayerTitle">Use external audio player</string>
-    <string name="downloadLocation">Download location</string>
-    <string name="downloadLocationSummary">Path to store downloaded videos in.</string>
-    <string name="downloadLocationDialogTitle">Enter download path</string>
-    <string name="autoPlayThroughIntentTitle">Autoplay through Intent</string>
-    <string name="autoPlayThroughIntentSummary">Automatically starts a video when it was called from another app.</string>
-    <string name="defaultResolutionPreferenceTitle">Default Resolution</string>
-    <string name="playWithKodiTitle">Play with Kodi</string>
-    <string name="koreNotFound">Kore app not found. Kore is needed to play videos with Kodi media center.</string>
-    <string name="installeKore">Install Kore</string>
-    <string name="fdroidKoreUrl" translatable="false">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
-    <string name="showPlayWithKodiTitle">Show \"Play with Kodi\" option</string>
-    <string name="showPlayWithKodiSummary">Displays an option to play a video via Kodi media center.</string>
-    <string name="playAudio">Audio</string>
-    <string name="defaultAudioFormatTitle">Default audio format</string>
-    <string name="webMAudioDescription">WebM - free format</string>
-    <string name="m4aAudioDescription">m4a - better quality</string>
-    <string name="downloadDialogTitle">Download</string>
-    <string-array name="downloadOptions">
+    <string name="did_you_mean">Did you mean: </string>
+    <string name="search_page">Search page: </string>
+    <string name="share_dialog_title">Share with:</string>
+    <string name="choose_browser">Choose browser:</string>
+    <string name="screen_rotation">rotation</string>
+    <string name="settings_activity_title">Settings</string>
+    <string name="use_external_video_player_title">Use external video player</string>
+    <string name="use_external_audio_player_title">Use external audio player</string>
+    <string name="download_path_title">Download path</string>
+    <string name="download_path_summary">Path to store downloaded videos in</string>
+    <string name="download_path_dialog_title">Enter download path</string>
+    <string name="autoplay_through_intent_title">Autoplay through Intent</string>
+    <string name="autoplay_through_intent_summary">Automatically play a video when it\'s called from another app</string>
+    <string name="default_resolution_title">Default Resolution</string>
+    <string name="play_with_kodi_title">Play with Kodi</string>
+    <string name="kore_not_found">Kore app not found. Install Kore?</string>
+    <string name="fdroid_kore_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
+    <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
+    <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
+    <string name="play_audio">Audio</string>
+    <string name="default_audio_format_title">Default audio format</string>
+    <string name="webm_description">WebM &#8212; free format</string>
+    <string name="m4a_description">m4a &#8212; better quality</string>
+    <string name="theme_title">Theme</string>
+    <string name="dark_theme_title">Dark</string>
+    <string name="light_theme_title">Light</string>
+
+    <string name="download_dialog_title">Download</string>
+    <string-array name="download_options">
         <item>Video</item>
         <item>Audio</item>
     </string-array>
-    <string name="nextVideoTitle">Next video</string>
-    <string name="showNextAndSimilarTitle">Show next and similar videos</string>
-    <string name="urlNotSupportedText">URL not supported.</string>
-    <string name="showSimilarVideosButtonText">Similar videos</string>
-    <string name="searchLanguageTitle">Preferable content language</string>
-    <string name="settingsCategoryVideoAudioTitle">VIDEO &amp; AUDIO</string>
-    <string name="settingsCategoryVideoInfoTittle">INFO</string>
-    <string name="settingsCategoryEtcTitle">ETC</string>
-    <string name="backgroundPlayerTickerText" translatable="false">%1$s - NewPipe</string>
-    <string name="backgroundPlayerStartPlayingToast">Playing in background</string>
-    <string name="c3sUrl" translatable="false">https://www.c3s.cc/</string>
+    <string name="next_video_title">Next video</string>
+    <string name="show_next_and_similar_title">Show next and similar videos</string>
+    <string name="url_not_supported_toast">URL not supported</string>
+    <string name="similar_videos_btn_text">Similar videos</string>
+    <string name="search_language_title">Preferable content language</string>
+    <string name="settings_category_video_audio_title">Video &amp; Audio</string>
+    <string name="settings_category_appearance_title">Appearance</string>
+    <string name="settings_category_other_title">Other</string>
+    <string name="background_player_time_text" translatable="false">%1$s - NewPipe</string>
+    <string name="background_player_playing_toast">Playing in background</string>
+    <string name="c3s_url" translatable="false">https://www.c3s.cc/</string>
+    <string name="play_btn_text">Play</string>
+    <string name="network_error">Network Error</string>
 
     <!-- Content descriptions (for better accessibility) -->
-    <string name="itemThumbnailViewDescription">Video preview thumbnail</string>
-    <string name="detailThumbnailViewDescription">Video preview thumbnail</string>
-    <string name="detailUploaderThumbnailViewDescription">Uploader thumbnail</string>
-    <string name="detailThumbsDownImgViewDescription">Dislikes</string>
-    <string name="detailThumbsUpImgViewDescription">Likes</string>
+    <string name="list_thumbnail_view_description">Video preview thumbnail</string>
+    <string name="detail_thumbnail_view_description">Video preview thumbnail</string>
+    <string name="detail_uploader_thumbnail_view_description">Uploader\'s userpic thumbnail</string>
+    <string name="detail_likes_img_view_description">Likes</string>
+    <string name="detail_dislikes_img_view_description">Dislikes</string>
+    <string name="use_tor_title">Use Tor</string>
+    <string name="use_tor_summary">Force download traffic through Tor for increased privacy (streaming videos not yet supported)</string>
 </resources>

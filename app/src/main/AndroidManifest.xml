@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:logo="@mipmap/ic_launcher"
@@ -29,43 +30,46 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".VideoItemListActivity" />
+
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="youtube.com"
-                    android:scheme="http"
-                    android:pathPattern="/?*#*/*watch"/>
-                <data
-                    android:host="youtube.com"
-                    android:scheme="https"
-                    android:pathPattern="/?*#*/*watch"/>
-                <data
-                    android:host="www.youtube.com"
-                    android:scheme="http"
-                    android:pathPattern="/?*#*/*watch"/>
-                <data
-                    android:host="www.youtube.com"
-                    android:scheme="https"
-                    android:pathPattern="/?*#*/*watch"/>
-                <data
-                    android:host="m.youtube.com"
-                    android:scheme="http"
-                    android:pathPattern="/?*#*/*watch"/>
-                <data
-                    android:host="m.youtube.com"
-                    android:scheme="https"
-                    android:pathPattern="/?*#*/*watch"/>
-                <data
-                    android:host="youtu.be"
-                    android:scheme="https"
-                    android:pathPrefix="/"/>
-                <data
-                    android:host="youtu.be"
-                    android:scheme="http"
-                    android:pathPrefix="/"/>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="youtube.com" />
+                <data android:host="m.youtube.com" />
+                <data android:host="www.youtube.com" />
+                <data android:pathPrefix="/v/" />
+                <data android:pathPrefix="/watch" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="youtu.be" />
+                <data android:pathPrefix="/" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="vnd.youtube" />
+                <data android:scheme="vnd.youtube.launch" />
             </intent-filter>
         </activity>
         <activity android:name=".PlayVideoActivity"
@@ -74,15 +78,26 @@
             android:parentActivityName=".VideoItemDetailActivity"
             tools:ignore="UnusedAttribute">
         </activity>
-        <!--TODO: make label a translatable string -->
         <service
             android:name=".BackgroundPlayer"
-            android:label="NewPipe Background Player"
-            android:exported="false" >
-        </service>
+            android:label="@string/background_player_name"
+            android:exported="false" />
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" >
+            android:label="@string/settings_activity_title" >
         </activity>
+        <activity
+            android:name=".PanicResponderActivity"
+            android:launchMode="singleInstance"
+            android:noHistory="true"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="info.guardianproject.panic.action.TRIGGER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ExitActivity"
+            android:theme="@android:style/Theme.NoDisplay" />
     </application>
 </manifest>

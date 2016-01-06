@@ -80,7 +80,7 @@ public class VideoItemDetailActivity extends AppCompatActivity {
                     }
                 }
                 if(currentStreamingService == -1) {
-                    Toast.makeText(this, R.string.urlNotSupportedText, Toast.LENGTH_LONG)
+                    Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG)
                             .show();
                 }
                 //arguments.putString(VideoItemDetailFragment.VIDEO_URL,
@@ -89,7 +89,7 @@ public class VideoItemDetailActivity extends AppCompatActivity {
 
                 arguments.putBoolean(VideoItemDetailFragment.AUTO_PLAY,
                         PreferenceManager.getDefaultSharedPreferences(this)
-                                .getBoolean(getString(R.string.autoPlayThroughIntent), false));
+                                .getBoolean(getString(R.string.autoplay_through_intent_key), false));
             } else {
                 videoUrl = getIntent().getStringExtra(VideoItemDetailFragment.VIDEO_URL);
                 currentStreamingService = getIntent().getIntExtra(VideoItemDetailFragment.STREAMING_SERVICE, -1);
@@ -111,6 +111,12 @@ public class VideoItemDetailActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.videoitem_detail_container, fragment)
                 .commit();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        App.checkStartTor(this);
     }
 
     @Override

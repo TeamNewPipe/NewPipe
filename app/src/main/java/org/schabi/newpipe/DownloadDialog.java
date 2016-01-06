@@ -52,49 +52,58 @@ public class DownloadDialog extends DialogFragment {
         arguments = getArguments();
         super.onCreateDialog(savedInstanceState);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.downloadDialogTitle)
-                .setItems(R.array.downloadOptions, new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.download_dialog_title)
+                .setItems(R.array.download_options, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Context context = getActivity();
-                        SharedPreferences defaultPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+                        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
                         String suffix = "";
                         String title = arguments.getString(TITLE);
                         String url = "";
+                        String downloadFolder = Environment.DIRECTORY_DOWNLOADS;
                         switch(which) {
                             case 0:     // Video
                                 suffix = arguments.getString(FILE_SUFFIX_VIDEO);
                                 url = arguments.getString(VIDEO_URL);
+                                downloadFolder = Environment.DIRECTORY_MOVIES;
                                 break;
                             case 1:
                                 suffix = arguments.getString(FILE_SUFFIX_AUDIO);
                                 url = arguments.getString(AUDIO_URL);
+                                downloadFolder = Environment.DIRECTORY_MUSIC;
                                 break;
                             default:
                                 Log.d(TAG, "lolz");
                         }
-                        //to avoid hard-coded string like "/storage/emulated/0/NewPipe"
-                        final File dir = new File(defaultPreferences.getString(
-                                "download_path_preference",
-                                Environment.getExternalStorageDirectory().getAbsolutePath() + "/NewPipe"));
+                        //to avoid hard-coded string like "/storage/emulated/0/Movies"
+                        String downloadPath = prefs.getString(getString(R.string.download_path_key),
+                                Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + downloadFolder);
+                        final File dir = new File(downloadPath);
                         if(!dir.exists()) {
-                            boolean mkdir = dir.mkdir(); //attempt to create directory
+                            //attempt to create directory
+                            boolean mkdir = dir.mkdir();
                             if(!mkdir && !dir.isDirectory()) {
                                 Log.e(TAG, "Cant' create directory named " + dir.toString());
                                 //TODO notify user "download directory should be changed" ?
                             }
                         }
-                        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-                        DownloadManager.Request request = new DownloadManager.Request(
-                                Uri.parse(url));
-                        request.setDestinationUri(Uri.fromFile(new File(
-                                defaultPreferences.getString("download_path_preference", "/storage/emulated/0/NewPipe")
-                                        + "/" + title + suffix)));
-                        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                        try {
-                            dm.enqueue(request);
-                        } catch (Exception e) {
-                            e.printStackTrace();
+
+                        String saveFilePath = dir + "/" + title + suffix;
+                        if (App.isUsingTor()) {
+                            // if using Tor, do not use DownloadManager because the proxy cannot be set
+                            Downloader.downloadFile(getContext(), url, saveFilePath);
+                        } else {
+                            DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+                            DownloadManager.Request request = new DownloadManager.Request(
+                                    Uri.parse(url));
+                            request.setDestinationUri(Uri.fromFile(new File(saveFilePath)));
+                            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                            try {
+                                dm.enqueue(request);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 });

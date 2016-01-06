@@ -1,5 +1,6 @@
 package org.schabi.newpipe;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,7 @@ class VideoInfoItemViewCreator {
         this.inflater = inflater;
     }
 
-    public View getViewFromVideoInfoItem(View convertView, ViewGroup parent, VideoPreviewInfo info) {
+    public View getViewFromVideoInfoItem(View convertView, ViewGroup parent, VideoPreviewInfo info, Context context) {
         ViewHolder holder;
         if(convertView == null) {
             convertView = inflater.inflate(R.layout.video_item, parent, false);
@@ -59,8 +60,7 @@ class VideoInfoItemViewCreator {
         if(!info.upload_date.isEmpty()) {
             holder.itemUploadDateView.setText(info.upload_date);
         } else {
-            //tweak if necessary: This is a hack to prevent having white space in the layout :P
-            holder.itemUploadDateView.setText(String.format("%d", info.view_count));
+            holder.itemUploadDateView.setText(Localization.localizeViewCount(info.view_count, context));
         }
 
         return convertView;
