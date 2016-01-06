@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources><string name="view_count_text">%1$s visualizações</string>
     <string name="upload_date_text">Carregado em %1$s</string>
-    <string name="no_player_found">Reprodutor não disponível. Deve instalar um reprodutor.</string>
+    <string name="no_player_found">Reprodutor não disponível. Instalar o VLC?</string>
     <string name="install">Instalar</string>
     <string name="cancel">Cancelar</string>
     <string name="open_in_browser">Abrir no navegador</string>
@@ -18,16 +18,16 @@
     <string name="use_external_video_player_title">Utilizar reprodutor de vídeo externo</string>
     <string name="use_external_audio_player_title">Utilizar reprodutor de áudio externo</string>
     <string name="download_path_title">Local para a descarga</string>
-    <string name="download_path_summary">Local para guardar os vídeos descarregados.</string>
+    <string name="download_path_summary">Local para guardar os vídeos descarregados</string>
     <string name="download_path_dialog_title">Digite o caminho</string>
     <string name="autoplay_through_intent_title">Reproduzir via Intent</string>
-    <string name="autoplay_through_intent_summary">Iniciar automaticamente o vídeo se for invocado por outra aplicação.</string>
+    <string name="autoplay_through_intent_summary">Iniciar automaticamente o vídeo se for invocado por outra aplicação</string>
     <string name="default_resolution_title">Resolução padrão</string>
     <string name="play_with_kodi_title">Reproduzir com Kodi</string>
-    <string name="kore_not_found">Aplicação não encontrada. Necessita do Kore para reproduzir vídeos no Kodi.</string>
+    <string name="kore_not_found">Aplicação não encontrada. Instalar o Kore?</string>
     <string name="installeKore">Instalar o Kore</string>
     <string name="show_play_with_kodi_title">Mostrar opção \"Reproduzir com Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Mostra uma opção para reproduzir o vídeo com o Kodi.</string>
+    <string name="show_play_with_kodi_summary">Mostra uma opção para reproduzir o vídeo com o Kodi</string>
     <string name="play_audio">Áudio</string>
     <string name="default_audio_format_title">Formato áudio padrão</string>
     <string name="webm_description">WebM — formato livre</string>
@@ -35,7 +35,7 @@
     <string name="download_dialog_title">Descarregar</string>
     <string name="next_video_title">Vídeo seguinte</string>
     <string name="show_next_and_similar_title">Mostrar vídeos seguintes e similares</string>
-    <string name="url_not_supported_toast">URL não suportado.</string>
+    <string name="url_not_supported_toast">URL não suportado</string>
     <string name="similar_videos_btn_text">Vídeos similares</string>
     <string name="search_language_title">Idioma preferencial do conteúdo</string>
     <string name="settings_category_video_audio_title">Vídeo e áudio</string>
