@@ -27,8 +27,8 @@
     <string name="show_play_with_kodi_title">Pokaži možnost \"Predvajaj s Kodi\"</string>
     <string name="default_audio_format_title">Privzet zapis zvoka</string>
     <string name="play_audio">Zvok</string>
-    <string name="webm_description">WebM &#8212; prost zapis</string>
-    <string name="m4a_description">m4a &#8212; višja kakovost posnetkov</string>
+    <string name="webm_description">WebM — prost zapis</string>
+    <string name="m4a_description">m4a — višja kakovost posnetkov</string>
     <string name="download_dialog_title">Prejem</string>
     <string name="next_video_title">Naslednji video</string>
     <string name="show_next_and_similar_title">Pokaži naslednji video in podobne posnetke</string>
@@ -51,4 +51,14 @@
     <string name="background_player_playing_toast">Predvajanje v ozadju</string>
     <string name="play_btn_text">Predvajaj</string>
 
-    </resources>
+    <string name="theme_title">Tema</string>
+    <string name="dark_theme_title">Temna</string>
+    <string name="light_theme_title">Svetla</string>
+
+    <string name="settings_category_appearance_title">Videz</string>
+    <string name="settings_category_other_title">Drugo</string>
+    <string name="network_error">Omrežna napaka</string>
+
+    <string name="use_tor_title">Uporabi Tor</string>
+    <string name="use_tor_summary">Vsili prenos prejema preko sistema Tor za povečanje zasebnosti (pretakanje videa ni še podprto)</string>
+</resources>
