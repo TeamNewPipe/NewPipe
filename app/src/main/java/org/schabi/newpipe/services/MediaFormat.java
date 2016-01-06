@@ -1,4 +1,4 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.services;
 
 /**
  * Created by Adam Howard on 08/11/15.
