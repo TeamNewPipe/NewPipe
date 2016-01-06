@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources><string name="view_count_text">%1$s pogledov</string>
     <string name="upload_date_text">Poslano %1$s</string>
-    <string name="no_player_found">Predvajalnika pretoka ni mogoče najti. Tak program lahko namestite ločeno.</string>
+    <string name="no_player_found">Predvajalnika pretoka ni mogoče najti. Ali želite namestiti program VLC?</string>
     <string name="install">Namesti</string>
     <string name="cancel">Prekliči</string>
     <string name="open_in_browser">Odpri v brskalniku</string>
@@ -18,11 +18,11 @@
     <string name="use_external_video_player_title">Uporabi zunanji predvajalnik videa</string>
     <string name="use_external_audio_player_title">Uporabi zunanji predvajalnik zvoka</string>
     <string name="download_path_title">Mapa za prejem</string>
-    <string name="download_path_summary">Pot do mape za prejem datotek.</string>
+    <string name="download_path_summary">Pot do mape za prejem datotek</string>
     <string name="download_path_dialog_title">Vpis poti za prejem</string>
     <string name="default_resolution_title">Privzeta ločljivost</string>
     <string name="play_with_kodi_title">Predvajaj s Kodi</string>
-    <string name="kore_not_found">Programa Kore ni mogoče najti. Program omogoča predvajanje video posnetkov prek predstavnega središča Kodi.</string>
+    <string name="kore_not_found">Programa Kore ni mogoče najti. Ali želite program namestiti?</string>
     <string name="installeKore">Namesti program Kore</string>
     <string name="show_play_with_kodi_title">Pokaži možnost \"Predvajaj s Kodi\"</string>
     <string name="default_audio_format_title">Privzet zapis zvoka</string>
