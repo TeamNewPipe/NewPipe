@@ -29,8 +29,8 @@
     <string name="show_play_with_kodi_summary">Kodi ﾒﾃﾞｨｱｾﾝﾀｰ経由で動画を再生するための設定を表示します.</string>
     <string name="play_audio">ｵｰﾃﾞｨｵ</string>
     <string name="default_audio_format_title">基本のｵｰﾃﾞｨｵﾌｫｰﾏｯﾄ</string>
-    <string name="webm_description">WebM &#8212; ﾌﾘｰﾌｫｰﾏｯﾄ</string>
-    <string name="m4a_description">m4a &#8212; より良い品質</string>
+    <string name="webm_description">WebM — ﾌﾘｰﾌｫｰﾏｯﾄ</string>
+    <string name="m4a_description">m4a — より良い品質</string>
     <string name="download_dialog_title">ﾀﾞｳﾝﾛｰﾄﾞ</string>
     <string name="next_video_title">次の動画</string>
     <string name="show_next_and_similar_title">次の同様の動画を表示します｡</string>
@@ -54,4 +54,12 @@
 
     <string name="use_tor_title">Tor を使用する</string>
     <string name="use_tor_summary">強制的に Tor を経由したプライバシーを高めたトラフィックでダウンロードします (ビデオのストリーミングはまだサポートされていません)</string>
-</resources>
+<string name="theme_title">テーマ</string>
+    <string name="dark_theme_title">ダーク</string>
+    <string name="light_theme_title">ライト</string>
+
+    <string name="settings_category_appearance_title">外観</string>
+    <string name="settings_category_other_title">その他</string>
+    <string name="network_error">ネットワーク エラー</string>
+
+    </resources>
