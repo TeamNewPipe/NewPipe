@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s Aufrufe</string>
     <string name="upload_date_text">Hochgeladen am %1$s</string>
-    <string name="no_player_found">Keinen Streamplayer gefunden. Vielleicht möchtest du einen installieren.</string>
+    <string name="no_player_found">Keinen Streamplayer gefunden. Möchtest du VLC installieren?</string>
     <string name="install">Jetzt installieren</string>
     <string name="cancel">Abbrechen</string>
     <string name="open_in_browser">In Browser öffnen</string>
@@ -56,7 +56,7 @@
 
     <string name="use_tor_title">Benutze TOR</string>
     <string name="use_tor_summary">Erzwinge das Herunterladen durch TOR für verbesserte Privatsphäre (Videostream noch nicht unterstützt)</string>
-<string name="background_player_name">Hintergrund Abspielsoftware</string>
+<string name="background_player_name">NewPipe Hintergrundwiedergabe</string>
     <string name="network_error">Netzwerk Fehler</string>
 
     </resources>
