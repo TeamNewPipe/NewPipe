@@ -56,5 +56,5 @@
     <string name="detail_likes_img_view_description">喜歡</string>
     <string name="detail_dislikes_img_view_description">不喜歡</string>
     <string name="use_tor_title">使用 Tor</string>
-    <string name="use_tor_summary">強迫下載流量通過 Tor 以加強私隱 (暫時不支援串流影片)</string>
+    <string name="use_tor_summary">強迫下載流量通過 Tor 以加強隱私 (暫時不支援串流影片)</string>
 </resources>
