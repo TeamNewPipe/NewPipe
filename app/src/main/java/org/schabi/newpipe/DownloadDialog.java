@@ -1,16 +1,21 @@
 package org.schabi.newpipe;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
@@ -51,6 +56,8 @@ public class DownloadDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         arguments = getArguments();
         super.onCreateDialog(savedInstanceState);
+        if(ContextCompat.checkSelfPermission(this.getContext(),Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
+            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},0);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.download_dialog_title)
                 .setItems(R.array.download_options, new DialogInterface.OnClickListener() {
