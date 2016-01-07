@@ -36,8 +36,8 @@
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Default audio format</string>
-    <string name="webm_description">WebM &#8212; free format</string>
-    <string name="m4a_description">m4a &#8212; better quality</string>
+    <string name="webm_description">WebM — free format</string>
+    <string name="m4a_description">m4a — better quality</string>
     <string name="theme_title">Theme</string>
     <string name="dark_theme_title">Dark</string>
     <string name="light_theme_title">Light</string>
@@ -59,7 +59,7 @@
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="c3s_url" translatable="false">https://www.c3s.cc/</string>
     <string name="play_btn_text">Play</string>
-    <string name="network_error">Network Error</string>
+    <string name="network_error">Network error</string>
 
     <!-- Content descriptions (for better accessibility) -->
     <string name="list_thumbnail_view_description">Video preview thumbnail</string>
