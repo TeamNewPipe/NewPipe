@@ -81,6 +81,12 @@
             android:summary="@string/download_path_summary"
             android:dialogTitle="@string/download_path_dialog_title" />
 
+        <EditTextPreference
+            android:key="@string/download_path_audio_key"
+            android:title="@string/download_path_audio_title"
+            android:summary="@string/download_path_audio_summary"
+            android:dialogTitle="@string/download_path_audio_dialog_title" />
+
         <CheckBoxPreference
             android:key="@string/autoplay_through_intent_key"
             android:title="@string/autoplay_through_intent_title"

@@ -6,6 +6,7 @@
     <string name="settings_category_other">settings_category_other</string>
     <!-- Key values -->
     <string name="download_path_key">download_path</string>
+    <string name="download_path_audio_key">download_path_audio</string>
     <string name="use_external_video_player_key">use_external_video_player</string>
     <string name="use_external_audio_player_key">use_external_audio_player</string>
     <string name="autoplay_through_intent_key">autoplay_through_intent</string>

@@ -23,9 +23,15 @@
     <string name="settings_activity_title">Settings</string>
     <string name="use_external_video_player_title">Use external video player</string>
     <string name="use_external_audio_player_title">Use external audio player</string>
-    <string name="download_path_title">Download path</string>
+
+    <string name="download_path_title">Download path video</string>
     <string name="download_path_summary">Path to store downloaded videos in</string>
-    <string name="download_path_dialog_title">Enter download path</string>
+    <string name="download_path_dialog_title">Enter download path for videos</string>
+
+    <string name="download_path_audio_title">Download path audio</string>
+    <string name="download_path_audio_summary">Path to store downloaded audio in</string>
+    <string name="download_path_audio_dialog_title">Enter download path for audios</string>
+
     <string name="autoplay_through_intent_title">Autoplay through Intent</string>
     <string name="autoplay_through_intent_summary">Automatically play a video when it\'s called from another app</string>
     <string name="default_resolution_title">Default Resolution</string>
@@ -69,4 +75,7 @@
     <string name="detail_dislikes_img_view_description">Dislikes</string>
     <string name="use_tor_title">Use Tor</string>
     <string name="use_tor_summary">Force download traffic through Tor for increased privacy (streaming videos not yet supported)</string>
+
+    <string name="err_dir_create">Cannot create download directory \'%1$s\'</string>
+    <string name="info_dir_created">Created download directory \'%1$s\'</string>
 </resources>
