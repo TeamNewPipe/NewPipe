@@ -15,7 +15,7 @@
     <string name="use_external_video_player_title">使用外置影片播放器</string>
     <string name="use_external_audio_player_title">使用外置聲音播放器</string>
     <string name="download_path_title">下載路徑</string>
-    <string name="download_path_summary">儲存已下載影片的路徑</string>
+    <string name="download_path_summary">存放已下載影片的路徑</string>
     <string name="download_path_dialog_title">輸入下載路徑</string>
     <string name="autoplay_through_intent_title">刻意自動播放</string>
     <string name="autoplay_through_intent_summary">當另一個程式發出要求時自動播放影片</string>
@@ -51,10 +51,10 @@
     <string name="detail_likes_img_view_description">讚好</string>
     <string name="detail_dislikes_img_view_description">討厭</string>
     <string name="use_tor_title">使用 Tor</string>
-    <string name="use_tor_summary">強迫下載流量通過 Tor 以加強私隱 (暫時不支援串流影片)</string>
+    <string name="use_tor_summary">強迫下載流量通過 Tor 加強私隱 (暫時不支援串流影片)</string>
 <string name="background_player_name">NewPipe 背景播放器</string>
-    <string name="view_count_text">觀看次數：%1$s 次</string>
-    <string name="no_player_found">找不到串流播放器，您是否願意安裝 VLC？</string>
+    <string name="view_count_text">觀看次數：%1$s</string>
+    <string name="no_player_found">找不到任何串流播放器，您要安裝 VLC 嗎？</string>
     <string name="open_in_browser">在瀏覽器開啟</string>
     <string name="share_dialog_title">分享影片：</string>
     </resources>
