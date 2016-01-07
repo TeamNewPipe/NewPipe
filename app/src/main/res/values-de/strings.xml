@@ -30,8 +30,8 @@
     <string name="show_play_with_kodi_summary">Zeigt eine Option an, über die man Videos mit dem Kodi Mediacenter abspielen kann.</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Bevorzugtes Audio Format</string>
-    <string name="webm_description">WebM &#8212; freies Format</string>
-    <string name="m4a_description">m4a &#8212; bessere Qualität</string>
+    <string name="webm_description">WebM — freies Format</string>
+    <string name="m4a_description">m4a — bessere Qualität</string>
     <string name="download_dialog_title">Herunterladen</string>
     <string-array name="downloadOptions">
         <item>Video</item>
@@ -56,4 +56,7 @@
 
     <string name="use_tor_title">Benutze TOR</string>
     <string name="use_tor_summary">Erzwinge das Herunterladen durch TOR für verbesserte Privatsphäre (Videostream noch nicht unterstützt)</string>
-</resources>
+<string name="background_player_name">Hintergrund Abspielsoftware</string>
+    <string name="network_error">Netzwerk Fehler</string>
+
+    </resources>
