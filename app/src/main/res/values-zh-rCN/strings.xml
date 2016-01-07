@@ -1,2 +1,60 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='utf-8'?>
+<resources><string name="background_player_name">NewPipe 背景播放器</string>
+    <string name="view_count_text">%1$s 次观看</string>
+    <string name="upload_date_text">于 %1$s 发布</string>
+    <string name="no_player_found">找不到任何串流播放器。您是否要安装 VLC？</string>
+    <string name="install">安装</string>
+    <string name="cancel">取消</string>
+    <string name="open_in_browser">在浏览器打开</string>
+    <string name="share">分享</string>
+    <string name="loading">载入中</string>
+    <string name="download">下载</string>
+    <string name="search">搜索</string>
+    <string name="settings">设置</string>
+    <string name="did_you_mean">"您是不是要找： "</string>
+    <string name="search_page">"搜索页面： "</string>
+    <string name="share_dialog_title">分享视频：</string>
+    <string name="choose_browser">选择浏览器：</string>
+    <string name="screen_rotation">旋转</string>
+    <string name="settings_activity_title">设置</string>
+    <string name="use_external_video_player_title">使用外置视频播放器</string>
+    <string name="use_external_audio_player_title">使用外置音频播放器</string>
+    <string name="download_path_title">下载路径</string>
+    <string name="download_path_summary">存放已下载视频的路径</string>
+    <string name="download_path_dialog_title">输入下载路径</string>
+    <string name="autoplay_through_intent_title">刻意自动播放</string>
+    <string name="autoplay_through_intent_summary">当另一个程式发出要求时自动播放视频</string>
+    <string name="default_resolution_title">默认分辨率</string>
+    <string name="play_with_kodi_title">用 Kodi 播放</string>
+    <string name="kore_not_found">找不到 Kore 应用程式，您要安装 Kore 吗？</string>
+    <string name="show_play_with_kodi_title">显示 “用 Kodi 播放” 的选项</string>
+    <string name="show_play_with_kodi_summary">显示以 Kodi 媒体中心播放视频的选项</string>
+    <string name="play_audio">音频</string>
+    <string name="default_audio_format_title">默认音频格式</string>
+    <string name="webm_description">WebM — 开放格式</string>
+    <string name="m4a_description">m4a — 更佳品质</string>
+    <string name="theme_title">主题</string>
+    <string name="dark_theme_title">暗色系</string>
+    <string name="light_theme_title">明亮色系</string>
+
+    <string name="download_dialog_title">下载</string>
+    <string name="next_video_title">即将播放</string>
+    <string name="show_next_and_similar_title">显示下一部和相近的视频</string>
+    <string name="url_not_supported_toast">不支援此网址</string>
+    <string name="similar_videos_btn_text">相近的视频</string>
+    <string name="search_language_title">内容位置</string>
+    <string name="settings_category_video_audio_title">视频和音频</string>
+    <string name="settings_category_appearance_title">外观</string>
+    <string name="settings_category_other_title">其他</string>
+    <string name="background_player_playing_toast">背景播放</string>
+    <string name="play_btn_text">播放</string>
+    <string name="network_error">网络错误</string>
+
+    <string name="list_thumbnail_view_description">视频预览缩图</string>
+    <string name="detail_thumbnail_view_description">视频预览缩图</string>
+    <string name="detail_uploader_thumbnail_view_description">上传者的头像缩图</string>
+    <string name="detail_likes_img_view_description">顶</string>
+    <string name="detail_dislikes_img_view_description">踩</string>
+    <string name="use_tor_title">使用 Tor</string>
+    <string name="use_tor_summary">强迫下载流量通过 Tor 加强隐私 (暂时不支援串流视频)</string>
+</resources>
