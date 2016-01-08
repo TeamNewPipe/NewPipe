@@ -18,27 +18,27 @@
     <string name="settings_activity_title">Настройки</string>
     <string name="useExternalPlayerTitle">Использовать внешний проигрыватель</string>
     <string name="download_path_title">Место для загрузок</string>
-    <string name="download_path_summary">Папка для хранения загруженных файлов.</string>
+    <string name="download_path_summary">Папка для хранения загруженных файлов</string>
     <string name="download_path_dialog_title">Введите путь к папке для загрузок</string>
     <string name="autoplay_through_intent_title">Автопроигрывание через интернет</string>
-    <string name="autoplay_through_intent_summary">Автоматически воспроизводить видео когда оно открыто через другое приложение.</string>
+    <string name="autoplay_through_intent_summary">Автоматически воспроизводить видео, открытое через другое приложение</string>
     <string name="default_resolution_title">Разрешение по-умолчанию</string>
     <string name="play_with_kodi_title">Воспроизвести с помощью Kodi</string>
-    <string name="kore_not_found">Приложение Kore не наидено. Чтобы проигрывать видео через Kodi media center, нужен Kore.</string>
+    <string name="kore_not_found">Приложение Kore не наидено. Установить Kore?</string>
     <string name="installeKore">Установить Kore</string>
     <string name="show_play_with_kodi_title">Показывать опцию \"Воспроизвести с помощью Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Показать опцию воспроизведения видео через Kodi media center.</string>
+    <string name="show_play_with_kodi_summary">Показать опцию воспроизведения видео через Kodi media center</string>
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Формат аудио по-умолчанию</string>
-    <string name="webm_description">WebM &#8212; свободный формат</string>
-    <string name="m4a_description">m4a &#8212; лучшее качество</string>
+    <string name="webm_description">WebM — свободный формат</string>
+    <string name="m4a_description">m4a — лучшее качество</string>
     <string name="download_dialog_title">Скачать</string>
     <string-array name="downloadOptions">
         <item>Видео</item>
         <item>Аудио</item>
     </string-array>
     <string name="next_video_title">Следующее видео</string>
-    <string name="url_not_supported_toast">URL не поддерживается.</string>
+    <string name="url_not_supported_toast">URL не поддерживается</string>
     <string name="similar_videos_btn_text">Похожие видео</string>
     <string name="show_next_and_similar_title">Показывать следующее и предложенные видео</string>
     <string name="search_language_title">Предпочитаемый язык контента</string>
@@ -54,4 +54,14 @@
 <string name="use_external_video_player_title">Использовать внешний проигрыватель для видео</string>
     <string name="use_external_audio_player_title">Использовать внешний проигрыватель для аудио</string>
     <string name="background_player_playing_toast">Проигрывание в фоновом режиме</string>
+    <string name="background_player_name">Фоновый проигрыватель NewPipe</string>
+    <string name="loading">Загрузка</string>
+    <string name="theme_title">Тема</string>
+    <string name="dark_theme_title">Темная</string>
+    <string name="light_theme_title">Светлая</string>
+
+    <string name="play_btn_text">Воспроизвести</string>
+    <string name="network_error">Ошибка сети</string>
+
+    <string name="use_tor_title">Использовать Tor</string>
     </resources>

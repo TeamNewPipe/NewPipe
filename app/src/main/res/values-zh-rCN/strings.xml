@@ -56,5 +56,5 @@
     <string name="detail_likes_img_view_description">顶</string>
     <string name="detail_dislikes_img_view_description">踩</string>
     <string name="use_tor_title">使用 Tor</string>
-    <string name="use_tor_summary">强迫下载流量通过 Tor 加强隐私 (暂时不支援串流视频)</string>
+    <string name="use_tor_summary">强迫下载流量通过 Tor 加强隐私（暂时不支援串流视频）</string>
 </resources>

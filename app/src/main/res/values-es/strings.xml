@@ -17,7 +17,7 @@
     <string name="screen_rotation">rotación</string>
     <string name="settings_activity_title">Ajustes</string>
     <string name="useExternalPlayerTitle">Usar reproductor externo</string>
-    <string name="download_path_title">Descargar en&#8230;</string>
+    <string name="download_path_title">Descargar en…</string>
     <string name="download_path_summary">Ruta donde guardar los vídeos descargados.</string>
     <string name="download_path_dialog_title">Localización del directorio de descargas</string>
     <string name="autoplay_through_intent_title">Reproducción automática</string>
@@ -30,10 +30,12 @@
     <string name="show_play_with_kodi_summary">Muestra una opción para reproducir el vídeo con Kodi media center.</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato de audio por defecto</string>
-    <string name="webm_description">WebM &#8212; formato libre</string>
-    <string name="m4a_description">m4a &#8212; mejor calidad</string>
+    <string name="webm_description">WebM — formato libre</string>
+    <string name="m4a_description">m4a — mejor calidad</string>
     <string name="download_dialog_title">Descargar</string>
     <string name="next_video_title">Siguiente vídeo</string>
     <string name="url_not_supported_toast">URL no soportada.</string>
     <string name="similar_videos_btn_text">Vídeos similares</string>
-</resources>
+<string name="background_player_name">Reproductor de fondo NewPipe</string>
+    <string name="loading">Cargando</string>
+    </resources>
