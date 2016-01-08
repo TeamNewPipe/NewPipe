@@ -71,12 +71,14 @@ public class SettingsActivity extends PreferenceActivity  {
         String DEFAULT_AUDIO_FORMAT_PREFERENCE;
         String SEARCH_LANGUAGE_PREFERENCE;
         String DOWNLOAD_PATH_PREFERENCE;
+        String DOWNLOAD_PATH_AUDIO_PREFERENCE;
         String USE_TOR_KEY;
 
         private ListPreference defaultResolutionPreference;
         private ListPreference defaultAudioFormatPreference;
         private ListPreference searchLanguagePreference;
         private EditTextPreference downloadPathPreference;
+        private EditTextPreference downloadPathAudioPreference;
         private CheckBoxPreference useTorCheckBox;
         private SharedPreferences defaultPreferences;
 
@@ -95,6 +97,7 @@ public class SettingsActivity extends PreferenceActivity  {
             DEFAULT_AUDIO_FORMAT_PREFERENCE =getString(R.string.default_audio_format_key);
             SEARCH_LANGUAGE_PREFERENCE =getString(R.string.search_language_key);
             DOWNLOAD_PATH_PREFERENCE = getString(R.string.download_path_key);
+            DOWNLOAD_PATH_AUDIO_PREFERENCE = getString(R.string.download_path_audio_key);
             USE_TOR_KEY = getString(R.string.use_tor_key);
 
             // get pref objects
@@ -106,6 +109,8 @@ public class SettingsActivity extends PreferenceActivity  {
                     (ListPreference) findPreference(SEARCH_LANGUAGE_PREFERENCE);
             downloadPathPreference =
                     (EditTextPreference) findPreference(DOWNLOAD_PATH_PREFERENCE);
+            downloadPathAudioPreference =
+                    (EditTextPreference) findPreference(DOWNLOAD_PATH_AUDIO_PREFERENCE);
             useTorCheckBox = (CheckBoxPreference) findPreference(USE_TOR_KEY);
 
             prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
@@ -147,6 +152,9 @@ public class SettingsActivity extends PreferenceActivity  {
             downloadPathPreference.setSummary(
                     defaultPreferences.getString(DOWNLOAD_PATH_PREFERENCE,
                             getString(R.string.download_path_summary)));
+            downloadPathAudioPreference.setSummary(
+                    defaultPreferences.getString(DOWNLOAD_PATH_AUDIO_PREFERENCE,
+                            getString(R.string.download_path_audio_summary)));
         }
     }
 
@@ -246,15 +254,6 @@ public class SettingsActivity extends PreferenceActivity  {
     }
 
     public static void initSettings(Context context) {
-        PreferenceManager.setDefaultValues(context, R.xml.settings, false);
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        if(sp.getString(context.getString(R.string.download_path_key), "").isEmpty()){
-            SharedPreferences.Editor spEditor = sp.edit();
-            String newPipeDownloadStorage =
-                    Environment.getExternalStorageDirectory().getAbsolutePath() + "/NewPipe";
-            spEditor.putString(context.getString(R.string.download_path_key)
-                    , newPipeDownloadStorage);
-            spEditor.apply();
-        }
+        NewPipeSettings.initSettings(context);
     }
 }
