@@ -19,12 +19,12 @@
     <string name="useExternalPlayerTitle">Externen Player benutzen</string>
     <string name="download_path_title">Downloadverzeichnis für Videos</string>
     <string name="download_path_summary">Verzeichnis in dem heruntergeladene Videos gespeichert werden.</string>
-    <string name="download_path_dialog_title">Downloadverzeichnis für Videos eingeben</string>
+    <string name="download_path_dialog_title">Download-Verzeichnis für Videos eingeben</string>
     <string name="autoplay_through_intent_title">Automatisches Abspielen durch Intent</string>
     <string name="autoplay_through_intent_summary">Startet ein Video automatisch wenn es von einer anderen App aufgerufen wurde.</string>
     <string name="default_resolution_title">Standard Auflösung</string>
     <string name="play_with_kodi_title">Mit Kodi abspielen</string>
-    <string name="kore_not_found">Kore app wurde nicht gefunden. Kore wird benötigt, um Videos mit Kodi wieder zu geben.</string>
+    <string name="kore_not_found">Kore App wurde nicht gefunden. Möchten sie Kore jetzt installieren?</string>
     <string name="installeKore">Kore installieren</string>
     <string name="show_play_with_kodi_title">Zeige \"Mit Kodi abspielen\" Option</string>
     <string name="show_play_with_kodi_summary">Zeigt eine Option an, über die man Videos mit dem Kodi Mediacenter abspielen kann.</string>
@@ -39,7 +39,7 @@
     </string-array>
     <string name="next_video_title">Nächstes Video</string>
     <string name="show_next_and_similar_title">Zeige nächstes und ähnliche Videos</string>
-    <string name="url_not_supported_toast">URL wird nicht unterstützt.</string>
+    <string name="url_not_supported_toast">URL wird nicht unterstützt</string>
     <string name="similar_videos_btn_text">Ähnliche Videos</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
     <string name="search_language_title">Bevorzugte Sprache des Inhalts</string>
@@ -59,9 +59,9 @@
 <string name="background_player_name">NewPipe Hintergrundwiedergabe</string>
     <string name="network_error">Netzwerk Fehler</string>
 
-    <string name="download_path_audio_title">Downloadverzeichnis für Musik</string>
-    <string name="download_path_audio_summary">Verzeichnis um heruntergeladene Musik zu speichern.</string>
-    <string name="download_path_audio_dialog_title">Pfad für heruntergeladene Audiodateien eingeben</string>
+    <string name="download_path_audio_title">Download-Verzeichnis für Musik</string>
+    <string name="download_path_audio_summary">Verzeichnis um heruntergeladene Audiodateien zu speichern.</string>
+    <string name="download_path_audio_dialog_title">Pfad für heruntergeladene Audiodateien eingeben.</string>
 
     <string name="theme_title">Aussehen</string>
     <string name="dark_theme_title">Dunkel</string>
