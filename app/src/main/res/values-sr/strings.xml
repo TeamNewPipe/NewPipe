@@ -17,17 +17,17 @@
     <string name="screen_rotation">ротација</string>
     <string name="settings_activity_title">Поставке</string>
     <string name="useExternalPlayerTitle">Користи спољашњи плејер</string>
-    <string name="download_path_title">Одредиште преузимања</string>
-    <string name="download_path_summary">Путања за упис преузетих видеа</string>
-    <string name="download_path_dialog_title">Унесите путању за преузимања</string>
-    <string name="autoplay_through_intent_title">Аутопуштање преко Интента</string>
-    <string name="autoplay_through_intent_summary">Аутоматско пуштање видеа по позиву из друге апликације</string>
+    <string name="download_path_title">Одредиште преузимања за видео</string>
+    <string name="download_path_summary">Путања за упис преузетих видеа.</string>
+    <string name="download_path_dialog_title">Унесите путању за преузимање видеа</string>
+    <string name="autoplay_through_intent_title">Аутопуштање преко интента</string>
+    <string name="autoplay_through_intent_summary">Аутоматско пуштање видеа по позиву из друге апликације.</string>
     <string name="default_resolution_title">Подразумевана резолуција</string>
     <string name="play_with_kodi_title">Пусти помоћу Кодија</string>
     <string name="kore_not_found">Апликација Кор (Kore) није нађена. Инсталирати Кор?</string>
     <string name="installeKore">Инсталирај Кор</string>
     <string name="show_play_with_kodi_title">Прикажи „Пусти помоћу Кодија“</string>
-    <string name="show_play_with_kodi_summary">Приказ опције за пуштање видеа у Коди медија центру</string>
+    <string name="show_play_with_kodi_summary">Приказ опције за пуштање видеа у Коди медија центру.</string>
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Подразумевани формат звука</string>
     <string name="webm_description">WebM — слободни формат</string>
@@ -66,4 +66,10 @@
     <string name="settings_category_appearance_title">Изглед</string>
     <string name="network_error">Грешка мреже</string>
 
+    <string name="download_path_audio_title">Одредиште преузимања за аудио</string>
+    <string name="download_path_audio_dialog_title">Унесите путању за преузимање аудио фајлова.</string>
+
+    <string name="download_path_audio_summary">Путања за упис преузетих аудио фајлова.</string>
+    <string name="info_dir_created">Направљен директоријум за преузимање „%1$s“</string>
+<string name="err_dir_create">Не могу да направим директоријум за преузимање„ %1$s“</string>
     </resources>
