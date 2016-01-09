@@ -16,9 +16,9 @@
     <string name="screen_rotation">回転</string>
     <string name="settings_activity_title">設定</string>
     <string name="useExternalPlayerTitle">外部ﾌﾟﾚｰﾔｰを使用する</string>
-    <string name="download_path_title">ﾀﾞｳﾝﾛｰﾄﾞする場所</string>
+    <string name="download_path_title">動画をﾀﾞｳﾝﾛｰﾄﾞする場所</string>
     <string name="download_path_summary">ﾀﾞｳﾝﾛｰﾄﾞした動画を保存する場所のﾊﾟｽ｡</string>
-    <string name="download_path_dialog_title">ﾀﾞｳﾝﾛｰﾄﾞのﾊﾟｽを入力してください｡</string>
+    <string name="download_path_dialog_title">動画をﾀﾞｳﾝﾛｰﾄﾞするﾊﾟｽを入力してください</string>
     <string name="autoplay_through_intent_title">ｲﾝﾃﾝﾄで自動再生</string>
     <string name="autoplay_through_intent_summary">他のｱﾌﾟﾘｹｰｼｮﾝから呼び出されたとき､自動的に動画再生を開始します｡</string>
     <string name="default_resolution_title">基本の解像度</string>
@@ -60,6 +60,12 @@
 
     <string name="settings_category_appearance_title">外観</string>
     <string name="settings_category_other_title">その他</string>
-    <string name="network_error">ネットワーク エラー</string>
+    <string name="network_error">ﾈｯﾄﾜｰｸ ｴﾗｰ</string>
 
-    </resources>
+    <string name="download_path_audio_title">ｵｰﾃﾞｨｵをﾀﾞｳﾝﾛｰﾄﾞするﾊﾟｽ</string>
+    <string name="download_path_audio_summary">ｵｰﾃﾞｨｵをﾀﾞｳﾝﾛｰﾄﾞするﾊﾟｽ｡</string>
+    <string name="download_path_audio_dialog_title">ｵｰﾃﾞｫﾌｧｲﾙをﾀﾞｳﾝﾛｰﾄﾞするﾊﾟｽを入力してください。</string>
+
+    <string name="err_dir_create">ﾀﾞｳﾝﾛｰﾄﾞ ﾃﾞｨﾚｸﾄﾘ \'%1$s\' を作成できません</string>
+    <string name="info_dir_created">ﾀﾞｳﾝﾛｰﾄﾞ ﾃﾞｨﾚｸﾄﾘ \'%1$s\' を作成しました</string>
+</resources>
