@@ -75,6 +75,7 @@ public class VideoItemDetailFragment extends Fragment {
 
     private AppCompatActivity activity;
     private ActionBarHandler actionBarHandler;
+    private ProgressBar progressBar;
 
     private int streamingServiceId = -1;
 
@@ -85,6 +86,7 @@ public class VideoItemDetailFragment extends Fragment {
     private View thumbnailWindowLayout;
     private FloatingActionButton playVideoButton;
     private final Point initialThumbnailPos = new Point(0, 0);
+
 
     public interface OnInvokeCreateOptionsMenuListener {
         void createOptionsMenu();
@@ -132,6 +134,7 @@ public class VideoItemDetailFragment extends Fragment {
                     }
                 }
             } catch (Exception e) {
+                progressBar.setVisibility(View.GONE);
                 e.printStackTrace();
             }
 
@@ -207,7 +210,6 @@ public class VideoItemDetailFragment extends Fragment {
                     new VideoInfoItemViewCreator(LayoutInflater.from(getActivity()));
 
             RelativeLayout textContentLayout = (RelativeLayout) activity.findViewById(R.id.detailTextContentLayout);
-            ProgressBar progressBar = (ProgressBar) activity.findViewById(R.id.detailProgressBar);
             TextView videoTitleView = (TextView) activity.findViewById(R.id.detailVideoTitleView);
             TextView uploaderView = (TextView) activity.findViewById(R.id.detailUploaderView);
             TextView viewCountView = (TextView) activity.findViewById(R.id.detailViewCountView);
@@ -353,6 +355,8 @@ public class VideoItemDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_videoitem_detail, container, false);
+        progressBar = (ProgressBar) rootView.findViewById(R.id.detailProgressBar);
+
         actionBarHandler = new ActionBarHandler(activity);
         actionBarHandler.setupNavMenu(activity);
         if(onInvokeCreateOptionsMenuListener != null) {
