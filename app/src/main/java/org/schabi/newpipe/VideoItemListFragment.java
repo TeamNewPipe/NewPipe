@@ -109,15 +109,18 @@ public class VideoItemListFragment extends ListFragment {
                 String searchLanguage = sp.getString(searchLanguageKey,
                         getString(R.string.default_language_value));
                 SearchEngine.Result result = engine.search(query, page, searchLanguage);
+
                 Log.i(TAG, "language code passed:\""+searchLanguage+"\"");
                 if(runs) {
                     h.post(new ResultRunnable(result, requestId));
                 }
             } catch(Exception e) {
                 e.printStackTrace();
+
                 h.post(new Runnable() {
                     @Override
                     public void run() {
+                        setListShown(true);
                         Toast.makeText(getActivity(), getString(R.string.network_error),
                                 Toast.LENGTH_SHORT).show();
                     }
