@@ -38,7 +38,7 @@
     <string name="url_not_supported_toast">URL non supportée</string>
     <string name="similar_videos_btn_text">Vidéos similaires</string>
     <string name="settings_category_video_audio_title">Vidéo &amp; Audio</string>
-    <string name="settings_category_other_title">Divers</string>
+    <string name="settings_category_other_title">Autre</string>
 
     <string name="list_thumbnail_view_description">Miniature d\'aperçu vidéo</string>
     <string name="detail_thumbnail_view_description">Miniature d\'aperçu vidéo</string>
