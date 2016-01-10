@@ -17,9 +17,9 @@
     <string name="settings_activity_title">Nastavitve</string>
     <string name="use_external_video_player_title">Uporabi zunanji predvajalnik videa</string>
     <string name="use_external_audio_player_title">Uporabi zunanji predvajalnik zvoka</string>
-    <string name="download_path_title">Mapa za prejem</string>
-    <string name="download_path_summary">Pot do mape za prejem datotek</string>
-    <string name="download_path_dialog_title">Vpis poti za prejem</string>
+    <string name="download_path_title">Mapa za prejem videa</string>
+    <string name="download_path_summary">Pot do mape za prejem video datotek</string>
+    <string name="download_path_dialog_title">Vpis poti za prejem videa</string>
     <string name="default_resolution_title">Privzeta ločljivost</string>
     <string name="play_with_kodi_title">Predvajaj s Kodi</string>
     <string name="kore_not_found">Programa Kore ni mogoče najti. Ali želite program namestiti?</string>
@@ -39,7 +39,7 @@
     <string name="list_thumbnail_view_description">Sličica predogleda videa</string>
     <string name="detail_thumbnail_view_description">Sličica predogleda videa</string>
     <string name="detail_uploader_thumbnail_view_description">Sličica pošiljalnika</string>
-    <string name="autoplay_through_intent_title">Samodejno predvajaj prek vmesnika Intent</string>
+    <string name="autoplay_through_intent_title">Samodejno predvajanje prek vmesnika Intent</string>
     <string name="autoplay_through_intent_summary">Začne samodejno predvajanje videa, ko je zagnan prek drugega programa.</string>
     <string name="show_play_with_kodi_summary">Pokaže možnost predvajanja videa preko predstavnega središča Kodi.</string>
     <string name="settingsCategoryEtcTitle">Drugo</string>
@@ -61,4 +61,10 @@
 
     <string name="use_tor_title">Uporabi Tor</string>
     <string name="use_tor_summary">Vsili prenos prejema preko sistema Tor za povečanje zasebnosti (pretakanje videa ni še podprto)</string>
+<string name="download_path_audio_title">Mapa za prejem zvočnih datotek</string>
+    <string name="download_path_audio_summary">Pot do mape za prejem zvočnih datotek</string>
+    <string name="download_path_audio_dialog_title">Vpis poti za prejem zvočnih datotek</string>
+
+    <string name="err_dir_create">Ni mogoče ustvariti mape za prejem \'%1$s\'</string>
+    <string name="info_dir_created">Ustvarjena je mapa za prejem \'%1$s\'</string>
 </resources>
