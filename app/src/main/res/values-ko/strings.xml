@@ -16,9 +16,9 @@
     <string name="screen_rotation">회전</string>
     <string name="settings_activity_title">설정</string>
     <string name="useExternalPlayerTitle">외부 플레이어 사용</string>
-    <string name="download_path_title">다운로드 위치</string>
+    <string name="download_path_title">비디오 다운로드 위치</string>
     <string name="download_path_summary">다운로드된 비디오가 저장될 경로를 선택하세요.</string>
-    <string name="download_path_dialog_title">다운로드 경로 입력</string>
+    <string name="download_path_dialog_title">비디오 다운로드 경로 입력</string>
     <string name="autoplay_through_intent_title">인텐트로 경유할 경우 자동 재생</string>
     <string name="autoplay_through_intent_summary">다른 앱으로부터 호출되었을 경우에 비디오를 자동으로 재생합니다.</string>
     <string name="default_resolution_title">기본 해상도</string>
@@ -29,8 +29,8 @@
     <string name="show_play_with_kodi_summary">비디오를 Kodi media center를 사용해 재생하는 옵션을 표시합니다.</string>
     <string name="play_audio">오디오</string>
     <string name="default_audio_format_title">기본 오디오 포맷</string>
-    <string name="webm_description">WebM &#8212; 무료 자유 포맷입니다</string>
-    <string name="m4a_description">m4a &#8212; 보다 나은 품질</string>
+    <string name="webm_description">WebM — 무료 자유 포맷입니다</string>
+    <string name="m4a_description">m4a — 보다 나은 품질</string>
     <string name="download_dialog_title">다운로드</string>
     <string name="next_video_title">다음 비디오</string>
     <string name="show_next_and_similar_title">다음 및 유사한 비디오 표시</string>
@@ -46,4 +46,28 @@
     <string name="detail_uploader_thumbnail_view_description">업로더 썸네일</string>
     <string name="detail_dislikes_img_view_description">싫어요</string>
     <string name="detail_likes_img_view_description">좋아요</string>
+<string name="background_player_name">NewPipe 백그라운드 플레이어</string>
+    <string name="loading">불러오는 중</string>
+    <string name="use_external_video_player_title">외부 비디오 플레이어 사용</string>
+    <string name="use_external_audio_player_title">외부 오디오 플레이어 사용</string>
+
+    <string name="download_path_audio_title">오디오 다운로드 경로</string>
+    <string name="download_path_audio_summary">다운로드된 오디오를 저장할 경로입니다.</string>
+    <string name="download_path_audio_dialog_title">오디오 파일 다운로드 경로를 입력하세요.</string>
+
+    <string name="theme_title">테마</string>
+    <string name="dark_theme_title">어두운 테마</string>
+    <string name="light_theme_title">밝은 테마</string>
+
+    <string name="settings_category_appearance_title">외관</string>
+    <string name="settings_category_other_title">기타</string>
+    <string name="background_player_playing_toast">백그라운드에서 재생 중</string>
+    <string name="play_btn_text">재생</string>
+    <string name="network_error">네트워크 오류</string>
+
+    <string name="use_tor_title">Tor 사용</string>
+    <string name="use_tor_summary">향상된 프라이버시를 위해 다운로드 트래픽을 강제로 Tor를 통해 전송 (스트리밍 비디오는 아직 지원되지 않습니다)</string>
+
+    <string name="err_dir_create">다운로드 디렉토리를 만들 수 없습니다 \'%1$s\'</string>
+    <string name="info_dir_created">다운로드 디렉토리를 만들었습니다 \'%1$s\'</string>
 </resources>
