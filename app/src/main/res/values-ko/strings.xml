@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources><string name="view_count_text">시청 횟수 %1$s</string>
     <string name="upload_date_text">%1$s에 업로드됨</string>
-    <string name="no_player_found">스트리밍 플레이어가 발견되지 않았습니다. 플레이어를 설치하시기 바랍니다.</string>
+    <string name="no_player_found">스트리밍 플레이어가 발견되지 않았습니다. VLC를 설치할까요?</string>
     <string name="install">설치</string>
     <string name="cancel">취소</string>
     <string name="open_in_browser">브라우저에서 열기</string>
@@ -23,7 +23,7 @@
     <string name="autoplay_through_intent_summary">다른 앱으로부터 호출되었을 경우에 비디오를 자동으로 재생합니다.</string>
     <string name="default_resolution_title">기본 해상도</string>
     <string name="play_with_kodi_title">Kodi로 재생</string>
-    <string name="kore_not_found">Kore 앱이 발견되지 않았습니다. Kodi media center로 비디오를 재생하려면 Kore가 필요합니다.</string>
+    <string name="kore_not_found">Kore 앱이 발견되지 않았습니다. Kore를 설치할까요?</string>
     <string name="installeKore">Kore 설치</string>
     <string name="show_play_with_kodi_title">\"Kodi로 재생\" 옵션 표시</string>
     <string name="show_play_with_kodi_summary">비디오를 Kodi media center를 사용해 재생하는 옵션을 표시합니다.</string>
@@ -34,7 +34,7 @@
     <string name="download_dialog_title">다운로드</string>
     <string name="next_video_title">다음 비디오</string>
     <string name="show_next_and_similar_title">다음 및 유사한 비디오 표시</string>
-    <string name="url_not_supported_toast">지원하지 않는 URL 입니다.</string>
+    <string name="url_not_supported_toast">지원하지 않는 URL 입니다</string>
     <string name="similar_videos_btn_text">유사한 비디오</string>
     <string name="search_language_title">선호하는 컨텐츠 언어</string>
     <string name="settings_category_video_audio_title">비디오 &amp; 오디오</string>
