@@ -17,17 +17,17 @@
     <string name="settings_activity_title">Definições</string>
     <string name="use_external_video_player_title">Utilizar reprodutor de vídeo externo</string>
     <string name="use_external_audio_player_title">Utilizar reprodutor de áudio externo</string>
-    <string name="download_path_title">Local para a descarga</string>
-    <string name="download_path_summary">Local para guardar os vídeos descarregados</string>
-    <string name="download_path_dialog_title">Digite o caminho</string>
-    <string name="autoplay_through_intent_title">Reproduzir via Intent</string>
-    <string name="autoplay_through_intent_summary">Iniciar automaticamente o vídeo se for invocado por outra aplicação</string>
+    <string name="download_path_title">Descarga de vídeos</string>
+    <string name="download_path_summary">Local para guardar os vídeos descarregados.</string>
+    <string name="download_path_dialog_title">Digite o caminho para os vídeos</string>
+    <string name="autoplay_through_intent_title">Reproduzir através de Intent</string>
+    <string name="autoplay_through_intent_summary">Reproduzir automaticamente o vídeo se invocado por outra aplicação.</string>
     <string name="default_resolution_title">Resolução padrão</string>
     <string name="play_with_kodi_title">Reproduzir com Kodi</string>
     <string name="kore_not_found">Aplicação não encontrada. Instalar o Kore?</string>
     <string name="installeKore">Instalar o Kore</string>
     <string name="show_play_with_kodi_title">Mostrar opção \"Reproduzir com Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Mostra uma opção para reproduzir o vídeo com o Kodi</string>
+    <string name="show_play_with_kodi_summary">Mostra uma opção para reproduzir o vídeo com o Kodi.</string>
     <string name="play_audio">Áudio</string>
     <string name="default_audio_format_title">Formato áudio padrão</string>
     <string name="webm_description">WebM — formato livre</string>
@@ -61,4 +61,10 @@
 
     <string name="use_tor_title">Utilizar Tor</string>
     <string name="use_tor_summary">Utilizar a rede Tor para ter mais privacidade (ainda não é suportada a transmissão de vídeos)</string>
+<string name="download_path_audio_title">Descarga de áudio</string>
+    <string name="download_path_audio_summary">Local para guardar o áudio descarregado.</string>
+    <string name="download_path_audio_dialog_title">Digite o caminho para os ficheiros áudio.</string>
+
+    <string name="err_dir_create">Não foi possível criar o diretório \'%1$s\'</string>
+    <string name="info_dir_created">Diretório \'%1$s\' criado com sucesso</string>
 </resources>
