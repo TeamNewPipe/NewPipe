@@ -107,7 +107,7 @@ public class DownloadDialog extends DialogFragment {
                         long id = 0;
                         if (App.isUsingTor()) {
                             // if using Tor, do not use DownloadManager because the proxy cannot be set
-                            Downloader.downloadFile(getContext(), url, saveFilePath, title);
+                            FileDownloader.downloadFile(getContext(), url, saveFilePath, title);
                         } else {
                             DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
                             DownloadManager.Request request = new DownloadManager.Request(

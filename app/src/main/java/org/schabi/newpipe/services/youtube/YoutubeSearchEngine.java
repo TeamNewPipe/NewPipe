@@ -6,7 +6,7 @@ import android.util.Log;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.services.Downloader;
 import org.schabi.newpipe.services.SearchEngine;
 import org.schabi.newpipe.VideoPreviewInfo;
 import org.w3c.dom.Node;
@@ -49,7 +49,7 @@ public class YoutubeSearchEngine implements SearchEngine {
     private static final String TAG = YoutubeSearchEngine.class.toString();
 
     @Override
-    public Result search(String query, int page, String languageCode) {
+    public Result search(String query, int page, String languageCode, Downloader downloader) {
         //String contentCountry = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string., "");
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("https")
@@ -64,10 +64,10 @@ public class YoutubeSearchEngine implements SearchEngine {
         //if we've been passed a valid language code, append it to the URL
         if(!languageCode.isEmpty()) {
           //assert Pattern.matches("[a-z]{2}(-([A-Z]{2}|[0-9]{1,3}))?", languageCode);
-                site  = Downloader.download(url, languageCode);
+                site  = downloader.download(url, languageCode);
         }
         else {
-            site = Downloader.download(url);
+            site = downloader.download(url);
         }
 
 
@@ -140,7 +140,7 @@ public class YoutubeSearchEngine implements SearchEngine {
     }
 
     @Override
-    public ArrayList<String> suggestionList(String query) {
+    public ArrayList<String> suggestionList(String query, Downloader dl) {
 
         ArrayList<String> suggestions = new ArrayList<>();
 
@@ -155,7 +155,7 @@ public class YoutubeSearchEngine implements SearchEngine {
                 .appendQueryParameter("q", query);
         String url = builder.build().toString();
 
-        String response = Downloader.download(url);
+        String response = dl.download(url);
 
         //TODO: Parse xml data using Jsoup not done
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();

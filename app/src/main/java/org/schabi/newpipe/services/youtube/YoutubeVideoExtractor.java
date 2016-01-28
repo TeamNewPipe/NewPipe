@@ -12,7 +12,8 @@ import org.jsoup.parser.Parser;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
-import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.FileDownloader;
+import org.schabi.newpipe.services.Downloader;
 import org.schabi.newpipe.services.VideoExtractor;
 import org.schabi.newpipe.services.MediaFormat;
 import org.schabi.newpipe.services.VideoInfo;
@@ -62,9 +63,13 @@ public class YoutubeVideoExtractor extends VideoExtractor {
     // cached values
     private static volatile String decryptionCode = "";
 
-    public YoutubeVideoExtractor(String pageUrl) {
-        super(pageUrl);//most common videoInfo fields are now set in our superclass, for all services
-        String pageContent = Downloader.download(cleanUrl(pageUrl));
+    private Downloader downloader;
+
+    public YoutubeVideoExtractor(String pageUrl, Downloader dl) {
+        //most common videoInfo fields are now set in our superclass, for all services
+        super(pageUrl, dl);
+        downloader = dl;
+        String pageContent = downloader.download(cleanUrl(pageUrl));
         doc = Jsoup.parse(pageContent, pageUrl);
 
         //attempt to load the youtube js player JSON arguments
@@ -472,7 +477,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
             decryptedSig = decryptSignature(encryptedSig, decryptoinCode);
             dashManifest = dashManifest.replace("/s/" + encryptedSig, "/signature/" + decryptedSig);
         }
-        String dashDoc = Downloader.download(dashManifest);
+        String dashDoc = downloader.download(dashManifest);
         Vector<VideoInfo.AudioStream> audioStreams = new Vector<>();
         try {
             XmlPullParser parser = Xml.newPullParser();
@@ -574,7 +579,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
     }
 
     private String loadDecryptionCode(String playerUrl) {
-        String playerCode = Downloader.download(playerUrl);
+        String playerCode = downloader.download(playerUrl);
         String decryptionFuncName = "";
         String decryptionFunc = "";
         String helperObjectName;

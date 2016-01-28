@@ -27,16 +27,14 @@ import java.util.Vector;
 
 @SuppressWarnings("ALL")
 public interface SearchEngine {
-
-
     class Result {
         public String errorMessage = "";
         public String suggestion = "";
         public final Vector<VideoPreviewInfo> resultList = new Vector<>();
     }
 
-    ArrayList<String> suggestionList(String query);
+    ArrayList<String> suggestionList(String query, Downloader dl);
 
     //Result search(String query, int page);
-    Result search(String query, int page, String contentCountry);
+    Result search(String query, int page, String contentCountry, Downloader dl);
 }

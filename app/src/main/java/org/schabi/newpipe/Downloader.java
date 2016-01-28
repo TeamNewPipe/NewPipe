@@ -1,24 +1,8 @@
 package org.schabi.newpipe;
 
-
-import android.app.NotificationManager;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
-import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
-import android.util.Log;
-
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.UnknownHostException;
 
@@ -27,7 +11,7 @@ import javax.net.ssl.HttpsURLConnection;
 import info.guardianproject.netcipher.NetCipher;
 
 /**
- * Created by Christian Schabesberger on 14.08.15.
+ * Created by Christian Schabesberger on 28.01.16.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
  * Downloader.java is part of NewPipe.
@@ -46,38 +30,16 @@ import info.guardianproject.netcipher.NetCipher;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Downloader extends AsyncTask<Void, Integer, Void> {
-    public static final String TAG = "Downloader";
+public class Downloader implements org.schabi.newpipe.services.Downloader {
+    
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0";
-
-    private NotificationManager nm;
-    private NotificationCompat.Builder builder;
-    private int notifyId = 0x1234;
-    private int fileSize = 0xffffffff;
-
-    private final Context context;
-    private final String fileURL;
-    private final File saveFilePath;
-    private final String title;
-
-    private final String debugContext;
-
-    public Downloader(Context context, String fileURL, File saveFilePath, String title) {
-        this.context = context;
-        this.fileURL = fileURL;
-        this.saveFilePath = saveFilePath;
-        this.title = title;
-
-        this.debugContext = "'" + fileURL +
-                "' => '" + saveFilePath + "'";
-    }
 
     /**Download the text file at the supplied URL as in download(String),
      * but set the HTTP header field "Accept-Language" to the supplied string.
      * @param siteUrl the URL of the text file to return the contents of
      * @param language the language (usually a 2-character code) to set as the preferred language
      * @return the contents of the specified text file*/
-    public static String download(String siteUrl, String language) {
+    public String download(String siteUrl, String language) {
         String ret = "";
         try {
             URL url = new URL(siteUrl);
@@ -118,11 +80,11 @@ public class Downloader extends AsyncTask<Void, Integer, Void> {
         return response.toString();
     }
 
-/**Download (via HTTP) the text file located at the supplied URL, and return its contents.
- * Primarily intended for downloading web pages.
- * @param siteUrl the URL of the text file to download
- * @return the contents of the specified text file*/
-    public static String download(String siteUrl) {
+    /**Download (via HTTP) the text file located at the supplied URL, and return its contents.
+     * Primarily intended for downloading web pages.
+     * @param siteUrl the URL of the text file to download
+     * @return the contents of the specified text file*/
+    public String download(String siteUrl) {
         String ret = "";
 
         try {
@@ -137,99 +99,4 @@ public class Downloader extends AsyncTask<Void, Integer, Void> {
 
         return ret;
     }
-
-    /**
-     * Downloads a file from a URL in the background using an {@link AsyncTask}.
-     *
-     * @param fileURL      HTTP URL of the file to be downloaded
-     * @param saveFilePath path of the directory to save the file
-     * @param title
-     * @throws IOException
-     */
-    public static void downloadFile(final Context context, final String fileURL, final File saveFilePath, String title) {
-        new Downloader(context, fileURL, saveFilePath, title).execute();
-    }
-
-    /** AsyncTask impl: executed in gui thread */
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        Drawable icon = context.getResources().getDrawable(R.mipmap.ic_launcher);
-        builder = new NotificationCompat.Builder(context)
-                .setSmallIcon(android.R.drawable.stat_sys_download)
-                .setLargeIcon(((BitmapDrawable) icon).getBitmap())
-                .setContentTitle(saveFilePath.getName())
-                .setContentText(saveFilePath.getAbsolutePath())
-                .setProgress(fileSize, 0, false);
-        nm.notify(notifyId, builder.build());
-    }
-
-    /** AsyncTask impl: executed in background thread does the download */
-    @Override
-    protected Void doInBackground(Void... voids) {
-        HttpsURLConnection con = null;
-        InputStream inputStream = null;
-        FileOutputStream outputStream = null;
-        try {
-            con = NetCipher.getHttpsURLConnection(fileURL);
-            int responseCode = con.getResponseCode();
-
-            // always check HTTP response code first
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                fileSize = con.getContentLength();
-                inputStream = new BufferedInputStream(con.getInputStream());
-                outputStream = new FileOutputStream(saveFilePath);
-
-                int bufferSize = 8192;
-                int downloaded = 0;
-
-                int bytesRead = -1;
-                byte[] buffer = new byte[bufferSize];
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
-                    downloaded += bytesRead;
-                    if (downloaded % 50000 < bufferSize) {
-                        publishProgress(downloaded);
-                    }
-                }
-
-                publishProgress(bufferSize);
-
-            } else {
-                Log.i(TAG, "No file to download. Server replied HTTP code: " + responseCode);
-            }
-        } catch (IOException e) {
-            Log.e(TAG, "No file to download. Server replied HTTP code: ", e);
-            e.printStackTrace();
-        } finally {
-            try {
-                if (outputStream != null) {
-                    outputStream.close();
-                }
-                if (inputStream != null) {
-                    inputStream.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (con != null) {
-                con.disconnect();
-            }
-        }
-        return null;
-    }
-
-    @Override
-    protected void onProgressUpdate(Integer... progress) {
-        builder.setProgress(fileSize, progress[0], false);
-        nm.notify(notifyId, builder.build());
-    }
-
-    @Override
-    protected void onPostExecute(Void aVoid) {
-        super.onPostExecute(aVoid);
-        nm.cancel(notifyId);
-    }
-
 }

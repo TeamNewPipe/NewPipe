@@ -108,7 +108,8 @@ public class VideoItemListFragment extends ListFragment {
                 String searchLanguageKey = getContext().getString(R.string.search_language_key);
                 String searchLanguage = sp.getString(searchLanguageKey,
                         getString(R.string.default_language_value));
-                SearchEngine.Result result = engine.search(query, page, searchLanguage);
+                SearchEngine.Result result = engine.search(query, page, searchLanguage,
+                        new Downloader());
 
                 Log.i(TAG, "language code passed:\""+searchLanguage+"\"");
                 if(runs) {

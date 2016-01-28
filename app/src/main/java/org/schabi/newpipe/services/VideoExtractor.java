@@ -28,7 +28,7 @@ public abstract class VideoExtractor {
     protected VideoInfo videoInfo;
 
     @SuppressWarnings("WeakerAccess")
-    public VideoExtractor(String url) {
+    public VideoExtractor(String url, Downloader dl) {
         this.pageUrl = url;
     }
 

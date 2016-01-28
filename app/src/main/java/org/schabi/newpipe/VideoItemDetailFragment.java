@@ -108,7 +108,7 @@ public class VideoItemDetailFragment extends Fragment {
         @Override
         public void run() {
             try {
-                this.videoExtractor = service.getExtractorInstance(videoUrl);
+                this.videoExtractor = service.getExtractorInstance(videoUrl, new Downloader());
                 VideoInfo videoInfo = videoExtractor.getVideoInfo();
                 h.post(new VideoResultReturnedRunnable(videoInfo));
                 if (videoInfo.errorCode == VideoInfo.NO_ERROR) {
