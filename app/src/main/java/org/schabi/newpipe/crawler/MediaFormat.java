@@ -6,7 +6,7 @@ package org.schabi.newpipe.crawler;
  * Copyright (c) Christian Schabesberger <chris.schabesberger@mailbox.org>
  *     and Adam Howard <achdisposable1@gmail.com> 2015
  *
- * VideoListAdapter.java is part of NewPipe.
+ * MediaFormat.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

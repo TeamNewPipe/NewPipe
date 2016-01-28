@@ -240,8 +240,13 @@ public class YoutubeVideoExtractor extends VideoExtractor {
             //------------------------------------
             // extract video stream url
             //------------------------------------
-            String encoded_url_map = playerArgs.getString("url_encoded_fmt_stream_map");
             Vector<VideoInfo.VideoStream> videoStreams = new Vector<>();
+
+            // The following line belongs to dash audio stuff.
+            // We can't use dash audio, unless we have exoplayer as our main player.
+            //String adaptive_fmts = playerArgs.getString("adaptive_fmts");
+
+            String encoded_url_map = playerArgs.getString("url_encoded_fmt_stream_map");
             for(String url_data_str : encoded_url_map.split(",")) {
                 Map<String, String> tags = new HashMap<>();
                 for(String raw_tag : Parser.unescapeEntities(url_data_str, true).split("&")) {
@@ -264,6 +269,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
                             resolveResolutionString(itag)));
                 }
             }
+
             return videoStreams.toArray(new VideoInfo.VideoStream[videoStreams.size()]);
 
         } catch (Exception e) {
@@ -280,6 +286,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
     @SuppressWarnings("WeakerAccess")
     public static int resolveFormat(int itag) {
         switch(itag) {
+            // !!! lists only supported formats !!!
             // video
             case 17: return MediaFormat.v3GPP.id;
             case 18: return MediaFormat.MPEG_4.id;
@@ -408,15 +415,6 @@ public class YoutubeVideoExtractor extends VideoExtractor {
             // extracting information from html page
             //---------------------------------------
 
-        /* Code does not work here anymore.
-        // Determine what went wrong when the Video is not available
-        if(videoInfo.errorCode == VideoInfo.ERROR_NO_SPECIFIED_ERROR) {
-            if(doc.select("h1[id=\"unavailable-message\"]").first().text().contains("GEMA")) {
-                videoInfo.videoAvailableStatus = VideoInfo.VIDEO_UNAVAILABLE_GEMA;
-            }
-        }
-        */
-
             String likesString = "";
             String dislikesString = "";
             try {
@@ -530,6 +528,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         }
         return audioStreams.toArray(new VideoInfo.AudioStream[audioStreams.size()]);
     }
+
     /**Provides information about links to other videos on the video page, such as related videos.
      * This is encapsulated in a VideoPreviewInfo object,
      * which is a subset of the fields in a full VideoInfo.*/

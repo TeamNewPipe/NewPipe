@@ -3,7 +3,7 @@ package org.schabi.newpipe.crawler;
 /**
  * Created by Christian Schabesberger on 28.01.16.
  *
- * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
+ * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
  * Downloader.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify

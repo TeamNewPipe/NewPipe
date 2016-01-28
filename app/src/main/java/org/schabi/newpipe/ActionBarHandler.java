@@ -22,7 +22,7 @@ import org.schabi.newpipe.crawler.VideoInfo;
 /**
  * Created by Christian Schabesberger on 18.08.15.
  *
- * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
+ * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
  * DetailsMenuHandler.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
