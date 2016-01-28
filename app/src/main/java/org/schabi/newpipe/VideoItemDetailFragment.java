@@ -134,7 +134,16 @@ public class VideoItemDetailFragment extends Fragment {
                     }
                 }
             } catch (Exception e) {
-                progressBar.setVisibility(View.GONE);
+                h.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressBar.setVisibility(View.GONE);
+                        // This is poor style, but unless we have better error handling in the
+                        // crawler, this may not be better.
+                        Toast.makeText(VideoItemDetailFragment.this.getActivity(),
+                                R.string.network_error, Toast.LENGTH_LONG).show();
+                    }
+                });
                 e.printStackTrace();
             }
 
@@ -441,12 +450,6 @@ public class VideoItemDetailFragment extends Fragment {
                 });
             }
         }
-    }
-
-    private boolean checkIfLandscape() {
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        return displayMetrics.heightPixels < displayMetrics.widthPixels;
     }
 
     @Override

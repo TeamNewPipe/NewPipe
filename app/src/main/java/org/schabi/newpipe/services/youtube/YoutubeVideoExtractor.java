@@ -64,12 +64,12 @@ public class YoutubeVideoExtractor extends VideoExtractor {
 
     public YoutubeVideoExtractor(String pageUrl) {
         super(pageUrl);//most common videoInfo fields are now set in our superclass, for all services
-        String pageContents = Downloader.download(cleanUrl(pageUrl));
-        doc = Jsoup.parse(pageContents, pageUrl);
+        String pageContent = Downloader.download(cleanUrl(pageUrl));
+        doc = Jsoup.parse(pageContent, pageUrl);
 
         //attempt to load the youtube js player JSON arguments
         try {
-            String jsonString = matchGroup1("ytplayer.config\\s*=\\s*(\\{.*?\\});", pageContents);
+            String jsonString = matchGroup1("ytplayer.config\\s*=\\s*(\\{.*?\\});", pageContent);
             //todo: implement this by try and catch. TESTING THE STRING AGAINST EMPTY IS CONSIDERED POOR STYLE !!!
             if(jsonString.isEmpty()) {
                 errorCode = findErrorReason(doc);
@@ -543,7 +543,10 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         info.title = li.select("span.title").first().text();
         //this page causes the NullPointerException, after finding it by searching for "tjvg":
         //https://www.youtube.com/watch?v=Uqg0aEhLFAg
-        String views = li.select("span.view-count").first().text();
+
+        //this line is unused
+        //String views = li.select("span.view-count").first().text();
+
         //Log.i(TAG, "title:"+info.title);
         //Log.i(TAG, "view count:"+views);
         try {

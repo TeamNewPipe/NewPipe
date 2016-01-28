@@ -48,7 +48,7 @@ import info.guardianproject.netcipher.NetCipher;
 
 public class Downloader extends AsyncTask<Void, Integer, Void> {
     public static final String TAG = "Downloader";
-    private static final String USER_AGENT = "Mozilla/5.0";
+    private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0";
 
     private NotificationManager nm;
     private NotificationCompat.Builder builder;
@@ -81,7 +81,8 @@ public class Downloader extends AsyncTask<Void, Integer, Void> {
         String ret = "";
         try {
             URL url = new URL(siteUrl);
-            HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+            //HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+            HttpsURLConnection con = NetCipher.getHttpsURLConnection(url);
             con.setRequestProperty("Accept-Language", language);
             ret = dl(con);
         }
@@ -126,7 +127,8 @@ public class Downloader extends AsyncTask<Void, Integer, Void> {
 
         try {
             URL url = new URL(siteUrl);
-            HttpsURLConnection con = NetCipher.getHttpsURLConnection(url);
+            HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+            //HttpsURLConnection con = NetCipher.getHttpsURLConnection(url);
             ret = dl(con);
         }
         catch(Exception e) {
@@ -204,18 +206,15 @@ public class Downloader extends AsyncTask<Void, Integer, Void> {
             try {
                 if (outputStream != null) {
                     outputStream.close();
-                    outputStream = null;
                 }
                 if (inputStream != null) {
                     inputStream.close();
-                    inputStream = null;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
             if (con != null) {
                 con.disconnect();
-                con = null;
             }
         }
         return null;
