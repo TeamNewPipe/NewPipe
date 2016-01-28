@@ -1,9 +1,9 @@
-package org.schabi.newpipe.services.youtube;
+package org.schabi.newpipe.crawler.services.youtube;
 
-import org.schabi.newpipe.services.Downloader;
-import org.schabi.newpipe.services.StreamingService;
-import org.schabi.newpipe.services.VideoExtractor;
-import org.schabi.newpipe.services.SearchEngine;
+import org.schabi.newpipe.crawler.Downloader;
+import org.schabi.newpipe.crawler.StreamingService;
+import org.schabi.newpipe.crawler.VideoExtractor;
+import org.schabi.newpipe.crawler.SearchEngine;
 
 
 /**

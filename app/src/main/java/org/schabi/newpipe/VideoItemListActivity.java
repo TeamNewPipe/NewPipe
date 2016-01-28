@@ -16,7 +16,8 @@ import android.view.inputmethod.InputMethodManager;
 
 import java.util.ArrayList;
 
-import org.schabi.newpipe.services.ServiceList;
+import org.schabi.newpipe.crawler.VideoPreviewInfo;
+import org.schabi.newpipe.crawler.ServiceList;
 
 /**
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>

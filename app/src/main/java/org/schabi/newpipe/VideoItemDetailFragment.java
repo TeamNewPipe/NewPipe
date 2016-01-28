@@ -16,7 +16,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -36,10 +35,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import org.schabi.newpipe.services.VideoExtractor;
-import org.schabi.newpipe.services.ServiceList;
-import org.schabi.newpipe.services.StreamingService;
-import org.schabi.newpipe.services.VideoInfo;
+import org.schabi.newpipe.crawler.VideoPreviewInfo;
+import org.schabi.newpipe.crawler.VideoExtractor;
+import org.schabi.newpipe.crawler.ServiceList;
+import org.schabi.newpipe.crawler.StreamingService;
+import org.schabi.newpipe.crawler.VideoInfo;
 
 
 /**

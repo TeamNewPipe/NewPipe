@@ -1,4 +1,4 @@
-package org.schabi.newpipe.services;
+package org.schabi.newpipe.crawler;
 
 /**
  * Created by Adam Howard on 08/11/15.

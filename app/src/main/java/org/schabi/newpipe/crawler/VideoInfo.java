@@ -1,7 +1,4 @@
-package org.schabi.newpipe.services;
-
-import org.schabi.newpipe.VideoPreviewInfo;
-import org.schabi.newpipe.services.AbstractVideoInfo;
+package org.schabi.newpipe.crawler;
 
 import java.util.List;
 
@@ -73,7 +70,8 @@ public class VideoInfo extends AbstractVideoInfo {
         this.view_count = avi.view_count;
 
         //todo: better than this
-        if(avi instanceof VideoPreviewInfo) {//shitty String to convert code
+        if(avi instanceof VideoPreviewInfo) {
+            //shitty String to convert code
             String dur = ((VideoPreviewInfo)avi).duration;
             int minutes = Integer.parseInt(dur.substring(0, dur.indexOf(":")));
             int seconds = Integer.parseInt(dur.substring(dur.indexOf(":")+1, dur.length()));
@@ -82,7 +80,8 @@ public class VideoInfo extends AbstractVideoInfo {
     }
 
     public static class VideoStream {
-        public String url = "";     //url of the stream
+        //url of the stream
+        public String url = "";
         public int format = -1;
         public String resolution = "";
 

@@ -16,8 +16,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 
-import org.schabi.newpipe.services.MediaFormat;
-import org.schabi.newpipe.services.VideoInfo;
+import org.schabi.newpipe.crawler.MediaFormat;
+import org.schabi.newpipe.crawler.VideoInfo;
 
 /**
  * Created by Christian Schabesberger on 18.08.15.

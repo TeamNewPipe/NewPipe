@@ -2,7 +2,7 @@ package org.schabi.newpipe.services.youtube;
 
 import android.test.AndroidTestCase;
 
-import org.schabi.newpipe.VideoPreviewInfo;
+import org.schabi.newpipe.crawler.VideoPreviewInfo;
 import org.schabi.newpipe.services.SearchEngine;
 
 import java.util.ArrayList;

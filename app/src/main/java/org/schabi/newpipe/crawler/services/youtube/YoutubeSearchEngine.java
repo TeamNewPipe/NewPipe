@@ -1,4 +1,4 @@
-package org.schabi.newpipe.services.youtube;
+package org.schabi.newpipe.crawler.services.youtube;
 
 import android.net.Uri;
 import android.util.Log;
@@ -6,9 +6,9 @@ import android.util.Log;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.schabi.newpipe.services.Downloader;
-import org.schabi.newpipe.services.SearchEngine;
-import org.schabi.newpipe.VideoPreviewInfo;
+import org.schabi.newpipe.crawler.Downloader;
+import org.schabi.newpipe.crawler.SearchEngine;
+import org.schabi.newpipe.crawler.VideoPreviewInfo;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;

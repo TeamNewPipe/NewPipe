@@ -1,4 +1,4 @@
-package org.schabi.newpipe.services;
+package org.schabi.newpipe.crawler;
 
 import android.graphics.Bitmap;
 

@@ -19,8 +19,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.Vector;
 
-import org.schabi.newpipe.services.SearchEngine;
-import org.schabi.newpipe.services.StreamingService;
+import org.schabi.newpipe.crawler.VideoPreviewInfo;
+import org.schabi.newpipe.crawler.SearchEngine;
+import org.schabi.newpipe.crawler.StreamingService;
 
 
 /**

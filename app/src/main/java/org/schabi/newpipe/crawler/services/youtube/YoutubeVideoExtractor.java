@@ -1,4 +1,4 @@
-package org.schabi.newpipe.services.youtube;
+package org.schabi.newpipe.crawler.services.youtube;
 
 import android.util.Log;
 import android.util.Xml;
@@ -12,12 +12,11 @@ import org.jsoup.parser.Parser;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
-import org.schabi.newpipe.FileDownloader;
-import org.schabi.newpipe.services.Downloader;
-import org.schabi.newpipe.services.VideoExtractor;
-import org.schabi.newpipe.services.MediaFormat;
-import org.schabi.newpipe.services.VideoInfo;
-import org.schabi.newpipe.VideoPreviewInfo;
+import org.schabi.newpipe.crawler.Downloader;
+import org.schabi.newpipe.crawler.VideoExtractor;
+import org.schabi.newpipe.crawler.MediaFormat;
+import org.schabi.newpipe.crawler.VideoInfo;
+import org.schabi.newpipe.crawler.VideoPreviewInfo;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.StringReader;
