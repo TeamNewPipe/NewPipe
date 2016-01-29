@@ -33,7 +33,7 @@ public class PanicResponderActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
         Intent intent = getIntent();
         if (intent != null && PANIC_TRIGGER_ACTION.equals(intent.getAction())) {
             // TODO explicitly clear the search results once they are restored when the app restarts
