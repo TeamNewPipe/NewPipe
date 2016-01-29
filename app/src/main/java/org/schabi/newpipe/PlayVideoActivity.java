@@ -78,7 +78,7 @@ public class PlayVideoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_play_video);
-
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
         isLandscape = checkIfLandscape();
         hasSoftKeys = checkIfHasSoftKeys();
 
