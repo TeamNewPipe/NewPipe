@@ -95,6 +95,10 @@ public abstract class VideoExtractor {
             if (videoInfo.startPosition < 0) {
                 videoInfo.startPosition = getTimeStamp();
             }
+
+            if(videoInfo.dashMpdUrl.isEmpty()) {
+                videoInfo.dashMpdUrl = getDashMpdUrl();
+            }
         } else {
             videoInfo.errorCode = getErrorCode();
             videoInfo.errorMessage = getErrorMessage();
@@ -125,4 +129,5 @@ public abstract class VideoExtractor {
     public abstract String getUploaderThumbnailUrl();
     public abstract VideoInfo.AudioStream[] getAudioStreams();
     public abstract VideoInfo.VideoStream[] getVideoStreams();
+    public abstract String getDashMpdUrl();
 }

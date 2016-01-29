@@ -38,6 +38,11 @@ public class VideoInfo extends AbstractVideoInfo {
     public String description = "";
     public VideoStream[] videoStreams = null;
     public AudioStream[] audioStreams = null;
+    // video streams provided by the dash mpd do not need to be provided as VideoStream.
+    // Later on this will also aplly to audio streams. Since dash mpd is standarized,
+    // crawling such a file is not service dependent. Therefore getting audio only streams by yust
+    // providing the dash mpd fille will be possible in the future.
+    public String dashMpdUrl = "";
     public int errorCode = NO_ERROR;
     public String errorMessage = "";
     public int duration = -1;
@@ -50,7 +55,8 @@ public class VideoInfo extends AbstractVideoInfo {
     public String average_rating = "";
     public VideoPreviewInfo nextVideo = null;
     public List<VideoPreviewInfo> relatedVideos = null;
-    public int startPosition = -1;//in seconds. some metadata is not passed using a VideoInfo object!
+    //in seconds. some metadata is not passed using a VideoInfo object!
+    public int startPosition = -1;
 
     public VideoInfo() {}
 

@@ -221,9 +221,22 @@ public class YoutubeVideoExtractor extends VideoExtractor {
     }
 
     @Override
+    public String getDashMpdUrl() {
+        try {
+            return playerArgs.getString("dashmpd");
+        } catch(NullPointerException e) {
+            Log.e(TAG, "Could not find \"dashmpd\" upon the player args (maybe no dash manifest available).");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    @Override
     public VideoInfo.AudioStream[] getAudioStreams() {
         try {
             String dashManifest = playerArgs.getString("dashmpd");
+            Log.d(TAG, dashManifest);
             return parseDashManifest(dashManifest, decryptionCode);
 
         } catch (NullPointerException e) {
