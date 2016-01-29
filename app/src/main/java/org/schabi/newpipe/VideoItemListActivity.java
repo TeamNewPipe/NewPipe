@@ -112,7 +112,7 @@ public class VideoItemListActivity extends AppCompatActivity
         //------ todo: remove this line when multiservice support is implemented ------
         currentStreamingServiceId = ServiceList.getIdOfService("Youtube");
         //-----------------------------------------------------------------------------
-
+        //to solve issue 38
         listFragment = (VideoItemListFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.videoitem_list);
         listFragment.setStreamingService(ServiceList.getService(currentStreamingServiceId));
