@@ -44,7 +44,7 @@ public class VideoItemDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videoitem_detail);
-
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
         // Show the Up button in the action bar.
         try {
             //noinspection ConstantConditions
