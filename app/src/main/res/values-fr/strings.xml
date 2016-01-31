@@ -63,8 +63,8 @@
     <string name="network_error">Erreur réseau</string>
 
     <string name="download_path_audio_title">Répertoire de téléchargement des audios</string>
-    <string name="download_path_audio_summary">Chemin du répertoire stockant les audios téléchargés</string>
-    <string name="download_path_audio_dialog_title">Entrez le chemin du répertoire de téléchargement des audios</string>
+    <string name="download_path_audio_summary">Chemin de stockage des fichiers audio téléchargés</string>
+    <string name="download_path_audio_dialog_title">Entrez le chemin de stockage fichiers audio téléchargés</string>
 
     <string name="err_dir_create">Impossible de créer le répertoire de téléchargement « %1$s »</string>
     <string name="info_dir_created">Répertoire de téléchargement « %1$s » créé</string>
