@@ -35,7 +35,7 @@ import java.io.IOException;
 public class YoutubeVideoExtractorGemaTest extends AndroidTestCase {
 
     // Deaktivate this Test Case bevore uploading it githup, otherwise CI will fail.
-    private static final boolean testActive = true;
+    private static final boolean testActive = false;
 
     public void testGemaError() throws IOException, CrawlingException {
         if(testActive) {
