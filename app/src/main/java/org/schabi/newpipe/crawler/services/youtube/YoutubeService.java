@@ -1,9 +1,12 @@
 package org.schabi.newpipe.crawler.services.youtube;
 
+import org.schabi.newpipe.crawler.CrawlingException;
 import org.schabi.newpipe.crawler.Downloader;
 import org.schabi.newpipe.crawler.StreamingService;
 import org.schabi.newpipe.crawler.VideoExtractor;
 import org.schabi.newpipe.crawler.SearchEngine;
+
+import java.io.IOException;
 
 
 /**
@@ -34,9 +37,9 @@ public class YoutubeService implements StreamingService {
         return serviceInfo;
     }
     @Override
-    public VideoExtractor getExtractorInstance(String url, Downloader downloader) {
+    public VideoExtractor getExtractorInstance(String url, Downloader downloader) throws CrawlingException, IOException {
         if(acceptUrl(url)) {
-            return new YoutubeVideoExtractor(url, downloader);
+            return new YoutubeVideoExtractor(url, downloader) ;
         }
         else {
             throw new IllegalArgumentException("supplied String is not a valid Youtube URL");

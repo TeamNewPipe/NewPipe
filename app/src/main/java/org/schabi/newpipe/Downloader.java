@@ -39,42 +39,39 @@ public class Downloader implements org.schabi.newpipe.crawler.Downloader {
      * @param siteUrl the URL of the text file to return the contents of
      * @param language the language (usually a 2-character code) to set as the preferred language
      * @return the contents of the specified text file*/
-    public String download(String siteUrl, String language) {
-        String ret = "";
-        try {
-            URL url = new URL(siteUrl);
-            //HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
-            HttpsURLConnection con = NetCipher.getHttpsURLConnection(url);
-            con.setRequestProperty("Accept-Language", language);
-            ret = dl(con);
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
-        return ret;
+    public String download(String siteUrl, String language) throws IOException {
+        URL url = new URL(siteUrl);
+        //HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+        HttpsURLConnection con = NetCipher.getHttpsURLConnection(url);
+        con.setRequestProperty("Accept-Language", language);
+        return dl(con);
     }
 
     /**Common functionality between download(String url) and download(String url, String language)*/
     private static String dl(HttpsURLConnection con) throws IOException {
         StringBuilder response = new StringBuilder();
+        BufferedReader in = null;
 
         try {
             con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", USER_AGENT);
 
-            BufferedReader in = new BufferedReader(
+            in = new BufferedReader(
                     new InputStreamReader(con.getInputStream()));
             String inputLine;
 
             while((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
             }
-            in.close();
-
-        }
-        catch(UnknownHostException uhe) {//thrown when there's no internet connection
-            uhe.printStackTrace();
+        } catch(UnknownHostException uhe) {//thrown when there's no internet connection
+            throw new IOException("unknown host or no network", uhe);
             //Toast.makeText(getActivity(), uhe.getMessage(), Toast.LENGTH_LONG).show();
+        } catch(Exception e) {
+            throw new IOException(e);
+        } finally {
+            if(in != null) {
+                in.close();
+            }
         }
 
         return response.toString();
@@ -84,19 +81,10 @@ public class Downloader implements org.schabi.newpipe.crawler.Downloader {
      * Primarily intended for downloading web pages.
      * @param siteUrl the URL of the text file to download
      * @return the contents of the specified text file*/
-    public String download(String siteUrl) {
-        String ret = "";
-
-        try {
-            URL url = new URL(siteUrl);
-            HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
-            //HttpsURLConnection con = NetCipher.getHttpsURLConnection(url);
-            ret = dl(con);
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return ret;
+    public String download(String siteUrl) throws IOException {
+        URL url = new URL(siteUrl);
+        HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+        //HttpsURLConnection con = NetCipher.getHttpsURLConnection(url);
+        return dl(con);
     }
 }

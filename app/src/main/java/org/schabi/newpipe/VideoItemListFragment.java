@@ -15,10 +15,12 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Vector;
 
+import org.schabi.newpipe.crawler.CrawlingException;
 import org.schabi.newpipe.crawler.VideoPreviewInfo;
 import org.schabi.newpipe.crawler.SearchEngine;
 import org.schabi.newpipe.crawler.StreamingService;
@@ -116,17 +118,15 @@ public class VideoItemListFragment extends ListFragment {
                 if(runs) {
                     h.post(new ResultRunnable(result, requestId));
                 }
-            } catch(Exception e) {
+            } catch(IOException e) {
+                postNewErrorToast(h, R.string.network_error);
                 e.printStackTrace();
-
-                h.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        setListShown(true);
-                        Toast.makeText(getActivity(), getString(R.string.network_error),
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
+            } catch(CrawlingException ce) {
+                postNewErrorToast(h, R.string.parsing_error);
+                ce.printStackTrace();
+            } catch(Exception e) {
+                postNewErrorToast(h, R.string.general_error);
+                e.printStackTrace();
             }
         }
     }
@@ -386,4 +386,14 @@ public class VideoItemListFragment extends ListFragment {
         mActivatedPosition = position;
     }
 
+    private void postNewErrorToast(Handler h, final int stringResource) {
+        h.post(new Runnable() {
+            @Override
+            public void run() {
+                setListShown(true);
+                Toast.makeText(getActivity(), getString(R.string.network_error),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }

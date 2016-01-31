@@ -1,9 +1,14 @@
 package org.schabi.newpipe.services.youtube;
 
 import android.test.AndroidTestCase;
-import android.util.Log;
 
-import org.schabi.newpipe.services.VideoInfo;
+import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.crawler.CrawlingException;
+import org.schabi.newpipe.crawler.ParsingException;
+import org.schabi.newpipe.crawler.services.youtube.YoutubeVideoExtractor;
+import org.schabi.newpipe.crawler.VideoInfo;
+
+import java.io.IOException;
 
 /**
  * Created by the-scrabi on 30.12.15.
@@ -28,58 +33,58 @@ import org.schabi.newpipe.services.VideoInfo;
 public class YoutubeVideoExtractorDefaultTest extends AndroidTestCase {
     private YoutubeVideoExtractor extractor;
 
-    public void setUp() {
-        extractor = new YoutubeVideoExtractor("https://www.youtube.com/watch?v=FmG385_uUys");
+    public void setUp() throws IOException, CrawlingException {
+        extractor = new YoutubeVideoExtractor("https://www.youtube.com/watch?v=FmG385_uUys",
+                new Downloader());
     }
 
-    public void testGetErrorCode() {
-        assertEquals(extractor.getErrorCode(), VideoInfo.NO_ERROR);
-    }
-
-    public void testGetErrorMessage() {
-        assertEquals(extractor.getErrorMessage(), "");
-    }
-
-    public void testGetTimeStamp() {
+    public void testGetInvalidTimeStamp() throws ParsingException {
         assertTrue(Integer.toString(extractor.getTimeStamp()),
-                extractor.getTimeStamp() >= 0);
+                extractor.getTimeStamp() <= 0);
     }
 
-    public void testGetTitle() {
+    public void testGetValidTimeStamp() throws CrawlingException, IOException {
+        YoutubeVideoExtractor extractor =
+                new YoutubeVideoExtractor("https://youtu.be/FmG385_uUys?t=174", new Downloader());
+        assertTrue(Integer.toString(extractor.getTimeStamp()),
+                extractor.getTimeStamp() == 174);
+    }
+
+    public void testGetTitle() throws ParsingException {
         assertTrue(!extractor.getTitle().isEmpty());
     }
 
-    public void testGetDescription() {
+    public void testGetDescription() throws ParsingException {
         assertTrue(extractor.getDescription() != null);
     }
 
-    public void testGetUploader() {
+    public void testGetUploader() throws ParsingException {
         assertTrue(!extractor.getUploader().isEmpty());
     }
 
-    public void testGetLength() {
+    public void testGetLength() throws ParsingException {
         assertTrue(extractor.getLength() > 0);
     }
 
-    public void testGetViews() {
+    public void testGetViews() throws ParsingException {
         assertTrue(extractor.getLength() > 0);
     }
 
-    public void testGetUploadDate() {
+    public void testGetUploadDate() throws ParsingException {
         assertTrue(extractor.getUploadDate().length() > 0);
     }
 
-    public void testGetThumbnailUrl() {
+    public void testGetThumbnailUrl() throws ParsingException {
         assertTrue(extractor.getThumbnailUrl(),
                 extractor.getThumbnailUrl().contains("https://"));
     }
 
-    public void testGetUploaderThumbnailUrl() {
+    public void testGetUploaderThumbnailUrl() throws ParsingException {
         assertTrue(extractor.getUploaderThumbnailUrl(),
                 extractor.getUploaderThumbnailUrl().contains("https://"));
     }
 
-    public void testGetAudioStreams() {
+    public void testGetAudioStreams() throws ParsingException {
         for(VideoInfo.AudioStream s : extractor.getAudioStreams()) {
             assertTrue(s.url,
                     s.url.contains("https://"));
@@ -88,7 +93,7 @@ public class YoutubeVideoExtractorDefaultTest extends AndroidTestCase {
         }
     }
 
-    public void testGetVideoStreams() {
+    public void testGetVideoStreams() throws ParsingException {
         for(VideoInfo.VideoStream s : extractor.getVideoStreams()) {
             assertTrue(s.url,
                     s.url.contains("https://"));

@@ -3,7 +3,9 @@ package org.schabi.newpipe.services.youtube;
 import android.test.AndroidTestCase;
 
 import org.schabi.newpipe.crawler.VideoPreviewInfo;
-import org.schabi.newpipe.services.SearchEngine;
+import org.schabi.newpipe.crawler.SearchEngine;
+import org.schabi.newpipe.crawler.services.youtube.YoutubeSearchEngine;
+import org.schabi.newpipe.Downloader;
 
 import java.util.ArrayList;
 
@@ -35,8 +37,9 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
     public void setUp() throws Exception{
         super.setUp();
         SearchEngine engine = new YoutubeSearchEngine();
-        result = engine.search("https://www.youtube.com/results?search_query=bla", 0, "de");
-        suggestionReply = engine.suggestionList("hello");
+        result = engine.search("https://www.youtube.com/results?search_query=bla",
+                0, "de", new Downloader());
+        suggestionReply = engine.suggestionList("hello", new Downloader());
     }
 
     public void testIfNoErrorOccur() {

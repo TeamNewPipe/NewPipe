@@ -1,5 +1,7 @@
 package org.schabi.newpipe.crawler;
 
+import java.io.IOException;
+
 /**
  * Created by Christian Schabesberger on 23.08.15.
  *
@@ -25,7 +27,7 @@ public interface StreamingService {
         public String name = "";
     }
     ServiceInfo getServiceInfo();
-    VideoExtractor getExtractorInstance(String url, Downloader downloader);
+    VideoExtractor getExtractorInstance(String url, Downloader downloader) throws IOException, CrawlingException;
     SearchEngine getSearchEngineInstance();
 
     /**When a VIEW_ACTION is caught this function will test if the url delivered within the calling

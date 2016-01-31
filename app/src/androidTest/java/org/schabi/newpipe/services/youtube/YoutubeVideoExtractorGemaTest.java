@@ -2,7 +2,13 @@ package org.schabi.newpipe.services.youtube;
 
 import android.test.AndroidTestCase;
 
-import org.schabi.newpipe.services.VideoInfo;
+import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.crawler.CrawlingException;
+import org.schabi.newpipe.crawler.services.youtube.YoutubeVideoExtractor;
+import org.schabi.newpipe.crawler.VideoInfo;
+import org.schabi.newpipe.Downloader;
+
+import java.io.IOException;
 
 /**
  * Created by the-scrabi on 30.12.15.
@@ -29,31 +35,17 @@ import org.schabi.newpipe.services.VideoInfo;
 public class YoutubeVideoExtractorGemaTest extends AndroidTestCase {
 
     // Deaktivate this Test Case bevore uploading it githup, otherwise CI will fail.
-    private static final boolean testActive = false;
+    private static final boolean testActive = true;
 
-
-    private YoutubeVideoExtractor extractor;
-
-    public void setUp() {
+    public void testGemaError() throws IOException, CrawlingException {
         if(testActive) {
-            extractor = new YoutubeVideoExtractor("https://www.youtube.com/watch?v=3O1_3zBUKM8");
-        }
-    }
-
-    public void testGetErrorCode() {
-        if(testActive) {
-            assertEquals(extractor.getErrorCode(), VideoInfo.ERROR_BLOCKED_BY_GEMA);
-        } else {
-            assertTrue(true);
-        }
-    }
-
-    public void testGetErrorMessage() {
-        if(testActive) {
-            assertTrue(extractor.getErrorMessage(),
-                    extractor.getErrorMessage().contains("GEMA"));
-        } else {
-            assertTrue(true);
+            try {
+                new YoutubeVideoExtractor("https://www.youtube.com/watch?v=3O1_3zBUKM8",
+                        new Downloader());
+                assertTrue("Gema exception not thrown", false);
+            } catch(YoutubeVideoExtractor.GemaException ge) {
+                assertTrue(true);
+            }
         }
     }
 }

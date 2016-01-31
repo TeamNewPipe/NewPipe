@@ -22,8 +22,43 @@ package org.schabi.newpipe.crawler;
 
 /**Scrapes information from a video streaming service (eg, YouTube).*/
 
+
 @SuppressWarnings("ALL")
 public abstract class VideoExtractor {
+
+    public class ExctractorInitException extends CrawlingException {
+        public ExctractorInitException() {}
+        public ExctractorInitException(String message) {
+            super(message);
+        }
+        public ExctractorInitException(Throwable cause) {
+            super(cause);
+        }
+        public ExctractorInitException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+
+    public class RegexException extends ParsingException {
+        public RegexException() {}
+        public RegexException(String message) {
+            super(message);
+        }
+    }
+
+    public class ContentNotAvailableException extends ParsingException {
+        public ContentNotAvailableException() {}
+        public ContentNotAvailableException(String message) {
+            super(message);
+        }
+        public ContentNotAvailableException(Throwable cause) {
+            super(cause);
+        }
+        public ContentNotAvailableException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+
     protected final String pageUrl;
     protected VideoInfo videoInfo;
 
@@ -34,7 +69,7 @@ public abstract class VideoExtractor {
 
     /**Fills out the video info fields which are common to all services.
      * Probably needs to be overridden by subclasses*/
-    public VideoInfo getVideoInfo()
+    public VideoInfo getVideoInfo() throws CrawlingException
     {
         if(videoInfo == null) {
             videoInfo = new VideoInfo();
@@ -44,65 +79,61 @@ public abstract class VideoExtractor {
             videoInfo.webpage_url = pageUrl;
         }
 
-        if(getErrorCode() == VideoInfo.NO_ERROR) {
 
-            if (videoInfo.title.isEmpty()) {
-                videoInfo.title = getTitle();
-            }
-
-            if (videoInfo.duration < 1) {
-                videoInfo.duration = getLength();
-            }
-
-
-            if (videoInfo.uploader.isEmpty()) {
-                videoInfo.uploader = getUploader();
-            }
-
-            if (videoInfo.description.isEmpty()) {
-                videoInfo.description = getDescription();
-            }
-
-            if (videoInfo.view_count == -1) {
-                videoInfo.view_count = getViews();
-            }
-
-            if (videoInfo.upload_date.isEmpty()) {
-                videoInfo.upload_date = getUploadDate();
-            }
-
-            if (videoInfo.thumbnail_url.isEmpty()) {
-                videoInfo.thumbnail_url = getThumbnailUrl();
-            }
-
-            if (videoInfo.id.isEmpty()) {
-                videoInfo.id = getVideoId(pageUrl);
-            }
-
-            /** Load and extract audio*/
-            if (videoInfo.audioStreams == null) {
-                videoInfo.audioStreams = getAudioStreams();
-            }
-            /** Extract video stream url*/
-            if (videoInfo.videoStreams == null) {
-                videoInfo.videoStreams = getVideoStreams();
-            }
-
-            if (videoInfo.uploader_thumbnail_url.isEmpty()) {
-                videoInfo.uploader_thumbnail_url = getUploaderThumbnailUrl();
-            }
-
-            if (videoInfo.startPosition < 0) {
-                videoInfo.startPosition = getTimeStamp();
-            }
-
-            if(videoInfo.dashMpdUrl.isEmpty()) {
-                videoInfo.dashMpdUrl = getDashMpdUrl();
-            }
-        } else {
-            videoInfo.errorCode = getErrorCode();
-            videoInfo.errorMessage = getErrorMessage();
+        if (videoInfo.title.isEmpty()) {
+            videoInfo.title = getTitle();
         }
+
+        if (videoInfo.duration < 1) {
+            videoInfo.duration = getLength();
+        }
+
+
+        if (videoInfo.uploader.isEmpty()) {
+            videoInfo.uploader = getUploader();
+        }
+
+        if (videoInfo.description.isEmpty()) {
+            videoInfo.description = getDescription();
+        }
+
+        if (videoInfo.view_count == -1) {
+            videoInfo.view_count = getViews();
+        }
+
+        if (videoInfo.upload_date.isEmpty()) {
+            videoInfo.upload_date = getUploadDate();
+        }
+
+        if (videoInfo.thumbnail_url.isEmpty()) {
+            videoInfo.thumbnail_url = getThumbnailUrl();
+        }
+
+        if (videoInfo.id.isEmpty()) {
+            videoInfo.id = getVideoId(pageUrl);
+        }
+
+        /** Load and extract audio*/
+        if (videoInfo.audioStreams == null) {
+            videoInfo.audioStreams = getAudioStreams();
+        }
+        /** Extract video stream url*/
+        if (videoInfo.videoStreams == null) {
+            videoInfo.videoStreams = getVideoStreams();
+        }
+
+        if (videoInfo.uploader_thumbnail_url.isEmpty()) {
+            videoInfo.uploader_thumbnail_url = getUploaderThumbnailUrl();
+        }
+
+        if (videoInfo.startPosition < 0) {
+            videoInfo.startPosition = getTimeStamp();
+        }
+
+        if(videoInfo.dashMpdUrl.isEmpty()) {
+            videoInfo.dashMpdUrl = getDashMpdUrl();
+        }
+
 
         //Bitmap thumbnail = null;
         //Bitmap uploader_thumbnail = null;
@@ -110,24 +141,21 @@ public abstract class VideoExtractor {
         return videoInfo;
     }
 
-    //todo: add licence field
-    public abstract int getErrorCode();
-    public abstract String getErrorMessage();
-
     //todo: remove these functions, or make them static, otherwise its useles, to have them here
     public abstract String getVideoUrl(String videoId);
-    public abstract String getVideoId(String siteUrl);
+    public abstract String getVideoId(String siteUrl) throws ParsingException;
     ///////////////////////////////////////////////////////////////////////////////////////////
-    public abstract int getTimeStamp();
-    public abstract String getTitle();
-    public abstract String getDescription();
-    public abstract String getUploader();
-    public abstract int getLength();
-    public abstract long getViews();
-    public abstract String getUploadDate();
-    public abstract String getThumbnailUrl();
-    public abstract String getUploaderThumbnailUrl();
-    public abstract VideoInfo.AudioStream[] getAudioStreams();
-    public abstract VideoInfo.VideoStream[] getVideoStreams();
-    public abstract String getDashMpdUrl();
+    public abstract int getTimeStamp() throws ParsingException;
+    public abstract String getTitle() throws ParsingException;
+    public abstract String getDescription() throws ParsingException;
+    public abstract String getUploader() throws ParsingException;
+    public abstract int getLength() throws ParsingException;
+    public abstract long getViews() throws ParsingException;
+    public abstract String getUploadDate() throws ParsingException;
+    public abstract String getThumbnailUrl() throws ParsingException;
+    public abstract String getUploaderThumbnailUrl() throws ParsingException;
+    public abstract VideoInfo.AudioStream[] getAudioStreams() throws ParsingException;
+    public abstract VideoInfo.VideoStream[] getVideoStreams() throws ParsingException;
+    public abstract String getDashMpdUrl() throws ParsingException;
+    public abstract int getAgeLimit() throws ParsingException;
 }

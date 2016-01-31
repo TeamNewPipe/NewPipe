@@ -26,14 +26,6 @@ import java.util.List;
 @SuppressWarnings("ALL")
 public class VideoInfo extends AbstractVideoInfo {
 
-    // If a video could not be parsed, this predefined error codes
-    // will be returned AND can be parsed by the frontend of the app.
-    // Error codes:
-    public final static int NO_ERROR = 0x0;
-    public final static int ERROR_NO_SPECIFIED_ERROR = 0x1;
-    // GEMA a german music colecting society.
-    public final static int ERROR_BLOCKED_BY_GEMA = 0x2;
-
     public String uploader_thumbnail_url = "";
     public String description = "";
     public VideoStream[] videoStreams = null;
@@ -43,8 +35,6 @@ public class VideoInfo extends AbstractVideoInfo {
     // crawling such a file is not service dependent. Therefore getting audio only streams by yust
     // providing the dash mpd fille will be possible in the future.
     public String dashMpdUrl = "";
-    public int errorCode = NO_ERROR;
-    public String errorMessage = "";
     public int duration = -1;
 
     /*YouTube-specific fields
@@ -59,7 +49,6 @@ public class VideoInfo extends AbstractVideoInfo {
     public int startPosition = -1;
 
     public VideoInfo() {}
-
 
     /**Creates a new VideoInfo object from an existing AbstractVideoInfo.
      * All the shared properties are copied to the new VideoInfo.*/

@@ -1,5 +1,6 @@
 package org.schabi.newpipe.crawler;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -31,8 +32,10 @@ public interface SearchEngine {
         public final Vector<VideoPreviewInfo> resultList = new Vector<>();
     }
 
-    ArrayList<String> suggestionList(String query, Downloader dl);
+    ArrayList<String> suggestionList(String query, Downloader dl)
+            throws CrawlingException, IOException;
 
     //Result search(String query, int page);
-    Result search(String query, int page, String contentCountry, Downloader dl);
+    Result search(String query, int page, String contentCountry, Downloader dl)
+            throws CrawlingException, IOException;
 }
