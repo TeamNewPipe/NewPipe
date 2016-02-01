@@ -55,7 +55,6 @@ public class SettingsActivity extends PreferenceActivity  {
         getDelegate().installViewFactory();
         getDelegate().onCreate(savedInstanceBundle);
         super.onCreate(savedInstanceBundle);
-        setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
