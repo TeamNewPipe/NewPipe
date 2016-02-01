@@ -2,6 +2,7 @@ package org.schabi.newpipe;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
@@ -112,7 +113,7 @@ public class VideoItemListActivity extends AppCompatActivity
         //------ todo: remove this line when multiservice support is implemented ------
         currentStreamingServiceId = ServiceList.getIdOfService("Youtube");
         //-----------------------------------------------------------------------------
-
+        //to solve issue 38
         listFragment = (VideoItemListFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.videoitem_list);
         listFragment.setStreamingService(ServiceList.getService(currentStreamingServiceId));
