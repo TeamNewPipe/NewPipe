@@ -1,6 +1,7 @@
 package org.schabi.newpipe;
 
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
@@ -44,7 +45,7 @@ public class VideoItemDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videoitem_detail);
-
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
         // Show the Up button in the action bar.
         try {
             //noinspection ConstantConditions
