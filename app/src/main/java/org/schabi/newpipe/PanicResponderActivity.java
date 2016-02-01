@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.media.AudioManager;
 
 /**
  * Copyright (C) Hans-Christoph Steiner 2016 <hans@eds.org>
