@@ -72,7 +72,7 @@ public class VideoItemDetailActivity extends AppCompatActivity {
                 StreamingService[] serviceList = ServiceList.getServices();
                 //VideoExtractor videoExtractor = null;
                 for (int i = 0; i < serviceList.length; i++) {
-                    if (serviceList[i].acceptUrl(videoUrl)) {
+                    if (serviceList[i].getUrlIdHandler().acceptUrl(videoUrl)) {
                         arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, i);
                         currentStreamingService = i;
                         //videoExtractor = ServiceList.getService(i).getExtractorInstance();

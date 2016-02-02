@@ -1,5 +1,6 @@
 package org.schabi.newpipe.crawler;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -26,8 +27,52 @@ import java.util.List;
 @SuppressWarnings("ALL")
 public class VideoInfo extends AbstractVideoInfo {
 
+    /**Fills out the video info fields which are common to all services.
+     * Probably needs to be overridden by subclasses*/
+    public static VideoInfo getVideoInfo(VideoExtractor extractor, Downloader downloader)
+            throws CrawlingException, IOException {
+        VideoInfo videoInfo = new VideoInfo();
+
+        UrlIdHandler uiconv = extractor.getUrlIdConverter();
+
+        videoInfo.webpage_url = extractor.getPageUrl();
+        videoInfo.title = extractor.getTitle();
+        videoInfo.duration = extractor.getLength();
+        videoInfo.uploader = extractor.getUploader();
+        videoInfo.description = extractor.getDescription();
+        videoInfo.view_count = extractor.getViews();
+        videoInfo.upload_date = extractor.getUploadDate();
+        videoInfo.thumbnail_url = extractor.getThumbnailUrl();
+        videoInfo.id = uiconv.getVideoId(extractor.getPageUrl());
+        videoInfo.dashMpdUrl = extractor.getDashMpdUrl();
+        /** Load and extract audio*/
+        videoInfo.audioStreams = extractor.getAudioStreams();
+        if(videoInfo.dashMpdUrl != null && !videoInfo.dashMpdUrl.isEmpty()) {
+            if(videoInfo.audioStreams == null || videoInfo.audioStreams.length == 0) {
+                videoInfo.audioStreams =
+                        DashMpdParser.getAudioStreams(videoInfo.dashMpdUrl, downloader);
+            }
+        }
+        /** Extract video stream url*/
+        videoInfo.videoStreams = extractor.getVideoStreams();
+        videoInfo.uploader_thumbnail_url = extractor.getUploaderThumbnailUrl();
+        videoInfo.startPosition = extractor.getTimeStamp();
+        videoInfo.average_rating = extractor.getAverageRating();
+        videoInfo.like_count = extractor.getLikeCount();
+        videoInfo.dislike_count = extractor.getDislikeCount();
+        videoInfo.nextVideo = extractor.getNextVideo();
+        videoInfo.relatedVideos = extractor.getRelatedVideos();
+
+        //Bitmap thumbnail = null;
+        //Bitmap uploader_thumbnail = null;
+        //int videoAvailableStatus = VIDEO_AVAILABLE;
+        return videoInfo;
+    }
+
+
     public String uploader_thumbnail_url = "";
     public String description = "";
+    /*todo: make this lists over vectors*/
     public VideoStream[] videoStreams = null;
     public AudioStream[] audioStreams = null;
     // video streams provided by the dash mpd do not need to be provided as VideoStream.

@@ -20,14 +20,14 @@ package org.schabi.newpipe.crawler;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.List;
+import java.net.URL;
 import java.util.Vector;
 
 /**Scrapes information from a video streaming service (eg, YouTube).*/
 
 
 @SuppressWarnings("ALL")
-public abstract class VideoExtractor {
+public interface VideoExtractor {
 
     public class ExctractorInitException extends CrawlingException {
         public ExctractorInitException() {}
@@ -39,13 +39,6 @@ public abstract class VideoExtractor {
         }
         public ExctractorInitException(String message, Throwable cause) {
             super(message, cause);
-        }
-    }
-
-    public class RegexException extends ParsingException {
-        public RegexException() {}
-        public RegexException(String message) {
-            super(message);
         }
     }
 
@@ -62,111 +55,6 @@ public abstract class VideoExtractor {
         }
     }
 
-    protected final String pageUrl;
-    protected VideoInfo videoInfo;
-
-    @SuppressWarnings("WeakerAccess")
-    public VideoExtractor(String url, Downloader dl) {
-        this.pageUrl = url;
-    }
-
-    /**Fills out the video info fields which are common to all services.
-     * Probably needs to be overridden by subclasses*/
-    public VideoInfo getVideoInfo() throws CrawlingException
-    {
-        if(videoInfo == null) {
-            videoInfo = new VideoInfo();
-        }
-
-        if(videoInfo.webpage_url.isEmpty()) {
-            videoInfo.webpage_url = pageUrl;
-        }
-
-
-        if (videoInfo.title.isEmpty()) {
-            videoInfo.title = getTitle();
-        }
-
-        if (videoInfo.duration < 1) {
-            videoInfo.duration = getLength();
-        }
-
-
-        if (videoInfo.uploader.isEmpty()) {
-            videoInfo.uploader = getUploader();
-        }
-
-        if (videoInfo.description.isEmpty()) {
-            videoInfo.description = getDescription();
-        }
-
-        if (videoInfo.view_count == -1) {
-            videoInfo.view_count = getViews();
-        }
-
-        if (videoInfo.upload_date.isEmpty()) {
-            videoInfo.upload_date = getUploadDate();
-        }
-
-        if (videoInfo.thumbnail_url.isEmpty()) {
-            videoInfo.thumbnail_url = getThumbnailUrl();
-        }
-
-        if (videoInfo.id.isEmpty()) {
-            videoInfo.id = getVideoId(pageUrl);
-        }
-
-        /** Load and extract audio*/
-        if (videoInfo.audioStreams == null) {
-            videoInfo.audioStreams = getAudioStreams();
-        }
-        /** Extract video stream url*/
-        if (videoInfo.videoStreams == null) {
-            videoInfo.videoStreams = getVideoStreams();
-        }
-
-        if (videoInfo.uploader_thumbnail_url.isEmpty()) {
-            videoInfo.uploader_thumbnail_url = getUploaderThumbnailUrl();
-        }
-
-        if (videoInfo.startPosition < 0) {
-            videoInfo.startPosition = getTimeStamp();
-        }
-
-        if(videoInfo.dashMpdUrl.isEmpty()) {
-            videoInfo.dashMpdUrl = getDashMpdUrl();
-        }
-
-        if(videoInfo.average_rating.isEmpty()) {
-            videoInfo.average_rating = getAverageRating();
-        }
-
-        if(videoInfo.like_count == -1) {
-            videoInfo.like_count = getLikeCount();
-        }
-
-        if(videoInfo.dislike_count == -1) {
-            videoInfo.dislike_count = getDislikeCount();
-        }
-
-        if(videoInfo.nextVideo == null) {
-            videoInfo.nextVideo = getNextVideo();
-        }
-
-        if(videoInfo.relatedVideos == null) {
-            videoInfo.relatedVideos = getRelatedVideos();
-        }
-
-        //Bitmap thumbnail = null;
-        //Bitmap uploader_thumbnail = null;
-        //int videoAvailableStatus = VIDEO_AVAILABLE;
-        return videoInfo;
-    }
-
-    //todo: remove these functions, or make them static, otherwise its useles, to have them here
-    public abstract String getVideoUrl(String videoId);
-    public abstract String getVideoId(String siteUrl) throws ParsingException;
-    ///////////////////////////////////////////////////////////////////////////////////////////
     public abstract int getTimeStamp() throws ParsingException;
     public abstract String getTitle() throws ParsingException;
     public abstract String getDescription() throws ParsingException;
@@ -185,4 +73,6 @@ public abstract class VideoExtractor {
     public abstract int getDislikeCount() throws ParsingException;
     public abstract VideoPreviewInfo getNextVideo() throws ParsingException;
     public abstract Vector<VideoPreviewInfo> getRelatedVideos() throws ParsingException;
+    public abstract UrlIdHandler getUrlIdConverter();
+    public abstract String getPageUrl();
 }

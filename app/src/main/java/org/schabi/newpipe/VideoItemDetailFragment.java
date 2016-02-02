@@ -112,7 +112,7 @@ public class VideoItemDetailFragment extends Fragment {
         public void run() {
             try {
                 videoExtractor = service.getExtractorInstance(videoUrl, new Downloader());
-                VideoInfo videoInfo = videoExtractor.getVideoInfo();
+                VideoInfo videoInfo = VideoInfo.getVideoInfo(videoExtractor, new Downloader());
                 h.post(new VideoResultReturnedRunnable(videoInfo));
                 h.post(new SetThumbnailRunnable(
                         //todo: make bitmaps not bypass tor

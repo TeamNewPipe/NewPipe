@@ -15,6 +15,8 @@ import org.mozilla.javascript.ScriptableObject;
 import org.schabi.newpipe.crawler.CrawlingException;
 import org.schabi.newpipe.crawler.Downloader;
 import org.schabi.newpipe.crawler.ParsingException;
+import org.schabi.newpipe.crawler.RegexHelper;
+import org.schabi.newpipe.crawler.UrlIdHandler;
 import org.schabi.newpipe.crawler.VideoExtractor;
 import org.schabi.newpipe.crawler.MediaFormat;
 import org.schabi.newpipe.crawler.VideoInfo;
@@ -25,11 +27,8 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.net.URLDecoder;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Vector;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by Christian Schabesberger on 06.08.15.
@@ -51,7 +50,7 @@ import java.util.regex.Pattern;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class YoutubeVideoExtractor extends VideoExtractor {
+public class YoutubeVideoExtractor implements VideoExtractor {
 
     public class DecryptException extends ParsingException {
         DecryptException(Throwable cause) {
@@ -75,7 +74,6 @@ public class YoutubeVideoExtractor extends VideoExtractor {
     private static final String TAG = YoutubeVideoExtractor.class.toString();
     private final Document doc;
     private JSONObject playerArgs;
-    private String errorMessage = "";
 
     // static values
     private static final String DECRYPTION_FUNC_NAME="decrypt";
@@ -83,23 +81,27 @@ public class YoutubeVideoExtractor extends VideoExtractor {
     // cached values
     private static volatile String decryptionCode = "";
 
+    UrlIdHandler urlidhandler = new YoutubeUrlIdHandler();
+    String pageUrl = "";
+
     private Downloader downloader;
 
     public YoutubeVideoExtractor(String pageUrl, Downloader dl) throws CrawlingException, IOException {
         //most common videoInfo fields are now set in our superclass, for all services
-        super(pageUrl, dl);
         downloader = dl;
-        String pageContent = downloader.download(cleanUrl(pageUrl));
+        this.pageUrl = urlidhandler.cleanUrl(pageUrl);
+        String pageContent = downloader.download(this.pageUrl);
         doc = Jsoup.parse(pageContent, pageUrl);
         String ytPlayerConfigRaw;
         JSONObject ytPlayerConfig;
 
         //attempt to load the youtube js player JSON arguments
         try {
-            ytPlayerConfigRaw = matchGroup1("ytplayer.config\\s*=\\s*(\\{.*?\\});", pageContent);
+            ytPlayerConfigRaw =
+                    RegexHelper.matchGroup1("ytplayer.config\\s*=\\s*(\\{.*?\\});", pageContent);
             ytPlayerConfig = new JSONObject(ytPlayerConfigRaw);
             playerArgs = ytPlayerConfig.getJSONObject("args");
-        } catch (RegexException e) {
+        } catch (RegexHelper.RegexException e) {
             String errorReason = findErrorReason(doc);
             switch(errorReason) {
                 case "GEMA":
@@ -233,7 +235,16 @@ public class YoutubeVideoExtractor extends VideoExtractor {
     @Override
     public String getDashMpdUrl() throws ParsingException {
         try {
-            return playerArgs.getString("dashmpd");
+            String dashManifest = playerArgs.getString("dashmpd");
+            if(!dashManifest.contains("/signature/")) {
+                String encryptedSig = RegexHelper.matchGroup1("/s/([a-fA-F0-9\\.]+)", dashManifest);
+                String decryptedSig;
+
+                decryptedSig = decryptSignature(encryptedSig, decryptionCode);
+                dashManifest = dashManifest.replace("/s/" + encryptedSig, "/signature/" + decryptedSig);
+            }
+
+            return dashManifest;
         } catch(NullPointerException e) {
             throw new ParsingException(
                     "Could not find \"dashmpd\" upon the player args (maybe no dash manifest available).", e);
@@ -244,15 +255,8 @@ public class YoutubeVideoExtractor extends VideoExtractor {
 
     @Override
     public VideoInfo.AudioStream[] getAudioStreams() throws ParsingException {
-        try {
-            String dashManifest = playerArgs.getString("dashmpd");
-            return parseDashManifest(dashManifest, decryptionCode);
-        } catch (NullPointerException e) {
-            throw new ParsingException(
-                    "Could not find \"dashmpd\" upon the player args (maybe no dash manifest available).", e);
-        } catch (Exception e) {
-            throw new ParsingException(e);
-        }
+        /* If we provide a valid dash manifest, we don't need to provide audio streams extra */
+        return null;
     }
 
     @Override
@@ -300,37 +304,6 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         return videoStreams.toArray(new VideoInfo.VideoStream[videoStreams.size()]);
     }
 
-    @SuppressWarnings("WeakerAccess")
-    @Override
-    public String getVideoId(String url) throws ParsingException {
-        String id;
-        String pat;
-
-        if(url.contains("youtube")) {
-            pat = "youtube\\.com/watch\\?v=([\\-a-zA-Z0-9_]{11})";
-        }
-        else if(url.contains("youtu.be")) {
-            pat = "youtu\\.be/([a-zA-Z0-9_-]{11})";
-        }
-        else {
-            throw new ParsingException("Error no suitable url: " + url);
-        }
-
-        id = matchGroup1(pat, url);
-        if(!id.isEmpty()){
-            //Log.i(TAG, "string \""+url+"\" matches!");
-            return id;
-        } else {
-            throw new ParsingException("Error could not parse url: " + url);
-        }
-    }
-
-    @SuppressWarnings("WeakerAccess")
-    @Override
-    public String getVideoUrl(String videoId) {
-        return "https://www.youtube.com/watch?v=" + videoId;
-    }
-
     /**Attempts to parse (and return) the offset to start playing the video from.
      * @return the offset (in seconds), or 0 if no timestamp is found.*/
     @Override
@@ -338,8 +311,8 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         //todo: add unit test for timestamp
         String timeStamp;
         try {
-            timeStamp = matchGroup1("((#|&|\\?)t=\\d{0,3}h?\\d{0,3}m?\\d{1,3}s?)", pageUrl);
-        } catch (RegexException e) {
+            timeStamp = RegexHelper.matchGroup1("((#|&|\\?)t=\\d{0,3}h?\\d{0,3}m?\\d{1,3}s?)", pageUrl);
+        } catch (RegexHelper.RegexException e) {
             // catch this instantly since an url does not necessarily have to have a time stamp
 
             // -2 because well the testing system will then know its the regex that failed :/
@@ -354,15 +327,15 @@ public class YoutubeVideoExtractor extends VideoExtractor {
                 String minutesString = "";
                 String hoursString = "";
                 try {
-                    secondsString = matchGroup1("(\\d{1,3})s", timeStamp);
-                    minutesString = matchGroup1("(\\d{1,3})m", timeStamp);
-                    hoursString = matchGroup1("(\\d{1,3})h", timeStamp);
+                    secondsString = RegexHelper.matchGroup1("(\\d{1,3})s", timeStamp);
+                    minutesString = RegexHelper.matchGroup1("(\\d{1,3})m", timeStamp);
+                    hoursString = RegexHelper.matchGroup1("(\\d{1,3})h", timeStamp);
                 } catch (Exception e) {
                     //it could be that time is given in another method
                     if (secondsString.isEmpty() //if nothing was got,
                             && minutesString.isEmpty()//treat as unlabelled seconds
                             && hoursString.isEmpty()) {
-                        secondsString = matchGroup1("t=(\\d{1,3})", timeStamp);
+                        secondsString = RegexHelper.matchGroup1("t=(\\d{1,3})", timeStamp);
                     }
                 }
 
@@ -455,72 +428,14 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         }
     }
 
-    private VideoInfo.AudioStream[] parseDashManifest(String dashManifest, String decryptoinCode) throws RegexException, DecryptException {
-        if(!dashManifest.contains("/signature/")) {
-            String encryptedSig = matchGroup1("/s/([a-fA-F0-9\\.]+)", dashManifest);
-            String decryptedSig;
+    @Override
+    public UrlIdHandler getUrlIdConverter() {
+        return new YoutubeUrlIdHandler();
+    }
 
-            decryptedSig = decryptSignature(encryptedSig, decryptoinCode);
-            dashManifest = dashManifest.replace("/s/" + encryptedSig, "/signature/" + decryptedSig);
-        }
-        String dashDoc;
-        try {
-            dashDoc = downloader.download(dashManifest);
-        } catch(IOException ioe) {
-            throw new DecryptException("Could not get dash mpd", ioe);
-        }
-        Vector<VideoInfo.AudioStream> audioStreams = new Vector<>();
-        try {
-            XmlPullParser parser = Xml.newPullParser();
-            parser.setInput(new StringReader(dashDoc));
-            String tagName = "";
-            String currentMimeType = "";
-            int currentBandwidth = -1;
-            int currentSamplingRate = -1;
-            boolean currentTagIsBaseUrl = false;
-            for(int eventType = parser.getEventType();
-                eventType != XmlPullParser.END_DOCUMENT;
-                eventType = parser.next() ) {
-                switch(eventType) {
-                    case XmlPullParser.START_TAG:
-                        tagName = parser.getName();
-                        if(tagName.equals("AdaptationSet")) {
-                            currentMimeType = parser.getAttributeValue(XmlPullParser.NO_NAMESPACE, "mimeType");
-                        } else if(tagName.equals("Representation") && currentMimeType.contains("audio")) {
-                            currentBandwidth = Integer.parseInt(
-                                    parser.getAttributeValue(XmlPullParser.NO_NAMESPACE, "bandwidth"));
-                            currentSamplingRate = Integer.parseInt(
-                                    parser.getAttributeValue(XmlPullParser.NO_NAMESPACE, "audioSamplingRate"));
-                        } else if(tagName.equals("BaseURL")) {
-                            currentTagIsBaseUrl = true;
-                        }
-                        break;
-
-                    case XmlPullParser.TEXT:
-                        if(currentTagIsBaseUrl &&
-                                (currentMimeType.contains("audio"))) {
-                            int format = -1;
-                            if(currentMimeType.equals(MediaFormat.WEBMA.mimeType)) {
-                                format = MediaFormat.WEBMA.id;
-                            } else if(currentMimeType.equals(MediaFormat.M4A.mimeType)) {
-                                format = MediaFormat.M4A.id;
-                            }
-                            audioStreams.add(new VideoInfo.AudioStream(parser.getText(),
-                                    format, currentBandwidth, currentSamplingRate));
-                        }
-                        //missing break here?
-                    case XmlPullParser.END_TAG:
-                        if(tagName.equals("AdaptationSet")) {
-                            currentMimeType = "";
-                        } else if(tagName.equals("BaseURL")) {
-                            currentTagIsBaseUrl = false;
-                        }//no break needed here
-                }
-            }
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-        return audioStreams.toArray(new VideoInfo.AudioStream[audioStreams.size()]);
+    @Override
+    public String getPageUrl() {
+        return pageUrl;
     }
 
     /**Provides information about links to other videos on the video page, such as related videos.
@@ -533,7 +448,7 @@ public class YoutubeVideoExtractor extends VideoExtractor {
             info.webpage_url = li.select("a.content-link").first()
                     .attr("abs:href");
 
-            info.id = matchGroup1("v=([0-9a-zA-Z-]*)", info.webpage_url);
+            info.id = RegexHelper.matchGroup1("v=([0-9a-zA-Z-]*)", info.webpage_url);
 
             //todo: check NullPointerException causing
             info.title = li.select("span.title").first().text();
@@ -584,15 +499,20 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         try {
             String playerCode = downloader.download(playerUrl);
 
-            decryptionFuncName = matchGroup1("\\.sig\\|\\|([a-zA-Z0-9$]+)\\(", playerCode);
+            decryptionFuncName =
+                    RegexHelper.matchGroup1("\\.sig\\|\\|([a-zA-Z0-9$]+)\\(", playerCode);
 
-            String functionPattern = "(" + decryptionFuncName.replace("$", "\\$") + "=function\\([a-zA-Z0-9_]*\\)\\{.+?\\})";
-            decryptionFunc = "var " + matchGroup1(functionPattern, playerCode) + ";";
+            String functionPattern = "("
+                    + decryptionFuncName.replace("$", "\\$")
+                    + "=function\\([a-zA-Z0-9_]*\\)\\{.+?\\})";
+            decryptionFunc = "var " + RegexHelper.matchGroup1(functionPattern, playerCode) + ";";
 
-            helperObjectName = matchGroup1(";([A-Za-z0-9_\\$]{2})\\...\\(", decryptionFunc);
+            helperObjectName = RegexHelper
+                    .matchGroup1(";([A-Za-z0-9_\\$]{2})\\...\\(", decryptionFunc);
 
-            String helperPattern = "(var " + helperObjectName.replace("$", "\\$") + "=\\{.+?\\}\\};)";
-            helperObject = matchGroup1(helperPattern, playerCode);
+            String helperPattern = "(var "
+                    + helperObjectName.replace("$", "\\$") + "=\\{.+?\\}\\};)";
+            helperObject = RegexHelper.matchGroup1(helperPattern, playerCode);
 
 
             callerFunc = callerFunc.replace("%%", decryptionFuncName);
@@ -624,25 +544,8 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         return (result == null ? "" : result.toString());
     }
 
-    private String cleanUrl(String complexUrl) throws ParsingException {
-        return getVideoUrl(getVideoId(complexUrl));
-    }
-
-    private String matchGroup1(String pattern, String input) throws RegexException {
-        Pattern pat = Pattern.compile(pattern);
-        Matcher mat = pat.matcher(input);
-        boolean foundMatch = mat.find();
-        if (foundMatch) {
-            return mat.group(1);
-        }
-        else {
-            //Log.e(TAG, "failed to find pattern \""+pattern+"\" inside of \""+input+"\"");
-            throw new RegexException("failed to find pattern \""+pattern+" inside of "+input+"\"");
-        }
-    }
-
     private String findErrorReason(Document doc) {
-        errorMessage = doc.select("h1[id=\"unavailable-message\"]").first().text();
+        String errorMessage = doc.select("h1[id=\"unavailable-message\"]").first().text();
         if(errorMessage.contains("GEMA")) {
             // Gema sometimes blocks youtube music content in germany:
             // https://www.gema.de/en/

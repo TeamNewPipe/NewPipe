@@ -52,7 +52,8 @@ public class YoutubeSearchEngine implements SearchEngine {
     private static final String TAG = YoutubeSearchEngine.class.toString();
 
     @Override
-    public Result search(String query, int page, String languageCode, Downloader downloader) throws IOException, ParsingException {
+    public Result search(String query, int page, String languageCode, Downloader downloader)
+            throws IOException, ParsingException {
         Result result = new Result();
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("https")
@@ -171,7 +172,8 @@ public class YoutubeSearchEngine implements SearchEngine {
 
             try {
                 dBuilder = dbFactory.newDocumentBuilder();
-                doc = dBuilder.parse(new InputSource(new ByteArrayInputStream(response.getBytes("utf-8"))));
+                doc = dBuilder.parse(new InputSource(
+                        new ByteArrayInputStream(response.getBytes("utf-8"))));
                 doc.getDocumentElement().normalize();
             } catch (ParserConfigurationException | SAXException | IOException e) {
                 e.printStackTrace();
