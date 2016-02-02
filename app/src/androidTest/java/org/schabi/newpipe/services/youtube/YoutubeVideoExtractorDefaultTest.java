@@ -85,12 +85,7 @@ public class YoutubeVideoExtractorDefaultTest extends AndroidTestCase {
     }
 
     public void testGetAudioStreams() throws ParsingException {
-        for(VideoInfo.AudioStream s : extractor.getAudioStreams()) {
-            assertTrue(s.url,
-                    s.url.contains("https://"));
-            assertTrue(s.bandwidth > 0);
-            assertTrue(s.samplingRate > 0);
-        }
+        assertTrue(extractor.getAudioStreams() == null);
     }
 
     public void testGetVideoStreams() throws ParsingException {

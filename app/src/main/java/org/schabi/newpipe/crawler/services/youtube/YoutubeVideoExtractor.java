@@ -89,8 +89,8 @@ public class YoutubeVideoExtractor implements VideoExtractor {
     public YoutubeVideoExtractor(String pageUrl, Downloader dl) throws CrawlingException, IOException {
         //most common videoInfo fields are now set in our superclass, for all services
         downloader = dl;
-        this.pageUrl = urlidhandler.cleanUrl(pageUrl);
-        String pageContent = downloader.download(this.pageUrl);
+        this.pageUrl = pageUrl;
+        String pageContent = downloader.download(urlidhandler.cleanUrl(pageUrl));
         doc = Jsoup.parse(pageContent, pageUrl);
         String ytPlayerConfigRaw;
         JSONObject ytPlayerConfig;
