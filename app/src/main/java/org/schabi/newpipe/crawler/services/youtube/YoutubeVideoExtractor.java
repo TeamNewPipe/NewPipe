@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.net.URLDecoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 import java.util.regex.Matcher;
@@ -389,77 +390,69 @@ public class YoutubeVideoExtractor extends VideoExtractor {
         return 0;
     }
 
+    @Override
+    public String getAverageRating() throws ParsingException {
+        try {
+            return playerArgs.getString("avg_rating");
+        } catch (JSONException e) {
+            throw new ParsingException("Could not get Average rating", e);
+        }
+    }
 
     @Override
-    public VideoInfo getVideoInfo() throws CrawlingException {
-        videoInfo = super.getVideoInfo();
-
-        //todo: replace this with a call to getVideoId, if possible
-        //videoInfo.id = matchGroup1("v=([0-9a-zA-Z_-]{11})", pageUrl);
-        videoInfo.id = getVideoId(pageUrl);
-
-        if (videoInfo.audioStreams == null
-                || videoInfo.audioStreams.length == 0) {
-            Log.e(TAG, "uninitialised audio streams!");
-        }
-
-        if (videoInfo.videoStreams == null
-                || videoInfo.videoStreams.length == 0) {
-            Log.e(TAG, "uninitialised video streams!");
-        }
-
-        videoInfo.age_limit = 0;
-
-        //average rating
-        try {
-            videoInfo.average_rating = playerArgs.getString("avg_rating");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        //---------------------------------------
-        // extracting information from html page
-        //---------------------------------------
-
+    public int getLikeCount() throws ParsingException {
         String likesString = "";
-        String dislikesString = "";
         try {
-            // likes
             likesString = doc.select("button.like-button-renderer-like-button").first()
                     .select("span.yt-uix-button-content").first().text();
-            videoInfo.like_count = Integer.parseInt(likesString.replaceAll("[^\\d]", ""));
-            // dislikes
+            return Integer.parseInt(likesString.replaceAll("[^\\d]", ""));
+        } catch (NumberFormatException nfe) {
+            throw new ParsingException(
+                    "failed to parse likesString \"" + likesString + "\" as integers", nfe);
+        } catch (Exception e) {
+            throw new ParsingException("Could not get like count", e);
+        }
+    }
+
+    @Override
+    public int getDislikeCount() throws ParsingException {
+        String dislikesString = "";
+        try {
             dislikesString = doc.select("button.like-button-renderer-dislike-button").first()
                     .select("span.yt-uix-button-content").first().text();
-
-            videoInfo.dislike_count = Integer.parseInt(dislikesString.replaceAll("[^\\d]", ""));
-        } catch (NumberFormatException nfe) {
-            Log.e(TAG, "failed to parse likesString \"" + likesString + "\" and dislikesString \"" +
-                    dislikesString + "\" as integers");
-        } catch (Exception e) {
-            // if it fails we know that the video does not offer dislikes.
-            e.printStackTrace();
-            videoInfo.like_count = 0;
-            videoInfo.dislike_count = 0;
+            return Integer.parseInt(dislikesString.replaceAll("[^\\d]", ""));
+        } catch(NumberFormatException nfe) {
+            throw new ParsingException(
+                    "failed to parse dislikesString \"" + dislikesString + "\" as integers", nfe);
+        } catch(Exception e) {
+            throw new ParsingException("Could not get dislike count", e);
         }
+    }
 
-        // next video
-        videoInfo.nextVideo = extractVideoPreviewInfo(doc.select("div[class=\"watch-sidebar-section\"]").first()
-                .select("li").first());
+    @Override
+    public VideoPreviewInfo getNextVideo() throws ParsingException {
+        try {
+            return extractVideoPreviewInfo(doc.select("div[class=\"watch-sidebar-section\"]").first()
+                    .select("li").first());
+        } catch(Exception e) {
+            throw new ParsingException("Could not get next video", e);
+        }
+    }
 
-        // related videos
-        Vector<VideoPreviewInfo> relatedVideos = new Vector<>();
-        for (Element li : doc.select("ul[id=\"watch-related\"]").first().children()) {
-            // first check if we have a playlist. If so leave them out
-            if (li.select("a[class*=\"content-link\"]").first() != null) {
-                relatedVideos.add(extractVideoPreviewInfo(li));
+    @Override
+    public Vector<VideoPreviewInfo> getRelatedVideos() throws ParsingException {
+        try {
+            Vector<VideoPreviewInfo> relatedVideos = new Vector<>();
+            for (Element li : doc.select("ul[id=\"watch-related\"]").first().children()) {
+                // first check if we have a playlist. If so leave them out
+                if (li.select("a[class*=\"content-link\"]").first() != null) {
+                    relatedVideos.add(extractVideoPreviewInfo(li));
+                }
             }
+            return relatedVideos;
+        } catch(Exception e) {
+            throw new ParsingException("Could not get related videos", e);
         }
-        //todo: replace conversion
-        videoInfo.relatedVideos = relatedVideos;
-        //videoInfo.relatedVideos = relatedVideos.toArray(new VideoPreviewInfo[relatedVideos.size()]);
-
-        return videoInfo;
     }
 
     private VideoInfo.AudioStream[] parseDashManifest(String dashManifest, String decryptoinCode) throws RegexException, DecryptException {

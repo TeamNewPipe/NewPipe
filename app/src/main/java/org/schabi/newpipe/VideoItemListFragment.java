@@ -157,6 +157,7 @@ public class VideoItemListFragment extends ListFragment {
                 if(!downloadedList.get(i)) {
                     Bitmap thumbnail;
                     try {
+                        //todo: make bitmaps not bypass tor
                         thumbnail = BitmapFactory.decodeStream(
                                 new URL(thumbnailUrlList.get(i)).openConnection().getInputStream());
                         h.post(new SetThumbnailRunnable(i, thumbnail, requestId));

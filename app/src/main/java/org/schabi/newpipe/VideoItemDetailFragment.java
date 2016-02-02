@@ -115,6 +115,7 @@ public class VideoItemDetailFragment extends Fragment {
                 VideoInfo videoInfo = videoExtractor.getVideoInfo();
                 h.post(new VideoResultReturnedRunnable(videoInfo));
                 h.post(new SetThumbnailRunnable(
+                        //todo: make bitmaps not bypass tor
                         BitmapFactory.decodeStream(
                                 new URL(videoInfo.thumbnail_url)
                                         .openConnection()
