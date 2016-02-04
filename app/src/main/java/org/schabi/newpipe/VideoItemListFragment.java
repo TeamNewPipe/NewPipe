@@ -2,8 +2,6 @@ package org.schabi.newpipe;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -15,9 +13,7 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.net.URL;
 import java.util.List;
-import java.util.Vector;
 
 import org.schabi.newpipe.services.SearchEngine;
 import org.schabi.newpipe.services.StreamingService;
@@ -58,8 +54,6 @@ public class VideoItemListFragment extends ListFragment {
 
     private Thread searchThread = null;
     private SearchRunnable searchRunnable = null;
-    private Thread loadThumbsThread = null;
-    private LoadThumbsRunnable loadThumbsRunnable = null;
     // used to track down if results posted by threads ar still valid
     private int currentRequestId = -1;
     private ListView list;
@@ -129,61 +123,6 @@ public class VideoItemListFragment extends ListFragment {
         }
     }
 
-    private class LoadThumbsRunnable implements Runnable {
-        private final Vector<String> thumbnailUrlList = new Vector<>();
-        private final Vector<Boolean> downloadedList;
-        final Handler h = new Handler();
-        private volatile boolean run = true;
-        private final int requestId;
-        public LoadThumbsRunnable(Vector<VideoPreviewInfo> videoList,
-                                  Vector<Boolean> downloadedList, int requestId) {
-            for(VideoPreviewInfo item : videoList) {
-                thumbnailUrlList.add(item.thumbnail_url);
-            }
-            this.downloadedList = downloadedList;
-            this.requestId = requestId;
-        }
-        public void terminate() {
-            run = false;
-        }
-        public boolean isRunning() {
-            return run;
-        }
-        @Override
-        public void run() {
-            for(int i = 0; i < thumbnailUrlList.size() && run; i++) {
-                if(!downloadedList.get(i)) {
-                    Bitmap thumbnail;
-                    try {
-                        thumbnail = BitmapFactory.decodeStream(
-                                new URL(thumbnailUrlList.get(i)).openConnection().getInputStream());
-                        h.post(new SetThumbnailRunnable(i, thumbnail, requestId));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-    }
-
-    private class SetThumbnailRunnable implements Runnable {
-        private final int index;
-        private final Bitmap thumbnail;
-        private final int requestId;
-        public SetThumbnailRunnable(int index, Bitmap thumbnail, int requestId) {
-            this.index = index;
-            this.thumbnail = thumbnail;
-            this.requestId = requestId;
-        }
-        @Override
-        public void run() {
-            if(requestId == currentRequestId) {
-                videoListAdapter.updateDownloadedThumbnailList(index);
-                videoListAdapter.setThumbnail(index, thumbnail);
-            }
-        }
-    }
-
     public void present(List<VideoPreviewInfo> videoList) {
         mode = PRESENT_VIDEOS_MODE;
         setListShown(true);
@@ -243,10 +182,6 @@ public class VideoItemListFragment extends ListFragment {
         try {
             videoListAdapter.addVideoList(list);
             terminateThreads();
-            loadThumbsRunnable = new LoadThumbsRunnable(videoListAdapter.getVideoList(),
-                    videoListAdapter.getDownloadedThumbnailList(), currentRequestId);
-            loadThumbsThread = new Thread(loadThumbsRunnable);
-            loadThumbsThread.start();
         } catch(java.lang.IllegalStateException e) {
             Log.w(TAG, "Trying to set value while activity doesn't exist anymore.");
         } catch(Exception e) {
@@ -257,14 +192,6 @@ public class VideoItemListFragment extends ListFragment {
     }
 
     private void terminateThreads() {
-        if(loadThumbsRunnable != null && loadThumbsRunnable.isRunning()) {
-            loadThumbsRunnable.terminate();
-            try {
-                loadThumbsThread.join();
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
-        }
         if(searchThread != null) {
             searchRunnable.terminate();
             // No need to join, since we don't really terminate the thread. We just demand
