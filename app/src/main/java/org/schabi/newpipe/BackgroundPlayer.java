@@ -53,7 +53,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
     public static final String TITLE = "title";
     public static final String WEB_URL = "web_url";
     public static final String SERVICE_ID = "service_id";
-    public static final String CHANNEL_NAME="channel_name";
+    public static final String CHANNEL_NAME = "channel_name";
 
     private volatile String webUrl = "";
     private volatile int serviceId = -1;

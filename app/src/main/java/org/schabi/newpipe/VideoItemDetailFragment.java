@@ -3,6 +3,7 @@ package org.schabi.newpipe;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.net.Uri;
@@ -34,6 +35,8 @@ import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.ArrayList;
 import java.util.Vector;
@@ -175,9 +178,22 @@ public class VideoItemDetailFragment extends Fragment {
                             .getViewFromVideoInfoItem(null, nextVideoFrame, info.nextVideo, getContext());
                     nextVideoFrame.addView(nextVideoView);
 
-
                     ImageView thumb = thumbnailView;
-                    imageLoader.displayImage(currentVideoInfo.thumbnail_url,thumb, displayImageOptions);
+                    imageLoader.displayImage(currentVideoInfo.thumbnail_url, thumb, displayImageOptions, new ImageLoadingListener() {
+                        @Override
+                        public void onLoadingStarted(String imageUri, View view) {}
+
+                        @Override
+                        public void onLoadingFailed(String imageUri, View view, FailReason failReason) {}
+
+                        @Override
+                        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                            actionBarHandler.setVideoThumbnail(loadedImage);
+                        }
+
+                        @Override
+                        public void onLoadingCancelled(String imageUri, View view) {}
+                    });
                     thumb = (ImageView) activity.findViewById(R.id.detailUploaderThumbnailView);
                     imageLoader.displayImage(currentVideoInfo.uploader_thumbnail_url, thumb, displayImageOptions);
                     thumb = (ImageView) nextVideoFrame.findViewById(R.id.itemThumbnailView);
