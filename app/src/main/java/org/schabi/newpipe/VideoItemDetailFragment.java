@@ -156,7 +156,7 @@ public class VideoItemDetailFragment extends Fragment {
                     new VideoInfoItemViewCreator(LayoutInflater.from(getActivity()));
 
             RelativeLayout textContentLayout = (RelativeLayout) activity.findViewById(R.id.detailTextContentLayout);
-            TextView videoTitleView = (TextView) activity.findViewById(R.id.detailVideoTitleView);
+            final TextView videoTitleView = (TextView) activity.findViewById(R.id.detailVideoTitleView);
             TextView uploaderView = (TextView) activity.findViewById(R.id.detailUploaderView);
             TextView viewCountView = (TextView) activity.findViewById(R.id.detailViewCountView);
             TextView thumbsUpView = (TextView) activity.findViewById(R.id.detailThumbsUpCountView);
@@ -211,16 +211,18 @@ public class VideoItemDetailFragment extends Fragment {
 
                     videoTitleView.setText(info.title);
 
-                    videoTitleView.setOnTouchListener(new View.OnTouchListener() {
+                    View topView = activity.findViewById(R.id.detailTopView);
+
+                    topView.setOnTouchListener(new View.OnTouchListener() {
                         @Override
                         public boolean onTouch(View v, MotionEvent event) {
-                            if(event.getAction() == android.view.MotionEvent.ACTION_UP){
+                            if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
                                 ImageView arrow = (ImageView) activity.findViewById(R.id.toggleDescriptionView);
                                 View extra = activity.findViewById(R.id.detailExtraView);
-                                if(extra.getVisibility()==View.VISIBLE){
+                                if (extra.getVisibility() == View.VISIBLE) {
                                     extra.setVisibility(View.GONE);
                                     arrow.setImageResource(R.drawable.arrow_down);
-                                }else{
+                                } else {
                                     extra.setVisibility(View.VISIBLE);
                                     arrow.setImageResource(R.drawable.arrow_up);
                                 }

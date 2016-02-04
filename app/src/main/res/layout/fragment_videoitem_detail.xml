@@ -186,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/linearLayout"
                     android:id="@+id/detailUploaderWrapView"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="12dp">
 
                     <View
                         android:background="#000"
