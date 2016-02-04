@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -89,6 +90,7 @@ public class VideoItemDetailFragment extends Fragment {
     private final Point initialThumbnailPos = new Point(0, 0);
 
     private ImageLoader imageLoader = ImageLoader.getInstance();
+    private DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().cacheInMemory(true).build();
 
     public interface OnInvokeCreateOptionsMenuListener {
         void createOptionsMenu();
@@ -175,11 +177,11 @@ public class VideoItemDetailFragment extends Fragment {
 
 
                     ImageView thumb = thumbnailView;
-                    imageLoader.displayImage(currentVideoInfo.thumbnail_url,thumb);
+                    imageLoader.displayImage(currentVideoInfo.thumbnail_url,thumb, displayImageOptions);
                     thumb = (ImageView) activity.findViewById(R.id.detailUploaderThumbnailView);
-                    imageLoader.displayImage(currentVideoInfo.uploader_thumbnail_url, thumb);
+                    imageLoader.displayImage(currentVideoInfo.uploader_thumbnail_url, thumb, displayImageOptions);
                     thumb = (ImageView) nextVideoFrame.findViewById(R.id.itemThumbnailView);
-                    imageLoader.displayImage(currentVideoInfo.nextVideo.thumbnail_url, thumb);
+                    imageLoader.displayImage(currentVideoInfo.nextVideo.thumbnail_url, thumb, displayImageOptions);
 
                     Button nextVideoButton = (Button) activity.findViewById(R.id.detailNextVideoButton);
                     TextView similarTitle = (TextView) activity.findViewById(R.id.detailSimilarTitle);
@@ -293,7 +295,7 @@ public class VideoItemDetailFragment extends Fragment {
 
                         similarLayout.addView(similarView);
                         ImageView rthumb = (ImageView)similarView.findViewById(R.id.itemThumbnailView);
-                        imageLoader.displayImage(item.thumbnail_url, rthumb);
+                        imageLoader.displayImage(item.thumbnail_url, rthumb, displayImageOptions);
                     }
                 }
                 break;

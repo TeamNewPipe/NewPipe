@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
@@ -32,6 +33,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 class VideoInfoItemViewCreator {
     private final LayoutInflater inflater;
     private ImageLoader imageLoader = ImageLoader.getInstance();
+    private DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().cacheInMemory(true).build();
 
     public VideoInfoItemViewCreator(LayoutInflater inflater) {
         this.inflater = inflater;
@@ -66,7 +68,7 @@ class VideoInfoItemViewCreator {
             holder.itemUploadDateView.setText(info.upload_date+" • ");
         }
 
-        imageLoader.displayImage(info.thumbnail_url, holder.itemThumbnailView);
+        imageLoader.displayImage(info.thumbnail_url, holder.itemThumbnailView, displayImageOptions);
 
         return convertView;
     }
