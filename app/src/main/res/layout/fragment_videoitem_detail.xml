@@ -10,11 +10,12 @@
     android:layout_height="match_parent"
     android:id="@+id/videoitem_detail">
 
-    <ScrollView
+    <com.nirhart.parallaxscroll.views.ParallaxScrollView
         android:id="@+id/detailMainContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible"
+        app:parallax_factor="1.9"
         tools:ignore="UselessParent">
 
         <RelativeLayout
@@ -276,5 +277,5 @@
                 </RelativeLayout>
             </RelativeLayout>
         </RelativeLayout>
-    </ScrollView>
+    </com.nirhart.parallaxscroll.views.ParallaxScrollView>
 </FrameLayout>
