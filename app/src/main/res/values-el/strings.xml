@@ -1,2 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='utf-8'?>
+<resources><string name="background_player_name">NewPipe Background Player</string>
+    <string name="view_count_text">%1$s προβολές</string>
+    <string name="upload_date_text">Ανέβηκε στις %1$s</string>
+    <string name="no_player_found">Δεν βρέθηκε πρόγραμμα αναπαραγωγής. Εγκατάσταση του VLC;</string>
+    <string name="install">Εγκατάσταση</string>
+    <string name="cancel">Ακύρωση</string>
+    <string name="open_in_browser">Άνοιγμα στον browser</string>
+    <string name="share">Κοινοποίηση</string>
+    <string name="loading">Φορτώνει</string>
+    <string name="download">Λήψη</string>
+    <string name="search">Αναζήτηση</string>
+    <string name="settings">Ρυθμίσεις</string>
+    <string name="did_you_mean">"Μήπως εννοείτε: "</string>
+    <string name="search_page">"Αναζήτηση σελίδας: "</string>
+    <string name="share_dialog_title">Κοινοποίηση με:</string>
+    <string name="choose_browser">Επιλέξτε browser:</string>
+    <string name="screen_rotation">περιστροφή</string>
+    <string name="settings_activity_title">Ρυθμίσεις</string>
+    <string name="use_external_video_player_title">Χρήση εξωτερικού video player</string>
+    <string name="use_external_audio_player_title">Χρήση εξωτερικού audio player</string>
+
+    <string name="download_path_title">Διαδρομή λήψης video</string>
+    <string name="download_path_summary">Διαδρομή για αποθήκευση των video.</string>
+    <string name="download_path_dialog_title">Εισάγετε διαδρομή για λήψη των video</string>
+
+    <string name="download_path_audio_title">Διαδρομή λήψης αρχείων ήχου</string>
+    <string name="download_path_audio_summary">Διαδρομή για αποθήκευση αρχείων ήχου.</string>
+    <string name="download_path_audio_dialog_title">Εισάγετε διαδρομή για λήψη αρχείων ήχου.</string>
+
+    <string name="autoplay_through_intent_title">Αυτόματη αναπαραγωγή μέσω Intent</string>
+    <string name="autoplay_through_intent_summary">Αυτόματη αναπαραγωγή video όταν καλείται από άλλη εφαρμογή.</string>
+    <string name="default_resolution_title">Προεπιλεγμένη ανάλυση</string>
+    <string name="play_with_kodi_title">Αναπαραγωγή με το Kodi</string>
+    <string name="kore_not_found">Η εφαρμογή Kore δεν βρέθηκε. Εγκατάσταση;</string>
+    <string name="show_play_with_kodi_title">Εμφάνιση της επιλογής \"Αναπαραγωγή με το Kodi\"</string>
+    <string name="show_play_with_kodi_summary">Προβολή μιας επιλογής για αναπαραγωγή με το Kodi media center.</string>
+    <string name="play_audio">Ήχος</string>
+    <string name="default_audio_format_title">Προεπιλεγμένη μορφή ήχου</string>
+    <string name="webm_description">WebM — δωρεάν format</string>
+    <string name="m4a_description">m4a — καλύτερη ποιότητα</string>
+    <string name="theme_title">Θέμα</string>
+    <string name="dark_theme_title">Σκοτεινό</string>
+    <string name="light_theme_title">Φωτεινό</string>
+
+    <string name="download_dialog_title">Λήψη</string>
+    <string name="next_video_title">Επόμενο video</string>
+    <string name="show_next_and_similar_title">Προβολή επόμενου και σχετικών video</string>
+    <string name="url_not_supported_toast">Δεν υποστηρίζεται η διεύθυνση URL</string>
+    <string name="similar_videos_btn_text">Σχετικά video</string>
+    <string name="search_language_title">Προτιμώμενη γλώσσα περιεχομένου</string>
+    <string name="settings_category_video_audio_title">Video &amp; Ήχος</string>
+    <string name="settings_category_appearance_title">Εμφάνιση</string>
+    <string name="settings_category_other_title">Άλλα</string>
+    <string name="background_player_playing_toast">Αναπαραγωγή στο υπόβαθρο</string>
+    <string name="play_btn_text">Αναπαραγωγή</string>
+    <string name="network_error">Σφάλμα δικτύου</string>
+
+    <string name="list_thumbnail_view_description">Εικόνα προεπισκόπησης video</string>
+    <string name="detail_thumbnail_view_description">Εικόνα προεπισκόπησης video</string>
+    <string name="detail_uploader_thumbnail_view_description">Εικόνα προφίλ του uploader</string>
+    <string name="detail_likes_img_view_description">Like</string>
+    <string name="detail_dislikes_img_view_description">Dislike</string>
+    <string name="use_tor_title">Χρήση του Tor</string>
+    <string name="use_tor_summary">Αναγκάζει την κίνηση λήψης μέσω Tor για αυξημένη ανωνυμία (η αναπαραγωγή δεν υποστηρίζεται ακόμη)</string>
+
+    <string name="err_dir_create">Δεν μπόρεσε να δημιουργηθεί ο φάκελος \'%1$s\'</string>
+    <string name="info_dir_created">Δημιουργήθηκε ο φάκελος \'%1$s\'</string>
+</resources>
