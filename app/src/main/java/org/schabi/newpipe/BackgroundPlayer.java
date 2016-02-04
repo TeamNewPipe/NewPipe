@@ -206,6 +206,9 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                     if(mediaPlayer.isPlaying()) {
                         mediaPlayer.pause();
                         note.contentView.setImageViewResource(R.id.backgroundPlayPause, R.drawable.ic_play_circle_filled_white_24dp);
+                        if(android.os.Build.VERSION.SDK_INT >=16){
+                            note.bigContentView.setImageViewResource(R.id.backgroundPlayPause, R.drawable.ic_play_circle_filled_white_24dp);
+                        }
                         noteMgr.notify(noteID, note);
                     }
                     else {
@@ -213,6 +216,9 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                         mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
                         mediaPlayer.start();
                         note.contentView.setImageViewResource(R.id.backgroundPlayPause, R.drawable.ic_pause_white_24dp);
+                        if(android.os.Build.VERSION.SDK_INT >=16){
+                            note.bigContentView.setImageViewResource(R.id.backgroundPlayPause, R.drawable.ic_pause_white_24dp);
+                        }
                         noteMgr.notify(noteID, note);
                     }
                 }
