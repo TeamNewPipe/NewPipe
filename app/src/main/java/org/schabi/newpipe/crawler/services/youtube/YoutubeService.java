@@ -3,7 +3,7 @@ package org.schabi.newpipe.crawler.services.youtube;
 import org.schabi.newpipe.crawler.CrawlingException;
 import org.schabi.newpipe.crawler.Downloader;
 import org.schabi.newpipe.crawler.StreamingService;
-import org.schabi.newpipe.crawler.UrlIdHandler;
+import org.schabi.newpipe.crawler.VideoUrlIdHandler;
 import org.schabi.newpipe.crawler.VideoExtractor;
 import org.schabi.newpipe.crawler.SearchEngine;
 
@@ -40,7 +40,7 @@ public class YoutubeService implements StreamingService {
     @Override
     public VideoExtractor getExtractorInstance(String url, Downloader downloader)
             throws CrawlingException, IOException {
-        UrlIdHandler urlIdHandler = new YoutubeUrlIdHandler();
+        VideoUrlIdHandler urlIdHandler = new YoutubeVideoUrlIdHandler();
         if(urlIdHandler.acceptUrl(url)) {
             return new YoutubeVideoExtractor(url, downloader) ;
         }
@@ -54,7 +54,7 @@ public class YoutubeService implements StreamingService {
     }
 
     @Override
-    public UrlIdHandler getUrlIdHandler() {
-        return new YoutubeUrlIdHandler();
+    public VideoUrlIdHandler getUrlIdHandler() {
+        return new YoutubeVideoUrlIdHandler();
     }
 }

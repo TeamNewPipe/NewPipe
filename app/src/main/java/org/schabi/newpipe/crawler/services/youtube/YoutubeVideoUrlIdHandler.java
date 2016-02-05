@@ -2,13 +2,13 @@ package org.schabi.newpipe.crawler.services.youtube;
 
 import org.schabi.newpipe.crawler.ParsingException;
 import org.schabi.newpipe.crawler.RegexHelper;
-import org.schabi.newpipe.crawler.UrlIdHandler;
+import org.schabi.newpipe.crawler.VideoUrlIdHandler;
 
 /**
  * Created by Christian Schabesberger on 02.02.16.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * YoutubeUrlIdHandler.java is part of NewPipe.
+ * YoutubeVideoUrlIdHandler.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ import org.schabi.newpipe.crawler.UrlIdHandler;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class YoutubeUrlIdHandler implements UrlIdHandler {
+public class YoutubeVideoUrlIdHandler implements VideoUrlIdHandler {
     @SuppressWarnings("WeakerAccess")
     @Override
     public String getVideoUrl(String videoId) {

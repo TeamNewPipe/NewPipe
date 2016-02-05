@@ -31,7 +31,7 @@ public interface StreamingService {
             throws IOException, CrawlingException;
     SearchEngine getSearchEngineInstance();
 
-    UrlIdHandler getUrlIdHandler();
+    VideoUrlIdHandler getUrlIdHandler();
 
 
 }

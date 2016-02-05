@@ -1,7 +1,6 @@
 package org.schabi.newpipe.crawler.services.youtube;
 
 import android.util.Log;
-import android.util.Xml;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,15 +15,13 @@ import org.schabi.newpipe.crawler.CrawlingException;
 import org.schabi.newpipe.crawler.Downloader;
 import org.schabi.newpipe.crawler.ParsingException;
 import org.schabi.newpipe.crawler.RegexHelper;
-import org.schabi.newpipe.crawler.UrlIdHandler;
+import org.schabi.newpipe.crawler.VideoUrlIdHandler;
 import org.schabi.newpipe.crawler.VideoExtractor;
 import org.schabi.newpipe.crawler.MediaFormat;
 import org.schabi.newpipe.crawler.VideoInfo;
 import org.schabi.newpipe.crawler.VideoPreviewInfo;
-import org.xmlpull.v1.XmlPullParser;
 
 import java.io.IOException;
-import java.io.StringReader;
 import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
@@ -81,7 +78,7 @@ public class YoutubeVideoExtractor implements VideoExtractor {
     // cached values
     private static volatile String decryptionCode = "";
 
-    UrlIdHandler urlidhandler = new YoutubeUrlIdHandler();
+    VideoUrlIdHandler urlidhandler = new YoutubeVideoUrlIdHandler();
     String pageUrl = "";
 
     private Downloader downloader;
@@ -429,8 +426,8 @@ public class YoutubeVideoExtractor implements VideoExtractor {
     }
 
     @Override
-    public UrlIdHandler getUrlIdConverter() {
-        return new YoutubeUrlIdHandler();
+    public VideoUrlIdHandler getUrlIdConverter() {
+        return new YoutubeVideoUrlIdHandler();
     }
 
     @Override

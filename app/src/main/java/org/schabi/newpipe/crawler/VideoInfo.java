@@ -33,7 +33,7 @@ public class VideoInfo extends AbstractVideoInfo {
             throws CrawlingException, IOException {
         VideoInfo videoInfo = new VideoInfo();
 
-        UrlIdHandler uiconv = extractor.getUrlIdConverter();
+        VideoUrlIdHandler uiconv = extractor.getUrlIdConverter();
 
         videoInfo.webpage_url = extractor.getPageUrl();
         videoInfo.title = extractor.getTitle();
