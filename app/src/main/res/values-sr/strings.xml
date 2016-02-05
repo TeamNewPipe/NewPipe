@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="view_count_text">%1$s приказа</string>
     <string name="upload_date_text">"Отпремљен "%1$s</string>
@@ -72,4 +72,11 @@
     <string name="download_path_audio_summary">Путања за упис преузетих аудио фајлова.</string>
     <string name="info_dir_created">Направљен директоријум за преузимање „%1$s“</string>
 <string name="err_dir_create">Не могу да направим директоријум за преузимање„ %1$s“</string>
+    <string name="general_error">Грешка</string>
+    <string name="could_not_load_thumbnails">Не могох да учитам сличице</string>
+    <string name="youtube_signature_decryption_error">Не могох да дешифрујем потпис видео урл-а.</string>
+    <string name="parsing_error">Не могох да рашчланим веб-сајт.</string>
+    <string name="content_not_available">Садржај није доступан.</string>
+    <string name="blocked_by_gema">Блокирала ГЕМА.</string>
+
     </resources>
