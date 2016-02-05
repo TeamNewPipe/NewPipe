@@ -10,11 +10,12 @@
     android:layout_height="match_parent"
     android:id="@+id/videoitem_detail">
 
-    <ScrollView
+    <com.nirhart.parallaxscroll.views.ParallaxScrollView
         android:id="@+id/detailMainContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible"
+        app:parallax_factor="1.9"
         tools:ignore="UselessParent">
 
         <RelativeLayout
@@ -64,111 +65,173 @@
             </RelativeLayout>
 
             <RelativeLayout android:id="@+id/detailTextContentLayout"
-                android:visibility="invisible"
+
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/video_item_detail_info_text_padding"
+                android:layout_height="match_parent"
                 android:layout_below="@id/detailVideoThumbnailWindowLayout"
-                android:background="@color/light_background_color">
+                android:background="@color/light_background_color"
+                android:visibility="gone">
 
-                <TextView android:id="@+id/detailVideoTitleView"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/video_item_detail_title_text_size"
-                    android:textAppearance="?android:attr/textAppearanceLarge"/>
+                    android:id="@+id/detailTopView">
 
-                <ImageView android:id="@+id/detailUploaderThumbnailView"
-                    android:contentDescription="@string/detail_uploader_thumbnail_view_description"
-                    android:layout_width="@dimen/video_item_detail_uploader_image_size"
-                    android:layout_height="@dimen/video_item_detail_uploader_image_size"
-                    android:layout_below="@id/detailVideoTitleView"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:src="@drawable/buddy" />
+                    <TextView android:id="@+id/detailVideoTitleView"
+                        android:layout_width="0dp"
+                        android:layout_weight=".7"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/video_item_detail_title_text_size"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginStart="12dp"
+                        android:text="Title"/>
 
-                <TextView android:id="@+id/detailUploaderView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/detailUploaderThumbnailView"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/video_item_detail_uploader_text_size"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="30dp"
+                        android:id="@+id/toggleDescriptionView"
+                        android:src="@drawable/arrow_down"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
 
                 <TextView android:id="@+id/detailViewCountView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/detailVideoTitleView"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
                     android:textSize="@dimen/video_item_detail_views_text_size"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:text="10,069,948 views"
+                    android:layout_below="@id/detailTopView"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="5dp" />
 
-                <TextView android:id="@+id/detailThumbsDownCountView"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/detailViewCountView"
+                    android:id="@+id/detailExtraView"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:visibility="gone">
+                    <TextView android:id="@+id/detailUploadDateView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/video_item_detail_upload_date_text_size"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Upload date"
+                        android:layout_marginTop="3dp" />
+
+                    <TextView android:id="@+id/detailDescriptionView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/video_item_detail_description_text_size"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_below="@id/detailUploadDateView"
+                        android:text="Description............."
+                        android:layout_marginTop="3dp" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayout"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_below="@+id/detailExtraView"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
-                    android:textSize="@dimen/video_item_detail_likes_text_size"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:layout_marginTop="5dp">
+                    <ImageView android:id="@+id/detailThumbsUpImgView"
+                        android:contentDescription="@string/detail_likes_img_view_description"
+                        android:layout_width="@dimen/video_item_detail_like_image_width"
+                        android:layout_height="@dimen/video_item_detail_like_image_height"
+                        android:src="@drawable/thumbs_up" />
 
-                <ImageView android:id="@+id/detailThumbsDownImgView"
-                    android:contentDescription="@string/detail_dislikes_img_view_description"
-                    android:layout_width="@dimen/video_item_detail_like_image_width"
-                    android:layout_height="@dimen/video_item_detail_like_image_height"
-                    android:layout_below="@id/detailViewCountView"
-                    android:layout_toLeftOf="@id/detailThumbsDownCountView"
-                    android:layout_toStartOf="@id/detailThumbsDownCountView"
-                    android:layout_marginLeft="@dimen/video_item_detail_like_margin"
-                    android:src="@drawable/thumbs_down" />
+                    <TextView android:id="@+id/detailThumbsUpCountView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/video_item_detail_likes_text_size"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="200" />
 
-                <TextView android:id="@+id/detailThumbsUpCountView"
-                    android:layout_width="wrap_content"
+                    <ImageView android:id="@+id/detailThumbsDownImgView"
+                        android:contentDescription="@string/detail_dislikes_img_view_description"
+                        android:layout_width="@dimen/video_item_detail_like_image_width"
+                        android:layout_height="@dimen/video_item_detail_like_image_height"
+                        android:src="@drawable/thumbs_down"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"/>
+
+                    <TextView android:id="@+id/detailThumbsDownCountView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/video_item_detail_likes_text_size"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="100" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/detailViewCountView"
-                    android:layout_toLeftOf="@id/detailThumbsDownImgView"
-                    android:layout_toStartOf="@id/detailThumbsDownImgView"
-                    android:textSize="@dimen/video_item_detail_likes_text_size"
-                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                    android:layout_below="@+id/linearLayout"
+                    android:id="@+id/detailUploaderWrapView"
+                    android:layout_marginTop="12dp">
 
-                <ImageView android:id="@+id/detailThumbsUpImgView"
-                    android:contentDescription="@string/detail_likes_img_view_description"
-                    android:layout_width="@dimen/video_item_detail_like_image_width"
-                    android:layout_height="@dimen/video_item_detail_like_image_height"
-                    android:layout_below="@id/detailViewCountView"
-                    android:layout_toLeftOf="@id/detailThumbsUpCountView"
-                    android:layout_toStartOf="@id/detailThumbsUpCountView"
-                    android:src="@drawable/thumbs_up" />
+                    <View
+                        android:background="#000"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px" />
 
-                <TextView android:id="@+id/detailUploadDateView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/detailUploaderView"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:textSize="@dimen/video_item_detail_upload_date_text_size"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    <de.hdodenhof.circleimageview.CircleImageView android:id="@+id/detailUploaderThumbnailView"
+                        android:contentDescription="@string/detail_uploader_thumbnail_view_description"
+                        android:layout_width="@dimen/video_item_detail_uploader_image_size"
+                        android:layout_height="@dimen/video_item_detail_uploader_image_size"
+                        android:src="@drawable/buddy"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"/>
 
-                <TextView android:id="@+id/detailDescriptionView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/detailUploadDateView"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:textSize="@dimen/video_item_detail_description_text_size"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView android:id="@+id/detailUploaderView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/video_item_detail_uploader_text_size"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Uploader"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/detailUploaderThumbnailView"
+                        android:layout_toEndOf="@+id/detailUploaderThumbnailView"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="28dp" />
 
+                    <View
+                        android:background="#000"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_below="@id/detailUploaderThumbnailView"/>
+                </RelativeLayout>
 
                 <RelativeLayout android:id="@+id/detailNextVideoRootLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/video_item_detail_info_text_padding"
-                    android:layout_below="@id/detailDescriptionView" >
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_below="@+id/detailUploaderWrapView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp">
 
                     <TextView android:id="@+id/detailNextVideoTitle"
                         android:layout_width="wrap_content"
@@ -181,7 +244,7 @@
 
                     <RelativeLayout android:id="@+id/detailNextVidButtonAndContentLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_below="@id/detailNextVideoTitle">
                         <FrameLayout
                             android:id="@+id/detailNextVideoFrame"
@@ -195,15 +258,24 @@
                             android:layout_alignBottom="@id/detailNextVideoFrame"
                             android:background="?attr/selectableItemBackground"/>
                     </RelativeLayout>
-                    <Button android:id="@+id/detailShowSimilarButton"
-                        android:layout_width="match_parent"
+                    <TextView android:id="@+id/detailSimilarTitle"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="@dimen/video_item_detail_next_text_size"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/similar_videos_btn_text"
                         android:layout_below="@id/detailNextVidButtonAndContentLayout"
-                        android:textSize="@dimen/video_item_detail_similar_text_size"
-                        android:text="@string/similar_videos_btn_text"/>
+                        android:textAllCaps="true" />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/similarVideosView"
+                        android:layout_below="@id/detailSimilarTitle">
+                    </LinearLayout>
                 </RelativeLayout>
-
             </RelativeLayout>
         </RelativeLayout>
-    </ScrollView>
+    </com.nirhart.parallaxscroll.views.ParallaxScrollView>
 </FrameLayout>

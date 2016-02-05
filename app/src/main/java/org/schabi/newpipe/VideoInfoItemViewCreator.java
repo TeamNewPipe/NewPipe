@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.schabi.newpipe.crawler.VideoPreviewInfo;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * Created by Christian Schabesberger on 24.10.15.
@@ -31,6 +33,8 @@ import org.schabi.newpipe.crawler.VideoPreviewInfo;
 
 class VideoInfoItemViewCreator {
     private final LayoutInflater inflater;
+    private ImageLoader imageLoader = ImageLoader.getInstance();
+    private DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().cacheInMemory(true).build();
 
     public VideoInfoItemViewCreator(LayoutInflater inflater) {
         this.inflater = inflater;
@@ -46,6 +50,7 @@ class VideoInfoItemViewCreator {
             holder.itemUploaderView = (TextView) convertView.findViewById(R.id.itemUploaderView);
             holder.itemDurationView = (TextView) convertView.findViewById(R.id.itemDurationView);
             holder.itemUploadDateView = (TextView) convertView.findViewById(R.id.itemUploadDateView);
+            holder.itemViewCountView = (TextView) convertView.findViewById(R.id.itemViewCountView);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -59,18 +64,31 @@ class VideoInfoItemViewCreator {
         holder.itemVideoTitleView.setText(info.title);
         holder.itemUploaderView.setText(info.uploader);
         holder.itemDurationView.setText(info.duration);
+        holder.itemViewCountView.setText(shortViewCount(info.view_count));
         if(!info.upload_date.isEmpty()) {
-            holder.itemUploadDateView.setText(info.upload_date);
-        } else {
-            holder.itemUploadDateView.setText(Localization.localizeViewCount(info.view_count, context));
+            holder.itemUploadDateView.setText(info.upload_date+" • ");
         }
+
+        imageLoader.displayImage(info.thumbnail_url, holder.itemThumbnailView, displayImageOptions);
 
         return convertView;
     }
 
     private class ViewHolder {
         public ImageView itemThumbnailView;
-        public TextView itemVideoTitleView, itemUploaderView, itemDurationView, itemUploadDateView;
+        public TextView itemVideoTitleView, itemUploaderView, itemDurationView, itemUploadDateView, itemViewCountView;
+    }
+
+    private String shortViewCount(Long view_count){
+        if(view_count >= 1000000000){
+            return Long.toString(view_count/1000000000)+"B views";
+        }else if(view_count>=1000000){
+            return Long.toString(view_count/1000000)+"M views";
+        }else if(view_count>=1000){
+            return Long.toString(view_count/1000)+"K views";
+        }else {
+            return Long.toString(view_count)+" views";
+        }
     }
 
 }

@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import org.schabi.newpipe.crawler.MediaFormat;
 import org.schabi.newpipe.crawler.VideoInfo;
@@ -24,7 +25,7 @@ import java.util.List;
 /**
  * Created by Christian Schabesberger on 18.08.15.
  *
- * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
+ * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
  * DetailsMenuHandler.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
@@ -86,7 +87,7 @@ class ActionBarHandler {
         serviceId = id;
     }
 
-    public void setSetVideoThumbnail(Bitmap bitmap) {
+    public void setVideoThumbnail(Bitmap bitmap) {
         videoThumbnail = bitmap;
     }
 
@@ -327,7 +328,6 @@ class ActionBarHandler {
     }
 
     public void playAudio() {
-
         boolean externalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
         Intent intent;

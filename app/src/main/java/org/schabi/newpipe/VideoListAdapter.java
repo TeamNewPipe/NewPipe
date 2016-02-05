@@ -1,7 +1,6 @@
 package org.schabi.newpipe;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +37,6 @@ class VideoListAdapter extends BaseAdapter {
     private final Context context;
     private final VideoInfoItemViewCreator viewCreator;
     private Vector<VideoPreviewInfo> videoList = new Vector<>();
-    private Vector<Boolean> downloadedThumbnailList = new Vector<>();
     private final ListView listView;
 
     public VideoListAdapter(Context context, VideoItemListFragment videoListFragment) {
@@ -51,34 +49,16 @@ class VideoListAdapter extends BaseAdapter {
 
     public void addVideoList(List<VideoPreviewInfo> videos) {
         videoList.addAll(videos);
-        for(int i = 0; i < videos.size(); i++) {
-            downloadedThumbnailList.add(false);
-        }
         notifyDataSetChanged();
     }
 
     public void clearVideoList() {
         videoList = new Vector<>();
-        downloadedThumbnailList = new Vector<>();
         notifyDataSetChanged();
     }
 
     public Vector<VideoPreviewInfo> getVideoList() {
         return videoList;
-    }
-
-    public void updateDownloadedThumbnailList(int index) {
-        downloadedThumbnailList.set(index, true);
-    }
-
-    public Vector<Boolean> getDownloadedThumbnailList() {
-        return downloadedThumbnailList;
-    }
-
-    public void setThumbnail(int index, Bitmap thumbnail) {
-        videoList.get(index).thumbnail = thumbnail;
-        downloadedThumbnailList.set(index, true);
-        notifyDataSetChanged();
     }
 
     @Override
