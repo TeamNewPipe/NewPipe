@@ -1,2 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="background_player_name">NewPipe bakgrunnsavspiller</string>
+    <string name="view_count_text">%1$s visninger</string>
+    <string name="upload_date_text">Opplastet den %1$s</string>
+    <string name="no_player_found">Fant ingen videostrøm. Installer VLC?</string>
+    <string name="install">Installer</string>
+    <string name="cancel">Avbryt</string>
+    <string name="open_in_browser">Åpne i nettleser</string>
+    <string name="share">Del</string>
+    <string name="loading">Laster inn</string>
+    <string name="download">Last ned</string>
+    <string name="search">Søk</string>
+    <string name="settings">Innstillinger</string>
+    <string name="did_you_mean">"Mente du: "</string>
+    <string name="search_page">"Søk på siden: "</string>
+    <string name="share_dialog_title">Del med:</string>
+    <string name="choose_browser">Velg nettleser:</string>
+    <string name="screen_rotation">sideoppsett</string>
+    <string name="settings_activity_title">Innstillinger</string>
+    <string name="use_external_video_player_title">Bruk ekstern videoavspiller</string>
+    <string name="use_external_audio_player_title">Bruk ekstern lydavspiller</string>
+
+    <string name="download_path_title">Last ned videoens sti</string>
+    <string name="download_path_summary">Katalog lagrede nedlastinger skal puttes i.</string>
+    <string name="download_path_dialog_title">Skriv inn nedlastingskatalog for videoer</string>
+
+    <string name="download_path_audio_title">Nedlastingssti for lyd</string>
+    <string name="download_path_audio_summary">Sti å lagre nedlastet lyd i.</string>
+    <string name="download_path_audio_dialog_title">Skriv inn nedlastingssti for lydfiler.</string>
+
+    <string name="autoplay_through_intent_summary">Automatisk avspilling av video når det blir forespurt fra et annet program.</string>
+    <string name="default_resolution_title">Forvalgt oppløsning</string>
+    <string name="play_with_kodi_title">Spill av med Kodi</string>
+    <string name="kore_not_found">Kore-programmet ble ikke funnet. Installer Kore?</string>
+    <string name="show_play_with_kodi_title">Vis \"Spill av med Kodi\"-valg</string>
+    <string name="show_play_with_kodi_summary">Vis valg for avspilling via Kodi mediasenter</string>
+    <string name="play_audio">Lyd</string>
+    <string name="default_audio_format_title">Forvalgt lydformat</string>
+    <string name="webm_description">WebM — fritt format</string>
+    <string name="m4a_description">m4a — bedre kvalitet</string>
+    <string name="theme_title">Drakt</string>
+    <string name="dark_theme_title">Mørk</string>
+    <string name="light_theme_title">Lys</string>
+
+    <string name="download_dialog_title">Last ned</string>
+    <string name="next_video_title">Neste video</string>
+    <string name="show_next_and_similar_title">Vis neste og lignende videoer</string>
+    <string name="url_not_supported_toast">Nettadressen støttes ikke</string>
+    <string name="similar_videos_btn_text">Lignende videoer</string>
+    <string name="search_language_title">Foretrukket innholdsspråk</string>
+    <string name="settings_category_video_audio_title">Video og lyd</string>
+    <string name="settings_category_appearance_title">Utseende</string>
+    <string name="settings_category_other_title">Annet</string>
+    <string name="background_player_playing_toast">Spiller i bakgrunnen</string>
+    <string name="play_btn_text">Spill av</string>
+    <string name="network_error">Nettverksfeil</string>
+
+    <string name="list_thumbnail_view_description">Video-forhåndsvisning i miniatyrbilde</string>
+    <string name="detail_thumbnail_view_description">Video-forhåndsvisningsminiatyrbilde</string>
+    <string name="detail_uploader_thumbnail_view_description">Opplasterens avatar</string>
+    <string name="detail_likes_img_view_description">Nikk</string>
+    <string name="detail_dislikes_img_view_description">Nesetrekk</string>
+    <string name="use_tor_title">Bruk Tor</string>
+    <string name="use_tor_summary">Tving nedlasting av trafikk gjennom Tor for forbedret personvern (strømming av videoer støttes ikke enda)</string>
+
+    <string name="err_dir_create">Kan ikke opprette nedlastingsmappe \'%1$s\'</string>
+    <string name="info_dir_created">Opprettet nedlastingsmappen \'%1$s\'</string>
+<string name="autoplay_through_intent_title">Automatisk avspilling med Intent</string>
+    </resources>
