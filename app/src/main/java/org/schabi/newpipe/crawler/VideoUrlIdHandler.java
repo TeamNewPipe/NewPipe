@@ -1,10 +1,10 @@
-package org.schabi.newpipe.services;
+package org.schabi.newpipe.crawler;
 
 /**
- * Created by Christian Schabesberger on 23.08.15.
+ * Created by Christian Schabesberger on 02.02.16.
  *
- * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * StreamingService.java is part of NewPipe.
+ * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
+ * VideoUrlIdHandler.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,16 +20,13 @@ package org.schabi.newpipe.services;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public interface StreamingService {
-    class ServiceInfo {
-        public String name = "";
-    }
-    ServiceInfo getServiceInfo();
-    VideoExtractor getExtractorInstance(String url);
-    SearchEngine getSearchEngineInstance();
+public interface VideoUrlIdHandler {
+    String getVideoUrl(String videoId);
+    String getVideoId(String siteUrl) throws ParsingException;
+    String cleanUrl(String siteUrl) throws ParsingException;
 
     /**When a VIEW_ACTION is caught this function will test if the url delivered within the calling
-    Intent was meant to be watched with this Service.
-    Return false if this service shall not allow to be called through ACTIONs.*/
+     Intent was meant to be watched with this Service.
+     Return false if this service shall not allow to be called through ACTIONs.*/
     boolean acceptUrl(String videoUrl);
 }

@@ -1,8 +1,13 @@
-package org.schabi.newpipe.services.youtube;
+package org.schabi.newpipe.crawler.services.youtube;
 
-import org.schabi.newpipe.services.StreamingService;
-import org.schabi.newpipe.services.VideoExtractor;
-import org.schabi.newpipe.services.SearchEngine;
+import org.schabi.newpipe.crawler.CrawlingException;
+import org.schabi.newpipe.crawler.Downloader;
+import org.schabi.newpipe.crawler.StreamingService;
+import org.schabi.newpipe.crawler.VideoUrlIdHandler;
+import org.schabi.newpipe.crawler.VideoExtractor;
+import org.schabi.newpipe.crawler.SearchEngine;
+
+import java.io.IOException;
 
 
 /**
@@ -33,9 +38,11 @@ public class YoutubeService implements StreamingService {
         return serviceInfo;
     }
     @Override
-    public VideoExtractor getExtractorInstance(String url) {
-        if(acceptUrl(url)) {
-            return new YoutubeVideoExtractor(url);
+    public VideoExtractor getExtractorInstance(String url, Downloader downloader)
+            throws CrawlingException, IOException {
+        VideoUrlIdHandler urlIdHandler = new YoutubeVideoUrlIdHandler();
+        if(urlIdHandler.acceptUrl(url)) {
+            return new YoutubeVideoExtractor(url, downloader) ;
         }
         else {
             throw new IllegalArgumentException("supplied String is not a valid Youtube URL");
@@ -45,9 +52,9 @@ public class YoutubeService implements StreamingService {
     public SearchEngine getSearchEngineInstance() {
         return new YoutubeSearchEngine();
     }
+
     @Override
-    public boolean acceptUrl(String videoUrl) {
-        return videoUrl.contains("youtube") ||
-                videoUrl.contains("youtu.be");
+    public VideoUrlIdHandler getUrlIdHandler() {
+        return new YoutubeVideoUrlIdHandler();
     }
 }
