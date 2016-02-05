@@ -1,29 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
-
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        card_view:cardCornerRadius="@dimen/video_item_search_card_radius"
-        android:layout_marginTop="@dimen/video_item_search_card_vertical_margin"
-        android:layout_marginBottom="@dimen/video_item_search_card_vertical_margin"
-        android:layout_marginLeft="@dimen/video_item_search_card_horizontal_margin"
-        android:layout_marginRight="@dimen/video_item_search_card_horizontal_margin" >
 
         <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/video_item_search_card_padding">
+            android:layout_margin="12dp">
 
             <RelativeLayout android:id="@+id/itemThumbnailViewContainer"
                 android:layout_marginRight="@dimen/video_item_search_image_right_margin"
@@ -81,16 +67,29 @@
                     android:singleLine="true"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textSize="@dimen/video_item_search_uploader_text_size"/>
-
-                <TextView android:id="@+id/itemUploadDateView"
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="@dimen/video_item_search_upload_date_text_size"/>
+                    android:layout_height="wrap_content">
+
+                    <TextView android:id="@+id/itemUploadDateView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="@dimen/video_item_search_upload_date_text_size"/>
+
+                    <TextView android:id="@+id/itemViewCountView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="@dimen/video_item_search_upload_date_text_size"/>
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
         </RelativeLayout>
-    </android.support.v7.widget.CardView>
 </LinearLayout>

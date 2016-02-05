@@ -5,16 +5,11 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/loading"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <ProgressBar
         android:id="@+id/paginate_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp" />
+        android:gravity="center"
+        android:paddingBottom="10dp"/>
 
 </LinearLayout>

@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import org.schabi.newpipe.services.MediaFormat;
 import org.schabi.newpipe.services.VideoInfo;
@@ -84,7 +85,7 @@ class ActionBarHandler {
         serviceId = id;
     }
 
-    public void setSetVideoThumbnail(Bitmap bitmap) {
+    public void setVideoThumbnail(Bitmap bitmap) {
         videoThumbnail = bitmap;
     }
 
@@ -320,7 +321,6 @@ class ActionBarHandler {
     }
 
     public void playAudio() {
-
         boolean externalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
         Intent intent;
