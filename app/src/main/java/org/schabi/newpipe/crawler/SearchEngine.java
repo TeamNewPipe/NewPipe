@@ -2,6 +2,7 @@ package org.schabi.newpipe.crawler;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -29,7 +30,7 @@ public interface SearchEngine {
     class Result {
         public String errorMessage = "";
         public String suggestion = "";
-        public final Vector<VideoPreviewInfo> resultList = new Vector<>();
+        public final List<VideoPreviewInfo> resultList = new Vector<>();
     }
 
     ArrayList<String> suggestionList(String query, Downloader dl)

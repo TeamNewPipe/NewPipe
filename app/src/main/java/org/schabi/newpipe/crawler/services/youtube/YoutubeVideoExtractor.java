@@ -24,6 +24,7 @@ import org.schabi.newpipe.crawler.VideoPreviewInfo;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
@@ -251,13 +252,13 @@ public class YoutubeVideoExtractor implements VideoExtractor {
     }
 
     @Override
-    public VideoInfo.AudioStream[] getAudioStreams() throws ParsingException {
+    public List<VideoInfo.AudioStream> getAudioStreams() throws ParsingException {
         /* If we provide a valid dash manifest, we don't need to provide audio streams extra */
         return null;
     }
 
     @Override
-    public VideoInfo.VideoStream[] getVideoStreams() throws ParsingException {
+    public List<VideoInfo.VideoStream> getVideoStreams() throws ParsingException {
         Vector<VideoInfo.VideoStream> videoStreams = new Vector<>();
         try{
             String encoded_url_map = playerArgs.getString("url_encoded_fmt_stream_map");
@@ -298,7 +299,7 @@ public class YoutubeVideoExtractor implements VideoExtractor {
             throw new ParsingException("Failed to get any video stream");
         }
 
-        return videoStreams.toArray(new VideoInfo.VideoStream[videoStreams.size()]);
+        return videoStreams;
     }
 
     /**Attempts to parse (and return) the offset to start playing the video from.

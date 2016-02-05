@@ -302,11 +302,8 @@ public class VideoItemDetailFragment extends Fragment {
                     streamsToUse.add(i);
                 }
             }
-            VideoInfo.VideoStream[] streamList = new VideoInfo.VideoStream[streamsToUse.size()];
-            for (int i = 0; i < streamList.length; i++) {
-                streamList[i] = streamsToUse.get(i);
-            }
-            actionBarHandler.setStreams(streamList, info.audioStreams);
+
+            actionBarHandler.setStreams(streamsToUse, info.audioStreams);
 
             nextVideoButton.setOnClickListener(new View.OnClickListener() {
                 @Override

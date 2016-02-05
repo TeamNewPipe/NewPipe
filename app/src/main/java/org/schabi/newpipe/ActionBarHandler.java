@@ -19,6 +19,8 @@ import android.widget.ArrayAdapter;
 import org.schabi.newpipe.crawler.MediaFormat;
 import org.schabi.newpipe.crawler.VideoInfo;
 
+import java.util.List;
+
 /**
  * Created by Christian Schabesberger on 18.08.15.
  *
@@ -49,7 +51,7 @@ class ActionBarHandler {
     private Bitmap videoThumbnail = null;
     private String channelName = "";
     private AppCompatActivity activity;
-    private VideoInfo.VideoStream[] videoStreams = null;
+    private List<VideoInfo.VideoStream> videoStreams = null;
     private VideoInfo.AudioStream audioStream = null;
     private int selectedStream = -1;
     private String videoTitle = "";
@@ -93,19 +95,21 @@ class ActionBarHandler {
     }
 
     @SuppressWarnings("deprecation")
-    public void setStreams(VideoInfo.VideoStream[] videoStreams, VideoInfo.AudioStream[] audioStreams) {
+    public void setStreams(List<VideoInfo.VideoStream> videoStreams,
+                           List<VideoInfo.AudioStream> audioStreams) {
         this.videoStreams = videoStreams;
         selectedStream = 0;
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
-        String[] itemArray = new String[videoStreams.length];
+        String[] itemArray = new String[videoStreams.size()];
         String defaultResolution = defaultPreferences
                 .getString(activity.getString(R.string.default_resolution_key),
                         activity.getString(R.string.default_resolution_value));
         int defaultResolutionPos = 0;
 
-        for(int i = 0; i < videoStreams.length; i++) {
-            itemArray[i] = MediaFormat.getNameById(videoStreams[i].format) + " " + videoStreams[i].resolution;
-            if(defaultResolution.equals(videoStreams[i].resolution)) {
+        for(int i = 0; i < videoStreams.size(); i++) {
+            VideoInfo.VideoStream item = videoStreams.get(i);
+            itemArray[i] = MediaFormat.getNameById(item.format) + " " + item.resolution;
+            if(defaultResolution.equals(item.resolution)) {
                 defaultResolutionPos = i;
             }
         }
@@ -209,6 +213,8 @@ class ActionBarHandler {
     public void playVideo() {
         // ----------- THE MAGIC MOMENT ---------------
         if(!videoTitle.isEmpty()) {
+            VideoInfo.VideoStream selectedStreamItem = videoStreams.get(selectedStream);
+
             if (PreferenceManager.getDefaultSharedPreferences(activity)
                     .getBoolean(activity.getString(R.string.use_external_video_player_key), false)) {
 
@@ -217,8 +223,8 @@ class ActionBarHandler {
                 try {
                     intent.setAction(Intent.ACTION_VIEW);
 
-                    intent.setDataAndType(Uri.parse(videoStreams[selectedStream].url),
-                            MediaFormat.getMimeById(videoStreams[selectedStream].format));
+                    intent.setDataAndType(Uri.parse(selectedStreamItem.url),
+                            MediaFormat.getMimeById(selectedStreamItem.format));
                     intent.putExtra(Intent.EXTRA_TITLE, videoTitle);
                     intent.putExtra("title", videoTitle);
 
@@ -248,7 +254,7 @@ class ActionBarHandler {
                 // Internal Player
                 Intent intent = new Intent(activity, PlayVideoActivity.class);
                 intent.putExtra(PlayVideoActivity.VIDEO_TITLE, videoTitle);
-                intent.putExtra(PlayVideoActivity.STREAM_URL, videoStreams[selectedStream].url);
+                intent.putExtra(PlayVideoActivity.STREAM_URL, selectedStreamItem.url);
                 intent.putExtra(PlayVideoActivity.VIDEO_URL, websiteUrl);
                 intent.putExtra(PlayVideoActivity.START_POSITION, startPosition);
                 activity.startActivity(intent);     //also HERE !!!
@@ -264,13 +270,14 @@ class ActionBarHandler {
 
     private void downloadVideo() {
         if(!videoTitle.isEmpty()) {
-            String videoSuffix = "." + MediaFormat.getSuffixById(videoStreams[selectedStream].format);
+            VideoInfo.VideoStream selectedStreamItem = videoStreams.get(selectedStream);
+            String videoSuffix = "." + MediaFormat.getSuffixById(selectedStreamItem.format);
             String audioSuffix = "." + MediaFormat.getSuffixById(audioStream.format);
             Bundle args = new Bundle();
             args.putString(DownloadDialog.FILE_SUFFIX_VIDEO, videoSuffix);
             args.putString(DownloadDialog.FILE_SUFFIX_AUDIO, audioSuffix);
             args.putString(DownloadDialog.TITLE, videoTitle);
-            args.putString(DownloadDialog.VIDEO_URL, videoStreams[selectedStream].url);
+            args.putString(DownloadDialog.VIDEO_URL, selectedStreamItem.url);
             args.putString(DownloadDialog.AUDIO_URL, audioStream.url);
             DownloadDialog downloadDialog = new DownloadDialog();
             downloadDialog.setArguments(args);

@@ -6,6 +6,7 @@ import org.xmlpull.v1.XmlPullParser;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -36,7 +37,7 @@ public class DashMpdParser {
         }
     }
 
-    public static VideoInfo.AudioStream[] getAudioStreams(String dashManifestUrl,
+    public static List<VideoInfo.AudioStream> getAudioStreams(String dashManifestUrl,
                                                              Downloader downloader)
             throws DashMpdParsingException {
         String dashDoc;
@@ -96,6 +97,6 @@ public class DashMpdParser {
         } catch(Exception e) {
             throw new DashMpdParsingException("Could not parse Dash mpd", e);
         }
-        return audioStreams.toArray(new VideoInfo.AudioStream[audioStreams.size()]);
+        return audioStreams;
     }
 }

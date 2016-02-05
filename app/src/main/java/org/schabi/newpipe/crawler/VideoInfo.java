@@ -2,6 +2,7 @@ package org.schabi.newpipe.crawler;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * Created by Christian Schabesberger on 26.08.15.
@@ -48,10 +49,11 @@ public class VideoInfo extends AbstractVideoInfo {
         /** Load and extract audio*/
         videoInfo.audioStreams = extractor.getAudioStreams();
         if(videoInfo.dashMpdUrl != null && !videoInfo.dashMpdUrl.isEmpty()) {
-            if(videoInfo.audioStreams == null || videoInfo.audioStreams.length == 0) {
-                videoInfo.audioStreams =
-                        DashMpdParser.getAudioStreams(videoInfo.dashMpdUrl, downloader);
+            if(videoInfo.audioStreams == null) {
+                videoInfo.audioStreams = new Vector<AudioStream>();
             }
+            videoInfo.audioStreams.addAll(
+                    DashMpdParser.getAudioStreams(videoInfo.dashMpdUrl, downloader));
         }
         /** Extract video stream url*/
         videoInfo.videoStreams = extractor.getVideoStreams();
@@ -73,8 +75,8 @@ public class VideoInfo extends AbstractVideoInfo {
     public String uploader_thumbnail_url = "";
     public String description = "";
     /*todo: make this lists over vectors*/
-    public VideoStream[] videoStreams = null;
-    public AudioStream[] audioStreams = null;
+    public List<VideoStream> videoStreams = null;
+    public List<AudioStream> audioStreams = null;
     // video streams provided by the dash mpd do not need to be provided as VideoStream.
     // Later on this will also aplly to audio streams. Since dash mpd is standarized,
     // crawling such a file is not service dependent. Therefore getting audio only streams by yust

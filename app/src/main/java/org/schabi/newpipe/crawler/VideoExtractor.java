@@ -20,7 +20,7 @@ package org.schabi.newpipe.crawler;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.Vector;
+import java.util.List;
 
 /**Scrapes information from a video streaming service (eg, YouTube).*/
 
@@ -63,15 +63,15 @@ public interface VideoExtractor {
     public abstract String getUploadDate() throws ParsingException;
     public abstract String getThumbnailUrl() throws ParsingException;
     public abstract String getUploaderThumbnailUrl() throws ParsingException;
-    public abstract VideoInfo.AudioStream[] getAudioStreams() throws ParsingException;
-    public abstract VideoInfo.VideoStream[] getVideoStreams() throws ParsingException;
+    public abstract List<VideoInfo.AudioStream> getAudioStreams() throws ParsingException;
+    public abstract List<VideoInfo.VideoStream> getVideoStreams() throws ParsingException;
     public abstract String getDashMpdUrl() throws ParsingException;
     public abstract int getAgeLimit() throws ParsingException;
     public abstract String getAverageRating() throws ParsingException;
     public abstract int getLikeCount() throws ParsingException;
     public abstract int getDislikeCount() throws ParsingException;
     public abstract VideoPreviewInfo getNextVideo() throws ParsingException;
-    public abstract Vector<VideoPreviewInfo> getRelatedVideos() throws ParsingException;
+    public abstract List<VideoPreviewInfo> getRelatedVideos() throws ParsingException;
     public abstract VideoUrlIdHandler getUrlIdConverter();
     public abstract String getPageUrl();
 }
