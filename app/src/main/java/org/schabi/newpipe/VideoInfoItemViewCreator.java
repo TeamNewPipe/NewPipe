@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.schabi.newpipe.crawler.VideoPreviewInfo;
+
 /**
  * Created by Christian Schabesberger on 24.10.15.
  *

@@ -15,12 +15,15 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Vector;
 
-import org.schabi.newpipe.services.SearchEngine;
-import org.schabi.newpipe.services.StreamingService;
+import org.schabi.newpipe.crawler.CrawlingException;
+import org.schabi.newpipe.crawler.VideoPreviewInfo;
+import org.schabi.newpipe.crawler.SearchEngine;
+import org.schabi.newpipe.crawler.StreamingService;
 
 
 /**
@@ -108,23 +111,22 @@ public class VideoItemListFragment extends ListFragment {
                 String searchLanguageKey = getContext().getString(R.string.search_language_key);
                 String searchLanguage = sp.getString(searchLanguageKey,
                         getString(R.string.default_language_value));
-                SearchEngine.Result result = engine.search(query, page, searchLanguage);
+                SearchEngine.Result result = engine.search(query, page, searchLanguage,
+                        new Downloader());
 
                 Log.i(TAG, "language code passed:\""+searchLanguage+"\"");
                 if(runs) {
                     h.post(new ResultRunnable(result, requestId));
                 }
-            } catch(Exception e) {
+            } catch(IOException e) {
+                postNewErrorToast(h, R.string.network_error);
                 e.printStackTrace();
-
-                h.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        setListShown(true);
-                        Toast.makeText(getActivity(), getString(R.string.network_error),
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
+            } catch(CrawlingException ce) {
+                postNewErrorToast(h, R.string.parsing_error);
+                ce.printStackTrace();
+            } catch(Exception e) {
+                postNewErrorToast(h, R.string.general_error);
+                e.printStackTrace();
             }
         }
     }
@@ -155,6 +157,7 @@ public class VideoItemListFragment extends ListFragment {
                 if(!downloadedList.get(i)) {
                     Bitmap thumbnail;
                     try {
+                        //todo: make bitmaps not bypass tor
                         thumbnail = BitmapFactory.decodeStream(
                                 new URL(thumbnailUrlList.get(i)).openConnection().getInputStream());
                         h.post(new SetThumbnailRunnable(i, thumbnail, requestId));
@@ -384,4 +387,14 @@ public class VideoItemListFragment extends ListFragment {
         mActivatedPosition = position;
     }
 
+    private void postNewErrorToast(Handler h, final int stringResource) {
+        h.post(new Runnable() {
+            @Override
+            public void run() {
+                setListShown(true);
+                Toast.makeText(getActivity(), getString(R.string.network_error),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }

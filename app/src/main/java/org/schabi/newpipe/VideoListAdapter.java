@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
+import org.schabi.newpipe.crawler.VideoPreviewInfo;
+
 import java.util.List;
 import java.util.Vector;
 

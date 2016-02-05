@@ -1,9 +1,8 @@
-package org.schabi.newpipe.services;
+package org.schabi.newpipe.crawler;
 
-import org.schabi.newpipe.VideoPreviewInfo;
-import org.schabi.newpipe.services.AbstractVideoInfo;
-
+import java.io.IOException;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * Created by Christian Schabesberger on 26.08.15.
@@ -29,20 +28,60 @@ import java.util.List;
 @SuppressWarnings("ALL")
 public class VideoInfo extends AbstractVideoInfo {
 
-    // If a video could not be parsed, this predefined error codes
-    // will be returned AND can be parsed by the frontend of the app.
-    // Error codes:
-    public final static int NO_ERROR = 0x0;
-    public final static int ERROR_NO_SPECIFIED_ERROR = 0x1;
-    // GEMA a german music colecting society.
-    public final static int ERROR_BLOCKED_BY_GEMA = 0x2;
+    /**Fills out the video info fields which are common to all services.
+     * Probably needs to be overridden by subclasses*/
+    public static VideoInfo getVideoInfo(VideoExtractor extractor, Downloader downloader)
+            throws CrawlingException, IOException {
+        VideoInfo videoInfo = new VideoInfo();
+
+        VideoUrlIdHandler uiconv = extractor.getUrlIdConverter();
+
+        videoInfo.webpage_url = extractor.getPageUrl();
+        videoInfo.title = extractor.getTitle();
+        videoInfo.duration = extractor.getLength();
+        videoInfo.uploader = extractor.getUploader();
+        videoInfo.description = extractor.getDescription();
+        videoInfo.view_count = extractor.getViews();
+        videoInfo.upload_date = extractor.getUploadDate();
+        videoInfo.thumbnail_url = extractor.getThumbnailUrl();
+        videoInfo.id = uiconv.getVideoId(extractor.getPageUrl());
+        videoInfo.dashMpdUrl = extractor.getDashMpdUrl();
+        /** Load and extract audio*/
+        videoInfo.audioStreams = extractor.getAudioStreams();
+        if(videoInfo.dashMpdUrl != null && !videoInfo.dashMpdUrl.isEmpty()) {
+            if(videoInfo.audioStreams == null) {
+                videoInfo.audioStreams = new Vector<AudioStream>();
+            }
+            videoInfo.audioStreams.addAll(
+                    DashMpdParser.getAudioStreams(videoInfo.dashMpdUrl, downloader));
+        }
+        /** Extract video stream url*/
+        videoInfo.videoStreams = extractor.getVideoStreams();
+        videoInfo.uploader_thumbnail_url = extractor.getUploaderThumbnailUrl();
+        videoInfo.startPosition = extractor.getTimeStamp();
+        videoInfo.average_rating = extractor.getAverageRating();
+        videoInfo.like_count = extractor.getLikeCount();
+        videoInfo.dislike_count = extractor.getDislikeCount();
+        videoInfo.nextVideo = extractor.getNextVideo();
+        videoInfo.relatedVideos = extractor.getRelatedVideos();
+
+        //Bitmap thumbnail = null;
+        //Bitmap uploader_thumbnail = null;
+        //int videoAvailableStatus = VIDEO_AVAILABLE;
+        return videoInfo;
+    }
+
 
     public String uploader_thumbnail_url = "";
     public String description = "";
-    public VideoStream[] videoStreams = null;
-    public AudioStream[] audioStreams = null;
-    public int errorCode = NO_ERROR;
-    public String errorMessage = "";
+    /*todo: make this lists over vectors*/
+    public List<VideoStream> videoStreams = null;
+    public List<AudioStream> audioStreams = null;
+    // video streams provided by the dash mpd do not need to be provided as VideoStream.
+    // Later on this will also aplly to audio streams. Since dash mpd is standarized,
+    // crawling such a file is not service dependent. Therefore getting audio only streams by yust
+    // providing the dash mpd fille will be possible in the future.
+    public String dashMpdUrl = "";
     public int duration = -1;
 
     /*YouTube-specific fields
@@ -53,10 +92,10 @@ public class VideoInfo extends AbstractVideoInfo {
     public String average_rating = "";
     public VideoPreviewInfo nextVideo = null;
     public List<VideoPreviewInfo> relatedVideos = null;
-    public int startPosition = -1;//in seconds. some metadata is not passed using a VideoInfo object!
+    //in seconds. some metadata is not passed using a VideoInfo object!
+    public int startPosition = -1;
 
     public VideoInfo() {}
-
 
     /**Creates a new VideoInfo object from an existing AbstractVideoInfo.
      * All the shared properties are copied to the new VideoInfo.*/
@@ -73,7 +112,8 @@ public class VideoInfo extends AbstractVideoInfo {
         this.view_count = avi.view_count;
 
         //todo: better than this
-        if(avi instanceof VideoPreviewInfo) {//shitty String to convert code
+        if(avi instanceof VideoPreviewInfo) {
+            //shitty String to convert code
             String dur = ((VideoPreviewInfo)avi).duration;
             int minutes = Integer.parseInt(dur.substring(0, dur.indexOf(":")));
             int seconds = Integer.parseInt(dur.substring(dur.indexOf(":")+1, dur.length()));
@@ -82,7 +122,8 @@ public class VideoInfo extends AbstractVideoInfo {
     }
 
     public static class VideoStream {
-        public String url = "";     //url of the stream
+        //url of the stream
+        public String url = "";
         public int format = -1;
         public String resolution = "";
 
