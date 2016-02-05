@@ -55,10 +55,10 @@
         android:scaleType="fitXY"
         android:src="@drawable/ic_close_white_24dp" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/backgroundButtons"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_alignBottom="@id/backgroundCover"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@+id/backgroundCover"
@@ -66,15 +66,14 @@
 
         <ImageButton
             android:id="@+id/backgroundPlayPause"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_weight="1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="#00ffffff"
             android:clickable="true"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_play_arrow_white_48dp" />
-    </LinearLayout>
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_pause_white_24dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 
 </RelativeLayout>

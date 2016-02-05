@@ -2,7 +2,7 @@ package org.schabi.newpipe;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
@@ -20,11 +20,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,16 +34,19 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.net.URL;
-import java.nio.charset.MalformedInputException;
+
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+
 import java.util.ArrayList;
 import java.util.Vector;
 
-import org.schabi.newpipe.crawler.CrawlingException;
 import org.schabi.newpipe.crawler.ParsingException;
+import org.schabi.newpipe.crawler.ServiceList;
 import org.schabi.newpipe.crawler.VideoPreviewInfo;
 import org.schabi.newpipe.crawler.VideoExtractor;
-import org.schabi.newpipe.crawler.ServiceList;
 import org.schabi.newpipe.crawler.StreamingService;
 import org.schabi.newpipe.crawler.VideoInfo;
 import org.schabi.newpipe.crawler.services.youtube.YoutubeVideoExtractor;
@@ -91,6 +96,12 @@ public class VideoItemDetailFragment extends Fragment {
     private FloatingActionButton playVideoButton;
     private final Point initialThumbnailPos = new Point(0, 0);
 
+
+    private ImageLoader imageLoader = ImageLoader.getInstance();
+    private DisplayImageOptions displayImageOptions =
+            new DisplayImageOptions.Builder().cacheInMemory(true).build();
+
+
     public interface OnInvokeCreateOptionsMenuListener {
         void createOptionsMenu();
     }
@@ -113,31 +124,8 @@ public class VideoItemDetailFragment extends Fragment {
             try {
                 videoExtractor = service.getExtractorInstance(videoUrl, new Downloader());
                 VideoInfo videoInfo = VideoInfo.getVideoInfo(videoExtractor, new Downloader());
+
                 h.post(new VideoResultReturnedRunnable(videoInfo));
-                h.post(new SetThumbnailRunnable(
-                        //todo: make bitmaps not bypass tor
-                        BitmapFactory.decodeStream(
-                                new URL(videoInfo.thumbnail_url)
-                                        .openConnection()
-                                        .getInputStream()),
-                        SetThumbnailRunnable.VIDEO_THUMBNAIL));
-                h.post(new SetThumbnailRunnable(
-                        BitmapFactory.decodeStream(
-                                new URL(videoInfo.uploader_thumbnail_url)
-                                        .openConnection()
-                                        .getInputStream()),
-                        SetThumbnailRunnable.CHANNEL_THUMBNAIL));
-                if (showNextVideoItem) {
-                    h.post(new SetThumbnailRunnable(
-                            BitmapFactory.decodeStream(
-                                    new URL(videoInfo.nextVideo.thumbnail_url)
-                                            .openConnection()
-                                            .getInputStream()),
-                            SetThumbnailRunnable.NEXT_VIDEO_THUMBNAIL));
-                }
-            } catch (MalformedInputException e) {
-                postNewErrorToast(h, R.string.could_not_load_thumbnails);
-                e.printStackTrace();
             } catch (IOException e) {
                 postNewErrorToast(h, R.string.network_error);
                 e.printStackTrace();
@@ -186,52 +174,22 @@ public class VideoItemDetailFragment extends Fragment {
         }
     }
 
-    private class SetThumbnailRunnable implements Runnable {
-        public static final int VIDEO_THUMBNAIL = 1;
-        public static final int CHANNEL_THUMBNAIL = 2;
-        public static final int NEXT_VIDEO_THUMBNAIL = 3;
-        private final Bitmap thumbnail;
-        private final int thumbnailId;
-        public SetThumbnailRunnable(Bitmap thumbnail, int id) {
-            this.thumbnail = thumbnail;
-            this.thumbnailId = id;
-        }
+    private class ThumbnailLoadingListener implements ImageLoadingListener {
         @Override
-        public void run() {
-            updateThumbnail(thumbnail, thumbnailId);
+        public void onLoadingStarted(String imageUri, View view) {}
+
+        @Override
+        public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+            Toast.makeText(VideoItemDetailFragment.this.getActivity(),
+                    R.string.could_not_load_thumbnails, Toast.LENGTH_LONG).show();
+            failReason.getCause().printStackTrace();
         }
-    }
 
-    private void updateThumbnail(Bitmap thumbnail, int id) {
-        Activity a = getActivity();
-        ImageView thumbnailView;
-        try {
-            switch (id) {
-                case SetThumbnailRunnable.VIDEO_THUMBNAIL:
-                    thumbnailView = (ImageView) a.findViewById(R.id.detailThumbnailView);
-                    actionBarHandler.setSetVideoThumbnail(thumbnail);
-                    break;
-                case SetThumbnailRunnable.CHANNEL_THUMBNAIL:
-                    thumbnailView = (ImageView) a.findViewById(R.id.detailUploaderThumbnailView);
-                    break;
-                case SetThumbnailRunnable.NEXT_VIDEO_THUMBNAIL:
-                    FrameLayout nextVideoFrame = (FrameLayout) a.findViewById(R.id.detailNextVideoFrame);
-                    thumbnailView = (ImageView) nextVideoFrame.findViewById(R.id.itemThumbnailView);
-                    currentVideoInfo.nextVideo.thumbnail = thumbnail;
-                    break;
-                default:
-                    Log.d(TAG, "Error: Thumbnail id not known");
-                    return;
-            }
+        @Override
+        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {}
 
-            if (thumbnailView != null) {
-                thumbnailView.setImageBitmap(thumbnail);
-            }
-
-        } catch (java.lang.NullPointerException e) {
-            // Not good program design, I know. :/
-            Log.w(TAG, "updateThumbnail(): Fragment closed before thread ended work");
-        }
+        @Override
+        public void onLoadingCancelled(String imageUri, View view) {}
     }
 
     private void updateInfo(VideoInfo info) {
@@ -241,35 +199,61 @@ public class VideoItemDetailFragment extends Fragment {
             VideoInfoItemViewCreator videoItemViewCreator =
                     new VideoInfoItemViewCreator(LayoutInflater.from(getActivity()));
 
-            RelativeLayout textContentLayout = (RelativeLayout) activity.findViewById(R.id.detailTextContentLayout);
-            TextView videoTitleView = (TextView) activity.findViewById(R.id.detailVideoTitleView);
+            RelativeLayout textContentLayout =
+                    (RelativeLayout) activity.findViewById(R.id.detailTextContentLayout);
+            final TextView videoTitleView =
+                    (TextView) activity.findViewById(R.id.detailVideoTitleView);
             TextView uploaderView = (TextView) activity.findViewById(R.id.detailUploaderView);
             TextView viewCountView = (TextView) activity.findViewById(R.id.detailViewCountView);
             TextView thumbsUpView = (TextView) activity.findViewById(R.id.detailThumbsUpCountView);
-            TextView thumbsDownView = (TextView) activity.findViewById(R.id.detailThumbsDownCountView);
+            TextView thumbsDownView =
+                    (TextView) activity.findViewById(R.id.detailThumbsDownCountView);
             TextView uploadDateView = (TextView) activity.findViewById(R.id.detailUploadDateView);
             TextView descriptionView = (TextView) activity.findViewById(R.id.detailDescriptionView);
-            FrameLayout nextVideoFrame = (FrameLayout) activity.findViewById(R.id.detailNextVideoFrame);
+            FrameLayout nextVideoFrame =
+                    (FrameLayout) activity.findViewById(R.id.detailNextVideoFrame);
             RelativeLayout nextVideoRootFrame =
                     (RelativeLayout) activity.findViewById(R.id.detailNextVideoRootLayout);
-
-            progressBar.setVisibility(View.GONE);
-
-
+            Button nextVideoButton = (Button) activity.findViewById(R.id.detailNextVideoButton);
+            TextView similarTitle = (TextView) activity.findViewById(R.id.detailSimilarTitle);
+            View topView = activity.findViewById(R.id.detailTopView);
             View nextVideoView = videoItemViewCreator
                     .getViewFromVideoInfoItem(null, nextVideoFrame, info.nextVideo, getContext());
+
+            progressBar.setVisibility(View.GONE);
             nextVideoFrame.addView(nextVideoView);
 
-
-            Button nextVideoButton = (Button) activity.findViewById(R.id.detailNextVideoButton);
-            Button similarVideosButton = (Button) activity.findViewById(R.id.detailShowSimilarButton);
+            initThumbnailViews(info, nextVideoFrame);
 
             textContentLayout.setVisibility(View.VISIBLE);
             playVideoButton.setVisibility(View.VISIBLE);
             if (!showNextVideoItem) {
                 nextVideoRootFrame.setVisibility(View.GONE);
-                similarVideosButton.setVisibility(View.GONE);
+                similarTitle.setVisibility(View.GONE);
             }
+
+            videoTitleView.setText(info.title);
+
+            topView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
+                        ImageView arrow = (ImageView) activity.findViewById(R.id.toggleDescriptionView);
+                        View extra = activity.findViewById(R.id.detailExtraView);
+                        if (extra.getVisibility() == View.VISIBLE) {
+                            extra.setVisibility(View.GONE);
+                            arrow.setImageResource(R.drawable.arrow_down);
+                        } else {
+                            extra.setVisibility(View.VISIBLE);
+                            arrow.setImageResource(R.drawable.arrow_up);
+                        }
+                    }
+                    return true;
+                }
+            });
+
+            uploaderView.setText(info.uploader);
+            actionBarHandler.setChannelName(info.uploader);
 
             videoTitleView.setText(info.title);
             uploaderView.setText(info.uploader);
@@ -314,12 +298,13 @@ public class VideoItemDetailFragment extends Fragment {
                                 VideoItemDetailFragment.ARG_ITEM_ID, currentVideoInfo.nextVideo.id); */
                     detailIntent.putExtra(
                             VideoItemDetailFragment.VIDEO_URL, currentVideoInfo.nextVideo.webpage_url);
-
                     detailIntent.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
                     startActivity(detailIntent);
                 }
             });
+            textContentLayout.setVisibility(View.VISIBLE);
 
+            initSimilarVideos(videoItemViewCreator);
 
             if(autoPlayEnabled) {
                 actionBarHandler.playVideo();
@@ -327,6 +312,76 @@ public class VideoItemDetailFragment extends Fragment {
         } catch (java.lang.NullPointerException e) {
             Log.w(TAG, "updateInfo(): Fragment closed before thread ended work... or else");
             e.printStackTrace();
+        }
+    }
+
+    private void initThumbnailViews(VideoInfo info, View nextVideoFrame) {
+        ImageView videoThumbnailView = (ImageView) activity.findViewById(R.id.detailThumbnailView);
+        ImageView uploaderThumb
+                = (ImageView) activity.findViewById(R.id.detailUploaderThumbnailView);
+        ImageView nextVideoThumb =
+                (ImageView) nextVideoFrame.findViewById(R.id.itemThumbnailView);
+
+        imageLoader.displayImage(info.thumbnail_url, videoThumbnailView,
+                displayImageOptions, new ImageLoadingListener() {
+                    @Override
+                    public void onLoadingStarted(String imageUri, View view) {}
+
+                    @Override
+                    public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                        Toast.makeText(VideoItemDetailFragment.this.getActivity(),
+                                R.string.could_not_load_thumbnails, Toast.LENGTH_LONG).show();
+                        failReason.getCause().printStackTrace();
+                    }
+
+                    @Override
+                    public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                        actionBarHandler.setVideoThumbnail(loadedImage);
+                    }
+
+                    @Override
+                    public void onLoadingCancelled(String imageUri, View view) {}
+                });
+        imageLoader.displayImage(info.uploader_thumbnail_url,
+                uploaderThumb, displayImageOptions, new ThumbnailLoadingListener());
+        imageLoader.displayImage(info.nextVideo.thumbnail_url,
+                nextVideoThumb, displayImageOptions, new ThumbnailLoadingListener());
+    }
+
+    private void initSimilarVideos(VideoInfoItemViewCreator videoItemViewCreator) {
+        LinearLayout similarLayout = (LinearLayout) activity.findViewById(R.id.similarVideosView);
+        ArrayList<VideoPreviewInfo> similar = new ArrayList<>(currentVideoInfo.relatedVideos);
+        for (final VideoPreviewInfo item : similar) {
+            View similarView = videoItemViewCreator
+                    .getViewFromVideoInfoItem(null, similarLayout, item, getContext());
+
+            similarView.setClickable(true);
+            similarView.setFocusable(true);
+            int[] attrs = new int[]{R.attr.selectableItemBackground};
+            TypedArray typedArray = activity.obtainStyledAttributes(attrs);
+            int backgroundResource = typedArray.getResourceId(0, 0);
+            similarView.setBackgroundResource(backgroundResource);
+            typedArray.recycle();
+
+            similarView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        Intent detailIntent = new Intent(activity, VideoItemDetailActivity.class);
+                        detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, item.webpage_url);
+                        detailIntent.putExtra(
+                                VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
+                        startActivity(detailIntent);
+                        return true;
+                    }
+                    return false;
+                }
+            });
+
+            similarLayout.addView(similarView);
+            ImageView rthumb = (ImageView)similarView.findViewById(R.id.itemThumbnailView);
+            imageLoader.displayImage(item.thumbnail_url, rthumb,
+                    displayImageOptions, new ThumbnailLoadingListener());
         }
     }
 
@@ -438,21 +493,6 @@ public class VideoItemDetailFragment extends Fragment {
                 }
             });
 
-            Button similarVideosButton = (Button) activity.findViewById(R.id.detailShowSimilarButton);
-            similarVideosButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(activity, VideoItemListActivity.class);
-                    //todo: find more elegant way to do this - converting from List to ArrayList sucks
-                    ArrayList<VideoPreviewInfo> toParcel = new ArrayList<>(currentVideoInfo.relatedVideos);
-                    //why oh why does the parcelable array put method have to be so damn specific
-                    // about the class of its argument?
-                    //why not a List<? extends Parcelable>?
-                    intent.putParcelableArrayListExtra(VideoItemListActivity.VIDEO_INFO_ITEMS, toParcel);
-                    activity.startActivity(intent);
-                }
-            });
-
             // todo: Fix this workaround (probably with a better design), so that older android
             // versions don't have problems rendering the thumbnail right.
             if(Build.VERSION.SDK_INT >= 18) {
@@ -461,7 +501,8 @@ public class VideoItemDetailFragment extends Fragment {
                     // This is used to synchronize the thumbnailWindowButton and the playVideoButton
                     // inside the ScrollView with the actual size of the thumbnail.
                     @Override
-                    public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                    public void onLayoutChange(View v, int left, int top, int right, int bottom,
+                                               int oldLeft, int oldTop, int oldRight, int oldBottom) {
                         RelativeLayout.LayoutParams newWindowLayoutParams =
                                 (RelativeLayout.LayoutParams) thumbnailWindowLayout.getLayoutParams();
                         newWindowLayoutParams.height = bottom - top;

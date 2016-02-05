@@ -53,7 +53,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
     public static final String TITLE = "title";
     public static final String WEB_URL = "web_url";
     public static final String SERVICE_ID = "service_id";
-    public static final String CHANNEL_NAME="channel_name";
+    public static final String CHANNEL_NAME = "channel_name";
 
     private volatile String webUrl = "";
     private volatile int serviceId = -1;
@@ -117,6 +117,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         private WifiManager.WifiLock wifiLock;
         private Bitmap videoThumbnail = null;
         private NotificationCompat.Builder noteBuilder;
+        private Notification note;
 
         public PlayerThread(String src, String title, BackgroundPlayer owner) {
             this.source = src;
@@ -174,7 +175,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             filter.addAction(ACTION_STOP);
             registerReceiver(broadcastReceiver, filter);
 
-            Notification note = buildNotification();
+            note = buildNotification();
 
             startForeground(noteID, note);
 
@@ -204,11 +205,21 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 if(action.equals(ACTION_PLAYPAUSE)) {
                     if(mediaPlayer.isPlaying()) {
                         mediaPlayer.pause();
+                        note.contentView.setImageViewResource(R.id.backgroundPlayPause, R.drawable.ic_play_circle_filled_white_24dp);
+                        if(android.os.Build.VERSION.SDK_INT >=16){
+                            note.bigContentView.setImageViewResource(R.id.backgroundPlayPause, R.drawable.ic_play_circle_filled_white_24dp);
+                        }
+                        noteMgr.notify(noteID, note);
                     }
                     else {
                         //reacquire CPU lock after auto-releasing it on pause
                         mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
                         mediaPlayer.start();
+                        note.contentView.setImageViewResource(R.id.backgroundPlayPause, R.drawable.ic_pause_white_24dp);
+                        if(android.os.Build.VERSION.SDK_INT >=16){
+                            note.bigContentView.setImageViewResource(R.id.backgroundPlayPause, R.drawable.ic_pause_white_24dp);
+                        }
+                        noteMgr.notify(noteID, note);
                     }
                 }
                 else if(action.equals(ACTION_STOP)) {

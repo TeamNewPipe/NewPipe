@@ -61,8 +61,6 @@ public class VideoItemListFragment extends ListFragment {
 
     private Thread searchThread = null;
     private SearchRunnable searchRunnable = null;
-    private Thread loadThumbsThread = null;
-    private LoadThumbsRunnable loadThumbsRunnable = null;
     // used to track down if results posted by threads ar still valid
     private int currentRequestId = -1;
     private ListView list;
@@ -130,7 +128,8 @@ public class VideoItemListFragment extends ListFragment {
             }
         }
     }
-
+/*
+<<<
     private class LoadThumbsRunnable implements Runnable {
         private final Vector<String> thumbnailUrlList = new Vector<>();
         private final Vector<Boolean> downloadedList;
@@ -187,6 +186,9 @@ public class VideoItemListFragment extends ListFragment {
         }
     }
 
+=======
+>>>>>>> 6d1b4652fc98e5c2d5e19b0f98ba38a731137a70
+*/
     public void present(List<VideoPreviewInfo> videoList) {
         mode = PRESENT_VIDEOS_MODE;
         setListShown(true);
@@ -246,10 +248,6 @@ public class VideoItemListFragment extends ListFragment {
         try {
             videoListAdapter.addVideoList(list);
             terminateThreads();
-            loadThumbsRunnable = new LoadThumbsRunnable(videoListAdapter.getVideoList(),
-                    videoListAdapter.getDownloadedThumbnailList(), currentRequestId);
-            loadThumbsThread = new Thread(loadThumbsRunnable);
-            loadThumbsThread.start();
         } catch(java.lang.IllegalStateException e) {
             Log.w(TAG, "Trying to set value while activity doesn't exist anymore.");
         } catch(Exception e) {
@@ -260,14 +258,6 @@ public class VideoItemListFragment extends ListFragment {
     }
 
     private void terminateThreads() {
-        if(loadThumbsRunnable != null && loadThumbsRunnable.isRunning()) {
-            loadThumbsRunnable.terminate();
-            try {
-                loadThumbsThread.join();
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
-        }
         if(searchThread != null) {
             searchRunnable.terminate();
             // No need to join, since we don't really terminate the thread. We just demand

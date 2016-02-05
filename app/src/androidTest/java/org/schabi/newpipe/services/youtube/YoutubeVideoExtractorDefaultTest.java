@@ -1,6 +1,7 @@
 package org.schabi.newpipe.services.youtube;
 
 import android.test.AndroidTestCase;
+import android.util.Log;
 
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.crawler.CrawlingException;
