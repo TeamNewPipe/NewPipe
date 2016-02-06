@@ -75,4 +75,7 @@
     <string name="content_not_available">コンテンツがありません。</string>
     <string name="blocked_by_gema">GEMA によってブロックされました。</string>
 
+    <string name="could_not_setup_download_menu">ダウンロード メニューを設定できませんでした。</string>
+
+
     </resources>
