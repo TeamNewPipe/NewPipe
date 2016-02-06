@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="view_count_text">%1$s visualizações</string>
     <string name="upload_date_text">Carregado em %1$s</string>
     <string name="no_player_found">Reprodutor não disponível. Instalar o VLC?</string>
@@ -67,4 +67,11 @@
 
     <string name="err_dir_create">Não foi possível criar o diretório \'%1$s\'</string>
     <string name="info_dir_created">Diretório \'%1$s\' criado com sucesso</string>
-</resources>
+<string name="general_error">Erro</string>
+    <string name="could_not_load_thumbnails">Incapaz de carregar todas as miniaturas</string>
+    <string name="youtube_signature_decryption_error">Incapaz de decifrar a assinatura do vídeo.</string>
+    <string name="parsing_error">Incapaz de processar o sítio web.</string>
+    <string name="content_not_available">Conteúdo não disponível.</string>
+    <string name="blocked_by_gema">Bloqueado pela GEMA.</string>
+
+    </resources>
