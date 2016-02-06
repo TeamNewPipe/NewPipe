@@ -70,7 +70,7 @@
     <string name="info_dir_created">ﾀﾞｳﾝﾛｰﾄﾞ ﾃﾞｨﾚｸﾄﾘ \'%1$s\' を作成しました</string>
 <string name="general_error">エラー</string>
     <string name="could_not_load_thumbnails">すべてのサムネイルを読み込むことができません</string>
-    <string name="youtube_signature_decryption_error">ビデオの url 署名を復号化できません。</string>
+    <string name="youtube_signature_decryption_error">ビデオの url 署名を復号化できませんでした。</string>
     <string name="parsing_error">Web サイトを解析できませんでした。</string>
     <string name="content_not_available">コンテンツがありません。</string>
     <string name="blocked_by_gema">GEMA によってブロックされました。</string>
