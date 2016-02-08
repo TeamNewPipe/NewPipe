@@ -36,6 +36,7 @@ public class VideoInfo extends AbstractVideoInfo {
 
         VideoUrlIdHandler uiconv = extractor.getUrlIdConverter();
 
+
         videoInfo.webpage_url = extractor.getPageUrl();
         videoInfo.title = extractor.getTitle();
         videoInfo.duration = extractor.getLength();
@@ -47,23 +48,23 @@ public class VideoInfo extends AbstractVideoInfo {
         videoInfo.id = uiconv.getVideoId(extractor.getPageUrl());
         videoInfo.dashMpdUrl = extractor.getDashMpdUrl();
         /** Load and extract audio*/
-        videoInfo.audioStreams = extractor.getAudioStreams();
+        videoInfo.audio_streams = extractor.getAudioStreams();
         if(videoInfo.dashMpdUrl != null && !videoInfo.dashMpdUrl.isEmpty()) {
-            if(videoInfo.audioStreams == null) {
-                videoInfo.audioStreams = new Vector<AudioStream>();
+            if(videoInfo.audio_streams == null) {
+                videoInfo.audio_streams = new Vector<AudioStream>();
             }
-            videoInfo.audioStreams.addAll(
+            videoInfo.audio_streams.addAll(
                     DashMpdParser.getAudioStreams(videoInfo.dashMpdUrl, downloader));
         }
         /** Extract video stream url*/
-        videoInfo.videoStreams = extractor.getVideoStreams();
+        videoInfo.video_streams = extractor.getVideoStreams();
         videoInfo.uploader_thumbnail_url = extractor.getUploaderThumbnailUrl();
-        videoInfo.startPosition = extractor.getTimeStamp();
+        videoInfo.start_position = extractor.getTimeStamp();
         videoInfo.average_rating = extractor.getAverageRating();
         videoInfo.like_count = extractor.getLikeCount();
         videoInfo.dislike_count = extractor.getDislikeCount();
-        videoInfo.nextVideo = extractor.getNextVideo();
-        videoInfo.relatedVideos = extractor.getRelatedVideos();
+        videoInfo.next_video = extractor.getNextVideo();
+        videoInfo.related_videos = extractor.getRelatedVideos();
 
         //Bitmap thumbnail = null;
         //Bitmap uploader_thumbnail = null;
@@ -75,8 +76,8 @@ public class VideoInfo extends AbstractVideoInfo {
     public String uploader_thumbnail_url = "";
     public String description = "";
     /*todo: make this lists over vectors*/
-    public List<VideoStream> videoStreams = null;
-    public List<AudioStream> audioStreams = null;
+    public List<VideoStream> video_streams = null;
+    public List<AudioStream> audio_streams = null;
     // video streams provided by the dash mpd do not need to be provided as VideoStream.
     // Later on this will also aplly to audio streams. Since dash mpd is standarized,
     // crawling such a file is not service dependent. Therefore getting audio only streams by yust
@@ -90,10 +91,11 @@ public class VideoInfo extends AbstractVideoInfo {
     public int like_count = -1;
     public int dislike_count = -1;
     public String average_rating = "";
-    public VideoPreviewInfo nextVideo = null;
-    public List<VideoPreviewInfo> relatedVideos = null;
+    public VideoPreviewInfo next_video = null;
+    public List<VideoPreviewInfo> related_videos = null;
     //in seconds. some metadata is not passed using a VideoInfo object!
-    public int startPosition = -1;
+    public int start_position = -1;
+    //todo: public int service_id = -1;
 
     public VideoInfo() {}
 
@@ -137,11 +139,11 @@ public class VideoInfo extends AbstractVideoInfo {
         public String url = "";
         public int format = -1;
         public int bandwidth = -1;
-        public int samplingRate = -1;
+        public int sampling_rate = -1;
 
         public AudioStream(String url, int format, int bandwidth, int samplingRate) {
             this.url = url; this.format = format;
-            this.bandwidth = bandwidth; this.samplingRate = samplingRate;
+            this.bandwidth = bandwidth; this.sampling_rate = samplingRate;
         }
     }
 }

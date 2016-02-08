@@ -1,6 +1,8 @@
 package org.schabi.newpipe;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -13,6 +15,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -43,6 +46,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import org.schabi.newpipe.crawler.MediaFormat;
 import org.schabi.newpipe.crawler.ParsingException;
 import org.schabi.newpipe.crawler.ServiceList;
 import org.schabi.newpipe.crawler.VideoPreviewInfo;
@@ -73,6 +77,7 @@ import org.schabi.newpipe.crawler.services.youtube.YoutubeVideoExtractor;
 public class VideoItemDetailFragment extends Fragment {
 
     private static final String TAG = VideoItemDetailFragment.class.toString();
+    private static final String KORE_PACKET = "org.xbmc.kore";
 
     /**
      * The fragment argument representing the item ID that this fragment
@@ -89,8 +94,8 @@ public class VideoItemDetailFragment extends Fragment {
     private int streamingServiceId = -1;
 
     private boolean autoPlayEnabled = false;
-    private VideoInfo currentVideoInfo = null;
     private boolean showNextVideoItem = false;
+    private Bitmap videoThumbnail;
 
     private View thumbnailWindowLayout;
     private FloatingActionButton playVideoButton;
@@ -192,10 +197,9 @@ public class VideoItemDetailFragment extends Fragment {
         public void onLoadingCancelled(String imageUri, View view) {}
     }
 
-    private void updateInfo(VideoInfo info) {
-        currentVideoInfo = info;
-
+    private void updateInfo(final VideoInfo info) {
         try {
+            Context c = getContext();
             VideoInfoItemViewCreator videoItemViewCreator =
                     new VideoInfoItemViewCreator(LayoutInflater.from(getActivity()));
 
@@ -216,9 +220,11 @@ public class VideoItemDetailFragment extends Fragment {
                     (RelativeLayout) activity.findViewById(R.id.detailNextVideoRootLayout);
             Button nextVideoButton = (Button) activity.findViewById(R.id.detailNextVideoButton);
             TextView similarTitle = (TextView) activity.findViewById(R.id.detailSimilarTitle);
+            Button backgroundButton = (Button)
+                    activity.findViewById(R.id.detailVideoThumbnailWindowBackgroundButton);
             View topView = activity.findViewById(R.id.detailTopView);
             View nextVideoView = videoItemViewCreator
-                    .getViewFromVideoInfoItem(null, nextVideoFrame, info.nextVideo, getContext());
+                    .getViewFromVideoInfoItem(null, nextVideoFrame, info.next_video, getContext());
 
             progressBar.setVisibility(View.GONE);
             nextVideoFrame.addView(nextVideoView);
@@ -253,41 +259,23 @@ public class VideoItemDetailFragment extends Fragment {
             });
 
             uploaderView.setText(info.uploader);
-            actionBarHandler.setChannelName(info.uploader);
-
             videoTitleView.setText(info.title);
             uploaderView.setText(info.uploader);
-            actionBarHandler.setChannelName(info.uploader);
-
-            String localizedViewCount = Localization.localizeViewCount(info.view_count, getContext());
-            viewCountView.setText(localizedViewCount);
-
-            String localizedLikeCount = Localization.localizeNumber(info.like_count, getContext());
-            thumbsUpView.setText(localizedLikeCount);
-
-            String localizedDislikeCount = Localization.localizeNumber(info.dislike_count, getContext());
-            thumbsDownView.setText(localizedDislikeCount);
-
-            String localizedDate = Localization.localizeDate(info.upload_date, getContext());
-            uploadDateView.setText(localizedDate);
-
+            viewCountView.setText(Localization.localizeViewCount(info.view_count, c));
+            thumbsUpView.setText(Localization.localizeNumber(info.like_count, c));
+            thumbsDownView.setText(Localization.localizeNumber(info.dislike_count, c));
+            uploadDateView.setText(Localization.localizeDate(info.upload_date, c));
             descriptionView.setText(Html.fromHtml(info.description));
 
             descriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
-            actionBarHandler.setServiceId(streamingServiceId);
-            actionBarHandler.setVideoInfo(info.webpage_url, info.title);
-            actionBarHandler.setStartPosition(info.startPosition);
-
             // parse streams
             Vector<VideoInfo.VideoStream> streamsToUse = new Vector<>();
-            for (VideoInfo.VideoStream i : info.videoStreams) {
+            for (VideoInfo.VideoStream i : info.video_streams) {
                 if (useStream(i, streamsToUse)) {
                     streamsToUse.add(i);
                 }
             }
-
-            actionBarHandler.setStreams(streamsToUse, info.audioStreams);
 
             nextVideoButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -297,18 +285,34 @@ public class VideoItemDetailFragment extends Fragment {
                         /*detailIntent.putExtra(
                                 VideoItemDetailFragment.ARG_ITEM_ID, currentVideoInfo.nextVideo.id); */
                     detailIntent.putExtra(
-                            VideoItemDetailFragment.VIDEO_URL, currentVideoInfo.nextVideo.webpage_url);
+                            VideoItemDetailFragment.VIDEO_URL, info.next_video.webpage_url);
                     detailIntent.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
                     startActivity(detailIntent);
                 }
             });
             textContentLayout.setVisibility(View.VISIBLE);
 
-            initSimilarVideos(videoItemViewCreator);
+            initSimilarVideos(info, videoItemViewCreator);
 
             if(autoPlayEnabled) {
-                actionBarHandler.playVideo();
+                playVideo(info);
             }
+
+            playVideoButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    playVideo(info);
+                }
+            });
+
+            backgroundButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    playVideo(info);
+                }
+            });
+
+            setupActionBarHandler(info);
         } catch (java.lang.NullPointerException e) {
             Log.w(TAG, "updateInfo(): Fragment closed before thread ended work... or else");
             e.printStackTrace();
@@ -325,7 +329,8 @@ public class VideoItemDetailFragment extends Fragment {
         imageLoader.displayImage(info.thumbnail_url, videoThumbnailView,
                 displayImageOptions, new ImageLoadingListener() {
                     @Override
-                    public void onLoadingStarted(String imageUri, View view) {}
+                    public void onLoadingStarted(String imageUri, View view) {
+                    }
 
                     @Override
                     public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
@@ -336,21 +341,191 @@ public class VideoItemDetailFragment extends Fragment {
 
                     @Override
                     public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                        actionBarHandler.setVideoThumbnail(loadedImage);
+                        videoThumbnail = loadedImage;
                     }
 
                     @Override
-                    public void onLoadingCancelled(String imageUri, View view) {}
+                    public void onLoadingCancelled(String imageUri, View view) {
+                    }
                 });
         imageLoader.displayImage(info.uploader_thumbnail_url,
                 uploaderThumb, displayImageOptions, new ThumbnailLoadingListener());
-        imageLoader.displayImage(info.nextVideo.thumbnail_url,
+        imageLoader.displayImage(info.next_video.thumbnail_url,
                 nextVideoThumb, displayImageOptions, new ThumbnailLoadingListener());
     }
 
-    private void initSimilarVideos(VideoInfoItemViewCreator videoItemViewCreator) {
+    private void setupActionBarHandler(final VideoInfo info) {
+        actionBarHandler.setupStreamList(info.video_streams);
+
+        actionBarHandler.setOnShareListener(new ActionBarHandler.OnActionListener() {
+            @Override
+            public void onActionSelected(int selectedStreamId) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, info.webpage_url);
+                intent.setType("text/plain");
+                activity.startActivity(Intent.createChooser(intent, activity.getString(R.string.share_dialog_title)));
+            }
+        });
+
+        actionBarHandler.setOnOpenInBrowserListener(new ActionBarHandler.OnActionListener() {
+            @Override
+            public void onActionSelected(int selectedStreamId) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(info.webpage_url));
+
+                activity.startActivity(Intent.createChooser(intent, activity.getString(R.string.choose_browser)));
+            }
+        });
+
+        actionBarHandler.setOnPlayWithKodiListener(new ActionBarHandler.OnActionListener() {
+            @Override
+            public void onActionSelected(int selectedStreamId) {
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setPackage(KORE_PACKET);
+                    intent.setData(Uri.parse(info.webpage_url.replace("https", "http")));
+                    activity.startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                    builder.setMessage(R.string.kore_not_found)
+                            .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent();
+                                    intent.setAction(Intent.ACTION_VIEW);
+                                    intent.setData(Uri.parse(activity.getString(R.string.fdroid_kore_url)));
+                                    activity.startActivity(intent);
+                                }
+                            })
+                            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                    builder.create().show();
+                }
+            }
+        });
+
+        actionBarHandler.setOnDownloadListener(new ActionBarHandler.OnActionListener() {
+            @Override
+            public void onActionSelected(int selectedStreamId) {
+                //VideoInfo.VideoStream selectedStreamItem = videoStreams.get(selectedStream);
+                VideoInfo.AudioStream audioStream =
+                        info.audio_streams.get(getPreferredAudioStreamId(info));
+                VideoInfo.VideoStream selectedStreamItem = info.video_streams.get(selectedStreamId);
+                String videoSuffix = "." + MediaFormat.getSuffixById(selectedStreamItem.format);
+                String audioSuffix = "." + MediaFormat.getSuffixById(audioStream.format);
+                Bundle args = new Bundle();
+                args.putString(DownloadDialog.FILE_SUFFIX_VIDEO, videoSuffix);
+                args.putString(DownloadDialog.FILE_SUFFIX_AUDIO, audioSuffix);
+                args.putString(DownloadDialog.TITLE, info.title);
+                args.putString(DownloadDialog.VIDEO_URL, selectedStreamItem.url);
+                args.putString(DownloadDialog.AUDIO_URL, audioStream.url);
+                DownloadDialog downloadDialog = new DownloadDialog();
+                downloadDialog.setArguments(args);
+                downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
+            }
+        });
+
+        actionBarHandler.setOnPlayAudioListener(new ActionBarHandler.OnActionListener() {
+            @Override
+            public void onActionSelected(int selectedStreamId) {
+                boolean useExternalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
+                        .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
+                Intent intent;
+                VideoInfo.AudioStream audioStream =
+                        info.audio_streams.get(getPreferredAudioStreamId(info));
+                if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 18) {
+                    //internal music player: explicit intent
+                    if (!BackgroundPlayer.isRunning  && videoThumbnail != null) {
+                        ActivityCommunicator.getCommunicator()
+                                .backgroundPlayerThumbnail = videoThumbnail;
+                        intent = new Intent(activity, BackgroundPlayer.class);
+
+                        intent.setAction(Intent.ACTION_VIEW);
+                        Log.i(TAG, "audioStream is null:" + (audioStream == null));
+                        Log.i(TAG, "audioStream.url is null:" + (audioStream.url == null));
+                        intent.setDataAndType(Uri.parse(audioStream.url),
+                                MediaFormat.getMimeById(audioStream.format));
+                        intent.putExtra(BackgroundPlayer.TITLE, info.title);
+                        intent.putExtra(BackgroundPlayer.WEB_URL, info.webpage_url);
+                        intent.putExtra(BackgroundPlayer.SERVICE_ID, streamingServiceId);
+                        intent.putExtra(BackgroundPlayer.CHANNEL_NAME, info.uploader);
+                        activity.startService(intent);
+                    }
+                } else {
+                    intent = new Intent();
+                    try {
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.setDataAndType(Uri.parse(audioStream.url),
+                                MediaFormat.getMimeById(audioStream.format));
+                        intent.putExtra(Intent.EXTRA_TITLE, info.title);
+                        intent.putExtra("title", info.title);
+                        // HERE !!!
+                        activity.startActivity(intent);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                        builder.setMessage(R.string.no_player_found)
+                                .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent();
+                                        intent.setAction(Intent.ACTION_VIEW);
+                                        intent.setData(Uri.parse(activity.getString(R.string.fdroid_vlc_url)));
+                                        activity.startActivity(intent);
+                                    }
+                                })
+                                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Log.i(TAG, "You unlocked a secret unicorn.");
+                                    }
+                                });
+                        builder.create().show();
+                        Log.e(TAG, "Either no Streaming player for audio was installed, or something important crashed:");
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+
+    private int getPreferredAudioStreamId(final VideoInfo info) {
+        String preferredFormatString = PreferenceManager.getDefaultSharedPreferences(getActivity())
+                .getString(activity.getString(R.string.default_audio_format_key), "webm");
+
+        int preferredFormat = MediaFormat.WEBMA.id;
+        switch(preferredFormatString) {
+            case "webm":
+                preferredFormat = MediaFormat.WEBMA.id;
+                break;
+            case "m4a":
+                preferredFormat = MediaFormat.M4A.id;
+                break;
+            default:
+                break;
+        }
+
+        for(int i = 0; i < info.audio_streams.size(); i++) {
+            if(info.audio_streams.get(i).format == preferredFormat) {
+                return i;
+            }
+        }
+
+        //todo: make this a proper error
+        Log.e(TAG, "FAILED to set audioStream value!");
+        return 0;
+    }
+
+    private void initSimilarVideos(final VideoInfo info, VideoInfoItemViewCreator videoItemViewCreator) {
         LinearLayout similarLayout = (LinearLayout) activity.findViewById(R.id.similarVideosView);
-        ArrayList<VideoPreviewInfo> similar = new ArrayList<>(currentVideoInfo.relatedVideos);
+        ArrayList<VideoPreviewInfo> similar = new ArrayList<>(info.related_videos);
         for (final VideoPreviewInfo item : similar) {
             View similarView = videoItemViewCreator
                     .getViewFromVideoInfoItem(null, similarLayout, item, getContext());
@@ -479,20 +654,6 @@ public class VideoItemDetailFragment extends Fragment {
                 e.printStackTrace();
             }
 
-            playVideoButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    actionBarHandler.playVideo();
-                }
-            });
-
-            backgroundButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    actionBarHandler.playVideo();
-                }
-            });
-
             // todo: Fix this workaround (probably with a better design), so that older android
             // versions don't have problems rendering the thumbnail right.
             if(Build.VERSION.SDK_INT >= 18) {
@@ -515,6 +676,59 @@ public class VideoItemDetailFragment extends Fragment {
                 });
             }
         }
+    }
+
+    public void playVideo(final VideoInfo info) {
+        // ----------- THE MAGIC MOMENT ---------------
+        VideoInfo.VideoStream selectedVideoStream =
+                info.video_streams.get(actionBarHandler.getSelectedVideoStream());
+
+        if (PreferenceManager.getDefaultSharedPreferences(activity)
+                .getBoolean(activity.getString(R.string.use_external_video_player_key), false)) {
+
+            // External Player
+            Intent intent = new Intent();
+            try {
+                intent.setAction(Intent.ACTION_VIEW);
+
+                intent.setDataAndType(Uri.parse(selectedVideoStream.url),
+                        MediaFormat.getMimeById(selectedVideoStream.format));
+                intent.putExtra(Intent.EXTRA_TITLE, info.title);
+                intent.putExtra("title", info.title);
+
+                activity.startActivity(intent);      // HERE !!!
+            } catch (Exception e) {
+                e.printStackTrace();
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setMessage(R.string.no_player_found)
+                        .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent();
+                                intent.setAction(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse(activity.getString(R.string.fdroid_vlc_url)));
+                                activity.startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                builder.create().show();
+            }
+        } else {
+            // Internal Player
+            Intent intent = new Intent(activity, PlayVideoActivity.class);
+            intent.putExtra(PlayVideoActivity.VIDEO_TITLE, info.title);
+            intent.putExtra(PlayVideoActivity.STREAM_URL, selectedVideoStream.url);
+            intent.putExtra(PlayVideoActivity.VIDEO_URL, info.webpage_url);
+            intent.putExtra(PlayVideoActivity.START_POSITION, info.start_position);
+            activity.startActivity(intent);     //also HERE !!!
+        }
+
+        // --------------------------------------------
     }
 
     @Override
