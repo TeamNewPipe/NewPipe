@@ -35,7 +35,7 @@ NewPipe does not use any Google framework libraries, or the YouTube API. It only
 * Open a video in Kodi
 * Show Next/Related videos
 * Search YouTube in a specific language
-* Orbot/Tor support (no streaming yet)
+* Orbot/Tor support (no streaming yet, experimental)
 
 ### Coming Features
 
