@@ -49,11 +49,11 @@ import java.util.Vector;
 import org.schabi.newpipe.crawler.MediaFormat;
 import org.schabi.newpipe.crawler.ParsingException;
 import org.schabi.newpipe.crawler.ServiceList;
+import org.schabi.newpipe.crawler.StreamExtractor;
 import org.schabi.newpipe.crawler.VideoPreviewInfo;
-import org.schabi.newpipe.crawler.VideoExtractor;
 import org.schabi.newpipe.crawler.StreamingService;
 import org.schabi.newpipe.crawler.VideoInfo;
-import org.schabi.newpipe.crawler.services.youtube.YoutubeVideoExtractor;
+import org.schabi.newpipe.crawler.services.youtube.YoutubeStreamExtractor;
 
 
 /**
@@ -115,7 +115,7 @@ public class VideoItemDetailFragment extends Fragment {
 
     private class VideoExtractorRunnable implements Runnable {
         private final Handler h = new Handler();
-        private VideoExtractor videoExtractor;
+        private StreamExtractor streamExtractor;
         private final StreamingService service;
         private final String videoUrl;
 
@@ -127,8 +127,8 @@ public class VideoItemDetailFragment extends Fragment {
         @Override
         public void run() {
             try {
-                videoExtractor = service.getExtractorInstance(videoUrl, new Downloader());
-                VideoInfo videoInfo = VideoInfo.getVideoInfo(videoExtractor, new Downloader());
+                streamExtractor = service.getExtractorInstance(videoUrl, new Downloader());
+                VideoInfo videoInfo = VideoInfo.getVideoInfo(streamExtractor, new Downloader());
 
                 h.post(new VideoResultReturnedRunnable(videoInfo));
             } catch (IOException e) {
@@ -136,10 +136,10 @@ public class VideoItemDetailFragment extends Fragment {
                 e.printStackTrace();
             }
             // custom service related exceptions
-            catch (YoutubeVideoExtractor.DecryptException de) {
+            catch (YoutubeStreamExtractor.DecryptException de) {
                 postNewErrorToast(h, R.string.youtube_signature_decryption_error);
                 de.printStackTrace();
-            } catch (YoutubeVideoExtractor.GemaException ge) {
+            } catch (YoutubeStreamExtractor.GemaException ge) {
                 h.post(new Runnable() {
                     @Override
                     public void run() {
@@ -148,7 +148,7 @@ public class VideoItemDetailFragment extends Fragment {
                 });
             }
             // ----------------------------------------
-            catch(VideoExtractor.ContentNotAvailableException e) {
+            catch(StreamExtractor.ContentNotAvailableException e) {
                 h.post(new Runnable() {
                     @Override
                     public void run() {

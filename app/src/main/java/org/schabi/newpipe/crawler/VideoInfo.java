@@ -30,7 +30,7 @@ public class VideoInfo extends AbstractVideoInfo {
 
     /**Fills out the video info fields which are common to all services.
      * Probably needs to be overridden by subclasses*/
-    public static VideoInfo getVideoInfo(VideoExtractor extractor, Downloader downloader)
+    public static VideoInfo getVideoInfo(StreamExtractor extractor, Downloader downloader)
             throws CrawlingException, IOException {
         VideoInfo videoInfo = new VideoInfo();
 
@@ -46,18 +46,34 @@ public class VideoInfo extends AbstractVideoInfo {
         videoInfo.upload_date = extractor.getUploadDate();
         videoInfo.thumbnail_url = extractor.getThumbnailUrl();
         videoInfo.id = uiconv.getVideoId(extractor.getPageUrl());
-        videoInfo.dashMpdUrl = extractor.getDashMpdUrl();
+        //todo: make this quick and dirty solution a real fallback
+        // The front end should be notified that the dash mpd could not be downloaded
+        // although not getting the dash mpd is not the end of the world, therfore
+        // we continue.
+        try {
+            videoInfo.dashMpdUrl = extractor.getDashMpdUrl();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
         /** Load and extract audio*/
         videoInfo.audio_streams = extractor.getAudioStreams();
         if(videoInfo.dashMpdUrl != null && !videoInfo.dashMpdUrl.isEmpty()) {
             if(videoInfo.audio_streams == null) {
                 videoInfo.audio_streams = new Vector<AudioStream>();
             }
-            videoInfo.audio_streams.addAll(
-                    DashMpdParser.getAudioStreams(videoInfo.dashMpdUrl, downloader));
+            //todo: make this quick and dirty solution a real fallback
+            // same as the quick and dirty aboth
+            try {
+                videoInfo.audio_streams.addAll(
+                        DashMpdParser.getAudioStreams(videoInfo.dashMpdUrl, downloader));
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
         }
         /** Extract video stream url*/
         videoInfo.video_streams = extractor.getVideoStreams();
+        /** Extract video only stream url*/
+        videoInfo.video_only_streams = extractor.getVideoOnlyStreams();
         videoInfo.uploader_thumbnail_url = extractor.getUploaderThumbnailUrl();
         videoInfo.start_position = extractor.getTimeStamp();
         videoInfo.average_rating = extractor.getAverageRating();
@@ -78,6 +94,7 @@ public class VideoInfo extends AbstractVideoInfo {
     /*todo: make this lists over vectors*/
     public List<VideoStream> video_streams = null;
     public List<AudioStream> audio_streams = null;
+    public List<VideoStream> video_only_streams = null;
     // video streams provided by the dash mpd do not need to be provided as VideoStream.
     // Later on this will also aplly to audio streams. Since dash mpd is standarized,
     // crawling such a file is not service dependent. Therefore getting audio only streams by yust
@@ -132,6 +149,18 @@ public class VideoInfo extends AbstractVideoInfo {
         public VideoStream(String url, int format, String res) {
             this.url = url; this.format = format; resolution = res;
         }
+
+        // reveals wether two streams are the same, but have diferent urls
+        public boolean equalStats(VideoStream cmp) {
+            return format == cmp.format
+                    && resolution == cmp.resolution;
+        }
+
+        // revelas wether two streams are equal
+        public boolean equals(VideoStream cmp) {
+            return equalStats(cmp)
+                    && url == cmp.url;
+        }
     }
 
     @SuppressWarnings("unused")
@@ -144,6 +173,19 @@ public class VideoInfo extends AbstractVideoInfo {
         public AudioStream(String url, int format, int bandwidth, int samplingRate) {
             this.url = url; this.format = format;
             this.bandwidth = bandwidth; this.sampling_rate = samplingRate;
+        }
+
+        // reveals wether two streams are the same, but have diferent urls
+        public boolean equalStats(AudioStream cmp) {
+            return format == cmp.format
+                    && bandwidth == cmp.bandwidth
+                    && sampling_rate == cmp.sampling_rate;
+        }
+
+        // revelas wether two streams are equal
+        public boolean equals(AudioStream cmp) {
+            return equalStats(cmp)
+                    && url == cmp.url;
         }
     }
 }

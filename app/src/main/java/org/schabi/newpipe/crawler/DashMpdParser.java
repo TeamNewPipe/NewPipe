@@ -74,6 +74,7 @@ public class DashMpdParser {
                         break;
 
                     case XmlPullParser.TEXT:
+                        // actual stream tag
                         if(currentTagIsBaseUrl &&
                                 (currentMimeType.contains("audio"))) {
                             int format = -1;
@@ -86,12 +87,14 @@ public class DashMpdParser {
                                     format, currentBandwidth, currentSamplingRate));
                         }
                         break;
+
                     case XmlPullParser.END_TAG:
                         if(tagName.equals("AdaptationSet")) {
                             currentMimeType = "";
                         } else if(tagName.equals("BaseURL")) {
                             currentTagIsBaseUrl = false;
-                        }//no break needed here
+                        }
+                        break;
                 }
             }
         } catch(Exception e) {

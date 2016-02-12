@@ -1,12 +1,11 @@
 package org.schabi.newpipe.services.youtube;
 
 import android.test.AndroidTestCase;
-import android.util.Log;
 
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.crawler.CrawlingException;
 import org.schabi.newpipe.crawler.ParsingException;
-import org.schabi.newpipe.crawler.services.youtube.YoutubeVideoExtractor;
+import org.schabi.newpipe.crawler.services.youtube.YoutubeStreamExtractor;
 import org.schabi.newpipe.crawler.VideoInfo;
 
 import java.io.IOException;
@@ -31,11 +30,15 @@ import java.io.IOException;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class YoutubeVideoExtractorDefaultTest extends AndroidTestCase {
-    private YoutubeVideoExtractor extractor;
+public class YoutubeStreamExtractorDefaultTest extends AndroidTestCase {
+    private YoutubeStreamExtractor extractor;
 
     public void setUp() throws IOException, CrawlingException {
-        extractor = new YoutubeVideoExtractor("https://www.youtube.com/watch?v=FmG385_uUys",
+        /* some anonymus video test
+        extractor = new YoutubeStreamExtractor("https://www.youtube.com/watch?v=FmG385_uUys",
+                new Downloader()); */
+        /* some vevo video (suggested to test against) */
+        extractor = new YoutubeStreamExtractor("https://www.youtube.com/watch?v=YQHsXMglC9A",
                 new Downloader());
     }
 
@@ -45,8 +48,8 @@ public class YoutubeVideoExtractorDefaultTest extends AndroidTestCase {
     }
 
     public void testGetValidTimeStamp() throws CrawlingException, IOException {
-        YoutubeVideoExtractor extractor =
-                new YoutubeVideoExtractor("https://youtu.be/FmG385_uUys?t=174", new Downloader());
+        YoutubeStreamExtractor extractor =
+                new YoutubeStreamExtractor("https://youtu.be/FmG385_uUys?t=174", new Downloader());
         assertTrue(Integer.toString(extractor.getTimeStamp()),
                 extractor.getTimeStamp() == 174);
     }
@@ -86,7 +89,7 @@ public class YoutubeVideoExtractorDefaultTest extends AndroidTestCase {
     }
 
     public void testGetAudioStreams() throws ParsingException {
-        assertTrue(extractor.getAudioStreams() == null);
+        assertTrue(!extractor.getAudioStreams().isEmpty());
     }
 
     public void testGetVideoStreams() throws ParsingException {
@@ -97,5 +100,10 @@ public class YoutubeVideoExtractorDefaultTest extends AndroidTestCase {
             assertTrue(Integer.toString(s.format),
                     0 <= s.format && s.format <= 4);
         }
+    }
+
+    public void testGetDashMpd() throws ParsingException {
+        assertTrue(extractor.getDashMpdUrl(),
+                !extractor.getDashMpdUrl().isEmpty());
     }
 }

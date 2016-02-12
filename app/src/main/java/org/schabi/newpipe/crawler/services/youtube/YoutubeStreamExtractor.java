@@ -1,5 +1,6 @@
 package org.schabi.newpipe.crawler.services.youtube;
 
+import android.provider.MediaStore;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -7,16 +8,15 @@ import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.parser.Parser;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
 import org.schabi.newpipe.crawler.CrawlingException;
 import org.schabi.newpipe.crawler.Downloader;
+import org.schabi.newpipe.crawler.Parser;
 import org.schabi.newpipe.crawler.ParsingException;
-import org.schabi.newpipe.crawler.RegexHelper;
 import org.schabi.newpipe.crawler.VideoUrlIdHandler;
-import org.schabi.newpipe.crawler.VideoExtractor;
+import org.schabi.newpipe.crawler.StreamExtractor;
 import org.schabi.newpipe.crawler.MediaFormat;
 import org.schabi.newpipe.crawler.VideoInfo;
 import org.schabi.newpipe.crawler.VideoPreviewInfo;
@@ -32,7 +32,7 @@ import java.util.Vector;
  * Created by Christian Schabesberger on 06.08.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * YoutubeVideoExtractor.java is part of NewPipe.
+ * YoutubeStreamExtractor.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,7 +48,98 @@ import java.util.Vector;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class YoutubeVideoExtractor implements VideoExtractor {
+public class YoutubeStreamExtractor implements StreamExtractor {
+
+    public enum ItagType {
+        AUDIO,
+        VIDEO,
+        VIDEO_ONLY
+    }
+
+    private static class ItagItem {
+        public ItagItem(int id, ItagType type, MediaFormat format, String res, int fps) {
+            this.id = id;
+            this.itagType = type;
+            this.mediaFormatId = format.id;
+            this.resolutionString = res;
+            this.fps = fps;
+        }
+        public ItagItem(int id, ItagType type, MediaFormat format, int samplingRate, int bandWidth) {
+            this.id = id;
+            this.itagType = type;
+            this.mediaFormatId = format.id;
+            this.samplingRate = samplingRate;
+            this.bandWidth = bandWidth;
+        }
+        public int id;
+        public ItagType itagType;
+        public int mediaFormatId;
+        public String resolutionString = null;
+        public int fps = -1;
+        public int samplingRate = -1;
+        public int bandWidth = -1;
+    }
+
+    private static final ItagItem[] itagList = {
+            // video streams
+            //           id, ItagType,       MediaFormat,    Resolution, fps
+            new ItagItem(17, ItagType.VIDEO, MediaFormat.v3GPP, "144p", 12),
+            new ItagItem(18, ItagType.VIDEO, MediaFormat.MPEG_4, "360p", 24),
+            new ItagItem(22, ItagType.VIDEO, MediaFormat.MPEG_4, "720p", 24),
+            new ItagItem(36, ItagType.VIDEO, MediaFormat.v3GPP, "240p", 24),
+            new ItagItem(37, ItagType.VIDEO, MediaFormat.MPEG_4, "1080p", 24),
+            new ItagItem(38, ItagType.VIDEO, MediaFormat.MPEG_4, "1080p", 24),
+            new ItagItem(43, ItagType.VIDEO, MediaFormat.WEBM, "360p", 24),
+            new ItagItem(44, ItagType.VIDEO, MediaFormat.WEBM, "480p", 24),
+            new ItagItem(45, ItagType.VIDEO, MediaFormat.WEBM, "720p", 24),
+            new ItagItem(46, ItagType.VIDEO, MediaFormat.WEBM, "1080p", 24),
+            // audio streams
+            //           id, ItagType,       MediaFormat,    samplingR, bandwidth
+            new ItagItem(249, ItagType.AUDIO, MediaFormat.WEBMA, 0, 0),  // bandwith/samplingR 0 because not known
+            new ItagItem(250, ItagType.AUDIO, MediaFormat.WEBMA, 0, 0),
+            new ItagItem(171, ItagType.AUDIO, MediaFormat.WEBMA, 0, 0),
+            new ItagItem(140, ItagType.AUDIO, MediaFormat.M4A, 0, 0),
+            new ItagItem(251, ItagType.AUDIO, MediaFormat.WEBMA, 0, 0),
+            // video only streams
+            new ItagItem(160, ItagType.VIDEO_ONLY, MediaFormat.MPEG_4, "144p", 24),
+            new ItagItem(133, ItagType.VIDEO_ONLY, MediaFormat.MPEG_4, "240p", 24),
+            new ItagItem(134, ItagType.VIDEO_ONLY, MediaFormat.MPEG_4, "360p", 24),
+            new ItagItem(135, ItagType.VIDEO_ONLY, MediaFormat.MPEG_4, "480p", 24),
+            new ItagItem(136, ItagType.VIDEO_ONLY, MediaFormat.MPEG_4, "720p", 24),
+            new ItagItem(137, ItagType.VIDEO_ONLY, MediaFormat.MPEG_4, "1080p", 24),
+    };
+
+    /**These lists only contain itag formats that are supported by the common Android Video player.
+     However if you are looking for a list showing all itag formats, look at
+     https://github.com/rg3/youtube-dl/issues/1687 */
+
+    public static boolean itagIsSupported(int itag) {
+        for(ItagItem item : itagList) {
+            if(itag == item.id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static ItagItem getItagItem(int itag) throws ParsingException {
+        for(ItagItem item : itagList) {
+            if(itag == item.id) {
+                return item;
+            }
+        }
+        throw new ParsingException("itag=" + Integer.toString(itag) + " not supported");
+    }
+
+    // Sometimes if the html page of youtube is already downloaded, youtube web page will internally
+    // download the /get_video_info page. Since a certain date dashmpd url is only available over
+    // this /get_video_info page, so we always need to download this one to.
+    // %%video_id%% will be replaced by the actual video id
+    // $$el_type$$ will be replaced by the actual el_type (se the declarations below)
+    private static final String GET_VIDEO_INFO_URL =
+            "https://www.youtube.com/get_video_info?video_id=%%video_id%%$$el_type$$&ps=default&eurl=&gl=US&hl=en";
+    // eltype is nececeary for the url aboth
+    private static final String EL_INFO = "el=info";
 
     public class DecryptException extends ParsingException {
         DecryptException(Throwable cause) {
@@ -69,9 +160,10 @@ public class YoutubeVideoExtractor implements VideoExtractor {
 
     // ----------------
 
-    private static final String TAG = YoutubeVideoExtractor.class.toString();
+    private static final String TAG = YoutubeStreamExtractor.class.toString();
     private final Document doc;
     private JSONObject playerArgs;
+    private Map<String, String> videoInfoPage;
 
     // static values
     private static final String DECRYPTION_FUNC_NAME="decrypt";
@@ -84,7 +176,7 @@ public class YoutubeVideoExtractor implements VideoExtractor {
 
     private Downloader downloader;
 
-    public YoutubeVideoExtractor(String pageUrl, Downloader dl) throws CrawlingException, IOException {
+    public YoutubeStreamExtractor(String pageUrl, Downloader dl) throws CrawlingException, IOException {
         //most common videoInfo fields are now set in our superclass, for all services
         downloader = dl;
         this.pageUrl = pageUrl;
@@ -96,10 +188,10 @@ public class YoutubeVideoExtractor implements VideoExtractor {
         //attempt to load the youtube js player JSON arguments
         try {
             ytPlayerConfigRaw =
-                    RegexHelper.matchGroup1("ytplayer.config\\s*=\\s*(\\{.*?\\});", pageContent);
+                    Parser.matchGroup1("ytplayer.config\\s*=\\s*(\\{.*?\\});", pageContent);
             ytPlayerConfig = new JSONObject(ytPlayerConfigRaw);
             playerArgs = ytPlayerConfig.getJSONObject("args");
-        } catch (RegexHelper.RegexException e) {
+        } catch (Parser.RegexException e) {
             String errorReason = findErrorReason(doc);
             switch(errorReason) {
                 case "GEMA":
@@ -111,6 +203,17 @@ public class YoutubeVideoExtractor implements VideoExtractor {
             }
         } catch (JSONException e) {
             throw new ParsingException("Could not parse yt player config");
+        }
+
+
+        // get videoInfo page
+        try {
+            //Parser.unescapeEntities(url_data_str, true).split("&")
+            String getVideoInfoUrl = GET_VIDEO_INFO_URL.replace("%%video_id%%",
+                    urlidhandler.getVideoId(pageUrl)).replace("$$el_type$$", "&" + EL_INFO);
+            videoInfoPage = Parser.compatParseMap(downloader.download(getVideoInfoUrl));
+        } catch(Exception e) {
+            throw new ParsingException("Could not load video info page.", e);
         }
 
         //----------------------------------
@@ -211,7 +314,8 @@ public class YoutubeVideoExtractor implements VideoExtractor {
             return doc.select("link[itemprop=\"thumbnailUrl\"]").first().attr("abs:href");
         } catch(Exception e) {
             Log.w(TAG, "Could not find high res Thumbnail. Using low res instead");
-        } try { //fall through to fallback
+        }
+        try { //fall through to fallback
             return playerArgs.getString("thumbnail_url");
         } catch (JSONException je) {
             throw new ParsingException(
@@ -232,10 +336,11 @@ public class YoutubeVideoExtractor implements VideoExtractor {
 
     @Override
     public String getDashMpdUrl() throws ParsingException {
+        /*
         try {
             String dashManifest = playerArgs.getString("dashmpd");
             if(!dashManifest.contains("/signature/")) {
-                String encryptedSig = RegexHelper.matchGroup1("/s/([a-fA-F0-9\\.]+)", dashManifest);
+                String encryptedSig = Parser.matchGroup1("/s/([a-fA-F0-9\\.]+)", dashManifest);
                 String decryptedSig;
 
                 decryptedSig = decryptSignature(encryptedSig, decryptionCode);
@@ -243,47 +348,95 @@ public class YoutubeVideoExtractor implements VideoExtractor {
             }
 
             return dashManifest;
-        } catch(NullPointerException e) {
+        } catch(JSONException je) {
             throw new ParsingException(
-                    "Could not find \"dashmpd\" upon the player args (maybe no dash manifest available).", e);
+                    "Could not find \"dashmpd\" upon the player args (maybe no dash manifest available).", je);
         } catch (Exception e) {
             throw new ParsingException(e);
         }
+        */
+        try {
+            String dashManifestUrl = videoInfoPage.get("dashmpd");
+            if(!dashManifestUrl.contains("/signature/")) {
+                String encryptedSig = Parser.matchGroup1("/s/([a-fA-F0-9\\.]+)", dashManifestUrl);
+                String decryptedSig;
+
+                decryptedSig = decryptSignature(encryptedSig, decryptionCode);
+                dashManifestUrl = dashManifestUrl.replace("/s/" + encryptedSig, "/signature/" + decryptedSig);
+            }
+            return dashManifestUrl;
+        } catch (Exception e) {
+            throw new ParsingException(
+                    "Could not get \"dashmpd\" maybe VideoInfoPage is broken.", e);
+        }
     }
+
 
     @Override
     public List<VideoInfo.AudioStream> getAudioStreams() throws ParsingException {
-        /* If we provide a valid dash manifest, we don't need to provide audio streams extra */
-        return null;
+        Vector<VideoInfo.AudioStream> audioStreams = new Vector<>();
+        try{
+            String encoded_url_map = playerArgs.getString("adaptive_fmts");
+            for(String url_data_str : encoded_url_map.split(",")) {
+                // This loop iterates through multiple streams, therefor tags
+                // is related to one and the same stream at a time.
+                Map<String, String> tags = Parser.compatParseMap(
+                        org.jsoup.parser.Parser.unescapeEntities(url_data_str, true));
+
+                int itag = Integer.parseInt(tags.get("itag"));
+
+                if (itagIsSupported(itag)) {
+                    ItagItem itagItem = getItagItem(itag);
+                    if (itagItem.itagType == ItagType.AUDIO) {
+                        String streamUrl = tags.get("url");
+                        // if video has a signature: decrypt it and add it to the url
+                        if (tags.get("s") != null) {
+                            streamUrl = streamUrl + "&signature="
+                                    + decryptSignature(tags.get("s"), decryptionCode);
+                        }
+
+                        audioStreams.add(new VideoInfo.AudioStream(streamUrl,
+                                itagItem.mediaFormatId,
+                                itagItem.bandWidth,
+                                itagItem.samplingRate));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            throw new ParsingException("Could not get audiostreams", e);
+        }
+        return audioStreams;
     }
 
     @Override
     public List<VideoInfo.VideoStream> getVideoStreams() throws ParsingException {
         Vector<VideoInfo.VideoStream> videoStreams = new Vector<>();
+
         try{
             String encoded_url_map = playerArgs.getString("url_encoded_fmt_stream_map");
             for(String url_data_str : encoded_url_map.split(",")) {
                 try {
-                    Map<String, String> tags = new HashMap<>();
-                    for (String raw_tag : Parser.unescapeEntities(url_data_str, true).split("&")) {
-                        String[] split_tag = raw_tag.split("=");
-                        tags.put(split_tag[0], split_tag[1]);
-                    }
+                    // This loop iterates through multiple streams, therefor tags
+                    // is related to one and the same stream at a time.
+                    Map<String, String> tags = Parser.compatParseMap(
+                            org.jsoup.parser.Parser.unescapeEntities(url_data_str, true));
 
                     int itag = Integer.parseInt(tags.get("itag"));
-                    String streamUrl = URLDecoder.decode(tags.get("url"), "UTF-8");
 
-                    // if video has a signature: decrypt it and add it to the url
-                    if (tags.get("s") != null) {
-                        streamUrl = streamUrl + "&signature="
-                                + decryptSignature(tags.get("s"), decryptionCode);
-                    }
-
-                    if (resolveFormat(itag) != -1) {
-                        videoStreams.add(new VideoInfo.VideoStream(
-                                streamUrl,
-                                resolveFormat(itag),
-                                resolveResolutionString(itag)));
+                    if (itagIsSupported(itag)) {
+                        ItagItem itagItem = getItagItem(itag);
+                        if(itagItem.itagType == ItagType.VIDEO) {
+                            String streamUrl = tags.get("url");
+                            // if video has a signature: decrypt it and add it to the url
+                            if (tags.get("s") != null) {
+                                streamUrl = streamUrl + "&signature="
+                                        + decryptSignature(tags.get("s"), decryptionCode);
+                            }
+                            videoStreams.add(new VideoInfo.VideoStream(
+                                    streamUrl,
+                                    itagItem.mediaFormatId,
+                                    itagItem.resolutionString));
+                        }
                     }
                 } catch (Exception e) {
                     Log.w(TAG, "Could not get Video stream.");
@@ -298,19 +451,23 @@ public class YoutubeVideoExtractor implements VideoExtractor {
         if(videoStreams.isEmpty()) {
             throw new ParsingException("Failed to get any video stream");
         }
-
         return videoStreams;
+    }
+
+    @Override
+    public List<VideoInfo.VideoStream> getVideoOnlyStreams() throws ParsingException {
+        return null;
     }
 
     /**Attempts to parse (and return) the offset to start playing the video from.
      * @return the offset (in seconds), or 0 if no timestamp is found.*/
     @Override
     public int getTimeStamp() throws ParsingException {
-        //todo: add unit test for timestamp
+        //todo: use video_info for getting timestamp
         String timeStamp;
         try {
-            timeStamp = RegexHelper.matchGroup1("((#|&|\\?)t=\\d{0,3}h?\\d{0,3}m?\\d{1,3}s?)", pageUrl);
-        } catch (RegexHelper.RegexException e) {
+            timeStamp = Parser.matchGroup1("((#|&|\\?)t=\\d{0,3}h?\\d{0,3}m?\\d{1,3}s?)", pageUrl);
+        } catch (Parser.RegexException e) {
             // catch this instantly since an url does not necessarily have to have a time stamp
 
             // -2 because well the testing system will then know its the regex that failed :/
@@ -318,22 +475,21 @@ public class YoutubeVideoExtractor implements VideoExtractor {
             return -2;
         }
 
-        //TODO: test this
         if(!timeStamp.isEmpty()) {
             try {
                 String secondsString = "";
                 String minutesString = "";
                 String hoursString = "";
                 try {
-                    secondsString = RegexHelper.matchGroup1("(\\d{1,3})s", timeStamp);
-                    minutesString = RegexHelper.matchGroup1("(\\d{1,3})m", timeStamp);
-                    hoursString = RegexHelper.matchGroup1("(\\d{1,3})h", timeStamp);
+                    secondsString = Parser.matchGroup1("(\\d{1,3})s", timeStamp);
+                    minutesString = Parser.matchGroup1("(\\d{1,3})m", timeStamp);
+                    hoursString = Parser.matchGroup1("(\\d{1,3})h", timeStamp);
                 } catch (Exception e) {
                     //it could be that time is given in another method
                     if (secondsString.isEmpty() //if nothing was got,
                             && minutesString.isEmpty()//treat as unlabelled seconds
                             && hoursString.isEmpty()) {
-                        secondsString = RegexHelper.matchGroup1("t=(\\d{1,3})", timeStamp);
+                        secondsString = Parser.matchGroup1("t=(\\d{1,3})", timeStamp);
                     }
                 }
 
@@ -446,7 +602,7 @@ public class YoutubeVideoExtractor implements VideoExtractor {
             info.webpage_url = li.select("a.content-link").first()
                     .attr("abs:href");
 
-            info.id = RegexHelper.matchGroup1("v=([0-9a-zA-Z-]*)", info.webpage_url);
+            info.id = Parser.matchGroup1("v=([0-9a-zA-Z-]*)", info.webpage_url);
 
             //todo: check NullPointerException causing
             info.title = li.select("span.title").first().text();
@@ -498,19 +654,19 @@ public class YoutubeVideoExtractor implements VideoExtractor {
             String playerCode = downloader.download(playerUrl);
 
             decryptionFuncName =
-                    RegexHelper.matchGroup1("\\.sig\\|\\|([a-zA-Z0-9$]+)\\(", playerCode);
+                    Parser.matchGroup1("\\.sig\\|\\|([a-zA-Z0-9$]+)\\(", playerCode);
 
             String functionPattern = "("
                     + decryptionFuncName.replace("$", "\\$")
                     + "=function\\([a-zA-Z0-9_]*\\)\\{.+?\\})";
-            decryptionFunc = "var " + RegexHelper.matchGroup1(functionPattern, playerCode) + ";";
+            decryptionFunc = "var " + Parser.matchGroup1(functionPattern, playerCode) + ";";
 
-            helperObjectName = RegexHelper
+            helperObjectName = Parser
                     .matchGroup1(";([A-Za-z0-9_\\$]{2})\\...\\(", decryptionFunc);
 
             String helperPattern = "(var "
                     + helperObjectName.replace("$", "\\$") + "=\\{.+?\\}\\};)";
-            helperObject = RegexHelper.matchGroup1(helperPattern, playerCode);
+            helperObject = Parser.matchGroup1(helperPattern, playerCode);
 
 
             callerFunc = callerFunc.replace("%%", decryptionFuncName);
@@ -552,49 +708,5 @@ public class YoutubeVideoExtractor implements VideoExtractor {
             return "GEMA";
         }
         return "";
-    }
-
-    /**These lists only contain itag formats that are supported by the common Android Video player.
-     However if you are looking for a list showing all itag formats, look at
-     https://github.com/rg3/youtube-dl/issues/1687 */
-
-    @SuppressWarnings("WeakerAccess")
-    public static int resolveFormat(int itag) {
-        switch(itag) {
-            // !!! lists only supported formats !!!
-            // video
-            case 17: return MediaFormat.v3GPP.id;
-            case 18: return MediaFormat.MPEG_4.id;
-            case 22: return MediaFormat.MPEG_4.id;
-            case 36: return MediaFormat.v3GPP.id;
-            case 37: return MediaFormat.MPEG_4.id;
-            case 38: return MediaFormat.MPEG_4.id;
-            case 43: return MediaFormat.WEBM.id;
-            case 44: return MediaFormat.WEBM.id;
-            case 45: return MediaFormat.WEBM.id;
-            case 46: return MediaFormat.WEBM.id;
-            default:
-                //Log.i(TAG, "Itag " + Integer.toString(itag) + " not known or not supported.");
-                return -1;
-        }
-    }
-
-    @SuppressWarnings("WeakerAccess")
-    public static String resolveResolutionString(int itag) {
-        switch(itag) {
-            case 17: return "144p";
-            case 18: return "360p";
-            case 22: return "720p";
-            case 36: return "240p";
-            case 37: return "1080p";
-            case 38: return "1080p";
-            case 43: return "360p";
-            case 44: return "480p";
-            case 45: return "720p";
-            case 46: return "1080p";
-            default:
-                //Log.i(TAG, "Itag " + Integer.toString(itag) + " not known or not supported.");
-                return null;
-        }
     }
 }

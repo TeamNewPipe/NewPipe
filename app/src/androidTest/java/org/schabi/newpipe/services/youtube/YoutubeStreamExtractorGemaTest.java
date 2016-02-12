@@ -4,9 +4,7 @@ import android.test.AndroidTestCase;
 
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.crawler.CrawlingException;
-import org.schabi.newpipe.crawler.services.youtube.YoutubeVideoExtractor;
-import org.schabi.newpipe.crawler.VideoInfo;
-import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.crawler.services.youtube.YoutubeStreamExtractor;
 
 import java.io.IOException;
 
@@ -32,7 +30,7 @@ import java.io.IOException;
 
 
 // This class only works in Germany.
-public class YoutubeVideoExtractorGemaTest extends AndroidTestCase {
+public class YoutubeStreamExtractorGemaTest extends AndroidTestCase {
 
     // Deaktivate this Test Case bevore uploading it githup, otherwise CI will fail.
     private static final boolean testActive = false;
@@ -40,10 +38,10 @@ public class YoutubeVideoExtractorGemaTest extends AndroidTestCase {
     public void testGemaError() throws IOException, CrawlingException {
         if(testActive) {
             try {
-                new YoutubeVideoExtractor("https://www.youtube.com/watch?v=3O1_3zBUKM8",
+                new YoutubeStreamExtractor("https://www.youtube.com/watch?v=3O1_3zBUKM8",
                         new Downloader());
                 assertTrue("Gema exception not thrown", false);
-            } catch(YoutubeVideoExtractor.GemaException ge) {
+            } catch(YoutubeStreamExtractor.GemaException ge) {
                 assertTrue(true);
             }
         }

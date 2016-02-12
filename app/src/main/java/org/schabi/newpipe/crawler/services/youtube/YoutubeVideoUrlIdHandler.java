@@ -1,7 +1,7 @@
 package org.schabi.newpipe.crawler.services.youtube;
 
+import org.schabi.newpipe.crawler.Parser;
 import org.schabi.newpipe.crawler.ParsingException;
-import org.schabi.newpipe.crawler.RegexHelper;
 import org.schabi.newpipe.crawler.VideoUrlIdHandler;
 
 /**
@@ -47,7 +47,7 @@ public class YoutubeVideoUrlIdHandler implements VideoUrlIdHandler {
             throw new ParsingException("Error no suitable url: " + url);
         }
 
-        id = RegexHelper.matchGroup1(pat, url);
+        id = Parser.matchGroup1(pat, url);
         if(!id.isEmpty()){
             //Log.i(TAG, "string \""+url+"\" matches!");
             return id;

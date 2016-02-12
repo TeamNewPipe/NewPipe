@@ -4,7 +4,7 @@ package org.schabi.newpipe.crawler;
  * Created by Christian Schabesberger on 10.08.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * VideoExtractor.java is part of NewPipe.
+ * StreamExtractor.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ import java.util.List;
 
 
 @SuppressWarnings("ALL")
-public interface VideoExtractor {
+public interface StreamExtractor {
 
     public class ExctractorInitException extends CrawlingException {
         public ExctractorInitException() {}
@@ -65,6 +65,7 @@ public interface VideoExtractor {
     public abstract String getUploaderThumbnailUrl() throws ParsingException;
     public abstract List<VideoInfo.AudioStream> getAudioStreams() throws ParsingException;
     public abstract List<VideoInfo.VideoStream> getVideoStreams() throws ParsingException;
+    public abstract List<VideoInfo.VideoStream> getVideoOnlyStreams() throws ParsingException;
     public abstract String getDashMpdUrl() throws ParsingException;
     public abstract int getAgeLimit() throws ParsingException;
     public abstract String getAverageRating() throws ParsingException;

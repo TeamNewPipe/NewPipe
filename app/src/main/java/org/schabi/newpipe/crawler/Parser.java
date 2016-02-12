@@ -1,5 +1,9 @@
 package org.schabi.newpipe.crawler;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -7,7 +11,7 @@ import java.util.regex.Pattern;
  * Created by Christian Schabesberger on 02.02.16.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * RegexHelper.java is part of NewPipe.
+ * Parser.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +28,7 @@ import java.util.regex.Pattern;
  */
 
 /** avoid using regex !!! */
-public class RegexHelper {
+public class Parser {
 
     public static class RegexException extends ParsingException {
         public RegexException(String message) {
@@ -43,5 +47,14 @@ public class RegexHelper {
             //Log.e(TAG, "failed to find pattern \""+pattern+"\" inside of \""+input+"\"");
             throw new RegexException("failed to find pattern \""+pattern+" inside of "+input+"\"");
         }
+    }
+
+    public static Map<String, String> compatParseMap(final String input) throws UnsupportedEncodingException {
+        Map<String, String> map = new HashMap<>();
+        for(String arg : input.split("&")) {
+            String[] split_arg = arg.split("=");
+            map.put(split_arg[0], URLDecoder.decode(split_arg[1], "UTF-8"));
+        }
+        return map;
     }
 }
