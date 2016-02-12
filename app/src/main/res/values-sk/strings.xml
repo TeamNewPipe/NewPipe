@@ -1,2 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="background_player_name">NewPipe Prehrávač na pozadí</string>
+    <string name="view_count_text">%1$s pozretí</string>
+    <string name="upload_date_text">Zverejnené %1$s</string>
+    <string name="no_player_found">Nenašiel sa prehrávač. Nainštalovať VLC?</string>
+    <string name="install">Inštalovať</string>
+    <string name="cancel">Zrušiť</string>
+    <string name="open_in_browser">Otvoriť v prehliadači</string>
+    <string name="share">Zdieľať</string>
+    <string name="loading">Nahrávanie</string>
+    <string name="download">Prevziať</string>
+    <string name="search">Hľadať</string>
+    <string name="settings">Nastavenia</string>
+    <string name="did_you_mean">"Mysleli ste: "</string>
+    <string name="search_page">"Hľadať stránku: "</string>
+    <string name="share_dialog_title">Zdieľať s:</string>
+    <string name="choose_browser">Vyberte prehliadač:</string>
+    <string name="screen_rotation">otočenie</string>
+    <string name="settings_activity_title">Nastavenia</string>
+    <string name="use_external_video_player_title">Použiť externý prehrávač videa</string>
+    <string name="use_external_audio_player_title">Použiť externý prehravač zvuku</string>
+
+    <string name="download_path_title">Prevzaté video ukladať do</string>
+    <string name="download_path_summary">Cesta kam sa budú ukladať prevzaté videá.</string>
+    <string name="download_path_dialog_title">Vložte cestu kam sa budú ukladať videá</string>
+
+    <string name="download_path_audio_title">Prevzaté audio ukladať do</string>
+    <string name="download_path_audio_dialog_title">Vložte cestu kam sa bude ukladať audio</string>
+
+    <string name="download_path_audio_summary">Cesta kam sa bude ukladať prevzaté audio.</string>
+    <string name="autoplay_through_intent_title">Automatické prehrávanie na vyžiadanie</string>
+    <string name="autoplay_through_intent_summary">Automatický prehrá video na žiadosť z inej aplikácie.</string>
+    <string name="default_resolution_title">Štandardné rozlíšenie</string>
+    <string name="play_with_kodi_title">Prehrať cez Kodi</string>
+    <string name="kore_not_found">Aplikácia Kore nenajdená. Inštalovať Kore?</string>
+    <string name="show_play_with_kodi_title">Zobraziť možnosť \"Prehrať cez Kodi\"</string>
+    <string name="show_play_with_kodi_summary">Zobrazovať možnosť prehrať video cez mediálne centrum Kodi.</string>
+    <string name="play_audio">Zvuk</string>
+    <string name="default_audio_format_title">Predvolený zvukový formát</string>
+    <string name="webm_description">WebM — voľný formát</string>
+    <string name="m4a_description">m4a — lepšia kvalita</string>
+    <string name="theme_title">Téma</string>
+    <string name="dark_theme_title">Tmavá</string>
+    <string name="light_theme_title">Svetlá</string>
+
+    <string name="download_dialog_title">Prevziať</string>
+    <string name="next_video_title">Ďaľšie video</string>
+    <string name="show_next_and_similar_title">Ukázať ďaľšie a podobné videá</string>
+    <string name="url_not_supported_toast">URL nie je podporovaná</string>
+    <string name="similar_videos_btn_text">Podobné videá</string>
+    <string name="search_language_title">Preferovaný jazyk obsahu</string>
+    <string name="settings_category_video_audio_title">Video &amp; Zvuk</string>
+    <string name="settings_category_appearance_title">Vzhľad</string>
+    <string name="settings_category_other_title">Iné</string>
+    <string name="background_player_playing_toast">Prehrávanie na pozadí</string>
+    <string name="play_btn_text">Prehrať</string>
+    <string name="general_error">Chyba</string>
+    <string name="network_error">Chyba siete</string>
+    <string name="could_not_load_thumbnails">Nemožno zobraziť všetky náhľady</string>
+    <string name="youtube_signature_decryption_error">Nepodarilo sa dekódovať url videa.</string>
+    <string name="parsing_error">Nemožno analyzovať webovú stránku.</string>
+    <string name="content_not_available">Obsah nie je dostupný.</string>
+    <string name="blocked_by_gema">Obsah blokuje GEMA.</string>
+
+    <string name="list_thumbnail_view_description">Náhľad videa</string>
+    <string name="detail_thumbnail_view_description">Náhľad videa</string>
+    <string name="detail_uploader_thumbnail_view_description">Náhľad uploadera</string>
+    <string name="detail_likes_img_view_description">Lajky</string>
+    <string name="detail_dislikes_img_view_description">Dislajky</string>
+    <string name="use_tor_title">Použit Tor</string>
+    <string name="use_tor_summary">Vyžadovať preberanie cez Tor pre väčšie súkromie (streamovanie videa momentálne nie je podporované)</string>
+
+    <string name="err_dir_create">Nemožno vytvoriť adresár na preberanie \'%1$s\'</string>
+    <string name="info_dir_created">Adresár na preberanie bol vytvorený \'%1$s\'</string>
+</resources>
