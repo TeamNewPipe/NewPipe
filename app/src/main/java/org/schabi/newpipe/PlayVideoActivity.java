@@ -130,7 +130,7 @@ public class PlayVideoActivity extends AppCompatActivity {
             public void onPrepared(MediaPlayer mp) {
                 progressBar.setVisibility(View.GONE);
                 videoView.seekTo(position);
-                if (position == 0) {
+                if (position <= 0) {
                     videoView.start();
                     showUi();
                 } else {

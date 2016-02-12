@@ -111,7 +111,7 @@ public class VideoInfo extends AbstractVideoInfo {
     public VideoPreviewInfo next_video = null;
     public List<VideoPreviewInfo> related_videos = null;
     //in seconds. some metadata is not passed using a VideoInfo object!
-    public int start_position = -1;
+    public int start_position = 0;
     //todo: public int service_id = -1;
 
     public VideoInfo() {}

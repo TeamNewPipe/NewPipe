@@ -463,7 +463,6 @@ public class YoutubeStreamExtractor implements StreamExtractor {
      * @return the offset (in seconds), or 0 if no timestamp is found.*/
     @Override
     public int getTimeStamp() throws ParsingException {
-        //todo: use video_info for getting timestamp
         String timeStamp;
         try {
             timeStamp = Parser.matchGroup1("((#|&|\\?)t=\\d{0,3}h?\\d{0,3}m?\\d{1,3}s?)", pageUrl);
@@ -505,7 +504,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
                 throw new ParsingException("Could not get timestamp.", e);
             }
         } else {
-            return -1;
+            return 0;
         }
     }
 
