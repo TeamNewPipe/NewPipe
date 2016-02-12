@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="view_count_text">%1$s Aufrufe</string>
     <string name="upload_date_text">Hochgeladen am %1$s</string>
@@ -22,14 +22,14 @@
     <string name="download_path_dialog_title">Download-Verzeichnis für Videos eingeben</string>
     <string name="autoplay_through_intent_title">Automatisches Abspielen durch Intent</string>
     <string name="autoplay_through_intent_summary">Startet ein Video automatisch wenn es von einer anderen App aufgerufen wurde.</string>
-    <string name="default_resolution_title">Standard Auflösung</string>
+    <string name="default_resolution_title">Standardauflösung</string>
     <string name="play_with_kodi_title">Mit Kodi abspielen</string>
     <string name="kore_not_found">Kore App wurde nicht gefunden. Möchten sie Kore jetzt installieren?</string>
     <string name="installeKore">Kore installieren</string>
     <string name="show_play_with_kodi_title">Zeige \"Mit Kodi abspielen\" Option</string>
     <string name="show_play_with_kodi_summary">Zeigt eine Option an, über die man Videos mit dem Kodi Mediacenter abspielen kann.</string>
     <string name="play_audio">Audio</string>
-    <string name="default_audio_format_title">Bevorzugtes Audio Format</string>
+    <string name="default_audio_format_title">Bevorzugtes Audioformat</string>
     <string name="webm_description">WebM — freies Format</string>
     <string name="m4a_description">m4a — bessere Qualität</string>
     <string name="download_dialog_title">Herunterladen</string>
@@ -43,8 +43,8 @@
     <string name="similar_videos_btn_text">Ähnliche Videos</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
     <string name="search_language_title">Bevorzugte Sprache des Inhalts</string>
-    <string name="list_thumbnail_view_description">Video-Vorschau-Bild</string>
-    <string name="detail_thumbnail_view_description">Video-Vorschau-Bild</string>
+    <string name="list_thumbnail_view_description">Video-Vorschaubild</string>
+    <string name="detail_thumbnail_view_description">Video-Vorschaubild</string>
     <string name="detail_uploader_thumbnail_view_description">Nutzerbild</string>
     <string name="detail_dislikes_img_view_description">Gefällt nicht</string>
     <string name="detail_likes_img_view_description">Gefällt</string>
@@ -57,10 +57,10 @@
     <string name="use_tor_title">Benutze TOR</string>
     <string name="use_tor_summary">Erzwinge das Herunterladen durch TOR für verbesserte Privatsphäre (Videostream noch nicht unterstützt)</string>
 <string name="background_player_name">NewPipe Hintergrundwiedergabe</string>
-    <string name="network_error">Netzwerk Fehler</string>
+    <string name="network_error">Netzwerkfehler</string>
 
     <string name="download_path_audio_title">Download-Verzeichnis für Musik</string>
-    <string name="download_path_audio_summary">Verzeichnis um heruntergeladene Audiodateien zu speichern.</string>
+    <string name="download_path_audio_summary">Verzeichnis zum Speichern heruntergeladener Audiodateien.</string>
     <string name="download_path_audio_dialog_title">Pfad für heruntergeladene Audiodateien eingeben.</string>
 
     <string name="theme_title">Aussehen</string>
@@ -70,5 +70,12 @@
     <string name="settings_category_appearance_title">Aussehen</string>
     <string name="settings_category_other_title">Andere</string>
     <string name="err_dir_create">Kann Downloadverzeichnis nicht anlegen \'%1$s\'</string>
-    <string name="info_dir_created">Erstelle Download Verzeichnis \'%1$s\'</string>
-</resources>
+    <string name="info_dir_created">Downloadverzeichnis \'%1$s\' erstellt</string>
+<string name="general_error">Fehler</string>
+    <string name="could_not_load_thumbnails">Konnte nicht alle Vorschaubilder laden</string>
+    <string name="youtube_signature_decryption_error">Konnte Video-URL-Signatur nicht entschlüsseln.</string>
+    <string name="parsing_error">Konnte Webseite nicht parsen.</string>
+    <string name="content_not_available">Inhalt nicht verfügbar.</string>
+    <string name="blocked_by_gema">Durch die GEMA gesperrt.</string>
+
+    </resources>
