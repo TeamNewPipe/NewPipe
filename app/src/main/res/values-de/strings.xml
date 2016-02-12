@@ -19,7 +19,7 @@
     <string name="useExternalPlayerTitle">Externen Player benutzen</string>
     <string name="download_path_title">Downloadverzeichnis für Videos</string>
     <string name="download_path_summary">Verzeichnis in dem heruntergeladene Videos gespeichert werden.</string>
-    <string name="download_path_dialog_title">Download-Verzeichnis für Videos eingeben</string>
+    <string name="download_path_dialog_title">Downloadverzeichnis für Videos eingeben</string>
     <string name="autoplay_through_intent_title">Automatisches Abspielen durch Intent</string>
     <string name="autoplay_through_intent_summary">Startet ein Video automatisch wenn es von einer anderen App aufgerufen wurde.</string>
     <string name="default_resolution_title">Standardauflösung</string>
@@ -59,7 +59,7 @@
 <string name="background_player_name">NewPipe Hintergrundwiedergabe</string>
     <string name="network_error">Netzwerkfehler</string>
 
-    <string name="download_path_audio_title">Download-Verzeichnis für Musik</string>
+    <string name="download_path_audio_title">Downloadverzeichnis für Musik</string>
     <string name="download_path_audio_summary">Verzeichnis zum Speichern heruntergeladener Audiodateien.</string>
     <string name="download_path_audio_dialog_title">Pfad für heruntergeladene Audiodateien eingeben.</string>
 
