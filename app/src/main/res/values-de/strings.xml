@@ -60,7 +60,7 @@
     <string name="network_error">Netzwerkfehler</string>
 
     <string name="download_path_audio_title">Downloadverzeichnis für Musik</string>
-    <string name="download_path_audio_summary">Verzeichnis zum Speichern heruntergeladener Audiodateien.</string>
+    <string name="download_path_audio_summary">Verzeichnis zum Speichern heruntergeladener Audiodateien</string>
     <string name="download_path_audio_dialog_title">Pfad für heruntergeladene Audiodateien eingeben.</string>
 
     <string name="theme_title">Aussehen</string>
