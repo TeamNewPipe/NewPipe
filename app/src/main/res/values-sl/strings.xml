@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="view_count_text">%1$s pogledov</string>
     <string name="upload_date_text">Poslano %1$s</string>
     <string name="no_player_found">Predvajalnika pretoka ni mogoče najti. Ali želite namestiti program VLC?</string>
@@ -67,4 +67,11 @@
 
     <string name="err_dir_create">Ni mogoče ustvariti mape za prejem \'%1$s\'</string>
     <string name="info_dir_created">Ustvarjena je mapa za prejem \'%1$s\'</string>
-</resources>
+<string name="general_error">Napaka</string>
+    <string name="could_not_load_thumbnails">Vseh sličic videov ni mogoče naložiti</string>
+    <string name="youtube_signature_decryption_error">Ni mogoče dešifrirati podpisa naslova URL videa.</string>
+    <string name="parsing_error">Ni mogoče razčleniti spletišča.</string>
+    <string name="content_not_available">Vsebina ni na voljo.</string>
+    <string name="blocked_by_gema">Blokirano zaradi pripomb GEMA.</string>
+
+    </resources>
