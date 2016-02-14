@@ -74,4 +74,7 @@
     <string name="content_not_available">Vsebina ni na voljo.</string>
     <string name="blocked_by_gema">Blokirano zaradi pripomb GEMA.</string>
 
+    <string name="could_not_setup_download_menu">Ni mogoče nastaviti menija za prejem datotek.</string>
+
+
     </resources>
