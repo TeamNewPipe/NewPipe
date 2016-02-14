@@ -47,4 +47,5 @@
 
     <string name="detail_likes_img_view_description">Ŝatoj</string>
     <string name="detail_dislikes_img_view_description">Malŝatoj</string>
+    <string name="use_tor_title">Uzi la programon Tor</string>
     </resources>
