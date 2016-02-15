@@ -39,7 +39,7 @@
     <string name="default_audio_format_title">Výchozí audio formát</string>
     <string name="webm_description">WebM — svobodný formát</string>
     <string name="m4a_description">m4a — lepší kvalita</string>
-    <string name="theme_title">Vzhled</string>
+    <string name="theme_title">Téma</string>
     <string name="dark_theme_title">Tmavý</string>
     <string name="light_theme_title">Světlý</string>
 
