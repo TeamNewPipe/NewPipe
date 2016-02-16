@@ -50,4 +50,8 @@
     <string name="use_tor_title">Uzi la programon Tor</string>
     <string name="autoplay_through_intent_title">Ludi aŭtomate per Intent</string>
     <string name="no_player_found">Neniu elsendlflua ludilo trovita. Ĉu instali la aplikaĵon VLC?</string>
+    <string name="kore_not_found">La aplikaĵo Kore ne estas trovita. Ĉu instali la aplikaĵon Kore?</string>
+    <string name="show_next_and_similar_title">Montri la sekvan videon kaj similajn videojn</string>
+    <string name="could_not_load_thumbnails">Ĉiuj miniaturoj ne ŝargeblas</string>
+    <string name="youtube_signature_decryption_error">La subskribo de la ligilo de la video ne malĉifreblas</string>
     </resources>
