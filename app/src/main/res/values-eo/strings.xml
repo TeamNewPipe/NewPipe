@@ -68,4 +68,8 @@
     <string name="download_path_summary">Dosierujo por konservi elŝutitajn videojn.</string>
     <string name="download_path_audio_summary">Dosierujo por konservi elŝutitan muzikon.</string>
     <string name="autoplay_through_intent_summary">Ludi videon aŭtomate kiam ĝi estas vokita de alia aplikaĵo.</string>
+    <string name="download_path_dialog_title">Elektu lokon por konservi elŝutitajn videojn</string>
+
+    <string name="download_path_audio_dialog_title">Elektu lokon por konservi elŝutitan muzikon.</string>
+
     </resources>
