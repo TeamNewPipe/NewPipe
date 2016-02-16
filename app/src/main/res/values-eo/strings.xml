@@ -60,4 +60,8 @@
     <string name="detail_uploader_thumbnail_view_description">Miniaturo de la bildo de la alŝutinto</string>
     <string name="err_dir_create">La elŝutujo \'%1$s\' ne kreeblas</string>
     <string name="info_dir_created">Elŝutujo \'%1$s\' kreita</string>
-</resources>
+<string name="download_path_title">Elŝutujo por videoj</string>
+    <string name="download_path_audio_title">Elŝutujo por muziko</string>
+    <string name="use_tor_summary">Devigi elŝuttrafikon tra Tor por pli bona privateco (elsendfluaj videoj estas ankoraŭ ne subtenitaj)</string>
+
+    </resources>
