@@ -53,5 +53,6 @@
     <string name="kore_not_found">La aplikaĵo Kore ne estas trovita. Ĉu instali la aplikaĵon Kore?</string>
     <string name="show_next_and_similar_title">Montri la sekvan videon kaj similajn videojn</string>
     <string name="could_not_load_thumbnails">Ĉiuj miniaturoj ne ŝargeblas</string>
-    <string name="youtube_signature_decryption_error">La subskribo de la ligilo de la video ne malĉifreblas</string>
+    <string name="youtube_signature_decryption_error">La subskribo de la ligilo de la video ne malĉifreblas.</string>
+    <string name="parsing_error">La retejo ne analizeblas.</string>
     </resources>
