@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="autoplay_through_intent_summary">Lire automatiquement une vidéo lorsqu’elle a été appelée depuis une autre application.</string>
     <string name="cancel">Annuler</string>
@@ -68,4 +68,9 @@
 
     <string name="err_dir_create">Impossible de créer le répertoire de téléchargement « %1$s »</string>
     <string name="info_dir_created">Répertoire de téléchargement « %1$s » créé</string>
-</resources>
+<string name="general_error">Erreur</string>
+    <string name="parsing_error">Impossible de parser ce site web.</string>
+    <string name="content_not_available">Contenu non disponible.</string>
+    <string name="blocked_by_gema">Bloqué par GEMA.</string>
+
+    </resources>
