@@ -50,6 +50,16 @@ import java.util.Vector;
 
 public class YoutubeStreamExtractor implements StreamExtractor {
 
+    // Sometimes if the html page of youtube is already downloaded, youtube web page will internally
+    // download the /get_video_info page. Since a certain date dashmpd url is only available over
+    // this /get_video_info page, so we always need to download this one to.
+    // %%video_id%% will be replaced by the actual video id
+    // $$el_type$$ will be replaced by the actual el_type (se the declarations below)
+    private static final String GET_VIDEO_INFO_URL =
+            "https://www.youtube.com/get_video_info?video_id=%%video_id%%$$el_type$$&ps=default&eurl=&gl=US&hl=en";
+    // eltype is nececeary for the url aboth
+    private static final String EL_INFO = "el=info";
+
     public enum ItagType {
         AUDIO,
         VIDEO,
@@ -131,16 +141,6 @@ public class YoutubeStreamExtractor implements StreamExtractor {
         throw new ParsingException("itag=" + Integer.toString(itag) + " not supported");
     }
 
-    // Sometimes if the html page of youtube is already downloaded, youtube web page will internally
-    // download the /get_video_info page. Since a certain date dashmpd url is only available over
-    // this /get_video_info page, so we always need to download this one to.
-    // %%video_id%% will be replaced by the actual video id
-    // $$el_type$$ will be replaced by the actual el_type (se the declarations below)
-    private static final String GET_VIDEO_INFO_URL =
-            "https://www.youtube.com/get_video_info?video_id=%%video_id%%$$el_type$$&ps=default&eurl=&gl=US&hl=en";
-    // eltype is nececeary for the url aboth
-    private static final String EL_INFO = "el=info";
-
     public class DecryptException extends ParsingException {
         DecryptException(Throwable cause) {
             super(cause);
@@ -163,7 +163,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
     private static final String TAG = YoutubeStreamExtractor.class.toString();
     private final Document doc;
     private JSONObject playerArgs;
-    private Map<String, String> videoInfoPage;
+    //private Map<String, String> videoInfoPage;
 
     // static values
     private static final String DECRYPTION_FUNC_NAME="decrypt";
@@ -206,6 +206,9 @@ public class YoutubeStreamExtractor implements StreamExtractor {
         }
 
 
+        /* not yet nececeary
+
+
         // get videoInfo page
         try {
             //Parser.unescapeEntities(url_data_str, true).split("&")
@@ -215,6 +218,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
         } catch(Exception e) {
             throw new ParsingException("Could not load video info page.", e);
         }
+        */
 
         //----------------------------------
         // load and parse description code, if it isn't already initialised
@@ -338,24 +342,6 @@ public class YoutubeStreamExtractor implements StreamExtractor {
     public String getDashMpdUrl() throws ParsingException {
         /*
         try {
-            String dashManifest = playerArgs.getString("dashmpd");
-            if(!dashManifest.contains("/signature/")) {
-                String encryptedSig = Parser.matchGroup1("/s/([a-fA-F0-9\\.]+)", dashManifest);
-                String decryptedSig;
-
-                decryptedSig = decryptSignature(encryptedSig, decryptionCode);
-                dashManifest = dashManifest.replace("/s/" + encryptedSig, "/signature/" + decryptedSig);
-            }
-
-            return dashManifest;
-        } catch(JSONException je) {
-            throw new ParsingException(
-                    "Could not find \"dashmpd\" upon the player args (maybe no dash manifest available).", je);
-        } catch (Exception e) {
-            throw new ParsingException(e);
-        }
-        */
-        try {
             String dashManifestUrl = videoInfoPage.get("dashmpd");
             if(!dashManifestUrl.contains("/signature/")) {
                 String encryptedSig = Parser.matchGroup1("/s/([a-fA-F0-9\\.]+)", dashManifestUrl);
@@ -369,6 +355,8 @@ public class YoutubeStreamExtractor implements StreamExtractor {
             throw new ParsingException(
                     "Could not get \"dashmpd\" maybe VideoInfoPage is broken.", e);
         }
+        */
+        return "";
     }
 
 

@@ -1,8 +1,14 @@
 package org.schabi.newpipe.crawler.services.youtube;
 
+import android.util.Log;
+
 import org.schabi.newpipe.crawler.Parser;
 import org.schabi.newpipe.crawler.ParsingException;
 import org.schabi.newpipe.crawler.VideoUrlIdHandler;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.Map;
 
 /**
  * Created by Christian Schabesberger on 02.02.16.
@@ -34,20 +40,29 @@ public class YoutubeVideoUrlIdHandler implements VideoUrlIdHandler {
     @SuppressWarnings("WeakerAccess")
     @Override
     public String getVideoId(String url) throws ParsingException {
-        String id;
-        String pat;
+        String id = "";
 
         if(url.contains("youtube")) {
-            pat = "youtube\\.com/watch\\?v=([\\-a-zA-Z0-9_]{11})";
+            if(url.contains("attribution_link")) {
+                try {
+                    String escapedQuery = Parser.matchGroup1("u=(.[^&|$]*)", url);
+                    String query = URLDecoder.decode(escapedQuery, "UTF-8");
+                    id = Parser.matchGroup1("v=([\\-a-zA-Z0-9_]{11})", query);
+                } catch(UnsupportedEncodingException uee) {
+                    throw new ParsingException("Could not parse attribution_link", uee);
+                }
+            } else {
+                id = Parser.matchGroup1("youtube\\.com/watch\\?v=([\\-a-zA-Z0-9_]{11})", url);
+            }
         }
         else if(url.contains("youtu.be")) {
-            pat = "youtu\\.be/([a-zA-Z0-9_-]{11})";
+            id = Parser.matchGroup1("youtu\\.be/([a-zA-Z0-9_-]{11})", url);
         }
         else {
             throw new ParsingException("Error no suitable url: " + url);
         }
 
-        id = Parser.matchGroup1(pat, url);
+
         if(!id.isEmpty()){
             //Log.i(TAG, "string \""+url+"\" matches!");
             return id;

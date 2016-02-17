@@ -56,7 +56,7 @@
 
     <string name="use_tor_title">Benutze TOR</string>
     <string name="use_tor_summary">Erzwinge das Herunterladen durch TOR für verbesserte Privatsphäre (Videostream noch nicht unterstützt)</string>
-<string name="background_player_name">NewPipe Hintergrundwiedergabe</string>
+    <string name="background_player_name">NewPipe Hintergrundwiedergabe</string>
     <string name="network_error">Netzwerkfehler</string>
 
     <string name="download_path_audio_title">Downloadverzeichnis für Musik</string>
@@ -71,7 +71,7 @@
     <string name="settings_category_other_title">Andere</string>
     <string name="err_dir_create">Kann Downloadverzeichnis nicht anlegen \'%1$s\'</string>
     <string name="info_dir_created">Downloadverzeichnis \'%1$s\' erstellt</string>
-<string name="general_error">Fehler</string>
+    <string name="general_error">Fehler</string>
     <string name="could_not_load_thumbnails">Konnte nicht alle Vorschaubilder laden</string>
     <string name="youtube_signature_decryption_error">Konnte Video-URL-Signatur nicht entschlüsseln.</string>
     <string name="parsing_error">Konnte Webseite nicht parsen.</string>
