@@ -98,6 +98,7 @@ public class VideoItemDetailFragment extends Fragment {
     private Bitmap videoThumbnail;
 
     private View thumbnailWindowLayout;
+    //this only remains dueto downwards compartiblity
     private FloatingActionButton playVideoButton;
     private final Point initialThumbnailPos = new Point(0, 0);
 
@@ -232,7 +233,13 @@ public class VideoItemDetailFragment extends Fragment {
             initThumbnailViews(info, nextVideoFrame);
 
             textContentLayout.setVisibility(View.VISIBLE);
-            playVideoButton.setVisibility(View.VISIBLE);
+            if (android.os.Build.VERSION.SDK_INT < 18) {
+                playVideoButton.setVisibility(View.VISIBLE);
+            } else {
+                ImageView playArrowView = (ImageView) activity.findViewById(R.id.playArrowView);
+                playArrowView.setVisibility(View.VISIBLE);
+            }
+
             if (!showNextVideoItem) {
                 nextVideoRootFrame.setVisibility(View.GONE);
                 similarTitle.setVisibility(View.GONE);
@@ -298,12 +305,14 @@ public class VideoItemDetailFragment extends Fragment {
                 playVideo(info);
             }
 
-            playVideoButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    playVideo(info);
-                }
-            });
+            if (android.os.Build.VERSION.SDK_INT < 18) {
+                playVideoButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        playVideo(info);
+                    }
+                });
+            }
 
             backgroundButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -440,7 +449,7 @@ public class VideoItemDetailFragment extends Fragment {
                     DownloadDialog downloadDialog = new DownloadDialog();
                     downloadDialog.setArguments(args);
                     downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
-                } catch(Exception e) {
+                } catch (Exception e) {
                     Toast.makeText(VideoItemDetailFragment.this.getActivity(),
                             R.string.could_not_setup_download_menu, Toast.LENGTH_LONG).show();
                     e.printStackTrace();
@@ -653,7 +662,9 @@ public class VideoItemDetailFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceBundle) {
         super.onActivityCreated(savedInstanceBundle);
         Activity a = getActivity();
-        playVideoButton = (FloatingActionButton) a.findViewById(R.id.playVideoButton);
+        if (android.os.Build.VERSION.SDK_INT < 18) {
+            playVideoButton = (FloatingActionButton) a.findViewById(R.id.playVideoButton);
+        }
         thumbnailWindowLayout = a.findViewById(R.id.detailVideoThumbnailWindowLayout);
         Button backgroundButton = (Button)
                 a.findViewById(R.id.detailVideoThumbnailWindowBackgroundButton);
@@ -661,7 +672,7 @@ public class VideoItemDetailFragment extends Fragment {
         // Sometimes when this fragment is not visible it still gets initiated
         // then we must not try to access objects of this fragment.
         // Otherwise the applications would crash.
-        if(playVideoButton != null) {
+        if(backgroundButton != null) {
             try {
                 streamingServiceId = getArguments().getInt(STREAMING_SERVICE);
                 StreamingService streamingService = ServiceList.getService(streamingServiceId);
@@ -674,13 +685,15 @@ public class VideoItemDetailFragment extends Fragment {
                 e.printStackTrace();
             }
 
-            // todo: Fix this workaround (probably with a better design), so that older android
-            // versions don't have problems rendering the thumbnail right.
             if(Build.VERSION.SDK_INT >= 18) {
                 ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detailThumbnailView);
                 thumbnailView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
                     // This is used to synchronize the thumbnailWindowButton and the playVideoButton
                     // inside the ScrollView with the actual size of the thumbnail.
+                    //todo: onLayoutChage sometimes not triggered
+                    // background buttons area seem to overlap the thumbnail view
+                    // So although you just clicked slightly beneath the thumbnail the action still
+                    // gets triggered.
                     @Override
                     public void onLayoutChange(View v, int left, int top, int right, int bottom,
                                                int oldLeft, int oldTop, int oldRight, int oldBottom) {

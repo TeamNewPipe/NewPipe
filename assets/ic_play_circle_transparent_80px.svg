@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="80"
+   viewBox="0 0 80 80"
+   width="80"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="ic_play_circle_transparent_80px.svg"
+   style="fill:#000000"
+   inkscape:export-filename="/home/the-scrabi/Desktop/ic_play_circle_transparent.png"
+   inkscape:export-xdpi="360"
+   inkscape:export-ydpi="360">
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#66666c"
+     borderopacity="0.90588235"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1044"
+     id="namedview8"
+     showgrid="false"
+     borderlayer="false"
+     inkscape:zoom="15.461127"
+     inkscape:cx="33.023889"
+     inkscape:cy="40.665216"
+     inkscape:window-x="1920"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <path
+     d="m 0,56 24,0 0,24 -24,0 z"
+     id="path4"
+     inkscape:connector-curvature="0"
+     style="fill:none" />
+  <path
+     d="M 39.999999,6.6666663 C 21.6,6.6666663 6.6666667,21.6 6.6666667,40 6.6666667,58.4 21.6,73.333333 39.999999,73.333333 58.4,73.333333 73.333333,58.4 73.333333,40 73.333333,21.6 58.4,6.6666663 39.999999,6.6666663 Z M 33.333333,55 l 0,-30 20.000001,15 -20.000001,15 z"
+     id="path6"
+     style="fill:#ffffff;fill-opacity:0.73287672"
+     inkscape:connector-curvature="0"
+     inkscape:export-xdpi="431.99997"
+     inkscape:export-ydpi="431.99997"
+     inkscape:export-filename="/home/the-scrabi/Desktop/path6.png" />
+</svg>
