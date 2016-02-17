@@ -414,86 +414,106 @@ public class VideoItemDetailFragment extends Fragment {
         actionBarHandler.setOnDownloadListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
-                //VideoInfo.VideoStream selectedStreamItem = videoStreams.get(selectedStream);
-                VideoInfo.AudioStream audioStream =
-                        info.audio_streams.get(getPreferredAudioStreamId(info));
-                VideoInfo.VideoStream selectedStreamItem = info.video_streams.get(selectedStreamId);
-                String videoSuffix = "." + MediaFormat.getSuffixById(selectedStreamItem.format);
-                String audioSuffix = "." + MediaFormat.getSuffixById(audioStream.format);
-                Bundle args = new Bundle();
-                args.putString(DownloadDialog.FILE_SUFFIX_VIDEO, videoSuffix);
-                args.putString(DownloadDialog.FILE_SUFFIX_AUDIO, audioSuffix);
-                args.putString(DownloadDialog.TITLE, info.title);
-                args.putString(DownloadDialog.VIDEO_URL, selectedStreamItem.url);
-                args.putString(DownloadDialog.AUDIO_URL, audioStream.url);
-                DownloadDialog downloadDialog = new DownloadDialog();
-                downloadDialog.setArguments(args);
-                downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
-            }
-        });
+                try {
+                    Bundle args = new Bundle();
 
-        actionBarHandler.setOnPlayAudioListener(new ActionBarHandler.OnActionListener() {
-            @Override
-            public void onActionSelected(int selectedStreamId) {
-                boolean useExternalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
-                        .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
-                Intent intent;
-                VideoInfo.AudioStream audioStream =
-                        info.audio_streams.get(getPreferredAudioStreamId(info));
-                if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 18) {
-                    //internal music player: explicit intent
-                    if (!BackgroundPlayer.isRunning  && videoThumbnail != null) {
-                        ActivityCommunicator.getCommunicator()
-                                .backgroundPlayerThumbnail = videoThumbnail;
-                        intent = new Intent(activity, BackgroundPlayer.class);
+                    // Sometimes it may be that some information is not available due to changes fo the
+                    // website which was crawled. Then the ui has to understand this and act right.
 
-                        intent.setAction(Intent.ACTION_VIEW);
-                        Log.i(TAG, "audioStream is null:" + (audioStream == null));
-                        Log.i(TAG, "audioStream.url is null:" + (audioStream.url == null));
-                        intent.setDataAndType(Uri.parse(audioStream.url),
-                                MediaFormat.getMimeById(audioStream.format));
-                        intent.putExtra(BackgroundPlayer.TITLE, info.title);
-                        intent.putExtra(BackgroundPlayer.WEB_URL, info.webpage_url);
-                        intent.putExtra(BackgroundPlayer.SERVICE_ID, streamingServiceId);
-                        intent.putExtra(BackgroundPlayer.CHANNEL_NAME, info.uploader);
-                        activity.startService(intent);
+                    if (info.audio_streams != null) {
+                        VideoInfo.AudioStream audioStream =
+                                info.audio_streams.get(getPreferredAudioStreamId(info));
+
+                        String audioSuffix = "." + MediaFormat.getSuffixById(audioStream.format);
+                        args.putString(DownloadDialog.AUDIO_URL, audioStream.url);
+                        args.putString(DownloadDialog.FILE_SUFFIX_AUDIO, audioSuffix);
                     }
-                } else {
-                    intent = new Intent();
-                    try {
-                        intent.setAction(Intent.ACTION_VIEW);
-                        intent.setDataAndType(Uri.parse(audioStream.url),
-                                MediaFormat.getMimeById(audioStream.format));
-                        intent.putExtra(Intent.EXTRA_TITLE, info.title);
-                        intent.putExtra("title", info.title);
-                        // HERE !!!
-                        activity.startActivity(intent);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                        builder.setMessage(R.string.no_player_found)
-                                .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Intent intent = new Intent();
-                                        intent.setAction(Intent.ACTION_VIEW);
-                                        intent.setData(Uri.parse(activity.getString(R.string.fdroid_vlc_url)));
-                                        activity.startActivity(intent);
-                                    }
-                                })
-                                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Log.i(TAG, "You unlocked a secret unicorn.");
-                                    }
-                                });
-                        builder.create().show();
-                        Log.e(TAG, "Either no Streaming player for audio was installed, or something important crashed:");
-                        e.printStackTrace();
+
+                    if (info.video_streams != null) {
+                        VideoInfo.VideoStream selectedStreamItem = info.video_streams.get(selectedStreamId);
+                        String videoSuffix = "." + MediaFormat.getSuffixById(selectedStreamItem.format);
+                        args.putString(DownloadDialog.FILE_SUFFIX_VIDEO, videoSuffix);
+                        args.putString(DownloadDialog.VIDEO_URL, selectedStreamItem.url);
                     }
+
+                    args.putString(DownloadDialog.TITLE, info.title);
+                    DownloadDialog downloadDialog = new DownloadDialog();
+                    downloadDialog.setArguments(args);
+                    downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
+                } catch(Exception e) {
+                    Toast.makeText(VideoItemDetailFragment.this.getActivity(),
+                            R.string.could_not_setup_download_menu, Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
                 }
             }
         });
+
+        if(info.audio_streams == null) {
+            actionBarHandler.showAudioAction(false);
+        } else {
+            actionBarHandler.setOnPlayAudioListener(new ActionBarHandler.OnActionListener() {
+                @Override
+                public void onActionSelected(int selectedStreamId) {
+                    boolean useExternalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
+                            .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
+                    Intent intent;
+                    VideoInfo.AudioStream audioStream =
+                            info.audio_streams.get(getPreferredAudioStreamId(info));
+                    if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 18) {
+                        //internal music player: explicit intent
+                        if (!BackgroundPlayer.isRunning && videoThumbnail != null) {
+                            ActivityCommunicator.getCommunicator()
+                                    .backgroundPlayerThumbnail = videoThumbnail;
+                            intent = new Intent(activity, BackgroundPlayer.class);
+
+                            intent.setAction(Intent.ACTION_VIEW);
+                            Log.i(TAG, "audioStream is null:" + (audioStream == null));
+                            Log.i(TAG, "audioStream.url is null:" + (audioStream.url == null));
+                            intent.setDataAndType(Uri.parse(audioStream.url),
+                                    MediaFormat.getMimeById(audioStream.format));
+                            intent.putExtra(BackgroundPlayer.TITLE, info.title);
+                            intent.putExtra(BackgroundPlayer.WEB_URL, info.webpage_url);
+                            intent.putExtra(BackgroundPlayer.SERVICE_ID, streamingServiceId);
+                            intent.putExtra(BackgroundPlayer.CHANNEL_NAME, info.uploader);
+                            activity.startService(intent);
+                        }
+                    } else {
+                        intent = new Intent();
+                        try {
+                            intent.setAction(Intent.ACTION_VIEW);
+                            intent.setDataAndType(Uri.parse(audioStream.url),
+                                    MediaFormat.getMimeById(audioStream.format));
+                            intent.putExtra(Intent.EXTRA_TITLE, info.title);
+                            intent.putExtra("title", info.title);
+                            // HERE !!!
+                            activity.startActivity(intent);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                            builder.setMessage(R.string.no_player_found)
+                                    .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent = new Intent();
+                                            intent.setAction(Intent.ACTION_VIEW);
+                                            intent.setData(Uri.parse(activity.getString(R.string.fdroid_vlc_url)));
+                                            activity.startActivity(intent);
+                                        }
+                                    })
+                                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Log.i(TAG, "You unlocked a secret unicorn.");
+                                        }
+                                    });
+                            builder.create().show();
+                            Log.e(TAG, "Either no Streaming player for audio was installed, or something important crashed:");
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
+        }
     }
 
     private int getPreferredAudioStreamId(final VideoInfo info) {

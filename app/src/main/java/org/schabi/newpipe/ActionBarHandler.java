@@ -51,13 +51,16 @@ class ActionBarHandler {
 
     private SharedPreferences defaultPreferences = null;
 
+    private Menu menu;
+
     // Only callbacks are listed here, there are more actions which don't need a callback.
     // those are edited directly. Typically VideoItemDetailFragment will implement those callbacks.
-    private OnActionListener onShareListener;
-    private OnActionListener onOpenInBrowserListener;
-    private OnActionListener onDownloadListener;
-    private OnActionListener onPlayWithKodiListener;
-    private OnActionListener onPlayAudioListener;
+    private OnActionListener onShareListener = null;
+    private OnActionListener onOpenInBrowserListener = null;
+    private OnActionListener onDownloadListener = null;
+    private OnActionListener onPlayWithKodiListener = null;
+    private OnActionListener onPlayAudioListener = null;
+
 
     // Triggered when a stream related action is triggered.
     public interface OnActionListener {
@@ -128,15 +131,15 @@ class ActionBarHandler {
     }
 
     public void setupMenu(Menu menu, MenuInflater inflater) {
+        this.menu = menu;
+
         // CAUTION set item properties programmatically otherwise it would not be accepted by
         // appcompat itemsinflater.inflate(R.menu.videoitem_detail, menu);
 
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
-
         inflater.inflate(R.menu.videoitem_detail, menu);
-        MenuItem castItem = menu.findItem(R.id.action_play_with_kodi);
 
-        castItem.setVisible(defaultPreferences
+        showPlayWithKodiAction(defaultPreferences
                 .getBoolean(activity.getString(R.string.show_play_with_kodi_key), false));
     }
 
@@ -151,15 +154,21 @@ class ActionBarHandler {
                     intent.setType("text/plain");
                     activity.startActivity(Intent.createChooser(intent, activity.getString(R.string.share_dialog_title)));
                     */
-                onShareListener.onActionSelected(selectedVideoStream);
+                if(onShareListener != null) {
+                    onShareListener.onActionSelected(selectedVideoStream);
+                }
                 return true;
             }
             case R.id.menu_item_openInBrowser: {
-                onOpenInBrowserListener.onActionSelected(selectedVideoStream);
+                if(onOpenInBrowserListener != null) {
+                    onOpenInBrowserListener.onActionSelected(selectedVideoStream);
+                }
             }
             return true;
             case R.id.menu_item_download:
-                onDownloadListener.onActionSelected(selectedVideoStream);
+                if(onDownloadListener != null) {
+                    onDownloadListener.onActionSelected(selectedVideoStream);
+                }
                 return true;
             case R.id.action_settings: {
                 Intent intent = new Intent(activity, SettingsActivity.class);
@@ -167,10 +176,14 @@ class ActionBarHandler {
                 return true;
             }
             case R.id.action_play_with_kodi:
-                onPlayWithKodiListener.onActionSelected(selectedVideoStream);
+                if(onPlayWithKodiListener != null) {
+                    onPlayWithKodiListener.onActionSelected(selectedVideoStream);
+                }
                 return true;
             case R.id.menu_item_play_audio:
-                onPlayAudioListener.onActionSelected(selectedVideoStream);
+                if(onPlayAudioListener != null) {
+                    onPlayAudioListener.onActionSelected(selectedVideoStream);
+                }
                 return true;
             default:
                 Log.e(TAG, "Menu Item not known");
@@ -200,5 +213,17 @@ class ActionBarHandler {
 
     public void setOnPlayAudioListener(OnActionListener listener) {
         onPlayAudioListener = listener;
+    }
+
+    public void showAudioAction(boolean visible) {
+        menu.findItem(R.id.menu_item_play_audio).setVisible(visible);
+    }
+
+    public void showDownloadAction(boolean visible) {
+        menu.findItem(R.id.menu_item_download).setVisible(visible);
+    }
+
+    public void showPlayWithKodiAction(boolean visible) {
+        menu.findItem(R.id.action_play_with_kodi).setVisible(visible);
     }
 }

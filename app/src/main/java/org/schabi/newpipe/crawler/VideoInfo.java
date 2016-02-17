@@ -55,8 +55,10 @@ public class VideoInfo extends AbstractVideoInfo {
         } catch(Exception e) {
             e.printStackTrace();
         }
+
         /** Load and extract audio*/
         videoInfo.audio_streams = extractor.getAudioStreams();
+        // also try to get streams from the dashMpd
         if(videoInfo.dashMpdUrl != null && !videoInfo.dashMpdUrl.isEmpty()) {
             if(videoInfo.audio_streams == null) {
                 videoInfo.audio_streams = new Vector<AudioStream>();
@@ -82,9 +84,6 @@ public class VideoInfo extends AbstractVideoInfo {
         videoInfo.next_video = extractor.getNextVideo();
         videoInfo.related_videos = extractor.getRelatedVideos();
 
-        //Bitmap thumbnail = null;
-        //Bitmap uploader_thumbnail = null;
-        //int videoAvailableStatus = VIDEO_AVAILABLE;
         return videoInfo;
     }
 
