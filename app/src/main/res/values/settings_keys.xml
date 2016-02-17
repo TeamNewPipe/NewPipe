@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources translatable="false">
     <!-- Categories -->
     <string name="settings_category_video_audio">settings_category_video_audio</string>
     <string name="settings_category_appearance">settings_category_appearance</string>
