@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="view_count_text">%1$s просмотров</string>
     <string name="upload_date_text">Опубликовано %1$s</string>
@@ -18,8 +18,8 @@
     <string name="settings_activity_title">Настройки</string>
     <string name="useExternalPlayerTitle">Использовать внешний проигрыватель</string>
     <string name="download_path_title">Место для загрузок</string>
-    <string name="download_path_summary">Папка для хранения загруженных файлов</string>
-    <string name="download_path_dialog_title">Введите путь к папке для загрузок</string>
+    <string name="download_path_summary">Папка для хранения загруженных видео</string>
+    <string name="download_path_dialog_title">Введите путь к папке для загрузки видео</string>
     <string name="autoplay_through_intent_title">Автопроигрывание через интернет</string>
     <string name="autoplay_through_intent_summary">Автоматически воспроизводить видео, открытое через другое приложение</string>
     <string name="default_resolution_title">Разрешение по-умолчанию</string>
@@ -64,4 +64,8 @@
     <string name="network_error">Ошибка сети</string>
 
     <string name="use_tor_title">Использовать Tor</string>
+    <string name="download_path_audio_title">Папка для загрузки аудио</string>
+    <string name="download_path_audio_summary">Папка для хранения загруженных аудио</string>
+    <string name="download_path_audio_dialog_title">Введите путь к папке для загрузки аудио</string>
+
     </resources>
