@@ -301,6 +301,8 @@ public class VideoItemDetailFragment extends Fragment {
 
             initSimilarVideos(info, videoItemViewCreator);
 
+            setupActionBarHandler(info);
+
             if(autoPlayEnabled) {
                 playVideo(info);
             }
@@ -321,7 +323,6 @@ public class VideoItemDetailFragment extends Fragment {
                 }
             });
 
-            setupActionBarHandler(info);
         } catch (java.lang.NullPointerException e) {
             Log.w(TAG, "updateInfo(): Fragment closed before thread ended work... or else");
             e.printStackTrace();
