@@ -1,24 +1,18 @@
 package org.schabi.newpipe;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
-import org.schabi.newpipe.crawler.MediaFormat;
-import org.schabi.newpipe.crawler.VideoInfo;
+import org.schabi.newpipe.extractor.MediaFormat;
+import org.schabi.newpipe.extractor.VideoInfo;
 
 import java.util.List;
 

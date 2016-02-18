@@ -2,8 +2,6 @@ package org.schabi.newpipe;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -16,14 +14,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
-import java.util.Vector;
 
-import org.schabi.newpipe.crawler.CrawlingException;
-import org.schabi.newpipe.crawler.VideoPreviewInfo;
-import org.schabi.newpipe.crawler.SearchEngine;
-import org.schabi.newpipe.crawler.StreamingService;
+import org.schabi.newpipe.extractor.CrawlingException;
+import org.schabi.newpipe.extractor.VideoPreviewInfo;
+import org.schabi.newpipe.extractor.SearchEngine;
+import org.schabi.newpipe.extractor.StreamingService;
 
 
 /**

@@ -1,10 +1,12 @@
-package org.schabi.newpipe.crawler;
+package org.schabi.newpipe.extractor;
 
-import android.graphics.Bitmap;
+import java.io.IOException;
 
 /**
+ * Created by Christian Schabesberger on 23.08.15.
+ *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * AbstractVideoInfo.java is part of NewPipe.
+ * StreamingService.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,14 +22,16 @@ import android.graphics.Bitmap;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**Common properties between VideoInfo and VideoPreviewInfo.*/
-public abstract class AbstractVideoInfo {
-    public String id = "";
-    public String title = "";
-    public String uploader = "";
-    public String thumbnail_url = "";
-    public Bitmap thumbnail = null;
-    public String webpage_url = "";
-    public String upload_date = "";
-    public long view_count = -1;
+public interface StreamingService {
+    class ServiceInfo {
+        public String name = "";
+    }
+    ServiceInfo getServiceInfo();
+    StreamExtractor getExtractorInstance(String url, Downloader downloader)
+            throws IOException, CrawlingException;
+    SearchEngine getSearchEngineInstance();
+
+    VideoUrlIdHandler getUrlIdHandler();
+
+
 }

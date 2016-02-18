@@ -1,14 +1,11 @@
-package org.schabi.newpipe.crawler.services.youtube;
+package org.schabi.newpipe.extractor.services.youtube;
 
-import android.util.Log;
-
-import org.schabi.newpipe.crawler.Parser;
-import org.schabi.newpipe.crawler.ParsingException;
-import org.schabi.newpipe.crawler.VideoUrlIdHandler;
+import org.schabi.newpipe.extractor.Parser;
+import org.schabi.newpipe.extractor.ParsingException;
+import org.schabi.newpipe.extractor.VideoUrlIdHandler;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.Map;
 
 /**
  * Created by Christian Schabesberger on 02.02.16.

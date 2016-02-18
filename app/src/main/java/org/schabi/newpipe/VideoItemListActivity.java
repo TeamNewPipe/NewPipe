@@ -2,7 +2,6 @@ package org.schabi.newpipe;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
@@ -17,8 +16,8 @@ import android.view.inputmethod.InputMethodManager;
 
 import java.util.ArrayList;
 
-import org.schabi.newpipe.crawler.VideoPreviewInfo;
-import org.schabi.newpipe.crawler.ServiceList;
+import org.schabi.newpipe.extractor.VideoPreviewInfo;
+import org.schabi.newpipe.extractor.ServiceList;
 
 /**
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>

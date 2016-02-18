@@ -1,10 +1,10 @@
-package org.schabi.newpipe.crawler;
+package org.schabi.newpipe.extractor;
 
 /**
- * Created by Christian Schabesberger on 31.01.16.
+ * Created by Christian Schabesberger on 30.01.16.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * ParsingException.java is part of NewPipe.
+ * CrawlingException.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,16 +20,18 @@ package org.schabi.newpipe.crawler;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+public class CrawlingException extends Exception {
+    public CrawlingException() {}
 
-public class ParsingException extends CrawlingException {
-    public ParsingException() {}
-    public ParsingException(String message) {
+    public CrawlingException(String message) {
         super(message);
     }
-    public ParsingException(Throwable cause) {
+
+    public CrawlingException(Throwable cause) {
         super(cause);
     }
-    public ParsingException(String message, Throwable cause) {
+
+    public CrawlingException(String message, Throwable cause) {
         super(message, cause);
     }
 }

@@ -46,14 +46,14 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import org.schabi.newpipe.crawler.MediaFormat;
-import org.schabi.newpipe.crawler.ParsingException;
-import org.schabi.newpipe.crawler.ServiceList;
-import org.schabi.newpipe.crawler.StreamExtractor;
-import org.schabi.newpipe.crawler.VideoPreviewInfo;
-import org.schabi.newpipe.crawler.StreamingService;
-import org.schabi.newpipe.crawler.VideoInfo;
-import org.schabi.newpipe.crawler.services.youtube.YoutubeStreamExtractor;
+import org.schabi.newpipe.extractor.MediaFormat;
+import org.schabi.newpipe.extractor.ParsingException;
+import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.StreamExtractor;
+import org.schabi.newpipe.extractor.VideoPreviewInfo;
+import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.VideoInfo;
+import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 
 
 /**

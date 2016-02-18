@@ -1,4 +1,4 @@
-package org.schabi.newpipe.crawler;
+package org.schabi.newpipe.extractor;
 
 import java.io.IOException;
 

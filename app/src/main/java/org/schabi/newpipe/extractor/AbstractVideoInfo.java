@@ -1,10 +1,10 @@
-package org.schabi.newpipe.crawler;
+package org.schabi.newpipe.extractor;
+
+import android.graphics.Bitmap;
 
 /**
- * Created by Christian Schabesberger on 30.01.16.
- *
- * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * CrawlingException.java is part of NewPipe.
+ * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
+ * AbstractVideoInfo.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,18 +20,14 @@ package org.schabi.newpipe.crawler;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class CrawlingException extends Exception {
-    public CrawlingException() {}
-
-    public CrawlingException(String message) {
-        super(message);
-    }
-
-    public CrawlingException(Throwable cause) {
-        super(cause);
-    }
-
-    public CrawlingException(String message, Throwable cause) {
-        super(message, cause);
-    }
+/**Common properties between VideoInfo and VideoPreviewInfo.*/
+public abstract class AbstractVideoInfo {
+    public String id = "";
+    public String title = "";
+    public String uploader = "";
+    public String thumbnail_url = "";
+    public Bitmap thumbnail = null;
+    public String webpage_url = "";
+    public String upload_date = "";
+    public long view_count = -1;
 }

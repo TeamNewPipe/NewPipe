@@ -1,10 +1,8 @@
-package org.schabi.newpipe.crawler;
+package org.schabi.newpipe.extractor;
 
 import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import org.schabi.newpipe.crawler.AbstractVideoInfo;
 
 /**
  * Created by Christian Schabesberger on 26.08.15.

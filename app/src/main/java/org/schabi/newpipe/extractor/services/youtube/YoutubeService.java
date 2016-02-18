@@ -1,11 +1,11 @@
-package org.schabi.newpipe.crawler.services.youtube;
+package org.schabi.newpipe.extractor.services.youtube;
 
-import org.schabi.newpipe.crawler.CrawlingException;
-import org.schabi.newpipe.crawler.Downloader;
-import org.schabi.newpipe.crawler.StreamExtractor;
-import org.schabi.newpipe.crawler.StreamingService;
-import org.schabi.newpipe.crawler.VideoUrlIdHandler;
-import org.schabi.newpipe.crawler.SearchEngine;
+import org.schabi.newpipe.extractor.CrawlingException;
+import org.schabi.newpipe.extractor.Downloader;
+import org.schabi.newpipe.extractor.StreamExtractor;
+import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.VideoUrlIdHandler;
+import org.schabi.newpipe.extractor.SearchEngine;
 
 import java.io.IOException;
 

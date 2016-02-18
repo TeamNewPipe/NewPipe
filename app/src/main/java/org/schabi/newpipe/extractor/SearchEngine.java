@@ -1,12 +1,15 @@
-package org.schabi.newpipe.crawler;
+package org.schabi.newpipe.extractor;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 /**
- * Created by Christian Schabesberger on 23.08.15.
+ * Created by Christian Schabesberger on 10.08.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * StreamingService.java is part of NewPipe.
+ * SearchEngine.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,16 +25,18 @@ import java.io.IOException;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public interface StreamingService {
-    class ServiceInfo {
-        public String name = "";
+@SuppressWarnings("ALL")
+public interface SearchEngine {
+    class Result {
+        public String errorMessage = "";
+        public String suggestion = "";
+        public final List<VideoPreviewInfo> resultList = new Vector<>();
     }
-    ServiceInfo getServiceInfo();
-    StreamExtractor getExtractorInstance(String url, Downloader downloader)
-            throws IOException, CrawlingException;
-    SearchEngine getSearchEngineInstance();
 
-    VideoUrlIdHandler getUrlIdHandler();
+    ArrayList<String> suggestionList(String query, Downloader dl)
+            throws CrawlingException, IOException;
 
-
+    //Result search(String query, int page);
+    Result search(String query, int page, String contentCountry, Downloader dl)
+            throws CrawlingException, IOException;
 }

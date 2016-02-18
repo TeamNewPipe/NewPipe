@@ -1,6 +1,5 @@
-package org.schabi.newpipe.crawler.services.youtube;
+package org.schabi.newpipe.extractor.services.youtube;
 
-import android.provider.MediaStore;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -11,19 +10,17 @@ import org.jsoup.nodes.Element;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
-import org.schabi.newpipe.crawler.CrawlingException;
-import org.schabi.newpipe.crawler.Downloader;
-import org.schabi.newpipe.crawler.Parser;
-import org.schabi.newpipe.crawler.ParsingException;
-import org.schabi.newpipe.crawler.VideoUrlIdHandler;
-import org.schabi.newpipe.crawler.StreamExtractor;
-import org.schabi.newpipe.crawler.MediaFormat;
-import org.schabi.newpipe.crawler.VideoInfo;
-import org.schabi.newpipe.crawler.VideoPreviewInfo;
+import org.schabi.newpipe.extractor.CrawlingException;
+import org.schabi.newpipe.extractor.Downloader;
+import org.schabi.newpipe.extractor.Parser;
+import org.schabi.newpipe.extractor.ParsingException;
+import org.schabi.newpipe.extractor.VideoUrlIdHandler;
+import org.schabi.newpipe.extractor.StreamExtractor;
+import org.schabi.newpipe.extractor.MediaFormat;
+import org.schabi.newpipe.extractor.VideoInfo;
+import org.schabi.newpipe.extractor.VideoPreviewInfo;
 
 import java.io.IOException;
-import java.net.URLDecoder;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;

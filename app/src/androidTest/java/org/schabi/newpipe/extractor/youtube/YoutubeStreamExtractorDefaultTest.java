@@ -3,10 +3,10 @@ package org.schabi.newpipe.services.youtube;
 import android.test.AndroidTestCase;
 
 import org.schabi.newpipe.Downloader;
-import org.schabi.newpipe.crawler.CrawlingException;
-import org.schabi.newpipe.crawler.ParsingException;
-import org.schabi.newpipe.crawler.services.youtube.YoutubeStreamExtractor;
-import org.schabi.newpipe.crawler.VideoInfo;
+import org.schabi.newpipe.extractor.CrawlingException;
+import org.schabi.newpipe.extractor.ParsingException;
+import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
+import org.schabi.newpipe.extractor.VideoInfo;
 
 import java.io.IOException;
 

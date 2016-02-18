@@ -1,4 +1,4 @@
-package org.schabi.newpipe.crawler.services.youtube;
+package org.schabi.newpipe.extractor.services.youtube;
 
 import android.net.Uri;
 import android.util.Log;
@@ -6,10 +6,10 @@ import android.util.Log;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.schabi.newpipe.crawler.Downloader;
-import org.schabi.newpipe.crawler.ParsingException;
-import org.schabi.newpipe.crawler.SearchEngine;
-import org.schabi.newpipe.crawler.VideoPreviewInfo;
+import org.schabi.newpipe.extractor.Downloader;
+import org.schabi.newpipe.extractor.ParsingException;
+import org.schabi.newpipe.extractor.SearchEngine;
+import org.schabi.newpipe.extractor.VideoPreviewInfo;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;

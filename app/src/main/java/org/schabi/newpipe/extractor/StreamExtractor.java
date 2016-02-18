@@ -1,4 +1,4 @@
-package org.schabi.newpipe.crawler;
+package org.schabi.newpipe.extractor;
 
 /**
  * Created by Christian Schabesberger on 10.08.15.

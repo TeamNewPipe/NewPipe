@@ -2,9 +2,9 @@ package org.schabi.newpipe.services.youtube;
 
 import android.test.AndroidTestCase;
 
-import org.schabi.newpipe.crawler.VideoPreviewInfo;
-import org.schabi.newpipe.crawler.SearchEngine;
-import org.schabi.newpipe.crawler.services.youtube.YoutubeSearchEngine;
+import org.schabi.newpipe.extractor.VideoPreviewInfo;
+import org.schabi.newpipe.extractor.SearchEngine;
+import org.schabi.newpipe.extractor.services.youtube.YoutubeSearchEngine;
 import org.schabi.newpipe.Downloader;
 
 import java.util.ArrayList;

@@ -11,8 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import org.schabi.newpipe.crawler.ServiceList;
-import org.schabi.newpipe.crawler.StreamingService;
+import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.StreamingService;
 
 
 /**

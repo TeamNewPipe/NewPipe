@@ -1,8 +1,8 @@
-package org.schabi.newpipe.crawler;
+package org.schabi.newpipe.extractor;
 
 import android.util.Log;
 
-import org.schabi.newpipe.crawler.services.youtube.YoutubeService;
+import org.schabi.newpipe.extractor.services.youtube.YoutubeService;
 
 /**
  * Created by Christian Schabesberger on 23.08.15.
