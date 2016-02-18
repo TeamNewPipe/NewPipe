@@ -104,6 +104,6 @@ public class YoutubeStreamExtractorDefaultTest extends AndroidTestCase {
 
     public void testGetDashMpd() throws ParsingException {
         assertTrue(extractor.getDashMpdUrl(),
-                !extractor.getDashMpdUrl().isEmpty());
+                extractor.getDashMpdUrl() != null || !extractor.getDashMpdUrl().isEmpty());
     }
 }
