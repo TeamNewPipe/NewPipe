@@ -28,7 +28,7 @@ import java.util.List;
 @SuppressWarnings("ALL")
 public interface StreamExtractor {
 
-    public class ExctractorInitException extends CrawlingException {
+    public class ExctractorInitException extends ExctractionException {
         public ExctractorInitException() {}
         public ExctractorInitException(String message) {
             super(message);

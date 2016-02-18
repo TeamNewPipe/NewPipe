@@ -98,7 +98,7 @@ public class VideoItemDetailFragment extends Fragment {
     private Bitmap videoThumbnail;
 
     private View thumbnailWindowLayout;
-    //this only remains dueto downwards compartiblity
+    //this only remains due to downwards compatibility
     private FloatingActionButton playVideoButton;
     private final Point initialThumbnailPos = new Point(0, 0);
 
@@ -224,11 +224,20 @@ public class VideoItemDetailFragment extends Fragment {
             Button backgroundButton = (Button)
                     activity.findViewById(R.id.detailVideoThumbnailWindowBackgroundButton);
             View topView = activity.findViewById(R.id.detailTopView);
-            View nextVideoView = videoItemViewCreator
-                    .getViewFromVideoInfoItem(null, nextVideoFrame, info.next_video, getContext());
+            View nextVideoView = null;
+            if(info.next_video != null) {
+                nextVideoView = videoItemViewCreator
+                        .getViewFromVideoInfoItem(null, nextVideoFrame, info.next_video, getContext());
+            } else {
+                activity.findViewById(R.id.detailNextVidButtonAndContentLayout).setVisibility(View.GONE);
+                activity.findViewById(R.id.detailNextVideoTitle).setVisibility(View.GONE);
+                activity.findViewById(R.id.detailNextVideoButton).setVisibility(View.GONE);
+            }
 
             progressBar.setVisibility(View.GONE);
-            nextVideoFrame.addView(nextVideoView);
+            if(nextVideoView != null) {
+                nextVideoFrame.addView(nextVideoView);
+            }
 
             initThumbnailViews(info, nextVideoFrame);
 
@@ -265,14 +274,43 @@ public class VideoItemDetailFragment extends Fragment {
                 }
             });
 
-            uploaderView.setText(info.uploader);
+            // Since newpipe is designed to work even if certain information is not available,
+            // the UI has to react on missing information.
             videoTitleView.setText(info.title);
-            uploaderView.setText(info.uploader);
-            viewCountView.setText(Localization.localizeViewCount(info.view_count, c));
-            thumbsUpView.setText(Localization.localizeNumber(info.like_count, c));
-            thumbsDownView.setText(Localization.localizeNumber(info.dislike_count, c));
-            uploadDateView.setText(Localization.localizeDate(info.upload_date, c));
-            descriptionView.setText(Html.fromHtml(info.description));
+            if(!info.uploader.isEmpty()) {
+                uploaderView.setText(info.uploader);
+            } else {
+                activity.findViewById(R.id.detailUploaderWrapView).setVisibility(View.GONE);
+            }
+            if(info.view_count >= 0) {
+                viewCountView.setText(Localization.localizeViewCount(info.view_count, c));
+            } else {
+                viewCountView.setVisibility(View.GONE);
+            }
+            if(info.dislike_count >= 0) {
+                thumbsDownView.setText(Localization.localizeNumber(info.dislike_count, c));
+            } else {
+                thumbsDownView.setVisibility(View.INVISIBLE);
+                activity.findViewById(R.id.detailThumbsDownImgView).setVisibility(View.GONE);
+            }
+            if(info.like_count >= 0) {
+                thumbsUpView.setText(Localization.localizeNumber(info.like_count, c));
+            } else {
+                thumbsUpView.setVisibility(View.GONE);
+                activity.findViewById(R.id.detailThumbsUpImgView).setVisibility(View.GONE);
+                thumbsDownView.setVisibility(View.GONE);
+                activity.findViewById(R.id.detailThumbsDownImgView).setVisibility(View.GONE);
+            }
+            if(!info.upload_date.isEmpty()) {
+                uploadDateView.setText(Localization.localizeDate(info.upload_date, c));
+            } else {
+                uploadDateView.setVisibility(View.GONE);
+            }
+            if(!info.description.isEmpty()) {
+                descriptionView.setText(Html.fromHtml(info.description));
+            } else {
+                descriptionView.setVisibility(View.GONE);
+            }
 
             descriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
@@ -299,7 +337,12 @@ public class VideoItemDetailFragment extends Fragment {
             });
             textContentLayout.setVisibility(View.VISIBLE);
 
-            initSimilarVideos(info, videoItemViewCreator);
+            if(info.related_videos != null && !info.related_videos.isEmpty()) {
+                initSimilarVideos(info, videoItemViewCreator);
+            } else {
+                activity.findViewById(R.id.detailSimilarTitle).setVisibility(View.GONE);
+                activity.findViewById(R.id.similarVideosView).setVisibility(View.GONE);
+            }
 
             if(autoPlayEnabled) {
                 playVideo(info);
@@ -335,32 +378,40 @@ public class VideoItemDetailFragment extends Fragment {
         ImageView nextVideoThumb =
                 (ImageView) nextVideoFrame.findViewById(R.id.itemThumbnailView);
 
-        imageLoader.displayImage(info.thumbnail_url, videoThumbnailView,
-                displayImageOptions, new ImageLoadingListener() {
-                    @Override
-                    public void onLoadingStarted(String imageUri, View view) {
-                    }
+        if(info.thumbnail_url != null && !info.thumbnail_url.isEmpty()) {
+            imageLoader.displayImage(info.thumbnail_url, videoThumbnailView,
+                    displayImageOptions, new ImageLoadingListener() {
+                        @Override
+                        public void onLoadingStarted(String imageUri, View view) {
+                        }
 
-                    @Override
-                    public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                        Toast.makeText(VideoItemDetailFragment.this.getActivity(),
-                                R.string.could_not_load_thumbnails, Toast.LENGTH_LONG).show();
-                        failReason.getCause().printStackTrace();
-                    }
+                        @Override
+                        public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                            Toast.makeText(VideoItemDetailFragment.this.getActivity(),
+                                    R.string.could_not_load_thumbnails, Toast.LENGTH_LONG).show();
+                            failReason.getCause().printStackTrace();
+                        }
 
-                    @Override
-                    public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                        videoThumbnail = loadedImage;
-                    }
+                        @Override
+                        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                            videoThumbnail = loadedImage;
+                        }
 
-                    @Override
-                    public void onLoadingCancelled(String imageUri, View view) {
-                    }
-                });
-        imageLoader.displayImage(info.uploader_thumbnail_url,
-                uploaderThumb, displayImageOptions, new ThumbnailLoadingListener());
-        imageLoader.displayImage(info.next_video.thumbnail_url,
-                nextVideoThumb, displayImageOptions, new ThumbnailLoadingListener());
+                        @Override
+                        public void onLoadingCancelled(String imageUri, View view) {
+                        }
+                    });
+        } else {
+            videoThumbnailView.setImageResource(R.drawable.dummy_thumbnail_dark);
+        }
+        if(info.uploader_thumbnail_url != null && !info.uploader_thumbnail_url.isEmpty()) {
+            imageLoader.displayImage(info.uploader_thumbnail_url,
+                    uploaderThumb, displayImageOptions, new ThumbnailLoadingListener());
+        }
+        if(info.thumbnail_url != null && !info.thumbnail_url.isEmpty()) {
+            imageLoader.displayImage(info.next_video.thumbnail_url,
+                    nextVideoThumb, displayImageOptions, new ThumbnailLoadingListener());
+        }
     }
 
     private void setupActionBarHandler(final VideoInfo info) {

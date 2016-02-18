@@ -266,10 +266,10 @@
                         android:layout_below="@id/detailNextVidButtonAndContentLayout"
                         android:textAllCaps="true" />
                     <LinearLayout
+                        android:id="@+id/similarVideosView"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/similarVideosView"
                         android:layout_below="@id/detailSimilarTitle">
                     </LinearLayout>
                 </RelativeLayout>

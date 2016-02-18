@@ -16,7 +16,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.List;
 
-import org.schabi.newpipe.extractor.CrawlingException;
+import org.schabi.newpipe.extractor.ExctractionException;
 import org.schabi.newpipe.extractor.VideoPreviewInfo;
 import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -115,7 +115,7 @@ public class VideoItemListFragment extends ListFragment {
             } catch(IOException e) {
                 postNewErrorToast(h, R.string.network_error);
                 e.printStackTrace();
-            } catch(CrawlingException ce) {
+            } catch(ExctractionException ce) {
                 postNewErrorToast(h, R.string.parsing_error);
                 ce.printStackTrace();
             } catch(Exception e) {

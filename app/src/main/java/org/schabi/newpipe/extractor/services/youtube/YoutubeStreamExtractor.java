@@ -10,7 +10,7 @@ import org.jsoup.nodes.Element;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
-import org.schabi.newpipe.extractor.CrawlingException;
+import org.schabi.newpipe.extractor.ExctractionException;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
@@ -173,7 +173,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
 
     private Downloader downloader;
 
-    public YoutubeStreamExtractor(String pageUrl, Downloader dl) throws CrawlingException, IOException {
+    public YoutubeStreamExtractor(String pageUrl, Downloader dl) throws ExctractionException, IOException {
         //most common videoInfo fields are now set in our superclass, for all services
         downloader = dl;
         this.pageUrl = pageUrl;

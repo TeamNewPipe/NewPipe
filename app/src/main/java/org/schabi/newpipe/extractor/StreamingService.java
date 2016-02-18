@@ -28,7 +28,7 @@ public interface StreamingService {
     }
     ServiceInfo getServiceInfo();
     StreamExtractor getExtractorInstance(String url, Downloader downloader)
-            throws IOException, CrawlingException;
+            throws IOException, ExctractionException;
     SearchEngine getSearchEngineInstance();
 
     VideoUrlIdHandler getUrlIdHandler();

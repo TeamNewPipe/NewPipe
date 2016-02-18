@@ -31,33 +31,54 @@ public class VideoInfo extends AbstractVideoInfo {
     /**Fills out the video info fields which are common to all services.
      * Probably needs to be overridden by subclasses*/
     public static VideoInfo getVideoInfo(StreamExtractor extractor, Downloader downloader)
-            throws CrawlingException, IOException {
+            throws ExctractionException, IOException {
         VideoInfo videoInfo = new VideoInfo();
+
+        videoInfo = extractImportantData(videoInfo, extractor, downloader);
+        videoInfo = extractStreams(videoInfo, extractor, downloader);
+        videoInfo = extractOptionalData(videoInfo, extractor, downloader);
+
+        return videoInfo;
+    }
+
+    private static VideoInfo extractImportantData(
+            VideoInfo videoInfo, StreamExtractor extractor, Downloader downloader)
+            throws ExctractionException, IOException {
+        /* ---- importand data, withoug the video can't be displayed goes here: ---- */
+        // if one of these is not available an exception is ment to be thrown directly into the frontend.
 
         VideoUrlIdHandler uiconv = extractor.getUrlIdConverter();
 
-
         videoInfo.webpage_url = extractor.getPageUrl();
-        videoInfo.title = extractor.getTitle();
-        videoInfo.duration = extractor.getLength();
-        videoInfo.uploader = extractor.getUploader();
-        videoInfo.description = extractor.getDescription();
-        videoInfo.view_count = extractor.getViews();
-        videoInfo.upload_date = extractor.getUploadDate();
-        videoInfo.thumbnail_url = extractor.getThumbnailUrl();
         videoInfo.id = uiconv.getVideoId(extractor.getPageUrl());
-        //todo: make this quick and dirty solution a real fallback
-        // The front end should be notified that the dash mpd could not be downloaded
-        // although not getting the dash mpd is not the end of the world, therfore
-        // we continue.
+        videoInfo.title = extractor.getTitle();
+
+        if((videoInfo.webpage_url == null || videoInfo.webpage_url.isEmpty())
+                || (videoInfo.id == null || videoInfo.id.isEmpty())
+                || (videoInfo.title == null /* videoInfo.title can be empty of course */));
+
+        return videoInfo;
+    }
+
+    private static VideoInfo extractStreams(
+            VideoInfo videoInfo, StreamExtractor extractor, Downloader downloader)
+            throws ExctractionException, IOException {
+        /* ---- stream extraction goes here ---- */
+        // At least one type of stream has to be available,
+        // otherwise an exception will be thrown directly into the frontend.
+
         try {
             videoInfo.dashMpdUrl = extractor.getDashMpdUrl();
         } catch(Exception e) {
-            e.printStackTrace();
+            videoInfo.addException(new ExctractionException("Couldn't get Dash manifest", e));
         }
 
-        /** Load and extract audio*/
-        videoInfo.audio_streams = extractor.getAudioStreams();
+        /*  Load and extract audio */
+        try {
+            videoInfo.audio_streams = extractor.getAudioStreams();
+        } catch(Exception e) {
+            videoInfo.addException(new ExctractionException("Couldn't get audio streams", e));
+        }
         // also try to get streams from the dashMpd
         if(videoInfo.dashMpdUrl != null && !videoInfo.dashMpdUrl.isEmpty()) {
             if(videoInfo.audio_streams == null) {
@@ -69,28 +90,115 @@ public class VideoInfo extends AbstractVideoInfo {
                 videoInfo.audio_streams.addAll(
                         DashMpdParser.getAudioStreams(videoInfo.dashMpdUrl, downloader));
             } catch(Exception e) {
-                e.printStackTrace();
+                videoInfo.addException(
+                        new ExctractionException("Couldn't get audio streams from dash mpd", e));
             }
         }
-        /** Extract video stream url*/
-        videoInfo.video_streams = extractor.getVideoStreams();
-        /** Extract video only stream url*/
-        videoInfo.video_only_streams = extractor.getVideoOnlyStreams();
-        videoInfo.uploader_thumbnail_url = extractor.getUploaderThumbnailUrl();
-        videoInfo.start_position = extractor.getTimeStamp();
-        videoInfo.average_rating = extractor.getAverageRating();
-        videoInfo.like_count = extractor.getLikeCount();
-        videoInfo.dislike_count = extractor.getDislikeCount();
-        videoInfo.next_video = extractor.getNextVideo();
-        videoInfo.related_videos = extractor.getRelatedVideos();
+        /* Extract video stream url*/
+        try {
+            videoInfo.video_streams = extractor.getVideoStreams();
+        } catch (Exception e) {
+            videoInfo.addException(
+                    new ExctractionException("Couldn't get video streams", e));
+        }
+        /* Extract video only stream url*/
+        try {
+            videoInfo.video_only_streams = extractor.getVideoOnlyStreams();
+        } catch(Exception e) {
+            videoInfo.addException(
+                    new ExctractionException("Couldn't get video only streams", e));
+        }
+
+        // either dash_mpd audio_only or video has to be available, otherwise we didn't get a stream,
+        // and therefore failed. (Since video_only_streams are just optional they don't caunt).
+        if((videoInfo.video_streams == null || videoInfo.video_streams.isEmpty())
+                && (videoInfo.audio_streams == null || videoInfo.audio_streams.isEmpty())
+                && (videoInfo.dashMpdUrl == null || videoInfo.dashMpdUrl.isEmpty())) {
+            throw new ExctractionException("Could not get any stream. See error variable to get further details.");
+        }
 
         return videoInfo;
     }
 
+    private static VideoInfo extractOptionalData(
+            VideoInfo videoInfo, StreamExtractor extractor, Downloader downloader) {
+        /*  ---- optional data goes here: ---- */
+        // If one of these failes, the frontend neets to handle that they are not available.
+        // Exceptions are therfore not thrown into the frontend, but stored into the error List,
+        // so the frontend can afterwads check where errors happend.
+
+        try {
+            videoInfo.thumbnail_url = extractor.getThumbnailUrl();
+        } catch(Exception e) {
+            videoInfo.addException(e);
+        }
+        try {
+            videoInfo.duration = extractor.getLength();
+        } catch(Exception e) {
+            videoInfo.addException(e);
+        }
+        try {
+            videoInfo.uploader = extractor.getUploader();
+        } catch(Exception e) {
+            videoInfo.addException(e);
+        }
+        try {
+            videoInfo.description = extractor.getDescription();
+        } catch(Exception e) {
+            videoInfo.addException(e);
+        }
+        try {
+            videoInfo.view_count = extractor.getViews();
+        } catch(Exception e) {
+            videoInfo.addException(e);
+        }
+        try {
+            videoInfo.upload_date = extractor.getUploadDate();
+        } catch(Exception e) {
+            videoInfo.addException(e);
+        }
+        try {
+            videoInfo.uploader_thumbnail_url = extractor.getUploaderThumbnailUrl();
+        } catch(Exception e) {
+            videoInfo.addException(e);
+        }
+        try {
+            videoInfo.start_position = extractor.getTimeStamp();
+        } catch(Exception e) {
+            videoInfo.addException(e);
+        }
+        try {
+            videoInfo.average_rating = extractor.getAverageRating();
+        } catch(Exception e) {
+            videoInfo.addException(e);
+        }
+        try {
+            videoInfo.like_count = extractor.getLikeCount();
+        } catch(Exception e) {
+            videoInfo.addException(e);
+        }
+        try {
+            videoInfo.dislike_count = extractor.getDislikeCount();
+        } catch(Exception e) {
+            videoInfo.addException(e);
+        }
+        try {
+            videoInfo.next_video = extractor.getNextVideo();
+        } catch(Exception e) {
+            videoInfo.addException(e);
+        }
+        try {
+            videoInfo.related_videos = extractor.getRelatedVideos();
+        } catch(Exception e) {
+            videoInfo.addException(e);
+        }
+
+        return videoInfo;
+    }
 
     public String uploader_thumbnail_url = "";
     public String description = "";
-    /*todo: make this lists over vectors*/
+
     public List<VideoStream> video_streams = null;
     public List<AudioStream> audio_streams = null;
     public List<VideoStream> video_only_streams = null;
@@ -101,8 +209,6 @@ public class VideoInfo extends AbstractVideoInfo {
     public String dashMpdUrl = "";
     public int duration = -1;
 
-    /*YouTube-specific fields
-    todo: move these to a subclass*/
     public int age_limit = 0;
     public int like_count = -1;
     public int dislike_count = -1;
@@ -112,6 +218,8 @@ public class VideoInfo extends AbstractVideoInfo {
     //in seconds. some metadata is not passed using a VideoInfo object!
     public int start_position = 0;
     //todo: public int service_id = -1;
+
+    public List<Exception> errors = new Vector<>();
 
     public VideoInfo() {}
 
@@ -186,5 +294,9 @@ public class VideoInfo extends AbstractVideoInfo {
             return equalStats(cmp)
                     && url == cmp.url;
         }
+    }
+
+    public void addException(Exception e) {
+        errors.add(e);
     }
 }

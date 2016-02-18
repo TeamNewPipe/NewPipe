@@ -21,7 +21,7 @@ package org.schabi.newpipe.extractor;
  */
 
 
-public class ParsingException extends CrawlingException {
+public class ParsingException extends ExctractionException {
     public ParsingException() {}
     public ParsingException(String message) {
         super(message);
