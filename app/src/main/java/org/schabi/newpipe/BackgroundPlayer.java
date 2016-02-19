@@ -205,9 +205,9 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 if(action.equals(ACTION_PLAYPAUSE)) {
                     if(mediaPlayer.isPlaying()) {
                         mediaPlayer.pause();
-                        note.contentView.setImageViewResource(R.id.backgroundPlayPause, R.drawable.ic_play_circle_filled_white_24dp);
+                        note.contentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_play_circle_filled_white_24dp);
                         if(android.os.Build.VERSION.SDK_INT >=16){
-                            note.bigContentView.setImageViewResource(R.id.backgroundPlayPause, R.drawable.ic_play_circle_filled_white_24dp);
+                            note.bigContentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_play_circle_filled_white_24dp);
                         }
                         noteMgr.notify(noteID, note);
                     }
@@ -215,9 +215,9 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                         //reacquire CPU lock after auto-releasing it on pause
                         mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
                         mediaPlayer.start();
-                        note.contentView.setImageViewResource(R.id.backgroundPlayPause, R.drawable.ic_pause_white_24dp);
+                        note.contentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_pause_white_24dp);
                         if(android.os.Build.VERSION.SDK_INT >=16){
-                            note.bigContentView.setImageViewResource(R.id.backgroundPlayPause, R.drawable.ic_pause_white_24dp);
+                            note.bigContentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_pause_white_24dp);
                         }
                         noteMgr.notify(noteID, note);
                     }
@@ -275,11 +275,13 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             */
 
             //build intent to return to video, on tapping notification
-            Intent openDetailView = new Intent(getApplicationContext(),
+            Intent openDetailViewIntent = new Intent(getApplicationContext(),
                     VideoItemDetailActivity.class);
-            openDetailView.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, serviceId);
-            openDetailView.putExtra(VideoItemDetailFragment.VIDEO_URL, webUrl);
-            openDetailView.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            openDetailViewIntent.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, serviceId);
+            openDetailViewIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, webUrl);
+            openDetailViewIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            PendingIntent openDetailView = PendingIntent.getActivity(owner, noteID,
+                    openDetailViewIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
             noteBuilder
                     .setOngoing(true)
@@ -291,74 +293,39 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                             String.format(res.getString(
                                     R.string.background_player_time_text), title))
                     .setContentIntent(PendingIntent.getActivity(getApplicationContext(),
-                            noteID, openDetailView,
+                            noteID, openDetailViewIntent,
                             PendingIntent.FLAG_UPDATE_CURRENT));
 
 
-            if (android.os.Build.VERSION.SDK_INT < 21) {
+            RemoteViews view =
+                    new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
+            view.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
+            view.setTextViewText(R.id.notificationSongName, title);
+            view.setTextViewText(R.id.notificationArtist, channelName);
+            view.setOnClickPendingIntent(R.id.notificationStop, stopPI);
+            view.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
+            view.setOnClickPendingIntent(R.id.notificationBackgroundButton, openDetailView);
 
-                NotificationCompat.Action playButton = new NotificationCompat.Action.Builder
-                        (R.drawable.ic_play_arrow_white_48dp,
-                                res.getString(R.string.play_btn_text), playPI).build();
+            //possibly found the expandedView problem,
+            //but can't test it as I don't have a 5.0 device. -medavox
+            RemoteViews expandedView =
+                    new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification_expanded);
+            expandedView.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
+            expandedView.setTextViewText(R.id.notificationSongName, title);
+            expandedView.setTextViewText(R.id.notificationArtist, channelName);
+            expandedView.setOnClickPendingIntent(R.id.notificationStop, stopPI);
+            expandedView.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
+            expandedView.setOnClickPendingIntent(R.id.notificationBackgroundButton, openDetailView);
 
-                noteBuilder
-                        .setContentTitle(title)
-                                //really? Id like to put something more helpful here.
-                                //was more of a placeholder than anything else. -medavox
-                                //.setContentText("NewPipe is playing in the background")
-                        .setContentText(channelName)
-                                //.setAutoCancel(!mediaPlayer.isPlaying())
-                        .setDeleteIntent(stopPI)
-                                //doesn't fit with Notification.MediaStyle
-                                //.setProgress(vidLength, 0, false)
-                        .setLargeIcon(videoThumbnail)
-                        .addAction(playButton);
-                        //.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                        //.setLargeIcon(cover)
+            noteBuilder.setCategory(Notification.CATEGORY_TRANSPORT);
 
-                //is wrapping this in an SDK version check really necessary,
-                // if we're using NotificationCompat?
-                // the compat libraries should handle this, right? -medavox
-                if (android.os.Build.VERSION.SDK_INT >= 16)
-                    noteBuilder.setPriority(Notification.PRIORITY_LOW);
+            //Make notification appear on lockscreen
+            noteBuilder.setVisibility(Notification.VISIBILITY_PUBLIC);
 
-                noteBuilder.setStyle(new NotificationCompat.MediaStyle()
-                        //.setMediaSession(mMediaSession.getSessionToken())
-                        .setShowActionsInCompactView(new int[]{0})
-                        .setShowCancelButton(true)
-                        .setCancelButtonIntent(stopPI));
-                if (videoThumbnail != null) {
-                    noteBuilder.setLargeIcon(videoThumbnail);
-                }
-                note = noteBuilder.build();
-            } else {
-                RemoteViews view =
-                        new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
-                view.setImageViewBitmap(R.id.backgroundCover, videoThumbnail);
-                view.setTextViewText(R.id.backgroundSongName, title);
-                view.setTextViewText(R.id.backgroundArtist, channelName);
-                view.setOnClickPendingIntent(R.id.backgroundStop, stopPI);
-                view.setOnClickPendingIntent(R.id.backgroundPlayPause, playPI);
+            note = noteBuilder.build();
+            note.contentView = view;
 
-                //possibly found the expandedView problem,
-                //but can't test it as I don't have a 5.0 device. -medavox
-                RemoteViews expandedView =
-                        new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification_expanded);
-                expandedView.setImageViewBitmap(R.id.backgroundCover, videoThumbnail);
-                expandedView.setTextViewText(R.id.backgroundSongName, title);
-                expandedView.setTextViewText(R.id.backgroundArtist, channelName);
-                expandedView.setOnClickPendingIntent(R.id.backgroundStop, stopPI);
-                expandedView.setOnClickPendingIntent(R.id.backgroundPlayPause, playPI);
-
-                noteBuilder.setCategory(Notification.CATEGORY_TRANSPORT);
-
-                //Make notification appear on lockscreen
-                noteBuilder.setVisibility(Notification.VISIBILITY_PUBLIC);
-
-                note = noteBuilder.build();
-                note.contentView = view;
-
-                //todo: This never shows up. I was not able to figure out why:
+            if (android.os.Build.VERSION.SDK_INT > 16) {
                 note.bigContentView = expandedView;
             }
 
