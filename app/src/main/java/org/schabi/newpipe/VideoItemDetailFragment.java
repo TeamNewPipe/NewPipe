@@ -344,6 +344,8 @@ public class VideoItemDetailFragment extends Fragment {
                 activity.findViewById(R.id.similarVideosView).setVisibility(View.GONE);
             }
 
+            setupActionBarHandler(info);
+
             if(autoPlayEnabled) {
                 playVideo(info);
             }
@@ -364,7 +366,6 @@ public class VideoItemDetailFragment extends Fragment {
                 }
             });
 
-            setupActionBarHandler(info);
         } catch (java.lang.NullPointerException e) {
             Log.w(TAG, "updateInfo(): Fragment closed before thread ended work... or else");
             e.printStackTrace();
