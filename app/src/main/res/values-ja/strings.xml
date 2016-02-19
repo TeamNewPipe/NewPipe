@@ -78,4 +78,7 @@
     <string name="could_not_setup_download_menu">ダウンロード メニューを設定できませんでした。</string>
 
 
+    <string name="live_streams_not_supported">これはライブ ストリームです。これらはまだサポートされていません。</string>
+
+
     </resources>
