@@ -191,13 +191,15 @@ public class YoutubeStreamExtractor implements StreamExtractor {
         JSONObject ytPlayerConfig;
 
         //attempt to load the youtube js player JSON arguments
-        String ps; //used to determine if this is a livestream or not
+        String ps = ""; //used to determine if this is a livestream or not
         try {
             ytPlayerConfigRaw =
                     Parser.matchGroup1("ytplayer.config\\s*=\\s*(\\{.*?\\});", pageContent);
             ytPlayerConfig = new JSONObject(ytPlayerConfigRaw);
             playerArgs = ytPlayerConfig.getJSONObject("args");
-            ps = playerArgs.get("ps").toString();
+            if(playerArgs.has("ps")) {
+                ps = playerArgs.get("ps").toString();
+            }
         } catch (Parser.RegexException e) {
             String errorReason = findErrorReason(doc);
             switch(errorReason) {
