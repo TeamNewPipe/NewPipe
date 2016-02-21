@@ -127,6 +127,7 @@ public class YoutubeSearchEngine implements SearchEngine {
                             .text();
                     viewCountInfo = viewCountInfo.substring(0, viewCountInfo.indexOf(' '));
                     viewCountInfo = viewCountInfo.replaceAll("[,.]", "");
+                    viewCountInfo = viewCountInfo.replaceAll("\\s","");
                     resultItem.view_count = Long.parseLong(viewCountInfo);
 
                     Element te = item.select("div[class=\"yt-thumb video-thumb\"]").first()
