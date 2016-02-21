@@ -386,7 +386,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
         Vector<VideoInfo.AudioStream> audioStreams = new Vector<>();
         try{
             String encoded_url_map;
-            if (videoInfoPage == null) {
+            if (playerArgs == null) {
                 encoded_url_map = videoInfoPage.get("adaptive_fmts");
             } else {
                 encoded_url_map = playerArgs.getString("adaptive_fmts");
