@@ -409,7 +409,7 @@ public class VideoItemDetailFragment extends Fragment {
             imageLoader.displayImage(info.uploader_thumbnail_url,
                     uploaderThumb, displayImageOptions, new ThumbnailLoadingListener());
         }
-        if(info.thumbnail_url != null && !info.thumbnail_url.isEmpty()) {
+        if(info.thumbnail_url != null && !info.thumbnail_url.isEmpty() && info.next_video != null) {
             imageLoader.displayImage(info.next_video.thumbnail_url,
                     nextVideoThumb, displayImageOptions, new ThumbnailLoadingListener());
         }
