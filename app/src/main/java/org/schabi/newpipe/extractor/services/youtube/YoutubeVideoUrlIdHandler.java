@@ -37,7 +37,7 @@ public class YoutubeVideoUrlIdHandler implements VideoUrlIdHandler {
     @SuppressWarnings("WeakerAccess")
     @Override
     public String getVideoId(String url) throws ParsingException {
-        String id = "";
+        String id;
 
         if(url.contains("youtube")) {
             if(url.contains("attribution_link")) {

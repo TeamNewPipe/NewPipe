@@ -4,7 +4,7 @@ package org.schabi.newpipe.extractor;
  * Created by Christian Schabesberger on 30.01.16.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * ExctractionException.java is part of NewPipe.
+ * ExtractionException.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,18 +20,18 @@ package org.schabi.newpipe.extractor;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class ExctractionException extends Exception {
-    public ExctractionException() {}
+public class ExtractionException extends Exception {
+    public ExtractionException() {}
 
-    public ExctractionException(String message) {
+    public ExtractionException(String message) {
         super(message);
     }
 
-    public ExctractionException(Throwable cause) {
+    public ExtractionException(Throwable cause) {
         super(cause);
     }
 
-    public ExctractionException(String message, Throwable cause) {
+    public ExtractionException(String message, Throwable cause) {
         super(message, cause);
     }
 }

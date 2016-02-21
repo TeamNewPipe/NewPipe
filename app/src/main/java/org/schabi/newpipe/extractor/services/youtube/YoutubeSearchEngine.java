@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.schabi.newpipe.extractor.Downloader;
+import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.VideoPreviewInfo;
@@ -18,8 +19,6 @@ import org.xml.sax.SAXException;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -101,44 +100,40 @@ public class YoutubeSearchEngine implements SearchEngine {
                     // video item type
                 } else if (!((el = item.select("div[class*=\"yt-lockup-video\"").first()) == null)) {
                     VideoPreviewInfo resultItem = new VideoPreviewInfo();
-                    Element dl = el.select("h3").first().select("a").first();
-                    resultItem.webpage_url = dl.attr("abs:href");
+
+                    // importand information
+                    resultItem.webpage_url = getWebpageUrl(item);
+                    resultItem.id = (new YoutubeVideoUrlIdHandler()).getVideoId(resultItem.webpage_url);
+                    resultItem.title = getTitle(item);
+
+                    // optional iformation
+                    //todo: make this a proper error handling
                     try {
-                        Pattern p = Pattern.compile("v=([0-9a-zA-Z-]*)");
-                        Matcher m = p.matcher(resultItem.webpage_url);
-                        resultItem.id = m.group(1);
+                        resultItem.duration = getDuration(item);
                     } catch (Exception e) {
-                        //e.printStackTrace();
+                        e.printStackTrace();
                     }
-                    resultItem.title = dl.text();
-
-                    resultItem.duration = item.select("span[class=\"video-time\"]").first().text();
-
-                    resultItem.uploader = item.select("div[class=\"yt-lockup-byline\"]").first()
-                            .select("a").first()
-                            .text();
-                    resultItem.upload_date = item.select("div[class=\"yt-lockup-meta\"]").first()
-                            .select("li").first()
-                            .text();
-
-                    //todo: test against view_count
-                    String viewCountInfo = item.select("div[class=\"yt-lockup-meta\"]").first()
-                            .select("li").get(1)
-                            .text();
-                    viewCountInfo = viewCountInfo.substring(0, viewCountInfo.indexOf(' '));
-                    viewCountInfo = viewCountInfo.replaceAll("[,.]", "");
-                    viewCountInfo = viewCountInfo.replaceAll("\\s","");
-                    resultItem.view_count = Long.parseLong(viewCountInfo);
-
-                    Element te = item.select("div[class=\"yt-thumb video-thumb\"]").first()
-                            .select("img").first();
-                    resultItem.thumbnail_url = te.attr("abs:src");
-                    // Sometimes youtube sends links to gif files which somehow seem to not exist
-                    // anymore. Items with such gif also offer a secondary image source. So we are going
-                    // to use that if we've caught such an item.
-                    if (resultItem.thumbnail_url.contains(".gif")) {
-                        resultItem.thumbnail_url = te.attr("abs:data-thumb");
+                    try {
+                        resultItem.uploader = getUploader(item);
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
+                    try {
+                        resultItem.upload_date = getUploadDate(item);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        resultItem.view_count = getViewCount(item);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        resultItem.thumbnail_url = getThumbnailUrl(item);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     result.resultList.add(resultItem);
                 } else {
                     //noinspection ConstantConditions
@@ -207,4 +202,61 @@ public class YoutubeSearchEngine implements SearchEngine {
         }
     }
 
+    private String getWebpageUrl(Element item) {
+        Element el = item.select("div[class*=\"yt-lockup-video\"").first();
+        Element dl = el.select("h3").first().select("a").first();
+        return dl.attr("abs:href");
+    }
+
+    private String getTitle(Element item) {
+        Element el = item.select("div[class*=\"yt-lockup-video\"").first();
+        Element dl = el.select("h3").first().select("a").first();
+        return dl.text();
+    }
+
+    private String getDuration(Element item) {
+        try {
+            return item.select("span[class=\"video-time\"]").first().text();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    private String getUploader(Element item) {
+        return item.select("div[class=\"yt-lockup-byline\"]").first()
+                .select("a").first()
+                .text();
+    }
+
+    private String getUploadDate(Element item) {
+        return item.select("div[class=\"yt-lockup-meta\"]").first()
+                .select("li").first()
+                .text();
+    }
+
+    private long getViewCount(Element item) throws Parser.RegexException{
+        String output;
+        String input = item.select("div[class=\"yt-lockup-meta\"]").first()
+                .select("li").get(1)
+                .text();
+        output = Parser.matchGroup1("([0-9,\\. ])", input).replace(" ", "");
+
+        return Long.parseLong(output);
+    }
+
+    private String getThumbnailUrl(Element item) {
+        String url;
+        Element te = item.select("div[class=\"yt-thumb video-thumb\"]").first()
+                .select("img").first();
+        url = te.attr("abs:src");
+        // Sometimes youtube sends links to gif files which somehow seem to not exist
+        // anymore. Items with such gif also offer a secondary image source. So we are going
+        // to use that if we've caught such an item.
+        if (url.contains(".gif")) {
+            url = te.attr("abs:data-thumb");
+        }
+
+        return url;
+    }
 }

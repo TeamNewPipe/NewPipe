@@ -147,6 +147,13 @@ public class VideoItemDetailFragment extends Fragment {
                         onErrorBlockedByGema();
                     }
                 });
+            } catch(YoutubeStreamExtractor.LiveStreamException e) {
+                h.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        onNotSpecifiedContentErrorWithMessage(R.string.live_streams_not_supported);
+                    }
+                });
             }
             // ----------------------------------------
             catch(StreamExtractor.ContentNotAvailableException e) {
@@ -186,8 +193,10 @@ public class VideoItemDetailFragment extends Fragment {
 
         @Override
         public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-            Toast.makeText(VideoItemDetailFragment.this.getActivity(),
-                    R.string.could_not_load_thumbnails, Toast.LENGTH_LONG).show();
+            if(getContext() != null) {
+                Toast.makeText(VideoItemDetailFragment.this.getActivity(),
+                        R.string.could_not_load_thumbnails, Toast.LENGTH_LONG).show();
+            }
             failReason.getCause().printStackTrace();
         }
 
@@ -669,6 +678,15 @@ public class VideoItemDetailFragment extends Fragment {
         thumbnailView.setImageBitmap(BitmapFactory.decodeResource(
                 getResources(), R.drawable.not_available_monkey));
         Toast.makeText(activity, R.string.content_not_available, Toast.LENGTH_LONG)
+                .show();
+    }
+
+    private void onNotSpecifiedContentErrorWithMessage(int resourceId) {
+        ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detailThumbnailView);
+        progressBar.setVisibility(View.GONE);
+        thumbnailView.setImageBitmap(BitmapFactory.decodeResource(
+                getResources(), R.drawable.not_available_monkey));
+        Toast.makeText(activity, resourceId, Toast.LENGTH_LONG)
                 .show();
     }
 

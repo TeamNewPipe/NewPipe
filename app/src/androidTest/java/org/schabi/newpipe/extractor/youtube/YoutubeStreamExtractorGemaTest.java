@@ -3,7 +3,7 @@ package org.schabi.newpipe.services.youtube;
 import android.test.AndroidTestCase;
 
 import org.schabi.newpipe.Downloader;
-import org.schabi.newpipe.extractor.ExctractionException;
+import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class YoutubeStreamExtractorGemaTest extends AndroidTestCase {
     // Deaktivate this Test Case bevore uploading it githup, otherwise CI will fail.
     private static final boolean testActive = false;
 
-    public void testGemaError() throws IOException, ExctractionException {
+    public void testGemaError() throws IOException, ExtractionException {
         if(testActive) {
             try {
                 new YoutubeStreamExtractor("https://www.youtube.com/watch?v=3O1_3zBUKM8",

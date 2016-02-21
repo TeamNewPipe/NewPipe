@@ -31,7 +31,7 @@ public class VideoInfo extends AbstractVideoInfo {
     /**Fills out the video info fields which are common to all services.
      * Probably needs to be overridden by subclasses*/
     public static VideoInfo getVideoInfo(StreamExtractor extractor, Downloader downloader)
-            throws ExctractionException, IOException {
+            throws ExtractionException, IOException {
         VideoInfo videoInfo = new VideoInfo();
 
         videoInfo = extractImportantData(videoInfo, extractor, downloader);
@@ -43,7 +43,7 @@ public class VideoInfo extends AbstractVideoInfo {
 
     private static VideoInfo extractImportantData(
             VideoInfo videoInfo, StreamExtractor extractor, Downloader downloader)
-            throws ExctractionException, IOException {
+            throws ExtractionException, IOException {
         /* ---- importand data, withoug the video can't be displayed goes here: ---- */
         // if one of these is not available an exception is ment to be thrown directly into the frontend.
 
@@ -62,7 +62,7 @@ public class VideoInfo extends AbstractVideoInfo {
 
     private static VideoInfo extractStreams(
             VideoInfo videoInfo, StreamExtractor extractor, Downloader downloader)
-            throws ExctractionException, IOException {
+            throws ExtractionException, IOException {
         /* ---- stream extraction goes here ---- */
         // At least one type of stream has to be available,
         // otherwise an exception will be thrown directly into the frontend.
@@ -70,14 +70,14 @@ public class VideoInfo extends AbstractVideoInfo {
         try {
             videoInfo.dashMpdUrl = extractor.getDashMpdUrl();
         } catch(Exception e) {
-            videoInfo.addException(new ExctractionException("Couldn't get Dash manifest", e));
+            videoInfo.addException(new ExtractionException("Couldn't get Dash manifest", e));
         }
 
         /*  Load and extract audio */
         try {
             videoInfo.audio_streams = extractor.getAudioStreams();
         } catch(Exception e) {
-            videoInfo.addException(new ExctractionException("Couldn't get audio streams", e));
+            videoInfo.addException(new ExtractionException("Couldn't get audio streams", e));
         }
         // also try to get streams from the dashMpd
         if(videoInfo.dashMpdUrl != null && !videoInfo.dashMpdUrl.isEmpty()) {
@@ -91,7 +91,7 @@ public class VideoInfo extends AbstractVideoInfo {
                         DashMpdParser.getAudioStreams(videoInfo.dashMpdUrl, downloader));
             } catch(Exception e) {
                 videoInfo.addException(
-                        new ExctractionException("Couldn't get audio streams from dash mpd", e));
+                        new ExtractionException("Couldn't get audio streams from dash mpd", e));
             }
         }
         /* Extract video stream url*/
@@ -99,14 +99,14 @@ public class VideoInfo extends AbstractVideoInfo {
             videoInfo.video_streams = extractor.getVideoStreams();
         } catch (Exception e) {
             videoInfo.addException(
-                    new ExctractionException("Couldn't get video streams", e));
+                    new ExtractionException("Couldn't get video streams", e));
         }
         /* Extract video only stream url*/
         try {
             videoInfo.video_only_streams = extractor.getVideoOnlyStreams();
         } catch(Exception e) {
             videoInfo.addException(
-                    new ExctractionException("Couldn't get video only streams", e));
+                    new ExtractionException("Couldn't get video only streams", e));
         }
 
         // either dash_mpd audio_only or video has to be available, otherwise we didn't get a stream,
@@ -114,7 +114,7 @@ public class VideoInfo extends AbstractVideoInfo {
         if((videoInfo.video_streams == null || videoInfo.video_streams.isEmpty())
                 && (videoInfo.audio_streams == null || videoInfo.audio_streams.isEmpty())
                 && (videoInfo.dashMpdUrl == null || videoInfo.dashMpdUrl.isEmpty())) {
-            throw new ExctractionException("Could not get any stream. See error variable to get further details.");
+            throw new ExtractionException("Could not get any stream. See error variable to get further details.");
         }
 
         return videoInfo;

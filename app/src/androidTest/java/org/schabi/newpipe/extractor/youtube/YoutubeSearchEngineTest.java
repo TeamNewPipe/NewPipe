@@ -81,6 +81,12 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
         }
     }
 
+    public void testViewCount() {
+        for(VideoPreviewInfo i : result.resultList) {
+            assertTrue(Long.toString(i.view_count), i.view_count != -1);
+        }
+    }
+
     public void testIfSuggestionsAreReplied() {
         assertEquals(suggestionReply.size() > 0, true);
     }

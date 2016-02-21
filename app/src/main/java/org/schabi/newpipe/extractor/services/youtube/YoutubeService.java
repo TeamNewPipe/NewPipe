@@ -1,6 +1,6 @@
 package org.schabi.newpipe.extractor.services.youtube;
 
-import org.schabi.newpipe.extractor.ExctractionException;
+import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.StreamExtractor;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -39,7 +39,7 @@ public class YoutubeService implements StreamingService {
     }
     @Override
     public StreamExtractor getExtractorInstance(String url, Downloader downloader)
-            throws ExctractionException, IOException {
+            throws ExtractionException, IOException {
         VideoUrlIdHandler urlIdHandler = new YoutubeVideoUrlIdHandler();
         if(urlIdHandler.acceptUrl(url)) {
             return new YoutubeStreamExtractor(url, downloader) ;

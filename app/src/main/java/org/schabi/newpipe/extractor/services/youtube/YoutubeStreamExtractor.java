@@ -10,7 +10,7 @@ import org.jsoup.nodes.Element;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
-import org.schabi.newpipe.extractor.ExctractionException;
+import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
@@ -46,6 +46,33 @@ import java.util.Vector;
  */
 
 public class YoutubeStreamExtractor implements StreamExtractor {
+
+    // exceptions
+
+    public class DecryptException extends ParsingException {
+        DecryptException(Throwable cause) {
+            super(cause);
+        }
+        DecryptException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+
+    // special content not available exceptions
+
+    public class GemaException extends ContentNotAvailableException {
+        GemaException(String message) {
+            super(message);
+        }
+    }
+
+    public class LiveStreamException extends ContentNotAvailableException {
+        LiveStreamException() {
+            super();
+        }
+    }
+
+    // ----------------
 
     // Sometimes if the html page of youtube is already downloaded, youtube web page will internally
     // download the /get_video_info page. Since a certain date dashmpd url is only available over
@@ -138,25 +165,6 @@ public class YoutubeStreamExtractor implements StreamExtractor {
         throw new ParsingException("itag=" + Integer.toString(itag) + " not supported");
     }
 
-    public class DecryptException extends ParsingException {
-        DecryptException(Throwable cause) {
-            super(cause);
-        }
-        DecryptException(String message, Throwable cause) {
-            super(message, cause);
-        }
-    }
-
-    // special content not available exceptions
-
-    public class GemaException extends ContentNotAvailableException {
-        GemaException(String message) {
-            super(message);
-        }
-    }
-
-    // ----------------
-
     private static final String TAG = YoutubeStreamExtractor.class.toString();
     private final Document doc;
     private JSONObject playerArgs;
@@ -173,7 +181,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
 
     private Downloader downloader;
 
-    public YoutubeStreamExtractor(String pageUrl, Downloader dl) throws ExctractionException, IOException {
+    public YoutubeStreamExtractor(String pageUrl, Downloader dl) throws ExtractionException, IOException {
         //most common videoInfo fields are now set in our superclass, for all services
         downloader = dl;
         this.pageUrl = pageUrl;
@@ -183,11 +191,13 @@ public class YoutubeStreamExtractor implements StreamExtractor {
         JSONObject ytPlayerConfig;
 
         //attempt to load the youtube js player JSON arguments
+        String ps; //used to determine if this is a livestream or not
         try {
             ytPlayerConfigRaw =
                     Parser.matchGroup1("ytplayer.config\\s*=\\s*(\\{.*?\\});", pageContent);
             ytPlayerConfig = new JSONObject(ytPlayerConfigRaw);
             playerArgs = ytPlayerConfig.getJSONObject("args");
+            ps = playerArgs.get("ps").toString();
         } catch (Parser.RegexException e) {
             String errorReason = findErrorReason(doc);
             switch(errorReason) {
@@ -199,7 +209,10 @@ public class YoutubeStreamExtractor implements StreamExtractor {
                     throw new ContentNotAvailableException("Content not available", e);
             }
         } catch (JSONException e) {
-            throw new ParsingException("Could not parse yt player config");
+            throw new ParsingException("Could not parse yt player config", e);
+        }
+        if (ps.equals("live")) {
+            throw new LiveStreamException();
         }
 
 

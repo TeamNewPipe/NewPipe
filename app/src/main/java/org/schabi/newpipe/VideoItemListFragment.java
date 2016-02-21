@@ -16,7 +16,8 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.List;
 
-import org.schabi.newpipe.extractor.ExctractionException;
+import org.schabi.newpipe.extractor.ExtractionException;
+import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.VideoPreviewInfo;
 import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -108,14 +109,14 @@ public class VideoItemListFragment extends ListFragment {
                 SearchEngine.Result result = engine.search(query, page, searchLanguage,
                         new Downloader());
 
-                Log.i(TAG, "language code passed:\""+searchLanguage+"\"");
+                //Log.i(TAG, "language code passed:\""+searchLanguage+"\"");
                 if(runs) {
                     h.post(new ResultRunnable(result, requestId));
                 }
             } catch(IOException e) {
                 postNewErrorToast(h, R.string.network_error);
                 e.printStackTrace();
-            } catch(ExctractionException ce) {
+            } catch(ExtractionException ce) {
                 postNewErrorToast(h, R.string.parsing_error);
                 ce.printStackTrace();
             } catch(Exception e) {
@@ -124,67 +125,7 @@ public class VideoItemListFragment extends ListFragment {
             }
         }
     }
-/*
-<<<
-    private class LoadThumbsRunnable implements Runnable {
-        private final Vector<String> thumbnailUrlList = new Vector<>();
-        private final Vector<Boolean> downloadedList;
-        final Handler h = new Handler();
-        private volatile boolean run = true;
-        private final int requestId;
-        public LoadThumbsRunnable(Vector<VideoPreviewInfo> videoList,
-                                  Vector<Boolean> downloadedList, int requestId) {
-            for(VideoPreviewInfo item : videoList) {
-                thumbnailUrlList.add(item.thumbnail_url);
-            }
-            this.downloadedList = downloadedList;
-            this.requestId = requestId;
-        }
-        public void terminate() {
-            run = false;
-        }
-        public boolean isRunning() {
-            return run;
-        }
-        @Override
-        public void run() {
-            for(int i = 0; i < thumbnailUrlList.size() && run; i++) {
-                if(!downloadedList.get(i)) {
-                    Bitmap thumbnail;
-                    try {
-                        //todo: make bitmaps not bypass tor
-                        thumbnail = BitmapFactory.decodeStream(
-                                new URL(thumbnailUrlList.get(i)).openConnection().getInputStream());
-                        h.post(new SetThumbnailRunnable(i, thumbnail, requestId));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-    }
 
-    private class SetThumbnailRunnable implements Runnable {
-        private final int index;
-        private final Bitmap thumbnail;
-        private final int requestId;
-        public SetThumbnailRunnable(int index, Bitmap thumbnail, int requestId) {
-            this.index = index;
-            this.thumbnail = thumbnail;
-            this.requestId = requestId;
-        }
-        @Override
-        public void run() {
-            if(requestId == currentRequestId) {
-                videoListAdapter.updateDownloadedThumbnailList(index);
-                videoListAdapter.setThumbnail(index, thumbnail);
-            }
-        }
-    }
-
-=======
->>>>>>> 6d1b4652fc98e5c2d5e19b0f98ba38a731137a70
-*/
     public void present(List<VideoPreviewInfo> videoList) {
         mode = PRESENT_VIDEOS_MODE;
         setListShown(true);
@@ -378,7 +319,7 @@ public class VideoItemListFragment extends ListFragment {
             @Override
             public void run() {
                 setListShown(true);
-                Toast.makeText(getActivity(), getString(R.string.network_error),
+                Toast.makeText(getActivity(), getString(stringResource),
                         Toast.LENGTH_SHORT).show();
             }
         });

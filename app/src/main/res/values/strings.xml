@@ -84,6 +84,7 @@
     <string name="content_not_available">Content not available.</string>
     <string name="blocked_by_gema">Blocked by GEMA.</string>
     <string name="could_not_setup_download_menu">Could not setup download menu.</string>
+    <string name="live_streams_not_supported">This is a LIVE STREAM. These are not yet supported.</string>
 
 
     <!-- Content descriptions (for better accessibility) -->
