@@ -10,6 +10,12 @@
     android:background="@color/background_notification_color"
     tools:targetApi="jelly_bean">
 
+    <Button
+        android:id="@+id/notificationBackgroundButton"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@android:color/transparent" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="64dp"
