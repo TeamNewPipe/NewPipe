@@ -30,6 +30,10 @@ public class YoutubeStreamExtractorRestrictedTest extends AndroidTestCase {
                 extractor.getTimeStamp() == 174);
     }
 
+    public void testGetAgeLimit() throws ParsingException {
+        assertTrue(extractor.getAgeLimit() == 18);
+    }
+
     public void testGetTitle() throws ParsingException {
         assertTrue(!extractor.getTitle().isEmpty());
     }

@@ -529,10 +529,16 @@ public class YoutubeStreamExtractor implements StreamExtractor {
 
     @Override
     public int getAgeLimit() throws ParsingException {
-        // Not yet implemented.
-        // Also you need to be logged in to see age restricted videos on youtube,
-        // therefore NP is not able to receive such videos.
-        return 0;
+        if (!isAgeRestricted) {
+            return 0;
+        }
+        try {
+            return Integer.valueOf(doc.head()
+                    .getElementsByAttributeValue("property", "og:restrictions:age")
+                    .attr("content").replace("+", ""));
+        } catch (Exception e) {
+            throw new ParsingException("Could not get age restriction");
+        }
     }
 
     @Override
