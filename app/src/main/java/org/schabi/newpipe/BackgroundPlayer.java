@@ -305,13 +305,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             view.setTextViewText(R.id.notificationArtist, channelName);
             view.setOnClickPendingIntent(R.id.notificationStop, stopPI);
             view.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
-
-            // todo: fix terrible lazy workaround
-            // sh*** because android 6.0 f**** around with z order when doing event handling
-            // Who ever designed android that way wanted to harm humanity.
-            if(android.os.Build.VERSION.SDK_INT < 23) {
-                view.setOnClickPendingIntent(R.id.notificationBackgroundButton, openDetailView);
-            }
+            view.setOnClickPendingIntent(R.id.notificationContent, openDetailView);
 
             //possibly found the expandedView problem,
             //but can't test it as I don't have a 5.0 device. -medavox
@@ -322,13 +316,8 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 expandedView.setTextViewText(R.id.notificationArtist, channelName);
             expandedView.setOnClickPendingIntent(R.id.notificationStop, stopPI);
             expandedView.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
+            expandedView.setOnClickPendingIntent(R.id.notificationContent, openDetailView);
 
-            // todo: fix terrible lazy workaround
-            // sh*** because android 6.0 f**** around with z order when doing event handling
-            // Who ever designed android that way wanted to harm humanity.
-            if(android.os.Build.VERSION.SDK_INT < 23) {
-                expandedView.setOnClickPendingIntent(R.id.notificationBackgroundButton, openDetailView);
-            }
 
             noteBuilder.setCategory(Notification.CATEGORY_TRANSPORT);
 
