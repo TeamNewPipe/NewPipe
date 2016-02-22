@@ -1,2 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="background_player_name">NewPipe Arkaplan Oynatıcı</string>
+    <string name="view_count_text">%1$ görüntüleme</string>
+    <string name="upload_date_text">%1$\\\'e yüklendi</string>
+    <string name="no_player_found">Video oynatıcı bulunamadı. VLC\'yi kurmak ister misin ?</string>
+    <string name="install">Kur</string>
+    <string name="cancel">Çık</string>
+    <string name="open_in_browser">Tarayıcıda aç</string>
+    <string name="share">Paylaş</string>
+    <string name="loading">Yükleniyor</string>
+    <string name="download">İndir</string>
+    <string name="search">Ara</string>
+    <string name="settings">Ayarlar</string>
+    <string name="did_you_mean">"Bunu mu demek istediniz: "</string>
+    <string name="search_page">"Arama sayfası: "</string>
+    <string name="share_dialog_title">Paylaşın:</string>
+    <string name="choose_browser">Tarayıcı seçin:</string>
+    <string name="screen_rotation">döndür</string>
+    <string name="settings_activity_title">Ayarlar</string>
+    <string name="use_external_video_player_title">Farklı video oynatıcı kullan</string>
+    <string name="use_external_audio_player_title">Farklı ses oynatıcısı kullan</string>
+
+    <string name="download_path_summary">İndirilen videolar dizini.</string>
+    <string name="download_path_dialog_title">İndirilen videolar dizinini giriniz</string>
+
+    </resources>
