@@ -1,5 +1,7 @@
 package org.schabi.newpipe.extractor;
 
+import android.util.Log;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.HashMap;
@@ -53,7 +55,11 @@ public class Parser {
         Map<String, String> map = new HashMap<>();
         for(String arg : input.split("&")) {
             String[] split_arg = arg.split("=");
-            map.put(split_arg[0], URLDecoder.decode(split_arg[1], "UTF-8"));
+            if(split_arg.length > 1) {
+                map.put(split_arg[0], URLDecoder.decode(split_arg[1], "UTF-8"));
+            } else {
+                map.put(split_arg[0], "");
+            }
         }
         return map;
     }

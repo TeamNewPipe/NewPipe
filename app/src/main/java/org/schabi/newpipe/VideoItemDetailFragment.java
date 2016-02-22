@@ -181,9 +181,13 @@ public class VideoItemDetailFragment extends Fragment {
         }
         @Override
         public void run() {
-            //todo: fix expired thread error:
-            // If the thread calling this runnable is expired, the following function will crash.
-            updateInfo(videoInfo);
+            boolean show_age_restricted_content = PreferenceManager.getDefaultSharedPreferences(getActivity())
+                    .getBoolean(activity.getString(R.string.show_age_restricted_content), false);
+            if(videoInfo.age_limit == 0 || show_age_restricted_content) {
+                updateInfo(videoInfo);
+            } else {
+                onNotSpecifiedContentErrorWithMessage(R.string.video_is_age_restricted);
+            }
         }
     }
 
@@ -418,7 +422,7 @@ public class VideoItemDetailFragment extends Fragment {
             imageLoader.displayImage(info.uploader_thumbnail_url,
                     uploaderThumb, displayImageOptions, new ThumbnailLoadingListener());
         }
-        if(info.thumbnail_url != null && !info.thumbnail_url.isEmpty()) {
+        if(info.thumbnail_url != null && !info.thumbnail_url.isEmpty() && info.next_video != null) {
             imageLoader.displayImage(info.next_video.thumbnail_url,
                     nextVideoThumb, displayImageOptions, new ThumbnailLoadingListener());
         }

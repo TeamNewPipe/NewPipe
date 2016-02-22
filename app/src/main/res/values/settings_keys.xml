@@ -3,6 +3,7 @@
     <!-- Categories -->
     <string name="settings_category_video_audio">settings_category_video_audio</string>
     <string name="settings_category_appearance">settings_category_appearance</string>
+    <string name="settings_content_options">settings_content_options</string>
     <string name="settings_category_other">settings_category_other</string>
     <!-- Key values -->
     <string name="download_path_key">download_path</string>
@@ -207,5 +208,6 @@
         <item>日本語</item>
         <item>한국어</item>
     </string-array>
+    <string name="show_age_restricted_content">show_age_restricted_content</string>
     <string name="use_tor_key">use_tor</string>
 </resources>

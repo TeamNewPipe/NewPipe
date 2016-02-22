@@ -74,6 +74,9 @@
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="c3s_url" translatable="false">https://www.c3s.cc/</string>
     <string name="play_btn_text">Play</string>
+    <string name="content">Content</string>
+    <string name="show_age_restricted_content_title">Show age restricted content</string>
+    <string name="video_is_age_restricted">Video is Age restricted. Enable age restricted videos in the settings first.</string>
 
     <!-- error strings -->
     <string name="general_error">Error</string>

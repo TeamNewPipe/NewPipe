@@ -63,8 +63,8 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:key="@string/settings_category_other"
-        android:title="@string/settings_category_other_title"
+        android:key="@string/settings_content_options"
+        android:title="@string/content"
         android:textAllCaps="true">
 
         <ListPreference
@@ -74,6 +74,18 @@
             android:entries="@array/language_names"
             android:entryValues="@array/language_codes"
             android:defaultValue="@string/default_language_value" />
+
+        <CheckBoxPreference
+            android:key="@string/show_age_restricted_content"
+            android:title="@string/show_age_restricted_content_title"
+            android:defaultValue="false"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="@string/settings_category_other"
+        android:title="@string/settings_category_other_title"
+        android:textAllCaps="true">
 
         <EditTextPreference
             android:key="@string/download_path_key"

@@ -52,10 +52,12 @@ public class VideoInfo extends AbstractVideoInfo {
         videoInfo.webpage_url = extractor.getPageUrl();
         videoInfo.id = uiconv.getVideoId(extractor.getPageUrl());
         videoInfo.title = extractor.getTitle();
+        videoInfo.age_limit = extractor.getAgeLimit();
 
         if((videoInfo.webpage_url == null || videoInfo.webpage_url.isEmpty())
                 || (videoInfo.id == null || videoInfo.id.isEmpty())
-                || (videoInfo.title == null /* videoInfo.title can be empty of course */));
+                || (videoInfo.title == null /* videoInfo.title can be empty of course */)
+                || (videoInfo.age_limit == -1));
 
         return videoInfo;
     }
@@ -192,6 +194,11 @@ public class VideoInfo extends AbstractVideoInfo {
         } catch(Exception e) {
             videoInfo.addException(e);
         }
+        try {
+
+        } catch (Exception e) {
+            videoInfo.addException(e);
+        }
 
         return videoInfo;
     }
@@ -209,7 +216,7 @@ public class VideoInfo extends AbstractVideoInfo {
     public String dashMpdUrl = "";
     public int duration = -1;
 
-    public int age_limit = 0;
+    public int age_limit = -1;
     public int like_count = -1;
     public int dislike_count = -1;
     public String average_rating = "";
