@@ -56,7 +56,9 @@ import org.schabi.newpipe.extractor.VideoPreviewInfo;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.VideoInfo;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
-import org.schabi.newpipe.exoplayer.ExoPlayerActivity;
+import org.schabi.newpipe.player.BackgroundPlayer;
+import org.schabi.newpipe.player.PlayVideoActivity;
+import org.schabi.newpipe.player.ExoPlayerActivity;
 
 
 /**
@@ -831,10 +833,17 @@ public class VideoItemDetailFragment extends Fragment {
         } else {
             if (PreferenceManager.getDefaultSharedPreferences(activity)
                     .getBoolean(activity.getString(R.string.use_exoplayer_key), false)) {
-                Intent mpdIntent = new Intent(activity, ExoPlayerActivity.class)
-                        .setData(Uri.parse(info.dashMpdUrl))
-                        .putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_DASH);
-                startActivity(mpdIntent);
+
+                // exo player
+
+                if(info.dashMpdUrl != null && !info.dashMpdUrl.isEmpty()) {
+                    Intent mpdIntent = new Intent(activity, ExoPlayerActivity.class)
+                            .setData(Uri.parse(info.dashMpdUrl))
+                            .putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_DASH);
+                    startActivity(mpdIntent);
+                }
+                //-------------
+
             } else {
                 // Internal Player
                 Intent intent = new Intent(activity, PlayVideoActivity.class);

@@ -1,4 +1,4 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.player;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +26,9 @@ import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.VideoView;
+
+import org.schabi.newpipe.App;
+import org.schabi.newpipe.R;
 
 /**
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
@@ -191,7 +194,6 @@ public class PlayVideoActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        App.checkStartTor(this);
     }
 
     @Override
