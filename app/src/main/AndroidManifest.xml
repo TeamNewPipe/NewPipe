@@ -82,6 +82,24 @@
             android:parentActivityName=".VideoItemDetailActivity"
             tools:ignore="UnusedAttribute">
         </activity>
+		<activity
+            android:name=".exoplayer.ExoPlayerActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance"
+            android:theme="@style/PlayerTheme">
+            <intent-filter>
+                <action android:name="org.schabi.newpipe.exoplayer.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="content" />
+                <data android:scheme="asset" />
+                <data android:scheme="file" />
+            </intent-filter>
+        </activity>
         <service
             android:name=".BackgroundPlayer"
             android:label="@string/background_player_name"

@@ -11,6 +11,7 @@
     <string name="use_external_video_player_key">use_external_video_player</string>
     <string name="use_external_audio_player_key">use_external_audio_player</string>
     <string name="autoplay_through_intent_key">autoplay_through_intent</string>
+    <string name="use_exoplayer_key">use_exoplayer</string>
 
     <string name="default_resolution_key">default_resolution_preference</string>
     <string name="default_resolution_value">360p</string>

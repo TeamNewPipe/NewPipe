@@ -38,6 +38,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
+import com.google.android.exoplayer.util.Util;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -45,6 +46,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.ArrayList;
 import java.util.Vector;
+
 
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.ParsingException;
@@ -54,6 +56,7 @@ import org.schabi.newpipe.extractor.VideoPreviewInfo;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.VideoInfo;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
+import org.schabi.newpipe.exoplayer.ExoPlayerActivity;
 
 
 /**
@@ -826,13 +829,21 @@ public class VideoItemDetailFragment extends Fragment {
                 builder.create().show();
             }
         } else {
-            // Internal Player
-            Intent intent = new Intent(activity, PlayVideoActivity.class);
-            intent.putExtra(PlayVideoActivity.VIDEO_TITLE, info.title);
-            intent.putExtra(PlayVideoActivity.STREAM_URL, selectedVideoStream.url);
-            intent.putExtra(PlayVideoActivity.VIDEO_URL, info.webpage_url);
-            intent.putExtra(PlayVideoActivity.START_POSITION, info.start_position);
-            activity.startActivity(intent);     //also HERE !!!
+            if (PreferenceManager.getDefaultSharedPreferences(activity)
+                    .getBoolean(activity.getString(R.string.use_exoplayer_key), false)) {
+                Intent mpdIntent = new Intent(activity, ExoPlayerActivity.class)
+                        .setData(Uri.parse(info.dashMpdUrl))
+                        .putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_DASH);
+                startActivity(mpdIntent);
+            } else {
+                // Internal Player
+                Intent intent = new Intent(activity, PlayVideoActivity.class);
+                intent.putExtra(PlayVideoActivity.VIDEO_TITLE, info.title);
+                intent.putExtra(PlayVideoActivity.STREAM_URL, selectedVideoStream.url);
+                intent.putExtra(PlayVideoActivity.VIDEO_URL, info.webpage_url);
+                intent.putExtra(PlayVideoActivity.START_POSITION, info.start_position);
+                activity.startActivity(intent);     //also HERE !!!
+            }
         }
 
         // --------------------------------------------
