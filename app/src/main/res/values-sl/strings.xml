@@ -77,4 +77,7 @@
     <string name="could_not_setup_download_menu">Ni mogoče nastaviti menija za prejem datotek.</string>
 
 
+    <string name="live_streams_not_supported">To je pretok v živo. Ta vrsta še ni podprta.</string>
+
+
     </resources>
