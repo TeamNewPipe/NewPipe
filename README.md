@@ -36,6 +36,7 @@ NewPipe does not use any Google framework libraries, or the YouTube API. It only
 * Show Next/Related videos
 * Search YouTube in a specific language
 * Orbot/Tor support (no streaming yet, experimental)
+* Watch age restricted material
 
 ### Coming Features
 
