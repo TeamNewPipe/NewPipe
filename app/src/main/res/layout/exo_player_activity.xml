@@ -14,7 +14,6 @@
      limitations under the License.
 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
     android:focusable="true"
     android:layout_width="match_parent"
@@ -41,76 +40,5 @@
         android:layout_height="match_parent"/>
 
   </com.google.android.exoplayer.AspectRatioFrameLayout>
-
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="#88000000"
-      android:orientation="vertical">
-
-
-      <TextView android:id="@+id/player_state_view"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:paddingLeft="4dp"
-          android:paddingRight="4dp"
-          android:textSize="10sp"
-          tools:ignore="SmallSp"/>
-
-      <TextView android:id="@+id/debug_text_view"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:paddingLeft="4dp"
-          android:paddingRight="4dp"
-          android:textSize="10sp"
-          tools:ignore="SmallSp"/>
-
-    <LinearLayout android:id="@+id/controls_root"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-      <Button android:id="@+id/video_controls"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/video"
-          style="@style/ExoPlayerButton"
-          android:visibility="gone"
-          android:onClick="showVideoPopup"/>
-
-      <Button android:id="@+id/audio_controls"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/audio"
-          style="@style/ExoPlayerButton"
-          android:visibility="gone"
-          android:onClick="showAudioPopup"/>
-
-      <Button android:id="@+id/text_controls"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/text"
-          style="@style/ExoPlayerButton"
-          android:visibility="gone"
-          android:onClick="showTextPopup"/>
-
-      <Button android:id="@+id/verbose_log_controls"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/logging"
-          style="@style/ExoPlayerButton"
-          android:onClick="showVerboseLogPopup"/>
-
-      <Button android:id="@+id/retry_button"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/retry"
-          android:visibility="gone"
-          style="@style/ExoPlayerButton"/>
-
-    </LinearLayout>
-
-  </LinearLayout>
 
 </FrameLayout>

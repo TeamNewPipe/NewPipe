@@ -19,6 +19,7 @@
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
  * ExoPlayerActivity.java is part of NewPipe. all changes are under GPL3
+ * ExoPlayerActivity.java is part of NewPipe. all changes are under GPL3
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,8 +45,6 @@ import org.schabi.newpipe.player.exoplayer.HlsRendererBuilder;
 import org.schabi.newpipe.player.exoplayer.NPExoPlayer;
 import org.schabi.newpipe.player.exoplayer.NPExoPlayer.RendererBuilder;
 import org.schabi.newpipe.player.exoplayer.SmoothStreamingRendererBuilder;
-import org.schabi.newpipe.player.exoplayer.SmoothStreamingTestMediaDrmCallback;
-import org.schabi.newpipe.player.exoplayer.WidevineTestMediaDrmCallback;
 
 import com.google.android.exoplayer.AspectRatioFrameLayout;
 import com.google.android.exoplayer.ExoPlaybackException;
@@ -84,15 +83,12 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.view.View.OnTouchListener;
 import android.view.accessibility.CaptioningManager;
-import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.net.CookieHandler;
@@ -127,24 +123,16 @@ public class ExoPlayerActivity extends Activity {
 
     private EventLogger eventLogger;
     private MediaController mediaController;
-    private View debugRootView;
     private View shutterView;
     private AspectRatioFrameLayout videoFrame;
     private SurfaceView surfaceView;
-    private TextView debugTextView;
-    private TextView playerStateTextView;
     private SubtitleLayout subtitleLayout;
-    private Button videoButton;
-    private Button audioButton;
-    private Button textButton;
-    private Button retryButton;
 
     private NPExoPlayer player;
-    private DebugTextViewHelper debugViewHelper;
     private boolean playerNeedsPrepare;
 
     private long playerPosition;
-    private boolean enableBackgroundAudio;
+    private boolean enableBackgroundAudio = true;
 
     private Uri contentUri;
     private int contentType;
@@ -181,8 +169,7 @@ public class ExoPlayerActivity extends Activity {
                     text += "unknown";
                     break;
             }
-            playerStateTextView.setText(text);
-            updateButtonVisibilities();
+            //todo: put text in some log
         }
 
         @Override
@@ -218,7 +205,6 @@ public class ExoPlayerActivity extends Activity {
                 Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_LONG).show();
             }
             playerNeedsPrepare = true;
-            updateButtonVisibilities();
             showControls();
         }
 
@@ -327,23 +313,17 @@ public class ExoPlayerActivity extends Activity {
         });
 
         shutterView = findViewById(R.id.shutter);
-        debugRootView = findViewById(R.id.controls_root);
 
         videoFrame = (AspectRatioFrameLayout) findViewById(R.id.video_frame);
         surfaceView = (SurfaceView) findViewById(R.id.surface_view);
         surfaceView.getHolder().addCallback(surfaceHolderCallback);
-        debugTextView = (TextView) findViewById(R.id.debug_text_view);
-
-        playerStateTextView = (TextView) findViewById(R.id.player_state_view);
         subtitleLayout = (SubtitleLayout) findViewById(R.id.subtitles);
 
+        //todo: replace that creapy mediaController
         mediaController = new KeyCompatibleMediaController(this);
         mediaController.setAnchorView(root);
-        retryButton = (Button) findViewById(R.id.retry_button);
-        videoButton = (Button) findViewById(R.id.video_controls);
-        audioButton = (Button) findViewById(R.id.audio_controls);
-        textButton = (Button) findViewById(R.id.text_controls);
 
+        //todo: check what cookie handler does, and if we even need it
         CookieHandler currentHandler = CookieHandler.getDefault();
         if (currentHandler != defaultCookieManager) {
             CookieHandler.setDefault(defaultCookieManager);
@@ -351,14 +331,6 @@ public class ExoPlayerActivity extends Activity {
 
         audioCapabilitiesReceiver = new AudioCapabilitiesReceiver(this, audioCapabilitiesListener);
         audioCapabilitiesReceiver.register();
-
-
-        retryButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                preparePlayer(true);
-            }
-        });
     }
 
     @Override
@@ -452,14 +424,16 @@ public class ExoPlayerActivity extends Activity {
         String userAgent = Util.getUserAgent(this, "NewPipeExoPlayer");
         switch (contentType) {
             case Util.TYPE_SS:
-                return new SmoothStreamingRendererBuilder(this, userAgent, contentUri.toString(),
-                        new SmoothStreamingTestMediaDrmCallback());
+                // default
+                //return new SmoothStreamingRendererBuilder(this, userAgent, contentUri.toString());
             case Util.TYPE_DASH:
-                return new DashRendererBuilder(this, userAgent, contentUri.toString(),
-                        new WidevineTestMediaDrmCallback(contentId, provider));
+                // if a dash manifest is available
+                //return new DashRendererBuilder(this, userAgent, contentUri.toString());
             case Util.TYPE_HLS:
+                // for livestreams
                 return new HlsRendererBuilder(this, userAgent, contentUri.toString());
             case Util.TYPE_OTHER:
+                // video only streaming
                 return new ExtractorRendererBuilder(this, userAgent, contentUri);
             default:
                 throw new IllegalStateException("Unsupported type: " + contentType);
@@ -481,15 +455,10 @@ public class ExoPlayerActivity extends Activity {
             player.addListener(eventLogger);
             player.setInfoListener(eventLogger);
             player.setInternalErrorListener(eventLogger);
-            debugViewHelper = new DebugTextViewHelper(player, debugTextView);
-            playerStateTextView.setVisibility(View.GONE);
-            debugTextView.setVisibility(View.GONE);
-            debugViewHelper.start();
         }
         if (playerNeedsPrepare) {
             player.prepare();
             playerNeedsPrepare = false;
-            updateButtonVisibilities();
         }
         player.setSurface(surfaceView.getHolder().getSurface());
         player.setPlayWhenReady(playWhenReady);
@@ -497,8 +466,6 @@ public class ExoPlayerActivity extends Activity {
 
     private void releasePlayer() {
         if (player != null) {
-            debugViewHelper.stop();
-            debugViewHelper = null;
             playerPosition = player.getCurrentPosition();
             player.release();
             player = null;
@@ -507,163 +474,9 @@ public class ExoPlayerActivity extends Activity {
         }
     }
 
-    // User controls
-
-    private void updateButtonVisibilities() {
-        retryButton.setVisibility(playerNeedsPrepare ? View.VISIBLE : View.GONE);
-        videoButton.setVisibility(haveTracks(NPExoPlayer.TYPE_VIDEO) ? View.VISIBLE : View.GONE);
-        audioButton.setVisibility(haveTracks(NPExoPlayer.TYPE_AUDIO) ? View.VISIBLE : View.GONE);
-        textButton.setVisibility(haveTracks(NPExoPlayer.TYPE_TEXT) ? View.VISIBLE : View.GONE);
-    }
-
-    private boolean haveTracks(int type) {
-        return player != null && player.getTrackCount(type) > 0;
-    }
-
-    public void showVideoPopup(View v) {
-        PopupMenu popup = new PopupMenu(this, v);
-        configurePopupWithTracks(popup, null, NPExoPlayer.TYPE_VIDEO);
-        popup.show();
-    }
-
-    public void showAudioPopup(View v) {
-        PopupMenu popup = new PopupMenu(this, v);
-        Menu menu = popup.getMenu();
-        menu.add(Menu.NONE, Menu.NONE, Menu.NONE, R.string.enable_background_audio);
-        final MenuItem backgroundAudioItem = menu.findItem(0);
-        backgroundAudioItem.setCheckable(true);
-        backgroundAudioItem.setChecked(enableBackgroundAudio);
-        OnMenuItemClickListener clickListener = new OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item == backgroundAudioItem) {
-                    enableBackgroundAudio = !item.isChecked();
-                    return true;
-                }
-                return false;
-            }
-        };
-        configurePopupWithTracks(popup, clickListener, NPExoPlayer.TYPE_AUDIO);
-        popup.show();
-    }
-
-    public void showTextPopup(View v) {
-        PopupMenu popup = new PopupMenu(this, v);
-        configurePopupWithTracks(popup, null, NPExoPlayer.TYPE_TEXT);
-        popup.show();
-    }
-
-    public void showVerboseLogPopup(View v) {
-        PopupMenu popup = new PopupMenu(this, v);
-        Menu menu = popup.getMenu();
-        menu.add(Menu.NONE, 0, Menu.NONE, R.string.logging_normal);
-        menu.add(Menu.NONE, 1, Menu.NONE, R.string.logging_verbose);
-        menu.setGroupCheckable(Menu.NONE, true, true);
-        menu.findItem((VerboseLogUtil.areAllTagsEnabled()) ? 1 : 0).setChecked(true);
-        popup.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == 0) {
-                    VerboseLogUtil.setEnableAllTags(false);
-                } else {
-                    VerboseLogUtil.setEnableAllTags(true);
-                }
-                return true;
-            }
-        });
-        popup.show();
-    }
-
-    private void configurePopupWithTracks(PopupMenu popup,
-                                          final OnMenuItemClickListener customActionClickListener,
-                                          final int trackType) {
-        if (player == null) {
-            return;
-        }
-        int trackCount = player.getTrackCount(trackType);
-        if (trackCount == 0) {
-            return;
-        }
-        popup.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                return (customActionClickListener != null
-                        && customActionClickListener.onMenuItemClick(item))
-                        || onTrackItemClick(item, trackType);
-            }
-        });
-        Menu menu = popup.getMenu();
-        // ID_OFFSET ensures we avoid clashing with Menu.NONE (which equals 0).
-        menu.add(MENU_GROUP_TRACKS, NPExoPlayer.TRACK_DISABLED + ID_OFFSET, Menu.NONE, R.string.off);
-        for (int i = 0; i < trackCount; i++) {
-            menu.add(MENU_GROUP_TRACKS, i + ID_OFFSET, Menu.NONE,
-                    buildTrackName(player.getTrackFormat(trackType, i)));
-        }
-        menu.setGroupCheckable(MENU_GROUP_TRACKS, true, true);
-        menu.findItem(player.getSelectedTrack(trackType) + ID_OFFSET).setChecked(true);
-    }
-
-    private static String buildTrackName(MediaFormat format) {
-        if (format.adaptive) {
-            return "auto";
-        }
-        String trackName;
-        if (MimeTypes.isVideo(format.mimeType)) {
-            trackName = joinWithSeparator(joinWithSeparator(buildResolutionString(format),
-                    buildBitrateString(format)), buildTrackIdString(format));
-        } else if (MimeTypes.isAudio(format.mimeType)) {
-            trackName = joinWithSeparator(joinWithSeparator(joinWithSeparator(buildLanguageString(format),
-                            buildAudioPropertyString(format)), buildBitrateString(format)),
-                    buildTrackIdString(format));
-        } else {
-            trackName = joinWithSeparator(joinWithSeparator(buildLanguageString(format),
-                    buildBitrateString(format)), buildTrackIdString(format));
-        }
-        return trackName.length() == 0 ? "unknown" : trackName;
-    }
-
-    private static String buildResolutionString(MediaFormat format) {
-        return format.width == MediaFormat.NO_VALUE || format.height == MediaFormat.NO_VALUE
-                ? "" : format.width + "x" + format.height;
-    }
-
-    private static String buildAudioPropertyString(MediaFormat format) {
-        return format.channelCount == MediaFormat.NO_VALUE || format.sampleRate == MediaFormat.NO_VALUE
-                ? "" : format.channelCount + "ch, " + format.sampleRate + "Hz";
-    }
-
-    private static String buildLanguageString(MediaFormat format) {
-        return TextUtils.isEmpty(format.language) || "und".equals(format.language) ? ""
-                : format.language;
-    }
-
-    private static String buildBitrateString(MediaFormat format) {
-        return format.bitrate == MediaFormat.NO_VALUE ? ""
-                : String.format(Locale.US, "%.2fMbit", format.bitrate / 1000000f);
-    }
-
-    private static String joinWithSeparator(String first, String second) {
-        return first.length() == 0 ? second : (second.length() == 0 ? first : first + ", " + second);
-    }
-
-    private static String buildTrackIdString(MediaFormat format) {
-        return format.trackId == null ? "" : " (" + format.trackId + ")";
-    }
-
-    private boolean onTrackItemClick(MenuItem item, int type) {
-        if (player == null || item.getGroupId() != MENU_GROUP_TRACKS) {
-            return false;
-        }
-        player.setSelectedTrack(type, item.getItemId() - ID_OFFSET);
-        return true;
-    }
-
     private void toggleControlsVisibility()  {
         if (mediaController.isShowing()) {
             mediaController.hide();
-            debugRootView.setVisibility(View.GONE);
-            playerStateTextView.setVisibility(View.GONE);
-            debugTextView.setVisibility(View.GONE);
         } else {
             showControls();
         }
@@ -671,9 +484,6 @@ public class ExoPlayerActivity extends Activity {
 
     private void showControls() {
         mediaController.show(0);
-        debugRootView.setVisibility(View.VISIBLE);
-        playerStateTextView.setVisibility(View.VISIBLE);
-        debugTextView.setVisibility(View.VISIBLE);
     }
 
     private void configureSubtitleView() {
