@@ -23,31 +23,62 @@
     <string name="autoplay_through_intent_title">Speel automatisch via Intent</string>
     <string name="autoplay_through_intent_summary">Speel een video automatisch af indien geopend vanuit een andere app.</string>
     <string name="default_resolution_title">Standaardresolutie</string>
-    <string name="play_with_kodi_title">Speel af met Kodi</string>
-    <string name="kore_not_found">Kore app niet gevonden. Kore is nodig om videos op Kodi af te spelen.</string>
+    <string name="play_with_kodi_title">Afspelen met Kodi</string>
+    <string name="kore_not_found">Kore-app niet gevonden. Kore installeren?</string>
     <string name="installeKore">Installeer Kore</string>
-    <string name="show_play_with_kodi_title">Toon \"Speel af met Kodi\" optie</string>
+    <string name="show_play_with_kodi_title">Toon \"Afspelen met Kodi\" optie</string>
     <string name="show_play_with_kodi_summary">Toont een optie om een video op een Kodi media center af te spelen.</string>
     <string name="play_audio">Audio</string>
-    <string name="default_audio_format_title">Standaard audio formaat</string>
-    <string name="webm_description">WebM — open formaat</string>
+    <string name="default_audio_format_title">Standaard audioformaat</string>
+    <string name="webm_description">WebM — vrij formaat</string>
     <string name="m4a_description">m4a — betere kwaliteit</string>
-    <string name="download_dialog_title">Download</string>
+    <string name="download_dialog_title">Downloaden</string>
     <string name="next_video_title">Volgende video</string>
-    <string name="url_not_supported_toast">URL wordt niet ondersteund.</string>
-    <string name="similar_videos_btn_text">Vergelijkbare videos</string>
-    <string name="show_next_and_similar_title">Laat volgende en vergelijkbare videos zien</string>
-    <string name="search_language_title">Voorkeurs content taal</string>
+    <string name="url_not_supported_toast">URL wordt niet ondersteund</string>
+    <string name="similar_videos_btn_text">Vergelijkbare video\'s</string>
+    <string name="show_next_and_similar_title">Laat volgende en vergelijkbare video\'s zien</string>
+    <string name="search_language_title">Voorkeurstaal voor inhoud</string>
     <string name="use_external_video_player_title">Externe videospeler gebruiken</string>
     <string name="use_external_audio_player_title">Externe audiospeler gebruiken</string>
-    <string name="settings_category_video_audio_title">Video &amp; Geluid</string>
+    <string name="settings_category_video_audio_title">Video &amp; audio</string>
 
-    <string name="list_thumbnail_view_description">Videovoorbeeld thumbnail</string>
-    <string name="detail_thumbnail_view_description">Videovoorbeeld thumbnail</string>
-    <string name="detail_uploader_thumbnail_view_description">Uploader miniatuur</string>
-    <string name="detail_dislikes_img_view_description">Dislikes</string>
+    <string name="list_thumbnail_view_description">Videovoorbeeldminiatuur</string>
+    <string name="detail_thumbnail_view_description">Videovoorbeeldminiatuur</string>
+    <string name="detail_uploader_thumbnail_view_description">Uploaderminiatuur</string>
+    <string name="detail_dislikes_img_view_description">Duimpjes omlaag</string>
     <string name="background_player_name">NewPipe-achtergrondspeler</string>
     <string name="loading">Laden</string>
     <string name="download_path_audio_title">Downloadlocatie voor audio</string>
     <string name="download_path_audio_summary">Locatie om gedownloade muziek in op te slaan.</string>
-    </resources>
+    <string name="download_path_audio_dialog_title">Voer downloadlocatie in voor audiobestanden.</string>
+
+    <string name="theme_title">Thema</string>
+    <string name="dark_theme_title">Donker</string>
+    <string name="light_theme_title">Licht</string>
+
+    <string name="settings_category_appearance_title">Uiterlijk</string>
+    <string name="settings_category_other_title">Overige</string>
+    <string name="background_player_playing_toast">Speelt af op achtergrond</string>
+    <string name="play_btn_text">Afspelen</string>
+    <string name="content">Inhoud</string>
+    <string name="show_age_restricted_content_title">Geef inhoud met leeftijdsbeperking weer</string>
+    <string name="video_is_age_restricted">Video heeft leeftijdsbeperking. Schakel leeftijdsbeperkte video\'s eerst in in de instellingen.</string>
+
+    <string name="general_error">Fout</string>
+    <string name="network_error">Netwerkfout</string>
+    <string name="could_not_load_thumbnails">Kon niet alle miniaturen laden</string>
+    <string name="youtube_signature_decryption_error">Kon video-URL-ondertekening niet ontsleutelen.</string>
+    <string name="parsing_error">Kon website niet verwerken.</string>
+    <string name="content_not_available">Inhoud niet beschikbaar.</string>
+    <string name="blocked_by_gema">Geblokkeerd door GEMA.</string>
+    <string name="could_not_setup_download_menu">Kon downloadmenu niet instellen.</string>
+    <string name="live_streams_not_supported">Dit is een LIVE STREAM. Deze worden nog niet ondersteund.</string>
+
+
+    <string name="detail_likes_img_view_description">Duimpjes omhoog</string>
+    <string name="use_tor_title">Gebruik Tor</string>
+    <string name="use_tor_summary">Dwing downloadverkeer door Tor voor verhoogde privacy (streamen van video\'s wordt nog niet ondersteund)</string>
+
+    <string name="err_dir_create">Kan downloadmap \'%1$s\' niet aanmaken</string>
+    <string name="info_dir_created">Downloadmap \'%1$s\' aangemaakt</string>
+</resources>
