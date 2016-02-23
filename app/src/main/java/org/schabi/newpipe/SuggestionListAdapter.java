@@ -16,20 +16,10 @@ import java.util.ArrayList;
  */
 public class SuggestionListAdapter extends CursorAdapter {
 
-    private ArrayList<String> suggestions;
     private String[] columns = new String[]{"_id", "title"};
 
     public SuggestionListAdapter(Context context) {
         super(context, null, false);
-
-    }
-
-    public ArrayList<String> getSuggestions() {
-        return suggestions;
-    }
-
-    public void setSuggestions(ArrayList<String> suggestions) {
-        this.suggestions = suggestions;
     }
 
     @Override

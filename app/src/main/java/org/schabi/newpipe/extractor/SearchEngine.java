@@ -33,7 +33,7 @@ public interface SearchEngine {
         public final List<VideoPreviewInfo> resultList = new Vector<>();
     }
 
-    ArrayList<String> suggestionList(String query, Downloader dl)
+    ArrayList<String> suggestionList(String query,String contentCountry, Downloader dl)
             throws ExtractionException, IOException;
 
     //Result search(String query, int page);

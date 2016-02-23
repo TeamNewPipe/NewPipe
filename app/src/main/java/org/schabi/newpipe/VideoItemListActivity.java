@@ -2,6 +2,7 @@ package org.schabi.newpipe;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -150,16 +151,21 @@ public class VideoItemListActivity extends AppCompatActivity
         private final SearchEngine engine;
         private final String query;
         final Handler h = new Handler();
-
+        private Context context;
         private SuggestionSearchRunnable(SearchEngine engine, String query) {
             this.engine = engine;
             this.query = query;
+            context = VideoItemListActivity.this;
         }
 
         @Override
         public void run() {
             try {
-                ArrayList<String>suggestions = engine.suggestionList(query,new Downloader());
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+                String searchLanguageKey = context.getString(R.string.search_language_key);
+                String searchLanguage = sp.getString(searchLanguageKey,
+                        getString(R.string.default_language_value));
+                ArrayList<String>suggestions = engine.suggestionList(query,searchLanguage,new Downloader());
                 h.post(new SuggestionResultRunnable(suggestions));
             } catch (ExtractionException e) {
                 e.printStackTrace();
