@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.SearchEngine;
@@ -89,6 +90,8 @@ public class VideoItemListActivity extends AppCompatActivity
                             getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 } catch(NullPointerException e) {
                     Log.e(TAG, "Could not get widget with focus");
+                    Toast.makeText(VideoItemListActivity.this, "Could not get widget with focus",
+                            Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
                 // clear focus
@@ -168,8 +171,12 @@ public class VideoItemListActivity extends AppCompatActivity
                 ArrayList<String>suggestions = engine.suggestionList(query,searchLanguage,new Downloader());
                 h.post(new SuggestionResultRunnable(suggestions));
             } catch (ExtractionException e) {
+                Toast.makeText(VideoItemListActivity.this, getString(R.string.parsing_error),
+                        Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             } catch (IOException e) {
+                Toast.makeText(VideoItemListActivity.this, getString(R.string.network_error),
+                        Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
         }
