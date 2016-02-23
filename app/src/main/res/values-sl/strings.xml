@@ -80,4 +80,8 @@
     <string name="live_streams_not_supported">To je pretok v živo. Ta vrsta še ni podprta.</string>
 
 
+    <string name="content">Vsebina</string>
+    <string name="show_age_restricted_content_title">Pokaži starostno omejeno vsebino</string>
+    <string name="video_is_age_restricted">Za posnetek je določena starostna omejitev ogleda. Pred ogledom je treba ustrezno nastaviti omejitve med nastavitvami.</string>
+
     </resources>
