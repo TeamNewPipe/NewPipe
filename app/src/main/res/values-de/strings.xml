@@ -78,4 +78,12 @@
     <string name="content_not_available">Inhalt nicht verfügbar.</string>
     <string name="blocked_by_gema">Durch die GEMA gesperrt.</string>
 
+    <string name="content">Inhalt</string>
+    <string name="show_age_restricted_content_title">Altersbeschränkte Inhalte anzeigen</string>
+    <string name="video_is_age_restricted">Video ist altersbeschränkt. Schalten Sie erst altersbeschränkte Videos in den Einstellungen ein.</string>
+
+    <string name="could_not_setup_download_menu">Konnte Downloadmenü nicht einrichten.</string>
+    <string name="live_streams_not_supported">Dies ist ein LIVESTREAM. Diese werden noch nicht unterstützt.</string>
+
+
     </resources>
