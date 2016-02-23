@@ -171,12 +171,10 @@ public class VideoItemListActivity extends AppCompatActivity
                 ArrayList<String>suggestions = engine.suggestionList(query,searchLanguage,new Downloader());
                 h.post(new SuggestionResultRunnable(suggestions));
             } catch (ExtractionException e) {
-                Toast.makeText(VideoItemListActivity.this, getString(R.string.parsing_error),
-                        Toast.LENGTH_SHORT).show();
+                postNewErrorToast(h, R.string.parsing_error);
                 e.printStackTrace();
             } catch (IOException e) {
-                Toast.makeText(VideoItemListActivity.this, getString(R.string.network_error),
-                        Toast.LENGTH_SHORT).show();
+                postNewErrorToast(h, R.string.network_error);
                 e.printStackTrace();
             }
         }
@@ -377,5 +375,15 @@ public class VideoItemListActivity extends AppCompatActivity
         searchThread = new Thread(suggestionSearchRunnable);
         searchThread.start();
 
+    }
+
+    private void postNewErrorToast(Handler h, final int stringResource) {
+        h.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(VideoItemListActivity.this, getString(stringResource),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
