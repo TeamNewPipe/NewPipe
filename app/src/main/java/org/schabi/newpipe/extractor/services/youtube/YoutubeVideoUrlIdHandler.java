@@ -49,7 +49,7 @@ public class YoutubeVideoUrlIdHandler implements VideoUrlIdHandler {
                     throw new ParsingException("Could not parse attribution_link", uee);
                 }
             } else {
-                id = Parser.matchGroup1("youtube\\.com/watch\\?v=([\\-a-zA-Z0-9_]{11})", url);
+                id = Parser.matchGroup1("[?&]v=([\\-a-zA-Z0-9_]{11})", url);
             }
         }
         else if(url.contains("youtu.be")) {
