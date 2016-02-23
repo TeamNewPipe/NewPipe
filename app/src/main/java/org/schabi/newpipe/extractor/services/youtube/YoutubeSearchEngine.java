@@ -147,7 +147,7 @@ public class YoutubeSearchEngine implements SearchEngine {
     }
 
     @Override
-    public ArrayList<String> suggestionList(String query, Downloader dl)
+    public ArrayList<String> suggestionList(String query,String contentCountry, Downloader dl)
             throws IOException, ParsingException {
 
         ArrayList<String> suggestions = new ArrayList<>();
@@ -160,6 +160,7 @@ public class YoutubeSearchEngine implements SearchEngine {
                 .appendQueryParameter("client", "")
                 .appendQueryParameter("output", "toolbar")
                 .appendQueryParameter("ds", "yt")
+                .appendQueryParameter("hl",contentCountry)
                 .appendQueryParameter("q", query);
         String url = builder.build().toString();
 
