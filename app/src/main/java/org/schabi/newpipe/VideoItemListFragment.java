@@ -186,8 +186,12 @@ public class VideoItemListFragment extends ListFragment {
             videoListAdapter.addVideoList(list);
             terminateThreads();
         } catch(java.lang.IllegalStateException e) {
+            Toast.makeText(getActivity(), "Trying to set value while activity doesn't exist anymore.",
+                    Toast.LENGTH_SHORT).show();
             Log.w(TAG, "Trying to set value while activity doesn't exist anymore.");
         } catch(Exception e) {
+            Toast.makeText(getActivity(), getString(R.string.general_error),
+                    Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         } finally {
             loadingNextPage = false;

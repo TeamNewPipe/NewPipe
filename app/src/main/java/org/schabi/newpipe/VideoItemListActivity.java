@@ -2,7 +2,9 @@ package org.schabi.newpipe;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -13,11 +15,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
-import java.util.ArrayList;
-
-import org.schabi.newpipe.extractor.VideoPreviewInfo;
+import org.schabi.newpipe.extractor.ExtractionException;
+import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.VideoPreviewInfo;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
@@ -61,6 +68,11 @@ public class VideoItemListActivity extends AppCompatActivity
     private VideoItemDetailFragment videoFragment = null;
     private Menu menu = null;
 
+    private SuggestionListAdapter suggestionListAdapter;
+    private StreamingService streamingService;
+    private SuggestionSearchRunnable suggestionSearchRunnable;
+    private Thread searchThread;
+
     private class SearchVideoQueryListener implements SearchView.OnQueryTextListener {
 
         @Override
@@ -78,6 +90,8 @@ public class VideoItemListActivity extends AppCompatActivity
                             getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 } catch(NullPointerException e) {
                     Log.e(TAG, "Could not get widget with focus");
+                    Toast.makeText(VideoItemListActivity.this, "Could not get widget with focus",
+                            Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
                 // clear focus
@@ -94,11 +108,77 @@ public class VideoItemListActivity extends AppCompatActivity
 
         @Override
         public boolean onQueryTextChange(String newText) {
+            searchSuggestions(newText);
             return true;
         }
 
     }
+    private class SearchSuggestionListener implements SearchView.OnSuggestionListener{
 
+        private SearchView searchView;
+
+        private SearchSuggestionListener(SearchView searchView) {
+            this.searchView = searchView;
+        }
+
+        @Override
+        public boolean onSuggestionSelect(int position) {
+            String suggestion = suggestionListAdapter.getSuggestion(position);
+            searchView.setQuery(suggestion,true);
+            return false;
+        }
+
+        @Override
+        public boolean onSuggestionClick(int position) {
+            String suggestion = suggestionListAdapter.getSuggestion(position);
+            searchView.setQuery(suggestion,true);
+            return false;
+        }
+    }
+
+    private class SuggestionResultRunnable implements Runnable{
+
+        private ArrayList<String>suggestions;
+
+        private SuggestionResultRunnable(ArrayList<String> suggestions) {
+            this.suggestions = suggestions;
+        }
+
+        @Override
+        public void run() {
+            suggestionListAdapter.updateAdapter(suggestions);
+        }
+    }
+
+    private class SuggestionSearchRunnable implements Runnable{
+        private final SearchEngine engine;
+        private final String query;
+        final Handler h = new Handler();
+        private Context context;
+        private SuggestionSearchRunnable(SearchEngine engine, String query) {
+            this.engine = engine;
+            this.query = query;
+            context = VideoItemListActivity.this;
+        }
+
+        @Override
+        public void run() {
+            try {
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+                String searchLanguageKey = context.getString(R.string.search_language_key);
+                String searchLanguage = sp.getString(searchLanguageKey,
+                        getString(R.string.default_language_value));
+                ArrayList<String>suggestions = engine.suggestionList(query,searchLanguage,new Downloader());
+                h.post(new SuggestionResultRunnable(suggestions));
+            } catch (ExtractionException e) {
+                postNewErrorToast(h, R.string.parsing_error);
+                e.printStackTrace();
+            } catch (IOException e) {
+                postNewErrorToast(h, R.string.network_error);
+                e.printStackTrace();
+            }
+        }
+    }
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
@@ -112,11 +192,12 @@ public class VideoItemListActivity extends AppCompatActivity
 
         //------ todo: remove this line when multiservice support is implemented ------
         currentStreamingServiceId = ServiceList.getIdOfService("Youtube");
+        streamingService=ServiceList.getService(currentStreamingServiceId);
         //-----------------------------------------------------------------------------
         //to solve issue 38
         listFragment = (VideoItemListFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.videoitem_list);
-        listFragment.setStreamingService(ServiceList.getService(currentStreamingServiceId));
+        listFragment.setStreamingService(streamingService);
 
         Bundle arguments = getIntent().getExtras();
 
@@ -168,6 +249,9 @@ public class VideoItemListActivity extends AppCompatActivity
                 searchView.setIconifiedByDefault(false);
                 searchView.setIconified(false);
                 searchView.setOnQueryTextListener(new SearchVideoQueryListener());
+                suggestionListAdapter = new SuggestionListAdapter(this);
+                searchView.setSuggestionsAdapter(suggestionListAdapter);
+                searchView.setOnSuggestionListener(new SearchSuggestionListener(searchView));
             } else {
                 searchView.setVisibility(View.GONE);
             }
@@ -237,6 +321,9 @@ public class VideoItemListActivity extends AppCompatActivity
             searchView.setFocusable(false);
             searchView.setOnQueryTextListener(
                     new SearchVideoQueryListener());
+            suggestionListAdapter = new SuggestionListAdapter(this);
+            searchView.setSuggestionsAdapter(suggestionListAdapter);
+            searchView.setOnSuggestionListener(new SearchSuggestionListener(searchView));
 
         } else if (videoFragment != null){
             videoFragment.onCreateOptionsMenu(menu, inflater);
@@ -280,5 +367,23 @@ public class VideoItemListActivity extends AppCompatActivity
         */
         outState.putString(QUERY, searchQuery);
         outState.putInt(STREAMING_SERVICE, currentStreamingServiceId);
+    }
+
+    private void searchSuggestions(String query) {
+        suggestionSearchRunnable = new SuggestionSearchRunnable(streamingService.getSearchEngineInstance(),
+                query);
+        searchThread = new Thread(suggestionSearchRunnable);
+        searchThread.start();
+
+    }
+
+    private void postNewErrorToast(Handler h, final int stringResource) {
+        h.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(VideoItemListActivity.this, getString(stringResource),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

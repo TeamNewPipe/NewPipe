@@ -40,7 +40,7 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
 
         result = engine.search("https://www.youtube.com/results?search_query=bla",
                 0, "de", new Downloader());
-        suggestionReply = engine.suggestionList("hello", new Downloader());
+        suggestionReply = engine.suggestionList("hello","de",new Downloader());
     }
 
     public void testIfNoErrorOccur() {
