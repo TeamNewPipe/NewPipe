@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s keer bekeken</string>
     <string name="upload_date_text">Geüpload op %1$s</string>
-    <string name="no_player_found">Geen speler met streamingondersteuning gevonden. Wil je VLC installeren?</string>
+    <string name="no_player_found">Geen speler met streamondersteuning gevonden. Wil je VLC installeren?</string>
     <string name="install">Installeren</string>
     <string name="cancel">Annuleren</string>
     <string name="open_in_browser">In browser openen</string>
