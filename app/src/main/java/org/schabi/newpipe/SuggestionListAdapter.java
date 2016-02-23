@@ -3,10 +3,10 @@ package org.schabi.newpipe;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
+import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CursorAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
