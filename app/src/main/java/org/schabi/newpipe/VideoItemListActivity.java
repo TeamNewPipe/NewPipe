@@ -108,7 +108,9 @@ public class VideoItemListActivity extends AppCompatActivity
 
         @Override
         public boolean onQueryTextChange(String newText) {
-            searchSuggestions(newText);
+            if(!newText.isEmpty()) {
+                searchSuggestions(newText);
+            }
             return true;
         }
 
