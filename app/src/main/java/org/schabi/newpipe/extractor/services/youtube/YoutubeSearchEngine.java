@@ -246,6 +246,9 @@ public class YoutubeSearchEngine implements SearchEngine {
                 .replace(".", "")
                 .replace(",", "");
 
+        if(Long.parseLong(output) == 30) {
+            Log.d(TAG, "bla");
+        }
         return Long.parseLong(output);
     }
 

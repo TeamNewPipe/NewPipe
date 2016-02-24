@@ -38,7 +38,7 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
         super.setUp();
         SearchEngine engine = new YoutubeSearchEngine();
 
-        result = engine.search("https://www.youtube.com/results?search_query=bla",
+        result = engine.search("bla",
                 0, "de", new Downloader());
         suggestionReply = engine.suggestionList("hello","de",new Downloader());
     }
