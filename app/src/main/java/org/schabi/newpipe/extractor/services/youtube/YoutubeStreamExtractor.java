@@ -699,7 +699,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
             try {
                 info.view_count = Long.parseLong(li.select("span.view-count")
                         .first().text().replaceAll("[^\\d]", ""));
-            } catch (NullPointerException e) {//related videos sometimes have no view count
+            } catch (Exception e) {//related videos sometimes have no view count
                 info.view_count = 0;
             }
             info.uploader = li.select("span.g-hovercard").first().text();

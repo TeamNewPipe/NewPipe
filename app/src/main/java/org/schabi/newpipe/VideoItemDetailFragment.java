@@ -127,9 +127,10 @@ public class VideoItemDetailFragment extends Fragment {
 
         @Override
         public void run() {
+            VideoInfo videoInfo = null;
             try {
                 streamExtractor = service.getExtractorInstance(videoUrl, new Downloader());
-                VideoInfo videoInfo = VideoInfo.getVideoInfo(streamExtractor, new Downloader());
+                videoInfo = VideoInfo.getVideoInfo(streamExtractor, new Downloader());
 
                 h.post(new VideoResultReturnedRunnable(videoInfo));
             } catch (IOException e) {
@@ -170,6 +171,14 @@ public class VideoItemDetailFragment extends Fragment {
             } catch(Exception e) {
                 postNewErrorToast(h, R.string.general_error);
                 e.printStackTrace();
+            } finally {
+                if(videoInfo != null &&
+                        !videoInfo.errors.isEmpty()) {
+                    Log.e(TAG, "OCCURRED ERRORS DURING EXTRACTION:");
+                    for(Exception e : videoInfo.errors) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     }
