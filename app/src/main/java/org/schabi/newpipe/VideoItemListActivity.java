@@ -201,26 +201,6 @@ public class VideoItemListActivity extends AppCompatActivity
                 .findFragmentById(R.id.videoitem_list);
         listFragment.setStreamingService(streamingService);
 
-        Bundle arguments = getIntent().getExtras();
-
-        if(arguments != null) {
-            //Parcelable[] p = arguments.getParcelableArray(VIDEO_INFO_ITEMS);
-            ArrayList<VideoPreviewInfo> p = arguments.getParcelableArrayList(VIDEO_INFO_ITEMS);
-            if(p != null) {
-                mode = PRESENT_VIDEOS_MODE;
-                try {
-                    //noinspection ConstantConditions
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                } catch (NullPointerException e) {
-                    Log.e(TAG, "Could not get SupportActionBar");
-                    e.printStackTrace();
-                }
-
-                listFragment.present(p);
-            }
-        }
-
-
         if(savedInstanceState != null
                 && mode != PRESENT_VIDEOS_MODE) {
             searchQuery = savedInstanceState.getString(QUERY);
