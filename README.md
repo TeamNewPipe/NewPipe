@@ -12,10 +12,10 @@ Project status:
 [![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdfilter=newpipe&fdid=org.schabi.newpipe)
 
 ## Donate
-[![Bitcoin](https://bitcoin.org/img/icons/logotop.svg)](bitcoin:16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh)
+![Bitcoin](https://bitcoin.org/img/icons/logotop.svg)
 `16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh`
 
-![BitcoinQR](https://blockchain.info/qr?data=16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh&size=100)
+![BitcoinQR](assets/16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh.png)
 
 ## Screenshots
 
