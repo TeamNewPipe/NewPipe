@@ -81,4 +81,8 @@
     <string name="live_streams_not_supported">これはライブ ストリームです。これらはまだサポートされていません。</string>
 
 
+    <string name="content">コンテンツ</string>
+    <string name="show_age_restricted_content_title">年齢制限コンテンツを表示</string>
+    <string name="video_is_age_restricted">ビデオは年齢制限です。まず設定で年齢制限のビデオを有効にしてください。</string>
+
     </resources>
