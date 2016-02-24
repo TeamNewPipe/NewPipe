@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.util.List;
 
 import org.schabi.newpipe.extractor.ExtractionException;
-import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.VideoPreviewInfo;
 import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.StreamingService;
