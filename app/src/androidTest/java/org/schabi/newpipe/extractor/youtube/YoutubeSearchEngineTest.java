@@ -1,4 +1,4 @@
-package org.schabi.newpipe.services.youtube;
+package org.schabi.newpipe.extractor.youtube;
 
 import android.test.AndroidTestCase;
 
@@ -82,8 +82,15 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
     }
 
     public void testViewCount() {
+        /*
         for(VideoPreviewInfo i : result.resultList) {
             assertTrue(Long.toString(i.view_count), i.view_count != -1);
+        }
+        */
+        // that specific link used for this test, there are no videos with less
+        // than 10.000 views, so we can test against that.
+        for(VideoPreviewInfo i : result.resultList) {
+            assertTrue(Long.toString(i.view_count), i.view_count >= 10000);
         }
     }
 

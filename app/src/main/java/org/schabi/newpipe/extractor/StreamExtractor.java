@@ -59,7 +59,7 @@ public interface StreamExtractor {
     public abstract String getDescription() throws ParsingException;
     public abstract String getUploader() throws ParsingException;
     public abstract int getLength() throws ParsingException;
-    public abstract long getViews() throws ParsingException;
+    public abstract long getViewCount() throws ParsingException;
     public abstract String getUploadDate() throws ParsingException;
     public abstract String getThumbnailUrl() throws ParsingException;
     public abstract String getUploaderThumbnailUrl() throws ParsingException;

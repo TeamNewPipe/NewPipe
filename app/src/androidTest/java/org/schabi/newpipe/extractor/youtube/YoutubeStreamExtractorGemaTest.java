@@ -1,4 +1,4 @@
-package org.schabi.newpipe.services.youtube;
+package org.schabi.newpipe.extractor.youtube;
 
 import android.test.AndroidTestCase;
 
