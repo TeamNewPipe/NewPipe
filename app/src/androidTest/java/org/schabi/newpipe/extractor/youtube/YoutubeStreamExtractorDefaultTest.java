@@ -1,4 +1,4 @@
-package org.schabi.newpipe.services.youtube;
+package org.schabi.newpipe.extractor.youtube;
 
 import android.test.AndroidTestCase;
 
@@ -70,8 +70,9 @@ public class YoutubeStreamExtractorDefaultTest extends AndroidTestCase {
         assertTrue(extractor.getLength() > 0);
     }
 
-    public void testGetViews() throws ParsingException {
-        assertTrue(extractor.getLength() > 0);
+    public void testGetViewCount() throws ParsingException {
+        assertTrue(Long.toString(extractor.getViewCount()),
+                extractor.getViewCount() > /* specific to that video */ 1224000074);
     }
 
     public void testGetUploadDate() throws ParsingException {

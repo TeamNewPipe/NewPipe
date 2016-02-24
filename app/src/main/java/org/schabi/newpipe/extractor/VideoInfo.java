@@ -150,7 +150,7 @@ public class VideoInfo extends AbstractVideoInfo {
             videoInfo.addException(e);
         }
         try {
-            videoInfo.view_count = extractor.getViews();
+            videoInfo.view_count = extractor.getViewCount();
         } catch(Exception e) {
             videoInfo.addException(e);
         }

@@ -241,7 +241,10 @@ public class YoutubeSearchEngine implements SearchEngine {
         String input = item.select("div[class=\"yt-lockup-meta\"]").first()
                 .select("li").get(1)
                 .text();
-        output = Parser.matchGroup1("([0-9,\\. ])", input).replace(" ", "");
+        output = Parser.matchGroup1("([0-9,\\. ]*)", input)
+                .replace(" ", "")
+                .replace(".", "")
+                .replace(",", "");
 
         return Long.parseLong(output);
     }

@@ -360,12 +360,12 @@ public class YoutubeStreamExtractor implements StreamExtractor {
     }
 
     @Override
-    public long getViews() throws ParsingException {
+    public long getViewCount() throws ParsingException {
         try {
             String viewCountString = doc.select("meta[itemprop=interactionCount]").attr("content");
             return Long.parseLong(viewCountString);
         } catch (Exception e) {//todo: find fallback method
-            throw new ParsingException("failed to number of views", e);
+            throw new ParsingException("failed to get number of views", e);
         }
     }
 
