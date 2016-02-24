@@ -74,4 +74,11 @@
     <string name="detail_likes_img_view_description">Me gusta</string>
     <string name="detail_dislikes_img_view_description">No me gusta</string>
     <string name="detail_uploader_thumbnail_view_description">Foto miniatura del usuario</string>
+    <string name="live_streams_not_supported">Esta es una transmisión en Vivo. Todavía no es compatible.</string>
+
+
+    <string name="content">Contenido</string>
+    <string name="show_age_restricted_content_title">Mostrar contenido con restricción de edad</string>
+    <string name="video_is_age_restricted">El video tiene restricción de edad.Habilite los videos con restricción de edad en configuración.</string>
+
     </resources>
