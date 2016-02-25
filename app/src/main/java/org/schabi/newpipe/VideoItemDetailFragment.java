@@ -46,7 +46,6 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import org.schabi.newpipe.errorhandling.ErrorActivity;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.ServiceList;
@@ -167,23 +166,26 @@ public class VideoItemDetailFragment extends Fragment {
                 });
                 e.printStackTrace();
             } catch (ParsingException e) {
-                ErrorActivity.reportError(h, getActivity(), e, 0, VideoItemListActivity.class);
-                h.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        getActivity().finish();
-                    }
-                });
+                ErrorActivity.reportError(h, getActivity(), e, VideoItemListActivity.class, null,
+                        ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                                service.getServiceInfo().name, videoUrl, R.string.parsing_error));
+                        h.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                getActivity().finish();
+                            }
+                        });
                 e.printStackTrace();
             } catch(Exception e) {
-                ErrorActivity.reportError(h, getActivity(), e,
-                        R.string.general_error, VideoItemListActivity.class);
-                h.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        getActivity().finish();
-                    }
-                });
+                ErrorActivity.reportError(h, getActivity(), e, VideoItemListActivity.class, null,
+                        ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                                service.getServiceInfo().name, videoUrl, R.string.general_error));
+                        h.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                getActivity().finish();
+                            }
+                        });
                 e.printStackTrace();
             } finally {
                 if(videoInfo != null &&
@@ -192,9 +194,13 @@ public class VideoItemDetailFragment extends Fragment {
                     for(Exception e : videoInfo.errors) {
                         e.printStackTrace();
                     }
-                    //todo: do not call directly ask the user if it should be reported
+
+                    Activity a = getActivity();
+                    View rootView = a != null ? a.findViewById(R.id.videoitem_detail) : null;
                     ErrorActivity.reportError(h, getActivity(),
-                            videoInfo.errors, 0, VideoItemDetailActivity.class);
+                            videoInfo.errors, null, rootView,
+                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                                    service.getServiceInfo().name,  videoUrl, 0 /* no message for the user */));
                 }
             }
         }

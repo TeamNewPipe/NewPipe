@@ -29,7 +29,6 @@ import java.util.List;
 public interface StreamExtractor {
 
     public class ExctractorInitException extends ExtractionException {
-        public ExctractorInitException() {}
         public ExctractorInitException(String message) {
             super(message);
         }
@@ -42,7 +41,6 @@ public interface StreamExtractor {
     }
 
     public class ContentNotAvailableException extends ParsingException {
-        public ContentNotAvailableException() {}
         public ContentNotAvailableException(String message) {
             super(message);
         }

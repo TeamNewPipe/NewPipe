@@ -69,8 +69,8 @@ public class YoutubeStreamExtractor implements StreamExtractor {
     }
 
     public class LiveStreamException extends ContentNotAvailableException {
-        LiveStreamException() {
-            super();
+        LiveStreamException(String message) {
+            super(message);
         }
     }
 
@@ -250,7 +250,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
             throw new ParsingException("Could not parse yt player config", e);
         }
         if (isLiveStream) {
-            throw new LiveStreamException();
+            throw new LiveStreamException("This is a Life stream. Can't use those right now.");
         }
 
         return playerArgs;
@@ -330,6 +330,8 @@ public class YoutubeStreamExtractor implements StreamExtractor {
 
     @Override
     public String getUploader() throws ParsingException {
+        throw new ParsingException("blabla");
+        /*
         try {
             if (playerArgs == null) {
                 return videoInfoPage.get("author");
@@ -345,6 +347,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
         } catch (Exception e) {
             throw new ParsingException("failed permanently to load uploader name.", e);
         }
+        */
     }
 
     @Override

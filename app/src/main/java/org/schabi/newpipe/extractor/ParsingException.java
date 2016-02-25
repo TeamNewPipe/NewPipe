@@ -22,7 +22,6 @@ package org.schabi.newpipe.extractor;
 
 
 public class ParsingException extends ExtractionException {
-    public ParsingException() {}
     public ParsingException(String message) {
         super(message);
     }

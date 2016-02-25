@@ -92,6 +92,14 @@
     <string name="sorry_string">Sorry that should not happen.</string>
     <string name="guru_meditation" translatable="false">Guru Meditation.</string>
     <string name="error_report_button_text">Report error via mail</string>
+    <string name="error_snackbar_message">Sorry some errors occurred.</string>
+    <string name="error_snackbar_action">REPORT</string>
+    <string name="what_device_headline">Info:</string>
+    <string name="what_happened_headline">What happened:</string>
+    <string name="info_labels">What:\\nRequest:\\nContent Lang:\\nService:\\nVersion:\\nOS version:</string>
+    <string name="info_searched_lbl">Searched for:</string>
+    <string name="info_requested_stream_lbl">Requested stream:</string>
+    <string name="your_commend">Your commend:</string>
 
 
     <!-- Content descriptions (for better accessibility) -->

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.schabi.newpipe.errorhandling.ErrorActivity">
+    tools:context=".ErrorActivity">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -17,7 +17,9 @@
             android:paddingBottom="@dimen/activity_vertical_margin"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin">
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
             <TextView
                 android:id="@+id/errorSorryView"
@@ -29,12 +31,48 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/errorDeviceHeadlineView"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/what_device_headline"/>
+            
+            <LinearLayout
+                android:id="@+id/errorInfoLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                
+                <TextView
+                    android:id="@+id/errorInfoLabelsView"
+                    android:layout_weight="1"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:text="@string/info_labels"/>
+
+                <HorizontalScrollView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/errorInfosView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <TextView
                 android:id="@+id/errorWhatHappenedView"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="What happened:"/>
+                android:text="@string/what_happened_headline"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"

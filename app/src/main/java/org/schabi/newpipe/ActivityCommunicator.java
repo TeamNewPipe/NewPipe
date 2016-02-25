@@ -45,4 +45,5 @@ public class ActivityCommunicator {
     // Sent from any activity to ErrorActivity.
     public volatile List<Exception> errorList;
     public volatile Class returnActivity;
+    public volatile ErrorActivity.ErrorInfo errorInfo;
 }
