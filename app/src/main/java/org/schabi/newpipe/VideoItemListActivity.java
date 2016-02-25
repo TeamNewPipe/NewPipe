@@ -241,12 +241,6 @@ public class VideoItemListActivity extends AppCompatActivity
         }
 
         PreferenceManager.setDefaultValues(this, R.xml.settings, false);
-
-
-        /* this is for debuging only if this is still pressent in master branch kill the programmer */
-        startActivity(new Intent(this, ErrorActivity.class));
-
-        //-------------------------------------------------------------------------
     }
 
     @Override

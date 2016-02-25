@@ -42,4 +42,5 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'com.github.nirhart:parallaxscroll:1.0'
+    compile 'org.apache.directory.studio:org.apache.commons.lang:2.6'
 }

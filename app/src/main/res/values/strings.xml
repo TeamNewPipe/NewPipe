@@ -89,7 +89,8 @@
     <string name="could_not_setup_download_menu">Could not setup download menu.</string>
     <string name="live_streams_not_supported">This is a LIVE STREAM. These are not yet supported.</string>
     <!-- error activity -->
-    <string name="sorry_string">Sorry that shouldn#t have happened.</string>
+    <string name="sorry_string">Sorry that should not happen.</string>
+    <string name="guru_meditation" translatable="false">Guru Meditation.</string>
     <string name="error_report_button_text">Report error via mail</string>
 
 

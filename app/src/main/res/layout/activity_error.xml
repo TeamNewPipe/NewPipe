@@ -24,6 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:gravity="center"
                 android:text="@string/sorry_string"
                 android:textStyle="bold" />
 
@@ -44,35 +45,7 @@
                     android:id="@+id/errorView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:typeface="monospace"
-                    android:text="asdkfjasdhfjshgfgnigregirenigneigheuigeorigjweogijhegiohegojiegoergjeogheoghweoghiehgohewgoiwehogihewrghieogh
-                   &#xA;asdfgeogirejgoeirjgoregjogijegoiwejg
-                   &#xA;wergjergljegoiejgoeigjogjeogjegohgeoigheognmgnbnorneog
-                   &#xA;ergoegremgekgnonhotnhotrnhkhnh
-                   &#xA;safs
-                   &#xA;f
-                   &#xA;s
-                   &#xA;f
-                   &#xA;f
-                   &#xA;f
-                   &#xA;safasf
-                   &#xA;sageoigohntrh
-                   &#xA;trhoijrhoirnhohintrionbobirnionb
-                   &#xA;boitrnobinobnroni
-                   &#xA;sadfsfagfkjgnsfdljhenvgoenvjibnoenpeoignweguihregpiorhnpoithtvhiohöio höio ho fvgegh gsfdsfd
-                   &#xA;sfdaiohsfdiousfdahoiuhsfdaoiusfd oifdhoifdho fvigh fvuigupi refsfdasklsdfhsalkjfhsalkfjsa
-                   &#xA;salgkjsfdgkjreog ehpio vpo hfgoeiwrhpwreo ibbuhwfgeubuh l jhjkb
-
-                   &#xA;ssfda
-                   &#xA;sfda
-                   &#xA;sfda
-                   &#xA;sfda
-&#xA;
-                   &#xA;sagrejgorigjeoigjgkofdjgölkfdjgsdökgjklgjoe
-                   &#xA;sfdafgs
-                   &#xA;dfg
-                   &#xA;sd
-                   &#xA;fg"/>
+                    android:typeface="monospace"/>
             </HorizontalScrollView>
 
             <Button

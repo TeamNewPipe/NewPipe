@@ -46,6 +46,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import org.schabi.newpipe.errorhandling.ErrorActivity;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.ServiceList;
@@ -166,10 +167,23 @@ public class VideoItemDetailFragment extends Fragment {
                 });
                 e.printStackTrace();
             } catch (ParsingException e) {
-                postNewErrorToast(h, e.getMessage());
+                ErrorActivity.reportError(h, getActivity(), e, 0, VideoItemListActivity.class);
+                h.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        getActivity().finish();
+                    }
+                });
                 e.printStackTrace();
             } catch(Exception e) {
-                postNewErrorToast(h, R.string.general_error);
+                ErrorActivity.reportError(h, getActivity(), e,
+                        R.string.general_error, VideoItemListActivity.class);
+                h.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        getActivity().finish();
+                    }
+                });
                 e.printStackTrace();
             } finally {
                 if(videoInfo != null &&
@@ -178,6 +192,9 @@ public class VideoItemDetailFragment extends Fragment {
                     for(Exception e : videoInfo.errors) {
                         e.printStackTrace();
                     }
+                    //todo: do not call directly ask the user if it should be reported
+                    ErrorActivity.reportError(h, getActivity(),
+                            videoInfo.errors, 0, VideoItemDetailActivity.class);
                 }
             }
         }

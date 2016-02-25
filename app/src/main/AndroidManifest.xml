@@ -106,6 +106,7 @@
         </activity>
         <activity
             android:name=".ExitActivity"
+            android:label="@string/general_error"
             android:theme="@android:style/Theme.NoDisplay" />
         <activity android:name=".errorhandling.ErrorActivity"></activity>
     </application>
