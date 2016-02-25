@@ -99,7 +99,7 @@
     <string name="info_labels">What:\\nRequest:\\nContent Lang:\\nService:\\nVersion:\\nOS version:</string>
     <string name="info_searched_lbl">Searched for:</string>
     <string name="info_requested_stream_lbl">Requested stream:</string>
-    <string name="your_commend">Your commend:</string>
+    <string name="your_comment">Your comment (in English):</string>
 
 
     <!-- Content descriptions (for better accessibility) -->
