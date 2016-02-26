@@ -28,6 +28,12 @@ import java.util.Vector;
 @SuppressWarnings("ALL")
 public class VideoInfo extends AbstractVideoInfo {
 
+    public static class StreamExctractException extends ExtractionException {
+        StreamExctractException(String message) {
+            super(message);
+        }
+    }
+
     /**Fills out the video info fields which are common to all services.
      * Probably needs to be overridden by subclasses*/
     public static VideoInfo getVideoInfo(StreamExtractor extractor, Downloader downloader)
@@ -116,7 +122,8 @@ public class VideoInfo extends AbstractVideoInfo {
         if((videoInfo.video_streams == null || videoInfo.video_streams.isEmpty())
                 && (videoInfo.audio_streams == null || videoInfo.audio_streams.isEmpty())
                 && (videoInfo.dashMpdUrl == null || videoInfo.dashMpdUrl.isEmpty())) {
-            throw new ExtractionException("Could not get any stream. See error variable to get further details.");
+            throw new StreamExctractException(
+                    "Could not get any stream. See error variable to get further details.");
         }
 
         return videoInfo;

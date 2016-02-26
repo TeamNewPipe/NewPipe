@@ -165,6 +165,24 @@ public class VideoItemDetailFragment extends Fragment {
                     }
                 });
                 e.printStackTrace();
+            } catch(VideoInfo.StreamExctractException e) {
+                if(!videoInfo.errors.isEmpty()) {
+                    // !!! if this case ever kicks in someone gets kicked out !!!
+                    ErrorActivity.reportError(h, getActivity(), e, VideoItemListActivity.class, null,
+                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                                    service.getServiceInfo().name, videoUrl, R.string.could_not_get_stream));
+                } else {
+                    ErrorActivity.reportError(h, getActivity(), videoInfo.errors, VideoItemListActivity.class, null,
+                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                                    service.getServiceInfo().name, videoUrl, R.string.could_not_get_stream));
+                }
+                h.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        getActivity().finish();
+                    }
+                });
+                e.printStackTrace();
             } catch (ParsingException e) {
                 ErrorActivity.reportError(h, getActivity(), e, VideoItemListActivity.class, null,
                         ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
