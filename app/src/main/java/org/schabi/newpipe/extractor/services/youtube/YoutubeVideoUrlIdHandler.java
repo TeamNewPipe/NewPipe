@@ -53,7 +53,11 @@ public class YoutubeVideoUrlIdHandler implements VideoUrlIdHandler {
             }
         }
         else if(url.contains("youtu.be")) {
-            id = Parser.matchGroup1("youtu\\.be/([a-zA-Z0-9_-]{11})", url);
+            if(url.contains("v=")) {
+                id = Parser.matchGroup1("v=([\\-a-zA-Z0-9_]{11})", url);
+            } else {
+                id = Parser.matchGroup1("youtu\\.be/([a-zA-Z0-9_-]{11})", url);
+            }
         }
         else {
             throw new ParsingException("Error no suitable url: " + url);
@@ -61,7 +65,6 @@ public class YoutubeVideoUrlIdHandler implements VideoUrlIdHandler {
 
 
         if(!id.isEmpty()){
-            //Log.i(TAG, "string \""+url+"\" matches!");
             return id;
         } else {
             throw new ParsingException("Error could not parse url: " + url);
