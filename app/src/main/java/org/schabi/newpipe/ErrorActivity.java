@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.json.JSONArray;
@@ -94,6 +95,7 @@ public class ErrorActivity extends AppCompatActivity {
 
     public static void reportError(final Context context, final List<Exception> el,
                                    final Class returnAcitivty, View rootView, final ErrorInfo errorInfo) {
+
         if (rootView != null) {
             Snackbar.make(rootView, R.string.error_snackbar_message, Snackbar.LENGTH_LONG)
                     .setAction(R.string.error_snackbar_action, new View.OnClickListener() {
@@ -181,6 +183,9 @@ public class ErrorActivity extends AppCompatActivity {
 
         globIpRangeThread = new Thread(new IpRagneRequester());
         globIpRangeThread.start();
+
+        Toast.makeText(this,
+                errorInfo.message, Toast.LENGTH_LONG).show();
     }
 
     @Override
