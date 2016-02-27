@@ -58,7 +58,7 @@
     <string name="play_btn_text">Пусти</string>
 
     <string name="use_tor_title">Користи Тор</string>
-    <string name="use_tor_summary">Принудно преусмерење саобраћаја кроз Тор за доданту приватност (токови још нису подржани)</string>
+    <string name="use_tor_summary">Принудно преусмерење саобраћаја кроз Тор за доданту приватност (токови још нису подржани).</string>
 <string name="theme_title">Тема</string>
     <string name="dark_theme_title">Тамна</string>
     <string name="light_theme_title">Светла</string>
@@ -78,5 +78,13 @@
     <string name="parsing_error">Не могох да рашчланим веб-сајт.</string>
     <string name="content_not_available">Садржај није доступан.</string>
     <string name="blocked_by_gema">Блокирала ГЕМА.</string>
+
+    <string name="content">Садржај</string>
+    <string name="show_age_restricted_content_title">Прикажи старосно-ограничени садржај</string>
+    <string name="video_is_age_restricted">Видео је старосно ограничен. Укључите премошћавање у поставкама.</string>
+
+    <string name="could_not_setup_download_menu">Не могох да поставим мени преузимања.</string>
+    <string name="live_streams_not_supported">Ово је ТОК. Токови још нису подржани.</string>
+
 
     </resources>
