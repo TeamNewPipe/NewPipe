@@ -43,7 +43,7 @@
 
     <string name="list_thumbnail_view_description">Anteprima video</string>
     <string name="detail_thumbnail_view_description">Anteprima video</string>
-    <string name="detail_uploader_thumbnail_view_description">Miniatura caricata</string>
+    <string name="detail_uploader_thumbnail_view_description">Miniatura dell\'immagine di profilo degli utenti</string>
     <string name="detail_dislikes_img_view_description">Non mi piace</string>
     <string name="detail_likes_img_view_description">Mi piace</string>
 <string name="err_dir_create">Impossibile creare la cartella di download \'%1$s\'</string>
@@ -67,13 +67,13 @@
     <string name="play_btn_text">Riproduci</string>
 
     <string name="general_error">Errore</string>
-    <string name="network_error">Errore di connessione</string>
+    <string name="network_error">Errore di rete</string>
     <string name="could_not_load_thumbnails">Impossibile caricare tutte le miniature</string>
-    <string name="youtube_signature_decryption_error">Impossibile decriptare la firma dell\'URL video.</string>
+    <string name="youtube_signature_decryption_error">Impossibile decriptare la firma dell\'URL del video.</string>
     <string name="content_not_available">Contenuto non disponibile.</string>
     <string name="blocked_by_gema">Bloccato dalla GEMA.</string>
     <string name="use_tor_title">Usa Tor</string>
-    <string name="use_tor_summary">Forza il traffico dei download tramite Tor per aumentare la privacy (lo streaming video non è ancora supportato)</string>
+    <string name="use_tor_summary">Forza il traffico in download tramite Tor per una maggiore privacy (lo streaming dei video non è ancora supportato).</string>
 
     <string name="parsing_error">Impossibile analizzare il sito web.</string>
     <string name="could_not_setup_download_menu">Impossibile impostare il menù di download.</string>
