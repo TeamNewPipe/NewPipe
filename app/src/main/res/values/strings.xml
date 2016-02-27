@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="app_name" translatable="false">NewPipe</string>
     <string name="background_player_name">NewPipe Background Player</string>
@@ -97,7 +97,7 @@
     <string name="detail_likes_img_view_description">Likes</string>
     <string name="detail_dislikes_img_view_description">Dislikes</string>
     <string name="use_tor_title">Use Tor</string>
-    <string name="use_tor_summary">Force download traffic through Tor for increased privacy (streaming videos not yet supported)</string>
+    <string name="use_tor_summary">Force download traffic through Tor for increased privacy (streaming videos not yet supported).</string>
 
     <string name="err_dir_create">Cannot create download directory \'%1$s\'</string>
     <string name="info_dir_created">Created download directory \'%1$s\'</string>
