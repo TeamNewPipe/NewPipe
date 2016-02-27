@@ -10,7 +10,7 @@ import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.SearchEngine;
-import org.schabi.newpipe.extractor.VideoPreviewInfo;
+import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -99,11 +99,11 @@ public class YoutubeSearchEngine implements SearchEngine {
 
                     // video item type
                 } else if (!((el = item.select("div[class*=\"yt-lockup-video\"").first()) == null)) {
-                    VideoPreviewInfo resultItem = new VideoPreviewInfo();
+                    StreamPreviewInfo resultItem = new StreamPreviewInfo();
 
                     // importand information
                     resultItem.webpage_url = getWebpageUrl(item);
-                    resultItem.id = (new YoutubeVideoUrlIdHandler()).getVideoId(resultItem.webpage_url);
+                    resultItem.id = (new YoutubeStreamUrlIdHandler()).getVideoId(resultItem.webpage_url);
                     resultItem.title = getTitle(item);
 
                     // optional iformation
@@ -147,7 +147,7 @@ public class YoutubeSearchEngine implements SearchEngine {
     }
 
     @Override
-    public ArrayList<String> suggestionList(String query,String contentCountry, Downloader dl)
+    public ArrayList<String> suggestionList(String query, String contentCountry, Downloader dl)
             throws IOException, ParsingException {
 
         ArrayList<String> suggestions = new ArrayList<>();

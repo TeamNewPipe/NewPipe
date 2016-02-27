@@ -30,7 +30,7 @@ public interface SearchEngine {
     class Result {
         public String errorMessage = "";
         public String suggestion = "";
-        public final List<VideoPreviewInfo> resultList = new Vector<>();
+        public final List<StreamPreviewInfo> resultList = new Vector<>();
     }
 
     ArrayList<String> suggestionList(String query,String contentCountry, Downloader dl)

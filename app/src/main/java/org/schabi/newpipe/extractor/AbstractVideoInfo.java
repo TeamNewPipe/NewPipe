@@ -20,7 +20,7 @@ import android.graphics.Bitmap;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**Common properties between VideoInfo and VideoPreviewInfo.*/
+/**Common properties between StreamInfo and StreamPreviewInfo.*/
 public abstract class AbstractVideoInfo {
     public String id = "";
     public String title = "";

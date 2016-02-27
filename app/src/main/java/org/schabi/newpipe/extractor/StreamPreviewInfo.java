@@ -7,8 +7,8 @@ import android.os.Parcelable;
 /**
  * Created by Christian Schabesberger on 26.08.15.
  *
- * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * VideoPreviewInfo.java is part of NewPipe.
+ * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
+ * StreamPreviewInfo.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,6 @@ import android.os.Parcelable;
  */
 
 /**Info object for previews of unopened videos, eg search results, related videos*/
-public class VideoPreviewInfo extends AbstractVideoInfo {
+public class StreamPreviewInfo extends AbstractVideoInfo {
     public String duration = "";
 }

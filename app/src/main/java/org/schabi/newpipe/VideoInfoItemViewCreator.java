@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.schabi.newpipe.extractor.VideoPreviewInfo;
+import org.schabi.newpipe.extractor.StreamPreviewInfo;
+
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -40,7 +41,7 @@ class VideoInfoItemViewCreator {
         this.inflater = inflater;
     }
 
-    public View getViewFromVideoInfoItem(View convertView, ViewGroup parent, VideoPreviewInfo info, Context context) {
+    public View getViewFromVideoInfoItem(View convertView, ViewGroup parent, StreamPreviewInfo info, Context context) {
         ViewHolder holder;
         if(convertView == null) {
             convertView = inflater.inflate(R.layout.video_item, parent, false);

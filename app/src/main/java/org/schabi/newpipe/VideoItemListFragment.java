@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.schabi.newpipe.extractor.ExtractionException;
-import org.schabi.newpipe.extractor.VideoPreviewInfo;
+import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.StreamingService;
 
@@ -125,7 +125,7 @@ public class VideoItemListFragment extends ListFragment {
         }
     }
 
-    public void present(List<VideoPreviewInfo> videoList) {
+    public void present(List<StreamPreviewInfo> videoList) {
         mode = PRESENT_VIDEOS_MODE;
         setListShown(true);
         getListView().smoothScrollToPosition(0);
@@ -180,7 +180,7 @@ public class VideoItemListFragment extends ListFragment {
         }
     }
 
-    private void updateList(List<VideoPreviewInfo> list) {
+    private void updateList(List<StreamPreviewInfo> list) {
         try {
             videoListAdapter.addVideoList(list);
             terminateThreads();

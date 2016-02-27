@@ -5,7 +5,7 @@ import android.test.AndroidTestCase;
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.ParsingException;
-import org.schabi.newpipe.extractor.VideoInfo;
+import org.schabi.newpipe.extractor.StreamInfo;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 
 import java.io.IOException;
@@ -73,7 +73,7 @@ public class YoutubeStreamExtractorRestrictedTest extends AndroidTestCase {
     }
 
     public void testGetVideoStreams() throws ParsingException {
-        for(VideoInfo.VideoStream s : extractor.getVideoStreams()) {
+        for(StreamInfo.VideoStream s : extractor.getVideoStreams()) {
             assertTrue(s.url,
                     s.url.contains("https://"));
             assertTrue(s.resolution.length() > 0);

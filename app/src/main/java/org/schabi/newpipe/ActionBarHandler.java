@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.VideoInfo;
+import org.schabi.newpipe.extractor.StreamInfo;
 
 import java.util.List;
 
@@ -75,7 +75,7 @@ class ActionBarHandler {
         }
     }
 
-    public void setupStreamList(final List<VideoInfo.VideoStream> videoStreams) {
+    public void setupStreamList(final List<StreamInfo.VideoStream> videoStreams) {
         if (activity != null) {
             selectedVideoStream = 0;
 
@@ -83,7 +83,7 @@ class ActionBarHandler {
             // this array will be shown in the dropdown menu for selecting the stream/resolution.
             String[] itemArray = new String[videoStreams.size()];
             for (int i = 0; i < videoStreams.size(); i++) {
-                VideoInfo.VideoStream item = videoStreams.get(i);
+                StreamInfo.VideoStream item = videoStreams.get(i);
                 itemArray[i] = MediaFormat.getNameById(item.format) + " " + item.resolution;
             }
             int defaultResolution = getDefaultResolution(videoStreams);
@@ -108,13 +108,13 @@ class ActionBarHandler {
     }
 
 
-    private int getDefaultResolution(final List<VideoInfo.VideoStream> videoStreams) {
+    private int getDefaultResolution(final List<StreamInfo.VideoStream> videoStreams) {
         String defaultResolution = defaultPreferences
                 .getString(activity.getString(R.string.default_resolution_key),
                         activity.getString(R.string.default_resolution_value));
 
         for (int i = 0; i < videoStreams.size(); i++) {
-            VideoInfo.VideoStream item = videoStreams.get(i);
+            StreamInfo.VideoStream item = videoStreams.get(i);
             if (defaultResolution.equals(item.resolution)) {
                 return i;
             }
