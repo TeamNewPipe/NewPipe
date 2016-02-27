@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="view_count_text">%1$s visite</string>
-    <string name="upload_date_text">Caricato in %1$s</string>
+    <string name="upload_date_text">Pubblicato il %1$s</string>
     <string name="no_player_found">Nessun riproduttore trovato. Vuoi installare VLC?</string>
     <string name="install">Installa</string>
-    <string name="cancel">Cancella</string>
+    <string name="cancel">Annulla</string>
     <string name="open_in_browser">Apri nel browser</string>
     <string name="share">Condividi</string>
     <string name="download">Scarica</string>
@@ -29,15 +29,15 @@
     <string name="show_play_with_kodi_summary">Mostra un opzione per riprodurre un video attraverso Kodi media center.</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato audio predefinito</string>
-    <string name="webm_description">WedM — formato libero</string>
+    <string name="webm_description">WebM — formato libero</string>
     <string name="m4a_description">m4a — qualità migliore</string>
     <string name="download_dialog_title">Scarica</string>
     <string name="next_video_title">Prossimo video</string>
-    <string name="show_next_and_similar_title">Mostra i video successivi e simili</string>
+    <string name="show_next_and_similar_title">Mostra video a seguire e video simili</string>
     <string name="url_not_supported_toast">URL non supportato</string>
     <string name="similar_videos_btn_text">Video simili</string>
-    <string name="search_language_title">Lingua preferita dei contenuti</string>
-    <string name="settings_category_video_audio_title">VIDEO &amp; AUDIO</string>
+    <string name="search_language_title">Lingua preferita per i contenuti</string>
+    <string name="settings_category_video_audio_title">Video e Audio</string>
     <string name="settingsCategoryVideoInfoTittle">INFO</string>
     <string name="settingsCategoryEtcTitle">ETC</string>
 
@@ -78,5 +78,12 @@
     <string name="parsing_error">Impossibile analizzare il sito web.</string>
     <string name="could_not_setup_download_menu">Impossibile impostare il menù di download.</string>
 
+
+    <string name="live_streams_not_supported">Questo è uno stream dal vivo. Gli stream dal vivo non sono ancora supportati.</string>
+
+
+    <string name="content">Contenuti</string>
+    <string name="show_age_restricted_content_title">Mostra contenuti vincolati all\'età</string>
+    <string name="video_is_age_restricted">Questo video è vincolato alla maggiore età. Per accedervi, abilita \"Mostra video vincolati all\'età\" nelle impostazioni.</string>
 
     </resources>
