@@ -5,8 +5,8 @@ package org.schabi.newpipe;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.MailTo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
@@ -26,33 +26,35 @@ import android.widget.TextView;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.schabi.newpipe.extractor.Parser;
 
-import java.net.URI;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.Vector;
 
 /**
  * Created by Christian Schabesberger on 24.10.15.
- *
+ * <p>
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
  * ErrorActivity.java is part of NewPipe.
- *
+ * <p>
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * NewPipe is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 public class ErrorActivity extends AppCompatActivity {
-
     public static class ErrorInfo {
         public int userAction;
         public String request;
@@ -75,19 +77,24 @@ public class ErrorActivity extends AppCompatActivity {
     public static final String SEARCHED_STRING = "Searched";
     public static final String REQUESTED_STREAM_STRING = "Requested Stream";
     public static final String ERROR_EMAIL_ADDRESS = "error@newpipe.schabi.org";
-    public static final String ERROR_EMAIL_SUBJECT="Exception in NewPipe " + BuildConfig.VERSION_NAME;
+    public static final String ERROR_EMAIL_SUBJECT = "Exception in NewPipe " + BuildConfig.VERSION_NAME;
 
     private List<Exception> errorList;
     private ErrorInfo errorInfo;
     private Class returnActivity;
+    private String currentTimeStamp;
+    private String globIpRange;
+    Thread globIpRangeThread = null;
 
     // views
     private TextView errorView;
     private EditText userCommentBox;
+    private Button reportButton;
+    private TextView infoView;
 
     public static void reportError(final Context context, final List<Exception> el,
                                    final Class returnAcitivty, View rootView, final ErrorInfo errorInfo) {
-        if(rootView != null) {
+        if (rootView != null) {
             Snackbar.make(rootView, R.string.error_snackbar_message, Snackbar.LENGTH_LONG)
                     .setAction(R.string.error_snackbar_action, new View.OnClickListener() {
                         @Override
@@ -146,14 +153,16 @@ public class ErrorActivity extends AppCompatActivity {
         returnActivity = ac.returnActivity;
         errorInfo = ac.errorInfo;
 
-        Button reportButton = (Button) findViewById(R.id.errorReportButton);
+        reportButton = (Button) findViewById(R.id.errorReportButton);
         userCommentBox = (EditText) findViewById(R.id.errorCommentBox);
         errorView = (TextView) findViewById(R.id.errorView);
+        infoView = (TextView) findViewById(R.id.errorInfosView);
 
         errorView.setText(formErrorText(errorList));
 
         //importand add gurumeditaion
         addGuruMeditaion();
+        currentTimeStamp = getCurrentTimeStamp();
         buildInfo(errorInfo);
 
         reportButton.setOnClickListener(new View.OnClickListener() {
@@ -168,6 +177,10 @@ public class ErrorActivity extends AppCompatActivity {
                 startActivity(Intent.createChooser(intent, "Send Email"));
             }
         });
+        reportButton.setEnabled(false);
+
+        globIpRangeThread = new Thread(new IpRagneRequester());
+        globIpRangeThread.start();
     }
 
     @Override
@@ -180,7 +193,7 @@ public class ErrorActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch(id) {
+        switch (id) {
             case android.R.id.home:
                 goToReturnActivity();
                 break;
@@ -191,14 +204,14 @@ public class ErrorActivity extends AppCompatActivity {
                 intent.setType("text/plain");
                 startActivity(Intent.createChooser(intent, getString(R.string.share_dialog_title)));
             }
-                break;
+            break;
         }
         return false;
     }
 
     private String formErrorText(List<Exception> el) {
         String text = "";
-        for(Exception e : el) {
+        for (Exception e : el) {
             text += "-------------------------------------\n"
                     + ExceptionUtils.getStackTrace(e);
         }
@@ -207,7 +220,7 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private void goToReturnActivity() {
-        if(returnActivity == null) {
+        if (returnActivity == null) {
             super.onBackPressed();
         } else {
             Intent intent;
@@ -233,6 +246,7 @@ public class ErrorActivity extends AppCompatActivity {
                 + "\n" + info.request
                 + "\n" + getContentLangString()
                 + "\n" + info.serviceName
+                + "\n" + currentTimeStamp
                 + "\n" + BuildConfig.VERSION_NAME
                 + "\n" + getOsString();
 
@@ -248,10 +262,12 @@ public class ErrorActivity extends AppCompatActivity {
                     .put("content_language", getContentLangString())
                     .put("service", errorInfo.serviceName)
                     .put("version", BuildConfig.VERSION_NAME)
-                    .put("os", getOsString());
+                    .put("os", getOsString())
+                    .put("time", currentTimeStamp)
+                    .put("ip_range", globIpRange);
 
             JSONArray exceptionArray = new JSONArray();
-            for(Exception e : errorList) {
+            for (Exception e : errorList) {
                 exceptionArray.put(ExceptionUtils.getStackTrace(e));
             }
 
@@ -269,9 +285,12 @@ public class ErrorActivity extends AppCompatActivity {
 
     private String getUserActionString(int userAction) {
         switch (userAction) {
-            case REQUESTED_STREAM: return REQUESTED_STREAM_STRING;
-            case SEARCHED: return SEARCHED_STRING;
-            default: return "Your description is in another castle.";
+            case REQUESTED_STREAM:
+                return REQUESTED_STREAM_STRING;
+            case SEARCHED:
+                return SEARCHED_STRING;
+            default:
+                return "Your description is in another castle.";
         }
     }
 
@@ -282,7 +301,7 @@ public class ErrorActivity extends AppCompatActivity {
 
     private String getOsString() {
         String osBase = Build.VERSION.SDK_INT >= 23 ? Build.VERSION.BASE_OS : "Android";
-        return  System.getProperty("os.name")
+        return System.getProperty("os.name")
                 + " " + (osBase.isEmpty() ? "Android" : osBase)
                 + " " + Build.VERSION.RELEASE
                 + " - " + Integer.toString(Build.VERSION.SDK_INT);
@@ -300,5 +319,48 @@ public class ErrorActivity extends AppCompatActivity {
     public void onBackPressed() {
         //super.onBackPressed();
         goToReturnActivity();
+    }
+
+    public String getCurrentTimeStamp() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        df.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return df.format(new Date());
+    }
+
+    private class IpRagneRequester implements Runnable {
+        Handler h = new Handler();
+        public void run() {
+            String ipRange = "none";
+            try {
+                Downloader dl = new Downloader();
+                String ip = dl.download("https://ifcfg.me/ip");
+
+                ipRange = Parser.matchGroup1("([0-9]*\\.[0-9]*\\.)[0-9]*\\.[0-9]*", ip)
+                        + "0.0";
+            } catch(Exception e) {
+                Log.d(TAG, "Error while error: could not get iprange");
+                e.printStackTrace();
+            } finally {
+                h.post(new IpRageReturnRunnable(ipRange));
+            }
+        }
+    }
+
+
+
+    private class IpRageReturnRunnable implements Runnable {
+        String ipRange;
+        public IpRageReturnRunnable(String ipRange) {
+            this.ipRange = ipRange;
+        }
+        public void run() {
+            globIpRange = ipRange;
+            if(infoView != null) {
+                String text = infoView.getText().toString();
+                text += "\n" + globIpRange;
+                infoView.setText(text);
+                reportButton.setEnabled(true);
+            }
+        }
     }
 }

@@ -97,7 +97,7 @@
     <string name="error_snackbar_action">REPORT</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">What happened:</string>
-    <string name="info_labels">What:\\nRequest:\\nContent Lang:\\nService:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">What:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nVersion:\\nOS version:\\nGlob. IP range:</string>
     <string name="info_searched_lbl">Searched for:</string>
     <string name="info_requested_stream_lbl">Requested stream:</string>
     <string name="your_comment">Your comment (in English):</string>
