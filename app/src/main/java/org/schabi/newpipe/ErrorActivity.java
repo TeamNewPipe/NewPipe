@@ -74,7 +74,7 @@ public class ErrorActivity extends AppCompatActivity {
     public static final int REQUESTED_STREAM = 1;
     public static final String SEARCHED_STRING = "Searched";
     public static final String REQUESTED_STREAM_STRING = "Requested Stream";
-    public static final String ERROR_EMAIL_ADDRESS = "dummy@dummy.org";
+    public static final String ERROR_EMAIL_ADDRESS = "error@newpipe.schabi.org";
     public static final String ERROR_EMAIL_SUBJECT="Exception in NewPipe " + BuildConfig.VERSION_NAME;
 
     private List<Exception> errorList;
