@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="upload_date_text">"アップロード: "%1$s</string>
-    <string name="no_player_found">StreamPlayer が見つかりませんでした｡ｲﾝｽﾄｰﾙが必要になるかもしれません｡</string>
+    <string name="no_player_found">ｽﾄﾘｰﾑのﾌﾟﾚｲﾔｰが見つかりません｡VLC をｲﾝｽﾄｰﾙしますか?</string>
     <string name="install">ｲﾝｽﾄｰﾙ</string>
     <string name="cancel">取り消し</string>
     <string name="open_in_browser">ﾌﾞﾗｳｻﾞｰで開く</string>
@@ -23,7 +23,7 @@
     <string name="autoplay_through_intent_summary">他のｱﾌﾟﾘｹｰｼｮﾝから呼び出されたとき､自動的に動画再生を開始します｡</string>
     <string name="default_resolution_title">基本の解像度</string>
     <string name="play_with_kodi_title">Kodi で再生</string>
-    <string name="kore_not_found">Kore ｱﾌﾟﾘが見つかりません｡ Kodi ﾒﾃﾞｨｱｾﾝﾀｰで動画を再生するには､ Kore が必要です｡</string>
+    <string name="kore_not_found">Kore ｱﾌﾟﾘが見つかりません｡ Kore をｲﾝｽﾄｰﾙしますか?</string>
     <string name="installeKore">Kore をｲﾝｽﾄｰﾙ</string>
     <string name="show_play_with_kodi_title">\"Kodi で再生\" 設定を表示</string>
     <string name="show_play_with_kodi_summary">Kodi ﾒﾃﾞｨｱｾﾝﾀｰ経由で動画を再生するための設定を表示します.</string>
@@ -53,7 +53,7 @@
     <string name="play_btn_text">再生</string>
 
     <string name="use_tor_title">Tor を使用する</string>
-    <string name="use_tor_summary">強制的に Tor を経由したプライバシーを高めたトラフィックでダウンロードします (ビデオのストリーミングはまだサポートされていません)</string>
+    <string name="use_tor_summary">強制的に Tor を経由したトラフィックでダウンロードして、プライバシーを高めます (ビデオのストリーミングはまだサポートされていません)。</string>
 <string name="theme_title">テーマ</string>
     <string name="dark_theme_title">ダーク</string>
     <string name="light_theme_title">ライト</string>
