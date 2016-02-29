@@ -84,6 +84,7 @@
     <string name="could_not_load_thumbnails">Could not load all Thumbnails</string>
     <string name="youtube_signature_decryption_error">Could not decrypt video url signature.</string>
     <string name="parsing_error">Could not parse website.</string>
+    <string name="light_parsing_error">Could not parse website complete.</string>
     <string name="content_not_available">Content not available.</string>
     <string name="blocked_by_gema">Blocked by GEMA.</string>
     <string name="could_not_setup_download_menu">Could not setup download menu.</string>
@@ -101,6 +102,7 @@
     <string name="info_searched_lbl">Searched for:</string>
     <string name="info_requested_stream_lbl">Requested stream:</string>
     <string name="your_comment">Your comment (in English):</string>
+    <string name="error_details_headline">Details:</string>
 
 
     <!-- Content descriptions (for better accessibility) -->

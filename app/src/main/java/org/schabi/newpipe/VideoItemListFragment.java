@@ -129,7 +129,7 @@ public class VideoItemListFragment extends ListFragment {
                     View rootView = a.findViewById(R.id.videoitem_list);
                     ErrorActivity.reportError(h, getActivity(), result.errors, null, rootView,
                             ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
-                        /* todo: this shoudl not be assigned static */ "Youtube", query, R.string.general_error));
+                        /* todo: this shoudl not be assigned static */ "Youtube", query, R.string.light_parsing_error));
 
                 }
                 // hard errors:

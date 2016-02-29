@@ -31,6 +31,21 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/messageWhatHappenedView"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/what_happened_headline"/>
+
+            <TextView
+                android:id="@+id/errorMessageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:text="@string/info_labels"/>
+
+            <TextView
                 android:id="@+id/errorDeviceHeadlineView"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:layout_width="wrap_content"
@@ -66,12 +81,12 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/errorWhatHappenedView"
+                android:id="@+id/errorDetailView"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/what_happened_headline"/>
+                android:text="@string/error_details_headline"/>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"

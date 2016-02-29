@@ -92,6 +92,7 @@ public class ErrorActivity extends AppCompatActivity {
     private EditText userCommentBox;
     private Button reportButton;
     private TextView infoView;
+    private TextView errorMessageView;
 
     public static void reportError(final Context context, final List<Exception> el,
                                    final Class returnAcitivty, View rootView, final ErrorInfo errorInfo) {
@@ -159,6 +160,7 @@ public class ErrorActivity extends AppCompatActivity {
         userCommentBox = (EditText) findViewById(R.id.errorCommentBox);
         errorView = (TextView) findViewById(R.id.errorView);
         infoView = (TextView) findViewById(R.id.errorInfosView);
+        errorMessageView = (TextView) findViewById(R.id.errorMessageView);
 
         errorView.setText(formErrorText(errorList));
 
@@ -184,8 +186,7 @@ public class ErrorActivity extends AppCompatActivity {
         globIpRangeThread = new Thread(new IpRagneRequester());
         globIpRangeThread.start();
 
-        Toast.makeText(this,
-                errorInfo.message, Toast.LENGTH_LONG).show();
+        errorMessageView.setText(errorInfo.message);
     }
 
     @Override
