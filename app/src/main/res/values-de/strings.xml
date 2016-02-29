@@ -55,7 +55,7 @@
     <string name="play_btn_text">Abspielen</string>
 
     <string name="use_tor_title">Benutze TOR</string>
-    <string name="use_tor_summary">Erzwinge das Herunterladen durch TOR für verbesserte Privatsphäre (Videostream noch nicht unterstützt)</string>
+    <string name="use_tor_summary">Erzwinge das Herunterladen durch TOR für verbesserte Privatsphäre (Videostream noch nicht unterstützt).</string>
     <string name="background_player_name">NewPipe Hintergrundwiedergabe</string>
     <string name="network_error">Netzwerkfehler</string>
 
