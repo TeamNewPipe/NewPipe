@@ -187,7 +187,12 @@ public class ErrorActivity extends AppCompatActivity {
         globIpRangeThread = new Thread(new IpRagneRequester());
         globIpRangeThread.start();
 
-        errorMessageView.setText(errorInfo.message);
+        if(errorInfo.message != 0) {
+            errorMessageView.setText(errorInfo.message);
+        } else {
+            errorMessageView.setVisibility(View.GONE);
+            findViewById(R.id.messageWhatHappenedView).setVisibility(View.GONE);
+        }
     }
 
     @Override
