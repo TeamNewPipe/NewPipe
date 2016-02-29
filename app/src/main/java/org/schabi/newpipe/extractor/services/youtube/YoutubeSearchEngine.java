@@ -211,6 +211,8 @@ public class YoutubeSearchEngine implements SearchEngine {
 
             @Override
             public long getViewCount() throws ParsingException {
+                throw new ParsingException("blabla");
+                /*
                 String output;
                 String input = item.select("div[class=\"yt-lockup-meta\"]").first()
                         .select("li").get(1)
@@ -224,6 +226,7 @@ public class YoutubeSearchEngine implements SearchEngine {
                     Log.d(TAG, "bla");
                 }
                 return Long.parseLong(output);
+                */
             }
 
             @Override

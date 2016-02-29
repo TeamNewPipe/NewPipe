@@ -133,6 +133,28 @@ public class VideoItemDetailFragment extends Fragment {
                 streamInfo = StreamInfo.getVideoInfo(streamExtractor, new Downloader());
 
                 h.post(new VideoResultReturnedRunnable(streamInfo));
+
+                // look for errors during extraction
+                // this if statement only covers extra information.
+                // if these are not available or caused an error, they are just not available
+                // but don't render the stream information unusalbe.
+                if(streamInfo != null &&
+                        !streamInfo.errors.isEmpty()) {
+                    Log.e(TAG, "OCCURRED ERRORS DURING EXTRACTION:");
+                    for (Exception e : streamInfo.errors) {
+                        e.printStackTrace();
+                        Log.e(TAG, "------");
+                    }
+
+                    Activity a = getActivity();
+                    View rootView = a != null ? a.findViewById(R.id.videoitem_detail) : null;
+                    ErrorActivity.reportError(h, getActivity(),
+                            streamInfo.errors, null, rootView,
+                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                                    service.getServiceInfo().name, videoUrl, 0 /* no message for the user */));
+                }
+
+                // These errors render the stream information unusable.
             } catch (IOException e) {
                 postNewErrorToast(h, R.string.network_error);
                 e.printStackTrace();
@@ -205,21 +227,6 @@ public class VideoItemDetailFragment extends Fragment {
                             }
                         });
                 e.printStackTrace();
-            } finally {
-                if(streamInfo != null &&
-                        !streamInfo.errors.isEmpty()) {
-                    Log.e(TAG, "OCCURRED ERRORS DURING EXTRACTION:");
-                    for(Exception e : streamInfo.errors) {
-                        e.printStackTrace();
-                    }
-
-                    Activity a = getActivity();
-                    View rootView = a != null ? a.findViewById(R.id.videoitem_detail) : null;
-                    ErrorActivity.reportError(h, getActivity(),
-                            streamInfo.errors, null, rootView,
-                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
-                                    service.getServiceInfo().name,  videoUrl, 0 /* no message for the user */));
-                }
             }
         }
     }

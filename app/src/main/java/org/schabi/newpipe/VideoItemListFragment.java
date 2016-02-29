@@ -1,5 +1,6 @@
 package org.schabi.newpipe;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -101,26 +102,53 @@ public class VideoItemListFragment extends ListFragment {
         }
         @Override
         public void run() {
+            SearchResult result = null;
             try {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
                 String searchLanguageKey = getContext().getString(R.string.search_language_key);
                 String searchLanguage = sp.getString(searchLanguageKey,
                         getString(R.string.default_language_value));
-                SearchResult result = SearchResult
+                result = SearchResult
                         .getSearchResult(engine, query, page, searchLanguage, new Downloader());
 
-                //Log.i(TAG, "language code passed:\""+searchLanguage+"\"");
                 if(runs) {
                     h.post(new ResultRunnable(result, requestId));
                 }
+
+                // look for errors during extraction
+                // soft errors:
+                if(result != null &&
+                        !result.errors.isEmpty()) {
+                    Log.e(TAG, "OCCURRED ERRORS DURING SEARCH EXTRACTION:");
+                    for(Exception e : result.errors) {
+                        e.printStackTrace();
+                        Log.e(TAG, "------");
+                    }
+
+                    Activity a = getActivity();
+                    View rootView = a.findViewById(R.id.videoitem_list);
+                    ErrorActivity.reportError(h, getActivity(), result.errors, null, rootView,
+                            ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
+                        /* todo: this shoudl not be assigned static */ "Youtube", query, R.string.general_error));
+
+                }
+                // hard errors:
             } catch(IOException e) {
                 postNewErrorToast(h, R.string.network_error);
                 e.printStackTrace();
-            } catch(ExtractionException ce) {
-                postNewErrorToast(h, R.string.parsing_error);
-                ce.printStackTrace();
+            } catch(ExtractionException e) {
+                ErrorActivity.reportError(h, getActivity(), e, null, null,
+                        ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
+                        /* todo: this shoudl not be assigned static */ "Youtube", query, R.string.parsing_error));
+
+                //postNewErrorToast(h, R.string.parsing_error);
+                e.printStackTrace();
+
             } catch(Exception e) {
-                postNewErrorToast(h, R.string.general_error);
+                ErrorActivity.reportError(h, getActivity(), e, null, null,
+                        ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
+                        /* todo: this shoudl not be assigned static */ "Youtube", query, R.string.general_error));
+
                 e.printStackTrace();
             }
         }
