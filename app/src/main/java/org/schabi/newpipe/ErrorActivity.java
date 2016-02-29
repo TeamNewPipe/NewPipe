@@ -5,6 +5,7 @@ package org.schabi.newpipe;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -99,6 +100,7 @@ public class ErrorActivity extends AppCompatActivity {
 
         if (rootView != null) {
             Snackbar.make(rootView, R.string.error_snackbar_message, Snackbar.LENGTH_LONG)
+                    .setActionTextColor(Color.YELLOW)
                     .setAction(R.string.error_snackbar_action, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
