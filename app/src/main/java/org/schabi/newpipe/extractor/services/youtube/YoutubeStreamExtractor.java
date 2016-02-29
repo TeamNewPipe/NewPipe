@@ -412,7 +412,6 @@ public class YoutubeStreamExtractor implements StreamExtractor {
 
     @Override
     public String getDashMpdUrl() throws ParsingException {
-        throw new ParsingException("blabla");
         /*
         try {
             String dashManifestUrl = videoInfoPage.get("dashmpd");
@@ -429,6 +428,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
                     "Could not get \"dashmpd\" maybe VideoInfoPage is broken.", e);
         }
         */
+        return "";
     }
 
 
