@@ -290,7 +290,7 @@ public class VideoItemDetailFragment extends Fragment {
             View nextVideoView = null;
             if(info.next_video != null) {
                 nextVideoView = videoItemViewCreator
-                        .getViewFromVideoInfoItem(null, nextVideoFrame, info.next_video, getContext());
+                        .getViewFromVideoInfoItem(null, nextVideoFrame, info.next_video);
             } else {
                 activity.findViewById(R.id.detailNextVidButtonAndContentLayout).setVisibility(View.GONE);
                 activity.findViewById(R.id.detailNextVideoTitle).setVisibility(View.GONE);
@@ -672,7 +672,7 @@ public class VideoItemDetailFragment extends Fragment {
         ArrayList<StreamPreviewInfo> similar = new ArrayList<>(info.related_videos);
         for (final StreamPreviewInfo item : similar) {
             View similarView = videoItemViewCreator
-                    .getViewFromVideoInfoItem(null, similarLayout, item, getContext());
+                    .getViewFromVideoInfoItem(null, similarLayout, item);
 
             similarView.setClickable(true);
             similarView.setFocusable(true);

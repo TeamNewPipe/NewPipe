@@ -41,8 +41,10 @@ class VideoInfoItemViewCreator {
         this.inflater = inflater;
     }
 
-    public View getViewFromVideoInfoItem(View convertView, ViewGroup parent, StreamPreviewInfo info, Context context) {
+    public View getViewFromVideoInfoItem(View convertView, ViewGroup parent, StreamPreviewInfo info) {
         ViewHolder holder;
+
+        // generate holder
         if(convertView == null) {
             convertView = inflater.inflate(R.layout.video_item, parent, false);
             holder = new ViewHolder();
@@ -57,20 +59,41 @@ class VideoInfoItemViewCreator {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        // fill with information
+
+        /*
         if(info.thumbnail == null) {
             holder.itemThumbnailView.setImageResource(R.drawable.dummy_thumbnail);
         } else {
             holder.itemThumbnailView.setImageBitmap(info.thumbnail);
         }
+        */
         holder.itemVideoTitleView.setText(info.title);
-        holder.itemUploaderView.setText(info.uploader);
-        holder.itemDurationView.setText(info.duration);
-        holder.itemViewCountView.setText(shortViewCount(info.view_count));
+        if(info.uploader != null && !info.uploader.isEmpty()) {
+            holder.itemUploaderView.setText(info.uploader);
+        } else {
+            holder.itemDurationView.setVisibility(View.INVISIBLE);
+        }
+        if(info.duration != null && !info.duration.isEmpty()) {
+            holder.itemDurationView.setText(info.duration);
+        } else {
+            holder.itemDurationView.setVisibility(View.GONE);
+        }
+        if(info.view_count >= 0) {
+            holder.itemViewCountView.setText(shortViewCount(info.view_count));
+        } else {
+            holder.itemViewCountView.setVisibility(View.GONE);
+        }
         if(!info.upload_date.isEmpty()) {
             holder.itemUploadDateView.setText(info.upload_date+" • ");
         }
 
-        imageLoader.displayImage(info.thumbnail_url, holder.itemThumbnailView, displayImageOptions);
+        if(info.thumbnail_url != null && !info.thumbnail_url.isEmpty()) {
+            imageLoader.displayImage(info.thumbnail_url, holder.itemThumbnailView, displayImageOptions);
+        } else {
+            holder.itemThumbnailView.setImageResource(R.drawable.dummy_thumbnail);
+        }
+
 
         return convertView;
     }
