@@ -27,6 +27,12 @@ import java.util.Vector;
 
 @SuppressWarnings("ALL")
 public interface SearchEngine {
+    public class NothingFoundException extends ExtractionException {
+        public NothingFoundException(String message) {
+            super(message);
+        }
+    }
+
     ArrayList<String> suggestionList(String query,String contentCountry, Downloader dl)
             throws ExtractionException, IOException;
 

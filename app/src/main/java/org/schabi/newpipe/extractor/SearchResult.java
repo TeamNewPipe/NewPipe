@@ -28,11 +28,12 @@ public class SearchResult {
     public static SearchResult getSearchResult(SearchEngine engine, String query,
                                                int page, String languageCode, Downloader dl)
             throws ExtractionException, IOException {
-        try {
-            return engine.search(query, page, languageCode, dl).getSearchResult();
-        } catch (Exception e) {
-            throw new ExtractionException("Could not get any search result", e);
+
+        SearchResult result = engine.search(query, page, languageCode, dl).getSearchResult();
+        if(result.resultList.isEmpty()) {
+            throw new ExtractionException("Empty result despite no error");
         }
+        return result;
     }
 
     public String suggestion = "";

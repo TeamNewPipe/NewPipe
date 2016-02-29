@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.schabi.newpipe.extractor.Downloader;
+import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.SearchEngine;
@@ -52,7 +53,7 @@ public class YoutubeSearchEngine implements SearchEngine {
 
     @Override
     public StreamPreviewInfoCollector search(String query, int page, String languageCode, Downloader downloader)
-            throws IOException, ParsingException {
+            throws IOException, ExtractionException {
         StreamPreviewInfoCollector collector = new StreamPreviewInfoCollector(
                 new YoutubeStreamUrlIdHandler());
         Uri.Builder builder = new Uri.Builder();
@@ -98,7 +99,7 @@ public class YoutubeSearchEngine implements SearchEngine {
                 // search message item
             } else if (!((el = item.select("div[class*=\"search-message\"]").first()) == null)) {
                 //result.errorMessage = el.text();
-                throw new StreamExtractor.ContentNotAvailableException(el.text());
+                throw new NothingFoundException(el.text());
 
                 // video item type
             } else if (!((el = item.select("div[class*=\"yt-lockup-video\"").first()) == null)) {
@@ -211,8 +212,6 @@ public class YoutubeSearchEngine implements SearchEngine {
 
             @Override
             public long getViewCount() throws ParsingException {
-                throw new ParsingException("blabla");
-                /*
                 String output;
                 String input = item.select("div[class=\"yt-lockup-meta\"]").first()
                         .select("li").get(1)
@@ -222,11 +221,16 @@ public class YoutubeSearchEngine implements SearchEngine {
                         .replace(".", "")
                         .replace(",", "");
 
-                if(Long.parseLong(output) == 30) {
-                    Log.d(TAG, "bla");
+                try {
+                    return Long.parseLong(output);
+                } catch (NumberFormatException e) {
+                    // if this happens the video probably has no views
+                    if(!input.isEmpty()) {
+                        return 0;
+                    } else {
+                        throw new ParsingException("Could not handle input: " + input, e);
+                    }
                 }
-                return Long.parseLong(output);
-                */
             }
 
             @Override

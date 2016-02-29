@@ -15,7 +15,7 @@
     <string name="download">Download</string>
     <string name="search">Search</string>
     <string name="settings">Settings</string>
-    <string name="did_you_mean">Did you mean: </string>
+    <string name="did_you_mean">Did you mean: %1$s ?</string>
     <string name="search_page">Search page: </string>
     <string name="share_dialog_title">Share with:</string>
     <string name="choose_browser">Choose browser:</string>

@@ -114,6 +114,7 @@ public class ErrorActivity extends AppCompatActivity {
             ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
             ac.errorList = el;
             ac.returnActivity = returnAcitivty;
+            ac.errorInfo = errorInfo;
             Intent intent = new Intent(context, ErrorActivity.class);
             context.startActivity(intent);
         }

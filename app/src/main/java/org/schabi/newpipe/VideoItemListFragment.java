@@ -134,13 +134,14 @@ public class VideoItemListFragment extends ListFragment {
                 }
                 // hard errors:
             } catch(IOException e) {
-                postNewErrorToast(h, R.string.network_error);
+                postNewNothingFoundToast(h, R.string.network_error);
                 e.printStackTrace();
+            } catch(SearchEngine.NothingFoundException e) {
+                postNewErrorToast(h, e.getMessage());
             } catch(ExtractionException e) {
                 ErrorActivity.reportError(h, getActivity(), e, null, null,
                         ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
                         /* todo: this shoudl not be assigned static */ "Youtube", query, R.string.parsing_error));
-
                 //postNewErrorToast(h, R.string.parsing_error);
                 e.printStackTrace();
 
@@ -197,12 +198,11 @@ public class VideoItemListFragment extends ListFragment {
     private void updateListOnResult(SearchResult result, int requestId) {
         if(requestId == currentRequestId) {
             setListShown(true);
-            if (!result.resultList.isEmpty()) {
-                if (!result.suggestion.isEmpty()) {
-                    Toast.makeText(getActivity(), getString(R.string.did_you_mean) + result.suggestion + " ?",
-                            Toast.LENGTH_LONG).show();
-                }
-                updateList(result.resultList);
+            updateList(result.resultList);
+            if(!result.suggestion.isEmpty()) {
+                Toast.makeText(getActivity(),
+                        String.format(getString(R.string.did_you_mean), result.suggestion),
+                        Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -344,13 +344,24 @@ public class VideoItemListFragment extends ListFragment {
         mActivatedPosition = position;
     }
 
-    private void postNewErrorToast(Handler h, final int stringResource) {
+    private void postNewErrorToast(Handler h, final String message) {
+        h.post(new Runnable() {
+            @Override
+            public void run() {
+                setListShown(true);
+                Toast.makeText(getActivity(), message,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void postNewNothingFoundToast(Handler h, final int stringResource) {
         h.post(new Runnable() {
             @Override
             public void run() {
                 setListShown(true);
                 Toast.makeText(getActivity(), getString(stringResource),
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_LONG).show();
             }
         });
     }
