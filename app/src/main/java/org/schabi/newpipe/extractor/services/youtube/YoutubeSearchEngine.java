@@ -96,6 +96,9 @@ public class YoutubeSearchEngine implements SearchEngine {
             // both types of spell correction item
             if (!((el = item.select("div[class*=\"spell-correction\"]").first()) == null)) {
                 collector.setSuggestion(el.select("a").first().text());
+                if(list.children().size() == 1) {
+                    throw new NothingFoundException("Did you mean: " + el.select("a").first().text());
+                }
                 // search message item
             } else if (!((el = item.select("div[class*=\"search-message\"]").first()) == null)) {
                 //result.errorMessage = el.text();

@@ -31,7 +31,12 @@ public class SearchResult {
 
         SearchResult result = engine.search(query, page, languageCode, dl).getSearchResult();
         if(result.resultList.isEmpty()) {
-            throw new ExtractionException("Empty result despite no error");
+            if(result.suggestion.isEmpty()) {
+                throw new ExtractionException("Empty result despite no error");
+            } else {
+                // This is used as a fallback. Do not relay on it !!!
+                throw new SearchEngine.NothingFoundException(result.suggestion);
+            }
         }
         return result;
     }
