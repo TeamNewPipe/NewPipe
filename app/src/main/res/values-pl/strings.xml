@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="no_player_found">Nie znaleziono odtwarzacza strumieniowego.</string>
     <string name="install">Zainstaluj</string>
@@ -27,8 +27,8 @@
     <string name="show_play_with_kodi_summary">Wyświetla opcję do odtwarzania wideo przez aplikację Kodi.</string>
     <string name="play_audio">Dźwięk</string>
     <string name="default_audio_format_title">Domyślny format dźwięku</string>
-    <string name="webm_description">WebM &#8212; otwarty format</string>
-    <string name="m4a_description">m4a &#8212; lepsza jakość</string>
+    <string name="webm_description">WebM — otwarty format</string>
+    <string name="m4a_description">m4a — lepsza jakość</string>
     <string name="download_dialog_title">Pobierz</string>
     <string name="next_video_title">Następne wideo</string>
     <string name="show_next_and_similar_title">Wyświetl następne i podobne wideo</string>
@@ -47,4 +47,5 @@
     <string name="detail_likes_img_view_description">Polubień</string>
     <string name="use_external_video_player_title">Użyj zewnętrznego odtwarzacza wideo</string>
     <string name="use_external_audio_player_title">Użyj zewnętrznego odtwarzacza audio</string>
-</resources>
+<string name="loading">Ładowanie</string>
+    </resources>
