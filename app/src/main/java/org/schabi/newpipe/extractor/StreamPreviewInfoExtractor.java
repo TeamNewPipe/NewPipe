@@ -1,15 +1,10 @@
 package org.schabi.newpipe.extractor;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
-
 /**
- * Created by Christian Schabesberger on 10.08.15.
+ * Created by Christian Schabesberger on 28.02.16.
  *
- * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * SearchEngine.java is part of NewPipe.
+ * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
+ * StreamPreviewInfoExtractor.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,12 +20,12 @@ import java.util.Vector;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@SuppressWarnings("ALL")
-public interface SearchEngine {
-    ArrayList<String> suggestionList(String query,String contentCountry, Downloader dl)
-            throws ExtractionException, IOException;
-
-    //Result search(String query, int page);
-    StreamPreviewInfoCollector search(String query, int page, String contentCountry, Downloader dl)
-            throws ExtractionException, IOException;
+public interface StreamPreviewInfoExtractor {
+    String getWebPageUrl() throws ParsingException;
+    String getTitle() throws ParsingException;
+    String getDuration() throws ParsingException;
+    String getUploader() throws ParsingException;
+    String getUploadDate() throws ParsingException;
+    long getViewCount() throws  ParsingException;
+    String getThumbnailUrl() throws  ParsingException;
 }

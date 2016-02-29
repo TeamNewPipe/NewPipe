@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.schabi.newpipe.extractor.ExtractionException;
+import org.schabi.newpipe.extractor.SearchResult;
 import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -67,9 +68,9 @@ public class VideoItemListFragment extends ListFragment {
     private boolean loadingNextPage = true;
 
     private class ResultRunnable implements Runnable {
-        private final SearchEngine.Result result;
+        private final SearchResult result;
         private final int requestId;
-        public ResultRunnable(SearchEngine.Result result, int requestId) {
+        public ResultRunnable(SearchResult result, int requestId) {
             this.result = result;
             this.requestId = requestId;
         }
@@ -105,8 +106,8 @@ public class VideoItemListFragment extends ListFragment {
                 String searchLanguageKey = getContext().getString(R.string.search_language_key);
                 String searchLanguage = sp.getString(searchLanguageKey,
                         getString(R.string.default_language_value));
-                SearchEngine.Result result = engine.search(query, page, searchLanguage,
-                        new Downloader());
+                SearchResult result = SearchResult
+                        .getSearchResult(engine, query, page, searchLanguage, new Downloader());
 
                 //Log.i(TAG, "language code passed:\""+searchLanguage+"\"");
                 if(runs) {
@@ -165,12 +166,10 @@ public class VideoItemListFragment extends ListFragment {
         this.streamingService = streamingService;
     }
 
-    private void updateListOnResult(SearchEngine.Result result, int requestId) {
+    private void updateListOnResult(SearchResult result, int requestId) {
         if(requestId == currentRequestId) {
             setListShown(true);
-            if (result.resultList.isEmpty()) {
-                Toast.makeText(getActivity(), result.errorMessage, Toast.LENGTH_LONG).show();
-            } else {
+            if (!result.resultList.isEmpty()) {
                 if (!result.suggestion.isEmpty()) {
                     Toast.makeText(getActivity(), getString(R.string.did_you_mean) + result.suggestion + " ?",
                             Toast.LENGTH_LONG).show();
