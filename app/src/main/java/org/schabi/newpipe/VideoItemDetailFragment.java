@@ -238,12 +238,15 @@ public class VideoItemDetailFragment extends Fragment {
         }
         @Override
         public void run() {
-            boolean show_age_restricted_content = PreferenceManager.getDefaultSharedPreferences(getActivity())
-                    .getBoolean(activity.getString(R.string.show_age_restricted_content), false);
-            if(streamInfo.age_limit == 0 || show_age_restricted_content) {
-                updateInfo(streamInfo);
-            } else {
-                onNotSpecifiedContentErrorWithMessage(R.string.video_is_age_restricted);
+            Activity a = getActivity();
+            if(a != null) {
+                boolean show_age_restricted_content = PreferenceManager.getDefaultSharedPreferences(a)
+                        .getBoolean(activity.getString(R.string.show_age_restricted_content), false);
+                if (streamInfo.age_limit == 0 || show_age_restricted_content) {
+                    updateInfo(streamInfo);
+                } else {
+                    onNotSpecifiedContentErrorWithMessage(R.string.video_is_age_restricted);
+                }
             }
         }
     }
