@@ -27,16 +27,16 @@ import java.util.Vector;
 
 @SuppressWarnings("ALL")
 public interface SearchEngine {
-    class Result {
-        public String errorMessage = "";
-        public String suggestion = "";
-        public final List<VideoPreviewInfo> resultList = new Vector<>();
+    public class NothingFoundException extends ExtractionException {
+        public NothingFoundException(String message) {
+            super(message);
+        }
     }
 
     ArrayList<String> suggestionList(String query,String contentCountry, Downloader dl)
             throws ExtractionException, IOException;
 
     //Result search(String query, int page);
-    Result search(String query, int page, String contentCountry, Downloader dl)
+    StreamPreviewInfoCollector search(String query, int page, String contentCountry, Downloader dl)
             throws ExtractionException, IOException;
 }

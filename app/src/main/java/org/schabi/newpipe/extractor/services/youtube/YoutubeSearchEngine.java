@@ -7,10 +7,13 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.schabi.newpipe.extractor.Downloader;
+import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.SearchEngine;
-import org.schabi.newpipe.extractor.VideoPreviewInfo;
+import org.schabi.newpipe.extractor.StreamExtractor;
+import org.schabi.newpipe.extractor.StreamPreviewInfoCollector;
+import org.schabi.newpipe.extractor.StreamPreviewInfoExtractor;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -49,9 +52,10 @@ public class YoutubeSearchEngine implements SearchEngine {
     private static final String TAG = YoutubeSearchEngine.class.toString();
 
     @Override
-    public Result search(String query, int page, String languageCode, Downloader downloader)
-            throws IOException, ParsingException {
-        Result result = new Result();
+    public StreamPreviewInfoCollector search(String query, int page, String languageCode, Downloader downloader)
+            throws IOException, ExtractionException {
+        StreamPreviewInfoCollector collector = new StreamPreviewInfoCollector(
+                new YoutubeStreamUrlIdHandler());
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("https")
                 .authority("www.youtube.com")
@@ -71,12 +75,11 @@ public class YoutubeSearchEngine implements SearchEngine {
             site = downloader.download(url);
         }
 
-        try {
 
-            Document doc = Jsoup.parse(site, url);
-            Element list = doc.select("ol[class=\"item-section\"]").first();
+        Document doc = Jsoup.parse(site, url);
+        Element list = doc.select("ol[class=\"item-section\"]").first();
 
-            for (Element item : list.children()) {
+        for (Element item : list.children()) {
             /* First we need to determine which kind of item we are working with.
                Youtube depicts five different kinds of items on its search result page. These are
                regular videos, playlists, channels, two types of video suggestions, and a "no video
@@ -88,66 +91,33 @@ public class YoutubeSearchEngine implements SearchEngine {
                playlists now.
             */
 
-                Element el;
+            Element el;
 
-                // both types of spell correction item
-                if (!((el = item.select("div[class*=\"spell-correction\"]").first()) == null)) {
-                    result.suggestion = el.select("a").first().text();
-                    // search message item
-                } else if (!((el = item.select("div[class*=\"search-message\"]").first()) == null)) {
-                    result.errorMessage = el.text();
-
-                    // video item type
-                } else if (!((el = item.select("div[class*=\"yt-lockup-video\"").first()) == null)) {
-                    VideoPreviewInfo resultItem = new VideoPreviewInfo();
-
-                    // importand information
-                    resultItem.webpage_url = getWebpageUrl(item);
-                    resultItem.id = (new YoutubeVideoUrlIdHandler()).getVideoId(resultItem.webpage_url);
-                    resultItem.title = getTitle(item);
-
-                    // optional iformation
-                    //todo: make this a proper error handling
-                    try {
-                        resultItem.duration = getDuration(item);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        resultItem.uploader = getUploader(item);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        resultItem.upload_date = getUploadDate(item);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        resultItem.view_count = getViewCount(item);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        resultItem.thumbnail_url = getThumbnailUrl(item);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    result.resultList.add(resultItem);
-                } else {
-                    //noinspection ConstantConditions
-                    Log.e(TAG, "unexpected element found:\"" + el + "\"");
+            // both types of spell correction item
+            if (!((el = item.select("div[class*=\"spell-correction\"]").first()) == null)) {
+                collector.setSuggestion(el.select("a").first().text());
+                if(list.children().size() == 1) {
+                    throw new NothingFoundException("Did you mean: " + el.select("a").first().text());
                 }
+                // search message item
+            } else if (!((el = item.select("div[class*=\"search-message\"]").first()) == null)) {
+                //result.errorMessage = el.text();
+                throw new NothingFoundException(el.text());
+
+                // video item type
+            } else if (!((el = item.select("div[class*=\"yt-lockup-video\"").first()) == null)) {
+                collector.commit(extractPreviewInfo(el));
+            } else {
+                //noinspection ConstantConditions
+                collector.addError(new Exception("unexpected element found:\"" + el + "\""));
             }
-        } catch(Exception e) {
-            throw new ParsingException(e);
         }
-        return result;
+
+        return collector;
     }
 
     @Override
-    public ArrayList<String> suggestionList(String query,String contentCountry, Downloader dl)
+    public ArrayList<String> suggestionList(String query, String contentCountry, Downloader dl)
             throws IOException, ParsingException {
 
         ArrayList<String> suggestions = new ArrayList<>();
@@ -167,103 +137,115 @@ public class YoutubeSearchEngine implements SearchEngine {
 
         String response = dl.download(url);
 
+        //TODO: Parse xml data using Jsoup not done
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder;
+        org.w3c.dom.Document doc = null;
+
         try {
+            dBuilder = dbFactory.newDocumentBuilder();
+            doc = dBuilder.parse(new InputSource(
+                    new ByteArrayInputStream(response.getBytes("utf-8"))));
+            doc.getDocumentElement().normalize();
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+            throw new ParsingException("Could not parse document.");
+        }
 
-            //TODO: Parse xml data using Jsoup not done
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder;
-            org.w3c.dom.Document doc = null;
+        try {
+            NodeList nList = doc.getElementsByTagName("CompleteSuggestion");
+            for (int temp = 0; temp < nList.getLength(); temp++) {
 
-            try {
-                dBuilder = dbFactory.newDocumentBuilder();
-                doc = dBuilder.parse(new InputSource(
-                        new ByteArrayInputStream(response.getBytes("utf-8"))));
-                doc.getDocumentElement().normalize();
-            } catch (ParserConfigurationException | SAXException | IOException e) {
-                e.printStackTrace();
-            }
-
-            if (doc != null) {
-                NodeList nList = doc.getElementsByTagName("CompleteSuggestion");
-                for (int temp = 0; temp < nList.getLength(); temp++) {
-
-                    NodeList nList1 = doc.getElementsByTagName("suggestion");
-                    Node nNode1 = nList1.item(temp);
-                    if (nNode1.getNodeType() == Node.ELEMENT_NODE) {
-                        org.w3c.dom.Element eElement = (org.w3c.dom.Element) nNode1;
-                        suggestions.add(eElement.getAttribute("data"));
-                    }
+                NodeList nList1 = doc.getElementsByTagName("suggestion");
+                Node nNode1 = nList1.item(temp);
+                if (nNode1.getNodeType() == Node.ELEMENT_NODE) {
+                    org.w3c.dom.Element eElement = (org.w3c.dom.Element) nNode1;
+                    suggestions.add(eElement.getAttribute("data"));
                 }
-            } else {
-                Log.e(TAG, "GREAT FUCKING ERROR");
             }
             return suggestions;
         } catch(Exception e) {
-            throw new ParsingException(e);
+            throw new ParsingException("Could not get suggestions form document.", e);
         }
     }
 
-    private String getWebpageUrl(Element item) {
-        Element el = item.select("div[class*=\"yt-lockup-video\"").first();
-        Element dl = el.select("h3").first().select("a").first();
-        return dl.attr("abs:href");
-    }
+    private StreamPreviewInfoExtractor extractPreviewInfo(final Element item) {
+        return new StreamPreviewInfoExtractor() {
+            @Override
+            public String getWebPageUrl() throws ParsingException {
+                Element el = item.select("div[class*=\"yt-lockup-video\"").first();
+                Element dl = el.select("h3").first().select("a").first();
+                return dl.attr("abs:href");
+            }
 
-    private String getTitle(Element item) {
-        Element el = item.select("div[class*=\"yt-lockup-video\"").first();
-        Element dl = el.select("h3").first().select("a").first();
-        return dl.text();
-    }
+            @Override
+            public String getTitle() throws ParsingException {
+                Element el = item.select("div[class*=\"yt-lockup-video\"").first();
+                Element dl = el.select("h3").first().select("a").first();
+                return dl.text();
+            }
 
-    private String getDuration(Element item) {
-        try {
-            return item.select("span[class=\"video-time\"]").first().text();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
+            @Override
+            public String getDuration() throws ParsingException {
+                try {
+                    return item.select("span[class=\"video-time\"]").first().text();
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
+                return "";
+            }
 
-    private String getUploader(Element item) {
-        return item.select("div[class=\"yt-lockup-byline\"]").first()
-                .select("a").first()
-                .text();
-    }
+            @Override
+            public String getUploader() throws ParsingException {
+                return item.select("div[class=\"yt-lockup-byline\"]").first()
+                        .select("a").first()
+                        .text();
+            }
 
-    private String getUploadDate(Element item) {
-        return item.select("div[class=\"yt-lockup-meta\"]").first()
-                .select("li").first()
-                .text();
-    }
+            @Override
+            public String getUploadDate() throws ParsingException {
+                return item.select("div[class=\"yt-lockup-meta\"]").first()
+                        .select("li").first()
+                        .text();
+            }
 
-    private long getViewCount(Element item) throws Parser.RegexException{
-        String output;
-        String input = item.select("div[class=\"yt-lockup-meta\"]").first()
-                .select("li").get(1)
-                .text();
-        output = Parser.matchGroup1("([0-9,\\. ]*)", input)
-                .replace(" ", "")
-                .replace(".", "")
-                .replace(",", "");
+            @Override
+            public long getViewCount() throws ParsingException {
+                String output;
+                String input = item.select("div[class=\"yt-lockup-meta\"]").first()
+                        .select("li").get(1)
+                        .text();
+                output = Parser.matchGroup1("([0-9,\\. ]*)", input)
+                        .replace(" ", "")
+                        .replace(".", "")
+                        .replace(",", "");
 
-        if(Long.parseLong(output) == 30) {
-            Log.d(TAG, "bla");
-        }
-        return Long.parseLong(output);
-    }
+                try {
+                    return Long.parseLong(output);
+                } catch (NumberFormatException e) {
+                    // if this happens the video probably has no views
+                    if(!input.isEmpty()) {
+                        return 0;
+                    } else {
+                        throw new ParsingException("Could not handle input: " + input, e);
+                    }
+                }
+            }
 
-    private String getThumbnailUrl(Element item) {
-        String url;
-        Element te = item.select("div[class=\"yt-thumb video-thumb\"]").first()
-                .select("img").first();
-        url = te.attr("abs:src");
-        // Sometimes youtube sends links to gif files which somehow seem to not exist
-        // anymore. Items with such gif also offer a secondary image source. So we are going
-        // to use that if we've caught such an item.
-        if (url.contains(".gif")) {
-            url = te.attr("abs:data-thumb");
-        }
+            @Override
+            public String getThumbnailUrl() throws ParsingException {
+                String url;
+                Element te = item.select("div[class=\"yt-thumb video-thumb\"]").first()
+                        .select("img").first();
+                url = te.attr("abs:src");
+                // Sometimes youtube sends links to gif files which somehow seem to not exist
+                // anymore. Items with such gif also offer a secondary image source. So we are going
+                // to use that if we've caught such an item.
+                if (url.contains(".gif")) {
+                    url = te.attr("abs:data-thumb");
+                }
 
-        return url;
+                return url;
+            }
+        };
     }
 }

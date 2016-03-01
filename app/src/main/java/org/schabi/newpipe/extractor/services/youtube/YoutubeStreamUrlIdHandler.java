@@ -2,7 +2,7 @@ package org.schabi.newpipe.extractor.services.youtube;
 
 import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
-import org.schabi.newpipe.extractor.VideoUrlIdHandler;
+import org.schabi.newpipe.extractor.StreamUrlIdHandler;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -11,7 +11,7 @@ import java.net.URLDecoder;
  * Created by Christian Schabesberger on 02.02.16.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * YoutubeVideoUrlIdHandler.java is part of NewPipe.
+ * YoutubeStreamUrlIdHandler.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ import java.net.URLDecoder;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class YoutubeVideoUrlIdHandler implements VideoUrlIdHandler {
+public class YoutubeStreamUrlIdHandler implements StreamUrlIdHandler {
     @SuppressWarnings("WeakerAccess")
     @Override
     public String getVideoUrl(String videoId) {

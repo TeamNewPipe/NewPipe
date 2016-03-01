@@ -14,11 +14,11 @@ import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
-import org.schabi.newpipe.extractor.VideoUrlIdHandler;
+import org.schabi.newpipe.extractor.StreamInfo;
+import org.schabi.newpipe.extractor.StreamPreviewInfo;
+import org.schabi.newpipe.extractor.StreamUrlIdHandler;
 import org.schabi.newpipe.extractor.StreamExtractor;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.VideoInfo;
-import org.schabi.newpipe.extractor.VideoPreviewInfo;
 
 import java.io.IOException;
 import java.util.List;
@@ -52,9 +52,6 @@ public class YoutubeStreamExtractor implements StreamExtractor {
     // exceptions
 
     public class DecryptException extends ParsingException {
-        DecryptException(Throwable cause) {
-            super(cause);
-        }
         DecryptException(String message, Throwable cause) {
             super(message, cause);
         }
@@ -69,8 +66,8 @@ public class YoutubeStreamExtractor implements StreamExtractor {
     }
 
     public class LiveStreamException extends ContentNotAvailableException {
-        LiveStreamException() {
-            super();
+        LiveStreamException(String message) {
+            super(message);
         }
     }
 
@@ -179,7 +176,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
     // cached values
     private static volatile String decryptionCode = "";
 
-    VideoUrlIdHandler urlidhandler = new YoutubeVideoUrlIdHandler();
+    StreamUrlIdHandler urlidhandler = new YoutubeStreamUrlIdHandler();
     String pageUrl = "";
 
     private Downloader downloader;
@@ -250,7 +247,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
             throw new ParsingException("Could not parse yt player config", e);
         }
         if (isLiveStream) {
-            throw new LiveStreamException();
+            throw new LiveStreamException("This is a Life stream. Can't use those right now.");
         }
 
         return playerArgs;
@@ -433,8 +430,8 @@ public class YoutubeStreamExtractor implements StreamExtractor {
 
 
     @Override
-    public List<VideoInfo.AudioStream> getAudioStreams() throws ParsingException {
-        Vector<VideoInfo.AudioStream> audioStreams = new Vector<>();
+    public List<StreamInfo.AudioStream> getAudioStreams() throws ParsingException {
+        Vector<StreamInfo.AudioStream> audioStreams = new Vector<>();
         try{
             String encoded_url_map;
             // playerArgs could be null if the video is age restricted
@@ -461,7 +458,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
                                     + decryptSignature(tags.get("s"), decryptionCode);
                         }
 
-                        audioStreams.add(new VideoInfo.AudioStream(streamUrl,
+                        audioStreams.add(new StreamInfo.AudioStream(streamUrl,
                                 itagItem.mediaFormatId,
                                 itagItem.bandWidth,
                                 itagItem.samplingRate));
@@ -475,8 +472,8 @@ public class YoutubeStreamExtractor implements StreamExtractor {
     }
 
     @Override
-    public List<VideoInfo.VideoStream> getVideoStreams() throws ParsingException {
-        Vector<VideoInfo.VideoStream> videoStreams = new Vector<>();
+    public List<StreamInfo.VideoStream> getVideoStreams() throws ParsingException {
+        Vector<StreamInfo.VideoStream> videoStreams = new Vector<>();
 
         try{
             String encoded_url_map;
@@ -504,7 +501,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
                                 streamUrl = streamUrl + "&signature="
                                         + decryptSignature(tags.get("s"), decryptionCode);
                             }
-                            videoStreams.add(new VideoInfo.VideoStream(
+                            videoStreams.add(new StreamInfo.VideoStream(
                                     streamUrl,
                                     itagItem.mediaFormatId,
                                     itagItem.resolutionString));
@@ -527,7 +524,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
     }
 
     @Override
-    public List<VideoInfo.VideoStream> getVideoOnlyStreams() throws ParsingException {
+    public List<StreamInfo.VideoStream> getVideoOnlyStreams() throws ParsingException {
         return null;
     }
 
@@ -638,7 +635,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
     }
 
     @Override
-    public VideoPreviewInfo getNextVideo() throws ParsingException {
+    public StreamPreviewInfo getNextVideo() throws ParsingException {
         try {
             return extractVideoPreviewInfo(doc.select("div[class=\"watch-sidebar-section\"]").first()
                     .select("li").first());
@@ -648,9 +645,9 @@ public class YoutubeStreamExtractor implements StreamExtractor {
     }
 
     @Override
-    public Vector<VideoPreviewInfo> getRelatedVideos() throws ParsingException {
+    public Vector<StreamPreviewInfo> getRelatedVideos() throws ParsingException {
         try {
-            Vector<VideoPreviewInfo> relatedVideos = new Vector<>();
+            Vector<StreamPreviewInfo> relatedVideos = new Vector<>();
             for (Element li : doc.select("ul[id=\"watch-related\"]").first().children()) {
                 // first check if we have a playlist. If so leave them out
                 if (li.select("a[class*=\"content-link\"]").first() != null) {
@@ -664,8 +661,8 @@ public class YoutubeStreamExtractor implements StreamExtractor {
     }
 
     @Override
-    public VideoUrlIdHandler getUrlIdConverter() {
-        return new YoutubeVideoUrlIdHandler();
+    public StreamUrlIdHandler getUrlIdConverter() {
+        return new YoutubeStreamUrlIdHandler();
     }
 
     @Override
@@ -674,10 +671,10 @@ public class YoutubeStreamExtractor implements StreamExtractor {
     }
 
     /**Provides information about links to other videos on the video page, such as related videos.
-     * This is encapsulated in a VideoPreviewInfo object,
-     * which is a subset of the fields in a full VideoInfo.*/
-    private VideoPreviewInfo extractVideoPreviewInfo(Element li) throws ParsingException {
-        VideoPreviewInfo info = new VideoPreviewInfo();
+     * This is encapsulated in a StreamPreviewInfo object,
+     * which is a subset of the fields in a full StreamInfo.*/
+    private StreamPreviewInfo extractVideoPreviewInfo(Element li) throws ParsingException {
+        StreamPreviewInfo info = new StreamPreviewInfo();
 
         try {
             info.webpage_url = li.select("a.content-link").first()
@@ -718,7 +715,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
                 info.thumbnail_url = "https:" + info.thumbnail_url;
             }
         } catch (Exception e) {
-            throw new ParsingException(e);
+            throw new ParsingException("Could not get video preview info", e);
         }
         return info;
     }
@@ -772,7 +769,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
             Function decryptionFunc = (Function) scope.get("decrypt", scope);
             result = decryptionFunc.call(context, scope, scope, new Object[]{encryptedSig});
         } catch (Exception e) {
-            throw new DecryptException(e);
+            throw new DecryptException("could not get decrypt signature", e);
         } finally {
             Context.exit();
         }

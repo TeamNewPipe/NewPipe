@@ -2,7 +2,9 @@ package org.schabi.newpipe.extractor.youtube;
 
 import android.test.AndroidTestCase;
 
-import org.schabi.newpipe.extractor.VideoPreviewInfo;
+import org.apache.commons.lang.exception.ExceptionUtils;
+import org.schabi.newpipe.extractor.SearchResult;
+import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeSearchEngine;
 import org.schabi.newpipe.Downloader;
@@ -30,7 +32,7 @@ import java.util.ArrayList;
  */
 
 public class YoutubeSearchEngineTest extends AndroidTestCase {
-    private SearchEngine.Result result;
+    private SearchResult result;
     private ArrayList<String> suggestionReply;
 
     @Override
@@ -39,12 +41,13 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
         SearchEngine engine = new YoutubeSearchEngine();
 
         result = engine.search("bla",
-                0, "de", new Downloader());
+                0, "de", new Downloader()).getSearchResult();
         suggestionReply = engine.suggestionList("hello","de",new Downloader());
     }
 
     public void testIfNoErrorOccur() {
-        assertEquals(result.errorMessage, "");
+        assertTrue(result.errors.isEmpty() ? "" : ExceptionUtils.getStackTrace(result.errors.get(0))
+                ,result.errors.isEmpty());
     }
 
     public void testIfListIsNotEmpty() {
@@ -52,44 +55,44 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
     }
 
     public void testItemsHaveTitle() {
-        for(VideoPreviewInfo i : result.resultList) {
+        for(StreamPreviewInfo i : result.resultList) {
             assertEquals(i.title.isEmpty(), false);
         }
     }
 
     public void testItemsHaveUploader() {
-        for(VideoPreviewInfo i : result.resultList) {
+        for(StreamPreviewInfo i : result.resultList) {
             assertEquals(i.uploader.isEmpty(), false);
         }
     }
 
     public void testItemsHaveRightDuration() {
-        for(VideoPreviewInfo i : result.resultList) {
+        for(StreamPreviewInfo i : result.resultList) {
             assertTrue(i.duration, i.duration.contains(":"));
         }
     }
 
     public void testItemsHaveRightThumbnail() {
-        for (VideoPreviewInfo i : result.resultList) {
+        for (StreamPreviewInfo i : result.resultList) {
             assertTrue(i.thumbnail_url, i.thumbnail_url.contains("https://"));
         }
     }
 
     public void testItemsHaveRightVideoUrl() {
-        for (VideoPreviewInfo i : result.resultList) {
+        for (StreamPreviewInfo i : result.resultList) {
             assertTrue(i.webpage_url, i.webpage_url.contains("https://"));
         }
     }
 
     public void testViewCount() {
         /*
-        for(VideoPreviewInfo i : result.resultList) {
+        for(StreamPreviewInfo i : result.resultList) {
             assertTrue(Long.toString(i.view_count), i.view_count != -1);
         }
         */
         // that specific link used for this test, there are no videos with less
         // than 10.000 views, so we can test against that.
-        for(VideoPreviewInfo i : result.resultList) {
+        for(StreamPreviewInfo i : result.resultList) {
             assertTrue(Long.toString(i.view_count), i.view_count >= 10000);
         }
     }

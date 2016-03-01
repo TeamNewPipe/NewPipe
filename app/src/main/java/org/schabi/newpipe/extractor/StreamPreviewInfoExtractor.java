@@ -1,14 +1,10 @@
 package org.schabi.newpipe.extractor;
 
-import android.graphics.Bitmap;
-import android.os.Parcel;
-import android.os.Parcelable;
-
 /**
- * Created by Christian Schabesberger on 26.08.15.
+ * Created by Christian Schabesberger on 28.02.16.
  *
- * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * VideoPreviewInfo.java is part of NewPipe.
+ * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
+ * StreamPreviewInfoExtractor.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +20,12 @@ import android.os.Parcelable;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**Info object for previews of unopened videos, eg search results, related videos*/
-public class VideoPreviewInfo extends AbstractVideoInfo {
-    public String duration = "";
+public interface StreamPreviewInfoExtractor {
+    String getWebPageUrl() throws ParsingException;
+    String getTitle() throws ParsingException;
+    String getDuration() throws ParsingException;
+    String getUploader() throws ParsingException;
+    String getUploadDate() throws ParsingException;
+    long getViewCount() throws  ParsingException;
+    String getThumbnailUrl() throws  ParsingException;
 }

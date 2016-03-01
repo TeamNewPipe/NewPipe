@@ -4,7 +4,7 @@ import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.StreamExtractor;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.VideoUrlIdHandler;
+import org.schabi.newpipe.extractor.StreamUrlIdHandler;
 import org.schabi.newpipe.extractor.SearchEngine;
 
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class YoutubeService implements StreamingService {
     @Override
     public StreamExtractor getExtractorInstance(String url, Downloader downloader)
             throws ExtractionException, IOException {
-        VideoUrlIdHandler urlIdHandler = new YoutubeVideoUrlIdHandler();
+        StreamUrlIdHandler urlIdHandler = new YoutubeStreamUrlIdHandler();
         if(urlIdHandler.acceptUrl(url)) {
             return new YoutubeStreamExtractor(url, downloader) ;
         }
@@ -54,7 +54,7 @@ public class YoutubeService implements StreamingService {
     }
 
     @Override
-    public VideoUrlIdHandler getUrlIdHandler() {
-        return new YoutubeVideoUrlIdHandler();
+    public StreamUrlIdHandler getUrlIdHandler() {
+        return new YoutubeStreamUrlIdHandler();
     }
 }

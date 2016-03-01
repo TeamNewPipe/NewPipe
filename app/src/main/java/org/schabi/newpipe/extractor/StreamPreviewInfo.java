@@ -1,10 +1,10 @@
 package org.schabi.newpipe.extractor;
 
 /**
- * Created by Christian Schabesberger on 31.01.16.
+ * Created by Christian Schabesberger on 26.08.15.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * ParsingException.java is part of NewPipe.
+ * StreamPreviewInfo.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,7 @@ package org.schabi.newpipe.extractor;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-public class ParsingException extends ExtractionException {
-    public ParsingException(String message) {
-        super(message);
-    }
-    public ParsingException(String message, Throwable cause) {
-        super(message, cause);
-    }
+/**Info object for previews of unopened videos, eg search results, related videos*/
+public class StreamPreviewInfo extends AbstractVideoInfo {
+    public String duration = "";
 }

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import org.schabi.newpipe.extractor.VideoPreviewInfo;
+import org.schabi.newpipe.extractor.StreamPreviewInfo;
 
 import java.util.List;
 import java.util.Vector;
@@ -36,7 +36,7 @@ import java.util.Vector;
 class VideoListAdapter extends BaseAdapter {
     private final Context context;
     private final VideoInfoItemViewCreator viewCreator;
-    private Vector<VideoPreviewInfo> videoList = new Vector<>();
+    private Vector<StreamPreviewInfo> videoList = new Vector<>();
     private final ListView listView;
 
     public VideoListAdapter(Context context, VideoItemListFragment videoListFragment) {
@@ -47,7 +47,7 @@ class VideoListAdapter extends BaseAdapter {
         this.context = context;
     }
 
-    public void addVideoList(List<VideoPreviewInfo> videos) {
+    public void addVideoList(List<StreamPreviewInfo> videos) {
         videoList.addAll(videos);
         notifyDataSetChanged();
     }
@@ -57,7 +57,7 @@ class VideoListAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public Vector<VideoPreviewInfo> getVideoList() {
+    public Vector<StreamPreviewInfo> getVideoList() {
         return videoList;
     }
 
@@ -78,7 +78,7 @@ class VideoListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = viewCreator.getViewFromVideoInfoItem(convertView, parent, videoList.get(position), context);
+        convertView = viewCreator.getViewFromVideoInfoItem(convertView, parent, videoList.get(position));
 
         if(listView.isItemChecked(position)) {
             convertView.setBackgroundColor(ContextCompat.getColor(context,R.color.light_youtube_primary_color));

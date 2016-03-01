@@ -50,9 +50,9 @@ import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamExtractor;
-import org.schabi.newpipe.extractor.VideoPreviewInfo;
+import org.schabi.newpipe.extractor.StreamInfo;
+import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.VideoInfo;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 
 
@@ -127,12 +127,34 @@ public class VideoItemDetailFragment extends Fragment {
 
         @Override
         public void run() {
-            VideoInfo videoInfo = null;
+            StreamInfo streamInfo = null;
             try {
                 streamExtractor = service.getExtractorInstance(videoUrl, new Downloader());
-                videoInfo = VideoInfo.getVideoInfo(streamExtractor, new Downloader());
+                streamInfo = StreamInfo.getVideoInfo(streamExtractor, new Downloader());
 
-                h.post(new VideoResultReturnedRunnable(videoInfo));
+                h.post(new VideoResultReturnedRunnable(streamInfo));
+
+                // look for errors during extraction
+                // this if statement only covers extra information.
+                // if these are not available or caused an error, they are just not available
+                // but don't render the stream information unusalbe.
+                if(streamInfo != null &&
+                        !streamInfo.errors.isEmpty()) {
+                    Log.e(TAG, "OCCURRED ERRORS DURING EXTRACTION:");
+                    for (Exception e : streamInfo.errors) {
+                        e.printStackTrace();
+                        Log.e(TAG, "------");
+                    }
+
+                    Activity a = getActivity();
+                    View rootView = a != null ? a.findViewById(R.id.videoitem_detail) : null;
+                    ErrorActivity.reportError(h, getActivity(),
+                            streamInfo.errors, null, rootView,
+                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                                    service.getServiceInfo().name, videoUrl, 0 /* no message for the user */));
+                }
+
+                // These errors render the stream information unusable.
             } catch (IOException e) {
                 postNewErrorToast(h, R.string.network_error);
                 e.printStackTrace();
@@ -165,37 +187,66 @@ public class VideoItemDetailFragment extends Fragment {
                     }
                 });
                 e.printStackTrace();
+            } catch(StreamInfo.StreamExctractException e) {
+                if(!streamInfo.errors.isEmpty()) {
+                    // !!! if this case ever kicks in someone gets kicked out !!!
+                    ErrorActivity.reportError(h, getActivity(), e, VideoItemListActivity.class, null,
+                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                                    service.getServiceInfo().name, videoUrl, R.string.could_not_get_stream));
+                } else {
+                    ErrorActivity.reportError(h, getActivity(), streamInfo.errors, VideoItemListActivity.class, null,
+                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                                    service.getServiceInfo().name, videoUrl, R.string.could_not_get_stream));
+                }
+                h.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        getActivity().finish();
+                    }
+                });
+                e.printStackTrace();
             } catch (ParsingException e) {
-                postNewErrorToast(h, e.getMessage());
+                ErrorActivity.reportError(h, getActivity(), e, VideoItemListActivity.class, null,
+                        ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                                service.getServiceInfo().name, videoUrl, R.string.parsing_error));
+                        h.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                getActivity().finish();
+                            }
+                        });
                 e.printStackTrace();
             } catch(Exception e) {
-                postNewErrorToast(h, R.string.general_error);
+                ErrorActivity.reportError(h, getActivity(), e, VideoItemListActivity.class, null,
+                        ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                                service.getServiceInfo().name, videoUrl, R.string.general_error));
+                        h.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                getActivity().finish();
+                            }
+                        });
                 e.printStackTrace();
-            } finally {
-                if(videoInfo != null &&
-                        !videoInfo.errors.isEmpty()) {
-                    Log.e(TAG, "OCCURRED ERRORS DURING EXTRACTION:");
-                    for(Exception e : videoInfo.errors) {
-                        e.printStackTrace();
-                    }
-                }
             }
         }
     }
 
     private class VideoResultReturnedRunnable implements Runnable {
-        private final VideoInfo videoInfo;
-        public VideoResultReturnedRunnable(VideoInfo videoInfo) {
-            this.videoInfo = videoInfo;
+        private final StreamInfo streamInfo;
+        public VideoResultReturnedRunnable(StreamInfo streamInfo) {
+            this.streamInfo = streamInfo;
         }
         @Override
         public void run() {
-            boolean show_age_restricted_content = PreferenceManager.getDefaultSharedPreferences(getActivity())
-                    .getBoolean(activity.getString(R.string.show_age_restricted_content), false);
-            if(videoInfo.age_limit == 0 || show_age_restricted_content) {
-                updateInfo(videoInfo);
-            } else {
-                onNotSpecifiedContentErrorWithMessage(R.string.video_is_age_restricted);
+            Activity a = getActivity();
+            if(a != null) {
+                boolean show_age_restricted_content = PreferenceManager.getDefaultSharedPreferences(a)
+                        .getBoolean(activity.getString(R.string.show_age_restricted_content), false);
+                if (streamInfo.age_limit == 0 || show_age_restricted_content) {
+                    updateInfo(streamInfo);
+                } else {
+                    onNotSpecifiedContentErrorWithMessage(R.string.video_is_age_restricted);
+                }
             }
         }
     }
@@ -220,7 +271,7 @@ public class VideoItemDetailFragment extends Fragment {
         public void onLoadingCancelled(String imageUri, View view) {}
     }
 
-    private void updateInfo(final VideoInfo info) {
+    private void updateInfo(final StreamInfo info) {
         try {
             Context c = getContext();
             VideoInfoItemViewCreator videoItemViewCreator =
@@ -249,7 +300,7 @@ public class VideoItemDetailFragment extends Fragment {
             View nextVideoView = null;
             if(info.next_video != null) {
                 nextVideoView = videoItemViewCreator
-                        .getViewFromVideoInfoItem(null, nextVideoFrame, info.next_video, getContext());
+                        .getViewFromVideoInfoItem(null, nextVideoFrame, info.next_video);
             } else {
                 activity.findViewById(R.id.detailNextVidButtonAndContentLayout).setVisibility(View.GONE);
                 activity.findViewById(R.id.detailNextVideoTitle).setVisibility(View.GONE);
@@ -337,8 +388,8 @@ public class VideoItemDetailFragment extends Fragment {
             descriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
             // parse streams
-            Vector<VideoInfo.VideoStream> streamsToUse = new Vector<>();
-            for (VideoInfo.VideoStream i : info.video_streams) {
+            Vector<StreamInfo.VideoStream> streamsToUse = new Vector<>();
+            for (StreamInfo.VideoStream i : info.video_streams) {
                 if (useStream(i, streamsToUse)) {
                     streamsToUse.add(i);
                 }
@@ -394,7 +445,7 @@ public class VideoItemDetailFragment extends Fragment {
         }
     }
 
-    private void initThumbnailViews(VideoInfo info, View nextVideoFrame) {
+    private void initThumbnailViews(StreamInfo info, View nextVideoFrame) {
         ImageView videoThumbnailView = (ImageView) activity.findViewById(R.id.detailThumbnailView);
         ImageView uploaderThumb
                 = (ImageView) activity.findViewById(R.id.detailUploaderThumbnailView);
@@ -437,7 +488,7 @@ public class VideoItemDetailFragment extends Fragment {
         }
     }
 
-    private void setupActionBarHandler(final VideoInfo info) {
+    private void setupActionBarHandler(final StreamInfo info) {
         actionBarHandler.setupStreamList(info.video_streams);
 
         actionBarHandler.setOnShareListener(new ActionBarHandler.OnActionListener() {
@@ -504,7 +555,7 @@ public class VideoItemDetailFragment extends Fragment {
                     // website which was crawled. Then the ui has to understand this and act right.
 
                     if (info.audio_streams != null) {
-                        VideoInfo.AudioStream audioStream =
+                        StreamInfo.AudioStream audioStream =
                                 info.audio_streams.get(getPreferredAudioStreamId(info));
 
                         String audioSuffix = "." + MediaFormat.getSuffixById(audioStream.format);
@@ -513,7 +564,7 @@ public class VideoItemDetailFragment extends Fragment {
                     }
 
                     if (info.video_streams != null) {
-                        VideoInfo.VideoStream selectedStreamItem = info.video_streams.get(selectedStreamId);
+                        StreamInfo.VideoStream selectedStreamItem = info.video_streams.get(selectedStreamId);
                         String videoSuffix = "." + MediaFormat.getSuffixById(selectedStreamItem.format);
                         args.putString(DownloadDialog.FILE_SUFFIX_VIDEO, videoSuffix);
                         args.putString(DownloadDialog.VIDEO_URL, selectedStreamItem.url);
@@ -540,7 +591,7 @@ public class VideoItemDetailFragment extends Fragment {
                     boolean useExternalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
                             .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
                     Intent intent;
-                    VideoInfo.AudioStream audioStream =
+                    StreamInfo.AudioStream audioStream =
                             info.audio_streams.get(getPreferredAudioStreamId(info));
                     if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 18) {
                         //internal music player: explicit intent
@@ -599,7 +650,7 @@ public class VideoItemDetailFragment extends Fragment {
         }
     }
 
-    private int getPreferredAudioStreamId(final VideoInfo info) {
+    private int getPreferredAudioStreamId(final StreamInfo info) {
         String preferredFormatString = PreferenceManager.getDefaultSharedPreferences(getActivity())
                 .getString(activity.getString(R.string.default_audio_format_key), "webm");
 
@@ -626,12 +677,12 @@ public class VideoItemDetailFragment extends Fragment {
         return 0;
     }
 
-    private void initSimilarVideos(final VideoInfo info, VideoInfoItemViewCreator videoItemViewCreator) {
+    private void initSimilarVideos(final StreamInfo info, VideoInfoItemViewCreator videoItemViewCreator) {
         LinearLayout similarLayout = (LinearLayout) activity.findViewById(R.id.similarVideosView);
-        ArrayList<VideoPreviewInfo> similar = new ArrayList<>(info.related_videos);
-        for (final VideoPreviewInfo item : similar) {
+        ArrayList<StreamPreviewInfo> similar = new ArrayList<>(info.related_videos);
+        for (final StreamPreviewInfo item : similar) {
             View similarView = videoItemViewCreator
-                    .getViewFromVideoInfoItem(null, similarLayout, item, getContext());
+                    .getViewFromVideoInfoItem(null, similarLayout, item);
 
             similarView.setClickable(true);
             similarView.setFocusable(true);
@@ -703,8 +754,8 @@ public class VideoItemDetailFragment extends Fragment {
                 .show();
     }
 
-    private boolean useStream(VideoInfo.VideoStream stream, Vector<VideoInfo.VideoStream> streams) {
-        for(VideoInfo.VideoStream i : streams) {
+    private boolean useStream(StreamInfo.VideoStream stream, Vector<StreamInfo.VideoStream> streams) {
+        for(StreamInfo.VideoStream i : streams) {
             if(i.resolution.equals(stream.resolution)) {
                 return false;
             }
@@ -794,9 +845,9 @@ public class VideoItemDetailFragment extends Fragment {
         }
     }
 
-    public void playVideo(final VideoInfo info) {
+    public void playVideo(final StreamInfo info) {
         // ----------- THE MAGIC MOMENT ---------------
-        VideoInfo.VideoStream selectedVideoStream =
+        StreamInfo.VideoStream selectedVideoStream =
                 info.video_streams.get(actionBarHandler.getSelectedVideoStream());
 
         if (PreferenceManager.getDefaultSharedPreferences(activity)

@@ -7,8 +7,8 @@ import java.util.Vector;
 /**
  * Created by Christian Schabesberger on 26.08.15.
  *
- * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * VideoInfo.java is part of NewPipe.
+ * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
+ * StreamInfo.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,181 +26,188 @@ import java.util.Vector;
 
 /**Info object for opened videos, ie the video ready to play.*/
 @SuppressWarnings("ALL")
-public class VideoInfo extends AbstractVideoInfo {
+public class StreamInfo extends AbstractVideoInfo {
+
+    public static class StreamExctractException extends ExtractionException {
+        StreamExctractException(String message) {
+            super(message);
+        }
+    }
 
     /**Fills out the video info fields which are common to all services.
      * Probably needs to be overridden by subclasses*/
-    public static VideoInfo getVideoInfo(StreamExtractor extractor, Downloader downloader)
+    public static StreamInfo getVideoInfo(StreamExtractor extractor, Downloader downloader)
             throws ExtractionException, IOException {
-        VideoInfo videoInfo = new VideoInfo();
+        StreamInfo streamInfo = new StreamInfo();
 
-        videoInfo = extractImportantData(videoInfo, extractor, downloader);
-        videoInfo = extractStreams(videoInfo, extractor, downloader);
-        videoInfo = extractOptionalData(videoInfo, extractor, downloader);
+        streamInfo = extractImportantData(streamInfo, extractor, downloader);
+        streamInfo = extractStreams(streamInfo, extractor, downloader);
+        streamInfo = extractOptionalData(streamInfo, extractor, downloader);
 
-        return videoInfo;
+        return streamInfo;
     }
 
-    private static VideoInfo extractImportantData(
-            VideoInfo videoInfo, StreamExtractor extractor, Downloader downloader)
+    private static StreamInfo extractImportantData(
+            StreamInfo streamInfo, StreamExtractor extractor, Downloader downloader)
             throws ExtractionException, IOException {
         /* ---- importand data, withoug the video can't be displayed goes here: ---- */
         // if one of these is not available an exception is ment to be thrown directly into the frontend.
 
-        VideoUrlIdHandler uiconv = extractor.getUrlIdConverter();
+        StreamUrlIdHandler uiconv = extractor.getUrlIdConverter();
 
-        videoInfo.webpage_url = extractor.getPageUrl();
-        videoInfo.id = uiconv.getVideoId(extractor.getPageUrl());
-        videoInfo.title = extractor.getTitle();
-        videoInfo.age_limit = extractor.getAgeLimit();
+        streamInfo.webpage_url = extractor.getPageUrl();
+        streamInfo.id = uiconv.getVideoId(extractor.getPageUrl());
+        streamInfo.title = extractor.getTitle();
+        streamInfo.age_limit = extractor.getAgeLimit();
 
-        if((videoInfo.webpage_url == null || videoInfo.webpage_url.isEmpty())
-                || (videoInfo.id == null || videoInfo.id.isEmpty())
-                || (videoInfo.title == null /* videoInfo.title can be empty of course */)
-                || (videoInfo.age_limit == -1));
+        if((streamInfo.webpage_url == null || streamInfo.webpage_url.isEmpty())
+                || (streamInfo.id == null || streamInfo.id.isEmpty())
+                || (streamInfo.title == null /* streamInfo.title can be empty of course */)
+                || (streamInfo.age_limit == -1));
 
-        return videoInfo;
+        return streamInfo;
     }
 
-    private static VideoInfo extractStreams(
-            VideoInfo videoInfo, StreamExtractor extractor, Downloader downloader)
+    private static StreamInfo extractStreams(
+            StreamInfo streamInfo, StreamExtractor extractor, Downloader downloader)
             throws ExtractionException, IOException {
         /* ---- stream extraction goes here ---- */
         // At least one type of stream has to be available,
         // otherwise an exception will be thrown directly into the frontend.
 
         try {
-            videoInfo.dashMpdUrl = extractor.getDashMpdUrl();
+            streamInfo.dashMpdUrl = extractor.getDashMpdUrl();
         } catch(Exception e) {
-            videoInfo.addException(new ExtractionException("Couldn't get Dash manifest", e));
+            streamInfo.addException(new ExtractionException("Couldn't get Dash manifest", e));
         }
 
         /*  Load and extract audio */
         try {
-            videoInfo.audio_streams = extractor.getAudioStreams();
+            streamInfo.audio_streams = extractor.getAudioStreams();
         } catch(Exception e) {
-            videoInfo.addException(new ExtractionException("Couldn't get audio streams", e));
+            streamInfo.addException(new ExtractionException("Couldn't get audio streams", e));
         }
         // also try to get streams from the dashMpd
-        if(videoInfo.dashMpdUrl != null && !videoInfo.dashMpdUrl.isEmpty()) {
-            if(videoInfo.audio_streams == null) {
-                videoInfo.audio_streams = new Vector<AudioStream>();
+        if(streamInfo.dashMpdUrl != null && !streamInfo.dashMpdUrl.isEmpty()) {
+            if(streamInfo.audio_streams == null) {
+                streamInfo.audio_streams = new Vector<AudioStream>();
             }
             //todo: make this quick and dirty solution a real fallback
             // same as the quick and dirty aboth
             try {
-                videoInfo.audio_streams.addAll(
-                        DashMpdParser.getAudioStreams(videoInfo.dashMpdUrl, downloader));
+                streamInfo.audio_streams.addAll(
+                        DashMpdParser.getAudioStreams(streamInfo.dashMpdUrl, downloader));
             } catch(Exception e) {
-                videoInfo.addException(
+                streamInfo.addException(
                         new ExtractionException("Couldn't get audio streams from dash mpd", e));
             }
         }
         /* Extract video stream url*/
         try {
-            videoInfo.video_streams = extractor.getVideoStreams();
+            streamInfo.video_streams = extractor.getVideoStreams();
         } catch (Exception e) {
-            videoInfo.addException(
+            streamInfo.addException(
                     new ExtractionException("Couldn't get video streams", e));
         }
         /* Extract video only stream url*/
         try {
-            videoInfo.video_only_streams = extractor.getVideoOnlyStreams();
+            streamInfo.video_only_streams = extractor.getVideoOnlyStreams();
         } catch(Exception e) {
-            videoInfo.addException(
+            streamInfo.addException(
                     new ExtractionException("Couldn't get video only streams", e));
         }
 
         // either dash_mpd audio_only or video has to be available, otherwise we didn't get a stream,
         // and therefore failed. (Since video_only_streams are just optional they don't caunt).
-        if((videoInfo.video_streams == null || videoInfo.video_streams.isEmpty())
-                && (videoInfo.audio_streams == null || videoInfo.audio_streams.isEmpty())
-                && (videoInfo.dashMpdUrl == null || videoInfo.dashMpdUrl.isEmpty())) {
-            throw new ExtractionException("Could not get any stream. See error variable to get further details.");
+        if((streamInfo.video_streams == null || streamInfo.video_streams.isEmpty())
+                && (streamInfo.audio_streams == null || streamInfo.audio_streams.isEmpty())
+                && (streamInfo.dashMpdUrl == null || streamInfo.dashMpdUrl.isEmpty())) {
+            throw new StreamExctractException(
+                    "Could not get any stream. See error variable to get further details.");
         }
 
-        return videoInfo;
+        return streamInfo;
     }
 
-    private static VideoInfo extractOptionalData(
-            VideoInfo videoInfo, StreamExtractor extractor, Downloader downloader) {
+    private static StreamInfo extractOptionalData(
+            StreamInfo streamInfo, StreamExtractor extractor, Downloader downloader) {
         /*  ---- optional data goes here: ---- */
         // If one of these failes, the frontend neets to handle that they are not available.
         // Exceptions are therfore not thrown into the frontend, but stored into the error List,
         // so the frontend can afterwads check where errors happend.
 
         try {
-            videoInfo.thumbnail_url = extractor.getThumbnailUrl();
+            streamInfo.thumbnail_url = extractor.getThumbnailUrl();
         } catch(Exception e) {
-            videoInfo.addException(e);
+            streamInfo.addException(e);
         }
         try {
-            videoInfo.duration = extractor.getLength();
+            streamInfo.duration = extractor.getLength();
         } catch(Exception e) {
-            videoInfo.addException(e);
+            streamInfo.addException(e);
         }
         try {
-            videoInfo.uploader = extractor.getUploader();
+            streamInfo.uploader = extractor.getUploader();
         } catch(Exception e) {
-            videoInfo.addException(e);
+            streamInfo.addException(e);
         }
         try {
-            videoInfo.description = extractor.getDescription();
+            streamInfo.description = extractor.getDescription();
         } catch(Exception e) {
-            videoInfo.addException(e);
+            streamInfo.addException(e);
         }
         try {
-            videoInfo.view_count = extractor.getViewCount();
+            streamInfo.view_count = extractor.getViewCount();
         } catch(Exception e) {
-            videoInfo.addException(e);
+            streamInfo.addException(e);
         }
         try {
-            videoInfo.upload_date = extractor.getUploadDate();
+            streamInfo.upload_date = extractor.getUploadDate();
         } catch(Exception e) {
-            videoInfo.addException(e);
+            streamInfo.addException(e);
         }
         try {
-            videoInfo.uploader_thumbnail_url = extractor.getUploaderThumbnailUrl();
+            streamInfo.uploader_thumbnail_url = extractor.getUploaderThumbnailUrl();
         } catch(Exception e) {
-            videoInfo.addException(e);
+            streamInfo.addException(e);
         }
         try {
-            videoInfo.start_position = extractor.getTimeStamp();
+            streamInfo.start_position = extractor.getTimeStamp();
         } catch(Exception e) {
-            videoInfo.addException(e);
+            streamInfo.addException(e);
         }
         try {
-            videoInfo.average_rating = extractor.getAverageRating();
+            streamInfo.average_rating = extractor.getAverageRating();
         } catch(Exception e) {
-            videoInfo.addException(e);
+            streamInfo.addException(e);
         }
         try {
-            videoInfo.like_count = extractor.getLikeCount();
+            streamInfo.like_count = extractor.getLikeCount();
         } catch(Exception e) {
-            videoInfo.addException(e);
+            streamInfo.addException(e);
         }
         try {
-            videoInfo.dislike_count = extractor.getDislikeCount();
+            streamInfo.dislike_count = extractor.getDislikeCount();
         } catch(Exception e) {
-            videoInfo.addException(e);
+            streamInfo.addException(e);
         }
         try {
-            videoInfo.next_video = extractor.getNextVideo();
+            streamInfo.next_video = extractor.getNextVideo();
         } catch(Exception e) {
-            videoInfo.addException(e);
+            streamInfo.addException(e);
         }
         try {
-            videoInfo.related_videos = extractor.getRelatedVideos();
+            streamInfo.related_videos = extractor.getRelatedVideos();
         } catch(Exception e) {
-            videoInfo.addException(e);
+            streamInfo.addException(e);
         }
         try {
 
         } catch (Exception e) {
-            videoInfo.addException(e);
+            streamInfo.addException(e);
         }
 
-        return videoInfo;
+        return streamInfo;
     }
 
     public String uploader_thumbnail_url = "";
@@ -220,20 +227,20 @@ public class VideoInfo extends AbstractVideoInfo {
     public int like_count = -1;
     public int dislike_count = -1;
     public String average_rating = "";
-    public VideoPreviewInfo next_video = null;
-    public List<VideoPreviewInfo> related_videos = null;
-    //in seconds. some metadata is not passed using a VideoInfo object!
+    public StreamPreviewInfo next_video = null;
+    public List<StreamPreviewInfo> related_videos = null;
+    //in seconds. some metadata is not passed using a StreamInfo object!
     public int start_position = 0;
     //todo: public int service_id = -1;
 
     public List<Exception> errors = new Vector<>();
 
-    public VideoInfo() {}
+    public StreamInfo() {}
 
-    /**Creates a new VideoInfo object from an existing AbstractVideoInfo.
-     * All the shared properties are copied to the new VideoInfo.*/
+    /**Creates a new StreamInfo object from an existing AbstractVideoInfo.
+     * All the shared properties are copied to the new StreamInfo.*/
     @SuppressWarnings("WeakerAccess")
-    public VideoInfo(AbstractVideoInfo avi) {
+    public StreamInfo(AbstractVideoInfo avi) {
         this.id = avi.id;
         this.title = avi.title;
         this.uploader = avi.uploader;
@@ -245,9 +252,9 @@ public class VideoInfo extends AbstractVideoInfo {
         this.view_count = avi.view_count;
 
         //todo: better than this
-        if(avi instanceof VideoPreviewInfo) {
+        if(avi instanceof StreamPreviewInfo) {
             //shitty String to convert code
-            String dur = ((VideoPreviewInfo)avi).duration;
+            String dur = ((StreamPreviewInfo)avi).duration;
             int minutes = Integer.parseInt(dur.substring(0, dur.indexOf(":")));
             int seconds = Integer.parseInt(dur.substring(dur.indexOf(":")+1, dur.length()));
             this.duration = (minutes*60)+seconds;

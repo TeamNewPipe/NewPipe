@@ -3,7 +3,7 @@ package org.schabi.newpipe.extractor;
 /**
  * Created by Christian Schabesberger on 10.08.15.
  *
- * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
+ * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
  * StreamExtractor.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
@@ -29,7 +29,6 @@ import java.util.List;
 public interface StreamExtractor {
 
     public class ExctractorInitException extends ExtractionException {
-        public ExctractorInitException() {}
         public ExctractorInitException(String message) {
             super(message);
         }
@@ -42,12 +41,8 @@ public interface StreamExtractor {
     }
 
     public class ContentNotAvailableException extends ParsingException {
-        public ContentNotAvailableException() {}
         public ContentNotAvailableException(String message) {
             super(message);
-        }
-        public ContentNotAvailableException(Throwable cause) {
-            super(cause);
         }
         public ContentNotAvailableException(String message, Throwable cause) {
             super(message, cause);
@@ -63,16 +58,16 @@ public interface StreamExtractor {
     public abstract String getUploadDate() throws ParsingException;
     public abstract String getThumbnailUrl() throws ParsingException;
     public abstract String getUploaderThumbnailUrl() throws ParsingException;
-    public abstract List<VideoInfo.AudioStream> getAudioStreams() throws ParsingException;
-    public abstract List<VideoInfo.VideoStream> getVideoStreams() throws ParsingException;
-    public abstract List<VideoInfo.VideoStream> getVideoOnlyStreams() throws ParsingException;
+    public abstract List<StreamInfo.AudioStream> getAudioStreams() throws ParsingException;
+    public abstract List<StreamInfo.VideoStream> getVideoStreams() throws ParsingException;
+    public abstract List<StreamInfo.VideoStream> getVideoOnlyStreams() throws ParsingException;
     public abstract String getDashMpdUrl() throws ParsingException;
     public abstract int getAgeLimit() throws ParsingException;
     public abstract String getAverageRating() throws ParsingException;
     public abstract int getLikeCount() throws ParsingException;
     public abstract int getDislikeCount() throws ParsingException;
-    public abstract VideoPreviewInfo getNextVideo() throws ParsingException;
-    public abstract List<VideoPreviewInfo> getRelatedVideos() throws ParsingException;
-    public abstract VideoUrlIdHandler getUrlIdConverter();
+    public abstract StreamPreviewInfo getNextVideo() throws ParsingException;
+    public abstract List<StreamPreviewInfo> getRelatedVideos() throws ParsingException;
+    public abstract StreamUrlIdHandler getUrlIdConverter();
     public abstract String getPageUrl();
 }
