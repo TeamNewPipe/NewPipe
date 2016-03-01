@@ -2,6 +2,8 @@ package org.schabi.newpipe.extractor.youtube;
 
 import android.test.AndroidTestCase;
 
+import org.apache.commons.lang.exception.ExceptionUtils;
+import org.schabi.newpipe.extractor.SearchResult;
 import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeSearchEngine;
@@ -30,7 +32,7 @@ import java.util.ArrayList;
  */
 
 public class YoutubeSearchEngineTest extends AndroidTestCase {
-    private SearchEngine.Result result;
+    private SearchResult result;
     private ArrayList<String> suggestionReply;
 
     @Override
@@ -39,12 +41,13 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
         SearchEngine engine = new YoutubeSearchEngine();
 
         result = engine.search("bla",
-                0, "de", new Downloader());
+                0, "de", new Downloader()).getSearchResult();
         suggestionReply = engine.suggestionList("hello","de",new Downloader());
     }
 
     public void testIfNoErrorOccur() {
-        assertEquals(result.errorMessage, "");
+        assertTrue(result.errors.isEmpty() ? "" : ExceptionUtils.getStackTrace(result.errors.get(0))
+                ,result.errors.isEmpty());
     }
 
     public void testIfListIsNotEmpty() {
