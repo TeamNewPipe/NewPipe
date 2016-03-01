@@ -44,9 +44,6 @@ public interface StreamExtractor {
         public ContentNotAvailableException(String message) {
             super(message);
         }
-        public ContentNotAvailableException(Throwable cause) {
-            super(cause);
-        }
         public ContentNotAvailableException(String message, Throwable cause) {
             super(message, cause);
         }

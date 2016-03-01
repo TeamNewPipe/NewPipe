@@ -52,9 +52,6 @@ public class YoutubeStreamExtractor implements StreamExtractor {
     // exceptions
 
     public class DecryptException extends ParsingException {
-        DecryptException(Throwable cause) {
-            super(cause);
-        }
         DecryptException(String message, Throwable cause) {
             super(message, cause);
         }
@@ -718,7 +715,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
                 info.thumbnail_url = "https:" + info.thumbnail_url;
             }
         } catch (Exception e) {
-            throw new ParsingException(e);
+            throw new ParsingException("Could not get video preview info", e);
         }
         return info;
     }
@@ -772,7 +769,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
             Function decryptionFunc = (Function) scope.get("decrypt", scope);
             result = decryptionFunc.call(context, scope, scope, new Object[]{encryptedSig});
         } catch (Exception e) {
-            throw new DecryptException(e);
+            throw new DecryptException("could not get decrypt signature", e);
         } finally {
             Context.exit();
         }

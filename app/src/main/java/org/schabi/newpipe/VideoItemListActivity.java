@@ -172,11 +172,17 @@ public class VideoItemListActivity extends AppCompatActivity
                 ArrayList<String>suggestions = engine.suggestionList(query,searchLanguage,new Downloader());
                 h.post(new SuggestionResultRunnable(suggestions));
             } catch (ExtractionException e) {
-                postNewErrorToast(h, R.string.parsing_error);
+                ErrorActivity.reportError(h, VideoItemListActivity.this, e, null, findViewById(R.id.videoitem_list),
+                        ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
+                        /* todo: this shoudl not be assigned static */ "Youtube", query, R.string.parsing_error));
                 e.printStackTrace();
             } catch (IOException e) {
                 postNewErrorToast(h, R.string.network_error);
                 e.printStackTrace();
+            } catch (Exception e) {
+                ErrorActivity.reportError(h, VideoItemListActivity.this, e, null, findViewById(R.id.videoitem_list),
+                        ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
+                        /* todo: this shoudl not be assigned static */ "Youtube", query, R.string.general_error));
             }
         }
     }

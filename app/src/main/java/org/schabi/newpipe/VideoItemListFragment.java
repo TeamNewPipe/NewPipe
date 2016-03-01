@@ -151,8 +151,6 @@ public class VideoItemListFragment extends ListFragment {
                         /* todo: this shoudl not be assigned static */ "Youtube", query, R.string.general_error));
 
                 e.printStackTrace();
-            } finally {
-
             }
         }
     }
