@@ -1,6 +1,7 @@
 package org.schabi.newpipe;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,8 +75,8 @@ class VideoInfoItemViewCreator {
         } else {
             holder.itemDurationView.setVisibility(View.INVISIBLE);
         }
-        if(info.duration != null && !info.duration.isEmpty()) {
-            holder.itemDurationView.setText(info.duration);
+        if(info.duration > 0) {
+            holder.itemDurationView.setText(getDurationString(info.duration));
         } else {
             holder.itemDurationView.setVisibility(View.GONE);
         }
@@ -115,4 +116,50 @@ class VideoInfoItemViewCreator {
         }
     }
 
+    public static String getDurationString(int duration) {
+        Log.d("asfd", Integer.toString(duration) + "   ----------------------");
+        String output = "";
+        int days = duration / (24 * 60 * 60); /* greater than a day */
+        duration %= (24 * 60 * 60);
+        int hours = duration / (60 * 60); /* greater than an hour */
+        duration %= (60 * 60);
+        int minutes = duration / 60;
+        int seconds = duration % 60;
+
+        if(days > 0) {
+            output = Integer.toString(days) + ":";
+        }
+        if(hours > 0 || !output.isEmpty()) {
+            if(hours > 0) {
+                if(hours >= 10) {
+                    output += Integer.toString(minutes);
+                } else {
+                    output += "0" + Integer.toString(minutes);
+                }
+            } else {
+                output += "00";
+            }
+            output += ":";
+        }
+        if(minutes > 0 || !output.isEmpty()) {
+            if(minutes > 0) {
+                if(minutes >= 10) {
+                    output += Integer.toString(minutes);
+                } else {
+                    output += "0" + Integer.toString(minutes);
+                }
+            } else {
+                output += "00";
+            }
+            output += ":";
+        }
+
+        if(seconds >= 10) {
+            output += Integer.toString(seconds);
+        } else {
+            output += "0" + Integer.toString(seconds);
+        }
+
+        return output;
+    }
 }

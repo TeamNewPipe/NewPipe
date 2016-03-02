@@ -22,5 +22,5 @@ package org.schabi.newpipe.extractor;
 
 /**Info object for previews of unopened videos, eg search results, related videos*/
 public class StreamPreviewInfo extends AbstractVideoInfo {
-    public String duration = "";
+    public int duration = 0;
 }

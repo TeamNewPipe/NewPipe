@@ -68,7 +68,7 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
 
     public void testItemsHaveRightDuration() {
         for(StreamPreviewInfo i : result.resultList) {
-            assertTrue(i.duration, i.duration.contains(":"));
+            assertTrue(i.duration >= 0);
         }
     }
 

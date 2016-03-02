@@ -172,40 +172,56 @@ public class YoutubeSearchEngine implements SearchEngine {
         return new StreamPreviewInfoExtractor() {
             @Override
             public String getWebPageUrl() throws ParsingException {
-                Element el = item.select("div[class*=\"yt-lockup-video\"").first();
-                Element dl = el.select("h3").first().select("a").first();
-                return dl.attr("abs:href");
+                try {
+                    Element el = item.select("div[class*=\"yt-lockup-video\"").first();
+                    Element dl = el.select("h3").first().select("a").first();
+                    return dl.attr("abs:href");
+                } catch (Exception e) {
+                    throw new ParsingException("Could not get web page url for the video", e);
+                }
             }
 
             @Override
             public String getTitle() throws ParsingException {
-                Element el = item.select("div[class*=\"yt-lockup-video\"").first();
-                Element dl = el.select("h3").first().select("a").first();
-                return dl.text();
+                try {
+                    Element el = item.select("div[class*=\"yt-lockup-video\"").first();
+                    Element dl = el.select("h3").first().select("a").first();
+                    return dl.text();
+                } catch (Exception e) {
+                    throw new ParsingException("Could not get title", e);
+                }
             }
 
             @Override
-            public String getDuration() throws ParsingException {
+            public int getDuration() throws ParsingException {
                 try {
-                    return item.select("span[class=\"video-time\"]").first().text();
+                    return YoutubeParsingHelper.parseDurationString(
+                            item.select("span[class=\"video-time\"]").first().text());
                 } catch(Exception e) {
-                    e.printStackTrace();
+                    throw new ParsingException("Could not get Duration", e);
                 }
-                return "";
             }
 
             @Override
             public String getUploader() throws ParsingException {
-                return item.select("div[class=\"yt-lockup-byline\"]").first()
-                        .select("a").first()
-                        .text();
+                try {
+                    return item.select("div[class=\"yt-lockup-byline\"]").first()
+                            .select("a").first()
+                            .text();
+                } catch (Exception e) {
+                    throw new ParsingException("Could not get uploader", e);
+                }
             }
 
             @Override
             public String getUploadDate() throws ParsingException {
-                return item.select("div[class=\"yt-lockup-meta\"]").first()
-                        .select("li").first()
-                        .text();
+                try {
+                    return item.select("div[class=\"yt-lockup-meta\"]").first()
+                            .select("li").first()
+                            .text();
+                } catch(Exception e) {
+                    throw new ParsingException("Could not get uplaod date", e);
+                }
             }
 
             @Override
@@ -233,18 +249,21 @@ public class YoutubeSearchEngine implements SearchEngine {
 
             @Override
             public String getThumbnailUrl() throws ParsingException {
-                String url;
-                Element te = item.select("div[class=\"yt-thumb video-thumb\"]").first()
-                        .select("img").first();
-                url = te.attr("abs:src");
-                // Sometimes youtube sends links to gif files which somehow seem to not exist
-                // anymore. Items with such gif also offer a secondary image source. So we are going
-                // to use that if we've caught such an item.
-                if (url.contains(".gif")) {
-                    url = te.attr("abs:data-thumb");
+                try {
+                    String url;
+                    Element te = item.select("div[class=\"yt-thumb video-thumb\"]").first()
+                            .select("img").first();
+                    url = te.attr("abs:src");
+                    // Sometimes youtube sends links to gif files which somehow seem to not exist
+                    // anymore. Items with such gif also offer a secondary image source. So we are going
+                    // to use that if we've caught such an item.
+                    if (url.contains(".gif")) {
+                        url = te.attr("abs:data-thumb");
+                    }
+                    return url;
+                } catch (Exception e) {
+                    throw new ParsingException("Could not get thumbnail url", e);
                 }
-
-                return url;
             }
         };
     }

@@ -701,7 +701,8 @@ public class YoutubeStreamExtractor implements StreamExtractor {
             }
             info.uploader = li.select("span.g-hovercard").first().text();
 
-            info.duration = li.select("span.video-time").first().text();
+            info.duration = YoutubeParsingHelper.parseDurationString(
+                    li.select("span.video-time").first().text());
 
             Element img = li.select("img").first();
             info.thumbnail_url = img.attr("abs:src");

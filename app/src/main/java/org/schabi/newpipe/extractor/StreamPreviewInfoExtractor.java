@@ -23,7 +23,7 @@ package org.schabi.newpipe.extractor;
 public interface StreamPreviewInfoExtractor {
     String getWebPageUrl() throws ParsingException;
     String getTitle() throws ParsingException;
-    String getDuration() throws ParsingException;
+    int getDuration() throws ParsingException;
     String getUploader() throws ParsingException;
     String getUploadDate() throws ParsingException;
     long getViewCount() throws  ParsingException;

@@ -254,10 +254,12 @@ public class StreamInfo extends AbstractVideoInfo {
         //todo: better than this
         if(avi instanceof StreamPreviewInfo) {
             //shitty String to convert code
+            /*
             String dur = ((StreamPreviewInfo)avi).duration;
             int minutes = Integer.parseInt(dur.substring(0, dur.indexOf(":")));
             int seconds = Integer.parseInt(dur.substring(dur.indexOf(":")+1, dur.length()));
-            this.duration = (minutes*60)+seconds;
+            */
+            this.duration = ((StreamPreviewInfo)avi).duration;
         }
     }
 
