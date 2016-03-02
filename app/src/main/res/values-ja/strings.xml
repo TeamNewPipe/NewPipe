@@ -9,7 +9,7 @@
     <string name="download">ﾀﾞｳﾝﾛｰﾄﾞ</string>
     <string name="search">検索</string>
     <string name="settings">設定</string>
-    <string name="did_you_mean">"この意味ですか: "</string>
+    <string name="did_you_mean">この意味ですか: %1$s ?</string>
     <string name="search_page">"検索ﾍﾟｰｼﾞ: "</string>
     <string name="share_dialog_title">…共有:</string>
     <string name="choose_browser">ﾌﾞﾗｳｻﾞｰを選択:</string>
@@ -84,5 +84,20 @@
     <string name="content">コンテンツ</string>
     <string name="show_age_restricted_content_title">年齢制限コンテンツを表示</string>
     <string name="video_is_age_restricted">ビデオは年齢制限です。まず設定で年齢制限のビデオを有効にしてください。</string>
+
+    <string name="light_parsing_error">ウェブサイトを完全に解析できませんでした。</string>
+    <string name="could_not_get_stream">ストリームを取得できませんでした。</string>
+    <string name="sorry_string">申し訳ありません。発生すべきではありませんでした。</string>
+    <string name="error_report_button_text">メールでエラーを報告</string>
+    <string name="error_snackbar_message">申し訳ありません。いくつかのエラーが発生しました。</string>
+    <string name="error_snackbar_action">報告</string>
+    <string name="what_device_headline">情報:</string>
+    <string name="what_happened_headline">何が起こりましたか:</string>
+    <string name="info_labels">何:\\nリクエスト:\\nコンテンツの言語:\\nサービス:\\nGMT 時間:\\nバージョン:\\nOS バージョン:\\nグローバル IP の範囲:</string>
+    <string name="info_searched_lbl">検索結果:</string>
+    <string name="info_requested_stream_lbl">要求したストリーム:</string>
+    <string name="your_comment">あなたのコメント (英語で):</string>
+    <string name="error_details_headline">詳細:</string>
+
 
     </resources>
