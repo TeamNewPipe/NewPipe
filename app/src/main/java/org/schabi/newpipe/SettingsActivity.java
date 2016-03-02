@@ -119,18 +119,20 @@ public class SettingsActivity extends PreferenceActivity  {
                 public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
                                                       String key) {
                     Activity a = getActivity();
-                    updateSummary();
+                    if(a != null) {
+                        updateSummary();
 
-                    if (defaultPreferences.getBoolean(USE_TOR_KEY, false)) {
-                        if (OrbotHelper.isOrbotInstalled(a)) {
-                            App.configureTor(true);
-                            OrbotHelper.requestStartTor(a);
+                        if (defaultPreferences.getBoolean(USE_TOR_KEY, false)) {
+                            if (OrbotHelper.isOrbotInstalled(a)) {
+                                App.configureTor(true);
+                                OrbotHelper.requestStartTor(a);
+                            } else {
+                                Intent intent = OrbotHelper.getOrbotInstallIntent(a);
+                                a.startActivityForResult(intent, REQUEST_INSTALL_ORBOT);
+                            }
                         } else {
-                            Intent intent = OrbotHelper.getOrbotInstallIntent(a);
-                            a.startActivityForResult(intent, REQUEST_INSTALL_ORBOT);
+                            App.configureTor(false);
                         }
-                    } else {
-                        App.configureTor(false);
                     }
                 }
             };
