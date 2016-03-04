@@ -1,7 +1,5 @@
 package org.schabi.newpipe.extractor.services.youtube;
 
-import android.util.Log;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
@@ -15,7 +13,6 @@ import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
-import org.schabi.newpipe.extractor.StreamInfo;
 import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.StreamUrlIdHandler;
 import org.schabi.newpipe.extractor.StreamExtractor;
@@ -311,7 +308,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
             return playerArgs.getString("title");
         } catch(JSONException je) {//html <meta> method
             je.printStackTrace();
-            Log.w(TAG, "failed to load title from JSON args; trying to extract it from HTML");
+            System.err.println("failed to load title from JSON args; trying to extract it from HTML");
             try { // fall through to fall-back
                 return doc.select("meta[name=title]").attr("content");
             } catch (Exception e) {
@@ -339,7 +336,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
             return playerArgs.getString("author");
         } catch(JSONException je) {
             je.printStackTrace();
-            Log.w(TAG,
+            System.err.println(
                     "failed to load uploader name from JSON args; trying to extract it from HTML");
         } try {//fall through to fallback HTML method
             return doc.select("div.yt-user-info").first().text();
@@ -387,7 +384,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
         try {
             return doc.select("link[itemprop=\"thumbnailUrl\"]").first().attr("abs:href");
         } catch(Exception e) {
-            Log.w(TAG, "Could not find high res Thumbnail. Using low res instead");
+            System.err.println("Could not find high res Thumbnail. Using low res instead");
         }
         try { //fall through to fallback
             return playerArgs.getString("thumbnail_url");
@@ -512,7 +509,8 @@ public class YoutubeStreamExtractor extends StreamExtractor {
                         }
                     }
                 } catch (Exception e) {
-                    Log.w(TAG, "Could not get Video stream.");
+                    //todo: dont log throw an error
+                    System.err.println( "Could not get Video stream.");
                     e.printStackTrace();
                 }
             }

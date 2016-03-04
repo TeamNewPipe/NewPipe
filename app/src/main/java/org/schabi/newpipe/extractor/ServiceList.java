@@ -36,19 +36,23 @@ public class ServiceList {
     public static StreamingService[] getServices() {
         return services;
     }
-    public static StreamingService getService(int serviceId) {
-        return services[serviceId];
+    public static StreamingService getService(int serviceId) throws ExtractionException {
+        for(StreamingService s : services) {
+            if(s.getServiceId() == serviceId) {
+                return s;
+            }
+        }
+        throw new ExtractionException("Service not known: " + Integer.toString(serviceId));
     }
-    public static StreamingService getService(String serviceName) {
+    public static StreamingService getService(String serviceName) throws ExtractionException {
         return services[getIdOfService(serviceName)];
     }
-    public static int getIdOfService(String serviceName) {
+    public static int getIdOfService(String serviceName) throws ExtractionException {
         for(int i = 0; i < services.length; i++) {
             if(services[i].getServiceInfo().name.equals(serviceName)) {
                 return i;
             }
         }
-        Log.e(TAG, "Error: Service " + serviceName + " not known.");
-        return -1;
+        throw new ExtractionException("Error: Service " + serviceName + " not known.");
     }
 }

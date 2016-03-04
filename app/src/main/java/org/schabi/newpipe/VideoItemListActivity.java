@@ -197,9 +197,16 @@ public class VideoItemListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videoitem_list);
 
-        //------ todo: remove this line when multiservice support is implemented ------
-        currentStreamingServiceId = ServiceList.getIdOfService("Youtube");
-        streamingService=ServiceList.getService(currentStreamingServiceId);
+        try {
+            //------ todo: remove this line when multiservice support is implemented ------
+            currentStreamingServiceId = ServiceList.getIdOfService("Youtube");
+            streamingService = ServiceList.getService(currentStreamingServiceId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ErrorActivity.reportError(VideoItemListActivity.this, e, null, findViewById(R.id.videoitem_list),
+                    ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
+                        /* todo: this shoudl not be assigned static */ "Youtube", "", R.string.general_error));
+        }
         //-----------------------------------------------------------------------------
         //to solve issue 38
         listFragment = (VideoItemListFragment) getSupportFragmentManager()

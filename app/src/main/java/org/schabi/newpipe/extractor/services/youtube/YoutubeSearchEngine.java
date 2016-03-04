@@ -11,7 +11,6 @@ import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.SearchEngine;
-import org.schabi.newpipe.extractor.StreamExtractor;
 import org.schabi.newpipe.extractor.StreamPreviewInfoCollector;
 import org.schabi.newpipe.extractor.StreamPreviewInfoExtractor;
 import org.schabi.newpipe.extractor.StreamUrlIdHandler;

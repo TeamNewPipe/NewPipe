@@ -117,7 +117,6 @@ class VideoInfoItemViewCreator {
     }
 
     public static String getDurationString(int duration) {
-        Log.d("asfd", Integer.toString(duration) + "   ----------------------");
         String output = "";
         int days = duration / (24 * 60 * 60); /* greater than a day */
         duration %= (24 * 60 * 60);

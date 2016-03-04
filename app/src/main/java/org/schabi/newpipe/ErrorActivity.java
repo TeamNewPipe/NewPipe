@@ -77,9 +77,11 @@ public class ErrorActivity extends AppCompatActivity {
     public static final int SEARCHED = 0;
     public static final int REQUESTED_STREAM = 1;
     public static final int GET_SUGGESTIONS = 2;
+    public static final int SOMETHING_ELSE = 3;
     public static final String SEARCHED_STRING = "searched";
     public static final String REQUESTED_STREAM_STRING = "requested stream";
     public static final String GET_SUGGESTIONS_STRING = "get suggestions";
+    public static final String SOMETHING_ELSE_STRING = "something";
 
     public static final String ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org";
     public static final String ERROR_EMAIL_SUBJECT = "Exception in NewPipe " + BuildConfig.VERSION_NAME;
@@ -308,6 +310,8 @@ public class ErrorActivity extends AppCompatActivity {
                 return SEARCHED_STRING;
             case GET_SUGGESTIONS:
                 return GET_SUGGESTIONS_STRING;
+            case SOMETHING_ELSE:
+                return SOMETHING_ELSE_STRING;
             default:
                 return "Your description is in another castle.";
         }
