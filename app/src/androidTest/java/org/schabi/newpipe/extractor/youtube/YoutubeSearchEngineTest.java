@@ -4,10 +4,12 @@ import android.test.AndroidTestCase;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.schabi.newpipe.extractor.SearchResult;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeSearchEngine;
 import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.extractor.services.youtube.YoutubeService;
 
 import java.util.ArrayList;
 
@@ -38,7 +40,8 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
     @Override
     public void setUp() throws Exception{
         super.setUp();
-        SearchEngine engine = new YoutubeSearchEngine();
+        SearchEngine engine = ServiceList.getService("Youtube")
+                .getSearchEngineInstance(new Downloader());
 
         result = engine.search("bla",
                 0, "de", new Downloader()).getSearchResult();

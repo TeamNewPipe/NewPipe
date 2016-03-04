@@ -30,7 +30,12 @@ import java.io.IOException;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class YoutubeService implements StreamingService {
+public class YoutubeService extends StreamingService {
+
+    public YoutubeService(int id) {
+        super(id);
+    }
+
     @Override
     public ServiceInfo getServiceInfo() {
         ServiceInfo serviceInfo = new ServiceInfo();
@@ -42,19 +47,19 @@ public class YoutubeService implements StreamingService {
             throws ExtractionException, IOException {
         StreamUrlIdHandler urlIdHandler = new YoutubeStreamUrlIdHandler();
         if(urlIdHandler.acceptUrl(url)) {
-            return new YoutubeStreamExtractor(url, downloader) ;
+            return new YoutubeStreamExtractor(url, downloader, getServiceId());
         }
         else {
             throw new IllegalArgumentException("supplied String is not a valid Youtube URL");
         }
     }
     @Override
-    public SearchEngine getSearchEngineInstance() {
-        return new YoutubeSearchEngine();
+    public SearchEngine getSearchEngineInstance(Downloader downloader) {
+        return new YoutubeSearchEngine(getUrlIdHandlerInstance(), getServiceId());
     }
 
     @Override
-    public StreamUrlIdHandler getUrlIdHandler() {
+    public StreamUrlIdHandler getUrlIdHandlerInstance() {
         return new YoutubeStreamUrlIdHandler();
     }
 }

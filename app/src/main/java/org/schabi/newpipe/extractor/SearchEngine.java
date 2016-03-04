@@ -26,17 +26,29 @@ import java.util.Vector;
  */
 
 @SuppressWarnings("ALL")
-public interface SearchEngine {
-    public class NothingFoundException extends ExtractionException {
+public abstract class SearchEngine {
+    public static class NothingFoundException extends ExtractionException {
         public NothingFoundException(String message) {
             super(message);
         }
     }
 
-    ArrayList<String> suggestionList(String query,String contentCountry, Downloader dl)
+    private StreamPreviewInfoCollector collector;
+
+    public SearchEngine(StreamUrlIdHandler urlIdHandler, int serviceId) {
+        collector = new StreamPreviewInfoCollector(urlIdHandler, serviceId);
+    }
+
+    public StreamPreviewInfoCollector getStreamPreviewInfoCollector() {
+        return collector;
+    }
+
+    public abstract ArrayList<String> suggestionList(
+            String query,String contentCountry, Downloader dl)
             throws ExtractionException, IOException;
 
     //Result search(String query, int page);
-    StreamPreviewInfoCollector search(String query, int page, String contentCountry, Downloader dl)
+    public abstract StreamPreviewInfoCollector search(
+            String query, int page, String contentCountry, Downloader dl)
             throws ExtractionException, IOException;
 }

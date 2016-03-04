@@ -31,7 +31,7 @@ import org.schabi.newpipe.extractor.services.youtube.YoutubeService;
 public class ServiceList {
     private static final String TAG = ServiceList.class.toString();
     private static final StreamingService[] services = {
-        new YoutubeService()
+        new YoutubeService(0)
     };
     public static StreamingService[] getServices() {
         return services;

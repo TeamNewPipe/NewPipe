@@ -10,6 +10,7 @@ import org.jsoup.nodes.Element;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
+import org.schabi.newpipe.extractor.AudioStream;
 import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.Parser;
@@ -19,6 +20,7 @@ import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.StreamUrlIdHandler;
 import org.schabi.newpipe.extractor.StreamExtractor;
 import org.schabi.newpipe.extractor.MediaFormat;
+import org.schabi.newpipe.extractor.VideoStream;
 
 import java.io.IOException;
 import java.util.List;
@@ -47,7 +49,7 @@ import java.util.regex.Pattern;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class YoutubeStreamExtractor implements StreamExtractor {
+public class YoutubeStreamExtractor extends StreamExtractor {
 
     // exceptions
 
@@ -181,7 +183,9 @@ public class YoutubeStreamExtractor implements StreamExtractor {
 
     private Downloader downloader;
 
-    public YoutubeStreamExtractor(String pageUrl, Downloader dl) throws ExtractionException, IOException {
+    public YoutubeStreamExtractor(String pageUrl, Downloader dl, int serviceId)
+            throws ExtractionException, IOException {
+        super(pageUrl, dl, serviceId);
         //most common videoInfo fields are now set in our superclass, for all services
         downloader = dl;
         this.pageUrl = pageUrl;
@@ -430,8 +434,8 @@ public class YoutubeStreamExtractor implements StreamExtractor {
 
 
     @Override
-    public List<StreamInfo.AudioStream> getAudioStreams() throws ParsingException {
-        Vector<StreamInfo.AudioStream> audioStreams = new Vector<>();
+    public List<AudioStream> getAudioStreams() throws ParsingException {
+        Vector<AudioStream> audioStreams = new Vector<>();
         try{
             String encoded_url_map;
             // playerArgs could be null if the video is age restricted
@@ -458,7 +462,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
                                     + decryptSignature(tags.get("s"), decryptionCode);
                         }
 
-                        audioStreams.add(new StreamInfo.AudioStream(streamUrl,
+                        audioStreams.add(new AudioStream(streamUrl,
                                 itagItem.mediaFormatId,
                                 itagItem.bandWidth,
                                 itagItem.samplingRate));
@@ -472,8 +476,8 @@ public class YoutubeStreamExtractor implements StreamExtractor {
     }
 
     @Override
-    public List<StreamInfo.VideoStream> getVideoStreams() throws ParsingException {
-        Vector<StreamInfo.VideoStream> videoStreams = new Vector<>();
+    public List<VideoStream> getVideoStreams() throws ParsingException {
+        Vector<VideoStream> videoStreams = new Vector<>();
 
         try{
             String encoded_url_map;
@@ -501,7 +505,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
                                 streamUrl = streamUrl + "&signature="
                                         + decryptSignature(tags.get("s"), decryptionCode);
                             }
-                            videoStreams.add(new StreamInfo.VideoStream(
+                            videoStreams.add(new VideoStream(
                                     streamUrl,
                                     itagItem.mediaFormatId,
                                     itagItem.resolutionString));
@@ -524,7 +528,7 @@ public class YoutubeStreamExtractor implements StreamExtractor {
     }
 
     @Override
-    public List<StreamInfo.VideoStream> getVideoOnlyStreams() throws ParsingException {
+    public List<VideoStream> getVideoOnlyStreams() throws ParsingException {
         return null;
     }
 

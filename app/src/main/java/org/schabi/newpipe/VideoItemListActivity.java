@@ -357,7 +357,8 @@ public class VideoItemListActivity extends AppCompatActivity
     }
 
     private void searchSuggestions(String query) {
-        suggestionSearchRunnable = new SuggestionSearchRunnable(streamingService.getSearchEngineInstance(),
+        suggestionSearchRunnable =
+                new SuggestionSearchRunnable(streamingService.getSearchEngineInstance(new Downloader()),
                 query);
         searchThread = new Thread(suggestionSearchRunnable);
         searchThread.start();
