@@ -43,7 +43,7 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
         SearchEngine engine = ServiceList.getService("Youtube")
                 .getSearchEngineInstance(new Downloader());
 
-        result = engine.search("bla",
+        result = engine.search("lefloid",
                 0, "de", new Downloader()).getSearchResult();
         suggestionReply = engine.suggestionList("hello","de",new Downloader());
     }
@@ -96,7 +96,7 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
         // that specific link used for this test, there are no videos with less
         // than 10.000 views, so we can test against that.
         for(StreamPreviewInfo i : result.resultList) {
-            assertTrue(Long.toString(i.view_count), i.view_count >= 10000);
+            assertTrue(i.title + ": " + Long.toString(i.view_count), i.view_count >= 10000);
         }
     }
 
