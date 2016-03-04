@@ -125,12 +125,14 @@ class VideoInfoItemViewCreator {
         int minutes = duration / 60;
         int seconds = duration % 60;
 
+        //handle days
         if(days > 0) {
             output = Integer.toString(days) + ":";
         }
+        // handle hours
         if(hours > 0 || !output.isEmpty()) {
             if(hours > 0) {
-                if(hours >= 10) {
+                if(hours >= 10 || output.isEmpty()) {
                     output += Integer.toString(minutes);
                 } else {
                     output += "0" + Integer.toString(minutes);
@@ -140,9 +142,10 @@ class VideoInfoItemViewCreator {
             }
             output += ":";
         }
+        //handle minutes
         if(minutes > 0 || !output.isEmpty()) {
             if(minutes > 0) {
-                if(minutes >= 10) {
+                if(minutes >= 10 || output.isEmpty()) {
                     output += Integer.toString(minutes);
                 } else {
                     output += "0" + Integer.toString(minutes);
@@ -151,6 +154,11 @@ class VideoInfoItemViewCreator {
                 output += "00";
             }
             output += ":";
+        }
+
+        //handle seconds
+        if(output.isEmpty()) {
+            output += "0:";
         }
 
         if(seconds >= 10) {
