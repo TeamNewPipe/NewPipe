@@ -13,6 +13,7 @@ import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
+import org.schabi.newpipe.extractor.StreamInfo;
 import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.StreamUrlIdHandler;
 import org.schabi.newpipe.extractor.StreamExtractor;
@@ -510,7 +511,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
                     }
                 } catch (Exception e) {
                     //todo: dont log throw an error
-                    System.err.println( "Could not get Video stream.");
+                    System.err.println("Could not get Video stream.");
                     e.printStackTrace();
                 }
             }
@@ -670,6 +671,12 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     @Override
     public String getPageUrl() {
         return pageUrl;
+    }
+
+    @Override
+    public StreamInfo.StreamType getStreamType() throws ParsingException {
+        //todo: if implementing livestream support this value should be generated dynamically
+        return StreamInfo.StreamType.VIDEO_STREAM;
     }
 
     /**Provides information about links to other videos on the video page, such as related videos.

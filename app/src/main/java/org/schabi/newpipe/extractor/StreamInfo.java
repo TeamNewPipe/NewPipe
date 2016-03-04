@@ -34,6 +34,38 @@ public class StreamInfo extends AbstractVideoInfo {
         }
     }
 
+    public StreamInfo() {}
+
+    /**Creates a new StreamInfo object from an existing AbstractVideoInfo.
+     * All the shared properties are copied to the new StreamInfo.*/
+    @SuppressWarnings("WeakerAccess")
+    public StreamInfo(AbstractVideoInfo avi) {
+        this.id = avi.id;
+        this.title = avi.title;
+        this.uploader = avi.uploader;
+        this.thumbnail_url = avi.thumbnail_url;
+        this.thumbnail = avi.thumbnail;
+        this.webpage_url = avi.webpage_url;
+        this.upload_date = avi.upload_date;
+        this.upload_date = avi.upload_date;
+        this.view_count = avi.view_count;
+
+        //todo: better than this
+        if(avi instanceof StreamPreviewInfo) {
+            //shitty String to convert code
+            /*
+            String dur = ((StreamPreviewInfo)avi).duration;
+            int minutes = Integer.parseInt(dur.substring(0, dur.indexOf(":")));
+            int seconds = Integer.parseInt(dur.substring(dur.indexOf(":")+1, dur.length()));
+            */
+            this.duration = ((StreamPreviewInfo)avi).duration;
+        }
+    }
+
+    public void addException(Exception e) {
+        errors.add(e);
+    }
+
     /**Fills out the video info fields which are common to all services.
      * Probably needs to be overridden by subclasses*/
     public static StreamInfo getVideoInfo(StreamExtractor extractor, Downloader downloader)
@@ -57,14 +89,18 @@ public class StreamInfo extends AbstractVideoInfo {
 
         streamInfo.service_id = extractor.getServiceId();
         streamInfo.webpage_url = extractor.getPageUrl();
+        streamInfo.stream_type = extractor.getStreamType();
         streamInfo.id = uiconv.getVideoId(extractor.getPageUrl());
         streamInfo.title = extractor.getTitle();
         streamInfo.age_limit = extractor.getAgeLimit();
 
-        if((streamInfo.webpage_url == null || streamInfo.webpage_url.isEmpty())
+        if((streamInfo.stream_type == StreamType.NONE)
+                || (streamInfo.webpage_url == null || streamInfo.webpage_url.isEmpty())
                 || (streamInfo.id == null || streamInfo.id.isEmpty())
                 || (streamInfo.title == null /* streamInfo.title can be empty of course */)
-                || (streamInfo.age_limit == -1));
+                || (streamInfo.age_limit == -1)) {
+            throw new ExtractionException("Some importand stream information was not given.");
+        }
 
         return streamInfo;
     }
@@ -202,15 +238,20 @@ public class StreamInfo extends AbstractVideoInfo {
         } catch(Exception e) {
             streamInfo.addException(e);
         }
-        try {
-
-        } catch (Exception e) {
-            streamInfo.addException(e);
-        }
 
         return streamInfo;
     }
 
+    public static enum StreamType {
+        NONE,   // placeholder to check if stream type was checked or not
+        VIDEO_STREAM,
+        AUDIO_STREAM,
+        LIVE_STREAM,
+        AUDIO_LIVE_STREAM,
+        FILE
+    }
+
+    public StreamType stream_type;
     public String uploader_thumbnail_url = "";
     public String description = "";
 
@@ -234,36 +275,4 @@ public class StreamInfo extends AbstractVideoInfo {
     public int start_position = 0;
 
     public List<Exception> errors = new Vector<>();
-
-    public StreamInfo() {}
-
-    public void addException(Exception e) {
-        errors.add(e);
-    }
-
-    /**Creates a new StreamInfo object from an existing AbstractVideoInfo.
-     * All the shared properties are copied to the new StreamInfo.*/
-    @SuppressWarnings("WeakerAccess")
-    public StreamInfo(AbstractVideoInfo avi) {
-        this.id = avi.id;
-        this.title = avi.title;
-        this.uploader = avi.uploader;
-        this.thumbnail_url = avi.thumbnail_url;
-        this.thumbnail = avi.thumbnail;
-        this.webpage_url = avi.webpage_url;
-        this.upload_date = avi.upload_date;
-        this.upload_date = avi.upload_date;
-        this.view_count = avi.view_count;
-
-        //todo: better than this
-        if(avi instanceof StreamPreviewInfo) {
-            //shitty String to convert code
-            /*
-            String dur = ((StreamPreviewInfo)avi).duration;
-            int minutes = Integer.parseInt(dur.substring(0, dur.indexOf(":")));
-            int seconds = Integer.parseInt(dur.substring(dur.indexOf(":")+1, dur.length()));
-            */
-            this.duration = ((StreamPreviewInfo)avi).duration;
-        }
-    }
 }

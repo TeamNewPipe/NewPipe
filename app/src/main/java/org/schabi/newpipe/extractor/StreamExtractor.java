@@ -76,6 +76,7 @@ public abstract class StreamExtractor {
     public abstract List<StreamPreviewInfo> getRelatedVideos() throws ParsingException;
     public abstract StreamUrlIdHandler getUrlIdConverter();
     public abstract String getPageUrl();
+    public abstract StreamInfo.StreamType getStreamType() throws ParsingException;
     public int getServiceId() {
         return serviceId;
     }
