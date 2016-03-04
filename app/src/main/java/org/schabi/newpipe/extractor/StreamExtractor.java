@@ -26,7 +26,9 @@ import java.util.List;
 
 
 @SuppressWarnings("ALL")
-public interface StreamExtractor {
+public abstract class StreamExtractor {
+
+    private int serviceId;
 
     public class ExctractorInitException extends ExtractionException {
         public ExctractorInitException(String message) {
@@ -49,6 +51,10 @@ public interface StreamExtractor {
         }
     }
 
+    public StreamExtractor(String url, Downloader dl, int serviceId) {
+        this.serviceId = serviceId;
+    }
+
     public abstract int getTimeStamp() throws ParsingException;
     public abstract String getTitle() throws ParsingException;
     public abstract String getDescription() throws ParsingException;
@@ -58,9 +64,9 @@ public interface StreamExtractor {
     public abstract String getUploadDate() throws ParsingException;
     public abstract String getThumbnailUrl() throws ParsingException;
     public abstract String getUploaderThumbnailUrl() throws ParsingException;
-    public abstract List<StreamInfo.AudioStream> getAudioStreams() throws ParsingException;
-    public abstract List<StreamInfo.VideoStream> getVideoStreams() throws ParsingException;
-    public abstract List<StreamInfo.VideoStream> getVideoOnlyStreams() throws ParsingException;
+    public abstract List<AudioStream> getAudioStreams() throws ParsingException;
+    public abstract List<VideoStream> getVideoStreams() throws ParsingException;
+    public abstract List<VideoStream> getVideoOnlyStreams() throws ParsingException;
     public abstract String getDashMpdUrl() throws ParsingException;
     public abstract int getAgeLimit() throws ParsingException;
     public abstract String getAverageRating() throws ParsingException;
@@ -70,4 +76,7 @@ public interface StreamExtractor {
     public abstract List<StreamPreviewInfo> getRelatedVideos() throws ParsingException;
     public abstract StreamUrlIdHandler getUrlIdConverter();
     public abstract String getPageUrl();
+    public int getServiceId() {
+        return serviceId;
+    }
 }

@@ -29,7 +29,7 @@ public class YoutubeParsingHelper {
         String days = "0";
         String hours = "0";
         String minutes = "0";
-        String seconds = "0";
+        String seconds;
 
         switch(splitInput.length) {
             case 4:

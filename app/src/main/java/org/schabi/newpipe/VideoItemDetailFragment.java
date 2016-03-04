@@ -46,6 +46,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import org.schabi.newpipe.extractor.AudioStream;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.ServiceList;
@@ -53,6 +54,7 @@ import org.schabi.newpipe.extractor.StreamExtractor;
 import org.schabi.newpipe.extractor.StreamInfo;
 import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.VideoStream;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 
 
@@ -388,8 +390,8 @@ public class VideoItemDetailFragment extends Fragment {
             descriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
             // parse streams
-            Vector<StreamInfo.VideoStream> streamsToUse = new Vector<>();
-            for (StreamInfo.VideoStream i : info.video_streams) {
+            Vector<VideoStream> streamsToUse = new Vector<>();
+            for (VideoStream i : info.video_streams) {
                 if (useStream(i, streamsToUse)) {
                     streamsToUse.add(i);
                 }
@@ -555,7 +557,7 @@ public class VideoItemDetailFragment extends Fragment {
                     // website which was crawled. Then the ui has to understand this and act right.
 
                     if (info.audio_streams != null) {
-                        StreamInfo.AudioStream audioStream =
+                        AudioStream audioStream =
                                 info.audio_streams.get(getPreferredAudioStreamId(info));
 
                         String audioSuffix = "." + MediaFormat.getSuffixById(audioStream.format);
@@ -564,7 +566,7 @@ public class VideoItemDetailFragment extends Fragment {
                     }
 
                     if (info.video_streams != null) {
-                        StreamInfo.VideoStream selectedStreamItem = info.video_streams.get(selectedStreamId);
+                        VideoStream selectedStreamItem = info.video_streams.get(selectedStreamId);
                         String videoSuffix = "." + MediaFormat.getSuffixById(selectedStreamItem.format);
                         args.putString(DownloadDialog.FILE_SUFFIX_VIDEO, videoSuffix);
                         args.putString(DownloadDialog.VIDEO_URL, selectedStreamItem.url);
@@ -591,7 +593,7 @@ public class VideoItemDetailFragment extends Fragment {
                     boolean useExternalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
                             .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
                     Intent intent;
-                    StreamInfo.AudioStream audioStream =
+                    AudioStream audioStream =
                             info.audio_streams.get(getPreferredAudioStreamId(info));
                     if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 18) {
                         //internal music player: explicit intent
@@ -754,8 +756,8 @@ public class VideoItemDetailFragment extends Fragment {
                 .show();
     }
 
-    private boolean useStream(StreamInfo.VideoStream stream, Vector<StreamInfo.VideoStream> streams) {
-        for(StreamInfo.VideoStream i : streams) {
+    private boolean useStream(VideoStream stream, Vector<VideoStream> streams) {
+        for(VideoStream i : streams) {
             if(i.resolution.equals(stream.resolution)) {
                 return false;
             }
@@ -847,7 +849,7 @@ public class VideoItemDetailFragment extends Fragment {
 
     public void playVideo(final StreamInfo info) {
         // ----------- THE MAGIC MOMENT ---------------
-        StreamInfo.VideoStream selectedVideoStream =
+        VideoStream selectedVideoStream =
                 info.video_streams.get(actionBarHandler.getSelectedVideoStream());
 
         if (PreferenceManager.getDefaultSharedPreferences(activity)

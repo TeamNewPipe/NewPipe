@@ -55,6 +55,7 @@ public class StreamInfo extends AbstractVideoInfo {
 
         StreamUrlIdHandler uiconv = extractor.getUrlIdConverter();
 
+        streamInfo.service_id = extractor.getServiceId();
         streamInfo.webpage_url = extractor.getPageUrl();
         streamInfo.id = uiconv.getVideoId(extractor.getPageUrl());
         streamInfo.title = extractor.getTitle();
@@ -231,11 +232,14 @@ public class StreamInfo extends AbstractVideoInfo {
     public List<StreamPreviewInfo> related_videos = null;
     //in seconds. some metadata is not passed using a StreamInfo object!
     public int start_position = 0;
-    //todo: public int service_id = -1;
 
     public List<Exception> errors = new Vector<>();
 
     public StreamInfo() {}
+
+    public void addException(Exception e) {
+        errors.add(e);
+    }
 
     /**Creates a new StreamInfo object from an existing AbstractVideoInfo.
      * All the shared properties are copied to the new StreamInfo.*/
@@ -261,58 +265,5 @@ public class StreamInfo extends AbstractVideoInfo {
             */
             this.duration = ((StreamPreviewInfo)avi).duration;
         }
-    }
-
-    public static class VideoStream {
-        //url of the stream
-        public String url = "";
-        public int format = -1;
-        public String resolution = "";
-
-        public VideoStream(String url, int format, String res) {
-            this.url = url; this.format = format; resolution = res;
-        }
-
-        // reveals wether two streams are the same, but have diferent urls
-        public boolean equalStats(VideoStream cmp) {
-            return format == cmp.format
-                    && resolution == cmp.resolution;
-        }
-
-        // revelas wether two streams are equal
-        public boolean equals(VideoStream cmp) {
-            return equalStats(cmp)
-                    && url == cmp.url;
-        }
-    }
-
-    @SuppressWarnings("unused")
-    public static class AudioStream {
-        public String url = "";
-        public int format = -1;
-        public int bandwidth = -1;
-        public int sampling_rate = -1;
-
-        public AudioStream(String url, int format, int bandwidth, int samplingRate) {
-            this.url = url; this.format = format;
-            this.bandwidth = bandwidth; this.sampling_rate = samplingRate;
-        }
-
-        // reveals wether two streams are the same, but have diferent urls
-        public boolean equalStats(AudioStream cmp) {
-            return format == cmp.format
-                    && bandwidth == cmp.bandwidth
-                    && sampling_rate == cmp.sampling_rate;
-        }
-
-        // revelas wether two streams are equal
-        public boolean equals(AudioStream cmp) {
-            return equalStats(cmp)
-                    && url == cmp.url;
-        }
-    }
-
-    public void addException(Exception e) {
-        errors.add(e);
     }
 }

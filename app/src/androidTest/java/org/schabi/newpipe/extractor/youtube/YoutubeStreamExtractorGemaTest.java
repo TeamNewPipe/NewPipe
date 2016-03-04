@@ -4,6 +4,7 @@ import android.test.AndroidTestCase;
 
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.extractor.ExtractionException;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 
 import java.io.IOException;
@@ -38,9 +39,9 @@ public class YoutubeStreamExtractorGemaTest extends AndroidTestCase {
     public void testGemaError() throws IOException, ExtractionException {
         if(testActive) {
             try {
-                new YoutubeStreamExtractor("https://www.youtube.com/watch?v=3O1_3zBUKM8",
+                ServiceList.getService("Youtube")
+                        .getExtractorInstance("https://www.youtube.com/watch?v=3O1_3zBUKM8",
                         new Downloader());
-                assertTrue("Gema exception not thrown", false);
             } catch(YoutubeStreamExtractor.GemaException ge) {
                 assertTrue(true);
             }

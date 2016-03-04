@@ -37,7 +37,7 @@ public class DashMpdParser {
         }
     }
 
-    public static List<StreamInfo.AudioStream> getAudioStreams(String dashManifestUrl,
+    public static List<AudioStream> getAudioStreams(String dashManifestUrl,
                                                              Downloader downloader)
             throws DashMpdParsingException {
         String dashDoc;
@@ -46,7 +46,7 @@ public class DashMpdParser {
         } catch(IOException ioe) {
             throw new DashMpdParsingException("Could not get dash mpd: " + dashManifestUrl, ioe);
         }
-        Vector<StreamInfo.AudioStream> audioStreams = new Vector<>();
+        Vector<AudioStream> audioStreams = new Vector<>();
         try {
             XmlPullParser parser = Xml.newPullParser();
             parser.setInput(new StringReader(dashDoc));
@@ -83,7 +83,7 @@ public class DashMpdParser {
                             } else if(currentMimeType.equals(MediaFormat.M4A.mimeType)) {
                                 format = MediaFormat.M4A.id;
                             }
-                            audioStreams.add(new StreamInfo.AudioStream(parser.getText(),
+                            audioStreams.add(new AudioStream(parser.getText(),
                                     format, currentBandwidth, currentSamplingRate));
                         }
                         break;

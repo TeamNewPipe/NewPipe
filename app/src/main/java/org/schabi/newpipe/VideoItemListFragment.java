@@ -185,7 +185,7 @@ public class VideoItemListFragment extends ListFragment {
     private void startSearch(String query, int page) {
         currentRequestId++;
         terminateThreads();
-        searchRunnable = new SearchRunnable(streamingService.getSearchEngineInstance(),
+        searchRunnable = new SearchRunnable(streamingService.getSearchEngineInstance(new Downloader()),
                                             query, page, currentRequestId);
         searchThread = new Thread(searchRunnable);
         searchThread.start();

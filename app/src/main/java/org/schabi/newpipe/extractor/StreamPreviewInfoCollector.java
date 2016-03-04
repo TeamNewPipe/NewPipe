@@ -23,11 +23,13 @@ import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamUrlIdHandler;
  */
 
 public class StreamPreviewInfoCollector {
-    SearchResult result = new SearchResult();
-    StreamUrlIdHandler urlIdHandler = null;
+    private SearchResult result = new SearchResult();
+    private StreamUrlIdHandler urlIdHandler = null;
+    private int serviceId = -1;
 
-    public StreamPreviewInfoCollector(StreamUrlIdHandler handler) {
+    public StreamPreviewInfoCollector(StreamUrlIdHandler handler, int serviceId) {
         urlIdHandler = handler;
+        this.serviceId = serviceId;
     }
 
     public void setSuggestion(String suggestion) {
@@ -46,6 +48,7 @@ public class StreamPreviewInfoCollector {
         try {
             StreamPreviewInfo resultItem = new StreamPreviewInfo();
             // importand information
+            resultItem.service_id = serviceId;
             resultItem.webpage_url = extractor.getWebPageUrl();
             if (urlIdHandler == null) {
                 throw new ParsingException("Error: UrlIdHandler not set");
@@ -80,7 +83,6 @@ public class StreamPreviewInfoCollector {
             } catch (Exception e) {
                 addError(e);
             }
-
 
             result.resultList.add(resultItem);
         } catch (Exception e) {

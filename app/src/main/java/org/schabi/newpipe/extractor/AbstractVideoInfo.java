@@ -22,6 +22,7 @@ import android.graphics.Bitmap;
 
 /**Common properties between StreamInfo and StreamPreviewInfo.*/
 public abstract class AbstractVideoInfo {
+    public int service_id = -1;
     public String id = "";
     public String title = "";
     public String uploader = "";

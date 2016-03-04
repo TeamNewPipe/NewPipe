@@ -4,10 +4,12 @@ import android.test.AndroidTestCase;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.schabi.newpipe.extractor.SearchResult;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeSearchEngine;
 import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.extractor.services.youtube.YoutubeService;
 
 import java.util.ArrayList;
 
@@ -38,9 +40,10 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
     @Override
     public void setUp() throws Exception{
         super.setUp();
-        SearchEngine engine = new YoutubeSearchEngine();
+        SearchEngine engine = ServiceList.getService("Youtube")
+                .getSearchEngineInstance(new Downloader());
 
-        result = engine.search("bla",
+        result = engine.search("lefloid",
                 0, "de", new Downloader()).getSearchResult();
         suggestionReply = engine.suggestionList("hello","de",new Downloader());
     }
@@ -93,7 +96,7 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
         // that specific link used for this test, there are no videos with less
         // than 10.000 views, so we can test against that.
         for(StreamPreviewInfo i : result.resultList) {
-            assertTrue(Long.toString(i.view_count), i.view_count >= 10000);
+            assertTrue(i.title + ": " + Long.toString(i.view_count), i.view_count >= 10000);
         }
     }
 
