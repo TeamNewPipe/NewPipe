@@ -1,8 +1,5 @@
 package org.schabi.newpipe.extractor.services.youtube;
 
-import android.net.Uri;
-import android.util.Log;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -59,6 +56,9 @@ public class YoutubeSearchEngine extends SearchEngine {
     public StreamPreviewInfoCollector search(String query, int page, String languageCode, Downloader downloader)
             throws IOException, ExtractionException {
         StreamPreviewInfoCollector collector = getStreamPreviewInfoCollector();
+
+        /* Cant use Uri.Bilder since it's android code.
+        // Android code is baned from the extractor side.
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("https")
                 .authority("www.youtube.com")
@@ -66,9 +66,15 @@ public class YoutubeSearchEngine extends SearchEngine {
                 .appendQueryParameter("search_query", query)
                 .appendQueryParameter("page", Integer.toString(page))
                 .appendQueryParameter("filters", "video");
+                */
+
+        String url = "https://www.youtube.com/results"
+                + "?search_query=" + query
+                + "&page=" + Integer.toString(page)
+                + "&filters=" + "video";
 
         String site;
-        String url = builder.build().toString();
+        //String url = builder.build().toString();
         //if we've been passed a valid language code, append it to the URL
         if(!languageCode.isEmpty()) {
             //assert Pattern.matches("[a-z]{2}(-([A-Z]{2}|[0-9]{1,3}))?", languageCode);
@@ -125,6 +131,8 @@ public class YoutubeSearchEngine extends SearchEngine {
 
         ArrayList<String> suggestions = new ArrayList<>();
 
+        /* Cant use Uri.Bilder since it's android code.
+        // Android code is baned from the extractor side.
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("https")
                 .authority("suggestqueries.google.com")
@@ -135,7 +143,13 @@ public class YoutubeSearchEngine extends SearchEngine {
                 .appendQueryParameter("ds", "yt")
                 .appendQueryParameter("hl",contentCountry)
                 .appendQueryParameter("q", query);
-        String url = builder.build().toString();
+                */
+        String url = "https://suggestqueries.google.com/complete/search"
+                + "?client=" + ""
+                + "&output=" + "toolbar"
+                + "&ds=" + "yt"
+                + "&hl=" + contentCountry
+                + "&q=" + query;
 
 
         String response = dl.download(url);
