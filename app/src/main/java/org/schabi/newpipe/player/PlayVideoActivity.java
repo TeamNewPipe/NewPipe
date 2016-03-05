@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.media.AudioManager;
 import android.net.Uri;
@@ -83,6 +84,10 @@ public class PlayVideoActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_play_video);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
+        //set background arrow style
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
+
         isLandscape = checkIfLandscape();
         hasSoftKeys = checkIfHasSoftKeys();
 
