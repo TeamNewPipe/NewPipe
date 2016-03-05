@@ -611,8 +611,14 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     public int getLikeCount() throws ParsingException {
         String likesString = "";
         try {
-            likesString = doc.select("button.like-button-renderer-like-button").first()
-                    .select("span.yt-uix-button-content").first().text();
+
+            Element button = doc.select("button.like-button-renderer-like-button").first();
+            try {
+                likesString = button.select("span.yt-uix-button-content").first().text();
+            } catch (NullPointerException e) {
+                //if this ckicks in our button has no content and thefore likes/dislikes are disabled
+                return -1;
+            }
             return Integer.parseInt(likesString.replaceAll("[^\\d]", ""));
         } catch (NumberFormatException nfe) {
             throw new ParsingException(
@@ -626,8 +632,13 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     public int getDislikeCount() throws ParsingException {
         String dislikesString = "";
         try {
-            dislikesString = doc.select("button.like-button-renderer-dislike-button").first()
-                    .select("span.yt-uix-button-content").first().text();
+            Element button = doc.select("button.like-button-renderer-dislike-button").first();
+            try {
+                dislikesString = button.select("span.yt-uix-button-content").first().text();
+            } catch (NullPointerException e) {
+                //if this kicks in our button has no content and therefore likes/dislikes are disabled
+                return -1;
+            }
             return Integer.parseInt(dislikesString.replaceAll("[^\\d]", ""));
         } catch(NumberFormatException nfe) {
             throw new ParsingException(
