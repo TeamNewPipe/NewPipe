@@ -15,10 +15,9 @@
  */
 
 /**
- * Created by Christian Schabesberger on 24.12.15.
+ * Extended by Christian Schabesberger on 24.12.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * ExoPlayerActivity.java is part of NewPipe. all changes are under GPL3
  * ExoPlayerActivity.java is part of NewPipe. all changes are under GPL3
  *
  * NewPipe is free software: you can redistribute it and/or modify
