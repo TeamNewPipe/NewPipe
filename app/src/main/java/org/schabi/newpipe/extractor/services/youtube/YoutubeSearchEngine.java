@@ -16,6 +16,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import java.net.URLEncoder;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -69,7 +70,7 @@ public class YoutubeSearchEngine extends SearchEngine {
                 */
 
         String url = "https://www.youtube.com/results"
-                + "?search_query=" + query
+                + "?search_query=" + URLEncoder.encode(query, "UTF-8")
                 + "&page=" + Integer.toString(page)
                 + "&filters=" + "video";
 
@@ -148,8 +149,8 @@ public class YoutubeSearchEngine extends SearchEngine {
                 + "?client=" + ""
                 + "&output=" + "toolbar"
                 + "&ds=" + "yt"
-                + "&hl=" + contentCountry
-                + "&q=" + query;
+                + "&hl=" + URLEncoder.encode(contentCountry, "UTF-8")
+                + "&q=" + URLEncoder.encode(query, "UTF-8");
 
 
         String response = dl.download(url);
