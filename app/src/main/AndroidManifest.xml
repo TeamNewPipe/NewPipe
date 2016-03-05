@@ -79,20 +79,39 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PlayVideoActivity"
+            android:name=".player.PlayVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:parentActivityName=".VideoItemDetailActivity"
             android:theme="@style/VideoPlayerTheme"
-            tools:ignore="UnusedAttribute"></activity>
-
+            tools:ignore="UnusedAttribute"/>
         <service
-            android:name=".BackgroundPlayer"
+            android:name=".player.BackgroundPlayer"
             android:exported="false"
-            android:label="@string/background_player_name" />
+            android:label="@string/background_player_name"/>
+		<activity
+            android:name=".player.ExoPlayerActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance"
+            android:theme="@style/PlayerTheme">
+            <intent-filter>
+                <action android:name="org.schabi.newpipe.exoplayer.action.VIEW" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="content" />
+                <data android:scheme="asset" />
+                <data android:scheme="file" />
+            </intent-filter>
+        </activity>
+        <service
+            android:name=".player.BackgroundPlayer"
+            android:label="@string/background_player_name"
+            android:exported="false" />
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/settings_activity_title"></activity>
+            android:label="@string/settings_activity_title" />
         <activity
             android:name=".PanicResponderActivity"
             android:launchMode="singleInstance"
@@ -108,7 +127,6 @@
             android:name=".ExitActivity"
             android:label="@string/general_error"
             android:theme="@android:style/Theme.NoDisplay" />
-        <activity android:name=".ErrorActivity"></activity>
+        <activity android:name=".ErrorActivity"/>
     </application>
-
 </manifest>

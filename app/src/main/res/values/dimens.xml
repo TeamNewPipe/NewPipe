@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- Video Item Search View Dimensions-->
     <!-- Text Size -->
     <dimen name="video_item_search_title_text_size">14sp</dimen>

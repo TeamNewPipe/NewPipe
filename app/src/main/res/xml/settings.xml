@@ -33,6 +33,11 @@
             android:entryValues="@array/audio_format_list"
             android:defaultValue="@string/default_audio_format_value"/>
 
+        <CheckBoxPreference
+            android:key="@string/use_exoplayer_key"
+            android:title="@string/use_exoplayer_title"
+            android:summary="@string/use_exoplayer_summary"
+            android:defaultValue="false"/>
     </PreferenceCategory>
     <PreferenceCategory
         android:key="@string/settings_category_appearance"

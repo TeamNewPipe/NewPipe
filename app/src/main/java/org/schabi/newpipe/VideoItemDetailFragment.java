@@ -38,6 +38,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
+import com.google.android.exoplayer.util.Util;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -45,6 +46,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.ArrayList;
 import java.util.Vector;
+
 
 import org.schabi.newpipe.extractor.AudioStream;
 import org.schabi.newpipe.extractor.MediaFormat;
@@ -56,6 +58,9 @@ import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.VideoStream;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
+import org.schabi.newpipe.player.BackgroundPlayer;
+import org.schabi.newpipe.player.PlayVideoActivity;
+import org.schabi.newpipe.player.ExoPlayerActivity;
 
 
 /**
@@ -858,12 +863,11 @@ public class VideoItemDetailFragment extends Fragment {
             // External Player
             Intent intent = new Intent();
             try {
-                intent.setAction(Intent.ACTION_VIEW);
-
-                intent.setDataAndType(Uri.parse(selectedVideoStream.url),
-                        MediaFormat.getMimeById(selectedVideoStream.format));
-                intent.putExtra(Intent.EXTRA_TITLE, info.title);
-                intent.putExtra("title", info.title);
+                intent.setAction(Intent.ACTION_VIEW)
+                        .setDataAndType(Uri.parse(selectedVideoStream.url),
+                            MediaFormat.getMimeById(selectedVideoStream.format))
+                        .putExtra(Intent.EXTRA_TITLE, info.title)
+                        .putExtra("title", info.title);
 
                 activity.startActivity(intent);      // HERE !!!
             } catch (Exception e) {
@@ -873,9 +877,9 @@ public class VideoItemDetailFragment extends Fragment {
                         .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent();
-                                intent.setAction(Intent.ACTION_VIEW);
-                                intent.setData(Uri.parse(activity.getString(R.string.fdroid_vlc_url)));
+                                Intent intent = new Intent()
+                                        .setAction(Intent.ACTION_VIEW)
+                                        .setData(Uri.parse(activity.getString(R.string.fdroid_vlc_url)));
                                 activity.startActivity(intent);
                             }
                         })
@@ -888,13 +892,41 @@ public class VideoItemDetailFragment extends Fragment {
                 builder.create().show();
             }
         } else {
-            // Internal Player
-            Intent intent = new Intent(activity, PlayVideoActivity.class);
-            intent.putExtra(PlayVideoActivity.VIDEO_TITLE, info.title);
-            intent.putExtra(PlayVideoActivity.STREAM_URL, selectedVideoStream.url);
-            intent.putExtra(PlayVideoActivity.VIDEO_URL, info.webpage_url);
-            intent.putExtra(PlayVideoActivity.START_POSITION, info.start_position);
-            activity.startActivity(intent);     //also HERE !!!
+            if (PreferenceManager.getDefaultSharedPreferences(activity)
+                    .getBoolean(activity.getString(R.string.use_exoplayer_key), false)) {
+
+                // exo player
+
+                if(info.dashMpdUrl != null && !info.dashMpdUrl.isEmpty()) {
+                    // try dash
+                    Intent intent = new Intent(activity, ExoPlayerActivity.class)
+                            .setData(Uri.parse(info.dashMpdUrl))
+                            .putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_DASH);
+                    startActivity(intent);
+                } else if((info.audio_streams != null  && !info.audio_streams.isEmpty()) &&
+                        (info.video_only_streams != null && !info.video_only_streams.isEmpty())) {
+                    // try smooth streaming
+
+                } else {
+                    //default streaming
+                    Intent intent = new Intent(activity, ExoPlayerActivity.class)
+                            .setDataAndType(Uri.parse(selectedVideoStream.url),
+                                MediaFormat.getMimeById(selectedVideoStream.format))
+                            .putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_OTHER);
+
+                    activity.startActivity(intent);      // HERE !!!
+                }
+                //-------------
+
+            } else {
+                // Internal Player
+                Intent intent = new Intent(activity, PlayVideoActivity.class)
+                        .putExtra(PlayVideoActivity.VIDEO_TITLE, info.title)
+                        .putExtra(PlayVideoActivity.STREAM_URL, selectedVideoStream.url)
+                        .putExtra(PlayVideoActivity.VIDEO_URL, info.webpage_url)
+                        .putExtra(PlayVideoActivity.START_POSITION, info.start_position);
+                activity.startActivity(intent);     //also HERE !!!
+            }
         }
 
         // --------------------------------------------

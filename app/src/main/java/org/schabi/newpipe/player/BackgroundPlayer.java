@@ -1,4 +1,4 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.player;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -19,6 +19,12 @@ import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
+
+import org.schabi.newpipe.ActivityCommunicator;
+import org.schabi.newpipe.BuildConfig;
+import org.schabi.newpipe.R;
+import org.schabi.newpipe.VideoItemDetailActivity;
+import org.schabi.newpipe.VideoItemDetailFragment;
 
 import java.io.IOException;
 
