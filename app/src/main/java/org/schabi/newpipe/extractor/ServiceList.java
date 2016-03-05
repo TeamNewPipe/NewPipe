@@ -47,6 +47,15 @@ public class ServiceList {
     public static StreamingService getService(String serviceName) throws ExtractionException {
         return services[getIdOfService(serviceName)];
     }
+    public static String getNameOfService(int id) {
+        try {
+            return getService(id).getServiceInfo().name;
+        } catch (Exception e) {
+            System.err.println("Service id not known");
+            e.printStackTrace();
+            return "";
+        }
+    }
     public static int getIdOfService(String serviceName) throws ExtractionException {
         for(int i = 0; i < services.length; i++) {
             if(services[i].getServiceInfo().name.equals(serviceName)) {

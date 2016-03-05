@@ -68,7 +68,6 @@ public class VideoItemListActivity extends AppCompatActivity
     private Menu menu = null;
 
     private SuggestionListAdapter suggestionListAdapter;
-    private StreamingService streamingService;
     private SuggestionSearchRunnable suggestionSearchRunnable;
     private Thread searchThread;
 
@@ -152,12 +151,12 @@ public class VideoItemListActivity extends AppCompatActivity
     }
 
     private class SuggestionSearchRunnable implements Runnable{
-        private final SearchEngine engine;
+        private final int serviceId;
         private final String query;
         final Handler h = new Handler();
         private Context context;
-        private SuggestionSearchRunnable(SearchEngine engine, String query) {
-            this.engine = engine;
+        private SuggestionSearchRunnable(int serviceId, String query) {
+            this.serviceId = serviceId;
             this.query = query;
             context = VideoItemListActivity.this;
         }
@@ -165,6 +164,8 @@ public class VideoItemListActivity extends AppCompatActivity
         @Override
         public void run() {
             try {
+                SearchEngine engine =
+                        ServiceList.getService(serviceId).getSearchEngineInstance(new Downloader());
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
                 String searchLanguageKey = context.getString(R.string.search_language_key);
                 String searchLanguage = sp.getString(searchLanguageKey,
@@ -174,7 +175,7 @@ public class VideoItemListActivity extends AppCompatActivity
             } catch (ExtractionException e) {
                 ErrorActivity.reportError(h, VideoItemListActivity.this, e, null, findViewById(R.id.videoitem_list),
                         ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
-                        /* todo: this shoudl not be assigned static */ "Youtube", query, R.string.parsing_error));
+                                ServiceList.getNameOfService(serviceId), query, R.string.parsing_error));
                 e.printStackTrace();
             } catch (IOException e) {
                 postNewErrorToast(h, R.string.network_error);
@@ -182,7 +183,7 @@ public class VideoItemListActivity extends AppCompatActivity
             } catch (Exception e) {
                 ErrorActivity.reportError(h, VideoItemListActivity.this, e, null, findViewById(R.id.videoitem_list),
                         ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
-                        /* todo: this shoudl not be assigned static */ "Youtube", query, R.string.general_error));
+                                ServiceList.getNameOfService(serviceId), query, R.string.general_error));
             }
         }
     }
@@ -196,6 +197,7 @@ public class VideoItemListActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videoitem_list);
+        StreamingService streamingService = null;
 
         try {
             //------ todo: remove this line when multiservice support is implemented ------
@@ -205,7 +207,7 @@ public class VideoItemListActivity extends AppCompatActivity
             e.printStackTrace();
             ErrorActivity.reportError(VideoItemListActivity.this, e, null, findViewById(R.id.videoitem_list),
                     ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
-                        /* todo: this shoudl not be assigned static */ "Youtube", "", R.string.general_error));
+                            ServiceList.getNameOfService(currentStreamingServiceId), "", R.string.general_error));
         }
         //-----------------------------------------------------------------------------
         //to solve issue 38
@@ -365,8 +367,7 @@ public class VideoItemListActivity extends AppCompatActivity
 
     private void searchSuggestions(String query) {
         suggestionSearchRunnable =
-                new SuggestionSearchRunnable(streamingService.getSearchEngineInstance(new Downloader()),
-                query);
+                new SuggestionSearchRunnable(currentStreamingServiceId, query);
         searchThread = new Thread(suggestionSearchRunnable);
         searchThread.start();
 
