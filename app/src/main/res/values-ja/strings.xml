@@ -53,7 +53,7 @@
     <string name="play_btn_text">再生</string>
 
     <string name="use_tor_title">Tor を使用する</string>
-    <string name="use_tor_summary">強制的に Tor を経由したトラフィックでダウンロードして、プライバシーを高めます (ビデオのストリーミングはまだサポートされていません)。</string>
+    <string name="use_tor_summary">(実験的) 強制的に Tor を経由したトラフィックでダウンロードして、プライバシーを高めます (ビデオのストリーミングはまだサポートされていません)。</string>
 <string name="theme_title">テーマ</string>
     <string name="dark_theme_title">ダーク</string>
     <string name="light_theme_title">ライト</string>
@@ -100,4 +100,23 @@
     <string name="error_details_headline">詳細:</string>
 
 
-    </resources>
+    <string name="enable_background_audio">バックグラウンドで再生</string>
+    <string name="video">ビデオ</string>
+    <string name="audio">オーディオ</string>
+    <string name="text">テキスト</string>
+    <string name="logging">ログ</string>
+    <string name="logging_normal">標準</string>
+    <string name="logging_verbose">詳細</string>
+    <string name="retry">再試行</string>
+    <string name="off">[オフ]</string>
+    <string name="error_drm_not_supported">保護されたコンテンツは API レベル 18 未満でサポートされていません</string>
+    <string name="error_drm_unsupported_scheme">このデバイスは必要な DRM スキームをサポートしません</string>
+    <string name="error_drm_unknown">不明な DRM エラーが発生しました</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">このデバイスは <xliff:g id="mime_type">%1$s</xliff:g> のデコーダーが提供されていません</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">このデバイスは <xliff:g id="mime_type">%1$s</xliff:g> のセキュア デコーダーが提供されていません</string>
+    <string name="error_querying_decoders">デバイスのデコーダーを問い合わせできません</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">デコーダー <xliff:g id="decoder_name">%1$s</xliff:g> をインスタンス化できません</string>
+    <string name="storage_permission_denied">ストレージにアクセスするアクセス許可が拒否されました</string>
+    <string name="use_exoplayer_title">ExoPlayer を使用する</string>
+    <string name="use_exoplayer_summary">実験的</string>
+</resources>
