@@ -9,7 +9,7 @@
     <string name="download">Prejmi</string>
     <string name="search">Poišči</string>
     <string name="settings">Nastavitve</string>
-    <string name="did_you_mean">"Ste mislili vpisati: "</string>
+    <string name="did_you_mean">Ali ste mislili: %1$s?</string>
     <string name="search_page">"Stran iskanja: "</string>
     <string name="share_dialog_title">Omogoči souporabo z:</string>
     <string name="choose_browser">Izbor brskalnika:</string>
@@ -84,4 +84,26 @@
     <string name="show_age_restricted_content_title">Pokaži starostno omejeno vsebino</string>
     <string name="video_is_age_restricted">Za posnetek je določena starostna omejitev ogleda. Pred ogledom je treba ustrezno nastaviti omejitve med nastavitvami.</string>
 
-    </resources>
+    <string name="light_parsing_error">Ni mogoče dokončno razčleniti spletišča.</string>
+    <string name="could_not_get_stream">Ni mogoče prejeti pretoka.</string>
+    <string name="sorry_string">Do te napake naj ne bi prišlo.</string>
+    <string name="error_report_button_text">Pošlji poročilo preko elektronske pošte</string>
+    <string name="error_snackbar_message">Prišlo je do napak.</string>
+    <string name="error_snackbar_action">POROČILO</string>
+    <string name="what_device_headline">Podrobnosti:</string>
+    <string name="what_happened_headline">Kaj se je zgodilo:</string>
+    <string name="error_details_headline">Podrobnosi:</string>
+
+
+    <string name="enable_background_audio">Predvajaj v ozadju</string>
+    <string name="video">Video</string>
+    <string name="audio">Zvok</string>
+    <string name="text">Besedilo</string>
+    <string name="logging">Dnevniki</string>
+    <string name="logging_normal">Običajno</string>
+    <string name="logging_verbose">Podrobno</string>
+    <string name="retry">Poskusi znova</string>
+    <string name="off">[izklopljeno]</string>
+    <string name="use_exoplayer_title">Uporabi ExoPlayer</string>
+    <string name="use_exoplayer_summary">Preizkusne zmožnosti</string>
+</resources>
