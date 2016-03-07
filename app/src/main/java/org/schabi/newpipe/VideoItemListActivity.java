@@ -244,6 +244,9 @@ public class VideoItemListActivity extends AppCompatActivity
                 // the support version on SearchView, so it needs to be set programmatically.
                 searchView.setIconifiedByDefault(false);
                 searchView.setIconified(false);
+                if(!searchQuery.isEmpty()) {
+                    searchView.setQuery(searchQuery,false);
+                }
                 searchView.setOnQueryTextListener(new SearchVideoQueryListener());
                 suggestionListAdapter = new SuggestionListAdapter(this);
                 searchView.setSuggestionsAdapter(suggestionListAdapter);
@@ -313,7 +316,7 @@ public class VideoItemListActivity extends AppCompatActivity
                 findViewById(R.id.videoitem_detail_container) == null) {
             inflater.inflate(R.menu.videoitem_list, menu);
             MenuItem searchItem = menu.findItem(R.id.action_search);
-            final SearchView searchView = (SearchView) searchItem.getActionView();
+            SearchView searchView = (SearchView) searchItem.getActionView();
             searchView.setFocusable(false);
             searchView.setOnQueryTextListener(
                     new SearchVideoQueryListener());
