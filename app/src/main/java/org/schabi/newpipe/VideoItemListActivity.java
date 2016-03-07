@@ -313,14 +313,17 @@ public class VideoItemListActivity extends AppCompatActivity
                 findViewById(R.id.videoitem_detail_container) == null) {
             inflater.inflate(R.menu.videoitem_list, menu);
             MenuItem searchItem = menu.findItem(R.id.action_search);
-            SearchView searchView = (SearchView) searchItem.getActionView();
+            final SearchView searchView = (SearchView) searchItem.getActionView();
             searchView.setFocusable(false);
             searchView.setOnQueryTextListener(
                     new SearchVideoQueryListener());
             suggestionListAdapter = new SuggestionListAdapter(this);
             searchView.setSuggestionsAdapter(suggestionListAdapter);
             searchView.setOnSuggestionListener(new SearchSuggestionListener(searchView));
-
+            if(!searchQuery.isEmpty()) {
+                searchView.setQuery(searchQuery,false);
+                searchView.setIconifiedByDefault(false);
+            }
         } else if (videoFragment != null){
             videoFragment.onCreateOptionsMenu(menu, inflater);
         } else {
