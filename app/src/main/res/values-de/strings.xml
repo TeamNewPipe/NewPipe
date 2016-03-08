@@ -10,7 +10,7 @@
     <string name="download">Download</string>
     <string name="search">Suchen</string>
     <string name="settings">Einstellungen</string>
-    <string name="did_you_mean">Meintest du: </string>
+    <string name="did_you_mean">Meintest du: %1$s ?</string>
     <string name="search_page">Suchseite: </string>
     <string name="share_dialog_title">Teilen mit:</string>
     <string name="choose_browser">Browser:</string>
@@ -55,7 +55,7 @@
     <string name="play_btn_text">Abspielen</string>
 
     <string name="use_tor_title">Benutze TOR</string>
-    <string name="use_tor_summary">Erzwinge das Herunterladen durch TOR für verbesserte Privatsphäre (Videostream noch nicht unterstützt).</string>
+    <string name="use_tor_summary">(Experimentell) Erzwinge das Herunterladen durch TOR für verbesserte Privatsphäre (Videostream noch nicht unterstützt).</string>
     <string name="background_player_name">NewPipe Hintergrundwiedergabe</string>
     <string name="network_error">Netzwerkfehler</string>
 
@@ -86,4 +86,38 @@
     <string name="live_streams_not_supported">Dies ist ein LIVESTREAM. Diese werden noch nicht unterstützt.</string>
 
 
+    <string name="light_parsing_error">Konnte Webseite nicht vollständig parsen.</string>
+    <string name="error_report_button_text">Fehler via Mail melden</string>
+    <string name="error_snackbar_action">MELDEN</string>
+    <string name="what_device_headline">Info:</string>
+    <string name="what_happened_headline">Dies ist passiert:</string>
+    <string name="info_labels">Was:\\nAnfrage:\\nSprache des Inhalts:\\nDienst:\\nZeit (GMT):\\nVersion:\\nBS-Version:\\nGlob. IP-Bereich:</string>
+    <string name="error_details_headline">Details:</string>
+
+
+    <string name="enable_background_audio">Im Hintergrund abspielen</string>
+    <string name="video">Video</string>
+    <string name="audio">Audio</string>
+    <string name="text">Text</string>
+    <string name="logging_normal">Normal</string>
+    <string name="logging_verbose">Ausführlich</string>
+    <string name="retry">Wiederholen</string>
+    <string name="off">[aus]</string>
+    <string name="error_drm_unsupported_scheme">Dieses Gerät unterstützt das erforderliche DRM-Schema nicht</string>
+    <string name="error_drm_unknown">Ein unbekannter DRM-Fehler ist aufgetreten</string>
+    <string name="error_querying_decoders">Konnte Dekodierer des Gerätes nicht abrufen</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Konnte Dekodierer <xliff:g id="decoder_name">%1$s</xliff:g> nicht instantiieren</string>
+    <string name="storage_permission_denied">Zugriff auf den Massenspeicher wurde verweigert</string>
+    <string name="use_exoplayer_title">Benutze ExoPlayer</string>
+    <string name="use_exoplayer_summary">Experimentell</string>
+<string name="sorry_string">Entschuldigung. Dies sollte nicht passieren.</string>
+    <string name="error_snackbar_message">Entschuldigung. Es sind einige Fehler aufgetreten.</string>
+    <string name="info_searched_lbl">Gesucht:</string>
+    <string name="info_requested_stream_lbl">Angeforderter Stream:</string>
+    <string name="your_comment">Dein Kommentar (auf englisch):</string>
+    <string name="logging">Protokollierung</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Dieses Gerät stellt keinen Dekodierer für <xliff:g id="mime_type">%1$s</xliff:g> bereit</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Dieses Gerät stellt keinen abgesicherten Dekodierer für <xliff:g id="mime_type">%1$s</xliff:g> bereit</string>
+    <string name="could_not_get_stream">Konnte keinen Stream holen.</string>
+    <string name="error_drm_not_supported">Geschützte Inhalte werden von API-Ebenen unterhalb von 18 nicht unterstützt.</string>
     </resources>
