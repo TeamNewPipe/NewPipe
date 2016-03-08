@@ -89,12 +89,10 @@ class VideoInfoItemViewCreator {
             holder.itemUploadDateView.setText(info.upload_date+" • ");
         }
 
+        holder.itemThumbnailView.setImageResource(R.drawable.dummy_thumbnail);
         if(info.thumbnail_url != null && !info.thumbnail_url.isEmpty()) {
             imageLoader.displayImage(info.thumbnail_url, holder.itemThumbnailView, displayImageOptions);
-        } else {
-            holder.itemThumbnailView.setImageResource(R.drawable.dummy_thumbnail);
         }
-
 
         return convertView;
     }
