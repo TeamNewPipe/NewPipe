@@ -216,7 +216,14 @@ public class YoutubeSearchEngine extends SearchEngine {
                     return YoutubeParsingHelper.parseDurationString(
                             item.select("span[class=\"video-time\"]").first().text());
                 } catch(Exception e) {
-                    throw new ParsingException("Could not get Duration", e);
+                    if(isLiveStream(item)) {
+                        // -1 for no duration
+                        return -1;
+                    } else {
+                        throw new ParsingException("Could not get Duration", e);
+                    }
+
+
                 }
             }
 
@@ -245,9 +252,21 @@ public class YoutubeSearchEngine extends SearchEngine {
             @Override
             public long getViewCount() throws ParsingException {
                 String output;
-                String input = item.select("div[class=\"yt-lockup-meta\"]").first()
-                        .select("li").get(1)
-                        .text();
+                String input;
+                try {
+                    input = item.select("div[class=\"yt-lockup-meta\"]").first()
+                            .select("li").get(1)
+                            .text();
+                } catch (IndexOutOfBoundsException e) {
+                    if(isLiveStream(item)) {
+                        // -1 for no view count
+                        return -1;
+                    } else {
+                        throw new ParsingException(
+                                "Could not parse yt-lockup-meta although available", e);
+                    }
+                }
+
                 output = Parser.matchGroup1("([0-9,\\. ]*)", input)
                         .replace(" ", "")
                         .replace(".", "")
@@ -282,6 +301,11 @@ public class YoutubeSearchEngine extends SearchEngine {
                 } catch (Exception e) {
                     throw new ParsingException("Could not get thumbnail url", e);
                 }
+            }
+
+            private boolean isLiveStream(Element item) {
+                Element bla = item.select("span[class*=\"yt-badge-live\"]").first();
+                return bla != null;
             }
         };
     }
