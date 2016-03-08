@@ -60,7 +60,7 @@
     <string name="network_error">Omrežna napaka</string>
 
     <string name="use_tor_title">Uporabi Tor</string>
-    <string name="use_tor_summary">Vsili prenos prejema preko sistema Tor za povečanje zasebnosti (pretakanje videa ni še podprto).</string>
+    <string name="use_tor_summary">(Preizkusno) Vsili prenos prejema preko sistema Tor za povečanje zasebnosti (pretakanje videa ni še podprto).</string>
 <string name="download_path_audio_title">Mapa za prejem zvočnih datotek</string>
     <string name="download_path_audio_summary">Pot do mape, ki je določena za prejem zvočnih datotek.</string>
     <string name="download_path_audio_dialog_title">Vpis poti za prejem zvočnih datotek</string>
@@ -106,4 +106,16 @@
     <string name="off">[izklopljeno]</string>
     <string name="use_exoplayer_title">Uporabi ExoPlayer</string>
     <string name="use_exoplayer_summary">Preizkusne zmožnosti</string>
-</resources>
+<string name="info_labels">Predmet:\\nZahteva:\\nJezik vsebine:\\nStoritev:\\nČas po GMT:\\nRazličica:\\nRazličica OS:\\nObseg IP:</string>
+    <string name="info_searched_lbl">Iskano:</string>
+    <string name="info_requested_stream_lbl">Zahtevan pretok:</string>
+    <string name="your_comment">Opomba (v angleščini):</string>
+    <string name="error_drm_not_supported">Zaščitena vsebina na ravneh API pod 18 ni podprta</string>
+    <string name="error_drm_unsupported_scheme">Ta naprava ne podpira zahtevane sheme DRM</string>
+    <string name="error_drm_unknown">Prišlo je do neznane napake DRM</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Na napravi ni nameščenega dekodirnika vrste <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Na napravi ni nameščenega varnega dekodirnika vrste <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_querying_decoders">Ni mogoče preiskati dekodirnikov na napravi</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Ni mogoče začeti dekodirnika <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="storage_permission_denied">Dovoljenje za dostop do shrambe je zavrnjeno</string>
+    </resources>
