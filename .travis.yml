@@ -29,4 +29,4 @@ before_script:
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
 
-script: ./gradlew build connectedCheck
+script: ./gradlew --info build connectedCheck
