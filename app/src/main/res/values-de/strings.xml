@@ -119,5 +119,5 @@
     <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Dieses Gerät stellt keinen Dekodierer für <xliff:g id="mime_type">%1$s</xliff:g> bereit</string>
     <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Dieses Gerät stellt keinen abgesicherten Dekodierer für <xliff:g id="mime_type">%1$s</xliff:g> bereit</string>
     <string name="could_not_get_stream">Konnte keinen Stream holen.</string>
-    <string name="error_drm_not_supported">Geschützte Inhalte werden von API-Ebenen unterhalb von 18 nicht unterstützt.</string>
+    <string name="error_drm_not_supported">Geschützte Inhalte werden von API-Ebenen unterhalb von 18 nicht unterstützt</string>
     </resources>
