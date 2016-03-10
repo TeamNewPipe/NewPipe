@@ -102,15 +102,15 @@ class VideoInfoItemViewCreator {
         public TextView itemVideoTitleView, itemUploaderView, itemDurationView, itemUploadDateView, itemViewCountView;
     }
 
-    private String shortViewCount(Long view_count){
-        if(view_count >= 1000000000){
-            return Long.toString(view_count/1000000000)+"B views";
-        }else if(view_count>=1000000){
-            return Long.toString(view_count/1000000)+"M views";
-        }else if(view_count>=1000){
-            return Long.toString(view_count/1000)+"K views";
+    private String shortViewCount(Long viewCount){
+        if(viewCount >= 1000000000){
+            return Long.toString(viewCount/1000000000)+"B views";
+        }else if(viewCount>=1000000){
+            return Long.toString(viewCount/1000000)+"M views";
+        }else if(viewCount>=1000){
+            return Long.toString(viewCount/1000)+"K views";
         }else {
-            return Long.toString(view_count)+" views";
+            return Long.toString(viewCount)+" views";
         }
     }
 

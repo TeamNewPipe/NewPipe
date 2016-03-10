@@ -272,14 +272,14 @@ public class VideoItemListActivity extends AppCompatActivity
                 getSupportFragmentManager()
                         .findFragmentById(R.id.videoitem_list))
                 .getListAdapter();
-        String webpage_url = listAdapter.getVideoList().get((int) Long.parseLong(id)).webpage_url;
+        String webpageUrl = listAdapter.getVideoList().get((int) Long.parseLong(id)).webpage_url;
         if (mTwoPane) {
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.
             Bundle arguments = new Bundle();
             //arguments.putString(VideoItemDetailFragment.ARG_ITEM_ID, id);
-            arguments.putString(VideoItemDetailFragment.VIDEO_URL, webpage_url);
+            arguments.putString(VideoItemDetailFragment.VIDEO_URL, webpageUrl);
             arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingServiceId);
             videoFragment = new VideoItemDetailFragment();
             videoFragment.setArguments(arguments);
@@ -298,7 +298,7 @@ public class VideoItemListActivity extends AppCompatActivity
             // for the selected item ID.
             Intent detailIntent = new Intent(this, VideoItemDetailActivity.class);
             //detailIntent.putExtra(VideoItemDetailFragment.ARG_ITEM_ID, id);
-            detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, webpage_url);
+            detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, webpageUrl);
             detailIntent.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingServiceId);
             startActivity(detailIntent);
         }

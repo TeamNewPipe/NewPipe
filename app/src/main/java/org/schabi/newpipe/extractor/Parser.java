@@ -54,11 +54,11 @@ public class Parser {
     public static Map<String, String> compatParseMap(final String input) throws UnsupportedEncodingException {
         Map<String, String> map = new HashMap<>();
         for(String arg : input.split("&")) {
-            String[] split_arg = arg.split("=");
-            if(split_arg.length > 1) {
-                map.put(split_arg[0], URLDecoder.decode(split_arg[1], "UTF-8"));
+            String[] splitArg = arg.split("=");
+            if(splitArg.length > 1) {
+                map.put(splitArg[0], URLDecoder.decode(splitArg[1], "UTF-8"));
             } else {
-                map.put(split_arg[0], "");
+                map.put(splitArg[0], "");
             }
         }
         return map;
