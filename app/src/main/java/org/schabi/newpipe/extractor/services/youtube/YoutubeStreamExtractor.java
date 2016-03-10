@@ -599,7 +599,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     public String getAverageRating() throws ParsingException {
         try {
             if (playerArgs == null) {
-                videoInfoPage.get("avg_rating");
+                return videoInfoPage.get("avg_rating");
             }
             return playerArgs.getString("avg_rating");
         } catch (JSONException e) {
