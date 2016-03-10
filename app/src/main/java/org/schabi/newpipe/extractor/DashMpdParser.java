@@ -31,6 +31,9 @@ import java.util.Vector;
 
 public class DashMpdParser {
 
+    private DashMpdParser() {
+    }
+
     static class DashMpdParsingException extends ParsingException {
         DashMpdParsingException(String message, Exception e) {
             super(message, e);

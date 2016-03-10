@@ -34,6 +34,9 @@ import java.util.Locale;
 
 public class Localization {
 
+    private Localization() {
+    }
+
     public static Locale getPreferredLocale(Context context) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
