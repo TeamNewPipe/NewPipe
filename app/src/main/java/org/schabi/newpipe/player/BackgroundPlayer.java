@@ -157,7 +157,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 e.printStackTrace();
             }
 
-            WifiManager wifiMgr = ((WifiManager)getSystemService(Context.WIFI_SERVICE));
+            WifiManager wifiMgr = (WifiManager)getSystemService(Context.WIFI_SERVICE);
             wifiLock = wifiMgr.createWifiLock(WifiManager.WIFI_MODE_FULL, TAG);
 
             //listen for end of video
