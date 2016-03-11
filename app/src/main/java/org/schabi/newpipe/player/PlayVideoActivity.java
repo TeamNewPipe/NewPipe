@@ -327,7 +327,7 @@ public class PlayVideoActivity extends AppCompatActivity {
 
             int realHeight = realDisplayMetrics.heightPixels;
             int displayHeight = displayMetrics.heightPixels;
-            return (realHeight - displayHeight);
+            return realHeight - displayHeight;
         } else {
             return 50;
         }
@@ -344,7 +344,7 @@ public class PlayVideoActivity extends AppCompatActivity {
 
             int realWidth = realDisplayMetrics.widthPixels;
             int displayWidth = displayMetrics.widthPixels;
-            return (realWidth - displayWidth);
+            return realWidth - displayWidth;
         } else {
             return 50;
         }

@@ -564,9 +564,9 @@ public class YoutubeStreamExtractor extends StreamExtractor {
                     }
                 }
 
-                int seconds = (secondsString.isEmpty() ? 0 : Integer.parseInt(secondsString));
-                int minutes = (minutesString.isEmpty() ? 0 : Integer.parseInt(minutesString));
-                int hours = (hoursString.isEmpty() ? 0 : Integer.parseInt(hoursString));
+                int seconds = secondsString.isEmpty() ? 0 : Integer.parseInt(secondsString);
+                int minutes = minutesString.isEmpty() ? 0 : Integer.parseInt(minutesString);
+                int hours = hoursString.isEmpty() ? 0 : Integer.parseInt(hoursString);
 
                 //don't trust BODMAS!
                 int ret = seconds + (60 * minutes) + (3600 * hours);
@@ -794,7 +794,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
         } finally {
             Context.exit();
         }
-        return (result == null ? "" : result.toString());
+        return result == null ? "" : result.toString();
     }
 
     private String findErrorReason(Document doc) {
