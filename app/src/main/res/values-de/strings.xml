@@ -60,7 +60,7 @@
     <string name="network_error">Netzwerkfehler</string>
 
     <string name="download_path_audio_title">Downloadverzeichnis für Musik</string>
-    <string name="download_path_audio_summary">Verzeichnis zum Speichern heruntergeladener Audiodateien</string>
+    <string name="download_path_audio_summary">Verzeichnis zum Speichern heruntergeladener Audiodateien.</string>
     <string name="download_path_audio_dialog_title">Pfad für heruntergeladene Audiodateien eingeben.</string>
 
     <string name="theme_title">Aussehen</string>
@@ -91,7 +91,7 @@
     <string name="error_snackbar_action">MELDEN</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Dies ist passiert:</string>
-    <string name="info_labels">Was:\\nAnfrage:\\nSprache des Inhalts:\\nDienst:\\nZeit (GMT):\\nVersion:\\nBS-Version:\\nGlob. IP-Bereich:</string>
+    <string name="info_labels">Was:\\nAnfrage:\\nSprache des Inhalts:\\nDienst:\\nZeit (GMT):\\nVersion:\\nOS-Version:\\nGlob. IP-Bereich:</string>
     <string name="error_details_headline">Details:</string>
 
 
