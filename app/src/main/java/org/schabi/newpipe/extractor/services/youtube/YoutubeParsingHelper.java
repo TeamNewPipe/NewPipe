@@ -23,6 +23,10 @@ import org.schabi.newpipe.extractor.ParsingException;
  */
 
 public class YoutubeParsingHelper {
+
+    private YoutubeParsingHelper() {
+    }
+
     public static int parseDurationString(String input)
             throws ParsingException, NumberFormatException {
         String[] splitInput = input.split(":");

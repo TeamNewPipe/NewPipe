@@ -32,6 +32,9 @@ import java.util.regex.Pattern;
 /** avoid using regex !!! */
 public class Parser {
 
+    private Parser() {
+    }
+
     public static class RegexException extends ParsingException {
         public RegexException(String message) {
             super(message);

@@ -33,6 +33,10 @@ import java.io.File;
  * Helper for global settings
  */
 public class NewPipeSettings {
+
+    private NewPipeSettings() {
+    }
+
     public static void initSettings(Context context) {
         PreferenceManager.setDefaultValues(context, R.xml.settings, false);
         getVideoDownloadFolder(context);
