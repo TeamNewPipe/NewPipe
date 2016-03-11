@@ -435,14 +435,14 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     public List<AudioStream> getAudioStreams() throws ParsingException {
         Vector<AudioStream> audioStreams = new Vector<>();
         try{
-            String encoded_url_map;
+            String encodedUrlMap;
             // playerArgs could be null if the video is age restricted
             if (playerArgs == null) {
-                encoded_url_map = videoInfoPage.get("adaptive_fmts");
+                encodedUrlMap = videoInfoPage.get("adaptive_fmts");
             } else {
-                encoded_url_map = playerArgs.getString("adaptive_fmts");
+                encodedUrlMap = playerArgs.getString("adaptive_fmts");
             }
-            for(String url_data_str : encoded_url_map.split(",")) {
+            for(String url_data_str : encodedUrlMap.split(",")) {
                 // This loop iterates through multiple streams, therefor tags
                 // is related to one and the same stream at a time.
                 Map<String, String> tags = Parser.compatParseMap(
@@ -478,14 +478,14 @@ public class YoutubeStreamExtractor extends StreamExtractor {
         Vector<VideoStream> videoStreams = new Vector<>();
 
         try{
-            String encoded_url_map;
+            String encodedUrlMap;
             // playerArgs could be null if the video is age restricted
             if (playerArgs == null) {
-                encoded_url_map = videoInfoPage.get("url_encoded_fmt_stream_map");
+                encodedUrlMap = videoInfoPage.get("url_encoded_fmt_stream_map");
             } else {
-                encoded_url_map = playerArgs.getString("url_encoded_fmt_stream_map");
+                encodedUrlMap = playerArgs.getString("url_encoded_fmt_stream_map");
             }
-            for(String url_data_str : encoded_url_map.split(",")) {
+            for(String url_data_str : encodedUrlMap.split(",")) {
                 try {
                     // This loop iterates through multiple streams, therefor tags
                     // is related to one and the same stream at a time.
