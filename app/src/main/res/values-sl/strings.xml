@@ -123,4 +123,6 @@
     <string name="report_error">Pošlji poročilo o napaki</string>
     <string name="user_report">Poročilo uporabnika</string>
 
+    <string name="duration_live">v živo</string>
+
     </resources>
