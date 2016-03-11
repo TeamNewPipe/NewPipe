@@ -29,6 +29,10 @@ import org.schabi.newpipe.extractor.services.youtube.YoutubeService;
 
 @SuppressWarnings("ALL")
 public class ServiceList {
+
+    private ServiceList() {
+    }
+
     private static final String TAG = ServiceList.class.toString();
     private static final StreamingService[] services = {
         new YoutubeService(0)
