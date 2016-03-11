@@ -32,8 +32,8 @@
     <string name="download_path_audio_summary">Path to store downloaded audio in.</string>
     <string name="download_path_audio_dialog_title">Enter download path for audio files.</string>
 
-    <string name="autoplay_through_intent_title">Autoplay through Intent</string>
-    <string name="autoplay_through_intent_summary">Automatically play a video when it\'s called from another app.</string>
+    <string name="autoplay_by_calling_app_title">Autoplay when called form another app.</string>
+    <string name="autoplay_by_calling_app_summary">Automatically play a video when NewPipe is called from another app.</string>
     <string name="default_resolution_title">Default Resolution</string>
     <string name="play_with_kodi_title">Play with Kodi</string>
     <string name="kore_not_found">Kore app not found. Install Kore?</string>
@@ -113,6 +113,8 @@
     <string name="detail_dislikes_img_view_description">Dislikes</string>
     <string name="use_tor_title">Use Tor</string>
     <string name="use_tor_summary">(Experimental) Force download traffic through Tor for increased privacy (streaming videos not yet supported).</string>
+    <string name="report_error">Report an Error</string>
+    <string name="user_report">User report</string>
 
     <string name="err_dir_create">Cannot create download directory \'%1$s\'</string>
     <string name="info_dir_created">Created download directory \'%1$s\'</string>

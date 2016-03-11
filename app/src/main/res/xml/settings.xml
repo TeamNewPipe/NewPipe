@@ -106,8 +106,8 @@
 
         <CheckBoxPreference
             android:key="@string/autoplay_through_intent_key"
-            android:title="@string/autoplay_through_intent_title"
-            android:summary="@string/autoplay_through_intent_summary"
+            android:title="@string/autoplay_by_calling_app_title"
+            android:summary="@string/autoplay_by_calling_app_summary"
             android:defaultValue="false" />
 
         <CheckBoxPreference

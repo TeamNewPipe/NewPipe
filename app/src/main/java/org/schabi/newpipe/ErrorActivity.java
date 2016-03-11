@@ -78,10 +78,12 @@ public class ErrorActivity extends AppCompatActivity {
     public static final int REQUESTED_STREAM = 1;
     public static final int GET_SUGGESTIONS = 2;
     public static final int SOMETHING_ELSE = 3;
+    public static final int USER_REPORT = 4;
     public static final String SEARCHED_STRING = "searched";
     public static final String REQUESTED_STREAM_STRING = "requested stream";
     public static final String GET_SUGGESTIONS_STRING = "get suggestions";
     public static final String SOMETHING_ELSE_STRING = "something";
+    public static final String USER_REPORT_STRING = "user report";
 
     public static final String ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org";
     public static final String ERROR_EMAIL_SUBJECT = "Exception in NewPipe " + BuildConfig.VERSION_NAME;
@@ -129,16 +131,23 @@ public class ErrorActivity extends AppCompatActivity {
 
     public static void reportError(final Context context, final Exception e,
                                    final Class returnAcitivty, View rootView, final ErrorInfo errorInfo) {
-        List<Exception> el = new Vector<>();
-        el.add(e);
+        List<Exception> el = null;
+        if(e != null) {
+            el = new Vector<>();
+            el.add(e);
+        }
         reportError(context, el, returnAcitivty, rootView, errorInfo);
     }
 
     // async call
     public static void reportError(Handler handler, final Context context, final Exception e,
                                    final Class returnAcitivty, final View rootView, final ErrorInfo errorInfo) {
-        List<Exception> el = new Vector<>();
-        el.add(e);
+
+        List<Exception> el = null;
+        if(e != null) {
+            el = new Vector<>();
+            el.add(e);
+        }
         reportError(handler, context, el, returnAcitivty, rootView, errorInfo);
     }
 
@@ -230,9 +239,11 @@ public class ErrorActivity extends AppCompatActivity {
 
     private String formErrorText(List<Exception> el) {
         String text = "";
-        for (Exception e : el) {
-            text += "-------------------------------------\n"
-                    + ExceptionUtils.getStackTrace(e);
+        if(el != null) {
+            for (Exception e : el) {
+                text += "-------------------------------------\n"
+                        + ExceptionUtils.getStackTrace(e);
+            }
         }
         text += "-------------------------------------";
         return text;
@@ -286,8 +297,10 @@ public class ErrorActivity extends AppCompatActivity {
                     .put("ip_range", globIpRange);
 
             JSONArray exceptionArray = new JSONArray();
-            for (Exception e : errorList) {
-                exceptionArray.put(ExceptionUtils.getStackTrace(e));
+            if(errorList != null) {
+                for (Exception e : errorList) {
+                    exceptionArray.put(ExceptionUtils.getStackTrace(e));
+                }
             }
 
             errorObject.put("exceptions", exceptionArray);
@@ -312,6 +325,8 @@ public class ErrorActivity extends AppCompatActivity {
                 return GET_SUGGESTIONS_STRING;
             case SOMETHING_ELSE:
                 return SOMETHING_ELSE_STRING;
+            case USER_REPORT:
+                return USER_REPORT_STRING;
             default:
                 return "Your description is in another castle.";
         }
