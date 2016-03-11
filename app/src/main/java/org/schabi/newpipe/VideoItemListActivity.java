@@ -24,6 +24,7 @@ import org.schabi.newpipe.extractor.StreamingService;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
@@ -344,6 +345,14 @@ public class VideoItemListActivity extends AppCompatActivity
             case R.id.action_settings: {
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
+                return true;
+            }
+            case R.id.action_report_error: {
+                ErrorActivity.reportError(VideoItemListActivity.this, new Vector<Exception>(),
+                        null, null,
+                        ErrorActivity.ErrorInfo.make(ErrorActivity.USER_REPORT,
+                                ServiceList.getNameOfService(currentStreamingServiceId),
+                                "user_report", R.string.user_report));
                 return true;
             }
             default:
