@@ -38,7 +38,7 @@ public class VideoStream {
 
     // revelas wether two streams are equal
     public boolean equals(VideoStream cmp) {
-        return equalStats(cmp)
+        return cmp != null && equalStats(cmp)
                 && url == cmp.url;
     }
 }
