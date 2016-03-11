@@ -121,4 +121,7 @@
     <string name="error_querying_decoders">Не могох да потражим декодере уређаја</string>
     <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Не могох да покренем декодер <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">Дозвола за приступ складишту је одбијена</string>
+    <string name="report_error">Пријавите грешку</string>
+    <string name="user_report">Извештај корисника</string>
+
     </resources>
