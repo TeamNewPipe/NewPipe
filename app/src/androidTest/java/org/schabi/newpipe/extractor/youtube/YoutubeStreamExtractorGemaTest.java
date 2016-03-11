@@ -10,7 +10,7 @@ import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 import java.io.IOException;
 
 /**
- * Created by the-scrabi on 30.12.15.
+ * Created by Christian Schabesberger on 30.12.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
  * YoutubeVideoExtractorGema.java is part of NewPipe.

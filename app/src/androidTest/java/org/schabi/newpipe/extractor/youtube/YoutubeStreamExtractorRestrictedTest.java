@@ -7,9 +7,7 @@ import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamExtractor;
-import org.schabi.newpipe.extractor.StreamInfo;
 import org.schabi.newpipe.extractor.VideoStream;
-import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 
 import java.io.IOException;
 

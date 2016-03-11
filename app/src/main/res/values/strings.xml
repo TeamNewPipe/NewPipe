@@ -77,6 +77,7 @@
     <string name="content">Content</string>
     <string name="show_age_restricted_content_title">Show age restricted content</string>
     <string name="video_is_age_restricted">Video is Age restricted. Enable age restricted videos in the settings first.</string>
+    <string name="duration_live">live</string>
 
     <!-- error strings -->
     <string name="general_error">Error</string>

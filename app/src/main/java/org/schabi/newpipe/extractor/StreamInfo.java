@@ -242,16 +242,6 @@ public class StreamInfo extends AbstractVideoInfo {
         return streamInfo;
     }
 
-    public static enum StreamType {
-        NONE,   // placeholder to check if stream type was checked or not
-        VIDEO_STREAM,
-        AUDIO_STREAM,
-        LIVE_STREAM,
-        AUDIO_LIVE_STREAM,
-        FILE
-    }
-
-    public StreamType stream_type;
     public String uploader_thumbnail_url = "";
     public String description = "";
 

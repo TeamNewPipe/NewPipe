@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.schabi.newpipe.extractor.AbstractVideoInfo;
 import org.schabi.newpipe.extractor.StreamPreviewInfo;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -76,7 +77,11 @@ public class VideoInfoItemViewCreator {
         if(info.duration > 0) {
             holder.itemDurationView.setText(getDurationString(info.duration));
         } else {
-            holder.itemDurationView.setVisibility(View.GONE);
+            if(info.stream_type == AbstractVideoInfo.StreamType.LIVE_STREAM) {
+                holder.itemDurationView.setText(R.string.duration_live);
+            } else {
+                holder.itemDurationView.setVisibility(View.GONE);
+            }
         }
         if(info.view_count >= 0) {
             holder.itemViewCountView.setText(shortViewCount(info.view_count));
@@ -84,7 +89,7 @@ public class VideoInfoItemViewCreator {
             holder.itemViewCountView.setVisibility(View.GONE);
         }
         if(!info.upload_date.isEmpty()) {
-            holder.itemUploadDateView.setText(info.upload_date+" • ");
+            holder.itemUploadDateView.setText(info.upload_date + " • ");
         }
 
         holder.itemThumbnailView.setImageResource(R.drawable.dummy_thumbnail);

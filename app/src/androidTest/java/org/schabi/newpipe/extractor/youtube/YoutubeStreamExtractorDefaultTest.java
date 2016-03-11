@@ -3,18 +3,17 @@ package org.schabi.newpipe.extractor.youtube;
 import android.test.AndroidTestCase;
 
 import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.extractor.AbstractVideoInfo;
 import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamExtractor;
 import org.schabi.newpipe.extractor.VideoStream;
-import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
-import org.schabi.newpipe.extractor.StreamInfo;
 
 import java.io.IOException;
 
 /**
- * Created by the-scrabi on 30.12.15.
+ * Created by Christian Schabesberger on 30.12.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
  * YoutubeVideoExtractorDefault.java is part of NewPipe.
@@ -37,10 +36,6 @@ public class YoutubeStreamExtractorDefaultTest extends AndroidTestCase {
     private StreamExtractor extractor;
 
     public void setUp() throws IOException, ExtractionException {
-        /* some anonymus video test
-        extractor = new YoutubeStreamExtractor("https://www.youtube.com/watch?v=FmG385_uUys",
-                new Downloader()); */
-        /* some vevo video (suggested to test against) */
         extractor = ServiceList.getService("Youtube")
                 .getExtractorInstance("https://www.youtube.com/watch?v=YQHsXMglC9A", new Downloader());
     }
@@ -105,6 +100,10 @@ public class YoutubeStreamExtractorDefaultTest extends AndroidTestCase {
             assertTrue(Integer.toString(s.format),
                     0 <= s.format && s.format <= 4);
         }
+    }
+
+    public void testStreamType() throws ParsingException {
+        assertTrue(extractor.getStreamType() == AbstractVideoInfo.StreamType.VIDEO_STREAM);
     }
 
     public void testGetDashMpd() throws ParsingException {

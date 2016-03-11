@@ -3,6 +3,7 @@ package org.schabi.newpipe.extractor.youtube;
 import android.test.AndroidTestCase;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
+import org.schabi.newpipe.extractor.AbstractVideoInfo;
 import org.schabi.newpipe.extractor.SearchResult;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamPreviewInfo;
@@ -14,7 +15,7 @@ import org.schabi.newpipe.extractor.services.youtube.YoutubeService;
 import java.util.ArrayList;
 
 /**
- * Created by the-scrabi on 29.12.15.
+ * Created by Christian Schabesberger on 29.12.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
  * YoutubeSearchEngineTest.java is part of NewPipe.
@@ -97,6 +98,14 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
         // than 10.000 views, so we can test against that.
         for(StreamPreviewInfo i : result.resultList) {
             assertTrue(i.title + ": " + Long.toString(i.view_count), i.view_count >= 10000);
+        }
+    }
+
+    public void testStreamType() {
+        for(StreamPreviewInfo i : result.resultList) {
+            assertTrue("not a livestream and not a video",
+                    i.stream_type == AbstractVideoInfo.StreamType.VIDEO_STREAM ||
+                    i.stream_type == AbstractVideoInfo.StreamType.LIVE_STREAM);
         }
     }
 

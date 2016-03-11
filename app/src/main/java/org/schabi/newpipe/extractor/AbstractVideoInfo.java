@@ -22,6 +22,16 @@ import android.graphics.Bitmap;
 
 /**Common properties between StreamInfo and StreamPreviewInfo.*/
 public abstract class AbstractVideoInfo {
+    public static enum StreamType {
+        NONE,   // placeholder to check if stream type was checked or not
+        VIDEO_STREAM,
+        AUDIO_STREAM,
+        LIVE_STREAM,
+        AUDIO_LIVE_STREAM,
+        FILE
+    }
+
+    public StreamType stream_type;
     public int service_id = -1;
     public String id = "";
     public String title = "";

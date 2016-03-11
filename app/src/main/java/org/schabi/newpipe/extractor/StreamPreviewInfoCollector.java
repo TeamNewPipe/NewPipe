@@ -56,6 +56,7 @@ public class StreamPreviewInfoCollector {
                 resultItem.id = (new YoutubeStreamUrlIdHandler()).getVideoId(resultItem.webpage_url);
             }
             resultItem.title = extractor.getTitle();
+            resultItem.stream_type = extractor.getStreamType();
 
             // optional iformation
             try {

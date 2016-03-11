@@ -3,6 +3,7 @@ package org.schabi.newpipe.extractor.services.youtube;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.schabi.newpipe.extractor.AbstractVideoInfo;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.Parser;
@@ -300,6 +301,15 @@ public class YoutubeSearchEngine extends SearchEngine {
                     return url;
                 } catch (Exception e) {
                     throw new ParsingException("Could not get thumbnail url", e);
+                }
+            }
+
+            @Override
+            public AbstractVideoInfo.StreamType getStreamType() {
+                if(isLiveStream(item)) {
+                    return AbstractVideoInfo.StreamType.LIVE_STREAM;
+                } else {
+                    return AbstractVideoInfo.StreamType.VIDEO_STREAM;
                 }
             }
 
