@@ -220,7 +220,7 @@ public class YoutubeSearchEngine extends SearchEngine {
                         // -1 for no duration
                         return -1;
                     } else {
-                        throw new ParsingException("Could not get Duration", e);
+                        throw new ParsingException("Could not get Duration: " + getTitle(), e);
                     }
 
 
@@ -263,7 +263,7 @@ public class YoutubeSearchEngine extends SearchEngine {
                         return -1;
                     } else {
                         throw new ParsingException(
-                                "Could not parse yt-lockup-meta although available", e);
+                                "Could not parse yt-lockup-meta although available: " + getTitle(), e);
                     }
                 }
 
@@ -305,6 +305,14 @@ public class YoutubeSearchEngine extends SearchEngine {
 
             private boolean isLiveStream(Element item) {
                 Element bla = item.select("span[class*=\"yt-badge-live\"]").first();
+
+                if(bla == null) {
+                    // sometimes livestreams dont have badges but sill are live streams
+                    // if video time is not available we most likly have an offline livestream
+                    if(item.select("span[class*=\"video-time\"]").first() == null) {
+                        return true;
+                    }
+                }
                 return bla != null;
             }
         };

@@ -1,7 +1,5 @@
 package org.schabi.newpipe;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +31,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class VideoInfoItemViewCreator {
+public class VideoInfoItemViewCreator {
     private final LayoutInflater inflater;
     private ImageLoader imageLoader = ImageLoader.getInstance();
     private DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().cacheInMemory(true).build();
