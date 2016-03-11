@@ -130,7 +130,7 @@ public class DownloadDialog extends DialogFragment {
     private String createFileName(String fName) {
         // from http://eng-przemelek.blogspot.de/2009/07/how-to-create-valid-file-name.html
 
-        List<String> forbiddenCharsPatterns = new ArrayList<String> ();
+        List<String> forbiddenCharsPatterns = new ArrayList<> ();
         forbiddenCharsPatterns.add("[:]+"); // Mac OS, but it looks that also Windows XP
         forbiddenCharsPatterns.add("[\\*\"/\\\\\\[\\]\\:\\;\\|\\=\\,]+");  // Windows
         forbiddenCharsPatterns.add("[^\\w\\d\\.]+");  // last chance... only latin letters and digits

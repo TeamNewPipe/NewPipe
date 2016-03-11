@@ -569,9 +569,8 @@ public class YoutubeStreamExtractor extends StreamExtractor {
                 int hours = (hoursString.isEmpty() ? 0 : Integer.parseInt(hoursString));
 
                 //don't trust BODMAS!
-                int ret = seconds + (60 * minutes) + (3600 * hours);
+                return seconds + (60 * minutes) + (3600 * hours);
                 //Log.d(TAG, "derived timestamp value:"+ret);
-                return ret;
                 //the ordering varies internationally
             } catch (ParsingException e) {
                 throw new ParsingException("Could not get timestamp.", e);

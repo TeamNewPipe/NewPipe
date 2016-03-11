@@ -101,7 +101,7 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
     }
 
     public void testIfSuggestionsAreReplied() {
-        assertEquals(suggestionReply.size() > 0, true);
+        assertEquals(!suggestionReply.isEmpty(), true);
     }
 
     public void testIfSuggestionsAreValid() {
