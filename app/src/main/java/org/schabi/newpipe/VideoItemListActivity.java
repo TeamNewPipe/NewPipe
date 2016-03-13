@@ -245,6 +245,9 @@ public class VideoItemListActivity extends AppCompatActivity
                 // the support version on SearchView, so it needs to be set programmatically.
                 searchView.setIconifiedByDefault(false);
                 searchView.setIconified(false);
+                if(!searchQuery.isEmpty()) {
+                    searchView.setQuery(searchQuery,false);
+                }
                 searchView.setOnQueryTextListener(new SearchVideoQueryListener());
                 suggestionListAdapter = new SuggestionListAdapter(this);
                 searchView.setSuggestionsAdapter(suggestionListAdapter);
@@ -321,7 +324,10 @@ public class VideoItemListActivity extends AppCompatActivity
             suggestionListAdapter = new SuggestionListAdapter(this);
             searchView.setSuggestionsAdapter(suggestionListAdapter);
             searchView.setOnSuggestionListener(new SearchSuggestionListener(searchView));
-
+            if(!searchQuery.isEmpty()) {
+                searchView.setQuery(searchQuery,false);
+                searchView.setIconifiedByDefault(false);
+            }
         } else if (videoFragment != null){
             videoFragment.onCreateOptionsMenu(menu, inflater);
         } else {
