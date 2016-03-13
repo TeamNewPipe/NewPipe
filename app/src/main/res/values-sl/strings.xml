@@ -118,4 +118,9 @@
     <string name="error_querying_decoders">Ni mogoče preiskati dekodirnikov na napravi</string>
     <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Ni mogoče začeti dekodirnika <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">Dovoljenje za dostop do shrambe je zavrnjeno</string>
+    <string name="autoplay_by_calling_app_title">Samodejno predvajaj vsebino, poslano iz drugega programa.</string>
+    <string name="autoplay_by_calling_app_summary">Samodejno predvajaj vsebino, če je NewPipe klican iz drugega programa.</string>
+    <string name="report_error">Pošlji poročilo o napaki</string>
+    <string name="user_report">Poročilo uporabnika</string>
+
     </resources>
