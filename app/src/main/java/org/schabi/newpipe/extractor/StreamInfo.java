@@ -127,7 +127,7 @@ public class StreamInfo extends AbstractVideoInfo {
         // also try to get streams from the dashMpd
         if(streamInfo.dashMpdUrl != null && !streamInfo.dashMpdUrl.isEmpty()) {
             if(streamInfo.audio_streams == null) {
-                streamInfo.audio_streams = new Vector<AudioStream>();
+                streamInfo.audio_streams = new Vector<>();
             }
             //todo: make this quick and dirty solution a real fallback
             // same as the quick and dirty aboth
