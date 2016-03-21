@@ -125,4 +125,6 @@
     <string name="report_error">Einen Fehler melden</string>
     <string name="user_report">Anwenderbericht</string>
 
+    <string name="duration_live">live</string>
+
     </resources>
