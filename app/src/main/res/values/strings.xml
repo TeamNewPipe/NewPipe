@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_name" translatable="false">NewPipe</string>
+    <string name="main_bg_subtitle">Tap search to get started</string>
     <string name="background_player_name">NewPipe Background Player</string>
     <string name="title_videoitem_detail" translatable="false">NewPipe</string>
     <string name="view_count_text">%1$s views</string>

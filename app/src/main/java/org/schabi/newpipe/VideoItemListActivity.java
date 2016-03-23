@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -90,6 +91,8 @@ public class VideoItemListActivity extends AppCompatActivity
             } catch(Exception e) {
                 e.printStackTrace();
             }
+            View bg = findViewById(R.id.mainBG);
+            bg.setVisibility(View.GONE);
             return true;
         }
 
@@ -110,6 +113,9 @@ public class VideoItemListActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videoitem_list);
+
+        View bg = findViewById(R.id.mainBG);
+        bg.setVisibility(View.VISIBLE);
 
         //------ todo: remove this line when multiservice support is implemented ------
         currentStreamingServiceId = ServiceList.getIdOfService("Youtube");
