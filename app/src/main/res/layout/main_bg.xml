@@ -7,12 +7,6 @@
     tools:context=".VideoItemDetailActivity"
     tools:showIn="@layout/activity_videoitem_list">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_gravity="center_horizontal" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,4 +25,5 @@
         android:text="@string/main_bg_subtitle"
         android:id="@+id/mainBGSubtitle"
         android:layout_gravity="center_horizontal" />
+
 </LinearLayout>
