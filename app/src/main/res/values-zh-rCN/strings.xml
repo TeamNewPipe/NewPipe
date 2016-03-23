@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="background_player_name">NewPipe 背景播放器</string>
     <string name="view_count_text">%1$s 次观看</string>
     <string name="upload_date_text">于 %1$s 发布</string>
@@ -50,17 +50,69 @@
     <string name="play_btn_text">播放</string>
     <string name="network_error">网络错误</string>
 
-    <string name="list_thumbnail_view_description">视频预览缩图</string>
-    <string name="detail_thumbnail_view_description">视频预览缩图</string>
+    <string name="list_thumbnail_view_description">视频预览缩略图</string>
+    <string name="detail_thumbnail_view_description">视频预览缩略图</string>
     <string name="detail_uploader_thumbnail_view_description">上传者的头像缩图</string>
-    <string name="detail_likes_img_view_description">顶</string>
-    <string name="detail_dislikes_img_view_description">踩</string>
+    <string name="detail_likes_img_view_description">喜欢</string>
+    <string name="detail_dislikes_img_view_description">不喜欢</string>
     <string name="use_tor_title">使用 Tor</string>
-    <string name="use_tor_summary">强迫下载流量通过 Tor 加强隐私（暂时不支援串流视频）</string>
+    <string name="use_tor_summary">（实验性）强制下载流量使用 Tor 加强隐私（暂不支援流媒体视频）。</string>
 <string name="download_path_audio_title">音频下载路径</string>
     <string name="download_path_audio_summary">存放已下载音频的路径。</string>
     <string name="download_path_audio_dialog_title">输入音频的下载路径。</string>
 
     <string name="err_dir_create">未能建立下载路径 “%1$s”</string>
     <string name="info_dir_created">已建立下载路径 “%1$s”</string>
-</resources>
+<string name="content">内容</string>
+    <string name="show_age_restricted_content_title">显示年龄限制内容</string>
+    <string name="video_is_age_restricted">视频有年龄限制。请先在设置中启用年龄限制视频。</string>
+    <string name="general_error">错误</string>
+    <string name="could_not_load_thumbnails">无法加载所有缩略图</string>
+    <string name="youtube_signature_decryption_error">无法解密视频网址签名。</string>
+    <string name="parsing_error">无法解析网站。</string>
+    <string name="light_parsing_error">无法解析网站完成。</string>
+    <string name="content_not_available">内容不可用。</string>
+    <string name="blocked_by_gema">已被 GEMA 屏蔽。</string>
+    <string name="could_not_setup_download_menu">无法设置下载菜单。</string>
+    <string name="live_streams_not_supported">这是一个在线流媒体。这尚不支持。</string>
+    <string name="could_not_get_stream">无法获取任何流媒体。</string>
+    <string name="sorry_string">抱歉，这不应该发生。</string>
+    <string name="error_report_button_text">使用邮件报告错误</string>
+    <string name="error_snackbar_message">抱歉，发生一些错误。</string>
+    <string name="error_snackbar_action">报告</string>
+    <string name="what_device_headline">信息：</string>
+    <string name="what_happened_headline">发生什么：</string>
+    <string name="info_searched_lbl">搜索：</string>
+    <string name="info_requested_stream_lbl">已请求流：</string>
+    <string name="your_comment">您的注释（英文）：</string>
+    <string name="error_details_headline">详细信息：</string>
+
+
+    <string name="info_labels">什么：\\n请求：\\n内容语言：\\n服务：\\nGMT 时间：\\n版本：\\nOS 版本：\\nGlob. IP 范围：</string>
+    <string name="report_error">报告错误</string>
+    <string name="user_report">用户报告</string>
+
+    <string name="enable_background_audio">在后台播放</string>
+    <string name="video">视频</string>
+    <string name="audio">音频</string>
+    <string name="text">文本</string>
+    <string name="logging">日志记录</string>
+    <string name="logging_normal">正常</string>
+    <string name="logging_verbose">详细</string>
+    <string name="retry">重试</string>
+    <string name="off">[关]</string>
+    <string name="error_drm_not_supported">已保护内容在 API 级别低于 18 时不支持</string>
+    <string name="error_drm_unsupported_scheme">此设备不支持 DRM 模式</string>
+    <string name="error_drm_unknown">发生未知 DRM 错误</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">此设备未提供一个 <xliff:g id="mime_type">%1$s</xliff:g> 的解码器</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">此设备未提供一个 <xliff:g id="mime_type">%1$s</xliff:g> 的安全解码器</string>
+    <string name="error_querying_decoders">无法查询设备解码器</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">无法实例化解码器 <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="storage_permission_denied">访问存储的权限被拒绝</string>
+    <string name="use_exoplayer_summary">实验性</string>
+<string name="use_exoplayer_title">使用 ExoPlayer</string>
+    <string name="autoplay_by_calling_app_title">另一应用调用时自动播放。</string>
+    <string name="autoplay_by_calling_app_summary">NewPipe 被另一应用调用时自动开始播放视频。</string>
+    <string name="duration_live">直播</string>
+
+    </resources>
