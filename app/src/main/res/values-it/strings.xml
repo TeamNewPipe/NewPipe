@@ -1,9 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="view_count_text">%1$s visite</string>
-    <string name="upload_date_text">Caricato in %1$s</string>
-    <string name="no_player_found">Nessun riproduttore trovato. Dovresti installarne uno.</string>
+    <string name="upload_date_text">Pubblicato il %1$s</string>
+    <string name="no_player_found">Nessun riproduttore trovato. Vuoi installare VLC?</string>
     <string name="install">Installa</string>
-    <string name="cancel">Cancella</string>
+    <string name="cancel">Annulla</string>
     <string name="open_in_browser">Apri nel browser</string>
     <string name="share">Condividi</string>
     <string name="download">Scarica</string>
@@ -16,34 +16,74 @@
     <string name="screen_rotation">rotazione</string>
     <string name="settings_activity_title">Impostazioni</string>
     <string name="useExternalPlayerTitle">Usa un riproduttore video esterno</string>
-    <string name="download_path_title">Cartella di download</string>
+    <string name="download_path_title">Cartella dei download</string>
     <string name="download_path_summary">Percorso dove memorizzare i video scaricati.</string>
-    <string name="download_path_dialog_title">Inserisci il percorso di download</string>
+    <string name="download_path_dialog_title">Inserisci il percorso per i download</string>
     <string name="autoplay_through_intent_title">Auto riproduzione attraverso internet</string>
     <string name="autoplay_through_intent_summary">Avvia automaticamente un video quando è stato chiamato da un\'altra applicazione.</string>
     <string name="default_resolution_title">Risoluzione predefinita</string>
     <string name="play_with_kodi_title">Riproduci con Kodi</string>
-    <string name="kore_not_found">Kore app non trovata. Kore è richiesto per riprodurre video con Kodi media center.</string>
+    <string name="kore_not_found">L\'applicazione Kore non è stata trovata. Kore è necessario per riprodurre video con Kodi media center. Vorresti installarlo?</string>
     <string name="installeKore">Installa Kore</string>
     <string name="show_play_with_kodi_title">Mostra l\'opzione \"Riproduci con Kodi\"</string>
     <string name="show_play_with_kodi_summary">Mostra un opzione per riprodurre un video attraverso Kodi media center.</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato audio predefinito</string>
-    <string name="webm_description">WedM &#8212; formato libero</string>
-    <string name="m4a_description">m4a &#8212; qualità migliore</string>
+    <string name="webm_description">WebM — formato libero</string>
+    <string name="m4a_description">m4a — qualità migliore</string>
     <string name="download_dialog_title">Scarica</string>
     <string name="next_video_title">Prossimo video</string>
-    <string name="show_next_and_similar_title">Mostra i video successivi e simili</string>
-    <string name="url_not_supported_toast">URL non supportato.</string>
+    <string name="show_next_and_similar_title">Mostra video a seguire e video simili</string>
+    <string name="url_not_supported_toast">URL non supportato</string>
     <string name="similar_videos_btn_text">Video simili</string>
-    <string name="search_language_title">Lingua preferita dei contenuti</string>
-    <string name="settings_category_video_audio_title">VIDEO &amp; AUDIO</string>
+    <string name="search_language_title">Lingua preferita per i contenuti</string>
+    <string name="settings_category_video_audio_title">Video e Audio</string>
     <string name="settingsCategoryVideoInfoTittle">INFO</string>
     <string name="settingsCategoryEtcTitle">ETC</string>
 
     <string name="list_thumbnail_view_description">Anteprima video</string>
     <string name="detail_thumbnail_view_description">Anteprima video</string>
-    <string name="detail_uploader_thumbnail_view_description">Miniatura caricata</string>
+    <string name="detail_uploader_thumbnail_view_description">Miniatura dell\'immagine di profilo degli utenti</string>
     <string name="detail_dislikes_img_view_description">Non mi piace</string>
     <string name="detail_likes_img_view_description">Mi piace</string>
-</resources>
+<string name="err_dir_create">Impossibile creare la cartella di download \'%1$s\'</string>
+    <string name="info_dir_created">Creata la cartella per i download \'%1$s\'</string>
+<string name="background_player_name">Player in background di NewPipe</string>
+    <string name="loading">Caricamento</string>
+    <string name="use_external_video_player_title">Usa un lettore video esterno</string>
+    <string name="use_external_audio_player_title">Usa un lettore audio esterno</string>
+
+    <string name="download_path_audio_title">Cartella dei download degli audio</string>
+    <string name="download_path_audio_summary">Cartella dove salvare gli audio scaricati.</string>
+    <string name="download_path_audio_dialog_title">Inserisci la cartella per i file audio.</string>
+
+    <string name="theme_title">Tema</string>
+    <string name="dark_theme_title">Scuro</string>
+    <string name="light_theme_title">Chiaro</string>
+
+    <string name="settings_category_appearance_title">Aspetto</string>
+    <string name="settings_category_other_title">Altro</string>
+    <string name="background_player_playing_toast">In riproduzione in background</string>
+    <string name="play_btn_text">Riproduci</string>
+
+    <string name="general_error">Errore</string>
+    <string name="network_error">Errore di rete</string>
+    <string name="could_not_load_thumbnails">Impossibile caricare tutte le miniature</string>
+    <string name="youtube_signature_decryption_error">Impossibile decriptare la firma dell\'URL del video.</string>
+    <string name="content_not_available">Contenuto non disponibile.</string>
+    <string name="blocked_by_gema">Bloccato dalla GEMA.</string>
+    <string name="use_tor_title">Usa Tor</string>
+    <string name="use_tor_summary">Forza il traffico in download tramite Tor per una maggiore privacy (lo streaming dei video non è ancora supportato).</string>
+
+    <string name="parsing_error">Impossibile analizzare il sito web.</string>
+    <string name="could_not_setup_download_menu">Impossibile impostare il menù di download.</string>
+
+
+    <string name="live_streams_not_supported">Questo è uno stream dal vivo. Gli stream dal vivo non sono ancora supportati.</string>
+
+
+    <string name="content">Contenuti</string>
+    <string name="show_age_restricted_content_title">Mostra contenuti vincolati all\'età</string>
+    <string name="video_is_age_restricted">Questo video è vincolato alla maggiore età. Per accedervi, abilita \"Mostra video vincolati all\'età\" nelle impostazioni.</string>
+
+    </resources>

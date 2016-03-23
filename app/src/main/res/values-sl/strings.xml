@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="view_count_text">%1$s pogledov</string>
     <string name="upload_date_text">Poslano %1$s</string>
     <string name="no_player_found">Predvajalnika pretoka ni mogoče najti. Ali želite namestiti program VLC?</string>
@@ -9,7 +9,7 @@
     <string name="download">Prejmi</string>
     <string name="search">Poišči</string>
     <string name="settings">Nastavitve</string>
-    <string name="did_you_mean">"Ste mislili vpisati: "</string>
+    <string name="did_you_mean">Ali ste mislili: %1$s?</string>
     <string name="search_page">"Stran iskanja: "</string>
     <string name="share_dialog_title">Omogoči souporabo z:</string>
     <string name="choose_browser">Izbor brskalnika:</string>
@@ -60,11 +60,69 @@
     <string name="network_error">Omrežna napaka</string>
 
     <string name="use_tor_title">Uporabi Tor</string>
-    <string name="use_tor_summary">Vsili prenos prejema preko sistema Tor za povečanje zasebnosti (pretakanje videa ni še podprto)</string>
+    <string name="use_tor_summary">(Preizkusno) Vsili prenos prejema preko sistema Tor za povečanje zasebnosti (pretakanje videa ni še podprto).</string>
 <string name="download_path_audio_title">Mapa za prejem zvočnih datotek</string>
     <string name="download_path_audio_summary">Pot do mape, ki je določena za prejem zvočnih datotek.</string>
     <string name="download_path_audio_dialog_title">Vpis poti za prejem zvočnih datotek</string>
 
     <string name="err_dir_create">Ni mogoče ustvariti mape za prejem \'%1$s\'</string>
     <string name="info_dir_created">Ustvarjena je mapa za prejem \'%1$s\'</string>
-</resources>
+<string name="general_error">Napaka</string>
+    <string name="could_not_load_thumbnails">Vseh sličic videov ni mogoče naložiti</string>
+    <string name="youtube_signature_decryption_error">Ni mogoče dešifrirati podpisa naslova URL videa.</string>
+    <string name="parsing_error">Ni mogoče razčleniti spletišča.</string>
+    <string name="content_not_available">Vsebina ni na voljo.</string>
+    <string name="blocked_by_gema">Blokirano zaradi pripomb GEMA.</string>
+
+    <string name="could_not_setup_download_menu">Ni mogoče nastaviti menija za prejem datotek.</string>
+
+
+    <string name="live_streams_not_supported">To je pretok v živo. Ta vrsta še ni podprta.</string>
+
+
+    <string name="content">Vsebina</string>
+    <string name="show_age_restricted_content_title">Pokaži starostno omejeno vsebino</string>
+    <string name="video_is_age_restricted">Za posnetek je določena starostna omejitev ogleda. Pred ogledom je treba ustrezno nastaviti omejitve med nastavitvami.</string>
+
+    <string name="light_parsing_error">Ni mogoče dokončno razčleniti spletišča.</string>
+    <string name="could_not_get_stream">Ni mogoče prejeti pretoka.</string>
+    <string name="sorry_string">Do te napake naj ne bi prišlo.</string>
+    <string name="error_report_button_text">Pošlji poročilo preko elektronske pošte</string>
+    <string name="error_snackbar_message">Prišlo je do napak.</string>
+    <string name="error_snackbar_action">POROČILO</string>
+    <string name="what_device_headline">Podrobnosti:</string>
+    <string name="what_happened_headline">Kaj se je zgodilo:</string>
+    <string name="error_details_headline">Podrobnosi:</string>
+
+
+    <string name="enable_background_audio">Predvajaj v ozadju</string>
+    <string name="video">Video</string>
+    <string name="audio">Zvok</string>
+    <string name="text">Besedilo</string>
+    <string name="logging">Dnevniki</string>
+    <string name="logging_normal">Običajno</string>
+    <string name="logging_verbose">Podrobno</string>
+    <string name="retry">Poskusi znova</string>
+    <string name="off">[izklopljeno]</string>
+    <string name="use_exoplayer_title">Uporabi ExoPlayer</string>
+    <string name="use_exoplayer_summary">Preizkusne zmožnosti</string>
+<string name="info_labels">Predmet:\\nZahteva:\\nJezik vsebine:\\nStoritev:\\nČas po GMT:\\nRazličica:\\nRazličica OS:\\nObseg IP:</string>
+    <string name="info_searched_lbl">Iskano:</string>
+    <string name="info_requested_stream_lbl">Zahtevan pretok:</string>
+    <string name="your_comment">Opomba (v angleščini):</string>
+    <string name="error_drm_not_supported">Zaščitena vsebina na ravneh API pod 18 ni podprta</string>
+    <string name="error_drm_unsupported_scheme">Ta naprava ne podpira zahtevane sheme DRM</string>
+    <string name="error_drm_unknown">Prišlo je do neznane napake DRM</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Na napravi ni nameščenega dekodirnika vrste <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Na napravi ni nameščenega varnega dekodirnika vrste <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_querying_decoders">Ni mogoče preiskati dekodirnikov na napravi</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Ni mogoče začeti dekodirnika <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="storage_permission_denied">Dovoljenje za dostop do shrambe je zavrnjeno</string>
+    <string name="autoplay_by_calling_app_title">Samodejno predvajaj vsebino, poslano iz drugega programa.</string>
+    <string name="autoplay_by_calling_app_summary">Samodejno predvajaj vsebino, če je NewPipe klican iz drugega programa.</string>
+    <string name="report_error">Pošlji poročilo o napaki</string>
+    <string name="user_report">Poročilo uporabnika</string>
+
+    <string name="duration_live">v živo</string>
+
+    </resources>

@@ -1,13 +1,14 @@
 package org.schabi.newpipe;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.schabi.newpipe.crawler.VideoPreviewInfo;
+import org.schabi.newpipe.extractor.AbstractVideoInfo;
+import org.schabi.newpipe.extractor.StreamPreviewInfo;
+
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -31,7 +32,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class VideoInfoItemViewCreator {
+public class VideoInfoItemViewCreator {
     private final LayoutInflater inflater;
     private ImageLoader imageLoader = ImageLoader.getInstance();
     private DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().cacheInMemory(true).build();
@@ -40,8 +41,10 @@ class VideoInfoItemViewCreator {
         this.inflater = inflater;
     }
 
-    public View getViewFromVideoInfoItem(View convertView, ViewGroup parent, VideoPreviewInfo info, Context context) {
+    public View getViewFromVideoInfoItem(View convertView, ViewGroup parent, StreamPreviewInfo info) {
         ViewHolder holder;
+
+        // generate holder
         if(convertView == null) {
             convertView = inflater.inflate(R.layout.video_item, parent, false);
             holder = new ViewHolder();
@@ -56,20 +59,43 @@ class VideoInfoItemViewCreator {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        // fill with information
+
+        /*
         if(info.thumbnail == null) {
             holder.itemThumbnailView.setImageResource(R.drawable.dummy_thumbnail);
         } else {
             holder.itemThumbnailView.setImageBitmap(info.thumbnail);
         }
+        */
         holder.itemVideoTitleView.setText(info.title);
-        holder.itemUploaderView.setText(info.uploader);
-        holder.itemDurationView.setText(info.duration);
-        holder.itemViewCountView.setText(shortViewCount(info.view_count));
+        if(info.uploader != null && !info.uploader.isEmpty()) {
+            holder.itemUploaderView.setText(info.uploader);
+        } else {
+            holder.itemDurationView.setVisibility(View.INVISIBLE);
+        }
+        if(info.duration > 0) {
+            holder.itemDurationView.setText(getDurationString(info.duration));
+        } else {
+            if(info.stream_type == AbstractVideoInfo.StreamType.LIVE_STREAM) {
+                holder.itemDurationView.setText(R.string.duration_live);
+            } else {
+                holder.itemDurationView.setVisibility(View.GONE);
+            }
+        }
+        if(info.view_count >= 0) {
+            holder.itemViewCountView.setText(shortViewCount(info.view_count));
+        } else {
+            holder.itemViewCountView.setVisibility(View.GONE);
+        }
         if(!info.upload_date.isEmpty()) {
-            holder.itemUploadDateView.setText(info.upload_date+" • ");
+            holder.itemUploadDateView.setText(info.upload_date + " • ");
         }
 
-        imageLoader.displayImage(info.thumbnail_url, holder.itemThumbnailView, displayImageOptions);
+        holder.itemThumbnailView.setImageResource(R.drawable.dummy_thumbnail);
+        if(info.thumbnail_url != null && !info.thumbnail_url.isEmpty()) {
+            imageLoader.displayImage(info.thumbnail_url, holder.itemThumbnailView, displayImageOptions);
+        }
 
         return convertView;
     }
@@ -79,16 +105,69 @@ class VideoInfoItemViewCreator {
         public TextView itemVideoTitleView, itemUploaderView, itemDurationView, itemUploadDateView, itemViewCountView;
     }
 
-    private String shortViewCount(Long view_count){
-        if(view_count >= 1000000000){
-            return Long.toString(view_count/1000000000)+"B views";
-        }else if(view_count>=1000000){
-            return Long.toString(view_count/1000000)+"M views";
-        }else if(view_count>=1000){
-            return Long.toString(view_count/1000)+"K views";
+    private String shortViewCount(Long viewCount){
+        if(viewCount >= 1000000000){
+            return Long.toString(viewCount/1000000000)+"B views";
+        }else if(viewCount>=1000000){
+            return Long.toString(viewCount/1000000)+"M views";
+        }else if(viewCount>=1000){
+            return Long.toString(viewCount/1000)+"K views";
         }else {
-            return Long.toString(view_count)+" views";
+            return Long.toString(viewCount)+" views";
         }
     }
 
+    public static String getDurationString(int duration) {
+        String output = "";
+        int days = duration / (24 * 60 * 60); /* greater than a day */
+        duration %= (24 * 60 * 60);
+        int hours = duration / (60 * 60); /* greater than an hour */
+        duration %= (60 * 60);
+        int minutes = duration / 60;
+        int seconds = duration % 60;
+
+        //handle days
+        if(days > 0) {
+            output = Integer.toString(days) + ":";
+        }
+        // handle hours
+        if(hours > 0 || !output.isEmpty()) {
+            if(hours > 0) {
+                if(hours >= 10 || output.isEmpty()) {
+                    output += Integer.toString(minutes);
+                } else {
+                    output += "0" + Integer.toString(minutes);
+                }
+            } else {
+                output += "00";
+            }
+            output += ":";
+        }
+        //handle minutes
+        if(minutes > 0 || !output.isEmpty()) {
+            if(minutes > 0) {
+                if(minutes >= 10 || output.isEmpty()) {
+                    output += Integer.toString(minutes);
+                } else {
+                    output += "0" + Integer.toString(minutes);
+                }
+            } else {
+                output += "00";
+            }
+            output += ":";
+        }
+
+        //handle seconds
+        if(output.isEmpty()) {
+            output += "0:";
+        }
+
+        if(seconds >= 10) {
+            output += Integer.toString(seconds);
+        } else {
+            output += "0" + Integer.toString(seconds);
+        }
+
+        return output;
+    }
 }

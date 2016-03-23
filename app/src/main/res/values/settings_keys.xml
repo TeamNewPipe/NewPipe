@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources translatable="false">
     <!-- Categories -->
     <string name="settings_category_video_audio">settings_category_video_audio</string>
     <string name="settings_category_appearance">settings_category_appearance</string>
+    <string name="settings_content_options">settings_content_options</string>
     <string name="settings_category_other">settings_category_other</string>
     <!-- Key values -->
     <string name="download_path_key">download_path</string>
@@ -10,6 +11,7 @@
     <string name="use_external_video_player_key">use_external_video_player</string>
     <string name="use_external_audio_player_key">use_external_audio_player</string>
     <string name="autoplay_through_intent_key">autoplay_through_intent</string>
+    <string name="use_exoplayer_key">use_exoplayer</string>
 
     <string name="default_resolution_key">default_resolution_preference</string>
     <string name="default_resolution_value">360p</string>
@@ -207,5 +209,6 @@
         <item>日本語</item>
         <item>한국어</item>
     </string-array>
+    <string name="show_age_restricted_content">show_age_restricted_content</string>
     <string name="use_tor_key">use_tor</string>
 </resources>

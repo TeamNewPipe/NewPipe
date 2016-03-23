@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="upload_date_text">"アップロード: "%1$s</string>
-    <string name="no_player_found">StreamPlayer が見つかりませんでした｡ｲﾝｽﾄｰﾙが必要になるかもしれません｡</string>
+    <string name="no_player_found">ｽﾄﾘｰﾑのﾌﾟﾚｲﾔｰが見つかりません｡VLC をｲﾝｽﾄｰﾙしますか?</string>
     <string name="install">ｲﾝｽﾄｰﾙ</string>
     <string name="cancel">取り消し</string>
     <string name="open_in_browser">ﾌﾞﾗｳｻﾞｰで開く</string>
@@ -9,7 +9,7 @@
     <string name="download">ﾀﾞｳﾝﾛｰﾄﾞ</string>
     <string name="search">検索</string>
     <string name="settings">設定</string>
-    <string name="did_you_mean">"この意味ですか: "</string>
+    <string name="did_you_mean">この意味ですか: %1$s ?</string>
     <string name="search_page">"検索ﾍﾟｰｼﾞ: "</string>
     <string name="share_dialog_title">…共有:</string>
     <string name="choose_browser">ﾌﾞﾗｳｻﾞｰを選択:</string>
@@ -23,7 +23,7 @@
     <string name="autoplay_through_intent_summary">他のｱﾌﾟﾘｹｰｼｮﾝから呼び出されたとき､自動的に動画再生を開始します｡</string>
     <string name="default_resolution_title">基本の解像度</string>
     <string name="play_with_kodi_title">Kodi で再生</string>
-    <string name="kore_not_found">Kore ｱﾌﾟﾘが見つかりません｡ Kodi ﾒﾃﾞｨｱｾﾝﾀｰで動画を再生するには､ Kore が必要です｡</string>
+    <string name="kore_not_found">Kore ｱﾌﾟﾘが見つかりません｡ Kore をｲﾝｽﾄｰﾙしますか?</string>
     <string name="installeKore">Kore をｲﾝｽﾄｰﾙ</string>
     <string name="show_play_with_kodi_title">\"Kodi で再生\" 設定を表示</string>
     <string name="show_play_with_kodi_summary">Kodi ﾒﾃﾞｨｱｾﾝﾀｰ経由で動画を再生するための設定を表示します.</string>
@@ -53,7 +53,7 @@
     <string name="play_btn_text">再生</string>
 
     <string name="use_tor_title">Tor を使用する</string>
-    <string name="use_tor_summary">強制的に Tor を経由したプライバシーを高めたトラフィックでダウンロードします (ビデオのストリーミングはまだサポートされていません)</string>
+    <string name="use_tor_summary">(実験的) 強制的に Tor を経由したトラフィックでダウンロードして、プライバシーを高めます (ビデオのストリーミングはまだサポートされていません)。</string>
 <string name="theme_title">テーマ</string>
     <string name="dark_theme_title">ダーク</string>
     <string name="light_theme_title">ライト</string>
@@ -74,5 +74,56 @@
     <string name="parsing_error">Web サイトを解析できませんでした。</string>
     <string name="content_not_available">コンテンツがありません。</string>
     <string name="blocked_by_gema">GEMA によってブロックされました。</string>
+
+    <string name="could_not_setup_download_menu">ダウンロード メニューを設定できませんでした。</string>
+
+
+    <string name="live_streams_not_supported">これはライブ ストリームです。これらはまだサポートされていません。</string>
+
+
+    <string name="content">コンテンツ</string>
+    <string name="show_age_restricted_content_title">年齢制限コンテンツを表示</string>
+    <string name="video_is_age_restricted">ビデオは年齢制限です。まず設定で年齢制限のビデオを有効にしてください。</string>
+
+    <string name="light_parsing_error">ウェブサイトを完全に解析できませんでした。</string>
+    <string name="could_not_get_stream">ストリームを取得できませんでした。</string>
+    <string name="sorry_string">申し訳ありません。発生すべきではありませんでした。</string>
+    <string name="error_report_button_text">メールでエラーを報告</string>
+    <string name="error_snackbar_message">申し訳ありません。いくつかのエラーが発生しました。</string>
+    <string name="error_snackbar_action">報告</string>
+    <string name="what_device_headline">情報:</string>
+    <string name="what_happened_headline">何が起こりましたか:</string>
+    <string name="info_labels">何:\\nリクエスト:\\nコンテンツの言語:\\nサービス:\\nGMT 時間:\\nバージョン:\\nOS バージョン:\\nグローバル IP の範囲:</string>
+    <string name="info_searched_lbl">検索結果:</string>
+    <string name="info_requested_stream_lbl">要求したストリーム:</string>
+    <string name="your_comment">あなたのコメント (英語で):</string>
+    <string name="error_details_headline">詳細:</string>
+
+
+    <string name="enable_background_audio">バックグラウンドで再生</string>
+    <string name="video">ビデオ</string>
+    <string name="audio">オーディオ</string>
+    <string name="text">テキスト</string>
+    <string name="logging">ログ</string>
+    <string name="logging_normal">標準</string>
+    <string name="logging_verbose">詳細</string>
+    <string name="retry">再試行</string>
+    <string name="off">[オフ]</string>
+    <string name="error_drm_not_supported">保護されたコンテンツは API レベル 18 未満でサポートされていません</string>
+    <string name="error_drm_unsupported_scheme">このデバイスは必要な DRM スキームをサポートしません</string>
+    <string name="error_drm_unknown">不明な DRM エラーが発生しました</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">このデバイスは <xliff:g id="mime_type">%1$s</xliff:g> のデコーダーが提供されていません</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">このデバイスは <xliff:g id="mime_type">%1$s</xliff:g> のセキュア デコーダーが提供されていません</string>
+    <string name="error_querying_decoders">デバイスのデコーダーを問い合わせできません</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">デコーダー <xliff:g id="decoder_name">%1$s</xliff:g> をインスタンス化できません</string>
+    <string name="storage_permission_denied">ストレージにアクセスするアクセス許可が拒否されました</string>
+    <string name="use_exoplayer_title">ExoPlayer を使用する</string>
+    <string name="use_exoplayer_summary">実験的</string>
+<string name="autoplay_by_calling_app_title">別のアプリから呼び出されたときに自動再生。</string>
+    <string name="autoplay_by_calling_app_summary">NewPipe が別のアプリから呼び出されたときに、自動的にビデオを再生します。</string>
+    <string name="report_error">エラーを報告</string>
+    <string name="user_report">ユーザー報告</string>
+
+    <string name="duration_live">ライブ</string>
 
     </resources>

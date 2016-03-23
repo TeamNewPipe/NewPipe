@@ -2,8 +2,9 @@ package org.schabi.newpipe;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -14,11 +15,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
+import org.schabi.newpipe.extractor.ExtractionException;
+import org.schabi.newpipe.extractor.SearchEngine;
+import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.StreamingService;
+
+import java.io.IOException;
 import java.util.ArrayList;
-
-import org.schabi.newpipe.crawler.VideoPreviewInfo;
-import org.schabi.newpipe.crawler.ServiceList;
+import java.util.Vector;
 
 /**
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
@@ -62,6 +68,10 @@ public class VideoItemListActivity extends AppCompatActivity
     private VideoItemDetailFragment videoFragment = null;
     private Menu menu = null;
 
+    private SuggestionListAdapter suggestionListAdapter;
+    private SuggestionSearchRunnable suggestionSearchRunnable;
+    private Thread searchThread;
+
     private class SearchVideoQueryListener implements SearchView.OnQueryTextListener {
 
         @Override
@@ -79,6 +89,8 @@ public class VideoItemListActivity extends AppCompatActivity
                             getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 } catch(NullPointerException e) {
                     Log.e(TAG, "Could not get widget with focus");
+                    Toast.makeText(VideoItemListActivity.this, "Could not get widget with focus",
+                            Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
                 // clear focus
@@ -90,18 +102,92 @@ public class VideoItemListActivity extends AppCompatActivity
             } catch(Exception e) {
                 e.printStackTrace();
             }
-            View bg = findViewById(R.id.mainBG);
-            bg.setVisibility(View.GONE);
             return true;
         }
 
         @Override
         public boolean onQueryTextChange(String newText) {
+            if(!newText.isEmpty()) {
+                searchSuggestions(newText);
+            }
             return true;
         }
 
     }
+    private class SearchSuggestionListener implements SearchView.OnSuggestionListener{
 
+        private SearchView searchView;
+
+        private SearchSuggestionListener(SearchView searchView) {
+            this.searchView = searchView;
+        }
+
+        @Override
+        public boolean onSuggestionSelect(int position) {
+            String suggestion = suggestionListAdapter.getSuggestion(position);
+            searchView.setQuery(suggestion,true);
+            return false;
+        }
+
+        @Override
+        public boolean onSuggestionClick(int position) {
+            String suggestion = suggestionListAdapter.getSuggestion(position);
+            searchView.setQuery(suggestion,true);
+            return false;
+        }
+    }
+
+    private class SuggestionResultRunnable implements Runnable{
+
+        private ArrayList<String>suggestions;
+
+        private SuggestionResultRunnable(ArrayList<String> suggestions) {
+            this.suggestions = suggestions;
+        }
+
+        @Override
+        public void run() {
+            suggestionListAdapter.updateAdapter(suggestions);
+        }
+    }
+
+    private class SuggestionSearchRunnable implements Runnable{
+        private final int serviceId;
+        private final String query;
+        final Handler h = new Handler();
+        private Context context;
+        private SuggestionSearchRunnable(int serviceId, String query) {
+            this.serviceId = serviceId;
+            this.query = query;
+            context = VideoItemListActivity.this;
+        }
+
+        @Override
+        public void run() {
+            try {
+                SearchEngine engine =
+                        ServiceList.getService(serviceId).getSearchEngineInstance(new Downloader());
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+                String searchLanguageKey = context.getString(R.string.search_language_key);
+                String searchLanguage = sp.getString(searchLanguageKey,
+                        getString(R.string.default_language_value));
+                ArrayList<String>suggestions = engine.suggestionList(query,searchLanguage,new Downloader());
+                h.post(new SuggestionResultRunnable(suggestions));
+            } catch (ExtractionException e) {
+                ErrorActivity.reportError(h, VideoItemListActivity.this, e, null, findViewById(R.id.videoitem_list),
+                        ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
+                                ServiceList.getNameOfService(serviceId), query, R.string.parsing_error));
+                e.printStackTrace();
+            } catch (IOException e) {
+                postNewErrorToast(h, R.string.network_error);
+                e.printStackTrace();
+            } catch (Exception e) {
+                ErrorActivity.reportError(h, VideoItemListActivity.this, e, null, findViewById(R.id.videoitem_list),
+                        ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
+                                ServiceList.getNameOfService(serviceId), query, R.string.general_error));
+            }
+        }
+    }
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
@@ -112,37 +198,23 @@ public class VideoItemListActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videoitem_list);
+        StreamingService streamingService = null;
 
-        View bg = findViewById(R.id.mainBG);
-        bg.setVisibility(View.VISIBLE);
-
-        //------ todo: remove this line when multiservice support is implemented ------
-        currentStreamingServiceId = ServiceList.getIdOfService("Youtube");
+        try {
+            //------ todo: remove this line when multiservice support is implemented ------
+            currentStreamingServiceId = ServiceList.getIdOfService("Youtube");
+            streamingService = ServiceList.getService(currentStreamingServiceId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ErrorActivity.reportError(VideoItemListActivity.this, e, null, findViewById(R.id.videoitem_list),
+                    ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
+                            ServiceList.getNameOfService(currentStreamingServiceId), "", R.string.general_error));
+        }
         //-----------------------------------------------------------------------------
         //to solve issue 38
         listFragment = (VideoItemListFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.videoitem_list);
-        listFragment.setStreamingService(ServiceList.getService(currentStreamingServiceId));
-
-        Bundle arguments = getIntent().getExtras();
-
-        if(arguments != null) {
-            //Parcelable[] p = arguments.getParcelableArray(VIDEO_INFO_ITEMS);
-            ArrayList<VideoPreviewInfo> p = arguments.getParcelableArrayList(VIDEO_INFO_ITEMS);
-            if(p != null) {
-                mode = PRESENT_VIDEOS_MODE;
-                try {
-                    //noinspection ConstantConditions
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                } catch (NullPointerException e) {
-                    Log.e(TAG, "Could not get SupportActionBar");
-                    e.printStackTrace();
-                }
-
-                listFragment.present(p);
-            }
-        }
-
+        listFragment.setStreamingService(streamingService);
 
         if(savedInstanceState != null
                 && mode != PRESENT_VIDEOS_MODE) {
@@ -173,7 +245,13 @@ public class VideoItemListActivity extends AppCompatActivity
                 // the support version on SearchView, so it needs to be set programmatically.
                 searchView.setIconifiedByDefault(false);
                 searchView.setIconified(false);
+                if(!searchQuery.isEmpty()) {
+                    searchView.setQuery(searchQuery,false);
+                }
                 searchView.setOnQueryTextListener(new SearchVideoQueryListener());
+                suggestionListAdapter = new SuggestionListAdapter(this);
+                searchView.setSuggestionsAdapter(suggestionListAdapter);
+                searchView.setOnSuggestionListener(new SearchSuggestionListener(searchView));
             } else {
                 searchView.setVisibility(View.GONE);
             }
@@ -198,14 +276,14 @@ public class VideoItemListActivity extends AppCompatActivity
                 getSupportFragmentManager()
                         .findFragmentById(R.id.videoitem_list))
                 .getListAdapter();
-        String webpage_url = listAdapter.getVideoList().get((int) Long.parseLong(id)).webpage_url;
+        String webpageUrl = listAdapter.getVideoList().get((int) Long.parseLong(id)).webpage_url;
         if (mTwoPane) {
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.
             Bundle arguments = new Bundle();
             //arguments.putString(VideoItemDetailFragment.ARG_ITEM_ID, id);
-            arguments.putString(VideoItemDetailFragment.VIDEO_URL, webpage_url);
+            arguments.putString(VideoItemDetailFragment.VIDEO_URL, webpageUrl);
             arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingServiceId);
             videoFragment = new VideoItemDetailFragment();
             videoFragment.setArguments(arguments);
@@ -224,7 +302,7 @@ public class VideoItemListActivity extends AppCompatActivity
             // for the selected item ID.
             Intent detailIntent = new Intent(this, VideoItemDetailActivity.class);
             //detailIntent.putExtra(VideoItemDetailFragment.ARG_ITEM_ID, id);
-            detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, webpage_url);
+            detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, webpageUrl);
             detailIntent.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingServiceId);
             startActivity(detailIntent);
         }
@@ -243,7 +321,13 @@ public class VideoItemListActivity extends AppCompatActivity
             searchView.setFocusable(false);
             searchView.setOnQueryTextListener(
                     new SearchVideoQueryListener());
-
+            suggestionListAdapter = new SuggestionListAdapter(this);
+            searchView.setSuggestionsAdapter(suggestionListAdapter);
+            searchView.setOnSuggestionListener(new SearchSuggestionListener(searchView));
+            if(!searchQuery.isEmpty()) {
+                searchView.setQuery(searchQuery,false);
+                searchView.setIconifiedByDefault(false);
+            }
         } else if (videoFragment != null){
             videoFragment.onCreateOptionsMenu(menu, inflater);
         } else {
@@ -269,6 +353,14 @@ public class VideoItemListActivity extends AppCompatActivity
                 startActivity(intent);
                 return true;
             }
+            case R.id.action_report_error: {
+                ErrorActivity.reportError(VideoItemListActivity.this, new Vector<Exception>(),
+                        null, null,
+                        ErrorActivity.ErrorInfo.make(ErrorActivity.USER_REPORT,
+                                ServiceList.getNameOfService(currentStreamingServiceId),
+                                "user_report", R.string.user_report));
+                return true;
+            }
             default:
                 return videoFragment.onOptionsItemSelected(item) ||
                     super.onOptionsItemSelected(item);
@@ -286,5 +378,23 @@ public class VideoItemListActivity extends AppCompatActivity
         */
         outState.putString(QUERY, searchQuery);
         outState.putInt(STREAMING_SERVICE, currentStreamingServiceId);
+    }
+
+    private void searchSuggestions(String query) {
+        suggestionSearchRunnable =
+                new SuggestionSearchRunnable(currentStreamingServiceId, query);
+        searchThread = new Thread(suggestionSearchRunnable);
+        searchThread.start();
+
+    }
+
+    private void postNewErrorToast(Handler h, final int stringResource) {
+        h.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(VideoItemListActivity.this, getString(stringResource),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

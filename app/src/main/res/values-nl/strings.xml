@@ -1,49 +1,113 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="view_count_text">%1$s keer bekeken</string>
     <string name="upload_date_text">Geüpload op %1$s</string>
-    <string name="no_player_found">Geen speler met streaming ondersteuning gevonden. Misschien wil je er een installeren.</string>
-    <string name="install">Installeer speler</string>
-    <string name="cancel">Annuleer</string>
-    <string name="open_in_browser">Open in browser</string>
-    <string name="share">Deel</string>
-    <string name="download">Download</string>
-    <string name="search">Zoek</string>
+    <string name="no_player_found">Geen speler met streamondersteuning gevonden. Wil je VLC installeren?</string>
+    <string name="install">Installeren</string>
+    <string name="cancel">Annuleren</string>
+    <string name="open_in_browser">In browser openen</string>
+    <string name="share">Delen</string>
+    <string name="download">Downloaden</string>
+    <string name="search">Zoeken</string>
     <string name="settings">Instellingen</string>
-    <string name="did_you_mean">Bedoelde je: </string>
+    <string name="did_you_mean">Bedoelde je: %1$s ?</string>
     <string name="search_page">Zoekpagina: </string>
-    <string name="share_dialog_title">Deel met:</string>
-    <string name="choose_browser">Kies browser:</string>
+    <string name="share_dialog_title">Delen met:</string>
+    <string name="choose_browser">Browser kiezen:</string>
     <string name="screen_rotation">rotatie</string>
     <string name="settings_activity_title">Instellingen</string>
     <string name="useExternalPlayerTitle">Gebruik externe speler</string>
-    <string name="download_path_title">Downloadlocatie</string>
-    <string name="download_path_summary">Locatie om gedownloadde videos in op te slaan.</string>
-    <string name="download_path_dialog_title">Voer downloadlocatie is</string>
+    <string name="download_path_title">Downloadlocatie voor video\'s</string>
+    <string name="download_path_summary">Locatie om gedownloade video\'s in op te slaan.</string>
+    <string name="download_path_dialog_title">Voer downloadlocatie in voor video\'s</string>
     <string name="autoplay_through_intent_title">Speel automatisch via Intent</string>
     <string name="autoplay_through_intent_summary">Speel een video automatisch af indien geopend vanuit een andere app.</string>
     <string name="default_resolution_title">Standaardresolutie</string>
-    <string name="play_with_kodi_title">Speel af met Kodi</string>
-    <string name="kore_not_found">Kore app niet gevonden. Kore is nodig om videos op Kodi af te spelen.</string>
+    <string name="play_with_kodi_title">Afspelen met Kodi</string>
+    <string name="kore_not_found">Kore-app niet gevonden. Kore installeren?</string>
     <string name="installeKore">Installeer Kore</string>
-    <string name="show_play_with_kodi_title">Toon \"Speel af met Kodi\" optie</string>
+    <string name="show_play_with_kodi_title">Toon \"Afspelen met Kodi\" optie</string>
     <string name="show_play_with_kodi_summary">Toont een optie om een video op een Kodi media center af te spelen.</string>
     <string name="play_audio">Audio</string>
-    <string name="default_audio_format_title">Standaard audio formaat</string>
-    <string name="webm_description">WebM &#8212; open formaat</string>
-    <string name="m4a_description">m4a &#8212; betere kwaliteit</string>
-    <string name="download_dialog_title">Download</string>
+    <string name="default_audio_format_title">Standaard audioformaat</string>
+    <string name="webm_description">WebM — vrij formaat</string>
+    <string name="m4a_description">m4a — betere kwaliteit</string>
+    <string name="download_dialog_title">Downloaden</string>
     <string name="next_video_title">Volgende video</string>
-    <string name="url_not_supported_toast">URL wordt niet ondersteund.</string>
-    <string name="similar_videos_btn_text">Vergelijkbare videos</string>
-    <string name="show_next_and_similar_title">Laat volgende en vergelijkbare videos zien</string>
-    <string name="search_language_title">Voorkeurs content taal</string>
-    <string name="use_external_video_player_title">Gebruik externe videospeler</string>
-    <string name="use_external_audio_player_title">Gebruik externe audiospeler</string>
-    <string name="settings_category_video_audio_title">Video &amp; Geluid</string>
+    <string name="url_not_supported_toast">URL wordt niet ondersteund</string>
+    <string name="similar_videos_btn_text">Vergelijkbare video\'s</string>
+    <string name="show_next_and_similar_title">Laat volgende en vergelijkbare video\'s zien</string>
+    <string name="search_language_title">Voorkeurstaal voor inhoud</string>
+    <string name="use_external_video_player_title">Externe videospeler gebruiken</string>
+    <string name="use_external_audio_player_title">Externe audiospeler gebruiken</string>
+    <string name="settings_category_video_audio_title">Video &amp; audio</string>
 
-    <string name="list_thumbnail_view_description">Videovoorbeeld thumbnail</string>
-    <string name="detail_thumbnail_view_description">Videovoorbeeld thumbnail</string>
-    <string name="detail_uploader_thumbnail_view_description">Uploader miniatuur</string>
-    <string name="detail_dislikes_img_view_description">Dislikes</string>
+    <string name="list_thumbnail_view_description">Videovoorbeeldminiatuur</string>
+    <string name="detail_thumbnail_view_description">Videovoorbeeldminiatuur</string>
+    <string name="detail_uploader_thumbnail_view_description">Uploaderminiatuur</string>
+    <string name="detail_dislikes_img_view_description">Duimpjes omlaag</string>
+    <string name="background_player_name">NewPipe-achtergrondspeler</string>
+    <string name="loading">Laden</string>
+    <string name="download_path_audio_title">Downloadlocatie voor audio</string>
+    <string name="download_path_audio_summary">Locatie om gedownloade muziek in op te slaan.</string>
+    <string name="download_path_audio_dialog_title">Voer downloadlocatie in voor audiobestanden.</string>
+
+    <string name="theme_title">Thema</string>
+    <string name="dark_theme_title">Donker</string>
+    <string name="light_theme_title">Licht</string>
+
+    <string name="settings_category_appearance_title">Uiterlijk</string>
+    <string name="settings_category_other_title">Overige</string>
+    <string name="background_player_playing_toast">Speelt af op achtergrond</string>
+    <string name="play_btn_text">Afspelen</string>
+    <string name="content">Inhoud</string>
+    <string name="show_age_restricted_content_title">Geef inhoud met leeftijdsbeperking weer</string>
+    <string name="video_is_age_restricted">Video heeft leeftijdsbeperking. Schakel leeftijdsbeperkte video\'s eerst in in de instellingen.</string>
+
+    <string name="general_error">Fout</string>
+    <string name="network_error">Netwerkfout</string>
+    <string name="could_not_load_thumbnails">Kon niet alle miniaturen laden</string>
+    <string name="youtube_signature_decryption_error">Kon video-URL-ondertekening niet ontsleutelen.</string>
+    <string name="parsing_error">Kon website niet verwerken.</string>
+    <string name="content_not_available">Inhoud niet beschikbaar.</string>
+    <string name="blocked_by_gema">Geblokkeerd door GEMA.</string>
+    <string name="could_not_setup_download_menu">Kon downloadmenu niet instellen.</string>
+    <string name="live_streams_not_supported">Dit is een LIVE STREAM. Deze worden nog niet ondersteund.</string>
+
+
+    <string name="detail_likes_img_view_description">Duimpjes omhoog</string>
+    <string name="use_tor_title">Gebruik Tor</string>
+    <string name="use_tor_summary">(Experimenteel) Dwing downloadverkeer door Tor voor verhoogde privacy (streamen van video\'s wordt nog niet ondersteund).</string>
+
+    <string name="err_dir_create">Kan downloadmap \'%1$s\' niet aanmaken</string>
+    <string name="info_dir_created">Downloadmap \'%1$s\' aangemaakt</string>
+<string name="light_parsing_error">Kon de website niet volledig inlezen.</string>
+    <string name="could_not_get_stream">Kon geen streams vinden.</string>
+    <string name="sorry_string">Sorry, dit zou niet moeten gebeuren.</string>
+    <string name="error_report_button_text">Rapporteer fout via e-mail</string>
+    <string name="error_snackbar_message">Excuses, er waren wat fouten.</string>
+    <string name="error_snackbar_action">RAPPORTEER</string>
+    <string name="what_device_headline">Info:</string>
+    <string name="what_happened_headline">Wat gebeurde:</string>
+    <string name="info_searched_lbl">Gezocht voor:</string>
+    <string name="info_requested_stream_lbl">Aangevraagde stream:</string>
+    <string name="your_comment">Uw opmerking (in het Engels):</string>
+    <string name="error_details_headline">Details:</string>
+
+
+    <string name="use_exoplayer_summary">Experimenteel</string>
+<string name="enable_background_audio">Speel op de achtergrond</string>
+    <string name="video">Video</string>
+    <string name="audio">Geluid</string>
+    <string name="text">Tekst</string>
+    <string name="logging_normal">Normaal</string>
+    <string name="logging_verbose">Uitgebreid</string>
+    <string name="retry">Opnieuw proberen</string>
+    <string name="off">[uit]</string>
+    <string name="error_drm_not_supported">Beschermde inhoud niet ondersteunt op API versies lager dan 18</string>
+    <string name="error_drm_unsupported_scheme">Dit apparaat ondersteunt niet het vereiste DRM-schema</string>
+    <string name="error_drm_unknown">Een onbekende DRM-fout heeft zich voorgedaan</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Dit apparaat heeft geen decoder voor <xliff:g id="mime_type"> 1%1$s</xliff:g> 2</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Dit apparaat heeft geen veilige decoder voor<xliff:g id="mime_type"> 1%1$s</xliff:g></string>
+    <string name="error_querying_decoders">Kon apparaatdecoders niet ophalen</string>
     </resources>

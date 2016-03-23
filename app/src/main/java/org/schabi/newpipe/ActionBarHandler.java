@@ -1,24 +1,19 @@
 package org.schabi.newpipe;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
-import org.schabi.newpipe.crawler.MediaFormat;
-import org.schabi.newpipe.crawler.VideoInfo;
+import org.schabi.newpipe.extractor.MediaFormat;
+import org.schabi.newpipe.extractor.StreamInfo;
+import org.schabi.newpipe.extractor.VideoStream;
 
 import java.util.List;
 
@@ -51,13 +46,16 @@ class ActionBarHandler {
 
     private SharedPreferences defaultPreferences = null;
 
+    private Menu menu;
+
     // Only callbacks are listed here, there are more actions which don't need a callback.
     // those are edited directly. Typically VideoItemDetailFragment will implement those callbacks.
-    private OnActionListener onShareListener;
-    private OnActionListener onOpenInBrowserListener;
-    private OnActionListener onDownloadListener;
-    private OnActionListener onPlayWithKodiListener;
-    private OnActionListener onPlayAudioListener;
+    private OnActionListener onShareListener = null;
+    private OnActionListener onOpenInBrowserListener = null;
+    private OnActionListener onDownloadListener = null;
+    private OnActionListener onPlayWithKodiListener = null;
+    private OnActionListener onPlayAudioListener = null;
+
 
     // Triggered when a stream related action is triggered.
     public interface OnActionListener {
@@ -78,7 +76,7 @@ class ActionBarHandler {
         }
     }
 
-    public void setupStreamList(final List<VideoInfo.VideoStream> videoStreams) {
+    public void setupStreamList(final List<VideoStream> videoStreams) {
         if (activity != null) {
             selectedVideoStream = 0;
 
@@ -86,7 +84,7 @@ class ActionBarHandler {
             // this array will be shown in the dropdown menu for selecting the stream/resolution.
             String[] itemArray = new String[videoStreams.size()];
             for (int i = 0; i < videoStreams.size(); i++) {
-                VideoInfo.VideoStream item = videoStreams.get(i);
+                VideoStream item = videoStreams.get(i);
                 itemArray[i] = MediaFormat.getNameById(item.format) + " " + item.resolution;
             }
             int defaultResolution = getDefaultResolution(videoStreams);
@@ -111,13 +109,13 @@ class ActionBarHandler {
     }
 
 
-    private int getDefaultResolution(final List<VideoInfo.VideoStream> videoStreams) {
+    private int getDefaultResolution(final List<VideoStream> videoStreams) {
         String defaultResolution = defaultPreferences
                 .getString(activity.getString(R.string.default_resolution_key),
                         activity.getString(R.string.default_resolution_value));
 
         for (int i = 0; i < videoStreams.size(); i++) {
-            VideoInfo.VideoStream item = videoStreams.get(i);
+            VideoStream item = videoStreams.get(i);
             if (defaultResolution.equals(item.resolution)) {
                 return i;
             }
@@ -128,15 +126,15 @@ class ActionBarHandler {
     }
 
     public void setupMenu(Menu menu, MenuInflater inflater) {
+        this.menu = menu;
+
         // CAUTION set item properties programmatically otherwise it would not be accepted by
         // appcompat itemsinflater.inflate(R.menu.videoitem_detail, menu);
 
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
-
         inflater.inflate(R.menu.videoitem_detail, menu);
-        MenuItem castItem = menu.findItem(R.id.action_play_with_kodi);
 
-        castItem.setVisible(defaultPreferences
+        showPlayWithKodiAction(defaultPreferences
                 .getBoolean(activity.getString(R.string.show_play_with_kodi_key), false));
     }
 
@@ -151,15 +149,21 @@ class ActionBarHandler {
                     intent.setType("text/plain");
                     activity.startActivity(Intent.createChooser(intent, activity.getString(R.string.share_dialog_title)));
                     */
-                onShareListener.onActionSelected(selectedVideoStream);
+                if(onShareListener != null) {
+                    onShareListener.onActionSelected(selectedVideoStream);
+                }
                 return true;
             }
             case R.id.menu_item_openInBrowser: {
-                onOpenInBrowserListener.onActionSelected(selectedVideoStream);
+                if(onOpenInBrowserListener != null) {
+                    onOpenInBrowserListener.onActionSelected(selectedVideoStream);
+                }
             }
             return true;
             case R.id.menu_item_download:
-                onDownloadListener.onActionSelected(selectedVideoStream);
+                if(onDownloadListener != null) {
+                    onDownloadListener.onActionSelected(selectedVideoStream);
+                }
                 return true;
             case R.id.action_settings: {
                 Intent intent = new Intent(activity, SettingsActivity.class);
@@ -167,10 +171,14 @@ class ActionBarHandler {
                 return true;
             }
             case R.id.action_play_with_kodi:
-                onPlayWithKodiListener.onActionSelected(selectedVideoStream);
+                if(onPlayWithKodiListener != null) {
+                    onPlayWithKodiListener.onActionSelected(selectedVideoStream);
+                }
                 return true;
             case R.id.menu_item_play_audio:
-                onPlayAudioListener.onActionSelected(selectedVideoStream);
+                if(onPlayAudioListener != null) {
+                    onPlayAudioListener.onActionSelected(selectedVideoStream);
+                }
                 return true;
             default:
                 Log.e(TAG, "Menu Item not known");
@@ -200,5 +208,17 @@ class ActionBarHandler {
 
     public void setOnPlayAudioListener(OnActionListener listener) {
         onPlayAudioListener = listener;
+    }
+
+    public void showAudioAction(boolean visible) {
+        menu.findItem(R.id.menu_item_play_audio).setVisible(visible);
+    }
+
+    public void showDownloadAction(boolean visible) {
+        menu.findItem(R.id.menu_item_download).setVisible(visible);
+    }
+
+    public void showPlayWithKodiAction(boolean visible) {
+        menu.findItem(R.id.action_play_with_kodi).setVisible(visible);
     }
 }

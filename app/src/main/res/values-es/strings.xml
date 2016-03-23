@@ -1,8 +1,8 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="view_count_text">%1$s visitas</string>
     <string name="upload_date_text">Subido el %1$s</string>
-    <string name="no_player_found">No se ha encontrado ningún reproductor de vídeo. Quizás quieras instalar alguno.</string>
+    <string name="no_player_found">No se ha encontrado ningún reproductor de vídeo. Quizás quieras instalar alguno. Deseas instalar VLC?</string>
     <string name="install">Instalarlo</string>
     <string name="cancel">Cancelar</string>
     <string name="open_in_browser">Abrir en el navegador</string>
@@ -17,14 +17,14 @@
     <string name="screen_rotation">rotación</string>
     <string name="settings_activity_title">Ajustes</string>
     <string name="useExternalPlayerTitle">Usar reproductor externo</string>
-    <string name="download_path_title">Descargar en…</string>
+    <string name="download_path_title">Ruta de descarga de video</string>
     <string name="download_path_summary">Ruta donde guardar los vídeos descargados.</string>
-    <string name="download_path_dialog_title">Localización del directorio de descargas</string>
-    <string name="autoplay_through_intent_title">Reproducción automática</string>
-    <string name="autoplay_through_intent_summary">Reproducir los vídeos automaticamente cuando se llama desde otra aplicación.</string>
+    <string name="download_path_dialog_title">Ingrese el directorio de descargas para videos</string>
+    <string name="autoplay_through_intent_title">Intentar reproducción automática</string>
+    <string name="autoplay_through_intent_summary">Reproducir vídeos automáticamente cuando se llamen desde otra aplicación.</string>
     <string name="default_resolution_title">Resolución por defecto</string>
     <string name="play_with_kodi_title">Reproducir con Kodi</string>
-    <string name="kore_not_found">Aplicación Kore no encontrada. Kore es necesario para reproducir vídeos con Kodi media center.</string>
+    <string name="kore_not_found">Aplicación Kore no encontrada. Kore es necesario para reproducir vídeos con Kodi media center. Instalar Kore?</string>
     <string name="installeKore">Instalar Kore</string>
     <string name="show_play_with_kodi_title">Mostrar la opción \"Reproducir con Kodi\"</string>
     <string name="show_play_with_kodi_summary">Muestra una opción para reproducir el vídeo con Kodi media center.</string>
@@ -34,8 +34,51 @@
     <string name="m4a_description">m4a — mejor calidad</string>
     <string name="download_dialog_title">Descargar</string>
     <string name="next_video_title">Siguiente vídeo</string>
-    <string name="url_not_supported_toast">URL no soportada.</string>
+    <string name="url_not_supported_toast">URL no soportada</string>
     <string name="similar_videos_btn_text">Vídeos similares</string>
 <string name="background_player_name">Reproductor de fondo NewPipe</string>
     <string name="loading">Cargando</string>
+    <string name="use_external_video_player_title">Usar un reproductor de vídeo externo</string>
+    <string name="use_external_audio_player_title">Usar un reproductor de audio externo</string>
+
+    <string name="theme_title">Tema</string>
+    <string name="dark_theme_title">Oscuro</string>
+    <string name="light_theme_title">Claro</string>
+
+    <string name="settings_category_appearance_title">Apariencia</string>
+    <string name="settings_category_other_title">Otro</string>
+    <string name="background_player_playing_toast">Reproduciendo en Segundo plano</string>
+    <string name="content_not_available">Contenido no disponible.</string>
+    <string name="use_tor_title">Usar Tor</string>
+    <string name="use_tor_summary">Forzar la descarga a través de Tor para una mayor privacidad (transmisión de videos aún no es compatible)</string>
+
+    <string name="err_dir_create">No se puede crear la carpeta de descarga \'%1$s\'</string>
+    <string name="info_dir_created">Capeta de descarga creada \'%1$s\'</string>
+<string name="download_path_audio_summary">Ruta para almacenar el audio descargado.</string>
+    <string name="download_path_audio_dialog_title">Ingrese la ruta de descarga para los archivos de audio.</string>
+
+    <string name="blocked_by_gema">Bloqueado por GEMA.</string>
+
+    <string name="download_path_audio_title">Ruta de descarga de audio</string>
+    <string name="settings_category_video_audio_title">Video &amp; Audio</string>
+    <string name="play_btn_text">Reproducir</string>
+    <string name="general_error">Error</string>
+    <string name="network_error">Error de Conexión</string>
+    <string name="could_not_load_thumbnails">No se pudo cargar las miniaturas</string>
+    <string name="youtube_signature_decryption_error">No se pudo descifrar la url del video.</string>
+    <string name="parsing_error">No se pudo analizar el sitio web.</string>
+    <string name="show_next_and_similar_title">Mostrar videos similares</string>
+    <string name="search_language_title">Idioma del contenido</string>
+    <string name="list_thumbnail_view_description">Vista previa del video</string>
+    <string name="detail_thumbnail_view_description">Vista previa del video</string>
+    <string name="detail_likes_img_view_description">Me gusta</string>
+    <string name="detail_dislikes_img_view_description">No me gusta</string>
+    <string name="detail_uploader_thumbnail_view_description">Foto miniatura del usuario</string>
+    <string name="live_streams_not_supported">Esta es una transmisión en Vivo. Todavía no es compatible.</string>
+
+
+    <string name="content">Contenido</string>
+    <string name="show_age_restricted_content_title">Mostrar contenido con restricción de edad</string>
+    <string name="video_is_age_restricted">El video tiene restricción de edad.Habilite los videos con restricción de edad en configuración.</string>
+
     </resources>

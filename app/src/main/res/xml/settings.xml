@@ -33,6 +33,11 @@
             android:entryValues="@array/audio_format_list"
             android:defaultValue="@string/default_audio_format_value"/>
 
+        <CheckBoxPreference
+            android:key="@string/use_exoplayer_key"
+            android:title="@string/use_exoplayer_title"
+            android:summary="@string/use_exoplayer_summary"
+            android:defaultValue="false"/>
     </PreferenceCategory>
     <PreferenceCategory
         android:key="@string/settings_category_appearance"
@@ -63,8 +68,8 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:key="@string/settings_category_other"
-        android:title="@string/settings_category_other_title"
+        android:key="@string/settings_content_options"
+        android:title="@string/content"
         android:textAllCaps="true">
 
         <ListPreference
@@ -74,6 +79,18 @@
             android:entries="@array/language_names"
             android:entryValues="@array/language_codes"
             android:defaultValue="@string/default_language_value" />
+
+        <CheckBoxPreference
+            android:key="@string/show_age_restricted_content"
+            android:title="@string/show_age_restricted_content_title"
+            android:defaultValue="false"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="@string/settings_category_other"
+        android:title="@string/settings_category_other_title"
+        android:textAllCaps="true">
 
         <EditTextPreference
             android:key="@string/download_path_key"
@@ -89,8 +106,8 @@
 
         <CheckBoxPreference
             android:key="@string/autoplay_through_intent_key"
-            android:title="@string/autoplay_through_intent_title"
-            android:summary="@string/autoplay_through_intent_summary"
+            android:title="@string/autoplay_by_calling_app_title"
+            android:summary="@string/autoplay_by_calling_app_summary"
             android:defaultValue="false" />
 
         <CheckBoxPreference

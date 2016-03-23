@@ -1,2 +1,82 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="background_player_name">Player NewPipe de fundal</string>
+    <string name="view_count_text">%1$s vizionări</string>
+    <string name="upload_date_text">Încărcat pe %1$s</string>
+    <string name="no_player_found">Niciun player pentru stream-uri găsit. Instalați VLC?</string>
+    <string name="install">Instalare</string>
+    <string name="cancel">Anulare</string>
+    <string name="open_in_browser">Deschidere în browser</string>
+    <string name="share">Partajează</string>
+    <string name="loading">Se încarcă</string>
+    <string name="download">Descărcare</string>
+    <string name="search">Căutare</string>
+    <string name="settings">Setări</string>
+    <string name="did_you_mean">"V-ați referit la: "</string>
+    <string name="search_page">"Pagina de căutare: "</string>
+    <string name="share_dialog_title">Partajează cu:</string>
+    <string name="choose_browser">Alegeți browser-ul:</string>
+    <string name="screen_rotation">rotație</string>
+    <string name="settings_activity_title">Setări</string>
+    <string name="use_external_video_player_title">Folosește un player video extern</string>
+    <string name="use_external_audio_player_title">Folosește un player audio extern</string>
+
+    <string name="download_path_title">Descărcați calea videoclipului</string>
+    <string name="download_path_summary">Locul în care se vor stoca videoclipurile descărcate.</string>
+    <string name="download_path_dialog_title">Introduceți locul în care se vor descărca videoclipurile</string>
+
+    <string name="download_path_audio_title">Descărcați calea audio-ului</string>
+    <string name="download_path_audio_summary">Locul în care se vor stoca fișierele audio descărcate.</string>
+    <string name="download_path_audio_dialog_title">Introduceți calea de descărcare pentru fișierele audio.</string>
+
+    <string name="autoplay_through_intent_title">Redare automată intenționată</string>
+    <string name="autoplay_through_intent_summary">Redați automat un videoclip atunci când este chemat din altă aplicație.</string>
+    <string name="default_resolution_title">Rezoluție de bază</string>
+    <string name="play_with_kodi_title">Redați folosind Kodi</string>
+    <string name="kore_not_found">Aplicația Kore nu a fost găsită. Instalați Kore?</string>
+    <string name="show_play_with_kodi_title">Arată opțiunea \"Redați folosind Kodi\"</string>
+    <string name="show_play_with_kodi_summary">Arătați o opțiune de redare a videoclipurilor via centrului media Kodi.</string>
+    <string name="play_audio">Audio</string>
+    <string name="default_audio_format_title">Format audio de bază</string>
+    <string name="info_dir_created">Directorul de descărcare \'%1$s\' a fost creat</string>
+<string name="webm_description">WebM — format liber</string>
+    <string name="m4a_description">m4a — calitate superioară</string>
+    <string name="theme_title">Temă</string>
+    <string name="dark_theme_title">Întunecat</string>
+    <string name="light_theme_title">Luminos</string>
+
+    <string name="download_dialog_title">Descărcați</string>
+    <string name="next_video_title">Următorul videoclip</string>
+    <string name="show_next_and_similar_title">Arată videoclipurile care urmează și pe cele similare</string>
+    <string name="url_not_supported_toast">URL nesuportat</string>
+    <string name="similar_videos_btn_text">Videoclipuri similare</string>
+    <string name="search_language_title">Limba dorită a conținutului</string>
+    <string name="settings_category_video_audio_title">Video &amp; Audio</string>
+    <string name="settings_category_appearance_title">Aspect</string>
+    <string name="settings_category_other_title">Altele</string>
+    <string name="background_player_playing_toast">Redare în fundal</string>
+    <string name="play_btn_text">Redați</string>
+    <string name="content">Conținut</string>
+    <string name="show_age_restricted_content_title">Arată conținutul restricționat în funcție de vârstă</string>
+    <string name="video_is_age_restricted">Videoclipul este restricționat în funcție de vârstă. Activați din setări videoclipurile restricționate în funcție de vârstă.</string>
+
+    <string name="general_error">Eroare</string>
+    <string name="network_error">Eroare de rețea</string>
+    <string name="could_not_load_thumbnails">Nu s-au putut încărca toate Thumbnail-urile</string>
+    <string name="youtube_signature_decryption_error">Nu s-a putut decripta semnătura URL a videoclipului.</string>
+    <string name="parsing_error">Nu s-a putut analiza website-ul.</string>
+    <string name="content_not_available">Conținut indisponibil.</string>
+    <string name="blocked_by_gema">Blocat de către GEMA.</string>
+    <string name="could_not_setup_download_menu">Nu s-a putut seta meniul de descărcare.</string>
+    <string name="live_streams_not_supported">Acesta este un LIVE STREAM. Acestea nu sunt încă suportate.</string>
+
+
+    <string name="list_thumbnail_view_description">Thumbnail de previzualizare al videoclipului</string>
+    <string name="detail_thumbnail_view_description">Thumbnail de previzualizare al videoclipului</string>
+    <string name="detail_uploader_thumbnail_view_description">Thumbnail-ul pentru userpicul persoanei care a încărcat videoclipul</string>
+    <string name="detail_likes_img_view_description">Au apreciat</string>
+    <string name="detail_dislikes_img_view_description">Nu au apreciat</string>
+    <string name="use_tor_title">Folosiți Tor</string>
+    <string name="use_tor_summary">Forțați descărcarea traficului prin Tor pentru intimitate crescută (transmiterea în flux a videoclipurilor nu este deocamdată suportată).</string>
+
+    <string name="err_dir_create">Nu s-a putut crea directorul de descărcare \'%1$s\'</string>
+    </resources>

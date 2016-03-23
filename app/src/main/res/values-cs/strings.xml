@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="upload_date_text">Publikováno %1$s</string>
+    <string name="no_player_found">Žádný přehrávač nenalezen. Nainstalovat VLC?</string>
+    <string name="install">Instalovat</string>
+    <string name="cancel">Zrušit</string>
+    <string name="open_in_browser">Otevřít v prohlížeči</string>
+    <string name="share">Sdílet</string>
+    <string name="loading">Načítám</string>
+    <string name="download">Stáhnout</string>
+    <string name="search">Vyhledat</string>
+    <string name="settings">Nastavení</string>
+    <string name="did_you_mean">Měli jste na mysli: %1$s?</string>
+    <string name="search_page">"Vyhledat stránku: "</string>
+    <string name="share_dialog_title">Sdílet s:</string>
+    <string name="choose_browser">Vybrat prohlížeč:</string>
+    <string name="screen_rotation">otočení</string>
+    <string name="settings_activity_title">Nastavení</string>
+    <string name="use_external_video_player_title">Použít externí video přehrávač</string>
+    <string name="use_external_audio_player_title">Použít externí audio přehrávač</string>
+
+    <string name="download_path_audio_summary">Cesta, kde se uloží audio po stažení.</string>
+    <string name="download_path_audio_dialog_title">Zadejte umístění pro uložení audio souborů.</string>
+
+    <string name="download_path_audio_title">Umístění pro stažené audio</string>
+    <string name="autoplay_through_intent_title">Automatické přehrávání skrze Intent</string>
+    <string name="autoplay_through_intent_summary">Automaticky přehrávat video, jestliže je volané z jiné aplikace.</string>
+    <string name="default_resolution_title">Výchozí rozlišení</string>
+    <string name="play_with_kodi_title">Přehrát s Kodi</string>
+    <string name="kore_not_found">Aplikace Kore nenalezena. Nainstalovat Kore?</string>
+    <string name="view_count_text">%1$s zhlédnutí</string>
+    <string name="background_player_name">NewPipe Přehrávač na pozadí</string>
+    <string name="download_path_title">Umístění pro stažené video</string>
+    <string name="download_path_summary">Cesta, kde se uloží video po stažení.</string>
+    <string name="download_path_dialog_title">Zadejte umístění pro uložená videa</string>
+
+    <string name="show_play_with_kodi_title">Zobrazit možnost \"Přehrát s Kodi\"</string>
+    <string name="show_play_with_kodi_summary">Zobrazit možnost přehrát video s multimediálním centrem Kodi.</string>
+    <string name="play_audio">Audio</string>
+    <string name="default_audio_format_title">Výchozí audio formát</string>
+    <string name="webm_description">WebM — svobodný formát</string>
+    <string name="m4a_description">m4a — lepší kvalita</string>
+    <string name="theme_title">Téma</string>
+    <string name="dark_theme_title">Tmavý</string>
+    <string name="light_theme_title">Světlý</string>
+
+    <string name="download_dialog_title">Stažení</string>
+    <string name="next_video_title">Následující video</string>
+    <string name="show_next_and_similar_title">Zobrazit následující a související videa</string>
+    <string name="url_not_supported_toast">URL není podporováno</string>
+    <string name="similar_videos_btn_text">Související videa</string>
+    <string name="search_language_title">Preferovaný jazyk obsahu</string>
+    <string name="settings_category_video_audio_title">Video &amp; audio</string>
+    <string name="settings_category_appearance_title">Vzhled</string>
+    <string name="settings_category_other_title">Ostatní</string>
+    <string name="background_player_playing_toast">Přehrávám na pozadí</string>
+    <string name="play_btn_text">Přehrát</string>
+    <string name="general_error">Chyba</string>
+    <string name="network_error">Chyba sítě</string>
+    <string name="could_not_load_thumbnails">Nebylo možné stáhnout všechny náhledy</string>
+    <string name="youtube_signature_decryption_error">Nebylo možné dekódovat URL videa.</string>
+    <string name="parsing_error">Nebylo možné analyzovat webovou stránku.</string>
+    <string name="content_not_available">Obsah není k dispozici.</string>
+    <string name="blocked_by_gema">Obsah blokuje GEMA.</string>
+
+    <string name="list_thumbnail_view_description">Náhled videa</string>
+    <string name="detail_thumbnail_view_description">Náhled videa</string>
+    <string name="detail_uploader_thumbnail_view_description">Náhled uploadera</string>
+    <string name="detail_likes_img_view_description">To se mi líbí</string>
+    <string name="detail_dislikes_img_view_description">To se mi nelíbí</string>
+    <string name="use_tor_title">Použít Tor</string>
+    <string name="use_tor_summary">Vynutit stahování skrz Tor pro zvýšené soukromí (streaming není zatím podporován)</string>
+
+    <string name="err_dir_create">Nebylo možné vytvořit složku pro stažené soubory \'%1$s\'</string>
+    <string name="info_dir_created">Vytvořena složka pro stažené soubory \'%1$s\'</string>
+<string name="autoplay_by_calling_app_title">Automaticky přehrávat při otevření z jiné aplikace.</string>
+    <string name="autoplay_by_calling_app_summary">Automaticky přehrát video, když je NewPipe otevřen z jiné aplikace.</string>
+    <string name="content">Obsah</string>
+    <string name="show_age_restricted_content_title">Zobrazovat věkově omezený obsah</string>
+    <string name="video_is_age_restricted">Toto video je věkově omezeno. Povolte věkově omezená video v nastavení.</string>
+    <string name="duration_live">živě</string>
+
+    <string name="light_parsing_error">Nemůžu kompletně parsovat web.</string>
+    </resources>

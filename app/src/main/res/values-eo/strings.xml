@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="background_player_name">NewPipe-fonludilo</string>
+    <string name="view_count_text">%1$s vidoj</string>
+    <string name="upload_date_text">Alŝultita je %1$s</string>
+    <string name="install">Instali</string>
+    <string name="cancel">Nuligi</string>
+    <string name="open_in_browser">Malfermi per retumilo</string>
+    <string name="share">Konigi</string>
+    <string name="loading">Ŝargado</string>
+    <string name="download">Elŝuti</string>
+    <string name="search">Serĉi</string>
+    <string name="settings">Agordoj</string>
+    <string name="did_you_mean">"Ĉu vi intencis: "</string>
+    <string name="search_page">"Serĉpaĝo: "</string>
+    <string name="share_dialog_title">Konigi kun:</string>
+    <string name="choose_browser">Elekti retumilon:</string>
+    <string name="screen_rotation">turno</string>
+    <string name="settings_activity_title">Agordoj</string>
+    <string name="use_external_video_player_title">Uzi eksteran videoludilon</string>
+    <string name="use_external_audio_player_title">Uzi eksteran sonludilon</string>
+
+    <string name="default_resolution_title">Defaŭlta distingivo</string>
+    <string name="play_with_kodi_title">Ludi per Kodi</string>
+    <string name="show_play_with_kodi_title">Montri \"Ludi per Kodi\"-opcion</string>
+    <string name="play_audio">Sono</string>
+    <string name="default_audio_format_title">Defaŭlta sondosierformo</string>
+    <string name="webm_description">WebM — libera dosierformo</string>
+    <string name="m4a_description">m4a — pli bona kvalito</string>
+    <string name="theme_title">Etoso</string>
+    <string name="dark_theme_title">Malluma</string>
+    <string name="light_theme_title">Luma</string>
+
+    <string name="download_dialog_title">Elŝuti</string>
+    <string name="next_video_title">Sekva video</string>
+    <string name="url_not_supported_toast">Ligilo ne subtenita</string>
+    <string name="similar_videos_btn_text">Similaj videoj</string>
+    <string name="search_language_title">Preferata enhavlingvo</string>
+    <string name="settings_category_video_audio_title">Video kaj sono</string>
+    <string name="settings_category_appearance_title">Apero</string>
+    <string name="settings_category_other_title">Alia</string>
+    <string name="background_player_playing_toast">Ludado fone</string>
+    <string name="play_btn_text">Ludi</string>
+    <string name="general_error">Eraro</string>
+    <string name="network_error">Reteraro</string>
+    <string name="content_not_available">Enhavo ne estas disponebla.</string>
+    <string name="blocked_by_gema">Blokita de GEMA.</string>
+
+    <string name="detail_likes_img_view_description">Ŝatoj</string>
+    <string name="detail_dislikes_img_view_description">Malŝatoj</string>
+    <string name="use_tor_title">Uzi la programon Tor</string>
+    <string name="autoplay_through_intent_title">Ludi aŭtomate per Intent</string>
+    <string name="no_player_found">Neniu elsendlflua ludilo trovita. Ĉu instali la aplikaĵon VLC?</string>
+    <string name="kore_not_found">La aplikaĵo Kore ne estas trovita. Ĉu instali la aplikaĵon Kore?</string>
+    <string name="show_next_and_similar_title">Montri la sekvan videon kaj similajn videojn</string>
+    <string name="could_not_load_thumbnails">Ĉiuj miniaturoj ne ŝargeblas</string>
+    <string name="youtube_signature_decryption_error">La subskribo de la ligilo de la video ne malĉifreblas.</string>
+    <string name="parsing_error">La retejo ne analizeblas.</string>
+    <string name="list_thumbnail_view_description">Miniaturo de la antaŭrigardo de la video</string>
+    <string name="detail_thumbnail_view_description">Miniaturo de la antaŭrigardo de la video</string>
+    <string name="detail_uploader_thumbnail_view_description">Miniaturo de la bildo de la alŝutinto</string>
+    <string name="err_dir_create">La elŝutujo \'%1$s\' ne kreeblas</string>
+    <string name="info_dir_created">Elŝutujo \'%1$s\' kreita</string>
+<string name="download_path_title">Elŝutujo por videoj</string>
+    <string name="download_path_audio_title">Elŝutujo por muziko</string>
+    <string name="use_tor_summary">Devigi elŝuttrafikon tra Tor por pli bona privateco (elsendfluaj videoj estas ankoraŭ ne subtenitaj)</string>
+
+    <string name="show_play_with_kodi_summary">Montri opcion por ludi videon per la aplikaĵo Kodi.</string>
+    <string name="download_path_summary">Dosierujo por konservi elŝutitajn videojn.</string>
+    <string name="download_path_audio_summary">Dosierujo por konservi elŝutitan muzikon.</string>
+    <string name="autoplay_through_intent_summary">Ludi videon aŭtomate kiam ĝi estas vokita de alia aplikaĵo.</string>
+    <string name="download_path_dialog_title">Elektu lokon por konservi elŝutitajn videojn</string>
+
+    <string name="download_path_audio_dialog_title">Elektu lokon por konservi elŝutitan muzikon.</string>
+
+    </resources>

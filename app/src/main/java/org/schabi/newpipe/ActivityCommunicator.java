@@ -22,10 +22,12 @@ package org.schabi.newpipe;
 
 import android.graphics.Bitmap;
 
+import java.util.List;
+
 /**
  * Singleton:
  * Used to send data between certain Activity/Services within the same process.
- * This can be considered as hack inside the Android universe. **/
+ * This can be considered as an ugly hack inside the Android universe. **/
 public class ActivityCommunicator {
 
     private static ActivityCommunicator activityCommunicator = null;
@@ -39,4 +41,9 @@ public class ActivityCommunicator {
 
     // Thumbnail send from VideoItemDetailFragment to BackgroundPlayer
     public volatile Bitmap backgroundPlayerThumbnail;
+
+    // Sent from any activity to ErrorActivity.
+    public volatile List<Exception> errorList;
+    public volatile Class returnActivity;
+    public volatile ErrorActivity.ErrorInfo errorInfo;
 }

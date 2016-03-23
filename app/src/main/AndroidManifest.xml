@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="org.schabi.newpipe" >
-    <uses-permission android:name= "android.permission.INTERNET" />
-    <uses-permission android:name= "android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    package="org.schabi.newpipe">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:logo="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:logo="@mipmap/ic_launcher"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
         <activity
             android:name=".VideoItemListActivity"
-            android:label="@string/app_name"
-            android:configChanges="orientation|screenSize">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,9 +28,7 @@
         <activity
             android:name=".VideoItemDetailActivity"
             android:label="@string/title_videoitem_detail"
-            android:theme="@style/AppTheme"
-            android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait">
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".VideoItemListActivity" />
@@ -49,6 +48,7 @@
                 <data android:host="www.youtube.com" />
                 <data android:pathPrefix="/v/" />
                 <data android:pathPrefix="/watch" />
+                <data android:pathPrefix="/attribution_link" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -75,20 +75,40 @@
                 <data android:scheme="vnd.youtube.launch" />
             </intent-filter>
         </activity>
-        <activity android:name=".PlayVideoActivity"
+        <activity
+            android:name=".player.PlayVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/VideoPlayerTheme"
-            android:parentActivityName=".VideoItemDetailActivity"
-            tools:ignore="UnusedAttribute">
+            tools:ignore="UnusedAttribute"/>
+        <service
+            android:name=".player.BackgroundPlayer"
+            android:exported="false"
+            android:label="@string/background_player_name"/>
+		<activity
+            android:name=".player.ExoPlayerActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance"
+            android:theme="@style/PlayerTheme">
+            <intent-filter>
+                <action android:name="org.schabi.newpipe.exoplayer.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="content" />
+                <data android:scheme="asset" />
+                <data android:scheme="file" />
+            </intent-filter>
         </activity>
         <service
-            android:name=".BackgroundPlayer"
+            android:name=".player.BackgroundPlayer"
             android:label="@string/background_player_name"
             android:exported="false" />
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/settings_activity_title" >
-        </activity>
+            android:label="@string/settings_activity_title" />
         <activity
             android:name=".PanicResponderActivity"
             android:launchMode="singleInstance"
@@ -96,11 +116,14 @@
             android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
                 <action android:name="info.guardianproject.panic.action.TRIGGER" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ExitActivity"
+            android:label="@string/general_error"
             android:theme="@android:style/Theme.NoDisplay" />
+        <activity android:name=".ErrorActivity"/>
     </application>
 </manifest>

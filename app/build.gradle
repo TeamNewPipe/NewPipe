@@ -8,8 +8,8 @@ android {
         applicationId "org.schabi.newpipe"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 13
-        versionName "0.7.4"
+        versionCode 16
+        versionName "0.7.7"
     }
     buildTypes {
         release {
@@ -32,14 +32,16 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:support-v4:23.1.1'
-    compile 'com.android.support:design:23.1.1'
-    compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.2.0'
+    compile 'com.android.support:support-v4:23.2.0'
+    compile 'com.android.support:design:23.2.0'
+    compile 'com.android.support:recyclerview-v7:23.2.0'
     compile 'org.jsoup:jsoup:1.8.3'
     compile 'org.mozilla:rhino:1.7.7'
     compile 'info.guardianproject.netcipher:netcipher:1.2'
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'com.github.nirhart:parallaxscroll:1.0'
+    compile 'org.apache.directory.studio:org.apache.commons.lang:2.6'
+    compile 'com.google.android.exoplayer:exoplayer:r1.5.5'
 }

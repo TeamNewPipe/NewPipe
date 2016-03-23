@@ -1,9 +1,8 @@
 package org.schabi.newpipe;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -16,14 +15,13 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
-import java.util.Vector;
 
-import org.schabi.newpipe.crawler.CrawlingException;
-import org.schabi.newpipe.crawler.VideoPreviewInfo;
-import org.schabi.newpipe.crawler.SearchEngine;
-import org.schabi.newpipe.crawler.StreamingService;
+import org.schabi.newpipe.extractor.ExtractionException;
+import org.schabi.newpipe.extractor.SearchResult;
+import org.schabi.newpipe.extractor.StreamPreviewInfo;
+import org.schabi.newpipe.extractor.SearchEngine;
+import org.schabi.newpipe.extractor.StreamingService;
 
 
 /**
@@ -71,9 +69,9 @@ public class VideoItemListFragment extends ListFragment {
     private boolean loadingNextPage = true;
 
     private class ResultRunnable implements Runnable {
-        private final SearchEngine.Result result;
+        private final SearchResult result;
         private final int requestId;
-        public ResultRunnable(SearchEngine.Result result, int requestId) {
+        public ResultRunnable(SearchResult result, int requestId) {
             this.result = result;
             this.requestId = requestId;
         }
@@ -104,92 +102,60 @@ public class VideoItemListFragment extends ListFragment {
         }
         @Override
         public void run() {
+            SearchResult result = null;
             try {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
                 String searchLanguageKey = getContext().getString(R.string.search_language_key);
                 String searchLanguage = sp.getString(searchLanguageKey,
                         getString(R.string.default_language_value));
-                SearchEngine.Result result = engine.search(query, page, searchLanguage,
-                        new Downloader());
+                result = SearchResult
+                        .getSearchResult(engine, query, page, searchLanguage, new Downloader());
 
-                Log.i(TAG, "language code passed:\""+searchLanguage+"\"");
                 if(runs) {
                     h.post(new ResultRunnable(result, requestId));
                 }
-            } catch(IOException e) {
-                postNewErrorToast(h, R.string.network_error);
-                e.printStackTrace();
-            } catch(CrawlingException ce) {
-                postNewErrorToast(h, R.string.parsing_error);
-                ce.printStackTrace();
-            } catch(Exception e) {
-                postNewErrorToast(h, R.string.general_error);
-                e.printStackTrace();
-            }
-        }
-    }
-/*
-<<<
-    private class LoadThumbsRunnable implements Runnable {
-        private final Vector<String> thumbnailUrlList = new Vector<>();
-        private final Vector<Boolean> downloadedList;
-        final Handler h = new Handler();
-        private volatile boolean run = true;
-        private final int requestId;
-        public LoadThumbsRunnable(Vector<VideoPreviewInfo> videoList,
-                                  Vector<Boolean> downloadedList, int requestId) {
-            for(VideoPreviewInfo item : videoList) {
-                thumbnailUrlList.add(item.thumbnail_url);
-            }
-            this.downloadedList = downloadedList;
-            this.requestId = requestId;
-        }
-        public void terminate() {
-            run = false;
-        }
-        public boolean isRunning() {
-            return run;
-        }
-        @Override
-        public void run() {
-            for(int i = 0; i < thumbnailUrlList.size() && run; i++) {
-                if(!downloadedList.get(i)) {
-                    Bitmap thumbnail;
-                    try {
-                        //todo: make bitmaps not bypass tor
-                        thumbnail = BitmapFactory.decodeStream(
-                                new URL(thumbnailUrlList.get(i)).openConnection().getInputStream());
-                        h.post(new SetThumbnailRunnable(i, thumbnail, requestId));
-                    } catch (Exception e) {
+
+                // look for errors during extraction
+                // soft errors:
+                if(result != null &&
+                        !result.errors.isEmpty()) {
+                    Log.e(TAG, "OCCURRED ERRORS DURING SEARCH EXTRACTION:");
+                    for(Exception e : result.errors) {
                         e.printStackTrace();
+                        Log.e(TAG, "------");
                     }
+
+                    Activity a = getActivity();
+                    View rootView = a.findViewById(R.id.videoitem_list);
+                    ErrorActivity.reportError(h, getActivity(), result.errors, null, rootView,
+                            ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
+                        /* todo: this shoudl not be assigned static */ "Youtube", query, R.string.light_parsing_error));
+
                 }
+                // hard errors:
+            } catch(IOException e) {
+                postNewNothingFoundToast(h, R.string.network_error);
+                e.printStackTrace();
+            } catch(SearchEngine.NothingFoundException e) {
+                postNewErrorToast(h, e.getMessage());
+            } catch(ExtractionException e) {
+                ErrorActivity.reportError(h, getActivity(), e, null, null,
+                        ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
+                        /* todo: this shoudl not be assigned static */ "Youtube", query, R.string.parsing_error));
+                //postNewErrorToast(h, R.string.parsing_error);
+                e.printStackTrace();
+
+            } catch(Exception e) {
+                ErrorActivity.reportError(h, getActivity(), e, null, null,
+                        ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
+                        /* todo: this shoudl not be assigned static */ "Youtube", query, R.string.general_error));
+
+                e.printStackTrace();
             }
         }
     }
 
-    private class SetThumbnailRunnable implements Runnable {
-        private final int index;
-        private final Bitmap thumbnail;
-        private final int requestId;
-        public SetThumbnailRunnable(int index, Bitmap thumbnail, int requestId) {
-            this.index = index;
-            this.thumbnail = thumbnail;
-            this.requestId = requestId;
-        }
-        @Override
-        public void run() {
-            if(requestId == currentRequestId) {
-                videoListAdapter.updateDownloadedThumbnailList(index);
-                videoListAdapter.setThumbnail(index, thumbnail);
-            }
-        }
-    }
-
-=======
->>>>>>> 6d1b4652fc98e5c2d5e19b0f98ba38a731137a70
-*/
-    public void present(List<VideoPreviewInfo> videoList) {
+    public void present(List<StreamPreviewInfo> videoList) {
         mode = PRESENT_VIDEOS_MODE;
         setListShown(true);
         getListView().smoothScrollToPosition(0);
@@ -219,7 +185,7 @@ public class VideoItemListFragment extends ListFragment {
     private void startSearch(String query, int page) {
         currentRequestId++;
         terminateThreads();
-        searchRunnable = new SearchRunnable(streamingService.getSearchEngineInstance(),
+        searchRunnable = new SearchRunnable(streamingService.getSearchEngineInstance(new Downloader()),
                                             query, page, currentRequestId);
         searchThread = new Thread(searchRunnable);
         searchThread.start();
@@ -229,28 +195,29 @@ public class VideoItemListFragment extends ListFragment {
         this.streamingService = streamingService;
     }
 
-    private void updateListOnResult(SearchEngine.Result result, int requestId) {
+    private void updateListOnResult(SearchResult result, int requestId) {
         if(requestId == currentRequestId) {
             setListShown(true);
-            if (result.resultList.isEmpty()) {
-                Toast.makeText(getActivity(), result.errorMessage, Toast.LENGTH_LONG).show();
-            } else {
-                if (!result.suggestion.isEmpty()) {
-                    Toast.makeText(getActivity(), getString(R.string.did_you_mean) + result.suggestion + " ?",
-                            Toast.LENGTH_LONG).show();
-                }
-                updateList(result.resultList);
+            updateList(result.resultList);
+            if(!result.suggestion.isEmpty()) {
+                Toast.makeText(getActivity(),
+                        String.format(getString(R.string.did_you_mean), result.suggestion),
+                        Toast.LENGTH_LONG).show();
             }
         }
     }
 
-    private void updateList(List<VideoPreviewInfo> list) {
+    private void updateList(List<StreamPreviewInfo> list) {
         try {
             videoListAdapter.addVideoList(list);
             terminateThreads();
         } catch(java.lang.IllegalStateException e) {
+            Toast.makeText(getActivity(), "Trying to set value while activity doesn't exist anymore.",
+                    Toast.LENGTH_SHORT).show();
             Log.w(TAG, "Trying to set value while activity doesn't exist anymore.");
         } catch(Exception e) {
+            Toast.makeText(getActivity(), getString(R.string.general_error),
+                    Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         } finally {
             loadingNextPage = false;
@@ -377,13 +344,24 @@ public class VideoItemListFragment extends ListFragment {
         mActivatedPosition = position;
     }
 
-    private void postNewErrorToast(Handler h, final int stringResource) {
+    private void postNewErrorToast(Handler h, final String message) {
         h.post(new Runnable() {
             @Override
             public void run() {
                 setListShown(true);
-                Toast.makeText(getActivity(), getString(R.string.network_error),
+                Toast.makeText(getActivity(), message,
                         Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void postNewNothingFoundToast(Handler h, final int stringResource) {
+        h.post(new Runnable() {
+            @Override
+            public void run() {
+                setListShown(true);
+                Toast.makeText(getActivity(), getString(stringResource),
+                        Toast.LENGTH_LONG).show();
             }
         });
     }

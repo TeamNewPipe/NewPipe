@@ -20,6 +20,7 @@ android:
 env:
   global:
     - ADB_INSTALL_TIMEOUT=8 # minutes (2 by default)
+    - GRADLE_OPTS=-Xmx512m # give gradle more memory since it seem to fail otherwise
   matrix:
     - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
 
@@ -28,3 +29,5 @@ before_script:
   - emulator -avd test -no-skin -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
+
+script: ./gradlew --info build connectedCheck

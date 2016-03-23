@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- Video Item Search View Dimensions-->
     <!-- Text Size -->
     <dimen name="video_item_search_title_text_size">14sp</dimen>
@@ -35,5 +34,8 @@
     <!-- Paddings & Margins -->
     <dimen name="video_item_detail_like_margin">6sp</dimen>
     <dimen name="video_item_detail_play_fab_margin">20dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 
 </resources>

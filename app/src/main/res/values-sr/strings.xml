@@ -10,7 +10,7 @@
     <string name="download">Преузми</string>
     <string name="search">Тражи</string>
     <string name="settings">Поставке</string>
-    <string name="did_you_mean">Да ли сте мислили: </string>
+    <string name="did_you_mean">Да ли сте мислили: %1$s ?</string>
     <string name="search_page">Страница претраге: </string>
     <string name="share_dialog_title">Подели помоћу:</string>
     <string name="choose_browser">Отвори помоћу:</string>
@@ -58,7 +58,7 @@
     <string name="play_btn_text">Пусти</string>
 
     <string name="use_tor_title">Користи Тор</string>
-    <string name="use_tor_summary">Принудно преусмерење саобраћаја кроз Тор за доданту приватност (токови још нису подржани)</string>
+    <string name="use_tor_summary">(Експериментално) Принудно преусмерење саобраћаја кроз Тор за доданту приватност (токови још нису подржани).</string>
 <string name="theme_title">Тема</string>
     <string name="dark_theme_title">Тамна</string>
     <string name="light_theme_title">Светла</string>
@@ -78,5 +78,52 @@
     <string name="parsing_error">Не могох да рашчланим веб-сајт.</string>
     <string name="content_not_available">Садржај није доступан.</string>
     <string name="blocked_by_gema">Блокирала ГЕМА.</string>
+
+    <string name="content">Садржај</string>
+    <string name="show_age_restricted_content_title">Прикажи старосно-ограничени садржај</string>
+    <string name="video_is_age_restricted">Видео је старосно ограничен. Укључите премошћавање у поставкама.</string>
+
+    <string name="could_not_setup_download_menu">Не могох да поставим мени преузимања.</string>
+    <string name="live_streams_not_supported">Ово је ТОК. Токови још нису подржани.</string>
+
+
+    <string name="light_parsing_error">Не могох да рашчланим веб-сајт у целости.</string>
+    <string name="could_not_get_stream">Не могох да добавим ниједан ток.</string>
+    <string name="sorry_string">Нажалост, то не би требало да се деси.</string>
+    <string name="error_report_button_text">Пријавите грешку е-поштом</string>
+    <string name="error_snackbar_message">Нажалост, десиле су се неке грешке.</string>
+    <string name="error_snackbar_action">ПРИЈАВИ</string>
+    <string name="what_device_headline">Подаци:</string>
+    <string name="what_happened_headline">Шта се десило:</string>
+    <string name="info_labels">Шта:\\nЗахтев:\\nЈезик садржаја:\\nУслуга:\\nГМТ време:\\nИздање:\\nИздање система:\\nГлоб. ИП опсег:</string>
+    <string name="your_comment">Ваш коментар (на енглеском):</string>
+    <string name="error_details_headline">Детаљи:</string>
+
+
+    <string name="enable_background_audio">Пусти у позадини</string>
+    <string name="video">Видео</string>
+    <string name="audio">Аудио</string>
+    <string name="text">Текст</string>
+    <string name="logging">Записивање</string>
+    <string name="logging_normal">Нормално</string>
+    <string name="logging_verbose">Исцрпно</string>
+    <string name="retry">Покушај поново</string>
+    <string name="off">[искљ.]</string>
+    <string name="use_exoplayer_title">Користи ExoPlayer</string>
+    <string name="use_exoplayer_summary">Експериментално</string>
+<string name="info_searched_lbl">Тражено:</string>
+    <string name="info_requested_stream_lbl">Захтевани ток:</string>
+    <string name="error_drm_not_supported">Заштићени садржај није подржани на издањима АПИ-ија испод 18</string>
+    <string name="error_drm_unsupported_scheme">Овај уређај не подржава захтевану ДРМ шему</string>
+    <string name="error_drm_unknown">Десила се непозната грешка ДРМ-а</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Овај уређај не обезбеђује декодер за <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Овај уређај не обезбеђује безбедни декодер за <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_querying_decoders">Не могох да потражим декодере уређаја</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Не могох да покренем декодер <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="storage_permission_denied">Дозвола за приступ складишту је одбијена</string>
+    <string name="report_error">Пријавите грешку</string>
+    <string name="user_report">Извештај корисника</string>
+
+    <string name="duration_live">уживо</string>
 
     </resources>

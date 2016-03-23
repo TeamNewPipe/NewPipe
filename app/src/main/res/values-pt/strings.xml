@@ -9,7 +9,7 @@
     <string name="download">Descarregar</string>
     <string name="search">Pesquisar</string>
     <string name="settings">Definições</string>
-    <string name="did_you_mean">"Será que queria dizer: "</string>
+    <string name="did_you_mean">Será que queria dizer: %1$s?</string>
     <string name="search_page">"Página de pesquisa: "</string>
     <string name="share_dialog_title">Partilhar com:</string>
     <string name="choose_browser">Escolher navegador:</string>
@@ -60,7 +60,7 @@
     <string name="network_error">Erro de rede</string>
 
     <string name="use_tor_title">Utilizar Tor</string>
-    <string name="use_tor_summary">Utilizar a rede Tor para ter mais privacidade (ainda não é suportada a transmissão de vídeos)</string>
+    <string name="use_tor_summary">(Experimental) Utilizar a rede Tor para ter mais privacidade (ainda não é suportada a emissão de vídeos).</string>
 <string name="download_path_audio_title">Descarga de áudio</string>
     <string name="download_path_audio_summary">Local para guardar o áudio descarregado.</string>
     <string name="download_path_audio_dialog_title">Digite o caminho para os ficheiros áudio.</string>
@@ -74,4 +74,44 @@
     <string name="content_not_available">Conteúdo não disponível.</string>
     <string name="blocked_by_gema">Bloqueado pela GEMA.</string>
 
-    </resources>
+    <string name="content">Conteúdo</string>
+    <string name="show_age_restricted_content_title">Restringir conteúdo por idade</string>
+    <string name="video_is_age_restricted">O vídeo está restringido por idade. Ative a restrição de vídeos por idade nas definições.</string>
+
+    <string name="light_parsing_error">Não foi possível processar o sítio web.</string>
+    <string name="could_not_setup_download_menu">Não foi possível configurar o menu de descargas.</string>
+    <string name="live_streams_not_supported">Esta é uma emissão em direto. Estas emissões ainda não são suportadas.</string>
+    <string name="could_not_get_stream">Não foi possível obter a emissão.</string>
+    <string name="sorry_string">Isto não deveria ter acontecido.</string>
+    <string name="error_report_button_text">Reportar erro por e-mail</string>
+    <string name="error_snackbar_message">Ocorreram alguns erros.</string>
+    <string name="error_snackbar_action">Relatório</string>
+    <string name="what_device_headline">Info:</string>
+    <string name="what_happened_headline">O que ocorreu:</string>
+    <string name="info_labels">O quê:\\nPedido:\\nIdioma do conteúdo:\\nServiço:\\nHora GMT:\\nVersão:\\nVersão do So:\\nGlob. IP:</string>
+    <string name="info_searched_lbl">Pesquisou por:</string>
+    <string name="info_requested_stream_lbl">Emissão solicitada:</string>
+    <string name="your_comment">Comentários (em Inglês):</string>
+    <string name="error_details_headline">Detalhes:</string>
+
+
+    <string name="enable_background_audio">Reproduzir em segundo plano</string>
+    <string name="video">Vídeo</string>
+    <string name="audio">Áudio</string>
+    <string name="text">Texto</string>
+    <string name="logging">Registo</string>
+    <string name="logging_normal">Normal</string>
+    <string name="logging_verbose">Detalhado</string>
+    <string name="retry">Tentar novamente</string>
+    <string name="off">[off]</string>
+    <string name="error_drm_not_supported">O conteúdo protegido não é permitido em API com nível inferior a 18</string>
+    <string name="error_drm_unsupported_scheme">Este dispositivo não tem suporte ao esquema DRM necessário</string>
+    <string name="error_drm_unknown">Ocorreu um erro de DRM desconhecido</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Este dispositivo não disponibiliza um descodificador para <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Este dispositivo não disponibiliza um descodificador seguro para <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_querying_decoders">Incapaz de processar os descodificadores</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Incapaz de iniciar o descodificador <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="storage_permission_denied">Não foi concedida permissão para aceder ao armazenamento</string>
+    <string name="use_exoplayer_title">Usar ExoPlayer</string>
+    <string name="use_exoplayer_summary">Experimental</string>
+</resources>
