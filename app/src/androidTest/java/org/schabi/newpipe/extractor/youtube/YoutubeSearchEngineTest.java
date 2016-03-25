@@ -2,16 +2,15 @@ package org.schabi.newpipe.extractor.youtube;
 
 import android.test.AndroidTestCase;
 
-import org.apache.commons.lang.exception.ExceptionUtils;
 import org.schabi.newpipe.extractor.AbstractVideoInfo;
 import org.schabi.newpipe.extractor.SearchResult;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.SearchEngine;
-import org.schabi.newpipe.extractor.services.youtube.YoutubeSearchEngine;
 import org.schabi.newpipe.Downloader;
-import org.schabi.newpipe.extractor.services.youtube.YoutubeService;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 
 /**
@@ -44,13 +43,13 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
         SearchEngine engine = ServiceList.getService("Youtube")
                 .getSearchEngineInstance(new Downloader());
 
-        result = engine.search("lefloid",
+        result = engine.search("adele",
                 0, "de", new Downloader()).getSearchResult();
         suggestionReply = engine.suggestionList("hello","de",new Downloader());
     }
 
     public void testIfNoErrorOccur() {
-        assertTrue(result.errors.isEmpty() ? "" : ExceptionUtils.getStackTrace(result.errors.get(0))
+        assertTrue(result.errors.isEmpty() ? "" : getStackTrace(result.errors.get(0))
                 ,result.errors.isEmpty());
     }
 
@@ -117,5 +116,12 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
         for(String s : suggestionReply) {
             assertTrue(s, !s.isEmpty());
         }
+    }
+
+    private static String getStackTrace(final Throwable throwable) {
+        final StringWriter sw = new StringWriter();
+        final PrintWriter pw = new PrintWriter(sw, true);
+        throwable.printStackTrace(pw);
+        return sw.getBuffer().toString();
     }
 }
