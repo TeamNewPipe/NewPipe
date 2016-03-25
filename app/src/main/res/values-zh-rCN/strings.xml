@@ -115,4 +115,5 @@
     <string name="autoplay_by_calling_app_summary">NewPipe 是被另一应用调用时自动开始播放视频。</string>
     <string name="duration_live">直播</string>
 
+    <string name="main_bg_subtitle">点按搜索开始使用</string>
     </resources>
