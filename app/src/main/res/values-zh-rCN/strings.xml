@@ -11,7 +11,7 @@
     <string name="download">下载</string>
     <string name="search">搜索</string>
     <string name="settings">设置</string>
-    <string name="did_you_mean">"您是不是要找： "</string>
+    <string name="did_you_mean">您是不是要找：</string>
     <string name="search_page">"搜索页面： "</string>
     <string name="share_dialog_title">分享视频：</string>
     <string name="choose_browser">选择浏览器：</string>
