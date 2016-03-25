@@ -9,7 +9,7 @@
     <string name="download">Stáhnout</string>
     <string name="search">Vyhledat</string>
     <string name="settings">Nastavení</string>
-    <string name="did_you_mean">"Měli jste na mysli: "</string>
+    <string name="did_you_mean">Měli jste na mysli: %1$s?</string>
     <string name="search_page">"Vyhledat stránku: "</string>
     <string name="share_dialog_title">Sdílet s:</string>
     <string name="choose_browser">Vybrat prohlížeč:</string>
@@ -72,4 +72,12 @@
 
     <string name="err_dir_create">Nebylo možné vytvořit složku pro stažené soubory \'%1$s\'</string>
     <string name="info_dir_created">Vytvořena složka pro stažené soubory \'%1$s\'</string>
-</resources>
+<string name="autoplay_by_calling_app_title">Automaticky přehrávat při otevření z jiné aplikace.</string>
+    <string name="autoplay_by_calling_app_summary">Automaticky přehrát video, když je NewPipe otevřen z jiné aplikace.</string>
+    <string name="content">Obsah</string>
+    <string name="show_age_restricted_content_title">Zobrazovat věkově omezený obsah</string>
+    <string name="video_is_age_restricted">Toto video je věkově omezeno. Povolte věkově omezená video v nastavení.</string>
+    <string name="duration_live">živě</string>
+
+    <string name="light_parsing_error">Nemůžu kompletně parsovat web.</string>
+    </resources>

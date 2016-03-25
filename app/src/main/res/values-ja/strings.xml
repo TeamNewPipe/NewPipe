@@ -124,4 +124,6 @@
     <string name="report_error">エラーを報告</string>
     <string name="user_report">ユーザー報告</string>
 
+    <string name="duration_live">ライブ</string>
+
     </resources>

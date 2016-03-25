@@ -124,4 +124,6 @@
     <string name="report_error">Пријавите грешку</string>
     <string name="user_report">Извештај корисника</string>
 
+    <string name="duration_live">уживо</string>
+
     </resources>

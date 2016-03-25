@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="view_count_text">%1$s pogledov</string>
-    <string name="upload_date_text">Poslano %1$s</string>
+    <string name="upload_date_text">Objavljeno %1$s</string>
     <string name="no_player_found">Predvajalnika pretoka ni mogoče najti. Ali želite namestiti program VLC?</string>
     <string name="install">Namesti</string>
     <string name="cancel">Prekliči</string>
@@ -122,5 +122,7 @@
     <string name="autoplay_by_calling_app_summary">Samodejno predvajaj vsebino, če je NewPipe klican iz drugega programa.</string>
     <string name="report_error">Pošlji poročilo o napaki</string>
     <string name="user_report">Poročilo uporabnika</string>
+
+    <string name="duration_live">v živo</string>
 
     </resources>
