@@ -1,2 +1,83 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="background_player_name">Фоновий програвач NewPipe</string>
+    <string name="view_count_text">%1$s переглядів</string>
+    <string name="upload_date_text">Завантажений %1$s</string>
+    <string name="no_player_found">Потоковий програвач не знайдено. Встановити VLC?</string>
+    <string name="install">Встановити</string>
+    <string name="cancel">Скасувати</string>
+    <string name="open_in_browser">Відкрити в браузері</string>
+    <string name="share">Поділитись</string>
+    <string name="loading">Завантаження</string>
+    <string name="download">Завантажити</string>
+    <string name="search">Пошук</string>
+    <string name="settings">Налаштування</string>
+    <string name="did_you_mean">Ви мали на увазі: %1$s ?</string>
+    <string name="search_page">"Пошукова сторінка: "</string>
+    <string name="share_dialog_title">Поділитись з:</string>
+    <string name="choose_browser">Виберіть браузер:</string>
+    <string name="screen_rotation">обертання</string>
+    <string name="settings_activity_title">Налаштування</string>
+    <string name="use_external_video_player_title">Використовувати зовнішній відео програвач</string>
+    <string name="use_external_audio_player_title">Використовувати зовнішній аудіо програвач</string>
+
+    <string name="download_path_title">Шлях для завантаження відео</string>
+    <string name="download_path_dialog_title">Вкажіть шлях для завантаження відео</string>
+
+    <string name="download_path_audio_dialog_title">Вкажіть шлях для завантаження аудіо файлів.</string>
+
+    <string name="download_path_summary">Шлях де будуть зберігатись завантажені відео.</string>
+    <string name="download_path_audio_title">Шлях для завантаження аудіо</string>
+    <string name="download_path_audio_summary">Шлях де будуть зберігатись завантажені аудіо файли.</string>
+    <string name="autoplay_by_calling_app_title">Автоматично відтворювати при виклику з іншого додатку.</string>
+    <string name="autoplay_by_calling_app_summary">Автоматично відтворювати відео коли NewPipe викликано з іншого додатку.</string>
+    <string name="default_resolution_title">Роздільна здатність за замовчуванням</string>
+    <string name="play_with_kodi_title">Відтворювати за допомогою Kodi</string>
+    <string name="kore_not_found">Додаток Kore не знайдено. Встановити?</string>
+    <string name="show_play_with_kodi_title">Показувати опцію \"Програвати за допомогою Kodi\"</string>
+    <string name="show_play_with_kodi_summary">Показувати опцію відтворення відео за допомогою Kodi media center.</string>
+    <string name="play_audio">Аудіо</string>
+    <string name="default_audio_format_title">Аудіо формат за замовчуванням</string>
+    <string name="webm_description">WebM — вільний формат</string>
+    <string name="m4a_description">m4a — краща якість</string>
+    <string name="theme_title">Тема</string>
+    <string name="dark_theme_title">Темна</string>
+    <string name="light_theme_title">Світла</string>
+
+    <string name="download_dialog_title">Завантажити</string>
+    <string name="next_video_title">Наступне відео</string>
+    <string name="show_next_and_similar_title">Показувати наступні та схожі відео</string>
+    <string name="url_not_supported_toast">URL не підтримується</string>
+    <string name="similar_videos_btn_text">Схожі відео</string>
+    <string name="search_language_title">Мова контенту</string>
+    <string name="settings_category_video_audio_title">Відео та Аудіо</string>
+    <string name="settings_category_appearance_title">Зовнішній вигляд</string>
+    <string name="settings_category_other_title">Інше</string>
+    <string name="background_player_playing_toast">Відтворення у фоновому режимі</string>
+    <string name="play_btn_text">Відтворити</string>
+    <string name="storage_permission_denied">В доступі відмовлено</string>
+    <string name="use_exoplayer_title">Використовувати ExoPlayer</string>
+    <string name="use_exoplayer_summary">Експериментальний</string>
+<string name="content">Контент</string>
+    <string name="show_age_restricted_content_title">Показувати контент з віковим обмеженням</string>
+    <string name="video_is_age_restricted">Відео має вікові обмеження. Спершу активуйте опцію для відображення таких відео в налаштуваннях.</string>
+    <string name="duration_live">наживо</string>
+
+    <string name="general_error">Помилка</string>
+    <string name="network_error">Помилка мережі</string>
+    <string name="could_not_load_thumbnails">Не вдалося завантажити всі ескізи</string>
+    <string name="youtube_signature_decryption_error">Не вдалося розшифрувати підпис url відео.</string>
+    <string name="parsing_error">Не вдалося проаналізувати веб-сайт.</string>
+    <string name="light_parsing_error">Не вдалося повністю проаналізувати веб-сайт.</string>
+    <string name="content_not_available">Контент не доступний.</string>
+    <string name="blocked_by_gema">Заблоковано GEMA.</string>
+    <string name="could_not_setup_download_menu">Не вдалося налаштувати меню завантаження.</string>
+    <string name="live_streams_not_supported">Це пряма трансляція. Це ще не підтримується.</string>
+    <string name="could_not_get_stream">Не вдалося отримати ніякий потік.</string>
+    <string name="sorry_string">Шкода, цього не повинно було статися.</string>
+    <string name="error_report_button_text">Звіт про помилку за допомогою пошти</string>
+    <string name="error_snackbar_message">На жаль сталася помилка.</string>
+    <string name="error_snackbar_action">ЗВІТУВАТИ</string>
+    <string name="what_device_headline">Інформація:</string>
+    <string name="what_happened_headline">Що сталося:</string>
+    <string name="info_labels">Що:\\nЗапит:\\nМова контенту:\\nСервіс:\\nЧас GMT:\\nВерсія:\\nВерсія ОС:\\nДіапазон IP:</string>
+    </resources>

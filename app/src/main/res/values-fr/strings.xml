@@ -73,4 +73,14 @@
     <string name="content_not_available">Contenu non disponible.</string>
     <string name="blocked_by_gema">Bloqué par GEMA.</string>
 
+    <string name="error_snackbar_message">Désolé, des erreurs se sont produites</string>
+    <string name="content">Contenu</string>
+    <string name="show_age_restricted_content_title">Afficher le contenu restreint</string>
+    <string name="duration_live">En direct</string>
+
+    <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
+    <string name="youtube_signature_decryption_error">Erreur lors du décryptage du lien</string>
+    <string name="light_parsing_error">Erreur lors de la récupération des informations</string>
+    <string name="live_streams_not_supported">Il s\'agit un direct. Non supporté pour le moment.</string>
+    <string name="sorry_string">Désolé, ça devrait pas arriver</string>
     </resources>
