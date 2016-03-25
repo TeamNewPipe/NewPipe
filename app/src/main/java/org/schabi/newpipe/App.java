@@ -57,7 +57,7 @@ public class App extends Application {
     /**
      * Set the proxy settings based on whether Tor should be enabled or not.
      */
-    static void configureTor(boolean enabled) {
+    public static void configureTor(boolean enabled) {
         useTor = enabled;
         if (useTor) {
             NetCipher.useTor();
@@ -66,13 +66,13 @@ public class App extends Application {
         }
     }
 
-    static void checkStartTor(Context context) {
+    public static void checkStartTor(Context context) {
         if (useTor) {
             OrbotHelper.requestStartTor(context);
         }
     }
 
-    static boolean isUsingTor() {
+    public static boolean isUsingTor() {
         return useTor;
     }
 }

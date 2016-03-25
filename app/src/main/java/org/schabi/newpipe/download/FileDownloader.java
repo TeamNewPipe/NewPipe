@@ -1,26 +1,21 @@
-package org.schabi.newpipe;
-
+package org.schabi.newpipe.download;
 
 import android.app.NotificationManager;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import org.schabi.newpipe.R;
+
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.UnknownHostException;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -46,6 +41,8 @@ import info.guardianproject.netcipher.NetCipher;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+// TODO: FOR HEVEN SAKE !!! DO NOT SIMPLY USE ASYNCTASK. MAKE THIS A PROPER SERVICE !!!
 public class FileDownloader extends AsyncTask<Void, Integer, Void> {
     public static final String TAG = "FileDownloader";
 
@@ -165,5 +162,4 @@ public class FileDownloader extends AsyncTask<Void, Integer, Void> {
         super.onPostExecute(aVoid);
         nm.cancel(notifyId);
     }
-
 }
