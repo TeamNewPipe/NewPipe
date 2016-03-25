@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -195,16 +196,29 @@ public class VideoItemListFragment extends ListFragment {
         this.streamingService = streamingService;
     }
 
-    private void updateListOnResult(SearchResult result, int requestId) {
-        if(requestId == currentRequestId) {
+    public void updateListOnResult(final SearchResult result, int requestId) {
+        if (requestId == currentRequestId) {
             setListShown(true);
             updateList(result.resultList);
-            if(!result.suggestion.isEmpty()) {
-                Toast.makeText(getActivity(),
-                        String.format(getString(R.string.did_you_mean), result.suggestion),
-                        Toast.LENGTH_LONG).show();
-            }
+            if (!result.suggestion.isEmpty())
+                Snackbar.make(getView(), String.format(getString(R.string.did_you_mean, result.suggestion)), Snackbar.LENGTH_LONG)
+                        .setAction(R.string.yes, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                query = result.suggestion;
+                                updatesearchQuery(query);
+                                Toast.makeText(getActivity(), R.string.search + ": " + String.format(query), Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .show();
         }
+    }
+
+    public void updatesearchQuery(String query) {
+        search(query);
+        //VideoItemListActivity VIL = new VideoItemListActivity();
+        //this.searchView = searchView;
+        // searchView.setQuery(query,true)                          <-- This don't work
     }
 
     private void updateList(List<StreamPreviewInfo> list) {
