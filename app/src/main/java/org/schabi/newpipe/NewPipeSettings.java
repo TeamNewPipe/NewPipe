@@ -25,7 +25,6 @@ import android.content.SharedPreferences;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import java.io.File;
 
@@ -41,10 +40,6 @@ public class NewPipeSettings {
         PreferenceManager.setDefaultValues(context, R.xml.settings, false);
         getVideoDownloadFolder(context);
         getAudioDownloadFolder(context);
-    }
-
-    public static File getDownloadFolder() {
-        return getFolder(Environment.DIRECTORY_DOWNLOADS);
     }
 
     public static File getVideoDownloadFolder(Context context) {

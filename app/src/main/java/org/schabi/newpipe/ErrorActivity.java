@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
@@ -23,13 +22,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.apache.commons.lang.exception.ExceptionUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.schabi.newpipe.extractor.Parser;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -237,12 +236,19 @@ public class ErrorActivity extends AppCompatActivity {
         return false;
     }
 
+    private static String getStackTrace(final Throwable throwable) {
+        final StringWriter sw = new StringWriter();
+        final PrintWriter pw = new PrintWriter(sw, true);
+        throwable.printStackTrace(pw);
+        return sw.getBuffer().toString();
+    }
+
     private String formErrorText(List<Exception> el) {
         String text = "";
         if(el != null) {
             for (Exception e : el) {
                 text += "-------------------------------------\n"
-                        + ExceptionUtils.getStackTrace(e);
+                        + getStackTrace(e);
             }
         }
         text += "-------------------------------------";
@@ -299,7 +305,7 @@ public class ErrorActivity extends AppCompatActivity {
             JSONArray exceptionArray = new JSONArray();
             if(errorList != null) {
                 for (Exception e : errorList) {
-                    exceptionArray.put(ExceptionUtils.getStackTrace(e));
+                    exceptionArray.put(getStackTrace(e));
                 }
             }
 

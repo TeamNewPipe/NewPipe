@@ -1,4 +1,4 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.download;
 
 import android.Manifest;
 import android.app.Dialog;
@@ -15,6 +15,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.Toast;
+
+import org.schabi.newpipe.App;
+import org.schabi.newpipe.NewPipeSettings;
+import org.schabi.newpipe.R;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -71,7 +75,8 @@ public class DownloadDialog extends DialogFragment {
                         case 0:     // Video
                             download(arguments.getString(VIDEO_URL),
                                     title,
-                                    arguments.getString(FILE_SUFFIX_VIDEO), context);
+                                    arguments.getString(FILE_SUFFIX_VIDEO),
+                                    NewPipeSettings.getVideoDownloadFolder(context),context);
                             break;
                         default:
                             Log.d(TAG, "lolz");
@@ -89,7 +94,8 @@ public class DownloadDialog extends DialogFragment {
                         case 0:     // Audio
                             download(arguments.getString(AUDIO_URL),
                                     title,
-                                    arguments.getString(FILE_SUFFIX_AUDIO), context);
+                                    arguments.getString(FILE_SUFFIX_AUDIO),
+                                    NewPipeSettings.getAudioDownloadFolder(context),context);
                             break;
                         default:
                             Log.d(TAG, "lolz");
@@ -107,12 +113,14 @@ public class DownloadDialog extends DialogFragment {
                         case 0:     // Video
                             download(arguments.getString(VIDEO_URL),
                                     title,
-                                    arguments.getString(FILE_SUFFIX_VIDEO), context);
+                                    arguments.getString(FILE_SUFFIX_VIDEO),
+                                    NewPipeSettings.getVideoDownloadFolder(context), context);
                             break;
                         case 1:
                             download(arguments.getString(AUDIO_URL),
                                     title,
-                                    arguments.getString(FILE_SUFFIX_AUDIO), context);
+                                    arguments.getString(FILE_SUFFIX_AUDIO),
+                                    NewPipeSettings.getAudioDownloadFolder(context), context);
                             break;
                         default:
                             Log.d(TAG, "lolz");
@@ -141,8 +149,8 @@ public class DownloadDialog extends DialogFragment {
         return nameToTest;
     }
 
-    private void download(String url, String title, String fileSuffix, Context context) {
-        File downloadDir = NewPipeSettings.getDownloadFolder();
+    private void download(String url, String title,
+                          String fileSuffix, File downloadDir, Context context) {
 
         if(!downloadDir.exists()) {
             //attempt to create directory
@@ -162,6 +170,8 @@ public class DownloadDialog extends DialogFragment {
         File saveFilePath = new File(downloadDir,createFileName(title) + fileSuffix);
 
         long id = 0;
+
+
         if (App.isUsingTor()) {
             // if using Tor, do not use DownloadManager because the proxy cannot be set
             FileDownloader.downloadFile(getContext(), url, saveFilePath, title);

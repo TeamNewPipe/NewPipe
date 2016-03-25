@@ -48,6 +48,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 
+import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.AudioStream;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.ParsingException;
