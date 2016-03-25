@@ -102,6 +102,8 @@ public class VideoItemListActivity extends AppCompatActivity
             } catch(Exception e) {
                 e.printStackTrace();
             }
+            View bg = findViewById(R.id.mainBG);
+            bg.setVisibility(View.GONE);
             return true;
         }
 
@@ -199,6 +201,9 @@ public class VideoItemListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videoitem_list);
         StreamingService streamingService = null;
+
+        View bg = findViewById(R.id.mainBG);
+        bg.setVisibility(View.VISIBLE);
 
         try {
             //------ todo: remove this line when multiservice support is implemented ------

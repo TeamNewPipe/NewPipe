@@ -28,6 +28,8 @@
             android:focusable="false"
             tools:ignore="InconsistentLayout" />
 
+        <include layout="@layout/main_bg" />
+
         <fragment android:id="@+id/videoitem_list"
             android:name="org.schabi.newpipe.VideoItemListFragment"
             android:layout_width="match_parent"
