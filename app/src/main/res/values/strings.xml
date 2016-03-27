@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" translatable="false">NewPipe</string>
     <string name="main_bg_subtitle">Tap search to get started</string>
@@ -33,7 +33,7 @@
     <string name="download_path_audio_summary">Path to store downloaded audio in.</string>
     <string name="download_path_audio_dialog_title">Enter download path for audio files.</string>
 
-    <string name="autoplay_by_calling_app_title">Autoplay when called form another app.</string>
+    <string name="autoplay_by_calling_app_title">Autoplay when called from another app.</string>
     <string name="autoplay_by_calling_app_summary">Automatically play a video when NewPipe is called from another app.</string>
     <string name="default_resolution_title">Default Resolution</string>
     <string name="play_with_kodi_title">Play with Kodi</string>
