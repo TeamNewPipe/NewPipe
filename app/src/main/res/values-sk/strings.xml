@@ -11,7 +11,7 @@
     <string name="download">Prevziať</string>
     <string name="search">Hľadať</string>
     <string name="settings">Nastavenia</string>
-    <string name="did_you_mean">"Mysleli ste: "</string>
+    <string name="did_you_mean">Mysleli ste: %1$s?</string>
     <string name="search_page">"Hľadať stránku: "</string>
     <string name="share_dialog_title">Zdieľať s:</string>
     <string name="choose_browser">Vyberte prehliadač:</string>
@@ -68,8 +68,55 @@
     <string name="detail_likes_img_view_description">Lajky</string>
     <string name="detail_dislikes_img_view_description">Dislajky</string>
     <string name="use_tor_title">Použit Tor</string>
-    <string name="use_tor_summary">Vyžadovať preberanie cez Tor pre väčšie súkromie (streamovanie videa momentálne nie je podporované)</string>
+    <string name="use_tor_summary">(Experimentálne) Vyžadovať preberanie cez Tor pre väčšie súkromie (streamovanie videa momentálne nie je podporované).</string>
 
     <string name="err_dir_create">Nemožno vytvoriť adresár na preberanie \'%1$s\'</string>
     <string name="info_dir_created">Adresár na preberanie bol vytvorený \'%1$s\'</string>
+<string name="main_bg_subtitle">Začnite vyhľadaním obsahu</string>
+    <string name="autoplay_by_calling_app_title">Automaticky prehrať video pri zavolaní.</string>
+    <string name="autoplay_by_calling_app_summary">Video bude automaticky prehrané pri zavolaní NewPipe inou aplikáciou.</string>
+    <string name="content">Obsah</string>
+    <string name="show_age_restricted_content_title">Zobraziť vekovo obmedzený obsah</string>
+    <string name="video_is_age_restricted">Toto video je vekovo obmedzené. Povoľte zobrazenie obsahu v nastavení.</string>
+    <string name="duration_live">naživo</string>
+
+    <string name="light_parsing_error">Nemožno kompletne parsovať web.</string>
+    <string name="could_not_setup_download_menu">Nemožno nastaviť menu preberania.</string>
+    <string name="live_streams_not_supported">Toto je ŽIVÉ VYSIELANIE. Momentálne je nepodporované.</string>
+    <string name="could_not_get_stream">Nemožno získať žiadne vysielanie.</string>
+    <string name="sorry_string">Pardon, toto sa nemalo stať.</string>
+    <string name="error_report_button_text">Nahlásiť chybu mejlom</string>
+    <string name="error_snackbar_message">Pardon, nastala chyba.</string>
+    <string name="error_snackbar_action">SPRÁVA</string>
+    <string name="what_device_headline">Info:</string>
+    <string name="what_happened_headline">Čo sa stalo:</string>
+    <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nSlužba:\\nČas v GMT:\\nVerzia:\\nVerzia OS:\\nGlob. rozsah IP:</string>
+    <string name="info_searched_lbl">Hľadané:</string>
+    <string name="info_requested_stream_lbl">Požadované vysielanie:</string>
+    <string name="your_comment">Váš komentár (v Angličtine):</string>
+    <string name="error_details_headline">Detaily:</string>
+
+
+    <string name="report_error">Nahlásiť chybu</string>
+    <string name="user_report">Hlásenie používateľa</string>
+
+    <string name="enable_background_audio">Prehrávať na pozadí</string>
+    <string name="video">Video</string>
+    <string name="audio">Zvuk</string>
+    <string name="text">Text</string>
+    <string name="logging">Záznamy</string>
+    <string name="logging_normal">Normálne</string>
+    <string name="logging_verbose">Podrobné</string>
+    <string name="retry">Znova</string>
+    <string name="off">[vypnuté]</string>
+    <string name="error_drm_not_supported">Chránený obsah nie je podporovaný cez API úrovne pod 18</string>
+    <string name="error_drm_unsupported_scheme">Toto zariadenie nepodporuje požadovanú DRM schému</string>
+    <string name="error_drm_unknown">Nastala neznáma chyba DRM</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Toto zariadenie nemá dekóder pre <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Toto zariadenie nemá zabezpečený dekóder pre <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_querying_decoders">Nemožno zavolať dekódery zariadenia</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Nemožno vytvoriť inštanciu dekódera <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="storage_permission_denied">Prístup na úložisko bol zakázaný</string>
+    <string name="use_exoplayer_title">Použit ExoPlayer</string>
+    <string name="use_exoplayer_summary">Experimentálne</string>
 </resources>
