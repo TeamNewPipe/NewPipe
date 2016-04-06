@@ -11,8 +11,8 @@
     <string name="settings">설정</string>
     <string name="did_you_mean">혹시 이것을 검색하셨습니까?: %1$s ?</string>
     <string name="search_page">"검색 페이지: "</string>
-    <string name="share_dialog_title">다음으로 공유:</string>
-    <string name="choose_browser">브라우저 선택:</string>
+    <string name="share_dialog_title">다음으로 공유</string>
+    <string name="choose_browser">브라우저 선택</string>
     <string name="screen_rotation">회전</string>
     <string name="settings_activity_title">설정</string>
     <string name="useExternalPlayerTitle">외부 플레이어 사용</string>
@@ -71,7 +71,7 @@
     <string name="err_dir_create">다운로드 디렉토리를 만들 수 없습니다 \'%1$s\'</string>
     <string name="info_dir_created">다운로드 디렉토리를 만들었습니다 \'%1$s\'</string>
 <string name="main_bg_subtitle">검색 버튼을 눌러서 시작하세요</string>
-    <string name="autoplay_by_calling_app_title">다른 앱에서 호출되었을 경우 자동 재생합니다.</string>
+    <string name="autoplay_by_calling_app_title">다른 앱에서 호출되었을 경우 자동 재생합니다</string>
     <string name="autoplay_by_calling_app_summary">NewPipe가 다른 앱으로부터 호출되었을 경우 비디오를 자동으로 재생합니다.</string>
     <string name="content">컨텐츠</string>
     <string name="show_age_restricted_content_title">나이 제한이 있는 컨텐츠를 표시</string>

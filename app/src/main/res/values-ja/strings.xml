@@ -11,8 +11,8 @@
     <string name="settings">設定</string>
     <string name="did_you_mean">この意味ですか: %1$s ?</string>
     <string name="search_page">"検索ﾍﾟｰｼﾞ: "</string>
-    <string name="share_dialog_title">…共有:</string>
-    <string name="choose_browser">ﾌﾞﾗｳｻﾞｰを選択:</string>
+    <string name="share_dialog_title">…共有</string>
+    <string name="choose_browser">ﾌﾞﾗｳｻﾞｰを選択</string>
     <string name="screen_rotation">回転</string>
     <string name="settings_activity_title">設定</string>
     <string name="useExternalPlayerTitle">外部ﾌﾟﾚｰﾔｰを使用する</string>

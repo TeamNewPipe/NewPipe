@@ -12,8 +12,8 @@
     <string name="settings">Beállítások</string>
     <string name="did_you_mean">Erre gondolt: </string>
     <string name="search_page">"Keresőlap: "</string>
-    <string name="share_dialog_title">Megosztás ezzel:</string>
-    <string name="choose_browser">Válasszon böngészőt:</string>
+    <string name="share_dialog_title">Megosztás ezzel</string>
+    <string name="choose_browser">Válasszon böngészőt</string>
     <string name="screen_rotation">forgatás</string>
     <string name="settings_activity_title">Beállítások</string>
     <string name="useExternalPlayerTitle">Külső lejátszó használata</string>

@@ -11,8 +11,8 @@
     <string name="settings">Impostazioni</string>
     <string name="did_you_mean">"Intendevi: "</string>
     <string name="search_page">"Cerca pagina: "</string>
-    <string name="share_dialog_title">Condividi con:</string>
-    <string name="choose_browser">Scegli browser:</string>
+    <string name="share_dialog_title">Condividi con</string>
+    <string name="choose_browser">Scegli browser</string>
     <string name="screen_rotation">rotazione</string>
     <string name="settings_activity_title">Impostazioni</string>
     <string name="useExternalPlayerTitle">Usa un riproduttore video esterno</string>

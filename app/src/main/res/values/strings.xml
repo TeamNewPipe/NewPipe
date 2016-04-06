@@ -18,8 +18,8 @@
     <string name="settings">Settings</string>
     <string name="did_you_mean">Did you mean: %1$s ?</string>
     <string name="search_page">Search page: </string>
-    <string name="share_dialog_title">Share with:</string>
-    <string name="choose_browser">Choose browser:</string>
+    <string name="share_dialog_title">Share with</string>
+    <string name="choose_browser">Choose browser</string>
     <string name="screen_rotation">rotation</string>
     <string name="settings_activity_title">Settings</string>
     <string name="use_external_video_player_title">Use external video player</string>
@@ -33,7 +33,7 @@
     <string name="download_path_audio_summary">Path to store downloaded audio in.</string>
     <string name="download_path_audio_dialog_title">Enter download path for audio files.</string>
 
-    <string name="autoplay_by_calling_app_title">Autoplay when called from another app.</string>
+    <string name="autoplay_by_calling_app_title">Autoplay when called from another app</string>
     <string name="autoplay_by_calling_app_summary">Automatically play a video when NewPipe is called from another app.</string>
     <string name="default_resolution_title">Default Resolution</string>
     <string name="play_with_kodi_title">Play with Kodi</string>
