@@ -25,7 +25,7 @@
     <string name="background_player_name">مشغل NewPipe في الخلفية</string>
     <string name="background_player_playing_toast">جاري التشغيل في الخلفية</string>
     <string name="cancel">إلغاء</string>
-    <string name="choose_browser">إختر متصفح:</string>
+    <string name="choose_browser">إختر متصفح</string>
     <string name="dark_theme_title">مظلم</string>
     <string name="default_audio_format_title">صيغة الصوت الإفتراضية</string>
     <string name="default_resolution_title">الدقة الإفتراضية</string>
@@ -67,7 +67,7 @@
     <string name="settings_category_other_title">تعريب JetSub مدونة درويديات</string>
     <string name="settings_category_video_audio_title">الفيديو والصوتيات</string>
     <string name="share">مشاركة</string>
-    <string name="share_dialog_title">مشاركة بواسطة:</string>
+    <string name="share_dialog_title">مشاركة بواسطة</string>
     <string name="show_next_and_similar_title">عرض التالي والفيديوهات المشابهة</string>
     <string name="show_play_with_kodi_summary">عرض خيار لتشغيل الفيديو بواسطة Kodi Media Center.</string>
     <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة Kodi.</string>

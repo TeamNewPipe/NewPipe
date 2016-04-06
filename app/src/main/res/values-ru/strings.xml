@@ -12,8 +12,8 @@
     <string name="settings">Настройки</string>
     <string name="did_you_mean">Возможно, вы имели в виду: </string>
     <string name="search_page">Страница поиска: </string>
-    <string name="share_dialog_title">Поделиться с помощью:</string>
-    <string name="choose_browser">Выбрать браузер:</string>
+    <string name="share_dialog_title">Поделиться с помощью</string>
+    <string name="choose_browser">Выбрать браузер</string>
     <string name="screen_rotation">поворот</string>
     <string name="settings_activity_title">Настройки</string>
     <string name="useExternalPlayerTitle">Использовать внешний проигрыватель</string>

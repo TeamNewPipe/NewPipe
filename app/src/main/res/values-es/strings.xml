@@ -12,8 +12,8 @@
     <string name="settings">Ajustes</string>
     <string name="did_you_mean">"¿Querías decir?: "</string>
     <string name="search_page">Buscar página: </string>
-    <string name="share_dialog_title">Compartir con:</string>
-    <string name="choose_browser">Selecciona navegador:</string>
+    <string name="share_dialog_title">Compartir con</string>
+    <string name="choose_browser">Selecciona navegador</string>
     <string name="screen_rotation">rotación</string>
     <string name="settings_activity_title">Ajustes</string>
     <string name="useExternalPlayerTitle">Usar reproductor externo</string>

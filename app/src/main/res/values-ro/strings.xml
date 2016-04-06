@@ -13,8 +13,8 @@
     <string name="settings">Setări</string>
     <string name="did_you_mean">"V-ați referit la: "</string>
     <string name="search_page">"Pagina de căutare: "</string>
-    <string name="share_dialog_title">Partajează cu:</string>
-    <string name="choose_browser">Alegeți browser-ul:</string>
+    <string name="share_dialog_title">Partajează cu</string>
+    <string name="choose_browser">Alegeți browser-ul</string>
     <string name="screen_rotation">rotație</string>
     <string name="settings_activity_title">Setări</string>
     <string name="use_external_video_player_title">Folosește un player video extern</string>

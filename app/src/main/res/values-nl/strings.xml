@@ -12,8 +12,8 @@
     <string name="settings">Instellingen</string>
     <string name="did_you_mean">Bedoelde je: %1$s ?</string>
     <string name="search_page">Zoekpagina: </string>
-    <string name="share_dialog_title">Delen met:</string>
-    <string name="choose_browser">Browser kiezen:</string>
+    <string name="share_dialog_title">Delen met</string>
+    <string name="choose_browser">Browser kiezen</string>
     <string name="screen_rotation">rotatie</string>
     <string name="settings_activity_title">Instellingen</string>
     <string name="useExternalPlayerTitle">Gebruik externe speler</string>

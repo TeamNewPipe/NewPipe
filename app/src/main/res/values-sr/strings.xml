@@ -12,8 +12,8 @@
     <string name="settings">Поставке</string>
     <string name="did_you_mean">Да ли сте мислили: %1$s ?</string>
     <string name="search_page">Страница претраге: </string>
-    <string name="share_dialog_title">Подели помоћу:</string>
-    <string name="choose_browser">Отвори помоћу:</string>
+    <string name="share_dialog_title">Подели помоћу</string>
+    <string name="choose_browser">Отвори помоћу</string>
     <string name="screen_rotation">ротација</string>
     <string name="settings_activity_title">Поставке</string>
     <string name="useExternalPlayerTitle">Користи спољашњи плејер</string>

@@ -11,8 +11,8 @@
     <string name="settings">Definições</string>
     <string name="did_you_mean">Será que queria dizer: %1$s?</string>
     <string name="search_page">"Página de pesquisa: "</string>
-    <string name="share_dialog_title">Partilhar com:</string>
-    <string name="choose_browser">Escolher navegador:</string>
+    <string name="share_dialog_title">Partilhar com</string>
+    <string name="choose_browser">Escolher navegador</string>
     <string name="screen_rotation">rotação</string>
     <string name="settings_activity_title">Definições</string>
     <string name="use_external_video_player_title">Utilizar reprodutor de vídeo externo</string>

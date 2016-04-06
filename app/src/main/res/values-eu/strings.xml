@@ -9,8 +9,8 @@
     <string name="download">Deskargatu</string>
     <string name="search">Bilatu</string>
     <string name="settings">Ezarpenak</string>
-    <string name="share_dialog_title">Partekatu honekin:</string>
-    <string name="choose_browser">Nabigatzailea aukeratu:</string>
+    <string name="share_dialog_title">Partekatu honekin</string>
+    <string name="choose_browser">Nabigatzailea aukeratu</string>
     <string name="screen_rotation">biratzea</string>
     <string name="settings_activity_title">Ezarpenak</string>
     <string name="download_path_title">Deskargatzeko kokapena</string>
