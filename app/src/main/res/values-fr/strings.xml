@@ -2,7 +2,7 @@
 <resources>
     <string name="autoplay_through_intent_summary">Lire automatiquement une vidéo lorsqu’elle a été appelée depuis une autre application.</string>
     <string name="cancel">Annuler</string>
-    <string name="choose_browser">Choisir un navigateur :</string>
+    <string name="choose_browser">Choisir un navigateur </string>
     <string name="default_resolution_title">Définition par défaut</string>
     <string name="did_you_mean">"S’agirait-il de : "</string>
     <string name="download">Télécharger</string>
@@ -21,7 +21,7 @@
     <string name="search_page">"Rechercher dans la page : "</string>
     <string name="settings">Paramètres</string>
     <string name="share">Partager</string>
-    <string name="share_dialog_title">Partager avec :</string>
+    <string name="share_dialog_title">Partager avec </string>
     <string name="show_play_with_kodi_summary">Afficher une option pour lire la vidéo via la médiathèque Kodi.</string>
     <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
     <string name="settings_activity_title">Paramètres</string>

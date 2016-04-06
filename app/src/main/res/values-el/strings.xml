@@ -13,8 +13,8 @@
     <string name="settings">Ρυθμίσεις</string>
     <string name="did_you_mean">"Μήπως εννοείτε: "</string>
     <string name="search_page">"Αναζήτηση σελίδας: "</string>
-    <string name="share_dialog_title">Κοινοποίηση με:</string>
-    <string name="choose_browser">Επιλέξτε browser:</string>
+    <string name="share_dialog_title">Κοινοποίηση με</string>
+    <string name="choose_browser">Επιλέξτε browser</string>
     <string name="screen_rotation">περιστροφή</string>
     <string name="settings_activity_title">Ρυθμίσεις</string>
     <string name="use_external_video_player_title">Χρήση εξωτερικού video player</string>

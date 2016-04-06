@@ -11,8 +11,8 @@
     <string name="settings">Nastavitve</string>
     <string name="did_you_mean">Ali ste mislili: %1$s?</string>
     <string name="search_page">"Stran iskanja: "</string>
-    <string name="share_dialog_title">Omogoči souporabo z:</string>
-    <string name="choose_browser">Izbor brskalnika:</string>
+    <string name="share_dialog_title">Omogoči souporabo z</string>
+    <string name="choose_browser">Izbor brskalnika</string>
     <string name="screen_rotation">usmerjenost</string>
     <string name="settings_activity_title">Nastavitve</string>
     <string name="use_external_video_player_title">Uporabi zunanji predvajalnik videa</string>
@@ -118,7 +118,7 @@
     <string name="error_querying_decoders">Ni mogoče preiskati dekodirnikov na napravi</string>
     <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Ni mogoče začeti dekodirnika <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">Dovoljenje za dostop do shrambe je zavrnjeno</string>
-    <string name="autoplay_by_calling_app_title">Samodejno predvajaj vsebino, poslano iz drugega programa.</string>
+    <string name="autoplay_by_calling_app_title">Samodejno predvajaj vsebino, poslano iz drugega programa</string>
     <string name="autoplay_by_calling_app_summary">Samodejno predvajaj vsebino, če je NewPipe klican iz drugega programa.</string>
     <string name="report_error">Pošlji poročilo o napaki</string>
     <string name="user_report">Poročilo uporabnika</string>

@@ -13,8 +13,8 @@
     <string name="settings">設定</string>
     <string name="did_you_mean">"您是不是要查： "</string>
     <string name="search_page">"搜尋頁面： "</string>
-    <string name="share_dialog_title">分享影片：</string>
-    <string name="choose_browser">選擇瀏覽器：</string>
+    <string name="share_dialog_title">分享影片</string>
+    <string name="choose_browser">選擇瀏覽器</string>
     <string name="screen_rotation">旋轉</string>
     <string name="settings_activity_title">設定</string>
     <string name="use_external_video_player_title">使用外置影片播放器</string>

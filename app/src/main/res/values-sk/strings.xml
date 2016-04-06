@@ -13,8 +13,8 @@
     <string name="settings">Nastavenia</string>
     <string name="did_you_mean">Mysleli ste: %1$s?</string>
     <string name="search_page">"Hľadať stránku: "</string>
-    <string name="share_dialog_title">Zdieľať s:</string>
-    <string name="choose_browser">Vyberte prehliadač:</string>
+    <string name="share_dialog_title">Zdieľať s</string>
+    <string name="choose_browser">Vyberte prehliadač</string>
     <string name="screen_rotation">otočenie</string>
     <string name="settings_activity_title">Nastavenia</string>
     <string name="use_external_video_player_title">Použiť externý prehrávač videa</string>
@@ -73,7 +73,7 @@
     <string name="err_dir_create">Nemožno vytvoriť adresár na preberanie \'%1$s\'</string>
     <string name="info_dir_created">Adresár na preberanie bol vytvorený \'%1$s\'</string>
 <string name="main_bg_subtitle">Začnite vyhľadaním obsahu</string>
-    <string name="autoplay_by_calling_app_title">Automaticky prehrať video pri zavolaní.</string>
+    <string name="autoplay_by_calling_app_title">Automaticky prehrať video pri zavolaní</string>
     <string name="autoplay_by_calling_app_summary">Video bude automaticky prehrané pri zavolaní NewPipe inou aplikáciou.</string>
     <string name="content">Obsah</string>
     <string name="show_age_restricted_content_title">Zobraziť vekovo obmedzený obsah</string>

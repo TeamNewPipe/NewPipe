@@ -12,8 +12,8 @@
     <string name="settings">Agordoj</string>
     <string name="did_you_mean">"Ĉu vi intencis: "</string>
     <string name="search_page">"Serĉpaĝo: "</string>
-    <string name="share_dialog_title">Konigi kun:</string>
-    <string name="choose_browser">Elekti retumilon:</string>
+    <string name="share_dialog_title">Konigi kun</string>
+    <string name="choose_browser">Elekti retumilon</string>
     <string name="screen_rotation">turno</string>
     <string name="settings_activity_title">Agordoj</string>
     <string name="use_external_video_player_title">Uzi eksteran videoludilon</string>

@@ -13,8 +13,8 @@
     <string name="settings">Налаштування</string>
     <string name="did_you_mean">Ви мали на увазі: %1$s ?</string>
     <string name="search_page">"Пошукова сторінка: "</string>
-    <string name="share_dialog_title">Поділитись з:</string>
-    <string name="choose_browser">Виберіть браузер:</string>
+    <string name="share_dialog_title">Поділитись з</string>
+    <string name="choose_browser">Виберіть браузер</string>
     <string name="screen_rotation">обертання</string>
     <string name="settings_activity_title">Налаштування</string>
     <string name="use_external_video_player_title">Використовувати зовнішній відео програвач</string>
@@ -28,7 +28,7 @@
     <string name="download_path_summary">Шлях де будуть зберігатись завантажені відео.</string>
     <string name="download_path_audio_title">Шлях для завантаження аудіо</string>
     <string name="download_path_audio_summary">Шлях де будуть зберігатись завантажені аудіо файли.</string>
-    <string name="autoplay_by_calling_app_title">Автоматично відтворювати при виклику з іншого додатку.</string>
+    <string name="autoplay_by_calling_app_title">Автоматично відтворювати при виклику з іншого додатку</string>
     <string name="autoplay_by_calling_app_summary">Автоматично відтворювати відео коли NewPipe викликано з іншого додатку.</string>
     <string name="default_resolution_title">Роздільна здатність за замовчуванням</string>
     <string name="play_with_kodi_title">Відтворювати за допомогою Kodi</string>
