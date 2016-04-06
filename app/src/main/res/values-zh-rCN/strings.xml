@@ -42,7 +42,7 @@
     <string name="show_next_and_similar_title">显示下一部和相近的视频</string>
     <string name="url_not_supported_toast">不支援此网址</string>
     <string name="similar_videos_btn_text">相近的视频</string>
-    <string name="search_language_title">内容位置</string>
+    <string name="search_language_title">首选内容语言</string>
     <string name="settings_category_video_audio_title">视频和音频</string>
     <string name="settings_category_appearance_title">外观</string>
     <string name="settings_category_other_title">其他</string>
