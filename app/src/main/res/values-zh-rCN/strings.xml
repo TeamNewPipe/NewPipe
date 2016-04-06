@@ -111,7 +111,7 @@
     <string name="storage_permission_denied">访问存储的权限被拒绝</string>
     <string name="use_exoplayer_summary">实验性</string>
 <string name="use_exoplayer_title">使用 ExoPlayer</string>
-    <string name="autoplay_by_calling_app_title">另一应用调用时自动播放。</string>
+    <string name="autoplay_by_calling_app_title">另一应用调用时自动播放</string>
     <string name="autoplay_by_calling_app_summary">NewPipe 是被另一应用调用时自动开始播放视频。</string>
     <string name="duration_live">直播</string>
 
