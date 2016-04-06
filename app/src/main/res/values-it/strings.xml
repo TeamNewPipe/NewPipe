@@ -9,7 +9,7 @@
     <string name="download">Scarica</string>
     <string name="search">Cerca</string>
     <string name="settings">Impostazioni</string>
-    <string name="did_you_mean">"Intendevi: "</string>
+    <string name="did_you_mean">Intendevi: %1$s ?</string>
     <string name="search_page">"Cerca pagina: "</string>
     <string name="share_dialog_title">Condividi con:</string>
     <string name="choose_browser">Scegli browser:</string>
@@ -73,7 +73,7 @@
     <string name="content_not_available">Contenuto non disponibile.</string>
     <string name="blocked_by_gema">Bloccato dalla GEMA.</string>
     <string name="use_tor_title">Usa Tor</string>
-    <string name="use_tor_summary">Forza il traffico in download tramite Tor per una maggiore privacy (lo streaming dei video non è ancora supportato).</string>
+    <string name="use_tor_summary">(Sperimentale) Forza il traffico in download tramite Tor per una maggiore privacy (lo streaming dei video non è ancora supportato).</string>
 
     <string name="parsing_error">Impossibile analizzare il sito web.</string>
     <string name="could_not_setup_download_menu">Impossibile impostare il menù di download.</string>
@@ -86,4 +86,46 @@
     <string name="show_age_restricted_content_title">Mostra contenuti vincolati all\'età</string>
     <string name="video_is_age_restricted">Questo video è vincolato alla maggiore età. Per accedervi, abilita \"Mostra video vincolati all\'età\" nelle impostazioni.</string>
 
-    </resources>
+    <string name="main_bg_subtitle">Fai tap sulla ricerca per iniziare</string>
+    <string name="autoplay_by_calling_app_title">Riproduci subito i video aperti da un\'altra app</string>
+    <string name="autoplay_by_calling_app_summary">Riproduci i video automaticamente quando NewPipe viene aperto da un\'altra app.</string>
+    <string name="duration_live">dal vivo</string>
+
+    <string name="light_parsing_error">Impossibile eseguire il parsing completo del sito.</string>
+    <string name="could_not_get_stream">Non è stato ottenuto alcuno stream.</string>
+    <string name="sorry_string">Ci dispiace, non sarebbe dovuto succedere.</string>
+    <string name="error_report_button_text">Segnala l\'errore via mail</string>
+    <string name="error_snackbar_message">Ci dispiace, c\'è stato qualche errore.</string>
+    <string name="error_snackbar_action">SEGNALA</string>
+    <string name="what_device_headline">Info:</string>
+    <string name="what_happened_headline">Cosa è successo:</string>
+    <string name="info_labels">Cosa:\\nRichiesta:\\nLingua Contenuto:\\nServizio:\\nOrario GMT:\\nVersione:\\nVersione SO:\\nRange glob. dell\'IP:</string>
+    <string name="info_searched_lbl">È stato cercato:</string>
+    <string name="info_requested_stream_lbl">Stream richiesto:</string>
+    <string name="your_comment">Il tuo commento (in inglese):</string>
+    <string name="error_details_headline">Dettagli:</string>
+
+
+    <string name="report_error">Segnala un errore</string>
+    <string name="user_report">Segnalazione dell\'utente</string>
+
+    <string name="enable_background_audio">Riproduci in background</string>
+    <string name="video">Video</string>
+    <string name="audio">Audio</string>
+    <string name="text">Testo</string>
+    <string name="logging">Logging</string>
+    <string name="logging_normal">Normale</string>
+    <string name="logging_verbose">Verboso</string>
+    <string name="retry">Riprova</string>
+    <string name="off">[off]</string>
+    <string name="error_drm_not_supported">Il contenuto protetto non è supportato nelle API precedenti al livello 18</string>
+    <string name="error_drm_unsupported_scheme">Questo dispositivo non supporta lo schema DRM richiesto</string>
+    <string name="error_drm_unknown">Si è verificato un errore sconosciuto con il DRM</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Questo dispositivo non è fornito di un decoder per <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Questo dispositivo non è fornito di un decoder sicuro per <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_querying_decoders">Impossibile ottenere informazioni sui decoder del dispositivo</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Impossibile creare un\'istanza del decoder <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="storage_permission_denied">È stato negato il permesso di accedere all\'archiviazione di massa</string>
+    <string name="use_exoplayer_title">Usa ExoPlayer</string>
+    <string name="use_exoplayer_summary">Sperimentale</string>
+</resources>
