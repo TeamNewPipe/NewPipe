@@ -4,7 +4,7 @@
     <string name="cancel">Annuler</string>
     <string name="choose_browser">Choisir un navigateur </string>
     <string name="default_resolution_title">Définition par défaut</string>
-    <string name="did_you_mean">"S’agirait-il de : "</string>
+    <string name="did_you_mean">Vouliez-vous dire : %1$s ?</string>
     <string name="download">Télécharger</string>
     <string name="download_path_title">Répertoire de téléchargement des vidéos</string>
     <string name="download_path_dialog_title">Entrer le chemin du répertoire de téléchargement des vidéos</string>
@@ -83,4 +83,9 @@
     <string name="light_parsing_error">Erreur lors de la récupération des informations</string>
     <string name="live_streams_not_supported">Il s\'agit un direct. Non supporté pour le moment.</string>
     <string name="sorry_string">Désolé, ça devrait pas arriver</string>
+    <string name="autoplay_by_calling_app_summary">Lire automatiquement la vidéo lorsque NewPipe est appelée par une autre application.</string>
+    <string name="error_report_button_text">Rendre compte de l\'erreur par mail</string>
+    <string name="what_device_headline">Info :</string>
+    <string name="what_happened_headline">Ce qui s\'est passé :</string>
+    <string name="info_requested_stream_lbl">Flux demandé :</string>
     </resources>
