@@ -110,4 +110,6 @@
     <string name="info_searched_lbl">Cherché :</string>
     <string name="user_report">Compte rendu utilisateur</string>
 
+    <string name="logging">Connexion</string>
+    <string name="error_drm_not_supported">Contenu protégé non supporté pour les API inférieur à la version 18</string>
     </resources>
