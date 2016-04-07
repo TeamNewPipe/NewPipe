@@ -94,4 +94,10 @@
 
     <string name="report_error">Signaler une erreur</string>
     <string name="enable_background_audio">Lire en arrière-plan</string>
+    <string name="video">Vidéo</string>
+    <string name="audio">Audio</string>
+    <string name="text">Texte</string>
+    <string name="logging_normal">Normal</string>
+    <string name="retry">Réessayer</string>
+    <string name="error_drm_unsupported_scheme">Votre appareil ne supporte pas le système DRM requis</string>
     </resources>
