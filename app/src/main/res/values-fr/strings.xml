@@ -62,7 +62,7 @@
     <string name="settings_category_appearance_title">Apparence</string>
     <string name="network_error">Erreur réseau</string>
 
-    <string name="download_path_audio_title">Répertoire de téléchargement des audios</string>
+    <string name="download_path_audio_title">Répertoire de téléchargement des fichiers audio</string>
     <string name="download_path_audio_summary">Chemin de stockage des fichiers audio téléchargés</string>
     <string name="download_path_audio_dialog_title">Entrez le chemin de stockage fichiers audio téléchargés</string>
 
@@ -111,5 +111,5 @@
     <string name="user_report">Compte rendu utilisateur</string>
 
     <string name="logging">Connexion</string>
-    <string name="error_drm_not_supported">Contenu protégé non supporté pour les API inférieur à la version 18</string>
+    <string name="error_drm_not_supported">Contenu protégé non supporté par l\'API antérieure à la version 18</string>
     </resources>
