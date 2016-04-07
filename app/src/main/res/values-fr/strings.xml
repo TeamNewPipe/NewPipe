@@ -113,4 +113,5 @@
     <string name="logging">Connexion</string>
     <string name="error_drm_not_supported">Contenu protégé non supporté par l\'API antérieure à la version 18</string>
     <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Cet appareil ne fournit pas de décodeur pour <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Votre appareil ne fournit pas de décodeur sécurisé pour <xliff:g id="mime_type">%1$s</xliff:g></string>
     </resources>
