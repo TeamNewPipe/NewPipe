@@ -16,7 +16,7 @@
     <string name="screen_rotation">回転</string>
     <string name="settings_activity_title">設定</string>
     <string name="useExternalPlayerTitle">外部ﾌﾟﾚｰﾔｰを使用する</string>
-    <string name="download_path_title">動画をﾀﾞｳﾝﾛｰﾄﾞする場所</string>
+    <string name="download_path_title">動画をﾀﾞｳﾝﾛｰﾄﾞするﾊﾟｽ</string>
     <string name="download_path_summary">ﾀﾞｳﾝﾛｰﾄﾞした動画を保存する場所のﾊﾟｽ｡</string>
     <string name="download_path_dialog_title">動画をﾀﾞｳﾝﾛｰﾄﾞするﾊﾟｽを入力してください</string>
     <string name="autoplay_through_intent_title">ｲﾝﾃﾝﾄで自動再生</string>
@@ -63,7 +63,7 @@
     <string name="network_error">ﾈｯﾄﾜｰｸ ｴﾗｰ</string>
 
     <string name="download_path_audio_title">ｵｰﾃﾞｨｵをﾀﾞｳﾝﾛｰﾄﾞするﾊﾟｽ</string>
-    <string name="download_path_audio_summary">ｵｰﾃﾞｨｵをﾀﾞｳﾝﾛｰﾄﾞするﾊﾟｽ｡</string>
+    <string name="download_path_audio_summary">ｵｰﾃﾞｨｵをﾀﾞｳﾝﾛｰﾄﾞするﾊﾟｽ</string>
     <string name="download_path_audio_dialog_title">ｵｰﾃﾞｫﾌｧｲﾙをﾀﾞｳﾝﾛｰﾄﾞするﾊﾟｽを入力してください。</string>
 
     <string name="err_dir_create">ﾀﾞｳﾝﾛｰﾄﾞ ﾃﾞｨﾚｸﾄﾘ \'%1$s\' を作成できません</string>
@@ -119,7 +119,7 @@
     <string name="storage_permission_denied">ストレージにアクセスするアクセス許可が拒否されました</string>
     <string name="use_exoplayer_title">ExoPlayer を使用する</string>
     <string name="use_exoplayer_summary">実験的</string>
-<string name="autoplay_by_calling_app_title">別のアプリから呼び出されたときに自動再生。</string>
+<string name="autoplay_by_calling_app_title">別のアプリから呼び出されたときに自動再生</string>
     <string name="autoplay_by_calling_app_summary">NewPipe が別のアプリから呼び出されたときに、自動的にビデオを再生します。</string>
     <string name="report_error">エラーを報告</string>
     <string name="user_report">ユーザー報告</string>
