@@ -99,5 +99,5 @@
     <string name="text">Texte</string>
     <string name="logging_normal">Normal</string>
     <string name="retry">Réessayer</string>
-    <string name="error_drm_unsupported_scheme">Votre appareil ne supporte pas le système DRM requis</string>
+    <string name="error_drm_unsupported_scheme">Cet appareil ne supporte pas le système DRM requis</string>
     </resources>
