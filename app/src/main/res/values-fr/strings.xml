@@ -93,4 +93,5 @@
 
 
     <string name="report_error">Signaler une erreur</string>
+    <string name="enable_background_audio">Lire en arrière-plan</string>
     </resources>
