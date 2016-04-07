@@ -25,7 +25,7 @@
     <string name="show_play_with_kodi_summary">Afficher une option pour lire la vidéo via la médiathèque Kodi.</string>
     <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
     <string name="settings_activity_title">Paramètres</string>
-    <string name="upload_date_text">Mise en ligne le %1$s</string>
+    <string name="upload_date_text">Ajoutée le %1$s</string>
     <string name="useExternalPlayerTitle">Utiliser un lecteur externe</string>
     <string name="view_count_text">%1$s vues</string>
     <string name="play_audio">Audio</string>
@@ -73,7 +73,7 @@
     <string name="content_not_available">Contenu non disponible.</string>
     <string name="blocked_by_gema">Bloqué par GEMA.</string>
 
-    <string name="error_snackbar_message">Désolé, des erreurs se sont produites</string>
+    <string name="error_snackbar_message">Désolé, des erreurs se sont produites.</string>
     <string name="content">Contenu</string>
     <string name="show_age_restricted_content_title">Afficher le contenu restreint</string>
     <string name="duration_live">En direct</string>
@@ -81,8 +81,8 @@
     <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
     <string name="youtube_signature_decryption_error">Erreur lors du décryptage du lien</string>
     <string name="light_parsing_error">Erreur lors de la récupération des informations</string>
-    <string name="live_streams_not_supported">Il s\'agit un direct. Non supporté pour le moment.</string>
-    <string name="sorry_string">Désolé, ça devrait pas arriver</string>
+    <string name="live_streams_not_supported">Il s\'agit d\'un direct. Non supporté pour le moment.</string>
+    <string name="sorry_string">Désolé, ça ne devrait pas arriver.</string>
     <string name="autoplay_by_calling_app_summary">Lire automatiquement la vidéo lorsque NewPipe est appelée par une autre application.</string>
     <string name="error_report_button_text">Rendre compte de l\'erreur par mail</string>
     <string name="what_device_headline">Info :</string>
@@ -102,5 +102,12 @@
     <string name="error_drm_unsupported_scheme">Cet appareil ne supporte pas le système DRM requis</string>
     <string name="error_drm_unknown">Une erreur DRM s\'est produite</string>
     <string name="storage_permission_denied">Permission d\'accès au stockage refusée</string>
-    <string name="use_exoplayer_title">Utilisez ExoPlayer</string>
+    <string name="use_exoplayer_title">Utiliser ExoPlayer</string>
+    <string name="use_exoplayer_summary">Expérimental</string>
+<string name="main_bg_subtitle">Faites une recherche pour commencer</string>
+    <string name="autoplay_by_calling_app_title">Lire automatiquement quand appelé par une autre application</string>
+    <string name="video_is_age_restricted">Cette vidéo est soumise à une restriction d\'âge. Autoriser le contenu restreint dans les paramètres avant.</string>
+    <string name="info_searched_lbl">Cherché :</string>
+    <string name="user_report">Compte rendu utilisateur</string>
+
     </resources>
