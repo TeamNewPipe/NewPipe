@@ -100,5 +100,5 @@
     <string name="logging_normal">Normal</string>
     <string name="retry">Réessayer</string>
     <string name="error_drm_unsupported_scheme">Cet appareil ne supporte pas le système DRM requis</string>
-    <string name="error_drm_unknown">Un erreur DRM s\'est produite</string>
+    <string name="error_drm_unknown">Une erreur DRM s\'est produite</string>
     </resources>
