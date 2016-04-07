@@ -54,7 +54,7 @@
     <string name="play_btn_text">Lecture</string>
 
     <string name="use_tor_title">Utiliser Tor</string>
-    <string name="use_tor_summary">Forcer le trafic de téléchargement via Tor pour plus de confidentialité (vidéos diffusés en flux réseau non pris en charge pour l’instant)</string>
+    <string name="use_tor_summary">Rediriger le trafic via Tor pour plus de confidentialité (Streaming non supportés pour le moment)</string>
 <string name="theme_title">Thème</string>
     <string name="dark_theme_title">Sombre</string>
     <string name="light_theme_title">Clair</string>
