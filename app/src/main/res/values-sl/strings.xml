@@ -17,7 +17,7 @@
     <string name="settings_activity_title">Nastavitve</string>
     <string name="use_external_video_player_title">Uporabi zunanji predvajalnik videa</string>
     <string name="use_external_audio_player_title">Uporabi zunanji predvajalnik zvoka</string>
-    <string name="download_path_title">Mapa za prejem videa</string>
+    <string name="download_path_title">Pot do mape za prejem videa</string>
     <string name="download_path_summary">Pot do mape za prejem video datotek</string>
     <string name="download_path_dialog_title">Vpis poti za prejem videa</string>
     <string name="default_resolution_title">Privzeta ločljivost</string>
@@ -61,8 +61,8 @@
 
     <string name="use_tor_title">Uporabi Tor</string>
     <string name="use_tor_summary">(Preizkusno) Vsili prenos prejema preko sistema Tor za povečanje zasebnosti (pretakanje videa ni še podprto).</string>
-<string name="download_path_audio_title">Mapa za prejem zvočnih datotek</string>
-    <string name="download_path_audio_summary">Pot do mape, ki je določena za prejem zvočnih datotek.</string>
+<string name="download_path_audio_title">Pot do mape za prejem zvočnih datotek</string>
+    <string name="download_path_audio_summary">Pot do mape, ki je določena za prejem zvočnih datotek</string>
     <string name="download_path_audio_dialog_title">Vpis poti za prejem zvočnih datotek</string>
 
     <string name="err_dir_create">Ni mogoče ustvariti mape za prejem \'%1$s\'</string>
