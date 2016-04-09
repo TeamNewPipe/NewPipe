@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="background_player_name">NewPipe-fonludilo</string>
     <string name="view_count_text">%1$s vidoj</string>
-    <string name="upload_date_text">Alŝultita je %1$s</string>
+    <string name="upload_date_text">Eldonita je %1$s</string>
     <string name="install">Instali</string>
     <string name="cancel">Nuligi</string>
     <string name="open_in_browser">Malfermi per retumilo</string>
@@ -10,7 +10,7 @@
     <string name="download">Elŝuti</string>
     <string name="search">Serĉi</string>
     <string name="settings">Agordoj</string>
-    <string name="did_you_mean">"Ĉu vi intencis: "</string>
+    <string name="did_you_mean">Ĉu vi intencis: %1$s?</string>
     <string name="search_page">"Serĉpaĝo: "</string>
     <string name="share_dialog_title">Konigi kun</string>
     <string name="choose_browser">Elekti retumilon</string>
@@ -62,14 +62,28 @@
     <string name="info_dir_created">Elŝutujo \'%1$s\' kreita</string>
 <string name="download_path_title">Elŝutujo por videoj</string>
     <string name="download_path_audio_title">Elŝutujo por muziko</string>
-    <string name="use_tor_summary">Devigi elŝuttrafikon tra Tor por pli bona privateco (elsendfluaj videoj estas ankoraŭ ne subtenitaj)</string>
+    <string name="use_tor_summary">(Eksperimenta) Devigi elŝuttrafikon tra Tor por pli bona privateco (elsendfluaj videoj estas ankoraŭ ne subtenitaj).</string>
 
     <string name="show_play_with_kodi_summary">Montri opcion por ludi videon per la aplikaĵo Kodi.</string>
     <string name="download_path_summary">Dosierujo por konservi elŝutitajn videojn.</string>
-    <string name="download_path_audio_summary">Dosierujo por konservi elŝutitan muzikon.</string>
+    <string name="download_path_audio_summary">Dosierujo por konservi elŝutitan muzikon</string>
     <string name="autoplay_through_intent_summary">Ludi videon aŭtomate kiam ĝi estas vokita de alia aplikaĵo.</string>
     <string name="download_path_dialog_title">Elektu lokon por konservi elŝutitajn videojn</string>
 
     <string name="download_path_audio_dialog_title">Elektu lokon por konservi elŝutitan muzikon.</string>
 
-    </resources>
+    <string name="content">Enhavo</string>
+    <string name="error_report_button_text">Raporti eraron per retpoŝto</string>
+    <string name="error_snackbar_action">RAPORTI</string>
+    <string name="what_device_headline">Informoj:</string>
+    <string name="your_comment">Via komento (en la angla):</string>
+    <string name="error_details_headline">Detaloj:</string>
+
+
+    <string name="report_error">Raporti eraron</string>
+    <string name="video">Video</string>
+    <string name="text">Teksto</string>
+    <string name="logging_normal">Normala</string>
+    <string name="retry">Reprovi</string>
+    <string name="use_exoplayer_summary">Eksperimenta</string>
+</resources>
