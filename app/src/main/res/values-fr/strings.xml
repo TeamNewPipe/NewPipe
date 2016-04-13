@@ -6,9 +6,9 @@
     <string name="default_resolution_title">Définition par défaut</string>
     <string name="did_you_mean">Vouliez-vous dire : %1$s ?</string>
     <string name="download">Télécharger</string>
-    <string name="download_path_title">Répertoire de téléchargement des vidéos</string>
-    <string name="download_path_dialog_title">Entrer le chemin du répertoire de téléchargement des vidéos</string>
-    <string name="download_path_summary">Chemin du répertoire stockant les vidéos téléchargées.</string>
+    <string name="download_path_title">Chemin de téléchargement</string>
+    <string name="download_path_dialog_title">Entrer le chemin de téléchargement des vidéos</string>
+    <string name="download_path_summary">Chemin de stockage des vidéos téléchargées.</string>
     <string name="install">Installer</string>
     <string name="installeKore">Installer Kore</string>
     <string name="kore_not_found">L’application Kore est introuvable. Installer Kore ?</string>
@@ -18,7 +18,7 @@
     <string name="play_with_kodi_title">Lire avec Kodi</string>
     <string name="screen_rotation">rotation</string>
     <string name="search">Rechercher</string>
-    <string name="search_page">"Rechercher dans la page : "</string>
+    <string name="search_page">"Rechercher la page : "</string>
     <string name="settings">Paramètres</string>
     <string name="share">Partager</string>
     <string name="share_dialog_title">Partager avec </string>
@@ -62,14 +62,14 @@
     <string name="settings_category_appearance_title">Apparence</string>
     <string name="network_error">Erreur réseau</string>
 
-    <string name="download_path_audio_title">Répertoire de téléchargement des fichiers audio</string>
+    <string name="download_path_audio_title">Chemin de téléchargement</string>
     <string name="download_path_audio_summary">Chemin de stockage des fichiers audio téléchargés</string>
-    <string name="download_path_audio_dialog_title">Entrer le chemin de stockage des fichiers audio téléchargés</string>
+    <string name="download_path_audio_dialog_title">Entrer le chemin de téléchargement des fichiers audio</string>
 
     <string name="err_dir_create">Impossible de créer le répertoire de téléchargement « %1$s »</string>
     <string name="info_dir_created">Répertoire de téléchargement « %1$s » créé</string>
 <string name="general_error">Erreur</string>
-    <string name="parsing_error">Impossible de parser le site web.</string>
+    <string name="parsing_error">Impossible d\'analyser le site web.</string>
     <string name="content_not_available">Contenu non disponible.</string>
     <string name="blocked_by_gema">Bloqué par GEMA.</string>
 
@@ -80,12 +80,12 @@
 
     <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
     <string name="youtube_signature_decryption_error">Erreur lors du décryptage du lien</string>
-    <string name="light_parsing_error">Erreur lors de la récupération des informations</string>
+    <string name="light_parsing_error">Impossible d\'analyser le site complètement.</string>
     <string name="live_streams_not_supported">Il s\'agit d\'un direct. Non supporté pour le moment.</string>
     <string name="sorry_string">Désolé, ça ne devrait pas arriver.</string>
     <string name="autoplay_by_calling_app_summary">Lire automatiquement la vidéo lorsque NewPipe est appelée par une autre application.</string>
-    <string name="error_report_button_text">Signaler l\'erreur par mail</string>
-    <string name="what_device_headline">Info :</string>
+    <string name="error_report_button_text">Signaler l\'erreur par e-mail</string>
+    <string name="what_device_headline">Information :</string>
     <string name="what_happened_headline">Ce qui s\'est passé :</string>
     <string name="info_requested_stream_lbl">Flux demandé :</string>
     <string name="your_comment">Votre commentaire (en anglais) :</string>
@@ -105,7 +105,7 @@
     <string name="use_exoplayer_title">Utiliser ExoPlayer</string>
     <string name="use_exoplayer_summary">Expérimental</string>
 <string name="main_bg_subtitle">Faites une recherche pour commencer</string>
-    <string name="autoplay_by_calling_app_title">Lire automatiquement quand appelé par une autre application</string>
+    <string name="autoplay_by_calling_app_title">Lecture automatique quand appelé par une autre application</string>
     <string name="video_is_age_restricted">Cette vidéo est soumise à une restriction d\'âge. Autoriser le contenu restreint dans les paramètres avant.</string>
     <string name="info_searched_lbl">Recherché :</string>
     <string name="user_report">Compte rendu utilisateur</string>
@@ -116,4 +116,8 @@
     <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Cet appareil ne fournit pas de décodeur sécurisé pour <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Impossible d\'instancier le décodeur <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="error_snackbar_action">SIGNALER</string>
+    <string name="could_not_setup_download_menu">Impossible de configurer le menu.</string>
+    <string name="could_not_get_stream">Impossible d\'obtenir une diffusion.</string>
+    <string name="logging_verbose">Verbose</string>
+    <string name="off">[désactivé]</string>
     </resources>
