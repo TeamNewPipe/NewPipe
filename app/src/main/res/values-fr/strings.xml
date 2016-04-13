@@ -101,7 +101,7 @@
     <string name="retry">Réessayer</string>
     <string name="error_drm_unsupported_scheme">Cet appareil ne supporte pas le système DRM requis</string>
     <string name="error_drm_unknown">Une erreur DRM s\'est produite</string>
-    <string name="storage_permission_denied">Permission d\'accès au stockage refusée</string>
+    <string name="storage_permission_denied">Autorisation d\'accès au stockage refusée</string>
     <string name="use_exoplayer_title">Utiliser ExoPlayer</string>
     <string name="use_exoplayer_summary">Expérimental</string>
 <string name="main_bg_subtitle">Faites une recherche pour commencer</string>
