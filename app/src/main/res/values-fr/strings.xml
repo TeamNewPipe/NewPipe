@@ -120,4 +120,5 @@
     <string name="could_not_get_stream">Impossible d\'obtenir une diffusion.</string>
     <string name="logging_verbose">Verbose</string>
     <string name="off">[désactivé]</string>
+    <string name="error_querying_decoders">Impossible d\'accéder aux décodeurs de l\'appareil</string>
     </resources>
