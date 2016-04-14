@@ -62,7 +62,7 @@
     <string name="settings_category_appearance_title">Apparence</string>
     <string name="network_error">Erreur réseau</string>
 
-    <string name="download_path_audio_title">Chemin de téléchargement</string>
+    <string name="download_path_audio_title">Chemin de téléchargement de l\'audio</string>
     <string name="download_path_audio_summary">Chemin de stockage des fichiers audio téléchargés</string>
     <string name="download_path_audio_dialog_title">Entrer le chemin de téléchargement des fichiers audio</string>
 
@@ -105,7 +105,7 @@
     <string name="use_exoplayer_title">Utiliser ExoPlayer</string>
     <string name="use_exoplayer_summary">Expérimental</string>
 <string name="main_bg_subtitle">Faites une recherche pour commencer</string>
-    <string name="autoplay_by_calling_app_title">Lecture automatique quand appelé par une autre application</string>
+    <string name="autoplay_by_calling_app_title">Lecture automatique quand ouvert depuis une autre application</string>
     <string name="video_is_age_restricted">Cette vidéo est soumise à une restriction d\'âge. Autoriser le contenu restreint dans les paramètres avant.</string>
     <string name="info_searched_lbl">Recherché :</string>
     <string name="user_report">Compte rendu utilisateur</string>
@@ -116,7 +116,7 @@
     <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Cet appareil ne fournit pas de décodeur sécurisé pour <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Impossible d\'instancier le décodeur <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="error_snackbar_action">SIGNALER</string>
-    <string name="could_not_setup_download_menu">Impossible de configurer le menu.</string>
+    <string name="could_not_setup_download_menu">de téléchargement.</string>
     <string name="could_not_get_stream">Impossible d\'obtenir une diffusion.</string>
     <string name="logging_verbose">Verbose</string>
     <string name="off">[désactivé]</string>
