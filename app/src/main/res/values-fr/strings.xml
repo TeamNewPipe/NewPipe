@@ -121,4 +121,5 @@
     <string name="logging_verbose">Verbose</string>
     <string name="off">[désactivé]</string>
     <string name="error_querying_decoders">Impossible d\'accéder aux décodeurs de l\'appareil</string>
+    <string name="info_labels">Action :\\nRequête :\\nLangue du contenu :\\nService :\\nHeure GMT :\\nVersion :\\nVersion d\'OS :\\nIntervalle global d\'IP :</string>
     </resources>
