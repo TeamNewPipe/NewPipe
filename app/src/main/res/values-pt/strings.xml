@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="view_count_text">%1$s visualizações</string>
-    <string name="upload_date_text">Carregado em %1$s</string>
+    <string name="upload_date_text">Publicado em %1$s</string>
     <string name="no_player_found">Reprodutor não disponível. Instalar o VLC?</string>
     <string name="install">Instalar</string>
     <string name="cancel">Cancelar</string>
@@ -62,7 +62,7 @@
     <string name="use_tor_title">Utilizar Tor</string>
     <string name="use_tor_summary">(Experimental) Utilizar a rede Tor para ter mais privacidade (ainda não é suportada a emissão de vídeos).</string>
 <string name="download_path_audio_title">Descarga de áudio</string>
-    <string name="download_path_audio_summary">Local para guardar o áudio descarregado.</string>
+    <string name="download_path_audio_summary">Local para guardar o áudio descarregado</string>
     <string name="download_path_audio_dialog_title">Digite o caminho para os ficheiros áudio.</string>
 
     <string name="err_dir_create">Não foi possível criar o diretório \'%1$s\'</string>
@@ -114,4 +114,12 @@
     <string name="storage_permission_denied">Não foi concedida permissão para aceder ao armazenamento</string>
     <string name="use_exoplayer_title">Usar ExoPlayer</string>
     <string name="use_exoplayer_summary">Experimental</string>
-</resources>
+<string name="main_bg_subtitle">Toque para iniciar a pesquisa</string>
+    <string name="autoplay_by_calling_app_title">Reproduzir se invocado por outra aplicação</string>
+    <string name="autoplay_by_calling_app_summary">Reproduzir vídeo automaticamente se o NewPipe for invocado por outra aplicação.</string>
+    <string name="duration_live">direto</string>
+
+    <string name="report_error">Reportar um erro</string>
+    <string name="user_report">Relatório</string>
+
+    </resources>
