@@ -55,6 +55,7 @@ NewPipe does not use any Google framework libraries, or the YouTube API. It only
 * Subscribe to channels
 * Watch videos from a channel
 * Search/Watch Playlists
+* Queeing videos
 * ... and many more
 
 ### Multiservice support
