@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="view_count_text">%1$s Aufrufe</string>
-    <string name="upload_date_text">Hochgeladen am %1$s</string>
+    <string name="upload_date_text">Veröffentlicht am %1$s</string>
     <string name="no_player_found">Keinen Streamplayer gefunden. Möchtest du VLC installieren?</string>
     <string name="install">Jetzt installieren</string>
     <string name="cancel">Abbrechen</string>
@@ -60,7 +60,7 @@
     <string name="network_error">Netzwerkfehler</string>
 
     <string name="download_path_audio_title">Downloadverzeichnis für Musik</string>
-    <string name="download_path_audio_summary">Verzeichnis zum Speichern heruntergeladener Audiodateien.</string>
+    <string name="download_path_audio_summary">Verzeichnis zum Speichern heruntergeladener Audiodateien</string>
     <string name="download_path_audio_dialog_title">Pfad für heruntergeladene Audiodateien eingeben.</string>
 
     <string name="theme_title">Aussehen</string>
