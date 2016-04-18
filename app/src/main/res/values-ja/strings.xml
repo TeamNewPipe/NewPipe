@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <string name="upload_date_text">"アップロード: "%1$s</string>
+    <string name="upload_date_text">%1$s に公開</string>
     <string name="no_player_found">ｽﾄﾘｰﾑのﾌﾟﾚｲﾔｰが見つかりません｡VLC をｲﾝｽﾄｰﾙしますか?</string>
     <string name="install">ｲﾝｽﾄｰﾙ</string>
     <string name="cancel">取り消し</string>
@@ -85,7 +85,7 @@
     <string name="show_age_restricted_content_title">年齢制限コンテンツを表示</string>
     <string name="video_is_age_restricted">ビデオは年齢制限です。まず設定で年齢制限のビデオを有効にしてください。</string>
 
-    <string name="light_parsing_error">ウェブサイトを完全に解析できませんでした。</string>
+    <string name="light_parsing_error">ウェブサイトを完全には解析できませんでした。</string>
     <string name="could_not_get_stream">ストリームを取得できませんでした。</string>
     <string name="sorry_string">申し訳ありません。発生すべきではありませんでした。</string>
     <string name="error_report_button_text">メールでエラーを報告</string>
