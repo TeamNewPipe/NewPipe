@@ -140,4 +140,39 @@
     <string name="storage_permission_denied">Permission to access storage was denied</string>
     <string name="use_exoplayer_title">Use ExoPlayer</string>
     <string name="use_exoplayer_summary">Experimental</string>
+
+    <!-- Missions -->
+    <string name="start">Start</string>
+    <string name="pause">Pause</string>
+    <string name="view">View</string>
+    <string name="delete">Delete</string>
+    <string name="checksum">Checksum</string>
+
+    <!-- Fragment -->
+    <string name="add">New mission</string>
+    <string name="finish">Okay</string>
+    <string name="switch_mode">Switch between list and grid</string>
+
+
+    <!-- Msg -->
+    <string name="msg_url">Download URL</string>
+    <string name="msg_name">File name</string>
+    <string name="msg_threads">Threads</string>
+    <string name="msg_fetch_filename">Fetch file name</string>
+    <string name="msg_error">Error</string>
+    <string name="msg_server_unsupported">Server unsupported</string>
+    <string name="msg_exists">File already exists</string>
+    <string name="msg_url_malform">Malformed URL or Internet not available</string>
+    <string name="msg_running">NewPipe Downloading</string>
+    <string name="msg_running_detail">Click for details</string>
+    <string name="msg_wait">Please wait...</string>
+    <string name="msg_copied">Copied to clipboard.</string>
+    <string name="no_available_dir">Please select an available download directory.</string>
+
+    <!-- Checksum types -->
+    <string name="md5" translatable="false">MD5</string>
+    <string name="sha1" translatable="false">SHA1</string>
+
+    <!-- End of GigaGet's Strings -->
+
 </resources>

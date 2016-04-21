@@ -2,9 +2,9 @@ package org.schabi.newpipe.download;
 
 import android.Manifest;
 import android.app.Dialog;
-import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,7 +14,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.NewPipeSettings;
@@ -152,49 +151,23 @@ public class DownloadDialog extends DialogFragment {
     private void download(String url, String title,
                           String fileSuffix, File downloadDir, Context context) {
 
-        if(!downloadDir.exists()) {
-            //attempt to create directory
-            boolean mkdir = downloadDir.mkdirs();
-            if(!mkdir && !downloadDir.isDirectory()) {
-                String message = context.getString(R.string.err_dir_create,downloadDir.toString());
-                Log.e(TAG, message);
-                Toast.makeText(context,message , Toast.LENGTH_LONG).show();
-
-                return;
-            }
-            String message = context.getString(R.string.info_dir_created,downloadDir.toString());
-            Log.e(TAG, message);
-            Toast.makeText(context,message , Toast.LENGTH_LONG).show();
-        }
-
         File saveFilePath = new File(downloadDir,createFileName(title) + fileSuffix);
 
         long id = 0;
 
-
-        if (App.isUsingTor()) {
-            // if using Tor, do not use DownloadManager because the proxy cannot be set
-            FileDownloader.downloadFile(getContext(), url, saveFilePath, title);
-        } else {
-            DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-            DownloadManager.Request request = new DownloadManager.Request(
-                    Uri.parse(url));
-            request.setDestinationUri(Uri.fromFile(saveFilePath));
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-
-            request.setTitle(title);
-            request.setDescription("'" + url +
-                    "' => '" + saveFilePath + "'");
-            request.allowScanningByMediaScanner();
-
-            try {
-                id = dm.enqueue(request);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
         Log.i(TAG,"Started downloading '" + url +
                 "' => '" + saveFilePath + "' #" + id);
+
+        if (App.isUsingTor()) {
+            //if using Tor, do not use DownloadManager because the proxy cannot be set
+            //we'll see later
+            FileDownloader.downloadFile(getContext(), url, saveFilePath, title);
+        } else {
+            Intent intent = new Intent(getContext(), MainActivity.class);
+            intent.setAction(MainActivity.INTENT_DOWNLOAD);
+            intent.setData(Uri.parse(url));
+            intent.putExtra("fileName", createFileName(title) + fileSuffix);
+            startActivity(intent);
+        }
     }
 }
