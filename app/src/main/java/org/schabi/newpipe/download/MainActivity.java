@@ -11,8 +11,10 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +27,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.VideoItemDetailActivity;
+import org.schabi.newpipe.VideoItemListActivity;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public static final String INTENT_DOWNLOAD = "us.shandian.giga.intent.DOWNLOAD";
 
     public static final String INTENT_LIST = "us.shandian.giga.intent.LIST";
+
+    private static final String TAG = MainActivity.class.toString();
 
     private MissionsFragment mFragment;
     private DownloadManager mManager;
@@ -81,9 +87,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_downloader);
 
+        try {
+            //noinspection ConstantConditions
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        } catch(Exception e) {
+            Log.d(TAG, "Could not get SupportActionBar");
+            e.printStackTrace();
+        }
 
         mPrefs = getSharedPreferences("threads", Context.MODE_WORLD_READABLE);
-
 
         // Fragment
         getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -99,7 +111,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             mPendingUrl = getIntent().getData().toString();
         }
     }
-
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -128,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 .replace(R.id.frame, mFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();
-
+        
     }
 
     private void showUrlDialog() {
@@ -275,6 +286,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            Intent intent = new Intent(this, VideoItemDetailActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            NavUtils.navigateUpTo(this, intent);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
