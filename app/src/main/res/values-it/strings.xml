@@ -16,7 +16,7 @@
     <string name="screen_rotation">rotazione</string>
     <string name="settings_activity_title">Impostazioni</string>
     <string name="useExternalPlayerTitle">Usa un riproduttore video esterno</string>
-    <string name="download_path_title">Cartella dei download</string>
+    <string name="download_path_title">Cartella dei video scaricati</string>
     <string name="download_path_summary">Percorso dove memorizzare i video scaricati.</string>
     <string name="download_path_dialog_title">Inserisci il percorso per i download</string>
     <string name="autoplay_through_intent_title">Auto riproduzione attraverso internet</string>
@@ -53,7 +53,7 @@
     <string name="use_external_video_player_title">Usa un lettore video esterno</string>
     <string name="use_external_audio_player_title">Usa un lettore audio esterno</string>
 
-    <string name="download_path_audio_title">Cartella dei download degli audio</string>
+    <string name="download_path_audio_title">Cartella degli audio scaricati</string>
     <string name="download_path_audio_summary">Cartella dove salvare gli audio scaricati.</string>
     <string name="download_path_audio_dialog_title">Inserisci la cartella per i file audio.</string>
 
