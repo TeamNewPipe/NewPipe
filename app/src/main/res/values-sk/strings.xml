@@ -27,7 +27,7 @@
     <string name="download_path_audio_title">Prevzaté audio ukladať do</string>
     <string name="download_path_audio_dialog_title">Vložte cestu kam sa budú ukladať zvukové súbory.</string>
 
-    <string name="download_path_audio_summary">Cesta kam sa bude ukladať prevzaté audio.</string>
+    <string name="download_path_audio_summary">Cesta kam sa bude ukladať prevzaté audio</string>
     <string name="autoplay_through_intent_title">Automatické prehrávanie na vyžiadanie</string>
     <string name="autoplay_through_intent_summary">Automatický prehrá video na žiadosť z inej aplikácie.</string>
     <string name="default_resolution_title">Štandardné rozlíšenie</string>
