@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import org.schabi.newpipe.NewPipeSettings;
+
 import java.io.File;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
@@ -33,7 +35,7 @@ public class DownloadManagerImpl implements DownloadManager
 		DownloadMission mission = new DownloadMission();
 		mission.url = url;
 		mission.name = name;
-		mission.location = mLocation;
+		mission.location = NewPipeSettings.getDownloadPath(mContext, name);
 		mission.timestamp = System.currentTimeMillis();
 		mission.threadCount = threads;
 		new Initializer(mContext, mission).start();
@@ -64,7 +66,7 @@ public class DownloadManagerImpl implements DownloadManager
 	
 	private void loadMissions() {
 		File f = new File(mLocation);
-		
+
 		if (f.exists() && f.isDirectory()) {
 			File[] subs = f.listFiles();
 			

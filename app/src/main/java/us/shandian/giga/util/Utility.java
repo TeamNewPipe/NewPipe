@@ -17,9 +17,9 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import org.schabi.newpipe.NewPipeSettings;
 import org.schabi.newpipe.R;
 import us.shandian.giga.get.DownloadMission;
-import us.shandian.giga.util.Settings;
 
 import com.nononsenseapps.filepicker.FilePickerActivity;
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
@@ -154,10 +154,10 @@ public class Utility
 	public static FileType getFileType(String file) {
 		if (file.endsWith(".apk")) {
 			return FileType.APP;
-		} else if (file.endsWith(".mp3") || file.endsWith(".wav") || file.endsWith(".flac")) {
+		} else if (file.endsWith(".mp3") || file.endsWith(".wav") || file.endsWith(".flac") || file.endsWith(".m4a")) {
 			return FileType.MUSIC;
 		} else if (file.endsWith(".mp4") || file.endsWith(".mpeg") || file.endsWith(".rm") || file.endsWith(".rmvb")
-					|| file.endsWith(".flv") || file.endsWith(".webp")) {
+					|| file.endsWith(".flv") || file.endsWith(".webp") || file.endsWith(".webm")) {
 			return FileType.VIDEO;
 		} else if (file.endsWith(".doc") || file.endsWith(".docx")) {
 			return FileType.WORD;
@@ -171,6 +171,16 @@ public class Utility
 		} else {
 			return FileType.UNKNOWN;
 		}
+	}
+
+	public static Boolean isMusicFile(String file)
+	{
+		 return Utility.getFileType(file) == FileType.MUSIC;
+	}
+
+	public static Boolean isVideoFile(String file)
+	{
+		return Utility.getFileType(file) == FileType.VIDEO;
 	}
 	
 	public static int getBackgroundForFileType(FileType type) {
@@ -212,63 +222,16 @@ public class Utility
 				return R.color.bluegray_dark;
 		}
 	}
-	
-	public static int getThemeForFileType(FileType type) {
-		/*switch (type) {
-			case APP:
-				return R.style.Theme_App_Orange;
-			case MUSIC:
-				return R.style.Theme_App_Cyan;
-			case ARCHIVE:
-				return R.style.Theme_App_Blue;
-			case VIDEO:
-				return R.style.Theme_App_Green;
-			case WORD:
-			case EXCEL:
-			case POWERPOINT:
-				return R.style.Theme_App_Brown;
-			case UNKNOWN:
-			default:
-				return R.style.Theme_App_BlueGray;
-		}*/
-		return 0;
-	}
-	
-	public static int getIconForFileType(FileType type) {
-		switch (type) {
-			case APP:
-				return R.drawable.apps;
-			case MUSIC:
-				return R.drawable.music;
-			case ARCHIVE:
-				return R.drawable.archive;
-			case VIDEO:
-				return R.drawable.video;
-			case WORD:
-				return R.drawable.word;
-			case EXCEL:
-				return R.drawable.excel;
-			case POWERPOINT:
-				return R.drawable.powerpoint;
-			case UNKNOWN:
-			default:
-				return R.drawable.unknown;
-		}
-	}
-	
+
 	public static boolean isDirectoryAvailble(String path) {
 		File dir = new File(path);
 		return dir.exists() && dir.isDirectory();
 	}
 	
 	public static boolean isDownloadDirectoryAvailble(Context context) {
-		return isDirectoryAvailble(Settings.getInstance(context).getString(Settings.DOWNLOAD_DIRECTORY, Settings.DEFAULT_PATH));
+		return isDirectoryAvailble(NewPipeSettings.getVideoDownloadPath(context));
 	}
-	
-	public static void changeDownloadDirectory(Context context, String path) {
-		Settings.getInstance(context).putString(Settings.DOWNLOAD_DIRECTORY, path);
-	}
-	
+
 	public static void showDirectoryChooser(Activity activity) {
 		Intent i = new Intent(activity, FilePickerActivity.class);
 		i.setAction(Intent.ACTION_GET_CONTENT);

@@ -14,12 +14,12 @@ import android.os.Message;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.util.Log;
 
+import org.schabi.newpipe.NewPipeSettings;
 import org.schabi.newpipe.R;
 import us.shandian.giga.get.DownloadManager;
 import us.shandian.giga.get.DownloadManagerImpl;
 import us.shandian.giga.get.DownloadMission;
 import org.schabi.newpipe.download.MainActivity;
-import us.shandian.giga.util.Settings;
 import static org.schabi.newpipe.BuildConfig.DEBUG;
 
 public class DownloadManagerService extends Service implements DownloadMission.MissionListener
@@ -43,7 +43,7 @@ public class DownloadManagerService extends Service implements DownloadMission.M
 		
 		mBinder = new DMBinder();
 		if (mManager == null) {
-			String path = Settings.getInstance(this).getString(Settings.DOWNLOAD_DIRECTORY, Settings.DEFAULT_PATH);
+			String path = NewPipeSettings.getVideoDownloadPath(this);
 			mManager = new DownloadManagerImpl(this, path);
 			if (DEBUG) {
 				Log.d(TAG, "mManager == null");

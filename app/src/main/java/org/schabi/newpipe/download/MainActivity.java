@@ -28,7 +28,6 @@ import android.widget.Toast;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.VideoItemDetailActivity;
-import org.schabi.newpipe.VideoItemListActivity;
 
 import java.io.File;
 import java.io.IOException;
@@ -139,7 +138,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 .replace(R.id.frame, mFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();
-        
     }
 
     private void showUrlDialog() {
@@ -297,7 +295,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             NavUtils.navigateUpTo(this, intent);
             return true;
         } else {
-            return false;
+            return mFragment.onOptionsItemSelected(item) ||
+                    super.onOptionsItemSelected(item);
         }
     }
 
