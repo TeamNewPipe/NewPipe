@@ -7,7 +7,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
@@ -181,6 +183,33 @@ public class DownloadDialog extends DialogFragment {
                     Uri.parse(url));
             request.setDestinationUri(Uri.fromFile(saveFilePath));
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+
+            //Check if download over mobile network is allowed
+            if (PreferenceManager.getDefaultSharedPreferences(context)
+                    .getBoolean(context.getString(R.string.download_mobile), false)){
+                Toast.makeText(this.getActivity(),R.string.warning_download_mobile , Toast.LENGTH_LONG).show();
+
+                request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE); //allow mobile network
+                request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);   //allow wifi
+                request.setAllowedOverRoaming(true);                                    //allow roaming
+
+                if (Build.VERSION.SDK_INT >= 16){
+                    request.setAllowedOverMetered(true);                            //Set counted/metered Netowrk as allowed
+                }
+
+            } else {
+                request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);//enabel wifi
+                request.setAllowedOverRoaming(false);                                //disable roaming
+                if (Build.VERSION.SDK_INT >= 16){
+                    request.setAllowedOverMetered(false);                            //Set counted/metered Netowrk as allowed
+                }
+            }
+
+            /*
+            if (mna) {
+
+            }
+            */
 
             request.setTitle(title);
             request.setDescription("'" + url +

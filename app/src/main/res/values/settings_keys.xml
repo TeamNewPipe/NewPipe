@@ -211,4 +211,5 @@
     </string-array>
     <string name="show_age_restricted_content">show_age_restricted_content</string>
     <string name="use_tor_key">use_tor</string>
+    <string name="download_mobile">download_mobile</string>
 </resources>
