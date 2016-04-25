@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="install">安裝</string>
     <string name="cancel">取消</string>
     <string name="upload_date_text">於 %1$s 發佈</string>
@@ -7,7 +7,7 @@
     <string name="download">下載</string>
     <string name="search">搜尋</string>
     <string name="settings">設置</string>
-    <string name="did_you_mean">"您是不是要查： "</string>
+    <string name="did_you_mean">您是不是要查：%1$s？</string>
     <string name="search_page">"搜尋頁面： "</string>
     <string name="choose_browser">選擇瀏覽器</string>
     <string name="screen_rotation">旋轉</string>
@@ -37,7 +37,7 @@
     <string name="show_next_and_similar_title">顯示下一部及相關的影片</string>
     <string name="url_not_supported_toast">不支援此網址</string>
     <string name="similar_videos_btn_text">相關影片</string>
-    <string name="search_language_title">內容位置</string>
+    <string name="search_language_title">喜好的內容語言</string>
     <string name="settings_category_video_audio_title">影片及聲音</string>
     <string name="settings_category_appearance_title">外觀</string>
     <string name="settings_category_other_title">其他</string>
@@ -51,16 +51,61 @@
     <string name="detail_likes_img_view_description">讚好</string>
     <string name="detail_dislikes_img_view_description">討厭</string>
     <string name="use_tor_title">使用 Tor</string>
-    <string name="use_tor_summary">強迫下載流量通過 Tor 加強私隱 (暫時不支援串流影片)</string>
+    <string name="use_tor_summary">(測試中) 強迫下載流量通過 Tor 加強私隱 (暫時不支援串流影片)。</string>
 <string name="background_player_name">NewPipe 背景播放器</string>
     <string name="view_count_text">觀看次數：%1$s</string>
     <string name="no_player_found">找不到任何串流播放器，您要安裝 VLC 嗎？</string>
     <string name="open_in_browser">在瀏覽器開啟</string>
-    <string name="share_dialog_title">分享影片：</string>
+    <string name="share_dialog_title">分享影片</string>
     <string name="download_path_audio_title">聲音下載路徑</string>
-    <string name="download_path_audio_summary">存放已下載聲音的路徑。</string>
-    <string name="download_path_audio_dialog_title">輸入聲音檔案的下載路徑。</string>
+    <string name="download_path_audio_summary">存放已下載聲音的路徑</string>
+    <string name="download_path_audio_dialog_title">請輸入聲音檔案的下載路徑。</string>
 
     <string name="err_dir_create">未能建立下載路徑「%1$s」</string>
     <string name="info_dir_created">已建立下載路徑「%1$s」</string>
-</resources>
+<string name="blocked_by_gema">內容被 GEMA 封鎖。</string>
+    <string name="main_bg_subtitle">若要開始，請觸碰搜尋</string>
+    <string name="autoplay_by_calling_app_title">另一應用程式要求時自動播放</string>
+    <string name="autoplay_by_calling_app_summary">當另一個應用程式要求播片時，NewPipe 將會自動播放影片。</string>
+    <string name="content">內容</string>
+    <string name="show_age_restricted_content_title">顯示設定了年齡限制的影片</string>
+    <string name="video_is_age_restricted">此影片受年齡限制管制。若要觀看，請先在設置中解除年齡限制。</string>
+    <string name="duration_live">直播</string>
+
+    <string name="general_error">錯誤</string>
+    <string name="could_not_load_thumbnails">無法載入全部縮圖</string>
+    <string name="youtube_signature_decryption_error">無法為影片地址的簽署進行解碼。</string>
+    <string name="parsing_error">無法解析網站。</string>
+    <string name="light_parsing_error">無法完全解析網站。</string>
+    <string name="could_not_setup_download_menu">無法設定下載清單。</string>
+    <string name="live_streams_not_supported">此內容是一個直播串流，暫時仍未能播放。</string>
+    <string name="could_not_get_stream">無法取得任何串流。</string>
+    <string name="sorry_string">抱歉，這不應該發生。</string>
+    <string name="error_report_button_text">透過電郵報告錯誤</string>
+    <string name="error_snackbar_message">抱歉，程式發生錯誤。</string>
+    <string name="error_snackbar_action">報告</string>
+    <string name="what_device_headline">資料：</string>
+    <string name="what_happened_headline">事發經過：</string>
+    <string name="info_requested_stream_lbl">所要求的串流：</string>
+    <string name="your_comment">您的意見 (請以英文輸入)：</string>
+    <string name="error_details_headline">詳情：</string>
+
+
+    <string name="report_error">報告錯誤</string>
+    <string name="user_report">用戶報告</string>
+
+    <string name="enable_background_audio">背景播放</string>
+    <string name="video">影片</string>
+    <string name="audio">聲音</string>
+    <string name="text">文字</string>
+    <string name="logging">記錄</string>
+    <string name="logging_normal">正常</string>
+    <string name="logging_verbose">Verbose</string>
+    <string name="retry">重試</string>
+    <string name="off">[關閉]</string>
+    <string name="error_drm_not_supported">API 等級低於 18 時並不支援顯示受保護的內容</string>
+    <string name="error_drm_unknown">發生了不明的 DRM 錯誤</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">此裝置未能為 <xliff:g id="mime_type">%1$s</xliff:g> 提供解碼器</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">此裝置未能為 <xliff:g id="mime_type">%1$s</xliff:g> 提供安全的解碼器</string>
+    <string name="error_querying_decoders">無法尋找裝置解碼器</string>
+    </resources>
