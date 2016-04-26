@@ -200,16 +200,10 @@ public class DownloadDialog extends DialogFragment {
             } else {
                 request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);//enabel wifi
                 request.setAllowedOverRoaming(false);                                //disable roaming
-                if (Build.VERSION.SDK_INT >= 16){
+                if (Build.VERSION.SDK_INT >= 16) {
                     request.setAllowedOverMetered(false);                            //Set counted/metered Netowrk as allowed
                 }
             }
-
-            /*
-            if (mna) {
-
-            }
-            */
 
             request.setTitle(title);
             request.setDescription("'" + url +

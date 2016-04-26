@@ -62,7 +62,7 @@
     <string-array name="download_options_no_video">
         <item>Audio</item>
     </string-array>
-    <string name="warning_download_mobile">Mobile Download is allowed</string>
+    <string name="warning_download_mobile">Mobile Download is enabled</string>
 
     <string name="next_video_title">Next video</string>
     <string name="show_next_and_similar_title">Show next and similar videos</string>
