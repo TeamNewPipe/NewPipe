@@ -5,11 +5,10 @@
 	android:orientation="vertical">
 
 	<android.support.v7.widget.Toolbar
-		xmlns:android="http://schemas.android.com/apk/res/android"
 		android:id="@+id/toolbar"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:background="?attr/actionBarItemBackground"/>
+		android:theme="@style/NewPipeActionbarTheme" />
 
 	<View
 		android:layout_width="match_parent"
@@ -25,18 +24,6 @@
 		android:layout_marginBottom="24dp"
 		android:gravity="center_vertical"
 		android:orientation="vertical">
-		
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/msg_url"/>
-	
-		<EditText
-			android:id="@+id/url"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:singleLine="true"
-			android:ems="10"/>
 
 	</LinearLayout>
 
@@ -60,15 +47,33 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:singleLine="true"/>
-		
-		<Button
-			android:id="@+id/fetch_name"
-			android:layout_width="wrap_content"
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="24dp"
+		android:layout_marginRight="24dp"
+		android:layout_marginBottom="24dp"
+		android:gravity="center_vertical"
+		android:orientation="vertical">
+		<RadioGroup
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/msg_fetch_filename"
-			android:textColor="?attr/colorPrimary"
-			android:background="?android:selectableItemBackground"/>
-		
+			android:orientation="horizontal"
+			android:checkedButton="@+id/video">
+			<RadioButton android:id="@+id/video"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/video"
+				android:onClick="onRadioButtonClicked"/>
+			<RadioButton android:id="@+id/audio"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/audio"
+				android:onClick="onRadioButtonClicked"/>
+		</RadioGroup>
 	</LinearLayout>
 	
 	<LinearLayout
