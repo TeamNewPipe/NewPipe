@@ -66,4 +66,57 @@
     <string name="err_dir_create">Kan ikke opprette nedlastingsmappe \'%1$s\'</string>
     <string name="info_dir_created">Opprettet nedlastingsmappen \'%1$s\'</string>
 <string name="autoplay_through_intent_title">Automatisk avspilling med Intent</string>
+    <string name="main_bg_subtitle">Trykk for å komme i gang</string>
+    <string name="autoplay_by_calling_app_title">Automatisk avspilling når forespurt av et annet program</string>
+    <string name="autoplay_by_calling_app_summary">Automatisk avspilling av video når NewPipe blir forespurt av et annet program.</string>
+    <string name="content">Innhold</string>
+    <string name="show_age_restricted_content_title">Vis innhold med aldersgrense</string>
+    <string name="video_is_age_restricted">Videoen har aldersgrense. Skru på videoer med aldersgrenser i innstillingene først.</string>
+    <string name="general_error">Feil</string>
+    <string name="could_not_load_thumbnails">Kunne ikke laste inn alle miniatyrbilder</string>
+    <string name="youtube_signature_decryption_error">Kunne ikke dekryptere signaturen til videoens nettadresse.</string>
+    <string name="parsing_error">Kunne ikke tolke nettside.</string>
+    <string name="light_parsing_error">Kunne ikke tolke nettside fullstendig.</string>
+    <string name="content_not_available">Innholdet er ikke tilgjengelig.</string>
+    <string name="blocked_by_gema">Blokkert av GEMA.</string>
+    <string name="could_not_setup_download_menu">Kunne ikke sette opp nedlastingsmeny.</string>
+    <string name="live_streams_not_supported">Dette er en direkteoverføring. Disse støttes ikke enda.</string>
+    <string name="could_not_get_stream">Kunne ikke finne noen strømmer.</string>
+    <string name="sorry_string">Beklager, dette skal ikke skje.</string>
+    <string name="error_report_button_text">Rapporter feil via e-post</string>
+    <string name="error_snackbar_message">Beklager, noen feil inntraff</string>
+    <string name="error_snackbar_action">RAPPORTER</string>
+    <string name="what_device_headline">Info:</string>
+    <string name="what_happened_headline">Hva skjedde:</string>
+    <string name="info_searched_lbl">Søkte etter:</string>
+    <string name="info_requested_stream_lbl">Forespurt strøm:</string>
+    <string name="your_comment">Din kommentar (på Engelsk):</string>
+    <string name="error_details_headline">Detaljer:</string>
+
+
+    <string name="report_error">Rapporter en feil</string>
+    <string name="user_report">Brukerrapport</string>
+
+    <string name="enable_background_audio">Spill av i bakgrunnen</string>
+    <string name="video">VIdeo</string>
+    <string name="audio">Audio</string>
+    <string name="text">Tekst</string>
+    <string name="logging">Loggføring</string>
+    <string name="logging_normal">Normal</string>
+    <string name="logging_verbose">Utfyllende</string>
+    <string name="retry">Prøv igjen</string>
+    <string name="off">[av]</string>
+    <string name="error_drm_not_supported">Beskyttet innhold støttes ikke på API-nivåer under 18</string>
+    <string name="error_drm_unsupported_scheme">Denne enheten støtter ikke påkrevd DRM-anordning</string>
+    <string name="error_drm_unknown">En ukjent DRM-feil inntraff</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Denne enheten mangler dekoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Denne enheten mangler sikker dekoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_querying_decoders">Kunne ikke sjekke enhetens dekodere</string>
+    <string name="storage_permission_denied">Tilgang til lagring nektet</string>
+    <string name="use_exoplayer_title">Bruk ExoPlayer</string>
+    <string name="use_exoplayer_summary">Eksperimentelt</string>
+<string name="duration_live">direkteoverført</string>
+
+    <string name="info_labels">Hva:\\nRequest:\\nContent Språk:\\nService:\\nGMT Tid:\\nVersion:\\nOS version:\\nGlob. IP-blokk:</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Kunne ikke igangsette dekoder <xliff:g id="decoder_name">%1$s</xliff:g></string>
     </resources>
