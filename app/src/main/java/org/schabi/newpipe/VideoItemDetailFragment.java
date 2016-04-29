@@ -579,8 +579,7 @@ public class VideoItemDetailFragment extends Fragment {
                     }
 
                     args.putString(DownloadDialog.TITLE, info.title);
-                    DownloadDialog downloadDialog = new DownloadDialog();
-                    downloadDialog.setArguments(args);
+                    DownloadDialog downloadDialog = DownloadDialog.newInstance(args);
                     downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
                 } catch (Exception e) {
                     Toast.makeText(VideoItemDetailFragment.this.getActivity(),

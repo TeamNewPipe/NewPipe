@@ -1,7 +1,7 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
+	android:layout_height="match_parent"
 	android:orientation="vertical">
 
 	<android.support.v7.widget.Toolbar
@@ -56,24 +56,17 @@
 		android:layout_marginLeft="24dp"
 		android:layout_marginRight="24dp"
 		android:layout_marginBottom="24dp"
-		android:gravity="center_vertical"
-		android:orientation="vertical">
-		<RadioGroup
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal"
-			android:checkedButton="@+id/video">
-			<RadioButton android:id="@+id/video"
+		android:gravity="left"
+		android:orientation="horizontal">
+			<CheckBox android:id="@+id/video"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/video"
-				android:onClick="onRadioButtonClicked"/>
-			<RadioButton android:id="@+id/audio"
+				android:checked="true"/>
+			<CheckBox android:id="@+id/audio"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="@string/audio"
-				android:onClick="onRadioButtonClicked"/>
-		</RadioGroup>
+				android:text="@string/audio" />
 	</LinearLayout>
 	
 	<LinearLayout
