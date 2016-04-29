@@ -141,16 +141,7 @@ public class Utility
 
 		}
 	}
-	
-	public static String getErrorString(Context context, int code) {
-		switch (code) {
-			case DownloadMission.ERROR_SERVER_UNSUPPORTED:
-				return context.getString(R.string.msg_server_unsupported);
-			default:
-				return "";
-		}
-	}
-	
+
 	public static FileType getFileType(String file) {
 		if (file.endsWith(".apk")) {
 			return FileType.APP;
