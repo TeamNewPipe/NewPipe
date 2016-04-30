@@ -108,7 +108,7 @@
     <string name="autoplay_by_calling_app_title">Lecture automatique quand ouvert depuis une autre application</string>
     <string name="video_is_age_restricted">Cette vidéo est soumise à une restriction d\'âge. Autoriser le contenu restreint dans les paramètres avant.</string>
     <string name="info_searched_lbl">Recherché :</string>
-    <string name="user_report">Compte rendu utilisateur</string>
+    <string name="user_report">Rapport utilisateur</string>
 
     <string name="logging">Connexion</string>
     <string name="error_drm_not_supported">Contenu protégé non supporté par l\'API antérieure à la version 18</string>
