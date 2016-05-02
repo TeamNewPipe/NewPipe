@@ -91,9 +91,7 @@ public abstract class MissionsFragment extends Fragment
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		inflater.inflate(R.menu.frag_mission, menu);
-		mSwitch = menu.findItem(R.id.switch_mode);
-		mSwitch.setIcon(mLinear ? R.drawable.grid : R.drawable.list);
+
 	}
 
 	@Override

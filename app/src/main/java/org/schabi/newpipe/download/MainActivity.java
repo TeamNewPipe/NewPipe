@@ -16,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -25,15 +27,21 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.SearchView;
 
+import org.schabi.newpipe.ErrorActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.SettingsActivity;
 import org.schabi.newpipe.VideoItemDetailActivity;
+import org.schabi.newpipe.VideoItemListActivity;
+import org.schabi.newpipe.extractor.ServiceList;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Vector;
 
 import us.shandian.giga.get.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
@@ -49,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public static final String INTENT_LIST = "us.shandian.giga.intent.LIST";
 
     private static final String TAG = MainActivity.class.toString();
+
+    private Menu menu = null;
 
     private MissionsFragment mFragment;
     private DownloadManager mManager;
@@ -230,18 +240,43 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        this.menu = menu;
+        MenuInflater inflater = getMenuInflater();
+
+        inflater.inflate(R.menu.download_menu, menu);
+
+        return true;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == android.R.id.home) {
-            Intent intent = new Intent(this, VideoItemDetailActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            NavUtils.navigateUpTo(this, intent);
-            return true;
-        } else {
-            return mFragment.onOptionsItemSelected(item) ||
-                    super.onOptionsItemSelected(item);
+
+        switch (id) {
+            case android.R.id.home: {
+                Intent intent = new Intent(this, VideoItemListActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                NavUtils.navigateUpTo(this, intent);
+                return true;
+            }
+            case R.id.action_settings: {
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
+            }
+            case R.id.action_report_error: {
+                ErrorActivity.reportError(MainActivity.this, new Vector<Exception>(),
+                        null, null,
+                        ErrorActivity.ErrorInfo.make(ErrorActivity.USER_REPORT,
+                                null,
+                                "user_report", R.string.user_report));
+                return true;
+            }
+            default:
+                return mFragment.onOptionsItemSelected(item) ||
+                        super.onOptionsItemSelected(item);
         }
     }
-
 }
