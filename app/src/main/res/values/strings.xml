@@ -62,6 +62,7 @@
     <string-array name="download_options_no_video">
         <item>Audio</item>
     </string-array>
+    <string name="warning_download_mobile">Mobile Download is enabled</string>
 
     <string name="next_video_title">Next video</string>
     <string name="show_next_and_similar_title">Show next and similar videos</string>
@@ -140,4 +141,7 @@
     <string name="storage_permission_denied">Permission to access storage was denied</string>
     <string name="use_exoplayer_title">Use ExoPlayer</string>
     <string name="use_exoplayer_summary">Experimental</string>
+
+    <string name="download_roming_title">Mobile Downloads</string>
+    <string name="download_roming_summary">Allow the Application to download Videos/Audio over the Mobile Network</string>
 </resources>
