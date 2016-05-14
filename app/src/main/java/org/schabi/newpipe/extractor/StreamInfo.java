@@ -242,6 +242,7 @@ public class StreamInfo extends AbstractVideoInfo {
         return streamInfo;
     }
 
+    // TODO refactor this to top.
     public String uploader_thumbnail_url = "";
     public String description = "";
 

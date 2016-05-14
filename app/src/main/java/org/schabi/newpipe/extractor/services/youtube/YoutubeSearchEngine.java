@@ -3,10 +3,8 @@ package org.schabi.newpipe.extractor.services.youtube;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.schabi.newpipe.extractor.AbstractVideoInfo;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.ExtractionException;
-import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.StreamPreviewInfoCollector;
@@ -17,9 +15,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import java.net.URLEncoder;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -70,10 +68,12 @@ public class YoutubeSearchEngine extends SearchEngine {
                 .appendQueryParameter("filters", "video");
                 */
 
-        String url = "https://www.youtube.com/results"
+        String url2 = "https://www.youtube.com/results"
                 + "?search_query=" + URLEncoder.encode(query, "UTF-8")
                 + "&page=" + Integer.toString(page)
                 + "&filters=" + "video";
+        String url = "https://www.youtube.com/"
+                + "user/EverythingApplePro/videos";
 
         String site;
         //String url = builder.build().toString();
@@ -88,8 +88,8 @@ public class YoutubeSearchEngine extends SearchEngine {
 
 
         Document doc = Jsoup.parse(site, url);
-        Element list = doc.select("ol[class=\"item-section\"]").first();
-
+        Element list2 = doc.select("ol[class=\"item-section\"]").first();
+        Element list = doc.select("#channels-browse-content-grid").first();
         for (Element item : list.children()) {
             /* First we need to determine which kind of item we are working with.
                Youtube depicts five different kinds of items on its search result page. These are
