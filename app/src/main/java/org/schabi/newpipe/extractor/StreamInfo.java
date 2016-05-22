@@ -85,7 +85,7 @@ public class StreamInfo extends AbstractVideoInfo {
         /* ---- importand data, withoug the video can't be displayed goes here: ---- */
         // if one of these is not available an exception is ment to be thrown directly into the frontend.
 
-        StreamUrlIdHandler uiconv = extractor.getUrlIdConverter();
+        StreamUrlIdHandler uiconv = extractor.getUrlIdHandler();
 
         streamInfo.service_id = extractor.getServiceId();
         streamInfo.webpage_url = extractor.getPageUrl();
@@ -229,12 +229,23 @@ public class StreamInfo extends AbstractVideoInfo {
             streamInfo.addException(e);
         }
         try {
-            streamInfo.next_video = extractor.getNextVideo();
+            // get next video
+            System.out.println(extractor.getUrlIdHandler());
+            StreamPreviewInfoCollector c = new StreamPreviewInfoCollector(
+                    extractor.getUrlIdHandler(), extractor.getServiceId());
+            c.commit(extractor.getNextVideo());
+            if(c.getItemList().size() != 0) {
+                streamInfo.next_video = c.getItemList().get(0);
+            }
+            streamInfo.errors.addAll(c.getErrors());
         } catch(Exception e) {
             streamInfo.addException(e);
         }
         try {
-            streamInfo.related_videos = extractor.getRelatedVideos();
+            // get related videos
+            StreamPreviewInfoCollector c = extractor.getRelatedVideos();
+            streamInfo.related_videos = c.getItemList();
+            streamInfo.errors.addAll(c.getErrors());
         } catch(Exception e) {
             streamInfo.addException(e);
         }

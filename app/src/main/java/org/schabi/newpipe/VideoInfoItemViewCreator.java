@@ -88,7 +88,7 @@ public class VideoInfoItemViewCreator {
         } else {
             holder.itemViewCountView.setVisibility(View.GONE);
         }
-        if(!info.upload_date.isEmpty()) {
+        if(info.upload_date != null && !info.upload_date.isEmpty()) {
             holder.itemUploadDateView.setText(info.upload_date + " • ");
         }
 

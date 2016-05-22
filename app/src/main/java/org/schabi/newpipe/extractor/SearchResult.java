@@ -42,6 +42,6 @@ public class SearchResult {
     }
 
     public String suggestion = "";
-    public final List<StreamPreviewInfo> resultList = new Vector<>();
+    public List<StreamPreviewInfo> resultList = new Vector<>();
     public List<Exception> errors = new Vector<>();
 }

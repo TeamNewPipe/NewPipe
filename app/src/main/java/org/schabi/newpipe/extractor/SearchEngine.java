@@ -33,13 +33,13 @@ public abstract class SearchEngine {
         }
     }
 
-    private StreamPreviewInfoCollector collector;
+    private StreamPreviewInfoSearchCollector collector;
 
     public SearchEngine(StreamUrlIdHandler urlIdHandler, int serviceId) {
-        collector = new StreamPreviewInfoCollector(urlIdHandler, serviceId);
+        collector = new StreamPreviewInfoSearchCollector(urlIdHandler, serviceId);
     }
 
-    public StreamPreviewInfoCollector getStreamPreviewInfoCollector() {
+    protected StreamPreviewInfoSearchCollector getStreamPreviewInfoSearchCollector() {
         return collector;
     }
 
@@ -48,7 +48,7 @@ public abstract class SearchEngine {
             throws ExtractionException, IOException;
 
     //Result search(String query, int page);
-    public abstract StreamPreviewInfoCollector search(
+    public abstract StreamPreviewInfoSearchCollector search(
             String query, int page, String contentCountry, Downloader dl)
             throws ExtractionException, IOException;
 }

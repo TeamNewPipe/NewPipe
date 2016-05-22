@@ -8,6 +8,7 @@ import org.jsoup.nodes.Element;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
+import org.schabi.newpipe.extractor.AbstractVideoInfo;
 import org.schabi.newpipe.extractor.AudioStream;
 import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.Downloader;
@@ -15,6 +16,8 @@ import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.StreamInfo;
 import org.schabi.newpipe.extractor.StreamPreviewInfo;
+import org.schabi.newpipe.extractor.StreamPreviewInfoCollector;
+import org.schabi.newpipe.extractor.StreamPreviewInfoExtractor;
 import org.schabi.newpipe.extractor.StreamUrlIdHandler;
 import org.schabi.newpipe.extractor.StreamExtractor;
 import org.schabi.newpipe.extractor.MediaFormat;
@@ -181,9 +184,10 @@ public class YoutubeStreamExtractor extends StreamExtractor {
 
     private Downloader downloader;
 
-    public YoutubeStreamExtractor(String pageUrl, Downloader dl, int serviceId)
+    public YoutubeStreamExtractor(StreamUrlIdHandler urlIdHandler, String pageUrl,
+                                  Downloader dl, int serviceId)
             throws ExtractionException, IOException {
-        super(pageUrl, dl, serviceId);
+        super(urlIdHandler ,pageUrl, dl, serviceId);
         //most common videoInfo fields are now set in our superclass, for all services
         downloader = dl;
         this.pageUrl = pageUrl;
@@ -648,7 +652,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     }
 
     @Override
-    public StreamPreviewInfo getNextVideo() throws ParsingException {
+    public StreamPreviewInfoExtractor getNextVideo() throws ParsingException {
         try {
             return extractVideoPreviewInfo(doc.select("div[class=\"watch-sidebar-section\"]").first()
                     .select("li").first());
@@ -658,24 +662,19 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     }
 
     @Override
-    public Vector<StreamPreviewInfo> getRelatedVideos() throws ParsingException {
+    public StreamPreviewInfoCollector getRelatedVideos() throws ParsingException {
         try {
-            Vector<StreamPreviewInfo> relatedVideos = new Vector<>();
+            StreamPreviewInfoCollector collector = getStreamPreviewInfoCollector();
             for (Element li : doc.select("ul[id=\"watch-related\"]").first().children()) {
                 // first check if we have a playlist. If so leave them out
                 if (li.select("a[class*=\"content-link\"]").first() != null) {
-                    relatedVideos.add(extractVideoPreviewInfo(li));
+                    collector.commit(extractVideoPreviewInfo(li));
                 }
             }
-            return relatedVideos;
+            return collector;
         } catch(Exception e) {
             throw new ParsingException("Could not get related videos", e);
         }
-    }
-
-    @Override
-    public StreamUrlIdHandler getUrlIdConverter() {
-        return new YoutubeStreamUrlIdHandler();
     }
 
     @Override
@@ -692,53 +691,77 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     /**Provides information about links to other videos on the video page, such as related videos.
      * This is encapsulated in a StreamPreviewInfo object,
      * which is a subset of the fields in a full StreamInfo.*/
-    private StreamPreviewInfo extractVideoPreviewInfo(Element li) throws ParsingException {
-        StreamPreviewInfo info = new StreamPreviewInfo();
-
-        try {
-            info.webpage_url = li.select("a.content-link").first()
-                    .attr("abs:href");
-
-            info.id = Parser.matchGroup1("v=([0-9a-zA-Z-]*)", info.webpage_url);
-
-            //todo: check NullPointerException causing
-            info.title = li.select("span.title").first().text();
-            //this page causes the NullPointerException, after finding it by searching for "tjvg":
-            //https://www.youtube.com/watch?v=Uqg0aEhLFAg
-
-            //this line is unused
-            //String views = li.select("span.view-count").first().text();
-
-            //Log.i(TAG, "title:"+info.title);
-            //Log.i(TAG, "view count:"+views);
-
-            try {
-                info.view_count = Long.parseLong(li.select("span.view-count")
-                        .first().text().replaceAll("[^\\d]", ""));
-            } catch (Exception e) {//related videos sometimes have no view count
-                info.view_count = 0;
+    private StreamPreviewInfoExtractor extractVideoPreviewInfo(final Element li) {
+        return new StreamPreviewInfoExtractor() {
+            @Override
+            public AbstractVideoInfo.StreamType getStreamType() throws ParsingException {
+                return null;
             }
-            info.uploader = li.select("span.g-hovercard").first().text();
 
-            info.duration = YoutubeParsingHelper.parseDurationString(
-                    li.select("span.video-time").first().text());
+            @Override
+            public String getWebPageUrl() throws ParsingException {
+                return li.select("a.content-link").first().attr("abs:href");
+            }
 
-            Element img = li.select("img").first();
-            info.thumbnail_url = img.attr("abs:src");
-            // Sometimes youtube sends links to gif files which somehow seem to not exist
-            // anymore. Items with such gif also offer a secondary image source. So we are going
-            // to use that if we caught such an item.
-            if (info.thumbnail_url.contains(".gif")) {
-                info.thumbnail_url = img.attr("data-thumb");
+            @Override
+            public String getTitle() throws ParsingException {
+                //todo: check NullPointerException causing
+                return li.select("span.title").first().text();
+                //this page causes the NullPointerException, after finding it by searching for "tjvg":
+                //https://www.youtube.com/watch?v=Uqg0aEhLFAg
             }
-            if (info.thumbnail_url.startsWith("//")) {
-                info.thumbnail_url = "https:" + info.thumbnail_url;
+
+            @Override
+            public int getDuration() throws ParsingException {
+                return YoutubeParsingHelper.parseDurationString(
+                        li.select("span.video-time").first().text());
             }
-        } catch (Exception e) {
-            throw new ParsingException("Could not get video preview info", e);
-        }
-        return info;
+
+            @Override
+            public String getUploader() throws ParsingException {
+                return li.select("span.g-hovercard").first().text();
+            }
+
+            @Override
+            public String getUploadDate() throws ParsingException {
+                return null;
+            }
+
+            @Override
+            public long getViewCount() throws ParsingException {
+                //this line is unused
+                //String views = li.select("span.view-count").first().text();
+
+                //Log.i(TAG, "title:"+info.title);
+                //Log.i(TAG, "view count:"+views);
+
+                try {
+                    return Long.parseLong(li.select("span.view-count")
+                            .first().text().replaceAll("[^\\d]", ""));
+                } catch (Exception e) {
+                    //related videos sometimes have no view count
+                    return 0;
+                }
+            }
+
+            @Override
+            public String getThumbnailUrl() throws ParsingException {
+                Element img = li.select("img").first();
+                String thumbnailUrl = img.attr("abs:src");
+                // Sometimes youtube sends links to gif files which somehow seem to not exist
+                // anymore. Items with such gif also offer a secondary image source. So we are going
+                // to use that if we caught such an item.
+                if (thumbnailUrl.contains(".gif")) {
+                    thumbnailUrl = img.attr("data-thumb");
+                }
+                if (thumbnailUrl.startsWith("//")) {
+                    thumbnailUrl = "https:" + thumbnailUrl;
+                }
+                return thumbnailUrl;
+            }
+        };
     }
+
 
     private String loadDecryptionCode(String playerUrl) throws DecryptException {
         String decryptionFuncName;

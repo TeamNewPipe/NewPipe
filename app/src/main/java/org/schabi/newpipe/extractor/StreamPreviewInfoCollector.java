@@ -2,6 +2,9 @@ package org.schabi.newpipe.extractor;
 
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamUrlIdHandler;
 
+import java.util.List;
+import java.util.Vector;
+
 /**
  * Created by Christian Schabesberger on 28.02.16.
  *
@@ -23,7 +26,8 @@ import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamUrlIdHandler;
  */
 
 public class StreamPreviewInfoCollector {
-    private SearchResult result = new SearchResult();
+    private List<StreamPreviewInfo> itemList = new Vector<>();
+    private List<Exception> errors = new Vector<>();
     private StreamUrlIdHandler urlIdHandler = null;
     private int serviceId = -1;
 
@@ -32,16 +36,16 @@ public class StreamPreviewInfoCollector {
         this.serviceId = serviceId;
     }
 
-    public void setSuggestion(String suggestion) {
-        result.suggestion = suggestion;
+    public List<StreamPreviewInfo> getItemList() {
+        return itemList;
+    }
+
+    public List<Exception> getErrors() {
+        return errors;
     }
 
     public void addError(Exception e) {
-        result.errors.add(e);
-    }
-
-    public SearchResult getSearchResult() {
-        return result;
+        errors.add(e);
     }
 
     public void commit(StreamPreviewInfoExtractor extractor) throws ParsingException {
@@ -84,11 +88,9 @@ public class StreamPreviewInfoCollector {
             } catch (Exception e) {
                 addError(e);
             }
-
-            result.resultList.add(resultItem);
+            itemList.add(resultItem);
         } catch (Exception e) {
             addError(e);
         }
-
     }
 }

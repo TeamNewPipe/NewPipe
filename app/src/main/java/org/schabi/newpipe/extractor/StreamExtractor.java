@@ -29,6 +29,10 @@ import java.util.List;
 public abstract class StreamExtractor {
 
     private int serviceId;
+    private String url;
+    private StreamUrlIdHandler urlIdHandler;
+    private Downloader downloader;
+    private StreamPreviewInfoCollector previewInfoCollector;
 
     public class ExctractorInitException extends ExtractionException {
         public ExctractorInitException(String message) {
@@ -51,8 +55,26 @@ public abstract class StreamExtractor {
         }
     }
 
-    public StreamExtractor(String url, Downloader dl, int serviceId) {
+    public StreamExtractor(StreamUrlIdHandler urlIdHandler, String url, Downloader dl, int serviceId) {
         this.serviceId = serviceId;
+        this.urlIdHandler = urlIdHandler;
+        previewInfoCollector = new StreamPreviewInfoCollector(urlIdHandler, serviceId);
+    }
+
+    protected StreamPreviewInfoCollector getStreamPreviewInfoCollector() {
+        return previewInfoCollector;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public StreamUrlIdHandler getUrlIdHandler() {
+        return urlIdHandler;
+    }
+
+    public Downloader getDownloader() {
+        return downloader;
     }
 
     public abstract int getTimeStamp() throws ParsingException;
@@ -72,9 +94,8 @@ public abstract class StreamExtractor {
     public abstract String getAverageRating() throws ParsingException;
     public abstract int getLikeCount() throws ParsingException;
     public abstract int getDislikeCount() throws ParsingException;
-    public abstract StreamPreviewInfo getNextVideo() throws ParsingException;
-    public abstract List<StreamPreviewInfo> getRelatedVideos() throws ParsingException;
-    public abstract StreamUrlIdHandler getUrlIdConverter();
+    public abstract StreamPreviewInfoExtractor getNextVideo() throws ParsingException;
+    public abstract StreamPreviewInfoCollector getRelatedVideos() throws ParsingException;
     public abstract String getPageUrl();
     public abstract StreamInfo.StreamType getStreamType() throws ParsingException;
     public int getServiceId() {

@@ -11,6 +11,7 @@ import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.StreamPreviewInfoCollector;
 import org.schabi.newpipe.extractor.StreamPreviewInfoExtractor;
+import org.schabi.newpipe.extractor.StreamPreviewInfoSearchCollector;
 import org.schabi.newpipe.extractor.StreamUrlIdHandler;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -55,9 +56,9 @@ public class YoutubeSearchEngine extends SearchEngine {
     }
 
     @Override
-    public StreamPreviewInfoCollector search(String query, int page, String languageCode, Downloader downloader)
+    public StreamPreviewInfoSearchCollector search(String query, int page, String languageCode, Downloader downloader)
             throws IOException, ExtractionException {
-        StreamPreviewInfoCollector collector = getStreamPreviewInfoCollector();
+        StreamPreviewInfoSearchCollector collector = getStreamPreviewInfoSearchCollector();
 
         /* Cant use Uri.Bilder since it's android code.
         // Android code is baned from the extractor side.
