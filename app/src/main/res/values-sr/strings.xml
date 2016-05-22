@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="view_count_text">%1$s приказа</string>
-    <string name="upload_date_text">"Отпремљен "%1$s</string>
+    <string name="upload_date_text">Објављен %1$s</string>
     <string name="no_player_found">Нема плејера токова. Инсталирати ВЛЦ?</string>
     <string name="install">Инсталирај</string>
     <string name="cancel">Одустани</string>
@@ -69,7 +69,7 @@
     <string name="download_path_audio_title">Одредиште преузимања за аудио</string>
     <string name="download_path_audio_dialog_title">Унесите путању за преузимање аудио фајлова.</string>
 
-    <string name="download_path_audio_summary">Путања за упис преузетих аудио фајлова.</string>
+    <string name="download_path_audio_summary">Путања за упис преузетих аудио фајлова</string>
     <string name="info_dir_created">Направљен директоријум за преузимање „%1$s“</string>
 <string name="err_dir_create">Не могу да направим директоријум за преузимање„ %1$s“</string>
     <string name="general_error">Грешка</string>
@@ -125,5 +125,33 @@
     <string name="user_report">Извештај корисника</string>
 
     <string name="duration_live">уживо</string>
+
+    <string name="main_bg_subtitle">Тапните на претрагу за почетак</string>
+    <string name="autoplay_by_calling_app_title">Пусти по позиву друге апликације</string>
+    <string name="autoplay_by_calling_app_summary">Аутоматско пуштање видеа по позиву друге апликације.</string>
+    <string name="start">Почни</string>
+    <string name="pause">Паузирај</string>
+    <string name="view">Приказ</string>
+    <string name="delete">Обриши</string>
+    <string name="checksum">Хеш</string>
+
+    <string name="add">Нова мисија</string>
+    <string name="finish">У реду</string>
+    <string name="switch_mode">Пребацивање мрежног и приказа листе</string>
+
+
+    <string name="msg_url">УРЛ преузимања</string>
+    <string name="msg_name">Назив фајла</string>
+    <string name="msg_threads">Нити</string>
+    <string name="msg_fetch_filename">Добави назив фајла</string>
+    <string name="msg_error">Грешка</string>
+    <string name="msg_server_unsupported">Сервер није подржан</string>
+    <string name="msg_exists">Фајл већ постоји</string>
+    <string name="msg_url_malform">Неисправан УРЛ или нема интернета</string>
+    <string name="msg_running">Њупајп преузимање</string>
+    <string name="msg_running_detail">Тапните за детаље</string>
+    <string name="msg_wait">Сачекајте...</string>
+    <string name="msg_copied">Копирано у привремену меморију.</string>
+    <string name="no_available_dir">Одредите доступну фасциклу за преузимање.</string>
 
     </resources>
