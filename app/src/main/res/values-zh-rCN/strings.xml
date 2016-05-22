@@ -58,7 +58,7 @@
     <string name="use_tor_title">使用 Tor</string>
     <string name="use_tor_summary">（实验性）强制下载流量使用 Tor 加强隐私（暂不支援流媒体视频）。</string>
 <string name="download_path_audio_title">音频下载路径</string>
-    <string name="download_path_audio_summary">存放已下载音频的路径。</string>
+    <string name="download_path_audio_summary">存放已下载音频的路径</string>
     <string name="download_path_audio_dialog_title">输入音频的下载路径。</string>
 
     <string name="err_dir_create">未能建立下载路径 “%1$s”</string>
@@ -70,7 +70,7 @@
     <string name="could_not_load_thumbnails">无法加载所有缩略图</string>
     <string name="youtube_signature_decryption_error">无法解密视频网址签名。</string>
     <string name="parsing_error">无法解析网站。</string>
-    <string name="light_parsing_error">无法解析网站完成。</string>
+    <string name="light_parsing_error">无法完全解析网站。</string>
     <string name="content_not_available">内容不可用。</string>
     <string name="blocked_by_gema">已被 GEMA 屏蔽。</string>
     <string name="could_not_setup_download_menu">无法设置下载菜单。</string>
@@ -116,4 +116,29 @@
     <string name="duration_live">直播</string>
 
     <string name="main_bg_subtitle">点按搜索开始使用</string>
+    <string name="start">开始</string>
+    <string name="pause">暂停</string>
+    <string name="view">查看</string>
+    <string name="delete">删除</string>
+    <string name="checksum">校验和</string>
+
+    <string name="finish">确定</string>
+    <string name="switch_mode">切换列表与网格</string>
+
+
+    <string name="msg_url">下载网址</string>
+    <string name="msg_name">文件名</string>
+    <string name="msg_threads">线程</string>
+    <string name="msg_fetch_filename">获取文件名</string>
+    <string name="msg_error">错误</string>
+    <string name="msg_server_unsupported">服务器不支持</string>
+    <string name="msg_exists">文件已经存在</string>
+    <string name="msg_url_malform">网址不正确或网络不可用</string>
+    <string name="msg_running">NewPipe 正在下载</string>
+    <string name="msg_running_detail">点击了解细节</string>
+    <string name="msg_wait">请稍候...</string>
+    <string name="msg_copied">已复制到剪贴板。</string>
+    <string name="no_available_dir">请选择一个可用的下载目录。</string>
+
+    <string name="add">新任务</string>
     </resources>
