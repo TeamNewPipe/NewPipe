@@ -222,33 +222,8 @@ public class VideoItemListActivity extends AppCompatActivity
                 .findFragmentById(R.id.videoitem_list);
         listFragment.setStreamingService(streamingService);
 
-        if (savedInstanceState == null) {
-            if (getIntent().getData() != null) {
-                searchQuery = getIntent().getData().toString();
-                StreamingService[] serviceList = ServiceList.getServices();
-                //StreamExtractor videoExtractor = null;
-//                for (int i = 0; i < serviceList.length; i++) {
-//                    if (serviceList[i].getUrlIdHandlerInstance().acceptUrl(searchQuery)) {
-//                        arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, i);
-//                        currentStreamingService = i;
-//                        //videoExtractor = ServiceList.getService(i).getExtractorInstance();
-//                        break;
-//                    }
-//                }
-//                if (currentStreamingService == -1) {
-//                    Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG)
-//                            .show();
-//                }
-                //arguments.putString(VideoItemDetailFragment.VIDEO_URL,
-                //        videoExtractor.getVideoUrl(videoExtractor.getVideoId(videoUrl)));//cleans URL
-//                arguments.putString(VideoItemDetailFragment.VIDEO_URL, videoUrl);
-//
-//                arguments.putBoolean(VideoItemDetailFragment.AUTO_PLAY,
-//                        PreferenceManager.getDefaultSharedPreferences(this)
-//                                .getBoolean(getString(R.string.autoplay_through_intent_key), false));
-                listFragment.search(searchQuery);
-            }
-        } else if(savedInstanceState != null
+
+        if(savedInstanceState != null
                 && mode != PRESENT_VIDEOS_MODE) {
             searchQuery = savedInstanceState.getString(QUERY);
             currentStreamingServiceId = savedInstanceState.getInt(STREAMING_SERVICE);
@@ -331,10 +306,6 @@ public class VideoItemListActivity extends AppCompatActivity
                     .replace(R.id.videoitem_detail_container, videoFragment)
                     .commit();
         } else  if (stream_type.equals(AbstractVideoInfo.StreamType.CHANNEL)) {
-            //getSupportFragmentManager().beginTransaction()
-              //      .add(R.id.videoitem_list, listFragment)
-                    //.addToBackStack(null)
-                //    .commit();
             listFragment.search(webpageUrl);
         } else {
             // In single-pane mode, simply start the detail activity

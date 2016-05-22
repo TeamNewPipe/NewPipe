@@ -78,8 +78,8 @@ public class YoutubeStreamPreviewInfoExtractor implements StreamPreviewInfoExtra
                     .select("a").first()
                     .text();
         } catch (Exception e) {
+            // channel vidoes don't have uploader as it is implied
             return "";
-            //throw new ParsingException("Could not get uploader", e);
         }
     }
 

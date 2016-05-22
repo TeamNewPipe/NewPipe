@@ -68,10 +68,6 @@ public class VideoItemListFragment extends ListFragment {
     // used to suppress request for loading a new page while another page is already loading.
     private boolean loadingNextPage = true;
 
-    public void onBackPressed() {
-        search("test");
-    }
-
     private class ResultRunnable implements Runnable {
         private final SearchResult result;
         private final int requestId;
@@ -178,8 +174,6 @@ public class VideoItemListFragment extends ListFragment {
         // although it was introduced with API level 8. Test this and find a solution.
         getListView().smoothScrollToPosition(0);
     }
-
-
 
     private void nextPage() {
         loadingNextPage = true;
@@ -325,7 +319,6 @@ public class VideoItemListFragment extends ListFragment {
     public void onListItemClick(ListView listView, View view, int position, long id) {
         super.onListItemClick(listView, view, position, id);
         setActivatedPosition(position);
-        //i
         mCallbacks.onItemSelected(Long.toString(id));
     }
 

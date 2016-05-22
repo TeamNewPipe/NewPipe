@@ -70,19 +70,11 @@ public class YoutubeSearchEngine extends SearchEngine {
 
         String url = "https://www.youtube.com/results"
                 + "?search_query=" + URLEncoder.encode(query, "UTF-8")
-//<<<<<<< Updated upstream
-//                + "&page=" + Integer.toString(page)
-//                + "&filters=" + "video";
-//        String url = "https://www.youtube.com/"
-//                + "user/EverythingApplePro/videos";
-//=======
                 + "&page=" + Integer.toString(page);
-                //+ "&filters=" + "video";
 
         if (query.contains("youtube")) {
             url = query + "/videos";
         }
-//>>>>>>> Stashed changes
 
         String site;
         //String url = builder.build().toString();
@@ -139,8 +131,7 @@ public class YoutubeSearchEngine extends SearchEngine {
                 collector.commit(extractCHannelPreviewInfo(el));
             }
             else {
-                //noinspection ConstantConditions
-                //collector.addError(new Exception("unexpected element found:\"" + el + "\""));
+                // this is holder for support for playlists, etc
             }
         }
 
