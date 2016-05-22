@@ -6,11 +6,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.schabi.newpipe.extractor.AbstractVideoInfo;
-import org.schabi.newpipe.extractor.StreamPreviewInfo;
-
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.schabi.newpipe.extractor.AbstractVideoInfo;
+import org.schabi.newpipe.extractor.StreamPreviewInfo;
 
 /**
  * Created by Christian Schabesberger on 24.10.15.
@@ -72,7 +72,7 @@ public class VideoInfoItemViewCreator {
         if(info.uploader != null && !info.uploader.isEmpty()) {
             holder.itemUploaderView.setText(info.uploader);
         } else {
-            holder.itemDurationView.setVisibility(View.INVISIBLE);
+            holder.itemUploaderView.setVisibility(View.INVISIBLE);
         }
         if(info.duration > 0) {
             holder.itemDurationView.setText(getDurationString(info.duration));
@@ -85,6 +85,8 @@ public class VideoInfoItemViewCreator {
         }
         if(info.view_count >= 0) {
             holder.itemViewCountView.setText(shortViewCount(info.view_count));
+        } else if (info.videoCount > 0) {
+            holder.itemViewCountView.setText(info.videoCount + " videos");
         } else {
             holder.itemViewCountView.setVisibility(View.GONE);
         }

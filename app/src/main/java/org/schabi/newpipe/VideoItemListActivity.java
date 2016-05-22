@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import org.schabi.newpipe.extractor.AbstractVideoInfo;
 import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.ServiceList;
@@ -221,6 +222,7 @@ public class VideoItemListActivity extends AppCompatActivity
                 .findFragmentById(R.id.videoitem_list);
         listFragment.setStreamingService(streamingService);
 
+
         if(savedInstanceState != null
                 && mode != PRESENT_VIDEOS_MODE) {
             searchQuery = savedInstanceState.getString(QUERY);
@@ -282,6 +284,7 @@ public class VideoItemListActivity extends AppCompatActivity
                         .findFragmentById(R.id.videoitem_list))
                 .getListAdapter();
         String webpageUrl = listAdapter.getVideoList().get((int) Long.parseLong(id)).webpage_url;
+        AbstractVideoInfo.StreamType stream_type = listAdapter.getVideoList().get((int) Long.parseLong(id)).stream_type;
         if (mTwoPane) {
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
@@ -302,6 +305,8 @@ public class VideoItemListActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.videoitem_detail_container, videoFragment)
                     .commit();
+        } else  if (stream_type.equals(AbstractVideoInfo.StreamType.CHANNEL)) {
+            listFragment.search(webpageUrl);
         } else {
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.

@@ -78,7 +78,8 @@ public class YoutubeStreamPreviewInfoExtractor implements StreamPreviewInfoExtra
                     .select("a").first()
                     .text();
         } catch (Exception e) {
-            throw new ParsingException("Could not get uploader", e);
+            // channel vidoes don't have uploader as it is implied
+            return "";
         }
     }
 
@@ -132,7 +133,7 @@ public class YoutubeStreamPreviewInfoExtractor implements StreamPreviewInfoExtra
     public String getThumbnailUrl() throws ParsingException {
         try {
             String url;
-            Element te = item.select("div[class=\"yt-thumb video-thumb\"]").first()
+            Element te = item.select("div[class~=.*thumb.*]").first()
                     .select("img").first();
             url = te.attr("abs:src");
             // Sometimes youtube sends links to gif files which somehow seem to not exist
@@ -145,6 +146,11 @@ public class YoutubeStreamPreviewInfoExtractor implements StreamPreviewInfoExtra
         } catch (Exception e) {
             throw new ParsingException("Could not get thumbnail url", e);
         }
+    }
+
+    @Override
+    public long getVideoCount() throws ParsingException {
+        return 0;
     }
 
     @Override

@@ -28,6 +28,9 @@ import java.net.URLDecoder;
  */
 
 public class YoutubeStreamUrlIdHandler implements StreamUrlIdHandler {
+
+    private static final String CHANNEL = "CHANNEL";
+
     @SuppressWarnings("WeakerAccess")
     @Override
     public String getVideoUrl(String videoId) {
@@ -48,7 +51,10 @@ public class YoutubeStreamUrlIdHandler implements StreamUrlIdHandler {
                 } catch(UnsupportedEncodingException uee) {
                     throw new ParsingException("Could not parse attribution_link", uee);
                 }
-            } else {
+            } else if (url.contains("user")) {
+                id = CHANNEL;
+            }
+            else {
                 id = Parser.matchGroup1("[?&]v=([\\-a-zA-Z0-9_]{11})", url);
             }
         }

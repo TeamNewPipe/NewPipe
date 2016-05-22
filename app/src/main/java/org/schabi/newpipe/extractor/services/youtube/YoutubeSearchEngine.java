@@ -3,10 +3,8 @@ package org.schabi.newpipe.extractor.services.youtube;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.schabi.newpipe.extractor.AbstractVideoInfo;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.ExtractionException;
-import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.StreamPreviewInfoCollector;
@@ -17,9 +15,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import java.net.URLEncoder;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -72,8 +70,11 @@ public class YoutubeSearchEngine extends SearchEngine {
 
         String url = "https://www.youtube.com/results"
                 + "?search_query=" + URLEncoder.encode(query, "UTF-8")
-                + "&page=" + Integer.toString(page)
-                + "&filters=" + "video";
+                + "&page=" + Integer.toString(page);
+
+        if (query.contains("youtube")) {
+            url = query + "/videos";
+        }
 
         String site;
         //String url = builder.build().toString();
@@ -87,9 +88,17 @@ public class YoutubeSearchEngine extends SearchEngine {
         }
 
 
-        Document doc = Jsoup.parse(site, url);
-        Element list = doc.select("ol[class=\"item-section\"]").first();
 
+
+
+        Document doc = Jsoup.parse(site, url);
+        Element list;
+
+        if (url.contains("user")) {
+            list = doc.select("ul[id=\"channels-browse-content-grid\"]").first();
+        } else {
+            list = doc.select("ol[class=\"item-section\"]").first();
+        }
         for (Element item : list.children()) {
             /* First we need to determine which kind of item we are working with.
                Youtube depicts five different kinds of items on its search result page. These are
@@ -117,10 +126,12 @@ public class YoutubeSearchEngine extends SearchEngine {
 
                 // video item type
             } else if (!((el = item.select("div[class*=\"yt-lockup-video\"").first()) == null)) {
-                collector.commit(extractPreviewInfo(el));
-            } else {
-                //noinspection ConstantConditions
-                collector.addError(new Exception("unexpected element found:\"" + el + "\""));
+                collector.commit(extractVideoPreviewInfo(el));
+            } else if (!((el = item.select("div[class*=\"yt-lockup-channel\"").first()) == null)) {
+                collector.commit(extractCHannelPreviewInfo(el));
+            }
+            else {
+                // this is holder for support for playlists, etc
             }
         }
 
@@ -187,7 +198,11 @@ public class YoutubeSearchEngine extends SearchEngine {
         }
     }
 
-    private StreamPreviewInfoExtractor extractPreviewInfo(final Element item) {
+    private StreamPreviewInfoExtractor extractVideoPreviewInfo(final Element item) {
         return new YoutubeStreamPreviewInfoExtractor(item);
+    }
+
+    private StreamPreviewInfoExtractor extractCHannelPreviewInfo(final Element item) {
+        return new YoutubeChannelPreviewInfoExtractor(item);
     }
 }

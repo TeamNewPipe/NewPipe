@@ -29,4 +29,5 @@ public interface StreamPreviewInfoExtractor {
     String getUploadDate() throws ParsingException;
     long getViewCount() throws  ParsingException;
     String getThumbnailUrl() throws  ParsingException;
+    long getVideoCount() throws ParsingException;
 }
