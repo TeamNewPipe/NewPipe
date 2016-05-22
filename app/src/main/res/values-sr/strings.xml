@@ -42,7 +42,7 @@
     <string name="show_next_and_similar_title">Прикажи следећи и слични видео</string>
     <string name="similar_videos_btn_text">Слични видео</string>
     <string name="search_language_title">Пожељни језик садржаја</string>
-    <string name="settings_category_video_audio_title">Видео и Аудио</string>
+    <string name="settings_category_video_audio_title">Видео и аудио</string>
     <string name="settings_category_other_title">Остало</string>
     <string name="list_thumbnail_view_description">Сличица видео прегледа</string>
     <string name="detail_thumbnail_view_description">Сличица видео прегледа</string>
@@ -53,7 +53,7 @@
     <string name="use_external_audio_player_title">Користи спољашњи аудио плејер</string>
     <string name="background_player_playing_toast">Пуштам у позадини</string>
 
-    <string name="background_player_name">Позадински плејер за Јутјуб цев</string>
+    <string name="background_player_name">Позадински плејер за Њупајп</string>
     <string name="loading">Учитавам</string>
     <string name="play_btn_text">Пусти</string>
 
