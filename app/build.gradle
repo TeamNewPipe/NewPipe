@@ -43,4 +43,6 @@ dependencies {
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'com.github.nirhart:parallaxscroll:1.0'
     compile 'com.google.android.exoplayer:exoplayer:r1.5.5'
+    compile 'com.google.code.gson:gson:2.3.+'
+    compile 'com.nononsenseapps:filepicker:2.0.5'
 }

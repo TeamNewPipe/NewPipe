@@ -1,0 +1,109 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/toolbar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:theme="@style/NewPipeActionbarTheme" />
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="4dp"
+		android:background="@drawable/action_shadow"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="24dp"
+		android:layout_marginRight="24dp"
+		android:layout_marginTop="9dp"
+		android:layout_marginBottom="24dp"
+		android:gravity="center_vertical"
+		android:orientation="vertical">
+
+	</LinearLayout>
+
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="24dp"
+		android:layout_marginRight="24dp"
+		android:layout_marginBottom="24dp"
+		android:gravity="center_vertical"
+		android:orientation="vertical">
+		
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/msg_name"/>
+
+		<EditText
+			android:id="@+id/file_name"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:singleLine="true"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="24dp"
+		android:layout_marginRight="24dp"
+		android:layout_marginBottom="24dp"
+		android:gravity="left"
+		android:orientation="horizontal">
+			<CheckBox android:id="@+id/video"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/video"
+				android:checked="true"/>
+			<CheckBox android:id="@+id/audio"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/audio" />
+	</LinearLayout>
+	
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="24dp"
+		android:layout_marginRight="24dp"
+		android:layout_marginBottom="24dp"
+		android:gravity="center_vertical"
+		android:orientation="vertical">
+	
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/msg_threads"/>
+		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_vertical"
+			android:orientation="horizontal">
+		
+			<TextView
+				android:id="@+id/threads_count"
+				android:layout_width="20dp"
+				android:layout_height="wrap_content"
+				android:text="0"/>
+		
+			<SeekBar
+				android:id="@+id/threads"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:max="31"
+				android:progress="3"/>
+		
+		</LinearLayout>
+		
+	</LinearLayout>
+	
+</LinearLayout>

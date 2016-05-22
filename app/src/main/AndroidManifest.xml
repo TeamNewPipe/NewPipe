@@ -125,5 +125,28 @@
             android:label="@string/general_error"
             android:theme="@android:style/Theme.NoDisplay" />
         <activity android:name=".ErrorActivity"/>
+
+        <activity
+            android:name=".download.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="us.shandian.giga.intent.DOWNLOAD"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data
+                    android:mimeType="application/*"
+                    android:host="*"
+                    android:scheme="http"/>
+                <data
+                    android:mimeType="application/*"
+                    android:host="*"
+                    android:scheme="https"/>
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="us.shandian.giga.service.DownloadManagerService"/>
+
     </application>
 </manifest>

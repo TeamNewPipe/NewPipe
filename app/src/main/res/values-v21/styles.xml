@@ -34,4 +34,5 @@
         <item name="android:background">@color/video_overlay_color</item>
         <item name="background">@color/video_overlay_color</item>
     </style>
+
 </resources>

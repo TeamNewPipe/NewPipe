@@ -28,6 +28,8 @@ import android.support.annotation.NonNull;
 
 import java.io.File;
 
+import us.shandian.giga.util.Utility;
+
 /**
  * Helper for global settings
  */
@@ -46,8 +48,32 @@ public class NewPipeSettings {
         return getFolder(context, R.string.download_path_key, Environment.DIRECTORY_MOVIES);
     }
 
+    public static String getVideoDownloadPath(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        final String key = context.getString(R.string.download_path_key);
+        String downloadPath = prefs.getString(key, Environment.DIRECTORY_MOVIES);
+
+        return downloadPath;
+    }
+
     public static File getAudioDownloadFolder(Context context) {
         return getFolder(context, R.string.download_path_audio_key, Environment.DIRECTORY_MUSIC);
+    }
+
+    public static String getAudioDownloadPath(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        final String key = context.getString(R.string.download_path_audio_key);
+        String downloadPath = prefs.getString(key, Environment.DIRECTORY_MUSIC);
+
+        return downloadPath;
+    }
+
+    public static String getDownloadPath(Context context, String fileName)
+    {
+        if(Utility.isVideoFile(fileName)) {
+            return NewPipeSettings.getVideoDownloadPath(context);
+        }
+        return NewPipeSettings.getAudioDownloadPath(context);
     }
 
     private static File getFolder(Context context, int keyID, String defaultDirectoryName) {

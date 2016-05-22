@@ -1,0 +1,37 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<item
+		android:id="@+id/start"
+		android:title="@string/start"/>
+	
+	<item
+		android:id="@+id/pause"
+		android:title="@string/pause"/>
+	
+	<item
+		android:id="@+id/view"
+		android:title="@string/view"/>
+	
+	<item
+		android:id="@+id/delete"
+		android:title="@string/delete"/>
+	
+	<item
+		android:id="@+id/checksum"
+		android:title="@string/checksum">
+		
+		<menu>
+			
+			<item
+				android:id="@+id/md5"
+				android:title="@string/md5"/>
+			
+			<item
+				android:id="@+id/sha1"
+				android:title="@string/sha1"/>
+			
+		</menu>
+		
+	</item>
+
+</menu>
