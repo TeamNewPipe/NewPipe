@@ -126,4 +126,29 @@
     <string name="duration_live">v živo</string>
 
     <string name="main_bg_subtitle">Za začetek začnite z iskanjem</string>
+    <string name="start">Začni</string>
+    <string name="pause">Premor</string>
+    <string name="view">Poglej</string>
+    <string name="delete">Izbriši</string>
+    <string name="checksum">Nadzorna vsota</string>
+
+    <string name="switch_mode">Preklopi med vrstičnim in mrežnim seznamom</string>
+
+
+    <string name="msg_url">Naslov URL za prejem</string>
+    <string name="msg_name">Ime datoteke</string>
+    <string name="msg_threads">Nizi</string>
+    <string name="msg_fetch_filename">Pridobi ime datoteke</string>
+    <string name="msg_error">Napaka</string>
+    <string name="msg_server_unsupported">Strežnik ni podprt</string>
+    <string name="msg_exists">Datoteka že obstaja</string>
+    <string name="msg_url_malform">Napačno oblikovan naslov URL oziroma nedostopen internet</string>
+    <string name="msg_running">Prejemanje</string>
+    <string name="msg_running_detail">Podrobnosti</string>
+    <string name="msg_wait">Počakajte ...</string>
+    <string name="msg_copied">Kopirano v odložišče.</string>
+    <string name="no_available_dir">Izberite mapo za prejem.</string>
+
+    <string name="add">Nova naloga</string>
+    <string name="finish">V redu</string>
     </resources>
