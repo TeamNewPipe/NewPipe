@@ -3,6 +3,7 @@ package org.schabi.newpipe;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -215,8 +216,7 @@ public class VideoItemListActivity extends AppCompatActivity
                     ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
                             ServiceList.getNameOfService(currentStreamingServiceId), "", R.string.general_error));
         }
-        //-----------------------------------------------------------------------------
-        //to solve issue 38
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
         listFragment = (VideoItemListFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.videoitem_list);
         listFragment.setStreamingService(streamingService);
