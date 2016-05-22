@@ -28,7 +28,8 @@ public abstract class AbstractVideoInfo {
         AUDIO_STREAM,
         LIVE_STREAM,
         AUDIO_LIVE_STREAM,
-        FILE
+        FILE,
+        CHANNEL
     }
 
     public StreamType stream_type;

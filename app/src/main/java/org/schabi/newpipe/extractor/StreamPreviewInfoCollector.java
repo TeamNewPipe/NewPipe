@@ -50,6 +50,7 @@ public class StreamPreviewInfoCollector {
             // importand information
             resultItem.service_id = serviceId;
             resultItem.webpage_url = extractor.getWebPageUrl();
+
             if (urlIdHandler == null) {
                 throw new ParsingException("Error: UrlIdHandler not set");
             } else {
@@ -61,6 +62,11 @@ public class StreamPreviewInfoCollector {
             // optional iformation
             try {
                 resultItem.duration = extractor.getDuration();
+            } catch (Exception e) {
+                addError(e);
+            }
+            try {
+                resultItem.videoCount = extractor.getVideoCount();
             } catch (Exception e) {
                 addError(e);
             }
