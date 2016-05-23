@@ -127,4 +127,29 @@
     <string name="duration_live">ライブ</string>
 
     <string name="main_bg_subtitle">検索をタップして始めましょう</string>
+    <string name="start">開始</string>
+    <string name="pause">一時停止</string>
+    <string name="view">表示</string>
+    <string name="delete">削除</string>
+    <string name="checksum">チェックサム</string>
+
+    <string name="add">新しいミッション</string>
+    <string name="finish">OK</string>
+    <string name="switch_mode">リストとグリッドを切り替え</string>
+
+
+    <string name="msg_url">ダウンロード URL</string>
+    <string name="msg_name">ファイル名</string>
+    <string name="msg_threads">スレッド</string>
+    <string name="msg_fetch_filename">ファイル名を取得</string>
+    <string name="msg_error">エラー</string>
+    <string name="msg_server_unsupported">サーバーがサポートされていません</string>
+    <string name="msg_exists">ファイルが既に存在します</string>
+    <string name="msg_url_malform">URL の形式が正しくないか、インターネットが利用できません</string>
+    <string name="msg_running">NewPipe ダウンロード中</string>
+    <string name="msg_running_detail">詳細はクリック</string>
+    <string name="msg_wait">しばらくお待ちください...</string>
+    <string name="msg_copied">クリップボードにコピーしました。</string>
+    <string name="no_available_dir">利用可能なダウンロード ディレクトリを選択してください。</string>
+
     </resources>
