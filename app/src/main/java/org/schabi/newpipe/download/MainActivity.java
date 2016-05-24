@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private static final String TAG = MainActivity.class.toString();
 
-    private Menu menu = null;
 
     private MissionsFragment mFragment;
     private DownloadManager mManager;
@@ -242,7 +241,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        this.menu = menu;
         MenuInflater inflater = getMenuInflater();
 
         inflater.inflate(R.menu.download_menu, menu);

@@ -217,6 +217,7 @@ public class DownloadDialog extends DialogFragment {
 
         String fName = name.getText().toString().trim();
 
+        // todo: add timeout? would be bad if the thread gets locked dueto this.
         while (mBinder == null);
 
         if(audio.isChecked()){

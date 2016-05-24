@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import org.schabi.newpipe.download.MainActivity;
 import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.ServiceList;
@@ -364,6 +365,10 @@ public class VideoItemListActivity extends AppCompatActivity
                         ErrorActivity.ErrorInfo.make(ErrorActivity.USER_REPORT,
                                 ServiceList.getNameOfService(currentStreamingServiceId),
                                 "user_report", R.string.user_report));
+                return true;
+            }
+            case R.id.action_show_downloads: {
+                //todo: implement this
                 return true;
             }
             default:
