@@ -8,6 +8,7 @@ import android.os.Environment;
 import java.io.File;
 import java.io.PrintWriter;
 
+//todo: replace this by using the internal crash handler of newpipe
 public class CrashHandler implements Thread.UncaughtExceptionHandler
 {
 	public static String CRASH_DIR = Environment.getExternalStorageDirectory().getPath() + "/GigaCrash/";
