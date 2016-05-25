@@ -196,11 +196,22 @@ public class Utility
 		}
 	}
 
+	public static int getIconForFileType(FileType type) {
+		switch(type) {
+			case MUSIC:
+				return R.drawable.music;
+			case VIDEO:
+				return R.drawable.video;
+			default:
+				return R.drawable.video;
+		}
+	}
+
 	public static boolean isDirectoryAvailble(String path) {
 		File dir = new File(path);
 		return dir.exists() && dir.isDirectory();
 	}
-	
+
 	public static boolean isDownloadDirectoryAvailble(Context context) {
 		return isDirectoryAvailble(NewPipeSettings.getVideoDownloadPath(context));
 	}
@@ -212,14 +223,6 @@ public class Utility
 		i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true);
 		i.putExtra(FilePickerActivity.EXTRA_MODE, AbstractFilePickerFragment.MODE_DIR);
 		activity.startActivityForResult(i, 233);
-	}
-
-	public static void checkAndReshow(Activity activity){
-		if (!isDownloadDirectoryAvailble(activity)){
-			Toast.makeText(activity.getApplicationContext(),
-				R.string.no_available_dir, Toast.LENGTH_LONG).show();
-			showDirectoryChooser(activity);
-		}
 	}
 	
 	public static void copyToClipboard(Context context, String str) {

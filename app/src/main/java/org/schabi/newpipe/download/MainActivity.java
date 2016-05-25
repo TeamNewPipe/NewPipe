@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         try {
             //noinspection ConstantConditions
+            
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         } catch(Exception e) {
             Log.d(TAG, "Could not get SupportActionBar");

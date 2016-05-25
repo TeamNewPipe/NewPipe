@@ -95,7 +95,7 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 		
 		Utility.FileType type = Utility.getFileType(ms.name);
 		
-		//h.icon.setImageResource(Utility.getIconForFileType(type));
+		h.icon.setImageResource(Utility.getIconForFileType(type));
 		h.name.setText(ms.name);
 		h.size.setText(Utility.formatBytes(ms.length));
 		
