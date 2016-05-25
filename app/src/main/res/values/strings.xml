@@ -80,6 +80,9 @@
     <string name="video_is_age_restricted">Video is Age restricted. Enable age restricted videos in the settings first.</string>
     <string name="duration_live">live</string>
     <string name="downloads">Downloads</string>
+    <string name="downloads_title">Downloads</string>
+    <string name="settings_title">Settings</string>
+    <string name="error_report_title">Error report</string>
 
     <!-- error strings -->
     <string name="general_error">Error</string>

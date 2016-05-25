@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -95,14 +96,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_downloader);
 
-        try {
-            //noinspection ConstantConditions
-            
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        } catch(Exception e) {
-            Log.d(TAG, "Could not get SupportActionBar");
-            e.printStackTrace();
-        }
+
+        //noinspection ConstantConditions
+
+        // its ok if this failes, we will catch that error later, and send it as report
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(R.string.downloads_title);
+        actionBar.setDisplayShowTitleEnabled(true);
 
         mPrefs = getSharedPreferences("threads", Context.MODE_WORLD_READABLE);
 

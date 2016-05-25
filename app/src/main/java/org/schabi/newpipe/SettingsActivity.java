@@ -56,7 +56,10 @@ public class SettingsActivity extends PreferenceActivity  {
         getDelegate().onCreate(savedInstanceBundle);
         super.onCreate(savedInstanceBundle);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(R.string.settings_title);
+        actionBar.setDisplayShowTitleEnabled(true);
 
         getFragmentManager().beginTransaction()
                 .replace(android.R.id.content, new SettingsFragment())

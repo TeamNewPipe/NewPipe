@@ -11,6 +11,7 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -165,7 +166,15 @@ public class ErrorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_error);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        try {
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(R.string.error_report_title);
+            actionBar.setDisplayShowTitleEnabled(true);
+        } catch (Exception e) {
+            Log.e(TAG, "Error turing exception handling");
+            e.printStackTrace();
+        }
 
         ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
         errorList = ac.errorList;
