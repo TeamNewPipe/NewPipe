@@ -134,9 +134,9 @@ public class VideoInfoItemViewCreator {
         if(hours > 0 || !output.isEmpty()) {
             if(hours > 0) {
                 if(hours >= 10 || output.isEmpty()) {
-                    output += Integer.toString(minutes);
+                    output += Integer.toString(hours);
                 } else {
-                    output += "0" + Integer.toString(minutes);
+                    output += "0" + Integer.toString(hours);
                 }
             } else {
                 output += "00";
