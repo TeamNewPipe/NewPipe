@@ -176,41 +176,23 @@ public class Utility
 	
 	public static int getBackgroundForFileType(FileType type) {
 		switch (type) {
-			case APP:
-				return R.color.orange;
 			case MUSIC:
-				return R.color.cyan;
-			case ARCHIVE:
-				return R.color.blue;
+				return R.color.audio_left_to_load_color;
 			case VIDEO:
-				return R.color.green;
-			case WORD:
-			case EXCEL:
-			case POWERPOINT:
-				return R.color.brown;
-			case UNKNOWN:
+				return R.color.video_left_to_load_color;
 			default:
-				return R.color.bluegray;
+				return R.color.gray;
 		}
 	}
 	
 	public static int getForegroundForFileType(FileType type) {
 		switch (type) {
-			case APP:
-				return R.color.orange_dark;
 			case MUSIC:
-				return R.color.cyan_dark;
-			case ARCHIVE:
-				return R.color.blue_dark;
+				return R.color.audio_already_load_color;
 			case VIDEO:
-				return R.color.green_dark;
-			case WORD:
-			case EXCEL:
-			case POWERPOINT:
-				return R.color.brown_dark;
-			case UNKNOWN:
+				return R.color.video_already_load_color;
 			default:
-				return R.color.bluegray_dark;
+				return R.color.gray;
 		}
 	}
 

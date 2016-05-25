@@ -18,19 +18,14 @@
     <color name="video_overlay_color">#66000000</color>
     <color name="background_notification_color">#323232</color>
 
-    <!-- GigaGet Theme colors -->
-    <color name="blue">#2979FF</color>
-    <color name="blue_dark">#1565C0</color>
+    <!-- GigaGet theme -->
     <color name="bluegray">#607D8B</color>
-    <color name="bluegray_dark">#546E7A</color>
-    <color name="cyan">#00BCD4</color>
-    <color name="cyan_dark">#00ACC1</color>
-    <color name="orange">#FF9800</color>
-    <color name="orange_dark">#EF6C00</color>
-    <color name="green">#4CAF50</color>
-    <color name="green_dark">#388E3C</color>
-    <color name="brown">#795548</color>
-    <color name="brown_dark">#5D4037</color>
+
+    <!-- GigaGet download Theme colors -->
+    <color name="audio_left_to_load_color">#555555</color>
+    <color name="audio_already_load_color">#000000</color>
+    <color name="video_left_to_load_color">#CD5656</color>
+    <color name="video_already_load_color">#BC211D</color>
 
     <!-- GigaGet Component colors -->
     <color name="white">#FFFFFF</color>

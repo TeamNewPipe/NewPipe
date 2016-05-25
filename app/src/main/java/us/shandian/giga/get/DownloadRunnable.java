@@ -1,6 +1,5 @@
 package us.shandian.giga.get;
 
-import android.os.Handler;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
