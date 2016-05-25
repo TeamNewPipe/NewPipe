@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         });
 
         // Intent
-        if (getIntent().getAction().equals(INTENT_DOWNLOAD)) {
+        if (getIntent().getAction() != null && getIntent().getAction().equals(INTENT_DOWNLOAD)) {
             mPendingUrl = getIntent().getData().toString();
         }
     }

@@ -368,7 +368,8 @@ public class VideoItemListActivity extends AppCompatActivity
                 return true;
             }
             case R.id.action_show_downloads: {
-                //todo: implement this
+                Intent intent = new Intent(this, org.schabi.newpipe.download.MainActivity.class);
+                startActivity(intent);
                 return true;
             }
             default:
