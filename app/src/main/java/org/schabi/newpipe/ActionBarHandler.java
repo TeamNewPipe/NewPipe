@@ -180,6 +180,12 @@ class ActionBarHandler {
                     onPlayAudioListener.onActionSelected(selectedVideoStream);
                 }
                 return true;
+            case R.id.menu_item_downloads: {
+                Intent intent =
+                        new Intent(activity, org.schabi.newpipe.download.MainActivity.class);
+                activity.startActivity(intent);
+                return true;
+            }
             default:
                 Log.e(TAG, "Menu Item not known");
         }
