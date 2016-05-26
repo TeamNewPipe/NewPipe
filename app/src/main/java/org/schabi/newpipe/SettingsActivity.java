@@ -1,16 +1,20 @@
 package org.schabi.newpipe;
 
 import android.app.Activity;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.AudioManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -23,7 +27,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
+import com.nononsenseapps.filepicker.FilePickerActivity;
+
+import java.util.ArrayList;
+
 import info.guardianproject.netcipher.proxy.OrbotHelper;
+import us.shandian.giga.util.Utility;
 
 /**
  * Created by Christian Schabesberger on 31.08.15.
@@ -81,7 +91,7 @@ public class SettingsActivity extends PreferenceActivity  {
         private ListPreference defaultResolutionPreference;
         private ListPreference defaultAudioFormatPreference;
         private ListPreference searchLanguagePreference;
-        private EditTextPreference downloadPathPreference;
+        private Preference downloadPathPreference;
         private EditTextPreference downloadPathAudioPreference;
         private CheckBoxPreference useTorCheckBox;
         private SharedPreferences defaultPreferences;
@@ -111,8 +121,7 @@ public class SettingsActivity extends PreferenceActivity  {
                     (ListPreference) findPreference(DEFAULT_AUDIO_FORMAT_PREFERENCE);
             searchLanguagePreference =
                     (ListPreference) findPreference(SEARCH_LANGUAGE_PREFERENCE);
-            downloadPathPreference =
-                    (EditTextPreference) findPreference(DOWNLOAD_PATH_PREFERENCE);
+            downloadPathPreference = (Preference) findPreference(DOWNLOAD_PATH_PREFERENCE);
             downloadPathAudioPreference =
                     (EditTextPreference) findPreference(DOWNLOAD_PATH_AUDIO_PREFERENCE);
             useTorCheckBox = (CheckBoxPreference) findPreference(USE_TOR_KEY);
@@ -140,6 +149,20 @@ public class SettingsActivity extends PreferenceActivity  {
                 }
             };
             defaultPreferences.registerOnSharedPreferenceChangeListener(prefListener);
+
+            downloadPathPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener(){
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent i = new Intent(getActivity(), FilePickerActivity.class);
+                    i.setAction(Intent.ACTION_GET_CONTENT);
+                    i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false);
+                    i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true);
+                    i.putExtra(FilePickerActivity.EXTRA_MODE, AbstractFilePickerFragment.MODE_DIR);
+                    startActivityForResult(i, 233);
+
+                    return true;
+                }
+            });
 
             updateSummary();
         }
