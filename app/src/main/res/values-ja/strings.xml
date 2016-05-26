@@ -152,4 +152,9 @@
     <string name="msg_copied">クリップボードにコピーしました。</string>
     <string name="no_available_dir">利用可能なダウンロード ディレクトリを選択してください。</string>
 
+    <string name="downloads">ダウンロード</string>
+    <string name="downloads_title">ダウンロード</string>
+    <string name="settings_title">設定</string>
+    <string name="error_report_title">エラー レポート</string>
+
     </resources>
