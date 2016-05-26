@@ -147,7 +147,7 @@
     <string name="msg_exists">ファイルが既に存在します</string>
     <string name="msg_url_malform">URL の形式が正しくないか、インターネットが利用できません</string>
     <string name="msg_running">NewPipe ダウンロード中</string>
-    <string name="msg_running_detail">詳細はクリック</string>
+    <string name="msg_running_detail">詳細はタップ</string>
     <string name="msg_wait">しばらくお待ちください...</string>
     <string name="msg_copied">クリップボードにコピーしました。</string>
     <string name="no_available_dir">利用可能なダウンロード ディレクトリを選択してください。</string>
