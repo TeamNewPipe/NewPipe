@@ -128,4 +128,23 @@
     <string name="duration_live">live</string>
 
     <string name="main_bg_subtitle">„Suchen“ antippen und loslegen</string>
+    <string name="downloads">Downloads</string>
+    <string name="downloads_title">Downloads</string>
+    <string name="settings_title">Einstellungen</string>
+    <string name="error_report_title">Fehlerbericht</string>
+
+    <string name="delete">Löschen</string>
+    <string name="checksum">Prüfsumme</string>
+
+    <string name="switch_mode">Zwischen Liste und Gitter umschalten</string>
+
+
+    <string name="msg_url">Download-URL</string>
+    <string name="msg_name">Dateiname</string>
+    <string name="msg_error">Fehler</string>
+    <string name="msg_exists">Datei existiert bereits</string>
+    <string name="msg_wait">Bitte warten...</string>
+    <string name="msg_copied">In Zwischenablage kopiert.</string>
+    <string name="no_available_dir">Bitte wählen Sie ein verfügbares Downloadverzeichnis.</string>
+
     </resources>
