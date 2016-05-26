@@ -154,4 +154,9 @@
     <string name="msg_copied">Копирано у привремену меморију.</string>
     <string name="no_available_dir">Одредите доступну фасциклу за преузимање.</string>
 
+    <string name="downloads">Преузимања</string>
+    <string name="downloads_title">Преузимања</string>
+    <string name="settings_title">Поставке</string>
+    <string name="error_report_title">Извештај о грешци</string>
+
     </resources>
