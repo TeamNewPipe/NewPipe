@@ -151,4 +151,9 @@
 
     <string name="add">Nova naloga</string>
     <string name="finish">V redu</string>
+    <string name="downloads">Prejemi</string>
+    <string name="downloads_title">Prejemi</string>
+    <string name="settings_title">Nastavitve</string>
+    <string name="error_report_title">Poročilo o napaki</string>
+
     </resources>
