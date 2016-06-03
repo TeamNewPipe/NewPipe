@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="install">安裝</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="install">安裝</string>
     <string name="cancel">取消</string>
     <string name="upload_date_text">於 %1$s 發佈</string>
     <string name="share">分享</string>
@@ -105,7 +106,7 @@
     <string name="off">[關閉]</string>
     <string name="error_drm_not_supported">API 等級低於 18 時並不支援顯示受保護的內容</string>
     <string name="error_drm_unknown">發生了不明的 DRM 錯誤</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">此裝置未能為 <xliff:g id="mime_type">%1$s</xliff:g> 提供解碼器</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">此裝置未能為 <xliff:g id="mime_type">%1$s</xliff:g> 提供安全的解碼器</string>
+    <string name="error_no_decoder">此裝置未能為 <xliff:g id="mime_type">%1$s</xliff:g> 提供解碼器</string>
+    <string name="error_no_secure_decoder">此裝置未能為 <xliff:g id="mime_type">%1$s</xliff:g> 提供安全的解碼器</string>
     <string name="error_querying_decoders">無法尋找裝置解碼器</string>
     </resources>

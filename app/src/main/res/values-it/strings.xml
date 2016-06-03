@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="view_count_text">%1$s visite</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="view_count_text">%1$s visite</string>
     <string name="upload_date_text">Pubblicato il %1$s</string>
     <string name="no_player_found">Nessun riproduttore trovato. Vuoi installare VLC?</string>
     <string name="install">Installa</string>
@@ -121,10 +122,10 @@
     <string name="error_drm_not_supported">Il contenuto protetto non è supportato nelle API precedenti al livello 18</string>
     <string name="error_drm_unsupported_scheme">Questo dispositivo non supporta lo schema DRM richiesto</string>
     <string name="error_drm_unknown">Si è verificato un errore sconosciuto con il DRM</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Questo dispositivo non è fornito di un decoder per <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Questo dispositivo non è fornito di un decoder sicuro per <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_decoder">Questo dispositivo non è fornito di un decoder per <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_secure_decoder">Questo dispositivo non è fornito di un decoder sicuro per <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string name="error_querying_decoders">Impossibile ottenere informazioni sui decoder del dispositivo</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Impossibile creare un\'istanza del decoder <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="error_instantiating_decoder">Impossibile creare un\'istanza del decoder <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">È stato negato il permesso di accedere all\'archiviazione di massa</string>
     <string name="use_exoplayer_title">Usa ExoPlayer</string>
     <string name="use_exoplayer_summary">Sperimentale</string>
