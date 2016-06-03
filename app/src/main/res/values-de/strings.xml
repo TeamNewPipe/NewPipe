@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="view_count_text">%1$s Aufrufe</string>
     <string name="upload_date_text">Veröffentlicht am %1$s</string>
     <string name="no_player_found">Keinen Streamplayer gefunden. Möchtest du VLC installieren?</string>
@@ -106,18 +106,18 @@
     <string name="error_drm_unsupported_scheme">Dieses Gerät unterstützt das erforderliche DRM-Schema nicht</string>
     <string name="error_drm_unknown">Ein unbekannter DRM-Fehler ist aufgetreten</string>
     <string name="error_querying_decoders">Konnte Dekodierer des Gerätes nicht abrufen</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Konnte Dekodierer <xliff:g id="decoder_name">%1$s</xliff:g> nicht instantiieren</string>
+    <string name="error_instantiating_decoder">Konnte Dekodierer <xliff:g id="decoder_name">%1$s</xliff:g> nicht instantiieren</string>
     <string name="storage_permission_denied">Zugriff auf den Massenspeicher wurde verweigert</string>
     <string name="use_exoplayer_title">Benutze ExoPlayer</string>
     <string name="use_exoplayer_summary">Experimentell</string>
-<string name="sorry_string">Entschuldigung. Dies sollte nicht passieren.</string>
+    <string name="sorry_string">Entschuldigung. Dies sollte nicht passieren.</string>
     <string name="error_snackbar_message">Entschuldigung. Es sind einige Fehler aufgetreten.</string>
     <string name="info_searched_lbl">Gesucht:</string>
     <string name="info_requested_stream_lbl">Angeforderter Stream:</string>
     <string name="your_comment">Dein Kommentar (auf englisch):</string>
     <string name="logging">Protokollierung</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Dieses Gerät stellt keinen Dekodierer für <xliff:g id="mime_type">%1$s</xliff:g> bereit</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Dieses Gerät stellt keinen abgesicherten Dekodierer für <xliff:g id="mime_type">%1$s</xliff:g> bereit</string>
+    <string name="error_no_decoder">Dieses Gerät stellt keinen Dekodierer für <xliff:g id="mime_type">%1$s</xliff:g> bereit</string>
+    <string name="error_no_secure_decoder">Dieses Gerät stellt keinen abgesicherten Dekodierer für <xliff:g id="mime_type">%1$s</xliff:g> bereit</string>
     <string name="could_not_get_stream">Konnte keinen Stream holen.</string>
     <string name="error_drm_not_supported">Geschützte Inhalte werden von API-Ebenen unterhalb von 18 nicht unterstützt</string>
     <string name="autoplay_by_calling_app_title">Bei Aufruf aus einer anderen App automatisch abspielen</string>

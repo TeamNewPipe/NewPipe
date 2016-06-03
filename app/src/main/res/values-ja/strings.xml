@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="upload_date_text">%1$s に公開</string>
     <string name="no_player_found">ｽﾄﾘｰﾑのﾌﾟﾚｲﾔｰが見つかりません｡VLC をｲﾝｽﾄｰﾙしますか?</string>
     <string name="install">ｲﾝｽﾄｰﾙ</string>
@@ -112,10 +112,10 @@
     <string name="error_drm_not_supported">保護されたコンテンツは API レベル 18 未満でサポートされていません</string>
     <string name="error_drm_unsupported_scheme">このデバイスは必要な DRM スキームをサポートしません</string>
     <string name="error_drm_unknown">不明な DRM エラーが発生しました</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">このデバイスは <xliff:g id="mime_type">%1$s</xliff:g> のデコーダーが提供されていません</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">このデバイスは <xliff:g id="mime_type">%1$s</xliff:g> のセキュア デコーダーが提供されていません</string>
+    <string name="error_no_decoder">このデバイスは <xliff:g id="mime_type">%1$s</xliff:g> のデコーダーが提供されていません</string>
+    <string name="error_no_secure_decoder">このデバイスは <xliff:g id="mime_type">%1$s</xliff:g> のセキュア デコーダーが提供されていません</string>
     <string name="error_querying_decoders">デバイスのデコーダーを問い合わせできません</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">デコーダー <xliff:g id="decoder_name">%1$s</xliff:g> をインスタンス化できません</string>
+    <string name="error_instantiating_decoder">デコーダー <xliff:g id="decoder_name">%1$s</xliff:g> をインスタンス化できません</string>
     <string name="storage_permission_denied">ストレージにアクセスするアクセス許可が拒否されました</string>
     <string name="use_exoplayer_title">ExoPlayer を使用する</string>
     <string name="use_exoplayer_summary">実験的</string>

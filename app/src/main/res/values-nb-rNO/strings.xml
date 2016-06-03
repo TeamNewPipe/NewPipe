@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="background_player_name">NewPipe bakgrunnsavspiller</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="background_player_name">NewPipe bakgrunnsavspiller</string>
     <string name="view_count_text">%1$s visninger</string>
     <string name="upload_date_text">Opplastet den %1$s</string>
     <string name="no_player_found">Fant ingen videostrøm. Installer VLC?</string>
@@ -109,14 +109,14 @@
     <string name="error_drm_not_supported">Beskyttet innhold støttes ikke på API-nivåer under 18</string>
     <string name="error_drm_unsupported_scheme">Denne enheten støtter ikke påkrevd DRM-anordning</string>
     <string name="error_drm_unknown">En ukjent DRM-feil inntraff</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Denne enheten mangler dekoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Denne enheten mangler sikker dekoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_decoder">Denne enheten mangler dekoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_secure_decoder">Denne enheten mangler sikker dekoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string name="error_querying_decoders">Kunne ikke sjekke enhetens dekodere</string>
     <string name="storage_permission_denied">Tilgang til lagring nektet</string>
     <string name="use_exoplayer_title">Bruk ExoPlayer</string>
     <string name="use_exoplayer_summary">Eksperimentelt</string>
-<string name="duration_live">direkteoverført</string>
+    <string name="duration_live">direkteoverført</string>
 
     <string name="info_labels">Hva:\\nRequest:\\nContent Språk:\\nService:\\nGMT Tid:\\nVersion:\\nOS version:\\nGlob. IP-blokk:</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Kunne ikke igangsette dekoder <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="error_instantiating_decoder">Kunne ikke igangsette dekoder <xliff:g id="decoder_name">%1$s</xliff:g></string>
     </resources>
