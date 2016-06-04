@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="background_player_name">NewPipe Prehrávač na pozadí</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="background_player_name">NewPipe Prehrávač na pozadí</string>
     <string name="view_count_text">%1$s pozretí</string>
     <string name="upload_date_text">Zverejnené %1$s</string>
     <string name="no_player_found">Nenašiel sa prehrávač. Nainštalovať VLC?</string>
@@ -112,10 +113,10 @@
     <string name="error_drm_not_supported">Chránený obsah nie je podporovaný cez API úrovne pod 18</string>
     <string name="error_drm_unsupported_scheme">Toto zariadenie nepodporuje požadovanú DRM schému</string>
     <string name="error_drm_unknown">Nastala neznáma chyba DRM</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Toto zariadenie nemá dekóder pre <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Toto zariadenie nemá zabezpečený dekóder pre <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_decoder">Toto zariadenie nemá dekóder pre <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_secure_decoder">Toto zariadenie nemá zabezpečený dekóder pre <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string name="error_querying_decoders">Nemožno zavolať dekódery zariadenia</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Nemožno vytvoriť inštanciu dekódera <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="error_instantiating_decoder">Nemožno vytvoriť inštanciu dekódera <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">Prístup na úložisko bol zakázaný</string>
     <string name="use_exoplayer_title">Použit ExoPlayer</string>
     <string name="use_exoplayer_summary">Experimentálne</string>

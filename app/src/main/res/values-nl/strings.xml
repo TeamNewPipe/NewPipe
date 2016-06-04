@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="view_count_text">%1$s keer bekeken</string>
     <string name="upload_date_text">Geüpload op %1$s</string>
     <string name="no_player_found">Geen speler met streamondersteuning gevonden. Wil je VLC installeren?</string>
@@ -107,7 +107,7 @@
     <string name="error_drm_not_supported">Beschermde inhoud niet ondersteunt op API versies lager dan 18</string>
     <string name="error_drm_unsupported_scheme">Dit apparaat ondersteunt niet het vereiste DRM-schema</string>
     <string name="error_drm_unknown">Een onbekende DRM-fout heeft zich voorgedaan</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Dit apparaat heeft geen decoder voor <xliff:g id="mime_type"> 1%1$s</xliff:g> 2</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Dit apparaat heeft geen veilige decoder voor<xliff:g id="mime_type"> 1%1$s</xliff:g></string>
+    <string name="error_no_decoder">Dit apparaat heeft geen decoder voor <xliff:g id="mime_type"> 1%1$s</xliff:g> 2</string>
+    <string name="error_no_secure_decoder">Dit apparaat heeft geen veilige decoder voor<xliff:g id="mime_type"> 1%1$s</xliff:g></string>
     <string name="error_querying_decoders">Kon apparaatdecoders niet ophalen</string>
     </resources>

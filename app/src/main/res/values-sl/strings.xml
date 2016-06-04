@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="view_count_text">%1$s pogledov</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="view_count_text">%1$s pogledov</string>
     <string name="upload_date_text">Objavljeno %1$s</string>
     <string name="no_player_found">Predvajalnika pretoka ni mogoče najti. Ali želite namestiti program VLC?</string>
     <string name="install">Namesti</string>
@@ -113,10 +114,10 @@
     <string name="error_drm_not_supported">Zaščitena vsebina na ravneh API pod 18 ni podprta</string>
     <string name="error_drm_unsupported_scheme">Ta naprava ne podpira zahtevane sheme DRM</string>
     <string name="error_drm_unknown">Prišlo je do neznane napake DRM</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Na napravi ni nameščenega dekodirnika vrste <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Na napravi ni nameščenega varnega dekodirnika vrste <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_decoder">Na napravi ni nameščenega dekodirnika vrste <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_secure_decoder">Na napravi ni nameščenega varnega dekodirnika vrste <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string name="error_querying_decoders">Ni mogoče preiskati dekodirnikov na napravi</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Ni mogoče začeti dekodirnika <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="error_instantiating_decoder">Ni mogoče začeti dekodirnika <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">Dovoljenje za dostop do shrambe je zavrnjeno</string>
     <string name="autoplay_by_calling_app_title">Samodejno predvajaj vsebino, poslano iz drugega programa</string>
     <string name="autoplay_by_calling_app_summary">Samodejno predvajaj vsebino, če je NewPipe klican iz drugega programa.</string>

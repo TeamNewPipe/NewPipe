@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="view_count_text">%1$s visualizações</string>
+<resources  xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="view_count_text">%1$s visualizações</string>
     <string name="upload_date_text">Publicado em %1$s</string>
     <string name="no_player_found">Reprodutor não disponível. Instalar o VLC?</string>
     <string name="install">Instalar</string>
@@ -107,14 +108,14 @@
     <string name="error_drm_not_supported">O conteúdo protegido não é permitido em API com nível inferior a 18</string>
     <string name="error_drm_unsupported_scheme">Este dispositivo não tem suporte ao esquema DRM necessário</string>
     <string name="error_drm_unknown">Ocorreu um erro de DRM desconhecido</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Este dispositivo não disponibiliza um descodificador para <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Este dispositivo não disponibiliza um descodificador seguro para <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_decoder">Este dispositivo não disponibiliza um descodificador para <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_secure_decoder">Este dispositivo não disponibiliza um descodificador seguro para <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string name="error_querying_decoders">Incapaz de processar os descodificadores</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">Incapaz de iniciar o descodificador <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="error_instantiating_decoder">Incapaz de iniciar o descodificador <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">Não foi concedida permissão para aceder ao armazenamento</string>
     <string name="use_exoplayer_title">Usar ExoPlayer</string>
     <string name="use_exoplayer_summary">Experimental</string>
-<string name="main_bg_subtitle">Toque para iniciar a pesquisa</string>
+    <string name="main_bg_subtitle">Toque para iniciar a pesquisa</string>
     <string name="autoplay_by_calling_app_title">Reproduzir se invocado por outra aplicação</string>
     <string name="autoplay_by_calling_app_summary">Reproduzir vídeo automaticamente se o NewPipe for invocado por outra aplicação.</string>
     <string name="duration_live">direto</string>

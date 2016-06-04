@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="background_player_name">NewPipe 背景播放器</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="background_player_name">NewPipe 背景播放器</string>
     <string name="view_count_text">%1$s 次观看</string>
     <string name="upload_date_text">于 %1$s 发布</string>
     <string name="no_player_found">找不到任何串流播放器。您是否要安装 VLC？</string>
@@ -104,10 +105,10 @@
     <string name="error_drm_not_supported">已保护内容在 API 级别低于 18 时不支持</string>
     <string name="error_drm_unsupported_scheme">此设备不支持 DRM 模式</string>
     <string name="error_drm_unknown">发生未知 DRM 错误</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">此设备未提供一个 <xliff:g id="mime_type">%1$s</xliff:g> 的解码器</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">此设备未提供一个 <xliff:g id="mime_type">%1$s</xliff:g> 的安全解码器</string>
+    <string name="error_no_decoder">此设备未提供一个 <xliff:g id="mime_type">%1$s</xliff:g> 的解码器</string>
+    <string name="error_no_secure_decoder">此设备未提供一个 <xliff:g id="mime_type">%1$s</xliff:g> 的安全解码器</string>
     <string name="error_querying_decoders">无法查询设备解码器</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">无法实例化解码器 <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="error_instantiating_decoder">无法实例化解码器 <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">访问存储的权限被拒绝</string>
     <string name="use_exoplayer_summary">实验性</string>
 <string name="use_exoplayer_title">使用 ExoPlayer</string>
