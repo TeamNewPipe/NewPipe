@@ -141,7 +141,8 @@ public class VideoItemListFragment extends ListFragment {
             } catch(ExtractionException e) {
                 ErrorActivity.reportError(h, getActivity(), e, null, null,
                         ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
-                        /* todo: this shoudl not be assigned static */ "Youtube", query, R.string.parsing_error));
+                        /* todo: this shoudl not be assigned static */
+                                "Youtube", query, R.string.parsing_error));
                 //postNewErrorToast(h, R.string.parsing_error);
                 e.printStackTrace();
 
@@ -288,8 +289,8 @@ public class VideoItemListFragment extends ListFragment {
                                  int visibleItemCount, int totalItemCount) {
                 if (mode != PRESENT_VIDEOS_MODE
                         && list.getChildAt(0) != null
-                        && list.getLastVisiblePosition() == list.getAdapter().getCount() - 1
-                        && list.getChildAt(list.getChildCount() - 1).getBottom() <= list.getHeight()) {
+                        && list.getLastVisiblePosition() == list.getAdapter().getCount() - 2
+                        && list.getChildAt(list.getChildCount() - 1).getBottom() >= list.getHeight()) {
                     long time = System.currentTimeMillis();
                     if ((time - lastScrollDate) > 200
                             && !loadingNextPage) {
