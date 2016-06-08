@@ -56,7 +56,7 @@ public class StreamPreviewInfoCollector {
             resultItem.webpage_url = extractor.getWebPageUrl();
             if (urlIdHandler == null) {
                 throw new ParsingException("Error: UrlIdHandler not set");
-            } else {
+            } else if(!resultItem.webpage_url.isEmpty()) {
                 resultItem.id = (new YoutubeStreamUrlIdHandler()).getVideoId(resultItem.webpage_url);
             }
             resultItem.title = extractor.getTitle();

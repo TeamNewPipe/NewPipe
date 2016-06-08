@@ -36,7 +36,11 @@ public class YoutubeStreamUrlIdHandler implements StreamUrlIdHandler {
 
     @SuppressWarnings("WeakerAccess")
     @Override
-    public String getVideoId(String url) throws ParsingException {
+    public String getVideoId(String url) throws ParsingException, IllegalArgumentException {
+        if(url.isEmpty())
+        {
+            throw new IllegalArgumentException("The url parameter should not be empty");
+        }
         String id;
 
         if(url.contains("youtube")) {
@@ -48,7 +52,12 @@ public class YoutubeStreamUrlIdHandler implements StreamUrlIdHandler {
                 } catch(UnsupportedEncodingException uee) {
                     throw new ParsingException("Could not parse attribution_link", uee);
                 }
-            } else {
+            }
+            else if(url.contains("vnd.youtube"))
+            {
+                id = Parser.matchGroup1("vnd.youtube\\:([\\-a-zA-Z0-9_]{11}).*", url);
+            }
+            else {
                 id = Parser.matchGroup1("[?&]v=([\\-a-zA-Z0-9_]{11})", url);
             }
         }
