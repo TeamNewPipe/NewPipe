@@ -8,8 +8,8 @@ android {
         applicationId "org.schabi.newpipe"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 17
-        versionName "0.7.8"
+        versionCode 18
+        versionName "0.8.0"
     }
     buildTypes {
         release {
@@ -31,11 +31,10 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.android.support:support-v4:23.3.0'
-    compile 'com.android.support:design:23.3.0'
-    compile 'com.android.support:recyclerview-v7:23.3.0'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
     compile 'org.jsoup:jsoup:1.8.3'
     compile 'org.mozilla:rhino:1.7.7'
     compile 'info.guardianproject.netcipher:netcipher:1.2'
@@ -43,6 +42,6 @@ dependencies {
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'com.github.nirhart:parallaxscroll:1.0'
     compile 'com.google.android.exoplayer:exoplayer:r1.5.5'
-    compile 'com.google.code.gson:gson:2.3.+'
+    compile 'com.google.code.gson:gson:2.4'
     compile 'com.nononsenseapps:filepicker:2.0.5'
 }
