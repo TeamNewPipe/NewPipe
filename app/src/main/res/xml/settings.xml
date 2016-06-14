@@ -92,7 +92,7 @@
         android:title="@string/settings_category_other_title"
         android:textAllCaps="true">
 
-        <EditTextPreference
+        <Preference
             android:key="@string/download_path_key"
             android:title="@string/download_path_title"
             android:summary="@string/download_path_summary"
