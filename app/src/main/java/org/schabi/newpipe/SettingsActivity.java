@@ -121,7 +121,7 @@ public class SettingsActivity extends PreferenceActivity  {
                     (ListPreference) findPreference(DEFAULT_AUDIO_FORMAT_PREFERENCE);
             searchLanguagePreference =
                     (ListPreference) findPreference(SEARCH_LANGUAGE_PREFERENCE);
-            downloadPathPreference = (Preference) findPreference(DOWNLOAD_PATH_PREFERENCE);
+            downloadPathPreference = findPreference(DOWNLOAD_PATH_PREFERENCE);
             downloadPathAudioPreference =
                     (EditTextPreference) findPreference(DOWNLOAD_PATH_AUDIO_PREFERENCE);
             useTorCheckBox = (CheckBoxPreference) findPreference(USE_TOR_KEY);
@@ -154,15 +154,16 @@ public class SettingsActivity extends PreferenceActivity  {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     Intent i = new Intent(getActivity(), FilePickerActivity.class);
-                    i.setAction(Intent.ACTION_GET_CONTENT);
+
                     i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false);
                     i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true);
-                    i.putExtra(FilePickerActivity.EXTRA_MODE, AbstractFilePickerFragment.MODE_DIR);
+                    i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR);
                     startActivityForResult(i, 233);
 
                     return true;
                 }
             });
+
 
             updateSummary();
         }
@@ -189,11 +190,47 @@ public class SettingsActivity extends PreferenceActivity  {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 233 && resultCode == Activity.RESULT_OK) {
+            if (data.getBooleanExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)) {
+                // For JellyBean and above
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    ClipData clip = data.getClipData();
+
+                    if (clip != null) {
+                        for (int i = 0; i < clip.getItemCount(); i++) {
+                            Uri uri = clip.getItemAt(i).getUri();
+                            // Do something with the URI
+                        }
+                    }
+                    // For Ice Cream Sandwich
+                } else {
+                    ArrayList<String> paths = data.getStringArrayListExtra
+                            (FilePickerActivity.EXTRA_PATHS);
+
+                    if (paths != null) {
+                        for (String path: paths) {
+                            Uri uri = Uri.parse(path);
+                            // Do something with the URI
+                        }
+                    }
+                }
+
+            } else {
+                Uri uri = data.getData();
+                // Do something with the URI
+            }
+
+
+
+        }
+
         // try to start tor regardless of resultCode since clicking back after
         // installing the app does not necessarily return RESULT_OK
         App.configureTor(requestCode == REQUEST_INSTALL_ORBOT
                 && OrbotHelper.requestStartTor(this));
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
