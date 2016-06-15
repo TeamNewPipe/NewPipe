@@ -36,7 +36,7 @@ public class SettingsFragment  extends PreferenceFragment
     private ListPreference defaultAudioFormatPreference;
     private ListPreference searchLanguagePreference;
     private Preference downloadPathPreference;
-    private EditTextPreference downloadPathAudioPreference;
+    private Preference downloadPathAudioPreference;
     private CheckBoxPreference useTorCheckBox;
     private SharedPreferences defaultPreferences;
 
@@ -66,8 +66,7 @@ public class SettingsFragment  extends PreferenceFragment
         searchLanguagePreference =
                 (ListPreference) findPreference(SEARCH_LANGUAGE_PREFERENCE);
         downloadPathPreference = findPreference(DOWNLOAD_PATH_PREFERENCE);
-        downloadPathAudioPreference =
-                (EditTextPreference) findPreference(DOWNLOAD_PATH_AUDIO_PREFERENCE);
+        downloadPathAudioPreference = findPreference(DOWNLOAD_PATH_AUDIO_PREFERENCE);
         useTorCheckBox = (CheckBoxPreference) findPreference(USE_TOR_KEY);
 
         prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
@@ -75,8 +74,12 @@ public class SettingsFragment  extends PreferenceFragment
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
                                                   String key) {
                 Activity a = getActivity();
-
-                if(a != null) {
+                if(a == null)
+                {
+                    return;
+                }
+                if (key == USE_TOR_KEY)
+                {
                     updateSummary();
 
                     if (defaultPreferences.getBoolean(USE_TOR_KEY, false)) {
@@ -91,17 +94,34 @@ public class SettingsFragment  extends PreferenceFragment
                         App.configureTor(false);
                     }
                 }
+                else if (key == DOWNLOAD_PATH_PREFERENCE)
+                {
+                    String downloadPath = sharedPreferences
+                            .getString(DOWNLOAD_PATH_PREFERENCE,
+                                    getString(R.string.download_path_summary));
+                    downloadPathPreference
+                            .setSummary(downloadPath);
+                }
+                else if (key == DOWNLOAD_PATH_AUDIO_PREFERENCE)
+                {
+                    String downloadPath = sharedPreferences
+                            .getString(DOWNLOAD_PATH_AUDIO_PREFERENCE,
+                                    getString(R.string.download_path_audio_summary));
+                    downloadPathAudioPreference
+                            .setSummary(downloadPath);
+                }
             }
         };
         defaultPreferences.registerOnSharedPreferenceChangeListener(prefListener);
-
 
         updateSummary();
     }
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if(preference.getKey() == downloadPathPreference.getKey())
+
+        if(preference.getKey() == downloadPathPreference.getKey() ||
+                preference.getKey() == downloadPathAudioPreference.getKey())
         {
             Activity activity = getActivity();
             Intent i = new Intent(activity, FilePickerActivity.class);
@@ -109,8 +129,14 @@ public class SettingsFragment  extends PreferenceFragment
             i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false);
             i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true);
             i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR);
-
-            activity.startActivityForResult(i, 233);
+            if(preference.getKey() == downloadPathPreference.getKey())
+            {
+                activity.startActivityForResult(i, R.string.download_path_key);
+            }
+            else if (preference.getKey() == downloadPathAudioPreference.getKey())
+            {
+                activity.startActivityForResult(i, R.string.download_path_audio_key);
+            }
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);

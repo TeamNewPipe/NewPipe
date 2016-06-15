@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -63,13 +65,16 @@ public class SettingsActivity extends PreferenceActivity  {
         getFragmentManager().beginTransaction()
                 .replace(android.R.id.content, new SettingsFragment())
                 .commit();
-
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == 233 && resultCode == Activity.RESULT_OK) {
+        if ((requestCode == R.string.download_path_audio_key
+                || requestCode == R.string.download_path_key)
+            && resultCode == Activity.RESULT_OK) {
+
+            Uri uri = null;
             if (data.getBooleanExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)) {
                 // For JellyBean and above
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -77,7 +82,7 @@ public class SettingsActivity extends PreferenceActivity  {
 
                     if (clip != null) {
                         for (int i = 0; i < clip.getItemCount(); i++) {
-                            Uri uri = clip.getItemAt(i).getUri();
+                            uri = clip.getItemAt(i).getUri();
                         }
                     }
                     // For Ice Cream Sandwich
@@ -87,14 +92,22 @@ public class SettingsActivity extends PreferenceActivity  {
 
                     if (paths != null) {
                         for (String path: paths) {
-                            Uri uri = Uri.parse(path);
+                            uri = Uri.parse(path);
                         }
                     }
                 }
-
             } else {
-                Uri uri = data.getData();
+                uri = data.getData();
             }
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+            //requestCode is equal to  R.string.download_path_key or
+            //R.string.download_path_audio_key
+            String key = getString(requestCode);
+            String path = data.getData().toString().substring(7);
+            prefs.edit()
+                    .putString(key, path)
+                    .commit();
         }
         else if(requestCode == REQUEST_INSTALL_ORBOT)
         {
