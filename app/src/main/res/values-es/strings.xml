@@ -10,14 +10,14 @@
     <string name="download">Descargar</string>
     <string name="search">Buscar</string>
     <string name="settings">Ajustes</string>
-    <string name="did_you_mean">"¿Querías decir?: "</string>
+    <string name="did_you_mean">¿Quiso decir: %1$s ?</string>
     <string name="search_page">Buscar página: </string>
     <string name="share_dialog_title">Compartir con</string>
     <string name="choose_browser">Selecciona navegador</string>
     <string name="screen_rotation">rotación</string>
     <string name="settings_activity_title">Ajustes</string>
     <string name="useExternalPlayerTitle">Usar reproductor externo</string>
-    <string name="download_path_title">Ruta de descarga de video</string>
+    <string name="download_path_title">Ruta de descarga de vídeo</string>
     <string name="download_path_summary">Ruta donde guardar los vídeos descargados.</string>
     <string name="download_path_dialog_title">Ingrese el directorio de descargas para videos</string>
     <string name="autoplay_through_intent_title">Intentar reproducción automática</string>
@@ -50,11 +50,11 @@
     <string name="background_player_playing_toast">Reproduciendo en Segundo plano</string>
     <string name="content_not_available">Contenido no disponible.</string>
     <string name="use_tor_title">Usar Tor</string>
-    <string name="use_tor_summary">Forzar la descarga a través de Tor para una mayor privacidad (transmisión de videos aún no es compatible)</string>
+    <string name="use_tor_summary">(Experimental) Forzar la descarga a través de Tor para una mayor privacidad (transmisión de vídeos aún no compatible).</string>
 
     <string name="err_dir_create">No se puede crear la carpeta de descarga \'%1$s\'</string>
     <string name="info_dir_created">Capeta de descarga creada \'%1$s\'</string>
-<string name="download_path_audio_summary">Ruta para almacenar el audio descargado.</string>
+<string name="download_path_audio_summary">Ruta para almacenar el audio descargado</string>
     <string name="download_path_audio_dialog_title">Ingrese la ruta de descarga para los archivos de audio.</string>
 
     <string name="blocked_by_gema">Bloqueado por GEMA.</string>
@@ -80,5 +80,78 @@
     <string name="content">Contenido</string>
     <string name="show_age_restricted_content_title">Mostrar contenido con restricción de edad</string>
     <string name="video_is_age_restricted">El video tiene restricción de edad.Habilite los videos con restricción de edad en configuración.</string>
+
+    <string name="main_bg_subtitle">Toque buscar para empezar</string>
+    <string name="autoplay_by_calling_app_title">Autoreproducir cuando se llame desde otra aplicación</string>
+    <string name="autoplay_by_calling_app_summary">Reproducir automáticamente un vídeo cuando NewPipe es llamado desde otra aplicación.</string>
+    <string name="duration_live">en vivo</string>
+    <string name="downloads">Descargas</string>
+    <string name="downloads_title">Descargas</string>
+    <string name="settings_title">Ajustes</string>
+    <string name="error_report_title">Reportar error</string>
+
+    <string name="light_parsing_error">No se pudo analizar el sitio web completamente.</string>
+    <string name="could_not_setup_download_menu">No se pudo configurar el menú de descarga.</string>
+    <string name="could_not_get_stream">No se pudo obtener ningún stream.</string>
+    <string name="sorry_string">Lo siento, esto no debería ocurrir.</string>
+    <string name="error_report_button_text">Reportar error vía email</string>
+    <string name="error_snackbar_message">Lo siento, ocurrieron algunos errores.</string>
+    <string name="error_snackbar_action">REPORTAR</string>
+    <string name="what_device_headline">Info:</string>
+    <string name="what_happened_headline">Qué ha ocurrido:</string>
+    <string name="info_labels">Que:\\nSolicitud:\\nLenguaje del contenido:\\nServicio:\\nHorario GMT:\\nVersión\\Versión del SO:\\nRango global de IP:</string>
+    <string name="info_searched_lbl">Buscado:</string>
+    <string name="info_requested_stream_lbl">Stream solicitado:</string>
+    <string name="your_comment">Su comentario (en Inglés):</string>
+    <string name="error_details_headline">Detalles:</string>
+
+
+    <string name="report_error">Reportar un error</string>
+    <string name="user_report">Reporte de usuario</string>
+
+    <string name="enable_background_audio">Reproducir en segundo plano</string>
+    <string name="video">Vídeo</string>
+    <string name="audio">Audio</string>
+    <string name="text">Texto</string>
+    <string name="logging">Registro</string>
+    <string name="logging_normal">Normal</string>
+    <string name="logging_verbose">Detallado</string>
+    <string name="retry">Reintentar</string>
+    <string name="off">[apagado]</string>
+    <string name="error_drm_not_supported">Contenido protegido no soportado en niveles de API inferiores a 18</string>
+    <string name="error_drm_unsupported_scheme">Este dispositivo no soporta el esquema DRM requerido</string>
+    <string name="error_drm_unknown">Ocurrió un error DRM desconocido</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Este dispositivo no proporciona un decodificador para <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Este dispositivo no proporciona un decodificador seguro para <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_querying_decoders">No es posible consultar los decodificadores del dispositivo</string>
+    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">No se ha podido instanciar el decodificador <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="storage_permission_denied">El permiso de acceso al almacenamiento fue negado</string>
+    <string name="use_exoplayer_title">Utilizar ExoPlayer</string>
+    <string name="use_exoplayer_summary">Experimental</string>
+
+    <string name="start">Iniciar</string>
+    <string name="pause">Pausar</string>
+    <string name="view">Mostrar</string>
+    <string name="delete">Eliminar</string>
+    <string name="checksum">Checksum</string>
+
+    <string name="add">Nueva misión</string>
+    <string name="finish">Está bien</string>
+    <string name="switch_mode">Cambiar entre lista y cuadrícula</string>
+
+
+    <string name="msg_url">Descargar URL</string>
+    <string name="msg_name">Nombre del archivo</string>
+    <string name="msg_threads">Hilos</string>
+    <string name="msg_fetch_filename">Obtener nombre de archivo</string>
+    <string name="msg_error">Error</string>
+    <string name="msg_server_unsupported">Servidor no soportado</string>
+    <string name="msg_exists">El archivo ya existe</string>
+    <string name="msg_url_malform">URL mal formada o Internet no disponible</string>
+    <string name="msg_running">Descargando NewPipe</string>
+    <string name="msg_running_detail">Haga clic para detalles</string>
+    <string name="msg_wait">Por favor espere...</string>
+    <string name="msg_copied">Copiado al portapapeles.</string>
+    <string name="no_available_dir">Por favor, seleccione un directorio de descarga disponible.</string>
 
     </resources>
