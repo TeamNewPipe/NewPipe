@@ -20,13 +20,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
 import com.nononsenseapps.filepicker.FilePickerActivity;
 
 import java.util.ArrayList;
 
 import info.guardianproject.netcipher.proxy.OrbotHelper;
-import us.shandian.giga.util.Utility;
 
 /**
  * Created by Christian Schabesberger on 31.08.15.
