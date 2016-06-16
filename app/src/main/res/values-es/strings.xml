@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s visitas</string>
     <string name="upload_date_text">Subido el %1$s</string>
-    <string name="no_player_found">No se ha encontrado ningún reproductor de vídeo. Quizás quieras instalar alguno. Deseas instalar VLC?</string>
+    <string name="no_player_found">No se ha encontrado ningún reproductor de vídeo. ¿Desea instalar VLC?</string>
     <string name="install">Instalarlo</string>
     <string name="cancel">Cancelar</string>
     <string name="open_in_browser">Abrir en el navegador</string>
@@ -10,7 +10,7 @@
     <string name="download">Descargar</string>
     <string name="search">Buscar</string>
     <string name="settings">Ajustes</string>
-    <string name="did_you_mean">¿Quiso decir: %1$s ?</string>
+    <string name="did_you_mean">¿ Quiso decir: %1$s ?</string>
     <string name="search_page">Buscar página: </string>
     <string name="share_dialog_title">Compartir con</string>
     <string name="choose_browser">Selecciona navegador</string>
@@ -19,12 +19,12 @@
     <string name="useExternalPlayerTitle">Usar reproductor externo</string>
     <string name="download_path_title">Ruta de descarga de vídeo</string>
     <string name="download_path_summary">Ruta donde guardar los vídeos descargados.</string>
-    <string name="download_path_dialog_title">Ingrese el directorio de descargas para videos</string>
+    <string name="download_path_dialog_title">Ingrese el directorio de descargas para vídeos</string>
     <string name="autoplay_through_intent_title">Intentar reproducción automática</string>
     <string name="autoplay_through_intent_summary">Reproducir vídeos automáticamente cuando se llamen desde otra aplicación.</string>
     <string name="default_resolution_title">Resolución por defecto</string>
     <string name="play_with_kodi_title">Reproducir con Kodi</string>
-    <string name="kore_not_found">Aplicación Kore no encontrada. Kore es necesario para reproducir vídeos con Kodi media center. Instalar Kore?</string>
+    <string name="kore_not_found">Aplicación Kore no encontrada. ¿Instalar Kore?</string>
     <string name="installeKore">Instalar Kore</string>
     <string name="show_play_with_kodi_title">Mostrar la opción \"Reproducir con Kodi\"</string>
     <string name="show_play_with_kodi_summary">Muestra una opción para reproducir el vídeo con Kodi media center.</string>
@@ -60,17 +60,17 @@
     <string name="blocked_by_gema">Bloqueado por GEMA.</string>
 
     <string name="download_path_audio_title">Ruta de descarga de audio</string>
-    <string name="settings_category_video_audio_title">Video &amp; Audio</string>
+    <string name="settings_category_video_audio_title">Vídeo &amp; Audio</string>
     <string name="play_btn_text">Reproducir</string>
     <string name="general_error">Error</string>
     <string name="network_error">Error de Conexión</string>
     <string name="could_not_load_thumbnails">No se pudo cargar las miniaturas</string>
-    <string name="youtube_signature_decryption_error">No se pudo descifrar la url del video.</string>
+    <string name="youtube_signature_decryption_error">No se pudo descifrar la url del vídeo.</string>
     <string name="parsing_error">No se pudo analizar el sitio web.</string>
-    <string name="show_next_and_similar_title">Mostrar videos similares</string>
+    <string name="show_next_and_similar_title">Mostrar vídeos similares</string>
     <string name="search_language_title">Idioma del contenido</string>
-    <string name="list_thumbnail_view_description">Vista previa del video</string>
-    <string name="detail_thumbnail_view_description">Vista previa del video</string>
+    <string name="list_thumbnail_view_description">Vista previa del vídeo</string>
+    <string name="detail_thumbnail_view_description">Vista previa del vídeo</string>
     <string name="detail_likes_img_view_description">Me gusta</string>
     <string name="detail_dislikes_img_view_description">No me gusta</string>
     <string name="detail_uploader_thumbnail_view_description">Foto miniatura del usuario</string>
@@ -79,10 +79,10 @@
 
     <string name="content">Contenido</string>
     <string name="show_age_restricted_content_title">Mostrar contenido con restricción de edad</string>
-    <string name="video_is_age_restricted">El video tiene restricción de edad.Habilite los videos con restricción de edad en configuración.</string>
+    <string name="video_is_age_restricted">El vídeo tiene restricción de edad. Habilite los vídeos con restricción de edad en los ajustes.</string>
 
     <string name="main_bg_subtitle">Toque buscar para empezar</string>
-    <string name="autoplay_by_calling_app_title">Autoreproducir cuando se llame desde otra aplicación</string>
+    <string name="autoplay_by_calling_app_title">Autoreproducir cuando se llama desde otra aplicación</string>
     <string name="autoplay_by_calling_app_summary">Reproducir automáticamente un vídeo cuando NewPipe es llamado desde otra aplicación.</string>
     <string name="duration_live">en vivo</string>
     <string name="downloads">Descargas</string>
@@ -97,9 +97,9 @@
     <string name="error_report_button_text">Reportar error vía email</string>
     <string name="error_snackbar_message">Lo siento, ocurrieron algunos errores.</string>
     <string name="error_snackbar_action">REPORTAR</string>
-    <string name="what_device_headline">Info:</string>
+    <string name="what_device_headline">Información:</string>
     <string name="what_happened_headline">Qué ha ocurrido:</string>
-    <string name="info_labels">Que:\\nSolicitud:\\nLenguaje del contenido:\\nServicio:\\nHorario GMT:\\nVersión\\Versión del SO:\\nRango global de IP:</string>
+    <string name="info_labels">Que:\\nSolicitud:\\nIdioma del contenido:\\nServicio:\\nHora GMT:\\nVersión:\\nVersión del SO:\\nRango global de IP:</string>
     <string name="info_searched_lbl">Buscado:</string>
     <string name="info_requested_stream_lbl">Stream solicitado:</string>
     <string name="your_comment">Su comentario (en Inglés):</string>
@@ -126,7 +126,7 @@
     <string name="error_querying_decoders">No es posible consultar los decodificadores del dispositivo</string>
     <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">No se ha podido instanciar el decodificador <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">El permiso de acceso al almacenamiento fue negado</string>
-    <string name="use_exoplayer_title">Utilizar ExoPlayer</string>
+    <string name="use_exoplayer_title">Usar ExoPlayer</string>
     <string name="use_exoplayer_summary">Experimental</string>
 
     <string name="start">Iniciar</string>
@@ -136,7 +136,7 @@
     <string name="checksum">Checksum</string>
 
     <string name="add">Nueva misión</string>
-    <string name="finish">Está bien</string>
+    <string name="finish">Ok</string>
     <string name="switch_mode">Cambiar entre lista y cuadrícula</string>
 
 
