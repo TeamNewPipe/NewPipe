@@ -54,6 +54,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
     private static final String TAG = BackgroundPlayer.class.toString();
     private static final String ACTION_STOP = TAG + ".STOP";
     private static final String ACTION_PLAYPAUSE = TAG + ".PLAYPAUSE";
+    private static final String ACTION_REWIND = TAG + ".REWIND";
 
     // Extra intent arguments
     public static final String TITLE = "title";
@@ -179,6 +180,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             filter.setPriority(Integer.MAX_VALUE);
             filter.addAction(ACTION_PLAYPAUSE);
             filter.addAction(ACTION_STOP);
+            filter.addAction(ACTION_REWIND);
             registerReceiver(broadcastReceiver, filter);
 
             note = buildNotification();
@@ -228,6 +230,10 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                         noteMgr.notify(noteID, note);
                     }
                 }
+                else if(action.equals(ACTION_REWIND)) {
+                    mediaPlayer.seekTo(0);
+//                    noteMgr.notify(noteID, note);
+                }
                 else if(action.equals(ACTION_STOP)) {
                     //this auto-releases CPU lock
                     mediaPlayer.stop();
@@ -275,6 +281,8 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                     new Intent(ACTION_PLAYPAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent stopPI = PendingIntent.getBroadcast(owner, noteID,
                     new Intent(ACTION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent rewindPI = PendingIntent.getBroadcast(owner, noteID,
+                    new Intent(ACTION_REWIND), PendingIntent.FLAG_UPDATE_CURRENT);
             /*
             NotificationCompat.Action pauseButton = new NotificationCompat.Action.Builder
                     (R.drawable.ic_pause_white_24dp, "Pause", playPI).build();
@@ -311,6 +319,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             view.setTextViewText(R.id.notificationArtist, channelName);
             view.setOnClickPendingIntent(R.id.notificationStop, stopPI);
             view.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
+            view.setOnClickPendingIntent(R.id.notificationRewind, rewindPI);
             view.setOnClickPendingIntent(R.id.notificationContent, openDetailView);
 
             //possibly found the expandedView problem,
@@ -322,6 +331,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 expandedView.setTextViewText(R.id.notificationArtist, channelName);
             expandedView.setOnClickPendingIntent(R.id.notificationStop, stopPI);
             expandedView.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
+            expandedView.setOnClickPendingIntent(R.id.notificationRewind, rewindPI);
             expandedView.setOnClickPendingIntent(R.id.notificationContent, openDetailView);
 
 
