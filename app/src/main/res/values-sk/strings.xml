@@ -140,7 +140,7 @@
     <string name="msg_exists">Súbor už existuje</string>
     <string name="msg_url_malform">Neplatná URL alebo bez pripojenia na Internet</string>
     <string name="msg_running">NewPipe Preberanie</string>
-    <string name="msg_running_detail">Kliknúť pre detaily</string>
+    <string name="msg_running_detail">Dotykom zobraziť detaily</string>
     <string name="msg_wait">Čakajte prosím...</string>
     <string name="msg_copied">Skopírované do schránky.</string>
     <string name="no_available_dir">Vyberte si dostupný adresár na preberanie.</string>
