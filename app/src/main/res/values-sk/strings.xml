@@ -145,4 +145,9 @@
     <string name="msg_copied">Skopírované do schránky.</string>
     <string name="no_available_dir">Vyberte si dostupný adresár na preberanie.</string>
 
+    <string name="downloads">Prevzaté</string>
+    <string name="downloads_title">Prevzaté</string>
+    <string name="settings_title">Nastavenia</string>
+    <string name="error_report_title">Hlásenie o chybe</string>
+
     </resources>
