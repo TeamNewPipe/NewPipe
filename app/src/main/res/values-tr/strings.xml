@@ -1,2 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="main_bg_subtitle">Başlamak için ara ya basınız</string>
+    <string name="background_player_name">NewPipe Arkaplan Oynatıcısı</string>
+    <string name="view_count_text">%1$s izlenme</string>
+    <string name="upload_date_text">Yayınlanma: %1$s</string>
+    <string name="no_player_found">Stream oynatıcı bulunamadı. LVC kur?</string>
+    <string name="install">Kur</string>
+    <string name="cancel">İptal</string>
+    <string name="open_in_browser">Tarayıcıda aç</string>
+    <string name="share">Paylaş</string>
+    <string name="loading">Yükleniyor</string>
+    <string name="download">İndir</string>
+    <string name="search">Ara</string>
+    <string name="settings">Ayarlar</string>
+    <string name="did_you_mean">Bunu mu demek istediniz: %1$s ?</string>
+    <string name="search_page">"Sayfada ara: "</string>
+    <string name="share_dialog_title">Bununla paylaş</string>
+    <string name="choose_browser">Tarayıcı seç</string>
+    <string name="screen_rotation">döndürme</string>
+    <string name="settings_activity_title">Ayarlar</string>
+    <string name="use_external_video_player_title">Harici video oynatıcı kullan</string>
+    <string name="use_external_audio_player_title">Harici ses oynatıcı kullan</string>
+
+    <string name="download_path_title">Video indirme yeri</string>
+    <string name="download_path_summary">İndirilen videoların kaydedileceği yer.</string>
+    </resources>
