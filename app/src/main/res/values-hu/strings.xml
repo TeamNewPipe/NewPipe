@@ -124,4 +124,35 @@
     <string name="error_no_decoder">Ez az eszköz nem rendelkezik dekóderrel a következőhöz: <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string name="error_no_secure_decoder">Ez az eszköz nem rendelkezik biztonságos dekóderrel a következőhöz: <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string name="error_querying_decoders">Nem lehet lekérdezni az eszköz dekódereit</string>
+    <string name="downloads">Letöltések</string>
+    <string name="downloads_title">Letöltések</string>
+    <string name="settings_title">Beállítások</string>
+    <string name="error_report_title">Hibabejelentés</string>
+
+    <string name="error_instantiating_decoder">Dekóder hiba: <xliff:g id="decoder_name">%1$S</xliff:g></string>
+    <string name="start">Indít</string>
+    <string name="pause">Szünet</string>
+    <string name="view">Megtekintés</string>
+    <string name="delete">Törlés</string>
+    <string name="checksum">Checksum</string>
+
+    <string name="finish">Ok</string>
+    <string name="switch_mode">Nézet váltása</string>
+
+
+    <string name="msg_name">Filenév</string>
+    <string name="msg_threads">Threadek</string>
+    <string name="msg_error">Hiba</string>
+    <string name="msg_exists">A file már létezik</string>
+    <string name="msg_url_malform">Hibás URL vagy nincs internet</string>
+    <string name="msg_running">NewPipe letöltés folyamatban</string>
+    <string name="msg_running_detail">Katt a részletekért</string>
+    <string name="msg_wait">Kérlek várj...</string>
+    <string name="msg_copied">Vágólapra másolva.</string>
+    <string name="no_available_dir">Kérlek válassz egy létező könyvtárat a letöltésekhez.</string>
+
+    <string name="msg_url">Eredeti URL</string>
+    <string name="msg_server_unsupported">Nem támogatott szerver</string>
+    <string name="msg_fetch_filename">Filenév lekérése</string>
+    <string name="add">Új küldetéas</string>
     </resources>
