@@ -49,7 +49,7 @@
     <string name="use_external_video_player_title">Utiliser un lecteur vidéo externe</string>
     <string name="use_external_audio_player_title">Utiliser un lecteur audio externe</string>
     <string name="background_player_playing_toast">Lecture en arrière-plan</string>
-    <string name="background_player_name">Lecteur en arrière-plan NewPipe</string>
+    <string name="background_player_name">Lecteur NewPipe en arrière-plan</string>
     <string name="loading">Chargement</string>
     <string name="play_btn_text">Lire</string>
 
