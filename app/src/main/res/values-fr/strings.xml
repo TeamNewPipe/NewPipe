@@ -18,10 +18,10 @@
     <string name="play_with_kodi_title">Lire avec Kodi</string>
     <string name="screen_rotation">rotation</string>
     <string name="search">Rechercher</string>
-    <string name="search_page">"Rechercher la page : "</string>
+    <string name="search_page">"Numéro de la page de recherche : "</string>
     <string name="settings">Paramètres</string>
     <string name="share">Partager</string>
-    <string name="share_dialog_title">Partager avec </string>
+    <string name="share_dialog_title">Partager avec</string>
     <string name="show_play_with_kodi_summary">Afficher une option pour lire la vidéo via la médiathèque Kodi.</string>
     <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
     <string name="settings_activity_title">Paramètres</string>
@@ -64,7 +64,7 @@
 
     <string name="download_path_audio_title">Chemin de téléchargement de l\'audio</string>
     <string name="download_path_audio_summary">Chemin de stockage des fichiers audio téléchargés</string>
-    <string name="download_path_audio_dialog_title">Entrer le chemin de téléchargement des fichiers audio</string>
+    <string name="download_path_audio_dialog_title">Entrer le chemin de téléchargement des fichiers audio.</string>
 
     <string name="err_dir_create">Impossible de créer le répertoire de téléchargement « %1$s »</string>
     <string name="info_dir_created">Répertoire de téléchargement « %1$s » créé</string>
@@ -79,10 +79,10 @@
     <string name="duration_live">En direct</string>
 
     <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
-    <string name="youtube_signature_decryption_error">Erreur lors du décryptage du lien</string>
+    <string name="youtube_signature_decryption_error">Erreur lors du décryptage du lien.</string>
     <string name="light_parsing_error">Impossible d\'analyser le site complètement.</string>
     <string name="live_streams_not_supported">Il s\'agit d\'un direct. Non supporté pour le moment.</string>
-    <string name="sorry_string">Désolé, ça ne devrait pas arriver.</string>
+    <string name="sorry_string">Désolé, une erreur inattendue s\'est produite.</string>
     <string name="autoplay_by_calling_app_summary">Lire automatiquement la vidéo lorsque NewPipe est appelée par une autre application.</string>
     <string name="error_report_button_text">Signaler l\'erreur par e-mail</string>
     <string name="what_device_headline">Information :</string>
@@ -111,15 +111,45 @@
     <string name="user_report">Rapport utilisateur</string>
 
     <string name="logging">Connexion</string>
-    <string name="error_drm_not_supported">Contenu protégé non supporté par l\'API antérieure à la version 18</string>
+    <string name="error_drm_not_supported">Contenu protégé non supporté par les API antérieures à la version 18</string>
     <string name="error_no_decoder">Cet appareil ne fournit pas de décodeur pour <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string name="error_no_secure_decoder">Cet appareil ne fournit pas de décodeur sécurisé pour <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string name="error_instantiating_decoder">Impossible d\'instancier le décodeur <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="error_snackbar_action">SIGNALER</string>
-    <string name="could_not_setup_download_menu">de téléchargement.</string>
-    <string name="could_not_get_stream">Impossible d\'obtenir une diffusion.</string>
-    <string name="logging_verbose">Verbose</string>
+    <string name="could_not_setup_download_menu">Impossible de mettre en place le menu de téléchargement.</string>
+    <string name="could_not_get_stream">Impossible d\'obtenir un flux.</string>
+    <string name="logging_verbose">Verbeux</string>
     <string name="off">[désactivé]</string>
     <string name="error_querying_decoders">Impossible d\'accéder aux décodeurs de l\'appareil</string>
     <string name="info_labels">Action :\\nRequête :\\nLangue du contenu :\\nService :\\nHeure GMT :\\nVersion :\\nVersion d\'OS :\\nIntervalle global d\'IP :</string>
+    <string name="downloads">Téléchargements</string>
+    <string name="downloads_title">Téléchargements</string>
+    <string name="settings_title">Paramètres</string>
+    <string name="error_report_title">Rapport d\'erreur</string>
+
+    <string name="start">Lire</string>
+    <string name="pause">Pause</string>
+    <string name="view">Lire</string>
+    <string name="delete">Supprimer</string>
+    <string name="checksum">Somme de contrôle</string>
+
+    <string name="add">Nouveau</string>
+    <string name="finish">OK</string>
+    <string name="switch_mode">Commuter entre l\'affichage liste et grille</string>
+
+
+    <string name="msg_url">URL de téléchargement</string>
+    <string name="msg_name">Nom du fichier</string>
+    <string name="msg_threads">Threads</string>
+    <string name="msg_fetch_filename">Récupérer le nom du fichier</string>
+    <string name="msg_error">Erreur</string>
+    <string name="msg_server_unsupported">Serveur non supporté</string>
+    <string name="msg_exists">Fichier déjà existant</string>
+    <string name="msg_url_malform">URL malformée ou internet indisponible</string>
+    <string name="msg_running">Téléchargement NewPipe</string>
+    <string name="msg_running_detail">Cliquer pour plus de détails</string>
+    <string name="msg_wait">Veuillez patienter...</string>
+    <string name="msg_copied">Copié sur le presse-papier.</string>
+    <string name="no_available_dir">Sélectionner un répertoire de téléchargement disponible.</string>
+
     </resources>
