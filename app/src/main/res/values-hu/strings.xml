@@ -67,8 +67,8 @@
     <string name="download_path_audio_summary">Útvonal a letöltött hangfájlok tárolásához</string>
     <string name="detail_likes_img_view_description">Tetszik</string>
     <string name="detail_dislikes_img_view_description">Nem tetszik</string>
-    <string name="list_thumbnail_view_description">Videó előnézet</string>
-    <string name="detail_thumbnail_view_description">Videó előnézet</string>
+    <string name="list_thumbnail_view_description">Előnézeti kép</string>
+    <string name="detail_thumbnail_view_description">Előnézeti kép</string>
     <string name="detail_uploader_thumbnail_view_description">Fetöltő profilképe</string>
     <string name="err_dir_create">Nem lehet létrehozni a letöltési mappát \'%1$s\'</string>
     <string name="info_dir_created">Letöltés mappa létrehozása \'%1$s\'</string>
@@ -117,8 +117,8 @@
     <string name="could_not_load_thumbnails">Nem sikerült az összes előnézeti kép betöltése</string>
     <string name="parsing_error">Nem sikerült a weblap betöltése.</string>
     <string name="light_parsing_error">Nem sikerült a weblap teljes betöltése.</string>
-    <string name="info_labels">Mi:\\nRequest:\\nContent Lang:\\nService:\\nGMT Idő:\\nVersion:\\nOS version:\\nGlob. IP range:</string>
-    <string name="error_drm_not_supported">Védett tartalom, 18 alatt nem támogatott API szinteken</string>
+    <string name="info_labels">Mi:\\nKérés:\\nTartalom nyelve:\\nSzolgáltatás:\\nGMT Idő:\\nVerzió:\\nOS verzió:\\nGlob. IP tartomány:</string>
+    <string name="error_drm_not_supported">Védett tartalom nincs támogatva 18-as API alatt (Android 4.3)</string>
     <string name="error_drm_unsupported_scheme">Ez az eszköz nem támogatja a szükséges DRM sémát</string>
     <string name="logging">Naplózás</string>
     <string name="error_no_decoder">Ez az eszköz nem rendelkezik dekóderrel a következőhöz: <xliff:g id="mime_type">%1$s</xliff:g></string>
@@ -134,7 +134,7 @@
     <string name="pause">Szünet</string>
     <string name="view">Megtekintés</string>
     <string name="delete">Törlés</string>
-    <string name="checksum">Checksum</string>
+    <string name="checksum">Ellenőrző összeg</string>
 
     <string name="finish">Ok</string>
     <string name="switch_mode">Nézet váltása</string>
@@ -154,5 +154,5 @@
     <string name="msg_url">Eredeti URL</string>
     <string name="msg_server_unsupported">Nem támogatott szerver</string>
     <string name="msg_fetch_filename">Filenév lekérése</string>
-    <string name="add">Új küldetéas</string>
+    <string name="add">Új küldetés</string>
     </resources>
