@@ -29,5 +29,5 @@ This document contains guidelines on making contributions to NewPipe.
 
 ## Communication
 
-* For the time being, [Slack](http://invite.chschtsch.ml/) is being used for project communication
+* For the time being, [Slack](https://newpipe.slack.com/) is being used for project communication. Ask [me](https://github.com/theScrabi) to sign up.
 * Feel free to post suggestions, changes, ideas etc!
