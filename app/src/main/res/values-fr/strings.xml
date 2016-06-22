@@ -149,7 +149,7 @@
     <string name="msg_running">Téléchargement NewPipe</string>
     <string name="msg_running_detail">Cliquer pour plus de détails</string>
     <string name="msg_wait">Veuillez patienter...</string>
-    <string name="msg_copied">Copié sur le presse-papier.</string>
+    <string name="msg_copied">Copié dans le presse-papier.</string>
     <string name="no_available_dir">Sélectionner un répertoire de téléchargement disponible.</string>
 
     </resources>
