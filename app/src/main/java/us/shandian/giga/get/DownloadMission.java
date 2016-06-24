@@ -20,12 +20,12 @@ public class DownloadMission
 {
 	private static final String TAG = DownloadMission.class.getSimpleName();
 	
-	public static interface MissionListener {
+	public interface MissionListener {
 		HashMap<MissionListener, Handler> handlerStore = new HashMap<>();
 		
-		public void onProgressUpdate(long done, long total);
-		public void onFinish();
-		public void onError(int errCode);
+		void onProgressUpdate(long done, long total);
+		void onFinish();
+		void onError(int errCode);
 	}
 	
 	public static final int ERROR_SERVER_UNSUPPORTED = 206;
