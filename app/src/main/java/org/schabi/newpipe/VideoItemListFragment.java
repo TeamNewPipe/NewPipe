@@ -85,6 +85,7 @@ public class VideoItemListFragment extends ListFragment {
     }
 
     private class SearchRunnable implements Runnable {
+        public static final String YOUTUBE = "Youtube";
         private final SearchEngine engine;
         private final String query;
         private final int page;
@@ -129,7 +130,7 @@ public class VideoItemListFragment extends ListFragment {
                     View rootView = a.findViewById(R.id.videoitem_list);
                     ErrorActivity.reportError(h, getActivity(), result.errors, null, rootView,
                             ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
-                        /* todo: this shoudl not be assigned static */ "Youtube", query, R.string.light_parsing_error));
+                        /* todo: this shoudl not be assigned static */  YOUTUBE, query, R.string.light_parsing_error));
 
                 }
                 // hard errors:
@@ -142,14 +143,14 @@ public class VideoItemListFragment extends ListFragment {
                 ErrorActivity.reportError(h, getActivity(), e, null, null,
                         ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
                         /* todo: this shoudl not be assigned static */
-                                "Youtube", query, R.string.parsing_error));
+                                YOUTUBE, query, R.string.parsing_error));
                 //postNewErrorToast(h, R.string.parsing_error);
                 e.printStackTrace();
 
             } catch(Exception e) {
                 ErrorActivity.reportError(h, getActivity(), e, null, null,
                         ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
-                        /* todo: this shoudl not be assigned static */ "Youtube", query, R.string.general_error));
+                        /* todo: this shoudl not be assigned static */ YOUTUBE, query, R.string.general_error));
 
                 e.printStackTrace();
             }

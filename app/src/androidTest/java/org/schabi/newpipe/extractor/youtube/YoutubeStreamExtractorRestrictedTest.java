@@ -12,6 +12,7 @@ import org.schabi.newpipe.extractor.VideoStream;
 import java.io.IOException;
 
 public class YoutubeStreamExtractorRestrictedTest extends AndroidTestCase {
+    public static final String HTTPS = "https://";
     private StreamExtractor extractor;
 
     public void setUp() throws IOException, ExtractionException {
@@ -63,12 +64,12 @@ public class YoutubeStreamExtractorRestrictedTest extends AndroidTestCase {
 
     public void testGetThumbnailUrl() throws ParsingException {
         assertTrue(extractor.getThumbnailUrl(),
-                extractor.getThumbnailUrl().contains("https://"));
+                extractor.getThumbnailUrl().contains(HTTPS));
     }
 
     public void testGetUploaderThumbnailUrl() throws ParsingException {
         assertTrue(extractor.getUploaderThumbnailUrl(),
-                extractor.getUploaderThumbnailUrl().contains("https://"));
+                extractor.getUploaderThumbnailUrl().contains(HTTPS));
     }
 
     public void testGetAudioStreams() throws ParsingException {
@@ -78,7 +79,7 @@ public class YoutubeStreamExtractorRestrictedTest extends AndroidTestCase {
     public void testGetVideoStreams() throws ParsingException {
         for(VideoStream s : extractor.getVideoStreams()) {
             assertTrue(s.url,
-                    s.url.contains("https://"));
+                    s.url.contains(HTTPS));
             assertTrue(s.resolution.length() > 0);
             assertTrue(Integer.toString(s.format),
                     0 <= s.format && s.format <= 4);
