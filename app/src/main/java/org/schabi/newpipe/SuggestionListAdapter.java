@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Madiyar on 23.02.2016.
@@ -59,7 +60,7 @@ public class SuggestionListAdapter extends CursorAdapter {
     }
 
 
-    public void updateAdapter(ArrayList<String> suggestions) {
+    public void updateAdapter(List<String> suggestions) {
         MatrixCursor cursor = new MatrixCursor(columns);
         int i = 0;
         for (String s : suggestions) {
