@@ -101,8 +101,8 @@ public class VideoItemDetailFragment extends Fragment {
 
     private int streamingServiceId = -1;
 
-    private boolean autoPlayEnabled = false;
-    private boolean showNextVideoItem = false;
+    private boolean autoPlayEnabled;
+    private boolean showNextVideoItem;
     private Bitmap videoThumbnail;
 
     private View thumbnailWindowLayout;
@@ -120,7 +120,7 @@ public class VideoItemDetailFragment extends Fragment {
         void createOptionsMenu();
     }
 
-    private OnInvokeCreateOptionsMenuListener onInvokeCreateOptionsMenuListener = null;
+    private OnInvokeCreateOptionsMenuListener onInvokeCreateOptionsMenuListener;
 
     private class VideoExtractorRunnable implements Runnable {
         private final Handler h = new Handler();

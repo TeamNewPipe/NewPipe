@@ -110,7 +110,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
         public int id;
         public ItagType itagType;
         public int mediaFormatId;
-        public String resolutionString = null;
+        public String resolutionString;
         public int fps = -1;
         public int samplingRate = -1;
         public int bandWidth = -1;

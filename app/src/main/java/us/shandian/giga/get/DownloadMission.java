@@ -34,23 +34,23 @@ public class DownloadMission
 	public String name = "";
 	public String url = "";
 	public String location = "";
-	public long blocks = 0;
-	public long length = 0;
-	public long done = 0;
+	public long blocks;
+	public long length;
+	public long done;
 	public int threadCount = 3;
-	public int finishCount = 0;
+	public int finishCount;
 	public ArrayList<Long> threadPositions = new ArrayList<Long>();
 	public HashMap<Long, Boolean> blockState = new HashMap<Long, Boolean>();
-	public boolean running = false;
-	public boolean finished = false;
-	public boolean fallback = false;
+	public boolean running;
+	public boolean finished;
+	public boolean fallback;
 	public int errCode = -1;
-	public long timestamp = 0;
+	public long timestamp;
 	
-	public transient boolean recovered = false;
+	public transient boolean recovered;
 	
 	private transient ArrayList<WeakReference<MissionListener>> mListeners = new ArrayList<WeakReference<MissionListener>>();
-	private transient boolean mWritingToFile = false;
+	private transient boolean mWritingToFile;
 	
 	public boolean isBlockPreserved(long block) {
 		return blockState.containsKey(block) ? blockState.get(block) : false;

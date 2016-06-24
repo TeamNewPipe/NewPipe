@@ -32,7 +32,7 @@ public abstract class MissionsFragment extends Fragment
 	private DownloadManagerService.DMBinder mBinder;
 	
 	private SharedPreferences mPrefs;
-	private boolean mLinear = false;
+	private boolean mLinear;
 	private MenuItem mSwitch;
 	
 	private RecyclerView mList;

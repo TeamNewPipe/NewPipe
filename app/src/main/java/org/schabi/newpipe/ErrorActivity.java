@@ -93,7 +93,7 @@ public class ErrorActivity extends AppCompatActivity {
     private Class returnActivity;
     private String currentTimeStamp;
     private String globIpRange;
-    Thread globIpRangeThread = null;
+    Thread globIpRangeThread;
 
     // views
     private TextView errorView;
