@@ -11,9 +11,9 @@ import java.io.PrintWriter;
 //todo: replace this by using the internal crash handler of newpipe
 public class CrashHandler implements Thread.UncaughtExceptionHandler
 {
-	public static String CRASH_DIR = Environment.getExternalStorageDirectory().getPath() + "/GigaCrash/";
-	public static String CRASH_LOG = CRASH_DIR + "last_crash.log";
-	public static String CRASH_TAG = CRASH_DIR + ".crashed";
+	public static final String CRASH_DIR = Environment.getExternalStorageDirectory().getPath() + "/GigaCrash/";
+	public static final String CRASH_LOG = CRASH_DIR + "last_crash.log";
+	public static final String CRASH_TAG = CRASH_DIR + ".crashed";
 
 	private static String ANDROID = Build.VERSION.RELEASE;
 	private static String MODEL = Build.MODEL;
