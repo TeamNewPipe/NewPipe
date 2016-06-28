@@ -1,3 +1,5 @@
+WARNING: PUTTING NEWPIPE OR ANY FORK OF IT INTO GOOGLE PLAYSTORE VIOLATES THEIR TERMS OF CONDITIONS.
+
 # NewPipe
 NewPipe: A free lightweight Youtube frontend for Android.  
 
