@@ -147,4 +147,10 @@
     <string name="msg_copied">In Zwischenablage kopiert.</string>
     <string name="no_available_dir">Bitte wählen Sie ein verfügbares Downloadverzeichnis.</string>
 
+    <string name="start">Start</string>
+    <string name="pause">Pause</string>
+    <string name="view">Anzeigen</string>
+    <string name="add">Neue Mission</string>
+    <string name="finish">Okay</string>
+    <string name="msg_server_unsupported">Server nicht unterstützt</string>
     </resources>
