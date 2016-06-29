@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="view_count_text">%1$s visite</string>
+    <string name="view_count_text">%1$s visualizzazioni</string>
     <string name="upload_date_text">Pubblicato il %1$s</string>
     <string name="no_player_found">Nessun riproduttore trovato. Vuoi installare VLC?</string>
     <string name="install">Installa</string>
@@ -85,12 +85,12 @@
 
     <string name="content">Contenuti</string>
     <string name="show_age_restricted_content_title">Mostra contenuti vincolati all\'età</string>
-    <string name="video_is_age_restricted">Questo video è vincolato alla maggiore età. Per accedervi, abilita \"Mostra video vincolati all\'età\" nelle impostazioni.</string>
+    <string name="video_is_age_restricted">Questo video è riservato ad un pubblico maturo. Per accedervi, abilita \"Mostra video vincolati all\'età\" nelle impostazioni.</string>
 
-    <string name="main_bg_subtitle">Fai tap sulla ricerca per iniziare</string>
+    <string name="main_bg_subtitle">Tocca \"cerca\" per iniziare</string>
     <string name="autoplay_by_calling_app_title">Riproduci subito i video aperti da un\'altra app</string>
     <string name="autoplay_by_calling_app_summary">Riproduci i video automaticamente quando NewPipe viene aperto da un\'altra app.</string>
-    <string name="duration_live">dal vivo</string>
+    <string name="duration_live">in diretta</string>
 
     <string name="light_parsing_error">Impossibile eseguire il parsing completo del sito.</string>
     <string name="could_not_get_stream">Non è stato ottenuto alcuno stream.</string>
@@ -129,4 +129,34 @@
     <string name="storage_permission_denied">È stato negato il permesso di accedere all\'archiviazione di massa</string>
     <string name="use_exoplayer_title">Usa ExoPlayer</string>
     <string name="use_exoplayer_summary">Sperimentale</string>
-</resources>
+<string name="downloads">download</string>
+    <string name="downloads_title">Download</string>
+    <string name="settings_title">Impostazioni</string>
+    <string name="error_report_title">Segnalazione errori</string>
+
+    <string name="start">Inizia</string>
+    <string name="pause">Pausa</string>
+    <string name="view">Visualizza</string>
+    <string name="delete">Elimina</string>
+    <string name="checksum">Checksum</string>
+
+    <string name="add">Nuova missione</string>
+    <string name="finish">OK</string>
+    <string name="switch_mode">Scegli la visualizzazione lista o griglia</string>
+
+
+    <string name="msg_url">URL di download</string>
+    <string name="msg_name">Nome del file</string>
+    <string name="msg_threads">Thread</string>
+    <string name="msg_fetch_filename">Recupera nome del file</string>
+    <string name="msg_error">Errore</string>
+    <string name="msg_server_unsupported">Server non supportato</string>
+    <string name="msg_exists">File già esistente</string>
+    <string name="msg_url_malform">URL errato od errore di rete</string>
+    <string name="msg_running">Download di NewPipe</string>
+    <string name="msg_running_detail">Seleziona per controllare lo stato</string>
+    <string name="msg_wait">Attendi...</string>
+    <string name="msg_copied">Copiato negli appunti.</string>
+    <string name="no_available_dir">Seleziona una cartella disponibile in cui salvare i download.</string>
+
+    </resources>
