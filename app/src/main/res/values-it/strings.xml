@@ -88,7 +88,7 @@
     <string name="video_is_age_restricted">Questo video è riservato ad un pubblico maturo. Per accedervi, abilita \"Mostra video vincolati all\'età\" nelle impostazioni.</string>
 
     <string name="main_bg_subtitle">Tocca \"cerca\" per iniziare</string>
-    <string name="autoplay_by_calling_app_title">Riproduci subito i video aperti da un\'altra app</string>
+    <string name="autoplay_by_calling_app_title">Inizia automaticamente la riproduzione se NewPipe viene aperto da un\'altra app</string>
     <string name="autoplay_by_calling_app_summary">Riproduci i video automaticamente quando NewPipe viene aperto da un\'altra app.</string>
     <string name="duration_live">in diretta</string>
 
