@@ -50,6 +50,7 @@ import javax.xml.parsers.ParserConfigurationException;
 public class YoutubeSearchEngine extends SearchEngine {
 
     private static final String TAG = YoutubeSearchEngine.class.toString();
+    public static final String CHARSET_UTF_8 = "UTF-8";
 
     public YoutubeSearchEngine(StreamUrlIdHandler urlIdHandler, int serviceId) {
         super(urlIdHandler, serviceId);
@@ -72,7 +73,7 @@ public class YoutubeSearchEngine extends SearchEngine {
                 */
 
         String url = "https://www.youtube.com/results"
-                + "?search_query=" + URLEncoder.encode(query, "UTF-8")
+                + "?search_query=" + URLEncoder.encode(query, CHARSET_UTF_8)
                 + "&page=" + Integer.toString(page)
                 + "&filters=" + "video";
 
@@ -151,8 +152,8 @@ public class YoutubeSearchEngine extends SearchEngine {
                 + "?client=" + ""
                 + "&output=" + "toolbar"
                 + "&ds=" + "yt"
-                + "&hl=" + URLEncoder.encode(contentCountry, "UTF-8")
-                + "&q=" + URLEncoder.encode(query, "UTF-8");
+                + "&hl=" + URLEncoder.encode(contentCountry, CHARSET_UTF_8)
+                + "&q=" + URLEncoder.encode(query, CHARSET_UTF_8);
 
 
         String response = dl.download(url);
@@ -165,7 +166,7 @@ public class YoutubeSearchEngine extends SearchEngine {
         try {
             dBuilder = dbFactory.newDocumentBuilder();
             doc = dBuilder.parse(new InputSource(
-                    new ByteArrayInputStream(response.getBytes("utf-8"))));
+                    new ByteArrayInputStream(response.getBytes(CHARSET_UTF_8))));
             doc.getDocumentElement().normalize();
         } catch (ParserConfigurationException | SAXException | IOException e) {
             throw new ParsingException("Could not parse document.");

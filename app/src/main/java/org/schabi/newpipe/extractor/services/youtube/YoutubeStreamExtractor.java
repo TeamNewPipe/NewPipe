@@ -51,6 +51,10 @@ import java.util.regex.Pattern;
  */
 
 public class YoutubeStreamExtractor extends StreamExtractor {
+    public static final String URL_ENCODED_FMT_STREAM_MAP = "url_encoded_fmt_stream_map";
+    public static final String HTTPS = "https:";
+    public static final String CONTENT = "content";
+    public static final String REGEX_INT = "[^\\d]";
 
     // exceptions
 
@@ -246,7 +250,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
 
             // check if we have a live stream. We need to filter it, since its not yet supported.
             if((playerArgs.has("ps") && playerArgs.get("ps").toString().equals("live"))
-                    || (playerArgs.get("url_encoded_fmt_stream_map").toString().isEmpty())) {
+                    || (playerArgs.get(URL_ENCODED_FMT_STREAM_MAP).toString().isEmpty())) {
                 isLiveStream = true;
             }
         }  catch (JSONException e) {
@@ -270,7 +274,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
             playerUrl = ytAssets.getString("js");
 
             if (playerUrl.startsWith("//")) {
-                playerUrl = "https:" + playerUrl;
+                playerUrl = HTTPS + playerUrl;
             }
             return playerUrl;
         } catch (JSONException e) {
@@ -294,7 +298,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
             playerUrl = playerUrl.replace("\\", "").replace("\"", "");
 
             if (playerUrl.startsWith("//")) {
-                playerUrl = "https:" + playerUrl;
+                playerUrl = HTTPS + playerUrl;
             }
             return playerUrl;
         } catch (IOException e) {
@@ -315,7 +319,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
             je.printStackTrace();
             System.err.println("failed to load title from JSON args; trying to extract it from HTML");
             try { // fall through to fall-back
-                return doc.select("meta[name=title]").attr("content");
+                return doc.select("meta[name=title]").attr(CONTENT);
             } catch (Exception e) {
                 throw new ParsingException("failed permanently to load title.", e);
             }
@@ -365,7 +369,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     @Override
     public long getViewCount() throws ParsingException {
         try {
-            String viewCountString = doc.select("meta[itemprop=interactionCount]").attr("content");
+            String viewCountString = doc.select("meta[itemprop=interactionCount]").attr(CONTENT);
             return Long.parseLong(viewCountString);
         } catch (Exception e) {//todo: find fallback method
             throw new ParsingException("failed to get number of views", e);
@@ -375,7 +379,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     @Override
     public String getUploadDate() throws ParsingException {
         try {
-            return doc.select("meta[itemprop=datePublished]").attr("content");
+            return doc.select("meta[itemprop=datePublished]").attr(CONTENT);
         } catch (Exception e) {//todo: add fallback method
             throw new ParsingException("failed to get upload date.", e);
         }
@@ -485,9 +489,9 @@ public class YoutubeStreamExtractor extends StreamExtractor {
             String encodedUrlMap;
             // playerArgs could be null if the video is age restricted
             if (playerArgs == null) {
-                encodedUrlMap = videoInfoPage.get("url_encoded_fmt_stream_map");
+                encodedUrlMap = videoInfoPage.get(URL_ENCODED_FMT_STREAM_MAP);
             } else {
-                encodedUrlMap = playerArgs.getString("url_encoded_fmt_stream_map");
+                encodedUrlMap = playerArgs.getString(URL_ENCODED_FMT_STREAM_MAP);
             }
             for(String url_data_str : encodedUrlMap.split(",")) {
                 try {
@@ -592,7 +596,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
         try {
             return Integer.valueOf(doc.head()
                     .getElementsByAttributeValue("property", "og:restrictions:age")
-                    .attr("content").replace("+", ""));
+                    .attr(CONTENT).replace("+", ""));
         } catch (Exception e) {
             throw new ParsingException("Could not get age restriction");
         }
@@ -622,7 +626,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
                 //if this ckicks in our button has no content and thefore likes/dislikes are disabled
                 return -1;
             }
-            return Integer.parseInt(likesString.replaceAll("[^\\d]", ""));
+            return Integer.parseInt(likesString.replaceAll(REGEX_INT, ""));
         } catch (NumberFormatException nfe) {
             throw new ParsingException(
                     "failed to parse likesString \"" + likesString + "\" as integers", nfe);
@@ -642,7 +646,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
                 //if this kicks in our button has no content and therefore likes/dislikes are disabled
                 return -1;
             }
-            return Integer.parseInt(dislikesString.replaceAll("[^\\d]", ""));
+            return Integer.parseInt(dislikesString.replaceAll(REGEX_INT, ""));
         } catch(NumberFormatException nfe) {
             throw new ParsingException(
                     "failed to parse dislikesString \"" + dislikesString + "\" as integers", nfe);
@@ -737,7 +741,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
 
                 try {
                     return Long.parseLong(li.select("span.view-count")
-                            .first().text().replaceAll("[^\\d]", ""));
+                            .first().text().replaceAll(REGEX_INT, ""));
                 } catch (Exception e) {
                     //related videos sometimes have no view count
                     return 0;
@@ -755,7 +759,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
                     thumbnailUrl = img.attr("data-thumb");
                 }
                 if (thumbnailUrl.startsWith("//")) {
-                    thumbnailUrl = "https:" + thumbnailUrl;
+                    thumbnailUrl = HTTPS + thumbnailUrl;
                 }
                 return thumbnailUrl;
             }

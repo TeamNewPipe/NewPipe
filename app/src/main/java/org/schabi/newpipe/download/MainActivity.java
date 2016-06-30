@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public static final String INTENT_LIST = "us.shandian.giga.intent.LIST";
 
     private static final String TAG = MainActivity.class.toString();
+    public static final String THREADS = "threads";
 
 
     private MissionsFragment mFragment;
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         actionBar.setTitle(R.string.downloads_title);
         actionBar.setDisplayShowTitleEnabled(true);
 
-        mPrefs = getSharedPreferences("threads", Context.MODE_WORLD_READABLE);
+        mPrefs = getSharedPreferences(THREADS, Context.MODE_WORLD_READABLE);
 
         // Fragment
         getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -179,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         });
 
-        int def = mPrefs.getInt("threads", 4);
+        int def = mPrefs.getInt(THREADS, 4);
         threads.setProgress(def - 1);
         tCount.setText(String.valueOf(def));
 
@@ -222,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         mBinder.onMissionAdded(mManager.getMission(res));
                         mFragment.notifyChange();
 
-                        mPrefs.edit().putInt("threads", threads.getProgress() + 1).commit();
+                        mPrefs.edit().putInt(THREADS, threads.getProgress() + 1).commit();
                         mPendingUrl = null;
                         dialog.dismiss();
                     }
