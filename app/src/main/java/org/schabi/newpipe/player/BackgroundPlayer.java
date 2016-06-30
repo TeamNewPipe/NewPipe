@@ -67,7 +67,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
     // Determines if the service is already running.
     // Prevents launching the service twice.
-    public static volatile boolean isRunning = false;
+    public static volatile boolean isRunning;
 
     public BackgroundPlayer() {
         super();
@@ -121,7 +121,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         private BackgroundPlayer owner;
         private NotificationManager noteMgr;
         private WifiManager.WifiLock wifiLock;
-        private Bitmap videoThumbnail = null;
+        private Bitmap videoThumbnail;
         private NotificationCompat.Builder noteBuilder;
         private Notification note;
 

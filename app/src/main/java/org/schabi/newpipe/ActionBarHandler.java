@@ -44,17 +44,17 @@ class ActionBarHandler {
     private AppCompatActivity activity;
     private int selectedVideoStream = -1;
 
-    private SharedPreferences defaultPreferences = null;
+    private SharedPreferences defaultPreferences;
 
     private Menu menu;
 
     // Only callbacks are listed here, there are more actions which don't need a callback.
     // those are edited directly. Typically VideoItemDetailFragment will implement those callbacks.
-    private OnActionListener onShareListener = null;
-    private OnActionListener onOpenInBrowserListener = null;
-    private OnActionListener onDownloadListener = null;
-    private OnActionListener onPlayWithKodiListener = null;
-    private OnActionListener onPlayAudioListener = null;
+    private OnActionListener onShareListener;
+    private OnActionListener onOpenInBrowserListener;
+    private OnActionListener onDownloadListener;
+    private OnActionListener onPlayWithKodiListener;
+    private OnActionListener onPlayAudioListener;
 
 
     // Triggered when a stream related action is triggered.

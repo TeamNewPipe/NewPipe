@@ -30,7 +30,7 @@ import java.util.List;
  * This can be considered as an ugly hack inside the Android universe. **/
 public class ActivityCommunicator {
 
-    private static ActivityCommunicator activityCommunicator = null;
+    private static ActivityCommunicator activityCommunicator;
 
     public static ActivityCommunicator getCommunicator() {
         if(activityCommunicator == null) {

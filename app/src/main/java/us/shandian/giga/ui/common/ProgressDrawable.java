@@ -9,7 +9,7 @@ import android.graphics.drawable.Drawable;
 
 public class ProgressDrawable extends Drawable
 {
-	private float mProgress = 0.0f;
+	private float mProgress;
 	private int mBackgroundColor, mForegroundColor;
 	
 	public ProgressDrawable(Context context, int background, int foreground) {

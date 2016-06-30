@@ -46,19 +46,19 @@ public class VideoItemListFragment extends ListFragment {
 
     private static final String TAG = VideoItemListFragment.class.toString();
 
-    private StreamingService streamingService = null;
+    private StreamingService streamingService;
     private VideoListAdapter videoListAdapter;
 
     // activity modes
     private static final int SEARCH_MODE = 0;
     private static final int PRESENT_VIDEOS_MODE = 1;
 
-    private int mode = SEARCH_MODE;
+    private int mode;
     private String query = "";
-    private int lastPage = 0;
+    private int lastPage;
 
-    private Thread searchThread = null;
-    private SearchRunnable searchRunnable = null;
+    private Thread searchThread;
+    private SearchRunnable searchRunnable;
     // used to track down if results posted by threads ar still valid
     private int currentRequestId = -1;
     private ListView list;
@@ -256,7 +256,7 @@ public class VideoItemListFragment extends ListFragment {
         void onItemSelected(String id);
     }
 
-    private Callbacks mCallbacks = null;
+    private Callbacks mCallbacks;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -278,7 +278,7 @@ public class VideoItemListFragment extends ListFragment {
 
 
         getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
-            long lastScrollDate = 0;
+            long lastScrollDate;
 
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {

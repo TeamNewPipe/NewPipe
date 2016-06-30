@@ -28,7 +28,7 @@ import java.util.Vector;
 public class StreamPreviewInfoCollector {
     private List<StreamPreviewInfo> itemList = new Vector<>();
     private List<Exception> errors = new Vector<>();
-    private StreamUrlIdHandler urlIdHandler = null;
+    private StreamUrlIdHandler urlIdHandler;
     private int serviceId = -1;
 
     public StreamPreviewInfoCollector(StreamUrlIdHandler handler, int serviceId) {

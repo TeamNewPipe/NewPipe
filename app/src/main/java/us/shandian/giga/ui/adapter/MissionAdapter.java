@@ -292,7 +292,7 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 		
 		public long lastTimeStamp = -1;
 		public long lastDone = -1;
-		public int colorId = 0;
+		public int colorId;
 		
 		public ViewHolder(View v) {
 			super(v);

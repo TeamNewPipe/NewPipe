@@ -48,7 +48,7 @@ import info.guardianproject.netcipher.proxy.OrbotHelper;
 public class SettingsActivity extends PreferenceActivity  {
 
     private static final int REQUEST_INSTALL_ORBOT = 0x1234;
-    private AppCompatDelegate mDelegate = null;
+    private AppCompatDelegate mDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {
