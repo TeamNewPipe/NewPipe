@@ -66,14 +66,14 @@ public class PlayVideoActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
     private VideoView videoView;
-    private int position = 0;
+    private int position;
     private MediaController mediaController;
     private ProgressBar progressBar;
     private View decorView;
-    private boolean uiIsHidden = false;
-    private static long lastUiShowTime = 0;
+    private boolean uiIsHidden;
+    private static long lastUiShowTime;
     private boolean isLandscape = true;
-    private boolean hasSoftKeys = false;
+    private boolean hasSoftKeys;
 
     private SharedPreferences prefs;
     private static final String PREF_IS_LANDSCAPE = "is_landscape";

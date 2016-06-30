@@ -37,7 +37,7 @@ public abstract class AbstractVideoInfo {
     public String title = "";
     public String uploader = "";
     public String thumbnail_url = "";
-    public Bitmap thumbnail = null;
+    public Bitmap thumbnail;
     public String webpage_url = "";
     public String upload_date = "";
     public long view_count = -1;

@@ -62,13 +62,13 @@ public class VideoItemListActivity extends AppCompatActivity
     private static final int SEARCH_MODE = 0;
     private static final int PRESENT_VIDEOS_MODE = 1;
 
-    private int mode = SEARCH_MODE;
+    private int mode;
     private int currentStreamingServiceId = -1;
     private String searchQuery = "";
 
     private VideoItemListFragment listFragment;
-    private VideoItemDetailFragment videoFragment = null;
-    private Menu menu = null;
+    private VideoItemDetailFragment videoFragment;
+    private Menu menu;
 
     private SuggestionListAdapter suggestionListAdapter;
     private SuggestionSearchRunnable suggestionSearchRunnable;
