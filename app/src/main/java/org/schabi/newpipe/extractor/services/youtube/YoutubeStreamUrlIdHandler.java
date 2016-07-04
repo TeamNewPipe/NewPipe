@@ -55,7 +55,7 @@ public class YoutubeStreamUrlIdHandler implements StreamUrlIdHandler {
             }
             else if(url.contains("vnd.youtube"))
             {
-                id = Parser.matchGroup1("vnd.youtube\\:([\\-a-zA-Z0-9_]{11}).*", url);
+                id = Parser.matchGroup1("([\\-a-zA-Z0-9_]{11}).*", url);
             }
             else {
                 id = Parser.matchGroup1("[?&]v=([\\-a-zA-Z0-9_]{11})", url);

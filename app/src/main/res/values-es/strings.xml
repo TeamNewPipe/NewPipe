@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="view_count_text">%1$s visitas</string>
     <string name="upload_date_text">Subido el %1$s</string>
     <string name="no_player_found">No se ha encontrado ningún reproductor de vídeo. ¿Desea instalar VLC?</string>
@@ -121,10 +121,10 @@
     <string name="error_drm_not_supported">Contenido protegido no soportado en niveles de API inferiores a 18</string>
     <string name="error_drm_unsupported_scheme">Este dispositivo no soporta el esquema DRM requerido</string>
     <string name="error_drm_unknown">Ocurrió un error DRM desconocido</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_decoder">Este dispositivo no proporciona un decodificador para <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_no_secure_decoder">Este dispositivo no proporciona un decodificador seguro para <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_decoder">Este dispositivo no proporciona un decodificador para <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_secure_decoder">Este dispositivo no proporciona un decodificador seguro para <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string name="error_querying_decoders">No es posible consultar los decodificadores del dispositivo</string>
-    <string xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" name="error_instantiating_decoder">No se ha podido instanciar el decodificador <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="error_instantiating_decoder">No se ha podido instanciar el decodificador <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">El permiso de acceso al almacenamiento fue negado</string>
     <string name="use_exoplayer_title">Usar ExoPlayer</string>
     <string name="use_exoplayer_summary">Experimental</string>
