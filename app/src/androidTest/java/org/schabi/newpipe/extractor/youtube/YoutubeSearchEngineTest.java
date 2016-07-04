@@ -43,7 +43,7 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
         SearchEngine engine = ServiceList.getService("Youtube")
                 .getSearchEngineInstance(new Downloader());
 
-        result = engine.search("cats",
+        result = engine.search("boring panda",
                 0, "de", new Downloader()).getSearchResult();
         suggestionReply = engine.suggestionList("hello","de",new Downloader());
     }
