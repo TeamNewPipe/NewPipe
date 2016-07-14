@@ -568,7 +568,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
                     if (secondsString.isEmpty() //if nothing was got,
                             && minutesString.isEmpty()//treat as unlabelled seconds
                             && hoursString.isEmpty()) {
-                        secondsString = Parser.matchGroup1("t=(\\d{1,3})", timeStamp);
+                        secondsString = Parser.matchGroup1("t=(\\d+)", timeStamp);
                     }
                 }
 
