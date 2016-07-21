@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 24
     buildToolsVersion '23.0.2'
 
     defaultConfig {
@@ -31,10 +31,10 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:support-v4:23.4.0'
-    compile 'com.android.support:design:23.4.0'
-    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'com.android.support:appcompat-v7:24.1.0'
+    compile 'com.android.support:support-v4:24.1.0'
+    compile 'com.android.support:design:24.1.0'
+    compile 'com.android.support:recyclerview-v7:24.1.0'
     compile 'org.jsoup:jsoup:1.8.3'
     compile 'org.mozilla:rhino:1.7.7'
     compile 'info.guardianproject.netcipher:netcipher:1.2'
