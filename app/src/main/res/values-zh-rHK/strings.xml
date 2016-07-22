@@ -109,4 +109,40 @@
     <string name="error_no_decoder">此裝置未能為 <xliff:g id="mime_type">%1$s</xliff:g> 提供解碼器</string>
     <string name="error_no_secure_decoder">此裝置未能為 <xliff:g id="mime_type">%1$s</xliff:g> 提供安全的解碼器</string>
     <string name="error_querying_decoders">無法尋找裝置解碼器</string>
+    <string name="downloads">下載</string>
+    <string name="downloads_title">下載</string>
+    <string name="settings_title">設定</string>
+    <string name="error_report_title">錯誤報告</string>
+
+    <string name="content_not_available">內容不可用。</string>
+    <string name="storage_permission_denied">存取儲存空間的權限被拒</string>
+    <string name="use_exoplayer_title">使用 ExoPlayer</string>
+    <string name="use_exoplayer_summary">實驗性</string>
+
+    <string name="start">開始</string>
+    <string name="pause">暫停</string>
+    <string name="error_drm_unsupported_scheme">本裝置不支援所需的 DRM 方案</string>
+    <string name="view">觀看</string>
+    <string name="delete">刪除</string>
+    <string name="checksum">校驗和</string>
+
+    <string name="add">新任務</string>
+    <string name="finish">好</string>
+    <string name="switch_mode">切換列表或網格佈局</string>
+
+
+    <string name="msg_url">下載網址</string>
+    <string name="msg_name">檔案名稱</string>
+    <string name="msg_threads">線程</string>
+    <string name="msg_fetch_filename">獲取檔案名稱</string>
+    <string name="msg_error">錯誤</string>
+    <string name="msg_server_unsupported">伺服器不支援</string>
+    <string name="msg_exists">檔案已經存在</string>
+    <string name="msg_url_malform">有問題的網址或網絡不可用</string>
+    <string name="msg_running">NewPipe 正在下載</string>
+    <string name="msg_running_detail">點撃查看詳情</string>
+    <string name="msg_wait">請稍候……</string>
+    <string name="msg_copied">已複製到剪貼板。</string>
+    <string name="no_available_dir">請選擇可用的下載資料夾。</string>
+
     </resources>
