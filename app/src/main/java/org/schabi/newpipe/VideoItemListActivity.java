@@ -25,7 +25,7 @@ import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -143,9 +143,9 @@ public class VideoItemListActivity extends AppCompatActivity
 
     private class SuggestionResultRunnable implements Runnable{
 
-        private ArrayList<String>suggestions;
+        private List<String> suggestions;
 
-        private SuggestionResultRunnable(ArrayList<String> suggestions) {
+        private SuggestionResultRunnable(List<String> suggestions) {
             this.suggestions = suggestions;
         }
 
@@ -175,7 +175,7 @@ public class VideoItemListActivity extends AppCompatActivity
                 String searchLanguageKey = context.getString(R.string.search_language_key);
                 String searchLanguage = sp.getString(searchLanguageKey,
                         getString(R.string.default_language_value));
-                ArrayList<String>suggestions = engine.suggestionList(query,searchLanguage,new Downloader());
+                List<String> suggestions = engine.suggestionList(query,searchLanguage,new Downloader());
                 h.post(new SuggestionResultRunnable(suggestions));
             } catch (ExtractionException e) {
                 ErrorActivity.reportError(h, VideoItemListActivity.this, e, null, findViewById(R.id.videoitem_list),

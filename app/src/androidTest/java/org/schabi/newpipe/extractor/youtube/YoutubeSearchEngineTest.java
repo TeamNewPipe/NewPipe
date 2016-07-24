@@ -11,7 +11,7 @@ import org.schabi.newpipe.Downloader;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Christian Schabesberger on 29.12.15.
@@ -35,7 +35,7 @@ import java.util.ArrayList;
 
 public class YoutubeSearchEngineTest extends AndroidTestCase {
     private SearchResult result;
-    private ArrayList<String> suggestionReply;
+    private List<String> suggestionReply;
 
     @Override
     public void setUp() throws Exception{

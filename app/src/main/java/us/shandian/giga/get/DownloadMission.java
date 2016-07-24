@@ -12,6 +12,8 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import us.shandian.giga.util.Utility;
 import static org.schabi.newpipe.BuildConfig.DEBUG;
@@ -39,8 +41,8 @@ public class DownloadMission
 	public long done;
 	public int threadCount = 3;
 	public int finishCount;
-	public ArrayList<Long> threadPositions = new ArrayList<Long>();
-	public HashMap<Long, Boolean> blockState = new HashMap<Long, Boolean>();
+	public List<Long> threadPositions = new ArrayList<Long>();
+	public Map<Long, Boolean> blockState = new HashMap<Long, Boolean>();
 	public boolean running;
 	public boolean finished;
 	public boolean fallback;

@@ -1,9 +1,7 @@
 package org.schabi.newpipe.extractor;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 /**
  * Created by Christian Schabesberger on 10.08.15.
@@ -43,7 +41,7 @@ public abstract class SearchEngine {
         return collector;
     }
 
-    public abstract ArrayList<String> suggestionList(
+    public abstract List<String> suggestionList(
             String query,String contentCountry, Downloader dl)
             throws ExtractionException, IOException;
 
