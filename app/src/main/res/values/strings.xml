@@ -168,7 +168,7 @@
     <string name="msg_exists">File already exists</string>
     <string name="msg_url_malform">Malformed URL or Internet not available</string>
     <string name="msg_running">NewPipe Downloading</string>
-    <string name="msg_running_detail">Click for details</string>
+    <string name="msg_running_detail">Tap for details</string>
     <string name="msg_wait">Please wait...</string>
     <string name="msg_copied">Copied to clipboard.</string>
     <string name="no_available_dir">Please select an available download directory.</string>
