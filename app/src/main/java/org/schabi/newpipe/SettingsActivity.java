@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -20,11 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.nononsenseapps.filepicker.FilePickerActivity;
-
-import java.util.ArrayList;
-
-import info.guardianproject.netcipher.proxy.OrbotHelper;
 
 /**
  * Created by Christian Schabesberger on 31.08.15.
@@ -47,9 +41,8 @@ import info.guardianproject.netcipher.proxy.OrbotHelper;
  */
 
 public class SettingsActivity extends PreferenceActivity  {
-
-    public static final int REQUEST_INSTALL_ORBOT = 0x1234;
     private AppCompatDelegate mDelegate = null;
+    SettingsFragment f = new SettingsFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {
@@ -63,61 +56,14 @@ public class SettingsActivity extends PreferenceActivity  {
         actionBar.setDisplayShowTitleEnabled(true);
 
         getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new SettingsFragment())
+                .replace(android.R.id.content, f)
                 .commit();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        if ((requestCode == R.string.download_path_audio_key
-                || requestCode == R.string.download_path_key)
-            && resultCode == Activity.RESULT_OK) {
-
-            Uri uri = null;
-            if (data.getBooleanExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)) {
-                // For JellyBean and above
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    ClipData clip = data.getClipData();
-
-                    if (clip != null) {
-                        for (int i = 0; i < clip.getItemCount(); i++) {
-                            uri = clip.getItemAt(i).getUri();
-                        }
-                    }
-                    // For Ice Cream Sandwich
-                } else {
-                    ArrayList<String> paths = data.getStringArrayListExtra
-                            (FilePickerActivity.EXTRA_PATHS);
-
-                    if (paths != null) {
-                        for (String path: paths) {
-                            uri = Uri.parse(path);
-                        }
-                    }
-                }
-            } else {
-                uri = data.getData();
-            }
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-            //requestCode is equal to  R.string.download_path_key or
-            //R.string.download_path_audio_key
-            String key = getString(requestCode);
-            String path = data.getData().toString().substring(7);
-            prefs.edit()
-                    .putString(key, path)
-                    .commit();
-        }
-        else if(requestCode == REQUEST_INSTALL_ORBOT)
-        {
-            // try to start tor regardless of resultCode since clicking back after
-            // installing the app does not necessarily return RESULT_OK
-            App.configureTor(requestCode == REQUEST_INSTALL_ORBOT
-                    && OrbotHelper.requestStartTor(this));
-
-        }
         super.onActivityResult(requestCode, resultCode, data);
+        f.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
