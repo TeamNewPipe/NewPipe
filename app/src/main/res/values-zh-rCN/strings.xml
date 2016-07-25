@@ -142,4 +142,9 @@
     <string name="no_available_dir">请选择一个可用的下载目录。</string>
 
     <string name="add">新任务</string>
+    <string name="downloads">下载</string>
+    <string name="downloads_title">下载</string>
+    <string name="settings_title">设置</string>
+    <string name="error_report_title">错误报告</string>
+
     </resources>
