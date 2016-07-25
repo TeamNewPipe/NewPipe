@@ -6,7 +6,7 @@ android:
     - build-tools-23.0.2
 
     # The SDK version used to compile NewPipe
-    - android-23
+    - android-24
 
     # Additional components
     - extra-android-support
@@ -22,7 +22,7 @@ env:
     - ADB_INSTALL_TIMEOUT=8 # minutes (2 by default)
     - GRADLE_OPTS=-Xmx512m # give gradle more memory since it seem to fail otherwise
   matrix:
-    - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-21  ANDROID_ABI=armeabi-v7a
 
 before_script:
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI

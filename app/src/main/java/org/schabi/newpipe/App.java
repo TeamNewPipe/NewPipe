@@ -41,13 +41,15 @@ public class App extends Application {
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
         ImageLoader.getInstance().init(config);
 
+        /*
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         if(prefs.getBoolean(getString(R.string.use_tor_key), false)) {
             OrbotHelper.requestStartTor(this);
             configureTor(true);
         } else {
             configureTor(false);
-        }
+        }*/
+        configureTor(false);
 
         // DO NOT REMOVE THIS FUNCTION!!!
         // Otherwise downloadPathPreference has invalid value.
