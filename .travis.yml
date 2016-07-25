@@ -1,4 +1,6 @@
 language: android
+jdk:
+    - oraclejdk8
 android:
   components:
     # The BuildTools version used by NewPipe
