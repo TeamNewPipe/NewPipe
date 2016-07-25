@@ -41,8 +41,8 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
      * @return the contents of the specified text file*/
     public String download(String siteUrl, String language) throws IOException {
         URL url = new URL(siteUrl);
-        //HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
-        HttpsURLConnection con = NetCipher.getHttpsURLConnection(url);
+        HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+        //HttpsURLConnection con = NetCipher.getHttpsURLConnection(url);
         con.setRequestProperty("Accept-Language", language);
         return dl(con);
     }

@@ -110,11 +110,13 @@
             android:summary="@string/autoplay_by_calling_app_summary"
             android:defaultValue="false" />
 
+        <!--
         <CheckBoxPreference
             android:key="@string/use_tor_key"
             android:title="@string/use_tor_title"
             android:summary="@string/use_tor_summary"
             android:defaultValue="false"/>
+            -->
 
     </PreferenceCategory>
 </PreferenceScreen>

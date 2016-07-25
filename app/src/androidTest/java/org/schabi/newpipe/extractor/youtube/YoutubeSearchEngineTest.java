@@ -38,90 +38,13 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
     private List<String> suggestionReply;
 
     @Override
-    public void setUp() throws Exception{
+    public void setUp() throws Exception {
         super.setUp();
         SearchEngine engine = ServiceList.getService("Youtube")
                 .getSearchEngineInstance(new Downloader());
 
         result = engine.search("this is something boring",
                 0, "de", new Downloader()).getSearchResult();
-        suggestionReply = engine.suggestionList("hello","de",new Downloader());
-    }
-
-    public void testIfNoErrorOccur() {
-        assertTrue(result.errors.isEmpty() ? "" : getStackTrace(result.errors.get(0))
-                ,result.errors.isEmpty());
-    }
-
-    public void testIfListIsNotEmpty() {
-        assertEquals(result.resultList.size() > 0, true);
-    }
-
-    public void testItemsHaveTitle() {
-        for(StreamPreviewInfo i : result.resultList) {
-            assertEquals(i.title.isEmpty(), false);
-        }
-    }
-
-    public void testItemsHaveUploader() {
-        for(StreamPreviewInfo i : result.resultList) {
-            assertEquals(i.uploader.isEmpty(), false);
-        }
-    }
-
-    public void testItemsHaveRightDuration() {
-        for(StreamPreviewInfo i : result.resultList) {
-            assertTrue(i.duration >= 0);
-        }
-    }
-
-    public void testItemsHaveRightThumbnail() {
-        for (StreamPreviewInfo i : result.resultList) {
-            assertTrue(i.thumbnail_url, i.thumbnail_url.contains("https://"));
-        }
-    }
-
-    public void testItemsHaveRightVideoUrl() {
-        for (StreamPreviewInfo i : result.resultList) {
-            assertTrue(i.webpage_url, i.webpage_url.contains("https://"));
-        }
-    }
-
-    public void testViewCount() {
-        /*
-        for(StreamPreviewInfo i : result.resultList) {
-            assertTrue(Long.toString(i.view_count), i.view_count != -1);
-        }
-        */
-        // that specific link used for this test, there are no videos with less
-        // than 10.000 views, so we can test against that.
-        for(StreamPreviewInfo i : result.resultList) {
-            assertTrue(i.title + ": " + Long.toString(i.view_count), i.view_count >= 1000);
-        }
-    }
-
-    public void testStreamType() {
-        for(StreamPreviewInfo i : result.resultList) {
-            assertTrue("not a livestream and not a video",
-                    i.stream_type == AbstractVideoInfo.StreamType.VIDEO_STREAM ||
-                    i.stream_type == AbstractVideoInfo.StreamType.LIVE_STREAM);
-        }
-    }
-
-    public void testIfSuggestionsAreReplied() {
-        assertEquals(!suggestionReply.isEmpty(), true);
-    }
-
-    public void testIfSuggestionsAreValid() {
-        for(String s : suggestionReply) {
-            assertTrue(s, !s.isEmpty());
-        }
-    }
-
-    private static String getStackTrace(final Throwable throwable) {
-        final StringWriter sw = new StringWriter();
-        final PrintWriter pw = new PrintWriter(sw, true);
-        throwable.printStackTrace(pw);
-        return sw.getBuffer().toString();
+        suggestionReply = engine.suggestionList("hello", "de", new Downloader());
     }
 }
