@@ -30,7 +30,7 @@ public abstract class StreamExtractor {
 
     private int serviceId;
     private String url;
-    private StreamUrlIdHandler urlIdHandler;
+    private UrlIdHandler urlIdHandler;
     private Downloader downloader;
     private StreamPreviewInfoCollector previewInfoCollector;
 
@@ -55,7 +55,7 @@ public abstract class StreamExtractor {
         }
     }
 
-    public StreamExtractor(StreamUrlIdHandler urlIdHandler, String url, Downloader dl, int serviceId) {
+    public StreamExtractor(UrlIdHandler urlIdHandler, String url, Downloader dl, int serviceId) {
         this.serviceId = serviceId;
         this.urlIdHandler = urlIdHandler;
         previewInfoCollector = new StreamPreviewInfoCollector(urlIdHandler, serviceId);
@@ -69,7 +69,7 @@ public abstract class StreamExtractor {
         return url;
     }
 
-    public StreamUrlIdHandler getUrlIdHandler() {
+    public UrlIdHandler getUrlIdHandler() {
         return urlIdHandler;
     }
 

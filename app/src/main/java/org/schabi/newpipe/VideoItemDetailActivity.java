@@ -85,7 +85,7 @@ public class VideoItemDetailActivity extends AppCompatActivity {
                             .show();
                 }
                 //arguments.putString(VideoItemDetailFragment.VIDEO_URL,
-                //        videoExtractor.getVideoUrl(videoExtractor.getVideoId(videoUrl)));//cleans URL
+                //        videoExtractor.getUrl(videoExtractor.getId(videoUrl)));//cleans URL
                 arguments.putString(VideoItemDetailFragment.VIDEO_URL, videoUrl);
 
                 arguments.putBoolean(VideoItemDetailFragment.AUTO_PLAY,

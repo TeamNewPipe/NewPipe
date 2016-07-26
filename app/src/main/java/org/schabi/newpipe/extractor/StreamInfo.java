@@ -85,12 +85,12 @@ public class StreamInfo extends AbstractVideoInfo {
         /* ---- importand data, withoug the video can't be displayed goes here: ---- */
         // if one of these is not available an exception is ment to be thrown directly into the frontend.
 
-        StreamUrlIdHandler uiconv = extractor.getUrlIdHandler();
+        UrlIdHandler uiconv = extractor.getUrlIdHandler();
 
         streamInfo.service_id = extractor.getServiceId();
         streamInfo.webpage_url = extractor.getPageUrl();
         streamInfo.stream_type = extractor.getStreamType();
-        streamInfo.id = uiconv.getVideoId(extractor.getPageUrl());
+        streamInfo.id = uiconv.getId(extractor.getPageUrl());
         streamInfo.title = extractor.getTitle();
         streamInfo.age_limit = extractor.getAgeLimit();
 

@@ -50,6 +50,7 @@ import java.util.Vector;
 
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.AudioStream;
+import org.schabi.newpipe.extractor.ChannelExtractor;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.ServiceList;
@@ -306,6 +307,7 @@ public class VideoItemDetailFragment extends Fragment {
                     activity.findViewById(R.id.detailVideoThumbnailWindowBackgroundButton);
             View topView = activity.findViewById(R.id.detailTopView);
             View nextVideoView = null;
+            Button channelButton = (Button) activity.findViewById(R.id.channelButton);
             if(info.next_video != null) {
                 nextVideoView = videoItemViewCreator
                         .getViewFromVideoInfoItem(null, nextVideoFrame, info.next_video);
@@ -444,6 +446,14 @@ public class VideoItemDetailFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     playVideo(info);
+                }
+            });
+
+            channelButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(activity, ChannelActivity.class);
+                    startActivity(i);
                 }
             });
 

@@ -179,55 +179,70 @@
                         android:text="100" />
                 </LinearLayout>
 
-                <RelativeLayout
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/linearLayout"
-                    android:id="@+id/detailUploaderWrapView"
-                    android:layout_marginTop="12dp">
-
-                    <View
-                        android:background="#000"
+                    android:id="@+id/detailUploaderFrame"
+                    android:layout_below="@+id/linearLayout">
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="1px" />
-
-                    <de.hdodenhof.circleimageview.CircleImageView android:id="@+id/detailUploaderThumbnailView"
-                        android:contentDescription="@string/detail_uploader_thumbnail_view_description"
-                        android:layout_width="@dimen/video_item_detail_uploader_image_size"
-                        android:layout_height="@dimen/video_item_detail_uploader_image_size"
-                        android:src="@drawable/buddy"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"/>
-
-                    <TextView android:id="@+id/detailUploaderView"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/video_item_detail_uploader_text_size"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Uploader"
-                        android:layout_centerVertical="true"
-                        android:layout_toRightOf="@+id/detailUploaderThumbnailView"
-                        android:layout_toEndOf="@+id/detailUploaderThumbnailView"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginStart="28dp" />
+                        android:id="@+id/detailUploaderLayout"
+                        android:layout_marginTop="12dp">
 
-                    <View
-                        android:background="#000"
+
+                        <View
+                            android:background="#000"
+                            android:layout_width="match_parent"
+                            android:layout_height="1px" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView android:id="@+id/detailUploaderThumbnailView"
+                            android:contentDescription="@string/detail_uploader_thumbnail_view_description"
+                            android:layout_width="@dimen/video_item_detail_uploader_image_size"
+                            android:layout_height="@dimen/video_item_detail_uploader_image_size"
+                            android:src="@drawable/buddy"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"/>
+
+                        <TextView android:id="@+id/detailUploaderView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/video_item_detail_uploader_text_size"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="Uploader"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/detailUploaderThumbnailView"
+                            android:layout_toEndOf="@+id/detailUploaderThumbnailView"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginStart="28dp" />
+
+                        <View
+                            android:background="#000"
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_below="@id/detailUploaderThumbnailView"/>
+                    </RelativeLayout>
+
+                    <Button
+                        android:layout_marginTop="11dp"
+                        android:id="@+id/channelButton"
                         android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:layout_below="@id/detailUploaderThumbnailView"/>
-                </RelativeLayout>
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackground"/>
+                </FrameLayout>
+
+
 
                 <RelativeLayout android:id="@+id/detailNextVideoRootLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:layout_below="@+id/detailUploaderWrapView"
+                    android:layout_below="@+id/detailUploaderFrame"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp">
 

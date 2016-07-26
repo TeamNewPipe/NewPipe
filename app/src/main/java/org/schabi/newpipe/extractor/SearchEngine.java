@@ -33,7 +33,7 @@ public abstract class SearchEngine {
 
     private StreamPreviewInfoSearchCollector collector;
 
-    public SearchEngine(StreamUrlIdHandler urlIdHandler, int serviceId) {
+    public SearchEngine(UrlIdHandler urlIdHandler, int serviceId) {
         collector = new StreamPreviewInfoSearchCollector(urlIdHandler, serviceId);
     }
 

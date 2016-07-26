@@ -14,7 +14,7 @@ import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.StreamPreviewInfoCollector;
 import org.schabi.newpipe.extractor.StreamPreviewInfoExtractor;
 import org.schabi.newpipe.extractor.StreamPreviewInfoSearchCollector;
-import org.schabi.newpipe.extractor.StreamUrlIdHandler;
+import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -55,7 +55,7 @@ public class YoutubeSearchEngine extends SearchEngine {
     private static final String TAG = YoutubeSearchEngine.class.toString();
     public static final String CHARSET_UTF_8 = "UTF-8";
 
-    public YoutubeSearchEngine(StreamUrlIdHandler urlIdHandler, int serviceId) {
+    public YoutubeSearchEngine(UrlIdHandler urlIdHandler, int serviceId) {
         super(urlIdHandler, serviceId);
     }
 

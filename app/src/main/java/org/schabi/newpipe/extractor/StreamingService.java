@@ -38,7 +38,10 @@ public abstract class StreamingService {
     public abstract StreamExtractor getExtractorInstance(String url, Downloader downloader)
             throws IOException, ExtractionException;
     public abstract SearchEngine getSearchEngineInstance(Downloader downloader);
-    public abstract StreamUrlIdHandler getUrlIdHandlerInstance();
+    public abstract UrlIdHandler getUrlIdHandlerInstance();
+    public abstract UrlIdHandler getChannelUrlIdHandlerInstance();
+    public abstract ChannelExtractor getChannelExtractorInstance(String url, Downloader downloader)
+            throws ExtractionException, IOException;
 
     public final int getServiceId() {
         return serviceId;

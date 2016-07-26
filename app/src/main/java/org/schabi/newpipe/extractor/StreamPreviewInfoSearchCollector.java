@@ -24,7 +24,7 @@ public class StreamPreviewInfoSearchCollector extends StreamPreviewInfoCollector
 
     private String suggestion = "";
 
-    public StreamPreviewInfoSearchCollector(StreamUrlIdHandler handler, int serviceId) {
+    public StreamPreviewInfoSearchCollector(UrlIdHandler handler, int serviceId) {
         super(handler, serviceId);
     }
 
