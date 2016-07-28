@@ -23,4 +23,30 @@
 
     <string name="download_path_title">Video indirme yeri</string>
     <string name="download_path_summary">İndirilen videoların kaydedileceği yer.</string>
+    <string name="download_path_dialog_title">Videolar için indirme yeri gir</string>
+
+    <string name="download_path_audio_title">Ses indirme yeri</string>
+    <string name="download_path_audio_summary">İndirilmiş seslerin saklanacağı yer</string>
+    <string name="download_path_audio_dialog_title">Ses dosyaları için indirme yeri gir.</string>
+
+    <string name="autoplay_by_calling_app_title">Başka bir uygulamadan çağrıldığında otomatik oynat</string>
+    <string name="autoplay_by_calling_app_summary">NewPipe başka bir uygulamadan çağırıldığında videoyu otomatik oynat.</string>
+    <string name="default_resolution_title">Varsayılan çözünürlük</string>
+    <string name="play_with_kodi_title">Kodi ile Çal</string>
+    <string name="kore_not_found">Kore uygulaması bulunamadı. Kore yükle?</string>
+    <string name="show_play_with_kodi_title">\"Kodi ile Oynat\" seçeneğini göster</string>
+    <string name="show_play_with_kodi_summary">Videoyu Kodi ortam oynatıcı ile oynatmak için bir seöenek gösterir.</string>
+    <string name="default_audio_format_title">Varsayılan ses biçimi</string>
+    <string name="webm_description">WebM - Özgür biçim</string>
+    <string name="m4a_description">m4a — daha iyi kalite</string>
+    <string name="theme_title">Tema</string>
+    <string name="dark_theme_title">Koyu</string>
+    <string name="light_theme_title">Açık</string>
+
+    <string name="download_dialog_title">İndir</string>
+    <string name="next_video_title">Sıradaki video</string>
+    <string name="show_next_and_similar_title">Sıradaki ve benzer videoları göster</string>
+    <string name="url_not_supported_toast">URL desteklenmiyor</string>
+    <string name="similar_videos_btn_text">Benzer videolar</string>
+    <string name="search_language_title">Öncelikli içerikl dili</string>
     </resources>
