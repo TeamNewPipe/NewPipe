@@ -72,6 +72,18 @@
             android:src="@drawable/ic_pause_white_24dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
+
+        <ImageButton
+            android:id="@+id/notificationFastForward"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#00ffffff"
+            android:clickable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_fast_forward_white_24dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp" />
     </RelativeLayout>
 
 </RelativeLayout>
