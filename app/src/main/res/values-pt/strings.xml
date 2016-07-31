@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources  xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="view_count_text">%1$s visualizações</string>
     <string name="upload_date_text">Publicado em %1$s</string>
     <string name="no_player_found">Reprodutor não disponível. Instalar o VLC?</string>
@@ -143,7 +143,7 @@
     <string name="msg_server_unsupported">Servidor não suportado</string>
     <string name="msg_exists">Arquivo já existe</string>
     <string name="msg_url_malform">URL deformada ou internet não disponível</string>
-    <string name="msg_running_detail">Clique para detalhes</string>
+    <string name="msg_running_detail">Toque para detalhes</string>
     <string name="msg_wait">Por favor aguarde...</string>
     <string name="msg_copied">Copiado para a área de transferência.</string>
     <string name="no_available_dir">Por favor selecione um diretório de download disponível.</string>
@@ -152,4 +152,5 @@
     <string name="msg_url">URL de download</string>
     <string name="msg_threads">Tópicos</string>
     <string name="msg_fetch_filename">Buscar um nome de arquivo</string>
+    <string name="msg_running">Descarga NewPipe</string>
     </resources>
