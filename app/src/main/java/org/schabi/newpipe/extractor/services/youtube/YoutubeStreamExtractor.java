@@ -686,6 +686,16 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     }
 
     @Override
+    public String getChannelUrl() throws ParsingException {
+        try {
+            return doc.select("div[class=\"yt-user-info\"]").first().children()
+                    .select("a").first().attr("abs:href");
+        } catch(Exception e) {
+            throw new ParsingException("Could not get channel link", e);
+        }
+    }
+
+    @Override
     public StreamInfo.StreamType getStreamType() throws ParsingException {
         //todo: if implementing livestream support this value should be generated dynamically
         return StreamInfo.StreamType.VIDEO_STREAM;

@@ -27,15 +27,11 @@ import org.schabi.newpipe.extractor.UrlIdHandler;
 public class YoutubeChannelUrlIdHandler implements UrlIdHandler {
 
     public String getUrl(String channelId) {
-        return "https://www.youtube.com/user/" + channelId + "/videos";
+        return "https://www.youtube.com/" + channelId;
     }
 
     public String getId(String siteUrl) throws ParsingException {
-        try {
-            return Parser.matchGroup1("/user/(.*)", siteUrl);
-        } catch(Exception e) {
-            throw new ParsingException("Could not get channel/user id", e);
-        }
+        return Parser.matchGroup1("/(user/[A-Za-z0-9_-]*|channel/[A-Za-z0-9_-]*)", siteUrl);
     }
 
     public String cleanUrl(String siteUrl) throws ParsingException {
@@ -45,6 +41,7 @@ public class YoutubeChannelUrlIdHandler implements UrlIdHandler {
     public boolean acceptUrl(String videoUrl) {
         return (videoUrl.contains("youtube") ||
                 videoUrl.contains("youtu.be")) &&
-                videoUrl.contains("/user/");
+                ( videoUrl.contains("/user/") ||
+                        videoUrl.contains("/channel/"));
     }
 }

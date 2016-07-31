@@ -116,6 +116,8 @@ public class VideoItemDetailFragment extends Fragment {
     private DisplayImageOptions displayImageOptions =
             new DisplayImageOptions.Builder().cacheInMemory(true).build();
 
+    private View rootView = null;
+
 
     public interface OnInvokeCreateOptionsMenuListener {
         void createOptionsMenu();
@@ -150,7 +152,7 @@ public class VideoItemDetailFragment extends Fragment {
                 if(streamInfo != null &&
                         !streamInfo.errors.isEmpty()) {
                     Log.e(TAG, "OCCURRED ERRORS DURING EXTRACTION:");
-                    for (Exception e : streamInfo.errors) {
+                    for (Throwable e : streamInfo.errors) {
                         e.printStackTrace();
                         Log.e(TAG, "------");
                     }
@@ -449,13 +451,19 @@ public class VideoItemDetailFragment extends Fragment {
                 }
             });
 
-            channelButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent i = new Intent(activity, ChannelActivity.class);
-                    startActivity(i);
-                }
-            });
+            if(info.channel_url != null && info.channel_url != "") {
+                channelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(activity, ChannelActivity.class);
+                        i.putExtra(ChannelActivity.CHANNEL_URL, info.channel_url);
+                        i.putExtra(ChannelActivity.SERVICE_ID, info.service_id);
+                        startActivity(i);
+                    }
+                });
+            } else {
+                channelButton.setVisibility(Button.GONE);
+            }
 
         } catch (java.lang.NullPointerException e) {
             Log.w(TAG, "updateInfo(): Fragment closed before thread ended work... or else");
@@ -463,7 +471,7 @@ public class VideoItemDetailFragment extends Fragment {
         }
     }
 
-    private void initThumbnailViews(StreamInfo info, View nextVideoFrame) {
+    private void initThumbnailViews(final StreamInfo info, View nextVideoFrame) {
         ImageView videoThumbnailView = (ImageView) activity.findViewById(R.id.detailThumbnailView);
         ImageView uploaderThumb
                 = (ImageView) activity.findViewById(R.id.detailUploaderThumbnailView);
@@ -482,6 +490,12 @@ public class VideoItemDetailFragment extends Fragment {
                             Toast.makeText(VideoItemDetailFragment.this.getActivity(),
                                     R.string.could_not_load_thumbnails, Toast.LENGTH_LONG).show();
                             failReason.getCause().printStackTrace();
+
+                            ErrorActivity.reportError(getActivity(),
+                                    failReason.getCause(), null, rootView,
+                                    ErrorActivity.ErrorInfo.make(ErrorActivity.LOAD_IMAGE,
+                                            ServiceList.getNameOfService(info.service_id), imageUri,
+                                            R.string.could_not_load_thumbnails));
                         }
 
                         @Override
@@ -797,7 +811,7 @@ public class VideoItemDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_videoitem_detail, container, false);
+        rootView = inflater.inflate(R.layout.fragment_videoitem_detail, container, false);
         progressBar = (ProgressBar) rootView.findViewById(R.id.detailProgressBar);
 
         actionBarHandler = new ActionBarHandler(activity);

@@ -27,7 +27,7 @@ import java.util.Vector;
 
 public class StreamPreviewInfoCollector {
     private List<StreamPreviewInfo> itemList = new Vector<>();
-    private List<Exception> errors = new Vector<>();
+    private List<Throwable> errors = new Vector<>();
     private UrlIdHandler urlIdHandler;
     private int serviceId = -1;
 
@@ -40,7 +40,7 @@ public class StreamPreviewInfoCollector {
         return itemList;
     }
 
-    public List<Exception> getErrors() {
+    public List<Throwable> getErrors() {
         return errors;
     }
 

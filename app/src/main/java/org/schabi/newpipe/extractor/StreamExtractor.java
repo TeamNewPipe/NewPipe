@@ -81,6 +81,7 @@ public abstract class StreamExtractor {
     public abstract String getTitle() throws ParsingException;
     public abstract String getDescription() throws ParsingException;
     public abstract String getUploader() throws ParsingException;
+    public abstract String getChannelUrl() throws ParsingException;
     public abstract int getLength() throws ParsingException;
     public abstract long getViewCount() throws ParsingException;
     public abstract String getUploadDate() throws ParsingException;

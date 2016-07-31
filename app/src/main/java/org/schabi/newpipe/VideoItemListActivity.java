@@ -360,7 +360,7 @@ public class VideoItemListActivity extends AppCompatActivity
                 return true;
             }
             case R.id.action_report_error: {
-                ErrorActivity.reportError(VideoItemListActivity.this, new Vector<Exception>(),
+                ErrorActivity.reportError(VideoItemListActivity.this, new Vector<Throwable>(),
                         null, null,
                         ErrorActivity.ErrorInfo.make(ErrorActivity.USER_REPORT,
                                 ServiceList.getNameOfService(currentStreamingServiceId),

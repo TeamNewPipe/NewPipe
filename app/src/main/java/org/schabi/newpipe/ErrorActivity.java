@@ -79,16 +79,19 @@ public class ErrorActivity extends AppCompatActivity {
     public static final int GET_SUGGESTIONS = 2;
     public static final int SOMETHING_ELSE = 3;
     public static final int USER_REPORT = 4;
+    public static final int LOAD_IMAGE = 5;
     public static final String SEARCHED_STRING = "searched";
     public static final String REQUESTED_STREAM_STRING = "requested stream";
     public static final String GET_SUGGESTIONS_STRING = "get suggestions";
     public static final String SOMETHING_ELSE_STRING = "something";
     public static final String USER_REPORT_STRING = "user report";
+    public static final String LOAD_IMAGE_STRING = "load image";
+
 
     public static final String ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org";
     public static final String ERROR_EMAIL_SUBJECT = "Exception in NewPipe " + BuildConfig.VERSION_NAME;
 
-    private List<Exception> errorList;
+    private List<Throwable> errorList;
     private ErrorInfo errorInfo;
     private Class returnActivity;
     private String currentTimeStamp;
@@ -102,7 +105,7 @@ public class ErrorActivity extends AppCompatActivity {
     private TextView infoView;
     private TextView errorMessageView;
 
-    public static void reportError(final Context context, final List<Exception> el,
+    public static void reportError(final Context context, final List<Throwable> el,
                                    final Class returnAcitivty, View rootView, final ErrorInfo errorInfo) {
 
         if (rootView != null) {
@@ -129,9 +132,9 @@ public class ErrorActivity extends AppCompatActivity {
         }
     }
 
-    public static void reportError(final Context context, final Exception e,
+    public static void reportError(final Context context, final Throwable e,
                                    final Class returnAcitivty, View rootView, final ErrorInfo errorInfo) {
-        List<Exception> el = null;
+        List<Throwable> el = null;
         if(e != null) {
             el = new Vector<>();
             el.add(e);
@@ -140,10 +143,10 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     // async call
-    public static void reportError(Handler handler, final Context context, final Exception e,
+    public static void reportError(Handler handler, final Context context, final Throwable e,
                                    final Class returnAcitivty, final View rootView, final ErrorInfo errorInfo) {
 
-        List<Exception> el = null;
+        List<Throwable> el = null;
         if(e != null) {
             el = new Vector<>();
             el.add(e);
@@ -152,7 +155,7 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     // async call
-    public static void reportError(Handler handler, final Context context, final List<Exception> el,
+    public static void reportError(Handler handler, final Context context, final List<Throwable> el,
                                    final Class returnAcitivty, final View rootView, final ErrorInfo errorInfo) {
         handler.post(new Runnable() {
             @Override
@@ -171,7 +174,7 @@ public class ErrorActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle(R.string.error_report_title);
             actionBar.setDisplayShowTitleEnabled(true);
-        } catch (Exception e) {
+        } catch (Throwable e) {
             Log.e(TAG, "Error turing exception handling");
             e.printStackTrace();
         }
@@ -252,10 +255,10 @@ public class ErrorActivity extends AppCompatActivity {
         return sw.getBuffer().toString();
     }
 
-    private String formErrorText(List<Exception> el) {
+    private String formErrorText(List<Throwable> el) {
         String text = "";
         if(el != null) {
-            for (Exception e : el) {
+            for (Throwable e : el) {
                 text += "-------------------------------------\n"
                         + getStackTrace(e);
             }
@@ -313,7 +316,7 @@ public class ErrorActivity extends AppCompatActivity {
 
             JSONArray exceptionArray = new JSONArray();
             if(errorList != null) {
-                for (Exception e : errorList) {
+                for (Throwable e : errorList) {
                     exceptionArray.put(getStackTrace(e));
                 }
             }
@@ -322,7 +325,7 @@ public class ErrorActivity extends AppCompatActivity {
             errorObject.put("user_comment", userCommentBox.getText().toString());
 
             return errorObject.toString(3);
-        } catch (Exception e) {
+        } catch (Throwable e) {
             Log.e(TAG, "Error while erroring: Could not build json");
             e.printStackTrace();
         }
@@ -390,7 +393,7 @@ public class ErrorActivity extends AppCompatActivity {
 
                 ipRange = Parser.matchGroup1("([0-9]*\\.[0-9]*\\.)[0-9]*\\.[0-9]*", ip)
                         + "0.0";
-            } catch(Exception e) {
+            } catch(Throwable e) {
                 Log.d(TAG, "Error while error: could not get iprange");
                 e.printStackTrace();
             } finally {

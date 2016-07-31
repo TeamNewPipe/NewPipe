@@ -43,7 +43,7 @@ public class ActivityCommunicator {
     public volatile Bitmap backgroundPlayerThumbnail;
 
     // Sent from any activity to ErrorActivity.
-    public volatile List<Exception> errorList;
+    public volatile List<Throwable> errorList;
     public volatile Class returnActivity;
     public volatile ErrorActivity.ErrorInfo errorInfo;
 }

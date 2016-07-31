@@ -268,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 return true;
             }
             case R.id.action_report_error: {
-                ErrorActivity.reportError(MainActivity.this, new Vector<Exception>(),
+                ErrorActivity.reportError(MainActivity.this, new Vector<Throwable>(),
                         null, null,
                         ErrorActivity.ErrorInfo.make(ErrorActivity.USER_REPORT,
                                 null,

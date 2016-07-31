@@ -79,6 +79,10 @@ public class YoutubeStreamExtractorDefaultTest extends AndroidTestCase {
         assertTrue(extractor.getUploadDate().length() > 0);
     }
 
+    public void testGetChannelUrl() throws ParsingException {
+        assertTrue(extractor.getChannelUrl().length() > 0);
+    }
+
     public void testGetThumbnailUrl() throws ParsingException {
         assertTrue(extractor.getThumbnailUrl(),
                 extractor.getThumbnailUrl().contains(HTTPS));

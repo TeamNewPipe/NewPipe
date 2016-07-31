@@ -5,25 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:id="@+id/rootView"
     tools:context="org.schabi.newpipe.ChannelActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
+        android:id="@+id/channel_app_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
+            android:id="@+id/channel_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="@color/light_youtube_primary_color"
+            app:statusBarScrim="@color/light_youtube_dark_color"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
+            <ImageView
+                android:id="@+id/channel_banner_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                android:background="@color/light_youtube_dark_color"
+                app:layout_collapseMode="parallax" />
+
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+                android:id="@+id/cannel_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
@@ -32,15 +43,58 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_channel" />
-
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/channel_rss_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email"
-        app:layout_anchor="@id/app_bar"
+        android:src="@drawable/ic_rss_feed_white_24dp"
+        app:layout_anchor="@id/channel_app_bar"
         app:layout_anchorGravity="bottom|end" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/channel_loading">
+        <ProgressBar android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"/>
+    </RelativeLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="fill_vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/channel_content_view"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lorem ipsum dolor sit amet, sed in vocent nonumes maluisset. No dicant munere apeirian qui, iisque invenire ius in, sea duis illud dolor ex. Ei cum dolorem conclusionemque, in persius feugait efficiendi est, duo cu nonumy graeco ponderum. Efficiendi interpretaris ei pro. Ea salutandi suavitate qualisque qui.
+
+Cum ad sumo modus, duo et libris posidonium reprehendunt. Ex nam ornatus delectus. Eum quidam repudiandae ne. Te vidit senserit eos, has justo copiosae probatus ne. Ea vim nisl aeterno fabulas, per an legimus laoreet, natum abhorreant sit no. Epicurei cotidieque cu eum, novum tantas at has, ad eam malis reprimique intellegam.
+
+Posse doming consulatu no mel. Eu tale iudico his. Nibh nostrum ea mei, te amet esse consequat mea. Corrumpit iracundia an eam, omnesque suavitate erroribus mel ei. Ea suavitate urbanitas nec, mei te dolore menandri theophrastus, ad quaeque delicata vix.
+
+Has sale mucius menandri eu, pri veniam partem deterruisset ei. In nihil nominavi accusata mea, te sit quis veniam. Nam dissentiet conclusionemque id. Ex novum verterem usu.
+
+Eum fastidii consulatu cu. In nobis iuvaret usu, paulo tincidunt no usu, minim corpora his te. Nam graeco delenit omittam cu. Et sed ipsum fastidii, mea cu altera ullamcorper. Sea id altera menandri deseruisse, munere audire utroque cu pri. Nec solet facilis id. Mucius delectus eu vis, has in augue veniam.
+Lorem ipsum dolor sit amet, sed in vocent nonumes maluisset. No dicant munere apeirian qui, iisque invenire ius in, sea duis illud dolor ex. Ei cum dolorem conclusionemque, in persius feugait efficiendi est, duo cu nonumy graeco ponderum. Efficiendi interpretaris ei pro. Ea salutandi suavitate qualisque qui.
+
+Cum ad sumo modus, duo et libris posidonium reprehendunt. Ex nam ornatus delectus. Eum quidam repudiandae ne. Te vidit senserit eos, has justo copiosae probatus ne. Ea vim nisl aeterno fabulas, per an legimus laoreet, natum abhorreant sit no. Epicurei cotidieque cu eum, novum tantas at has, ad eam malis reprimique intellegam.
+
+Posse doming consulatu no mel. Eu tale iudico his. Nibh nostrum ea mei, te amet esse consequat mea. Corrumpit iracundia an eam, omnesque suavitate erroribus mel ei. Ea suavitate urbanitas nec, mei te dolore menandri theophrastus, ad quaeque delicata vix.
+
+Has sale mucius menandri eu, pri veniam partem deterruisset ei. In nihil nominavi accusata mea, te sit quis veniam. Nam dissentiet conclusionemque id. Ex novum verterem usu.
+
+Eum fastidii consulatu cu. In nobis iuvaret usu, paulo tincidunt no usu, minim corpora his te. Nam graeco delenit omittam cu. Et sed ipsum fastidii, mea cu altera ullamcorper. Sea id altera menandri deseruisse, munere audire utroque cu pri. Nec solet facilis id. Mucius delectus eu vis, has in augue veniam."/>
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

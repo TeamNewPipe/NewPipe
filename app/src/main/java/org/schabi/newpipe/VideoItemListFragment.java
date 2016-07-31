@@ -121,7 +121,7 @@ public class VideoItemListFragment extends ListFragment {
                 if(result != null &&
                         !result.errors.isEmpty()) {
                     Log.e(TAG, "OCCURRED ERRORS DURING SEARCH EXTRACTION:");
-                    for(Exception e : result.errors) {
+                    for(Throwable e : result.errors) {
                         e.printStackTrace();
                         Log.e(TAG, "------");
                     }

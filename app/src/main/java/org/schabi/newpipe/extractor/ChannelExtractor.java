@@ -43,4 +43,8 @@ public abstract class ChannelExtractor {
     public abstract String getChannelName() throws ParsingException;
     public abstract String getAvatarUrl() throws ParsingException;
     public abstract String getBannerUrl() throws ParsingException;
+    public abstract String getFeedUrl() throws ParsingException;
+    public int getServiceId() {
+        return serviceId;
+    }
 }

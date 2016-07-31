@@ -2,13 +2,29 @@ package org.schabi.newpipe.extractor.services.youtube;
 
 import android.util.Log;
 
+/*
+import com.steadystate.css.dom.CSSStyleDeclarationImpl;
+import com.steadystate.css.dom.CSSStyleSheetImpl;
+import com.steadystate.css.parser.CSSOMParser;
+import com.steadystate.css.parser.SACParserCSS3;
+import org.w3c.css.sac.CSSParseException;
+import org.w3c.css.sac.InputSource;
+import org.w3c.dom.css.CSSRule;
+import org.w3c.dom.css.CSSRuleList;
+import org.w3c.dom.css.CSSStyleSheet;
+import java.io.StringReader;
+*/
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.schabi.newpipe.extractor.ChannelExtractor;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.ExtractionException;
+import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.UrlIdHandler;
+
 
 import java.io.IOException;
 
@@ -36,6 +52,8 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
 
     private static final String TAG = YoutubeChannelExtractor.class.toString();
 
+    // private CSSOMParser cssParser = new CSSOMParser(new SACParserCSS3());
+
     private Downloader downloader;
     private final Document doc;
     private final String siteUrl;
@@ -45,17 +63,21 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
             throws ExtractionException, IOException {
         super(urlIdHandler, url, dl, serviceId);
 
-        siteUrl = url;
+        siteUrl = urlIdHandler.cleanUrl(url);
+        Log.d(TAG, siteUrl);
         downloader = dl;
         String pageContent = downloader.download(url);
         doc = Jsoup.parse(pageContent, url);
-
-        Log.d(TAG, pageContent);
     }
 
     @Override
     public String getChannelName() throws ParsingException {
-        return getUrlIdHandler().getId(siteUrl);
+         try {
+             return doc.select("span[class=\"qualified-channel-title-text\"]").first()
+                     .select("a").first().text();
+         } catch(Exception e) {
+             throw new ParsingException("Could not get channel name");
+         }
     }
 
     @Override
@@ -70,6 +92,41 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
 
     @Override
     public String getBannerUrl() throws ParsingException {
-        return "https://yt3.ggpht.com/-oF0YbeAGkaA/VBgrKvEGY1I/AAAAAAAACdw/nx02iZSseFw/w2120-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no/Channel-Art-Template-%2528Photoshop%2529.png";
+        String cssContent = "";
+        try {
+            Element el = doc.select("div[id=\"gh-banner\"]").first().select("style").first();
+            cssContent = el.html();
+            // todo: parse this using a css parser
+            /*
+            CSSStyleSheet sheet = cssParser.parseStyleSheet(
+                    new org.w3c.css.sac.InputSource(
+                            new StringReader(cssContent)), null, null);
+            CSSRuleList rules = sheet.getCssRules();
+            for (int i = 0; i < rules.getLength(); i++) {
+                final CSSRule rule = rules.item(i);
+                System.out.println(rule.getCssText());
+            }
+            */
+            String url = "https:" + Parser.matchGroup1("url\\((.*)\\)", cssContent);
+            if(url.contains("s.ytimg.com")) {
+                return null;
+            } else {
+                return url;
+            }
+        /* } catch(CSSParseException csse) {
+            throw new ParsingException("Could not parse css: " + cssContent); */
+        } catch(Exception e) {
+            throw new ParsingException("Could not get Banner", e);
+        }
+    }
+
+    @Override
+    public String getFeedUrl() throws ParsingException {
+        return siteUrl + "/feed";
+    }
+
+    private String getUserUrl() throws ParsingException {
+        return doc.select("span[class=\"qualified-channel-title-text\"]").first()
+                .select("a").first().attr("abs:href");
     }
 }

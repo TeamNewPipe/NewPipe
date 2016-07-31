@@ -189,6 +189,11 @@ public class StreamInfo extends AbstractVideoInfo {
             streamInfo.addException(e);
         }
         try {
+            streamInfo.channel_url = extractor.getChannelUrl();
+        } catch(Exception e) {
+            streamInfo.addException(e);
+        }
+        try {
             streamInfo.description = extractor.getDescription();
         } catch(Exception e) {
             streamInfo.addException(e);
@@ -258,6 +263,7 @@ public class StreamInfo extends AbstractVideoInfo {
     }
 
     public String uploader_thumbnail_url = "";
+    public String channel_url = "";
     public String description = "";
 
     public List<VideoStream> video_streams = null;
@@ -279,5 +285,5 @@ public class StreamInfo extends AbstractVideoInfo {
     //in seconds. some metadata is not passed using a StreamInfo object!
     public int start_position = 0;
 
-    public List<Exception> errors = new Vector<>();
+    public List<Throwable> errors = new Vector<>();
 }

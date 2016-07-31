@@ -96,6 +96,7 @@
     <string name="could_not_setup_download_menu">Could not setup download menu.</string>
     <string name="live_streams_not_supported">This is a LIVE STREAM. These are not yet supported.</string>
     <string name="could_not_get_stream">Could not get any stream.</string>
+    <string name="could_not_load_image">Could not load Image</string>
     <!-- error activity -->
     <string name="sorry_string">Sorry that should not happen.</string>
     <string name="guru_meditation" translatable="false">Guru Meditation.</string>
