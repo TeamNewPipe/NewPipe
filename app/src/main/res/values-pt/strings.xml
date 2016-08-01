@@ -63,8 +63,8 @@
     <string name="use_tor_title">Utilizar Tor</string>
     <string name="use_tor_summary">(Experimental) Utilizar a rede Tor para ter mais privacidade (ainda não é suportada a emissão de vídeos).</string>
 <string name="download_path_audio_title">Descarga de áudio</string>
-    <string name="download_path_audio_summary">Local para guardar o áudio descarregado</string>
-    <string name="download_path_audio_dialog_title">Digite o caminho para os arquivos de áudio.</string>
+    <string name="download_path_audio_summary">Local para guardar o áudio descarregado.</string>
+    <string name="download_path_audio_dialog_title">Digite o caminho para os ficheiros de áudio.</string>
 
     <string name="err_dir_create">Não foi possível criar o diretório \'%1$s\'</string>
     <string name="info_dir_created">Diretório \'%1$s\' criado com sucesso</string>
@@ -123,34 +123,34 @@
     <string name="report_error">Reportar um erro</string>
     <string name="user_report">Relatório</string>
 
-    <string name="downloads">Downloads</string>
-    <string name="downloads_title">Downloads</string>
-    <string name="settings_title">Configurações</string>
+    <string name="downloads">Descargas</string>
+    <string name="downloads_title">Descargas</string>
+    <string name="settings_title">Definições</string>
     <string name="error_report_title">Relatório de erro</string>
 
-    <string name="start">Início</string>
+    <string name="start">Iniciar</string>
     <string name="pause">Pausa</string>
-    <string name="view">Visualizar</string>
-    <string name="delete">Deletar</string>
-    <string name="checksum">Soma de verificação</string>
+    <string name="view">Ver</string>
+    <string name="delete">Apagar</string>
+    <string name="checksum">Checksum</string>
 
     <string name="add">Nova missão</string>
-    <string name="switch_mode">Alternar entre lista e grade</string>
+    <string name="switch_mode">Alternar entre lista e grelha</string>
 
 
-    <string name="msg_name">Nome do arquivo</string>
+    <string name="msg_name">Nome do ficheiro</string>
     <string name="msg_error">Erro</string>
     <string name="msg_server_unsupported">Servidor não suportado</string>
-    <string name="msg_exists">Arquivo já existe</string>
+    <string name="msg_exists">Ficheiro já existe</string>
     <string name="msg_url_malform">URL deformada ou internet não disponível</string>
     <string name="msg_running_detail">Toque para detalhes</string>
     <string name="msg_wait">Por favor aguarde...</string>
     <string name="msg_copied">Copiado para a área de transferência.</string>
-    <string name="no_available_dir">Por favor selecione um diretório de download disponível.</string>
+    <string name="no_available_dir">Por favor selecione um diretório disponível.</string>
 
     <string name="finish">OK</string>
-    <string name="msg_url">URL de download</string>
+    <string name="msg_url">URL da descarga</string>
     <string name="msg_threads">Tópicos</string>
-    <string name="msg_fetch_filename">Buscar um nome de arquivo</string>
+    <string name="msg_fetch_filename">Obter nome de ficheiro</string>
     <string name="msg_running">Descarga NewPipe</string>
     </resources>
