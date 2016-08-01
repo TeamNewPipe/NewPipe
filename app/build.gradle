@@ -31,6 +31,7 @@ android {
 }
 
 dependencies {
+    testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.1.1'
     compile 'com.android.support:support-v4:24.1.1'
     compile 'com.android.support:design:24.1.1'
@@ -44,5 +45,4 @@ dependencies {
     compile 'com.google.android.exoplayer:exoplayer:r1.5.5'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.nononsenseapps:filepicker:2.0.5'
-    testCompile 'junit:junit:4.12'
 }
