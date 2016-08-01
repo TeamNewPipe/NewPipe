@@ -122,7 +122,11 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
 
     @Override
     public String getFeedUrl() throws ParsingException {
-        return siteUrl + "/feed";
+        try {
+            return doc.select("link[title=\"RSS\"]").first().attr("abs:href");
+        } catch(Exception e) {
+            throw new ParsingException("Could not get feed url", e);
+        }
     }
 
     private String getUserUrl() throws ParsingException {

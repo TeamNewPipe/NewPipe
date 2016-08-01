@@ -147,7 +147,7 @@ public class ChannelActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Log.d(TAG, info.feed_url);
-                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(info.feed_url + ".rss"));
+                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(info.feed_url));
                     startActivity(i);
                 }
             });
