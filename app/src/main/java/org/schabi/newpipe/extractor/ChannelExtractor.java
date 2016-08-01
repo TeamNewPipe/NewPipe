@@ -39,11 +39,15 @@ public abstract class ChannelExtractor {
     public String getUrl() { return url; }
     public UrlIdHandler getUrlIdHandler() { return urlIdHandler; }
     public Downloader getDownloader() { return downloader; }
+    public StreamPreviewInfoCollector getStreamPreviewInfoCollector() {
+        return previewInfoCollector;
+    }
 
     public abstract String getChannelName() throws ParsingException;
     public abstract String getAvatarUrl() throws ParsingException;
     public abstract String getBannerUrl() throws ParsingException;
     public abstract String getFeedUrl() throws ParsingException;
+    public abstract StreamPreviewInfoCollector getStreams() throws ParsingException;
     public int getServiceId() {
         return serviceId;
     }

@@ -262,31 +262,13 @@ public class VideoItemDetailFragment extends Fragment {
         }
     }
 
-    private class ThumbnailLoadingListener implements ImageLoadingListener {
-        @Override
-        public void onLoadingStarted(String imageUri, View view) {}
-
-        @Override
-        public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-            if(getContext() != null) {
-                Toast.makeText(VideoItemDetailFragment.this.getActivity(),
-                        R.string.could_not_load_thumbnails, Toast.LENGTH_LONG).show();
-            }
-            failReason.getCause().printStackTrace();
-        }
-
-        @Override
-        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {}
-
-        @Override
-        public void onLoadingCancelled(String imageUri, View view) {}
-    }
 
     private void updateInfo(final StreamInfo info) {
         try {
             Context c = getContext();
             VideoInfoItemViewCreator videoItemViewCreator =
-                    new VideoInfoItemViewCreator(LayoutInflater.from(getActivity()));
+                    new VideoInfoItemViewCreator(LayoutInflater.from(getActivity()),
+                            getActivity(), rootView);
 
             RelativeLayout textContentLayout =
                     (RelativeLayout) activity.findViewById(R.id.detailTextContentLayout);
@@ -422,7 +404,7 @@ public class VideoItemDetailFragment extends Fragment {
             });
             textContentLayout.setVisibility(View.VISIBLE);
 
-            if(info.related_videos != null && !info.related_videos.isEmpty()) {
+            if(info.related_streams != null && !info.related_streams.isEmpty()) {
                 initSimilarVideos(info, videoItemViewCreator);
             } else {
                 activity.findViewById(R.id.detailSimilarTitle).setVisibility(View.GONE);
@@ -487,10 +469,6 @@ public class VideoItemDetailFragment extends Fragment {
 
                         @Override
                         public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                            Toast.makeText(VideoItemDetailFragment.this.getActivity(),
-                                    R.string.could_not_load_thumbnails, Toast.LENGTH_LONG).show();
-                            failReason.getCause().printStackTrace();
-
                             ErrorActivity.reportError(getActivity(),
                                     failReason.getCause(), null, rootView,
                                     ErrorActivity.ErrorInfo.make(ErrorActivity.LOAD_IMAGE,
@@ -512,11 +490,13 @@ public class VideoItemDetailFragment extends Fragment {
         }
         if(info.uploader_thumbnail_url != null && !info.uploader_thumbnail_url.isEmpty()) {
             imageLoader.displayImage(info.uploader_thumbnail_url,
-                    uploaderThumb, displayImageOptions, new ThumbnailLoadingListener());
+                    uploaderThumb, displayImageOptions,
+                    new ImageErrorLoadingListener(activity, rootView, info.service_id));
         }
         if(info.thumbnail_url != null && !info.thumbnail_url.isEmpty() && info.next_video != null) {
             imageLoader.displayImage(info.next_video.thumbnail_url,
-                    nextVideoThumb, displayImageOptions, new ThumbnailLoadingListener());
+                    nextVideoThumb, displayImageOptions,
+                    new ImageErrorLoadingListener(activity, rootView, info.service_id));
         }
     }
 
@@ -710,38 +690,15 @@ public class VideoItemDetailFragment extends Fragment {
 
     private void initSimilarVideos(final StreamInfo info, VideoInfoItemViewCreator videoItemViewCreator) {
         LinearLayout similarLayout = (LinearLayout) activity.findViewById(R.id.similarVideosView);
-        ArrayList<StreamPreviewInfo> similar = new ArrayList<>(info.related_videos);
-        for (final StreamPreviewInfo item : similar) {
-            View similarView = videoItemViewCreator
+        ArrayList<StreamPreviewInfo> similarStreamsList = new ArrayList<>(info.related_streams);
+
+        for (final StreamPreviewInfo item : similarStreamsList) {
+            View itemView = videoItemViewCreator
                     .getViewFromVideoInfoItem(null, similarLayout, item);
 
-            similarView.setClickable(true);
-            similarView.setFocusable(true);
-            int[] attrs = new int[]{R.attr.selectableItemBackground};
-            TypedArray typedArray = activity.obtainStyledAttributes(attrs);
-            int backgroundResource = typedArray.getResourceId(0, 0);
-            similarView.setBackgroundResource(backgroundResource);
-            typedArray.recycle();
+            itemView = videoItemViewCreator.setupView(itemView, item);
 
-            similarView.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    if (event.getAction() == MotionEvent.ACTION_UP) {
-                        Intent detailIntent = new Intent(activity, VideoItemDetailActivity.class);
-                        detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, item.webpage_url);
-                        detailIntent.putExtra(
-                                VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
-                        startActivity(detailIntent);
-                        return true;
-                    }
-                    return false;
-                }
-            });
-
-            similarLayout.addView(similarView);
-            ImageView rthumb = (ImageView)similarView.findViewById(R.id.itemThumbnailView);
-            imageLoader.displayImage(item.thumbnail_url, rthumb,
-                    displayImageOptions, new ThumbnailLoadingListener());
+            similarLayout.addView(itemView);
         }
     }
 

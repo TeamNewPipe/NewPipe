@@ -1,5 +1,6 @@
 package org.schabi.newpipe;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -39,12 +40,12 @@ class VideoListAdapter extends BaseAdapter {
     private Vector<StreamPreviewInfo> videoList = new Vector<>();
     private final ListView listView;
 
-    public VideoListAdapter(Context context, VideoItemListFragment videoListFragment) {
-        viewCreator = new VideoInfoItemViewCreator(LayoutInflater.from(context));
+    public VideoListAdapter(Activity activity, VideoItemListFragment videoListFragment) {
+        viewCreator = new VideoInfoItemViewCreator(LayoutInflater.from(activity), activity, null);
         this.listView = videoListFragment.getListView();
         this.listView.setDivider(null);
         this.listView.setDividerHeight(0);
-        this.context = context;
+        this.context = activity;
     }
 
     public void addVideoList(List<StreamPreviewInfo> videos) {

@@ -55,6 +55,13 @@ public class ChannelInfo {
         } catch(Exception e) {
             info.errors.add(e);
         }
+        try {
+            StreamPreviewInfoCollector c = extractor.getStreams();
+            info.related_streams = c.getItemList();
+            info.errors.addAll(c.getErrors());
+        } catch(Exception e) {
+            info.errors.add(e);
+        }
 
         return info;
     }
@@ -64,6 +71,7 @@ public class ChannelInfo {
     public String avatar_url = "";
     public String banner_url = "";
     public String feed_url = "";
+    public List<StreamPreviewInfo> related_streams = null;
 
     public List<Throwable> errors = new Vector<>();
 }

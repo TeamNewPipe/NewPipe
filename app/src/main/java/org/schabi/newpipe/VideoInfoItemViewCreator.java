@@ -1,6 +1,10 @@
 package org.schabi.newpipe;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.res.TypedArray;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -33,15 +37,20 @@ import org.schabi.newpipe.extractor.StreamPreviewInfo;
  */
 
 public class VideoInfoItemViewCreator {
+
+    private View rootView = null; //root view of the activty
+    private Activity activity = null;
     private final LayoutInflater inflater;
     private ImageLoader imageLoader = ImageLoader.getInstance();
     private DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().cacheInMemory(true).build();
 
-    public VideoInfoItemViewCreator(LayoutInflater inflater) {
+    public VideoInfoItemViewCreator(LayoutInflater inflater, Activity a, View rootView) {
         this.inflater = inflater;
+        activity = a;
+        this.rootView = rootView;
     }
 
-    public View getViewFromVideoInfoItem(View convertView, ViewGroup parent, StreamPreviewInfo info) {
+    public View getViewFromVideoInfoItem(View convertView, ViewGroup parent, final StreamPreviewInfo info) {
         ViewHolder holder;
 
         // generate holder
@@ -59,15 +68,7 @@ public class VideoInfoItemViewCreator {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        // fill with information
-
-        /*
-        if(info.thumbnail == null) {
-            holder.itemThumbnailView.setImageResource(R.drawable.dummy_thumbnail);
-        } else {
-            holder.itemThumbnailView.setImageBitmap(info.thumbnail);
-        }
-        */
+        // fill holder with information
         holder.itemVideoTitleView.setText(info.title);
         if(info.uploader != null && !info.uploader.isEmpty()) {
             holder.itemUploaderView.setText(info.uploader);
@@ -96,6 +97,39 @@ public class VideoInfoItemViewCreator {
         if(info.thumbnail_url != null && !info.thumbnail_url.isEmpty()) {
             imageLoader.displayImage(info.thumbnail_url, holder.itemThumbnailView, displayImageOptions);
         }
+
+        return convertView;
+    }
+
+    public View setupView(View convertView, final StreamPreviewInfo info) {
+        convertView.setClickable(true);
+        convertView.setFocusable(true);
+
+
+        int[] attrs = new int[]{R.attr.selectableItemBackground};
+        TypedArray typedArray = activity.obtainStyledAttributes(attrs);
+        int backgroundResource = typedArray.getResourceId(0, 0);
+        convertView.setBackgroundResource(backgroundResource);
+        typedArray.recycle();
+
+        convertView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    Intent detailIntent = new Intent(activity, VideoItemDetailActivity.class);
+                    detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, info.webpage_url);
+                    detailIntent.putExtra(
+                            VideoItemDetailFragment.STREAMING_SERVICE, info.service_id);
+                    activity.startActivity(detailIntent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        ImageView rthumb = (ImageView) convertView.findViewById(R.id.itemThumbnailView);
+        imageLoader.displayImage(info.thumbnail_url, rthumb,
+                displayImageOptions, new ImageErrorLoadingListener(activity, rootView, info.service_id));
 
         return convertView;
     }

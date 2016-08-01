@@ -253,7 +253,7 @@ public class StreamInfo extends AbstractVideoInfo {
         try {
             // get related videos
             StreamPreviewInfoCollector c = extractor.getRelatedVideos();
-            streamInfo.related_videos = c.getItemList();
+            streamInfo.related_streams = c.getItemList();
             streamInfo.errors.addAll(c.getErrors());
         } catch(Exception e) {
             streamInfo.addException(e);
@@ -281,7 +281,7 @@ public class StreamInfo extends AbstractVideoInfo {
     public int dislike_count = -1;
     public String average_rating = "";
     public StreamPreviewInfo next_video = null;
-    public List<StreamPreviewInfo> related_videos = null;
+    public List<StreamPreviewInfo> related_streams = null;
     //in seconds. some metadata is not passed using a StreamInfo object!
     public int start_position = 0;
 

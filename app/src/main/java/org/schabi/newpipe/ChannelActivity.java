@@ -7,12 +7,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -25,9 +26,11 @@ import org.schabi.newpipe.extractor.ChannelInfo;
 import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.StreamingService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ChannelActivity extends AppCompatActivity {
 
@@ -105,6 +108,16 @@ public class ChannelActivity extends AppCompatActivity {
                             updateUi(info);
                         }
                     });
+
+                    // look for non critical errors during extraction
+                    if(info != null &&
+                            !info.errors.isEmpty()) {
+                        Log.e(TAG, "OCCURRED ERRORS DURING EXTRACTION:");
+                        for (Throwable e : info.errors) {
+                            e.printStackTrace();
+                            Log.e(TAG, "------");
+                        }
+                    }
                 } catch(IOException ioe) {
                     postNewErrorToast(h, R.string.network_error);
                     ioe.printStackTrace();
@@ -124,10 +137,12 @@ public class ChannelActivity extends AppCompatActivity {
 
 
     private void updateUi(final ChannelInfo info) {
+        VideoInfoItemViewCreator viCreator =
+                new VideoInfoItemViewCreator(LayoutInflater.from(this), this, rootView);
         CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.channel_toolbar_layout);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         ImageView channelBanner = (ImageView) findViewById(R.id.channel_banner_image);
-        View channelContentView = (View) findViewById(R.id.channel_content_view);
+        View channelContentView = findViewById(R.id.channel_content_view);
         FloatingActionButton feedButton = (FloatingActionButton) findViewById(R.id.channel_rss_fab);
         ImageView avatarView = (ImageView) findViewById(R.id.channel_avatar_view);
         ImageView haloView = (ImageView) findViewById(R.id.channel_avatar_halo);
@@ -162,6 +177,19 @@ public class ChannelActivity extends AppCompatActivity {
             });
         } else {
             feedButton.setVisibility(View.GONE);
+        }
+
+        initVideos(info, viCreator);
+    }
+
+    private void initVideos(final ChannelInfo info, VideoInfoItemViewCreator viCreator) {
+        LinearLayout streamLayout = (LinearLayout) findViewById(R.id.channel_streams_view);
+        ArrayList<StreamPreviewInfo> streamsList = new ArrayList<>(info.related_streams);
+
+        for(final StreamPreviewInfo streamInfo : streamsList) {
+            View itemView = viCreator.getViewFromVideoInfoItem(null, streamLayout, streamInfo);
+            itemView = viCreator.setupView(itemView, streamInfo);
+            streamLayout.addView(itemView);
         }
     }
 

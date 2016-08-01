@@ -94,32 +94,13 @@
         android:layout_gravity="fill_vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/channel_content_view"
-        android:visibility="gone">
+        android:visibility="visible">
 
-        <RelativeLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Lorem ipsum dolor sit amet, sed in vocent nonumes maluisset. No dicant munere apeirian qui, iisque invenire ius in, sea duis illud dolor ex. Ei cum dolorem conclusionemque, in persius feugait efficiendi est, duo cu nonumy graeco ponderum. Efficiendi interpretaris ei pro. Ea salutandi suavitate qualisque qui.
-
-Cum ad sumo modus, duo et libris posidonium reprehendunt. Ex nam ornatus delectus. Eum quidam repudiandae ne. Te vidit senserit eos, has justo copiosae probatus ne. Ea vim nisl aeterno fabulas, per an legimus laoreet, natum abhorreant sit no. Epicurei cotidieque cu eum, novum tantas at has, ad eam malis reprimique intellegam.
-
-Posse doming consulatu no mel. Eu tale iudico his. Nibh nostrum ea mei, te amet esse consequat mea. Corrumpit iracundia an eam, omnesque suavitate erroribus mel ei. Ea suavitate urbanitas nec, mei te dolore menandri theophrastus, ad quaeque delicata vix.
-
-Has sale mucius menandri eu, pri veniam partem deterruisset ei. In nihil nominavi accusata mea, te sit quis veniam. Nam dissentiet conclusionemque id. Ex novum verterem usu.
-
-Eum fastidii consulatu cu. In nobis iuvaret usu, paulo tincidunt no usu, minim corpora his te. Nam graeco delenit omittam cu. Et sed ipsum fastidii, mea cu altera ullamcorper. Sea id altera menandri deseruisse, munere audire utroque cu pri. Nec solet facilis id. Mucius delectus eu vis, has in augue veniam.
-Lorem ipsum dolor sit amet, sed in vocent nonumes maluisset. No dicant munere apeirian qui, iisque invenire ius in, sea duis illud dolor ex. Ei cum dolorem conclusionemque, in persius feugait efficiendi est, duo cu nonumy graeco ponderum. Efficiendi interpretaris ei pro. Ea salutandi suavitate qualisque qui.
-
-Cum ad sumo modus, duo et libris posidonium reprehendunt. Ex nam ornatus delectus. Eum quidam repudiandae ne. Te vidit senserit eos, has justo copiosae probatus ne. Ea vim nisl aeterno fabulas, per an legimus laoreet, natum abhorreant sit no. Epicurei cotidieque cu eum, novum tantas at has, ad eam malis reprimique intellegam.
-
-Posse doming consulatu no mel. Eu tale iudico his. Nibh nostrum ea mei, te amet esse consequat mea. Corrumpit iracundia an eam, omnesque suavitate erroribus mel ei. Ea suavitate urbanitas nec, mei te dolore menandri theophrastus, ad quaeque delicata vix.
-
-Has sale mucius menandri eu, pri veniam partem deterruisset ei. In nihil nominavi accusata mea, te sit quis veniam. Nam dissentiet conclusionemque id. Ex novum verterem usu.
-
-Eum fastidii consulatu cu. In nobis iuvaret usu, paulo tincidunt no usu, minim corpora his te. Nam graeco delenit omittam cu. Et sed ipsum fastidii, mea cu altera ullamcorper. Sea id altera menandri deseruisse, munere audire utroque cu pri. Nec solet facilis id. Mucius delectus eu vis, has in augue veniam."/>
-        </RelativeLayout>
+            android:layout_height="match_parent"
+            android:id="@+id/channel_streams_view">
+        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

@@ -202,8 +202,9 @@ public class VideoItemListFragment extends ListFragment {
             setListShown(true);
             updateList(result.resultList);
             if(!result.suggestion.isEmpty()) {
+
                 Toast.makeText(getActivity(),
-                        String.format(getString(R.string.did_you_mean), result.suggestion),
+                        String.format(getActivity().getString(R.string.did_you_mean), result.suggestion),
                         Toast.LENGTH_LONG).show();
             }
         }

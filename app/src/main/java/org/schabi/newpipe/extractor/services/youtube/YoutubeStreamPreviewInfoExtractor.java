@@ -66,8 +66,6 @@ public class YoutubeStreamPreviewInfoExtractor implements StreamPreviewInfoExtra
             } else {
                 throw new ParsingException("Could not get Duration: " + getTitle(), e);
             }
-
-
         }
     }
 
