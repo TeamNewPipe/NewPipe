@@ -129,6 +129,8 @@ public class ChannelActivity extends AppCompatActivity {
         ImageView channelBanner = (ImageView) findViewById(R.id.channel_banner_image);
         View channelContentView = (View) findViewById(R.id.channel_content_view);
         FloatingActionButton feedButton = (FloatingActionButton) findViewById(R.id.channel_rss_fab);
+        ImageView avatarView = (ImageView) findViewById(R.id.channel_avatar_view);
+        ImageView haloView = (ImageView) findViewById(R.id.channel_avatar_halo);
 
         progressBar.setVisibility(View.GONE);
         channelContentView.setVisibility(View.VISIBLE);
@@ -139,6 +141,13 @@ public class ChannelActivity extends AppCompatActivity {
 
         if(info.banner_url != null && !info.banner_url.isEmpty()) {
             imageLoader.displayImage(info.banner_url, channelBanner,
+                    new FailedThumbnailListener(info.service_id));
+        }
+
+        if(info.avatar_url != null && !info.avatar_url.isEmpty()) {
+            avatarView.setVisibility(View.VISIBLE);
+            haloView.setVisibility(View.VISIBLE);
+            imageLoader.displayImage(info.avatar_url, avatarView,
                     new FailedThumbnailListener(info.service_id));
         }
 

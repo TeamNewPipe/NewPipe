@@ -24,6 +24,7 @@
             app:statusBarScrim="@color/light_youtube_dark_color"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
+
             <ImageView
                 android:id="@+id/channel_banner_image"
                 android:layout_width="match_parent"
@@ -32,6 +33,30 @@
                 android:scaleType="centerCrop"
                 android:background="@color/light_youtube_dark_color"
                 app:layout_collapseMode="parallax" />
+
+            <ImageView
+                android:id="@+id/channel_avatar_halo"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="28dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="38dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/white_circle"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/channel_avatar_view"
+                android:visibility="gone"
+                android:layout_width="@dimen/channel_avatar_size"
+                android:layout_height="@dimen/channel_avatar_size"
+                android:src="@drawable/buddy"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/cannel_toolbar"
