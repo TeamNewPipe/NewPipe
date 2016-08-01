@@ -101,29 +101,16 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
 
     @Override
     public String getBannerUrl() throws ParsingException {
-        String cssContent = "";
+
         try {
             Element el = doc.select("div[id=\"gh-banner\"]").first().select("style").first();
-            cssContent = el.html();
-            // todo: parse this using a css parser
-            /*
-            CSSStyleSheet sheet = cssParser.parseStyleSheet(
-                    new org.w3c.css.sac.InputSource(
-                            new StringReader(cssContent)), null, null);
-            CSSRuleList rules = sheet.getCssRules();
-            for (int i = 0; i < rules.getLength(); i++) {
-                final CSSRule rule = rules.item(i);
-                System.out.println(rule.getCssText());
-            }
-            */
+            String cssContent = el.html();
             String url = "https:" + Parser.matchGroup1("url\\((.*)\\)", cssContent);
             if(url.contains("s.ytimg.com")) {
                 return null;
             } else {
                 return url;
             }
-        /* } catch(CSSParseException csse) {
-            throw new ParsingException("Could not parse css: " + cssContent); */
         } catch(Exception e) {
             throw new ParsingException("Could not get Banner", e);
         }

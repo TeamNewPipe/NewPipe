@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
@@ -50,7 +49,6 @@ import java.util.Vector;
 
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.AudioStream;
-import org.schabi.newpipe.extractor.ChannelExtractor;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.ServiceList;
@@ -266,8 +264,8 @@ public class VideoItemDetailFragment extends Fragment {
     private void updateInfo(final StreamInfo info) {
         try {
             Context c = getContext();
-            VideoInfoItemViewCreator videoItemViewCreator =
-                    new VideoInfoItemViewCreator(LayoutInflater.from(getActivity()),
+            StreamInfoItemViewCreator videoItemViewCreator =
+                    new StreamInfoItemViewCreator(LayoutInflater.from(getActivity()),
                             getActivity(), rootView);
 
             RelativeLayout textContentLayout =
@@ -688,7 +686,7 @@ public class VideoItemDetailFragment extends Fragment {
         return 0;
     }
 
-    private void initSimilarVideos(final StreamInfo info, VideoInfoItemViewCreator videoItemViewCreator) {
+    private void initSimilarVideos(final StreamInfo info, StreamInfoItemViewCreator videoItemViewCreator) {
         LinearLayout similarLayout = (LinearLayout) activity.findViewById(R.id.similarVideosView);
         ArrayList<StreamPreviewInfo> similarStreamsList = new ArrayList<>(info.related_streams);
 

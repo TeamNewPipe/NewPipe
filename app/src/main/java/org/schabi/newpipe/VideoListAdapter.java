@@ -36,12 +36,12 @@ import java.util.Vector;
 
 class VideoListAdapter extends BaseAdapter {
     private final Context context;
-    private final VideoInfoItemViewCreator viewCreator;
+    private final StreamInfoItemViewCreator viewCreator;
     private Vector<StreamPreviewInfo> videoList = new Vector<>();
     private final ListView listView;
 
     public VideoListAdapter(Activity activity, VideoItemListFragment videoListFragment) {
-        viewCreator = new VideoInfoItemViewCreator(LayoutInflater.from(activity), activity, null);
+        viewCreator = new StreamInfoItemViewCreator(LayoutInflater.from(activity), activity, null);
         this.listView = videoListFragment.getListView();
         this.listView.setDivider(null);
         this.listView.setDividerHeight(0);

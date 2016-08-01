@@ -1,7 +1,6 @@
 package org.schabi.newpipe;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,8 +17,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import org.schabi.newpipe.extractor.ChannelExtractor;
 import org.schabi.newpipe.extractor.ChannelInfo;
@@ -34,39 +31,9 @@ import java.util.ArrayList;
 
 public class ChannelActivity extends AppCompatActivity {
 
+
     private static final String TAG = ChannelActivity.class.toString();
     private View rootView = null;
-
-    class FailedThumbnailListener implements ImageLoadingListener {
-
-        int serviceId = -1;
-
-        public FailedThumbnailListener(int serviceId) {
-            this.serviceId= serviceId;
-        }
-
-
-        @Override
-        public void onLoadingStarted(String imageUri, View view) {
-        }
-
-        @Override
-        public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-            ErrorActivity.reportError(ChannelActivity.this,
-                    failReason.getCause(), null, rootView,
-                    ErrorActivity.ErrorInfo.make(ErrorActivity.LOAD_IMAGE,
-                            ServiceList.getNameOfService(serviceId), imageUri,
-                            R.string.could_not_load_image));
-        }
-
-        @Override
-        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-        }
-
-        @Override
-        public void onLoadingCancelled(String imageUri, View view) {
-        }
-    }
 
     // intent const
     public static final String CHANNEL_URL = "channel_url";
@@ -137,8 +104,8 @@ public class ChannelActivity extends AppCompatActivity {
 
 
     private void updateUi(final ChannelInfo info) {
-        VideoInfoItemViewCreator viCreator =
-                new VideoInfoItemViewCreator(LayoutInflater.from(this), this, rootView);
+        StreamInfoItemViewCreator viCreator =
+                new StreamInfoItemViewCreator(LayoutInflater.from(this), this, rootView);
         CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.channel_toolbar_layout);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         ImageView channelBanner = (ImageView) findViewById(R.id.channel_banner_image);
@@ -156,14 +123,14 @@ public class ChannelActivity extends AppCompatActivity {
 
         if(info.banner_url != null && !info.banner_url.isEmpty()) {
             imageLoader.displayImage(info.banner_url, channelBanner,
-                    new FailedThumbnailListener(info.service_id));
+                    new ImageErrorLoadingListener(this, rootView ,info.service_id));
         }
 
         if(info.avatar_url != null && !info.avatar_url.isEmpty()) {
             avatarView.setVisibility(View.VISIBLE);
             haloView.setVisibility(View.VISIBLE);
             imageLoader.displayImage(info.avatar_url, avatarView,
-                    new FailedThumbnailListener(info.service_id));
+                    new ImageErrorLoadingListener(this, rootView ,info.service_id));
         }
 
         if(info.feed_url != null && !info.feed_url.isEmpty()) {
@@ -182,7 +149,7 @@ public class ChannelActivity extends AppCompatActivity {
         initVideos(info, viCreator);
     }
 
-    private void initVideos(final ChannelInfo info, VideoInfoItemViewCreator viCreator) {
+    private void initVideos(final ChannelInfo info, StreamInfoItemViewCreator viCreator) {
         LinearLayout streamLayout = (LinearLayout) findViewById(R.id.channel_streams_view);
         ArrayList<StreamPreviewInfo> streamsList = new ArrayList<>(info.related_streams);
 

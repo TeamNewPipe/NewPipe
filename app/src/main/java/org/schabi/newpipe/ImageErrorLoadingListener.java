@@ -15,7 +15,7 @@ import org.schabi.newpipe.extractor.ServiceList;
  * Created by Christian Schabesberger on 01.08.16.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * VideoInfoItemViewCreator.java is part of NewPipe.
+ * StreamInfoItemViewCreator.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

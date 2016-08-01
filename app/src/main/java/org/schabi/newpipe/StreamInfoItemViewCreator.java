@@ -20,7 +20,7 @@ import org.schabi.newpipe.extractor.StreamPreviewInfo;
  * Created by Christian Schabesberger on 24.10.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * VideoInfoItemViewCreator.java is part of NewPipe.
+ * StreamInfoItemViewCreator.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,16 @@ import org.schabi.newpipe.extractor.StreamPreviewInfo;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class VideoInfoItemViewCreator {
+public class StreamInfoItemViewCreator {
+
+    private class ViewHolder {
+        public ImageView itemThumbnailView;
+        public TextView itemVideoTitleView,
+                itemUploaderView,
+                itemDurationView,
+                itemUploadDateView,
+                itemViewCountView;
+    }
 
     private View rootView = null; //root view of the activty
     private Activity activity = null;
@@ -44,7 +53,7 @@ public class VideoInfoItemViewCreator {
     private ImageLoader imageLoader = ImageLoader.getInstance();
     private DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().cacheInMemory(true).build();
 
-    public VideoInfoItemViewCreator(LayoutInflater inflater, Activity a, View rootView) {
+    public StreamInfoItemViewCreator(LayoutInflater inflater, Activity a, View rootView) {
         this.inflater = inflater;
         activity = a;
         this.rootView = rootView;
@@ -95,11 +104,15 @@ public class VideoInfoItemViewCreator {
 
         holder.itemThumbnailView.setImageResource(R.drawable.dummy_thumbnail);
         if(info.thumbnail_url != null && !info.thumbnail_url.isEmpty()) {
-            imageLoader.displayImage(info.thumbnail_url, holder.itemThumbnailView, displayImageOptions);
+            imageLoader.displayImage(info.thumbnail_url,
+                    holder.itemThumbnailView,
+                    displayImageOptions,
+                    new ImageErrorLoadingListener(activity, rootView, info.service_id));
         }
 
         return convertView;
     }
+
 
     public View setupView(View convertView, final StreamPreviewInfo info) {
         convertView.setClickable(true);
@@ -134,12 +147,7 @@ public class VideoInfoItemViewCreator {
         return convertView;
     }
 
-    private class ViewHolder {
-        public ImageView itemThumbnailView;
-        public TextView itemVideoTitleView, itemUploaderView, itemDurationView, itemUploadDateView, itemViewCountView;
-    }
-
-    private String shortViewCount(Long viewCount){
+    public static String shortViewCount(Long viewCount){
         if(viewCount >= 1000000000){
             return Long.toString(viewCount/1000000000)+"B views";
         }else if(viewCount>=1000000){
