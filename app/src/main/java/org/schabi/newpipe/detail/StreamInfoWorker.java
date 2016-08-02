@@ -2,7 +2,6 @@ package org.schabi.newpipe.detail;
 
 import android.app.Activity;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 
@@ -15,7 +14,6 @@ import org.schabi.newpipe.extractor.StreamExtractor;
 import org.schabi.newpipe.extractor.StreamInfo;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
-import org.schabi.newpipe.search_fragment.StreamInfoListAdapter;
 
 import java.io.IOException;
 

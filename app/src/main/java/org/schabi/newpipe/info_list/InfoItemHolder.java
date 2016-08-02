@@ -1,4 +1,4 @@
-package org.schabi.newpipe.search_fragment;
+package org.schabi.newpipe.info_list;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,7 +10,7 @@ import org.schabi.newpipe.R;
 /**
  * Created by the-scrabi on 01.08.16.
  */
-public class StreamInfoItemHolder extends RecyclerView.ViewHolder {
+public class InfoItemHolder extends RecyclerView.ViewHolder {
 
     public ImageView itemThumbnailView;
     public TextView itemVideoTitleView,
@@ -20,7 +20,7 @@ public class StreamInfoItemHolder extends RecyclerView.ViewHolder {
             itemViewCountView;
     public View mainLayout;
 
-    public StreamInfoItemHolder(View v) {
+    public InfoItemHolder(View v) {
         super(v);
         itemThumbnailView = (ImageView) v.findViewById(R.id.itemThumbnailView);
         itemVideoTitleView = (TextView) v.findViewById(R.id.itemVideoTitleView);

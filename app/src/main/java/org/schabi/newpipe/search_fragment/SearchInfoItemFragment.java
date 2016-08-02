@@ -23,6 +23,7 @@ import org.schabi.newpipe.detail.VideoItemDetailActivity;
 import org.schabi.newpipe.detail.VideoItemDetailFragment;
 import org.schabi.newpipe.extractor.SearchResult;
 import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.info_list.InfoListAdapter;
 
 /**
  * Created by Christian Schabesberger on 02.08.16.
@@ -86,7 +87,7 @@ public class SearchInfoItemFragment extends Fragment {
     private SearchView searchView = null;
     private int pageNumber = 0;
     private SuggestionListAdapter suggestionListAdapter = null;
-    private StreamInfoListAdapter streamInfoListAdapter = null;
+    private InfoListAdapter infoListAdapter = null;
     private LinearLayoutManager streamInfoListLayoutManager = null;
     private RecyclerView recyclerView = null;
 
@@ -132,7 +133,7 @@ public class SearchInfoItemFragment extends Fragment {
         sw.setSearchWorkerResultListner(new SearchWorker.SearchWorkerResultListner() {
             @Override
             public void onResult(SearchResult result) {
-                streamInfoListAdapter.addVideoList(result.resultList);
+                infoListAdapter.addVideoList(result.resultList);
                 isLoading = false;
             }
 
@@ -166,9 +167,9 @@ public class SearchInfoItemFragment extends Fragment {
             streamInfoListLayoutManager = new LinearLayoutManager(context);
             recyclerView.setLayoutManager(streamInfoListLayoutManager);
 
-            streamInfoListAdapter = new StreamInfoListAdapter(getActivity(),
+            infoListAdapter = new InfoListAdapter(getActivity(),
                     getActivity().findViewById(android.R.id.content));
-            streamInfoListAdapter.setOnItemSelectedListener(new StreamInfoListAdapter.OnItemSelectedListener() {
+            infoListAdapter.setOnItemSelectedListener(new InfoListAdapter.OnItemSelectedListener() {
                 @Override
                 public void selected(String url) {
                     Intent i = new Intent(getActivity(), VideoItemDetailActivity.class);
@@ -177,7 +178,7 @@ public class SearchInfoItemFragment extends Fragment {
                     getActivity().startActivity(i);
                 }
             });
-            recyclerView.setAdapter(streamInfoListAdapter);
+            recyclerView.setAdapter(infoListAdapter);
 
 
             recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -241,7 +242,7 @@ public class SearchInfoItemFragment extends Fragment {
     }
 
     private void search(String query) {
-        streamInfoListAdapter.clearVideoList();
+        infoListAdapter.clearVideoList();
         pageNumber = 0;
         search(query, pageNumber);
     }

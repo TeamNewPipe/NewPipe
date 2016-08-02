@@ -1,4 +1,4 @@
-package org.schabi.newpipe.search_fragment;
+package org.schabi.newpipe.info_list;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
@@ -21,7 +21,7 @@ import java.util.Vector;
 /**
  * Created by the-scrabi on 01.08.16.
  */
-public class StreamInfoListAdapter extends RecyclerView.Adapter<StreamInfoItemHolder> {
+public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
 
     public interface OnItemSelectedListener {
         void selected(String url);
@@ -37,7 +37,7 @@ public class StreamInfoListAdapter extends RecyclerView.Adapter<StreamInfoItemHo
 
 
 
-    StreamInfoListAdapter(Activity a, View rootView) {
+    public InfoListAdapter(Activity a, View rootView) {
         activity = a;
         this.rootView = rootView;
     }
@@ -62,15 +62,15 @@ public class StreamInfoListAdapter extends RecyclerView.Adapter<StreamInfoItemHo
     }
 
     @Override
-    public StreamInfoItemHolder onCreateViewHolder(ViewGroup parent, int i) {
+    public InfoItemHolder onCreateViewHolder(ViewGroup parent, int i) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.video_item, parent, false);
 
-        return new StreamInfoItemHolder(itemView);
+        return new InfoItemHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(StreamInfoItemHolder holder, int i) {
+    public void onBindViewHolder(InfoItemHolder holder, int i) {
         final StreamPreviewInfo info = streamList.get(i);
         // fill holder with information
         holder.itemVideoTitleView.setText(info.title);

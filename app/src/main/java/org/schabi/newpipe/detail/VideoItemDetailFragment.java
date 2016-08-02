@@ -10,12 +10,13 @@ import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -28,14 +29,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.MenuItem;
 import android.widget.Toast;
-
-import java.io.IOException;
 
 import com.google.android.exoplayer.util.Util;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -48,7 +46,6 @@ import java.util.Vector;
 
 import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.ChannelActivity;
-import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.ErrorActivity;
 import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.Localization;
@@ -57,14 +54,11 @@ import org.schabi.newpipe.StreamInfoItemViewCreator;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.AudioStream;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.ServiceList;
-import org.schabi.newpipe.extractor.StreamExtractor;
 import org.schabi.newpipe.extractor.StreamInfo;
 import org.schabi.newpipe.extractor.StreamPreviewInfo;
-import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.VideoStream;
-import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
+import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.PlayVideoActivity;
 import org.schabi.newpipe.player.ExoPlayerActivity;
@@ -123,6 +117,7 @@ public class VideoItemDetailFragment extends Fragment {
 
     private View rootView = null;
 
+    private InfoListAdapter similarStreamsAdapter = null;
 
     public interface OnInvokeCreateOptionsMenuListener {
         void createOptionsMenu();
@@ -275,7 +270,7 @@ public class VideoItemDetailFragment extends Fragment {
                 initSimilarVideos(info, videoItemViewCreator);
             } else {
                 activity.findViewById(R.id.detailSimilarTitle).setVisibility(View.GONE);
-                activity.findViewById(R.id.similarVideosView).setVisibility(View.GONE);
+                activity.findViewById(R.id.similar_streams_view).setVisibility(View.GONE);
             }
 
             setupActionBarHandler(info);
@@ -556,17 +551,7 @@ public class VideoItemDetailFragment extends Fragment {
     }
 
     private void initSimilarVideos(final StreamInfo info, StreamInfoItemViewCreator videoItemViewCreator) {
-        LinearLayout similarLayout = (LinearLayout) activity.findViewById(R.id.similarVideosView);
-        ArrayList<StreamPreviewInfo> similarStreamsList = new ArrayList<>(info.related_streams);
-
-        for (final StreamPreviewInfo item : similarStreamsList) {
-            View itemView = videoItemViewCreator
-                    .getViewFromVideoInfoItem(null, similarLayout, item);
-
-            itemView = videoItemViewCreator.setupView(itemView, item);
-
-            similarLayout.addView(itemView);
-        }
+        similarStreamsAdapter.addVideoList(info.related_streams);
     }
 
     private void onErrorBlockedByGema() {
@@ -720,6 +705,21 @@ public class VideoItemDetailFragment extends Fragment {
                     }
                 });
             }
+
+            similarStreamsAdapter = new InfoListAdapter(getActivity(), rootView);
+            RecyclerView rv = (RecyclerView) getActivity().findViewById(R.id.similar_streams_view);
+            rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+            rv.setAdapter(similarStreamsAdapter);
+            similarStreamsAdapter.setOnItemSelectedListener(new InfoListAdapter.OnItemSelectedListener() {
+                @Override
+                public void selected(String url) {
+                    Intent detailIntent = new Intent(activity, VideoItemDetailActivity.class);
+                    detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, url);
+                    detailIntent.putExtra(
+                            VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
+                    activity.startActivity(detailIntent);
+                }
+            });
         }
     }
 
@@ -820,10 +820,5 @@ public class VideoItemDetailFragment extends Fragment {
     private void postNewErrorToast(final int stringResource) {
         Toast.makeText(VideoItemDetailFragment.this.getActivity(),
                 stringResource, Toast.LENGTH_LONG).show();
-    }
-
-    private void postNewErrorToast(final String message) {
-        Toast.makeText(VideoItemDetailFragment.this.getActivity(),
-                message, Toast.LENGTH_LONG).show();
     }
 }
