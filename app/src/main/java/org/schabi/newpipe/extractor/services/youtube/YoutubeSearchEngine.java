@@ -91,7 +91,6 @@ public class YoutubeSearchEngine extends SearchEngine {
             site = downloader.download(url);
         }
 
-
         Document doc = Jsoup.parse(site, url);
         Element list = doc.select("ol[class=\"item-section\"]").first();
 

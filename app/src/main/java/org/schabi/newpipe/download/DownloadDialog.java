@@ -25,7 +25,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import org.schabi.newpipe.App;
-import org.schabi.newpipe.NewPipeSettings;
 import org.schabi.newpipe.R;
 
 import java.io.File;

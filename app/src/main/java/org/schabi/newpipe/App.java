@@ -2,11 +2,11 @@ package org.schabi.newpipe;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
+import org.schabi.newpipe.settings.SettingsActivity;
 
 import info.guardianproject.netcipher.NetCipher;
 import info.guardianproject.netcipher.proxy.OrbotHelper;

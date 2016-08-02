@@ -1,4 +1,4 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.detail;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,8 +11,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 
+import org.schabi.newpipe.R;
+import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.StreamInfo;
 import org.schabi.newpipe.extractor.VideoStream;
 
 import java.util.List;

@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.schabi.newpipe.detail.VideoItemDetailActivity;
+import org.schabi.newpipe.detail.VideoItemDetailFragment;
 import org.schabi.newpipe.extractor.AbstractVideoInfo;
 import org.schabi.newpipe.extractor.StreamPreviewInfo;
 

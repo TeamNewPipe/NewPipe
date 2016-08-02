@@ -1,4 +1,4 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.detail;
 
 import android.app.Activity;
 import android.content.Context;
@@ -46,7 +46,14 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
-
+import org.schabi.newpipe.ActivityCommunicator;
+import org.schabi.newpipe.ChannelActivity;
+import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.ErrorActivity;
+import org.schabi.newpipe.ImageErrorLoadingListener;
+import org.schabi.newpipe.Localization;
+import org.schabi.newpipe.R;
+import org.schabi.newpipe.StreamInfoItemViewCreator;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.AudioStream;
 import org.schabi.newpipe.extractor.MediaFormat;

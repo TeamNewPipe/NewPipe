@@ -15,13 +15,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.schabi.newpipe.ErrorActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.VideoItemDetailActivity;
-import org.schabi.newpipe.VideoItemDetailFragment;
+import org.schabi.newpipe.detail.VideoItemDetailActivity;
+import org.schabi.newpipe.detail.VideoItemDetailFragment;
 import org.schabi.newpipe.extractor.SearchResult;
 import org.schabi.newpipe.extractor.ServiceList;
 

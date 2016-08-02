@@ -18,13 +18,15 @@
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.schabi.newpipe;
+package org.schabi.newpipe.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+
+import org.schabi.newpipe.R;
 
 import java.io.File;
 

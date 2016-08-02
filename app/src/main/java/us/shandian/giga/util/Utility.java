@@ -17,9 +17,8 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import org.schabi.newpipe.NewPipeSettings;
+import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.R;
-import us.shandian.giga.get.DownloadMission;
 
 import com.nononsenseapps.filepicker.FilePickerActivity;
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;

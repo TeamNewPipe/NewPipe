@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".VideoItemDetailActivity"
+            android:name=".detail.VideoItemDetailActivity"
             android:label="@string/title_videoitem_detail"
             android:theme="@style/AppTheme">
             <meta-data
@@ -112,7 +112,7 @@
             android:label="@string/background_player_name" />
 
         <activity
-            android:name=".SettingsActivity"
+            android:name=".settings.SettingsActivity"
             android:label="@string/settings_activity_title" />
         <activity
             android:name=".PanicResponderActivity"

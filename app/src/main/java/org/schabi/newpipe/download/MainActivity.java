@@ -8,14 +8,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,7 +28,7 @@ import android.widget.Toast;
 
 import org.schabi.newpipe.ErrorActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.SettingsActivity;
+import org.schabi.newpipe.settings.SettingsActivity;
 
 import java.io.File;
 import java.util.Vector;

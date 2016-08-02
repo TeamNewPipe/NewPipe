@@ -1,4 +1,4 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.detail;
 
 import android.content.Intent;
 import android.media.AudioManager;
@@ -11,6 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import org.schabi.newpipe.App;
+import org.schabi.newpipe.MainActivity;
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 

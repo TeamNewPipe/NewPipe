@@ -1,4 +1,4 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.settings;
 
 import android.app.Activity;
 import android.content.ClipData;
@@ -15,6 +15,9 @@ import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 
 import com.nononsenseapps.filepicker.FilePickerActivity;
+
+import org.schabi.newpipe.App;
+import org.schabi.newpipe.R;
 
 import java.util.ArrayList;
 

@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
-import org.schabi.newpipe.NewPipeSettings;
+import org.schabi.newpipe.settings.NewPipeSettings;
 
 import java.io.File;
 import java.io.RandomAccessFile;
