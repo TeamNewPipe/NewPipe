@@ -130,144 +130,6 @@ public class VideoItemDetailFragment extends Fragment {
 
     private OnInvokeCreateOptionsMenuListener onInvokeCreateOptionsMenuListener;
 
-    private class VideoExtractorRunnable implements Runnable {
-        private final Handler h = new Handler();
-        private StreamExtractor streamExtractor;
-        private final StreamingService service;
-        private final String videoUrl;
-
-        public VideoExtractorRunnable(String videoUrl, StreamingService service) {
-            this.service = service;
-            this.videoUrl = videoUrl;
-        }
-
-        @Override
-        public void run() {
-            StreamInfo streamInfo = null;
-            try {
-                streamExtractor = service.getExtractorInstance(videoUrl, new Downloader());
-                streamInfo = StreamInfo.getVideoInfo(streamExtractor, new Downloader());
-
-                h.post(new VideoResultReturnedRunnable(streamInfo));
-
-                // look for errors during extraction
-                // this if statement only covers extra information.
-                // if these are not available or caused an error, they are just not available
-                // but don't render the stream information unusalbe.
-                if(streamInfo != null &&
-                        !streamInfo.errors.isEmpty()) {
-                    Log.e(TAG, "OCCURRED ERRORS DURING EXTRACTION:");
-                    for (Throwable e : streamInfo.errors) {
-                        e.printStackTrace();
-                        Log.e(TAG, "------");
-                    }
-
-                    Activity a = getActivity();
-                    View rootView = a != null ? a.findViewById(R.id.videoitem_detail) : null;
-                    ErrorActivity.reportError(h, getActivity(),
-                            streamInfo.errors, null, rootView,
-                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
-                                    service.getServiceInfo().name, videoUrl, 0 /* no message for the user */));
-                }
-
-                // These errors render the stream information unusable.
-            } catch (IOException e) {
-                postNewErrorToast(h, R.string.network_error);
-                e.printStackTrace();
-            }
-            // custom service related exceptions
-            catch (YoutubeStreamExtractor.DecryptException de) {
-                postNewErrorToast(h, R.string.youtube_signature_decryption_error);
-                de.printStackTrace();
-            } catch (YoutubeStreamExtractor.GemaException ge) {
-                h.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        onErrorBlockedByGema();
-                    }
-                });
-            } catch(YoutubeStreamExtractor.LiveStreamException e) {
-                h.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        onNotSpecifiedContentErrorWithMessage(R.string.live_streams_not_supported);
-                    }
-                });
-            }
-            // ----------------------------------------
-            catch(StreamExtractor.ContentNotAvailableException e) {
-                h.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        onNotSpecifiedContentError();
-                    }
-                });
-                e.printStackTrace();
-            } catch(StreamInfo.StreamExctractException e) {
-                if(!streamInfo.errors.isEmpty()) {
-                    // !!! if this case ever kicks in someone gets kicked out !!!
-                    ErrorActivity.reportError(h, getActivity(), e, VideoItemDetailFragment.class, null,
-                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
-                                    service.getServiceInfo().name, videoUrl, R.string.could_not_get_stream));
-                } else {
-                    ErrorActivity.reportError(h, getActivity(), streamInfo.errors, VideoItemDetailFragment.class, null,
-                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
-                                    service.getServiceInfo().name, videoUrl, R.string.could_not_get_stream));
-                }
-                h.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        getActivity().finish();
-                    }
-                });
-                e.printStackTrace();
-            } catch (ParsingException e) {
-                ErrorActivity.reportError(h, getActivity(), e, VideoItemDetailFragment.class, null,
-                        ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
-                                service.getServiceInfo().name, videoUrl, R.string.parsing_error));
-                        h.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                getActivity().finish();
-                            }
-                        });
-                e.printStackTrace();
-            } catch(Exception e) {
-                ErrorActivity.reportError(h, getActivity(), e, VideoItemDetailFragment.class, null,
-                        ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
-                                service.getServiceInfo().name, videoUrl, R.string.general_error));
-                        h.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                getActivity().finish();
-                            }
-                        });
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private class VideoResultReturnedRunnable implements Runnable {
-        private final StreamInfo streamInfo;
-        public VideoResultReturnedRunnable(StreamInfo streamInfo) {
-            this.streamInfo = streamInfo;
-        }
-        @Override
-        public void run() {
-            Activity a = getActivity();
-            if(a != null) {
-                boolean showAgeRestrictedContent = PreferenceManager.getDefaultSharedPreferences(a)
-                        .getBoolean(activity.getString(R.string.show_age_restricted_content), false);
-                if (streamInfo.age_limit == 0 || showAgeRestrictedContent) {
-                    updateInfo(streamInfo);
-                } else {
-                    onNotSpecifiedContentErrorWithMessage(R.string.video_is_age_restricted);
-                }
-            }
-        }
-    }
-
-
     private void updateInfo(final StreamInfo info) {
         try {
             Context c = getContext();
@@ -768,6 +630,34 @@ public class VideoItemDetailFragment extends Fragment {
         showNextVideoItem = PreferenceManager.getDefaultSharedPreferences(getActivity())
                 .getBoolean(activity.getString(R.string.show_next_video_key), true);
 
+
+        StreamInfoWorker siw = StreamInfoWorker.getInstance();
+        siw.setOnStreamInfoReceivedListener(new StreamInfoWorker.OnStreamInfoReceivedListener() {
+            @Override
+            public void onReceive(StreamInfo info) {
+                updateInfo(info);
+            }
+
+            @Override
+            public void onError(int messageId) {
+                postNewErrorToast(messageId);
+            }
+
+            @Override
+            public void onBlockedByGemaError() {
+                onErrorBlockedByGema();
+            }
+
+            @Override
+            public void onContentErrorWithMessage(int messageId) {
+                onNotSpecifiedContentErrorWithMessage(messageId);
+            }
+
+            @Override
+            public void onContentError() {
+                onNotSpecifiedContentError();
+            }
+        });
     }
 
     @Override
@@ -800,17 +690,12 @@ public class VideoItemDetailFragment extends Fragment {
         // then we must not try to access objects of this fragment.
         // Otherwise the applications would crash.
         if(backgroundButton != null) {
-            try {
-                streamingServiceId = getArguments().getInt(STREAMING_SERVICE);
-                StreamingService streamingService = ServiceList.getService(streamingServiceId);
-                Thread videoExtractorThread = new Thread(new VideoExtractorRunnable(
-                        getArguments().getString(VIDEO_URL), streamingService));
+            streamingServiceId = getArguments().getInt(STREAMING_SERVICE);
+            String videoUrl = getArguments().getString(VIDEO_URL);
+            StreamInfoWorker siw = StreamInfoWorker.getInstance();
+            siw.search(streamingServiceId, videoUrl, getActivity());
 
-                autoPlayEnabled = getArguments().getBoolean(AUTO_PLAY);
-                videoExtractorThread.start();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            autoPlayEnabled = getArguments().getBoolean(AUTO_PLAY);
 
             if(Build.VERSION.SDK_INT >= 18) {
                 ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detailThumbnailView);
@@ -932,23 +817,13 @@ public class VideoItemDetailFragment extends Fragment {
         this.onInvokeCreateOptionsMenuListener = listener;
     }
 
-    private void postNewErrorToast(Handler h, final int stringResource) {
-        h.post(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(VideoItemDetailFragment.this.getActivity(),
-                        stringResource, Toast.LENGTH_LONG).show();
-            }
-        });
+    private void postNewErrorToast(final int stringResource) {
+        Toast.makeText(VideoItemDetailFragment.this.getActivity(),
+                stringResource, Toast.LENGTH_LONG).show();
     }
 
-    private void postNewErrorToast(Handler h, final String message) {
-        h.post(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(VideoItemDetailFragment.this.getActivity(),
-                        message, Toast.LENGTH_LONG).show();
-            }
-        });
+    private void postNewErrorToast(final String message) {
+        Toast.makeText(VideoItemDetailFragment.this.getActivity(),
+                message, Toast.LENGTH_LONG).show();
     }
 }

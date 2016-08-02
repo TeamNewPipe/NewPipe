@@ -10,4 +10,5 @@
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".search_fragment.SearchInfoItemFragment"
-    tools:listitem="@layout/video_item" />
+    tools:listitem="@layout/video_item"
+    android:scrollbars="vertical"/>
