@@ -1,4 +1,4 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.search_fragment;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.schabi.newpipe.ImageErrorLoadingListener;
+import org.schabi.newpipe.R;
+import org.schabi.newpipe.StreamInfoItemHolder;
+import org.schabi.newpipe.StreamInfoItemViewCreator;
 import org.schabi.newpipe.extractor.AbstractVideoInfo;
 import org.schabi.newpipe.extractor.StreamPreviewInfo;
 
@@ -28,10 +32,19 @@ public class StreamInfoListAdapter extends RecyclerView.Adapter<StreamInfoItemHo
     private DisplayImageOptions displayImageOptions =
             new DisplayImageOptions.Builder().cacheInMemory(true).build();
 
-
     StreamInfoListAdapter(Activity a, View rootView) {
         activity = a;
         this.rootView = rootView;
+    }
+
+    public void addVideoList(List<StreamPreviewInfo> videos) {
+        streamList.addAll(videos);
+        notifyDataSetChanged();
+    }
+
+    public void clearVideoList() {
+        streamList = new Vector<>();
+        notifyDataSetChanged();
     }
 
     @Override

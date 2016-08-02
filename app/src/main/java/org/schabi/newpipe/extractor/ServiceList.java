@@ -40,7 +40,7 @@ public class ServiceList {
     public static StreamingService[] getServices() {
         return services;
     }
-    public static StreamingService getService(int serviceId) throws ExtractionException {
+    public static StreamingService getService(int serviceId)throws ExtractionException {
         for(StreamingService s : services) {
             if(s.getServiceId() == serviceId) {
                 return s;

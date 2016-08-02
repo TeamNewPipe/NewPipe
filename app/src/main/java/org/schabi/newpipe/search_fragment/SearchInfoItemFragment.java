@@ -2,14 +2,9 @@ package org.schabi.newpipe.search_fragment;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.MatrixCursor;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.CursorAdapter;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,18 +16,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.ErrorActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.ExtractionException;
-import org.schabi.newpipe.extractor.SearchEngine;
+import org.schabi.newpipe.extractor.SearchResult;
 import org.schabi.newpipe.extractor.ServiceList;
-
-import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by Christian Schabesberger on 02.08.16.
@@ -99,6 +88,7 @@ public class SearchInfoItemFragment extends Fragment {
 
     private SearchView searchView = null;
     private SuggestionListAdapter suggestionListAdapter = null;
+    private StreamInfoListAdapter streamInfoListAdapter = null;
 
     // savedInstanceBundle arguments
     private static final String QUERY = "query";
@@ -144,6 +134,28 @@ public class SearchInfoItemFragment extends Fragment {
                                 "", R.string.general_error));
             }
         }
+
+        SearchWorker sw = SearchWorker.getInstance();
+        sw.setSearchWorkerResultListner(new SearchWorker.SearchWorkerResultListner() {
+            @Override
+            public void onResult(SearchResult result) {
+                streamInfoListAdapter.addVideoList(result.resultList);
+            }
+
+            @Override
+            public void onNothingFound(int stringResource) {
+                //setListShown(true);
+                Toast.makeText(getActivity(), getString(stringResource),
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(String message) {
+                //setListShown(true);
+                Toast.makeText(getActivity(), message,
+                        Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
@@ -160,8 +172,12 @@ public class SearchInfoItemFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(null);
+
+            streamInfoListAdapter = new StreamInfoListAdapter(getActivity(),
+                    getActivity().findViewById(android.R.id.content));
+            recyclerView.setAdapter(streamInfoListAdapter);
         }
+
         return view;
     }
 
@@ -202,7 +218,13 @@ public class SearchInfoItemFragment extends Fragment {
     }
 
     private void search(String query) {
+        streamInfoListAdapter.clearVideoList();
+        search(query, 0);
+    }
 
+    private void search(String query, int page) {
+        SearchWorker sw = SearchWorker.getInstance();
+        sw.search(streamingServiceId, query, page, getActivity());
     }
 
     private void searchSuggestions(String query) {
@@ -216,8 +238,16 @@ public class SearchInfoItemFragment extends Fragment {
         h.post(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(getActivity(), getString(stringResource),
-                        Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+    private void postNewNothingFoundToast(Handler h, final int stringResource) {
+        h.post(new Runnable() {
+            @Override
+            public void run() {
+
             }
         });
     }
