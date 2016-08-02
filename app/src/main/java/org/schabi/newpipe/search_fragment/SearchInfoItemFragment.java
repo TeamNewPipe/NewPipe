@@ -2,10 +2,9 @@ package org.schabi.newpipe.search_fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -16,10 +15,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.schabi.newpipe.ErrorActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.VideoItemDetailActivity;
+import org.schabi.newpipe.VideoItemDetailFragment;
 import org.schabi.newpipe.extractor.SearchResult;
 import org.schabi.newpipe.extractor.ServiceList;
 
@@ -78,17 +80,16 @@ public class SearchInfoItemFragment extends Fragment {
         }
     }
 
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
-    private int mColumnCount = 1;
-
     private int streamingServiceId = -1;
     private String searchQuery = "";
+    private boolean isLoading = false;
 
     private SearchView searchView = null;
+    private int pageNumber = 0;
     private SuggestionListAdapter suggestionListAdapter = null;
     private StreamInfoListAdapter streamInfoListAdapter = null;
+    private LinearLayoutManager streamInfoListLayoutManager = null;
+    private RecyclerView recyclerView = null;
 
     // savedInstanceBundle arguments
     private static final String QUERY = "query";
@@ -105,19 +106,12 @@ public class SearchInfoItemFragment extends Fragment {
     @SuppressWarnings("unused")
     public static SearchInfoItemFragment newInstance(int columnCount) {
         SearchInfoItemFragment fragment = new SearchInfoItemFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
 
         if(savedInstanceState != null) {
             searchQuery = savedInstanceState.getString(QUERY);
@@ -140,6 +134,7 @@ public class SearchInfoItemFragment extends Fragment {
             @Override
             public void onResult(SearchResult result) {
                 streamInfoListAdapter.addVideoList(result.resultList);
+                isLoading = false;
             }
 
             @Override
@@ -147,6 +142,7 @@ public class SearchInfoItemFragment extends Fragment {
                 //setListShown(true);
                 Toast.makeText(getActivity(), getString(stringResource),
                         Toast.LENGTH_SHORT).show();
+                isLoading = false;
             }
 
             @Override
@@ -154,6 +150,7 @@ public class SearchInfoItemFragment extends Fragment {
                 //setListShown(true);
                 Toast.makeText(getActivity(), message,
                         Toast.LENGTH_LONG).show();
+                isLoading = false;
             }
         });
     }
@@ -166,16 +163,43 @@ public class SearchInfoItemFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
+            recyclerView = (RecyclerView) view;
+            streamInfoListLayoutManager = new LinearLayoutManager(context);
+            recyclerView.setLayoutManager(streamInfoListLayoutManager);
 
             streamInfoListAdapter = new StreamInfoListAdapter(getActivity(),
                     getActivity().findViewById(android.R.id.content));
+            streamInfoListAdapter.setOnItemSelectedListener(new StreamInfoListAdapter.OnItemSelectedListener() {
+                @Override
+                public void selected(String url) {
+                    Intent i = new Intent(getActivity(), VideoItemDetailActivity.class);
+                    i.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
+                    i.putExtra(VideoItemDetailFragment.VIDEO_URL, url);
+                    getActivity().startActivity(i);
+                }
+            });
             recyclerView.setAdapter(streamInfoListAdapter);
+
+
+            recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    int pastVisiblesItems, visibleItemCount, totalItemCount;
+                    super.onScrolled(recyclerView, dx, dy);
+                    if(dy > 0) //check for scroll down
+                    {
+                        visibleItemCount = streamInfoListLayoutManager.getChildCount();
+                        totalItemCount = streamInfoListLayoutManager.getItemCount();
+                        pastVisiblesItems = streamInfoListLayoutManager.findFirstVisibleItemPosition();
+
+                        if ( (visibleItemCount + pastVisiblesItems) >= totalItemCount && !isLoading)
+                        {
+                            pageNumber++;
+                            search(searchQuery, pageNumber);
+                        }
+                    }
+                }
+            });
         }
 
         return view;
@@ -219,10 +243,12 @@ public class SearchInfoItemFragment extends Fragment {
 
     private void search(String query) {
         streamInfoListAdapter.clearVideoList();
-        search(query, 0);
+        pageNumber = 0;
+        search(query, pageNumber);
     }
 
     private void search(String query, int page) {
+        isLoading = true;
         SearchWorker sw = SearchWorker.getInstance();
         sw.search(streamingServiceId, query, page, getActivity());
     }
@@ -232,23 +258,5 @@ public class SearchInfoItemFragment extends Fragment {
                 new SuggestionSearchRunnable(streamingServiceId, query, getActivity(), suggestionListAdapter);
         Thread suggestionThread = new Thread(suggestionSearchRunnable);
         suggestionThread.start();
-    }
-
-    private void postNewErrorToast(Handler h, final int stringResource) {
-        h.post(new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        });
-    }
-
-    private void postNewNothingFoundToast(Handler h, final int stringResource) {
-        h.post(new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        });
     }
 }

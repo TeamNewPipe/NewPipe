@@ -23,25 +23,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v7.widget.SearchView;
 
 import org.schabi.newpipe.ErrorActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.SettingsActivity;
-import org.schabi.newpipe.VideoItemDetailActivity;
-import org.schabi.newpipe.VideoItemListActivity;
-import org.schabi.newpipe.extractor.ServiceList;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Vector;
 
 import us.shandian.giga.get.DownloadManager;
@@ -257,7 +248,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         switch (id) {
             case android.R.id.home: {
-                Intent intent = new Intent(this, VideoItemListActivity.class);
+                Intent intent = new Intent(this, org.schabi.newpipe.MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 NavUtils.navigateUpTo(this, intent);
                 return true;

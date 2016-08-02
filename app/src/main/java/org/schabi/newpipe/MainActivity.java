@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch(id) {
             case android.R.id.home: {
-                Intent intent = new Intent(this, VideoItemListActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 NavUtils.navigateUpTo(this, intent);
                 return true;

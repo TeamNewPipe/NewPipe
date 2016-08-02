@@ -276,7 +276,7 @@ public class ErrorActivity extends AppCompatActivity {
                     returnActivity.isAssignableFrom(Activity.class)) {
                 intent = new Intent(this, returnActivity);
             } else {
-                intent = new Intent(this, VideoItemListActivity.class);
+                intent = new Intent(this, MainActivity.class);
             }
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             NavUtils.navigateUpTo(this, intent);

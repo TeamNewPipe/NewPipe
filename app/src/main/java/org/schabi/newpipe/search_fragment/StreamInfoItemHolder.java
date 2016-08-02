@@ -1,9 +1,11 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.search_fragment;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.schabi.newpipe.R;
 
 /**
  * Created by the-scrabi on 01.08.16.
@@ -16,6 +18,7 @@ public class StreamInfoItemHolder extends RecyclerView.ViewHolder {
             itemDurationView,
             itemUploadDateView,
             itemViewCountView;
+    public View mainLayout;
 
     public StreamInfoItemHolder(View v) {
         super(v);
@@ -25,5 +28,6 @@ public class StreamInfoItemHolder extends RecyclerView.ViewHolder {
         itemDurationView = (TextView) v.findViewById(R.id.itemDurationView);
         itemUploadDateView = (TextView) v.findViewById(R.id.itemUploadDateView);
         itemViewCountView = (TextView) v.findViewById(R.id.itemViewCountView);
+        mainLayout = v.findViewById(R.id.item_main_layout);
     }
 }

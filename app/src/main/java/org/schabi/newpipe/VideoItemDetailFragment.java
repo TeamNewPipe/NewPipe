@@ -199,11 +199,11 @@ public class VideoItemDetailFragment extends Fragment {
             } catch(StreamInfo.StreamExctractException e) {
                 if(!streamInfo.errors.isEmpty()) {
                     // !!! if this case ever kicks in someone gets kicked out !!!
-                    ErrorActivity.reportError(h, getActivity(), e, VideoItemListActivity.class, null,
+                    ErrorActivity.reportError(h, getActivity(), e, VideoItemDetailFragment.class, null,
                             ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
                                     service.getServiceInfo().name, videoUrl, R.string.could_not_get_stream));
                 } else {
-                    ErrorActivity.reportError(h, getActivity(), streamInfo.errors, VideoItemListActivity.class, null,
+                    ErrorActivity.reportError(h, getActivity(), streamInfo.errors, VideoItemDetailFragment.class, null,
                             ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
                                     service.getServiceInfo().name, videoUrl, R.string.could_not_get_stream));
                 }
@@ -215,7 +215,7 @@ public class VideoItemDetailFragment extends Fragment {
                 });
                 e.printStackTrace();
             } catch (ParsingException e) {
-                ErrorActivity.reportError(h, getActivity(), e, VideoItemListActivity.class, null,
+                ErrorActivity.reportError(h, getActivity(), e, VideoItemDetailFragment.class, null,
                         ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
                                 service.getServiceInfo().name, videoUrl, R.string.parsing_error));
                         h.post(new Runnable() {
@@ -226,7 +226,7 @@ public class VideoItemDetailFragment extends Fragment {
                         });
                 e.printStackTrace();
             } catch(Exception e) {
-                ErrorActivity.reportError(h, getActivity(), e, VideoItemListActivity.class, null,
+                ErrorActivity.reportError(h, getActivity(), e, VideoItemDetailFragment.class, null,
                         ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
                                 service.getServiceInfo().name, videoUrl, R.string.general_error));
                         h.post(new Runnable() {

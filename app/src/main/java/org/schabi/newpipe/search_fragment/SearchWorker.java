@@ -161,9 +161,8 @@ public class SearchWorker {
     public void search(int serviceId, String query, int page, Activity a) {
         if(runnable != null) {
             terminate();
-        } else {
-            runnable = new SearchRunnable(serviceId, query, page, a, requestId);
         }
+        runnable = new SearchRunnable(serviceId, query, page, a, requestId);
         Thread thread = new Thread(runnable);
         thread.start();
     }

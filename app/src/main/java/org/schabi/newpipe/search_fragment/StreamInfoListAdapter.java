@@ -1,7 +1,6 @@
 package org.schabi.newpipe.search_fragment;
 
 import android.app.Activity;
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.StreamInfoItemHolder;
 import org.schabi.newpipe.StreamInfoItemViewCreator;
 import org.schabi.newpipe.extractor.AbstractVideoInfo;
 import org.schabi.newpipe.extractor.StreamPreviewInfo;
@@ -25,16 +23,27 @@ import java.util.Vector;
  */
 public class StreamInfoListAdapter extends RecyclerView.Adapter<StreamInfoItemHolder> {
 
+    public interface OnItemSelectedListener {
+        void selected(String url);
+    }
+
     private Activity activity = null;
     private View rootView = null;
     private List<StreamPreviewInfo> streamList = new Vector<>();
     private ImageLoader imageLoader = ImageLoader.getInstance();
     private DisplayImageOptions displayImageOptions =
             new DisplayImageOptions.Builder().cacheInMemory(true).build();
+    private OnItemSelectedListener onItemSelectedListener;
+
+
 
     StreamInfoListAdapter(Activity a, View rootView) {
         activity = a;
         this.rootView = rootView;
+    }
+
+    public void setOnItemSelectedListener(OnItemSelectedListener onItemSelectedListener) {
+        this.onItemSelectedListener = onItemSelectedListener;
     }
 
     public void addVideoList(List<StreamPreviewInfo> videos) {
@@ -62,7 +71,7 @@ public class StreamInfoListAdapter extends RecyclerView.Adapter<StreamInfoItemHo
 
     @Override
     public void onBindViewHolder(StreamInfoItemHolder holder, int i) {
-        StreamPreviewInfo info = streamList.get(i);
+        final StreamPreviewInfo info = streamList.get(i);
         // fill holder with information
         holder.itemVideoTitleView.setText(info.title);
         if(info.uploader != null && !info.uploader.isEmpty()) {
@@ -95,6 +104,13 @@ public class StreamInfoListAdapter extends RecyclerView.Adapter<StreamInfoItemHo
                     displayImageOptions,
                     new ImageErrorLoadingListener(activity, rootView, info.service_id));
         }
+
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onItemSelectedListener.selected(info.webpage_url);
+            }
+        });
     }
 
 
