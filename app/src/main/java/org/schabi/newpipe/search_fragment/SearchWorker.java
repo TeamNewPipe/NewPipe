@@ -101,7 +101,7 @@ public class SearchWorker {
                         Log.e(TAG, "------");
                     }
 
-                    View rootView = a.findViewById(R.id.videoitem_list);
+                    View rootView = a.findViewById(android.R.id.content);
                     ErrorActivity.reportError(h, a, result.errors, null, rootView,
                             ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
                         /* todo: this shoudl not be assigned static */  YOUTUBE, query, R.string.light_parsing_error));
