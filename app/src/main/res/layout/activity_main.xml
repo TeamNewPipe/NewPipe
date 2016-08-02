@@ -10,7 +10,7 @@
 
     <fragment
         android:id="@+id/search_fragment"
-        android:name="org.schabi.newpipe.SearchInfoItemFragment"
+        android:name="org.schabi.newpipe.search_fragment.SearchInfoItemFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

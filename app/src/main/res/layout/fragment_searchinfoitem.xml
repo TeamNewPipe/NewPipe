@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="org.schabi.newpipe.SearchInfoItemFragment"
+    tools:context=".search_fragment.SearchInfoItemFragment"
     tools:listitem="@layout/video_item" />
