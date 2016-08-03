@@ -551,7 +551,7 @@ public class VideoItemDetailFragment extends Fragment {
     }
 
     private void initSimilarVideos(final StreamInfo info, StreamInfoItemViewCreator videoItemViewCreator) {
-        similarStreamsAdapter.addVideoList(info.related_streams);
+        similarStreamsAdapter.addStreamItemList(info.related_streams);
     }
 
     private void onErrorBlockedByGema() {

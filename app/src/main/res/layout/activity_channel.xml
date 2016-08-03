@@ -96,11 +96,12 @@
         android:id="@+id/channel_content_view"
         android:visibility="visible">
 
-        <LinearLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/channel_streams_view"
             android:orientation="vertical"
+            android:layout_gravity="fill_vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/channel_streams_view">
-        </LinearLayout>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

@@ -7,6 +7,8 @@ import android.os.Handler;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +20,8 @@ import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.schabi.newpipe.detail.VideoItemDetailActivity;
+import org.schabi.newpipe.detail.VideoItemDetailFragment;
 import org.schabi.newpipe.extractor.ChannelExtractor;
 import org.schabi.newpipe.extractor.ChannelInfo;
 import org.schabi.newpipe.extractor.ExtractionException;
@@ -25,6 +29,7 @@ import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.info_list.InfoListAdapter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,6 +48,7 @@ public class ChannelActivity extends AppCompatActivity {
     private String channelUrl = "";
 
     private ImageLoader imageLoader = ImageLoader.getInstance();
+    private InfoListAdapter infoListAdapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,21 @@ public class ChannelActivity extends AppCompatActivity {
         Intent i = getIntent();
         channelUrl = i.getStringExtra(CHANNEL_URL);
         serviceId = i.getIntExtra(SERVICE_ID, -1);
+
+        infoListAdapter = new InfoListAdapter(this, rootView);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.channel_streams_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(infoListAdapter);
+        infoListAdapter.setOnItemSelectedListener(new InfoListAdapter.OnItemSelectedListener() {
+            @Override
+            public void selected(String url) {
+                Intent detailIntent = new Intent(ChannelActivity.this, VideoItemDetailActivity.class);
+                detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, url);
+                detailIntent.putExtra(
+                        VideoItemDetailFragment.STREAMING_SERVICE, serviceId);
+                startActivity(detailIntent);
+            }
+        });
 
         // start processing
         Thread channelExtractorThread = new Thread(new Runnable() {
@@ -109,13 +130,11 @@ public class ChannelActivity extends AppCompatActivity {
         CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.channel_toolbar_layout);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         ImageView channelBanner = (ImageView) findViewById(R.id.channel_banner_image);
-        View channelContentView = findViewById(R.id.channel_content_view);
         FloatingActionButton feedButton = (FloatingActionButton) findViewById(R.id.channel_rss_fab);
         ImageView avatarView = (ImageView) findViewById(R.id.channel_avatar_view);
         ImageView haloView = (ImageView) findViewById(R.id.channel_avatar_halo);
 
         progressBar.setVisibility(View.GONE);
-        channelContentView.setVisibility(View.VISIBLE);
 
         if(info.channel_name != null && !info.channel_name.isEmpty()) {
             ctl.setTitle(info.channel_name);
@@ -150,14 +169,7 @@ public class ChannelActivity extends AppCompatActivity {
     }
 
     private void initVideos(final ChannelInfo info, StreamInfoItemViewCreator viCreator) {
-        LinearLayout streamLayout = (LinearLayout) findViewById(R.id.channel_streams_view);
-        ArrayList<StreamPreviewInfo> streamsList = new ArrayList<>(info.related_streams);
-
-        for(final StreamPreviewInfo streamInfo : streamsList) {
-            View itemView = viCreator.getViewFromVideoInfoItem(null, streamLayout, streamInfo);
-            itemView = viCreator.setupView(itemView, streamInfo);
-            streamLayout.addView(itemView);
-        }
+        infoListAdapter.addStreamItemList(info.related_streams);
     }
 
     private void postNewErrorToast(Handler h, final int stringResource) {

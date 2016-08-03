@@ -46,12 +46,12 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
         this.onItemSelectedListener = onItemSelectedListener;
     }
 
-    public void addVideoList(List<StreamPreviewInfo> videos) {
+    public void addStreamItemList(List<StreamPreviewInfo> videos) {
         streamList.addAll(videos);
         notifyDataSetChanged();
     }
 
-    public void clearVideoList() {
+    public void clearSteamItemList() {
         streamList = new Vector<>();
         notifyDataSetChanged();
     }

@@ -133,7 +133,7 @@ public class SearchInfoItemFragment extends Fragment {
         sw.setSearchWorkerResultListner(new SearchWorker.SearchWorkerResultListner() {
             @Override
             public void onResult(SearchResult result) {
-                infoListAdapter.addVideoList(result.resultList);
+                infoListAdapter.addStreamItemList(result.resultList);
                 isLoading = false;
             }
 
@@ -242,7 +242,7 @@ public class SearchInfoItemFragment extends Fragment {
     }
 
     private void search(String query) {
-        infoListAdapter.clearVideoList();
+        infoListAdapter.clearSteamItemList();
         pageNumber = 0;
         search(query, pageNumber);
     }
