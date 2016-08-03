@@ -43,6 +43,6 @@ dependencies {
     compile 'com.github.nirhart:parallaxscroll:1.0'
     compile 'com.google.android.exoplayer:exoplayer:r1.5.5'
     compile 'com.google.code.gson:gson:2.4'
-    compile 'com.nononsenseapps:filepicker:2.0.5'
+    compile 'com.nononsenseapps:filepicker:3.0.0'
     testCompile 'junit:junit:4.12'
 }
