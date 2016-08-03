@@ -2,6 +2,7 @@ package org.schabi.newpipe.info_list;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,7 +19,7 @@ public class InfoItemHolder extends RecyclerView.ViewHolder {
             itemDurationView,
             itemUploadDateView,
             itemViewCountView;
-    public View mainLayout;
+    public Button itemButton;
 
     public InfoItemHolder(View v) {
         super(v);
@@ -28,6 +29,6 @@ public class InfoItemHolder extends RecyclerView.ViewHolder {
         itemDurationView = (TextView) v.findViewById(R.id.itemDurationView);
         itemUploadDateView = (TextView) v.findViewById(R.id.itemUploadDateView);
         itemViewCountView = (TextView) v.findViewById(R.id.itemViewCountView);
-        mainLayout = v.findViewById(R.id.item_main_layout);
+        itemButton = (Button) v.findViewById(R.id.item_button);
     }
 }

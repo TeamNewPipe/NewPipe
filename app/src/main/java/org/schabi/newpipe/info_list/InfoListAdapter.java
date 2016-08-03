@@ -11,7 +11,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.StreamInfoItemViewCreator;
 import org.schabi.newpipe.extractor.AbstractVideoInfo;
 import org.schabi.newpipe.extractor.StreamPreviewInfo;
 
@@ -80,7 +79,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
             holder.itemUploaderView.setVisibility(View.INVISIBLE);
         }
         if(info.duration > 0) {
-            holder.itemDurationView.setText(StreamInfoItemViewCreator.getDurationString(info.duration));
+            holder.itemDurationView.setText(getDurationString(info.duration));
         } else {
             if(info.stream_type == AbstractVideoInfo.StreamType.LIVE_STREAM) {
                 holder.itemDurationView.setText(R.string.duration_live);
@@ -105,7 +104,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
                     new ImageErrorLoadingListener(activity, rootView, info.service_id));
         }
 
-        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+        holder.itemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onItemSelectedListener.selected(info.webpage_url);

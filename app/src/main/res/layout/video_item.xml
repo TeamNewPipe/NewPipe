@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<FrameLayout
     android:id="@+id/item_main_layout"
-    android:clickable="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
         <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -95,4 +98,13 @@
             </LinearLayout>
 
         </RelativeLayout>
-</LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/item_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@id/detailNextVideoFrame"
+        android:layout_alignBottom="@id/detailNextVideoFrame"
+        android:background="?attr/selectableItemBackground"/>
+</FrameLayout>

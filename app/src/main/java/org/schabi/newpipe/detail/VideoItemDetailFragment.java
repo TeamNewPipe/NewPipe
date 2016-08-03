@@ -41,7 +41,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
-import java.util.ArrayList;
 import java.util.Vector;
 
 import org.schabi.newpipe.ActivityCommunicator;
@@ -50,13 +49,11 @@ import org.schabi.newpipe.ErrorActivity;
 import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.Localization;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.StreamInfoItemViewCreator;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.AudioStream;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamInfo;
-import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.VideoStream;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.player.BackgroundPlayer;
@@ -128,9 +125,6 @@ public class VideoItemDetailFragment extends Fragment {
     private void updateInfo(final StreamInfo info) {
         try {
             Context c = getContext();
-            StreamInfoItemViewCreator videoItemViewCreator =
-                    new StreamInfoItemViewCreator(LayoutInflater.from(getActivity()),
-                            getActivity(), rootView);
 
             RelativeLayout textContentLayout =
                     (RelativeLayout) activity.findViewById(R.id.detailTextContentLayout);
@@ -155,8 +149,7 @@ public class VideoItemDetailFragment extends Fragment {
             View nextVideoView = null;
             Button channelButton = (Button) activity.findViewById(R.id.channelButton);
             if(info.next_video != null) {
-                nextVideoView = videoItemViewCreator
-                        .getViewFromVideoInfoItem(null, nextVideoFrame, info.next_video);
+                nextVideoView.setVisibility(View.GONE);
             } else {
                 activity.findViewById(R.id.detailNextVidButtonAndContentLayout).setVisibility(View.GONE);
                 activity.findViewById(R.id.detailNextVideoTitle).setVisibility(View.GONE);
@@ -267,7 +260,7 @@ public class VideoItemDetailFragment extends Fragment {
             textContentLayout.setVisibility(View.VISIBLE);
 
             if(info.related_streams != null && !info.related_streams.isEmpty()) {
-                initSimilarVideos(info, videoItemViewCreator);
+                initSimilarVideos(info);
             } else {
                 activity.findViewById(R.id.detailSimilarTitle).setVisibility(View.GONE);
                 activity.findViewById(R.id.similar_streams_view).setVisibility(View.GONE);
@@ -550,7 +543,7 @@ public class VideoItemDetailFragment extends Fragment {
         return 0;
     }
 
-    private void initSimilarVideos(final StreamInfo info, StreamInfoItemViewCreator videoItemViewCreator) {
+    private void initSimilarVideos(final StreamInfo info) {
         similarStreamsAdapter.addStreamItemList(info.related_streams);
     }
 
