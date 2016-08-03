@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.schabi.newpipe.ErrorActivity;
@@ -84,6 +85,7 @@ public class SearchInfoItemFragment extends Fragment {
     private String searchQuery = "";
     private boolean isLoading = false;
 
+    private ProgressBar loadingIndicator = null;
     private SearchView searchView = null;
     private int pageNumber = 0;
     private SuggestionListAdapter suggestionListAdapter = null;
@@ -135,6 +137,7 @@ public class SearchInfoItemFragment extends Fragment {
             public void onResult(SearchResult result) {
                 infoListAdapter.addStreamItemList(result.resultList);
                 isLoading = false;
+                loadingIndicator.setVisibility(View.GONE);
             }
 
             @Override
@@ -143,6 +146,7 @@ public class SearchInfoItemFragment extends Fragment {
                 Toast.makeText(getActivity(), getString(stringResource),
                         Toast.LENGTH_SHORT).show();
                 isLoading = false;
+                loadingIndicator.setVisibility(View.GONE);
             }
 
             @Override
@@ -151,6 +155,7 @@ public class SearchInfoItemFragment extends Fragment {
                 Toast.makeText(getActivity(), message,
                         Toast.LENGTH_LONG).show();
                 isLoading = false;
+                loadingIndicator.setVisibility(View.GONE);
             }
         });
     }
@@ -160,47 +165,44 @@ public class SearchInfoItemFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_searchinfoitem, container, false);
 
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            recyclerView = (RecyclerView) view;
-            streamInfoListLayoutManager = new LinearLayoutManager(context);
-            recyclerView.setLayoutManager(streamInfoListLayoutManager);
+        Context context = view.getContext();
+        loadingIndicator = (ProgressBar) view.findViewById(R.id.progressBar);
+        recyclerView = (RecyclerView) view.findViewById(R.id.list);
+        streamInfoListLayoutManager = new LinearLayoutManager(context);
+        recyclerView.setLayoutManager(streamInfoListLayoutManager);
 
-            infoListAdapter = new InfoListAdapter(getActivity(),
-                    getActivity().findViewById(android.R.id.content));
-            infoListAdapter.setOnItemSelectedListener(new InfoListAdapter.OnItemSelectedListener() {
-                @Override
-                public void selected(String url) {
-                    Intent i = new Intent(getActivity(), VideoItemDetailActivity.class);
-                    i.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
-                    i.putExtra(VideoItemDetailFragment.VIDEO_URL, url);
-                    getActivity().startActivity(i);
-                }
-            });
-            recyclerView.setAdapter(infoListAdapter);
+        infoListAdapter = new InfoListAdapter(getActivity(),
+                getActivity().findViewById(android.R.id.content));
+        infoListAdapter.setOnItemSelectedListener(new InfoListAdapter.OnItemSelectedListener() {
+            @Override
+            public void selected(String url) {
+                Intent i = new Intent(getActivity(), VideoItemDetailActivity.class);
+                i.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
+                i.putExtra(VideoItemDetailFragment.VIDEO_URL, url);
+                getActivity().startActivity(i);
+            }
+        });
+        recyclerView.setAdapter(infoListAdapter);
 
+        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                int pastVisiblesItems, visibleItemCount, totalItemCount;
+                super.onScrolled(recyclerView, dx, dy);
+                if(dy > 0) //check for scroll down
+                {
+                    visibleItemCount = streamInfoListLayoutManager.getChildCount();
+                    totalItemCount = streamInfoListLayoutManager.getItemCount();
+                    pastVisiblesItems = streamInfoListLayoutManager.findFirstVisibleItemPosition();
 
-            recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                    int pastVisiblesItems, visibleItemCount, totalItemCount;
-                    super.onScrolled(recyclerView, dx, dy);
-                    if(dy > 0) //check for scroll down
+                    if ( (visibleItemCount + pastVisiblesItems) >= totalItemCount && !isLoading)
                     {
-                        visibleItemCount = streamInfoListLayoutManager.getChildCount();
-                        totalItemCount = streamInfoListLayoutManager.getItemCount();
-                        pastVisiblesItems = streamInfoListLayoutManager.findFirstVisibleItemPosition();
-
-                        if ( (visibleItemCount + pastVisiblesItems) >= totalItemCount && !isLoading)
-                        {
-                            pageNumber++;
-                            search(searchQuery, pageNumber);
-                        }
+                        pageNumber++;
+                        search(searchQuery, pageNumber);
                     }
                 }
-            });
-        }
+            }
+        });
 
         return view;
     }
@@ -245,6 +247,7 @@ public class SearchInfoItemFragment extends Fragment {
         infoListAdapter.clearSteamItemList();
         pageNumber = 0;
         search(query, pageNumber);
+        loadingIndicator.setVisibility(View.VISIBLE);
     }
 
     private void search(String query, int page) {
