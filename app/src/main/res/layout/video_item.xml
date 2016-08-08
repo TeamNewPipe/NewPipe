@@ -104,7 +104,5 @@
         android:id="@+id/item_button"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignTop="@id/detailNextVideoFrame"
-        android:layout_alignBottom="@id/detailNextVideoFrame"
         android:background="?attr/selectableItemBackground"/>
 </FrameLayout>

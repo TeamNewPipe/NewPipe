@@ -104,7 +104,7 @@ public class StreamInfoWorker {
                         Log.e(TAG, "------");
                     }
 
-                    View rootView = a != null ? a.findViewById(R.id.videoitem_detail) : null;
+                    View rootView = a != null ? a.findViewById(R.id.video_item_detail) : null;
                     ErrorActivity.reportError(h, a,
                             streamInfo.errors, null, rootView,
                             ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,

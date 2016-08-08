@@ -1,7 +1,6 @@
 package org.schabi.newpipe.detail;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -27,7 +26,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -99,20 +97,18 @@ public class VideoItemDetailFragment extends Fragment {
     private int streamingServiceId = -1;
 
     private boolean autoPlayEnabled;
-    private boolean showNextVideoItem;
-    private Bitmap videoThumbnail;
+    private boolean showNextStreamItem;
 
     private View thumbnailWindowLayout;
     //this only remains due to downwards compatibility
     private FloatingActionButton playVideoButton;
     private final Point initialThumbnailPos = new Point(0, 0);
-
+    private View rootView = null;
+    private Bitmap streamThumbnail = null;
 
     private ImageLoader imageLoader = ImageLoader.getInstance();
     private DisplayImageOptions displayImageOptions =
             new DisplayImageOptions.Builder().cacheInMemory(true).build();
-
-    private View rootView = null;
 
     private InfoListAdapter similarStreamsAdapter = null;
 
@@ -124,54 +120,55 @@ public class VideoItemDetailFragment extends Fragment {
 
     private void updateInfo(final StreamInfo info) {
         try {
-            Context c = getContext();
+            Activity a = getActivity();
 
             RelativeLayout textContentLayout =
-                    (RelativeLayout) activity.findViewById(R.id.detailTextContentLayout);
+                    (RelativeLayout) activity.findViewById(R.id.detail_text_content_layout);
             final TextView videoTitleView =
-                    (TextView) activity.findViewById(R.id.detailVideoTitleView);
-            TextView uploaderView = (TextView) activity.findViewById(R.id.detailUploaderView);
-            TextView viewCountView = (TextView) activity.findViewById(R.id.detailViewCountView);
-            TextView thumbsUpView = (TextView) activity.findViewById(R.id.detailThumbsUpCountView);
+                    (TextView) activity.findViewById(R.id.detail_video_title_view);
+            TextView uploaderView = (TextView) activity.findViewById(R.id.detail_uploader_view);
+            TextView viewCountView = (TextView) activity.findViewById(R.id.detail_view_count_view);
+            TextView thumbsUpView = (TextView) activity.findViewById(R.id.detail_thumbs_up_count_view);
             TextView thumbsDownView =
-                    (TextView) activity.findViewById(R.id.detailThumbsDownCountView);
-            TextView uploadDateView = (TextView) activity.findViewById(R.id.detailUploadDateView);
-            TextView descriptionView = (TextView) activity.findViewById(R.id.detailDescriptionView);
-            FrameLayout nextVideoFrame =
-                    (FrameLayout) activity.findViewById(R.id.detailNextVideoFrame);
+                    (TextView) activity.findViewById(R.id.detail_thumbs_down_count_view);
+            TextView uploadDateView = (TextView) activity.findViewById(R.id.detail_upload_date_view);
+            TextView descriptionView = (TextView) activity.findViewById(R.id.detail_description_view);
+            RecyclerView nextStreamView =
+                    (RecyclerView) activity.findViewById(R.id.detail_next_stream_content);
             RelativeLayout nextVideoRootFrame =
-                    (RelativeLayout) activity.findViewById(R.id.detailNextVideoRootLayout);
-            Button nextVideoButton = (Button) activity.findViewById(R.id.detailNextVideoButton);
-            TextView similarTitle = (TextView) activity.findViewById(R.id.detailSimilarTitle);
+                    (RelativeLayout) activity.findViewById(R.id.detail_next_stream_root_layout);
+            TextView similarTitle = (TextView) activity.findViewById(R.id.detail_similar_title);
             Button backgroundButton = (Button)
-                    activity.findViewById(R.id.detailVideoThumbnailWindowBackgroundButton);
+                    activity.findViewById(R.id.detail_stream_thumbnail_window_background_button);
             View topView = activity.findViewById(R.id.detailTopView);
-            View nextVideoView = null;
-            Button channelButton = (Button) activity.findViewById(R.id.channelButton);
-            if(info.next_video != null) {
-                nextVideoView.setVisibility(View.GONE);
-            } else {
-                activity.findViewById(R.id.detailNextVidButtonAndContentLayout).setVisibility(View.GONE);
-                activity.findViewById(R.id.detailNextVideoTitle).setVisibility(View.GONE);
-                activity.findViewById(R.id.detailNextVideoButton).setVisibility(View.GONE);
-            }
+            Button channelButton = (Button) activity.findViewById(R.id.channel_button);
 
             progressBar.setVisibility(View.GONE);
-            if(nextVideoView != null) {
-                nextVideoFrame.addView(nextVideoView);
+            if(info.next_video != null) {
+                InfoListAdapter adapter = new InfoListAdapter(a, rootView);
+                nextStreamView.setAdapter(adapter);
+                nextStreamView.setLayoutManager(new LinearLayoutManager(a));
+                adapter.setOnItemSelectedListener(new InfoListAdapter.OnItemSelectedListener() {
+                    @Override
+                    public void selected(String url) {
+                        openStreamUrl(url);
+                    }
+                });
+            } else {
+                nextStreamView.setVisibility(View.GONE);
+                activity.findViewById(R.id.detail_similar_title).setVisibility(View.GONE);
             }
 
-            initThumbnailViews(info, nextVideoFrame);
 
             textContentLayout.setVisibility(View.VISIBLE);
             if (android.os.Build.VERSION.SDK_INT < 18) {
                 playVideoButton.setVisibility(View.VISIBLE);
             } else {
-                ImageView playArrowView = (ImageView) activity.findViewById(R.id.playArrowView);
+                ImageView playArrowView = (ImageView) activity.findViewById(R.id.play_arrow_view);
                 playArrowView.setVisibility(View.VISIBLE);
             }
 
-            if (!showNextVideoItem) {
+            if (!showNextStreamItem) {
                 nextVideoRootFrame.setVisibility(View.GONE);
                 similarTitle.setVisibility(View.GONE);
             }
@@ -182,7 +179,7 @@ public class VideoItemDetailFragment extends Fragment {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
-                        ImageView arrow = (ImageView) activity.findViewById(R.id.toggleDescriptionView);
+                        ImageView arrow = (ImageView) activity.findViewById(R.id.toggle_description_view);
                         View extra = activity.findViewById(R.id.detailExtraView);
                         if (extra.getVisibility() == View.VISIBLE) {
                             extra.setVisibility(View.GONE);
@@ -202,29 +199,29 @@ public class VideoItemDetailFragment extends Fragment {
             if(!info.uploader.isEmpty()) {
                 uploaderView.setText(info.uploader);
             } else {
-                activity.findViewById(R.id.detailUploaderWrapView).setVisibility(View.GONE);
+                activity.findViewById(R.id.detail_uploader_view).setVisibility(View.GONE);
             }
             if(info.view_count >= 0) {
-                viewCountView.setText(Localization.localizeViewCount(info.view_count, c));
+                viewCountView.setText(Localization.localizeViewCount(info.view_count, a));
             } else {
                 viewCountView.setVisibility(View.GONE);
             }
             if(info.dislike_count >= 0) {
-                thumbsDownView.setText(Localization.localizeNumber(info.dislike_count, c));
+                thumbsDownView.setText(Localization.localizeNumber(info.dislike_count, a));
             } else {
                 thumbsDownView.setVisibility(View.INVISIBLE);
-                activity.findViewById(R.id.detailThumbsDownImgView).setVisibility(View.GONE);
+                activity.findViewById(R.id.detail_thumbs_down_count_view).setVisibility(View.GONE);
             }
             if(info.like_count >= 0) {
-                thumbsUpView.setText(Localization.localizeNumber(info.like_count, c));
+                thumbsUpView.setText(Localization.localizeNumber(info.like_count, a));
             } else {
                 thumbsUpView.setVisibility(View.GONE);
-                activity.findViewById(R.id.detailThumbsUpImgView).setVisibility(View.GONE);
+                activity.findViewById(R.id.detail_thumbs_up_img_view).setVisibility(View.GONE);
                 thumbsDownView.setVisibility(View.GONE);
-                activity.findViewById(R.id.detailThumbsDownImgView).setVisibility(View.GONE);
+                activity.findViewById(R.id.detail_thumbs_down_img_view).setVisibility(View.GONE);
             }
             if(!info.upload_date.isEmpty()) {
-                uploadDateView.setText(Localization.localizeDate(info.upload_date, c));
+                uploadDateView.setText(Localization.localizeDate(info.upload_date, a));
             } else {
                 uploadDateView.setVisibility(View.GONE);
             }
@@ -244,25 +241,16 @@ public class VideoItemDetailFragment extends Fragment {
                 }
             }
 
-            nextVideoButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent detailIntent =
-                            new Intent(getActivity(), VideoItemDetailActivity.class);
-                        /*detailIntent.putExtra(
-                                VideoItemDetailFragment.ARG_ITEM_ID, currentVideoInfo.nextVideo.id); */
-                    detailIntent.putExtra(
-                            VideoItemDetailFragment.VIDEO_URL, info.next_video.webpage_url);
-                    detailIntent.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
-                    startActivity(detailIntent);
-                }
-            });
             textContentLayout.setVisibility(View.VISIBLE);
+
+            if(info.next_video == null) {
+                activity.findViewById(R.id.detail_next_stream_title).setVisibility(View.GONE);
+            }
 
             if(info.related_streams != null && !info.related_streams.isEmpty()) {
                 initSimilarVideos(info);
             } else {
-                activity.findViewById(R.id.detailSimilarTitle).setVisibility(View.GONE);
+                activity.findViewById(R.id.detail_similar_title).setVisibility(View.GONE);
                 activity.findViewById(R.id.similar_streams_view).setVisibility(View.GONE);
             }
 
@@ -302,18 +290,18 @@ public class VideoItemDetailFragment extends Fragment {
                 channelButton.setVisibility(Button.GONE);
             }
 
+            initThumbnailViews(info);
+            
         } catch (java.lang.NullPointerException e) {
             Log.w(TAG, "updateInfo(): Fragment closed before thread ended work... or else");
             e.printStackTrace();
         }
     }
 
-    private void initThumbnailViews(final StreamInfo info, View nextVideoFrame) {
-        ImageView videoThumbnailView = (ImageView) activity.findViewById(R.id.detailThumbnailView);
+    private void initThumbnailViews(final StreamInfo info) {
+        ImageView videoThumbnailView = (ImageView) activity.findViewById(R.id.detail_thumbnail_view);
         ImageView uploaderThumb
-                = (ImageView) activity.findViewById(R.id.detailUploaderThumbnailView);
-        ImageView nextVideoThumb =
-                (ImageView) nextVideoFrame.findViewById(R.id.itemThumbnailView);
+                = (ImageView) activity.findViewById(R.id.detail_uploader_thumbnail_view);
 
         if(info.thumbnail_url != null && !info.thumbnail_url.isEmpty()) {
             imageLoader.displayImage(info.thumbnail_url, videoThumbnailView,
@@ -333,7 +321,7 @@ public class VideoItemDetailFragment extends Fragment {
 
                         @Override
                         public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                            videoThumbnail = loadedImage;
+                            streamThumbnail = loadedImage;
                         }
 
                         @Override
@@ -346,11 +334,6 @@ public class VideoItemDetailFragment extends Fragment {
         if(info.uploader_thumbnail_url != null && !info.uploader_thumbnail_url.isEmpty()) {
             imageLoader.displayImage(info.uploader_thumbnail_url,
                     uploaderThumb, displayImageOptions,
-                    new ImageErrorLoadingListener(activity, rootView, info.service_id));
-        }
-        if(info.thumbnail_url != null && !info.thumbnail_url.isEmpty() && info.next_video != null) {
-            imageLoader.displayImage(info.next_video.thumbnail_url,
-                    nextVideoThumb, displayImageOptions,
                     new ImageErrorLoadingListener(activity, rootView, info.service_id));
         }
     }
@@ -461,9 +444,9 @@ public class VideoItemDetailFragment extends Fragment {
                             info.audio_streams.get(getPreferredAudioStreamId(info));
                     if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 18) {
                         //internal music player: explicit intent
-                        if (!BackgroundPlayer.isRunning && videoThumbnail != null) {
+                        if (!BackgroundPlayer.isRunning && streamThumbnail != null) {
                             ActivityCommunicator.getCommunicator()
-                                    .backgroundPlayerThumbnail = videoThumbnail;
+                                    .backgroundPlayerThumbnail = streamThumbnail;
                             intent = new Intent(activity, BackgroundPlayer.class);
 
                             intent.setAction(Intent.ACTION_VIEW);
@@ -549,8 +532,8 @@ public class VideoItemDetailFragment extends Fragment {
 
     private void onErrorBlockedByGema() {
         Button backgroundButton = (Button)
-                activity.findViewById(R.id.detailVideoThumbnailWindowBackgroundButton);
-        ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detailThumbnailView);
+                activity.findViewById(R.id.detail_stream_thumbnail_window_background_button);
+        ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detail_thumbnail_view);
 
         progressBar.setVisibility(View.GONE);
         thumbnailView.setImageBitmap(BitmapFactory.decodeResource(
@@ -570,7 +553,7 @@ public class VideoItemDetailFragment extends Fragment {
     }
 
     private void onNotSpecifiedContentError() {
-        ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detailThumbnailView);
+        ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detail_thumbnail_view);
         progressBar.setVisibility(View.GONE);
         thumbnailView.setImageBitmap(BitmapFactory.decodeResource(
                 getResources(), R.drawable.not_available_monkey));
@@ -579,7 +562,7 @@ public class VideoItemDetailFragment extends Fragment {
     }
 
     private void onNotSpecifiedContentErrorWithMessage(int resourceId) {
-        ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detailThumbnailView);
+        ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detail_thumbnail_view);
         progressBar.setVisibility(View.GONE);
         thumbnailView.setImageBitmap(BitmapFactory.decodeResource(
                 getResources(), R.drawable.not_available_monkey));
@@ -605,7 +588,7 @@ public class VideoItemDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = (AppCompatActivity) getActivity();
-        showNextVideoItem = PreferenceManager.getDefaultSharedPreferences(getActivity())
+        showNextStreamItem = PreferenceManager.getDefaultSharedPreferences(getActivity())
                 .getBoolean(activity.getString(R.string.show_next_video_key), true);
 
 
@@ -642,7 +625,7 @@ public class VideoItemDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_videoitem_detail, container, false);
-        progressBar = (ProgressBar) rootView.findViewById(R.id.detailProgressBar);
+        progressBar = (ProgressBar) rootView.findViewById(R.id.detail_progress_bar);
 
         actionBarHandler = new ActionBarHandler(activity);
         actionBarHandler.setupNavMenu(activity);
@@ -658,11 +641,11 @@ public class VideoItemDetailFragment extends Fragment {
         super.onActivityCreated(savedInstanceBundle);
         Activity a = getActivity();
         if (android.os.Build.VERSION.SDK_INT < 18) {
-            playVideoButton = (FloatingActionButton) a.findViewById(R.id.playVideoButton);
+            playVideoButton = (FloatingActionButton) a.findViewById(R.id.play_video_button);
         }
-        thumbnailWindowLayout = a.findViewById(R.id.detailVideoThumbnailWindowLayout);
+        thumbnailWindowLayout = a.findViewById(R.id.detail_stream_thumbnail_window_layout);
         Button backgroundButton = (Button)
-                a.findViewById(R.id.detailVideoThumbnailWindowBackgroundButton);
+                a.findViewById(R.id.detail_stream_thumbnail_window_background_button);
 
         // Sometimes when this fragment is not visible it still gets initiated
         // then we must not try to access objects of this fragment.
@@ -676,7 +659,7 @@ public class VideoItemDetailFragment extends Fragment {
             autoPlayEnabled = getArguments().getBoolean(AUTO_PLAY);
 
             if(Build.VERSION.SDK_INT >= 18) {
-                ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detailThumbnailView);
+                ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detail_thumbnail_view);
                 thumbnailView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
                     // This is used to synchronize the thumbnailWindowButton and the playVideoButton
                     // inside the ScrollView with the actual size of the thumbnail.
@@ -706,11 +689,7 @@ public class VideoItemDetailFragment extends Fragment {
             similarStreamsAdapter.setOnItemSelectedListener(new InfoListAdapter.OnItemSelectedListener() {
                 @Override
                 public void selected(String url) {
-                    Intent detailIntent = new Intent(activity, VideoItemDetailActivity.class);
-                    detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, url);
-                    detailIntent.putExtra(
-                            VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
-                    activity.startActivity(detailIntent);
+                    openStreamUrl(url);
                 }
             });
         }
@@ -813,5 +792,13 @@ public class VideoItemDetailFragment extends Fragment {
     private void postNewErrorToast(final int stringResource) {
         Toast.makeText(VideoItemDetailFragment.this.getActivity(),
                 stringResource, Toast.LENGTH_LONG).show();
+    }
+
+    private void openStreamUrl(String url) {
+        Intent detailIntent = new Intent(activity, VideoItemDetailActivity.class);
+        detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, url);
+        detailIntent.putExtra(
+                VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
+        activity.startActivity(detailIntent);
     }
 }
