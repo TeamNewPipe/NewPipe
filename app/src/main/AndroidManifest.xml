@@ -141,7 +141,7 @@
             android:name="com.nononsenseapps.filepicker.FilePickerActivity"
             android:label="@string/app_name"
             android:theme="@style/FilePickerTheme"
-            android:launchMode="singleTask">
+            android:launchMode="singleTop">
         </activity>
 
     </application>
