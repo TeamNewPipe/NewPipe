@@ -109,7 +109,7 @@
     <string name="logging_normal">معمولی</string>
     <string name="logging_verbose">پرگو</string>
     <string name="retry">تلاش دوباره</string>
-    <string name="off">[off]</string>
+    <string name="off">[خاموش]</string>
     <string name="error_drm_not_supported">محتوای محافظت‌شده روی رابط برنامه‌نویسی‌های پایین‌تر از سطح ۱۸ پشتیبانی نمی‌شود</string>
     <string name="error_drm_unsupported_scheme">این افزاره، شمای DRM مورد نیاز را پشتیبانی نمی‌کند</string>
     <string name="error_drm_unknown">یک خطای نشناختهٔ DRM رخ داد</string>
