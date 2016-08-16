@@ -88,7 +88,7 @@
     <string name="detail_thumbnail_view_description">Miniatura de previsualización de videu</string>
     <string name="detail_likes_img_view_description">Préstames</string>
     <string name="use_tor_title">Usar Tor</string>
-    <string name="use_tor_summary">(Esperimental) Forcia\'l tráficu de descargues pente Tor pa más privacidá (la tresmisión de vídeos entá nun ta sofitao)</string>
+    <string name="use_tor_summary">(Esperimental) Forcia\'l tráficu de descargues pente Tor pa más privacidá (la tresmisión de vídeos entá nun ta sofitao).</string>
     <string name="report_error">Informa d\'un fallu</string>
     <string name="user_report">Informe d\'usuariu</string>
 
