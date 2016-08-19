@@ -345,6 +345,8 @@ public class ErrorActivity extends AppCompatActivity {
                 return SOMETHING_ELSE_STRING;
             case USER_REPORT:
                 return USER_REPORT_STRING;
+            case LOAD_IMAGE:
+                return LOAD_IMAGE_STRING;
             default:
                 return "Your description is in another castle.";
         }
