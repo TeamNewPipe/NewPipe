@@ -18,7 +18,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import org.schabi.newpipe.download.MainActivity;
 import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.ServiceList;
@@ -200,6 +199,7 @@ public class VideoItemListActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videoitem_list);
         StreamingService streamingService = null;

@@ -48,6 +48,9 @@
         <item name="background">@color/video_overlay_color</item>
     </style>
 
+    <style name="SplashScreenTheme" parent="@style/AppTheme">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
 
     <!-- You can also inherit from NNF_BaseTheme.Light -->
     <style name="FilePickerTheme" parent="NNF_BaseTheme.Light">
