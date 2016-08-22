@@ -21,8 +21,8 @@ public class CastOptionsProvider implements OptionsProvider {
     public CastOptions getCastOptions(Context context) {
 
         NotificationOptions notificationOptions = new NotificationOptions.Builder()
-                .setActions(Arrays.asList(MediaIntentReceiver.ACTION_TOGGLE_PLAYBACK, MediaIntentReceiver.ACTION_STOP_CASTING), new int[]{1, 2})
-                .build();
+                .setActions(Arrays.asList(MediaIntentReceiver.ACTION_TOGGLE_PLAYBACK, MediaIntentReceiver.ACTION_STOP_CASTING), new int[]{1})
+                 .build();
 
         CastMediaOptions mediaOptions = new CastMediaOptions.Builder()
                 .setNotificationOptions(notificationOptions)
