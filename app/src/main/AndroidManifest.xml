@@ -16,6 +16,10 @@
         android:logo="@mipmap/ic_launcher"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
+        <meta-data
+            android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
+            android:value="org.schabi.newpipe.CastOptionsProvider" />
+
         <activity
             android:name=".VideoItemListActivity"
             android:label="@string/app_name">
