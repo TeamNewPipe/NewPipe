@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="background_player_name">Player NewPipe de fundal</string>
-    <string name="view_count_text">%1$s vizionări</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="background_player_name">Player NewPipe de fundal</string>
+    <string name="view_count_text">%1$s (de) vizionări</string>
     <string name="upload_date_text">Încărcat pe %1$s</string>
     <string name="no_player_found">Niciun player pentru stream-uri găsit. Instalați VLC?</string>
     <string name="install">Instalare</string>
@@ -20,11 +20,11 @@
     <string name="use_external_video_player_title">Folosește un player video extern</string>
     <string name="use_external_audio_player_title">Folosește un player audio extern</string>
 
-    <string name="download_path_title">Descărcați calea videoclipului</string>
+    <string name="download_path_title">Locul în care se vor descărca videoclipurile</string>
     <string name="download_path_summary">Locul în care se vor stoca videoclipurile descărcate.</string>
     <string name="download_path_dialog_title">Introduceți locul în care se vor descărca videoclipurile</string>
 
-    <string name="download_path_audio_title">Descărcați calea audio-ului</string>
+    <string name="download_path_audio_title">Calea de descărcare a sunetelor</string>
     <string name="download_path_audio_summary">Locul în care se vor stoca fișierele audio descărcate</string>
     <string name="download_path_audio_dialog_title">Introduceți calea de descărcare pentru fișierele audio.</string>
 
@@ -79,4 +79,76 @@
     <string name="use_tor_summary">Forțați descărcarea traficului prin Tor pentru intimitate crescută (transmiterea în flux a videoclipurilor nu este deocamdată suportată).</string>
 
     <string name="err_dir_create">Nu s-a putut crea directorul de descărcare \'%1$s\'</string>
+    <string name="main_bg_subtitle">Apăsați Căutare pentru a începe</string>
+    <string name="autoplay_by_calling_app_title">Autoredă când este rulat din altă aplicație</string>
+    <string name="autoplay_by_calling_app_summary">Redă un videoclip automat când NewPipe este rulat din altă aplicație.</string>
+    <string name="duration_live">în direct</string>
+    <string name="downloads">Descărcări</string>
+    <string name="downloads_title">Descărcări</string>
+    <string name="settings_title">Setări</string>
+    <string name="error_report_title">Raport de erori</string>
+
+    <string name="light_parsing_error">Nu s-a putut analiza complet website-ul.</string>
+    <string name="could_not_get_stream">Nu s-a putut prelua niciun stream.</string>
+    <string name="sorry_string">Scuze, asta n-ar trebui să se întâmple.</string>
+    <string name="error_report_button_text">Raportează eroarea prin mail</string>
+    <string name="error_snackbar_message">Scuze, câteva erori au apărut.</string>
+    <string name="error_snackbar_action">RAPORTAȚI</string>
+    <string name="what_device_headline">Informații:</string>
+    <string name="what_happened_headline">Ce s-a întâmplat:</string>
+    <string name="info_labels">Ce:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nVersion:\\nOS version:\\nGlob. Raza IP-ului:</string>
+    <string name="info_searched_lbl">S-a căutat pentru:</string>
+    <string name="info_requested_stream_lbl">Fluxul cerut:</string>
+    <string name="your_comment">Comentariul tău (în engleză):</string>
+    <string name="error_details_headline">Detalii:</string>
+
+
+    <string name="report_error">Raportează o eroare</string>
+    <string name="user_report">Raportul utilizatorului</string>
+
+    <string name="enable_background_audio">Redă în fundal</string>
+    <string name="video">Video</string>
+    <string name="audio">Audio</string>
+    <string name="text">Text</string>
+    <string name="logging">Înregistrare</string>
+    <string name="logging_normal">Normal</string>
+    <string name="logging_verbose">Prolix</string>
+    <string name="retry">Reîncearcă</string>
+    <string name="off">[oprit]</string>
+    <string name="error_drm_not_supported">Conținutul protejat nu este suportat pe nivelurile API sub 18</string>
+    <string name="error_drm_unsupported_scheme">Acest dispozitiv nu suportă schema DRM necesară</string>
+    <string name="error_drm_unknown">O eroare DRM necunoscută a apărut</string>
+    <string name="error_no_decoder">Acest dispozitiv nu furnizează un decodor pentru <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_secure_decoder">Acest dispozitiv nu furnizează un decodor sigur pentru <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_querying_decoders">Nu am reușit să pun decodoarele dispozitivelor în coadă</string>
+    <string name="error_instantiating_decoder">Nu am reușit să instanționez decodorul <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="storage_permission_denied">Permisiunea de a accesa mediul de stocare a fost refuzată</string>
+    <string name="use_exoplayer_title">Folosește ExoPlayer</string>
+    <string name="use_exoplayer_summary">Experimental</string>
+
+    <string name="start">Start</string>
+    <string name="pause">Pauză</string>
+    <string name="view">Vezi</string>
+    <string name="delete">Șterge</string>
+    <string name="checksum">Checksum</string>
+
+    <string name="add">Misiune nouă</string>
+    <string name="finish">Ok</string>
+    <string name="switch_mode">Schimbă între listă și grilă</string>
+
+
+    <string name="msg_url">Descarcă URL-ul</string>
+    <string name="msg_name">Numele fișierului</string>
+    <string name="msg_threads">Thread-uri</string>
+    <string name="msg_fetch_filename">Ia numele fișierului</string>
+    <string name="msg_error">Eroare</string>
+    <string name="msg_server_unsupported">Server nesuportat</string>
+    <string name="msg_exists">Fișierul există deja</string>
+    <string name="msg_url_malform">URL malformat sau Internet indisponibil</string>
+    <string name="msg_running">NewPipe Descarcă</string>
+    <string name="msg_running_detail">Apasă pentru detalii</string>
+    <string name="msg_wait">Vă rugăm așteptați...</string>
+    <string name="msg_copied">Copiat în clipboard.</string>
+    <string name="no_available_dir">Vă rugăm selectați un director de descărcare disponibil.</string>
+
     </resources>
