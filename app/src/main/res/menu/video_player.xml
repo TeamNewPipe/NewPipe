@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_item_chromecast_cast"
+        android:icon="@drawable/ic_cast_white"
+        android:title="@string/chromecast_cast"
+        app:actionProviderClass="android.support.v7.app.MediaRouteActionProvider"
+        app:showAsAction="always"/>
 
-    <item android:id="@+id/menu_item_screen_rotation"
+    <item
+        android:id="@+id/menu_item_screen_rotation"
+        android:icon="@drawable/ic_screen_rotation_white"
         android:title="@string/screen_rotation"
-        app:showAsAction="always"
-        android:icon="@drawable/ic_screen_rotation_white"/>
+        app:showAsAction="always"/>
 </menu>

@@ -5,9 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
-import android.media.MediaPlayer;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,23 +27,33 @@ import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.VideoView;
 
-import org.schabi.newpipe.App;
+import com.google.android.gms.cast.MediaInfo;
+import com.google.android.gms.cast.MediaMetadata;
+import com.google.android.gms.cast.framework.CastButtonFactory;
+import com.google.android.gms.cast.framework.CastContext;
+import com.google.android.gms.cast.framework.CastSession;
+import com.google.android.gms.cast.framework.CastState;
+import com.google.android.gms.cast.framework.SessionManagerListener;
+import com.google.android.gms.cast.framework.media.RemoteMediaClient;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+
 import org.schabi.newpipe.R;
 
 /**
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
  * PlayVideoActivity.java is part of NewPipe.
- *
+ * <p/>
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p/>
  * NewPipe is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p/>
  * You should have received a copy of the GNU General Public License
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -52,7 +61,7 @@ import org.schabi.newpipe.R;
 public class PlayVideoActivity extends AppCompatActivity {
 
     //// TODO: 11.09.15 add "choose stream" menu 
-    
+
     private static final String TAG = PlayVideoActivity.class.toString();
     public static final String VIDEO_URL = "video_url";
     public static final String STREAM_URL = "stream_url";
@@ -74,9 +83,18 @@ public class PlayVideoActivity extends AppCompatActivity {
     private static long lastUiShowTime;
     private boolean isLandscape = true;
     private boolean hasSoftKeys;
+    private boolean isGooglePlayServicesAvailable;
 
     private SharedPreferences prefs;
     private static final String PREF_IS_LANDSCAPE = "is_landscape";
+
+    private CastSession mCastSession;
+    CastContext mCastContext;
+    private SessionManagerListener<CastSession> mSessionManagerListener;
+
+    private MenuItem mediaRouteMenuItem;
+    private int castState;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +103,23 @@ public class PlayVideoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play_video);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
+//        setupControlsCallbacks();
+        isGooglePlayServicesAvailable = ConnectionResult.SUCCESS == GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
+
+        if (isGooglePlayServicesAvailable) {
+            mCastContext = CastContext.getSharedInstance(this);
+            mCastContext.registerLifecycleCallbacksBeforeIceCreamSandwich(this, savedInstanceState);
+
+
+            if (mCastSession == null) {
+                mCastSession = mCastContext.getSessionManager().getCurrentCastSession();
+            }
+
+            castState = mCastSession == null ? CastState.NO_DEVICES_AVAILABLE : mCastSession.isConnecting()
+                    ? CastState.CONNECTING : mCastSession.isConnected() ? CastState.CONNECTED : CastState.NOT_CONNECTED;
+            setupCastListener();
+
+        }
         //set background arrow style
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
 
@@ -95,7 +130,7 @@ public class PlayVideoActivity extends AppCompatActivity {
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
-        if(mediaController == null) {
+        if (mediaController == null) {
             //prevents back button hiding media controller controls (after showing them)
             //instead of exiting video
             //see http://stackoverflow.com/questions/6051825
@@ -107,8 +142,7 @@ public class PlayVideoActivity extends AppCompatActivity {
                     final boolean uniqueDown = event.getRepeatCount() == 0
                             && event.getAction() == KeyEvent.ACTION_DOWN;
                     if (keyCode == KeyEvent.KEYCODE_BACK) {
-                        if (uniqueDown)
-                        {
+                        if (uniqueDown) {
                             if (isShowing()) {
                                 finish();
                             } else {
@@ -122,7 +156,7 @@ public class PlayVideoActivity extends AppCompatActivity {
             };
         }
 
-        position = intent.getIntExtra(START_POSITION, 0)*1000;//convert from seconds to milliseconds
+        position = intent.getIntExtra(START_POSITION, 0) * 1000;//convert from seconds to milliseconds
 
         videoView = (VideoView) findViewById(R.id.video_view);
         progressBar = (ProgressBar) findViewById(R.id.play_video_progress_bar);
@@ -152,7 +186,7 @@ public class PlayVideoActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(uiIsHidden) {
+                if (uiIsHidden) {
                     showUi();
                 } else {
                     hideUi();
@@ -176,7 +210,7 @@ public class PlayVideoActivity extends AppCompatActivity {
         }
 
         prefs = getPreferences(Context.MODE_PRIVATE);
-        if(prefs.getBoolean(PREF_IS_LANDSCAPE, false) && !isLandscape) {
+        if (prefs.getBoolean(PREF_IS_LANDSCAPE, false) && !isLandscape) {
             toggleOrientation();
         }
     }
@@ -186,6 +220,8 @@ public class PlayVideoActivity extends AppCompatActivity {
         super.onCreatePanelMenu(featured, menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.video_player, menu);
+
+        mediaRouteMenuItem = CastButtonFactory.setUpMediaRouteButton(getApplicationContext(), menu, R.id.menu_item_chromecast_cast);
 
         return true;
     }
@@ -210,7 +246,7 @@ public class PlayVideoActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch(id) {
+        switch (id) {
             case android.R.id.home:
                 finish();
                 break;
@@ -238,7 +274,7 @@ public class PlayVideoActivity extends AppCompatActivity {
         if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             isLandscape = true;
             adjustMediaControlMetrics();
-        } else if (config.orientation == Configuration.ORIENTATION_PORTRAIT){
+        } else if (config.orientation == Configuration.ORIENTATION_PORTRAIT) {
             isLandscape = false;
             adjustMediaControlMetrics();
         }
@@ -275,7 +311,7 @@ public class PlayVideoActivity extends AppCompatActivity {
                 }
             }, HIDING_DELAY);
             lastUiShowTime = System.currentTimeMillis();
-        }catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -300,7 +336,7 @@ public class PlayVideoActivity extends AppCompatActivity {
                 = new MediaController.LayoutParams(MediaController.LayoutParams.MATCH_PARENT,
                 MediaController.LayoutParams.WRAP_CONTENT);
 
-        if(!hasSoftKeys) {
+        if (!hasSoftKeys) {
             mediaControllerLayout.setMargins(20, 0, 20, 20);
         } else {
             int width = getNavigationBarWidth();
@@ -310,14 +346,14 @@ public class PlayVideoActivity extends AppCompatActivity {
         mediaController.setLayoutParams(mediaControllerLayout);
     }
 
-    private boolean checkIfHasSoftKeys(){
+    private boolean checkIfHasSoftKeys() {
         return Build.VERSION.SDK_INT >= 17 ||
                 getNavigationBarHeight() != 0 ||
                 getNavigationBarWidth() != 0;
     }
 
     private int getNavigationBarHeight() {
-        if(Build.VERSION.SDK_INT >= 17) {
+        if (Build.VERSION.SDK_INT >= 17) {
             Display d = getWindowManager().getDefaultDisplay();
 
             DisplayMetrics realDisplayMetrics = new DisplayMetrics();
@@ -334,7 +370,7 @@ public class PlayVideoActivity extends AppCompatActivity {
     }
 
     private int getNavigationBarWidth() {
-        if(Build.VERSION.SDK_INT >= 17) {
+        if (Build.VERSION.SDK_INT >= 17) {
             Display d = getWindowManager().getDefaultDisplay();
 
             DisplayMetrics realDisplayMetrics = new DisplayMetrics();
@@ -357,7 +393,7 @@ public class PlayVideoActivity extends AppCompatActivity {
     }
 
     private void toggleOrientation() {
-        if(isLandscape)  {
+        if (isLandscape) {
             isLandscape = false;
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         } else {
@@ -367,5 +403,102 @@ public class PlayVideoActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean(PREF_IS_LANDSCAPE, isLandscape);
         editor.apply();
+    }
+
+
+    private void setupCastListener() {
+        mSessionManagerListener = new SessionManagerListener<CastSession>() {
+            @Override
+            public void onSessionEnded(CastSession session, int error) {
+                onApplicationDisconnected();
+            }
+
+            @Override
+            public void onSessionResumed(CastSession session, boolean wasSuspended) {
+                onApplicationConnected(session);
+            }
+
+            @Override
+            public void onSessionResumeFailed(CastSession session, int error) {
+                onApplicationDisconnected();
+            }
+
+            @Override
+            public void onSessionStarted(CastSession session, String sessionId) {
+                onApplicationConnected(session);
+            }
+
+            @Override
+            public void onSessionStartFailed(CastSession session, int error) {
+                onApplicationDisconnected();
+            }
+
+            @Override
+            public void onSessionStarting(CastSession session) {
+            }
+
+            @Override
+            public void onSessionEnding(CastSession session) {
+            }
+
+            @Override
+            public void onSessionResuming(CastSession session, String sessionId) {
+            }
+
+            @Override
+            public void onSessionSuspended(CastSession session, int reason) {
+            }
+
+            private void onApplicationConnected(CastSession castSession) {
+                mCastSession = castSession;
+                System.out.println(getIntent().getStringExtra(STREAM_URL).toString());
+
+                loadRemoteMedia(0, true);
+                RemoteMediaClient remoteMediaClient = mCastSession.getRemoteMediaClient();
+                remoteMediaClient.play();
+
+                invalidateOptionsMenu();
+            }
+
+            private void onApplicationDisconnected() {
+//                updatePlaybackLocation(PlaybackLocation.LOCAL);
+//                mPlaybackState = PlaybackState.IDLE;
+//                mLocation = PlaybackLocation.LOCAL;
+//                updatePlayButton(mPlaybackState);
+                invalidateOptionsMenu();
+            }
+        };
+        mCastContext.getSessionManager().addSessionManagerListener(mSessionManagerListener, CastSession.class);
+
+    }
+
+    private void loadRemoteMedia(int position, boolean autoPlay) {
+        if (mCastSession == null) {
+            return;
+        }
+        RemoteMediaClient remoteMediaClient = mCastSession.getRemoteMediaClient();
+        if (remoteMediaClient == null) {
+            return;
+        }
+        remoteMediaClient.load(buildMediaInfo(), autoPlay, position);
+    }
+
+    private MediaInfo buildMediaInfo() {
+
+        MediaMetadata movieMetadata = new MediaMetadata(MediaMetadata.MEDIA_TYPE_MOVIE);
+
+        movieMetadata.putString(MediaMetadata.KEY_TITLE, getIntent().getStringExtra(VIDEO_TITLE));
+        movieMetadata.putString(MediaMetadata.KEY_SUBTITLE, getIntent().getStringExtra(VIDEO_URL));
+
+        return new MediaInfo.Builder(Uri.parse(getIntent().getStringExtra(STREAM_URL)).toString())
+                .setStreamType(MediaInfo.STREAM_TYPE_BUFFERED)
+                .setContentType("videos/mp4")
+                .setMetadata(movieMetadata)
+                .build();
+    }
+
+    public enum PlaybackLocation {
+        LOCAL,
+        REMOTE
     }
 }

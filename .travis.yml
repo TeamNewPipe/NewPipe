@@ -13,7 +13,8 @@ android:
     # Additional components
     - extra-android-support
     - extra-android-m2repository
-
+    - addon-google_apis-google-24
+    
     # Emulators
     - sys-img-armeabi-v7a-android-21
     - sys-img-armeabi-v7a-android-19

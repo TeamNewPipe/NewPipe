@@ -177,6 +177,10 @@
     <string name="md5" translatable="false">MD5</string>
     <string name="sha1" translatable="false">SHA1</string>
 
+    <!-- Chromecast support titles -->
+    <string name="chromecast_cast">Cast now</string>
+    <string name="chromecast_app_id">4F8B3483</string>
+
     <!-- End of GigaGet's Strings -->
 
 </resources>
