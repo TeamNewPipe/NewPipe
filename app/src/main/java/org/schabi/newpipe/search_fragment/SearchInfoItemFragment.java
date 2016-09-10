@@ -237,7 +237,7 @@ public class SearchInfoItemFragment extends Fragment {
         searchView.setSuggestionsAdapter(suggestionListAdapter);
         searchView.setOnSuggestionListener(new SearchSuggestionListener(searchView, suggestionListAdapter));
         searchView.setOnQueryTextListener(new SearchQueryListener());
-        if(!searchQuery.isEmpty()) {
+        if(searchQuery != null && !searchQuery.isEmpty()) {
             searchView.setQuery(searchQuery, false);
             searchView.setIconifiedByDefault(false);
         }

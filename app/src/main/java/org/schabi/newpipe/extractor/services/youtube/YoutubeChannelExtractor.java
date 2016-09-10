@@ -1,20 +1,9 @@
 package org.schabi.newpipe.extractor.services.youtube;
 
-import android.util.Log;
 
-/*
-import com.steadystate.css.dom.CSSStyleDeclarationImpl;
-import com.steadystate.css.dom.CSSStyleSheetImpl;
-import com.steadystate.css.parser.CSSOMParser;
-import com.steadystate.css.parser.SACParserCSS3;
-import org.w3c.css.sac.CSSParseException;
-import org.w3c.css.sac.InputSource;
-import org.w3c.dom.css.CSSRule;
-import org.w3c.dom.css.CSSRuleList;
-import org.w3c.dom.css.CSSStyleSheet;
-import java.io.StringReader;
-*/
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -30,6 +19,8 @@ import org.schabi.newpipe.extractor.UrlIdHandler;
 
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Christian Schabesberger on 25.07.16.
@@ -58,42 +49,79 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
     // private CSSOMParser cssParser = new CSSOMParser(new SACParserCSS3());
 
     private Downloader downloader;
-    private final Document doc;
-    private final String channelUrl;
-    private String vUrl ="";
+    private Document doc = null;
 
+    private boolean isAjaxPage = false;
+    private static String userUrl = "";
+    private static String channelName = "";
+    private static String avatarUrl = "";
+    private static String bannerUrl = "";
+    private static String feedUrl = "";
+    // the fist page is html all other pages are ajax. Every new page can be requested by sending
+    // this request url.
+    private static String nextPageUrl = "";
 
-    public YoutubeChannelExtractor(UrlIdHandler urlIdHandler, String url, Downloader dl, int serviceId)
+    public YoutubeChannelExtractor(UrlIdHandler urlIdHandler, String url, int page, Downloader dl, int serviceId)
             throws ExtractionException, IOException {
-        super(urlIdHandler, url, dl, serviceId);
+        super(urlIdHandler, url, page, dl, serviceId);
 
-        channelUrl = urlIdHandler.cleanUrl(url) ; //+ "/video?veiw=0&flow=list&sort=dd";
+        url = urlIdHandler.cleanUrl(url) ; //+ "/video?veiw=0&flow=list&sort=dd";
         downloader = dl;
-        // we first need to get the user url. Otherwise we can't find videos
-        String channelPageContent = downloader.download(channelUrl);
-        Document channelDoc = Jsoup.parse(channelPageContent, channelUrl);
-        String userUrl = getUserUrl(channelDoc);
 
-        vUrl = userUrl + "/videos?veiw=0&flow=list&sort=dd";
-        String pageContent = downloader.download(vUrl);
-        doc = Jsoup.parse(pageContent, vUrl);
+        if(page == 0) {
+            if (isUserUrl(url)) {
+                userUrl = url;
+            } else {
+                // we first need to get the user url. Otherwise we can't find videos
+                String channelPageContent = downloader.download(url);
+                Document channelDoc = Jsoup.parse(channelPageContent, url);
+                userUrl = getUserUrl(channelDoc);
+            }
+
+            userUrl = userUrl + "/videos?veiw=0&flow=list&sort=dd&live_view=500";
+            String pageContent = downloader.download(userUrl);
+            doc = Jsoup.parse(pageContent, userUrl);
+            nextPageUrl = getNextPageUrl(doc);
+            isAjaxPage = false;
+        } else {
+            Map<String, String> userProperties = new HashMap<>();
+            userProperties.put("Referer", userUrl);
+            String ajaxDataRaw = downloader.download(nextPageUrl, userProperties);
+            JSONObject ajaxData;
+            String htmlDataRaw;
+            try {
+                ajaxData = new JSONObject(ajaxDataRaw);
+                htmlDataRaw = ajaxData.getString("content_html");
+            } catch (JSONException e) {
+                throw new ParsingException("Could not parse json data for next page", e);
+            }
+            doc = Jsoup.parse(htmlDataRaw, nextPageUrl);
+            nextPageUrl = getNextPageUrl(ajaxData);
+            isAjaxPage = true;
+        }
     }
 
     @Override
     public String getChannelName() throws ParsingException {
-         try {
-             return doc.select("span[class=\"qualified-channel-title-text\"]").first()
-                     .select("a").first().text();
-         } catch(Exception e) {
-             throw new ParsingException("Could not get channel name");
-         }
+        try {
+            if(!isAjaxPage) {
+                channelName = doc.select("span[class=\"qualified-channel-title-text\"]").first()
+                        .select("a").first().text();
+            }
+            return channelName;
+        } catch(Exception e) {
+            throw new ParsingException("Could not get channel name");
+        }
     }
 
     @Override
     public String getAvatarUrl() throws ParsingException {
         try {
-            return doc.select("img[class=\"channel-header-profile-image\"]")
-                    .first().attr("abs:src");
+            if(!isAjaxPage) {
+                avatarUrl = doc.select("img[class=\"channel-header-profile-image\"]")
+                        .first().attr("abs:src");
+            }
+            return avatarUrl;
         } catch(Exception e) {
             throw new ParsingException("Could not get avatar", e);
         }
@@ -101,16 +129,18 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
 
     @Override
     public String getBannerUrl() throws ParsingException {
-
         try {
-            Element el = doc.select("div[id=\"gh-banner\"]").first().select("style").first();
-            String cssContent = el.html();
-            String url = "https:" + Parser.matchGroup1("url\\((.*)\\)", cssContent);
-            if(url.contains("s.ytimg.com")) {
-                return null;
-            } else {
-                return url;
+            if(!isAjaxPage) {
+                Element el = doc.select("div[id=\"gh-banner\"]").first().select("style").first();
+                String cssContent = el.html();
+                String url = "https:" + Parser.matchGroup1("url\\((.*)\\)", cssContent);
+                if (url.contains("s.ytimg.com")) {
+                    bannerUrl = null;
+                } else {
+                    bannerUrl = url;
+                }
             }
+            return bannerUrl;
         } catch(Exception e) {
             throw new ParsingException("Could not get Banner", e);
         }
@@ -119,7 +149,12 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
     @Override
     public StreamPreviewInfoCollector getStreams() throws ParsingException {
         StreamPreviewInfoCollector collector = getStreamPreviewInfoCollector();
-        Element ul = doc.select("ul[id=\"browse-items-primary\"]").first();
+        Element ul = null;
+        if(isAjaxPage) {
+            ul = doc.select("body").first();
+        } else {
+            ul = doc.select("ul[id=\"browse-items-primary\"]").first();
+        }
 
         for(final Element li : ul.children()) {
             if (li.select("div[class=\"feed-item-dismissable\"]").first() != null) {
@@ -235,6 +270,19 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
                             throw new ParsingException("Could not get thumbnail url", e);
                         }
                     }
+
+                    private boolean isLiveStream(Element item) {
+                        Element bla = item.select("span[class*=\"yt-badge-live\"]").first();
+
+                        if(bla == null) {
+                            // sometimes livestreams dont have badges but sill are live streams
+                            // if video time is not available we most likly have an offline livestream
+                            if(item.select("span[class*=\"video-time\"]").first() == null) {
+                                return true;
+                            }
+                        }
+                        return bla != null;
+                    }
                 });
             }
         }
@@ -245,10 +293,18 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
     @Override
     public String getFeedUrl() throws ParsingException {
         try {
-            return doc.select("link[title=\"RSS\"]").first().attr("abs:href");
+            if(!isAjaxPage) {
+                feedUrl = doc.select("link[title=\"RSS\"]").first().attr("abs:href");
+            }
+            return feedUrl;
         } catch(Exception e) {
             throw new ParsingException("Could not get feed url", e);
         }
+    }
+
+    @Override
+    public boolean hasNextPage() throws ParsingException {
+        return !nextPageUrl.isEmpty();
     }
 
     private String getUserUrl(Document d) throws ParsingException {
@@ -256,16 +312,30 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
                 .select("a").first().attr("abs:href");
     }
 
-    private boolean isLiveStream(Element item) {
-        Element bla = item.select("span[class*=\"yt-badge-live\"]").first();
+    private boolean isUserUrl(String url) throws ParsingException {
+        return url.contains("/user/");
+    }
 
-        if(bla == null) {
-            // sometimes livestreams dont have badges but sill are live streams
-            // if video time is not available we most likly have an offline livestream
-            if(item.select("span[class*=\"video-time\"]").first() == null) {
-                return true;
-            }
+    private String getNextPageUrl(Document d) throws ParsingException {
+        try {
+            Element button = d.select("button[class*=\"yt-uix-load-more\"]").first();
+            return button.attr("abs:data-uix-load-more-href");
+        } catch(Exception e) {
+            throw new ParsingException("could not load next page url", e);
         }
-        return bla != null;
+    }
+
+    private String getNextPageUrl(JSONObject ajaxData) throws ParsingException {
+        Document doc = null;
+        try {
+            String docRaw = ajaxData.getString("load_more_widget_html");
+            if(docRaw.isEmpty()) {
+                return "";
+            }
+            doc = Jsoup.parse(docRaw);
+        } catch(JSONException je) {
+            throw new ParsingException("Could not get load_more_widget from ajax response", je);
+        }
+        return getNextPageUrl(doc);
     }
 }

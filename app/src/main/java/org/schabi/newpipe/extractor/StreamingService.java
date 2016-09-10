@@ -40,7 +40,7 @@ public abstract class StreamingService {
     public abstract SearchEngine getSearchEngineInstance(Downloader downloader);
     public abstract UrlIdHandler getUrlIdHandlerInstance();
     public abstract UrlIdHandler getChannelUrlIdHandlerInstance();
-    public abstract ChannelExtractor getChannelExtractorInstance(String url, Downloader downloader)
+    public abstract ChannelExtractor getChannelExtractorInstance(String url, int page, Downloader downloader)
             throws ExtractionException, IOException;
 
     public final int getServiceId() {

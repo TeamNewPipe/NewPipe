@@ -29,7 +29,7 @@ public abstract class ChannelExtractor {
     private Downloader downloader;
     private StreamPreviewInfoCollector previewInfoCollector;
 
-    public ChannelExtractor(UrlIdHandler urlIdHandler, String url, Downloader dl, int serviceId)
+    public ChannelExtractor(UrlIdHandler urlIdHandler, String url, int page, Downloader dl, int serviceId)
             throws ExtractionException, IOException {
         this.serviceId = serviceId;
         this.urlIdHandler = urlIdHandler;
@@ -48,6 +48,7 @@ public abstract class ChannelExtractor {
     public abstract String getBannerUrl() throws ParsingException;
     public abstract String getFeedUrl() throws ParsingException;
     public abstract StreamPreviewInfoCollector getStreams() throws ParsingException;
+    public abstract boolean hasNextPage() throws ParsingException;
     public int getServiceId() {
         return serviceId;
     }

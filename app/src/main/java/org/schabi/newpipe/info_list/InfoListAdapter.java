@@ -46,8 +46,10 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
     }
 
     public void addStreamItemList(List<StreamPreviewInfo> videos) {
-        streamList.addAll(videos);
-        notifyDataSetChanged();
+        if(videos!= null) {
+            streamList.addAll(videos);
+            notifyDataSetChanged();
+        }
     }
 
     public void clearSteamItemList() {

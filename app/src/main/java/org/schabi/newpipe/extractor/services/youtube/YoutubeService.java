@@ -70,8 +70,8 @@ public class YoutubeService extends StreamingService {
     }
 
     @Override
-    public ChannelExtractor getChannelExtractorInstance(String url, Downloader downloader)
+    public ChannelExtractor getChannelExtractorInstance(String url, int page, Downloader downloader)
         throws ExtractionException, IOException {
-        return new YoutubeChannelExtractor(getChannelUrlIdHandlerInstance(), url, downloader, getServiceId());
+        return new YoutubeChannelExtractor(getChannelUrlIdHandlerInstance(), url, page, downloader, getServiceId());
     }
 }

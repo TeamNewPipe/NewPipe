@@ -11,10 +11,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -27,12 +25,10 @@ import org.schabi.newpipe.extractor.ChannelInfo;
 import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.ServiceList;
-import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class ChannelActivity extends AppCompatActivity {
 
@@ -47,6 +43,7 @@ public class ChannelActivity extends AppCompatActivity {
     private int serviceId = -1;
     private String channelUrl = "";
     private int pageNumber = 0;
+    private boolean hasNextPage = true;
     private boolean isLoading = false;
 
     private ImageLoader imageLoader = ImageLoader.getInstance();
@@ -91,22 +88,23 @@ public class ChannelActivity extends AppCompatActivity {
                     totalItemCount = layoutManager.getItemCount();
                     pastVisiblesItems = layoutManager.findFirstVisibleItemPosition();
 
-                    if ( (visibleItemCount + pastVisiblesItems) >= totalItemCount && !isLoading)
+                    if ( (visibleItemCount + pastVisiblesItems) >= totalItemCount
+                            && !isLoading
+                            && hasNextPage)
                     {
                         pageNumber++;
-                        Log.d(TAG, "bottomn");
+                        requestData(true);
                     }
                 }
             }
         });
 
-        requestData(pageNumber);
+        requestData(false);
     }
 
 
 
     private void updateUi(final ChannelInfo info) {
-        isLoading = false;
         CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.channel_toolbar_layout);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         ImageView channelBanner = (ImageView) findViewById(R.id.channel_banner_image);
@@ -144,11 +142,9 @@ public class ChannelActivity extends AppCompatActivity {
         } else {
             feedButton.setVisibility(View.GONE);
         }
-
-        initVideos(info);
     }
 
-    private void initVideos(final ChannelInfo info) {
+    private void addVideos(final ChannelInfo info) {
         infoListAdapter.addStreamItemList(info.related_streams);
     }
 
@@ -162,7 +158,7 @@ public class ChannelActivity extends AppCompatActivity {
         });
     }
 
-    private void requestData(int page) {
+    private void requestData(final boolean onlyVideos) {
         // start processing
         isLoading = true;
         Thread channelExtractorThread = new Thread(new Runnable() {
@@ -173,7 +169,7 @@ public class ChannelActivity extends AppCompatActivity {
                 try {
                     StreamingService service = ServiceList.getService(serviceId);
                     ChannelExtractor extractor = service.getChannelExtractorInstance(
-                            channelUrl, new Downloader());
+                            channelUrl, pageNumber, new Downloader());
 
                     final ChannelInfo info = ChannelInfo.getInfo(extractor, new Downloader());
 
@@ -181,7 +177,12 @@ public class ChannelActivity extends AppCompatActivity {
                     h.post(new Runnable() {
                         @Override
                         public void run() {
-                            updateUi(info);
+                            isLoading = false;
+                            if(!onlyVideos) {
+                                updateUi(info);
+                            }
+                            hasNextPage = info.hasNextPage;
+                            addVideos(info);
                         }
                     });
 

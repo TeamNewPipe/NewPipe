@@ -39,6 +39,7 @@ public class ChannelInfo {
         // importand data
         info.service_id = extractor.getServiceId();
         info.channel_name = extractor.getChannelName();
+        info.hasNextPage = extractor.hasNextPage();
 
         try {
             info.avatar_url = extractor.getAvatarUrl();
@@ -72,6 +73,7 @@ public class ChannelInfo {
     public String banner_url = "";
     public String feed_url = "";
     public List<StreamPreviewInfo> related_streams = null;
+    public boolean hasNextPage = false;
 
     public List<Throwable> errors = new Vector<>();
 }
