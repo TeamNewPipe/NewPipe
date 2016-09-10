@@ -84,19 +84,19 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
             nextPageUrl = getNextPageUrl(doc);
             isAjaxPage = false;
         } else {
-            Map<String, String> userProperties = new HashMap<>();
-            userProperties.put("Referer", userUrl);
-            String ajaxDataRaw = downloader.download(nextPageUrl, userProperties);
+            String ajaxDataRaw = downloader.download(nextPageUrl);
             JSONObject ajaxData;
-            String htmlDataRaw;
             try {
                 ajaxData = new JSONObject(ajaxDataRaw);
-                htmlDataRaw = ajaxData.getString("content_html");
+                String htmlDataRaw = ajaxData.getString("content_html");
+                doc = Jsoup.parse(htmlDataRaw, nextPageUrl);
+
+                String nextPageHtmlDataRaw = ajaxData.getString("load_more_widget_html");
+                Document nextPageData = Jsoup.parse(nextPageHtmlDataRaw, nextPageUrl);
+                nextPageUrl = getNextPageUrl( nextPageData);
             } catch (JSONException e) {
                 throw new ParsingException("Could not parse json data for next page", e);
             }
-            doc = Jsoup.parse(htmlDataRaw, nextPageUrl);
-            nextPageUrl = getNextPageUrl(ajaxData);
             isAjaxPage = true;
         }
     }
@@ -323,19 +323,5 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
         } catch(Exception e) {
             throw new ParsingException("could not load next page url", e);
         }
-    }
-
-    private String getNextPageUrl(JSONObject ajaxData) throws ParsingException {
-        Document doc = null;
-        try {
-            String docRaw = ajaxData.getString("load_more_widget_html");
-            if(docRaw.isEmpty()) {
-                return "";
-            }
-            doc = Jsoup.parse(docRaw);
-        } catch(JSONException je) {
-            throw new ParsingException("Could not get load_more_widget from ajax response", je);
-        }
-        return getNextPageUrl(doc);
     }
 }
