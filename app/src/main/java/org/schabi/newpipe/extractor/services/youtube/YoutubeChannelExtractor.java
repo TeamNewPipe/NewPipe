@@ -78,7 +78,7 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
                 userUrl = getUserUrl(channelDoc);
             }
 
-            userUrl = userUrl + "/videos?veiw=0&flow=list&sort=dd&live_view=500";
+            userUrl = userUrl + "/videos?veiw=0&flow=list&sort=dd&live_view=10000";
             String pageContent = downloader.download(userUrl);
             doc = Jsoup.parse(pageContent, userUrl);
             nextPageUrl = getNextPageUrl(doc);
@@ -92,8 +92,12 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
                 doc = Jsoup.parse(htmlDataRaw, nextPageUrl);
 
                 String nextPageHtmlDataRaw = ajaxData.getString("load_more_widget_html");
-                Document nextPageData = Jsoup.parse(nextPageHtmlDataRaw, nextPageUrl);
-                nextPageUrl = getNextPageUrl( nextPageData);
+                if(!nextPageHtmlDataRaw.isEmpty()) {
+                    Document nextPageData = Jsoup.parse(nextPageHtmlDataRaw, nextPageUrl);
+                    nextPageUrl = getNextPageUrl(nextPageData);
+                } else {
+                    nextPageUrl = "";
+                }
             } catch (JSONException e) {
                 throw new ParsingException("Could not parse json data for next page", e);
             }
