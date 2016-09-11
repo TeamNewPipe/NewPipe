@@ -1,5 +1,6 @@
 package org.schabi.newpipe.extractor.services.youtube;
 
+import org.schabi.newpipe.extractor.FoundAdException;
 import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.UrlIdHandler;
@@ -56,8 +57,9 @@ public class YoutubeStreamUrlIdHandler implements UrlIdHandler {
             else if(url.contains("vnd.youtube"))
             {
                 id = Parser.matchGroup1("([\\-a-zA-Z0-9_]{11}).*", url);
-            }
-            else {
+            } else if(url.contains("googleads")) {
+                throw new FoundAdException("Error found add: " + url);
+            } else {
                 id = Parser.matchGroup1("[?&]v=([\\-a-zA-Z0-9_]{11})", url);
             }
         }

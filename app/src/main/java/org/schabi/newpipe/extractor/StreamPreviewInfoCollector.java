@@ -62,7 +62,7 @@ public class StreamPreviewInfoCollector {
             resultItem.title = extractor.getTitle();
             resultItem.stream_type = extractor.getStreamType();
 
-            // optional iformation
+            // optional information
             try {
                 resultItem.duration = extractor.getDuration();
             } catch (Exception e) {
@@ -89,6 +89,8 @@ public class StreamPreviewInfoCollector {
                 addError(e);
             }
             itemList.add(resultItem);
+        } catch(FoundAdException ae) {
+            System.out.println("AD_WARNING: " + ae.getMessage());
         } catch (Exception e) {
             addError(e);
         }
