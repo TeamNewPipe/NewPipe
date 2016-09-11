@@ -15,10 +15,9 @@ import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.StreamInfo;
-import org.schabi.newpipe.extractor.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.StreamPreviewInfoCollector;
 import org.schabi.newpipe.extractor.StreamPreviewInfoExtractor;
-import org.schabi.newpipe.extractor.StreamUrlIdHandler;
+import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.StreamExtractor;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.VideoStream;
@@ -183,12 +182,12 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     // cached values
     private static volatile String decryptionCode = "";
 
-    StreamUrlIdHandler urlidhandler = new YoutubeStreamUrlIdHandler();
+    UrlIdHandler urlidhandler = new YoutubeStreamUrlIdHandler();
     String pageUrl = "";
 
     private Downloader downloader;
 
-    public YoutubeStreamExtractor(StreamUrlIdHandler urlIdHandler, String pageUrl,
+    public YoutubeStreamExtractor(UrlIdHandler urlIdHandler, String pageUrl,
                                   Downloader dl, int serviceId)
             throws ExtractionException, IOException {
         super(urlIdHandler ,pageUrl, dl, serviceId);
@@ -203,7 +202,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
         // Check if the video is age restricted
         if (pageContent.contains("<meta property=\"og:restrictions:age")) {
             String videoInfoUrl = GET_VIDEO_INFO_URL.replace("%%video_id%%",
-                    urlidhandler.getVideoId(pageUrl)).replace("$$el_type$$", "&" + EL_INFO);
+                    urlidhandler.getId(pageUrl)).replace("$$el_type$$", "&" + EL_INFO);
             String videoInfoPageString = downloader.download(videoInfoUrl);
             videoInfoPage = Parser.compatParseMap(videoInfoPageString);
             playerUrl = getPlayerUrlFromRestrictedVideo(pageUrl);
@@ -286,7 +285,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     private String getPlayerUrlFromRestrictedVideo(String pageUrl) throws ParsingException {
         try {
             String playerUrl = "";
-            String videoId = urlidhandler.getVideoId(pageUrl);
+            String videoId = urlidhandler.getId(pageUrl);
             String embedUrl = "https://www.youtube.com/embed/" + videoId;
             String embedPageContent = downloader.download(embedUrl);
             //todo: find out if this can be reapaced by Parser.matchGroup1()
@@ -684,6 +683,16 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     @Override
     public String getPageUrl() {
         return pageUrl;
+    }
+
+    @Override
+    public String getChannelUrl() throws ParsingException {
+        try {
+            return doc.select("div[class=\"yt-user-info\"]").first().children()
+                    .select("a").first().attr("abs:href");
+        } catch(Exception e) {
+            throw new ParsingException("Could not get channel link", e);
+        }
     }
 
     @Override

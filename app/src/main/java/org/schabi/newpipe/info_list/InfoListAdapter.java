@@ -1,73 +1,79 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.info_list;
 
+import android.app.Activity;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.schabi.newpipe.ImageErrorLoadingListener;
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.AbstractVideoInfo;
 import org.schabi.newpipe.extractor.StreamPreviewInfo;
 
+import java.util.List;
+import java.util.Vector;
+
 /**
- * Created by Christian Schabesberger on 24.10.15.
- *
- * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * VideoInfoItemViewCreator.java is part of NewPipe.
- *
- * NewPipe is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * NewPipe is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
+ * Created by the-scrabi on 01.08.16.
  */
+public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
 
-public class VideoInfoItemViewCreator {
-    private final LayoutInflater inflater;
-    private ImageLoader imageLoader = ImageLoader.getInstance();
-    private DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().cacheInMemory(true).build();
-
-    public VideoInfoItemViewCreator(LayoutInflater inflater) {
-        this.inflater = inflater;
+    public interface OnItemSelectedListener {
+        void selected(String url);
     }
 
-    public View getViewFromVideoInfoItem(View convertView, ViewGroup parent, StreamPreviewInfo info) {
-        ViewHolder holder;
+    private Activity activity = null;
+    private View rootView = null;
+    private List<StreamPreviewInfo> streamList = new Vector<>();
+    private ImageLoader imageLoader = ImageLoader.getInstance();
+    private DisplayImageOptions displayImageOptions =
+            new DisplayImageOptions.Builder().cacheInMemory(true).build();
+    private OnItemSelectedListener onItemSelectedListener;
 
-        // generate holder
-        if(convertView == null) {
-            convertView = inflater.inflate(R.layout.video_item, parent, false);
-            holder = new ViewHolder();
-            holder.itemThumbnailView = (ImageView) convertView.findViewById(R.id.itemThumbnailView);
-            holder.itemVideoTitleView = (TextView) convertView.findViewById(R.id.itemVideoTitleView);
-            holder.itemUploaderView = (TextView) convertView.findViewById(R.id.itemUploaderView);
-            holder.itemDurationView = (TextView) convertView.findViewById(R.id.itemDurationView);
-            holder.itemUploadDateView = (TextView) convertView.findViewById(R.id.itemUploadDateView);
-            holder.itemViewCountView = (TextView) convertView.findViewById(R.id.itemViewCountView);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
+
+
+    public InfoListAdapter(Activity a, View rootView) {
+        activity = a;
+        this.rootView = rootView;
+    }
+
+    public void setOnItemSelectedListener(OnItemSelectedListener onItemSelectedListener) {
+        this.onItemSelectedListener = onItemSelectedListener;
+    }
+
+    public void addStreamItemList(List<StreamPreviewInfo> videos) {
+        if(videos!= null) {
+            streamList.addAll(videos);
+            notifyDataSetChanged();
         }
+    }
 
-        // fill with information
+    public void clearSteamItemList() {
+        streamList = new Vector<>();
+        notifyDataSetChanged();
+    }
 
-        /*
-        if(info.thumbnail == null) {
-            holder.itemThumbnailView.setImageResource(R.drawable.dummy_thumbnail);
-        } else {
-            holder.itemThumbnailView.setImageBitmap(info.thumbnail);
-        }
-        */
+    @Override
+    public int getItemCount() {
+        return streamList.size();
+    }
+
+    @Override
+    public InfoItemHolder onCreateViewHolder(ViewGroup parent, int i) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.video_item, parent, false);
+
+        return new InfoItemHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(InfoItemHolder holder, int i) {
+        final StreamPreviewInfo info = streamList.get(i);
+        // fill holder with information
         holder.itemVideoTitleView.setText(info.title);
         if(info.uploader != null && !info.uploader.isEmpty()) {
             holder.itemUploaderView.setText(info.uploader);
@@ -94,18 +100,22 @@ public class VideoInfoItemViewCreator {
 
         holder.itemThumbnailView.setImageResource(R.drawable.dummy_thumbnail);
         if(info.thumbnail_url != null && !info.thumbnail_url.isEmpty()) {
-            imageLoader.displayImage(info.thumbnail_url, holder.itemThumbnailView, displayImageOptions);
+            imageLoader.displayImage(info.thumbnail_url,
+                    holder.itemThumbnailView,
+                    displayImageOptions,
+                    new ImageErrorLoadingListener(activity, rootView, info.service_id));
         }
 
-        return convertView;
+        holder.itemButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onItemSelectedListener.selected(info.webpage_url);
+            }
+        });
     }
 
-    private class ViewHolder {
-        public ImageView itemThumbnailView;
-        public TextView itemVideoTitleView, itemUploaderView, itemDurationView, itemUploadDateView, itemViewCountView;
-    }
 
-    private String shortViewCount(Long viewCount){
+    public static String shortViewCount(Long viewCount){
         if(viewCount >= 1000000000){
             return Long.toString(viewCount/1000000000)+"B views";
         }else if(viewCount>=1000000){

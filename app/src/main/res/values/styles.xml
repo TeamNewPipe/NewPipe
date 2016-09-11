@@ -1,18 +1,17 @@
 <resources>
 
-  <style name="RootTheme" parent="android:Theme.Holo">
-  </style>
+    <style name="RootTheme" parent="android:Theme.Holo"></style>
 
-  <style name="PlayerTheme" parent="@style/RootTheme">
-    <item name="android:windowNoTitle">true</item>
-    <item name="android:windowBackground">@android:color/black</item>
-  </style>
+    <style name="PlayerTheme" parent="@style/RootTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
 
-  <style name="ExoPlayerButton">
-    <item name="android:layout_width">wrap_content</item>
-    <item name="android:layout_height">wrap_content</item>
-    <item name="android:minWidth">40dp</item>
-  </style>
+    <style name="ExoPlayerButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">40dp</item>
+    </style>
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
@@ -24,7 +23,7 @@
         <item name="android:windowBackground">@color/light_background_color</item>
     </style>
 
-    <style name="NewPipeActionbarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid" >
+    <style name="NewPipeActionbarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid">
         <item name="android:displayOptions">showHome</item>
         <item name="displayOptions">showHome</item>
         <item name="android:background">@color/light_youtube_primary_color</item>
@@ -41,7 +40,7 @@
         <item name="android:windowBackground">@android:color/black</item>
     </style>
 
-    <style name="VideoPlayerActionBarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse" >
+    <style name="VideoPlayerActionBarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:displayOptions">showHome</item>
         <item name="displayOptions">showHome</item>
         <item name="android:background">@color/video_overlay_color</item>
@@ -71,5 +70,14 @@
         <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
         <item name="colorAccent">@color/light_youtube_accent_color</item>
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

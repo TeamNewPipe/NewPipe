@@ -1,10 +1,11 @@
 package org.schabi.newpipe.extractor.services.youtube;
 
+import org.schabi.newpipe.extractor.ChannelExtractor;
 import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.StreamExtractor;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.StreamUrlIdHandler;
+import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.SearchEngine;
 
 import java.io.IOException;
@@ -45,7 +46,7 @@ public class YoutubeService extends StreamingService {
     @Override
     public StreamExtractor getExtractorInstance(String url, Downloader downloader)
             throws ExtractionException, IOException {
-        StreamUrlIdHandler urlIdHandler = new YoutubeStreamUrlIdHandler();
+        UrlIdHandler urlIdHandler = new YoutubeStreamUrlIdHandler();
         if(urlIdHandler.acceptUrl(url)) {
             return new YoutubeStreamExtractor(urlIdHandler, url, downloader, getServiceId());
         }
@@ -59,7 +60,18 @@ public class YoutubeService extends StreamingService {
     }
 
     @Override
-    public StreamUrlIdHandler getUrlIdHandlerInstance() {
+    public UrlIdHandler getUrlIdHandlerInstance() {
         return new YoutubeStreamUrlIdHandler();
+    }
+
+    @Override
+    public UrlIdHandler getChannelUrlIdHandlerInstance() {
+        return new YoutubeChannelUrlIdHandler();
+    }
+
+    @Override
+    public ChannelExtractor getChannelExtractorInstance(String url, int page, Downloader downloader)
+        throws ExtractionException, IOException {
+        return new YoutubeChannelExtractor(getChannelUrlIdHandlerInstance(), url, page, downloader, getServiceId());
     }
 }

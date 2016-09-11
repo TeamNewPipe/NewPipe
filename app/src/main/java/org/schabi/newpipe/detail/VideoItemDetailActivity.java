@@ -1,4 +1,4 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.detail;
 
 import android.content.Intent;
 import android.media.AudioManager;
@@ -11,6 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import org.schabi.newpipe.App;
+import org.schabi.newpipe.MainActivity;
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 
@@ -85,7 +88,7 @@ public class VideoItemDetailActivity extends AppCompatActivity {
                             .show();
                 }
                 //arguments.putString(VideoItemDetailFragment.VIDEO_URL,
-                //        videoExtractor.getVideoUrl(videoExtractor.getVideoId(videoUrl)));//cleans URL
+                //        videoExtractor.getUrl(videoExtractor.getId(videoUrl)));//cleans URL
                 arguments.putString(VideoItemDetailFragment.VIDEO_URL, videoUrl);
 
                 arguments.putBoolean(VideoItemDetailFragment.AUTO_PLAY,
@@ -138,7 +141,7 @@ public class VideoItemDetailActivity extends AppCompatActivity {
 
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
 
-            Intent intent = new Intent(this, VideoItemListActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             NavUtils.navigateUpTo(this, intent);
             return true;

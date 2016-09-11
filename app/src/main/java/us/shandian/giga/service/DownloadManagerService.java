@@ -14,7 +14,7 @@ import android.os.Message;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.util.Log;
 
-import org.schabi.newpipe.NewPipeSettings;
+import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.R;
 import us.shandian.giga.get.DownloadManager;
 import us.shandian.giga.get.DownloadManagerImpl;

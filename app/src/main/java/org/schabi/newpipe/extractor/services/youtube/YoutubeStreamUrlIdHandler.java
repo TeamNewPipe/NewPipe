@@ -2,7 +2,7 @@ package org.schabi.newpipe.extractor.services.youtube;
 
 import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
-import org.schabi.newpipe.extractor.StreamUrlIdHandler;
+import org.schabi.newpipe.extractor.UrlIdHandler;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -27,16 +27,16 @@ import java.net.URLDecoder;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class YoutubeStreamUrlIdHandler implements StreamUrlIdHandler {
+public class YoutubeStreamUrlIdHandler implements UrlIdHandler {
     @SuppressWarnings("WeakerAccess")
     @Override
-    public String getVideoUrl(String videoId) {
+    public String getUrl(String videoId) {
         return "https://www.youtube.com/watch?v=" + videoId;
     }
 
     @SuppressWarnings("WeakerAccess")
     @Override
-    public String getVideoId(String url) throws ParsingException, IllegalArgumentException {
+    public String getId(String url) throws ParsingException, IllegalArgumentException {
         if(url.isEmpty())
         {
             throw new IllegalArgumentException("The url parameter should not be empty");
@@ -81,7 +81,7 @@ public class YoutubeStreamUrlIdHandler implements StreamUrlIdHandler {
     }
 
     public String cleanUrl(String complexUrl) throws ParsingException {
-        return getVideoUrl(getVideoId(complexUrl));
+        return getUrl(getId(complexUrl));
     }
 
     @Override

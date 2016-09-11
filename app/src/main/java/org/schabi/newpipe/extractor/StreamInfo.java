@@ -85,12 +85,12 @@ public class StreamInfo extends AbstractVideoInfo {
         /* ---- importand data, withoug the video can't be displayed goes here: ---- */
         // if one of these is not available an exception is ment to be thrown directly into the frontend.
 
-        StreamUrlIdHandler uiconv = extractor.getUrlIdHandler();
+        UrlIdHandler uiconv = extractor.getUrlIdHandler();
 
         streamInfo.service_id = extractor.getServiceId();
         streamInfo.webpage_url = extractor.getPageUrl();
         streamInfo.stream_type = extractor.getStreamType();
-        streamInfo.id = uiconv.getVideoId(extractor.getPageUrl());
+        streamInfo.id = uiconv.getId(extractor.getPageUrl());
         streamInfo.title = extractor.getTitle();
         streamInfo.age_limit = extractor.getAgeLimit();
 
@@ -189,6 +189,11 @@ public class StreamInfo extends AbstractVideoInfo {
             streamInfo.addException(e);
         }
         try {
+            streamInfo.channel_url = extractor.getChannelUrl();
+        } catch(Exception e) {
+            streamInfo.addException(e);
+        }
+        try {
             streamInfo.description = extractor.getDescription();
         } catch(Exception e) {
             streamInfo.addException(e);
@@ -248,7 +253,7 @@ public class StreamInfo extends AbstractVideoInfo {
         try {
             // get related videos
             StreamPreviewInfoCollector c = extractor.getRelatedVideos();
-            streamInfo.related_videos = c.getItemList();
+            streamInfo.related_streams = c.getItemList();
             streamInfo.errors.addAll(c.getErrors());
         } catch(Exception e) {
             streamInfo.addException(e);
@@ -258,6 +263,7 @@ public class StreamInfo extends AbstractVideoInfo {
     }
 
     public String uploader_thumbnail_url = "";
+    public String channel_url = "";
     public String description = "";
 
     public List<VideoStream> video_streams = null;
@@ -275,9 +281,9 @@ public class StreamInfo extends AbstractVideoInfo {
     public int dislike_count = -1;
     public String average_rating = "";
     public StreamPreviewInfo next_video = null;
-    public List<StreamPreviewInfo> related_videos = null;
+    public List<StreamPreviewInfo> related_streams = null;
     //in seconds. some metadata is not passed using a StreamInfo object!
     public int start_position = 0;
 
-    public List<Exception> errors = new Vector<>();
+    public List<Throwable> errors = new Vector<>();
 }

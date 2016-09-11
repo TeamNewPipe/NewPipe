@@ -23,8 +23,8 @@ import android.widget.Toast;
 import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.VideoItemDetailActivity;
-import org.schabi.newpipe.VideoItemDetailFragment;
+import org.schabi.newpipe.detail.VideoItemDetailActivity;
+import org.schabi.newpipe.detail.VideoItemDetailFragment;
 
 import java.io.IOException;
 

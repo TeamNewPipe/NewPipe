@@ -16,10 +16,10 @@
         android:logo="@mipmap/ic_launcher"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
+
         <activity
-            android:name=".VideoItemListActivity"
-            android:label="@string/app_name"
-            android:theme="@style/SplashScreenTheme">
+            android:name=".MainActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,12 +27,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".VideoItemDetailActivity"
+            android:name=".detail.VideoItemDetailActivity"
             android:label="@string/title_videoitem_detail"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".VideoItemListActivity" />
+                android:value=".MainActivity" />
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -80,12 +80,14 @@
             android:name=".player.PlayVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/VideoPlayerTheme"
-            tools:ignore="UnusedAttribute"/>
+            tools:ignore="UnusedAttribute" />
+
         <service
             android:name=".player.BackgroundPlayer"
             android:exported="false"
-            android:label="@string/background_player_name"/>
-		<activity
+            android:label="@string/background_player_name" />
+
+        <activity
             android:name=".player.ExoPlayerActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
@@ -103,12 +105,14 @@
                 <data android:scheme="file" />
             </intent-filter>
         </activity>
+
         <service
             android:name=".player.BackgroundPlayer"
-            android:label="@string/background_player_name"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/background_player_name" />
+
         <activity
-            android:name=".SettingsActivity"
+            android:name=".settings.SettingsActivity"
             android:label="@string/settings_activity_title" />
         <activity
             android:name=".PanicResponderActivity"
@@ -125,18 +129,16 @@
             android:name=".ExitActivity"
             android:label="@string/general_error"
             android:theme="@android:style/Theme.NoDisplay" />
-        <activity android:name=".ErrorActivity"/>
+        <activity android:name=".ErrorActivity" />
 
         <!-- giga get related -->
         <activity
             android:name=".download.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme"
-            android:launchMode="singleTask">
-        </activity>
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme" />
 
-        <service
-            android:name="us.shandian.giga.service.DownloadManagerService"/>
+        <service android:name="us.shandian.giga.service.DownloadManagerService" />
 
         <activity
             android:name="com.nononsenseapps.filepicker.FilePickerActivity"
@@ -145,5 +147,11 @@
             android:launchMode="singleTop">
         </activity>
 
+        <activity
+            android:name=".ChannelActivity"
+            android:label="@string/title_activity_channel"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
+
 </manifest>

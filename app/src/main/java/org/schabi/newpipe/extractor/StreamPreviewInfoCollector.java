@@ -27,11 +27,11 @@ import java.util.Vector;
 
 public class StreamPreviewInfoCollector {
     private List<StreamPreviewInfo> itemList = new Vector<>();
-    private List<Exception> errors = new Vector<>();
-    private StreamUrlIdHandler urlIdHandler;
+    private List<Throwable> errors = new Vector<>();
+    private UrlIdHandler urlIdHandler;
     private int serviceId = -1;
 
-    public StreamPreviewInfoCollector(StreamUrlIdHandler handler, int serviceId) {
+    public StreamPreviewInfoCollector(UrlIdHandler handler, int serviceId) {
         urlIdHandler = handler;
         this.serviceId = serviceId;
     }
@@ -40,7 +40,7 @@ public class StreamPreviewInfoCollector {
         return itemList;
     }
 
-    public List<Exception> getErrors() {
+    public List<Throwable> getErrors() {
         return errors;
     }
 
@@ -57,7 +57,7 @@ public class StreamPreviewInfoCollector {
             if (urlIdHandler == null) {
                 throw new ParsingException("Error: UrlIdHandler not set");
             } else if(!resultItem.webpage_url.isEmpty()) {
-                resultItem.id = (new YoutubeStreamUrlIdHandler()).getVideoId(resultItem.webpage_url);
+                resultItem.id = (new YoutubeStreamUrlIdHandler()).getId(resultItem.webpage_url);
             }
             resultItem.title = extractor.getTitle();
             resultItem.stream_type = extractor.getStreamType();

@@ -1,4 +1,4 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.settings;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.schabi.newpipe.R;
 
 
 /**

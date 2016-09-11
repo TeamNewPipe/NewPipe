@@ -1,10 +1,10 @@
 package org.schabi.newpipe.extractor;
 
 /**
- * Created by Christian Schabesberger on 02.02.16.
+ * Created by Christian Schabesberger on 26.07.16.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * StreamUrlIdHandler.java is part of NewPipe.
+ * UrlIdHandler.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,9 +20,9 @@ package org.schabi.newpipe.extractor;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public interface StreamUrlIdHandler {
-    String getVideoUrl(String videoId);
-    String getVideoId(String siteUrl) throws ParsingException;
+public interface UrlIdHandler {
+    String getUrl(String videoId);
+    String getId(String siteUrl) throws ParsingException;
     String cleanUrl(String siteUrl) throws ParsingException;
 
     /**When a VIEW_ACTION is caught this function will test if the url delivered within the calling
