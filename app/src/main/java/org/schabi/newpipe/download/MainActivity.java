@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         actionBar.setTitle(R.string.downloads_title);
         actionBar.setDisplayShowTitleEnabled(true);
 
+        //todo: this needs to be fixed Context.MODE_WORLD_READABLE is obsolet
         mPrefs = getSharedPreferences(THREADS, Context.MODE_WORLD_READABLE);
 
         // Fragment
