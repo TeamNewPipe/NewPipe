@@ -668,10 +668,13 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     public StreamPreviewInfoCollector getRelatedVideos() throws ParsingException {
         try {
             StreamPreviewInfoCollector collector = getStreamPreviewInfoCollector();
-            for (Element li : doc.select("ul[id=\"watch-related\"]").first().children()) {
-                // first check if we have a playlist. If so leave them out
-                if (li.select("a[class*=\"content-link\"]").first() != null) {
-                    collector.commit(extractVideoPreviewInfo(li));
+            Element ul = doc.select("ul[id=\"watch-related\"]").first();
+            if(ul != null) {
+                for (Element li : ul.children()) {
+                    // first check if we have a playlist. If so leave them out
+                    if (li.select("a[class*=\"content-link\"]").first() != null) {
+                        collector.commit(extractVideoPreviewInfo(li));
+                    }
                 }
             }
             return collector;
