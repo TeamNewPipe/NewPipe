@@ -33,27 +33,6 @@ public class StreamInfoWorker {
         void onContentError();
     }
 
-    private class StreamResultReturnedRunnable implements Runnable {
-        private final StreamInfo streamInfo;
-        public StreamResultReturnedRunnable(StreamInfo streamInfo) {
-            this.streamInfo = streamInfo;
-        }
-        @Override
-        public void run() {
-            /*
-            if(a != null) {
-                boolean showAgeRestrictedContent = PreferenceManager.getDefaultSharedPreferences(a)
-                        .getBoolean(activity.getString(R.string.show_age_restricted_content), false);
-                if (streamInfo.age_limit == 0 || showAgeRestrictedContent) {
-                    updateInfo(streamInfo);
-                } else {
-                    onNotSpecifiedContentErrorWithMessage(R.string.video_is_age_restricted);
-                }
-            }
-            */
-        }
-    }
-
     private class StreamExtractorRunnable implements Runnable {
         private final Handler h = new Handler();
         private StreamExtractor streamExtractor;

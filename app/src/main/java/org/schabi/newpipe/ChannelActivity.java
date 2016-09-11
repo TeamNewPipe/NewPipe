@@ -166,8 +166,9 @@ public class ChannelActivity extends AppCompatActivity {
 
             @Override
             public void run() {
+                StreamingService service = null;
                 try {
-                    StreamingService service = ServiceList.getService(serviceId);
+                    service = ServiceList.getService(serviceId);
                     ChannelExtractor extractor = service.getChannelExtractorInstance(
                             channelUrl, pageNumber, new Downloader());
 
@@ -194,15 +195,48 @@ public class ChannelActivity extends AppCompatActivity {
                             e.printStackTrace();
                             Log.e(TAG, "------");
                         }
+
+                        View rootView = findViewById(android.R.id.content);
+                        ErrorActivity.reportError(h, ChannelActivity.this,
+                                info.errors, null, rootView,
+                                ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                                        service.getServiceInfo().name, channelUrl, 0 /* no message for the user */));
                     }
                 } catch(IOException ioe) {
                     postNewErrorToast(h, R.string.network_error);
                     ioe.printStackTrace();
                 } catch(ParsingException pe) {
+                    ErrorActivity.reportError(h, ChannelActivity.this, pe, VideoItemDetailFragment.class, null,
+                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                                    service.getServiceInfo().name, channelUrl, R.string.parsing_error));
+                    h.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            ChannelActivity.this.finish();
+                        }
+                    });
                     pe.printStackTrace();
                 } catch(ExtractionException ex) {
+                    ErrorActivity.reportError(h, ChannelActivity.this, ex, VideoItemDetailFragment.class, null,
+                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                                    service.getServiceInfo().name, channelUrl, R.string.parsing_error));
+                    h.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            ChannelActivity.this.finish();
+                        }
+                    });
                     ex.printStackTrace();
                 } catch(Exception e) {
+                    ErrorActivity.reportError(h, ChannelActivity.this, e, VideoItemDetailFragment.class, null,
+                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                                    service.getServiceInfo().name, channelUrl, R.string.general_error));
+                    h.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            ChannelActivity.this.finish();
+                        }
+                    });
                     e.printStackTrace();
                 }
             }
