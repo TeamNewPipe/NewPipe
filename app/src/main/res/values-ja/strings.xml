@@ -157,4 +157,8 @@
     <string name="settings_title">設定</string>
     <string name="error_report_title">エラー報告</string>
 
+    <string name="could_not_load_image">画像を読み込みできません</string>
+    <string name="title_activity_channel">ChannelActivity</string>
+    <string name="action_settings">設定</string>
+
     </resources>
