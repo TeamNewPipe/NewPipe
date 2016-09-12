@@ -104,8 +104,6 @@ public class SettingsFragment  extends PreferenceFragment
                 }
                 if (key == USE_TOR_KEY)
                 {
-                    updateSummary();
-
                     if (defaultPreferences.getBoolean(USE_TOR_KEY, false)) {
                         if (OrbotHelper.isOrbotInstalled(a)) {
                             App.configureTor(true);
@@ -134,6 +132,7 @@ public class SettingsFragment  extends PreferenceFragment
                     downloadPathAudioPreference
                             .setSummary(downloadPath);
                 }
+                updateSummary();
             }
         };
         defaultPreferences.registerOnSharedPreferenceChangeListener(prefListener);
@@ -219,6 +218,7 @@ public class SettingsFragment  extends PreferenceFragment
                     && OrbotHelper.requestStartTor(a));
 
         }
+        updateSummary();
         super.onActivityResult(requestCode, resultCode, data);
     }
 
