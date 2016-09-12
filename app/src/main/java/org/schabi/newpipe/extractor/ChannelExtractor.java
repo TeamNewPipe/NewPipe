@@ -28,9 +28,13 @@ public abstract class ChannelExtractor {
     private UrlIdHandler urlIdHandler;
     private Downloader downloader;
     private StreamPreviewInfoCollector previewInfoCollector;
+    private int page = -1;
 
     public ChannelExtractor(UrlIdHandler urlIdHandler, String url, int page, Downloader dl, int serviceId)
             throws ExtractionException, IOException {
+        this.url = url;
+        this.page = page;
+        this.downloader = dl;
         this.serviceId = serviceId;
         this.urlIdHandler = urlIdHandler;
         previewInfoCollector = new StreamPreviewInfoCollector(urlIdHandler, serviceId);

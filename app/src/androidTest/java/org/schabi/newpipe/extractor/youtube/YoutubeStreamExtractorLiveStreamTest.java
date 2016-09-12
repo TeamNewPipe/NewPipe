@@ -15,7 +15,7 @@ import java.io.IOException;
  * Created by Christian Schabesberger on 11.03.16.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * YoutubestreamExtractorLiveStreamTest.java is part of NewPipe.
+ * YoutubeStreamExtractorLiveStreamTest.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ import java.io.IOException;
  */
 
 
-public class YoutubestreamExtractorLiveStreamTest extends AndroidTestCase {
+public class YoutubeStreamExtractorLiveStreamTest extends AndroidTestCase {
 
     private StreamExtractor extractor;
 
