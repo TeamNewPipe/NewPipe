@@ -147,4 +147,7 @@
     <string name="settings_title">设置</string>
     <string name="error_report_title">错误报告</string>
 
+    <string name="action_settings">设置</string>
+
+    <string name="could_not_load_image">无法加载图像</string>
     </resources>
