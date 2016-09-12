@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".detail.VideoItemDetailFragment"
@@ -9,6 +9,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/video_item_detail">
+
+    <ProgressBar android:id="@+id/detail_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"/>
 
     <com.nirhart.parallaxscroll.views.ParallaxScrollView
         android:id="@+id/detail_main_content"
@@ -39,12 +45,6 @@
                     android:layout_alignParentTop="true"
                     android:background="@android:color/black"
                     android:src="@drawable/dummy_thumbnail_dark"/>
-
-                <ProgressBar android:id="@+id/detail_progress_bar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:indeterminate="true"/>
 
                 <ImageView android:id="@+id/play_arrow_view"
                     android:layout_width="wrap_content"
@@ -275,4 +275,4 @@
             </RelativeLayout>
         </RelativeLayout>
     </com.nirhart.parallaxscroll.views.ParallaxScrollView>
-</FrameLayout>
+</RelativeLayout>
