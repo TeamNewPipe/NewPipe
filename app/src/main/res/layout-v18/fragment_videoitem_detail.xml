@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_play_circle_transparent"
+                    android:src="@drawable/new_play_arrow"
                     android:visibility="invisible"/>
 
                 <Button
