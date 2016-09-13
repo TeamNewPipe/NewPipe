@@ -91,7 +91,7 @@
     <string name="error_snackbar_action">MELDEN</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Dies ist passiert:</string>
-    <string name="info_labels">Was:\\nAnfrage:\\nSprache des Inhalts:\\nDienst:\\nZeit (GMT):\\nVersion:\\nOS-Version:\\nGlob. IP-Bereich:</string>
+    <string name="info_labels">Was:\\nAnfrage:\\nSprache des Inhalts:\\nDienst:\\nZeit (GMT):\\nPacket:\\nVersion:\\nOS-Version:\\nGlob. IP-Bereich:</string>
     <string name="error_details_headline">Details:</string>
 
 

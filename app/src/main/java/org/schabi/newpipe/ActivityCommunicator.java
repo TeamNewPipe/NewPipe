@@ -42,8 +42,5 @@ public class ActivityCommunicator {
     // Thumbnail send from VideoItemDetailFragment to BackgroundPlayer
     public volatile Bitmap backgroundPlayerThumbnail;
 
-    // Sent from any activity to ErrorActivity.
-    public volatile List<Throwable> errorList;
     public volatile Class returnActivity;
-    public volatile ErrorActivity.ErrorInfo errorInfo;
 }

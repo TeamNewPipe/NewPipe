@@ -81,7 +81,6 @@
     <string name="error_snackbar_action">گزارش</string>
     <string name="what_device_headline">اطّلاعات:</string>
     <string name="what_happened_headline">چه روی داد:</string>
-    <string name="info_labels">چه:\\nدرخواست:\\nزبان درخواست:\\nخدمت:\\nزمان GMT:\\nنگارش:\\nنگارش س.ع:\\nبازه آی‌پی:</string>
     <string name="info_searched_lbl">جست‌وجو شده برای:</string>
     <string name="info_requested_stream_lbl">جریان درخواستی:</string>
     <string name="your_comment">توضیح شما (به انگلیسی):</string>

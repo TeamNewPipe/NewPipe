@@ -135,7 +135,6 @@
 
     <string name="autoplay_by_calling_app_summary">Auto-reproduz un videu al llamar a NewPipe dende otra aplicación.</string>
     <string name="autoplay_by_calling_app_title">Auto-reproducir al llamar dende otra aplicación</string>
-    <string name="info_labels">Qué:\\nSolicitú:\\nLlingua conteníu:\\nServiciu:\\nHora GMT:\\nVersión:\\nVersión SO:\\nRangu global d\'IP:</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura del xubidor</string>
     <string name="detail_dislikes_img_view_description">Despréstames</string>
     <string name="error_querying_decoders">Nun puen consultase los descodificadores del preséu</string>

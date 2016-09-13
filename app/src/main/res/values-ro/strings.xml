@@ -96,7 +96,6 @@
     <string name="error_snackbar_action">RAPORTAȚI</string>
     <string name="what_device_headline">Informații:</string>
     <string name="what_happened_headline">Ce s-a întâmplat:</string>
-    <string name="info_labels">Ce:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nVersion:\\nOS version:\\nGlob. Raza IP-ului:</string>
     <string name="info_searched_lbl">S-a căutat pentru:</string>
     <string name="info_requested_stream_lbl">Fluxul cerut:</string>
     <string name="your_comment">Comentariul tău (în engleză):</string>

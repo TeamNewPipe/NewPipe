@@ -26,7 +26,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.schabi.newpipe.ErrorActivity;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.SettingsActivity;
 

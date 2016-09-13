@@ -6,10 +6,9 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import org.schabi.newpipe.Downloader;
-import org.schabi.newpipe.ErrorActivity;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.SearchEngine;

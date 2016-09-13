@@ -18,7 +18,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import org.schabi.newpipe.ErrorActivity;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.detail.VideoItemDetailActivity;
 import org.schabi.newpipe.detail.VideoItemDetailFragment;

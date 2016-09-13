@@ -43,7 +43,7 @@ import java.util.Vector;
 
 import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.ChannelActivity;
-import org.schabi.newpipe.ErrorActivity;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.Localization;
 import org.schabi.newpipe.R;

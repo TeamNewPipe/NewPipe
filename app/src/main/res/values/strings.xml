@@ -97,6 +97,7 @@
     <string name="live_streams_not_supported">This is a LIVE STREAM. These are not yet supported.</string>
     <string name="could_not_get_stream">Could not get any stream.</string>
     <string name="could_not_load_image">Could not load Image</string>
+    <string name="app_ui_crash">App/UI crashed</string>
     <!-- error activity -->
     <string name="sorry_string">Sorry that should not happen.</string>
     <string name="guru_meditation" translatable="false">Guru Meditation.</string>
@@ -105,7 +106,7 @@
     <string name="error_snackbar_action">REPORT</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">What happened:</string>
-    <string name="info_labels">What:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nVersion:\\nOS version:\\nGlob. IP range:</string>
+    <string name="info_labels">What:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:\\nGlob. IP range:</string>
     <string name="info_searched_lbl">Searched for:</string>
     <string name="info_requested_stream_lbl">Requested stream:</string>
     <string name="your_comment">Your comment (in English):</string>

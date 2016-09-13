@@ -79,5 +79,4 @@
     <string name="error_snackbar_action">ЗВІТУВАТИ</string>
     <string name="what_device_headline">Інформація:</string>
     <string name="what_happened_headline">Що сталося:</string>
-    <string name="info_labels">Що:\\nЗапит:\\nМова контенту:\\nСервіс:\\nЧас GMT:\\nВерсія:\\nВерсія ОС:\\nДіапазон IP:</string>
     </resources>

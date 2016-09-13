@@ -99,7 +99,6 @@
     <string name="error_snackbar_action">REPORTAR</string>
     <string name="what_device_headline">Información:</string>
     <string name="what_happened_headline">Qué ha ocurrido:</string>
-    <string name="info_labels">Que:\\nSolicitud:\\nIdioma del contenido:\\nServicio:\\nHora GMT:\\nVersión:\\nVersión del SO:\\nRango global de IP:</string>
     <string name="info_searched_lbl">Buscado:</string>
     <string name="info_requested_stream_lbl">Stream solicitado:</string>
     <string name="your_comment">Su comentario (en Inglés):</string>
