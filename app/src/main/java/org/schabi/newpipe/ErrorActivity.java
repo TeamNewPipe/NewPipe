@@ -365,6 +365,7 @@ public class ErrorActivity extends AppCompatActivity {
                 + "\n" + getContentLangString()
                 + "\n" + info.serviceName
                 + "\n" + currentTimeStamp
+                + "\n" + getPackageName()
                 + "\n" + BuildConfig.VERSION_NAME
                 + "\n" + getOsString();
 
@@ -379,6 +380,7 @@ public class ErrorActivity extends AppCompatActivity {
                     .put("request", errorInfo.request)
                     .put("content_language", getContentLangString())
                     .put("service", errorInfo.serviceName)
+                    .put("package", getPackageName())
                     .put("version", BuildConfig.VERSION_NAME)
                     .put("os", getOsString())
                     .put("time", currentTimeStamp)

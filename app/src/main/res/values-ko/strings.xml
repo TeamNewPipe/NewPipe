@@ -95,7 +95,6 @@
     <string name="error_snackbar_action">보고</string>
     <string name="what_device_headline">정보:</string>
     <string name="what_happened_headline">다음이 발생함:</string>
-    <string name="info_labels">사유:\\n요청t:\\n컨텐츠 언어:\\n서비스:\\nGMT 시간:\\n버전:\\nOS 버전:\\nGlob. IP 범위:</string>
     <string name="info_searched_lbl">다음을 검색:</string>
     <string name="info_requested_stream_lbl">요청된 스트림:</string>
     <string name="your_comment">내용 (영어로 작성):</string>

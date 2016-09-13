@@ -1,7 +1,6 @@
 package org.schabi.newpipe;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.acra.collector.CrashReportData;
 import org.acra.sender.ReportSender;

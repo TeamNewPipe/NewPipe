@@ -93,7 +93,6 @@
     <string name="error_snackbar_action">報告</string>
     <string name="what_device_headline">情報:</string>
     <string name="what_happened_headline">何が起こりましたか:</string>
-    <string name="info_labels">何:\\nリクエスト:\\nコンテンツの言語:\\nサービス:\\nGMT 時間:\\nバージョン:\\nOS バージョン:\\nグローバル IP の範囲:</string>
     <string name="info_searched_lbl">検索結果:</string>
     <string name="info_requested_stream_lbl">要求したストリーム:</string>
     <string name="your_comment">あなたのコメント (英語で):</string>

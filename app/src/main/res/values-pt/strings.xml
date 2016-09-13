@@ -89,7 +89,6 @@
     <string name="error_snackbar_action">Relatório</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">O que ocorreu:</string>
-    <string name="info_labels">O quê:\\nPedido:\\nIdioma do conteúdo:\\nServiço:\\nHora GMT:\\nVersão:\\nVersão do So:\\nGlob. IP:</string>
     <string name="info_searched_lbl">Pesquisou por:</string>
     <string name="info_requested_stream_lbl">Emissão solicitada:</string>
     <string name="your_comment">Comentários (em Inglês):</string>

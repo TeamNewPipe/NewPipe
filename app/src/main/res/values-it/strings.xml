@@ -100,7 +100,6 @@
     <string name="error_snackbar_action">SEGNALA</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Cosa è successo:</string>
-    <string name="info_labels">Cosa:\\nRichiesta:\\nLingua Contenuto:\\nServizio:\\nOrario GMT:\\nVersione:\\nVersione SO:\\nRange glob. dell\'IP:</string>
     <string name="info_searched_lbl">È stato cercato:</string>
     <string name="info_requested_stream_lbl">Stream richiesto:</string>
     <string name="your_comment">Il tuo commento (in inglese):</string>

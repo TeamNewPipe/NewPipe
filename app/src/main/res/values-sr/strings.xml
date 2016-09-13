@@ -95,7 +95,6 @@
     <string name="error_snackbar_action">ПРИЈАВИ</string>
     <string name="what_device_headline">Подаци:</string>
     <string name="what_happened_headline">Шта се десило:</string>
-    <string name="info_labels">Шта:\\nЗахтев:\\nЈезик садржаја:\\nУслуга:\\nГМТ време:\\nИздање:\\nИздање система:\\nГлоб. ИП опсег:</string>
     <string name="your_comment">Ваш коментар (на енглеском):</string>
     <string name="error_details_headline">Детаљи:</string>
 

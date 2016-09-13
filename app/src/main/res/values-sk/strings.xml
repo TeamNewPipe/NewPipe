@@ -91,7 +91,6 @@
     <string name="error_snackbar_action">SPRÁVA</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Čo sa stalo:</string>
-    <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nSlužba:\\nČas v GMT:\\nVerzia:\\nVerzia OS:\\nGlob. rozsah IP:</string>
     <string name="info_searched_lbl">Hľadané:</string>
     <string name="info_requested_stream_lbl">Požadované vysielanie:</string>
     <string name="your_comment">Váš komentár (v Angličtine):</string>
