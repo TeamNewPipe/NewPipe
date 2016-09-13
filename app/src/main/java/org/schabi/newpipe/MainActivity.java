@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         mainFragment = getSupportFragmentManager()
                 .findFragmentById(R.id.search_fragment);
+
+        ((String)null).length();
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

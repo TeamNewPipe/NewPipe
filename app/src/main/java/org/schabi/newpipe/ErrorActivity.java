@@ -26,6 +26,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.acra.ReportField;
+import org.acra.collector.CrashReportData;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.schabi.newpipe.extractor.Parser;
@@ -124,6 +126,7 @@ public class ErrorActivity extends AppCompatActivity {
     public static final int SOMETHING_ELSE = 3;
     public static final int USER_REPORT = 4;
     public static final int LOAD_IMAGE = 5;
+    public static final int UI_ERROR = 6;
 
     // MESSAGE STRING
     public static final String SEARCHED_STRING = "searched";
@@ -132,6 +135,7 @@ public class ErrorActivity extends AppCompatActivity {
     public static final String SOMETHING_ELSE_STRING = "something";
     public static final String USER_REPORT_STRING = "user report";
     public static final String LOAD_IMAGE_STRING = "load image";
+    public static final String UI_ERROR_STRING = "ui error";
 
 
     public static final String ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org";
@@ -209,6 +213,22 @@ public class ErrorActivity extends AppCompatActivity {
                 reportError(context, el, returnAcitivty, rootView, errorInfo);
             }
         });
+    }
+
+    public static void reportError(final Context context, final CrashReportData report, final ErrorInfo errorInfo) {
+        // get key first (don't ask about this solution)
+        ReportField key = null;
+        for(ReportField k : report.keySet()) {
+            if(k.toString().equals("STACK_TRACE")) {
+                key = k;
+            }
+        }
+        String[] el = new String[] { report.get(key) };
+
+        Intent intent = new Intent(context, ErrorActivity.class);
+        intent.putExtra(ERROR_INFO, errorInfo);
+        intent.putExtra(ERROR_LIST, el);
+        context.startActivity(intent);
     }
 
     @Override
@@ -397,6 +417,8 @@ public class ErrorActivity extends AppCompatActivity {
                 return USER_REPORT_STRING;
             case LOAD_IMAGE:
                 return LOAD_IMAGE_STRING;
+            case UI_ERROR:
+                return UI_ERROR_STRING;
             default:
                 return "Your description is in another castle.";
         }

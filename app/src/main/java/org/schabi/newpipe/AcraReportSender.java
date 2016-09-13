@@ -31,13 +31,8 @@ public class AcraReportSender implements ReportSender {
 
     @Override
     public void send(Context context, CrashReportData report) throws ReportSenderException {
-        Log.e("Newpipe UI ERROR", report.toString());
-        try {
-            ((String)null).length();
-        } catch(Exception e) {
-            ErrorActivity.reportError(context, e, null, null,
-                    ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,"none",
-                            "App crash, UI failure", R.string.app_ui_crash));
-        }
+        ErrorActivity.reportError(context, report,
+                ErrorActivity.ErrorInfo.make(ErrorActivity.UI_ERROR,"none",
+                        "App crash, UI failure", R.string.app_ui_crash));
     }
 }
