@@ -1,14 +1,13 @@
 package org.schabi.newpipe.search_fragment;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import org.schabi.newpipe.Downloader;
-import org.schabi.newpipe.ErrorActivity;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.SearchEngine;

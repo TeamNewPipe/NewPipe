@@ -7,8 +7,7 @@ import android.view.View;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
-import org.schabi.newpipe.ErrorActivity;
-import org.schabi.newpipe.R;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.extractor.ServiceList;
 
 /**

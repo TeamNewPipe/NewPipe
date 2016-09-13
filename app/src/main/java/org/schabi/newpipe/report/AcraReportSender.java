@@ -1,10 +1,11 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.report;
 
 import android.content.Context;
 
 import org.acra.collector.CrashReportData;
 import org.acra.sender.ReportSender;
 import org.acra.sender.ReportSenderException;
+import org.schabi.newpipe.R;
 
 /**
  * Created by Christian Schabesberger  on 13.09.16.

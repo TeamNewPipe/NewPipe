@@ -1,6 +1,6 @@
 
 
-package org.schabi.newpipe;
+package org.schabi.newpipe.report;
 
 import android.app.Activity;
 import android.content.Context;
@@ -30,6 +30,11 @@ import org.acra.ReportField;
 import org.acra.collector.CrashReportData;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.schabi.newpipe.ActivityCommunicator;
+import org.schabi.newpipe.BuildConfig;
+import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.MainActivity;
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.Parser;
 
 import java.io.PrintWriter;

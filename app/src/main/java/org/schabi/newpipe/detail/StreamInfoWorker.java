@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 
 import org.schabi.newpipe.Downloader;
-import org.schabi.newpipe.ErrorActivity;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.ServiceList;

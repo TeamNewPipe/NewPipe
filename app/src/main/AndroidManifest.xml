@@ -129,7 +129,7 @@
             android:name=".ExitActivity"
             android:label="@string/general_error"
             android:theme="@android:style/Theme.NoDisplay" />
-        <activity android:name=".ErrorActivity" />
+        <activity android:name=".report.ErrorActivity" />
 
         <!-- giga get related -->
         <activity

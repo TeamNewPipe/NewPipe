@@ -27,6 +27,7 @@ import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.report.ErrorActivity;
 
 import java.io.IOException;
 

@@ -1,10 +1,11 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.report;
 
 import android.content.Context;
 
 import org.acra.config.ACRAConfiguration;
 import org.acra.sender.ReportSender;
 import org.acra.sender.ReportSenderFactory;
+import org.schabi.newpipe.report.AcraReportSender;
 
 /**
  * Created by Christian Schabesberger  on 13.09.16.

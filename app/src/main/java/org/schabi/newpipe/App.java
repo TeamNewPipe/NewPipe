@@ -2,7 +2,6 @@ package org.schabi.newpipe;
 
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -12,7 +11,8 @@ import org.acra.config.ACRAConfiguration;
 import org.acra.config.ACRAConfigurationException;
 import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.ReportSenderFactory;
-import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.report.AcraReportSenderFactory;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.settings.SettingsActivity;
 
 import info.guardianproject.netcipher.NetCipher;
