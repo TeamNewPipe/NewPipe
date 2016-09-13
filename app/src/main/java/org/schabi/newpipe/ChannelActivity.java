@@ -218,7 +218,7 @@ public class ChannelActivity extends AppCompatActivity {
                         View rootView = findViewById(android.R.id.content);
                         ErrorActivity.reportError(h, ChannelActivity.this,
                                 info.errors, null, rootView,
-                                ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                                ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL,
                                         service.getServiceInfo().name, channelUrl, 0 /* no message for the user */));
                     }
                 } catch(IOException ioe) {
@@ -226,7 +226,7 @@ public class ChannelActivity extends AppCompatActivity {
                     ioe.printStackTrace();
                 } catch(ParsingException pe) {
                     ErrorActivity.reportError(h, ChannelActivity.this, pe, VideoItemDetailFragment.class, null,
-                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL,
                                     service.getServiceInfo().name, channelUrl, R.string.parsing_error));
                     h.post(new Runnable() {
                         @Override
@@ -237,7 +237,7 @@ public class ChannelActivity extends AppCompatActivity {
                     pe.printStackTrace();
                 } catch(ExtractionException ex) {
                     ErrorActivity.reportError(h, ChannelActivity.this, ex, VideoItemDetailFragment.class, null,
-                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL,
                                     service.getServiceInfo().name, channelUrl, R.string.parsing_error));
                     h.post(new Runnable() {
                         @Override
@@ -248,7 +248,7 @@ public class ChannelActivity extends AppCompatActivity {
                     ex.printStackTrace();
                 } catch(Exception e) {
                     ErrorActivity.reportError(h, ChannelActivity.this, e, VideoItemDetailFragment.class, null,
-                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL,
                                     service.getServiceInfo().name, channelUrl, R.string.general_error));
                     h.post(new Runnable() {
                         @Override

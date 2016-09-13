@@ -297,6 +297,10 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
     @Override
     public String getFeedUrl() throws ParsingException {
         try {
+            if(userUrl.contains("channel")) {
+                //channels don't have feeds in youtube, only user can provide such
+                return "";
+            }
             if(!isAjaxPage) {
                 feedUrl = doc.select("link[title=\"RSS\"]").first().attr("abs:href");
             }
