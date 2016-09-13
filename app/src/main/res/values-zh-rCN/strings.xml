@@ -149,4 +149,5 @@
     <string name="action_settings">设置</string>
 
     <string name="could_not_load_image">无法加载图像</string>
+    <string name="app_ui_crash">应用/界面已崩溃</string>
     </resources>
