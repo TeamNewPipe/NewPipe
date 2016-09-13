@@ -132,6 +132,7 @@ public class ErrorActivity extends AppCompatActivity {
     public static final int USER_REPORT = 4;
     public static final int LOAD_IMAGE = 5;
     public static final int UI_ERROR = 6;
+    public static final int REQUESTED_CHANNEL = 7;
 
     // MESSAGE STRING
     public static final String SEARCHED_STRING = "searched";
@@ -141,7 +142,7 @@ public class ErrorActivity extends AppCompatActivity {
     public static final String USER_REPORT_STRING = "user report";
     public static final String LOAD_IMAGE_STRING = "load image";
     public static final String UI_ERROR_STRING = "ui error";
-
+    public static final String REQUESTED_CHANNEL_STRING = "requested channel";
 
     public static final String ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org";
     public static final String ERROR_EMAIL_SUBJECT = "Exception in NewPipe " + BuildConfig.VERSION_NAME;
@@ -426,6 +427,8 @@ public class ErrorActivity extends AppCompatActivity {
                 return LOAD_IMAGE_STRING;
             case UI_ERROR:
                 return UI_ERROR_STRING;
+            case REQUESTED_CHANNEL:
+                return REQUESTED_CHANNEL_STRING;
             default:
                 return "Your description is in another castle.";
         }
