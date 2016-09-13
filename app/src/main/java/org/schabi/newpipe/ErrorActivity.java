@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
@@ -57,7 +59,7 @@ import java.util.Vector;
  */
 
 public class ErrorActivity extends AppCompatActivity {
-    public static class ErrorInfo {
+    public static class ErrorInfo implements Parcelable {
         public int userAction;
         public String request;
         public String serviceName;
@@ -71,15 +73,59 @@ public class ErrorActivity extends AppCompatActivity {
             info.message = message;
             return info;
         }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(this.userAction);
+            dest.writeString(this.request);
+            dest.writeString(this.serviceName);
+            dest.writeInt(this.message);
+        }
+
+        public ErrorInfo() {
+        }
+
+        protected ErrorInfo(Parcel in) {
+            this.userAction = in.readInt();
+            this.request = in.readString();
+            this.serviceName = in.readString();
+            this.message = in.readInt();
+        }
+
+        public static final Parcelable.Creator<ErrorInfo> CREATOR = new Parcelable.Creator<ErrorInfo>() {
+            @Override
+            public ErrorInfo createFromParcel(Parcel source) {
+                return new ErrorInfo(source);
+            }
+
+            @Override
+            public ErrorInfo[] newArray(int size) {
+                return new ErrorInfo[size];
+            }
+        };
     }
 
+    // LOG TAGS
     public static final String TAG = ErrorActivity.class.toString();
+
+    // BUNDLE TAGS
+    public static final String ERROR_INFO = "error_info";
+    public static final String ERROR_LIST = "error_list";
+
+    // MESSAGE ID
     public static final int SEARCHED = 0;
     public static final int REQUESTED_STREAM = 1;
     public static final int GET_SUGGESTIONS = 2;
     public static final int SOMETHING_ELSE = 3;
     public static final int USER_REPORT = 4;
     public static final int LOAD_IMAGE = 5;
+
+    // MESSAGE STRING
     public static final String SEARCHED_STRING = "searched";
     public static final String REQUESTED_STREAM_STRING = "requested stream";
     public static final String GET_SUGGESTIONS_STRING = "get suggestions";
@@ -91,7 +137,7 @@ public class ErrorActivity extends AppCompatActivity {
     public static final String ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org";
     public static final String ERROR_EMAIL_SUBJECT = "Exception in NewPipe " + BuildConfig.VERSION_NAME;
 
-    private List<Throwable> errorList;
+    private String[] errorList;
     private ErrorInfo errorInfo;
     private Class returnActivity;
     private String currentTimeStamp;
@@ -115,19 +161,19 @@ public class ErrorActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
-                            ac.errorList = el;
                             ac.returnActivity = returnAcitivty;
-                            ac.errorInfo = errorInfo;
                             Intent intent = new Intent(context, ErrorActivity.class);
+                            intent.putExtra(ERROR_INFO, errorInfo);
+                            intent.putExtra(ERROR_LIST, elToSl(el));
                             context.startActivity(intent);
                         }
                     }).show();
         } else {
             ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
-            ac.errorList = el;
             ac.returnActivity = returnAcitivty;
-            ac.errorInfo = errorInfo;
             Intent intent = new Intent(context, ErrorActivity.class);
+            intent.putExtra(ERROR_INFO, errorInfo);
+            intent.putExtra(ERROR_LIST, elToSl(el));
             context.startActivity(intent);
         }
     }
@@ -169,6 +215,9 @@ public class ErrorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_error);
+
+        Intent intent = getIntent();
+
         try {
             ActionBar actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -179,23 +228,20 @@ public class ErrorActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
-        errorList = ac.errorList;
-        returnActivity = ac.returnActivity;
-        errorInfo = ac.errorInfo;
-
         reportButton = (Button) findViewById(R.id.errorReportButton);
         userCommentBox = (EditText) findViewById(R.id.errorCommentBox);
         errorView = (TextView) findViewById(R.id.errorView);
         infoView = (TextView) findViewById(R.id.errorInfosView);
         errorMessageView = (TextView) findViewById(R.id.errorMessageView);
 
-        errorView.setText(formErrorText(errorList));
+        ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
+        returnActivity = ac.returnActivity;
+        errorInfo = intent.getParcelableExtra(ERROR_INFO);
+        errorList = intent.getStringArrayExtra(ERROR_LIST);
 
-        //importand add gurumeditaion
+                //importand add gurumeditaion
         addGuruMeditaion();
         currentTimeStamp = getCurrentTimeStamp();
-        buildInfo(errorInfo);
 
         reportButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -214,12 +260,16 @@ public class ErrorActivity extends AppCompatActivity {
         globIpRangeThread = new Thread(new IpRagneRequester());
         globIpRangeThread.start();
 
+        // normal bugreport
+        buildInfo(errorInfo);
         if(errorInfo.message != 0) {
             errorMessageView.setText(errorInfo.message);
         } else {
             errorMessageView.setVisibility(View.GONE);
             findViewById(R.id.messageWhatHappenedView).setVisibility(View.GONE);
         }
+
+        errorView.setText(formErrorText(errorList));
     }
 
     @Override
@@ -255,12 +305,12 @@ public class ErrorActivity extends AppCompatActivity {
         return sw.getBuffer().toString();
     }
 
-    private String formErrorText(List<Throwable> el) {
+    private String formErrorText(String[] el) {
         String text = "";
         if(el != null) {
-            for (Throwable e : el) {
+            for (String e : el) {
                 text += "-------------------------------------\n"
-                        + getStackTrace(e);
+                        + e;
             }
         }
         text += "-------------------------------------";
@@ -316,8 +366,8 @@ public class ErrorActivity extends AppCompatActivity {
 
             JSONArray exceptionArray = new JSONArray();
             if(errorList != null) {
-                for (Throwable e : errorList) {
-                    exceptionArray.put(getStackTrace(e));
+                for (String e : errorList) {
+                    exceptionArray.put(e);
                 }
             }
 
@@ -420,5 +470,14 @@ public class ErrorActivity extends AppCompatActivity {
                 reportButton.setEnabled(true);
             }
         }
+    }
+
+    // errorList to StringList
+    private static String[] elToSl(List<Throwable> stackTraces) {
+        String[] out = new String[stackTraces.size()];
+        for(int i = 0; i < stackTraces.size(); i++) {
+            out[i] = getStackTrace(stackTraces.get(i));
+        }
+        return out;
     }
 }

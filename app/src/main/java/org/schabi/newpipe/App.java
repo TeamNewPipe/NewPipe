@@ -2,10 +2,17 @@ package org.schabi.newpipe;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
+import org.acra.ACRA;
+import org.acra.config.ACRAConfiguration;
+import org.acra.config.ACRAConfigurationException;
+import org.acra.config.ConfigurationBuilder;
+import org.acra.sender.ReportSenderFactory;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.settings.SettingsActivity;
 
 import info.guardianproject.netcipher.NetCipher;
@@ -30,12 +37,28 @@ import info.guardianproject.netcipher.proxy.OrbotHelper;
  */
 
 public class App extends Application {
+    private static final String TAG = App.class.toString();
 
     private static boolean useTor;
+
+    final Class<? extends ReportSenderFactory>[] reportSenderFactoryClasses
+            = new Class[]{AcraReportSenderFactory.class};
 
     @Override
     public void onCreate() {
         super.onCreate();
+        // init crashreport
+        try {
+            final ACRAConfiguration acraConfig = new ConfigurationBuilder(this)
+                    .setReportSenderFactoryClasses(reportSenderFactoryClasses)
+                    .build();
+            ACRA.init(this, acraConfig);
+        } catch(ACRAConfigurationException ace) {
+            ace.printStackTrace();
+            ErrorActivity.reportError(this, ace, null, null,
+                    ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,"none",
+                            "Could not initialize ACRA crash report", R.string.app_ui_crash));
+        }
 
         // Initialize image loader
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
