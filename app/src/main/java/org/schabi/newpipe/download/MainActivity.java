@@ -10,6 +10,7 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -95,8 +96,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         actionBar.setTitle(R.string.downloads_title);
         actionBar.setDisplayShowTitleEnabled(true);
 
-        //todo: this needs to be fixed Context.MODE_WORLD_READABLE is obsolet
-        mPrefs = getSharedPreferences(THREADS, Context.MODE_WORLD_READABLE);
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         // Fragment
         getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
