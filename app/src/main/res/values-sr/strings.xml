@@ -158,4 +158,10 @@
     <string name="settings_title">Поставке</string>
     <string name="error_report_title">Извештај о грешци</string>
 
+    <string name="could_not_load_image">Не могох да учитам слику</string>
+    <string name="app_ui_crash">Апликација/УИ је краховала</string>
+    <string name="info_labels">Шта:\\nЗахтев:\\nЈезик садржаја:\\nУслуга:\\nГМТ време:\\nПакет:\\nИздање:\\nИздање ОС-а:\\nГлоб. ИП распон:</string>
+    <string name="title_activity_channel">Активност канала</string>
+    <string name="action_settings">Поставке</string>
+
     </resources>
