@@ -9,6 +9,7 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -61,8 +62,8 @@ public abstract class MissionsFragment extends Fragment
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.missions, container, false);
-		
-		mPrefs = getActivity().getSharedPreferences("mode", Context.MODE_WORLD_READABLE);
+
+		mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		mLinear = mPrefs.getBoolean("linear", false);
 		
 		// Bind the service
