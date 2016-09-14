@@ -327,7 +327,12 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
     private String getNextPageUrl(Document d) throws ParsingException {
         try {
             Element button = d.select("button[class*=\"yt-uix-load-more\"]").first();
-            return button.attr("abs:data-uix-load-more-href");
+            if(button != null) {
+                return button.attr("abs:data-uix-load-more-href");
+            } else {
+                // sometimes channels are simply so small, they don't have a second/next4q page
+                return "";
+            }
         } catch(Exception e) {
             throw new ParsingException("could not load next page url", e);
         }
