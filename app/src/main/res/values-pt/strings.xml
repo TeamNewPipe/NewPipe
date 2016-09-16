@@ -152,4 +152,7 @@
     <string name="msg_threads">Tópicos</string>
     <string name="msg_fetch_filename">Obter nome de ficheiro</string>
     <string name="msg_running">Descarga NewPipe</string>
+    <string name="could_not_load_image">Não foi possível carregar a imagem</string>
+    <string name="action_settings">Configurações</string>
+
     </resources>
