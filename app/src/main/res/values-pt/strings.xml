@@ -155,4 +155,7 @@
     <string name="could_not_load_image">Não foi possível carregar a imagem</string>
     <string name="action_settings">Configurações</string>
 
+    <string name="app_ui_crash">Aplicação encerrada</string>
+    <string name="info_labels">O quê:\\nPedido:\\nIdioma do conteúdo:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão do SO:\\nIP global:</string>
+    <string name="title_activity_channel">Atividade do canal</string>
     </resources>
