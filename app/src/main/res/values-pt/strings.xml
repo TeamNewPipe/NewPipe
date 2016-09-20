@@ -131,7 +131,7 @@
     <string name="pause">Pausa</string>
     <string name="view">Ver</string>
     <string name="delete">Apagar</string>
-    <string name="checksum">Checksum</string>
+    <string name="checksum">Soma de verificação</string>
 
     <string name="add">Nova missão</string>
     <string name="switch_mode">Alternar entre lista e grelha</string>
@@ -141,7 +141,7 @@
     <string name="msg_error">Erro</string>
     <string name="msg_server_unsupported">Servidor não suportado</string>
     <string name="msg_exists">Ficheiro já existe</string>
-    <string name="msg_url_malform">URL deformada ou internet não disponível</string>
+    <string name="msg_url_malform">URL deformado ou internet não disponível</string>
     <string name="msg_running_detail">Toque para detalhes</string>
     <string name="msg_wait">Por favor aguarde...</string>
     <string name="msg_copied">Copiado para a área de transferência.</string>
