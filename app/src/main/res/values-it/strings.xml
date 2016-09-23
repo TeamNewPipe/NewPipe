@@ -158,4 +158,7 @@
     <string name="msg_copied">Copiato negli appunti.</string>
     <string name="no_available_dir">Seleziona una cartella disponibile in cui salvare i download.</string>
 
+    <string name="could_not_load_image">Impossibile caricare l\'immagine</string>
+    <string name="app_ui_crash">L\'app/UI è andata in crash</string>
+    <string name="info_labels">Cosa:\\nRichiesta:\\nLingua contenuto:\\nServizio:\\nOrario GMT:\\nPacchetto:\\nVersione:\\nVersione SO:\\nRange IP glob.:</string>
     </resources>
