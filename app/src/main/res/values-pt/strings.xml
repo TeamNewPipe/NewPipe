@@ -131,7 +131,7 @@
     <string name="pause">Pausa</string>
     <string name="view">Ver</string>
     <string name="delete">Apagar</string>
-    <string name="checksum">Checksum</string>
+    <string name="checksum">Soma de verificação</string>
 
     <string name="add">Nova missão</string>
     <string name="switch_mode">Alternar entre lista e grelha</string>
@@ -141,7 +141,7 @@
     <string name="msg_error">Erro</string>
     <string name="msg_server_unsupported">Servidor não suportado</string>
     <string name="msg_exists">Ficheiro já existe</string>
-    <string name="msg_url_malform">URL deformada ou internet não disponível</string>
+    <string name="msg_url_malform">URL deformado ou internet não disponível</string>
     <string name="msg_running_detail">Toque para detalhes</string>
     <string name="msg_wait">Por favor aguarde...</string>
     <string name="msg_copied">Copiado para a área de transferência.</string>
@@ -152,4 +152,10 @@
     <string name="msg_threads">Tópicos</string>
     <string name="msg_fetch_filename">Obter nome de ficheiro</string>
     <string name="msg_running">Descarga NewPipe</string>
+    <string name="could_not_load_image">Não foi possível carregar a imagem</string>
+    <string name="action_settings">Configurações</string>
+
+    <string name="app_ui_crash">Aplicação encerrada</string>
+    <string name="info_labels">O quê:\\nPedido:\\nIdioma do conteúdo:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão do SO:\\nIP global:</string>
+    <string name="title_activity_channel">Atividade do canal</string>
     </resources>

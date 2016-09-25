@@ -153,4 +153,13 @@
     <string name="add">Neue Mission</string>
     <string name="finish">Okay</string>
     <string name="msg_server_unsupported">Server nicht unterstützt</string>
+    <string name="could_not_load_image">Konnte Bild nicht laden</string>
+    <string name="app_ui_crash">App/UI abgestürzt</string>
+    <string name="msg_threads">Threads</string>
+    <string name="msg_running">NewPipe lädt herunter</string>
+    <string name="msg_running_detail">Für Details antippen</string>
+    <string name="action_settings">Einstellungen</string>
+
+    <string name="msg_url_malform">Beschädigte URL oder Internet nicht erreichbar</string>
+    <string name="msg_fetch_filename">Vorgeschlagener Dateiname</string>
     </resources>
