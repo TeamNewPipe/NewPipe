@@ -4,20 +4,18 @@ WARNING: PUTTING NEWPIPE OR ANY FORK OF IT INTO GOOGLE PLAYSTORE VIOLATES THEIR 
 NewPipe: A free lightweight Youtube frontend for Android.  
 
 [![NewPipe](app/src/main/res/mipmap-xhdpi/ic_launcher.png)](https://newpipe.schabi.org)
+[![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdfilter=newpipe&fdid=org.schabi.newpipe)
+
 
 Project status:
 [![Translation Status](https://hosted.weblate.org/widgets/NewPipe/-/svg-badge.svg)](https://hosted.weblate.org/engage/NewPipe/)
 [![Build Status](https://travis-ci.org/theScrabi/NewPipe.svg)](https://travis-ci.org/theScrabi/NewPipe)
 
-## Get NewPipe
-
-[![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdfilter=newpipe&fdid=org.schabi.newpipe)
-
 ## Donate
 ![Bitcoin](https://bitcoin.org/img/icons/logotop.svg)
-`16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh`
-
 ![BitcoinQR](assets/16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh.png)
+
+`16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh`
 
 ## Screenshots
 
