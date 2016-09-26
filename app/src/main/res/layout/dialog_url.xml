@@ -58,15 +58,21 @@
 		android:layout_marginBottom="24dp"
 		android:gravity="left"
 		android:orientation="horizontal">
-			<CheckBox android:id="@+id/video"
+		<RadioGroup
+			android:id="@+id/video_audio_group"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:orientation="horizontal">
+			<RadioButton android:id="@+id/video_button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/video"
 				android:checked="true"/>
-			<CheckBox android:id="@+id/audio"
+			<RadioButton android:id="@+id/audio_button"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="@string/audio" />
+		</RadioGroup>
 	</LinearLayout>
 	
 	<LinearLayout

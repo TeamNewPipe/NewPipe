@@ -19,8 +19,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -175,13 +175,15 @@ public class DownloadDialog extends DialogFragment {
     protected void checkDownloadOptions(){
         View view = getView();
         Bundle arguments = getArguments();
-        CheckBox audio = (CheckBox) view.findViewById(R.id.audio);
-        CheckBox video = (CheckBox) view.findViewById(R.id.video);
+        RadioButton audioButton = (RadioButton) view.findViewById(R.id.audio_button);
+        RadioButton videoButton = (RadioButton) view.findViewById(R.id.video_button);
 
         if(arguments.getString(AUDIO_URL) == null) {
-            audio.setVisibility(View.GONE);
+            audioButton.setVisibility(View.GONE);
+            videoButton.setChecked(true);
         } else if(arguments.getString(VIDEO_URL) == null) {
-            video.setVisibility(View.GONE);
+            videoButton.setVisibility(View.GONE);
+            audioButton.setChecked(true);
         }
     }
 
@@ -211,15 +213,15 @@ public class DownloadDialog extends DialogFragment {
         Bundle arguments = getArguments();
         final EditText name = (EditText) view.findViewById(R.id.file_name);
         final SeekBar threads = (SeekBar) view.findViewById(R.id.threads);
-        CheckBox audio = (CheckBox) view.findViewById(R.id.audio);
-        CheckBox video = (CheckBox) view.findViewById(R.id.video);
+        RadioButton audioButton = (RadioButton) view.findViewById(R.id.audio_button);
+        RadioButton videoButton = (RadioButton) view.findViewById(R.id.video_button);
 
         String fName = name.getText().toString().trim();
 
         // todo: add timeout? would be bad if the thread gets locked dueto this.
         while (mBinder == null);
 
-        if(audio.isChecked()){
+        if(audioButton.isChecked()){
             int res = mManager.startMission(
                     arguments.getString(AUDIO_URL),
                     fName + arguments.getString(FILE_SUFFIX_AUDIO),
@@ -227,7 +229,7 @@ public class DownloadDialog extends DialogFragment {
             mBinder.onMissionAdded(mManager.getMission(res));
         }
 
-        if(video.isChecked()){
+        if(videoButton.isChecked()){
             int res = mManager.startMission(
                     arguments.getString(VIDEO_URL),
                     fName + arguments.getString(FILE_SUFFIX_VIDEO),
