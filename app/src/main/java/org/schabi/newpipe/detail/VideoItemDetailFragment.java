@@ -145,12 +145,8 @@ public class VideoItemDetailFragment extends Fragment {
 
         progressBar.setVisibility(View.GONE);
         if(info.next_video != null) {
-            infoItemBuilder.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {
-                @Override
-                public void selected(String url) {
-                    openStreamUrl(url);
-                }
-            });
+            // todo: activate this function or remove it
+            nextStreamView.setVisibility(View.GONE);
         } else {
             nextStreamView.setVisibility(View.GONE);
             activity.findViewById(R.id.detail_similar_title).setVisibility(View.GONE);
@@ -522,6 +518,12 @@ public class VideoItemDetailFragment extends Fragment {
         for (final StreamPreviewInfo item : info.related_streams) {
             similarLayout.addView(infoItemBuilder.buildView(similarLayout, item));
         }
+        infoItemBuilder.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {
+            @Override
+            public void selected(String url) {
+                openStreamUrl(url);
+            }
+        });
     }
 
     private void onErrorBlockedByGema() {
