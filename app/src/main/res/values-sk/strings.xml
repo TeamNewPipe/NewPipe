@@ -149,4 +149,8 @@
     <string name="settings_title">Nastavenia</string>
     <string name="error_report_title">Hlásenie o chybe</string>
 
+    <string name="could_not_load_image">Nemožno načítať obrázok</string>
+    <string name="app_ui_crash">Aplikácia/UP zlyhalo</string>
+    <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nSlužba:\\nČas v GMT:\\nBalík:\\nVerzia:\\nVerzia OS:\\nGlob. IP rozsah:</string>
+    <string name="title_activity_channel">Aktivita kanálov</string>
     </resources>
