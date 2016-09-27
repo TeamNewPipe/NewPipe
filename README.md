@@ -9,7 +9,7 @@ NewPipe: A free lightweight Youtube frontend for Android.
 
 Project status:
 [![Translation Status](https://hosted.weblate.org/widgets/NewPipe/-/svg-badge.svg)](https://hosted.weblate.org/engage/NewPipe/)
-[![Build Status](https://travis-ci.org/theScrabi/NewPipe.svg)](https://travis-ci.org/theScrabi/NewPipe)
+[![Build Status](https://travis-ci.org/TeamNewPipe/NewPipe.svg)](https://travis-ci.org/TeamNewPipe/NewPipe)
 
 ## Donate
 ![Bitcoin](https://bitcoin.org/img/icons/logotop.svg)
