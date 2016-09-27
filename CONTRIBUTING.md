@@ -1,33 +1,31 @@
-#Contribution
+NewPipe contribution guidelines
+===============================
 
-This document contains guidelines on making contributions to NewPipe.
+READ THIS GUIDELINES CAREFULLY BEVORE CONTRIBUGING.
 
-## Programming
+## Crashreporting
 
-* Follow the [Google Style Guidelines](https://google.github.io/styleguide/javaguide.html)
-* Make a new feature on a separate branch, not on the master branch
-* Make a [pull request](https://github.com/theScrabi/NewPipe/pulls) if you're done with your changes
-* When submitting changes, you agree that your code will be GPLv3 licensed
+Do not report crashes in the github issue tracker. NewPipe has an automated crashreport system that will ask you to send a report if a crash occures.
 
-## Commit messages
+## Issue reporting/feature request
 
-* The subject line of your commit message shouldn't be longer than 72 characters
-* Try to keep each line of your commit message 72 characters to ensure proper
- compatibility with all git tools
-* [This guide](http://chris.beams.io/posts/git-commit/) goes more in depth on what makes a good commit message
+* Search the [existing issues](https://github.com/theScrabi/NewPipe/issues) first to make sure your issue/feature hasn't been reported/requested before
+* Check if this issue/feature is already fixed/implemented in the repository
+* If you are an android/java developer you are always welcome to fix/implement an issue/a feature yourself
 
 ## Translation
 
 * NewPipe can be translated on [weblate](https://hosted.weblate.org/projects/newpipe/strings/)
 
-## Issue reporting
+## Code contribution
 
-* Search the [existing issues](https://github.com/theScrabi/NewPipe/issues) first to make sure your issue hasn't been reported before
-* Check if this issue is already fixed in the repository
-* When making bug reports, be sure to tell which version of NewPipe you are using and the steps to reproduce the problem
-* Please include a log if you can
+* Follow the [Google Style Guidelines](https://google.github.io/styleguide/javaguide.html)
+* Make changes on a separate branch, not on the master branch (Featurebranching)
+* When submitting changes, you agree that your code will be licensed under GPLv3
+* Please test your code bevore you submit changes!!!
 
 ## Communication
 
-* For the time being, [Slack](https://newpipe.slack.com/) is being used for project communication. Ask [me](https://github.com/theScrabi) to sign up.
+* I hereby declare our Slack channel as dead!!! There are no plans on building a new chat, but if there is interest on creating one and ceeping it alive, I'd be pleased to create one again. 
+* If you want to get in contact with me or one of our other contrebutors you can send me an email at tnp(at)schabi.org
 * Feel free to post suggestions, changes, ideas etc!
