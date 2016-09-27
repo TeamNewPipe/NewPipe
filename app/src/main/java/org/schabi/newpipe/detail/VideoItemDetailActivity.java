@@ -14,7 +14,7 @@ import android.widget.Toast;
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 
 
@@ -73,13 +73,13 @@ public class VideoItemDetailActivity extends AppCompatActivity {
             // this means the video was called though another app
             if (getIntent().getData() != null) {
                 videoUrl = getIntent().getData().toString();
-                StreamingService[] serviceList = ServiceList.getServices();
+                StreamingService[] serviceList = NewPipe.getServices();
                 //StreamExtractor videoExtractor = null;
                 for (int i = 0; i < serviceList.length; i++) {
                     if (serviceList[i].getUrlIdHandlerInstance().acceptUrl(videoUrl)) {
                         arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, i);
                         currentStreamingService = i;
-                        //videoExtractor = ServiceList.getService(i).getExtractorInstance();
+                        //videoExtractor = NewPipe.getService(i).getExtractorInstance();
                         break;
                     }
                 }

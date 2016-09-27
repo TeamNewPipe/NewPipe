@@ -5,6 +5,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.ExtractionException;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.StreamPreviewInfoExtractor;
@@ -55,20 +56,11 @@ public class YoutubeSearchEngine extends SearchEngine {
     }
 
     @Override
-    public StreamPreviewInfoSearchCollector search(String query, int page, String languageCode, Downloader downloader)
+    public StreamPreviewInfoSearchCollector search(String query, int page, String languageCode)
             throws IOException, ExtractionException {
         StreamPreviewInfoSearchCollector collector = getStreamPreviewInfoSearchCollector();
 
-        /* Cant use Uri.Bilder since it's android code.
-        // Android code is baned from the extractor side.
-        Uri.Builder builder = new Uri.Builder();
-        builder.scheme("https")
-                .authority("www.youtube.com")
-                .appendPath("results")
-                .appendQueryParameter("search_query", query)
-                .appendQueryParameter("page", Integer.toString(page))
-                .appendQueryParameter("filters", "video");
-                */
+        Downloader downloader = NewPipe.getDownloader();
 
         String url = "https://www.youtube.com/results"
                 + "?search_query=" + URLEncoder.encode(query, CHARSET_UTF_8)
@@ -127,24 +119,13 @@ public class YoutubeSearchEngine extends SearchEngine {
     }
 
     @Override
-    public List<String> suggestionList(String query, String contentCountry, Downloader dl)
+    public List<String> suggestionList(String query, String contentCountry)
             throws IOException, ParsingException {
 
         List<String> suggestions = new ArrayList<>();
 
-        /* Cant use Uri.Bilder since it's android code.
-        // Android code is baned from the extractor side.
-        Uri.Builder builder = new Uri.Builder();
-        builder.scheme("https")
-                .authority("suggestqueries.google.com")
-                .appendPath("complete")
-                .appendPath("search")
-                .appendQueryParameter("client", "")
-                .appendQueryParameter("output", "toolbar")
-                .appendQueryParameter("ds", "yt")
-                .appendQueryParameter("hl",contentCountry)
-                .appendQueryParameter("q", query);
-                */
+        Downloader dl = NewPipe.getDownloader();
+
         String url = "https://suggestqueries.google.com/complete/search"
                 + "?client=" + ""
                 + "&output=" + "toolbar"

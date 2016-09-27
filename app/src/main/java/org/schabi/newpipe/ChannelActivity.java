@@ -23,8 +23,8 @@ import org.schabi.newpipe.detail.VideoItemDetailFragment;
 import org.schabi.newpipe.extractor.ChannelExtractor;
 import org.schabi.newpipe.extractor.ChannelInfo;
 import org.schabi.newpipe.extractor.ExtractionException;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ParsingException;
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
@@ -188,9 +188,9 @@ public class ChannelActivity extends AppCompatActivity {
             public void run() {
                 StreamingService service = null;
                 try {
-                    service = ServiceList.getService(serviceId);
+                    service = NewPipe.getService(serviceId);
                     ChannelExtractor extractor = service.getChannelExtractorInstance(
-                            channelUrl, pageNumber, new Downloader());
+                            channelUrl, pageNumber);
 
                     final ChannelInfo info = ChannelInfo.getInfo(extractor, new Downloader());
 

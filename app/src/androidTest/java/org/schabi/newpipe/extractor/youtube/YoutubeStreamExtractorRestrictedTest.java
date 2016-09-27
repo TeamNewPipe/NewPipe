@@ -4,8 +4,8 @@ import android.test.AndroidTestCase;
 
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.extractor.ExtractionException;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ParsingException;
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamExtractor;
 import org.schabi.newpipe.extractor.VideoStream;
 
@@ -16,7 +16,7 @@ public class YoutubeStreamExtractorRestrictedTest extends AndroidTestCase {
     private StreamExtractor extractor;
 
     public void setUp() throws IOException, ExtractionException {
-        extractor = ServiceList.getService("Youtube")
+        extractor = NewPipe.getService("Youtube")
                 .getExtractorInstance("https://www.youtube.com/watch?v=i6JTvzrpBy0",
                         new Downloader());
     }
@@ -27,7 +27,7 @@ public class YoutubeStreamExtractorRestrictedTest extends AndroidTestCase {
     }
 
     public void testGetValidTimeStamp() throws ExtractionException, IOException {
-        StreamExtractor extractor=ServiceList.getService("Youtube")
+        StreamExtractor extractor= NewPipe.getService("Youtube")
                 .getExtractorInstance("https://youtu.be/FmG385_uUys?t=174",
                         new Downloader());
         assertTrue(Integer.toString(extractor.getTimeStamp()),

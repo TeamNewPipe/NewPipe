@@ -26,10 +26,10 @@ import java.util.Vector;
 
 public class SearchResult {
     public static SearchResult getSearchResult(SearchEngine engine, String query,
-                                               int page, String languageCode, Downloader dl)
+                                               int page, String languageCode)
             throws ExtractionException, IOException {
 
-        SearchResult result = engine.search(query, page, languageCode, dl).getSearchResult();
+        SearchResult result = engine.search(query, page, languageCode).getSearchResult();
         if(result.resultList.isEmpty()) {
             if(result.suggestion.isEmpty()) {
                 throw new ExtractionException("Empty result despite no error");

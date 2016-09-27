@@ -13,7 +13,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.SearchEngine;
 import org.schabi.newpipe.extractor.SearchResult;
-import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.NewPipe;
 
 import java.io.IOException;
 
@@ -85,8 +85,8 @@ public class SearchWorker {
             SearchEngine engine = null;
 
             try {
-                engine = ServiceList.getService(serviceId)
-                        .getSearchEngineInstance(new Downloader());
+                engine = NewPipe.getService(serviceId)
+                        .getSearchEngineInstance();
             } catch(ExtractionException e) {
                 ErrorActivity.reportError(h, a, e, null, null,
                         ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
@@ -100,8 +100,7 @@ public class SearchWorker {
                 String searchLanguage = sp.getString(searchLanguageKey,
                         a.getString(R.string.default_language_value));
                 result = SearchResult
-                        .getSearchResult(engine, query, page, searchLanguage, new Downloader());
-
+                        .getSearchResult(engine, query, page, searchLanguage);
                 if(runs) {
                     h.post(new ResultRunnable(result, requestId));
                 }

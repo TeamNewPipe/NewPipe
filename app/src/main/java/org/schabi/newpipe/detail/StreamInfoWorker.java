@@ -9,7 +9,7 @@ import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ParsingException;
-import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamExtractor;
 import org.schabi.newpipe.extractor.StreamInfo;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -51,7 +51,7 @@ public class StreamInfoWorker {
             StreamInfo streamInfo = null;
             StreamingService service = null;
             try {
-                service = ServiceList.getService(serviceId);
+                service = NewPipe.getService(serviceId);
             } catch (Exception e) {
                 e.printStackTrace();
                 ErrorActivity.reportError(h, a, e, VideoItemDetailFragment.class, null,
@@ -60,7 +60,7 @@ public class StreamInfoWorker {
                 return;
             }
             try {
-                streamExtractor = service.getExtractorInstance(videoUrl, new Downloader());
+                streamExtractor = service.getExtractorInstance(videoUrl);
                 streamInfo = StreamInfo.getVideoInfo(streamExtractor, new Downloader());
 
                 final StreamInfo info = streamInfo;

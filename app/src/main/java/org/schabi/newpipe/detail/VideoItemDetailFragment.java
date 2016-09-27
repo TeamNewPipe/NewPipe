@@ -52,7 +52,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.AudioStream;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamInfo;
 import org.schabi.newpipe.extractor.VideoStream;
 import org.schabi.newpipe.player.BackgroundPlayer;
@@ -306,7 +306,7 @@ public class VideoItemDetailFragment extends Fragment {
                             ErrorActivity.reportError(getActivity(),
                                     failReason.getCause(), null, rootView,
                                     ErrorActivity.ErrorInfo.make(ErrorActivity.LOAD_IMAGE,
-                                            ServiceList.getNameOfService(info.service_id), imageUri,
+                                            NewPipe.getNameOfService(info.service_id), imageUri,
                                             R.string.could_not_load_thumbnails));
                         }
 

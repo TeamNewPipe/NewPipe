@@ -42,11 +42,11 @@ public abstract class SearchEngine {
     }
 
     public abstract List<String> suggestionList(
-            String query,String contentCountry, Downloader dl)
+            String query,String contentCountry)
             throws ExtractionException, IOException;
 
     //Result search(String query, int page);
     public abstract StreamPreviewInfoSearchCollector search(
-            String query, int page, String contentCountry, Downloader dl)
+            String query, int page, String contentCountry)
             throws ExtractionException, IOException;
 }

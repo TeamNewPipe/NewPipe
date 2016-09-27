@@ -11,6 +11,7 @@ import org.schabi.newpipe.extractor.AbstractVideoInfo;
 import org.schabi.newpipe.extractor.ChannelExtractor;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.ExtractionException;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.StreamPreviewInfoCollector;
@@ -46,7 +47,6 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
 
     // private CSSOMParser cssParser = new CSSOMParser(new SACParserCSS3());
 
-    private Downloader downloader;
     private Document doc = null;
 
     private boolean isAjaxPage = false;
@@ -59,12 +59,13 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
     // this request url.
     private static String nextPageUrl = "";
 
-    public YoutubeChannelExtractor(UrlIdHandler urlIdHandler, String url, int page, Downloader dl, int serviceId)
+    public YoutubeChannelExtractor(UrlIdHandler urlIdHandler, String url, int page, int serviceId)
             throws ExtractionException, IOException {
-        super(urlIdHandler, url, page, dl, serviceId);
+        super(urlIdHandler, url, page, serviceId);
+
+        Downloader downloader = NewPipe.getDownloader();
 
         url = urlIdHandler.cleanUrl(url) ; //+ "/video?veiw=0&flow=list&sort=dd";
-        downloader = dl;
 
         if(page == 0) {
             if (isUserUrl(url)) {

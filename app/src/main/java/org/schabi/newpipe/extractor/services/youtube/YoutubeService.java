@@ -44,18 +44,18 @@ public class YoutubeService extends StreamingService {
         return serviceInfo;
     }
     @Override
-    public StreamExtractor getExtractorInstance(String url, Downloader downloader)
+    public StreamExtractor getExtractorInstance(String url)
             throws ExtractionException, IOException {
         UrlIdHandler urlIdHandler = new YoutubeStreamUrlIdHandler();
         if(urlIdHandler.acceptUrl(url)) {
-            return new YoutubeStreamExtractor(urlIdHandler, url, downloader, getServiceId());
+            return new YoutubeStreamExtractor(urlIdHandler, url, getServiceId());
         }
         else {
             throw new IllegalArgumentException("supplied String is not a valid Youtube URL");
         }
     }
     @Override
-    public SearchEngine getSearchEngineInstance(Downloader downloader) {
+    public SearchEngine getSearchEngineInstance() {
         return new YoutubeSearchEngine(getUrlIdHandlerInstance(), getServiceId());
     }
 
@@ -70,8 +70,8 @@ public class YoutubeService extends StreamingService {
     }
 
     @Override
-    public ChannelExtractor getChannelExtractorInstance(String url, int page, Downloader downloader)
+    public ChannelExtractor getChannelExtractorInstance(String url, int page)
         throws ExtractionException, IOException {
-        return new YoutubeChannelExtractor(getChannelUrlIdHandlerInstance(), url, page, downloader, getServiceId());
+        return new YoutubeChannelExtractor(getChannelUrlIdHandlerInstance(), url, page, getServiceId());
     }
 }

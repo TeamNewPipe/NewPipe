@@ -12,6 +12,7 @@ import org.schabi.newpipe.extractor.AbstractVideoInfo;
 import org.schabi.newpipe.extractor.AudioStream;
 import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.Downloader;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.StreamInfo;
@@ -185,15 +186,12 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     UrlIdHandler urlidhandler = new YoutubeStreamUrlIdHandler();
     String pageUrl = "";
 
-    private Downloader downloader;
-
-    public YoutubeStreamExtractor(UrlIdHandler urlIdHandler, String pageUrl,
-                                  Downloader dl, int serviceId)
+    public YoutubeStreamExtractor(UrlIdHandler urlIdHandler, String pageUrl, int serviceId)
             throws ExtractionException, IOException {
-        super(urlIdHandler ,pageUrl, dl, serviceId);
+        super(urlIdHandler, pageUrl, serviceId);
         //most common videoInfo fields are now set in our superclass, for all services
-        downloader = dl;
         this.pageUrl = pageUrl;
+        Downloader downloader = NewPipe.getDownloader();
         String pageContent = downloader.download(urlidhandler.cleanUrl(pageUrl));
         doc = Jsoup.parse(pageContent, pageUrl);
         JSONObject ytPlayerConfig;
@@ -284,6 +282,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
 
     private String getPlayerUrlFromRestrictedVideo(String pageUrl) throws ParsingException {
         try {
+            Downloader downloader = NewPipe.getDownloader();
             String playerUrl = "";
             String videoId = urlidhandler.getId(pageUrl);
             String embedUrl = "https://www.youtube.com/embed/" + videoId;
@@ -788,6 +787,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
         String decryptionCode;
 
         try {
+            Downloader downloader = NewPipe.getDownloader();
             String playerCode = downloader.download(playerUrl);
 
             decryptionFuncName =
