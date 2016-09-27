@@ -143,146 +143,150 @@ public class VideoItemDetailFragment extends Fragment {
         View topView = activity.findViewById(R.id.detailTopView);
         Button channelButton = (Button) activity.findViewById(R.id.channel_button);
 
-        progressBar.setVisibility(View.GONE);
-        if(info.next_video != null) {
-            // todo: activate this function or remove it
-            nextStreamView.setVisibility(View.GONE);
-        } else {
-            nextStreamView.setVisibility(View.GONE);
-            activity.findViewById(R.id.detail_similar_title).setVisibility(View.GONE);
-        }
+        // prevents a crash if the activity/fragment was already left when the response came
+        if(channelButton != null) {
 
-        textContentLayout.setVisibility(View.VISIBLE);
-        if (android.os.Build.VERSION.SDK_INT < 18) {
-            playVideoButton.setVisibility(View.VISIBLE);
-        } else {
-            ImageView playArrowView = (ImageView) activity.findViewById(R.id.play_arrow_view);
-            playArrowView.setVisibility(View.VISIBLE);
-        }
+            progressBar.setVisibility(View.GONE);
+            if (info.next_video != null) {
+                // todo: activate this function or remove it
+                nextStreamView.setVisibility(View.GONE);
+            } else {
+                nextStreamView.setVisibility(View.GONE);
+                activity.findViewById(R.id.detail_similar_title).setVisibility(View.GONE);
+            }
 
-        if (!showNextStreamItem) {
-            nextVideoRootFrame.setVisibility(View.GONE);
-            similarTitle.setVisibility(View.GONE);
-        }
+            textContentLayout.setVisibility(View.VISIBLE);
+            if (android.os.Build.VERSION.SDK_INT < 18) {
+                playVideoButton.setVisibility(View.VISIBLE);
+            } else {
+                ImageView playArrowView = (ImageView) activity.findViewById(R.id.play_arrow_view);
+                playArrowView.setVisibility(View.VISIBLE);
+            }
 
-        videoTitleView.setText(info.title);
+            if (!showNextStreamItem) {
+                nextVideoRootFrame.setVisibility(View.GONE);
+                similarTitle.setVisibility(View.GONE);
+            }
 
-        topView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
-                    ImageView arrow = (ImageView) activity.findViewById(R.id.toggle_description_view);
-                    View extra = activity.findViewById(R.id.detailExtraView);
-                    if (extra.getVisibility() == View.VISIBLE) {
-                        extra.setVisibility(View.GONE);
-                        arrow.setImageResource(R.drawable.arrow_down);
-                    } else {
-                        extra.setVisibility(View.VISIBLE);
-                        arrow.setImageResource(R.drawable.arrow_up);
+            videoTitleView.setText(info.title);
+
+            topView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
+                        ImageView arrow = (ImageView) activity.findViewById(R.id.toggle_description_view);
+                        View extra = activity.findViewById(R.id.detailExtraView);
+                        if (extra.getVisibility() == View.VISIBLE) {
+                            extra.setVisibility(View.GONE);
+                            arrow.setImageResource(R.drawable.arrow_down);
+                        } else {
+                            extra.setVisibility(View.VISIBLE);
+                            arrow.setImageResource(R.drawable.arrow_up);
+                        }
                     }
+                    return true;
                 }
-                return true;
+            });
+
+            // Since newpipe is designed to work even if certain information is not available,
+            // the UI has to react on missing information.
+            videoTitleView.setText(info.title);
+            if (!info.uploader.isEmpty()) {
+                uploaderView.setText(info.uploader);
+            } else {
+                activity.findViewById(R.id.detail_uploader_view).setVisibility(View.GONE);
             }
-        });
-
-        // Since newpipe is designed to work even if certain information is not available,
-        // the UI has to react on missing information.
-        videoTitleView.setText(info.title);
-        if(!info.uploader.isEmpty()) {
-            uploaderView.setText(info.uploader);
-        } else {
-            activity.findViewById(R.id.detail_uploader_view).setVisibility(View.GONE);
-        }
-        if(info.view_count >= 0) {
-            viewCountView.setText(Localization.localizeViewCount(info.view_count, a));
-        } else {
-            viewCountView.setVisibility(View.GONE);
-        }
-        if(info.dislike_count >= 0) {
-            thumbsDownView.setText(Localization.localizeNumber(info.dislike_count, a));
-        } else {
-            thumbsDownView.setVisibility(View.INVISIBLE);
-            activity.findViewById(R.id.detail_thumbs_down_count_view).setVisibility(View.GONE);
-        }
-        if(info.like_count >= 0) {
-            thumbsUpView.setText(Localization.localizeNumber(info.like_count, a));
-        } else {
-            thumbsUpView.setVisibility(View.GONE);
-            activity.findViewById(R.id.detail_thumbs_up_img_view).setVisibility(View.GONE);
-            thumbsDownView.setVisibility(View.GONE);
-            activity.findViewById(R.id.detail_thumbs_down_img_view).setVisibility(View.GONE);
-        }
-        if(!info.upload_date.isEmpty()) {
-            uploadDateView.setText(Localization.localizeDate(info.upload_date, a));
-        } else {
-            uploadDateView.setVisibility(View.GONE);
-        }
-        if(!info.description.isEmpty()) {
-            descriptionView.setText(Html.fromHtml(info.description));
-        } else {
-            descriptionView.setVisibility(View.GONE);
-        }
-
-        descriptionView.setMovementMethod(LinkMovementMethod.getInstance());
-
-        // parse streams
-        Vector<VideoStream> streamsToUse = new Vector<>();
-        for (VideoStream i : info.video_streams) {
-            if (useStream(i, streamsToUse)) {
-                streamsToUse.add(i);
+            if (info.view_count >= 0) {
+                viewCountView.setText(Localization.localizeViewCount(info.view_count, a));
+            } else {
+                viewCountView.setVisibility(View.GONE);
             }
-        }
+            if (info.dislike_count >= 0) {
+                thumbsDownView.setText(Localization.localizeNumber(info.dislike_count, a));
+            } else {
+                thumbsDownView.setVisibility(View.INVISIBLE);
+                activity.findViewById(R.id.detail_thumbs_down_count_view).setVisibility(View.GONE);
+            }
+            if (info.like_count >= 0) {
+                thumbsUpView.setText(Localization.localizeNumber(info.like_count, a));
+            } else {
+                thumbsUpView.setVisibility(View.GONE);
+                activity.findViewById(R.id.detail_thumbs_up_img_view).setVisibility(View.GONE);
+                thumbsDownView.setVisibility(View.GONE);
+                activity.findViewById(R.id.detail_thumbs_down_img_view).setVisibility(View.GONE);
+            }
+            if (!info.upload_date.isEmpty()) {
+                uploadDateView.setText(Localization.localizeDate(info.upload_date, a));
+            } else {
+                uploadDateView.setVisibility(View.GONE);
+            }
+            if (!info.description.isEmpty()) {
+                descriptionView.setText(Html.fromHtml(info.description));
+            } else {
+                descriptionView.setVisibility(View.GONE);
+            }
 
-        textContentLayout.setVisibility(View.VISIBLE);
+            descriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
-        if(info.next_video == null) {
-            activity.findViewById(R.id.detail_next_stream_title).setVisibility(View.GONE);
-        }
+            // parse streams
+            Vector<VideoStream> streamsToUse = new Vector<>();
+            for (VideoStream i : info.video_streams) {
+                if (useStream(i, streamsToUse)) {
+                    streamsToUse.add(i);
+                }
+            }
 
-        if(info.related_streams != null && !info.related_streams.isEmpty()) {
-            initSimilarVideos(info);
-        } else {
-            activity.findViewById(R.id.detail_similar_title).setVisibility(View.GONE);
-            activity.findViewById(R.id.similar_streams_view).setVisibility(View.GONE);
-        }
+            textContentLayout.setVisibility(View.VISIBLE);
 
-        setupActionBarHandler(info);
+            if (info.next_video == null) {
+                activity.findViewById(R.id.detail_next_stream_title).setVisibility(View.GONE);
+            }
 
-        if(autoPlayEnabled) {
-            playVideo(info);
-        }
+            if (info.related_streams != null && !info.related_streams.isEmpty()) {
+                initSimilarVideos(info);
+            } else {
+                activity.findViewById(R.id.detail_similar_title).setVisibility(View.GONE);
+                activity.findViewById(R.id.similar_streams_view).setVisibility(View.GONE);
+            }
 
-        if (android.os.Build.VERSION.SDK_INT < 18) {
-            playVideoButton.setOnClickListener(new View.OnClickListener() {
+            setupActionBarHandler(info);
+
+            if (autoPlayEnabled) {
+                playVideo(info);
+            }
+
+            if (android.os.Build.VERSION.SDK_INT < 18) {
+                playVideoButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        playVideo(info);
+                    }
+                });
+            }
+
+            backgroundButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     playVideo(info);
                 }
             });
-        }
 
-        backgroundButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                playVideo(info);
+            if (info.channel_url != null && info.channel_url != "") {
+                channelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(activity, ChannelActivity.class);
+                        i.putExtra(ChannelActivity.CHANNEL_URL, info.channel_url);
+                        i.putExtra(ChannelActivity.SERVICE_ID, info.service_id);
+                        startActivity(i);
+                    }
+                });
+            } else {
+                channelButton.setVisibility(Button.GONE);
             }
-        });
 
-        if(info.channel_url != null && info.channel_url != "") {
-            channelButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent i = new Intent(activity, ChannelActivity.class);
-                    i.putExtra(ChannelActivity.CHANNEL_URL, info.channel_url);
-                    i.putExtra(ChannelActivity.SERVICE_ID, info.service_id);
-                    startActivity(i);
-                }
-            });
-        } else {
-            channelButton.setVisibility(Button.GONE);
+            initThumbnailViews(info);
         }
-
-        initThumbnailViews(info);
     }
 
     private void initThumbnailViews(final StreamInfo info) {
@@ -290,7 +294,7 @@ public class VideoItemDetailFragment extends Fragment {
         ImageView uploaderThumb
                 = (ImageView) activity.findViewById(R.id.detail_uploader_thumbnail_view);
 
-        if(info.thumbnail_url != null && !info.thumbnail_url.isEmpty()) {
+        if (info.thumbnail_url != null && !info.thumbnail_url.isEmpty()) {
             imageLoader.displayImage(info.thumbnail_url, videoThumbnailView,
                     displayImageOptions, new ImageLoadingListener() {
                         @Override
@@ -318,7 +322,7 @@ public class VideoItemDetailFragment extends Fragment {
         } else {
             videoThumbnailView.setImageResource(R.drawable.dummy_thumbnail_dark);
         }
-        if(info.uploader_thumbnail_url != null && !info.uploader_thumbnail_url.isEmpty()) {
+        if (info.uploader_thumbnail_url != null && !info.uploader_thumbnail_url.isEmpty()) {
             imageLoader.displayImage(info.uploader_thumbnail_url,
                     uploaderThumb, displayImageOptions,
                     new ImageErrorLoadingListener(activity, rootView, info.service_id));
@@ -418,7 +422,7 @@ public class VideoItemDetailFragment extends Fragment {
             }
         });
 
-        if(info.audio_streams == null) {
+        if (info.audio_streams == null) {
             actionBarHandler.showAudioAction(false);
         } else {
             actionBarHandler.setOnPlayAudioListener(new ActionBarHandler.OnActionListener() {
