@@ -44,7 +44,6 @@ public class StreamInfo extends AbstractVideoInfo {
         this.title = avi.title;
         this.uploader = avi.uploader;
         this.thumbnail_url = avi.thumbnail_url;
-        this.thumbnail = avi.thumbnail;
         this.webpage_url = avi.webpage_url;
         this.upload_date = avi.upload_date;
         this.upload_date = avi.upload_date;

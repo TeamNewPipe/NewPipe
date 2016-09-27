@@ -1,7 +1,5 @@
 package org.schabi.newpipe.extractor;
 
-import android.util.Log;
-
 import org.schabi.newpipe.extractor.services.youtube.YoutubeService;
 
 /**
