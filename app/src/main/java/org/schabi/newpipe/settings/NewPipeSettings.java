@@ -89,14 +89,6 @@ public class NewPipeSettings {
         return downloadPath;
     }
 
-    public static String getDownloadPath(Context context, String fileName)
-    {
-        if(Utility.isVideoFile(fileName)) {
-            return NewPipeSettings.getVideoDownloadPath(context);
-        }
-        return NewPipeSettings.getAudioDownloadPath(context);
-    }
-
     private static File getFolder(Context context, int keyID, String defaultDirectoryName) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         final String key = context.getString(keyID);

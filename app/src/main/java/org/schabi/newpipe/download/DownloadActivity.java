@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,13 +42,13 @@ import us.shandian.giga.ui.fragment.MissionsFragment;
 import us.shandian.giga.util.CrashHandler;
 import us.shandian.giga.util.Utility;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
+public class DownloadActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     public static final String INTENT_DOWNLOAD = "us.shandian.giga.intent.DOWNLOAD";
 
     public static final String INTENT_LIST = "us.shandian.giga.intent.LIST";
 
-    private static final String TAG = MainActivity.class.toString();
+    private static final String TAG = DownloadActivity.class.toString();
     public static final String THREADS = "threads";
 
 
@@ -150,6 +151,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         final TextView tCount = Utility.findViewById(v, R.id.threads_count);
         final SeekBar threads = Utility.findViewById(v, R.id.threads);
         final Toolbar toolbar = Utility.findViewById(v, R.id.toolbar);
+        final RadioButton audioButton = (RadioButton) Utility.findViewById(v, R.id.audio_button);
+
 
         threads.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -204,12 +207,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     File f = new File(mManager.getLocation() + "/" + fName);
 
                     if (f.exists()) {
-                        Toast.makeText(MainActivity.this, R.string.msg_exists, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DownloadActivity.this, R.string.msg_exists, Toast.LENGTH_SHORT).show();
                     } else {
 
                         while (mBinder == null);
 
-                        int res = mManager.startMission(getIntent().getData().toString(), fName, threads.getProgress() + 1);
+                        int res = mManager.startMission(
+                                getIntent().getData().toString(),
+                                fName,
+                                audioButton.isChecked(),
+                                threads.getProgress() + 1);
                         mBinder.onMissionAdded(mManager.getMission(res));
                         mFragment.notifyChange();
 
@@ -258,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 return true;
             }
             case R.id.action_report_error: {
-                ErrorActivity.reportError(MainActivity.this, new Vector<Throwable>(),
+                ErrorActivity.reportError(DownloadActivity.this, new Vector<Throwable>(),
                         null, null,
                         ErrorActivity.ErrorInfo.make(ErrorActivity.USER_REPORT,
                                 null,

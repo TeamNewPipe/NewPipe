@@ -225,6 +225,7 @@ public class DownloadDialog extends DialogFragment {
             int res = mManager.startMission(
                     arguments.getString(AUDIO_URL),
                     fName + arguments.getString(FILE_SUFFIX_AUDIO),
+                    audioButton.isChecked(),
                     threads.getProgress() + 1);
             mBinder.onMissionAdded(mManager.getMission(res));
         }
@@ -233,6 +234,7 @@ public class DownloadDialog extends DialogFragment {
             int res = mManager.startMission(
                     arguments.getString(VIDEO_URL),
                     fName + arguments.getString(FILE_SUFFIX_VIDEO),
+                    audioButton.isChecked(),
                     threads.getProgress() + 1);
             mBinder.onMissionAdded(mManager.getMission(res));
         }
@@ -255,8 +257,8 @@ public class DownloadDialog extends DialogFragment {
             //we'll see later
             FileDownloader.downloadFile(getContext(), url, saveFilePath, title);
         } else {
-            Intent intent = new Intent(getContext(), MainActivity.class);
-            intent.setAction(MainActivity.INTENT_DOWNLOAD);
+            Intent intent = new Intent(getContext(), DownloadActivity.class);
+            intent.setAction(DownloadActivity.INTENT_DOWNLOAD);
             intent.setData(Uri.parse(url));
             intent.putExtra("fileName", createFileName(title) + fileSuffix);
             startActivity(intent);
