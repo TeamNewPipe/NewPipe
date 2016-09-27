@@ -1,11 +1,11 @@
 NewPipe contribution guidelines
 ===============================
 
-READ THIS GUIDELINES CAREFULLY BEVORE CONTRIBUGING.
+READ THIS GUIDELINES CAREFULLY BEFORE CONTRIBUTING.
 
-## Crashreporting
+## Crash reporting
 
-Do not report crashes in the github issue tracker. NewPipe has an automated crashreport system that will ask you to send a report if a crash occures.
+Do not report crashes in the GitHub issue tracker. NewPipe has an automated crash report system that will ask you to send a report if a crash occures.
 
 ## Issue reporting/feature request
 
@@ -19,13 +19,18 @@ Do not report crashes in the github issue tracker. NewPipe has an automated cras
 
 ## Code contribution
 
-* Follow the [Google Style Guidelines](https://google.github.io/styleguide/javaguide.html)
-* Make changes on a separate branch, not on the master branch (Featurebranching)
+* Stick to NewPipe style guidelines (just look the other code and than do it the same way :) )
+* Do not bring nonfree software/binary blobs into the project (keep it google free)
+* Stick to [f-droid contribution guidelines](https://f-droid.org/wiki/page/Inclusion_Policy)
+* Make changes on a separate branch, not on the master branch (Feature-branching)
 * When submitting changes, you agree that your code will be licensed under GPLv3
-* Please test your code bevore you submit changes!!!
+* Please test (compile and run) your code before you submit changes!!!
+* Try to figure out you selves why CI fails, or why a merge request collides
+* Please maintain your code after you contributed it.
+* Respond yourselves if someone request changes or notifies issues
 
 ## Communication
 
-* I hereby declare our Slack channel as dead!!! There are no plans on building a new chat, but if there is interest on creating one and ceeping it alive, I'd be pleased to create one again. 
-* If you want to get in contact with me or one of our other contrebutors you can send me an email at tnp(at)schabi.org
+* I hereby declare our Slack channel as dead!!! There are no plans on building a new chat, but if there is interest on creating one and keeping it alive, I'd be pleased to create one again. 
+* If you want to get in contact with me or one of our other contributors you can send me an email at tnp(at)schabi.org
 * Feel free to post suggestions, changes, ideas etc!
