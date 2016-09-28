@@ -68,4 +68,26 @@
     <string name="download_path_audio_summary">Папка для хранения загруженных аудио</string>
     <string name="download_path_audio_dialog_title">Введите путь к папке для загрузки аудио</string>
 
+    <string name="main_bg_subtitle">Нажмите поиск чтобы начать</string>
+    <string name="msg_wait">Пожалуйста подождите...</string>
+    <string name="msg_exists">Файл уже существует</string>
+    <string name="msg_threads">Потоки</string>
+    <string name="finish">Окей</string>
+    <string name="start">Начать</string>
+    <string name="pause">Пауза</string>
+    <string name="delete">Удалить</string>
+    <string name="checksum">Контрольная сумма</string>
+
+    <string name="msg_url">Скачать URL</string>
+    <string name="msg_name">Названия файла</string>
+    <string name="msg_error">Ошибка</string>
+    <string name="msg_server_unsupported">Сервер не поддерживается</string>
+    <string name="msg_running">NewPipe скачивает</string>
+    <string name="msg_url_malform">Неправильный URL или Интернет не доступен</string>
+    <string name="msg_running_detail">Нажмите для деталей</string>
+    <string name="msg_copied">Копировано в буфер обмена.</string>
+    <string name="no_available_dir">Пожалуйста выберите папку для скачивания.</string>
+
+    <string name="action_settings">Настройки</string>
+
     </resources>
