@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.SuggestionExtractor;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ExtractionException;
@@ -70,13 +71,13 @@ public class SuggestionSearchRunnable implements Runnable{
     @Override
     public void run() {
         try {
-            SearchEngine engine =
-                    NewPipe.getService(serviceId).getSearchEngineInstance();
+            SuggestionExtractor se =
+                    NewPipe.getService(serviceId).getSuggestionExtractorInstance();
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(a);
             String searchLanguageKey = a.getString(R.string.search_language_key);
             String searchLanguage = sp.getString(searchLanguageKey,
                     a.getString(R.string.default_language_value));
-            List<String> suggestions = engine.suggestionList(query, searchLanguage);
+            List<String> suggestions = se.suggestionList(query, searchLanguage);
             h.post(new SuggestionResultRunnable(suggestions, adapter));
         } catch (ExtractionException e) {
             ErrorActivity.reportError(h, a, e, null, a.findViewById(android.R.id.content),

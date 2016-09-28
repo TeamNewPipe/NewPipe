@@ -41,10 +41,6 @@ public abstract class SearchEngine {
         return collector;
     }
 
-    public abstract List<String> suggestionList(
-            String query,String contentCountry)
-            throws ExtractionException, IOException;
-
     //Result search(String query, int page);
     public abstract StreamPreviewInfoSearchCollector search(
             String query, int page, String contentCountry)

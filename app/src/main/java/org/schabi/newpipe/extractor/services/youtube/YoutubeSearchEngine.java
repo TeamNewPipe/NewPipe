@@ -118,55 +118,6 @@ public class YoutubeSearchEngine extends SearchEngine {
         return collector;
     }
 
-    @Override
-    public List<String> suggestionList(String query, String contentCountry)
-            throws IOException, ParsingException {
-
-        List<String> suggestions = new ArrayList<>();
-
-        Downloader dl = NewPipe.getDownloader();
-
-        String url = "https://suggestqueries.google.com/complete/search"
-                + "?client=" + ""
-                + "&output=" + "toolbar"
-                + "&ds=" + "yt"
-                + "&hl=" + URLEncoder.encode(contentCountry, CHARSET_UTF_8)
-                + "&q=" + URLEncoder.encode(query, CHARSET_UTF_8);
-
-
-        String response = dl.download(url);
-
-        //TODO: Parse xml data using Jsoup not done
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder;
-        org.w3c.dom.Document doc = null;
-
-        try {
-            dBuilder = dbFactory.newDocumentBuilder();
-            doc = dBuilder.parse(new InputSource(
-                    new ByteArrayInputStream(response.getBytes(CHARSET_UTF_8))));
-            doc.getDocumentElement().normalize();
-        } catch (ParserConfigurationException | SAXException | IOException e) {
-            throw new ParsingException("Could not parse document.");
-        }
-
-        try {
-            NodeList nList = doc.getElementsByTagName("CompleteSuggestion");
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-
-                NodeList nList1 = doc.getElementsByTagName("suggestion");
-                Node nNode1 = nList1.item(temp);
-                if (nNode1.getNodeType() == Node.ELEMENT_NODE) {
-                    org.w3c.dom.Element eElement = (org.w3c.dom.Element) nNode1;
-                    suggestions.add(eElement.getAttribute("data"));
-                }
-            }
-            return suggestions;
-        } catch(Exception e) {
-            throw new ParsingException("Could not get suggestions form document.", e);
-        }
-    }
-
     private StreamPreviewInfoExtractor extractPreviewInfo(final Element item) {
         return new YoutubeStreamPreviewInfoExtractor(item);
     }

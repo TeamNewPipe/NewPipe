@@ -5,6 +5,7 @@ import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.StreamExtractor;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.SuggestionExtractor;
 import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.SearchEngine;
 
@@ -73,5 +74,10 @@ public class YoutubeService extends StreamingService {
     public ChannelExtractor getChannelExtractorInstance(String url, int page)
         throws ExtractionException, IOException {
         return new YoutubeChannelExtractor(getChannelUrlIdHandlerInstance(), url, page, getServiceId());
+    }
+
+    @Override
+    public SuggestionExtractor getSuggestionExtractorInstance() {
+        return new YoutubeSuggestionExtractor(getServiceId());
     }
 }

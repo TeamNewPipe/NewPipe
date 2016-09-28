@@ -1,12 +1,13 @@
 package org.schabi.newpipe.extractor;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
- * Created by Christian Schabesberger on 23.08.15.
+ * Created by Christian Schabesberger on 28.09.16.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * StreamingService.java is part of NewPipe.
+ * SuggestionExtractor.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,29 +23,19 @@ import java.io.IOException;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public abstract class StreamingService {
-    public class ServiceInfo {
-        public String name = "";
-    }
+public abstract class SuggestionExtractor {
 
     private int serviceId;
 
-    public StreamingService(int id) {
-        serviceId = id;
+    public SuggestionExtractor(int serviceId) {
+        this.serviceId = serviceId;
     }
 
-    public abstract ServiceInfo getServiceInfo();
-
-    public abstract StreamExtractor getExtractorInstance(String url)
-            throws IOException, ExtractionException;
-    public abstract SearchEngine getSearchEngineInstance();
-    public abstract UrlIdHandler getUrlIdHandlerInstance();
-    public abstract UrlIdHandler getChannelUrlIdHandlerInstance();
-    public abstract ChannelExtractor getChannelExtractorInstance(String url, int page)
+    public abstract List<String> suggestionList(
+            String query,String contentCountry)
             throws ExtractionException, IOException;
-    public abstract SuggestionExtractor getSuggestionExtractorInstance();
 
-    public final int getServiceId() {
+    public int getServiceId() {
         return serviceId;
     }
 }
