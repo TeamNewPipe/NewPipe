@@ -14,12 +14,12 @@ import android.os.Message;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.util.Log;
 
+import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.R;
 import us.shandian.giga.get.DownloadManager;
 import us.shandian.giga.get.DownloadManagerImpl;
 import us.shandian.giga.get.DownloadMission;
-import org.schabi.newpipe.download.MainActivity;
 import static org.schabi.newpipe.BuildConfig.DEBUG;
 
 public class DownloadManagerService extends Service implements DownloadMission.MissionListener
@@ -53,7 +53,7 @@ public class DownloadManagerService extends Service implements DownloadMission.M
 		
 		Intent i = new Intent();
 		i.setAction(Intent.ACTION_MAIN);
-		i.setClass(this, MainActivity.class);
+		i.setClass(this, DownloadActivity.class);
 
 		Drawable icon = this.getResources().getDrawable(R.mipmap.ic_launcher);
 
@@ -68,8 +68,8 @@ public class DownloadManagerService extends Service implements DownloadMission.M
 				PendingIntent.getActivity(
 						this,
 						0,
-						new Intent(this, MainActivity.class)
-								.setAction(MainActivity.INTENT_LIST),
+						new Intent(this, DownloadActivity.class)
+								.setAction(DownloadActivity.INTENT_LIST),
 						PendingIntent.FLAG_UPDATE_CURRENT
 				);
 

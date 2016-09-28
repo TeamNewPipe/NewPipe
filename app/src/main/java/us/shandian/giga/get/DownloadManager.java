@@ -4,7 +4,7 @@ public interface DownloadManager
 {
 	int BLOCK_SIZE = 512 * 1024;
 	
-	int startMission(String url, String name, int threads);
+	int startMission(String url, String name, boolean isAudio, int threads);
 	void resumeMission(int id);
 	void pauseMission(int id);
 	void deleteMission(int id);

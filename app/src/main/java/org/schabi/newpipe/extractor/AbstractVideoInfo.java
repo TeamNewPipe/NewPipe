@@ -1,7 +1,5 @@
 package org.schabi.newpipe.extractor;
 
-import android.graphics.Bitmap;
-
 /**
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
  * AbstractVideoInfo.java is part of NewPipe.
@@ -37,7 +35,6 @@ public abstract class AbstractVideoInfo {
     public String title = "";
     public String uploader = "";
     public String thumbnail_url = "";
-    public Bitmap thumbnail;
     public String webpage_url = "";
     public String upload_date = "";
     public long view_count = -1;

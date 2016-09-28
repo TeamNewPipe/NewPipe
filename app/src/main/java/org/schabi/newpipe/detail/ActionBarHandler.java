@@ -183,7 +183,7 @@ class ActionBarHandler {
                 return true;
             case R.id.menu_item_downloads: {
                 Intent intent =
-                        new Intent(activity, org.schabi.newpipe.download.MainActivity.class);
+                        new Intent(activity, org.schabi.newpipe.download.DownloadActivity.class);
                 activity.startActivity(intent);
                 return true;
             }

@@ -16,7 +16,7 @@ import org.schabi.newpipe.settings.SettingsActivity;
  * Created by Christian Schabesberger on 02.08.16.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * MainActivity.java is part of NewPipe.
+ * DownloadActivity.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
             case R.id.action_show_downloads: {
-                Intent intent = new Intent(this, org.schabi.newpipe.download.MainActivity.class);
+                Intent intent = new Intent(this, org.schabi.newpipe.download.DownloadActivity.class);
                 startActivity(intent);
                 return true;
             }

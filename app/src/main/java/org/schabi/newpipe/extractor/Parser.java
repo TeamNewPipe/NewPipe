@@ -1,7 +1,5 @@
 package org.schabi.newpipe.extractor;
 
-import android.util.Log;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.HashMap;

@@ -1,17 +1,12 @@
 package org.schabi.newpipe.extractor.services.youtube;
 
-import android.util.Log;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.schabi.newpipe.extractor.AbstractVideoInfo;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.ExtractionException;
-import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.SearchEngine;
-import org.schabi.newpipe.extractor.StreamPreviewInfoCollector;
 import org.schabi.newpipe.extractor.StreamPreviewInfoExtractor;
 import org.schabi.newpipe.extractor.StreamPreviewInfoSearchCollector;
 import org.schabi.newpipe.extractor.UrlIdHandler;

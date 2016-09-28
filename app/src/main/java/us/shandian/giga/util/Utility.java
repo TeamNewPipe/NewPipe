@@ -27,13 +27,8 @@ public class Utility
 {
 	
 	public static enum FileType {
-		APP,
 		VIDEO,
-		EXCEL,
-		WORD,
-		POWERPOINT,
 		MUSIC,
-		ARCHIVE,
 		UNKNOWN
 	}
 	
@@ -142,22 +137,11 @@ public class Utility
 	}
 
 	public static FileType getFileType(String file) {
-		if (file.endsWith(".apk")) {
-			return FileType.APP;
-		} else if (file.endsWith(".mp3") || file.endsWith(".wav") || file.endsWith(".flac") || file.endsWith(".m4a")) {
+		if (file.endsWith(".mp3") || file.endsWith(".wav") || file.endsWith(".flac") || file.endsWith(".m4a")) {
 			return FileType.MUSIC;
 		} else if (file.endsWith(".mp4") || file.endsWith(".mpeg") || file.endsWith(".rm") || file.endsWith(".rmvb")
 					|| file.endsWith(".flv") || file.endsWith(".webp") || file.endsWith(".webm")) {
 			return FileType.VIDEO;
-		} else if (file.endsWith(".doc") || file.endsWith(".docx")) {
-			return FileType.WORD;
-		} else if (file.endsWith(".xls") || file.endsWith(".xlsx")) {
-			return FileType.EXCEL;
-		} else if (file.endsWith(".ppt") || file.endsWith(".pptx")) {
-			return FileType.POWERPOINT;
-		} else if (file.endsWith(".zip") || file.endsWith(".rar") || file.endsWith(".7z") || file.endsWith(".gz")
-					|| file.endsWith("tar") || file.endsWith(".bz")) {
-			return FileType.ARCHIVE;
 		} else {
 			return FileType.UNKNOWN;
 		}

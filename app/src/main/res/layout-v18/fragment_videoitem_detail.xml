@@ -265,12 +265,13 @@
                         android:text="@string/similar_videos_btn_text"
                         android:layout_below="@id/detail_next_stream_content"
                         android:textAllCaps="true" />
-                    <android.support.v7.widget.RecyclerView
+                    <LinearLayout
                         android:id="@+id/similar_streams_view"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_below="@id/detail_similar_title"/>
+                        android:layout_below="@id/detail_similar_title">
+                    </LinearLayout>
                 </RelativeLayout>
             </RelativeLayout>
         </RelativeLayout>

@@ -1,7 +1,5 @@
 package org.schabi.newpipe.extractor;
 
-import android.util.Log;
-
 import java.util.List;
 import java.util.Vector;
 

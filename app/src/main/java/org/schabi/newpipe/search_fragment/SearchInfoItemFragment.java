@@ -18,6 +18,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.detail.VideoItemDetailActivity;
@@ -189,7 +190,7 @@ public class SearchInfoItemFragment extends Fragment {
 
         infoListAdapter = new InfoListAdapter(getActivity(),
                 getActivity().findViewById(android.R.id.content));
-        infoListAdapter.setOnItemSelectedListener(new InfoListAdapter.OnItemSelectedListener() {
+        infoListAdapter.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {
             @Override
             public void selected(String url) {
                 Intent i = new Intent(getActivity(), VideoItemDetailActivity.class);

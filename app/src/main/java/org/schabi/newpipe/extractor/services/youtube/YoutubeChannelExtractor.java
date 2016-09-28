@@ -19,8 +19,6 @@ import org.schabi.newpipe.extractor.UrlIdHandler;
 
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Christian Schabesberger on 25.07.16.

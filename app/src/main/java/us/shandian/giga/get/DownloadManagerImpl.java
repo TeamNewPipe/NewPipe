@@ -31,11 +31,15 @@ public class DownloadManagerImpl implements DownloadManager
 	}
 	
 	@Override
-	public int startMission(String url, String name, int threads) {
+	public int startMission(String url, String name, boolean isAudio, int threads) {
 		DownloadMission mission = new DownloadMission();
 		mission.url = url;
 		mission.name = name;
-		mission.location = NewPipeSettings.getDownloadPath(mContext, name);
+		if(isAudio) {
+			mission.location = NewPipeSettings.getAudioDownloadPath(mContext);
+		} else {
+			mission.location = NewPipeSettings.getVideoDownloadPath(mContext);
+		}
 		mission.timestamp = System.currentTimeMillis();
 		mission.threadCount = threads;
 		new Initializer(mContext, mission).start();

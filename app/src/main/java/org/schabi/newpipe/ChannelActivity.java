@@ -26,6 +26,7 @@ import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.report.ErrorActivity;
 
@@ -84,7 +85,7 @@ public class ChannelActivity extends AppCompatActivity {
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(infoListAdapter);
-        infoListAdapter.setOnItemSelectedListener(new InfoListAdapter.OnItemSelectedListener() {
+        infoListAdapter.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {
             @Override
             public void selected(String url) {
                 Intent detailIntent = new Intent(ChannelActivity.this, VideoItemDetailActivity.class);

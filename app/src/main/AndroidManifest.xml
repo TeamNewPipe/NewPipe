@@ -133,7 +133,7 @@
 
         <!-- giga get related -->
         <activity
-            android:name=".download.MainActivity"
+            android:name=".download.DownloadActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme" />
