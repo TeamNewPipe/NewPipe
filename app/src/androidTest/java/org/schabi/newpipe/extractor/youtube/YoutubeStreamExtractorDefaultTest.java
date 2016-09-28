@@ -8,7 +8,7 @@ import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamExtractor;
-import org.schabi.newpipe.extractor.VideoStream;
+import org.schabi.newpipe.extractor.stream_info.VideoStream;
 
 import java.io.IOException;
 

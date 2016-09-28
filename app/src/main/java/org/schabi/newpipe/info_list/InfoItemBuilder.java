@@ -10,8 +10,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.AbstractVideoInfo;
-import org.schabi.newpipe.extractor.StreamPreviewInfo;
+import org.schabi.newpipe.extractor.AbstractStreamInfo;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 
 /**
  * Created by Christian Schabesberger on 26.09.16.
@@ -66,7 +66,7 @@ public class InfoItemBuilder {
         if(info.duration > 0) {
             holder.itemDurationView.setText(getDurationString(info.duration));
         } else {
-            if(info.stream_type == AbstractVideoInfo.StreamType.LIVE_STREAM) {
+            if(info.stream_type == AbstractStreamInfo.StreamType.LIVE_STREAM) {
                 holder.itemDurationView.setText(R.string.duration_live);
             } else {
                 holder.itemDurationView.setVisibility(View.GONE);

@@ -1,4 +1,4 @@
-package org.schabi.newpipe.extractor;
+package org.schabi.newpipe.extractor.stream_info;
 
 /**
  * Created by Christian Schabesberger on 10.08.15.
@@ -19,6 +19,10 @@ package org.schabi.newpipe.extractor;
  * You should have received a copy of the GNU General Public License
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+import org.schabi.newpipe.extractor.UrlIdHandler;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
 
 import java.util.List;
 

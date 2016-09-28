@@ -8,20 +8,20 @@ import org.jsoup.nodes.Element;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
-import org.schabi.newpipe.extractor.AbstractVideoInfo;
-import org.schabi.newpipe.extractor.AudioStream;
-import org.schabi.newpipe.extractor.ExtractionException;
+import org.schabi.newpipe.extractor.AbstractStreamInfo;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Parser;
-import org.schabi.newpipe.extractor.ParsingException;
-import org.schabi.newpipe.extractor.StreamInfo;
-import org.schabi.newpipe.extractor.StreamPreviewInfoCollector;
-import org.schabi.newpipe.extractor.StreamPreviewInfoExtractor;
 import org.schabi.newpipe.extractor.UrlIdHandler;
-import org.schabi.newpipe.extractor.StreamExtractor;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.VideoStream;
+import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
+import org.schabi.newpipe.extractor.stream_info.StreamInfo;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoCollector;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoExtractor;
+import org.schabi.newpipe.extractor.stream_info.VideoStream;
 
 import java.io.IOException;
 import java.util.List;
@@ -709,7 +709,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     private StreamPreviewInfoExtractor extractVideoPreviewInfo(final Element li) {
         return new StreamPreviewInfoExtractor() {
             @Override
-            public AbstractVideoInfo.StreamType getStreamType() throws ParsingException {
+            public AbstractStreamInfo.StreamType getStreamType() throws ParsingException {
                 return null;
             }
 

@@ -1,4 +1,4 @@
-package org.schabi.newpipe.extractor;
+package org.schabi.newpipe.extractor.exceptions;
 
 /**
  * Created by Christian Schabesberger on 31.01.16.

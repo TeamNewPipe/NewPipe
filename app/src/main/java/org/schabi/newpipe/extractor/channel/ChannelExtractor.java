@@ -1,4 +1,9 @@
-package org.schabi.newpipe.extractor;
+package org.schabi.newpipe.extractor.channel;
+
+import org.schabi.newpipe.extractor.UrlIdHandler;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoCollector;
 
 import java.io.IOException;
 

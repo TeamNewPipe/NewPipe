@@ -1,13 +1,10 @@
-package org.schabi.newpipe.extractor;
-
-import java.io.IOException;
-import java.util.List;
+package org.schabi.newpipe.extractor.stream_info;
 
 /**
- * Created by Christian Schabesberger on 28.09.16.
+ * Created by Christian Schabesberger on 26.08.15.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * SuggestionExtractor.java is part of NewPipe.
+ * StreamPreviewInfo.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,19 +20,9 @@ import java.util.List;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public abstract class SuggestionExtractor {
+import org.schabi.newpipe.extractor.AbstractStreamInfo;
 
-    private int serviceId;
-
-    public SuggestionExtractor(int serviceId) {
-        this.serviceId = serviceId;
-    }
-
-    public abstract List<String> suggestionList(
-            String query,String contentCountry)
-            throws ExtractionException, IOException;
-
-    public int getServiceId() {
-        return serviceId;
-    }
+/**Info object for previews of unopened videos, eg search results, related videos*/
+public class StreamPreviewInfo extends AbstractStreamInfo {
+    public int duration;
 }

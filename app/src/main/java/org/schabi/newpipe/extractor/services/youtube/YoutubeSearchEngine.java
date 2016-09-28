@@ -4,27 +4,16 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.schabi.newpipe.extractor.Downloader;
-import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.ParsingException;
-import org.schabi.newpipe.extractor.SearchEngine;
-import org.schabi.newpipe.extractor.StreamPreviewInfoExtractor;
-import org.schabi.newpipe.extractor.StreamPreviewInfoSearchCollector;
 import org.schabi.newpipe.extractor.UrlIdHandler;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.search.SearchEngine;
+import org.schabi.newpipe.extractor.search.StreamPreviewInfoSearchCollector;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoExtractor;
 
 import java.net.URLEncoder;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * Created by Christian Schabesberger on 09.08.15.

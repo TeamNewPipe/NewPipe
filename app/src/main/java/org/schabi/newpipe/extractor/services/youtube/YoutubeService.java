@@ -1,13 +1,12 @@
 package org.schabi.newpipe.extractor.services.youtube;
 
-import org.schabi.newpipe.extractor.ChannelExtractor;
-import org.schabi.newpipe.extractor.ExtractionException;
-import org.schabi.newpipe.extractor.Downloader;
-import org.schabi.newpipe.extractor.StreamExtractor;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.SuggestionExtractor;
 import org.schabi.newpipe.extractor.UrlIdHandler;
-import org.schabi.newpipe.extractor.SearchEngine;
+import org.schabi.newpipe.extractor.channel.ChannelExtractor;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.search.SearchEngine;
+import org.schabi.newpipe.extractor.search.SuggestionExtractor;
+import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
 
 import java.io.IOException;
 

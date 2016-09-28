@@ -7,12 +7,11 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 
-import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.search.SearchEngine;
+import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.ExtractionException;
-import org.schabi.newpipe.extractor.SearchEngine;
-import org.schabi.newpipe.extractor.SearchResult;
 import org.schabi.newpipe.extractor.NewPipe;
 
 import java.io.IOException;

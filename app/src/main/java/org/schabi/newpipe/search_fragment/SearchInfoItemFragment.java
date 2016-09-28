@@ -19,12 +19,12 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.detail.VideoItemDetailActivity;
 import org.schabi.newpipe.detail.VideoItemDetailFragment;
-import org.schabi.newpipe.extractor.SearchResult;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 
 /**

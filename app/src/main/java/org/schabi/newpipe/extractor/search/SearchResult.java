@@ -1,4 +1,7 @@
-package org.schabi.newpipe.extractor;
+package org.schabi.newpipe.extractor.search;
+
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 
 import java.io.IOException;
 import java.util.List;

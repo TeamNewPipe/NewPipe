@@ -1,4 +1,7 @@
-package org.schabi.newpipe.extractor;
+package org.schabi.newpipe.extractor.stream_info;
+
+import org.schabi.newpipe.extractor.AbstractStreamInfo;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
 
 /**
  * Created by Christian Schabesberger on 28.02.16.
@@ -21,7 +24,7 @@ package org.schabi.newpipe.extractor;
  */
 
 public interface StreamPreviewInfoExtractor {
-    AbstractVideoInfo.StreamType getStreamType() throws ParsingException;
+    AbstractStreamInfo.StreamType getStreamType() throws ParsingException;
     String getWebPageUrl() throws ParsingException;
     String getTitle() throws ParsingException;
     int getDuration() throws ParsingException;
