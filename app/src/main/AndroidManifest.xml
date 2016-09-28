@@ -29,6 +29,7 @@
         <activity
             android:name=".detail.VideoItemDetailActivity"
             android:label="@string/title_videoitem_detail"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
