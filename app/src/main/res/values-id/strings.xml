@@ -1,2 +1,58 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="main_bg_subtitle">Sentuh pencarian untuk memulai</string>
+    <string name="view_count_text">%1$s penonton</string>
+    <string name="upload_date_text">Diterbitkan pada %1$s</string>
+    <string name="install">Pasang</string>
+    <string name="cancel">Batal</string>
+    <string name="open_in_browser">Buka dalam browser</string>
+    <string name="share">Bagikan</string>
+    <string name="loading">Memuatkan</string>
+    <string name="download">Unduh</string>
+    <string name="search">Cari</string>
+    <string name="settings">Pengaturan</string>
+    <string name="share_dialog_title">Bagikan dengan</string>
+    <string name="choose_browser">Pilih browser</string>
+    <string name="settings_activity_title">Pengaturan</string>
+    <string name="use_external_video_player_title">Gunakan pemutar video eksternal</string>
+    <string name="use_external_audio_player_title">Gunakan pemutar audio eksternal</string>
+
+    <string name="download_path_title">Lokasi pengunduhan video</string>
+    <string name="download_path_summary">Lokasi untuk menyimpan video terunduh.</string>
+    <string name="download_path_dialog_title">Masukkan lokasi pengunduhan untuk video</string>
+
+    <string name="download_path_audio_title">Lokasi pengunduhan audio</string>
+    <string name="download_path_audio_summary">Lokasi untuk menyimpan audio terunduh</string>
+    <string name="download_path_audio_dialog_title">Masukkan lokasi pengunduhan untuk berkas audio.</string>
+
+    <string name="autoplay_by_calling_app_title">Putar otomatis ketika dipanggil dari aplikasi lain</string>
+    <string name="autoplay_by_calling_app_summary">Secara otomatis memutar video ketika NewPipe dipanggil dari aplikasi lain.</string>
+    <string name="default_resolution_title">Resolusi default</string>
+    <string name="play_with_kodi_title">Putarkan dengan Kodi</string>
+    <string name="kore_not_found">Aplikasi Kore tidak ditemukan. Pasang Kore?</string>
+    <string name="show_play_with_kodi_title">Tampilkan pilihan \"Putarkan dengan Kodi\"</string>
+    <string name="show_play_with_kodi_summary">Menampilkan pilihan untuk memainkan video lewat Kodi media center.</string>
+    <string name="play_audio">Audio</string>
+    <string name="default_audio_format_title">Format audio default</string>
+    <string name="webm_description">WebM — format gratis</string>
+    <string name="m4a_description">M4A — kualitas lebih baik</string>
+    <string name="theme_title">Tema</string>
+    <string name="dark_theme_title">Gelap</string>
+    <string name="light_theme_title">Terang</string>
+
+    <string name="download_dialog_title">Unduh</string>
+    <string name="next_video_title">Video berikutnya</string>
+    <string name="show_next_and_similar_title">Tampilkan video selanjutnya dan terkait</string>
+    <string name="url_not_supported_toast">URL tidak didukung</string>
+    <string name="similar_videos_btn_text">Video terkait</string>
+    <string name="search_language_title">Bahasa konten</string>
+    <string name="settings_category_video_audio_title">Video &amp; Audio</string>
+    <string name="settings_category_appearance_title">Tampilan</string>
+    <string name="settings_category_other_title">Lainnya</string>
+    <string name="background_player_playing_toast">Berputar di latar belakang</string>
+    <string name="play_btn_text">Putar</string>
+    <string name="content">Konten</string>
+    <string name="show_age_restricted_content_title">Tampilkan konten batasan usia</string>
+    <string name="video_is_age_restricted">Video terbatasi umur. Aktifkan video batasan umur di pengaturan terlebih dahulu.</string>
+    <string name="network_error">Gangguan jaringan</string>
+    <string name="could_not_load_thumbnails">Tidak dapat memuat semua thumbnail</string>
+    </resources>
