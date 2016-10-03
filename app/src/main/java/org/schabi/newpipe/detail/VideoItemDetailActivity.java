@@ -71,8 +71,14 @@ public class VideoItemDetailActivity extends AppCompatActivity {
         Bundle arguments = new Bundle();
         if (savedInstanceState == null) {
             // this means the video was called though another app
-            if (getIntent().getData() != null) {
-                videoUrl = getIntent().getData().toString();
+            if (getIntent().getData() != null || getIntent().getAction().equals(Intent.ACTION_SEND)) {
+
+                if(getIntent().getAction().equals(Intent.ACTION_SEND)) {
+                    videoUrl = getIntent().getExtras().getString(Intent.EXTRA_TEXT);
+                }
+                else
+                    videoUrl = getIntent().getData().toString();
+
                 StreamingService[] serviceList = ServiceList.getServices();
                 //StreamExtractor videoExtractor = null;
                 for (int i = 0; i < serviceList.length; i++) {
@@ -95,7 +101,8 @@ public class VideoItemDetailActivity extends AppCompatActivity {
                         PreferenceManager.getDefaultSharedPreferences(this)
                                 .getBoolean(getString(R.string.autoplay_through_intent_key), false));
             } else {
-                videoUrl = getIntent().getStringExtra(VideoItemDetailFragment.VIDEO_URL);
+                    videoUrl = getIntent().getStringExtra(VideoItemDetailFragment.VIDEO_URL);
+
                 currentStreamingService = getIntent().getIntExtra(VideoItemDetailFragment.STREAMING_SERVICE, -1);
                 arguments.putString(VideoItemDetailFragment.VIDEO_URL, videoUrl);
                 arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingService);
