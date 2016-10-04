@@ -1,12 +1,10 @@
-package org.schabi.newpipe.extractor;
-
-import org.schabi.newpipe.extractor.exceptions.ParsingException;
+package org.schabi.newpipe.extractor.stream_info;
 
 /**
- * Created by Christian Schabesberger on 26.07.16.
+ * Created by Christian Schabesberger on 26.08.15.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * UrlIdHandler.java is part of NewPipe.
+ * StreamPreviewInfo.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,13 +20,9 @@ import org.schabi.newpipe.extractor.exceptions.ParsingException;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public interface UrlIdHandler {
-    String getUrl(String videoId);
-    String getId(String siteUrl) throws ParsingException;
-    String cleanUrl(String siteUrl) throws ParsingException;
+import org.schabi.newpipe.extractor.AbstractStreamInfo;
 
-    /**When a VIEW_ACTION is caught this function will test if the url delivered within the calling
-     Intent was meant to be watched with this Service.
-     Return false if this service shall not allow to be called through ACTIONs.*/
-    boolean acceptUrl(String videoUrl);
+/**Info object for previews of unopened videos, eg search results, related videos*/
+public class StreamPreviewInfo extends AbstractStreamInfo {
+    public int duration;
 }

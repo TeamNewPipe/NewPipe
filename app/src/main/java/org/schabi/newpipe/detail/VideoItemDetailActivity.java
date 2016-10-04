@@ -14,7 +14,7 @@ import android.widget.Toast;
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 
 
@@ -68,52 +68,66 @@ public class VideoItemDetailActivity extends AppCompatActivity {
         // http://developer.android.com/guide/components/fragments.html
         //
 
-        Bundle arguments = new Bundle();
         if (savedInstanceState == null) {
-            // this means the video was called though another app
-            if (getIntent().getData() != null) {
-                videoUrl = getIntent().getData().toString();
-                StreamingService[] serviceList = ServiceList.getServices();
-                //StreamExtractor videoExtractor = null;
-                for (int i = 0; i < serviceList.length; i++) {
-                    if (serviceList[i].getUrlIdHandlerInstance().acceptUrl(videoUrl)) {
-                        arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, i);
-                        currentStreamingService = i;
-                        //videoExtractor = ServiceList.getService(i).getExtractorInstance();
-                        break;
-                    }
-                }
-                if(currentStreamingService == -1) {
-                    Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG)
-                            .show();
-                }
-                //arguments.putString(VideoItemDetailFragment.VIDEO_URL,
-                //        videoExtractor.getUrl(videoExtractor.getId(videoUrl)));//cleans URL
-                arguments.putString(VideoItemDetailFragment.VIDEO_URL, videoUrl);
-
-                arguments.putBoolean(VideoItemDetailFragment.AUTO_PLAY,
-                        PreferenceManager.getDefaultSharedPreferences(this)
-                                .getBoolean(getString(R.string.autoplay_through_intent_key), false));
-            } else {
-                videoUrl = getIntent().getStringExtra(VideoItemDetailFragment.VIDEO_URL);
-                currentStreamingService = getIntent().getIntExtra(VideoItemDetailFragment.STREAMING_SERVICE, -1);
-                arguments.putString(VideoItemDetailFragment.VIDEO_URL, videoUrl);
-                arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingService);
-                arguments.putBoolean(VideoItemDetailFragment.AUTO_PLAY, false);
-            }
-
+            handleIntent(getIntent());
         } else {
             videoUrl = savedInstanceState.getString(VideoItemDetailFragment.VIDEO_URL);
             currentStreamingService = savedInstanceState.getInt(VideoItemDetailFragment.STREAMING_SERVICE);
-            arguments = savedInstanceState;
+            addFragment(savedInstanceState);
         }
+    }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+        Bundle arguments = new Bundle();
+        // this means the video was called though another app
+        if (intent.getData() != null) {
+            videoUrl = intent.getData().toString();
+            StreamingService[] serviceList = NewPipe.getServices();
+            //StreamExtractor videoExtractor = null;
+            for (int i = 0; i < serviceList.length; i++) {
+                if (serviceList[i].getUrlIdHandlerInstance().acceptUrl(videoUrl)) {
+                    arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, i);
+                    currentStreamingService = i;
+                    //videoExtractor = ServiceList.getService(i).getExtractorInstance();
+                    break;
+                }
+            }
+            if(currentStreamingService == -1) {
+                Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG)
+                        .show();
+            }
+            //arguments.putString(VideoItemDetailFragment.VIDEO_URL,
+            //        videoExtractor.getUrl(videoExtractor.getId(videoUrl)));//cleans URL
+            arguments.putString(VideoItemDetailFragment.VIDEO_URL, videoUrl);
+
+            arguments.putBoolean(VideoItemDetailFragment.AUTO_PLAY,
+                    PreferenceManager.getDefaultSharedPreferences(this)
+                            .getBoolean(getString(R.string.autoplay_through_intent_key), false));
+        } else {
+            videoUrl = intent.getStringExtra(VideoItemDetailFragment.VIDEO_URL);
+            currentStreamingService = intent.getIntExtra(VideoItemDetailFragment.STREAMING_SERVICE, -1);
+            arguments.putString(VideoItemDetailFragment.VIDEO_URL, videoUrl);
+            arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingService);
+            arguments.putBoolean(VideoItemDetailFragment.AUTO_PLAY, false);
+        }
+        addFragment(arguments);
+
+    }
+
+    private void addFragment(final Bundle arguments) {
         // Create the detail fragment and add it to the activity
         // using a fragment transaction.
         fragment = new VideoItemDetailFragment();
         fragment.setArguments(arguments);
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.videoitem_detail_container, fragment)
+                .replace(R.id.videoitem_detail_container, fragment)
                 .commit();
     }
 

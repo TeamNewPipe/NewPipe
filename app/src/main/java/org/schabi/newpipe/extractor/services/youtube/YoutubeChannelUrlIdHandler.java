@@ -1,8 +1,8 @@
 package org.schabi.newpipe.extractor.services.youtube;
 
 import org.schabi.newpipe.extractor.Parser;
-import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.UrlIdHandler;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
 
 /**
  * Created by Christian Schabesberger on 25.07.16.

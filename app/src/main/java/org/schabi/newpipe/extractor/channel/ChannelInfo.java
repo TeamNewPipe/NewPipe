@@ -1,4 +1,8 @@
-package org.schabi.newpipe.extractor;
+package org.schabi.newpipe.extractor.channel;
+
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoCollector;
 
 import java.util.List;
 import java.util.Vector;
@@ -30,7 +34,7 @@ public class ChannelInfo {
         errors.add(e);
     }
 
-    public static ChannelInfo getInfo(ChannelExtractor extractor, Downloader dl)
+    public static ChannelInfo getInfo(ChannelExtractor extractor)
         throws ParsingException {
         ChannelInfo info = new ChannelInfo();
 

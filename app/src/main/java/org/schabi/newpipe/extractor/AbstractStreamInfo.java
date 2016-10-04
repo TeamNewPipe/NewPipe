@@ -1,10 +1,8 @@
 package org.schabi.newpipe.extractor;
 
 /**
- * Created by Christian Schabesberger on 12.09.16.
- *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * FoundAdException.java is part of NewPipe.
+ * AbstractStreamInfo.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,11 +18,24 @@ package org.schabi.newpipe.extractor;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class FoundAdException extends ParsingException {
-    public FoundAdException(String message) {
-        super(message);
+/**Common properties between StreamInfo and StreamPreviewInfo.*/
+public abstract class AbstractStreamInfo {
+    public static enum StreamType {
+        NONE,   // placeholder to check if stream type was checked or not
+        VIDEO_STREAM,
+        AUDIO_STREAM,
+        LIVE_STREAM,
+        AUDIO_LIVE_STREAM,
+        FILE
     }
-    public FoundAdException(String message, Throwable cause) {
-        super(message, cause);
-    }
+
+    public StreamType stream_type;
+    public int service_id = -1;
+    public String id = "";
+    public String title = "";
+    public String uploader = "";
+    public String thumbnail_url = "";
+    public String webpage_url = "";
+    public String upload_date = "";
+    public long view_count = -1;
 }

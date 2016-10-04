@@ -4,26 +4,16 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.schabi.newpipe.extractor.Downloader;
-import org.schabi.newpipe.extractor.ExtractionException;
-import org.schabi.newpipe.extractor.ParsingException;
-import org.schabi.newpipe.extractor.SearchEngine;
-import org.schabi.newpipe.extractor.StreamPreviewInfoExtractor;
-import org.schabi.newpipe.extractor.StreamPreviewInfoSearchCollector;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.UrlIdHandler;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.search.SearchEngine;
+import org.schabi.newpipe.extractor.search.StreamPreviewInfoSearchCollector;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoExtractor;
 
 import java.net.URLEncoder;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * Created by Christian Schabesberger on 09.08.15.
@@ -55,20 +45,11 @@ public class YoutubeSearchEngine extends SearchEngine {
     }
 
     @Override
-    public StreamPreviewInfoSearchCollector search(String query, int page, String languageCode, Downloader downloader)
+    public StreamPreviewInfoSearchCollector search(String query, int page, String languageCode)
             throws IOException, ExtractionException {
         StreamPreviewInfoSearchCollector collector = getStreamPreviewInfoSearchCollector();
 
-        /* Cant use Uri.Bilder since it's android code.
-        // Android code is baned from the extractor side.
-        Uri.Builder builder = new Uri.Builder();
-        builder.scheme("https")
-                .authority("www.youtube.com")
-                .appendPath("results")
-                .appendQueryParameter("search_query", query)
-                .appendQueryParameter("page", Integer.toString(page))
-                .appendQueryParameter("filters", "video");
-                */
+        Downloader downloader = NewPipe.getDownloader();
 
         String url = "https://www.youtube.com/results"
                 + "?search_query=" + URLEncoder.encode(query, CHARSET_UTF_8)
@@ -124,66 +105,6 @@ public class YoutubeSearchEngine extends SearchEngine {
         }
 
         return collector;
-    }
-
-    @Override
-    public List<String> suggestionList(String query, String contentCountry, Downloader dl)
-            throws IOException, ParsingException {
-
-        List<String> suggestions = new ArrayList<>();
-
-        /* Cant use Uri.Bilder since it's android code.
-        // Android code is baned from the extractor side.
-        Uri.Builder builder = new Uri.Builder();
-        builder.scheme("https")
-                .authority("suggestqueries.google.com")
-                .appendPath("complete")
-                .appendPath("search")
-                .appendQueryParameter("client", "")
-                .appendQueryParameter("output", "toolbar")
-                .appendQueryParameter("ds", "yt")
-                .appendQueryParameter("hl",contentCountry)
-                .appendQueryParameter("q", query);
-                */
-        String url = "https://suggestqueries.google.com/complete/search"
-                + "?client=" + ""
-                + "&output=" + "toolbar"
-                + "&ds=" + "yt"
-                + "&hl=" + URLEncoder.encode(contentCountry, CHARSET_UTF_8)
-                + "&q=" + URLEncoder.encode(query, CHARSET_UTF_8);
-
-
-        String response = dl.download(url);
-
-        //TODO: Parse xml data using Jsoup not done
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder;
-        org.w3c.dom.Document doc = null;
-
-        try {
-            dBuilder = dbFactory.newDocumentBuilder();
-            doc = dBuilder.parse(new InputSource(
-                    new ByteArrayInputStream(response.getBytes(CHARSET_UTF_8))));
-            doc.getDocumentElement().normalize();
-        } catch (ParserConfigurationException | SAXException | IOException e) {
-            throw new ParsingException("Could not parse document.");
-        }
-
-        try {
-            NodeList nList = doc.getElementsByTagName("CompleteSuggestion");
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-
-                NodeList nList1 = doc.getElementsByTagName("suggestion");
-                Node nNode1 = nList1.item(temp);
-                if (nNode1.getNodeType() == Node.ELEMENT_NODE) {
-                    org.w3c.dom.Element eElement = (org.w3c.dom.Element) nNode1;
-                    suggestions.add(eElement.getAttribute("data"));
-                }
-            }
-            return suggestions;
-        } catch(Exception e) {
-            throw new ParsingException("Could not get suggestions form document.", e);
-        }
     }
 
     private StreamPreviewInfoExtractor extractPreviewInfo(final Element item) {

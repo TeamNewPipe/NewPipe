@@ -1,12 +1,13 @@
 package org.schabi.newpipe.extractor;
 
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeService;
 
 /**
  * Created by Christian Schabesberger on 23.08.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * ServiceList.java is part of NewPipe.
+ * NewPipe.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,20 +27,24 @@ import org.schabi.newpipe.extractor.services.youtube.YoutubeService;
  * Currently only Youtube until the API becomes more stable.*/
 
 @SuppressWarnings("ALL")
-public class ServiceList {
+public class NewPipe {
 
-    private ServiceList() {
+    private NewPipe() {
     }
 
-    private static final String TAG = ServiceList.class.toString();
-    private static final StreamingService[] services = {
+    private static final String TAG = NewPipe.class.toString();
+
+    private static final StreamingService[] serviceList = {
         new YoutubeService(0)
     };
+
+    private static Downloader downloader = null;
+
     public static StreamingService[] getServices() {
-        return services;
+        return serviceList;
     }
     public static StreamingService getService(int serviceId)throws ExtractionException {
-        for(StreamingService s : services) {
+        for(StreamingService s : serviceList) {
             if(s.getServiceId() == serviceId) {
                 return s;
             }
@@ -47,7 +52,7 @@ public class ServiceList {
         throw new ExtractionException("Service not known: " + Integer.toString(serviceId));
     }
     public static StreamingService getService(String serviceName) throws ExtractionException {
-        return services[getIdOfService(serviceName)];
+        return serviceList[getIdOfService(serviceName)];
     }
     public static String getNameOfService(int id) {
         try {
@@ -59,11 +64,19 @@ public class ServiceList {
         }
     }
     public static int getIdOfService(String serviceName) throws ExtractionException {
-        for(int i = 0; i < services.length; i++) {
-            if(services[i].getServiceInfo().name.equals(serviceName)) {
+        for(int i = 0; i < serviceList.length; i++) {
+            if(serviceList[i].getServiceInfo().name.equals(serviceName)) {
                 return i;
             }
         }
         throw new ExtractionException("Error: Service " + serviceName + " not known.");
+    }
+
+    public static void init(Downloader d) {
+        downloader = d;
+    }
+
+    public static Downloader getDownloader() {
+        return downloader;
     }
 }

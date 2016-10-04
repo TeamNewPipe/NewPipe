@@ -6,19 +6,35 @@ import android.util.Log;
 import android.view.View;
 
 import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
+import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.ParsingException;
-import org.schabi.newpipe.extractor.ServiceList;
-import org.schabi.newpipe.extractor.StreamExtractor;
-import org.schabi.newpipe.extractor.StreamInfo;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 
 import java.io.IOException;
 
 /**
- * Created by the-scrabi on 02.08.16.
+ * Created by Christian Schabesberger on 02.08.16.
+ *
+ * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
+ * StreamInfoWorker.java is part of NewPipe.
+ *
+ * NewPipe is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * NewPipe is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 public class StreamInfoWorker {
@@ -51,7 +67,7 @@ public class StreamInfoWorker {
             StreamInfo streamInfo = null;
             StreamingService service = null;
             try {
-                service = ServiceList.getService(serviceId);
+                service = NewPipe.getService(serviceId);
             } catch (Exception e) {
                 e.printStackTrace();
                 ErrorActivity.reportError(h, a, e, VideoItemDetailFragment.class, null,
@@ -60,8 +76,8 @@ public class StreamInfoWorker {
                 return;
             }
             try {
-                streamExtractor = service.getExtractorInstance(videoUrl, new Downloader());
-                streamInfo = StreamInfo.getVideoInfo(streamExtractor, new Downloader());
+                streamExtractor = service.getExtractorInstance(videoUrl);
+                streamInfo = StreamInfo.getVideoInfo(streamExtractor);
 
                 final StreamInfo info = streamInfo;
                 h.post(new Runnable() {

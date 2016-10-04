@@ -7,15 +7,16 @@ import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.schabi.newpipe.extractor.AbstractVideoInfo;
-import org.schabi.newpipe.extractor.ChannelExtractor;
+import org.schabi.newpipe.extractor.AbstractStreamInfo;
 import org.schabi.newpipe.extractor.Downloader;
-import org.schabi.newpipe.extractor.ExtractionException;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Parser;
-import org.schabi.newpipe.extractor.ParsingException;
-import org.schabi.newpipe.extractor.StreamPreviewInfoCollector;
-import org.schabi.newpipe.extractor.StreamPreviewInfoExtractor;
 import org.schabi.newpipe.extractor.UrlIdHandler;
+import org.schabi.newpipe.extractor.channel.ChannelExtractor;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoCollector;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoExtractor;
 
 
 import java.io.IOException;
@@ -46,7 +47,6 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
 
     // private CSSOMParser cssParser = new CSSOMParser(new SACParserCSS3());
 
-    private Downloader downloader;
     private Document doc = null;
 
     private boolean isAjaxPage = false;
@@ -59,12 +59,13 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
     // this request url.
     private static String nextPageUrl = "";
 
-    public YoutubeChannelExtractor(UrlIdHandler urlIdHandler, String url, int page, Downloader dl, int serviceId)
+    public YoutubeChannelExtractor(UrlIdHandler urlIdHandler, String url, int page, int serviceId)
             throws ExtractionException, IOException {
-        super(urlIdHandler, url, page, dl, serviceId);
+        super(urlIdHandler, url, page, serviceId);
+
+        Downloader downloader = NewPipe.getDownloader();
 
         url = urlIdHandler.cleanUrl(url) ; //+ "/video?veiw=0&flow=list&sort=dd";
-        downloader = dl;
 
         if(page == 0) {
             if (isUserUrl(url)) {
@@ -162,8 +163,8 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
             if (li.select("div[class=\"feed-item-dismissable\"]").first() != null) {
                 collector.commit(new StreamPreviewInfoExtractor() {
                     @Override
-                    public AbstractVideoInfo.StreamType getStreamType() throws ParsingException {
-                        return AbstractVideoInfo.StreamType.VIDEO_STREAM;
+                    public AbstractStreamInfo.StreamType getStreamType() throws ParsingException {
+                        return AbstractStreamInfo.StreamType.VIDEO_STREAM;
                     }
 
                     @Override

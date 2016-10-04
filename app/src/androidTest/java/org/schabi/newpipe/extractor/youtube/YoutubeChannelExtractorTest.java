@@ -4,8 +4,7 @@ import android.test.AndroidTestCase;
 
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.extractor.ChannelExtractor;
-import org.schabi.newpipe.extractor.SearchEngine;
-import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.NewPipe;
 
 /**
  * Created by Christian Schabesberger on 12.09.16.
@@ -33,7 +32,7 @@ public class YoutubeChannelExtractorTest extends AndroidTestCase  {
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        extractor = ServiceList.getService("Youtube")
+        extractor = NewPipe.getService("Youtube")
                 .getChannelExtractorInstance("https://www.youtube.com/channel/UCYJ61XIK64sp6ZFFS8sctxw", 0, new Downloader());
     }
 
@@ -67,13 +66,13 @@ public class YoutubeChannelExtractorTest extends AndroidTestCase  {
     }
 
     public void testGetNextPage() throws Exception {
-        extractor = ServiceList.getService("Youtube")
+        extractor = NewPipe.getService("Youtube")
                 .getChannelExtractorInstance("https://www.youtube.com/channel/UCYJ61XIK64sp6ZFFS8sctxw", 1, new Downloader());
         assertTrue("next page didn't have content", !extractor.getStreams().getItemList().isEmpty());
     }
 
     public void testGetNextNextPageUrl() throws Exception {
-        extractor = ServiceList.getService("Youtube")
+        extractor = NewPipe.getService("Youtube")
                 .getChannelExtractorInstance("https://www.youtube.com/channel/UCYJ61XIK64sp6ZFFS8sctxw", 2, new Downloader());
         assertTrue("next page didn't have content", extractor.hasNextPage());
     }

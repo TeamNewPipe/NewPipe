@@ -14,7 +14,7 @@ import android.widget.ArrayAdapter;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.VideoStream;
+import org.schabi.newpipe.extractor.stream_info.VideoStream;
 
 import java.util.List;
 
@@ -111,6 +111,9 @@ class ActionBarHandler {
 
 
     private int getDefaultResolution(final List<VideoStream> videoStreams) {
+        if (defaultPreferences == null)
+            return 0;
+
         String defaultResolution = defaultPreferences
                 .getString(activity.getString(R.string.default_resolution_key),
                         activity.getString(R.string.default_resolution_value));

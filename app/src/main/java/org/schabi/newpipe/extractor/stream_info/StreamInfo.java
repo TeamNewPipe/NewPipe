@@ -1,4 +1,9 @@
-package org.schabi.newpipe.extractor;
+package org.schabi.newpipe.extractor.stream_info;
+
+import org.schabi.newpipe.extractor.AbstractStreamInfo;
+import org.schabi.newpipe.extractor.DashMpdParser;
+import org.schabi.newpipe.extractor.UrlIdHandler;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,7 +31,7 @@ import java.util.Vector;
 
 /**Info object for opened videos, ie the video ready to play.*/
 @SuppressWarnings("ALL")
-public class StreamInfo extends AbstractVideoInfo {
+public class StreamInfo extends AbstractStreamInfo {
 
     public static class StreamExctractException extends ExtractionException {
         StreamExctractException(String message) {
@@ -39,7 +44,7 @@ public class StreamInfo extends AbstractVideoInfo {
     /**Creates a new StreamInfo object from an existing AbstractVideoInfo.
      * All the shared properties are copied to the new StreamInfo.*/
     @SuppressWarnings("WeakerAccess")
-    public StreamInfo(AbstractVideoInfo avi) {
+    public StreamInfo(AbstractStreamInfo avi) {
         this.id = avi.id;
         this.title = avi.title;
         this.uploader = avi.uploader;
@@ -67,19 +72,19 @@ public class StreamInfo extends AbstractVideoInfo {
 
     /**Fills out the video info fields which are common to all services.
      * Probably needs to be overridden by subclasses*/
-    public static StreamInfo getVideoInfo(StreamExtractor extractor, Downloader downloader)
+    public static StreamInfo getVideoInfo(StreamExtractor extractor)
             throws ExtractionException, IOException {
         StreamInfo streamInfo = new StreamInfo();
 
-        streamInfo = extractImportantData(streamInfo, extractor, downloader);
-        streamInfo = extractStreams(streamInfo, extractor, downloader);
-        streamInfo = extractOptionalData(streamInfo, extractor, downloader);
+        streamInfo = extractImportantData(streamInfo, extractor);
+        streamInfo = extractStreams(streamInfo, extractor);
+        streamInfo = extractOptionalData(streamInfo, extractor);
 
         return streamInfo;
     }
 
     private static StreamInfo extractImportantData(
-            StreamInfo streamInfo, StreamExtractor extractor, Downloader downloader)
+            StreamInfo streamInfo, StreamExtractor extractor)
             throws ExtractionException, IOException {
         /* ---- importand data, withoug the video can't be displayed goes here: ---- */
         // if one of these is not available an exception is ment to be thrown directly into the frontend.
@@ -105,7 +110,7 @@ public class StreamInfo extends AbstractVideoInfo {
     }
 
     private static StreamInfo extractStreams(
-            StreamInfo streamInfo, StreamExtractor extractor, Downloader downloader)
+            StreamInfo streamInfo, StreamExtractor extractor)
             throws ExtractionException, IOException {
         /* ---- stream extraction goes here ---- */
         // At least one type of stream has to be available,
@@ -132,7 +137,7 @@ public class StreamInfo extends AbstractVideoInfo {
             // same as the quick and dirty aboth
             try {
                 streamInfo.audio_streams.addAll(
-                        DashMpdParser.getAudioStreams(streamInfo.dashMpdUrl, downloader));
+                        DashMpdParser.getAudioStreams(streamInfo.dashMpdUrl));
             } catch(Exception e) {
                 streamInfo.addException(
                         new ExtractionException("Couldn't get audio streams from dash mpd", e));
@@ -166,7 +171,7 @@ public class StreamInfo extends AbstractVideoInfo {
     }
 
     private static StreamInfo extractOptionalData(
-            StreamInfo streamInfo, StreamExtractor extractor, Downloader downloader) {
+            StreamInfo streamInfo, StreamExtractor extractor) {
         /*  ---- optional data goes here: ---- */
         // If one of these failes, the frontend neets to handle that they are not available.
         // Exceptions are therfore not thrown into the frontend, but stored into the error List,

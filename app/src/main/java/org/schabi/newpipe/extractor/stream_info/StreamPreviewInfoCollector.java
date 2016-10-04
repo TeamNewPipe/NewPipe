@@ -1,5 +1,8 @@
-package org.schabi.newpipe.extractor;
+package org.schabi.newpipe.extractor.stream_info;
 
+import org.schabi.newpipe.extractor.UrlIdHandler;
+import org.schabi.newpipe.extractor.exceptions.FoundAdException;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamUrlIdHandler;
 
 import java.util.List;

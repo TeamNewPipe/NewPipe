@@ -6,12 +6,11 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
-import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.search.SuggestionExtractor;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.ExtractionException;
-import org.schabi.newpipe.extractor.SearchEngine;
-import org.schabi.newpipe.extractor.ServiceList;
 
 import java.io.IOException;
 import java.util.List;
@@ -70,18 +69,18 @@ public class SuggestionSearchRunnable implements Runnable{
     @Override
     public void run() {
         try {
-            SearchEngine engine =
-                    ServiceList.getService(serviceId).getSearchEngineInstance(new Downloader());
+            SuggestionExtractor se =
+                    NewPipe.getService(serviceId).getSuggestionExtractorInstance();
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(a);
             String searchLanguageKey = a.getString(R.string.search_language_key);
             String searchLanguage = sp.getString(searchLanguageKey,
                     a.getString(R.string.default_language_value));
-            List<String> suggestions = engine.suggestionList(query,searchLanguage,new Downloader());
+            List<String> suggestions = se.suggestionList(query, searchLanguage);
             h.post(new SuggestionResultRunnable(suggestions, adapter));
         } catch (ExtractionException e) {
             ErrorActivity.reportError(h, a, e, null, a.findViewById(android.R.id.content),
                     ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
-                            ServiceList.getNameOfService(serviceId), query, R.string.parsing_error));
+                            NewPipe.getNameOfService(serviceId), query, R.string.parsing_error));
             e.printStackTrace();
         } catch (IOException e) {
             postNewErrorToast(h, R.string.network_error);
@@ -89,7 +88,7 @@ public class SuggestionSearchRunnable implements Runnable{
         } catch (Exception e) {
             ErrorActivity.reportError(h, a, e, null, a.findViewById(android.R.id.content),
                     ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
-                            ServiceList.getNameOfService(serviceId), query, R.string.general_error));
+                            NewPipe.getNameOfService(serviceId), query, R.string.general_error));
         }
     }
 

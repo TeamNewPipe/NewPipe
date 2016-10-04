@@ -6,13 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
-import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.AbstractVideoInfo;
-import org.schabi.newpipe.extractor.StreamPreviewInfo;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 
 import java.util.List;
 import java.util.Vector;

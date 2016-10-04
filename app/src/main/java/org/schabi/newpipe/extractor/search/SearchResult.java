@@ -1,4 +1,7 @@
-package org.schabi.newpipe.extractor;
+package org.schabi.newpipe.extractor.search;
+
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,10 +29,10 @@ import java.util.Vector;
 
 public class SearchResult {
     public static SearchResult getSearchResult(SearchEngine engine, String query,
-                                               int page, String languageCode, Downloader dl)
+                                               int page, String languageCode)
             throws ExtractionException, IOException {
 
-        SearchResult result = engine.search(query, page, languageCode, dl).getSearchResult();
+        SearchResult result = engine.search(query, page, languageCode).getSearchResult();
         if(result.resultList.isEmpty()) {
             if(result.suggestion.isEmpty()) {
                 throw new ExtractionException("Empty result despite no error");

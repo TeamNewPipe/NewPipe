@@ -1,5 +1,11 @@
 package org.schabi.newpipe.extractor;
 
+import org.schabi.newpipe.extractor.channel.ChannelExtractor;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.search.SearchEngine;
+import org.schabi.newpipe.extractor.search.SuggestionExtractor;
+import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
+
 import java.io.IOException;
 
 /**
@@ -35,13 +41,14 @@ public abstract class StreamingService {
 
     public abstract ServiceInfo getServiceInfo();
 
-    public abstract StreamExtractor getExtractorInstance(String url, Downloader downloader)
+    public abstract StreamExtractor getExtractorInstance(String url)
             throws IOException, ExtractionException;
-    public abstract SearchEngine getSearchEngineInstance(Downloader downloader);
+    public abstract SearchEngine getSearchEngineInstance();
     public abstract UrlIdHandler getUrlIdHandlerInstance();
     public abstract UrlIdHandler getChannelUrlIdHandlerInstance();
-    public abstract ChannelExtractor getChannelExtractorInstance(String url, int page, Downloader downloader)
+    public abstract ChannelExtractor getChannelExtractorInstance(String url, int page)
             throws ExtractionException, IOException;
+    public abstract SuggestionExtractor getSuggestionExtractorInstance();
 
     public final int getServiceId() {
         return serviceId;

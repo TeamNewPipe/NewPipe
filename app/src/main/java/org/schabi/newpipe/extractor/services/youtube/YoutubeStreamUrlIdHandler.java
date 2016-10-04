@@ -1,9 +1,9 @@
 package org.schabi.newpipe.extractor.services.youtube;
 
-import org.schabi.newpipe.extractor.FoundAdException;
 import org.schabi.newpipe.extractor.Parser;
-import org.schabi.newpipe.extractor.ParsingException;
 import org.schabi.newpipe.extractor.UrlIdHandler;
+import org.schabi.newpipe.extractor.exceptions.FoundAdException;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;

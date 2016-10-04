@@ -18,13 +18,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.detail.VideoItemDetailActivity;
 import org.schabi.newpipe.detail.VideoItemDetailFragment;
-import org.schabi.newpipe.extractor.SearchResult;
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 
 /**
@@ -72,7 +72,7 @@ public class SearchInfoItemFragment extends Fragment {
                     ErrorActivity.reportError(a, e, null,
                             a.findViewById(android.R.id.content),
                             ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
-                                    ServiceList.getNameOfService(streamingServiceId),
+                                    NewPipe.getNameOfService(streamingServiceId),
                                     "Could not get widget with focus", R.string.general_error));
                 }
                 // clear focus
@@ -137,13 +137,13 @@ public class SearchInfoItemFragment extends Fragment {
             streamingServiceId = savedInstanceState.getInt(STREAMING_SERVICE);
         } else {
             try {
-                streamingServiceId = ServiceList.getIdOfService("Youtube");
+                streamingServiceId = NewPipe.getIdOfService("Youtube");
             } catch(Exception e) {
                 e.printStackTrace();
                 ErrorActivity.reportError(getActivity(), e, null,
                         getActivity().findViewById(android.R.id.content),
                         ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
-                                ServiceList.getNameOfService(streamingServiceId),
+                                NewPipe.getNameOfService(streamingServiceId),
                                 "", R.string.general_error));
             }
         }

@@ -1,4 +1,4 @@
-package org.schabi.newpipe.extractor;
+package org.schabi.newpipe.extractor.stream_info;
 
 /**
  * Created by Christian Schabesberger on 04.03.16.

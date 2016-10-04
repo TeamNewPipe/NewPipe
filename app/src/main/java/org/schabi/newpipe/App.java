@@ -11,6 +11,7 @@ import org.acra.config.ACRAConfiguration;
 import org.acra.config.ACRAConfigurationException;
 import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.ReportSenderFactory;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.report.AcraReportSenderFactory;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.settings.SettingsActivity;
@@ -59,6 +60,9 @@ public class App extends Application {
                     ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,"none",
                             "Could not initialize ACRA crash report", R.string.app_ui_crash));
         }
+
+        //init NewPipe
+        NewPipe.init(new Downloader());
 
         // Initialize image loader
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
