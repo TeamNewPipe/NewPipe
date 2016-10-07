@@ -235,6 +235,7 @@ public class ExoPlayerActivity extends Activity {
             }
         }
     };
+
     NPExoPlayer.CaptionListener captionListener = new NPExoPlayer.CaptionListener() {
         @Override
         public void onCues(List<Cue> cues) {
@@ -252,7 +253,6 @@ public class ExoPlayerActivity extends Activity {
                             TxxxMetadata.TYPE, txxxMetadata.description, txxxMetadata.value));
                 } else if (PrivMetadata.TYPE.equals(entry.getKey())) {
                     PrivMetadata privMetadata = (PrivMetadata) entry.getValue();
-
                     Log.i(TAG, String.format("ID3 TimedMetadata %s: owner=%s",
                             PrivMetadata.TYPE, privMetadata.owner));
                 } else if (GeobMetadata.TYPE.equals(entry.getKey())) {
@@ -367,19 +367,6 @@ public class ExoPlayerActivity extends Activity {
             player.setBackgrounded(true);
         }
         shutterView.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
     }
 
     @Override
