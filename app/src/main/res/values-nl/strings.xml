@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="view_count_text">%1$s keer bekeken</string>
-    <string name="upload_date_text">Geüpload op %1$s</string>
+    <string name="upload_date_text">Gepubliceerd op %1$s</string>
     <string name="no_player_found">Geen speler met streamondersteuning gevonden. Wil je VLC installeren?</string>
     <string name="install">Installeren</string>
     <string name="cancel">Annuleren</string>
@@ -49,7 +49,7 @@
     <string name="background_player_name">NewPipe-achtergrondspeler</string>
     <string name="loading">Laden</string>
     <string name="download_path_audio_title">Downloadlocatie voor audio</string>
-    <string name="download_path_audio_summary">Locatie om gedownloade muziek in op te slaan.</string>
+    <string name="download_path_audio_summary">Locatie om gedownloade muziek in op te slaan</string>
     <string name="download_path_audio_dialog_title">Voer downloadlocatie in voor audiobestanden.</string>
 
     <string name="theme_title">Thema</string>
@@ -110,4 +110,5 @@
     <string name="error_no_decoder">Dit apparaat heeft geen decoder voor <xliff:g id="mime_type"> 1%1$s</xliff:g> 2</string>
     <string name="error_no_secure_decoder">Dit apparaat heeft geen veilige decoder voor<xliff:g id="mime_type"> 1%1$s</xliff:g></string>
     <string name="error_querying_decoders">Kon apparaatdecoders niet ophalen</string>
+    <string name="main_bg_subtitle">Tik op zoeken om te beginnen</string>
     </resources>

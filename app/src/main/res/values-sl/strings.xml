@@ -107,7 +107,6 @@
     <string name="off">[izklopljeno]</string>
     <string name="use_exoplayer_title">Uporabi ExoPlayer</string>
     <string name="use_exoplayer_summary">Preizkusne zmožnosti</string>
-<string name="info_labels">Predmet:\\nZahteva:\\nJezik vsebine:\\nStoritev:\\nČas po GMT:\\nRazličica:\\nRazličica OS:\\nObseg IP:</string>
     <string name="info_searched_lbl">Iskano:</string>
     <string name="info_requested_stream_lbl">Zahtevan pretok:</string>
     <string name="your_comment">Opomba (v angleščini):</string>

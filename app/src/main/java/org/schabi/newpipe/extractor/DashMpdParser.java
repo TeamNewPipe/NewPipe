@@ -2,6 +2,8 @@ package org.schabi.newpipe.extractor;
 
 import android.util.Xml;
 
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.IOException;
@@ -40,10 +42,10 @@ public class DashMpdParser {
         }
     }
 
-    public static List<AudioStream> getAudioStreams(String dashManifestUrl,
-                                                             Downloader downloader)
+    public static List<AudioStream> getAudioStreams(String dashManifestUrl)
             throws DashMpdParsingException {
         String dashDoc;
+        Downloader downloader = NewPipe.getDownloader();
         try {
             dashDoc = downloader.download(dashManifestUrl);
         } catch(IOException ioe) {

@@ -1,6 +1,7 @@
 package org.schabi.newpipe.extractor.services.youtube;
 
-import org.schabi.newpipe.extractor.ParsingException;
+
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
 
 /**
  * Created by Christian Schabesberger on 02.03.16.

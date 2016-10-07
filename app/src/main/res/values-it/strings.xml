@@ -100,7 +100,6 @@
     <string name="error_snackbar_action">SEGNALA</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Cosa è successo:</string>
-    <string name="info_labels">Cosa:\\nRichiesta:\\nLingua Contenuto:\\nServizio:\\nOrario GMT:\\nVersione:\\nVersione SO:\\nRange glob. dell\'IP:</string>
     <string name="info_searched_lbl">È stato cercato:</string>
     <string name="info_requested_stream_lbl">Stream richiesto:</string>
     <string name="your_comment">Il tuo commento (in inglese):</string>
@@ -154,9 +153,14 @@
     <string name="msg_exists">File già esistente</string>
     <string name="msg_url_malform">URL errato od errore di rete</string>
     <string name="msg_running">Download di NewPipe</string>
-    <string name="msg_running_detail">Seleziona per controllare lo stato</string>
+    <string name="msg_running_detail">Fai tap per i dettagli</string>
     <string name="msg_wait">Attendi...</string>
     <string name="msg_copied">Copiato negli appunti.</string>
     <string name="no_available_dir">Seleziona una cartella disponibile in cui salvare i download.</string>
+
+    <string name="could_not_load_image">Impossibile caricare l\'immagine</string>
+    <string name="app_ui_crash">L\'app/UI è andata in crash</string>
+    <string name="info_labels">Cosa:\\nRichiesta:\\nLingua contenuto:\\nServizio:\\nOrario GMT:\\nPacchetto:\\nVersione:\\nVersione SO:\\nRange IP glob.:</string>
+    <string name="action_settings">Impostazioni</string>
 
     </resources>

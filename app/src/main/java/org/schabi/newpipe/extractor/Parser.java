@@ -1,6 +1,6 @@
 package org.schabi.newpipe.extractor;
 
-import android.util.Log;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;

@@ -48,6 +48,16 @@
         </LinearLayout>
 
         <ImageButton
+            android:id="@+id/notificationRewind"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:background="#00ffffff"
+            android:clickable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_action_av_fast_rewind" />
+
+        <ImageButton
             android:id="@+id/notificationPlayPause"
             android:layout_width="40dp"
             android:layout_height="40dp"

@@ -95,7 +95,6 @@
     <string name="error_snackbar_action">ПРИЈАВИ</string>
     <string name="what_device_headline">Подаци:</string>
     <string name="what_happened_headline">Шта се десило:</string>
-    <string name="info_labels">Шта:\\nЗахтев:\\nЈезик садржаја:\\nУслуга:\\nГМТ време:\\nИздање:\\nИздање система:\\nГлоб. ИП опсег:</string>
     <string name="your_comment">Ваш коментар (на енглеском):</string>
     <string name="error_details_headline">Детаљи:</string>
 
@@ -158,5 +157,11 @@
     <string name="downloads_title">Преузимања</string>
     <string name="settings_title">Поставке</string>
     <string name="error_report_title">Извештај о грешци</string>
+
+    <string name="could_not_load_image">Не могох да учитам слику</string>
+    <string name="app_ui_crash">Апликација/УИ је краховала</string>
+    <string name="info_labels">Шта:\\nЗахтев:\\nЈезик садржаја:\\nУслуга:\\nГМТ време:\\nПакет:\\nИздање:\\nИздање ОС-а:\\nГлоб. ИП распон:</string>
+    <string name="title_activity_channel">Активност канала</string>
+    <string name="action_settings">Поставке</string>
 
     </resources>

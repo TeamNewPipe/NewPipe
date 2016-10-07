@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="main_bg_subtitle">برای شروع، جست‌وجو را بزنید</string>
+    <string name="background_player_name">پخش‌کنندهٔ پس‌زمینهٔ نیوپایپ</string>
+    <string name="view_count_text">‫%1$s مشاهده</string>
+    <string name="upload_date_text">منتشر شده در %1$s</string>
+    <string name="no_player_found">هیچ پخش‌کنندهٔ جریانی پیدا نشد. وی‌ال‌سی نصب شود؟</string>
+    <string name="install">نصب</string>
+    <string name="cancel">لغو</string>
+    <string name="open_in_browser">گشودن در مرورگر</string>
+    <string name="share">هم‌رسانی</string>
+    <string name="loading">در حال بار کردن</string>
+    <string name="download">بارگیری</string>
+    <string name="search">جست‌وجو</string>
+    <string name="settings">تنظیمات</string>
+    <string name="did_you_mean">منظورتان این بود: %1$s ؟</string>
+    <string name="search_page">"جست‌وجوی صفحه: "</string>
+    <string name="share_dialog_title">هم‌رسانی با</string>
+    <string name="choose_browser">گزیدن مرورگر</string>
+    <string name="screen_rotation">چرخش</string>
+    <string name="settings_activity_title">تنظیمات</string>
+    <string name="use_external_video_player_title">استفاده از پخش‌کنندهٔ ویدیوی خارجی</string>
+    <string name="use_external_audio_player_title">استفاده از پخش‌کنندهٔ صدای خارجی</string>
+
+    <string name="download_path_title">مسیر بارگیری ویدیو</string>
+    <string name="download_path_summary">مسیر ذخیرهٔ ویدیوهای بارگیری شده.</string>
+    <string name="download_path_dialog_title">مسیر بارگیری را برای ویدیوها وارد کنید</string>
+
+    <string name="download_path_audio_title">مسیر بارگیری صدا</string>
+    <string name="download_path_audio_summary">مسیر ذخیرهٔ صداهای بارگیری شده</string>
+    <string name="download_path_audio_dialog_title">مسیر بارگیری را برای صداها وارد کنید.</string>
+
+    <string name="autoplay_by_calling_app_title">پخش خودکار هنگام فراخوانی از کاره‌ای دیگر</string>
+    <string name="autoplay_by_calling_app_summary">هنگامی که نیوپایپ از کارهٔ دیگری فراخوانی می‌شود، ویدیویی را به صورت خودکار پخش می‌کند.</string>
+    <string name="default_resolution_title">وضوح پیش‌گزیده</string>
+    <string name="play_with_kodi_title">پخش با کودی</string>
+    <string name="kore_not_found">کارهٔ کوره پیدا نشد. کوره نصب شود؟</string>
+    <string name="show_play_with_kodi_title">نمایش گزینهٔ «پخش با کودی»</string>
+    <string name="show_play_with_kodi_summary">نمایش گزینه‌ای برای پخش ویدیو با مرکز رسانهٔ کودی.</string>
+    <string name="play_audio">صدا</string>
+    <string name="default_audio_format_title">قالب صدای پیش‌گزیده</string>
+    <string name="webm_description">قالب آزاد — WebM</string>
+    <string name="m4a_description">کیفیت بهتر — m4a</string>
+    <string name="theme_title">زمینه</string>
+    <string name="dark_theme_title">تیره</string>
+    <string name="light_theme_title">روشن</string>
+
+    <string name="download_dialog_title">بارگیری</string>
+    <string name="next_video_title">ویدیوی بعدی</string>
+    <string name="show_next_and_similar_title">نماش ویدیوهای بعدی و مشابه</string>
+    <string name="url_not_supported_toast">نشانی اینترنتی پشتیبانی نمی‌شود</string>
+    <string name="similar_videos_btn_text">ویدیوهای مشابه</string>
+    <string name="search_language_title">زبان محتوای ترجیحی</string>
+    <string name="settings_category_video_audio_title">ویدیو و صدا</string>
+    <string name="settings_category_appearance_title">ظاهر</string>
+    <string name="settings_category_other_title">دیگر</string>
+    <string name="background_player_playing_toast">در حال پخش در پس‌زمینه</string>
+    <string name="play_btn_text">پخش</string>
+    <string name="content">محتوا</string>
+    <string name="show_age_restricted_content_title">نمایش محتوای محدود شده بر اساس سن</string>
+    <string name="video_is_age_restricted">ویدیو بر اساس سن محدود شده است. نخست، ویدیوهای محدود شده بر اساس سن را در تنظیمات فعّال کنید.</string>
+    <string name="duration_live">زنده</string>
+    <string name="downloads">بارگیری‌ها</string>
+    <string name="downloads_title">بارگیری‌ها</string>
+    <string name="settings_title">تنظیمات</string>
+    <string name="error_report_title">گزارش خطا</string>
+
+    <string name="general_error">خطا</string>
+    <string name="network_error">خطای شبکه</string>
+    <string name="could_not_load_thumbnails">نمی‌توان تمام بندانگشتی‌ها را بار کرد</string>
+    <string name="youtube_signature_decryption_error">نمی‌توان امضای نشانی اینترنتی ویدیو را رمزگشایی کرد.</string>
+    <string name="parsing_error">نمی‌توان پایگاه وب را تجزیه کرد.</string>
+    <string name="light_parsing_error">نمی‌توان پایگاه وب را به صورت کامل تجزیه کرد.</string>
+    <string name="content_not_available">محتوا در دسترس نیست.</string>
+    <string name="blocked_by_gema">مسدود شده توسّط GEMA.</string>
+    <string name="could_not_setup_download_menu">نمی‌توان فهرست بارگیری را برپا ساخت.</string>
+    <string name="live_streams_not_supported">این یک جریان زنده است. این جریان‌ها هنوز پشتیبانی نمی‌شوند.</string>
+    <string name="could_not_get_stream">نمی‌توان هیچ جریانی را گرفت.</string>
+    <string name="sorry_string">ببخشید. نباید این اتّفاق می‌افتاد.</string>
+    <string name="error_report_button_text">گزارش خطا با نامه</string>
+    <string name="error_snackbar_message">ببخشید. چند مشکل رخ داد.</string>
+    <string name="error_snackbar_action">گزارش</string>
+    <string name="what_device_headline">اطّلاعات:</string>
+    <string name="what_happened_headline">چه روی داد:</string>
+    <string name="info_searched_lbl">جست‌وجو شده برای:</string>
+    <string name="info_requested_stream_lbl">جریان درخواستی:</string>
+    <string name="your_comment">توضیح شما (به انگلیسی):</string>
+    <string name="error_details_headline">جزییات:</string>
+
+
+    <string name="list_thumbnail_view_description">بندانگشتی پیش‌نمایش ویدیو</string>
+    <string name="detail_thumbnail_view_description">بندانگشتی پیش‌نمایش ویدیو</string>
+    <string name="detail_uploader_thumbnail_view_description">بندانگشتی کاربر بارگذار</string>
+    <string name="detail_likes_img_view_description">پسندها</string>
+    <string name="detail_dislikes_img_view_description">نپسندیدن‌ها</string>
+    <string name="use_tor_title">استفاده از تور</string>
+    <string name="use_tor_summary">(آزمایشی) اجبار ترافیک بارگیری از مسیر تور برای محرمانگی بیش‌تر (هنوز پخش جریانی پشتیبانی نمی‌شود).</string>
+    <string name="report_error">گزارش یک خطا</string>
+    <string name="user_report">گزارش کاربر</string>
+
+    <string name="err_dir_create">نمی‌توان شاخهٔ بارگیری «%1$s» را ایجاد کرد</string>
+    <string name="info_dir_created">شاخهٔ بارگیری «%1$s» ایجاد شد</string>
+
+	<string name="enable_background_audio">پخش در پس‌زمینه</string>
+    <string name="video">ویدیو</string>
+    <string name="audio">صدا</string>
+    <string name="text">متن</string>
+    <string name="logging">گزارش‌دهی</string>
+    <string name="logging_normal">معمولی</string>
+    <string name="logging_verbose">پرگو</string>
+    <string name="retry">تلاش دوباره</string>
+    <string name="off">[خاموش]</string>
+    <string name="error_drm_not_supported">محتوای محافظت‌شده روی رابط برنامه‌نویسی‌های پایین‌تر از سطح ۱۸ پشتیبانی نمی‌شود</string>
+    <string name="error_drm_unsupported_scheme">این افزاره، شمای DRM مورد نیاز را پشتیبانی نمی‌کند</string>
+    <string name="error_drm_unknown">یک خطای نشناختهٔ DRM رخ داد</string>
+    <string name="error_no_decoder">این‌افزاره رمزگشایی برای <xliff:g id="mime_type">%1$s</xliff:g> فراهم نمی‌کند</string>
+    <string name="error_no_secure_decoder">این‌افزاره رمزگشای امنی برای <xliff:g id="mime_type">%1$s</xliff:g> فراهم نمی‌کند</string>
+    <string name="error_querying_decoders">نمی‌توان در رمزگشاهای دستگاه پرس‌وجو کرد</string>
+    <string name="error_instantiating_decoder">نمی‌توان رمزگشای <xliff:g id="decoder_name">%1$s</xliff:g> را راه‌اندازی کرد</string>
+    <string name="storage_permission_denied">اجازهٔ دسترسی به انبار ذخیره رد شد</string>
+    <string name="use_exoplayer_title">استفاده از اگزوپلیر</string>
+    <string name="use_exoplayer_summary">آزمایشی</string>
+
+    <string name="start">شروع</string>
+    <string name="pause">مکث</string>
+    <string name="view">نمایش</string>
+    <string name="delete">حذف</string>
+    <string name="checksum">مجموع مقابله‌ای</string>
+
+    <string name="add">مآموریت جدید</string>
+    <string name="finish">قبول</string>
+    <string name="switch_mode">جابه‌جایی بین فهرست و شبکه</string>
+
+
+    <string name="msg_url">بارگیری نشانی اینترنتی</string>
+    <string name="msg_name">نام پرونده</string>
+    <string name="msg_threads">رشته‌ها</string>
+    <string name="msg_fetch_filename">گرفتن نام پرونده</string>
+    <string name="msg_error">خطا</string>
+    <string name="msg_server_unsupported">کارساز پشتیبانی نشده</string>
+    <string name="msg_exists">پرونده از پیش وجود دارد</string>
+    <string name="msg_url_malform">نشانی اینترنتی خراب است یا اینترنت در دسترس نیست</string>
+    <string name="msg_running">نیوپایپ در حال بارگیری است</string>
+    <string name="msg_running_detail">برای جزییات، ضربه بزنید</string>
+    <string name="msg_wait">لطفاً صبر کنید…</string>
+    <string name="msg_copied">در حافظه رونوشت شد.</string>
+    <string name="no_available_dir">لطفاً یک شاخهٔ بارگیری موجود را برگزینید.</string>
+
+    </resources>

@@ -4,20 +4,18 @@ WARNING: PUTTING NEWPIPE OR ANY FORK OF IT INTO GOOGLE PLAYSTORE VIOLATES THEIR 
 NewPipe: A free lightweight Youtube frontend for Android.  
 
 [![NewPipe](app/src/main/res/mipmap-xhdpi/ic_launcher.png)](https://newpipe.schabi.org)
+[![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdfilter=newpipe&fdid=org.schabi.newpipe)
+
 
 Project status:
 [![Translation Status](https://hosted.weblate.org/widgets/NewPipe/-/svg-badge.svg)](https://hosted.weblate.org/engage/NewPipe/)
-[![Build Status](https://travis-ci.org/theScrabi/NewPipe.svg)](https://travis-ci.org/theScrabi/NewPipe)
-
-## Get NewPipe
-
-[![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdfilter=newpipe&fdid=org.schabi.newpipe)
+[![Build Status](https://travis-ci.org/TeamNewPipe/NewPipe.svg)](https://travis-ci.org/TeamNewPipe/NewPipe)
 
 ## Donate
 ![Bitcoin](https://bitcoin.org/img/icons/logotop.svg)
-`16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh`
-
 ![BitcoinQR](assets/16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh.png)
+
+`16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh`
 
 ## Screenshots
 
@@ -38,22 +36,21 @@ NewPipe does not use any Google framework libraries, or the YouTube API. It only
 * Watch YouTube videos
 * Listen to YouTube videos (experimental)
 * Select the streaming player to watch the video with
-* Download videos (experimental)
-* Download audio only (experimental)
+* Download videos 
+* Download audio only 
 * Open a video in Kodi
 * Show Next/Related videos
 * Search YouTube in a specific language
 * Watch age restricted material
+* Display general information about channels
 
 ### Coming Features
 
 * Orbot/Tor support
-* Improved Downloading
 * Bookmarks
 * View history
 * Search history
 * Search channels
-* Display general information about channels
 * Subscribe to channels
 * Watch videos from a channel
 * Search/Watch Playlists
@@ -67,7 +64,7 @@ Although NewPipe only supports YouTube at the moment, it's designed to support m
 Whether you have ideas, translation, design changes, code cleaning, or real heavy code changes, help is always welcome.
 The more is done the better it gets!
 
-If you'd like to get involved, check our [contribution notes](CONTRIBUTING.md).
+If you'd like to get involved, check our [contribution notes](.github/CONTRIBUTING.md).
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  

@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import info.guardianproject.netcipher.NetCipher;
 
 /**
  * Created by Christian Schabesberger on 28.01.16.
@@ -40,10 +42,26 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
      * @param language the language (usually a 2-character code) to set as the preferred language
      * @return the contents of the specified text file*/
     public String download(String siteUrl, String language) throws IOException {
+        Map<String, String> requestProperties = new HashMap<>();
+        requestProperties.put("Accept-Language", language);
+        return download(siteUrl, requestProperties);
+    }
+
+
+    /**Download the text file at the supplied URL as in download(String),
+     * but set the HTTP header field "Accept-Language" to the supplied string.
+     * @param siteUrl the URL of the text file to return the contents of
+     * @param customProperties set request header properties
+     * @return the contents of the specified text file
+     * @throws IOException*/
+    public String download(String siteUrl, Map<String, String> customProperties) throws IOException {
         URL url = new URL(siteUrl);
         HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
-        //HttpsURLConnection con = NetCipher.getHttpsURLConnection(url);
-        con.setRequestProperty("Accept-Language", language);
+        Iterator it = customProperties.entrySet().iterator();
+        while(it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            con.setRequestProperty((String)pair.getKey(), (String)pair.getValue());
+        }
         return dl(con);
     }
 

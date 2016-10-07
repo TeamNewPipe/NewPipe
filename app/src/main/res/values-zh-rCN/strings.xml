@@ -89,7 +89,6 @@
     <string name="error_details_headline">详细信息：</string>
 
 
-    <string name="info_labels">什么：\\n请求：\\n内容语言：\\n服务：\\nGMT 时间：\\n版本：\\nOS 版本：\\nGlob. IP 范围：</string>
     <string name="report_error">报告错误</string>
     <string name="user_report">用户报告</string>
 
@@ -147,4 +146,8 @@
     <string name="settings_title">设置</string>
     <string name="error_report_title">错误报告</string>
 
+    <string name="action_settings">设置</string>
+
+    <string name="could_not_load_image">无法加载图像</string>
+    <string name="app_ui_crash">应用/界面已崩溃</string>
     </resources>

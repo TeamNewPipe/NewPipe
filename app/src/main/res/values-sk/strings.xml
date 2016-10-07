@@ -91,7 +91,6 @@
     <string name="error_snackbar_action">SPRÁVA</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Čo sa stalo:</string>
-    <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nSlužba:\\nČas v GMT:\\nVerzia:\\nVerzia OS:\\nGlob. rozsah IP:</string>
     <string name="info_searched_lbl">Hľadané:</string>
     <string name="info_requested_stream_lbl">Požadované vysielanie:</string>
     <string name="your_comment">Váš komentár (v Angličtine):</string>
@@ -150,4 +149,8 @@
     <string name="settings_title">Nastavenia</string>
     <string name="error_report_title">Hlásenie o chybe</string>
 
+    <string name="could_not_load_image">Nemožno načítať obrázok</string>
+    <string name="app_ui_crash">Aplikácia/UP zlyhalo</string>
+    <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nSlužba:\\nČas v GMT:\\nBalík:\\nVerzia:\\nVerzia OS:\\nGlob. IP rozsah:</string>
+    <string name="title_activity_channel">Aktivita kanálov</string>
     </resources>

@@ -121,7 +121,6 @@
     <string name="logging_verbose">Verbeux</string>
     <string name="off">[désactivé]</string>
     <string name="error_querying_decoders">Impossible d\'accéder aux décodeurs de l\'appareil</string>
-    <string name="info_labels">Action :\\nRequête :\\nLangue du contenu :\\nService :\\nHeure GMT :\\nVersion :\\nVersion d\'OS :\\nIntervalle global d\'IP :</string>
     <string name="downloads">Téléchargements</string>
     <string name="downloads_title">Téléchargements</string>
     <string name="settings_title">Paramètres</string>
@@ -147,7 +146,7 @@
     <string name="msg_exists">Fichier déjà existant</string>
     <string name="msg_url_malform">URL malformée ou internet indisponible</string>
     <string name="msg_running">Téléchargement NewPipe</string>
-    <string name="msg_running_detail">Cliquer pour plus de détails</string>
+    <string name="msg_running_detail">Toucher pour plus de détails</string>
     <string name="msg_wait">Veuillez patienter...</string>
     <string name="msg_copied">Copié dans le presse-papier.</string>
     <string name="no_available_dir">Sélectionner un répertoire de téléchargement disponible.</string>

@@ -8,20 +8,20 @@ import org.jsoup.nodes.Element;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
-import org.schabi.newpipe.extractor.AbstractVideoInfo;
-import org.schabi.newpipe.extractor.AudioStream;
-import org.schabi.newpipe.extractor.ExtractionException;
+import org.schabi.newpipe.extractor.AbstractStreamInfo;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.schabi.newpipe.extractor.Downloader;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Parser;
-import org.schabi.newpipe.extractor.ParsingException;
-import org.schabi.newpipe.extractor.StreamInfo;
-import org.schabi.newpipe.extractor.StreamPreviewInfo;
-import org.schabi.newpipe.extractor.StreamPreviewInfoCollector;
-import org.schabi.newpipe.extractor.StreamPreviewInfoExtractor;
-import org.schabi.newpipe.extractor.StreamUrlIdHandler;
-import org.schabi.newpipe.extractor.StreamExtractor;
+import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.VideoStream;
+import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
+import org.schabi.newpipe.extractor.stream_info.StreamInfo;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoCollector;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoExtractor;
+import org.schabi.newpipe.extractor.stream_info.VideoStream;
 
 import java.io.IOException;
 import java.util.List;
@@ -183,18 +183,15 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     // cached values
     private static volatile String decryptionCode = "";
 
-    StreamUrlIdHandler urlidhandler = new YoutubeStreamUrlIdHandler();
+    UrlIdHandler urlidhandler = new YoutubeStreamUrlIdHandler();
     String pageUrl = "";
 
-    private Downloader downloader;
-
-    public YoutubeStreamExtractor(StreamUrlIdHandler urlIdHandler, String pageUrl,
-                                  Downloader dl, int serviceId)
+    public YoutubeStreamExtractor(UrlIdHandler urlIdHandler, String pageUrl, int serviceId)
             throws ExtractionException, IOException {
-        super(urlIdHandler ,pageUrl, dl, serviceId);
+        super(urlIdHandler, pageUrl, serviceId);
         //most common videoInfo fields are now set in our superclass, for all services
-        downloader = dl;
         this.pageUrl = pageUrl;
+        Downloader downloader = NewPipe.getDownloader();
         String pageContent = downloader.download(urlidhandler.cleanUrl(pageUrl));
         doc = Jsoup.parse(pageContent, pageUrl);
         JSONObject ytPlayerConfig;
@@ -203,7 +200,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
         // Check if the video is age restricted
         if (pageContent.contains("<meta property=\"og:restrictions:age")) {
             String videoInfoUrl = GET_VIDEO_INFO_URL.replace("%%video_id%%",
-                    urlidhandler.getVideoId(pageUrl)).replace("$$el_type$$", "&" + EL_INFO);
+                    urlidhandler.getId(pageUrl)).replace("$$el_type$$", "&" + EL_INFO);
             String videoInfoPageString = downloader.download(videoInfoUrl);
             videoInfoPage = Parser.compatParseMap(videoInfoPageString);
             playerUrl = getPlayerUrlFromRestrictedVideo(pageUrl);
@@ -285,8 +282,9 @@ public class YoutubeStreamExtractor extends StreamExtractor {
 
     private String getPlayerUrlFromRestrictedVideo(String pageUrl) throws ParsingException {
         try {
+            Downloader downloader = NewPipe.getDownloader();
             String playerUrl = "";
-            String videoId = urlidhandler.getVideoId(pageUrl);
+            String videoId = urlidhandler.getId(pageUrl);
             String embedUrl = "https://www.youtube.com/embed/" + videoId;
             String embedPageContent = downloader.download(embedUrl);
             //todo: find out if this can be reapaced by Parser.matchGroup1()
@@ -669,10 +667,13 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     public StreamPreviewInfoCollector getRelatedVideos() throws ParsingException {
         try {
             StreamPreviewInfoCollector collector = getStreamPreviewInfoCollector();
-            for (Element li : doc.select("ul[id=\"watch-related\"]").first().children()) {
-                // first check if we have a playlist. If so leave them out
-                if (li.select("a[class*=\"content-link\"]").first() != null) {
-                    collector.commit(extractVideoPreviewInfo(li));
+            Element ul = doc.select("ul[id=\"watch-related\"]").first();
+            if(ul != null) {
+                for (Element li : ul.children()) {
+                    // first check if we have a playlist. If so leave them out
+                    if (li.select("a[class*=\"content-link\"]").first() != null) {
+                        collector.commit(extractVideoPreviewInfo(li));
+                    }
                 }
             }
             return collector;
@@ -687,6 +688,16 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     }
 
     @Override
+    public String getChannelUrl() throws ParsingException {
+        try {
+            return doc.select("div[class=\"yt-user-info\"]").first().children()
+                    .select("a").first().attr("abs:href");
+        } catch(Exception e) {
+            throw new ParsingException("Could not get channel link", e);
+        }
+    }
+
+    @Override
     public StreamInfo.StreamType getStreamType() throws ParsingException {
         //todo: if implementing livestream support this value should be generated dynamically
         return StreamInfo.StreamType.VIDEO_STREAM;
@@ -698,7 +709,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     private StreamPreviewInfoExtractor extractVideoPreviewInfo(final Element li) {
         return new StreamPreviewInfoExtractor() {
             @Override
-            public AbstractVideoInfo.StreamType getStreamType() throws ParsingException {
+            public AbstractStreamInfo.StreamType getStreamType() throws ParsingException {
                 return null;
             }
 
@@ -776,6 +787,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
         String decryptionCode;
 
         try {
+            Downloader downloader = NewPipe.getDownloader();
             String playerCode = downloader.download(playerUrl);
 
             decryptionFuncName =

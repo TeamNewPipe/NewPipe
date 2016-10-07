@@ -23,8 +23,8 @@ import android.widget.Toast;
 import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.VideoItemDetailActivity;
-import org.schabi.newpipe.VideoItemDetailFragment;
+import org.schabi.newpipe.detail.VideoItemDetailActivity;
+import org.schabi.newpipe.detail.VideoItemDetailFragment;
 
 import java.io.IOException;
 
@@ -54,6 +54,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
     private static final String TAG = BackgroundPlayer.class.toString();
     private static final String ACTION_STOP = TAG + ".STOP";
     private static final String ACTION_PLAYPAUSE = TAG + ".PLAYPAUSE";
+    private static final String ACTION_REWIND = TAG + ".REWIND";
     private static final String ACTION_FASTFORWARD = TAG + ".FASTFORWARD";
 
     // Extra intent arguments
@@ -180,6 +181,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             filter.setPriority(Integer.MAX_VALUE);
             filter.addAction(ACTION_PLAYPAUSE);
             filter.addAction(ACTION_STOP);
+            filter.addAction(ACTION_REWIND);
             filter.addAction(ACTION_FASTFORWARD);
             registerReceiver(broadcastReceiver, filter);
 
@@ -229,6 +231,10 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                         }
                         noteMgr.notify(noteID, note);
                     }
+                }
+                else if(action.equals(ACTION_REWIND)) {
+                    mediaPlayer.seekTo(0);
+//                    noteMgr.notify(noteID, note);
                 }
                 else if(action.equals(ACTION_FASTFORWARD)) {
                     // seekTo does not complete the mediaPlayer when it jumps past the duration.
@@ -289,6 +295,8 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                     new Intent(ACTION_PLAYPAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent stopPI = PendingIntent.getBroadcast(owner, noteID,
                     new Intent(ACTION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent rewindPI = PendingIntent.getBroadcast(owner, noteID,
+                    new Intent(ACTION_REWIND), PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent fastForwardPI = PendingIntent.getBroadcast(owner, noteID,
                     new Intent(ACTION_FASTFORWARD), PendingIntent.FLAG_UPDATE_CURRENT);
             /*
@@ -327,6 +335,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             view.setTextViewText(R.id.notificationArtist, channelName);
             view.setOnClickPendingIntent(R.id.notificationStop, stopPI);
             view.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
+            view.setOnClickPendingIntent(R.id.notificationRewind, rewindPI);
             view.setOnClickPendingIntent(R.id.notificationFastForward, fastForwardPI);
             view.setOnClickPendingIntent(R.id.notificationContent, openDetailView);
 
@@ -339,6 +348,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 expandedView.setTextViewText(R.id.notificationArtist, channelName);
             expandedView.setOnClickPendingIntent(R.id.notificationStop, stopPI);
             expandedView.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
+            expandedView.setOnClickPendingIntent(R.id.notificationRewind, rewindPI);
             expandedView.setOnClickPendingIntent(R.id.notificationFastForward, fastForwardPI);
             expandedView.setOnClickPendingIntent(R.id.notificationContent, openDetailView);
 

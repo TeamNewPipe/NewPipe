@@ -4,8 +4,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/mainBG"
-    tools:context=".VideoItemDetailActivity"
-    tools:showIn="@layout/activity_videoitem_list">
+    tools:context=".detail.VideoItemDetailActivity">
 
     <TextView
         android:layout_width="wrap_content"
