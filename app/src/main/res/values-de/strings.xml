@@ -162,4 +162,5 @@
 
     <string name="msg_url_malform">Beschädigte URL oder Internet nicht erreichbar</string>
     <string name="msg_fetch_filename">Vorgeschlagener Dateiname</string>
+    <string name="title_activity_channel">Kanalaktivität</string>
     </resources>
