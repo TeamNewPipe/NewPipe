@@ -145,4 +145,10 @@
     <string name="no_player_found">Tidak ditemukan pemutar stream. Pasang VLC?</string>
     <string name="youtube_signature_decryption_error">Tidak bisa mendekrip tanda tangan url video.</string>
     <string name="app_ui_crash">App/UI rusak</string>
+    <string name="could_not_get_stream">Tidak bisa mendapatkan stream apapun.</string>
+    <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:\\nIP:</string>
+    <string name="info_requested_stream_lbl">Stream yang diminta:</string>
+    <string name="user_report">Laporan pengguna</string>
+
+    <string name="msg_threads">Thread</string>
     </resources>
