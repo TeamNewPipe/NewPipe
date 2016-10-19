@@ -145,4 +145,7 @@
     <string name="msg_fetch_filename">Dir en cata del nome de ficheru</string>
     <string name="msg_running">NewPipe baxando</string>
     <string name="search_page">"Guetar páxina: "</string>
+    <string name="could_not_load_image">Nun pudo cargase la imaxe</string>
+    <string name="app_ui_crash">Cascó l\'aplicación/IU</string>
+    <string name="info_labels"></string>
     </resources>
