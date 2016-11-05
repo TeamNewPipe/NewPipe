@@ -36,7 +36,7 @@ NewPipe does not use any Google framework libraries, or the YouTube API. It only
 * Watch YouTube videos
 * Listen to YouTube videos (experimental)
 * Select the streaming player to watch the video with
-* Download videos 
+* Download videos
 * Download audio only 
 * Open a video in Kodi
 * Show Next/Related videos

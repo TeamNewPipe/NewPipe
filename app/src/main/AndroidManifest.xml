@@ -126,6 +126,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".playList.PlayListActivity"
+            android:label="@string/playlist" />
+
         <activity
             android:name=".ExitActivity"
             android:label="@string/general_error"
@@ -151,7 +156,13 @@
         <activity
             android:name=".ChannelActivity"
             android:label="@string/title_activity_channel"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:host="www.youtube.com" android:mimeType="text/*" />
+            </intent-filter>
+        </activity>
 
     </application>
 

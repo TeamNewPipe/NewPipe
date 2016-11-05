@@ -18,8 +18,10 @@ package org.schabi.newpipe.extractor;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import java.io.Serializable;
+
 /**Common properties between StreamInfo and StreamPreviewInfo.*/
-public abstract class AbstractStreamInfo {
+public abstract class AbstractStreamInfo implements Serializable{
     public static enum StreamType {
         NONE,   // placeholder to check if stream type was checked or not
         VIDEO_STREAM,

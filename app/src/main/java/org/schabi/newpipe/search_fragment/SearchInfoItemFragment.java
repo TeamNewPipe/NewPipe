@@ -2,7 +2,6 @@ package org.schabi.newpipe.search_fragment;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,14 +17,16 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import org.schabi.newpipe.IntentRunner;
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.search.SearchResult;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.R;
-import org.schabi.newpipe.detail.VideoItemDetailActivity;
-import org.schabi.newpipe.detail.VideoItemDetailFragment;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.info_list.ItemDialog;
+import org.schabi.newpipe.playList.PlayListDataSource.PLAYLIST_SYSTEM;
+import org.schabi.newpipe.report.ErrorActivity;
 
 /**
  * Created by Christian Schabesberger on 02.08.16.
@@ -76,7 +77,7 @@ public class SearchInfoItemFragment extends Fragment {
                                     "Could not get widget with focus", R.string.general_error));
                 }
                 // clear focus
-                // 1. to not open up the keyboard after switching back to this
+                // 1. to not openWritable up the keyboard after switching back to this
                 // 2. It's a workaround to a seeming bug by the Android OS it self, causing
                 //    onQueryTextSubmit to trigger twice when focus is not cleared.
                 // See: http://stackoverflow.com/questions/17874951/searchview-onquerytextsubmit-runs-twice-while-i-pressed-once
@@ -91,7 +92,7 @@ public class SearchInfoItemFragment extends Fragment {
 
         @Override
         public boolean onQueryTextChange(String newText) {
-            if(!newText.isEmpty()) {
+            if(newText != null && !newText.isEmpty()) {
                 searchSuggestions(newText);
             }
             return true;
@@ -113,7 +114,7 @@ public class SearchInfoItemFragment extends Fragment {
     // savedInstanceBundle arguments
     private static final String QUERY = "query";
     private static final String STREAMING_SERVICE = "streaming_service";
-
+    public static final String PLAYLIST_ID = "playlist_id";
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -124,8 +125,7 @@ public class SearchInfoItemFragment extends Fragment {
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static SearchInfoItemFragment newInstance(int columnCount) {
-        SearchInfoItemFragment fragment = new SearchInfoItemFragment();
-        return fragment;
+        return new SearchInfoItemFragment();
     }
 
     @Override
@@ -160,8 +160,7 @@ public class SearchInfoItemFragment extends Fragment {
             @Override
             public void onNothingFound(int stringResource) {
                 //setListShown(true);
-                Toast.makeText(getActivity(), getString(stringResource),
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getString(stringResource), Toast.LENGTH_SHORT).show();
                 isLoading = false;
                 loadingIndicator.setVisibility(View.GONE);
             }
@@ -169,8 +168,7 @@ public class SearchInfoItemFragment extends Fragment {
             @Override
             public void onError(String message) {
                 //setListShown(true);
-                Toast.makeText(getActivity(), message,
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                 isLoading = false;
                 loadingIndicator.setVisibility(View.GONE);
             }
@@ -182,7 +180,7 @@ public class SearchInfoItemFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_searchinfoitem, container, false);
 
-        Context context = view.getContext();
+        final Context context = view.getContext();
         loadingIndicator = (ProgressBar) view.findViewById(R.id.progressBar);
         recyclerView = (RecyclerView) view.findViewById(R.id.list);
         streamInfoListLayoutManager = new LinearLayoutManager(context);
@@ -192,11 +190,15 @@ public class SearchInfoItemFragment extends Fragment {
                 getActivity().findViewById(android.R.id.content));
         infoListAdapter.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {
             @Override
-            public void selected(String url) {
-                Intent i = new Intent(getActivity(), VideoItemDetailActivity.class);
-                i.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
-                i.putExtra(VideoItemDetailFragment.VIDEO_URL, url);
-                getActivity().startActivity(i);
+            public void selected(String url, int positionInList) {
+                IntentRunner.lunchIntentVideoDetail(getActivity(), url, streamingServiceId, PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID, positionInList);
+            }
+        });
+        infoListAdapter.setOnPlayListActionListener(new InfoItemBuilder.OnPlayListActionListener() {
+            @Override
+            public void selected(StreamPreviewInfo streamPreviewInfo, int positionInList) {
+                final ItemDialog itemDialog = new ItemDialog(getActivity());
+                itemDialog.showSettingDialog(streamPreviewInfo, PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID, positionInList, null);
             }
         });
         recyclerView.setAdapter(infoListAdapter);
@@ -206,21 +208,19 @@ public class SearchInfoItemFragment extends Fragment {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 int pastVisiblesItems, visibleItemCount, totalItemCount;
                 super.onScrolled(recyclerView, dx, dy);
-                if(dy > 0) //check for scroll down
-                {
+                //check for scroll down
+                if (dy > 0) {
                     visibleItemCount = streamInfoListLayoutManager.getChildCount();
                     totalItemCount = streamInfoListLayoutManager.getItemCount();
                     pastVisiblesItems = streamInfoListLayoutManager.findFirstVisibleItemPosition();
 
-                    if ( (visibleItemCount + pastVisiblesItems) >= totalItemCount && !isLoading)
-                    {
+                    if ((visibleItemCount + pastVisiblesItems) >= totalItemCount && !isLoading) {
                         pageNumber++;
                         search(searchQuery, pageNumber);
                     }
                 }
             }
         });
-
         return view;
     }
 
@@ -260,14 +260,14 @@ public class SearchInfoItemFragment extends Fragment {
         }
     }
 
-    private void search(String query) {
+    private void search(final String query) {
         infoListAdapter.clearSteamItemList();
         pageNumber = 0;
         search(query, pageNumber);
         loadingIndicator.setVisibility(View.VISIBLE);
     }
 
-    private void search(String query, int page) {
+    private void search(final String query, final int page) {
         isLoading = true;
         SearchWorker sw = SearchWorker.getInstance();
         sw.search(streamingServiceId, query, page, getActivity());

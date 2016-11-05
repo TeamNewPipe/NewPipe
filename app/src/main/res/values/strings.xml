@@ -68,6 +68,7 @@
     <string name="url_not_supported_toast">URL not supported</string>
     <string name="similar_videos_btn_text">Similar videos</string>
     <string name="search_language_title">Preferred content language</string>
+    <string name="playlist_auto_play_choice">Preferred playlist autoplay comportement</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
     <string name="settings_category_appearance_title">Appearance</string>
     <string name="settings_category_other_title">Other</string>
@@ -83,7 +84,9 @@
     <string name="downloads_title">Downloads</string>
     <string name="settings_title">Settings</string>
     <string name="error_report_title">Error report</string>
-
+    <string name="use_auto_play_audio">Use internal Audio player</string>
+    <string name="use_auto_play_video">Use internal Video player</string>
+    <string name="use_auto_play_none">None</string>
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="network_error">Network error</string>
@@ -269,6 +272,19 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="delete_item_from_playlist">Delete item from playlist</string>
+    <string name="add_stream_to_playlist">Add to playlist !</string>
+    <string name="new_playlist">New playlist</string>
+    <string name="ok">OK</string>
+    <string name="create_a_new_playlist">Create a new PlayList</string>
+    <string name="delete_from_playlist">Delete from playlist %s</string>
+    <string name="playlist">PlayList</string>
+    <string name="config_delete">Do you want to delete %s ?</string>
+    <string name="playlist_auto_play_choice_key">playlist_auto_play_choice_key</string>
+    <string name="playlist_auto_play_code">playlist_auto_play_code</string>
+    <string name="import_a_youtube_playlist">Import a youtube playlist</string>
+    <string name="type_youtube_playlist_url">Type the youtube playlist url :</string>
+    <string name="youtube_playlist_not_valid">The given youtube playlist url isn\'t valid !</string>
 
     <!-- End of GigaGet's Strings -->
 

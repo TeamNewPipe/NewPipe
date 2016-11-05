@@ -28,6 +28,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.schabi.newpipe.playList.PlayListActivity;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.SettingsActivity;
@@ -261,6 +262,11 @@ public class DownloadActivity extends AppCompatActivity implements AdapterView.O
             }
             case R.id.action_settings: {
                 Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
+            }
+            case R.id.action_show_playlist: {
+                Intent intent = new Intent(this, PlayListActivity.class);
                 startActivity(intent);
                 return true;
             }

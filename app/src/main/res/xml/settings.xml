@@ -110,6 +110,13 @@
             android:summary="@string/autoplay_by_calling_app_summary"
             android:defaultValue="false" />
 
+        <ListPreference
+            android:key="@string/playlist_auto_play_choice_key"
+            android:title="@string/playlist_auto_play_choice"
+            android:summary="%s"
+            android:entries="@array/playlist_auto_play_names"
+            android:entryValues="@array/playlist_auto_play_code"
+            android:defaultValue="@string/default_playlist_auto_play" />
         <!--
         <CheckBoxPreference
             android:key="@string/use_tor_key"

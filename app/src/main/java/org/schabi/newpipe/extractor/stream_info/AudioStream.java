@@ -41,6 +41,6 @@ public class AudioStream {
     // revelas wether two streams are equal
     public boolean equals(AudioStream cmp) {
         return cmp != null && equalStats(cmp)
-                && url == cmp.url;
+                && url.equals(cmp.url);
     }
 }

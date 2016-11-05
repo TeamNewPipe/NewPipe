@@ -8,6 +8,8 @@ import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
+import static org.schabi.newpipe.extractor.services.youtube.YoutubeSearchEngine.CHARSET_UTF_8;
+
 /**
  * Created by Christian Schabesberger on 02.02.16.
  *
@@ -48,7 +50,7 @@ public class YoutubeStreamUrlIdHandler implements UrlIdHandler {
             if(url.contains("attribution_link")) {
                 try {
                     String escapedQuery = Parser.matchGroup1("u=(.[^&|$]*)", url);
-                    String query = URLDecoder.decode(escapedQuery, "UTF-8");
+                    String query = URLDecoder.decode(escapedQuery, CHARSET_UTF_8);
                     id = Parser.matchGroup1("v=([\\-a-zA-Z0-9_]{11})", query);
                 } catch(UnsupportedEncodingException uee) {
                     throw new ParsingException("Could not parse attribution_link", uee);

@@ -5,15 +5,14 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
-import org.schabi.newpipe.Downloader;
-import org.schabi.newpipe.extractor.exceptions.ParsingException;
-import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
-import org.schabi.newpipe.extractor.stream_info.StreamInfo;
-import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
+import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
+import org.schabi.newpipe.extractor.stream_info.StreamInfo;
+import org.schabi.newpipe.report.ErrorActivity;
 
 import java.io.IOException;
 
@@ -91,8 +90,7 @@ public class StreamInfoWorker {
                 // this if statement only covers extra information.
                 // if these are not available or caused an error, they are just not available
                 // but don't render the stream information unusalbe.
-                if(streamInfo != null &&
-                        !streamInfo.errors.isEmpty()) {
+                if(streamInfo != null && !streamInfo.errors.isEmpty()) {
                     Log.e(TAG, "OCCURRED ERRORS DURING EXTRACTION:");
                     for (Throwable e : streamInfo.errors) {
                         e.printStackTrace();
@@ -152,7 +150,7 @@ public class StreamInfoWorker {
                 });
                 e.printStackTrace();
             } catch(StreamInfo.StreamExctractException e) {
-                if(!streamInfo.errors.isEmpty()) {
+                if(streamInfo == null || streamInfo.errors.isEmpty()) {
                     // !!! if this case ever kicks in someone gets kicked out !!!
                     ErrorActivity.reportError(h, a, e, VideoItemDetailFragment.class, null,
                             ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
@@ -196,7 +194,6 @@ public class StreamInfoWorker {
     }
 
     private static StreamInfoWorker streamInfoWorker = null;
-    private StreamExtractorRunnable runnable = null;
     private OnStreamInfoReceivedListener onStreamInfoReceivedListener = null;
 
     private StreamInfoWorker() {
@@ -208,7 +205,7 @@ public class StreamInfoWorker {
     }
 
     public void search(int serviceId, String url, Activity a) {
-        runnable = new StreamExtractorRunnable(a, url, serviceId);
+        StreamExtractorRunnable runnable = new StreamExtractorRunnable(a, url, serviceId);
         Thread thread = new Thread(runnable);
         thread.start();
     }

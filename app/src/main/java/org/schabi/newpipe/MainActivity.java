@@ -2,14 +2,16 @@ package org.schabi.newpipe;
 
 import android.content.Intent;
 import android.media.AudioManager;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import org.schabi.newpipe.download.DownloadActivity;
+import org.schabi.newpipe.playList.PlayListActivity;
 import org.schabi.newpipe.settings.SettingsActivity;
 
 /**
@@ -40,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         mainFragment = getSupportFragmentManager()
                 .findFragmentById(R.id.search_fragment);
@@ -73,7 +74,12 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
             case R.id.action_show_downloads: {
-                Intent intent = new Intent(this, org.schabi.newpipe.download.DownloadActivity.class);
+                Intent intent = new Intent(this, DownloadActivity.class);
+                startActivity(intent);
+                return true;
+            }
+            case R.id.action_show_playlist: {
+                Intent intent = new Intent(this, PlayListActivity.class);
                 startActivity(intent);
                 return true;
             }

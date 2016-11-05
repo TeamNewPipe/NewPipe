@@ -176,6 +176,15 @@
                         android:textSize="@dimen/video_item_detail_likes_text_size"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="100" />
+
+                    <ImageView
+                        android:id="@+id/detail_playlist"
+                        android:layout_width="@dimen/video_item_detail_like_image_width"
+                        android:layout_height="@dimen/video_item_detail_like_image_height"
+                        android:src="@drawable/ic_more_vert_black_24dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:contentDescription="@string/settings" />
                 </LinearLayout>
 
                 <FrameLayout

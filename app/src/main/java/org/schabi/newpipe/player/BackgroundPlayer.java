@@ -22,9 +22,10 @@ import android.widget.Toast;
 
 import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.BuildConfig;
+import org.schabi.newpipe.IntentRunner;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.detail.VideoItemDetailActivity;
-import org.schabi.newpipe.detail.VideoItemDetailFragment;
+import org.schabi.newpipe.playList.NewPipeSQLiteHelper.PLAYLIST_LINK_ENTRIES;
+import org.schabi.newpipe.playList.PlayListDataSource.PLAYLIST_SYSTEM;
 
 import java.io.IOException;
 
@@ -69,6 +70,8 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
     // Determines if the service is already running.
     // Prevents launching the service twice.
     public static volatile boolean isRunning;
+    private int playListId = PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID;
+    private int positionInPlayList = PLAYLIST_SYSTEM.POSITION_DEFAULT;
 
     public BackgroundPlayer() {
         super();
@@ -82,8 +85,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this, R.string.background_player_playing_toast,
-                Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
 
         String source = intent.getDataString();
         //Log.i(TAG, "backgroundPLayer source:"+source);
@@ -91,6 +93,8 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         webUrl = intent.getStringExtra(WEB_URL);
         serviceId = intent.getIntExtra(SERVICE_ID, -1);
         channelName = intent.getStringExtra(CHANNEL_NAME);
+        playListId = intent.getIntExtra(PLAYLIST_LINK_ENTRIES.PLAYLIST_ID, PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID);
+        positionInPlayList = intent.getIntExtra(PLAYLIST_LINK_ENTRIES.POSITION, PLAYLIST_SYSTEM.POSITION_DEFAULT);
 
         //do nearly everything in a separate thread
         PlayerThread player = new PlayerThread(source, videoTitle, this);
@@ -218,8 +222,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                             note.bigContentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_play_circle_filled_white_24dp);
                         }
                         noteMgr.notify(noteID, note);
-                    }
-                    else {
+                    } else {
                         //reacquire CPU lock after auto-releasing it on pause
                         mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
                         mediaPlayer.start();
@@ -229,20 +232,18 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                         }
                         noteMgr.notify(noteID, note);
                     }
-                }
-                else if(action.equals(ACTION_REWIND)) {
+                } else if(action.equals(ACTION_REWIND)) {
                     mediaPlayer.seekTo(0);
 //                    noteMgr.notify(noteID, note);
-                }
-                else if(action.equals(ACTION_STOP)) {
+                } else if(action.equals(ACTION_STOP)) {
                     //this auto-releases CPU lock
                     mediaPlayer.stop();
-                    afterPlayCleanup();
+                    afterPlayCleanup(true);
                 }
             }
         };
 
-        private void afterPlayCleanup() {
+        private void afterPlayCleanup(final boolean isStopByUser) {
             //remove progress bar
             //noteBuilder.setProgress(0, 0, false);
 
@@ -258,6 +259,9 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             stopForeground(true);
 
             stopSelf();
+            if(!isStopByUser) {
+                IntentRunner.lunchNextStreamOnPlayList(getApplicationContext(), playListId, positionInPlayList);
+            }
         }
 
         private class EndListener implements MediaPlayer.OnCompletionListener {
@@ -268,7 +272,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
             @Override
             public void onCompletion(MediaPlayer mp) {
-                afterPlayCleanup();
+                afterPlayCleanup(false);
             }
         }
 
@@ -289,10 +293,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             */
 
             //build intent to return to video, on tapping notification
-            Intent openDetailViewIntent = new Intent(getApplicationContext(),
-                    VideoItemDetailActivity.class);
-            openDetailViewIntent.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, serviceId);
-            openDetailViewIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, webUrl);
+            final Intent openDetailViewIntent = IntentRunner.buildVideoDetail(getApplicationContext(), webUrl, serviceId, playListId, positionInPlayList);
             openDetailViewIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             PendingIntent openDetailView = PendingIntent.getActivity(owner, noteID,
                     openDetailViewIntent, PendingIntent.FLAG_UPDATE_CURRENT);

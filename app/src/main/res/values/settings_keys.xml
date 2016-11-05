@@ -34,6 +34,17 @@
         <item>0</item>
         <item>1</item>
     </string-array>
+    <string-array name="playlist_auto_play_names">
+        <item>@string/use_auto_play_none</item>
+        <item>@string/use_auto_play_audio</item>
+        <item>@string/use_auto_play_video</item>
+    </string-array>
+    <string-array name="playlist_auto_play_code">
+        <item>none</item>
+        <item>audio</item>
+        <item>video</item>
+    </string-array>
+    <string name="default_playlist_auto_play">none</string>
 
     <string name="default_audio_format_key">default_audio_format</string>
     <string name="default_audio_format_value">m4a</string>

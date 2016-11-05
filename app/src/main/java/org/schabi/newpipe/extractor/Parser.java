@@ -47,8 +47,7 @@ public class Parser {
         boolean foundMatch = mat.find();
         if (foundMatch) {
             return mat.group(1);
-        }
-        else {
+        } else {
             //Log.e(TAG, "failed to find pattern \""+pattern+"\" inside of \""+input+"\"");
             throw new RegexException("failed to find pattern \""+pattern+" inside of "+input+"\"");
         }

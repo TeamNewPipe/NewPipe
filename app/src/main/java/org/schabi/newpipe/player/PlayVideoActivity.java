@@ -5,9 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
-import android.media.MediaPlayer;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,8 +27,10 @@ import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.VideoView;
 
-import org.schabi.newpipe.App;
+import org.schabi.newpipe.IntentRunner;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.playList.NewPipeSQLiteHelper.PLAYLIST_LINK_ENTRIES;
+import org.schabi.newpipe.playList.PlayListDataSource.PLAYLIST_SYSTEM;
 
 /**
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
@@ -59,10 +60,13 @@ public class PlayVideoActivity extends AppCompatActivity {
     public static final String VIDEO_TITLE = "video_title";
     private static final String POSITION = "position";
     public static final String START_POSITION = "start_position";
+    public static final String PLAYLIST_INDEX = "playlist_index";
 
     private static final long HIDING_DELAY = 3000;
 
     private String videoUrl = "";
+    private int currentPlayList = PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID;
+    private int currentPlayListPosition = PLAYLIST_SYSTEM.POSITION_DEFAULT;
 
     private ActionBar actionBar;
     private VideoView videoView;
@@ -106,9 +110,8 @@ public class PlayVideoActivity extends AppCompatActivity {
                     int keyCode = event.getKeyCode();
                     final boolean uniqueDown = event.getRepeatCount() == 0
                             && event.getAction() == KeyEvent.ACTION_DOWN;
-                    if (keyCode == KeyEvent.KEYCODE_BACK) {
-                        if (uniqueDown)
-                        {
+                    if (KeyEvent.KEYCODE_BACK == keyCode) {
+                        if (uniqueDown) {
                             if (isShowing()) {
                                 finish();
                             } else {
@@ -132,6 +135,8 @@ public class PlayVideoActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        currentPlayList = intent.getIntExtra(PLAYLIST_INDEX, PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID);
+        currentPlayListPosition = intent.getIntExtra(PLAYLIST_LINK_ENTRIES.POSITION, PLAYLIST_SYSTEM.POSITION_DEFAULT);
         videoView.requestFocus();
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -143,6 +148,14 @@ public class PlayVideoActivity extends AppCompatActivity {
                     showUi();
                 } else {
                     videoView.pause();
+                }
+            }
+        });
+        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(final MediaPlayer mediaPlayer) {
+                if(PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID != currentPlayList) {
+                    IntentRunner.lunchNextStreamOnPlayList(PlayVideoActivity.this, currentPlayList, currentPlayListPosition);
                 }
             }
         });

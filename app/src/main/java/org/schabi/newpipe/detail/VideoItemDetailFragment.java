@@ -7,9 +7,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -21,6 +23,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +33,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.exoplayer.util.Util;
@@ -39,25 +41,32 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
-import java.util.Vector;
-
 import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.ChannelActivity;
-import org.schabi.newpipe.extractor.stream_info.StreamInfo;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
-import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.ImageErrorLoadingListener;
+import org.schabi.newpipe.IntentRunner;
 import org.schabi.newpipe.Localization;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.download.DownloadDialog;
-import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.stream_info.AudioStream;
+import org.schabi.newpipe.extractor.stream_info.StreamInfo;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
+import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.info_list.ItemDialog;
+import org.schabi.newpipe.playList.NewPipeSQLiteHelper.PLAYLIST_LINK_ENTRIES;
+import org.schabi.newpipe.playList.PlayListDataSource;
+import org.schabi.newpipe.playList.PlayListDataSource.PLAYLIST_SYSTEM;
 import org.schabi.newpipe.player.BackgroundPlayer;
-import org.schabi.newpipe.player.PlayVideoActivity;
 import org.schabi.newpipe.player.ExoPlayerActivity;
+import org.schabi.newpipe.player.PlayVideoActivity;
+import org.schabi.newpipe.report.ErrorActivity;
+
+import java.util.Vector;
+
+import static org.schabi.newpipe.search_fragment.SearchInfoItemFragment.PLAYLIST_ID;
 
 
 /**
@@ -112,6 +121,8 @@ public class VideoItemDetailFragment extends Fragment {
             new DisplayImageOptions.Builder().cacheInMemory(true).build();
 
     private InfoItemBuilder infoItemBuilder = null;
+    private int playListId = PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID;
+    private int positionInPlayList = PLAYLIST_SYSTEM.POSITION_DEFAULT;
 
     public interface OnInvokeCreateOptionsMenuListener {
         void createOptionsMenu();
@@ -173,10 +184,10 @@ public class VideoItemDetailFragment extends Fragment {
             topView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
-                    if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
+                    if (MotionEvent.ACTION_UP == event.getAction()) {
                         ImageView arrow = (ImageView) activity.findViewById(R.id.toggle_description_view);
                         View extra = activity.findViewById(R.id.detailExtraView);
-                        if (extra.getVisibility() == View.VISIBLE) {
+                        if (View.VISIBLE == extra.getVisibility()) {
                             extra.setVisibility(View.GONE);
                             arrow.setImageResource(R.drawable.arrow_down);
                         } else {
@@ -215,6 +226,26 @@ public class VideoItemDetailFragment extends Fragment {
                 thumbsDownView.setVisibility(View.GONE);
                 activity.findViewById(R.id.detail_thumbs_down_img_view).setVisibility(View.GONE);
             }
+
+            ImageView addToPlayListBtn = (ImageView) activity.findViewById(R.id.detail_playlist);
+            addToPlayListBtn.setVisibility(View.VISIBLE);
+            addToPlayListBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    StreamPreviewInfo stream = new StreamPreviewInfo();
+                    stream.service_id = info.service_id;
+                    stream.id = info.id;
+                    stream.title = info.title;
+                    stream.uploader = info.uploader;
+                    stream.thumbnail_url = info.thumbnail_url;
+                    stream.webpage_url = info.webpage_url;
+                    stream.upload_date = info.upload_date;
+                    stream.view_count = info.view_count;
+                    stream.duration = info.duration;
+                    ItemDialog itemDialog = new ItemDialog(activity);
+                    itemDialog.showSettingDialog(stream, playListId, positionInPlayList, null);
+                }
+            });
             if (!info.upload_date.isEmpty()) {
                 uploadDateView.setText(Localization.localizeDate(info.upload_date, a));
             } else {
@@ -271,7 +302,7 @@ public class VideoItemDetailFragment extends Fragment {
                 }
             });
 
-            if (info.channel_url != null && info.channel_url != "") {
+            if (info.channel_url != null && !info.channel_url.isEmpty()) {
                 channelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -313,6 +344,7 @@ public class VideoItemDetailFragment extends Fragment {
                         @Override
                         public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                             streamThumbnail = loadedImage;
+                            processAutoPlay(info);
                         }
 
                         @Override
@@ -329,17 +361,39 @@ public class VideoItemDetailFragment extends Fragment {
         }
     }
 
+    private void processAutoPlay(final StreamInfo info) {
+        // now process playlist preference
+        if(PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID != playListId) {
+            switch (getPlayListComportement()) {
+                // audio
+                case 1:
+                    if (android.os.Build.VERSION.SDK_INT >= 18) {
+                        final AudioStream audioStream = getAudioStream(info);
+                        if (audioStream != null && audioStream.url != null) {
+                            lunchInternalMusicPlayer(audioStream, info);
+                        } else {
+                            Log.i(TAG, "audioStream is null:" + (audioStream == null));
+                            Log.i(TAG, "audioStream.url is null:" + (audioStream == null || audioStream.url == null));
+                        }
+                    }
+                    break;
+                // video
+                case 2:
+                    playVideo(info);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     private void setupActionBarHandler(final StreamInfo info) {
         actionBarHandler.setupStreamList(info.video_streams);
 
         actionBarHandler.setOnShareListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, info.webpage_url);
-                intent.setType("text/plain");
-                activity.startActivity(Intent.createChooser(intent, activity.getString(R.string.share_dialog_title)));
+                IntentRunner.lunchIntentShareStream(activity, info.webpage_url);
             }
         });
 
@@ -364,24 +418,7 @@ public class VideoItemDetailFragment extends Fragment {
                     activity.startActivity(intent);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                    builder.setMessage(R.string.kore_not_found)
-                            .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent = new Intent();
-                                    intent.setAction(Intent.ACTION_VIEW);
-                                    intent.setData(Uri.parse(activity.getString(R.string.fdroid_kore_url)));
-                                    activity.startActivity(intent);
-                                }
-                            })
-                            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            });
-                    builder.create().show();
+                    installKodiFallback();
                 }
             }
         });
@@ -396,8 +433,7 @@ public class VideoItemDetailFragment extends Fragment {
                     // website which was crawled. Then the ui has to understand this and act right.
 
                     if (info.audio_streams != null) {
-                        AudioStream audioStream =
-                                info.audio_streams.get(getPreferredAudioStreamId(info));
+                        AudioStream audioStream = getAudioStream(info);
 
                         String audioSuffix = "." + MediaFormat.getSuffixById(audioStream.format);
                         args.putString(DownloadDialog.AUDIO_URL, audioStream.url);
@@ -428,66 +464,84 @@ public class VideoItemDetailFragment extends Fragment {
             actionBarHandler.setOnPlayAudioListener(new ActionBarHandler.OnActionListener() {
                 @Override
                 public void onActionSelected(int selectedStreamId) {
-                    boolean useExternalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
-                            .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
-                    Intent intent;
-                    AudioStream audioStream =
-                            info.audio_streams.get(getPreferredAudioStreamId(info));
-                    if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 18) {
+                    boolean useExternalAudioPlayer = useExternalAudioPlayer();
+                    AudioStream audioStream = getAudioStream(info);
+                    if(audioStream == null || audioStream.url == null) {
+                        Log.i(TAG, "audioStream is null:" + (audioStream == null));
+                        Log.i(TAG, "audioStream.url is null:" + (audioStream == null || audioStream.url == null));
+                    } else if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 18) {
                         //internal music player: explicit intent
-                        if (!BackgroundPlayer.isRunning && streamThumbnail != null) {
-                            ActivityCommunicator.getCommunicator()
-                                    .backgroundPlayerThumbnail = streamThumbnail;
-                            intent = new Intent(activity, BackgroundPlayer.class);
-
-                            intent.setAction(Intent.ACTION_VIEW);
-                            Log.i(TAG, "audioStream is null:" + (audioStream == null));
-                            Log.i(TAG, "audioStream.url is null:" + (audioStream.url == null));
-                            intent.setDataAndType(Uri.parse(audioStream.url),
-                                    MediaFormat.getMimeById(audioStream.format));
-                            intent.putExtra(BackgroundPlayer.TITLE, info.title);
-                            intent.putExtra(BackgroundPlayer.WEB_URL, info.webpage_url);
-                            intent.putExtra(BackgroundPlayer.SERVICE_ID, streamingServiceId);
-                            intent.putExtra(BackgroundPlayer.CHANNEL_NAME, info.uploader);
-                            activity.startService(intent);
-                        }
+                        lunchInternalMusicPlayer(audioStream, info);
                     } else {
-                        intent = new Intent();
-                        try {
-                            intent.setAction(Intent.ACTION_VIEW);
-                            intent.setDataAndType(Uri.parse(audioStream.url),
-                                    MediaFormat.getMimeById(audioStream.format));
-                            intent.putExtra(Intent.EXTRA_TITLE, info.title);
-                            intent.putExtra("title", info.title);
-                            // HERE !!!
-                            activity.startActivity(intent);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                            builder.setMessage(R.string.no_player_found)
-                                    .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            Intent intent = new Intent();
-                                            intent.setAction(Intent.ACTION_VIEW);
-                                            intent.setData(Uri.parse(activity.getString(R.string.fdroid_vlc_url)));
-                                            activity.startActivity(intent);
-                                        }
-                                    })
-                                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            Log.i(TAG, "You unlocked a secret unicorn.");
-                                        }
-                                    });
-                            builder.create().show();
-                            Log.e(TAG, "Either no Streaming player for audio was installed, or something important crashed:");
-                            e.printStackTrace();
-                        }
+                        lunchExternalMusicPlayer(audioStream, info);
                     }
                 }
             });
         }
+    }
+
+    private AudioStream getAudioStream(StreamInfo info) {
+        if (info != null && info.audio_streams != null) {
+            return info.audio_streams.get(getPreferredAudioStreamId(info));
+        } else {
+            return null;
+        }
+    }
+
+    private void lunchExternalMusicPlayer(final AudioStream audioStream, final StreamInfo info) {
+        try {
+            final String mime = MediaFormat.getMimeById(audioStream.format);
+            final Uri uri = Uri.parse(audioStream.url);
+            final Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setDataAndType(uri, mime);
+            intent.putExtra(Intent.EXTRA_TITLE, info.title);
+            intent.putExtra(BackgroundPlayer.TITLE, info.title);
+            // HERE !!!
+            activity.startActivity(intent);
+        } catch (final Exception e) {
+            Log.e(TAG, "Either no Streaming player for audio was installed, or something important crashed:", e);
+            getExternalAudioPlayerFallback();
+        }
+    }
+
+    private void lunchInternalMusicPlayer(final AudioStream audioStream, final StreamInfo info) {
+        if (!BackgroundPlayer.isRunning && streamThumbnail != null) {
+            final String mime = MediaFormat.getMimeById(audioStream.format);
+            final Uri uri = Uri.parse(audioStream.url);
+            ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = streamThumbnail;
+            final Intent intent = new Intent(activity, BackgroundPlayer.class);
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setDataAndType(uri, mime);
+            intent.putExtra(BackgroundPlayer.TITLE, info.title);
+            intent.putExtra(BackgroundPlayer.WEB_URL, info.webpage_url);
+            intent.putExtra(BackgroundPlayer.SERVICE_ID, streamingServiceId);
+            intent.putExtra(PLAYLIST_ID, playListId);
+            intent.putExtra(PLAYLIST_LINK_ENTRIES.POSITION, positionInPlayList);
+            intent.putExtra(BackgroundPlayer.CHANNEL_NAME, info.uploader);
+            activity.startService(intent);
+        }
+    }
+
+    private void getExternalAudioPlayerFallback() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setMessage(R.string.no_player_found)
+                .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(activity.getString(R.string.fdroid_vlc_url)));
+                        activity.startActivity(intent);
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.i(TAG, "You unlocked a secret unicorn.");
+                    }
+                });
+        builder.create().show();
     }
 
     private int getPreferredAudioStreamId(final StreamInfo info) {
@@ -524,10 +578,31 @@ public class VideoItemDetailFragment extends Fragment {
         }
         infoItemBuilder.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {
             @Override
-            public void selected(String url) {
-                openStreamUrl(url);
+            public void selected(String url, int positionInPlayList) {
+                openStreamUrl(url, positionInPlayList);
             }
         });
+        infoItemBuilder.setOnPlayListActionListener(new InfoItemBuilder.OnPlayListActionListener() {
+            @Override
+            public void selected(StreamPreviewInfo streamPreviewInfo, int positionInList) {
+                // record to play list
+                final ItemDialog itemDialog = new ItemDialog(activity);
+                itemDialog.showSettingDialog(streamPreviewInfo, PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID, PLAYLIST_SYSTEM.POSITION_DEFAULT, null);
+            }
+        });
+        storeFirstRelativeVideoOnDatabase(info);
+    }
+
+    private void storeFirstRelativeVideoOnDatabase(final StreamInfo info) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                final PlayListDataSource dataSource = new PlayListDataSource(getActivity().getApplicationContext());
+                dataSource.deleteAllEntryFromPlayList(PLAYLIST_SYSTEM.RELATED_STREAM_ID);
+                dataSource.addEntryFromPlayList(PLAYLIST_SYSTEM.RELATED_STREAM_ID, info.related_streams.get(0));
+                return null;
+            }
+        }.execute();
     }
 
     private void onErrorBlockedByGema() {
@@ -591,7 +666,8 @@ public class VideoItemDetailFragment extends Fragment {
         showNextStreamItem = PreferenceManager.getDefaultSharedPreferences(getActivity())
                 .getBoolean(activity.getString(R.string.show_next_video_key), true);
 
-
+        playListId = activity.getIntent().getIntExtra(PLAYLIST_ID, PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID);
+        positionInPlayList = activity.getIntent().getIntExtra(PLAYLIST_LINK_ENTRIES.POSITION, PLAYLIST_SYSTEM.POSITION_DEFAULT);
         StreamInfoWorker siw = StreamInfoWorker.getInstance();
         siw.setOnStreamInfoReceivedListener(new StreamInfoWorker.OnStreamInfoReceivedListener() {
             @Override
@@ -687,84 +763,137 @@ public class VideoItemDetailFragment extends Fragment {
         }
     }
 
-    public void playVideo(final StreamInfo info) {
+    public void playVideo(@NonNull final StreamInfo info) {
         // ----------- THE MAGIC MOMENT ---------------
-        VideoStream selectedVideoStream =
-                info.video_streams.get(actionBarHandler.getSelectedVideoStream());
+        VideoStream selectedVideoStream = info.video_streams.get(actionBarHandler.getSelectedVideoStream());
 
-        if (PreferenceManager.getDefaultSharedPreferences(activity)
-                .getBoolean(activity.getString(R.string.use_external_video_player_key), false)) {
-
-            // External Player
-            Intent intent = new Intent();
-            try {
-                intent.setAction(Intent.ACTION_VIEW)
-                        .setDataAndType(Uri.parse(selectedVideoStream.url),
-                            MediaFormat.getMimeById(selectedVideoStream.format))
-                        .putExtra(Intent.EXTRA_TITLE, info.title)
-                        .putExtra("title", info.title);
-
-                activity.startActivity(intent);      // HERE !!!
-            } catch (Exception e) {
-                e.printStackTrace();
-                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                builder.setMessage(R.string.no_player_found)
-                        .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent()
-                                        .setAction(Intent.ACTION_VIEW)
-                                        .setData(Uri.parse(activity.getString(R.string.fdroid_vlc_url)));
-                                activity.startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
-                builder.create().show();
-            }
+        if (useExternalVideoPlayer()) {
+            playVideoUseExternalPlayer(info, selectedVideoStream);
+        } else if (useExoPlayer()) {
+            playVideoUseExoPlayer(info, selectedVideoStream);
         } else {
-            if (PreferenceManager.getDefaultSharedPreferences(activity)
-                    .getBoolean(activity.getString(R.string.use_exoplayer_key), false)) {
+            playVideoUseInternalPlayer(info, selectedVideoStream);
+        }
+    }
 
-                // exo player
+    private void playVideoUseInternalPlayer(@NonNull final StreamInfo info, @NonNull final VideoStream selectedVideoStream) {
+        final Intent intent = new Intent(activity, PlayVideoActivity.class)
+                .putExtra(PlayVideoActivity.VIDEO_TITLE, info.title)
+                .putExtra(PlayVideoActivity.STREAM_URL, selectedVideoStream.url)
+                .putExtra(PlayVideoActivity.VIDEO_URL, info.webpage_url)
+                .putExtra(PlayVideoActivity.PLAYLIST_INDEX, playListId)
+                .putExtra(PlayVideoActivity.START_POSITION, info.start_position)
+                .putExtra(PLAYLIST_LINK_ENTRIES.POSITION, positionInPlayList);
+        activity.startActivity(intent);
+    }
 
-                if(info.dashMpdUrl != null && !info.dashMpdUrl.isEmpty()) {
-                    // try dash
-                    Intent intent = new Intent(activity, ExoPlayerActivity.class)
-                            .setData(Uri.parse(info.dashMpdUrl))
-                            .putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_DASH);
-                    startActivity(intent);
-                } else if((info.audio_streams != null  && !info.audio_streams.isEmpty()) &&
-                        (info.video_only_streams != null && !info.video_only_streams.isEmpty())) {
-                    // try smooth streaming
+    private void playVideoUseExternalPlayer(@NonNull final StreamInfo info, @NonNull final VideoStream selectedVideoStream) {
+        try {
+            final Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW)
+                    .setDataAndType(Uri.parse(selectedVideoStream.url),
+                            MediaFormat.getMimeById(selectedVideoStream.format))
+                    .putExtra(Intent.EXTRA_TITLE, info.title)
+                    .putExtra(BackgroundPlayer.TITLE, info.title);
+            activity.startActivity(intent);
+        } catch (final Exception e) {
+            e.printStackTrace();
+            videoPlayerInstallVLCFallback();
+        }
+    }
 
-                } else {
-                    //default streaming
-                    Intent intent = new Intent(activity, ExoPlayerActivity.class)
-                            .setDataAndType(Uri.parse(selectedVideoStream.url),
+    private void playVideoUseExoPlayer(@NonNull final StreamInfo info, @NonNull final VideoStream selectedVideoStream) {
+        final boolean hasDashMdpUrl = info.dashMpdUrl != null && !info.dashMpdUrl.isEmpty();
+        if (hasDashMdpUrl) {
+            final Intent intent = new Intent(activity, ExoPlayerActivity.class)
+                    .setData(Uri.parse(info.dashMpdUrl))
+                    .putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_DASH);
+            startActivity(intent);
+        } else {
+            final boolean hasEmptyAudioStream = info.audio_streams == null || info.audio_streams.isEmpty();
+            final boolean hasEmptyVideoOnlyStream = info.video_only_streams == null || info.video_only_streams.isEmpty();
+            if (hasEmptyAudioStream || hasEmptyVideoOnlyStream) {
+                //default streaming
+                final Intent intent = new Intent(activity, ExoPlayerActivity.class)
+                        .setDataAndType(Uri.parse(selectedVideoStream.url),
                                 MediaFormat.getMimeById(selectedVideoStream.format))
-                            .putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_OTHER);
+                        .putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_OTHER);
 
-                    activity.startActivity(intent);      // HERE !!!
-                }
-                //-------------
-
+                activity.startActivity(intent);
             } else {
-                // Internal Player
-                Intent intent = new Intent(activity, PlayVideoActivity.class)
-                        .putExtra(PlayVideoActivity.VIDEO_TITLE, info.title)
-                        .putExtra(PlayVideoActivity.STREAM_URL, selectedVideoStream.url)
-                        .putExtra(PlayVideoActivity.VIDEO_URL, info.webpage_url)
-                        .putExtra(PlayVideoActivity.START_POSITION, info.start_position);
-                activity.startActivity(intent);     //also HERE !!!
+                // try smooth streaming
             }
         }
+    }
 
-        // --------------------------------------------
+    private void installKodiFallback() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setMessage(R.string.kore_not_found)
+                .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(activity.getString(R.string.fdroid_kore_url)));
+                        activity.startActivity(intent);
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        builder.create().show();
+    }
+
+    private void videoPlayerInstallVLCFallback() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setMessage(R.string.no_player_found)
+                .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent()
+                                .setAction(Intent.ACTION_VIEW)
+                                .setData(Uri.parse(activity.getString(R.string.fdroid_vlc_url)));
+                        activity.startActivity(intent);
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        builder.create().show();
+    }
+
+
+    private boolean useExoPlayer() {
+        return PreferenceManager.getDefaultSharedPreferences(activity)
+                .getBoolean(activity.getString(R.string.use_exoplayer_key), false);
+    }
+
+    private boolean useExternalAudioPlayer() {
+        return PreferenceManager.getDefaultSharedPreferences(activity)
+                .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
+    }
+
+    private boolean useExternalVideoPlayer() {
+        return PreferenceManager.getDefaultSharedPreferences(activity)
+                .getBoolean(activity.getString(R.string.use_external_video_player_key), false);
+    }
+
+    private int getPlayListComportement() {
+        String autoPlay = PreferenceManager.getDefaultSharedPreferences(activity)
+                .getString(getString(R.string.playlist_auto_play_choice_key), "none");
+        if ("video".equals(autoPlay)) {
+            return 2;
+        } else if ("audio".equals(autoPlay)) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     @Override
@@ -786,11 +915,7 @@ public class VideoItemDetailFragment extends Fragment {
                 stringResource, Toast.LENGTH_LONG).show();
     }
 
-    private void openStreamUrl(String url) {
-        Intent detailIntent = new Intent(activity, VideoItemDetailActivity.class);
-        detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, url);
-        detailIntent.putExtra(
-                VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
-        activity.startActivity(detailIntent);
+    private void openStreamUrl(final String url, int positionInPlayList) {
+        IntentRunner.lunchIntentVideoDetail(activity, url, streamingServiceId, playListId, positionInPlayList);
     }
 }

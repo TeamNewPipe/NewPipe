@@ -1,5 +1,7 @@
 package org.schabi.newpipe.extractor;
 
+import android.content.Context;
+
 import org.schabi.newpipe.extractor.channel.ChannelExtractor;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.search.SearchEngine;
@@ -30,9 +32,9 @@ import java.io.IOException;
 
 public abstract class StreamingService {
     public class ServiceInfo {
+
         public String name = "";
     }
-
     private int serviceId;
 
     public StreamingService(int id) {
@@ -43,11 +45,14 @@ public abstract class StreamingService {
 
     public abstract StreamExtractor getExtractorInstance(String url)
             throws IOException, ExtractionException;
+
     public abstract SearchEngine getSearchEngineInstance();
     public abstract UrlIdHandler getUrlIdHandlerInstance();
     public abstract UrlIdHandler getChannelUrlIdHandlerInstance();
-    public abstract ChannelExtractor getChannelExtractorInstance(String url, int page)
-            throws ExtractionException, IOException;
+    public abstract UrlIdHandler getPlaylistUrlIdHandlerInstance();
+    public abstract ChannelExtractor getChannelExtractorInstance(String url, int page) throws ExtractionException, IOException;
+    public abstract ChannelExtractor getPlayListExtractorInstance(String url, int page) throws ExtractionException, IOException;
+    public abstract ChannelExtractor getLocalPlayListExtractorInstance(Context context, int playListId, int pageNumber) throws IOException, ExtractionException;
     public abstract SuggestionExtractor getSuggestionExtractorInstance();
 
     public final int getServiceId() {

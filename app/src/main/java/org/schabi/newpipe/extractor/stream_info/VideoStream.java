@@ -33,12 +33,12 @@ public class VideoStream {
     // reveals wether two streams are the same, but have diferent urls
     public boolean equalStats(VideoStream cmp) {
         return format == cmp.format
-                && resolution == cmp.resolution;
+                && resolution.equals(cmp.resolution);
     }
 
     // revelas wether two streams are equal
     public boolean equals(VideoStream cmp) {
         return cmp != null && equalStats(cmp)
-                && url == cmp.url;
+                && url.equals(cmp.url);
     }
 }

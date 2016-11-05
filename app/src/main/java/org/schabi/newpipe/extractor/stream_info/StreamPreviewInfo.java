@@ -22,7 +22,9 @@ package org.schabi.newpipe.extractor.stream_info;
 
 import org.schabi.newpipe.extractor.AbstractStreamInfo;
 
+import java.io.Serializable;
+
 /**Info object for previews of unopened videos, eg search results, related videos*/
-public class StreamPreviewInfo extends AbstractStreamInfo {
+public class StreamPreviewInfo extends AbstractStreamInfo implements Serializable{
     public int duration;
 }

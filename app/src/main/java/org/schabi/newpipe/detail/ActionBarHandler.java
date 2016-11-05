@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.playList.PlayListActivity;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
@@ -171,6 +172,11 @@ class ActionBarHandler {
                 return true;
             case R.id.action_settings: {
                 Intent intent = new Intent(activity, SettingsActivity.class);
+                activity.startActivity(intent);
+                return true;
+            }
+            case R.id.action_show_playlist: {
+                Intent intent = new Intent(activity, PlayListActivity.class);
                 activity.startActivity(intent);
                 return true;
             }

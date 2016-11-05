@@ -12,6 +12,7 @@ import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 import java.util.List;
 import java.util.Vector;
 
+
 /**
  * Created by Christian Schabesberger on 01.08.16.
  *
@@ -34,16 +35,21 @@ import java.util.Vector;
 
 public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
 
-    InfoItemBuilder infoItemBuilder = null;
-    List<StreamPreviewInfo> streamList = new Vector<>();
+    private InfoItemBuilder infoItemBuilder;
+    private List<StreamPreviewInfo> streamList = new Vector<>();
 
     public InfoListAdapter(Activity a, View rootView) {
-        infoItemBuilder = new InfoItemBuilder(a, rootView);
+        this.infoItemBuilder = new InfoItemBuilder(a, rootView);
     }
 
     public void setOnItemSelectedListener
             (InfoItemBuilder.OnItemSelectedListener onItemSelectedListener) {
         infoItemBuilder.setOnItemSelectedListener(onItemSelectedListener);
+    }
+
+    public void setOnPlayListActionListener
+            (InfoItemBuilder.OnPlayListActionListener onPlaylistActionListener) {
+        infoItemBuilder.setOnPlayListActionListener(onPlaylistActionListener);
     }
 
     public void addStreamItemList(List<StreamPreviewInfo> videos) {
@@ -54,7 +60,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
     }
 
     public void clearSteamItemList() {
-        streamList = new Vector<>();
+        streamList.clear();
         notifyDataSetChanged();
     }
 

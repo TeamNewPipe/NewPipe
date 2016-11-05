@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
@@ -98,12 +97,10 @@ public class SettingsFragment  extends PreferenceFragment
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
                                                   String key) {
                 Activity a = getActivity();
-                if(a == null)
-                {
+                if (a == null) {
                     return;
                 }
-                if (key == USE_TOR_KEY)
-                {
+                if (USE_TOR_KEY.equals(key)) {
                     if (defaultPreferences.getBoolean(USE_TOR_KEY, false)) {
                         if (OrbotHelper.isOrbotInstalled(a)) {
                             App.configureTor(true);
@@ -115,17 +112,13 @@ public class SettingsFragment  extends PreferenceFragment
                     } else {
                         App.configureTor(false);
                     }
-                }
-                else if (key == DOWNLOAD_PATH_PREFERENCE)
-                {
+                } else if (DOWNLOAD_PATH_PREFERENCE.equals(key)) {
                     String downloadPath = sharedPreferences
                             .getString(DOWNLOAD_PATH_PREFERENCE,
                                     getString(R.string.download_path_summary));
                     downloadPathPreference
                             .setSummary(downloadPath);
-                }
-                else if (key == DOWNLOAD_PATH_AUDIO_PREFERENCE)
-                {
+                } else if (DOWNLOAD_PATH_AUDIO_PREFERENCE.equals(key)) {
                     String downloadPath = sharedPreferences
                             .getString(DOWNLOAD_PATH_AUDIO_PREFERENCE,
                                     getString(R.string.download_path_audio_summary));

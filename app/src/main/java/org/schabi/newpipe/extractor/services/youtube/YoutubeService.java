@@ -1,5 +1,7 @@
 package org.schabi.newpipe.extractor.services.youtube;
 
+import android.content.Context;
+
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.channel.ChannelExtractor;
@@ -7,6 +9,7 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.search.SearchEngine;
 import org.schabi.newpipe.extractor.search.SuggestionExtractor;
 import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
+import org.schabi.newpipe.playList.LocalPlayListExtractor;
 
 import java.io.IOException;
 
@@ -70,9 +73,24 @@ public class YoutubeService extends StreamingService {
     }
 
     @Override
+    public UrlIdHandler getPlaylistUrlIdHandlerInstance() {
+        return new YoutubePlayListUrlIdHandler();
+    }
+
+    @Override
     public ChannelExtractor getChannelExtractorInstance(String url, int page)
         throws ExtractionException, IOException {
         return new YoutubeChannelExtractor(getChannelUrlIdHandlerInstance(), url, page, getServiceId());
+    }
+
+    @Override
+    public ChannelExtractor getPlayListExtractorInstance(String url, int page) throws ExtractionException, IOException {
+        return new YoutubePlayListExtractor(getPlaylistUrlIdHandlerInstance(), url, page, getServiceId());
+    }
+
+    @Override
+    public ChannelExtractor getLocalPlayListExtractorInstance(Context context, int playListId, int pageNumber) throws IOException, ExtractionException {
+        return new LocalPlayListExtractor(context, getUrlIdHandlerInstance(), playListId, pageNumber);
     }
 
     @Override

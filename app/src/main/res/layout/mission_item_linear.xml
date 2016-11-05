@@ -33,7 +33,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:padding="6dp"
-				android:singleLine="true"
+				android:maxLines="1"
 				android:ellipsize="end"
 				android:text="XXX.xx"
 				android:textSize="16sp"
@@ -46,7 +46,7 @@
 				android:layout_height="wrap_content"
 				android:layout_below="@id/item_name"
 				android:padding="6dp"
-				android:singleLine="true"
+				android:maxLines="1"
 				android:text="100.00MB"
 				android:textSize="12sp"
 				android:textColor="@color/white"/>
@@ -62,7 +62,7 @@
 			android:layout_centerVertical="true"
 			android:layout_marginLeft="6dp"
 			android:layout_marginRight="6dp"
-			android:singleLine="true"
+			android:maxLines="1"
 			android:text="0%"
 			android:textSize="20sp"
 			android:textColor="@color/white"/>

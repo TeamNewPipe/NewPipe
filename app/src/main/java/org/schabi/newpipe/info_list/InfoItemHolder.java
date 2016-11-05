@@ -30,7 +30,7 @@ import org.schabi.newpipe.R;
 
 public class InfoItemHolder extends RecyclerView.ViewHolder {
 
-    public ImageView itemThumbnailView;
+    public ImageView itemThumbnailView, itemPlayListView;
     public TextView itemVideoTitleView,
             itemUploaderView,
             itemDurationView,
@@ -46,6 +46,7 @@ public class InfoItemHolder extends RecyclerView.ViewHolder {
         itemDurationView = (TextView) v.findViewById(R.id.itemDurationView);
         itemUploadDateView = (TextView) v.findViewById(R.id.itemUploadDateView);
         itemViewCountView = (TextView) v.findViewById(R.id.itemViewCountView);
+        itemPlayListView = (ImageView) v.findViewById(R.id.deleteItemFromPlayList);
         itemButton = (Button) v.findViewById(R.id.item_button);
     }
 }

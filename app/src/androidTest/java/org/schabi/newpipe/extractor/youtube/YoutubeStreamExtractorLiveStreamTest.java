@@ -2,9 +2,9 @@ package org.schabi.newpipe.extractor.youtube;
 
 import android.test.AndroidTestCase;
 
-import org.schabi.newpipe.extractor.ExtractionException;
-import org.schabi.newpipe.extractor.ParsingException;
-import org.schabi.newpipe.extractor.StreamExtractor;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
 
 import java.io.IOException;
 

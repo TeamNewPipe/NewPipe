@@ -36,7 +36,11 @@ import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 public class InfoItemBuilder {
 
     public interface OnItemSelectedListener {
-        void selected(String url);
+        void selected(String url, int positionInList);
+    }
+
+    public interface OnPlayListActionListener {
+        void selected(final StreamPreviewInfo streamPreviewInfo, int positionInList);
     }
 
     private Activity activity = null;
@@ -45,7 +49,7 @@ public class InfoItemBuilder {
     private DisplayImageOptions displayImageOptions =
             new DisplayImageOptions.Builder().cacheInMemory(true).build();
     private OnItemSelectedListener onItemSelectedListener;
-
+    private OnPlayListActionListener onPlayListActionListener;
     public InfoItemBuilder(Activity a, View rootView) {
         activity = a;
         this.rootView = rootView;
@@ -55,7 +59,11 @@ public class InfoItemBuilder {
         this.onItemSelectedListener = onItemSelectedListener;
     }
 
-    public void buildByHolder(InfoItemHolder holder, final StreamPreviewInfo info) {
+    public void setOnPlayListActionListener(OnPlayListActionListener onPlayListActionListener) {
+        this.onPlayListActionListener = onPlayListActionListener;
+    }
+
+    public void buildByHolder(final InfoItemHolder holder, final StreamPreviewInfo info) {
         // fill holder with information
         holder.itemVideoTitleView.setText(info.title);
         if(info.uploader != null && !info.uploader.isEmpty()) {
@@ -78,7 +86,7 @@ public class InfoItemBuilder {
             holder.itemViewCountView.setVisibility(View.GONE);
         }
         if(info.upload_date != null && !info.upload_date.isEmpty()) {
-            holder.itemUploadDateView.setText(info.upload_date + " • ");
+            holder.itemUploadDateView.setText(String.format("%s • ", info.upload_date));
         }
 
         holder.itemThumbnailView.setImageResource(R.drawable.dummy_thumbnail);
@@ -89,10 +97,17 @@ public class InfoItemBuilder {
                     new ImageErrorLoadingListener(activity, rootView, info.service_id));
         }
 
+        holder.itemPlayListView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // add to playlist
+                onPlayListActionListener.selected(info, holder.getAdapterPosition());
+            }
+        });
         holder.itemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onItemSelectedListener.selected(info.webpage_url);
+                onItemSelectedListener.selected(info.webpage_url, holder.getAdapterPosition());
             }
         });
     }
