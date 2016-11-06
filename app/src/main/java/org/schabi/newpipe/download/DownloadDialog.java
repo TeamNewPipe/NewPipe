@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import us.shandian.giga.get.DownloadManager;
+import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.service.DownloadManagerService;
 
 
@@ -227,7 +228,11 @@ public class DownloadDialog extends DialogFragment {
                     fName + arguments.getString(FILE_SUFFIX_AUDIO),
                     audioButton.isChecked(),
                     threads.getProgress() + 1);
-            mBinder.onMissionAdded(mManager.getMission(res));
+            DownloadMission mission = mManager.getMission(res);
+            mBinder.onMissionAdded(mission);
+            // add download listener to allow media scan notification
+            DownloadListener listener = new DownloadListener(getContext(), mission);
+            mission.addListener(listener);
         }
 
         if(videoButton.isChecked()){
@@ -236,7 +241,11 @@ public class DownloadDialog extends DialogFragment {
                     fName + arguments.getString(FILE_SUFFIX_VIDEO),
                     audioButton.isChecked(),
                     threads.getProgress() + 1);
-            mBinder.onMissionAdded(mManager.getMission(res));
+            DownloadMission mission = mManager.getMission(res);
+            mBinder.onMissionAdded(mission);
+            // add download listener to allow media scan notification
+            DownloadListener listener = new DownloadListener(getContext(), mission);
+            mission.addListener(listener);
         }
         getDialog().dismiss();
 
