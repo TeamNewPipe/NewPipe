@@ -43,7 +43,7 @@
 
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Oscuro</string>
-    <string name="light_theme_title">Claro</string>
+    <string name="light_theme_title">Ligero</string>
 
     <string name="settings_category_appearance_title">Apariencia</string>
     <string name="settings_category_other_title">Otros</string>
@@ -55,7 +55,7 @@
     <string name="err_dir_create">No se puede crear la carpeta de descarga \'%1$s\'</string>
     <string name="info_dir_created">Carpeta de descarga creada \'%1$s\'</string>
 <string name="download_path_audio_summary">Ruta para almacenar los audios descargados</string>
-    <string name="download_path_audio_dialog_title">Introducir ruta de descarga para los archivos de audio.</string>
+    <string name="download_path_audio_dialog_title">Introducir ruta de descarga para archivos de audio.</string>
 
     <string name="blocked_by_gema">Bloqueado por GEMA.</string>
 
@@ -81,7 +81,7 @@
     <string name="show_age_restricted_content_title">Mostrar contenido restringido por edad</string>
     <string name="video_is_age_restricted">El vídeo tiene restricción de edad. Habilite los vídeos con restricción de edad en los ajustes.</string>
 
-    <string name="main_bg_subtitle">Toque buscar para iniciar</string>
+    <string name="main_bg_subtitle">Toque buscar para empezar</string>
     <string name="autoplay_by_calling_app_title">Autoreproducir al llamar desde otra app</string>
     <string name="autoplay_by_calling_app_summary">Reproducir automáticamente un vídeo cuando NewPipe es llamado desde otra aplicación.</string>
     <string name="duration_live">en vivo</string>
@@ -116,7 +116,7 @@
     <string name="logging_normal">Normal</string>
     <string name="logging_verbose">Detallado</string>
     <string name="retry">Reintentar</string>
-    <string name="off">[apagado]</string>
+    <string name="off">[off]</string>
     <string name="error_drm_not_supported">Contenido protegido no soportado en niveles de API inferiores a 18</string>
     <string name="error_drm_unsupported_scheme">Este dispositivo no soporta el esquema DRM requerido</string>
     <string name="error_drm_unknown">Ocurrió un error desconocido de DRM</string>
@@ -130,7 +130,7 @@
 
     <string name="start">Iniciar</string>
     <string name="pause">Pausar</string>
-    <string name="view">Mostrar</string>
+    <string name="view">Reproducir</string>
     <string name="delete">Eliminar</string>
     <string name="checksum">Checksum</string>
 
@@ -147,7 +147,7 @@
     <string name="msg_server_unsupported">Servidor no soportado</string>
     <string name="msg_exists">El archivo ya existe</string>
     <string name="msg_url_malform">URL mal formada o Internet no disponible</string>
-    <string name="msg_running">Descargando NewPipe</string>
+    <string name="msg_running">Descarga de NewPipe</string>
     <string name="msg_running_detail">Toque para ver detalles</string>
     <string name="msg_wait">Por favor espere...</string>
     <string name="msg_copied">Copiado al portapapeles.</string>
