@@ -67,6 +67,23 @@ public class PlayListDataSource {
         return name;
     }
 
+    public int getPlayListId(final String name) {
+        open();
+        final Cursor cursor = database.query(Tables.PLAYLIST,
+                new String[]{PLAYLIST_COLUMNS._ID},
+                PLAYLIST_COLUMNS.PLAYLIST_NAME + "=?",
+                new String[]{name},
+                null, null, null);
+        int id = -1;
+        if(cursor.getCount() != 0) {
+            cursor.moveToFirst();
+            id = cursor.getInt(0);
+        }
+        cursor.close();
+        close();
+        return id;
+    }
+
     public StreamPreviewInfo getNextEntriesForItems(final int currentPlayList, final int currentPosition) {
         open();
         final Cursor cursor = database.query(Tables.PLAYLIST_LINK_JOIN_ENTRIES,

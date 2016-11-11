@@ -285,6 +285,7 @@
     <string name="import_a_youtube_playlist">Import a youtube playlist</string>
     <string name="type_youtube_playlist_url">Type the youtube playlist url :</string>
     <string name="youtube_playlist_not_valid">The given youtube playlist url isn\'t valid !</string>
+    <string name="save_to_local_playlist">Save to local playlist ?</string>
 
     <!-- End of GigaGet's Strings -->
 

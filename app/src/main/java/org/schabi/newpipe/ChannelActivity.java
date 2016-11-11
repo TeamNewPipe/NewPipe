@@ -1,5 +1,7 @@
 package org.schabi.newpipe;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -29,6 +32,7 @@ import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.info_list.ItemDialog;
+import org.schabi.newpipe.playList.PlayListDataSource;
 import org.schabi.newpipe.playList.PlayListDataSource.PLAYLIST_SYSTEM;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.search_fragment.SearchInfoItemFragment;
@@ -157,29 +161,55 @@ public class ChannelActivity extends AppCompatActivity {
 
         progressBar.setVisibility(View.GONE);
 
-        if(info.channel_name != null && !info.channel_name.isEmpty()) {
+        if(!TextUtils.isEmpty(info.channel_name)) {
             ctl.setTitle(info.channel_name);
         }
 
-        if(info.banner_url != null && !info.banner_url.isEmpty()) {
+        if(!TextUtils.isEmpty(info.banner_url)) {
             imageLoader.displayImage(info.banner_url, channelBanner,
                     new ImageErrorLoadingListener(this, rootView ,info.service_id));
         }
 
-        if(info.avatar_url != null && !info.avatar_url.isEmpty()) {
+        if(!TextUtils.isEmpty(info.avatar_url)) {
             avatarView.setVisibility(View.VISIBLE);
             haloView.setVisibility(View.VISIBLE);
             imageLoader.displayImage(info.avatar_url, avatarView,
                     new ImageErrorLoadingListener(this, rootView ,info.service_id));
         }
 
-        if(info.feed_url != null && !info.feed_url.isEmpty()) {
+        if(!TextUtils.isEmpty(info.feed_url)) {
             feedButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Log.d(TAG, info.feed_url);
                     Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(info.feed_url));
                     startActivity(i);
+                }
+            });
+        } else if(!TextUtils.isEmpty(channelUrl)){
+            feedButton.setImageResource(R.drawable.nnf_ic_create_new_folder_white_24dp);
+            feedButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(ChannelActivity.this)
+                            .setTitle(R.string.save_to_local_playlist)
+                            .setMessage(info.channel_name)
+                            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    PlayListDataSource playListDataSource = new PlayListDataSource(ChannelActivity.this);
+                                    int id = playListDataSource.getPlayListId(info.channel_name);
+                                    if(id < 0) {
+                                        id = playListDataSource.createPlayList(info.channel_name).get_id();
+                                    }
+                                    for(StreamPreviewInfo infos : info.related_streams) {
+                                        playListDataSource.addEntryFromPlayList(id, infos);
+                                    }
+                                    Toast.makeText(ChannelActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .setNegativeButton(R.string.cancel, null);
+                    alertDialog.show();
                 }
             });
         } else {

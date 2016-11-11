@@ -14,7 +14,7 @@ public class NewPipeSQLiteHelper extends SQLiteOpenHelper {
 
     private final String TAG = NewPipeSQLiteHelper.class.getName();
     private static final String DATABASE_NAME = "newpipe.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     public NewPipeSQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -94,7 +94,7 @@ public class NewPipeSQLiteHelper extends SQLiteOpenHelper {
                 PLAYLIST_COLUMNS._ID +   " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 PLAYLIST_COLUMNS.PLAYLIST_NAME + " TEXT NOT NULL," +
                 PLAYLIST_COLUMNS.PLAYLIST_SYSTEM + " INTEGER NOT NULL DEFAULT 0," +
-                "UNIQUE (" + PLAYLIST_COLUMNS.PLAYLIST_NAME + ") ON CONFLICT REPLACE" +
+                "UNIQUE (" + PLAYLIST_COLUMNS.PLAYLIST_NAME + ") ON CONFLICT IGNORE" +
             ");";
         db.execSQL(CREATE_TABLE_PLAYLIST);
         // 2. Create PlayList Entry table
@@ -108,7 +108,7 @@ public class NewPipeSQLiteHelper extends SQLiteOpenHelper {
                 PLAYLIST_ENTRIES_COLUMNS.THUMBNAIL_URL + " TEXT NOT NULL, " +
                 PLAYLIST_ENTRIES_COLUMNS.WEBPAGE_URL + " TEXT NOT NULL, "+
                 PLAYLIST_ENTRIES_COLUMNS.UPLOAD_DATE + " TEXT, " +
-                PLAYLIST_ENTRIES_COLUMNS.VIEW_COUNT + " NUMERIC, " +
+                PLAYLIST_ENTRIES_COLUMNS.VIEW_COUNT + " INTEGER, " +
                 "UNIQUE (" + PLAYLIST_ENTRIES_COLUMNS.SERVICE_ID + "," + PLAYLIST_ENTRIES_COLUMNS.ID + ") ON CONFLICT IGNORE" +
             ");";
         db.execSQL(CREATE_TABLE_PLAYLIST_ENTRIES);

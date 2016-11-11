@@ -38,7 +38,11 @@ public class LocalPlayListExtractor extends ChannelExtractor {
     @Override
     public String getAvatarUrl() throws ParsingException {
         try {
-            return "https://i.ytimg.com/vi/" + firstItem.id + "/hqdefault.jpg";
+            if(firstItem == null) {
+                return "";
+            } else {
+                return "https://i.ytimg.com/vi/" + firstItem.id + "/hqdefault.jpg";
+            }
         } catch (final Exception e) {
             throw new ParsingException(e.getMessage(), e);
         }
@@ -47,7 +51,11 @@ public class LocalPlayListExtractor extends ChannelExtractor {
     @Override
     public String getBannerUrl() throws ParsingException {
         try {
-            return "https://i.ytimg.com/vi/" + firstItem.id + "/maxresdefault.jpg";
+            if(firstItem == null) {
+                return "";
+            } else {
+                return "https://i.ytimg.com/vi/" + firstItem.id + "/maxresdefault.jpg";
+            }
         } catch (final Exception e) {
             throw new ParsingException(e.getMessage(), e);
         }
