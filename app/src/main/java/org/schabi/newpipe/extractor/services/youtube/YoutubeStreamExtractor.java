@@ -774,6 +774,16 @@ public class YoutubeStreamExtractor extends StreamExtractor {
                 }
                 return thumbnailUrl;
             }
+
+            @Override
+            public int getServiceId() {
+                return YoutubeStreamExtractor.this.getServiceId();
+            }
+
+            @Override
+            public int getPosition() {
+                return 1;
+            }
         };
     }
 

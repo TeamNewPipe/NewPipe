@@ -113,7 +113,6 @@ public class ChannelActivity extends AppCompatActivity {
             @Override
             public void selected(StreamPreviewInfo streamPreviewInfo, int positionInList) {
                 final ItemDialog itemDialog = new ItemDialog(ChannelActivity.this);
-                streamPreviewInfo.service_id = serviceId;
                 itemDialog.showSettingDialog(streamPreviewInfo, playListId, positionInList, new Runnable() {
                     @Override
                     public void run() {

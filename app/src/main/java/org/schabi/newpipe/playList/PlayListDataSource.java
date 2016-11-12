@@ -50,7 +50,9 @@ public class PlayListDataSource {
     }
 
     private void close() {
-        dbHelper.close();
+        if(database != null && database.isOpen()) {
+            dbHelper.close();
+        }
     }
 
     public String getPlaylistName(final int playlistId) {
@@ -87,7 +89,7 @@ public class PlayListDataSource {
     public StreamPreviewInfo getNextEntriesForItems(final int currentPlayList, final int currentPosition) {
         open();
         final Cursor cursor = database.query(Tables.PLAYLIST_LINK_JOIN_ENTRIES,
-            NewPipeSQLiteHelper.PLAYLIST_ENTRIES_COLUMNS.ALL_COLUMNS,
+                concat(PLAYLIST_ENTRIES_COLUMNS.ALL_COLUMNS, new String[]{PLAYLIST_LINK_ENTRIES.POSITION}),
                 PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + "=? AND " +
                 PLAYLIST_LINK_ENTRIES.POSITION + ">?",
                 new String[]{
@@ -121,17 +123,12 @@ public class PlayListDataSource {
         return playList;
     }
 
-    public void deletePlayList(final PlayList playList) {
-        final int _id = playList.get_id();
-        deletePlayList(_id);
-    }
-
-    public void deletePlayList(int _id) {
+    public void deletePlayList(int id) {
         open();
         // For entry it's delete by the trigger
-        Log.i(TAG, "Delete playlist with _id : " + _id);
-        database.delete(Tables.PLAYLIST, PLAYLIST_COLUMNS._ID + "=?", new String[]{String.valueOf(_id)});
-        Log.i(TAG, "Deleted playlist with _id : " + _id);
+        Log.i(TAG, "Delete playlist with id : " + id);
+        database.delete(Tables.PLAYLIST, PLAYLIST_COLUMNS._ID + "=?", new String[]{String.valueOf(id)});
+        Log.i(TAG, "Deleted playlist with id : " + id);
         close();
     }
 
@@ -156,24 +153,25 @@ public class PlayListDataSource {
         values.put(PLAYLIST_ENTRIES_COLUMNS.VIEW_COUNT, info.view_count);
         values.put(PLAYLIST_ENTRIES_COLUMNS.DURATION, info.duration);
         long id = database.insert(Tables.PLAYLIST_ENTRIES, null, values);
-
-        values.clear();
-        values.put(PLAYLIST_LINK_ENTRIES.PLAYLIST_ID, playList_id);
-        values.put(PLAYLIST_LINK_ENTRIES.PLAYLIST_ENTRIES_ID, id);
-        values.put(PLAYLIST_LINK_ENTRIES.POSITION, getNumberOfEntriesOnPlayList(playList_id) + 1);
-
-        open();
-        id = database.insert(Tables.PLAYLIST_LINK_ENTRIES, null, values);
+        if(id > -1) {
+            values.clear();
+            values.put(PLAYLIST_LINK_ENTRIES.PLAYLIST_ID, playList_id);
+            values.put(PLAYLIST_LINK_ENTRIES.PLAYLIST_ENTRIES_ID, id);
+            values.put(PLAYLIST_LINK_ENTRIES.POSITION, getNumberOfEntriesOnPlayList(playList_id) + 1);
+            // because count entries on playlist close the database
+            open();
+            id = database.insert(Tables.PLAYLIST_LINK_ENTRIES, null, values);
+        }
         close();
         return id;
     }
 
-    public long getEntriesId(final String id) {
+    public long getEntriesId(final String id, final int service_id) {
         open();
         final Cursor cursor = database.query(Tables.PLAYLIST_ENTRIES,
                 new String[]{Qualified.PLAYLIST_ENTRIES_ID},
-                PLAYLIST_ENTRIES_COLUMNS.ID + "=?",
-                new String[]{id}, null, null, null);
+                PLAYLIST_ENTRIES_COLUMNS.ID + "=? AND " + PLAYLIST_ENTRIES_COLUMNS.SERVICE_ID + "=?",
+                new String[]{id, String.valueOf(service_id)}, null, null, null);
         cursor.moveToFirst();
         long entries_id = cursor.getLong(0);
         cursor.close();
@@ -181,15 +179,15 @@ public class PlayListDataSource {
         return entries_id;
     }
 
-    public int deleteEntryFromPlayList(final int playlist_id, final String id) {
-        final long entriesId = getEntriesId(id);
+    public int deleteEntryFromPlayList(final int playlist_id, final String id, final int service_id) {
+        final long entriesId = getEntriesId(id, service_id);
         open();
-        Log.i(TAG, "Delete playlist entry with ref_id : " + entriesId + " for playlist : " + playlist_id);
+        Log.i(TAG, String.format("Delete playlist entry with ref_id : %d and service_id : %d for playlist : %d", entriesId, service_id, playlist_id));
         final int result = database.delete(Tables.PLAYLIST_LINK_ENTRIES,
                 PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + "=? AND " +
                 PLAYLIST_LINK_ENTRIES.PLAYLIST_ENTRIES_ID + "=?",
                 new String[]{String.valueOf(playlist_id), String.valueOf(entriesId)});
-        Log.i(TAG, "Deleted playlist entry with ref_id : " + id + " for playlist : " + playlist_id);
+        Log.i(TAG, String.format("Deleted playlist entry with ref_id : %d for playlist : %d", entriesId, playlist_id));
         close();
         return result;
     }
@@ -203,7 +201,7 @@ public class PlayListDataSource {
 
     public PlayList getPlayListWithEntries(final int playlist_id, final int page) {
         open();
-        final String[] ALL_COLUMNS = concat(PLAYLIST_COLUMNS.ALL_COLUMNS, PLAYLIST_ENTRIES_COLUMNS.ALL_COLUMNS);
+        final String[] ALL_COLUMNS = concat(concat(PLAYLIST_COLUMNS.ALL_COLUMNS, PLAYLIST_ENTRIES_COLUMNS.ALL_COLUMNS), new String[]{ PLAYLIST_LINK_ENTRIES.POSITION});
         final ArrayList<String> ALL_COLUMNS_USE = new ArrayList<>(ALL_COLUMNS.length);
         for (final String ALL_COLUMN : ALL_COLUMNS) {
             if (!PLAYLIST_COLUMNS._ID.equals(ALL_COLUMN)) {
@@ -270,6 +268,7 @@ public class PlayListDataSource {
         stream.upload_date = cursor.getString(cursor.getColumnIndex(PLAYLIST_ENTRIES_COLUMNS.UPLOAD_DATE));
         stream.view_count = cursor.getLong(cursor.getColumnIndex(PLAYLIST_ENTRIES_COLUMNS.VIEW_COUNT));
         stream.duration = cursor.getInt(cursor.getColumnIndex(PLAYLIST_ENTRIES_COLUMNS.DURATION));
+        stream.position = cursor.getInt(cursor.getColumnIndex(PLAYLIST_LINK_ENTRIES.POSITION));
         return stream;
     }
 

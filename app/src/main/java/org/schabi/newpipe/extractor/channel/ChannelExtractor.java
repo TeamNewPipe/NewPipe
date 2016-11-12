@@ -58,4 +58,7 @@ public abstract class ChannelExtractor {
     public int getServiceId() {
         return serviceId;
     }
+    public int getPage(){
+        return page;
+    }
 }

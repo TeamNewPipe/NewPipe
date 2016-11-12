@@ -182,6 +182,16 @@ public class YoutubePlayListExtractor extends ChannelExtractor {
                         }
                     }
 
+                    @Override
+                    public int getServiceId() {
+                        return YoutubePlayListExtractor.this.getServiceId();
+                    }
+
+                    @Override
+                    public int getPosition() {
+                        return 0;
+                    }
+
                     private boolean isLiveStream(Element item) {
                         Element bla = item.select("span[class*=\"yt-badge-live\"]").first();
 

@@ -2,7 +2,9 @@ package org.schabi.newpipe.extractor.services.youtube;
 
 import org.jsoup.nodes.Element;
 import org.schabi.newpipe.extractor.AbstractStreamInfo;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Parser;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoExtractor;
 
@@ -143,6 +145,16 @@ public class YoutubeStreamPreviewInfoExtractor implements StreamPreviewInfoExtra
         } catch (Exception e) {
             throw new ParsingException("Could not get thumbnail url", e);
         }
+    }
+
+    @Override
+    public int getServiceId() throws ExtractionException {
+        return NewPipe.getIdOfService("Youtube");
+    }
+
+    @Override
+    public int getPosition() {
+        return 1;
     }
 
     @Override

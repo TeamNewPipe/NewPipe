@@ -18,16 +18,18 @@ public class LocalPlayListExtractor extends ChannelExtractor {
     private final PlayListDataSource dataSource;
     private final StreamPreviewInfo firstItem;
     private final int page;
+    private final int playlistId;
 
     public LocalPlayListExtractor(final Context context, UrlIdHandler urlIdHandlerInstance, final int playlistId, int page) throws IOException, ExtractionException {
-        super(urlIdHandlerInstance, "", page, playlistId);
+        super(urlIdHandlerInstance, "", page, -1);
+        this.playlistId = playlistId;
         dataSource = new PlayListDataSource(context);
         firstItem = dataSource.getNextEntriesForItems(getPlayListId(), 0);
         this.page = page;
     }
 
     private int getPlayListId() {
-        return getServiceId();
+        return playlistId;
     }
 
     @Override
@@ -110,6 +112,16 @@ public class LocalPlayListExtractor extends ChannelExtractor {
                 @Override
                 public String getThumbnailUrl() throws ParsingException {
                     return streamPreviewInfo.thumbnail_url;
+                }
+
+                @Override
+                public int getServiceId() throws ExtractionException {
+                    return streamPreviewInfo.service_id;
+                }
+
+                @Override
+                public int getPosition() {
+                    return streamPreviewInfo.position;
                 }
             });
         }

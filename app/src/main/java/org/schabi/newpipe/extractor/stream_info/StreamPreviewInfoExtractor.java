@@ -1,6 +1,7 @@
 package org.schabi.newpipe.extractor.stream_info;
 
 import org.schabi.newpipe.extractor.AbstractStreamInfo;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 
 /**
@@ -32,4 +33,6 @@ public interface StreamPreviewInfoExtractor {
     String getUploadDate() throws ParsingException;
     long getViewCount() throws  ParsingException;
     String getThumbnailUrl() throws  ParsingException;
+    int getServiceId() throws ExtractionException;
+    int getPosition();
 }

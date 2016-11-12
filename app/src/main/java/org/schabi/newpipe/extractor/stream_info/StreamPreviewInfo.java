@@ -27,4 +27,5 @@ import java.io.Serializable;
 /**Info object for previews of unopened videos, eg search results, related videos*/
 public class StreamPreviewInfo extends AbstractStreamInfo implements Serializable{
     public int duration;
+    public int position;
 }

@@ -58,6 +58,7 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
     // the fist page is html all other pages are ajax. Every new page can be requested by sending
     // this request url.
     private static String nextPageUrl = "";
+    public int itemPerPage = 0;
 
     public YoutubeChannelExtractor(UrlIdHandler urlIdHandler, String url, int page, int serviceId)
             throws ExtractionException, IOException {
@@ -157,6 +158,7 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
             ul = doc.select("body").first();
         } else {
             ul = doc.select("ul[id=\"browse-items-primary\"]").first();
+            itemPerPage = ul.children().size();
         }
 
         for(final Element li : ul.children()) {
@@ -272,6 +274,17 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
                         } catch (Exception e) {
                             throw new ParsingException("Could not get thumbnail url", e);
                         }
+                    }
+
+                    @Override
+                    public int getServiceId() {
+                        return YoutubeChannelExtractor.this.getServiceId();
+                    }
+
+                    @Override
+                    public int getPosition() {
+                        int previousElement = isAjaxPage ? (getPage() - 1) * itemPerPage : 0;
+                        return  previousElement + li.elementSiblingIndex();
                     }
 
                     private boolean isLiveStream(Element item) {
