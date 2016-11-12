@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/notificationContent"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -11,6 +12,7 @@
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
         android:src="@drawable/dummy_thumbnail"
         android:scaleType="centerCrop"/>
 
@@ -19,6 +21,7 @@
         android:layout_height="fill_parent"
         android:layout_above="@+id/notificationButtons"
         android:layout_toRightOf="@+id/notificationCover"
+        android:layout_toEndOf="@+id/notificationCover"
         android:gravity="center_vertical"
         android:orientation="vertical" >
 
@@ -28,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="40dp"
+            android:layout_marginEnd="40dp"
             android:ellipsize="marquee"
             android:maxLines="1"
             android:text="title" />
@@ -47,6 +51,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_margin="5dp"
         android:background="#00ffffff"
         android:clickable="true"
@@ -60,8 +65,46 @@
         android:layout_height="50dp"
         android:layout_alignBottom="@id/notificationCover"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_toRightOf="@+id/notificationCover"
+        android:layout_toEndOf="@+id/notificationCover"
         android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/notificationLunchPrevTrack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#00ffffff"
+            android:clickable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_skip_previous_white_24dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <ImageButton
+            android:id="@+id/notificationRewind"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#00ffffff"
+            android:clickable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_action_av_fast_rewind"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/notificationLunchPrevTrack"
+            android:layout_toEndOf="@+id/notificationLunchPrevTrack" />
+
+        <ImageButton
+            android:id="@+id/notificationLunchNextTrack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#00ffffff"
+            android:clickable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_skip_next_white_24dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <ImageButton
             android:id="@+id/notificationPlayPause"
@@ -75,15 +118,17 @@
             android:layout_centerHorizontal="true" />
 
         <ImageButton
-            android:id="@+id/notificationRewind"
+            android:id="@+id/notificationChangePlayMode"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="#00ffffff"
             android:clickable="true"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_action_av_fast_rewind"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true" />
+            android:layout_toRightOf="@+id/notificationPlayPause"
+            android:layout_toEndOf="@+id/notificationPlayPause"
+            android:src="@drawable/ic_repeat_white_24dp" />
+
     </RelativeLayout>
 
 </RelativeLayout>

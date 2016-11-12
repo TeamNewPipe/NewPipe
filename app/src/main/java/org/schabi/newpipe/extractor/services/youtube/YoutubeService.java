@@ -9,7 +9,7 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.search.SearchEngine;
 import org.schabi.newpipe.extractor.search.SuggestionExtractor;
 import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
-import org.schabi.newpipe.playList.LocalPlayListExtractor;
+import org.schabi.newpipe.playList.extractor.LocalPlayListExtractor;
 
 import java.io.IOException;
 
@@ -89,8 +89,8 @@ public class YoutubeService extends StreamingService {
     }
 
     @Override
-    public ChannelExtractor getLocalPlayListExtractorInstance(Context context, int playListId, int pageNumber) throws IOException, ExtractionException {
-        return new LocalPlayListExtractor(context, getUrlIdHandlerInstance(), playListId, pageNumber);
+    public ChannelExtractor getLocalPlayListExtractorInstance(Context context, int playListId, int page) throws IOException, ExtractionException {
+        return new LocalPlayListExtractor(context, getUrlIdHandlerInstance(), playListId, page);
     }
 
     @Override

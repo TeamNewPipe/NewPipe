@@ -1,7 +1,6 @@
 package org.schabi.newpipe.player;
 
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -13,8 +12,11 @@ import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -24,8 +26,10 @@ import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.IntentRunner;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 import org.schabi.newpipe.playList.NewPipeSQLiteHelper.PLAYLIST_LINK_ENTRIES;
 import org.schabi.newpipe.playList.PlayListDataSource.PLAYLIST_SYSTEM;
+import org.schabi.newpipe.playList.QueueManager;
 
 import java.io.IOException;
 
@@ -52,16 +56,20 @@ import java.io.IOException;
 /**Plays the audio stream of videos in the background.*/
 public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPreparedListener*/ {
 
-    private static final String TAG = BackgroundPlayer.class.toString();
-    private static final String ACTION_STOP = TAG + ".STOP";
+    public static final String TAG = BackgroundPlayer.class.toString();
+    public static final String ACTION_STOP = TAG + ".STOP";
     private static final String ACTION_PLAYPAUSE = TAG + ".PLAYPAUSE";
     private static final String ACTION_REWIND = TAG + ".REWIND";
+    private static final String ACTION_NEXT_TRACK = TAG + ".NEXT";
+    private static final String ACTION_PREV_TRACK = TAG + ".PREV";
+    private static final String ACTION_CHANGE_PLAY_MODE = TAG + ".CHANGE_PLAY_MODE";
 
     // Extra intent arguments
     public static final String TITLE = "title";
     public static final String WEB_URL = "web_url";
     public static final String SERVICE_ID = "service_id";
     public static final String CHANNEL_NAME = "channel_name";
+    private QueueManager queueManager;
 
     private volatile String webUrl = "";
     private volatile int serviceId = -1;
@@ -72,6 +80,8 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
     public static volatile boolean isRunning;
     private int playListId = PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID;
     private int positionInPlayList = PLAYLIST_SYSTEM.POSITION_DEFAULT;
+    private int currentPlayMode = QueueManager.PLAY_ALL_ITEM;
+    private boolean isPreviousBtnPressed = false;
 
     public BackgroundPlayer() {
         super();
@@ -82,7 +92,9 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         /*PendingIntent pi = PendingIntent.getActivity(this, 0,
                 new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);*/
         super.onCreate();
+        queueManager = new QueueManager(getApplicationContext());
     }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Toast.makeText(this, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
@@ -95,9 +107,9 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         channelName = intent.getStringExtra(CHANNEL_NAME);
         playListId = intent.getIntExtra(PLAYLIST_LINK_ENTRIES.PLAYLIST_ID, PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID);
         positionInPlayList = intent.getIntExtra(PLAYLIST_LINK_ENTRIES.POSITION, PLAYLIST_SYSTEM.POSITION_DEFAULT);
-
+        isPreviousBtnPressed = false;
         //do nearly everything in a separate thread
-        PlayerThread player = new PlayerThread(source, videoTitle, this);
+        final PlayerThread player = new PlayerThread(source, videoTitle, this);
         player.start();
 
         isRunning = true;
@@ -118,17 +130,45 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         isRunning = false;
     }
 
+    private boolean canAutoPlayNextTrack() {
+        String autoPlay = PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
+                .getString(getString(R.string.playlist_auto_play_choice_key), "none");
+        return "audio".equals(autoPlay);
+    }
+
     private class PlayerThread extends Thread {
         MediaPlayer mediaPlayer;
         private String source;
         private String title;
         private int noteID = TAG.hashCode();
         private BackgroundPlayer owner;
-        private NotificationManager noteMgr;
+        private NotificationManagerCompat noteMgr;
         private WifiManager.WifiLock wifiLock;
         private Bitmap videoThumbnail;
         private NotificationCompat.Builder noteBuilder;
         private Notification note;
+        private LunchAudioTrack lunchPreviousAudioTrack = null;
+        private LunchAudioTrack lunchNextAudioTrack = null;
+
+        private final Runnable lunchTrack = new Runnable() {
+            @Override
+            public void run() {
+                final LunchAudioTrack track = isPreviousBtnPressed ? lunchPreviousAudioTrack : lunchNextAudioTrack;
+                if (track != null) {
+                    if (!track.hasLoadBitmap()) {
+                        track.retrieveBitmap(lunchTrack);
+                    } else if (!track.hasAudioStream()) {
+                        track.retrieveInfoFromService(lunchTrack);
+                    } else {
+                        // build intent
+                        final Intent intent = track.retrieveIntent();
+                        if (intent != null) {
+                            onStartCommand(intent, -1, -1);
+                        }
+                    }
+                }
+            }
+        };
 
         public PlayerThread(String src, String title, BackgroundPlayer owner) {
             this.source = src;
@@ -136,6 +176,39 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             this.owner = owner;
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        }
+
+        private void retrieveInfoFromQueue() {
+            if(queueManager != null && !queueManager.isEmptyQueue()) {
+                StreamPreviewInfo nextStream = null;
+                StreamPreviewInfo previousStream = null;
+                switch (currentPlayMode) {
+                    case QueueManager.PLAY_ALL_ITEM:
+                        nextStream = queueManager.getNextEntries(positionInPlayList);
+                        previousStream = queueManager.getPreviousEntries(positionInPlayList);
+                        break;
+                    case QueueManager.PLAY_ONE_ITEM:
+                        final StreamPreviewInfo current = queueManager.getEntriesFor(positionInPlayList);
+                        previousStream = current;
+                        nextStream = current;
+                        break;
+                    case QueueManager.PLAY_RANDOM:
+                        previousStream = queueManager.getRandomItem();
+                        nextStream = queueManager.getRandomItem();
+                        break;
+                }
+
+                if (nextStream != null) {
+                    Log.d(TAG, String.format("Next Track set for %s at (%d) is : %s", webUrl,
+                            positionInPlayList, nextStream.webpage_url));
+                    lunchNextAudioTrack = new LunchAudioTrack(getApplicationContext(), nextStream, playListId);
+                }
+                if (previousStream != null) {
+                    Log.d(TAG, String.format("Previous Track set for %s at (%d) is : %s", webUrl,
+                            positionInPlayList, previousStream.webpage_url));
+                    lunchPreviousAudioTrack = new LunchAudioTrack(getApplicationContext(), previousStream, playListId);
+                }
+            }
         }
 
         @Override
@@ -162,7 +235,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 e.printStackTrace();
             }
 
-            WifiManager wifiMgr = (WifiManager)getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifiMgr = (WifiManager) getSystemService(Context.WIFI_SERVICE);
             wifiLock = wifiMgr.createWifiLock(WifiManager.WIFI_MODE_FULL, TAG);
 
             //listen for end of video
@@ -182,9 +255,12 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
             IntentFilter filter = new IntentFilter();
             filter.setPriority(Integer.MAX_VALUE);
+            filter.addAction(ACTION_PREV_TRACK);
             filter.addAction(ACTION_PLAYPAUSE);
             filter.addAction(ACTION_STOP);
             filter.addAction(ACTION_REWIND);
+            filter.addAction(ACTION_NEXT_TRACK);
+            filter.addAction(ACTION_CHANGE_PLAY_MODE);
             registerReceiver(broadcastReceiver, filter);
 
             note = buildNotification();
@@ -193,7 +269,8 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
             //currently decommissioned progressbar looping update code - works, but doesn't fit inside
             //Notification.MediaStyle Notification layout.
-            noteMgr = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+//            noteMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            noteMgr = NotificationManagerCompat.from(getApplicationContext());
             /*
             //update every 2s or 4 times in the video, whichever is shorter
             int sleepTime = Math.min(2000, (int)((double)vidLength/4));
@@ -208,59 +285,92 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             }*/
         }
 
-        /**Handles button presses from the notification. */
+        /**
+         * Handles button presses from the notification.
+         */
         private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 String action = intent.getAction();
                 //Log.i(TAG, "received broadcast action:"+action);
-                if(action.equals(ACTION_PLAYPAUSE)) {
-                    if(mediaPlayer.isPlaying()) {
-                        mediaPlayer.pause();
-                        note.contentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_play_circle_filled_white_24dp);
-                        if(android.os.Build.VERSION.SDK_INT >=16){
-                            note.bigContentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_play_circle_filled_white_24dp);
+                if (ACTION_PLAYPAUSE.equals(action)) {
+                    if(mediaPlayer != null) {
+                        if (mediaPlayer.isPlaying()) {
+                            mediaPlayer.pause();
+                            note.contentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_play_circle_filled_white_24dp);
+                            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+                                note.bigContentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_play_circle_filled_white_24dp);
+                            }
+                            noteMgr.notify(noteID, note);
+                        } else {
+                            //reacquire CPU lock after auto-releasing it on pause
+                            mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
+                            mediaPlayer.start();
+                            note.contentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_pause_white_24dp);
+                            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+                                note.bigContentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_pause_white_24dp);
+                            }
+                            noteMgr.notify(noteID, note);
                         }
-                        noteMgr.notify(noteID, note);
-                    } else {
-                        //reacquire CPU lock after auto-releasing it on pause
-                        mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
-                        mediaPlayer.start();
-                        note.contentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_pause_white_24dp);
-                        if(android.os.Build.VERSION.SDK_INT >=16){
-                            note.bigContentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_pause_white_24dp);
-                        }
-                        noteMgr.notify(noteID, note);
                     }
-                } else if(action.equals(ACTION_REWIND)) {
-                    mediaPlayer.seekTo(0);
-//                    noteMgr.notify(noteID, note);
-                } else if(action.equals(ACTION_STOP)) {
+                } else if (ACTION_REWIND.equals(action)) {
+                    if(mediaPlayer != null) {
+                        mediaPlayer.seekTo(0);
+                    }
+                } else if (ACTION_STOP.equals(action)) {
                     //this auto-releases CPU lock
-                    mediaPlayer.stop();
+                    if(mediaPlayer != null) {
+                        mediaPlayer.stop();
+                    }
                     afterPlayCleanup(true);
+                } else if (ACTION_PREV_TRACK.equals(action)) {
+                    isPreviousBtnPressed = true;
+                    afterPlayCleanup(false);
+                } else if (ACTION_CHANGE_PLAY_MODE.equals(action)) {
+                    // change the current play mode
+                    if (currentPlayMode == QueueManager.PLAY_ALL_ITEM) {
+                        currentPlayMode = QueueManager.PLAY_ONE_ITEM;
+                    } else if (currentPlayMode == QueueManager.PLAY_ONE_ITEM) {
+                        currentPlayMode = QueueManager.PLAY_RANDOM;
+                    } else {
+                        currentPlayMode = QueueManager.PLAY_ALL_ITEM;
+                    }
+                    note.contentView.setImageViewResource(R.id.notificationChangePlayMode, currentPlayMode);
+                    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+                        note.bigContentView.setImageViewResource(R.id.notificationChangePlayMode, currentPlayMode);
+                    }
+                    noteMgr.notify(noteID, note);
+                } else if (ACTION_NEXT_TRACK.equals(action)) {
+                    afterPlayCleanup(false);
+                    // When Headphones is disconnected
+                } else if (AudioManager.ACTION_AUDIO_BECOMING_NOISY.equals(action)) {
+                    if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                        mediaPlayer.pause();
+                    }
                 }
             }
         };
 
         private void afterPlayCleanup(final boolean isStopByUser) {
-            //remove progress bar
-            //noteBuilder.setProgress(0, 0, false);
-
             //remove notification
             noteMgr.cancel(noteID);
             unregisterReceiver(broadcastReceiver);
             //release mediaPlayer's system resources
-            mediaPlayer.release();
+            if(mediaPlayer != null) {
+                mediaPlayer.release();
+                mediaPlayer = null;
+            }
 
-            //release wifilock
-            wifiLock.release();
-            //remove foreground status of service; make BackgroundPlayer killable
-            stopForeground(true);
-
-            stopSelf();
-            if(!isStopByUser) {
-                IntentRunner.lunchNextStreamOnPlayList(getApplicationContext(), playListId, positionInPlayList);
+            if (!isStopByUser) {
+                retrieveInfoFromQueue();
+                lunchTrack.run();
+            } else {
+                queueManager.clearQueue();
+                //release wifilock
+                wifiLock.release();
+                //remove foreground status of service; make BackgroundPlayer killable
+                stopForeground(true);
+                stopSelf();
             }
         }
 
@@ -276,8 +386,11 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             }
         }
 
+        private RemoteViews view =
+                new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
+        private RemoteViews expandedView =
+                new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification_expanded);
         private Notification buildNotification() {
-            Notification note;
             Resources res = getApplicationContext().getResources();
             noteBuilder = new NotificationCompat.Builder(owner);
 
@@ -287,6 +400,13 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                     new Intent(ACTION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent rewindPI = PendingIntent.getBroadcast(owner, noteID,
                     new Intent(ACTION_REWIND), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent prevTrackPI = PendingIntent.getBroadcast(owner, noteID,
+                    new Intent(ACTION_PREV_TRACK), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent nextTrackPI = PendingIntent.getBroadcast(owner, noteID,
+                    new Intent(ACTION_NEXT_TRACK), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent changePlayModeTrackPI = PendingIntent.getBroadcast(owner, noteID,
+                    new Intent(ACTION_CHANGE_PLAY_MODE), PendingIntent.FLAG_UPDATE_CURRENT);
+
             /*
             NotificationCompat.Action pauseButton = new NotificationCompat.Action.Builder
                     (R.drawable.ic_pause_white_24dp, "Pause", playPI).build();
@@ -301,8 +421,8 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             noteBuilder
                     .setOngoing(true)
                     .setDeleteIntent(stopPI)
-                            //doesn't fit with Notification.MediaStyle
-                            //.setProgress(vidLength, 0, false)
+                    //doesn't fit with Notification.MediaStyle
+                    //.setProgress(vidLength, 0, false)
                     .setSmallIcon(R.drawable.ic_play_circle_filled_white_24dp)
                     .setTicker(
                             String.format(res.getString(
@@ -322,33 +442,40 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             view.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
             view.setOnClickPendingIntent(R.id.notificationRewind, rewindPI);
             view.setOnClickPendingIntent(R.id.notificationContent, openDetailView);
+            view.setOnClickPendingIntent(R.id.notificationLunchPrevTrack, prevTrackPI);
+            view.setOnClickPendingIntent(R.id.notificationLunchNextTrack, nextTrackPI);
+            view.setOnClickPendingIntent(R.id.notificationChangePlayMode, changePlayModeTrackPI);
 
             //possibly found the expandedView problem,
             //but can't test it as I don't have a 5.0 device. -medavox
             RemoteViews expandedView =
                     new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification_expanded);
-                expandedView.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
+            expandedView.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
             expandedView.setTextViewText(R.id.notificationSongName, title);
-                expandedView.setTextViewText(R.id.notificationArtist, channelName);
+            expandedView.setTextViewText(R.id.notificationArtist, channelName);
             expandedView.setOnClickPendingIntent(R.id.notificationStop, stopPI);
             expandedView.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
             expandedView.setOnClickPendingIntent(R.id.notificationRewind, rewindPI);
             expandedView.setOnClickPendingIntent(R.id.notificationContent, openDetailView);
+            expandedView.setOnClickPendingIntent(R.id.notificationLunchPrevTrack, prevTrackPI);
+            expandedView.setOnClickPendingIntent(R.id.notificationLunchNextTrack, nextTrackPI);
+            expandedView.setOnClickPendingIntent(R.id.notificationChangePlayMode, changePlayModeTrackPI);
 
 
-            noteBuilder.setCategory(Notification.CATEGORY_TRANSPORT);
+            noteBuilder.setCategory(NotificationCompat.CATEGORY_TRANSPORT);
 
             //Make notification appear on lockscreen
-            noteBuilder.setVisibility(Notification.VISIBILITY_PUBLIC);
+            noteBuilder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
 
-            note = noteBuilder.build();
+            final Notification note = noteBuilder.build();
             note.contentView = view;
-
-            if (android.os.Build.VERSION.SDK_INT > 16) {
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
                 note.bigContentView = expandedView;
             }
 
             return note;
         }
     }
+
+
 }

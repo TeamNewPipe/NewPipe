@@ -14,6 +14,7 @@ import org.schabi.newpipe.playList.NewPipeSQLiteHelper.PLAYLIST_COLUMNS;
 import org.schabi.newpipe.playList.NewPipeSQLiteHelper.PLAYLIST_LINK_ENTRIES;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.schabi.newpipe.playList.NewPipeSQLiteHelper.PLAYLIST_ENTRIES_COLUMNS;
 import static org.schabi.newpipe.playList.NewPipeSQLiteHelper.Qualified;
@@ -37,6 +38,8 @@ public class PlayListDataSource {
         int RELATED_STREAM_ID = -3;
         String FAVORITES = "favorites";
         int FAVORITES_ID = -4;
+        String QUEUE = "queue";
+        int QUEUE_ID = -5;
     }
 
     public PlayListDataSource(final Context context) {
@@ -86,15 +89,79 @@ public class PlayListDataSource {
         return id;
     }
 
-    public StreamPreviewInfo getNextEntriesForItems(final int currentPlayList, final int currentPosition) {
+
+    public StreamPreviewInfo getRandomItem(int playlistId) {
+        open();
+        Cursor cursor = database.query(Tables.PLAYLIST_LINK_JOIN_ENTRIES,
+                concat(PLAYLIST_ENTRIES_COLUMNS.ALL_COLUMNS, new String[]{PLAYLIST_LINK_ENTRIES.POSITION}),
+                PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + "=?",
+                new String[]{String.valueOf(playlistId)},
+                null,
+                null,
+                null,
+                "RANDOM() LIMIT 1");
+        final StreamPreviewInfo info = cursor.getCount() > 0 ? getStreamPreviewInfo(cursor) : null;
+        cursor.close();
+        close();
+        return info;
+    }
+
+    public StreamPreviewInfo getPreviousEntryForItems(final int playlistId, final int position) {
+        open();
+        final Cursor cursor = database.query(Tables.PLAYLIST_LINK_JOIN_ENTRIES,
+                concat(PLAYLIST_ENTRIES_COLUMNS.ALL_COLUMNS, new String[]{PLAYLIST_LINK_ENTRIES.POSITION}),
+                PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + "=? AND " +
+                PLAYLIST_LINK_ENTRIES.POSITION + "<?",
+                new String[]{
+                    String.valueOf(playlistId),
+                    String.valueOf(position)
+                },
+                null,
+                null,
+                PLAYLIST_LINK_ENTRIES.POSITION + " ASC", "1");
+        final StreamPreviewInfo stream;
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            stream = getStreamPreviewInfo(cursor);
+        } else {
+            stream = null;
+        }
+        cursor.close();
+        close();
+        return stream;
+    }
+    public StreamPreviewInfo getNextEntryForItems(final int playlistId, final int position) {
         open();
         final Cursor cursor = database.query(Tables.PLAYLIST_LINK_JOIN_ENTRIES,
                 concat(PLAYLIST_ENTRIES_COLUMNS.ALL_COLUMNS, new String[]{PLAYLIST_LINK_ENTRIES.POSITION}),
                 PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + "=? AND " +
                 PLAYLIST_LINK_ENTRIES.POSITION + ">?",
                 new String[]{
-                    String.valueOf(currentPlayList),
-                    String.valueOf(currentPosition)
+                    String.valueOf(playlistId),
+                    String.valueOf(position)
+                }, null, null,
+                PLAYLIST_LINK_ENTRIES.POSITION + " ASC", "1");
+        final StreamPreviewInfo stream;
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            stream = getStreamPreviewInfo(cursor);
+        } else {
+            stream = null;
+        }
+        cursor.close();
+        close();
+        return stream;
+    }
+
+    public StreamPreviewInfo getEntryForItems(final int playlistId, final int position) {
+        open();
+        final Cursor cursor = database.query(Tables.PLAYLIST_LINK_JOIN_ENTRIES,
+                concat(PLAYLIST_ENTRIES_COLUMNS.ALL_COLUMNS, new String[]{PLAYLIST_LINK_ENTRIES.POSITION}),
+                PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + "=? AND " +
+                PLAYLIST_LINK_ENTRIES.POSITION + "=?",
+                new String[]{
+                    String.valueOf(playlistId),
+                    String.valueOf(position)
                 }, null, null,
                 PLAYLIST_LINK_ENTRIES.POSITION + " ASC", "1");
         final StreamPreviewInfo stream;
@@ -139,48 +206,88 @@ public class PlayListDataSource {
         return nb;
     }
 
-    public long addEntryFromPlayList(final int playList_id, final StreamPreviewInfo info) {
+    public void addEntriesToPlayList(final int playList_id, final List<StreamPreviewInfo> streams) {
+        if(streams != null && !streams.isEmpty()) {
+            for(int i = 0; i < streams.size(); i++) {
+                addEntryToPlayList(playList_id, streams.get(i));
+            }
+        }
+    }
+
+    public long addEntryToPlayList(final int playList_id, final StreamPreviewInfo info) {
         // first add entry
-        open();
+        // first check if values is already existing in data base
+        long entries_id = getEntryId(info.id, info.service_id);
         final ContentValues values = new ContentValues();
-        values.put(PLAYLIST_ENTRIES_COLUMNS.SERVICE_ID, info.service_id);
-        values.put(PLAYLIST_ENTRIES_COLUMNS.ID, info.id);
-        values.put(PLAYLIST_ENTRIES_COLUMNS.TITLE, info.title);
-        values.put(PLAYLIST_ENTRIES_COLUMNS.UPLOADER, info.uploader);
-        values.put(PLAYLIST_ENTRIES_COLUMNS.THUMBNAIL_URL, info.thumbnail_url);
-        values.put(PLAYLIST_ENTRIES_COLUMNS.WEBPAGE_URL, info.webpage_url);
-        values.put(PLAYLIST_ENTRIES_COLUMNS.UPLOAD_DATE, info.upload_date);
-        values.put(PLAYLIST_ENTRIES_COLUMNS.VIEW_COUNT, info.view_count);
-        values.put(PLAYLIST_ENTRIES_COLUMNS.DURATION, info.duration);
-        long id = database.insert(Tables.PLAYLIST_ENTRIES, null, values);
-        if(id > -1) {
+        if (entries_id < 0) {
+            open();
+            values.put(PLAYLIST_ENTRIES_COLUMNS.SERVICE_ID, info.service_id);
+            values.put(PLAYLIST_ENTRIES_COLUMNS.ID, info.id);
+            values.put(PLAYLIST_ENTRIES_COLUMNS.TITLE, info.title);
+            values.put(PLAYLIST_ENTRIES_COLUMNS.UPLOADER, info.uploader);
+            values.put(PLAYLIST_ENTRIES_COLUMNS.THUMBNAIL_URL, info.thumbnail_url);
+            values.put(PLAYLIST_ENTRIES_COLUMNS.WEBPAGE_URL, info.webpage_url);
+            values.put(PLAYLIST_ENTRIES_COLUMNS.UPLOAD_DATE, info.upload_date);
+            values.put(PLAYLIST_ENTRIES_COLUMNS.VIEW_COUNT, info.view_count);
+            values.put(PLAYLIST_ENTRIES_COLUMNS.DURATION, info.duration);
+            entries_id = database.insert(Tables.PLAYLIST_ENTRIES, null, values);
+        }
+        if(entries_id > -1) {
             values.clear();
             values.put(PLAYLIST_LINK_ENTRIES.PLAYLIST_ID, playList_id);
-            values.put(PLAYLIST_LINK_ENTRIES.PLAYLIST_ENTRIES_ID, id);
+            values.put(PLAYLIST_LINK_ENTRIES.PLAYLIST_ENTRIES_ID, entries_id);
             values.put(PLAYLIST_LINK_ENTRIES.POSITION, getNumberOfEntriesOnPlayList(playList_id) + 1);
             // because count entries on playlist close the database
             open();
-            id = database.insert(Tables.PLAYLIST_LINK_ENTRIES, null, values);
+            entries_id = database.insert(Tables.PLAYLIST_LINK_ENTRIES, null, values);
         }
         close();
-        return id;
+        return entries_id;
     }
 
-    public long getEntriesId(final String id, final int service_id) {
+    public StreamPreviewInfo getEntryFromPlayList(final int playlistId, final int position) {
+            open();
+            final Cursor cursor = database.query(Tables.PLAYLIST_LINK_JOIN_ENTRIES,
+                    concat(PLAYLIST_ENTRIES_COLUMNS.ALL_COLUMNS, new String[]{ PLAYLIST_LINK_ENTRIES.POSITION}),
+                    PLAYLIST_LINK_ENTRIES.POSITION + "=? AND " +
+                    PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + "=?",
+                    new String[]{String.valueOf(position), String.valueOf(playlistId) },
+                    null,
+                    null,
+                    "1");
+            StreamPreviewInfo entry;
+            if(cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                entry = getStreamPreviewInfo(cursor);
+            } else  {
+                entry = null;
+            }
+            cursor.close();
+            close();
+            return entry;
+
+    }
+
+    public long getEntryId(final String id, final int service_id) {
         open();
         final Cursor cursor = database.query(Tables.PLAYLIST_ENTRIES,
                 new String[]{Qualified.PLAYLIST_ENTRIES_ID},
                 PLAYLIST_ENTRIES_COLUMNS.ID + "=? AND " + PLAYLIST_ENTRIES_COLUMNS.SERVICE_ID + "=?",
                 new String[]{id, String.valueOf(service_id)}, null, null, null);
-        cursor.moveToFirst();
-        long entries_id = cursor.getLong(0);
+        long entries_id;
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            entries_id = cursor.getLong(0);
+        } else  {
+            entries_id = -1;
+        }
         cursor.close();
         close();
         return entries_id;
     }
 
     public int deleteEntryFromPlayList(final int playlist_id, final String id, final int service_id) {
-        final long entriesId = getEntriesId(id, service_id);
+        final long entriesId = getEntryId(id, service_id);
         open();
         Log.i(TAG, String.format("Delete playlist entry with ref_id : %d and service_id : %d for playlist : %d", entriesId, service_id, playlist_id));
         final int result = database.delete(Tables.PLAYLIST_LINK_ENTRIES,
@@ -188,6 +295,17 @@ public class PlayListDataSource {
                 PLAYLIST_LINK_ENTRIES.PLAYLIST_ENTRIES_ID + "=?",
                 new String[]{String.valueOf(playlist_id), String.valueOf(entriesId)});
         Log.i(TAG, String.format("Deleted playlist entry with ref_id : %d for playlist : %d", entriesId, playlist_id));
+        close();
+        return result;
+    }
+
+    public int deleteEntryFromPlayList(int playlist_id, int position) {
+        open();
+        final int result = database.delete(Tables.PLAYLIST_LINK_ENTRIES,
+                PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + "=? AND " +
+                PLAYLIST_LINK_ENTRIES.POSITION + "=?",
+                new String[]{String.valueOf(playlist_id), String.valueOf(position)});
+        Log.i(TAG, String.format("Deleted playlist entry with position : %d for playlist : %d", position, playlist_id));
         close();
         return result;
     }
@@ -268,7 +386,10 @@ public class PlayListDataSource {
         stream.upload_date = cursor.getString(cursor.getColumnIndex(PLAYLIST_ENTRIES_COLUMNS.UPLOAD_DATE));
         stream.view_count = cursor.getLong(cursor.getColumnIndex(PLAYLIST_ENTRIES_COLUMNS.VIEW_COUNT));
         stream.duration = cursor.getInt(cursor.getColumnIndex(PLAYLIST_ENTRIES_COLUMNS.DURATION));
-        stream.position = cursor.getInt(cursor.getColumnIndex(PLAYLIST_LINK_ENTRIES.POSITION));
+        final int positionColumn = cursor.getColumnIndex(PLAYLIST_LINK_ENTRIES.POSITION);
+        if(positionColumn > -1) {
+            stream.position = cursor.getInt(positionColumn);
+        }
         return stream;
     }
 

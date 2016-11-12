@@ -317,7 +317,23 @@ public class VideoItemDetailFragment extends Fragment {
             }
 
             initThumbnailViews(info);
+            recordToHistoric(info);
         }
+    }
+
+    private void recordToHistoric(StreamInfo info) {
+        final PlayListDataSource playListDataSource = new PlayListDataSource(activity);
+        final StreamPreviewInfo streamPreviewInfo = new StreamPreviewInfo();
+        streamPreviewInfo.duration = info.duration;
+        streamPreviewInfo.service_id = info.service_id;
+        streamPreviewInfo.id = info.id;
+        streamPreviewInfo.title = info.title;
+        streamPreviewInfo.uploader = info.uploader;
+        streamPreviewInfo.thumbnail_url = info.thumbnail_url;
+        streamPreviewInfo.webpage_url = info.webpage_url;
+        streamPreviewInfo.upload_date = info.upload_date;
+        streamPreviewInfo.view_count = info.view_count;
+        playListDataSource.addEntryToPlayList(PLAYLIST_SYSTEM.HISTORIC_ID, streamPreviewInfo);
     }
 
     private void initThumbnailViews(final StreamInfo info) {
@@ -599,7 +615,7 @@ public class VideoItemDetailFragment extends Fragment {
             protected Void doInBackground(Void... voids) {
                 final PlayListDataSource dataSource = new PlayListDataSource(getActivity().getApplicationContext());
                 dataSource.deleteAllEntryFromPlayList(PLAYLIST_SYSTEM.RELATED_STREAM_ID);
-                dataSource.addEntryFromPlayList(PLAYLIST_SYSTEM.RELATED_STREAM_ID, info.related_streams.get(0));
+                dataSource.addEntryToPlayList(PLAYLIST_SYSTEM.RELATED_STREAM_ID, info.related_streams.get(0));
                 return null;
             }
         }.execute();

@@ -52,7 +52,7 @@ public class IntentRunner {
             new AsyncTask<Void, Void, StreamPreviewInfo>() {
                 @Override
                 protected StreamPreviewInfo doInBackground(final Void... voids) {
-                    return playListDataSource.getNextEntriesForItems(currentPlayList, currentPosition);
+                    return playListDataSource.getNextEntryForItems(currentPlayList, currentPosition);
                 }
 
                 @Override
@@ -60,7 +60,7 @@ public class IntentRunner {
                     super.onPostExecute(nextStream);
                     if(nextStream != null) {
                         IntentRunner.lunchIntentVideoDetail(context, nextStream.webpage_url, nextStream.service_id,
-                                currentPlayList, currentPosition + 1);
+                                currentPlayList, nextStream.position);
                     }
                 }
             }.execute();
@@ -77,5 +77,18 @@ public class IntentRunner {
         } else {
             Toast.makeText(context, R.string.youtube_playlist_not_valid, Toast.LENGTH_LONG).show();
         }
+    }
+    public static void lunchLocalPlayList(final Context context, final int playListId) {
+        final Intent i = new Intent(context, ChannelActivity.class);
+        i.putExtra(SearchInfoItemFragment.PLAYLIST_ID, playListId);
+        context.startActivity(i);
+    }
+
+    public static void lunchQueue(final Context context) {
+        lunchLocalPlayList(context, PLAYLIST_SYSTEM.QUEUE_ID);
+    }
+
+    public static void lunchHistoric(final Context context) {
+        lunchLocalPlayList(context, PLAYLIST_SYSTEM.HISTORIC_ID);
     }
 }

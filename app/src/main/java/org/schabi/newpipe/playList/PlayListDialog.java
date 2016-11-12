@@ -78,7 +78,7 @@ public class PlayListDialog {
                                         for (final String playList : addToPlayList) {
                                             final int indexOfValue = playListMap.indexOfValue(playList);
                                             final int playListId = playListMap.keyAt(indexOfValue);
-                                            playListDataSource.addEntryFromPlayList(playListId, info);
+                                            playListDataSource.addEntryToPlayList(playListId, info);
                                         }
                                         return null;
                                     }
@@ -117,7 +117,7 @@ public class PlayListDialog {
                             @Override
                             protected Void doInBackground(Void... voids) {
                                 final PlayList playList = playListDataSource.createPlayList(playListName);
-                                playListDataSource.addEntryFromPlayList(playList.get_id(), info);
+                                playListDataSource.addEntryToPlayList(playList.get_id(), info);
                                 return null;
                             }
                         }.execute();

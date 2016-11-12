@@ -25,6 +25,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:orientation="vertical" >
 
@@ -34,8 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="marquee"
-                android:singleLine="true"
-                android:text="title" />
+                android:text="title"
+                android:maxLines="1" />
 
             <TextView
                 android:id="@+id/notificationArtist"
@@ -43,20 +44,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="marquee"
-                android:singleLine="true"
-                android:text="artist" />
+                android:text="artist"
+                android:maxLines="1" />
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/notificationRewind"
+            android:id="@+id/notificationLunchPrevTrack"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="5dp"
             android:background="#00ffffff"
             android:clickable="true"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_action_av_fast_rewind" />
-
+            android:src="@drawable/ic_skip_previous_white_24dp" />
         <ImageButton
             android:id="@+id/notificationPlayPause"
             android:layout_width="40dp"
@@ -66,7 +66,24 @@
             android:clickable="true"
             android:scaleType="fitXY"
             android:src="@drawable/ic_pause_white_24dp" />
-
+        <ImageButton
+            android:id="@+id/notificationLunchNextTrack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:background="#00ffffff"
+            android:clickable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_skip_next_white_24dp" />
+        <ImageButton
+            android:id="@+id/notificationChangePlayMode"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:background="#00ffffff"
+            android:clickable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_repeat_white_24dp" />
         <ImageButton
             android:id="@+id/notificationStop"
             android:layout_width="40dp"

@@ -41,4 +41,14 @@ public class VideoStream {
         return cmp != null && equalStats(cmp)
                 && url.equals(cmp.url);
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("VideoStream{");
+        sb.append("url='").append(url).append('\'');
+        sb.append(", format=").append(format);
+        sb.append(", resolution='").append(resolution).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

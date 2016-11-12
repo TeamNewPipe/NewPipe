@@ -7,6 +7,7 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.search.SearchEngine;
 import org.schabi.newpipe.extractor.search.SuggestionExtractor;
 import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
+import org.schabi.newpipe.playList.extractor.QueueExtractor;
 
 import java.io.IOException;
 
@@ -54,6 +55,9 @@ public abstract class StreamingService {
     public abstract ChannelExtractor getPlayListExtractorInstance(String url, int page) throws ExtractionException, IOException;
     public abstract ChannelExtractor getLocalPlayListExtractorInstance(Context context, int playListId, int pageNumber) throws IOException, ExtractionException;
     public abstract SuggestionExtractor getSuggestionExtractorInstance();
+    public QueueExtractor getQueueExtractorInstance(Context context, int page) throws IOException, ExtractionException {
+        return new QueueExtractor(context, getUrlIdHandlerInstance(), page);
+    }
 
     public final int getServiceId() {
         return serviceId;

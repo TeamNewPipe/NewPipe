@@ -11,6 +11,14 @@
         app:showAsAction="never"
         android:title="@string/playlist" />
 
+    <item android:id="@+id/action_show_current_queue"
+        app:showAsAction="never"
+        android:title="@string/current_queue" />
+
+    <item android:id="@+id/action_show_historic"
+        app:showAsAction="never"
+        android:title="@string/Historic" />
+
     <item android:id="@+id/action_report_error"
         app:showAsAction="never"
         android:title="@string/report_error" />

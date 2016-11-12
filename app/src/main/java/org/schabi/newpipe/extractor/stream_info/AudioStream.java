@@ -43,4 +43,15 @@ public class AudioStream {
         return cmp != null && equalStats(cmp)
                 && url.equals(cmp.url);
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("AudioStream{");
+        sb.append("url='").append(url).append('\'');
+        sb.append(", format=").append(format);
+        sb.append(", bandwidth=").append(bandwidth);
+        sb.append(", sampling_rate=").append(sampling_rate);
+        sb.append('}');
+        return sb.toString();
+    }
 }

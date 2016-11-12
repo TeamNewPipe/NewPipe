@@ -1,4 +1,4 @@
-package org.schabi.newpipe.playList;
+package org.schabi.newpipe.playList.extractor;
 
 import android.content.Context;
 
@@ -10,6 +10,8 @@ import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoCollector;
 import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoExtractor;
+import org.schabi.newpipe.playList.PlayList;
+import org.schabi.newpipe.playList.PlayListDataSource;
 
 import java.io.IOException;
 
@@ -20,11 +22,11 @@ public class LocalPlayListExtractor extends ChannelExtractor {
     private final int page;
     private final int playlistId;
 
-    public LocalPlayListExtractor(final Context context, UrlIdHandler urlIdHandlerInstance, final int playlistId, int page) throws IOException, ExtractionException {
+    public LocalPlayListExtractor(final Context context, final UrlIdHandler urlIdHandlerInstance, final int playlistId, int page) throws IOException, ExtractionException {
         super(urlIdHandlerInstance, "", page, -1);
         this.playlistId = playlistId;
         dataSource = new PlayListDataSource(context);
-        firstItem = dataSource.getNextEntriesForItems(getPlayListId(), 0);
+        firstItem = dataSource.getNextEntryForItems(getPlayListId(), 0);
         this.page = page;
     }
 
@@ -39,28 +41,12 @@ public class LocalPlayListExtractor extends ChannelExtractor {
 
     @Override
     public String getAvatarUrl() throws ParsingException {
-        try {
-            if(firstItem == null) {
-                return "";
-            } else {
-                return "https://i.ytimg.com/vi/" + firstItem.id + "/hqdefault.jpg";
-            }
-        } catch (final Exception e) {
-            throw new ParsingException(e.getMessage(), e);
-        }
+        return firstItem == null ?  "" : firstItem.thumbnail_url;
     }
 
     @Override
     public String getBannerUrl() throws ParsingException {
-        try {
-            if(firstItem == null) {
-                return "";
-            } else {
-                return "https://i.ytimg.com/vi/" + firstItem.id + "/maxresdefault.jpg";
-            }
-        } catch (final Exception e) {
-            throw new ParsingException(e.getMessage(), e);
-        }
+        return firstItem == null ?  "" : firstItem.thumbnail_url;
     }
 
     @Override

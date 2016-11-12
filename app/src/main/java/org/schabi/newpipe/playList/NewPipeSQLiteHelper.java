@@ -150,6 +150,7 @@ public class NewPipeSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(createPlayListSystem(PLAYLIST_SYSTEM.HISTORIC_ID, PLAYLIST_SYSTEM.HISTORIC));
         db.execSQL(createPlayListSystem(PLAYLIST_SYSTEM.FAVORITES_ID, PLAYLIST_SYSTEM.FAVORITES));
         db.execSQL(createPlayListSystem(PLAYLIST_SYSTEM.RELATED_STREAM_ID, PLAYLIST_SYSTEM.RELATED_STREAM));
+        db.execSQL(createPlayListSystem(PLAYLIST_SYSTEM.QUEUE_ID, PLAYLIST_SYSTEM.QUEUE));
 
     }
 

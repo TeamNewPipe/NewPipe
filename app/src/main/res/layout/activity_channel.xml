@@ -77,6 +77,15 @@
         app:layout_anchor="@id/channel_app_bar"
         app:layout_anchorGravity="bottom|end" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/channel_replace_queue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_play_arrow_white_48dp"
+        app:layout_anchorGravity="center_vertical|right" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

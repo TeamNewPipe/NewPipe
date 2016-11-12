@@ -83,6 +83,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             }
+            case R.id.action_show_current_queue: {
+                IntentRunner.lunchQueue(this);
+                return true;
+            }
+            case R.id.action_show_historic: {
+                IntentRunner.lunchHistoric(this);
+                return true;
+            }
             default:
                 return mainFragment.onOptionsItemSelected(item) ||
                         super.onOptionsItemSelected(item);

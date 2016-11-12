@@ -11,11 +11,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 
+import org.schabi.newpipe.IntentRunner;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.playList.PlayListActivity;
-import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
+import org.schabi.newpipe.playList.PlayListActivity;
+import org.schabi.newpipe.settings.SettingsActivity;
 
 import java.util.List;
 
@@ -178,6 +179,14 @@ class ActionBarHandler {
             case R.id.action_show_playlist: {
                 Intent intent = new Intent(activity, PlayListActivity.class);
                 activity.startActivity(intent);
+                return true;
+            }
+            case R.id.action_show_current_queue: {
+                IntentRunner.lunchQueue(activity);
+                return true;
+            }
+            case R.id.action_show_historic: {
+                IntentRunner.lunchHistoric(activity);
                 return true;
             }
             case R.id.action_play_with_kodi:

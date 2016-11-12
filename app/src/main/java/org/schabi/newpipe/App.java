@@ -13,6 +13,7 @@ import org.acra.config.ACRAConfigurationException;
 import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.ReportSenderFactory;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.playList.QueueManager;
 import org.schabi.newpipe.report.AcraReportSenderFactory;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.settings.SettingsActivity;
@@ -83,6 +84,7 @@ public class App extends Application {
         // DO NOT REMOVE THIS FUNCTION!!!
         // Otherwise downloadPathPreference has invalid value.
         SettingsActivity.initSettings(this);
+        new QueueManager(this).clearQueue();
     }
 
     private void initStetho() {

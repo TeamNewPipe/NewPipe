@@ -28,9 +28,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.schabi.newpipe.IntentRunner;
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.playList.PlayListActivity;
 import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.SettingsActivity;
 
 import java.io.File;
@@ -268,6 +269,14 @@ public class DownloadActivity extends AppCompatActivity implements AdapterView.O
             case R.id.action_show_playlist: {
                 Intent intent = new Intent(this, PlayListActivity.class);
                 startActivity(intent);
+                return true;
+            }
+            case R.id.action_show_current_queue: {
+                IntentRunner.lunchQueue(this);
+                return true;
+            }
+            case R.id.action_show_historic: {
+                IntentRunner.lunchHistoric(this);
                 return true;
             }
             case R.id.action_report_error: {
