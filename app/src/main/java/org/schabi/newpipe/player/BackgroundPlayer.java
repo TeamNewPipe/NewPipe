@@ -386,10 +386,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             }
         }
 
-        private RemoteViews view =
-                new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
-        private RemoteViews expandedView =
-                new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification_expanded);
         private Notification buildNotification() {
             Resources res = getApplicationContext().getResources();
             noteBuilder = new NotificationCompat.Builder(owner);
