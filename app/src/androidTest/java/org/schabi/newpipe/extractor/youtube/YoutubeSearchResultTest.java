@@ -2,18 +2,18 @@ package org.schabi.newpipe.extractor.youtube;
 
 import android.test.AndroidTestCase;
 
-
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.exceptions.ParsingException;
-import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
+import org.schabi.newpipe.extractor.search.SuggestionExtractor;
+import org.schabi.newpipe.extractor.services.youtube.YoutubeSuggestionExtractor;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
- * Created by Christian Schabesberger on 11.03.16.
+ * Created by Christian Schabesberger on 18.11.16.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * YoutubeStreamExtractorLiveStreamTest.java is part of NewPipe.
+ * YoutubeSearchResultTest.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,22 +29,17 @@ import java.io.IOException;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+public class YoutubeSearchResultTest extends AndroidTestCase {
+    List<String> suggestionReply;
 
-public class YoutubeStreamExtractorLiveStreamTest extends AndroidTestCase {
 
-    private StreamExtractor extractor;
-
-    public void setUp() throws IOException, ExtractionException {
-        //todo: make the extractor not throw over a livestream
-        /*
-        extractor = NewPipe.getService("Youtube")
-                .getExtractorInstance("https://www.youtube.com/watch?v=J0s6NjqdjLE", new Downloader());
-                */
+    @Override
+    public void setUp() throws Exception {
+        SuggestionExtractor engine = new YoutubeSuggestionExtractor(0);
+        suggestionReply = engine.suggestionList("hello", "de");
     }
 
-    public void testStreamType() throws ParsingException {
-        assertTrue(true);
-        // assertTrue(extractor.getStreamType() == AbstractVideoInfo.StreamType.LIVE_STREAM);
+    public void testIfSuggestions() {
+        assertFalse(suggestionReply.isEmpty());
     }
 }
-

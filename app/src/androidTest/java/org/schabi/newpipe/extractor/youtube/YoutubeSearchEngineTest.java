@@ -30,15 +30,25 @@ import java.util.List;
 
 public class YoutubeSearchEngineTest extends AndroidTestCase {
     private SearchResult result;
-    private List<String> suggestionReply;
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        SearchEngine engine = NewPipe.getService("Youtube")
-                .getSearchEngineInstance();
+        SearchEngine engine = NewPipe.getService("Youtube").getSearchEngineInstance();
 
-        result = engine.search("this is something boring",
-                0, "de").getSearchResult();
+        result = engine.search("this is something boring", 0, "de").getSearchResult();
+    }
+
+    public void testResultList() {
+        assertFalse(result.resultList.isEmpty());
+    }
+
+    public void testResultErrors() {
+        assertTrue(result.errors == null || result.errors.isEmpty());
+    }
+
+    public void testSuggestion() {
+        //todo write a real test
+        assertTrue(result.suggestion != null);
     }
 }

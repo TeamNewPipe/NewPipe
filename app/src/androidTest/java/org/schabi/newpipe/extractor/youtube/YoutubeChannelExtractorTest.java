@@ -2,6 +2,7 @@ package org.schabi.newpipe.extractor.youtube;
 
 import android.test.AndroidTestCase;
 
+import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelExtractor;
 
@@ -27,7 +28,7 @@ import org.schabi.newpipe.extractor.channel.ChannelExtractor;
 
 public class YoutubeChannelExtractorTest extends AndroidTestCase  {
 
-    private ChannelExtractor extractor;
+    ChannelExtractor extractor;
     @Override
     public void setUp() throws Exception {
         super.setUp();
