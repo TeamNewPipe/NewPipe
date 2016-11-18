@@ -10,7 +10,7 @@
     <string name="download">Скачать</string>
     <string name="search">Найти</string>
     <string name="settings">Настройки</string>
-    <string name="did_you_mean">Возможно, вы имели в виду: </string>
+    <string name="did_you_mean">Возможно, вы имели в виду: %1$s ?</string>
     <string name="search_page">Страница поиска: </string>
     <string name="share_dialog_title">Поделиться с помощью</string>
     <string name="choose_browser">Выбрать браузер</string>
@@ -51,7 +51,7 @@
     <string name="detail_uploader_thumbnail_view_description">Миниатюра аватара пользователся</string>
     <string name="detail_dislikes_img_view_description">Дислайки</string>
     <string name="detail_likes_img_view_description">Лайки</string>
-<string name="use_external_video_player_title">Использовать внешний проигрыватель для видео</string>
+<string name="use_external_video_player_title">Использовать внешний медиаплеер</string>
     <string name="use_external_audio_player_title">Использовать внешний проигрыватель для аудио</string>
     <string name="background_player_playing_toast">Проигрывание в фоновом режиме</string>
     <string name="background_player_name">Фоновый проигрыватель NewPipe</string>
@@ -90,4 +90,57 @@
 
     <string name="action_settings">Настройки</string>
 
+    <string name="show_age_restricted_content_title">Показывать контент с ограничением по возрасту</string>
+    <string name="general_error">Ошибка</string>
+    <string name="info_requested_stream_lbl">Запрашиваемый поток</string>
+    <string name="your_comment">Ваши комментарии (на английском):</string>
+    <string name="err_dir_create">Невозможно создать папку для загрузки \'%1$s\'</string>
+    <string name="autoplay_by_calling_app_title">Автоматически воспроизводить при открытии из другого приложения</string>
+    <string name="autoplay_by_calling_app_summary">Автоматически воспроизводить видео при вызове NewPipe из другого приложения</string>
+    <string name="content">Контент</string>
+    <string name="video_is_age_restricted">Видео имеет возрастные ограничения. Сначала разрешите видео с возрастными ограничениями в настройках.</string>
+    <string name="duration_live">вживую</string>
+    <string name="downloads">Загрузки</string>
+    <string name="downloads_title">Загрузки</string>
+    <string name="settings_title">Настройки</string>
+    <string name="error_report_title">Отчет об ошибке</string>
+
+    <string name="parsing_error">Сайт невозможно разобрать</string>
+    <string name="light_parsing_error">Невозможно полностью разобрать сайт</string>
+    <string name="content_not_available">Контент недоступен</string>
+    <string name="blocked_by_gema">Заблокировано правообладателями</string>
+    <string name="could_not_setup_download_menu">Невозможно установить меню загрузки</string>
+    <string name="live_streams_not_supported">Это прямая трансляция. Они пока не поддерживаются</string>
+    <string name="could_not_load_image">Изображение не может быть загружено</string>
+    <string name="app_ui_crash">"Падение приложения/пользовательского интерфейса "</string>
+    <string name="sorry_string">Простите, такое не должно было произойти</string>
+    <string name="error_report_button_text">Отправить отчет об ошибке с помощью электронной почты</string>
+    <string name="error_snackbar_message">Простите, произошла ошибка</string>
+    <string name="error_snackbar_action">ОТЧЕТ</string>
+    <string name="what_device_headline">"Информация: "</string>
+    <string name="what_happened_headline">"Что произошло: "</string>
+    <string name="info_searched_lbl">"Вы искали: "</string>
+    <string name="error_details_headline">Детали:</string>
+
+
+    <string name="use_tor_summary">(Экспериментально) Перенаправлять трафик через Tor для повышения конфиденциальности (прямая трансляция пока не поддерживается)</string>
+    <string name="report_error">Сообщить об ошибке</string>
+    <string name="user_report">Сообщить о нарушении</string>
+
+    <string name="info_dir_created">Создать папку для загруженного \'%1$s\'</string>
+
+    <string name="enable_background_audio">Воспроизвести в фоновом режиме</string>
+    <string name="video">Видео</string>
+    <string name="audio">Аудио</string>
+    <string name="text">Текст</string>
+    <string name="logging">Авторизация</string>
+    <string name="logging_normal">Нормальный</string>
+    <string name="logging_verbose">Подробный</string>
+    <string name="retry">Повторить попытку</string>
+    <string name="error_drm_not_supported">Защищенный контент не поддерживается версиями API ниже 18</string>
+    <string name="error_drm_unsupported_scheme">Данное устройство не поддерживает требуемую схему DRM</string>
+    <string name="error_drm_unknown">Произошла неизвестная ошибка DRM</string>
+    <string name="storage_permission_denied">В доступе к хранилищу было отказано</string>
+    <string name="use_exoplayer_title">Использовать ExoPlayer</string>
+    <string name="msg_fetch_filename">Получить название файла</string>
     </resources>
