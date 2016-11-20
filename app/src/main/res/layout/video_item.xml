@@ -106,13 +106,14 @@
         <Button
             android:id="@+id/item_button"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/video_item_search_thumbnail_image_height"
             android:background="?attr/selectableItemBackground"
-            android:layout_alignParentTop="true" />
+            android:layout_margin="12dp"/>
     </RelativeLayout>
     <ImageView android:id="@+id/deleteItemFromPlayList"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="12dp"
         android:textAlignment="viewEnd"
         android:layout_gravity="end"
         android:src="@drawable/ic_more_vert_black_24dp"
