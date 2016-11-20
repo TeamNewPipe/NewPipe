@@ -2,6 +2,7 @@ package org.schabi.newpipe.extractor.youtube;
 
 import android.test.AndroidTestCase;
 
+import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.extractor.AbstractStreamInfo;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -35,7 +36,9 @@ public class YoutubeStreamExtractorDefaultTest extends AndroidTestCase {
     public static final String HTTPS = "https://";
     private StreamExtractor extractor;
 
-    public void setUp() throws IOException, ExtractionException {
+    public void setUp() throws Exception {
+        super.setUp();
+        NewPipe.init(new Downloader());
         extractor = NewPipe.getService("Youtube")
                 .getExtractorInstance("https://www.youtube.com/watch?v=YQHsXMglC9A");
     }

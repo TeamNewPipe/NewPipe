@@ -2,6 +2,7 @@ package org.schabi.newpipe.extractor.youtube;
 
 import android.test.AndroidTestCase;
 
+import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.search.SearchEngine;
 import org.schabi.newpipe.extractor.search.SearchResult;
@@ -34,6 +35,7 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
     @Override
     public void setUp() throws Exception {
         super.setUp();
+        NewPipe.init(new Downloader());
         SearchEngine engine = NewPipe.getService("Youtube").getSearchEngineInstance();
 
         result = engine.search("this is something boring", 0, "de").getSearchResult();
