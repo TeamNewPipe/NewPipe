@@ -110,15 +110,15 @@ public class ChannelActivity extends AppCompatActivity {
         initRemoveItemFrom(recyclerView);
         infoListAdapter.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {
             @Override
-            public void selected(String url, int positionInList) {
+            public void selected(View view, String url, int positionInList) {
                IntentRunner.lunchIntentVideoDetail(ChannelActivity.this, url, serviceId, playListId, positionInList + 1);
             }
         });
         infoListAdapter.setOnPlayListActionListener(new InfoItemBuilder.OnPlayListActionListener() {
             @Override
-            public void selected(StreamPreviewInfo streamPreviewInfo, int positionInList) {
+            public void selected(View view, StreamPreviewInfo streamPreviewInfo, int positionInList) {
                 final ItemDialog itemDialog = new ItemDialog(ChannelActivity.this);
-                itemDialog.showSettingDialog(streamPreviewInfo, playListId, streamPreviewInfo.position, new Runnable() {
+                itemDialog.showSettingDialog(view, streamPreviewInfo, playListId, new Runnable() {
                     @Override
                     public void run() {
                         infoListAdapter.clearSteamItemList();

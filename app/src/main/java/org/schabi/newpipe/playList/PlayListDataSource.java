@@ -58,6 +58,13 @@ public class PlayListDataSource {
         }
     }
 
+    public boolean hasPersonalPlayList() {
+        open();
+        long nb = DatabaseUtils.queryNumEntries(database, Tables.PLAYLIST, PLAYLIST_COLUMNS.PLAYLIST_SYSTEM + "=?", new String[]{ "0" });
+        close();
+        return nb > 0;
+    }
+
     public String getPlaylistName(final int playlistId) {
         open();
         final Cursor cursor = database.query(Tables.PLAYLIST,
@@ -201,7 +208,7 @@ public class PlayListDataSource {
 
     public long getNumberOfEntriesOnPlayList(final int playlist_id) {
         open();
-        long nb = DatabaseUtils.longForQuery(database, "SELECT COUNT(*) FROM " + Tables.PLAYLIST_LINK_ENTRIES + " WHERE " + PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + "=?", new String[]{String.valueOf(playlist_id)});
+        long nb = DatabaseUtils.queryNumEntries(database, Tables.PLAYLIST_LINK_ENTRIES, PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + "=?", new String[]{String.valueOf(playlist_id)});
         close();
         return nb;
     }

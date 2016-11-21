@@ -243,7 +243,7 @@ public class VideoItemDetailFragment extends Fragment {
                     stream.view_count = info.view_count;
                     stream.duration = info.duration;
                     ItemDialog itemDialog = new ItemDialog(activity);
-                    itemDialog.showSettingDialog(stream, playListId, positionInPlayList, null);
+                    itemDialog.showSettingDialog(view, stream, playListId, null);
                 }
             });
             if (!info.upload_date.isEmpty()) {
@@ -594,16 +594,16 @@ public class VideoItemDetailFragment extends Fragment {
         }
         infoItemBuilder.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {
             @Override
-            public void selected(String url, int positionInPlayList) {
+            public void selected(View view, String url, int positionInPlayList) {
                 openStreamUrl(url, positionInPlayList);
             }
         });
         infoItemBuilder.setOnPlayListActionListener(new InfoItemBuilder.OnPlayListActionListener() {
             @Override
-            public void selected(StreamPreviewInfo streamPreviewInfo, int positionInList) {
+            public void selected(View view, StreamPreviewInfo streamPreviewInfo, int positionInList) {
                 // record to play list
                 final ItemDialog itemDialog = new ItemDialog(activity);
-                itemDialog.showSettingDialog(streamPreviewInfo, PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID, PLAYLIST_SYSTEM.POSITION_DEFAULT, null);
+                itemDialog.showSettingDialog(view, streamPreviewInfo, PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID, null);
             }
         });
         storeFirstRelativeVideoOnDatabase(info);
