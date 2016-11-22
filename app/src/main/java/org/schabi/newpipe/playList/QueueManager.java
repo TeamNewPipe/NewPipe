@@ -1,11 +1,13 @@
 package org.schabi.newpipe.playList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 import org.schabi.newpipe.playList.PlayListDataSource.PLAYLIST_SYSTEM;
+import org.schabi.newpipe.player.BackgroundPlayer;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,9 +21,10 @@ public class QueueManager {
     public static final int PLAY_RANDOM = R.drawable.ic_shuffle_white_24dp;
 
     private final PlayListDataSource playListDataSource;
-
+    private final Context context;
     public QueueManager(Context context) {
         this.playListDataSource = new PlayListDataSource(context);
+        this.context = context;
     }
 
     public void clearQueue() {
@@ -36,6 +39,10 @@ public class QueueManager {
         if(streams != null) {
             clearQueue();
             addToQueue(streams);
+            // stop current queue
+            final Intent intent = new Intent(BackgroundPlayer.ACTION_STOP);
+            intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+            context.sendBroadcast(intent);
         }
     }
 

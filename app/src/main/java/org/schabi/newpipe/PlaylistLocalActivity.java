@@ -209,7 +209,7 @@ public class PlaylistLocalActivity extends AppCompatActivity {
         CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.channel_toolbar_layout);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         ImageView channelBanner = (ImageView) findViewById(R.id.channel_banner_image);
-        FloatingActionButton playQueueButton = (FloatingActionButton) findViewById(R.id.channel_replace_queue);
+        FloatingActionButton playQueueButton = (FloatingActionButton) findViewById(R.id.replace_and_play_queue);
 
         progressBar.setVisibility(View.GONE);
 
@@ -223,21 +223,18 @@ public class PlaylistLocalActivity extends AppCompatActivity {
         }
 
         if(info.related_streams != null && !info.related_streams.isEmpty()) {
+            playQueueButton.setVisibility(View.VISIBLE);
             playQueueButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    new QueueManager(getApplicationContext()).replaceQueue(infoListAdapter.getStreamList());
                     final StreamPreviewInfo streamPreviewInfo = infoListAdapter.getStreamList().get(0);
                     final LunchAudioTrack lunchAudioTrack = new LunchAudioTrack(getApplicationContext(), streamPreviewInfo, playListId);
                     lunchAudioTrack.process(false);
-                    new AsyncTask<Void, Void, Void>() {
-                        @Override
-                        protected Void doInBackground(Void... voids) {
-                            new QueueManager(PlaylistLocalActivity.this).replaceQueue(infoListAdapter.getStreamList());
-                            return null;
-                        }
-                    }.execute();
                 }
             });
+        } else {
+            playQueueButton.setVisibility(View.GONE);
         }
     }
 

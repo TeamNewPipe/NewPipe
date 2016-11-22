@@ -1,7 +1,6 @@
 package org.schabi.newpipe.info_list;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +14,6 @@ import org.schabi.newpipe.playList.PlayListDataSource;
 import org.schabi.newpipe.playList.PlayListDataSource.PLAYLIST_SYSTEM;
 import org.schabi.newpipe.playList.PlayListDialog;
 import org.schabi.newpipe.playList.QueueManager;
-import org.schabi.newpipe.player.BackgroundPlayer;
 
 import java.util.Collections;
 
@@ -72,9 +70,6 @@ public class ItemDialog {
                     new AsyncTask<Void, Void, Void>() {
                         @Override
                         protected Void doInBackground(Void... voids) {
-                            Intent intent = new Intent(BackgroundPlayer.ACTION_STOP);
-                            intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
-                            context.sendBroadcast(intent);
                             new QueueManager(context).replaceQueue(Collections.singletonList(info));
                             return null;
                         }
