@@ -43,6 +43,7 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.search_fragment.SearchInfoItemFragment;
 
 import java.io.IOException;
+import java.util.Collections;
 
 /**
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
@@ -192,7 +193,7 @@ public class ChannelActivity extends AppCompatActivity {
         final ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(infoListAdapter);
         final ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(recyclerView);
-        infoListAdapter.setOnItemDeleteListener(new InfoListAdapter.ItemDeletedListener() {
+        infoListAdapter.setOnItemDeleteListener(new InfoListAdapter.ItemListener() {
             @Override
             public void deletedItem(final int position, final StreamPreviewInfo deletedItem) {
                 new AsyncTask<Void, Void, Void>() {
@@ -207,6 +208,40 @@ public class ChannelActivity extends AppCompatActivity {
                         return null;
                     }
                 }.execute();
+            }
+
+            @Override
+            public void moveItem(int fromPosition, int toPosition) {
+                PlayListDataSource playListDataSource = new PlayListDataSource(ChannelActivity.this);
+                // update in database
+                // update in memory
+                if (fromPosition < toPosition) {
+                    for (int i = fromPosition; i < toPosition; i++) {
+                        final int j = i + 1;
+                        swapItemOnStreamList(playListDataSource, i, j);
+                    }
+                } else {
+                    for (int i = fromPosition; i > toPosition; i--) {
+                        final int j = i - 1;
+                        swapItemOnStreamList(playListDataSource, i, j);
+                    }
+                }
+                infoListAdapter.notifyItemMoved(fromPosition, toPosition);
+            }
+
+            private void swapItemOnStreamList(PlayListDataSource playListDataSource, int i, int j) {
+                // on database
+                if(playListId != PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID) {
+                    final StreamPreviewInfo from = infoListAdapter.getStreamList().get(i);
+                    final StreamPreviewInfo to = infoListAdapter.getStreamList().get(j);
+                    final int positionTo = to.position;
+                    final int positionFrom = from.position;
+
+                    playListDataSource.updatePosition(playListId, from, positionTo);
+                    playListDataSource.updatePosition(playListId, to, positionFrom);
+                }
+                // on cache list
+                Collections.swap(infoListAdapter.getStreamList(), i, j);
             }
         });
     }

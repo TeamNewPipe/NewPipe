@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
 
@@ -38,10 +37,11 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> implem
 
     private InfoItemBuilder infoItemBuilder;
     private List<StreamPreviewInfo> streamList = new Vector<>();
-    private ItemDeletedListener deletedListener = null;
+    private ItemListener itemListener = null;
 
-    public interface ItemDeletedListener {
+    public interface ItemListener {
         void deletedItem(final int position, final StreamPreviewInfo deletedItem);
+        void moveItem(int fromPosition, int toPosition);
     }
 
     public InfoListAdapter(Activity a, View rootView) {
@@ -58,8 +58,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> implem
         infoItemBuilder.setOnPlayListActionListener(onPlaylistActionListener);
     }
 
-    public void setOnItemDeleteListener(ItemDeletedListener deletedListener) {
-        this.deletedListener = deletedListener;
+    public void setOnItemDeleteListener(ItemListener deletedListener) {
+        this.itemListener = deletedListener;
     }
 
     public void addStreamItemList(List<StreamPreviewInfo> videos) {
@@ -98,16 +98,9 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> implem
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
-        if (fromPosition < toPosition) {
-            for (int i = fromPosition; i < toPosition; i++) {
-                Collections.swap(streamList, i, i + 1);
-            }
-        } else {
-            for (int i = fromPosition; i > toPosition; i--) {
-                Collections.swap(streamList, i, i - 1);
-            }
+        if(itemListener != null) {
+            itemListener.moveItem(fromPosition, toPosition);
         }
-        notifyItemMoved(fromPosition, toPosition);
         return true;
     }
 
@@ -116,8 +109,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> implem
         StreamPreviewInfo info = streamList.get(position);
         streamList.remove(position);
         notifyItemRemoved(position);
-        if(deletedListener != null) {
-            deletedListener.deletedItem(position, info);
+        if(itemListener != null) {
+            itemListener.deletedItem(position, info);
         }
     }
 }

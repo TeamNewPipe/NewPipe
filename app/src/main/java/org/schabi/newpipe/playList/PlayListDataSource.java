@@ -402,6 +402,28 @@ public class PlayListDataSource {
         return playList;
     }
 
+    public void updatePosition(int playListId, StreamPreviewInfo stream, int newPosition) {
+        final long entryId = getEntryId(stream.id, stream.service_id);
+        final long oldPosition = stream.position;
+        open();
+        final ContentValues cv = new ContentValues();
+        cv.put(PLAYLIST_LINK_ENTRIES.POSITION, newPosition);
+        database.update(Tables.PLAYLIST_LINK_ENTRIES, cv,
+                        PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + "=? AND " +
+                        PLAYLIST_LINK_ENTRIES.POSITION + "=? AND " +
+                        PLAYLIST_LINK_ENTRIES.PLAYLIST_ENTRIES_ID + "=?",
+                new String[]{
+                        String.valueOf(playListId),
+                        String.valueOf(oldPosition),
+                        String.valueOf(entryId)
+                });
+        Log.d(TAG, String.format("Update position of entriesId %d on playlistId %d: %d -> %d", entryId,
+                playListId, oldPosition, newPosition));
+        // update to new position item
+        stream.position = newPosition;
+        close();
+    }
+
     public boolean hasNextPage(int playListId, int page) {
         long nbEntries = getNumberOfEntriesOnPlayList(playListId);
         int nbItemViewOnThisPage = page == 0 ? 10 : page * 10;
