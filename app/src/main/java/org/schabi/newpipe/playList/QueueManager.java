@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
+import org.schabi.newpipe.playList.PlayListDataSource.PLAYLIST_SYSTEM;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,11 +25,11 @@ public class QueueManager {
     }
 
     public void clearQueue() {
-        playListDataSource.deleteAllEntryFromPlayList(PlayListDataSource.PLAYLIST_SYSTEM.QUEUE_ID);
+        playListDataSource.deleteAllEntryFromPlayList(PLAYLIST_SYSTEM.QUEUE_ID);
     }
 
     public boolean isEmptyQueue() {
-        return playListDataSource.getNumberOfEntriesOnPlayList(PlayListDataSource.PLAYLIST_SYSTEM.QUEUE_ID) < 1;
+        return playListDataSource.getNumberOfEntriesOnPlayList(PLAYLIST_SYSTEM.QUEUE_ID) < 1;
     }
 
     public void replaceQueue(final List<StreamPreviewInfo> streams) {
@@ -40,40 +41,50 @@ public class QueueManager {
 
     public void addToQueue(final List<StreamPreviewInfo> streams) {
         if(streams != null) {
-            playListDataSource.addEntriesToPlayList(PlayListDataSource.PLAYLIST_SYSTEM.QUEUE_ID, streams);
+            playListDataSource.addEntriesToPlayList(PLAYLIST_SYSTEM.QUEUE_ID, streams);
         }
     }
     public void addToQueue(final StreamPreviewInfo streams) {
         if(streams != null) {
-            playListDataSource.addEntriesToPlayList(PlayListDataSource.PLAYLIST_SYSTEM.QUEUE_ID, Collections.singletonList(streams));
+            playListDataSource.addEntriesToPlayList(PLAYLIST_SYSTEM.QUEUE_ID, Collections.singletonList(streams));
         }
     }
 
     public StreamPreviewInfo getStreamAt(final int indexInQueue) {
-        return playListDataSource.getEntryForItems(PlayListDataSource.PLAYLIST_SYSTEM.QUEUE_ID, indexInQueue);
+        return playListDataSource.getEntryForItems(PLAYLIST_SYSTEM.QUEUE_ID, indexInQueue);
     }
 
     public StreamPreviewInfo getEntriesFor(final int position) {
-        return playListDataSource.getEntryFromPlayList(PlayListDataSource.PLAYLIST_SYSTEM.QUEUE_ID, position);
+        return playListDataSource.getEntryFromPlayList(PLAYLIST_SYSTEM.QUEUE_ID, position);
     }
 
     public StreamPreviewInfo getRandomItem() {
-        return playListDataSource.getRandomItem(PlayListDataSource.PLAYLIST_SYSTEM.QUEUE_ID);
+        return playListDataSource.getRandomItem(PLAYLIST_SYSTEM.QUEUE_ID);
+    }
+
+    public StreamPreviewInfo getFirstItem() {
+        return playListDataSource.getFirstEntryForPlayList(PLAYLIST_SYSTEM.QUEUE_ID);
+    }
+
+    public StreamPreviewInfo getLastItem() {
+        return playListDataSource.getLastEntryForPlayList(PLAYLIST_SYSTEM.QUEUE_ID);
     }
 
     public StreamPreviewInfo getNextEntries(final int position) {
-        return playListDataSource.getNextEntryForItems(PlayListDataSource.PLAYLIST_SYSTEM.QUEUE_ID, position);
+        final StreamPreviewInfo nextEntry = playListDataSource.getNextEntryForItems(PLAYLIST_SYSTEM.QUEUE_ID, position);
+        return nextEntry != null ? nextEntry : getFirstItem();
     }
 
     public StreamPreviewInfo getPreviousEntries(final int position) {
-        return playListDataSource.getPreviousEntryForItems(PlayListDataSource.PLAYLIST_SYSTEM.QUEUE_ID, position);
+        final StreamPreviewInfo previousEntry = playListDataSource.getPreviousEntryForItems(PLAYLIST_SYSTEM.QUEUE_ID, position);
+        return previousEntry != null ? previousEntry : getLastItem();
     }
 
     public void remoteItemAt(final int position) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-                playListDataSource.deleteEntryFromPlayList(PlayListDataSource.PLAYLIST_SYSTEM.QUEUE_ID, position);
+                playListDataSource.deleteEntryFromPlayList(PLAYLIST_SYSTEM.QUEUE_ID, position);
                 return null;
             }
         }.execute();

@@ -125,7 +125,7 @@ public class PlayListDataSource {
                 },
                 null,
                 null,
-                PLAYLIST_LINK_ENTRIES.POSITION + " ASC", "1");
+                PLAYLIST_LINK_ENTRIES.POSITION + " DESC", "1");
         final StreamPreviewInfo stream;
         if(cursor.getCount() > 0) {
             cursor.moveToFirst();
@@ -181,6 +181,33 @@ public class PlayListDataSource {
         cursor.close();
         close();
         return stream;
+    }
+
+    private StreamPreviewInfo getEntryForPlayList(final int playlistId, final boolean orderAsc) {
+        open();
+        final String ORDER = orderAsc ? " ASC" : " DESC";
+        final Cursor cursor = database.query(Tables.PLAYLIST_LINK_JOIN_ENTRIES,
+                concat(PLAYLIST_ENTRIES_COLUMNS.ALL_COLUMNS, new String[]{PLAYLIST_LINK_ENTRIES.POSITION}),
+                PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + "=?", new String[]{ String.valueOf(playlistId)}, null, null,
+                PLAYLIST_LINK_ENTRIES.POSITION + ORDER, "1");
+        final StreamPreviewInfo stream;
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            stream = getStreamPreviewInfo(cursor);
+        } else {
+            stream = null;
+        }
+        cursor.close();
+        close();
+        return stream;
+    }
+
+    public StreamPreviewInfo getFirstEntryForPlayList(final int playlistId) {
+        return getEntryForPlayList(playlistId, true);
+    }
+
+    public StreamPreviewInfo getLastEntryForPlayList(final int playlistId) {
+        return getEntryForPlayList(playlistId, false);
     }
 
     public PlayList createPlayList(final String name) {
