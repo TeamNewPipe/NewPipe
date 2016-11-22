@@ -3,7 +3,6 @@ package org.schabi.newpipe.playList;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,11 +13,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.schabi.newpipe.ChannelActivity;
+import org.schabi.newpipe.IntentRunner;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.search_fragment.SearchInfoItemFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -128,16 +124,8 @@ public class PlayListActivity extends AppCompatActivity {
         final TextView textView = (TextView) parent.findViewById(R.id.playlist_title);
         final String playListName = String.valueOf(textView.getText());
         final int playlistId = getPlayListId(playListName);
-        if(playlistId >= 0) {
-            Intent intent = new Intent(this, ChannelActivity.class);
-            intent.putExtra(SearchInfoItemFragment.PLAYLIST_ID, playlistId);
-            intent.putExtra(ChannelActivity.CHANNEL_URL, "");
-            try {
-                intent.putExtra(ChannelActivity.SERVICE_ID, NewPipe.getIdOfService("Youtube"));
-            } catch (ExtractionException e) {
-
-            }
-            this.startActivity(intent);
+        if(playlistId != PlayListDataSource.PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID) {
+            IntentRunner.lunchLocalPlayList(this, playlistId);
         }
     }
 }

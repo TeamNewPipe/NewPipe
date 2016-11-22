@@ -594,13 +594,13 @@ public class VideoItemDetailFragment extends Fragment {
         }
         infoItemBuilder.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {
             @Override
-            public void selected(View view, String url, int positionInPlayList) {
-                openStreamUrl(url, positionInPlayList);
+            public void selected(View view, StreamPreviewInfo url) {
+                openStreamUrl(url.webpage_url, url.position);
             }
         });
         infoItemBuilder.setOnPlayListActionListener(new InfoItemBuilder.OnPlayListActionListener() {
             @Override
-            public void selected(View view, StreamPreviewInfo streamPreviewInfo, int positionInList) {
+            public void selected(View view, StreamPreviewInfo streamPreviewInfo) {
                 // record to play list
                 final ItemDialog itemDialog = new ItemDialog(activity);
                 itemDialog.showSettingDialog(view, streamPreviewInfo, PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID, null);

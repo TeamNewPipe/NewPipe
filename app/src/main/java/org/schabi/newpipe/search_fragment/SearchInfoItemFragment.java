@@ -190,13 +190,13 @@ public class SearchInfoItemFragment extends Fragment {
                 getActivity().findViewById(android.R.id.content));
         infoListAdapter.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {
             @Override
-            public void selected(View view, String url, int positionInList) {
-                IntentRunner.lunchIntentVideoDetail(getActivity(), url, streamingServiceId, PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID, positionInList);
+            public void selected(View view, StreamPreviewInfo url) {
+                IntentRunner.lunchIntentVideoDetail(getActivity(), url.webpage_url, url.service_id, PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID, url.position);
             }
         });
         infoListAdapter.setOnPlayListActionListener(new InfoItemBuilder.OnPlayListActionListener() {
             @Override
-            public void selected(View view, StreamPreviewInfo streamPreviewInfo, int positionInList) {
+            public void selected(View view, StreamPreviewInfo streamPreviewInfo) {
                 final ItemDialog itemDialog = new ItemDialog(getActivity());
                 itemDialog.showSettingDialog(view, streamPreviewInfo, PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID, null);
             }

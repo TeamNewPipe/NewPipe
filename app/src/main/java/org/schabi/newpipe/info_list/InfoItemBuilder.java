@@ -36,11 +36,11 @@ import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 public class InfoItemBuilder {
 
     public interface OnItemSelectedListener {
-        void selected(View view, String url, int positionInList);
+        void selected(View view, StreamPreviewInfo url);
     }
 
     public interface OnPlayListActionListener {
-        void selected(View view, final StreamPreviewInfo streamPreviewInfo, int positionInList);
+        void selected(View view, final StreamPreviewInfo streamPreviewInfo);
     }
 
     private Activity activity = null;
@@ -101,13 +101,13 @@ public class InfoItemBuilder {
             @Override
             public void onClick(View view) {
                 // add to playlist
-                onPlayListActionListener.selected(view, info, holder.getAdapterPosition());
+                onPlayListActionListener.selected(view, info);
             }
         });
         holder.itemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onItemSelectedListener.selected(view, info.webpage_url, holder.getAdapterPosition());
+                onItemSelectedListener.selected(view, info);
             }
         });
     }
