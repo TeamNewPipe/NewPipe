@@ -67,6 +67,10 @@
                         android:layout_weight="1"
                         android:layout_width="fill_parent"
                         android:layout_height="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="@dimen/activity_vertical_margin"
+                        android:paddingRight="@dimen/activity_vertical_margin"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textSize="@dimen/video_item_search_title_text_size"/>
 
