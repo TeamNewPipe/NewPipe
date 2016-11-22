@@ -195,15 +195,15 @@ public class ChannelActivity extends AppCompatActivity {
         touchHelper.attachToRecyclerView(recyclerView);
         infoListAdapter.setOnItemDeleteListener(new InfoListAdapter.ItemListener() {
             @Override
-            public void deletedItem(final int position, final StreamPreviewInfo deletedItem) {
+            public void deletedItem(final StreamPreviewInfo deletedItem) {
                 new AsyncTask<Void, Void, Void>() {
                     @Override
                     protected Void doInBackground(Void... voids) {
                         if(CONTENT_PLAYLIST_INTENAL == currentContent) {
                             PlayListDataSource playListDatasource = new PlayListDataSource(ChannelActivity.this);
-                            playListDatasource.deleteEntryFromPlayList(playListId, deletedItem.id, deletedItem.service_id);
+                            playListDatasource.deleteEntryFromPlayList(playListId, deletedItem.position);
                         } else if(CONTENT_QUEUE == currentContent) {
-                            new QueueManager(ChannelActivity.this).remoteItemAt(position);
+                            new QueueManager(ChannelActivity.this).remoteItemAt(deletedItem.position);
                         }
                         return null;
                     }
@@ -211,7 +211,7 @@ public class ChannelActivity extends AppCompatActivity {
             }
 
             @Override
-            public void moveItem(int fromPosition, int toPosition) {
+            public void moveItem(final int fromPosition, final int toPosition) {
                 PlayListDataSource playListDataSource = new PlayListDataSource(ChannelActivity.this);
                 // update in database
                 // update in memory

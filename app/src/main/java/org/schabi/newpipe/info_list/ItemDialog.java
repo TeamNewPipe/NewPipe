@@ -99,7 +99,7 @@ public class ItemDialog {
             @Override
             protected Void doInBackground(final Void... voids) {
                 final PlayListDataSource playListDataSource = new PlayListDataSource(context);
-                playListDataSource.deleteEntryFromPlayList(playListId, info.id, info.service_id);
+                playListDataSource.deleteEntryFromPlayList(playListId, info.position);
                 return null;
             }
 

@@ -886,22 +886,22 @@ public class VideoItemDetailFragment extends Fragment {
 
 
     private boolean useExoPlayer() {
-        return PreferenceManager.getDefaultSharedPreferences(activity)
+        return PreferenceManager.getDefaultSharedPreferences(getContext())
                 .getBoolean(activity.getString(R.string.use_exoplayer_key), false);
     }
 
     private boolean useExternalAudioPlayer() {
-        return PreferenceManager.getDefaultSharedPreferences(activity)
+        return PreferenceManager.getDefaultSharedPreferences(getContext())
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
     }
 
     private boolean useExternalVideoPlayer() {
-        return PreferenceManager.getDefaultSharedPreferences(activity)
+        return PreferenceManager.getDefaultSharedPreferences(getContext())
                 .getBoolean(activity.getString(R.string.use_external_video_player_key), false);
     }
 
     private int getPlayListComportement() {
-        String autoPlay = PreferenceManager.getDefaultSharedPreferences(activity)
+        String autoPlay = PreferenceManager.getDefaultSharedPreferences(getContext())
                 .getString(getString(R.string.playlist_auto_play_choice_key), "none");
         if ("video".equals(autoPlay)) {
             return 2;

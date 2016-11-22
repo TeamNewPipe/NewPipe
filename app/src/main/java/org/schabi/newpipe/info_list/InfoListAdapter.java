@@ -40,8 +40,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> implem
     private ItemListener itemListener = null;
 
     public interface ItemListener {
-        void deletedItem(final int position, final StreamPreviewInfo deletedItem);
-        void moveItem(int fromPosition, int toPosition);
+        void deletedItem(final StreamPreviewInfo deletedItem);
+        void moveItem(final int fromPosition, final int toPosition);
     }
 
     public InfoListAdapter(Activity a, View rootView) {
@@ -110,7 +110,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> implem
         streamList.remove(position);
         notifyItemRemoved(position);
         if(itemListener != null) {
-            itemListener.deletedItem(position, info);
+            itemListener.deletedItem(info);
         }
     }
 }

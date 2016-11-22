@@ -320,19 +320,6 @@ public class PlayListDataSource {
         return entries_id;
     }
 
-    public int deleteEntryFromPlayList(final int playlist_id, final String id, final int service_id) {
-        final long entriesId = getEntryId(id, service_id);
-        open();
-        Log.i(TAG, String.format("Delete playlist entry with ref_id : %d and service_id : %d for playlist : %d", entriesId, service_id, playlist_id));
-        final int result = database.delete(Tables.PLAYLIST_LINK_ENTRIES,
-                PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + "=? AND " +
-                PLAYLIST_LINK_ENTRIES.PLAYLIST_ENTRIES_ID + "=?",
-                new String[]{String.valueOf(playlist_id), String.valueOf(entriesId)});
-        Log.i(TAG, String.format("Deleted playlist entry with ref_id : %d for playlist : %d", entriesId, playlist_id));
-        close();
-        return result;
-    }
-
     public int deleteEntryFromPlayList(int playlist_id, int position) {
         open();
         final int result = database.delete(Tables.PLAYLIST_LINK_ENTRIES,
