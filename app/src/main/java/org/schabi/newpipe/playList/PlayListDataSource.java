@@ -268,12 +268,15 @@ public class PlayListDataSource {
         }
         if(entries_id > -1) {
             values.clear();
+            final long position = getNumberOfEntriesOnPlayList(playList_id) + 1;
             values.put(PLAYLIST_LINK_ENTRIES.PLAYLIST_ID, playList_id);
             values.put(PLAYLIST_LINK_ENTRIES.PLAYLIST_ENTRIES_ID, entries_id);
-            values.put(PLAYLIST_LINK_ENTRIES.POSITION, getNumberOfEntriesOnPlayList(playList_id) + 1);
+            values.put(PLAYLIST_LINK_ENTRIES.POSITION, position);
             // because count entries on playlist close the database
             open();
             entries_id = database.insert(Tables.PLAYLIST_LINK_ENTRIES, null, values);
+            Log.d(TAG, String.format("Insert to playlist (%d) at %d value entry : %s", playList_id,
+                    position, info.webpage_url));
         }
         close();
         return entries_id;

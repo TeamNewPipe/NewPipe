@@ -69,13 +69,13 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/channel_rss_fab"
+        android:id="@+id/replace_and_play_queue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_rss_feed_white_24dp"
-        app:layout_anchor="@id/channel_app_bar"
-        app:layout_anchorGravity="bottom|end" />
+        android:src="@drawable/nnf_ic_create_new_folder_white_24dp"
+        app:layout_anchorGravity="center_vertical|right" />
 
     <RelativeLayout
         android:layout_width="match_parent"

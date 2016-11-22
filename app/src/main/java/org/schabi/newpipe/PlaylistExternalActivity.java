@@ -1,7 +1,8 @@
 package org.schabi.newpipe;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,24 +20,27 @@ import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import org.schabi.newpipe.detail.VideoItemDetailActivity;
 import org.schabi.newpipe.detail.VideoItemDetailFragment;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.channel.ChannelExtractor;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.services.youtube.YoutubePlayListUrlIdHandler;
 import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.info_list.ItemDialog;
+import org.schabi.newpipe.playList.PlayListDataSource;
+import org.schabi.newpipe.playList.PlayListDataSource.PLAYLIST_SYSTEM;
 import org.schabi.newpipe.report.ErrorActivity;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * ChannelActivity.java is part of NewPipe.
+ * PlaylistExternalActivity.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,10 +56,9 @@ import java.io.IOException;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class ChannelActivity extends AppCompatActivity {
+public class PlaylistExternalActivity extends AppCompatActivity {
 
-
-    private static final String TAG = ChannelActivity.class.toString();
+    private static final String TAG = PlaylistExternalActivity.class.toString();
     private View rootView = null;
 
     // intent const
@@ -62,6 +66,7 @@ public class ChannelActivity extends AppCompatActivity {
     public static final String SERVICE_ID = "service_id";
 
     private int serviceId = -1;
+
     private String channelUrl = "";
     private int pageNumber = 0;
     private boolean hasNextPage = true;
@@ -73,27 +78,39 @@ public class ChannelActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_channel);
+        setContentView(R.layout.activity_playlist_external);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         rootView = findViewById(R.id.rootView);
         setSupportActionBar(toolbar);
-        Intent i = getIntent();
-        channelUrl = i.getStringExtra(CHANNEL_URL);
-        serviceId = i.getIntExtra(SERVICE_ID, -1);
-
+        try {
+            extractInfo(getIntent());
+        } catch (ExtractionException e) {
+            e.printStackTrace();
+        }
         infoListAdapter = new InfoListAdapter(this, rootView);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.channel_streams_view);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(infoListAdapter);
+
         infoListAdapter.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {
             @Override
-            public void selected(final View view, final StreamPreviewInfo url) {
-                Intent detailIntent = new Intent(ChannelActivity.this, VideoItemDetailActivity.class);
-                detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, url.webpage_url);
-                detailIntent.putExtra(
-                        VideoItemDetailFragment.STREAMING_SERVICE, serviceId);
-                startActivity(detailIntent);
+            public void selected(View view, StreamPreviewInfo url) {
+                IntentRunner.lunchIntentVideoDetail(PlaylistExternalActivity.this, url.webpage_url, url.service_id, PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID, url.position);
+            }
+        });
+        infoListAdapter.setOnPlayListActionListener(new InfoItemBuilder.OnPlayListActionListener() {
+            @Override
+            public void selected(View view, StreamPreviewInfo streamPreviewInfo) {
+                final ItemDialog itemDialog = new ItemDialog(PlaylistExternalActivity.this);
+                itemDialog.showSettingDialog(view, streamPreviewInfo, PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID, new Runnable() {
+                    @Override
+                    public void run() {
+                        infoListAdapter.clearSteamItemList();
+                        pageNumber = 0;
+                        requestData(true);
+                    }
+                });
             }
         });
 
@@ -103,16 +120,14 @@ public class ChannelActivity extends AppCompatActivity {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 int pastVisiblesItems, visibleItemCount, totalItemCount;
                 super.onScrolled(recyclerView, dx, dy);
-                if(dy > 0) //check for scroll down
-                {
+                if(dy > 0) {//check for scroll down
                     visibleItemCount = layoutManager.getChildCount();
                     totalItemCount = layoutManager.getItemCount();
                     pastVisiblesItems = layoutManager.findFirstVisibleItemPosition();
 
-                    if ( (visibleItemCount + pastVisiblesItems) >= totalItemCount
+                    if ((visibleItemCount + pastVisiblesItems) >= totalItemCount
                             && !isLoading
-                            && hasNextPage)
-                    {
+                            && hasNextPage) {
                         pageNumber++;
                         requestData(true);
                     }
@@ -123,57 +138,104 @@ public class ChannelActivity extends AppCompatActivity {
         requestData(false);
     }
 
+    private void extractInfo(final Intent intent) throws ExtractionException {
+        if(intent != null) {
+            final YoutubePlayListUrlIdHandler youtubePlayListUrlIdHandler = new YoutubePlayListUrlIdHandler();
+            final String youtubePlayListLink = intent.getStringExtra(Intent.EXTRA_TEXT);
+            if (youtubePlayListUrlIdHandler.acceptUrl(youtubePlayListLink)) {
+                channelUrl = youtubePlayListUrlIdHandler.cleanUrl(youtubePlayListLink);
+                serviceId = NewPipe.getIdOfService("Youtube");
+            }
+        }
+    }
 
 
     private void updateUi(final ChannelInfo info) {
         CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.channel_toolbar_layout);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         ImageView channelBanner = (ImageView) findViewById(R.id.channel_banner_image);
-        FloatingActionButton feedButton = (FloatingActionButton) findViewById(R.id.channel_rss_fab);
+        FloatingActionButton feedButton = (FloatingActionButton) findViewById(R.id.replace_and_play_queue);
         ImageView avatarView = (ImageView) findViewById(R.id.channel_avatar_view);
         ImageView haloView = (ImageView) findViewById(R.id.channel_avatar_halo);
 
         progressBar.setVisibility(View.GONE);
 
-        if(info.channel_name != null && !info.channel_name.isEmpty()) {
+        if(!TextUtils.isEmpty(info.channel_name)) {
             ctl.setTitle(info.channel_name);
         }
 
-        if(info.banner_url != null && !info.banner_url.isEmpty()) {
+        if(!TextUtils.isEmpty(info.banner_url)) {
             imageLoader.displayImage(info.banner_url, channelBanner,
                     new ImageErrorLoadingListener(this, rootView ,info.service_id));
         }
 
-        if(info.avatar_url != null && !info.avatar_url.isEmpty()) {
+        if(!TextUtils.isEmpty(info.avatar_url)) {
             avatarView.setVisibility(View.VISIBLE);
             haloView.setVisibility(View.VISIBLE);
             imageLoader.displayImage(info.avatar_url, avatarView,
                     new ImageErrorLoadingListener(this, rootView ,info.service_id));
         }
 
-        if(info.feed_url != null && !info.feed_url.isEmpty()) {
+        if(!TextUtils.isEmpty(channelUrl)) {
             feedButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d(TAG, info.feed_url);
-                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(info.feed_url));
-                    startActivity(i);
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(PlaylistExternalActivity.this)
+                            .setTitle(R.string.save_to_local_playlist)
+                            .setMessage(info.channel_name)
+                            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    // first load all videos
+                                    recordAllVideosOnPlayList(info.channel_name, info.related_streams);
+                                }
+                            })
+                            .setNegativeButton(R.string.cancel, null);
+                    alertDialog.show();
                 }
             });
-        } else {
-            feedButton.setVisibility(View.GONE);
         }
+    }
+    int playListId = PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID;
+    private void recordAllVideosOnPlayList(final String channel_name, final List<StreamPreviewInfo> related_streams) {
+        PlayListDataSource playListDataSource = new PlayListDataSource(this);
+        playListId = playListDataSource.getPlayListId(channel_name);
+        if(playListId < 0) {
+            playListId = playListDataSource.createPlayList(channel_name).get_id();
+        }
+        recordToPlayList(related_streams);
     }
 
     private void addVideos(final ChannelInfo info) {
         infoListAdapter.addStreamItemList(info.related_streams);
+        // if a playlist is defined
+        recordToPlayList(info.related_streams);
+    }
+
+    private void recordToPlayList(final List<StreamPreviewInfo> related_streams) {
+        if(playListId != PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID) {
+            PlayListDataSource playListDataSource = new PlayListDataSource(this);
+            for (final StreamPreviewInfo streamPreviewInfo : related_streams) {
+                playListDataSource.addEntryToPlayList(playListId, streamPreviewInfo);
+            }
+            if(hasNextPage) {
+                pageNumber++;
+                Toast.makeText(this, "Fetch from playlist " + channelUrl + " - page " + pageNumber,
+                        Toast.LENGTH_SHORT).show();
+                requestData(true);
+            } else {
+                Toast.makeText(this, "PlayList " + channelUrl + " successfully fetched !",
+                        Toast.LENGTH_SHORT).show();
+                IntentRunner.lunchLocalPlayList(this, playListId);
+            }
+        }
     }
 
     private void postNewErrorToast(Handler h, final int stringResource) {
         h.post(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(ChannelActivity.this,
+                Toast.makeText(PlaylistExternalActivity.this,
                         stringResource, Toast.LENGTH_LONG).show();
             }
         });
@@ -182,24 +244,22 @@ public class ChannelActivity extends AppCompatActivity {
     private void requestData(final boolean onlyVideos) {
         // start processing
         isLoading = true;
-        Thread channelExtractorThread = new Thread(new Runnable() {
+        Log.d(TAG, String.format("Loading more data for %s %d", channelUrl, pageNumber));
+        Thread t = new Thread(new Runnable() {
             Handler h = new Handler();
-
+            StreamingService service;
             @Override
             public void run() {
-                StreamingService service = null;
                 try {
                     service = NewPipe.getService(serviceId);
-                    ChannelExtractor extractor = service.getChannelExtractorInstance(
-                            channelUrl, pageNumber);
-
+                    final ChannelExtractor extractor = service.getPlayListExtractorInstance(channelUrl, pageNumber);
                     final ChannelInfo info = ChannelInfo.getInfo(extractor);
 
                     h.post(new Runnable() {
                         @Override
                         public void run() {
                             isLoading = false;
-                            if(!onlyVideos) {
+                            if (!onlyVideos) {
                                 updateUi(info);
                             }
                             hasNextPage = info.hasNextPage;
@@ -208,8 +268,7 @@ public class ChannelActivity extends AppCompatActivity {
                     });
 
                     // look for non critical errors during extraction
-                    if(info != null &&
-                            !info.errors.isEmpty()) {
+                    if (info != null && !info.errors.isEmpty()) {
                         Log.e(TAG, "OCCURRED ERRORS DURING EXTRACTION:");
                         for (Throwable e : info.errors) {
                             e.printStackTrace();
@@ -217,52 +276,31 @@ public class ChannelActivity extends AppCompatActivity {
                         }
 
                         View rootView = findViewById(android.R.id.content);
-                        ErrorActivity.reportError(h, ChannelActivity.this,
+                        ErrorActivity.reportError(h, PlaylistExternalActivity.this,
                                 info.errors, null, rootView,
                                 ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL,
                                         service.getServiceInfo().name, channelUrl, 0 /* no message for the user */));
                     }
-                } catch(IOException ioe) {
+                } catch (IOException ioe) {
                     postNewErrorToast(h, R.string.network_error);
                     ioe.printStackTrace();
-                } catch(ParsingException pe) {
-                    ErrorActivity.reportError(h, ChannelActivity.this, pe, VideoItemDetailFragment.class, null,
-                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL,
-                                    service.getServiceInfo().name, channelUrl, R.string.parsing_error));
+                } catch (Exception e) {
+                    if (service != null && service.getServiceInfo() != null) {
+                        ErrorActivity.reportError(h, PlaylistExternalActivity.this, e, VideoItemDetailFragment.class, null,
+                                ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL,
+                                        service.getServiceInfo().name, channelUrl, R.string.general_error));
+                    }
                     h.post(new Runnable() {
                         @Override
                         public void run() {
-                            ChannelActivity.this.finish();
-                        }
-                    });
-                    pe.printStackTrace();
-                } catch(ExtractionException ex) {
-                    ErrorActivity.reportError(h, ChannelActivity.this, ex, VideoItemDetailFragment.class, null,
-                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL,
-                                    service.getServiceInfo().name, channelUrl, R.string.parsing_error));
-                    h.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            ChannelActivity.this.finish();
-                        }
-                    });
-                    ex.printStackTrace();
-                } catch(Exception e) {
-                    ErrorActivity.reportError(h, ChannelActivity.this, e, VideoItemDetailFragment.class, null,
-                            ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL,
-                                    service.getServiceInfo().name, channelUrl, R.string.general_error));
-                    h.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            ChannelActivity.this.finish();
+                            PlaylistExternalActivity.this.finish();
                         }
                     });
                     e.printStackTrace();
                 }
             }
         });
-
-        channelExtractorThread.start();
+        t.start();
     }
 
 }
