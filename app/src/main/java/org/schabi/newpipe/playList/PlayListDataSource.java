@@ -29,6 +29,29 @@ public class PlayListDataSource {
     private SQLiteDatabase database;
     private NewPipeSQLiteHelper dbHelper;
 
+    public void duplicatePlayListAOnPlaylistB(final int playlistIdFrom, final int playlistIdTo) {
+        final long lastPosition = getNumberOfEntriesOnPlayList(playlistIdTo);
+        String sb = "INSERT INTO " +
+                        Tables.PLAYLIST_LINK_ENTRIES +
+                    "(" +
+                        PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + ", " +
+                        PLAYLIST_LINK_ENTRIES.PLAYLIST_ENTRIES_ID + ", " +
+                        PLAYLIST_LINK_ENTRIES.POSITION +
+                    ")" +
+                    " SELECT " +
+                        playlistIdTo + ", " +
+                        PLAYLIST_LINK_ENTRIES.PLAYLIST_ENTRIES_ID + ", " +
+                        PLAYLIST_LINK_ENTRIES.POSITION + "+" + lastPosition +
+                    " FROM " +
+                        Tables.PLAYLIST_LINK_ENTRIES +
+                    " WHERE " +
+                        PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + " = " + playlistIdFrom;
+        open();
+        database.execSQL(sb);
+        close();
+        Log.d(TAG, "Duplicate playlist : " + playlistIdFrom + " to " + playlistIdTo + " : " + sb);
+    }
+
     public interface PLAYLIST_SYSTEM {
         int POSITION_DEFAULT = 0;
         int NOT_IN_PLAYLIST_ID = -1;
@@ -105,12 +128,18 @@ public class PlayListDataSource {
                 new String[]{String.valueOf(playlistId)},
                 null,
                 null,
-                null,
-                "RANDOM() LIMIT 1");
-        final StreamPreviewInfo info = cursor.getCount() > 0 ? getStreamPreviewInfo(cursor) : null;
+                "RANDOM()",
+                "1");
+        final StreamPreviewInfo stream;
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            stream = getStreamPreviewInfo(cursor);
+        } else {
+            stream = null;
+        }
         cursor.close();
         close();
-        return info;
+        return stream;
     }
 
     public StreamPreviewInfo getPreviousEntryForItems(final int playlistId, final int position) {
@@ -125,7 +154,8 @@ public class PlayListDataSource {
                 },
                 null,
                 null,
-                PLAYLIST_LINK_ENTRIES.POSITION + " DESC", "1");
+                PLAYLIST_LINK_ENTRIES.POSITION + " DESC",
+                "1");
         final StreamPreviewInfo stream;
         if(cursor.getCount() > 0) {
             cursor.moveToFirst();
@@ -292,7 +322,7 @@ public class PlayListDataSource {
                     null,
                     null,
                     "1");
-            StreamPreviewInfo entry;
+            final StreamPreviewInfo entry;
             if(cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 entry = getStreamPreviewInfo(cursor);

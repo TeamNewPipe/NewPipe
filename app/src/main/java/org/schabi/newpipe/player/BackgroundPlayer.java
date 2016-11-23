@@ -15,7 +15,6 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
-import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
@@ -129,12 +128,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         isRunning = false;
     }
 
-    private boolean canAutoPlayNextTrack() {
-        String autoPlay = PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
-                .getString(getString(R.string.playlist_auto_play_choice_key), "none");
-        return "audio".equals(autoPlay);
-    }
-
     private class PlayerThread extends Thread {
         MediaPlayer mediaPlayer;
         private String source;
@@ -163,8 +156,12 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                         final Intent intent = track.retrieveIntent();
                         if (intent != null) {
                             onStartCommand(intent, -1, -1);
+                        } else {
+                            afterPlayCleanup();
                         }
                     }
+                } else {
+                    afterPlayCleanup();
                 }
             }
         };
@@ -316,13 +313,13 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                     if(mediaPlayer != null) {
                         mediaPlayer.stop();
                     }
-                    afterPlayCleanup(true);
+                    afterPlay(true);
                 } else if (ACTION_PREV_TRACK.equals(action)) {
                     if(mediaPlayer != null && mediaPlayer.getCurrentPosition() > 2000) {
                         mediaPlayer.seekTo(0);
                     } else {
                         isPreviousBtnPressed = true;
-                        afterPlayCleanup(false);
+                        afterPlay(false);
                     }
                 } else if (ACTION_CHANGE_PLAY_MODE.equals(action)) {
                     // change the current play mode
@@ -339,7 +336,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                     }
                     noteMgr.notify(noteID, note);
                 } else if (ACTION_NEXT_TRACK.equals(action)) {
-                    afterPlayCleanup(false);
+                    afterPlay(false);
                     // When Headphones is disconnected
                 } else if (AudioManager.ACTION_AUDIO_BECOMING_NOISY.equals(action)) {
                     if (mediaPlayer != null && mediaPlayer.isPlaying()) {
@@ -349,7 +346,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             }
         };
 
-        private void afterPlayCleanup(final boolean isStopByUser) {
+        private void afterPlay(final boolean isStopByUser) {
             //remove notification
             noteMgr.cancel(noteID);
             unregisterReceiver(broadcastReceiver);
@@ -363,13 +360,17 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 retrieveInfoFromQueue();
                 lunchTrack.run();
             } else {
-                queueManager.clearQueue();
-                //release wifilock
-                wifiLock.release();
-                //remove foreground status of service; make BackgroundPlayer killable
-                stopForeground(true);
-                stopSelf();
+                afterPlayCleanup();
             }
+        }
+
+        private void afterPlayCleanup() {
+            queueManager.clearQueue();
+            //release wifilock
+            wifiLock.release();
+            //remove foreground status of service; make BackgroundPlayer killable
+            stopForeground(true);
+            stopSelf();
         }
 
         private class EndListener implements MediaPlayer.OnCompletionListener {
@@ -380,7 +381,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
             @Override
             public void onCompletion(MediaPlayer mp) {
-                afterPlayCleanup(false);
+                afterPlay(false);
             }
         }
 

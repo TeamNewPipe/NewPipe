@@ -8,6 +8,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 import org.schabi.newpipe.playList.PlayListDataSource.PLAYLIST_SYSTEM;
 import org.schabi.newpipe.player.BackgroundPlayer;
+import org.schabi.newpipe.player.LunchAudioTrack;
 
 import java.util.Collections;
 import java.util.List;
@@ -27,6 +28,12 @@ public class QueueManager {
         this.context = context;
     }
 
+    public void lunchInBackgroundQueue() {
+        final StreamPreviewInfo firstItem = getFirstItem();
+        LunchAudioTrack track = new LunchAudioTrack(context, firstItem, PLAYLIST_SYSTEM.QUEUE_ID);
+        track.process(true);
+    }
+
     public void clearQueue() {
         playListDataSource.deleteAllEntryFromPlayList(PLAYLIST_SYSTEM.QUEUE_ID);
     }
@@ -44,6 +51,19 @@ public class QueueManager {
             intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
             context.sendBroadcast(intent);
         }
+    }
+
+    public void addToQueue(final int playlistId) {
+        playListDataSource.duplicatePlayListAOnPlaylistB(playlistId, PLAYLIST_SYSTEM.QUEUE_ID);
+    }
+
+    public void replaceQueue(final int playlistId) {
+        clearQueue();
+        addToQueue(playlistId);
+        // stop current queue
+        final Intent intent = new Intent(BackgroundPlayer.ACTION_STOP);
+        intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+        context.sendBroadcast(intent);
     }
 
     public void addToQueue(final List<StreamPreviewInfo> streams) {

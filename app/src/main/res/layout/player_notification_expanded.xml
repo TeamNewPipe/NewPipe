@@ -66,9 +66,34 @@
         android:layout_alignBottom="@id/notificationCover"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
         android:layout_toRightOf="@+id/notificationCover"
         android:layout_toEndOf="@+id/notificationCover"
         android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/notificationChangePlayMode"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#00ffffff"
+            android:clickable="true"
+            android:scaleType="fitXY"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/notificationPlayPause"
+            android:layout_toEndOf="@+id/notificationPlayPause"
+            android:src="@drawable/ic_repeat_white_24dp" />
+
+        <ImageButton
+            android:id="@+id/notificationLunchNextTrack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#00ffffff"
+            android:clickable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_skip_next_white_24dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/notificationChangePlayMode"
+            android:layout_toEndOf="@+id/notificationChangePlayMode" />
 
         <ImageButton
             android:id="@+id/notificationLunchPrevTrack"
@@ -83,18 +108,6 @@
             android:layout_alignParentStart="true" />
 
         <ImageButton
-            android:id="@+id/notificationLunchNextTrack"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="#00ffffff"
-            android:clickable="true"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_skip_next_white_24dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-        <ImageButton
             android:id="@+id/notificationPlayPause"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -103,19 +116,8 @@
             android:scaleType="fitXY"
             android:src="@drawable/ic_pause_white_24dp"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-
-        <ImageButton
-            android:id="@+id/notificationChangePlayMode"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="#00ffffff"
-            android:clickable="true"
-            android:scaleType="fitXY"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/notificationPlayPause"
-            android:layout_toEndOf="@+id/notificationPlayPause"
-            android:src="@drawable/ic_repeat_white_24dp" />
+            android:layout_toRightOf="@+id/notificationLunchPrevTrack"
+            android:layout_toEndOf="@+id/notificationLunchPrevTrack"  />
 
     </RelativeLayout>
 

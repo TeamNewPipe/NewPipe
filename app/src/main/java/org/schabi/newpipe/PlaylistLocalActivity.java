@@ -34,7 +34,6 @@ import org.schabi.newpipe.info_list.SimpleItemTouchHelperCallback;
 import org.schabi.newpipe.playList.PlayListDataSource;
 import org.schabi.newpipe.playList.PlayListDataSource.PLAYLIST_SYSTEM;
 import org.schabi.newpipe.playList.QueueManager;
-import org.schabi.newpipe.player.LunchAudioTrack;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.search_fragment.SearchInfoItemFragment;
 
@@ -227,10 +226,9 @@ public class PlaylistLocalActivity extends AppCompatActivity {
             playQueueButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    new QueueManager(getApplicationContext()).replaceQueue(infoListAdapter.getStreamList());
-                    final StreamPreviewInfo streamPreviewInfo = infoListAdapter.getStreamList().get(0);
-                    final LunchAudioTrack lunchAudioTrack = new LunchAudioTrack(getApplicationContext(), streamPreviewInfo, playListId);
-                    lunchAudioTrack.process(false);
+                    final QueueManager queueManager = new QueueManager(getApplicationContext());
+                    queueManager.replaceQueue(playListId);
+                    queueManager.lunchInBackgroundQueue();
                 }
             });
         } else {
