@@ -85,51 +85,6 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:scrollbars="vertical"/>
 
-    <com.getbase.floatingactionbutton.FloatingActionsMenu
-        android:id="@+id/multiple_actions_menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        app:layout_anchorGravity="center_vertical|right"
-        app:fab_addButtonColorNormal="@color/black"
-        app:fab_addButtonColorPressed="@color/half_black"
-        app:fab_addButtonPlusIconColor="@color/white"
-        app:fab_labelStyle="@style/menu_labels_style"
-        app:fab_expandDirection="up"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginEnd="16dp">
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/action_record_to_local_playlist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_icon="@drawable/nnf_ic_create_new_folder_white_24dp"
-            app:fab_colorNormal="@color/black"
-            app:fab_title="Record Playlist"
-            app:fab_colorPressed="@color/half_black"/>
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/action_add_to_queue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_icon="@drawable/ic_queue_white_24dp"
-            app:fab_colorNormal="@color/black"
-            app:fab_title="Add into existing queue"
-            app:fab_colorPressed="@color/half_black"/>
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/action_replace_queue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_icon="@drawable/ic_queue_white_24dp"
-            app:fab_colorNormal="@color/black"
-            app:fab_title="Listing in background"
-            app:fab_colorPressed="@color/half_black"/>
-
-    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+    <include layout="@layout/floating_menu" />
 
 </android.support.design.widget.CoordinatorLayout>

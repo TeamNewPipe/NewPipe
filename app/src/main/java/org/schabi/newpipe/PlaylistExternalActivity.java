@@ -143,20 +143,22 @@ public class PlaylistExternalActivity extends AppCompatActivity {
     private void initFloatingActionButtonMenu(final ChannelInfo info) {
 
         final FloatingActionsMenu floatingActionsMenu = (FloatingActionsMenu) findViewById(R.id.multiple_actions_menu);
-        floatingActionsMenu.setEnabled(true);
+        final String channel_name = info.channel_name;
+        final List<StreamPreviewInfo> relatedStreams = info.related_streams;
 
         final FloatingActionButton actionRecordToLocalPlaylist = (FloatingActionButton) findViewById(R.id.action_record_to_local_playlist);
         actionRecordToLocalPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(PlaylistExternalActivity.this)
+                floatingActionsMenu.collapse();
+                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(PlaylistExternalActivity.this)
                         .setTitle(R.string.save_to_local_playlist)
-                        .setMessage(info.channel_name)
+                        .setMessage(channel_name)
                         .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 // first load all videos
-                                recordAllVideosOnPlayList(info.channel_name, info.related_streams);
+                                recordAllVideosOnPlayList(channel_name, relatedStreams);
                             }
                         })
                         .setNegativeButton(R.string.cancel, null);
@@ -168,7 +170,18 @@ public class PlaylistExternalActivity extends AppCompatActivity {
         actionAddToQueue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                recordToPlayList(PLAYLIST_SYSTEM.QUEUE_ID, info.related_streams);
+                floatingActionsMenu.collapse();
+                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(PlaylistExternalActivity.this)
+                        .setTitle(R.string.add_playlist_to_queue)
+                        .setMessage(channel_name)
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                recordToPlayList(PLAYLIST_SYSTEM.QUEUE_ID, relatedStreams);
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, null);
+                alertDialog.show();
             }
         });
 
@@ -176,8 +189,21 @@ public class PlaylistExternalActivity extends AppCompatActivity {
         actionAddToQueueAndPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new QueueManager(getApplicationContext()).clearQueue();
-                recordToPlayList(PLAYLIST_SYSTEM.QUEUE_ID, info.related_streams);
+                floatingActionsMenu.collapse();
+                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(PlaylistExternalActivity.this)
+                        .setTitle(R.string.replace_queue_by_playlist)
+                        .setMessage(channel_name)
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                final QueueManager queueManager = new QueueManager(getApplicationContext());
+                                queueManager.clearQueue();
+                                recordToPlayList(PLAYLIST_SYSTEM.QUEUE_ID, relatedStreams);
+                                queueManager.lunchInBackgroundQueue();
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, null);
+                alertDialog.show();
             }
         });
     }

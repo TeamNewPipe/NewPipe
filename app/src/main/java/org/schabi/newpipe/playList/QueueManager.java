@@ -47,6 +47,12 @@ public class QueueManager {
             clearQueue();
             addToQueue(streams);
             // stop current queue
+            stopCurrentQueue();
+        }
+    }
+
+    private void stopCurrentQueue() {
+        if(BackgroundPlayer.isRunning) {
             final Intent intent = new Intent(BackgroundPlayer.ACTION_STOP);
             intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
             context.sendBroadcast(intent);
@@ -61,9 +67,7 @@ public class QueueManager {
         clearQueue();
         addToQueue(playlistId);
         // stop current queue
-        final Intent intent = new Intent(BackgroundPlayer.ACTION_STOP);
-        intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
-        context.sendBroadcast(intent);
+        stopCurrentQueue();
     }
 
     public void addToQueue(final List<StreamPreviewInfo> streams) {

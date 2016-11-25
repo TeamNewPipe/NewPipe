@@ -44,16 +44,6 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/replace_and_play_queue"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_headset_white_24dp"
-        app:layout_anchorGravity="center_vertical|right" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -64,10 +54,14 @@
             android:layout_centerInParent="true"
             android:indeterminate="true"/>
     </RelativeLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/channel_streams_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:scrollbars="vertical"/>
+
+    <include layout="@layout/floating_menu" />
+
 </android.support.design.widget.CoordinatorLayout>

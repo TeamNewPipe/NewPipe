@@ -1,11 +1,12 @@
 package org.schabi.newpipe;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.detail.VideoItemDetailFragment;
@@ -39,6 +42,7 @@ import org.schabi.newpipe.search_fragment.SearchInfoItemFragment;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
@@ -208,7 +212,6 @@ public class PlaylistLocalActivity extends AppCompatActivity {
         CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.channel_toolbar_layout);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         ImageView channelBanner = (ImageView) findViewById(R.id.channel_banner_image);
-        FloatingActionButton playQueueButton = (FloatingActionButton) findViewById(R.id.replace_and_play_queue);
 
         progressBar.setVisibility(View.GONE);
 
@@ -222,19 +225,62 @@ public class PlaylistLocalActivity extends AppCompatActivity {
         }
 
         if(info.related_streams != null && !info.related_streams.isEmpty()) {
-            playQueueButton.setVisibility(View.VISIBLE);
-            playQueueButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    final QueueManager queueManager = new QueueManager(getApplicationContext());
-                    queueManager.replaceQueue(playListId);
-                    queueManager.lunchInBackgroundQueue();
-                }
-            });
-        } else {
-            playQueueButton.setVisibility(View.GONE);
+            initFloatingActionButtonMenu(info);
         }
     }
+
+
+    private void initFloatingActionButtonMenu(final ChannelInfo info) {
+
+        final FloatingActionsMenu floatingActionsMenu = (FloatingActionsMenu) findViewById(R.id.multiple_actions_menu);
+        final String channel_name = info.channel_name;
+        final List<StreamPreviewInfo> relatedStreams = info.related_streams;
+
+        final FloatingActionButton actionRecordToLocalPlaylist = (FloatingActionButton) findViewById(R.id.action_record_to_local_playlist);
+        actionRecordToLocalPlaylist.setVisibility(View.GONE);
+
+        final FloatingActionButton actionAddToQueue = (FloatingActionButton) findViewById(R.id.action_add_to_queue);
+        actionAddToQueue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                floatingActionsMenu.collapse();
+                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(PlaylistLocalActivity.this)
+                        .setTitle(R.string.add_playlist_to_queue)
+                        .setMessage(channel_name)
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                final QueueManager queueManager = new QueueManager(getApplicationContext());
+                                queueManager.addToQueue(playListId);
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, null);
+                alertDialog.show();
+            }
+        });
+
+        final FloatingActionButton actionAddToQueueAndPlay = (FloatingActionButton) findViewById(R.id.action_replace_queue);
+        actionAddToQueueAndPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                floatingActionsMenu.collapse();
+                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(PlaylistLocalActivity.this)
+                        .setTitle(R.string.replace_queue_by_playlist)
+                        .setMessage(channel_name)
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                final QueueManager queueManager = new QueueManager(getApplicationContext());
+                                queueManager.replaceQueue(playListId);
+                                queueManager.lunchInBackgroundQueue();
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, null);
+                alertDialog.show();
+            }
+        });
+    }
+
 
     private void addVideos(final ChannelInfo info) {
         infoListAdapter.addStreamItemList(info.related_streams);

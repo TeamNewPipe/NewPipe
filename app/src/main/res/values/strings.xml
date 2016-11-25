@@ -294,6 +294,8 @@
     <string name="remove_item">Remove…</string>
     <string name="replace_item">Replace…</string>
     <string name="add_item">Add…</string>
+    <string name="add_playlist_to_queue">Add playlist to current Queue ?</string>
+    <string name="replace_queue_by_playlist">Replace current queue by playlist</string>
 
     <!-- End of GigaGet's Strings -->
 
