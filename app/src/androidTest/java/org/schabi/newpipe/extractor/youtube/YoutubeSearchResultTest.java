@@ -2,6 +2,8 @@ package org.schabi.newpipe.extractor.youtube;
 
 import android.test.AndroidTestCase;
 
+import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.search.SuggestionExtractor;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeSuggestionExtractor;
@@ -35,6 +37,8 @@ public class YoutubeSearchResultTest extends AndroidTestCase {
 
     @Override
     public void setUp() throws Exception {
+        super.setUp();
+        NewPipe.init(new Downloader());
         SuggestionExtractor engine = new YoutubeSuggestionExtractor(0);
         suggestionReply = engine.suggestionList("hello", "de");
     }

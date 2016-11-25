@@ -37,6 +37,8 @@ public class YoutubeStreamExtractorLiveStreamTest extends AndroidTestCase {
     public void setUp() throws IOException, ExtractionException {
         //todo: make the extractor not throw over a livestream
         /*
+
+        NewPipe.init(new Downloader());
         extractor = NewPipe.getService("Youtube")
                 .getExtractorInstance("https://www.youtube.com/watch?v=J0s6NjqdjLE", new Downloader());
                 */
