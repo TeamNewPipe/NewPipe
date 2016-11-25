@@ -1,6 +1,7 @@
 package org.schabi.newpipe.detail;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -884,20 +885,30 @@ public class VideoItemDetailFragment extends Fragment {
         builder.create().show();
     }
 
+    public Context getContext() {
+        Context context = super.getContext();
+        if(context == null) {
+            context = getActivity();
+        }
+        if(context == null) {
+            context = activity;
+        }
+        return context;
+    }
 
     private boolean useExoPlayer() {
         return PreferenceManager.getDefaultSharedPreferences(getContext())
-                .getBoolean(activity.getString(R.string.use_exoplayer_key), false);
+                .getBoolean(getString(R.string.use_exoplayer_key), false);
     }
 
     private boolean useExternalAudioPlayer() {
         return PreferenceManager.getDefaultSharedPreferences(getContext())
-                .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
+                .getBoolean(getString(R.string.use_external_audio_player_key), false);
     }
 
     private boolean useExternalVideoPlayer() {
         return PreferenceManager.getDefaultSharedPreferences(getContext())
-                .getBoolean(activity.getString(R.string.use_external_video_player_key), false);
+                .getBoolean(getString(R.string.use_external_video_player_key), false);
     }
 
     private int getPlayListComportement() {

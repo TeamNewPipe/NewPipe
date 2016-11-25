@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.detail.VideoItemDetailFragment;
@@ -33,6 +34,7 @@ import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.info_list.ItemDialog;
 import org.schabi.newpipe.playList.PlayListDataSource;
 import org.schabi.newpipe.playList.PlayListDataSource.PLAYLIST_SYSTEM;
+import org.schabi.newpipe.playList.QueueManager;
 import org.schabi.newpipe.report.ErrorActivity;
 
 import java.io.IOException;
@@ -138,6 +140,49 @@ public class PlaylistExternalActivity extends AppCompatActivity {
         requestData(false);
     }
 
+    private void initFloatingActionButtonMenu(final ChannelInfo info) {
+
+        final FloatingActionsMenu floatingActionsMenu = (FloatingActionsMenu) findViewById(R.id.multiple_actions_menu);
+        floatingActionsMenu.setEnabled(true);
+
+        final FloatingActionButton actionRecordToLocalPlaylist = (FloatingActionButton) findViewById(R.id.action_record_to_local_playlist);
+        actionRecordToLocalPlaylist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(PlaylistExternalActivity.this)
+                        .setTitle(R.string.save_to_local_playlist)
+                        .setMessage(info.channel_name)
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                // first load all videos
+                                recordAllVideosOnPlayList(info.channel_name, info.related_streams);
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, null);
+                alertDialog.show();
+            }
+        });
+
+        final FloatingActionButton actionAddToQueue = (FloatingActionButton) findViewById(R.id.action_add_to_queue);
+        actionAddToQueue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recordToPlayList(PLAYLIST_SYSTEM.QUEUE_ID, info.related_streams);
+            }
+        });
+
+        final FloatingActionButton actionAddToQueueAndPlay = (FloatingActionButton) findViewById(R.id.action_replace_queue);
+        actionAddToQueueAndPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new QueueManager(getApplicationContext()).clearQueue();
+                recordToPlayList(PLAYLIST_SYSTEM.QUEUE_ID, info.related_streams);
+            }
+        });
+    }
+
+
     private void extractInfo(final Intent intent) throws ExtractionException {
         if(intent != null) {
             final YoutubePlayListUrlIdHandler youtubePlayListUrlIdHandler = new YoutubePlayListUrlIdHandler();
@@ -154,7 +199,6 @@ public class PlaylistExternalActivity extends AppCompatActivity {
         CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.channel_toolbar_layout);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         ImageView channelBanner = (ImageView) findViewById(R.id.channel_banner_image);
-        FloatingActionButton feedButton = (FloatingActionButton) findViewById(R.id.replace_and_play_queue);
         ImageView avatarView = (ImageView) findViewById(R.id.channel_avatar_view);
         ImageView haloView = (ImageView) findViewById(R.id.channel_avatar_halo);
 
@@ -177,46 +221,30 @@ public class PlaylistExternalActivity extends AppCompatActivity {
         }
 
         if(!TextUtils.isEmpty(channelUrl)) {
-            feedButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(PlaylistExternalActivity.this)
-                            .setTitle(R.string.save_to_local_playlist)
-                            .setMessage(info.channel_name)
-                            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    // first load all videos
-                                    recordAllVideosOnPlayList(info.channel_name, info.related_streams);
-                                }
-                            })
-                            .setNegativeButton(R.string.cancel, null);
-                    alertDialog.show();
-                }
-            });
+            initFloatingActionButtonMenu(info);
         }
     }
-    int playListId = PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID;
+
     private void recordAllVideosOnPlayList(final String channel_name, final List<StreamPreviewInfo> related_streams) {
         PlayListDataSource playListDataSource = new PlayListDataSource(this);
-        playListId = playListDataSource.getPlayListId(channel_name);
+        int playListId = playListDataSource.getPlayListId(channel_name);
         if(playListId < 0) {
             playListId = playListDataSource.createPlayList(channel_name).get_id();
         }
-        recordToPlayList(related_streams);
+        recordToPlayList(playListId, related_streams);
     }
 
-    private void addVideos(final ChannelInfo info) {
+    private void addVideos(int playlist_id, final ChannelInfo info) {
         infoListAdapter.addStreamItemList(info.related_streams);
         // if a playlist is defined
-        recordToPlayList(info.related_streams);
+        recordToPlayList(playlist_id, info.related_streams);
     }
 
-    private void recordToPlayList(final List<StreamPreviewInfo> related_streams) {
-        if(playListId != PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID) {
+    private void recordToPlayList(final int playlist_id, final List<StreamPreviewInfo> related_streams) {
+        if(playlist_id != PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID) {
             PlayListDataSource playListDataSource = new PlayListDataSource(this);
             for (final StreamPreviewInfo streamPreviewInfo : related_streams) {
-                playListDataSource.addEntryToPlayList(playListId, streamPreviewInfo);
+                playListDataSource.addEntryToPlayList(playlist_id, streamPreviewInfo);
             }
             if(hasNextPage) {
                 pageNumber++;
@@ -226,7 +254,7 @@ public class PlaylistExternalActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "PlayList " + channelUrl + " successfully fetched !",
                         Toast.LENGTH_SHORT).show();
-                IntentRunner.lunchLocalPlayList(this, playListId);
+                IntentRunner.lunchLocalPlayList(this, playlist_id);
             }
         }
     }
@@ -263,7 +291,7 @@ public class PlaylistExternalActivity extends AppCompatActivity {
                                 updateUi(info);
                             }
                             hasNextPage = info.hasNextPage;
-                            addVideos(info);
+                            addVideos(PLAYLIST_SYSTEM.NOT_IN_PLAYLIST_ID, info);
                         }
                     });
 

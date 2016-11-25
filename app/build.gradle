@@ -44,8 +44,9 @@ dependencies {
     compile 'com.google.android.exoplayer:exoplayer:r1.5.5'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.nononsenseapps:filepicker:3.0.0'
+    compile 'com.getbase:floatingactionbutton:1.10.1'
     compile 'com.facebook.stetho:stetho:1.4.1'
     compile 'com.facebook.stetho:stetho-urlconnection:1.4.1'
-    testCompile 'junit:junit:4.12'
     compile 'ch.acra:acra:4.9.0'
+    testCompile 'junit:junit:4.12'
 }
