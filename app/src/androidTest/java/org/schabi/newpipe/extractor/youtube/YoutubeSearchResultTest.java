@@ -4,16 +4,18 @@ import android.test.AndroidTestCase;
 
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.search.SearchEngine;
-import org.schabi.newpipe.extractor.search.SearchResult;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.search.SuggestionExtractor;
+import org.schabi.newpipe.extractor.services.youtube.YoutubeSuggestionExtractor;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by Christian Schabesberger on 29.12.15.
+ * Created by Christian Schabesberger on 18.11.16.
  *
- * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * YoutubeSearchEngineTest.java is part of NewPipe.
+ * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
+ * YoutubeSearchResultTest.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,28 +31,19 @@ import java.util.List;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class YoutubeSearchEngineTest extends AndroidTestCase {
-    private SearchResult result;
+public class YoutubeSearchResultTest extends AndroidTestCase {
+    List<String> suggestionReply;
+
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
         NewPipe.init(new Downloader());
-        SearchEngine engine = NewPipe.getService("Youtube").getSearchEngineInstance();
-
-        result = engine.search("this is something boring", 0, "de").getSearchResult();
+        SuggestionExtractor engine = new YoutubeSuggestionExtractor(0);
+        suggestionReply = engine.suggestionList("hello", "de");
     }
 
-    public void testResultList() {
-        assertFalse(result.resultList.isEmpty());
-    }
-
-    public void testResultErrors() {
-        assertTrue(result.errors == null || result.errors.isEmpty());
-    }
-
-    public void testSuggestion() {
-        //todo write a real test
-        assertTrue(result.suggestion != null);
+    public void testIfSuggestions() {
+        assertFalse(suggestionReply.isEmpty());
     }
 }

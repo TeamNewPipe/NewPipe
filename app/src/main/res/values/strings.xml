@@ -286,12 +286,16 @@
     <string name="type_youtube_playlist_url">Type the youtube playlist url :</string>
     <string name="youtube_playlist_not_valid">The given youtube playlist url isn\'t valid !</string>
     <string name="save_to_local_playlist">Save to local playlist ?</string>
-    <string name="current_queue">Current Queue</string>
     <string name="undo">undo</string>
     <string name="play">Play</string>
+    <string name="current_queue">Current Queue</string>
+    <string name="Historic">Historic</string>
     <string name="add_to_queue">Add to Queue</string>
-    <string name="remove_from_playlist">Remove from playList</string>
-    <string name="Historic">Historique</string>
+    <string name="remove_item">Remove…</string>
+    <string name="replace_item">Replace…</string>
+    <string name="add_item">Add…</string>
+    <string name="add_playlist_to_queue">Add playlist to current Queue ?</string>
+    <string name="replace_queue_by_playlist">Replace current queue by playlist</string>
 
     <!-- End of GigaGet's Strings -->
 

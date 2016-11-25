@@ -34,30 +34,6 @@
                 android:background="@color/light_youtube_dark_color"
                 app:layout_collapseMode="parallax" />
 
-            <ImageView
-                android:id="@+id/channel_avatar_halo"
-                android:visibility="gone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="28dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="38dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:src="@drawable/white_circle"/>
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/channel_avatar_view"
-                android:visibility="gone"
-                android:layout_width="@dimen/channel_avatar_size"
-                android:layout_height="@dimen/channel_avatar_size"
-                android:src="@drawable/buddy"
-                android:layout_marginLeft="30dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="40dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"/>
-
             <android.support.v7.widget.Toolbar
                 android:id="@+id/cannel_toolbar"
                 android:layout_width="match_parent"
@@ -67,15 +43,6 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/channel_rss_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_rss_feed_white_24dp"
-        app:layout_anchor="@id/channel_app_bar"
-        app:layout_anchorGravity="bottom|end" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -87,10 +54,14 @@
             android:layout_centerInParent="true"
             android:indeterminate="true"/>
     </RelativeLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/channel_streams_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:scrollbars="vertical"/>
+
+    <include layout="@layout/floating_menu" />
+
 </android.support.design.widget.CoordinatorLayout>

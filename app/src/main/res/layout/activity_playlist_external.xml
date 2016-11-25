@@ -68,15 +68,6 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/channel_rss_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_rss_feed_white_24dp"
-        app:layout_anchor="@id/channel_app_bar"
-        app:layout_anchorGravity="bottom|end" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -93,4 +84,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:scrollbars="vertical"/>
+
+    <include layout="@layout/floating_menu" />
+
 </android.support.design.widget.CoordinatorLayout>

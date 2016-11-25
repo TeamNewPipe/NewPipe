@@ -67,6 +67,10 @@
                         android:layout_weight="1"
                         android:layout_width="fill_parent"
                         android:layout_height="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="@dimen/activity_vertical_margin"
+                        android:paddingRight="@dimen/activity_vertical_margin"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textSize="@dimen/video_item_search_title_text_size"/>
 
@@ -106,13 +110,14 @@
         <Button
             android:id="@+id/item_button"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/video_item_search_thumbnail_image_height"
             android:background="?attr/selectableItemBackground"
-            android:layout_alignParentTop="true" />
+            android:layout_margin="12dp"/>
     </RelativeLayout>
     <ImageView android:id="@+id/deleteItemFromPlayList"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="12dp"
         android:textAlignment="viewEnd"
         android:layout_gravity="end"
         android:src="@drawable/ic_more_vert_black_24dp"

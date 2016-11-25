@@ -32,17 +32,17 @@ public class IntentRunner {
         context.startActivity(Intent.createChooser(intent, context.getString(R.string.share_dialog_title)));
     }
 
-    public static Intent buildVideoDetail(@NonNull final Context context, @NonNull final String webpage_url, int service_id, int playlistId, int positionInPlayList) {
+    public static Intent buildVideoDetail(@NonNull final Context context, @NonNull final String webpage_url, int service_id, int playlistId, int position) {
         final Intent i = new Intent(context, VideoItemDetailActivity.class);
         i.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, service_id);
         i.putExtra(VideoItemDetailFragment.VIDEO_URL, webpage_url);
         i.putExtra(SearchInfoItemFragment.PLAYLIST_ID, playlistId);
-        i.putExtra(PLAYLIST_LINK_ENTRIES.POSITION, positionInPlayList);
+        i.putExtra(PLAYLIST_LINK_ENTRIES.POSITION, position);
         return i;
     }
 
-    public static void lunchIntentVideoDetail(@NonNull final Context context, @NonNull final String webpage_url, int service_id, int playListId, int positionInPlayList) {
-        final Intent i = buildVideoDetail(context, webpage_url, service_id, playListId, positionInPlayList);
+    public static void lunchIntentVideoDetail(@NonNull final Context context, @NonNull final String webpage_url, int service_id, int playListId, int position) {
+        final Intent i = buildVideoDetail(context, webpage_url, service_id, playListId, position);
         context.startActivity(i);
     }
 
@@ -79,7 +79,7 @@ public class IntentRunner {
         }
     }
     public static void lunchLocalPlayList(final Context context, final int playListId) {
-        final Intent i = new Intent(context, ChannelActivity.class);
+        final Intent i = new Intent(context, PlaylistLocalActivity.class);
         i.putExtra(SearchInfoItemFragment.PLAYLIST_ID, playListId);
         context.startActivity(i);
     }

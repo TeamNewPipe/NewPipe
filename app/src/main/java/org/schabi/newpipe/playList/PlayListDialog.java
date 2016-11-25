@@ -43,7 +43,7 @@ public class PlayListDialog {
         builder.show();
     }
 
-    public void createDialogAddToPlayList(final StreamPreviewInfo info) {
+    public void createDialogAddToExistingPlayList(final StreamPreviewInfo info) {
         final PlayListDataSource playListDataSource = new PlayListDataSource(context);
         new AsyncTask<Void, Void, SparseArray<String>>() {
             @Override
@@ -85,12 +85,7 @@ public class PlayListDialog {
                                 }.execute();
                             }
                         })
-                        .setNegativeButton(R.string.new_playlist, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(final DialogInterface dialogInterface, final int i) {
-                                createDialogForMadePlayList(playListDataSource, info);
-                            }
-                        }).create();
+                        .setNegativeButton(R.string.cancel, null).create();
                 builder.show();
             }
         }.execute();
@@ -104,7 +99,8 @@ public class PlayListDialog {
         return playListName;
     }
 
-    private void createDialogForMadePlayList(final PlayListDataSource playListDataSource, final StreamPreviewInfo info) {
+    public void createDialogAddToNewPlayList(final StreamPreviewInfo info) {
+        final PlayListDataSource playListDataSource = new PlayListDataSource(context);
         final EditText taskEditText = new EditText(context);
         final AlertDialog builder = new AlertDialog.Builder(context)
                 .setTitle(R.string.create_a_new_playlist)

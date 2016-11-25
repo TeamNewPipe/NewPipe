@@ -1,0 +1,30 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:id="@+id/add_to_playlist"
+        android:title="@string/add_stream_to_playlist">
+        <menu>
+            <item android:id="@+id/menu_add_item_new_playlist"
+                android:title="@string/new_playlist" />
+            <item android:id="@+id/menu_add_item_existing_playlist"
+                android:title="@string/add_stream_to_playlist" />
+        </menu>
+    </item>
+
+    <item android:id="@+id/remove_to_playlist"
+        android:title="@string/remove_item" />
+
+    <item
+        android:id="@+id/queue"
+        android:title="@string/current_queue">
+        <menu>
+            <item
+                android:id="@+id/append_queue"
+                android:title="@string/add_item"/>
+            <item
+                android:id="@+id/replace_queue"
+                android:title="@string/replace_item"/>
+        </menu>
+    </item>
+
+</menu>

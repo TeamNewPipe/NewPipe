@@ -34,5 +34,8 @@
     <color name="gray">#616161</color>
     <color name="yellow">#ffff00</color>
 
+    <!-- floating actions buttons -->
+    <color name="black">#000000</color>
+    <color name="half_black">#808080</color>
 
 </resources>

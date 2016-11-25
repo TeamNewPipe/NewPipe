@@ -15,7 +15,6 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
-import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
@@ -59,7 +58,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
     public static final String TAG = BackgroundPlayer.class.toString();
     public static final String ACTION_STOP = TAG + ".STOP";
     private static final String ACTION_PLAYPAUSE = TAG + ".PLAYPAUSE";
-    private static final String ACTION_REWIND = TAG + ".REWIND";
     private static final String ACTION_NEXT_TRACK = TAG + ".NEXT";
     private static final String ACTION_PREV_TRACK = TAG + ".PREV";
     private static final String ACTION_CHANGE_PLAY_MODE = TAG + ".CHANGE_PLAY_MODE";
@@ -130,12 +128,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         isRunning = false;
     }
 
-    private boolean canAutoPlayNextTrack() {
-        String autoPlay = PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
-                .getString(getString(R.string.playlist_auto_play_choice_key), "none");
-        return "audio".equals(autoPlay);
-    }
-
     private class PlayerThread extends Thread {
         MediaPlayer mediaPlayer;
         private String source;
@@ -164,8 +156,12 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                         final Intent intent = track.retrieveIntent();
                         if (intent != null) {
                             onStartCommand(intent, -1, -1);
+                        } else {
+                            afterPlayCleanup();
                         }
                     }
+                } else {
+                    afterPlayCleanup();
                 }
             }
         };
@@ -258,7 +254,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             filter.addAction(ACTION_PREV_TRACK);
             filter.addAction(ACTION_PLAYPAUSE);
             filter.addAction(ACTION_STOP);
-            filter.addAction(ACTION_REWIND);
             filter.addAction(ACTION_NEXT_TRACK);
             filter.addAction(ACTION_CHANGE_PLAY_MODE);
             registerReceiver(broadcastReceiver, filter);
@@ -313,19 +308,19 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                             noteMgr.notify(noteID, note);
                         }
                     }
-                } else if (ACTION_REWIND.equals(action)) {
-                    if(mediaPlayer != null) {
-                        mediaPlayer.seekTo(0);
-                    }
                 } else if (ACTION_STOP.equals(action)) {
                     //this auto-releases CPU lock
                     if(mediaPlayer != null) {
                         mediaPlayer.stop();
                     }
-                    afterPlayCleanup(true);
+                    afterPlay(true);
                 } else if (ACTION_PREV_TRACK.equals(action)) {
-                    isPreviousBtnPressed = true;
-                    afterPlayCleanup(false);
+                    if(mediaPlayer != null && mediaPlayer.getCurrentPosition() > 2000) {
+                        mediaPlayer.seekTo(0);
+                    } else {
+                        isPreviousBtnPressed = true;
+                        afterPlay(false);
+                    }
                 } else if (ACTION_CHANGE_PLAY_MODE.equals(action)) {
                     // change the current play mode
                     if (currentPlayMode == QueueManager.PLAY_ALL_ITEM) {
@@ -341,7 +336,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                     }
                     noteMgr.notify(noteID, note);
                 } else if (ACTION_NEXT_TRACK.equals(action)) {
-                    afterPlayCleanup(false);
+                    afterPlay(false);
                     // When Headphones is disconnected
                 } else if (AudioManager.ACTION_AUDIO_BECOMING_NOISY.equals(action)) {
                     if (mediaPlayer != null && mediaPlayer.isPlaying()) {
@@ -351,7 +346,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             }
         };
 
-        private void afterPlayCleanup(final boolean isStopByUser) {
+        private void afterPlay(final boolean isStopByUser) {
             //remove notification
             noteMgr.cancel(noteID);
             unregisterReceiver(broadcastReceiver);
@@ -365,13 +360,17 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 retrieveInfoFromQueue();
                 lunchTrack.run();
             } else {
-                queueManager.clearQueue();
-                //release wifilock
-                wifiLock.release();
-                //remove foreground status of service; make BackgroundPlayer killable
-                stopForeground(true);
-                stopSelf();
+                afterPlayCleanup();
             }
+        }
+
+        private void afterPlayCleanup() {
+            queueManager.clearQueue();
+            //release wifilock
+            wifiLock.release();
+            //remove foreground status of service; make BackgroundPlayer killable
+            stopForeground(true);
+            stopSelf();
         }
 
         private class EndListener implements MediaPlayer.OnCompletionListener {
@@ -382,14 +381,10 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
             @Override
             public void onCompletion(MediaPlayer mp) {
-                afterPlayCleanup(false);
+                afterPlay(false);
             }
         }
 
-        private RemoteViews view =
-                new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
-        private RemoteViews expandedView =
-                new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification_expanded);
         private Notification buildNotification() {
             Resources res = getApplicationContext().getResources();
             noteBuilder = new NotificationCompat.Builder(owner);
@@ -398,8 +393,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                     new Intent(ACTION_PLAYPAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent stopPI = PendingIntent.getBroadcast(owner, noteID,
                     new Intent(ACTION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
-            PendingIntent rewindPI = PendingIntent.getBroadcast(owner, noteID,
-                    new Intent(ACTION_REWIND), PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent prevTrackPI = PendingIntent.getBroadcast(owner, noteID,
                     new Intent(ACTION_PREV_TRACK), PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent nextTrackPI = PendingIntent.getBroadcast(owner, noteID,
@@ -440,7 +433,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             view.setTextViewText(R.id.notificationArtist, channelName);
             view.setOnClickPendingIntent(R.id.notificationStop, stopPI);
             view.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
-            view.setOnClickPendingIntent(R.id.notificationRewind, rewindPI);
             view.setOnClickPendingIntent(R.id.notificationContent, openDetailView);
             view.setOnClickPendingIntent(R.id.notificationLunchPrevTrack, prevTrackPI);
             view.setOnClickPendingIntent(R.id.notificationLunchNextTrack, nextTrackPI);
@@ -455,7 +447,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             expandedView.setTextViewText(R.id.notificationArtist, channelName);
             expandedView.setOnClickPendingIntent(R.id.notificationStop, stopPI);
             expandedView.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
-            expandedView.setOnClickPendingIntent(R.id.notificationRewind, rewindPI);
             expandedView.setOnClickPendingIntent(R.id.notificationContent, openDetailView);
             expandedView.setOnClickPendingIntent(R.id.notificationLunchPrevTrack, prevTrackPI);
             expandedView.setOnClickPendingIntent(R.id.notificationLunchNextTrack, nextTrackPI);

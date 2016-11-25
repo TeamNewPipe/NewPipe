@@ -29,6 +29,29 @@ public class PlayListDataSource {
     private SQLiteDatabase database;
     private NewPipeSQLiteHelper dbHelper;
 
+    public void duplicatePlayListAOnPlaylistB(final int playlistIdFrom, final int playlistIdTo) {
+        final long lastPosition = getNumberOfEntriesOnPlayList(playlistIdTo);
+        String sb = "INSERT INTO " +
+                        Tables.PLAYLIST_LINK_ENTRIES +
+                    "(" +
+                        PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + ", " +
+                        PLAYLIST_LINK_ENTRIES.PLAYLIST_ENTRIES_ID + ", " +
+                        PLAYLIST_LINK_ENTRIES.POSITION +
+                    ")" +
+                    " SELECT " +
+                        playlistIdTo + ", " +
+                        PLAYLIST_LINK_ENTRIES.PLAYLIST_ENTRIES_ID + ", " +
+                        PLAYLIST_LINK_ENTRIES.POSITION + "+" + lastPosition +
+                    " FROM " +
+                        Tables.PLAYLIST_LINK_ENTRIES +
+                    " WHERE " +
+                        PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + " = " + playlistIdFrom;
+        open();
+        database.execSQL(sb);
+        close();
+        Log.d(TAG, "Duplicate playlist : " + playlistIdFrom + " to " + playlistIdTo + " : " + sb);
+    }
+
     public interface PLAYLIST_SYSTEM {
         int POSITION_DEFAULT = 0;
         int NOT_IN_PLAYLIST_ID = -1;
@@ -56,6 +79,13 @@ public class PlayListDataSource {
         if(database != null && database.isOpen()) {
             dbHelper.close();
         }
+    }
+
+    public boolean hasPersonalPlayList() {
+        open();
+        long nb = DatabaseUtils.queryNumEntries(database, Tables.PLAYLIST, PLAYLIST_COLUMNS.PLAYLIST_SYSTEM + "=?", new String[]{ "0" });
+        close();
+        return nb > 0;
     }
 
     public String getPlaylistName(final int playlistId) {
@@ -98,12 +128,18 @@ public class PlayListDataSource {
                 new String[]{String.valueOf(playlistId)},
                 null,
                 null,
-                null,
-                "RANDOM() LIMIT 1");
-        final StreamPreviewInfo info = cursor.getCount() > 0 ? getStreamPreviewInfo(cursor) : null;
+                "RANDOM()",
+                "1");
+        final StreamPreviewInfo stream;
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            stream = getStreamPreviewInfo(cursor);
+        } else {
+            stream = null;
+        }
         cursor.close();
         close();
-        return info;
+        return stream;
     }
 
     public StreamPreviewInfo getPreviousEntryForItems(final int playlistId, final int position) {
@@ -118,7 +154,8 @@ public class PlayListDataSource {
                 },
                 null,
                 null,
-                PLAYLIST_LINK_ENTRIES.POSITION + " ASC", "1");
+                PLAYLIST_LINK_ENTRIES.POSITION + " DESC",
+                "1");
         final StreamPreviewInfo stream;
         if(cursor.getCount() > 0) {
             cursor.moveToFirst();
@@ -176,6 +213,33 @@ public class PlayListDataSource {
         return stream;
     }
 
+    private StreamPreviewInfo getEntryForPlayList(final int playlistId, final boolean orderAsc) {
+        open();
+        final String ORDER = orderAsc ? " ASC" : " DESC";
+        final Cursor cursor = database.query(Tables.PLAYLIST_LINK_JOIN_ENTRIES,
+                concat(PLAYLIST_ENTRIES_COLUMNS.ALL_COLUMNS, new String[]{PLAYLIST_LINK_ENTRIES.POSITION}),
+                PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + "=?", new String[]{ String.valueOf(playlistId)}, null, null,
+                PLAYLIST_LINK_ENTRIES.POSITION + ORDER, "1");
+        final StreamPreviewInfo stream;
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            stream = getStreamPreviewInfo(cursor);
+        } else {
+            stream = null;
+        }
+        cursor.close();
+        close();
+        return stream;
+    }
+
+    public StreamPreviewInfo getFirstEntryForPlayList(final int playlistId) {
+        return getEntryForPlayList(playlistId, true);
+    }
+
+    public StreamPreviewInfo getLastEntryForPlayList(final int playlistId) {
+        return getEntryForPlayList(playlistId, false);
+    }
+
     public PlayList createPlayList(final String name) {
         open();
         final ContentValues values = new ContentValues();
@@ -201,7 +265,7 @@ public class PlayListDataSource {
 
     public long getNumberOfEntriesOnPlayList(final int playlist_id) {
         open();
-        long nb = DatabaseUtils.longForQuery(database, "SELECT COUNT(*) FROM " + Tables.PLAYLIST_LINK_ENTRIES + " WHERE " + PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + "=?", new String[]{String.valueOf(playlist_id)});
+        long nb = DatabaseUtils.queryNumEntries(database, Tables.PLAYLIST_LINK_ENTRIES, PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + "=?", new String[]{String.valueOf(playlist_id)});
         close();
         return nb;
     }
@@ -234,12 +298,15 @@ public class PlayListDataSource {
         }
         if(entries_id > -1) {
             values.clear();
+            final long position = getNumberOfEntriesOnPlayList(playList_id) + 1;
             values.put(PLAYLIST_LINK_ENTRIES.PLAYLIST_ID, playList_id);
             values.put(PLAYLIST_LINK_ENTRIES.PLAYLIST_ENTRIES_ID, entries_id);
-            values.put(PLAYLIST_LINK_ENTRIES.POSITION, getNumberOfEntriesOnPlayList(playList_id) + 1);
+            values.put(PLAYLIST_LINK_ENTRIES.POSITION, position);
             // because count entries on playlist close the database
             open();
             entries_id = database.insert(Tables.PLAYLIST_LINK_ENTRIES, null, values);
+            Log.d(TAG, String.format("Insert to playlist (%d) at %d value entry : %s", playList_id,
+                    position, info.webpage_url));
         }
         close();
         return entries_id;
@@ -255,7 +322,7 @@ public class PlayListDataSource {
                     null,
                     null,
                     "1");
-            StreamPreviewInfo entry;
+            final StreamPreviewInfo entry;
             if(cursor.getCount() > 0) {
                 cursor.moveToFirst();
                 entry = getStreamPreviewInfo(cursor);
@@ -284,19 +351,6 @@ public class PlayListDataSource {
         cursor.close();
         close();
         return entries_id;
-    }
-
-    public int deleteEntryFromPlayList(final int playlist_id, final String id, final int service_id) {
-        final long entriesId = getEntryId(id, service_id);
-        open();
-        Log.i(TAG, String.format("Delete playlist entry with ref_id : %d and service_id : %d for playlist : %d", entriesId, service_id, playlist_id));
-        final int result = database.delete(Tables.PLAYLIST_LINK_ENTRIES,
-                PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + "=? AND " +
-                PLAYLIST_LINK_ENTRIES.PLAYLIST_ENTRIES_ID + "=?",
-                new String[]{String.valueOf(playlist_id), String.valueOf(entriesId)});
-        Log.i(TAG, String.format("Deleted playlist entry with ref_id : %d for playlist : %d", entriesId, playlist_id));
-        close();
-        return result;
     }
 
     public int deleteEntryFromPlayList(int playlist_id, int position) {
@@ -366,6 +420,28 @@ public class PlayListDataSource {
         cursor.close();
         close();
         return playList;
+    }
+
+    public void updatePosition(int playListId, StreamPreviewInfo stream, int newPosition) {
+        final long entryId = getEntryId(stream.id, stream.service_id);
+        final long oldPosition = stream.position;
+        open();
+        final ContentValues cv = new ContentValues();
+        cv.put(PLAYLIST_LINK_ENTRIES.POSITION, newPosition);
+        database.update(Tables.PLAYLIST_LINK_ENTRIES, cv,
+                        PLAYLIST_LINK_ENTRIES.PLAYLIST_ID + "=? AND " +
+                        PLAYLIST_LINK_ENTRIES.POSITION + "=? AND " +
+                        PLAYLIST_LINK_ENTRIES.PLAYLIST_ENTRIES_ID + "=?",
+                new String[]{
+                        String.valueOf(playListId),
+                        String.valueOf(oldPosition),
+                        String.valueOf(entryId)
+                });
+        Log.d(TAG, String.format("Update position of entriesId %d on playlistId %d: %d -> %d", entryId,
+                playListId, oldPosition, newPosition));
+        // update to new position item
+        stream.position = newPosition;
+        close();
     }
 
     public boolean hasNextPage(int playListId, int page) {

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '23.0.3'
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "org.schabi.newpipe"
@@ -31,10 +31,10 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.android.support:support-v4:25.0.0'
-    compile 'com.android.support:design:25.0.0'
-    compile 'com.android.support:recyclerview-v7:25.0.0'
+    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.android.support:support-v4:25.0.1'
+    compile 'com.android.support:design:25.0.1'
+    compile 'com.android.support:recyclerview-v7:25.0.1'
     compile 'org.jsoup:jsoup:1.8.3'
     compile 'org.mozilla:rhino:1.7.7'
     compile 'info.guardianproject.netcipher:netcipher:1.2'
@@ -44,8 +44,9 @@ dependencies {
     compile 'com.google.android.exoplayer:exoplayer:r1.5.5'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.nononsenseapps:filepicker:3.0.0'
+    compile 'com.getbase:floatingactionbutton:1.10.1'
     compile 'com.facebook.stetho:stetho:1.4.1'
     compile 'com.facebook.stetho:stetho-urlconnection:1.4.1'
-    testCompile 'junit:junit:4.12'
     compile 'ch.acra:acra:4.9.0'
+    testCompile 'junit:junit:4.12'
 }

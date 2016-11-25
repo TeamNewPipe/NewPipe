@@ -1,33 +1,33 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="view_count_text">%1$s visitas</string>
-    <string name="upload_date_text">Subido el %1$s</string>
-    <string name="no_player_found">No se ha encontrado ningún reproductor de vídeo. ¿Desea instalar VLC?</string>
-    <string name="install">Instalarlo</string>
+    <string name="view_count_text">%1$s reproducciones</string>
+    <string name="upload_date_text">Publicado en %1$s</string>
+    <string name="no_player_found">No se encontró ningún reproductor de vídeo. ¿Instalar VLC?</string>
+    <string name="install">Instalar</string>
     <string name="cancel">Cancelar</string>
     <string name="open_in_browser">Abrir en el navegador</string>
     <string name="share">Compartir</string>
     <string name="download">Descargar</string>
     <string name="search">Buscar</string>
     <string name="settings">Ajustes</string>
-    <string name="did_you_mean">¿ Quiso decir: %1$s ?</string>
+    <string name="did_you_mean">¿Quiso decir: %1$s?</string>
     <string name="search_page">Buscar página: </string>
     <string name="share_dialog_title">Compartir con</string>
-    <string name="choose_browser">Selecciona navegador</string>
+    <string name="choose_browser">Seleccionar navegador</string>
     <string name="screen_rotation">rotación</string>
     <string name="settings_activity_title">Ajustes</string>
     <string name="useExternalPlayerTitle">Usar reproductor externo</string>
     <string name="download_path_title">Ruta de descarga de vídeo</string>
-    <string name="download_path_summary">Ruta donde guardar los vídeos descargados.</string>
-    <string name="download_path_dialog_title">Ingrese el directorio de descargas para vídeos</string>
+    <string name="download_path_summary">Ruta para almacenar los vídeos descargados.</string>
+    <string name="download_path_dialog_title">Introducir directorio de descargas para vídeos</string>
     <string name="autoplay_through_intent_title">Intentar reproducción automática</string>
     <string name="autoplay_through_intent_summary">Reproducir vídeos automáticamente cuando se llamen desde otra aplicación.</string>
     <string name="default_resolution_title">Resolución por defecto</string>
     <string name="play_with_kodi_title">Reproducir con Kodi</string>
     <string name="kore_not_found">Aplicación Kore no encontrada. ¿Instalar Kore?</string>
     <string name="installeKore">Instalar Kore</string>
-    <string name="show_play_with_kodi_title">Mostrar la opción \"Reproducir con Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Muestra una opción para reproducir el vídeo con Kodi media center.</string>
+    <string name="show_play_with_kodi_title">Mostrar opción \"Reproducir con Kodi\"</string>
+    <string name="show_play_with_kodi_summary">Muestra una opción para reproducir el vídeo con Kodi Media Center.</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato de audio por defecto</string>
     <string name="webm_description">WebM — formato libre</string>
@@ -38,51 +38,51 @@
     <string name="similar_videos_btn_text">Vídeos similares</string>
 <string name="background_player_name">Reproductor de fondo NewPipe</string>
     <string name="loading">Cargando</string>
-    <string name="use_external_video_player_title">Usar un reproductor de vídeo externo</string>
-    <string name="use_external_audio_player_title">Usar un reproductor de audio externo</string>
+    <string name="use_external_video_player_title">Usar reproductor de vídeo externo</string>
+    <string name="use_external_audio_player_title">Usar reproductor de audio externo</string>
 
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Oscuro</string>
-    <string name="light_theme_title">Claro</string>
+    <string name="light_theme_title">Ligero</string>
 
     <string name="settings_category_appearance_title">Apariencia</string>
-    <string name="settings_category_other_title">Otro</string>
-    <string name="background_player_playing_toast">Reproduciendo en Segundo plano</string>
+    <string name="settings_category_other_title">Otros</string>
+    <string name="background_player_playing_toast">Reproduciendo en segundo plano</string>
     <string name="content_not_available">Contenido no disponible.</string>
     <string name="use_tor_title">Usar Tor</string>
     <string name="use_tor_summary">(Experimental) Forzar la descarga a través de Tor para una mayor privacidad (transmisión de vídeos aún no compatible).</string>
 
     <string name="err_dir_create">No se puede crear la carpeta de descarga \'%1$s\'</string>
-    <string name="info_dir_created">Capeta de descarga creada \'%1$s\'</string>
-<string name="download_path_audio_summary">Ruta para almacenar el audio descargado</string>
-    <string name="download_path_audio_dialog_title">Ingrese la ruta de descarga para los archivos de audio.</string>
+    <string name="info_dir_created">Carpeta de descarga creada \'%1$s\'</string>
+<string name="download_path_audio_summary">Ruta para almacenar los audios descargados</string>
+    <string name="download_path_audio_dialog_title">Introducir ruta de descarga para archivos de audio.</string>
 
     <string name="blocked_by_gema">Bloqueado por GEMA.</string>
 
     <string name="download_path_audio_title">Ruta de descarga de audio</string>
-    <string name="settings_category_video_audio_title">Vídeo &amp; Audio</string>
+    <string name="settings_category_video_audio_title">Vídeo y Audio</string>
     <string name="play_btn_text">Reproducir</string>
     <string name="general_error">Error</string>
-    <string name="network_error">Error de Conexión</string>
+    <string name="network_error">Error de conexión</string>
     <string name="could_not_load_thumbnails">No se pudo cargar las miniaturas</string>
     <string name="youtube_signature_decryption_error">No se pudo descifrar la url del vídeo.</string>
     <string name="parsing_error">No se pudo analizar el sitio web.</string>
-    <string name="show_next_and_similar_title">Mostrar vídeos similares</string>
-    <string name="search_language_title">Idioma del contenido</string>
+    <string name="show_next_and_similar_title">Mostrar vídeos siguientes y similares</string>
+    <string name="search_language_title">Idioma preferido del contenido</string>
     <string name="list_thumbnail_view_description">Vista previa del vídeo</string>
     <string name="detail_thumbnail_view_description">Vista previa del vídeo</string>
     <string name="detail_likes_img_view_description">Me gusta</string>
     <string name="detail_dislikes_img_view_description">No me gusta</string>
     <string name="detail_uploader_thumbnail_view_description">Foto miniatura del usuario</string>
-    <string name="live_streams_not_supported">Esta es una transmisión en Vivo. Todavía no es compatible.</string>
+    <string name="live_streams_not_supported">Esta es una transmisión en vivo. Todavía no es compatible.</string>
 
 
     <string name="content">Contenido</string>
-    <string name="show_age_restricted_content_title">Mostrar contenido con restricción de edad</string>
+    <string name="show_age_restricted_content_title">Mostrar contenido restringido por edad</string>
     <string name="video_is_age_restricted">El vídeo tiene restricción de edad. Habilite los vídeos con restricción de edad en los ajustes.</string>
 
     <string name="main_bg_subtitle">Toque buscar para empezar</string>
-    <string name="autoplay_by_calling_app_title">Autoreproducir cuando se llama desde otra aplicación</string>
+    <string name="autoplay_by_calling_app_title">Autoreproducir al llamar desde otra app</string>
     <string name="autoplay_by_calling_app_summary">Reproducir automáticamente un vídeo cuando NewPipe es llamado desde otra aplicación.</string>
     <string name="duration_live">en vivo</string>
     <string name="downloads">Descargas</string>
@@ -92,7 +92,7 @@
 
     <string name="light_parsing_error">No se pudo analizar el sitio web completamente.</string>
     <string name="could_not_setup_download_menu">No se pudo configurar el menú de descarga.</string>
-    <string name="could_not_get_stream">No se pudo obtener ningún stream.</string>
+    <string name="could_not_get_stream">No se pudo obtener ninguna transmisión.</string>
     <string name="sorry_string">Lo siento, esto no debería ocurrir.</string>
     <string name="error_report_button_text">Reportar error vía email</string>
     <string name="error_snackbar_message">Lo siento, ocurrieron algunos errores.</string>
@@ -100,7 +100,7 @@
     <string name="what_device_headline">Información:</string>
     <string name="what_happened_headline">Qué ha ocurrido:</string>
     <string name="info_searched_lbl">Buscado:</string>
-    <string name="info_requested_stream_lbl">Stream solicitado:</string>
+    <string name="info_requested_stream_lbl">Transmisión solicitada:</string>
     <string name="your_comment">Su comentario (en Inglés):</string>
     <string name="error_details_headline">Detalles:</string>
 
@@ -116,10 +116,10 @@
     <string name="logging_normal">Normal</string>
     <string name="logging_verbose">Detallado</string>
     <string name="retry">Reintentar</string>
-    <string name="off">[apagado]</string>
+    <string name="off">[off]</string>
     <string name="error_drm_not_supported">Contenido protegido no soportado en niveles de API inferiores a 18</string>
     <string name="error_drm_unsupported_scheme">Este dispositivo no soporta el esquema DRM requerido</string>
-    <string name="error_drm_unknown">Ocurrió un error DRM desconocido</string>
+    <string name="error_drm_unknown">Ocurrió un error desconocido de DRM</string>
     <string name="error_no_decoder">Este dispositivo no proporciona un decodificador para <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string name="error_no_secure_decoder">Este dispositivo no proporciona un decodificador seguro para <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string name="error_querying_decoders">No es posible consultar los decodificadores del dispositivo</string>
@@ -130,27 +130,170 @@
 
     <string name="start">Iniciar</string>
     <string name="pause">Pausar</string>
-    <string name="view">Mostrar</string>
+    <string name="view">Reproducir</string>
     <string name="delete">Eliminar</string>
     <string name="checksum">Checksum</string>
 
     <string name="add">Nueva misión</string>
-    <string name="finish">Ok</string>
+    <string name="finish">Listo</string>
     <string name="switch_mode">Cambiar entre lista y cuadrícula</string>
 
 
-    <string name="msg_url">Descargar URL</string>
+    <string name="msg_url">URL de descarga</string>
     <string name="msg_name">Nombre del archivo</string>
-    <string name="msg_threads">Hilos</string>
+    <string name="msg_threads">Hilos de conexión</string>
     <string name="msg_fetch_filename">Obtener nombre de archivo</string>
     <string name="msg_error">Error</string>
     <string name="msg_server_unsupported">Servidor no soportado</string>
     <string name="msg_exists">El archivo ya existe</string>
     <string name="msg_url_malform">URL mal formada o Internet no disponible</string>
-    <string name="msg_running">Descargando NewPipe</string>
-    <string name="msg_running_detail">Haga clic para detalles</string>
+    <string name="msg_running">Descarga de NewPipe</string>
+    <string name="msg_running_detail">Toque para ver detalles</string>
     <string name="msg_wait">Por favor espere...</string>
     <string name="msg_copied">Copiado al portapapeles.</string>
     <string name="no_available_dir">Por favor, seleccione un directorio de descarga disponible.</string>
 
+    <string name="could_not_load_image">No se pudo cargar la imagen</string>
+    <string name="app_ui_crash">La interfaz de la app dejó de funcionar</string>
+    <string name="info_labels">Qué ocurrió:\\nSolicitud:\\nIdioma del contenido:\\nServicio:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del S.O:\\nRango global de la IP:</string>
+    <string name="title_activity_channel">Actividad del canal</string>
+    <string name="action_settings">Ajustes</string>
+
+    <string name="large_text">"
+ Material is the metaphor.
+
+
+
+ A material metaphor is the unifying theory of a rationalized space and a system of motion.
+ The material is grounded in tactile reality, inspired by the study of paper and ink, yet 
+ technologically advanced and open to imagination and magic.
+
+ Surfaces and edges of the material provide visual cues that are grounded in reality. The 
+ use of familiar tactile attributes helps users quickly understand affordances. Yet the 
+ flexibility of the material creates new affordances that supercede those in the physical 
+ world, without breaking the rules of physics.
+
+ The fundamentals of light, surface, and movement are key to conveying how objects move, 
+ interact, and exist in space and in relation to each other. Realistic lighting shows 
+ seams, divides space, and indicates moving parts.
+
+
+
+ Bold, graphic, intentional.
+
+
+
+ The foundational elements of print based design typography, grids, space, scale, color, 
+ and use of imagery guide visual treatments. These elements do far more than please the 
+ eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge 
+ imagery, large scale typography, and intentional white space create a bold and graphic 
+ interface that immerse the user in the experience.
+
+ An emphasis on user actions makes core functionality immediately apparent and provides 
+ waypoints for the user.
+
+
+
+ Motion provides meaning.
+
+
+
+ Motion respects and reinforces the user as the prime mover. Primary user actions are 
+ inflection points that initiate motion, transforming the whole design.
+
+ All action takes place in a single environment. Objects are presented to the user without 
+ breaking the continuity of experience even as they transform and reorganize.
+
+ Motion is meaningful and appropriate, serving to focus attention and maintain continuity. 
+ Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.
+
+
+
+ 3D world.
+
+
+
+ The material environment is a 3D space, which means all objects have x, y, and z 
+ dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the 
+ positive z-axis extending towards the viewer. Every sheet of material occupies a single 
+ position along the z-axis and has a standard 1dp thickness.
+
+ On the web, the z-axis is used for layering and not for perspective. The 3D world is 
+ emulated by manipulating the y-axis.
+
+
+
+ Light and shadow.
+
+
+
+ Within the material environment, virtual lights illuminate the scene. Key lights create 
+ directional shadows, while ambient light creates soft shadows from all angles.
+
+ Shadows in the material environment are cast by these two light sources. In Android 
+ development, shadows occur when light sources are blocked by sheets of material at 
+ various positions along the z-axis. On the web, shadows are depicted by manipulating the 
+ y-axis only. The following example shows the card with a height of 6dp.
+
+
+
+ Resting elevation.
+
+
+
+ All material objects, regardless of size, have a resting elevation, or default elevation 
+ that does not change. If an object changes elevation, it should return to its resting 
+ elevation as soon as possible.
+
+
+
+ Component elevations.
+
+
+
+ The resting elevation for a component type is consistent across apps (e.g., FAB elevation 
+ does not vary from 6dp in one app to 16dp in another app).
+
+ Components may have different resting elevations across platforms, depending on the depth 
+ of the environment (e.g., TV has a greater depth than mobile or desktop).
+
+
+
+ Responsive elevation and dynamic elevation offsets.
+
+
+
+ Some component types have responsive elevation, meaning they change elevation in response 
+ to user input (e.g., normal, focused, and pressed) or system events. These elevation 
+ changes are consistently implemented using dynamic elevation offsets.
+
+ Dynamic elevation offsets are the goal elevation that a component moves towards, relative 
+ to the component’s resting state. They ensure that elevation changes are consistent 
+ across actions and component types. For example, all components that lift on press have 
+ the same elevation change relative to their resting elevation.
+
+ Once the input event is completed or cancelled, the component will return to its resting 
+ elevation.
+
+
+
+ Avoiding elevation interference.
+
+
+
+ Components with responsive elevations may encounter other components as they move between 
+ their resting elevations and dynamic elevation offsets. Because material cannot pass 
+ through other material, components avoid interfering with one another any number of ways, 
+ whether on a per component basis or using the entire app layout.
+
+ On a component level, components can move or be removed before they cause interference. 
+ For example, a floating action button (FAB) can disappear or move off screen before a 
+ user picks up a card, or it can move if a snackbar appears.
+
+ On the layout level, design your app layout to minimize opportunities for interference. 
+ For example, position the FAB to one side of stream of a cards so the FAB won’t interfere 
+ when a user tries to pick up one of cards.
+
+
+ "</string>
     </resources>
