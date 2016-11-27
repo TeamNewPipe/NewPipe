@@ -42,7 +42,6 @@ import org.schabi.newpipe.search_fragment.SearchInfoItemFragment;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
@@ -234,7 +233,6 @@ public class PlaylistLocalActivity extends AppCompatActivity {
 
         final FloatingActionsMenu floatingActionsMenu = (FloatingActionsMenu) findViewById(R.id.multiple_actions_menu);
         final String channel_name = info.channel_name;
-        final List<StreamPreviewInfo> relatedStreams = info.related_streams;
 
         final FloatingActionButton actionRecordToLocalPlaylist = (FloatingActionButton) findViewById(R.id.action_record_to_local_playlist);
         actionRecordToLocalPlaylist.setVisibility(View.GONE);
@@ -277,6 +275,25 @@ public class PlaylistLocalActivity extends AppCompatActivity {
                         })
                         .setNegativeButton(R.string.cancel, null);
                 alertDialog.show();
+            }
+        });
+
+        final View backgroundOpac = findViewById(R.id.floating_menu_background);
+        backgroundOpac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                floatingActionsMenu.collapse();
+            }
+        });
+        floatingActionsMenu.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
+            @Override
+            public void onMenuExpanded() {
+                backgroundOpac.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onMenuCollapsed() {
+                backgroundOpac.setVisibility(View.GONE);
             }
         });
     }

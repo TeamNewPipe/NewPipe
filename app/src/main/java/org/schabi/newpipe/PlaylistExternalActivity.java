@@ -206,6 +206,25 @@ public class PlaylistExternalActivity extends AppCompatActivity {
                 alertDialog.show();
             }
         });
+
+        final View backgroundOpac = findViewById(R.id.floating_menu_background);
+        backgroundOpac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                floatingActionsMenu.collapse();
+            }
+        });
+        floatingActionsMenu.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
+            @Override
+            public void onMenuExpanded() {
+                backgroundOpac.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onMenuCollapsed() {
+                backgroundOpac.setVisibility(View.GONE);
+            }
+        });
     }
 
 
