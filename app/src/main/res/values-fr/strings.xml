@@ -151,4 +151,9 @@
     <string name="msg_copied">Copié dans le presse-papier.</string>
     <string name="no_available_dir">Sélectionner un répertoire de téléchargement disponible.</string>
 
+    <string name="could_not_load_image">L’image ne peut pas être chargée</string>
+    <string name="app_ui_crash">L’appli / l’interface utilisateur a crashé</string>
+    <string name="title_activity_channel">Activité de la chaine</string>
+    <string name="action_settings">Paramètres</string>
+
     </resources>
