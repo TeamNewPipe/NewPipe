@@ -1,5 +1,6 @@
 package org.schabi.newpipe.extractor.services.youtube;
 
+import android.text.TextUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
@@ -64,9 +65,18 @@ public class YoutubePlayListExtractor extends ChannelExtractor {
     public String getChannelName() throws ParsingException {
         try {
             if (!isAjaxPage) {
-                channelName = doc.select("span[class=\"qualified-channel-title-text\"]").first()
-                        .select("a").first().text() + " - " +
-                        doc.select("meta[name=title]").first().attr("content");
+                final Element channelName = doc.select("span[class=\"qualified-channel-title-text\"] a").first();
+                final Element playlistName = doc.select("meta[name=title]").first();
+                if(channelName != null) {
+                    YoutubePlayListExtractor.channelName = channelName.text();
+                }
+                if(playlistName != null) {
+                    if (TextUtils.isEmpty(YoutubePlayListExtractor.channelName)) {
+                        YoutubePlayListExtractor.channelName = playlistName.attr("content");
+                    } else {
+                        YoutubePlayListExtractor.channelName += " - " + playlistName.attr("content");
+                    }
+                }
             }
             return channelName;
         } catch (Exception e) {
