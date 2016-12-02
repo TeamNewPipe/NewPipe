@@ -3,8 +3,8 @@ package org.schabi.newpipe.extractor.youtube;
 import android.test.AndroidTestCase;
 
 import org.schabi.newpipe.Downloader;
-import org.schabi.newpipe.extractor.ExtractionException;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 
 import java.io.IOException;
@@ -39,9 +39,9 @@ public class YoutubeStreamExtractorGemaTest extends AndroidTestCase {
     public void testGemaError() throws IOException, ExtractionException {
         if(testActive) {
             try {
+                NewPipe.init(new Downloader());
                 NewPipe.getService("Youtube")
-                        .getExtractorInstance("https://www.youtube.com/watch?v=3O1_3zBUKM8",
-                        new Downloader());
+                        .getExtractorInstance("https://www.youtube.com/watch?v=3O1_3zBUKM8");
             } catch(YoutubeStreamExtractor.GemaException ge) {
                 assertTrue(true);
             }

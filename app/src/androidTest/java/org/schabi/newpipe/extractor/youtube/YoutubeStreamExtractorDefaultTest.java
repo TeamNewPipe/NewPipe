@@ -3,11 +3,11 @@ package org.schabi.newpipe.extractor.youtube;
 import android.test.AndroidTestCase;
 
 import org.schabi.newpipe.Downloader;
-import org.schabi.newpipe.extractor.AbstractVideoInfo;
-import org.schabi.newpipe.extractor.ExtractionException;
-import org.schabi.newpipe.extractor.ParsingException;
+import org.schabi.newpipe.extractor.AbstractStreamInfo;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.StreamExtractor;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
 
 import java.io.IOException;
@@ -36,9 +36,11 @@ public class YoutubeStreamExtractorDefaultTest extends AndroidTestCase {
     public static final String HTTPS = "https://";
     private StreamExtractor extractor;
 
-    public void setUp() throws IOException, ExtractionException {
+    public void setUp() throws Exception {
+        super.setUp();
+        NewPipe.init(new Downloader());
         extractor = NewPipe.getService("Youtube")
-                .getExtractorInstance("https://www.youtube.com/watch?v=YQHsXMglC9A", new Downloader());
+                .getExtractorInstance("https://www.youtube.com/watch?v=YQHsXMglC9A");
     }
 
     public void testGetInvalidTimeStamp() throws ParsingException {
@@ -49,7 +51,7 @@ public class YoutubeStreamExtractorDefaultTest extends AndroidTestCase {
     public void testGetValidTimeStamp() throws ExtractionException, IOException {
         StreamExtractor extractor =
                 NewPipe.getService("Youtube")
-                        .getExtractorInstance("https://youtu.be/FmG385_uUys?t=174", new Downloader());
+                        .getExtractorInstance("https://youtu.be/FmG385_uUys?t=174");
         assertTrue(Integer.toString(extractor.getTimeStamp()),
                 extractor.getTimeStamp() == 174);
     }
@@ -108,7 +110,7 @@ public class YoutubeStreamExtractorDefaultTest extends AndroidTestCase {
     }
 
     public void testStreamType() throws ParsingException {
-        assertTrue(extractor.getStreamType() == AbstractVideoInfo.StreamType.VIDEO_STREAM);
+        assertTrue(extractor.getStreamType() == AbstractStreamInfo.StreamType.VIDEO_STREAM);
     }
 
     public void testGetDashMpd() throws ParsingException {
