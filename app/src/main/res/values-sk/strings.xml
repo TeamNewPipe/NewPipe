@@ -153,4 +153,143 @@
     <string name="app_ui_crash">Aplikácia/UP zlyhalo</string>
     <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nSlužba:\\nČas v GMT:\\nBalík:\\nVerzia:\\nVerzia OS:\\nGlob. IP rozsah:</string>
     <string name="title_activity_channel">Aktivita kanálov</string>
+    <string name="action_settings">Nastavenia</string>
+
+    <string name="large_text">"
+ Materiál je metaforou.
+
+
+
+ Materiál metafora je zjednocujúci teórie racionálne priestoru a systém pohybu.
+ Materiál je zakotvená v taktilné skutočnosti, inšpirované štúdiom papiera a atramentu, ale napriek tomu  
+ technologicky pokročilé a otvorené fantáziu a mágiu.
+
+ Povrchy a hrany materiálu poskytujú vizuálnu pokyny, ktoré sú zakotvené v realite.  
+ Použitie známych hmatových vlastností, pomáha používateľom rýchlo pochopiť affordances. napriek tomu  
+ Pružnosť materiálu vytvára nové affordances že nadradené tie fyzické  
+ svet bez toho, aby porušenie pravidiel fyziky.
+
+ Základy svetla, povrchu a pohyb sú kľúčom k dopravovanie, ako sa objekty pohybovať,  
+ komunikovať, a existujú v priestore a vo vzťahu k sebe navzájom. Realistické svetelné šou  
+ švy, rozdeľuje priestor, a indikuje pohyblivých častí.
+
+
+
+ Bold, kreslený, úmyselné.
+
+
+
+ Foundational prvky tlače na dizajn typografie, rošty, priestor, mierka, farby,  
+ a používanie metafor riadiť vizuálne procedúry. Tieto prvky robiť oveľa viac, než potešiť  
+ oko. Vytvárajú hierarchie, zmysel a zameranie. výber farieb úmyselné, od okraja k okraju  
+ snímok, rozsiahle typografie a úmyselné biely priestor vytvoriť tučný a grafický  
+ rozhranie, ktoré ponorí užívateľov v zážitku.
+
+ Dôraz na užívateľských akcií činí základné funkcie okamžite zrejmé a poskytuje  
+ waypointy pre užívateľov.
+
+
+
+ Motion poskytuje význam.
+
+
+
+ Návrh rešpektuje a posilňuje užívateľa ako hnacia sila. Primárne akcie užívateľa sú  
+ inflexné body, ktoré iniciujú pohyb, transformáciu celej konštrukcie.
+
+ Celá akcia prebieha v jedinom prostredí. Objekty sú prezentované užívateľovi bez toho,  
+ prelomenie kontinuity skúseností, aj keď ich transformáciu a reorganizáciu.
+
+ Pohyb je zmysluplné a vhodné, slúžiace sústrediť pozornosť a zachovanie kontinuity.  
+ Spätná väzba je jemné, ale napriek tomu jasné. Prechody sú ef fi točné ešte koherentné.
+
+
+
+ 3D svet.
+
+
+
+ Materiál prostredie je 3D priestore, čo znamená, že všetky objekty majú X, Y, a Z  
+ rozmery. Os je kolmo zarovnaný k rovine zobrazenie, s  
+ kladná os rozširuje smerom k divákovi. Každý list materiálu, umiestnené v jednom  
+ poloha pozdĺž osi a má štandardnú hrúbku 1DP.
+
+ Na webe, os sa používa pre vrstvenie a nie pre perspektívy. 3D svet  
+ emuloval tým, že manipuluje os y.
+
+
+
+ Svetlo a tieň.
+
+
+
+ V hmotnom prostredí, virtuálne svetlá osvetľujú scénu. Kľúčové svetla vytvárajú  
+ smerové tiene, zatiaľ čo okolité svetlo vytvára mäkké tiene zo všetkých strán.
+
+ Tiene v hmotnom prostredí sú obsadené týmito dvoma svetelnými zdrojmi. v Android  
+ vývoj, dochádza tiene, keď sú svetelné zdroje blokované plechového materiálu, na  
+ Rôzne pozície pozdĺž osi. Na webe tiene sú znázornené manipuláciou  
+ Iba os y. Nasledujúci príklad ukazuje kartu s výškou 6dp.
+
+
+
+ Odpočíva nadmorskú výšku.
+
+
+
+ Všetky významné objekty, bez ohľadu na ich veľkosť, majú výšku odpočíva, alebo predvolené výšku  
+ to nič nemení. V prípade, že objekt sa mení výšku, mal by sa vrátiť do svojej pokojovej  
+ nadmorskej výšky čo najskôr.
+
+
+
+ Component výškach.
+
+
+
+ Pokojová nadmorská výška pre typ komponentu je konzistentné naprieč aplikáciami (napr FAB elevácie  
+ nelíši od 6dp v jednej aplikácii na 16dp v inej aplikácii).
+
+ Zložky môžu mať rôzne pokojovej výšky medzi platformami, v závislosti od hĺbky  
+ životného prostredia (napr televízor má väčšiu hĺbku, ako mobilný telefón alebo plochy).
+
+
+
+ Citlivé nadmorská výška a dynamické elevácie offsety.
+
+
+
+ Niektoré typy komponentov majú citlivejší výšku, čo znamená, že meniť výšku v odozve  
+ na vstup používateľa (napríklad normálny priebeh, sa zameral, a lisované), alebo systémové udalosti. tieto elevácie  
+ Zmeny sa vykonávali dôsledne používať dynamické výškové posuny.
+
+ Dynamické výškové posuny sú cieľom nadmorská výška, ktorá zložka sa pohybuje smerom, relatívna  
+ do pokojového stavu súčasti. Zaisťujú, že zmeny elevácie sú v súlade  
+ naprieč akcií a typov komponentov. Napríklad všetky súčasti, ktoré vlek na lise majú  
+ rovnaká zmena prevýšenie vo vzťahu k ich prevýšenie odpočinku.
+
+ Akonáhle je vstupná udalosť dokončenie alebo zrušená, bude zložka vráti do svojej pokojovej  
+ nadmorská výška.
+
+
+
+ Vyhnúť sa rušenie elevácie.
+
+
+
+ Zložky s citlivými nadmorských výškach môže stretnúť s ďalšími komponentmi, ako sa pohybovať medzi  
+ ich odpočinku vyvýšeniny a dynamické výškové odsadenie. Vzhľadom k tomu, materiál nemôže prejsť  
+ prostredníctvom iného materiálu, komponenty nenarušovať spolu navzájom nejakom množstvo ciest,  
+ či už na úrovni jednotlivých komponentov alebo s použitím kompletné rozloženie aplikácie.
+
+ Na úrovni komponentov môžu zložky presunúť alebo odstrániť skôr, než spôsobia rušenie.  
+ Napríklad tlačidlo plávajúce akcie (FAB) môžu zmiznúť alebo presunúť mimo obrazovku pred  
+ Užívateľ zdvihne kartu, alebo sa môže pohybovať, ak sa objaví snackbar.
+
+ Na úrovni Usporiadanie, riešenie rozvrhnutie aplikácie, aby sa minimalizovalo príležitostí k rušeniu.  
+ Napríklad, umiestnenie FAB na jednej strane prúdu niekoľkých kariet, takže FAB nebude zasahovať  
+ ak sa užívateľ pokúsi vyzdvihnúť jednu z kariet.
+
+
+ "</string>
     </resources>
