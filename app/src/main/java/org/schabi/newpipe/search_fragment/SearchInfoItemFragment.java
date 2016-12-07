@@ -2,6 +2,7 @@ package org.schabi.newpipe.search_fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import org.schabi.newpipe.IntentRunner;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
@@ -149,7 +151,7 @@ public class SearchInfoItemFragment extends Fragment {
         }
 
         SearchWorker sw = SearchWorker.getInstance();
-        sw.setSearchWorkerResultListner(new SearchWorker.SearchWorkerResultListner() {
+        sw.setSearchWorkerResultListener(new SearchWorker.SearchWorkerResultListener() {
             @Override
             public void onResult(SearchResult result) {
                 infoListAdapter.addStreamItemList(result.resultList);
@@ -171,6 +173,15 @@ public class SearchInfoItemFragment extends Fragment {
                 Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                 isLoading = false;
                 loadingIndicator.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onReCaptchaChallenge() {
+                Toast.makeText(getActivity(), "ReCaptcha Challenge requested",
+                        Toast.LENGTH_LONG).show();
+                // Starting ReCaptcha Challenge Activity
+                Intent i = new Intent(getActivity(), ReCaptchaActivity.class);
+                getActivity().startActivity(i);
             }
         });
     }
