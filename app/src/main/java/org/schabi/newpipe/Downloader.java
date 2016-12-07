@@ -36,6 +36,21 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
     
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0";
 
+    private static Downloader instance = null;
+
+    private Downloader() {}
+
+    public static Downloader getInstance() {
+        if(instance == null) {
+            synchronized (Downloader.class) {
+                if (instance == null) {
+                    instance = new Downloader();
+                }
+            }
+        }
+        return instance;
+    }
+
     /**Download the text file at the supplied URL as in download(String),
      * but set the HTTP header field "Accept-Language" to the supplied string.
      * @param siteUrl the URL of the text file to return the contents of
