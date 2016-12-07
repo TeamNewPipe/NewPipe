@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 .findFragmentById(R.id.search_fragment);
     }
 
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
