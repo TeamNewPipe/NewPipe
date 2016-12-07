@@ -166,6 +166,9 @@
                 <data android:host="www.youtube.com" android:mimeType="text/*" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ReCaptchaActivity"
+            android:label="@string/reCaptchaActivity" />
     </application>
 
 </manifest>

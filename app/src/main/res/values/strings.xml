@@ -296,6 +296,8 @@
     <string name="add_item">Add…</string>
     <string name="add_playlist_to_queue">Add playlist to current Queue ?</string>
     <string name="replace_queue_by_playlist">Replace current queue by playlist</string>
+    <string name="reCaptchaActivity">reCaptcha</string>
+    <string name="reCaptcha_title">reCaptcha Challenge</string>
 
     <!-- End of GigaGet's Strings -->
 
