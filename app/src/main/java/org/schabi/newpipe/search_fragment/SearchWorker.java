@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.exceptions.reCaptchaException;
 import org.schabi.newpipe.extractor.search.SearchEngine;
 import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -40,10 +41,11 @@ import java.io.IOException;
 public class SearchWorker {
     private static final String TAG = SearchWorker.class.toString();
 
-    public interface SearchWorkerResultListner {
+    public interface SearchWorkerResultListener {
         void onResult(SearchResult result);
         void onNothingFound(final int stringResource);
         void onError(String message);
+        void onReCaptchaChallenge();
     }
 
     private class ResultRunnable implements Runnable {
@@ -56,7 +58,7 @@ public class SearchWorker {
         @Override
         public void run() {
             if(this.requestId == SearchWorker.this.requestId) {
-                searchWorkerResultListner.onResult(result);
+                searchWorkerResultListener.onResult(result);
             }
         }
     }
@@ -121,11 +123,18 @@ public class SearchWorker {
 
                 }
                 // hard errors:
+            } catch (reCaptchaException e) {
+                h.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        searchWorkerResultListener.onReCaptchaChallenge();
+                    }
+                });
             } catch(IOException e) {
                 h.post(new Runnable() {
                     @Override
                     public void run() {
-                        searchWorkerResultListner.onNothingFound(R.string.network_error);
+                        searchWorkerResultListener.onNothingFound(R.string.network_error);
                     }
                 });
                 e.printStackTrace();
@@ -133,7 +142,7 @@ public class SearchWorker {
                 h.post(new Runnable() {
                     @Override
                     public void run() {
-                        searchWorkerResultListner.onError(e.getMessage());
+                        searchWorkerResultListener.onError(e.getMessage());
                     }
                 });
             } catch(ExtractionException e) {
@@ -155,7 +164,7 @@ public class SearchWorker {
     }
 
     private static SearchWorker searchWorker = null;
-    private SearchWorkerResultListner searchWorkerResultListner = null;
+    private SearchWorkerResultListener searchWorkerResultListener = null;
     private SearchRunnable runnable = null;
     private int requestId = 0;     //prevents running requests that have already ben expired
 
@@ -163,8 +172,8 @@ public class SearchWorker {
         return searchWorker == null ? (searchWorker = new SearchWorker()) : searchWorker;
     }
 
-    public void setSearchWorkerResultListner(SearchWorkerResultListner listener) {
-        searchWorkerResultListner = listener;
+    public void setSearchWorkerResultListener(SearchWorkerResultListener listener) {
+        searchWorkerResultListener = listener;
     }
 
     private SearchWorker() {
