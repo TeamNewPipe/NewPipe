@@ -269,6 +269,8 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="reCaptchaActivity">reCaptcha</string>
+    <string name="reCaptcha_title">reCaptcha Challenge</string>
 
     <!-- End of GigaGet's Strings -->
 
