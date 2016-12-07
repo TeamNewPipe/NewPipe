@@ -35,6 +35,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class Downloader implements org.schabi.newpipe.extractor.Downloader {
     
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0";
+    private static String mCookies = "";
 
     private static Downloader instance = null;
 
@@ -49,6 +50,14 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
             }
         }
         return instance;
+    }
+
+    public static synchronized void setCookies(String cookies) {
+        Downloader.mCookies = cookies;
+    }
+
+    public static synchronized String getCookies() {
+        return Downloader.mCookies;
     }
 
     /**Download the text file at the supplied URL as in download(String),
@@ -88,6 +97,10 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
         try {
             con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", USER_AGENT);
+
+            if (getCookies().length() > 0) {
+                con.setRequestProperty("Cookie", getCookies());
+            }
 
             in = new BufferedReader(
                     new InputStreamReader(con.getInputStream()));
