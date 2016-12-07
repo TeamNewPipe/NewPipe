@@ -62,7 +62,7 @@ public class App extends Application {
         }
 
         //init NewPipe
-        NewPipe.init(new Downloader());
+        NewPipe.init(Downloader.getInstance());
 
         // Initialize image loader
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
