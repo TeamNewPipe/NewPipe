@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="main_bg_subtitle">Başlamak için ara ya basınız</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="main_bg_subtitle">Başlamak için ara ya basınız</string>
     <string name="background_player_name">NewPipe Arkaplan Oynatıcısı</string>
     <string name="view_count_text">%1$s izlenme</string>
     <string name="upload_date_text">Yayınlanma: %1$s</string>
-    <string name="no_player_found">Stream oynatıcı bulunamadı. LVC kur?</string>
+    <string name="no_player_found">Stream oynatıcı bulunamadı. VLC kur?</string>
     <string name="install">Kur</string>
     <string name="cancel">İptal</string>
     <string name="open_in_browser">Tarayıcıda aç</string>
@@ -23,19 +23,19 @@
 
     <string name="download_path_title">Video indirme yeri</string>
     <string name="download_path_summary">İndirilen videoların kaydedileceği yer.</string>
-    <string name="download_path_dialog_title">Videolar için indirme yeri gir</string>
+    <string name="download_path_dialog_title">Videolar için indirme dizini gir</string>
 
-    <string name="download_path_audio_title">Ses indirme yeri</string>
-    <string name="download_path_audio_summary">İndirilmiş seslerin saklanacağı yer</string>
-    <string name="download_path_audio_dialog_title">Ses dosyaları için indirme yeri gir.</string>
+    <string name="download_path_audio_title">Ses indirme dizini</string>
+    <string name="download_path_audio_summary">İndirilmiş seslerin saklanacağı dizin</string>
+    <string name="download_path_audio_dialog_title">Ses dosyaları için indirme dizini gir.</string>
 
     <string name="autoplay_by_calling_app_title">Başka bir uygulamadan çağrıldığında otomatik oynat</string>
-    <string name="autoplay_by_calling_app_summary">NewPipe başka bir uygulamadan çağırıldığında videoyu otomatik oynat.</string>
+    <string name="autoplay_by_calling_app_summary">NewPipe başka bir uygulamadan çağırıldığında videoyu otomatik oynatır.</string>
     <string name="default_resolution_title">Varsayılan çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile Çal</string>
-    <string name="kore_not_found">Kore uygulaması bulunamadı. Kore yükle?</string>
+    <string name="kore_not_found">Kore uygulaması bulunamadı. Yüklemek ister misin?</string>
     <string name="show_play_with_kodi_title">\"Kodi ile Oynat\" seçeneğini göster</string>
-    <string name="show_play_with_kodi_summary">Videoyu Kodi ortam oynatıcı ile oynatmak için bir seöenek gösterir.</string>
+    <string name="show_play_with_kodi_summary">Kodi Medya Merkezi aracılığıyla bir video oynatmak için bir seçenek görüntüler.</string>
     <string name="default_audio_format_title">Varsayılan ses biçimi</string>
     <string name="webm_description">WebM - Özgür biçim</string>
     <string name="m4a_description">m4a — daha iyi kalite</string>
@@ -48,5 +48,103 @@
     <string name="show_next_and_similar_title">Sıradaki ve benzer videoları göster</string>
     <string name="url_not_supported_toast">URL desteklenmiyor</string>
     <string name="similar_videos_btn_text">Benzer videolar</string>
-    <string name="search_language_title">Öncelikli içerikl dili</string>
+    <string name="search_language_title">Öncelikli içerik dili</string>
+    <string name="play_audio">Ses</string>
+    <string name="settings_category_video_audio_title">Video ve ses</string>
+    <string name="settings_category_appearance_title">Görünüm</string>
+    <string name="settings_category_other_title">Diğer</string>
+    <string name="background_player_playing_toast">Arkaplanda çalışır durumda</string>
+    <string name="play_btn_text">Oynat</string>
+    <string name="content">İçerik</string>
+    <string name="show_age_restricted_content_title">Yaş kısıtlanmış içeriği göster</string>
+    <string name="video_is_age_restricted">Bu video yaş sınırlı bir videodur. İlk önce ayarlardan yaş kısıtlanmış içeriği göster seçeğini aktif ediniz.</string>
+    <string name="duration_live">canlı</string>
+    <string name="downloads">İndirilenler</string>
+    <string name="downloads_title">İndirilenler</string>
+    <string name="settings_title">Ayarlar</string>
+    <string name="error_report_title">Hata raporu</string>
+
+    <string name="general_error">Hata</string>
+    <string name="network_error">Ağ hatası</string>
+    <string name="could_not_load_thumbnails">Tüm küçük resimler yüklenemedi</string>
+    <string name="youtube_signature_decryption_error">Video url imza şifresi çözülemedi.</string>
+    <string name="parsing_error">Web sitesi ayrıştırılamadı.</string>
+    <string name="light_parsing_error">Web sitesi tamamen ayrıştırılamadı.</string>
+    <string name="content_not_available">İçerik kullanılamaz.</string>
+    <string name="blocked_by_gema">GEMA tarafından engellendi.</string>
+    <string name="live_streams_not_supported">Bu bir LIVE akışıdır. Bunlar henüz desteklenmiyor.</string>
+    <string name="could_not_get_stream">Herhangi bir akış alınamadı.</string>
+    <string name="could_not_load_image">Resim yüklenemedi</string>
+    <string name="app_ui_crash">App/UI çöktü</string>
+    <string name="sorry_string">Üzgünüm bu olmamalıydı.</string>
+    <string name="error_report_button_text">Posta yoluyla hata bildir</string>
+    <string name="error_snackbar_message">Üzgünüm bazı hatalar oluştu.</string>
+    <string name="error_snackbar_action">RAPOR</string>
+    <string name="what_device_headline">Bilgi:</string>
+    <string name="what_happened_headline">Ne oldu:</string>
+    <string name="info_labels"></string>
+    <string name="info_searched_lbl">Aramak için:</string>
+    <string name="info_requested_stream_lbl"/>
+    <string name="detail_thumbnail_view_description">Video Önizleme küçük resmi</string>
+    <string name="detail_uploader_thumbnail_view_description">Gönderen\'ın userpic küçük resim</string>
+    <string name="detail_likes_img_view_description">Beğeniler</string>
+    <string name="detail_dislikes_img_view_description">Hoşlanmadığı şeyleri</string>
+    <string name="use_tor_title">Tor kullan</string>
+    <string name="use_tor_summary">(Deneysel) Gizliliğini arttırmak için için Tor ile indir. (Video stream henüz desteklenmiyor).</string>
+    <string name="report_error">Hata bildir</string>
+    <string name="user_report">Kullanıcı raporu</string>
+
+    <string name="err_dir_create">İndirme klasorü \'%1$ s\' oluşturulamıyor</string>
+    <string name="info_dir_created">Oluşturulan indirme dizini \'%1$ s\'</string>
+
+    <string name="enable_background_audio">Arkaplanda oynat</string>
+    <string name="video">Video</string>
+    <string name="audio">Ses</string>
+    <string name="text">Metin</string>
+    <string name="logging">Günlüğe kaydetme</string>
+    <string name="logging_normal">Normal</string>
+    <string name="logging_verbose">Ayrıntılı</string>
+    <string name="retry">Yeniden deneme</string>
+    <string name="off">[kapalı]</string>
+    <string name="error_drm_not_supported">Korumalı içerik 18 API seviyesinin altında desteklenmez</string>
+    <string name="error_drm_unsupported_scheme">Bu aygıt gerekli DRM düzenini desteklemiyor</string>
+    <string name="error_drm_unknown">Bilinmeyen bir DRM hatası oluştu</string>
+    <string name="error_no_decoder">Bu aygıt <xliff:g id="mime_type"> %1$ s </xliff:g> için bir kod çözücü sağlamıyor</string>
+    <string name="error_no_secure_decoder">Bu aygıt <xliff:g id="mime_type"> %1$ s </xliff:g> için bir kod çözücü sağlamıyor</string>
+    <string name="error_querying_decoders">Kod çözücüleri bulunamadı</string>
+    <string name="error_instantiating_decoder">Kod çözücü <xliff:g id="decoder_name"> %1$ s </xliff:g> başlatılamıyor</string>
+    <string name="storage_permission_denied">Depolama erişim izni verilmedi</string>
+    <string name="use_exoplayer_title">ExoPlayer kullan</string>
+    <string name="use_exoplayer_summary">Deneysel</string>
+
+    <string name="start">Başlat</string>
+    <string name="pause">Duraklat</string>
+    <string name="view">Görünüm</string>
+    <string name="delete">Sil</string>
+    <string name="checksum"/>
+
+    <string name="add">Yeni görev</string>
+    <string name="finish">Tamam</string>
+    <string name="switch_mode">Liste ve tablo arasında geçiş yap</string>
+
+
+    <string name="msg_url">URL\'i indir</string>
+    <string name="msg_name">Dosya adı</string>
+    <string name="msg_threads">Konular</string>
+    <string name="msg_fetch_filename">Dosya adını getir</string>
+    <string name="msg_error">Hata</string>
+    <string name="msg_server_unsupported">Desteklenmeyen sunucu</string>
+    <string name="msg_exists">Dosya zaten var</string>
+    <string name="msg_url_malform">Hatalı biçimlendirilmiş URL veya Internet mevcut değil</string>
+    <string name="msg_running">NewPipe İndiriyor</string>
+    <string name="msg_running_detail">Ayrıntılar için dokunun</string>
+    <string name="msg_wait">Lütfen bekleyin...</string>
+    <string name="msg_copied">Panoya kopyalandı.</string>
+    <string name="no_available_dir">Lütfen bir kullanılabilir indirme dizini seçin.</string>
+
+    <string name="title_activity_channel"/>
+    <string name="large_text"/>
+    <string name="action_settings">Ayarlar</string>
+
+    <string name="could_not_setup_download_menu">İndirme menüsü kurulamıyor.</string>
     </resources>
