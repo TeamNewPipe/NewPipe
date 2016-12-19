@@ -8,7 +8,7 @@ android:
     - build-tools-23.0.3
 
     # The SDK version used to compile NewPipe
-    - android-24
+    - android-25
 
     # Additional components
     - extra-android-support
