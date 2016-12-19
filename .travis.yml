@@ -33,3 +33,7 @@ before_script:
   - adb shell input keyevent 82 &
 
 script: ./gradlew --info build connectedCheck
+
+licenses:
+  - 'android-sdk-license-.+'
+
