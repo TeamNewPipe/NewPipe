@@ -53,7 +53,7 @@ public class YoutubeSearchEngine extends SearchEngine {
 
         String url = "https://www.youtube.com/results"
                 + "?search_query=" + URLEncoder.encode(query, CHARSET_UTF_8)
-                + "&page=" + Integer.toString(page)
+                + "&page=" + Integer.toString(page + 1)
                 + "&filters=" + "video";
 
         String site;
