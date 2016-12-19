@@ -68,14 +68,12 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
     /**Common functionality between download(String url) and download(String url, String language)*/
     private static String dl(HttpsURLConnection con) throws IOException {
         StringBuilder response = new StringBuilder();
-        BufferedReader in = null;
 
-        try {
+        try (BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()))){
             con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", USER_AGENT);
 
-            in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()));
             String inputLine;
 
             while((inputLine = in.readLine()) != null) {
@@ -86,10 +84,6 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
             //Toast.makeText(getActivity(), uhe.getMessage(), Toast.LENGTH_LONG).show();
         } catch(Exception e) {
             throw new IOException(e);
-        } finally {
-            if(in != null) {
-                in.close();
-            }
         }
 
         return response.toString();
