@@ -48,7 +48,7 @@
                     android:paddingLeft="@dimen/video_item_search_duration_horizontal_padding"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textSize="@dimen/video_item_search_duration_text_size"
-                    android:background="@color/duration_dackground_color"
+                    android:background="@color/duration_background_color"
                     android:textColor="@color/duration_text_color"/>
 
             </RelativeLayout>
