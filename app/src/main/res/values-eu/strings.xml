@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="view_count_text">%1$s ikustaldi</string>
     <string name="upload_date_text">Argitaratze-data: %1$s</string>
     <string name="install">Instalatu</string>
@@ -13,9 +13,9 @@
     <string name="choose_browser">Nabigatzailea aukeratu</string>
     <string name="screen_rotation">biratzea</string>
     <string name="settings_activity_title">Ezarpenak</string>
-    <string name="download_path_title">Deskargatzeko kokapena</string>
+    <string name="download_path_title">Bideoak deskargatzeko kokapena</string>
     <string name="download_path_summary">Deskargatutako bideoak gordetzeko lekua.</string>
-    <string name="download_path_dialog_title">Sar ezazu deskargatzeko lekua</string>
+    <string name="download_path_dialog_title">Sar ezazu bideoak deskargatzeko kokapena</string>
     <string name="default_resolution_title">Lehenetsitako bereizmena</string>
     <string name="play_with_kodi_title">Kodirekin erreproduzitu</string>
     <string name="kore_not_found">Kore aplikazioa ez da aurkitu. Kore beharrezkoa da Kodi multimedia zentroarekin bideoak erreproduzitzeko.</string>
@@ -24,8 +24,8 @@
     <string name="show_play_with_kodi_summary">Kodi multimedia zentroarekin bideoa erreproduzitzeko aukera erakusten du.</string>
     <string name="play_audio">Audioa</string>
     <string name="default_audio_format_title">Audio formatu lehenetsia</string>
-    <string name="webm_description">WebM &#8212; formatu askea</string>
-    <string name="m4a_description">m4a &#8212; kalitate hobea</string>
+    <string name="webm_description">WebM — formatu askea</string>
+    <string name="m4a_description">m4a — kalitate hobea</string>
     <string name="download_dialog_title">Deskargatu</string>
     <string name="next_video_title">Hurrengo bideoa</string>
     <string name="show_next_and_similar_title">Hurrengo bideoa eta antzekoak erakutsi</string>
@@ -44,11 +44,15 @@
     <string name="use_tor_summary">Trafikoa Tor bidez deskargatzea behartzen du pribatutasuna hobetzeko (jario bideoak ez daude oraindik onartuta)</string>
     <string name="background_player_name">NewPipe atzeko planoko erreproduzitzailea</string>
     <string name="no_player_found">Jario erreproduzitzailerik ez da aurkitu. Agian bat instalatu nahi dezakezu.</string>
-    <string name="did_you_mean">"Hau esan nahi al zenuen: "</string>
+    <string name="did_you_mean">Hau esan nahi al zenuen: %1$s?</string>
     <string name="search_page">"Orrialdea bilatu: "</string>
     <string name="use_external_video_player_title">Kanpoko bideo erreproduzitzailea erabili</string>
     <string name="use_external_audio_player_title">Kanpoko audio erreproduzitzailea erabili</string>
     <string name="autoplay_through_intent_title">Intent bidez automatikoki erreproduzitu</string>
     <string name="autoplay_through_intent_summary">Bideoa automatikoki hasten du beste aplikazio batetik deitu denean.</string>
     <string name="background_player_playing_toast">Atzeko planoan erreproduzitzen</string>
-</resources>
+<string name="main_bg_subtitle">Ukitu bilaketa hasteko</string>
+    <string name="download_path_audio_title">Audioa deskargatzeko kokapena</string>
+    <string name="download_path_audio_dialog_title">Sar ezazu audioa deskargatzeko kokapena.</string>
+
+    </resources>
