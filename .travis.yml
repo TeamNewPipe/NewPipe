@@ -13,6 +13,7 @@ android:
     # Additional components
     - extra-android-support
     - extra-android-m2repository
+    - extra-google-m2repository
 
     # Emulators
     - sys-img-armeabi-v7a-android-21
@@ -35,5 +36,5 @@ before_script:
 script: ./gradlew --info build connectedCheck
 
 licenses:
-  - 'android-sdk-license-.+'
+  - '.+'
 
