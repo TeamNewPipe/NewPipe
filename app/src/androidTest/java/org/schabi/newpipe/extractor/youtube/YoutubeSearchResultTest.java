@@ -38,7 +38,7 @@ public class YoutubeSearchResultTest extends AndroidTestCase {
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        NewPipe.init(new Downloader());
+        NewPipe.init(Downloader.getInstance());
         SuggestionExtractor engine = new YoutubeSuggestionExtractor(0);
         suggestionReply = engine.suggestionList("hello", "de");
     }
