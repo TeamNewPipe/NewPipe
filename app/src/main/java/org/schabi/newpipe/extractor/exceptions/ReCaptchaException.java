@@ -4,7 +4,7 @@ package org.schabi.newpipe.extractor.exceptions;
  * Created by beneth <bmauduit@beneth.fr> on 07.12.16.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * reCaptchaException.java is part of NewPipe.
+ * ReCaptchaException.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,8 +20,8 @@ package org.schabi.newpipe.extractor.exceptions;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class reCaptchaException extends ExtractionException {
-    public reCaptchaException(String message) {
+public class ReCaptchaException extends ExtractionException {
+    public ReCaptchaException(String message) {
         super(message);
     }
 }

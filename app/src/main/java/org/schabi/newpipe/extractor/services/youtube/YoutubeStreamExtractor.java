@@ -11,7 +11,7 @@ import org.mozilla.javascript.ScriptableObject;
 import org.schabi.newpipe.extractor.AbstractStreamInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
-import org.schabi.newpipe.extractor.exceptions.reCaptchaException;
+import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -281,7 +281,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
         }
     }
 
-    private String getPlayerUrlFromRestrictedVideo(String pageUrl) throws ParsingException, reCaptchaException {
+    private String getPlayerUrlFromRestrictedVideo(String pageUrl) throws ParsingException, ReCaptchaException {
         try {
             Downloader downloader = NewPipe.getDownloader();
             String playerUrl = "";
@@ -303,8 +303,8 @@ public class YoutubeStreamExtractor extends StreamExtractor {
         } catch (IOException e) {
             throw new ParsingException(
                     "Could load decryption code form restricted video for the Youtube service.", e);
-        } catch (reCaptchaException e) {
-            throw new reCaptchaException("reCaptcha Challenge requested");
+        } catch (ReCaptchaException e) {
+            throw new ReCaptchaException("reCaptcha Challenge requested");
         }
     }
 

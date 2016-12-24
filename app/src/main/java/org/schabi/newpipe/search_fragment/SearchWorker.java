@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.exceptions.reCaptchaException;
+import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.search.SearchEngine;
 import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -123,7 +123,7 @@ public class SearchWorker {
 
                 }
                 // hard errors:
-            } catch (reCaptchaException e) {
+            } catch (ReCaptchaException e) {
                 h.post(new Runnable() {
                     @Override
                     public void run() {
