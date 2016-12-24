@@ -18,6 +18,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
@@ -149,7 +150,7 @@ public class SearchInfoItemFragment extends Fragment {
         }
 
         SearchWorker sw = SearchWorker.getInstance();
-        sw.setSearchWorkerResultListner(new SearchWorker.SearchWorkerResultListner() {
+        sw.setSearchWorkerResultListener(new SearchWorker.SearchWorkerResultListener() {
             @Override
             public void onResult(SearchResult result) {
                 infoListAdapter.addStreamItemList(result.resultList);
@@ -173,6 +174,15 @@ public class SearchInfoItemFragment extends Fragment {
                         Toast.LENGTH_LONG).show();
                 isLoading = false;
                 loadingIndicator.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onReCaptchaChallenge() {
+                Toast.makeText(getActivity(), "ReCaptcha Challenge requested",
+                        Toast.LENGTH_LONG).show();
+                // Starting ReCaptcha Challenge Activity
+                Intent i = new Intent(getActivity(), ReCaptchaActivity.class);
+                getActivity().startActivity(i);
             }
         });
     }

@@ -473,7 +473,7 @@ public class ErrorActivity extends AppCompatActivity {
         public void run() {
             String ipRange = "none";
             try {
-                Downloader dl = new Downloader();
+                Downloader dl = Downloader.getInstance();
                 String ip = dl.download("https://ifcfg.me/ip");
 
                 ipRange = Parser.matchGroup1("([0-9]*\\.[0-9]*\\.)[0-9]*\\.[0-9]*", ip)
