@@ -35,7 +35,7 @@ public class YoutubeSearchEngineTest extends AndroidTestCase {
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        NewPipe.init(new Downloader());
+        NewPipe.init(Downloader.getInstance());
         SearchEngine engine = NewPipe.getService("Youtube").getSearchEngineInstance();
 
         result = engine.search("this is something boring", 0, "de").getSearchResult();
