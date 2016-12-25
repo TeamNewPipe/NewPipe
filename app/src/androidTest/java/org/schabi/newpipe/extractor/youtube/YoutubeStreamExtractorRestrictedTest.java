@@ -17,7 +17,7 @@ public class YoutubeStreamExtractorRestrictedTest extends AndroidTestCase {
 
     public void setUp() throws Exception {
         super.setUp();
-        NewPipe.init(new Downloader());
+        NewPipe.init(Downloader.getInstance());
         extractor = NewPipe.getService("Youtube")
                 .getExtractorInstance("https://www.youtube.com/watch?v=i6JTvzrpBy0");
     }

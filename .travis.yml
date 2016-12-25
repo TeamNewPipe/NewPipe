@@ -8,11 +8,12 @@ android:
     - build-tools-23.0.3
 
     # The SDK version used to compile NewPipe
-    - android-24
+    - android-25
 
     # Additional components
     - extra-android-support
     - extra-android-m2repository
+    - extra-google-m2repository
 
     # Emulators
     - sys-img-armeabi-v7a-android-21
@@ -33,3 +34,7 @@ before_script:
   - adb shell input keyevent 82 &
 
 script: ./gradlew --info build connectedCheck
+
+licenses:
+  - '.+'
+

@@ -3,6 +3,7 @@ package org.schabi.newpipe.extractor;
 import android.util.Xml;
 
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.xmlpull.v1.XmlPullParser;
 
@@ -43,13 +44,15 @@ public class DashMpdParser {
     }
 
     public static List<AudioStream> getAudioStreams(String dashManifestUrl)
-            throws DashMpdParsingException {
+            throws DashMpdParsingException, ReCaptchaException {
         String dashDoc;
         Downloader downloader = NewPipe.getDownloader();
         try {
             dashDoc = downloader.download(dashManifestUrl);
         } catch(IOException ioe) {
             throw new DashMpdParsingException("Could not get dash mpd: " + dashManifestUrl, ioe);
+        } catch (ReCaptchaException e) {
+            throw new ReCaptchaException("reCaptcha Challenge needed");
         }
         Vector<AudioStream> audioStreams = new Vector<>();
         try {

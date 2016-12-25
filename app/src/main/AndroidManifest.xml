@@ -153,6 +153,9 @@
             android:label="@string/title_activity_channel"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:name=".ReCaptchaActivity"
+            android:label="@string/reCaptchaActivity" />
     </application>
 
 </manifest>
