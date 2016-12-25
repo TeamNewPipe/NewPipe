@@ -6,126 +6,126 @@
     <string name="cancel">取り消し</string>
     <string name="open_in_browser">ﾌﾞﾗｳｻﾞｰで開く</string>
     <string name="share">共有</string>
-    <string name="download">ﾀﾞｳﾝﾛｰﾄﾞ</string>
+    <string name="download">保存</string>
     <string name="search">検索</string>
     <string name="settings">設定</string>
-    <string name="did_you_mean">この意味ですか: %1$s ?</string>
+    <string name="did_you_mean">%1$s の間違えではありませんか</string>
     <string name="search_page">"検索ﾍﾟｰｼﾞ: "</string>
     <string name="share_dialog_title">…共有</string>
     <string name="choose_browser">ﾌﾞﾗｳｻﾞｰを選択</string>
     <string name="screen_rotation">回転</string>
     <string name="settings_activity_title">設定</string>
     <string name="useExternalPlayerTitle">外部ﾌﾟﾚｰﾔｰを使用する</string>
-    <string name="download_path_title">動画をﾀﾞｳﾝﾛｰﾄﾞするﾊﾟｽ</string>
-    <string name="download_path_summary">ﾀﾞｳﾝﾛｰﾄﾞした動画を保存する場所のﾊﾟｽ｡</string>
-    <string name="download_path_dialog_title">動画をﾀﾞｳﾝﾛｰﾄﾞするﾊﾟｽを入力してください</string>
+    <string name="download_path_title">動画を保存する場所</string>
+    <string name="download_path_summary">動画を保存する位置</string>
+    <string name="download_path_dialog_title">動画を保存する場所を入力して下さい</string>
     <string name="autoplay_through_intent_title">ｲﾝﾃﾝﾄで自動再生</string>
     <string name="autoplay_through_intent_summary">他のｱﾌﾟﾘｹｰｼｮﾝから呼び出されたとき､自動的に動画再生を開始します｡</string>
-    <string name="default_resolution_title">基本の解像度</string>
+    <string name="default_resolution_title">基本解像度</string>
     <string name="play_with_kodi_title">Kodi で再生</string>
-    <string name="kore_not_found">Kore ｱﾌﾟﾘが見つかりません｡ Kore をｲﾝｽﾄｰﾙしますか?</string>
+    <string name="kore_not_found">Kore ｱﾌﾟﾘが見つかりません｡Kore をｲﾝｽﾄｰﾙしますか｡</string>
     <string name="installeKore">Kore をｲﾝｽﾄｰﾙ</string>
     <string name="show_play_with_kodi_title">\"Kodi で再生\" 設定を表示</string>
-    <string name="show_play_with_kodi_summary">Kodi ﾒﾃﾞｨｱｾﾝﾀｰ経由で動画を再生するための設定を表示します.</string>
-    <string name="play_audio">ｵｰﾃﾞｨｵ</string>
-    <string name="default_audio_format_title">基本のｵｰﾃﾞｨｵﾌｫｰﾏｯﾄ</string>
+    <string name="show_play_with_kodi_summary">Kodi ﾒﾃﾞｨｱｾﾝﾀｰ経由で動画を再生するための設定を表示します</string>
+    <string name="play_audio">音楽</string>
+    <string name="default_audio_format_title">基本の音楽ﾌｫｰﾏｯﾄ</string>
     <string name="webm_description">WebM — ﾌﾘｰﾌｫｰﾏｯﾄ</string>
     <string name="m4a_description">m4a — より良い品質</string>
-    <string name="download_dialog_title">ﾀﾞｳﾝﾛｰﾄﾞ</string>
+    <string name="download_dialog_title">保存</string>
     <string name="next_video_title">次の動画</string>
-    <string name="show_next_and_similar_title">次の同様の動画を表示します｡</string>
-    <string name="url_not_supported_toast">URL は使用できません｡</string>
+    <string name="show_next_and_similar_title">次の同様の動画を表示します</string>
+    <string name="url_not_supported_toast">URL は使用できません</string>
     <string name="similar_videos_btn_text">同様の動画</string>
-    <string name="search_language_title">優先される言語</string>
-    <string name="settings_category_video_audio_title">動画とｵｰﾃﾞｨｵ</string>
-    <string name="view_count_text">%1$s ビュー</string>
+    <string name="search_language_title">優先言語</string>
+    <string name="settings_category_video_audio_title">動画と音楽</string>
+    <string name="view_count_text">%1$s ﾋﾞｭｰ</string>
     <string name="list_thumbnail_view_description">ビデオ プレビュー サムネイル</string>
     <string name="detail_thumbnail_view_description">ビデオ プレビュー サムネイル</string>
     <string name="detail_uploader_thumbnail_view_description">アップローダー サムネイル</string>
     <string name="detail_dislikes_img_view_description">残念だね</string>
     <string name="detail_likes_img_view_description">いいね</string>
-    <string name="use_external_video_player_title">外部ビデオ プレイヤーを使用する</string>
-    <string name="use_external_audio_player_title">外部オーディオ プレイヤーを使用する</string>
-    <string name="background_player_playing_toast">バックグラウンドで再生しています</string>
+    <string name="use_external_video_player_title">外部ﾌﾟﾚｲﾔｰを使用する</string>
+    <string name="use_external_audio_player_title">外部ﾌﾟﾚｲﾔｰを使用する</string>
+    <string name="background_player_playing_toast">背後で再生しています</string>
 
-    <string name="background_player_name">NewPipe バックグラウンド プレーヤー</string>
+    <string name="background_player_name">NewPipe ﾊﾞｯｸｸﾞﾗｳﾝﾄﾞﾌﾟﾚｰﾔｰ</string>
     <string name="loading">読み込み中</string>
     <string name="play_btn_text">再生</string>
 
     <string name="use_tor_title">Tor を使用する</string>
     <string name="use_tor_summary">(実験的) 強制的に Tor を経由したトラフィックでダウンロードして、プライバシーを高めます (ビデオのストリーミングはまだサポートされていません)。</string>
-<string name="theme_title">テーマ</string>
-    <string name="dark_theme_title">ダーク</string>
-    <string name="light_theme_title">ライト</string>
+<string name="theme_title">外見</string>
+    <string name="dark_theme_title">暗</string>
+    <string name="light_theme_title">明</string>
 
     <string name="settings_category_appearance_title">外観</string>
     <string name="settings_category_other_title">その他</string>
-    <string name="network_error">ﾈｯﾄﾜｰｸ ｴﾗｰ</string>
+    <string name="network_error">通信に異常</string>
 
-    <string name="download_path_audio_title">ｵｰﾃﾞｨｵをﾀﾞｳﾝﾛｰﾄﾞするﾊﾟｽ</string>
-    <string name="download_path_audio_summary">ｵｰﾃﾞｨｵをﾀﾞｳﾝﾛｰﾄﾞするﾊﾟｽ</string>
+    <string name="download_path_audio_title">音楽を保存する場所</string>
+    <string name="download_path_audio_summary">音楽を保存する位置</string>
     <string name="download_path_audio_dialog_title">ｵｰﾃﾞｫﾌｧｲﾙをﾀﾞｳﾝﾛｰﾄﾞするﾊﾟｽを入力してください。</string>
 
     <string name="err_dir_create">ﾀﾞｳﾝﾛｰﾄﾞ ﾃﾞｨﾚｸﾄﾘ \'%1$s\' を作成できません</string>
     <string name="info_dir_created">ﾀﾞｳﾝﾛｰﾄﾞ ﾃﾞｨﾚｸﾄﾘ \'%1$s\' を作成しました</string>
-<string name="general_error">エラー</string>
-    <string name="could_not_load_thumbnails">すべてのサムネイルを読み込むことができません</string>
-    <string name="youtube_signature_decryption_error">ビデオの url 署名を復号化できませんでした。</string>
-    <string name="parsing_error">Web サイトを解析できませんでした。</string>
-    <string name="content_not_available">コンテンツがありません。</string>
-    <string name="blocked_by_gema">GEMA によってブロックされました。</string>
+<string name="general_error">異常</string>
+    <string name="could_not_load_thumbnails">全てのｻﾑﾈｲﾙを読み込むことができません</string>
+    <string name="youtube_signature_decryption_error">動画の url 署名を復号化できませんでした</string>
+    <string name="parsing_error">Web ｻｲﾄを解析できませんでした</string>
+    <string name="content_not_available">ｺﾝﾃﾝﾂがありません</string>
+    <string name="blocked_by_gema">GEMA によって阻止されました</string>
 
-    <string name="could_not_setup_download_menu">ダウンロード メニューを設定できませんでした。</string>
-
-
-    <string name="live_streams_not_supported">これはライブ ストリームです。これらはまだサポートされていません。</string>
+    <string name="could_not_setup_download_menu">保存ﾒﾆｭｰを設定できませんでした。</string>
 
 
-    <string name="content">コンテンツ</string>
+    <string name="live_streams_not_supported">これは生放送です｡これらは未だ対応していません｡</string>
+
+
+    <string name="content">内容</string>
     <string name="show_age_restricted_content_title">年齢制限コンテンツを表示</string>
-    <string name="video_is_age_restricted">ビデオは年齢制限です。まず設定で年齢制限のビデオを有効にしてください。</string>
+    <string name="video_is_age_restricted">この動画には､年齢制限があります｡設定から制限を解除して下さい｡</string>
 
-    <string name="light_parsing_error">ウェブサイトを完全には解析できませんでした。</string>
-    <string name="could_not_get_stream">ストリームを取得できませんでした。</string>
+    <string name="light_parsing_error">Webｻｲﾄを完全には解析できませんでした</string>
+    <string name="could_not_get_stream">ｽﾄﾘｰﾑを取得できませんでした</string>
     <string name="sorry_string">申し訳ありません。発生すべきではありませんでした。</string>
-    <string name="error_report_button_text">メールでエラーを報告</string>
-    <string name="error_snackbar_message">申し訳ありません。いくつかのエラーが発生しました。</string>
+    <string name="error_report_button_text">ﾒｰﾙで不具合を報告</string>
+    <string name="error_snackbar_message">複数の不具合が発生しました</string>
     <string name="error_snackbar_action">報告</string>
     <string name="what_device_headline">情報:</string>
     <string name="what_happened_headline">何が起こりましたか:</string>
     <string name="info_searched_lbl">検索結果:</string>
-    <string name="info_requested_stream_lbl">要求したストリーム:</string>
-    <string name="your_comment">あなたのコメント (英語で):</string>
+    <string name="info_requested_stream_lbl">要求したｽﾄﾘｰﾑ:</string>
+    <string name="your_comment">あなたの意見(英語で):</string>
     <string name="error_details_headline">詳細:</string>
 
 
     <string name="enable_background_audio">バックグラウンドで再生</string>
-    <string name="video">ビデオ</string>
-    <string name="audio">オーディオ</string>
-    <string name="text">テキスト</string>
-    <string name="logging">ログ</string>
+    <string name="video">動画</string>
+    <string name="audio">音楽</string>
+    <string name="text">文章</string>
+    <string name="logging">履歴</string>
     <string name="logging_normal">標準</string>
     <string name="logging_verbose">詳細</string>
     <string name="retry">再試行</string>
     <string name="off">[オフ]</string>
     <string name="error_drm_not_supported">保護されたコンテンツは API レベル 18 未満でサポートされていません</string>
-    <string name="error_drm_unsupported_scheme">このデバイスは必要な DRM スキームをサポートしません</string>
-    <string name="error_drm_unknown">不明な DRM エラーが発生しました</string>
-    <string name="error_no_decoder">このデバイスは <xliff:g id="mime_type">%1$s</xliff:g> のデコーダーが提供されていません</string>
-    <string name="error_no_secure_decoder">このデバイスは <xliff:g id="mime_type">%1$s</xliff:g> のセキュア デコーダーが提供されていません</string>
-    <string name="error_querying_decoders">デバイスのデコーダーを問い合わせできません</string>
-    <string name="error_instantiating_decoder">デコーダー <xliff:g id="decoder_name">%1$s</xliff:g> をインスタンス化できません</string>
-    <string name="storage_permission_denied">ストレージにアクセスするアクセス許可が拒否されました</string>
+    <string name="error_drm_unsupported_scheme">この端末は必要な 著作権保護技術に対応していません</string>
+    <string name="error_drm_unknown">著作権保護技術に不具合</string>
+    <string name="error_no_decoder">この端末は <xliff:g id="mime_type">%1$s</xliff:g> のﾃﾞｺｰﾀﾞｰが提供されていません</string>
+    <string name="error_no_secure_decoder">この端末は <xliff:g id="mime_type">%1$s</xliff:g> の安全なﾃﾞｺｰﾀﾞｰが提供されていません</string>
+    <string name="error_querying_decoders">端末のﾃﾞｺｰﾀﾞｰを問い合わせできません</string>
+    <string name="error_instantiating_decoder">ﾃﾞｺｰﾀﾞｰ <xliff:g id="decoder_name">%1$s</xliff:g> を例示できません</string>
+    <string name="storage_permission_denied">記録領域への接続要求が拒否されました</string>
     <string name="use_exoplayer_title">ExoPlayer を使用する</string>
     <string name="use_exoplayer_summary">実験的</string>
-<string name="autoplay_by_calling_app_title">別のアプリから呼び出されたときに自動再生</string>
-    <string name="autoplay_by_calling_app_summary">NewPipe が別のアプリから呼び出されたときに、自動的にビデオを再生します。</string>
-    <string name="report_error">エラーを報告</string>
+<string name="autoplay_by_calling_app_title">他のｱﾌﾟﾘｹｰｼｮﾝから呼び出されたときに自動再生</string>
+    <string name="autoplay_by_calling_app_summary">NewPipe が他のｱﾌﾟﾘｹｰｼｮﾝから呼び出されたときに､自動的に動画を再生します｡</string>
+    <string name="report_error">不具合を報告</string>
     <string name="user_report">ユーザー報告</string>
 
-    <string name="duration_live">ライブ</string>
+    <string name="duration_live">生放送</string>
 
-    <string name="main_bg_subtitle">検索をタップして始めましょう</string>
+    <string name="main_bg_subtitle">検索を選択して始めましょう</string>
     <string name="start">開始</string>
     <string name="pause">一時停止</string>
     <string name="view">表示</string>
@@ -137,31 +137,31 @@
     <string name="switch_mode">リストとグリッドを切り替え</string>
 
 
-    <string name="msg_url">ダウンロード URL</string>
-    <string name="msg_name">ファイル名</string>
+    <string name="msg_url">保存 URL</string>
+    <string name="msg_name">ﾌｧｲﾙ名</string>
     <string name="msg_threads">スレッド</string>
     <string name="msg_fetch_filename">ファイル名を取得</string>
     <string name="msg_error">エラー</string>
     <string name="msg_server_unsupported">サーバーがサポートされていません</string>
     <string name="msg_exists">ファイルが既に存在します</string>
-    <string name="msg_url_malform">URL の形式が正しくないか、インターネットが利用できません</string>
-    <string name="msg_running">NewPipe ダウンロード中</string>
+    <string name="msg_url_malform">URL の形式が正しくないか､通信が利用できません</string>
+    <string name="msg_running">NewPipeの保存中</string>
     <string name="msg_running_detail">詳細はタップ</string>
-    <string name="msg_wait">しばらくお待ちください...</string>
-    <string name="msg_copied">クリップボードにコピーしました。</string>
-    <string name="no_available_dir">利用可能なダウンロード ディレクトリを選択してください。</string>
+    <string name="msg_wait">暫くお待ち下さい</string>
+    <string name="msg_copied">ｸﾘｯﾌﾟﾎﾞｰﾄﾞに複製しました</string>
+    <string name="no_available_dir">利用可能な保存場所を選択して下さい</string>
 
-    <string name="downloads">ダウンロード</string>
-    <string name="downloads_title">ダウンロード</string>
+    <string name="downloads">保存</string>
+    <string name="downloads_title">保存</string>
     <string name="settings_title">設定</string>
-    <string name="error_report_title">エラー報告</string>
+    <string name="error_report_title">不具合報告</string>
 
     <string name="could_not_load_image">画像を読み込みできません</string>
     <string name="title_activity_channel">ChannelActivity</string>
     <string name="action_settings">設定</string>
 
     <string name="app_ui_crash">アプリ/UI がクラッシュしました</string>
-    <string name="info_labels">何:\\nリクエスト:\\nコンテンツ言語:\\nサービス:\\nGMT 時間:\\nパッケージ:\\nバージョン:\\nOS バージョン:\\nｸﾞﾛｰﾊﾞﾙ IP 範囲:</string>
+    <string name="info_labels">何:\\n提案:\\nｺﾝﾃﾝﾂ言語:\\nｻｰﾋﾞｽ:\\nGMT 時間:\\nﾊﾟｯｹｰｼﾞ:\\nﾊﾞｰｼﾞｮﾝ:\\nOS ﾊﾞｰｼﾞｮﾝ:\\nｸﾞﾛｰﾊﾞﾙ IP 範囲:</string>
     <string name="large_text">"
  Material is the metaphor.
 
