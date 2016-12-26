@@ -299,7 +299,7 @@
 
 
  "</string>
-    <string name="reCaptchaActivity">再キャプチャ</string>
-    <string name="reCaptcha_title">再キャプチャの要求</string>
+    <string name="reCaptchaActivity">reCaptcha</string>
+    <string name="reCaptcha_title">reCaptcha の要求</string>
 
     </resources>
