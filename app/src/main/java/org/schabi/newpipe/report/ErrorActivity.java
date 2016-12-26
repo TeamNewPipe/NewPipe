@@ -474,7 +474,7 @@ public class ErrorActivity extends AppCompatActivity {
             String ipRange = "none";
             try {
                 Downloader dl = Downloader.getInstance();
-                String ip = dl.download("https://ifcfg.me/ip");
+                String ip = dl.download("https://ipv4.icanhazip.com");
 
                 ipRange = Parser.matchGroup1("([0-9]*\\.[0-9]*\\.)[0-9]*\\.[0-9]*", ip)
                         + "0.0";
