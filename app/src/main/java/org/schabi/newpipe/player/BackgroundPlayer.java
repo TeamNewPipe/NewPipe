@@ -266,8 +266,9 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                             mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
                             mediaPlayer.start();
                         }
-                        noteBuilder.setIsPlaying(isPlaying);
-                        noteMgr.notify(noteID, noteBuilder.build());
+                        synchronized (PlayerThread.this) {
+                            PlayerThread.this.notifyAll();
+                        }
                         break;
                     }
                     case ACTION_REWIND:
@@ -275,7 +276,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                         synchronized (PlayerThread.this) {
                             PlayerThread.this.notifyAll();
                         }
-//                    noteMgr.notify(noteID, note);
                         break;
                     case ACTION_STOP:
                         //this auto-releases CPU lock
