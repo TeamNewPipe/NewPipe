@@ -76,6 +76,16 @@
             android:clickable="true"
             android:scaleType="fitXY"
             android:src="@drawable/ic_close_white_24dp" />
+
+        <ImageButton
+            android:id="@+id/notificationFastForward"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:background="#00ffffff"
+            android:clickable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_fast_forward_white_24dp" />
     </LinearLayout>
 
 
