@@ -14,6 +14,8 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.os.PowerManager;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
@@ -27,6 +29,7 @@ import org.schabi.newpipe.detail.VideoItemDetailActivity;
 import org.schabi.newpipe.detail.VideoItemDetailFragment;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Created by Adam Howard on 08/11/15.
@@ -51,10 +54,13 @@ import java.io.IOException;
 /**Plays the audio stream of videos in the background.*/
 public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPreparedListener*/ {
 
-    private static final String TAG = BackgroundPlayer.class.toString();
-    private static final String ACTION_STOP = TAG + ".STOP";
-    private static final String ACTION_PLAYPAUSE = TAG + ".PLAYPAUSE";
-    private static final String ACTION_REWIND = TAG + ".REWIND";
+    private static final String TAG = "BackgroundPlayer";
+    private static final String CLASSNAME = "org.schabi.newpipe.player.BackgroundPlayer";
+    private static final String ACTION_STOP = CLASSNAME + ".STOP";
+    private static final String ACTION_PLAYPAUSE = CLASSNAME + ".PLAYPAUSE";
+    private static final String ACTION_REWIND = CLASSNAME + ".REWIND";
+    private static final String ACTION_PLAYBACK_STATE = CLASSNAME + ".PLAYBACK_STATE";
+    private static final String EXTRA_PLAYBACK_STATE = CLASSNAME + ".extras.EXTRA_PLAYBACK_STATE";
 
     // Extra intent arguments
     public static final String TITLE = "title";
@@ -114,6 +120,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         isRunning = false;
     }
 
+
     private class PlayerThread extends Thread {
         MediaPlayer mediaPlayer;
         private String source;
@@ -124,6 +131,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         private WifiManager.WifiLock wifiLock;
         private Bitmap videoThumbnail;
         private NoteBuilder noteBuilder;
+        private volatile boolean donePlaying = false;
 
         public PlayerThread(String src, String title, BackgroundPlayer owner) {
             this.source = src;
@@ -131,6 +139,43 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             this.owner = owner;
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        }
+
+        public boolean isDonePlaying() {
+            return donePlaying;
+        }
+
+        private boolean isPlaying() {
+            try {
+                return mediaPlayer.isPlaying();
+            } catch (IllegalStateException e) {
+                Log.w(TAG, "Unable to retrieve playing state", e);
+                return false;
+            }
+        }
+
+        private void setDonePlaying() {
+            donePlaying = true;
+            synchronized (PlayerThread.this) {
+                PlayerThread.this.notifyAll();
+            }
+        }
+
+        private PlaybackState getPlaybackState() {
+            try {
+                return new PlaybackState(mediaPlayer.getDuration(), mediaPlayer.getCurrentPosition(), isPlaying());
+            } catch (IllegalStateException e) {
+                // This isn't that nice way to handle this.
+                // maybe there is a better way
+                return PlaybackState.UNPREPARED;
+            }
+        }
+
+        private void broadcastState() {
+            PlaybackState state = getPlaybackState();
+            Intent intent = new Intent(ACTION_PLAYBACK_STATE);
+            intent.putExtra(EXTRA_PLAYBACK_STATE, state);
+            sendBroadcast(intent);
         }
 
         @Override
@@ -180,6 +225,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             filter.addAction(ACTION_PLAYPAUSE);
             filter.addAction(ACTION_STOP);
             filter.addAction(ACTION_REWIND);
+            filter.addAction(ACTION_PLAYBACK_STATE);
             registerReceiver(broadcastReceiver, filter);
 
             initNotificationBuilder();
@@ -188,18 +234,20 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             //currently decommissioned progressbar looping update code - works, but doesn't fit inside
             //Notification.MediaStyle Notification layout.
             noteMgr = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-            /*
+
             //update every 2s or 4 times in the video, whichever is shorter
-            int sleepTime = Math.min(2000, (int)((double)vidLength/4));
-            while(mediaPlayer.isPlaying()) {
-                noteBuilder.setProgress(vidLength, mediaPlayer.getCurrentPosition(), false);
-                noteMgr.notify(noteID, noteBuilder.build());
+            int vidLength = mediaPlayer.getDuration();
+            int sleepTime = Math.min(2000, (int)(vidLength / 4));
+            while(!isDonePlaying()) {
+                broadcastState();
                 try {
-                    Thread.sleep(sleepTime);
+                    synchronized (this) {
+                        wait(sleepTime);
+                    }
                 } catch (InterruptedException e) {
-                    Log.d(TAG, "sleep failure");
+                    Log.e(TAG, "sleep failure", e);
                 }
-            }*/
+            }
         }
 
         /**Handles button presses from the notification. */
@@ -208,26 +256,46 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             public void onReceive(Context context, Intent intent) {
                 String action = intent.getAction();
                 //Log.i(TAG, "received broadcast action:"+action);
-                if(action.equals(ACTION_PLAYPAUSE)) {
-                    boolean isPlaying = mediaPlayer.isPlaying();
-                    if(isPlaying) {
-                        mediaPlayer.pause();
-                    } else {
-                        //reacquire CPU lock after auto-releasing it on pause
-                        mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
-                        mediaPlayer.start();
+                switch (action) {
+                    case ACTION_PLAYPAUSE: {
+                        boolean isPlaying = mediaPlayer.isPlaying();
+                        if(isPlaying) {
+                            mediaPlayer.pause();
+                        } else {
+                            //reacquire CPU lock after auto-releasing it on pause
+                            mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
+                            mediaPlayer.start();
+                        }
+                        noteBuilder.setIsPlaying(isPlaying);
+                        noteMgr.notify(noteID, noteBuilder.build());
+                        break;
                     }
-                    noteBuilder.setIsPlaying(isPlaying);
-                    noteMgr.notify(noteID, noteBuilder.build());
-                }
-                else if(action.equals(ACTION_REWIND)) {
-                    mediaPlayer.seekTo(0);
+                    case ACTION_REWIND:
+                        mediaPlayer.seekTo(0);
+                        synchronized (PlayerThread.this) {
+                            PlayerThread.this.notifyAll();
+                        }
 //                    noteMgr.notify(noteID, note);
-                }
-                else if(action.equals(ACTION_STOP)) {
-                    //this auto-releases CPU lock
-                    mediaPlayer.stop();
-                    afterPlayCleanup();
+                        break;
+                    case ACTION_STOP:
+                        //this auto-releases CPU lock
+                        mediaPlayer.stop();
+                        afterPlayCleanup();
+                        break;
+                    case ACTION_PLAYBACK_STATE: {
+                        PlaybackState playbackState = intent.getParcelableExtra(EXTRA_PLAYBACK_STATE);
+                        Log.d(TAG, "playback state recieved: " + playbackState);
+                        Log.d(TAG, "is unprepared: " + playbackState.equals(PlaybackState.UNPREPARED));
+                        Log.d(TAG, "playing: " + playbackState.getPlayedTime());
+                        if(!playbackState.equals(PlaybackState.UNPREPARED)) {
+                            noteBuilder.setProgress(playbackState.getDuration(), playbackState.getPlayedTime(), false);
+                            noteBuilder.setIsPlaying(playbackState.isPlaying());
+                        } else {
+                            noteBuilder.setProgress(0, 0, true);
+                        }
+                        noteMgr.notify(noteID, noteBuilder.build());
+                        break;
+                    }
                 }
             }
         };
@@ -258,7 +326,9 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
             @Override
             public void onCompletion(MediaPlayer mp) {
+                setDonePlaying();
                 afterPlayCleanup();
+
             }
         }
 
@@ -390,15 +460,122 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 RemoteViews views = getContentView(), bigViews = getBigContentView();
                 int imageSrc;
                 if(isPlaying) {
-                    imageSrc = R.drawable.ic_play_circle_filled_white_24dp;
-                } else {
                     imageSrc = R.drawable.ic_pause_white_24dp;
+                } else {
+                    imageSrc = R.drawable.ic_play_circle_filled_white_24dp;
                 }
                 views.setImageViewResource(R.id.notificationPlayPause, imageSrc);
                 bigViews.setImageViewResource(R.id.notificationPlayPause, imageSrc);
 
             }
 
+        }
+    }
+
+    /**
+     * Represents the state of the player.
+     */
+    public static class PlaybackState implements Parcelable {
+
+        private static final int INDEX_IS_PLAYING = 0;
+        private static final int INDEX_IS_PREPARED= 1;
+        private static final int INDEX_HAS_ERROR  = 2;
+        private final int duration;
+        private final int played;
+        private final boolean[] booleanValues = new boolean[3];
+
+        static final PlaybackState UNPREPARED = new PlaybackState(false, false, false);
+        static final PlaybackState FAILED = new PlaybackState(false, false, true);
+
+
+        PlaybackState(Parcel in) {
+            duration = in.readInt();
+            played = in.readInt();
+            in.readBooleanArray(booleanValues);
+        }
+
+        PlaybackState(int duration, int played, boolean isPlaying) {
+            this.played = played;
+            this.duration = duration;
+            this.booleanValues[INDEX_IS_PLAYING] = isPlaying;
+            this.booleanValues[INDEX_IS_PREPARED] = true;
+            this.booleanValues[INDEX_HAS_ERROR] = false;
+        }
+
+        private PlaybackState(boolean isPlaying, boolean isPrepared, boolean hasErrors) {
+            this.played = 0;
+            this.duration = 0;
+            this.booleanValues[INDEX_IS_PLAYING] = isPlaying;
+            this.booleanValues[INDEX_IS_PREPARED] = isPrepared;
+            this.booleanValues[INDEX_HAS_ERROR] = hasErrors;
+        }
+
+        int getDuration() {
+            return duration;
+        }
+
+        int getPlayedTime() {
+            return played;
+        }
+
+        boolean isPlaying() {
+            return booleanValues[INDEX_IS_PLAYING];
+        }
+
+        boolean isPrepared() {
+            return booleanValues[INDEX_IS_PREPARED];
+        }
+
+        boolean hasErrors() {
+            return booleanValues[INDEX_HAS_ERROR];
+        }
+
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(duration);
+            dest.writeInt(played);
+            dest.writeBooleanArray(booleanValues);
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        public static final Creator<PlaybackState> CREATOR = new Creator<PlaybackState>() {
+            @Override
+            public PlaybackState createFromParcel(Parcel in) {
+                return new PlaybackState(in);
+            }
+
+            @Override
+            public PlaybackState[] newArray(int size) {
+                return new PlaybackState[size];
+            }
+        };
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            PlaybackState that = (PlaybackState) o;
+
+            if (duration != that.duration) return false;
+            if (played != that.played) return false;
+            return Arrays.equals(booleanValues, that.booleanValues);
+
+        }
+
+        @Override
+        public int hashCode() {
+            if(this == UNPREPARED) return 1;
+            if(this == FAILED) return 2;
+            int result = duration;
+            result = 31 * result + played;
+            result = 31 * result + Arrays.hashCode(booleanValues);
+            return result + 2;
         }
     }
 }
