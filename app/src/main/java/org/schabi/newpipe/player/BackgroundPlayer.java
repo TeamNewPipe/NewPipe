@@ -124,7 +124,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         private WifiManager.WifiLock wifiLock;
         private Bitmap videoThumbnail;
         private NoteBuilder noteBuilder;
-        private Notification note;
 
         public PlayerThread(String src, String title, BackgroundPlayer owner) {
             this.source = src;
@@ -183,9 +182,8 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             filter.addAction(ACTION_REWIND);
             registerReceiver(broadcastReceiver, filter);
 
-            note = buildNotification();
-
-            startForeground(noteID, note);
+            initNotificationBuilder();
+            startForeground(noteID, noteBuilder.build());
 
             //currently decommissioned progressbar looping update code - works, but doesn't fit inside
             //Notification.MediaStyle Notification layout.
@@ -264,7 +262,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             }
         }
 
-        private Notification buildNotification() {
+        private void initNotificationBuilder() {
             Notification note;
             Resources res = getApplicationContext().getResources();
 
@@ -304,10 +302,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                     .setCategory(Notification.CATEGORY_TRANSPORT)
                     //Make notification appear on lockscreen
                     .setVisibility(Notification.VISIBILITY_PUBLIC);
-
-            note = noteBuilder.build();
-
-            return note;
         }
 
 
