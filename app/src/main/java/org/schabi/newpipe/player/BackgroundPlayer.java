@@ -123,7 +123,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         private NotificationManager noteMgr;
         private WifiManager.WifiLock wifiLock;
         private Bitmap videoThumbnail;
-        private NotificationCompat.Builder noteBuilder;
+        private NoteBuilder noteBuilder;
         private Notification note;
 
         public PlayerThread(String src, String title, BackgroundPlayer owner) {
@@ -211,24 +211,16 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 String action = intent.getAction();
                 //Log.i(TAG, "received broadcast action:"+action);
                 if(action.equals(ACTION_PLAYPAUSE)) {
-                    if(mediaPlayer.isPlaying()) {
+                    boolean isPlaying = mediaPlayer.isPlaying();
+                    if(isPlaying) {
                         mediaPlayer.pause();
-                        note.contentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_play_circle_filled_white_24dp);
-                        if(android.os.Build.VERSION.SDK_INT >=16){
-                            note.bigContentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_play_circle_filled_white_24dp);
-                        }
-                        noteMgr.notify(noteID, note);
-                    }
-                    else {
+                    } else {
                         //reacquire CPU lock after auto-releasing it on pause
                         mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
                         mediaPlayer.start();
-                        note.contentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_pause_white_24dp);
-                        if(android.os.Build.VERSION.SDK_INT >=16){
-                            note.bigContentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_pause_white_24dp);
-                        }
-                        noteMgr.notify(noteID, note);
                     }
+                    noteBuilder.setIsPlaying(isPlaying);
+                    noteMgr.notify(noteID, noteBuilder.build());
                 }
                 else if(action.equals(ACTION_REWIND)) {
                     mediaPlayer.seekTo(0);
@@ -275,7 +267,11 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         private Notification buildNotification() {
             Notification note;
             Resources res = getApplicationContext().getResources();
-            noteBuilder = new NotificationCompat.Builder(owner);
+
+            /*
+            NotificationCompat.Action pauseButton = new NotificationCompat.Action.Builder
+                    (R.drawable.ic_pause_white_24dp, "Pause", playPI).build();
+            */
 
             PendingIntent playPI = PendingIntent.getBroadcast(owner, noteID,
                     new Intent(ACTION_PLAYPAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
@@ -283,10 +279,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                     new Intent(ACTION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent rewindPI = PendingIntent.getBroadcast(owner, noteID,
                     new Intent(ACTION_REWIND), PendingIntent.FLAG_UPDATE_CURRENT);
-            /*
-            NotificationCompat.Action pauseButton = new NotificationCompat.Action.Builder
-                    (R.drawable.ic_pause_white_24dp, "Pause", playPI).build();
-            */
 
             //build intent to return to video, on tapping notification
             Intent openDetailViewIntent = new Intent(getApplicationContext(),
@@ -296,54 +288,114 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             openDetailViewIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             PendingIntent openDetailView = PendingIntent.getActivity(owner, noteID,
                     openDetailViewIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
+            noteBuilder = new NoteBuilder(owner, playPI, stopPI, rewindPI, openDetailView);
             noteBuilder
+                    .setTitle(title)
+                    .setArtist(channelName)
                     .setOngoing(true)
                     .setDeleteIntent(stopPI)
                             //doesn't fit with Notification.MediaStyle
                             //.setProgress(vidLength, 0, false)
                     .setSmallIcon(R.drawable.ic_play_circle_filled_white_24dp)
-                    .setTicker(
-                            String.format(res.getString(
-                                    R.string.background_player_time_text), title))
                     .setContentIntent(PendingIntent.getActivity(getApplicationContext(),
                             noteID, openDetailViewIntent,
                             PendingIntent.FLAG_UPDATE_CURRENT))
-                    .setContentIntent(openDetailView);
+                    .setContentIntent(openDetailView)
+                    .setCategory(Notification.CATEGORY_TRANSPORT)
+                    //Make notification appear on lockscreen
+                    .setVisibility(Notification.VISIBILITY_PUBLIC);
 
-
-            RemoteViews view =
-                    new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
-            view.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
-            view.setTextViewText(R.id.notificationSongName, title);
-            view.setTextViewText(R.id.notificationArtist, channelName);
-            view.setOnClickPendingIntent(R.id.notificationStop, stopPI);
-            view.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
-            view.setOnClickPendingIntent(R.id.notificationRewind, rewindPI);
-            view.setOnClickPendingIntent(R.id.notificationContent, openDetailView);
-
-            //possibly found the expandedView problem,
-            //but can't test it as I don't have a 5.0 device. -medavox
-            RemoteViews expandedView =
-                    new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification_expanded);
-                expandedView.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
-            expandedView.setTextViewText(R.id.notificationSongName, title);
-                expandedView.setTextViewText(R.id.notificationArtist, channelName);
-            expandedView.setOnClickPendingIntent(R.id.notificationStop, stopPI);
-            expandedView.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
-            expandedView.setOnClickPendingIntent(R.id.notificationRewind, rewindPI);
-            expandedView.setOnClickPendingIntent(R.id.notificationContent, openDetailView);
-
-
-            noteBuilder.setCategory(Notification.CATEGORY_TRANSPORT);
-
-            //Make notification appear on lockscreen
-            noteBuilder.setVisibility(Notification.VISIBILITY_PUBLIC);
-            noteBuilder.setCustomContentView(view);
-            noteBuilder.setCustomBigContentView(expandedView);
             note = noteBuilder.build();
 
             return note;
+        }
+
+
+        /**
+         * Notification builder which works like the real builder but uses a custom view.
+         */
+        class NoteBuilder extends NotificationCompat.Builder {
+
+            /**
+             * @param context
+             * @inheritDoc
+             */
+            public NoteBuilder(Context context, PendingIntent playPI, PendingIntent stopPI,
+                               PendingIntent rewindPI, PendingIntent openDetailView) {
+                super(context);
+                setCustomContentView(createCustomContentView(playPI, stopPI, rewindPI, openDetailView));
+                setCustomBigContentView(createCustomBigContentView(playPI, stopPI, rewindPI, openDetailView));
+            }
+
+            private RemoteViews createCustomBigContentView(PendingIntent playPI,
+                                                           PendingIntent stopPI,
+                                                           PendingIntent rewindPI,
+                                                           PendingIntent openDetailView) {
+                //possibly found the expandedView problem,
+                //but can't test it as I don't have a 5.0 device. -medavox
+                RemoteViews expandedView =
+                        new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification_expanded);
+                expandedView.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
+                expandedView.setOnClickPendingIntent(R.id.notificationStop, stopPI);
+                expandedView.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
+                expandedView.setOnClickPendingIntent(R.id.notificationRewind, rewindPI);
+                expandedView.setOnClickPendingIntent(R.id.notificationContent, openDetailView);
+                return expandedView;
+            }
+
+            private RemoteViews createCustomContentView(PendingIntent playPI, PendingIntent stopPI,
+                                                        PendingIntent rewindPI,
+                                                        PendingIntent openDetailView) {
+                RemoteViews view = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
+                view.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
+                view.setOnClickPendingIntent(R.id.notificationStop, stopPI);
+                view.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
+                view.setOnClickPendingIntent(R.id.notificationRewind, rewindPI);
+                view.setOnClickPendingIntent(R.id.notificationContent, openDetailView);
+                return view;
+            }
+
+            NoteBuilder setTitle(String title) {
+                setContentTitle(title);
+                getContentView().setTextViewText(R.id.notificationSongName, title);
+                getBigContentView().setTextViewText(R.id.notificationSongName, title);
+                setTicker(String.format(getBaseContext().getString(
+                        R.string.background_player_time_text), title));
+                return this;
+            }
+
+            NoteBuilder setArtist(String artist) {
+                setSubText(artist);
+                getContentView().setTextViewText(R.id.notificationArtist, artist);
+                getBigContentView().setTextViewText(R.id.notificationArtist, artist);
+                return this;
+            }
+
+            @Override
+            public android.support.v4.app.NotificationCompat.Builder setProgress(int max, int progress, boolean indeterminate) {
+                // TODO: implement
+                return super.setProgress(max, progress, indeterminate);
+            }
+
+            @Override
+            public Notification build() {
+
+                return super.build();
+            }
+
+            public void setIsPlaying(boolean isPlaying) {
+                RemoteViews views = getContentView(), bigViews = getBigContentView();
+                int imageSrc;
+                if(isPlaying) {
+                    imageSrc = R.drawable.ic_play_circle_filled_white_24dp;
+                } else {
+                    imageSrc = R.drawable.ic_pause_white_24dp;
+                }
+                views.setImageViewResource(R.id.notificationPlayPause, imageSrc);
+                bigViews.setImageViewResource(R.id.notificationPlayPause, imageSrc);
+
+            }
+
         }
     }
 }
