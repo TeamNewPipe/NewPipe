@@ -456,13 +456,10 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             noteBuilder.setCategory(NotificationCompat.CATEGORY_TRANSPORT);
 
             //Make notification appear on lockscreen
-            noteBuilder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
-
-            final Notification note = noteBuilder.build();
-            note.contentView = view;
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-                note.bigContentView = expandedView;
-            }
+            noteBuilder.setVisibility(Notification.VISIBILITY_PUBLIC);
+            noteBuilder.setCustomContentView(view);
+            noteBuilder.setCustomBigContentView(expandedView);
+            note = noteBuilder.build();
 
             return note;
         }
