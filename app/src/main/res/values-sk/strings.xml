@@ -292,4 +292,7 @@
 
 
  "</string>
+    <string name="reCaptchaActivity">reCaptcha</string>
+    <string name="reCaptcha_title">Výzva reCaptcha</string>
+
     </resources>
