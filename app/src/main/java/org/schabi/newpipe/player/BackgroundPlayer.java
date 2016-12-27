@@ -161,18 +161,20 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             }
         }
 
-        private PlaybackState getPlaybackState() {
+        private synchronized PlaybackState getPlaybackState() {
             try {
                 return new PlaybackState(mediaPlayer.getDuration(), mediaPlayer.getCurrentPosition(), isPlaying());
             } catch (IllegalStateException e) {
                 // This isn't that nice way to handle this.
                 // maybe there is a better way
+                Log.w(TAG, this + ": Got illegal state exception while creating playback state", e);
                 return PlaybackState.UNPREPARED;
             }
         }
 
         private void broadcastState() {
             PlaybackState state = getPlaybackState();
+            if(state == null) return;
             Intent intent = new Intent(ACTION_PLAYBACK_STATE);
             intent.putExtra(EXTRA_PLAYBACK_STATE, state);
             sendBroadcast(intent);
@@ -284,9 +286,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                         break;
                     case ACTION_PLAYBACK_STATE: {
                         PlaybackState playbackState = intent.getParcelableExtra(EXTRA_PLAYBACK_STATE);
-                        Log.d(TAG, "playback state recieved: " + playbackState);
-                        Log.d(TAG, "is unprepared: " + playbackState.equals(PlaybackState.UNPREPARED));
-                        Log.d(TAG, "playing: " + playbackState.getPlayedTime());
                         if(!playbackState.equals(PlaybackState.UNPREPARED)) {
                             noteBuilder.setProgress(playbackState.getDuration(), playbackState.getPlayedTime(), false);
                             noteBuilder.setIsPlaying(playbackState.isPlaying());
@@ -301,6 +300,8 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         };
 
         private void afterPlayCleanup() {
+            // Notify thread to stop
+            setDonePlaying();
             //remove progress bar
             //noteBuilder.setProgress(0, 0, false);
 
@@ -314,7 +315,12 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             wifiLock.release();
             //remove foreground status of service; make BackgroundPlayer killable
             stopForeground(true);
-
+            try {
+                // Wait for thread to stop
+                PlayerThread.this.join();
+            } catch (InterruptedException e) {
+                Log.e(TAG, "unable to join player thread", e);
+            }
             stopSelf();
         }
 
@@ -326,9 +332,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
             @Override
             public void onCompletion(MediaPlayer mp) {
-                setDonePlaying();
                 afterPlayCleanup();
-
             }
         }
 
