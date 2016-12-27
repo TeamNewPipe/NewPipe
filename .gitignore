@@ -8,3 +8,4 @@
 /.idea
 /*.iml
 gradle.properties
+*~
