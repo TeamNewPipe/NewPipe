@@ -40,6 +40,12 @@
             android:ellipsize="marquee"
             android:singleLine="true"
             android:text="artist" />
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/playbackProgress"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
     </LinearLayout>
 
     <ImageButton

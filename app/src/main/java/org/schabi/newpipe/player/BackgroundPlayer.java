@@ -349,6 +349,11 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 return view;
             }
 
+            /**
+             * Set the title of the stream
+             * @param title the title of the stream
+             * @return this builder for chaining
+             */
             NoteBuilder setTitle(String title) {
                 setContentTitle(title);
                 getContentView().setTextViewText(R.id.notificationSongName, title);
@@ -358,6 +363,11 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 return this;
             }
 
+            /**
+             * Set the artist of the stream
+             * @param artist the artist of the stream
+             * @return this builder for chaining
+             */
             NoteBuilder setArtist(String artist) {
                 setSubText(artist);
                 getContentView().setTextViewText(R.id.notificationArtist, artist);
@@ -367,16 +377,15 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
             @Override
             public android.support.v4.app.NotificationCompat.Builder setProgress(int max, int progress, boolean indeterminate) {
-                // TODO: implement
-                return super.setProgress(max, progress, indeterminate);
+                super.setProgress(max, progress, indeterminate);
+                getBigContentView().setProgressBar(R.id.playbackProgress, max, progress, indeterminate);
+                return this;
             }
 
-            @Override
-            public Notification build() {
-
-                return super.build();
-            }
-
+            /**
+             * Set the isPlaying state
+             * @param isPlaying the is playing state
+             */
             public void setIsPlaying(boolean isPlaying) {
                 RemoteViews views = getContentView(), bigViews = getBigContentView();
                 int imageSrc;
