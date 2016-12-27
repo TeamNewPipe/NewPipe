@@ -339,13 +339,9 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
             //Make notification appear on lockscreen
             noteBuilder.setVisibility(Notification.VISIBILITY_PUBLIC);
-
+            noteBuilder.setCustomContentView(view);
+            noteBuilder.setCustomBigContentView(expandedView);
             note = noteBuilder.build();
-            note.contentView = view;
-
-            if (android.os.Build.VERSION.SDK_INT > 16) {
-                note.bigContentView = expandedView;
-            }
 
             return note;
         }
