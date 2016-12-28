@@ -86,8 +86,8 @@ public class StreamInfo extends AbstractStreamInfo {
     private static StreamInfo extractImportantData(
             StreamInfo streamInfo, StreamExtractor extractor)
             throws ExtractionException, IOException {
-        /* ---- importand data, withoug the video can't be displayed goes here: ---- */
-        // if one of these is not available an exception is ment to be thrown directly into the frontend.
+        /* ---- important data, withoug the video can't be displayed goes here: ---- */
+        // if one of these is not available an exception is meant to be thrown directly into the frontend.
 
         UrlIdHandler uiconv = extractor.getUrlIdHandler();
 
@@ -134,7 +134,7 @@ public class StreamInfo extends AbstractStreamInfo {
                 streamInfo.audio_streams = new Vector<>();
             }
             //todo: make this quick and dirty solution a real fallback
-            // same as the quick and dirty aboth
+            // same as the quick and dirty above
             try {
                 streamInfo.audio_streams.addAll(
                         DashMpdParser.getAudioStreams(streamInfo.dashMpdUrl));
@@ -173,9 +173,9 @@ public class StreamInfo extends AbstractStreamInfo {
     private static StreamInfo extractOptionalData(
             StreamInfo streamInfo, StreamExtractor extractor) {
         /*  ---- optional data goes here: ---- */
-        // If one of these failes, the frontend neets to handle that they are not available.
-        // Exceptions are therfore not thrown into the frontend, but stored into the error List,
-        // so the frontend can afterwads check where errors happend.
+        // If one of these fails, the frontend needs to handle that they are not available.
+        // Exceptions are therefore not thrown into the frontend, but stored into the error List,
+        // so the frontend can afterwards check where errors happened.
 
         try {
             streamInfo.thumbnail_url = extractor.getThumbnailUrl();

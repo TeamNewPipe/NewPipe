@@ -37,14 +37,14 @@ public abstract class StreamExtractor {
     private UrlIdHandler urlIdHandler;
     private StreamPreviewInfoCollector previewInfoCollector;
 
-    public class ExctractorInitException extends ExtractionException {
-        public ExctractorInitException(String message) {
+    public class ExtractorInitException extends ExtractionException {
+        public ExtractorInitException(String message) {
             super(message);
         }
-        public ExctractorInitException(Throwable cause) {
+        public ExtractorInitException(Throwable cause) {
             super(cause);
         }
-        public ExctractorInitException(String message, Throwable cause) {
+        public ExtractorInitException(String message, Throwable cause) {
             super(message, cause);
         }
     }

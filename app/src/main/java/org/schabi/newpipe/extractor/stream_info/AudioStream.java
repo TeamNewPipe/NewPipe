@@ -31,14 +31,14 @@ public class AudioStream {
         this.bandwidth = bandwidth; this.sampling_rate = samplingRate;
     }
 
-    // reveals wether two streams are the same, but have diferent urls
+    // reveals whether two streams are the same, but have different urls
     public boolean equalStats(AudioStream cmp) {
         return format == cmp.format
                 && bandwidth == cmp.bandwidth
                 && sampling_rate == cmp.sampling_rate;
     }
 
-    // revelas wether two streams are equal
+    // reveals whether two streams are equal
     public boolean equals(AudioStream cmp) {
         return cmp != null && equalStats(cmp)
                 && url == cmp.url;
