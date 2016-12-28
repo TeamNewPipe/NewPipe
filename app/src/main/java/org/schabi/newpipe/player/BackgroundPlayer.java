@@ -14,6 +14,8 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.os.PowerManager;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
@@ -27,6 +29,7 @@ import org.schabi.newpipe.detail.VideoItemDetailActivity;
 import org.schabi.newpipe.detail.VideoItemDetailFragment;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Created by Adam Howard on 08/11/15.
@@ -51,10 +54,13 @@ import java.io.IOException;
 /**Plays the audio stream of videos in the background.*/
 public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPreparedListener*/ {
 
-    private static final String TAG = BackgroundPlayer.class.toString();
-    private static final String ACTION_STOP = TAG + ".STOP";
-    private static final String ACTION_PLAYPAUSE = TAG + ".PLAYPAUSE";
-    private static final String ACTION_REWIND = TAG + ".REWIND";
+    private static final String TAG = "BackgroundPlayer";
+    private static final String CLASSNAME = "org.schabi.newpipe.player.BackgroundPlayer";
+    private static final String ACTION_STOP = CLASSNAME + ".STOP";
+    private static final String ACTION_PLAYPAUSE = CLASSNAME + ".PLAYPAUSE";
+    private static final String ACTION_REWIND = CLASSNAME + ".REWIND";
+    private static final String ACTION_PLAYBACK_STATE = CLASSNAME + ".PLAYBACK_STATE";
+    private static final String EXTRA_PLAYBACK_STATE = CLASSNAME + ".extras.EXTRA_PLAYBACK_STATE";
 
     // Extra intent arguments
     public static final String TITLE = "title";
@@ -114,6 +120,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         isRunning = false;
     }
 
+
     private class PlayerThread extends Thread {
         MediaPlayer mediaPlayer;
         private String source;
@@ -123,8 +130,8 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
         private NotificationManager noteMgr;
         private WifiManager.WifiLock wifiLock;
         private Bitmap videoThumbnail;
-        private NotificationCompat.Builder noteBuilder;
-        private Notification note;
+        private NoteBuilder noteBuilder;
+        private volatile boolean donePlaying = false;
 
         public PlayerThread(String src, String title, BackgroundPlayer owner) {
             this.source = src;
@@ -132,6 +139,45 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             this.owner = owner;
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        }
+
+        public boolean isDonePlaying() {
+            return donePlaying;
+        }
+
+        private boolean isPlaying() {
+            try {
+                return mediaPlayer.isPlaying();
+            } catch (IllegalStateException e) {
+                Log.w(TAG, "Unable to retrieve playing state", e);
+                return false;
+            }
+        }
+
+        private void setDonePlaying() {
+            donePlaying = true;
+            synchronized (PlayerThread.this) {
+                PlayerThread.this.notifyAll();
+            }
+        }
+
+        private synchronized PlaybackState getPlaybackState() {
+            try {
+                return new PlaybackState(mediaPlayer.getDuration(), mediaPlayer.getCurrentPosition(), isPlaying());
+            } catch (IllegalStateException e) {
+                // This isn't that nice way to handle this.
+                // maybe there is a better way
+                Log.w(TAG, this + ": Got illegal state exception while creating playback state", e);
+                return PlaybackState.UNPREPARED;
+            }
+        }
+
+        private void broadcastState() {
+            PlaybackState state = getPlaybackState();
+            if(state == null) return;
+            Intent intent = new Intent(ACTION_PLAYBACK_STATE);
+            intent.putExtra(EXTRA_PLAYBACK_STATE, state);
+            sendBroadcast(intent);
         }
 
         @Override
@@ -181,27 +227,29 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             filter.addAction(ACTION_PLAYPAUSE);
             filter.addAction(ACTION_STOP);
             filter.addAction(ACTION_REWIND);
+            filter.addAction(ACTION_PLAYBACK_STATE);
             registerReceiver(broadcastReceiver, filter);
 
-            note = buildNotification();
-
-            startForeground(noteID, note);
+            initNotificationBuilder();
+            startForeground(noteID, noteBuilder.build());
 
             //currently decommissioned progressbar looping update code - works, but doesn't fit inside
             //Notification.MediaStyle Notification layout.
             noteMgr = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-            /*
+
             //update every 2s or 4 times in the video, whichever is shorter
-            int sleepTime = Math.min(2000, (int)((double)vidLength/4));
-            while(mediaPlayer.isPlaying()) {
-                noteBuilder.setProgress(vidLength, mediaPlayer.getCurrentPosition(), false);
-                noteMgr.notify(noteID, noteBuilder.build());
+            int vidLength = mediaPlayer.getDuration();
+            int sleepTime = Math.min(2000, (int)(vidLength / 4));
+            while(!isDonePlaying()) {
+                broadcastState();
                 try {
-                    Thread.sleep(sleepTime);
+                    synchronized (this) {
+                        wait(sleepTime);
+                    }
                 } catch (InterruptedException e) {
-                    Log.d(TAG, "sleep failure");
+                    Log.e(TAG, "sleep failure", e);
                 }
-            }*/
+            }
         }
 
         /**Handles button presses from the notification. */
@@ -210,39 +258,50 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             public void onReceive(Context context, Intent intent) {
                 String action = intent.getAction();
                 //Log.i(TAG, "received broadcast action:"+action);
-                if(action.equals(ACTION_PLAYPAUSE)) {
-                    if(mediaPlayer.isPlaying()) {
-                        mediaPlayer.pause();
-                        note.contentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_play_circle_filled_white_24dp);
-                        if(android.os.Build.VERSION.SDK_INT >=16){
-                            note.bigContentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_play_circle_filled_white_24dp);
+                switch (action) {
+                    case ACTION_PLAYPAUSE: {
+                        boolean isPlaying = mediaPlayer.isPlaying();
+                        if(isPlaying) {
+                            mediaPlayer.pause();
+                        } else {
+                            //reacquire CPU lock after auto-releasing it on pause
+                            mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
+                            mediaPlayer.start();
                         }
-                        noteMgr.notify(noteID, note);
-                    }
-                    else {
-                        //reacquire CPU lock after auto-releasing it on pause
-                        mediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
-                        mediaPlayer.start();
-                        note.contentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_pause_white_24dp);
-                        if(android.os.Build.VERSION.SDK_INT >=16){
-                            note.bigContentView.setImageViewResource(R.id.notificationPlayPause, R.drawable.ic_pause_white_24dp);
+                        synchronized (PlayerThread.this) {
+                            PlayerThread.this.notifyAll();
                         }
-                        noteMgr.notify(noteID, note);
+                        break;
                     }
-                }
-                else if(action.equals(ACTION_REWIND)) {
-                    mediaPlayer.seekTo(0);
-//                    noteMgr.notify(noteID, note);
-                }
-                else if(action.equals(ACTION_STOP)) {
-                    //this auto-releases CPU lock
-                    mediaPlayer.stop();
-                    afterPlayCleanup();
+                    case ACTION_REWIND:
+                        mediaPlayer.seekTo(0);
+                        synchronized (PlayerThread.this) {
+                            PlayerThread.this.notifyAll();
+                        }
+                        break;
+                    case ACTION_STOP:
+                        //this auto-releases CPU lock
+                        mediaPlayer.stop();
+                        afterPlayCleanup();
+                        break;
+                    case ACTION_PLAYBACK_STATE: {
+                        PlaybackState playbackState = intent.getParcelableExtra(EXTRA_PLAYBACK_STATE);
+                        if(!playbackState.equals(PlaybackState.UNPREPARED)) {
+                            noteBuilder.setProgress(playbackState.getDuration(), playbackState.getPlayedTime(), false);
+                            noteBuilder.setIsPlaying(playbackState.isPlaying());
+                        } else {
+                            noteBuilder.setProgress(0, 0, true);
+                        }
+                        noteMgr.notify(noteID, noteBuilder.build());
+                        break;
+                    }
                 }
             }
         };
 
         private void afterPlayCleanup() {
+            // Notify thread to stop
+            setDonePlaying();
             //remove progress bar
             //noteBuilder.setProgress(0, 0, false);
 
@@ -256,7 +315,12 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             wifiLock.release();
             //remove foreground status of service; make BackgroundPlayer killable
             stopForeground(true);
-
+            try {
+                // Wait for thread to stop
+                PlayerThread.this.join();
+            } catch (InterruptedException e) {
+                Log.e(TAG, "unable to join player thread", e);
+            }
             stopSelf();
         }
 
@@ -272,10 +336,14 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             }
         }
 
-        private Notification buildNotification() {
+        private void initNotificationBuilder() {
             Notification note;
             Resources res = getApplicationContext().getResources();
-            noteBuilder = new NotificationCompat.Builder(owner);
+
+            /*
+            NotificationCompat.Action pauseButton = new NotificationCompat.Action.Builder
+                    (R.drawable.ic_pause_white_24dp, "Pause", playPI).build();
+            */
 
             PendingIntent playPI = PendingIntent.getBroadcast(owner, noteID,
                     new Intent(ACTION_PLAYPAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
@@ -283,10 +351,6 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                     new Intent(ACTION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent rewindPI = PendingIntent.getBroadcast(owner, noteID,
                     new Intent(ACTION_REWIND), PendingIntent.FLAG_UPDATE_CURRENT);
-            /*
-            NotificationCompat.Action pauseButton = new NotificationCompat.Action.Builder
-                    (R.drawable.ic_pause_white_24dp, "Pause", playPI).build();
-            */
 
             //build intent to return to video, on tapping notification
             Intent openDetailViewIntent = new Intent(getApplicationContext(),
@@ -296,58 +360,226 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             openDetailViewIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             PendingIntent openDetailView = PendingIntent.getActivity(owner, noteID,
                     openDetailViewIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
+            noteBuilder = new NoteBuilder(owner, playPI, stopPI, rewindPI, openDetailView);
             noteBuilder
+                    .setTitle(title)
+                    .setArtist(channelName)
                     .setOngoing(true)
                     .setDeleteIntent(stopPI)
                             //doesn't fit with Notification.MediaStyle
                             //.setProgress(vidLength, 0, false)
                     .setSmallIcon(R.drawable.ic_play_circle_filled_white_24dp)
-                    .setTicker(
-                            String.format(res.getString(
-                                    R.string.background_player_time_text), title))
                     .setContentIntent(PendingIntent.getActivity(getApplicationContext(),
                             noteID, openDetailViewIntent,
                             PendingIntent.FLAG_UPDATE_CURRENT))
-                    .setContentIntent(openDetailView);
+                    .setContentIntent(openDetailView)
+                    .setCategory(Notification.CATEGORY_TRANSPORT)
+                    //Make notification appear on lockscreen
+                    .setVisibility(Notification.VISIBILITY_PUBLIC);
+        }
 
 
-            RemoteViews view =
-                    new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
-            view.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
-            view.setTextViewText(R.id.notificationSongName, title);
-            view.setTextViewText(R.id.notificationArtist, channelName);
-            view.setOnClickPendingIntent(R.id.notificationStop, stopPI);
-            view.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
-            view.setOnClickPendingIntent(R.id.notificationRewind, rewindPI);
-            view.setOnClickPendingIntent(R.id.notificationContent, openDetailView);
+        /**
+         * Notification builder which works like the real builder but uses a custom view.
+         */
+        class NoteBuilder extends NotificationCompat.Builder {
 
-            //possibly found the expandedView problem,
-            //but can't test it as I don't have a 5.0 device. -medavox
-            RemoteViews expandedView =
-                    new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification_expanded);
-                expandedView.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
-            expandedView.setTextViewText(R.id.notificationSongName, title);
-                expandedView.setTextViewText(R.id.notificationArtist, channelName);
-            expandedView.setOnClickPendingIntent(R.id.notificationStop, stopPI);
-            expandedView.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
-            expandedView.setOnClickPendingIntent(R.id.notificationRewind, rewindPI);
-            expandedView.setOnClickPendingIntent(R.id.notificationContent, openDetailView);
-
-
-            noteBuilder.setCategory(Notification.CATEGORY_TRANSPORT);
-
-            //Make notification appear on lockscreen
-            noteBuilder.setVisibility(Notification.VISIBILITY_PUBLIC);
-
-            note = noteBuilder.build();
-            note.contentView = view;
-
-            if (android.os.Build.VERSION.SDK_INT > 16) {
-                note.bigContentView = expandedView;
+            /**
+             * @param context
+             * @inheritDoc
+             */
+            public NoteBuilder(Context context, PendingIntent playPI, PendingIntent stopPI,
+                               PendingIntent rewindPI, PendingIntent openDetailView) {
+                super(context);
+                setCustomContentView(createCustomContentView(playPI, stopPI, rewindPI, openDetailView));
+                setCustomBigContentView(createCustomBigContentView(playPI, stopPI, rewindPI, openDetailView));
             }
 
-            return note;
+            private RemoteViews createCustomBigContentView(PendingIntent playPI,
+                                                           PendingIntent stopPI,
+                                                           PendingIntent rewindPI,
+                                                           PendingIntent openDetailView) {
+                //possibly found the expandedView problem,
+                //but can't test it as I don't have a 5.0 device. -medavox
+                RemoteViews expandedView =
+                        new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification_expanded);
+                expandedView.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
+                expandedView.setOnClickPendingIntent(R.id.notificationStop, stopPI);
+                expandedView.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
+                expandedView.setOnClickPendingIntent(R.id.notificationRewind, rewindPI);
+                expandedView.setOnClickPendingIntent(R.id.notificationContent, openDetailView);
+                return expandedView;
+            }
+
+            private RemoteViews createCustomContentView(PendingIntent playPI, PendingIntent stopPI,
+                                                        PendingIntent rewindPI,
+                                                        PendingIntent openDetailView) {
+                RemoteViews view = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
+                view.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
+                view.setOnClickPendingIntent(R.id.notificationStop, stopPI);
+                view.setOnClickPendingIntent(R.id.notificationPlayPause, playPI);
+                view.setOnClickPendingIntent(R.id.notificationRewind, rewindPI);
+                view.setOnClickPendingIntent(R.id.notificationContent, openDetailView);
+                return view;
+            }
+
+            /**
+             * Set the title of the stream
+             * @param title the title of the stream
+             * @return this builder for chaining
+             */
+            NoteBuilder setTitle(String title) {
+                setContentTitle(title);
+                getContentView().setTextViewText(R.id.notificationSongName, title);
+                getBigContentView().setTextViewText(R.id.notificationSongName, title);
+                setTicker(String.format(getBaseContext().getString(
+                        R.string.background_player_time_text), title));
+                return this;
+            }
+
+            /**
+             * Set the artist of the stream
+             * @param artist the artist of the stream
+             * @return this builder for chaining
+             */
+            NoteBuilder setArtist(String artist) {
+                setSubText(artist);
+                getContentView().setTextViewText(R.id.notificationArtist, artist);
+                getBigContentView().setTextViewText(R.id.notificationArtist, artist);
+                return this;
+            }
+
+            @Override
+            public android.support.v4.app.NotificationCompat.Builder setProgress(int max, int progress, boolean indeterminate) {
+                super.setProgress(max, progress, indeterminate);
+                getBigContentView().setProgressBar(R.id.playbackProgress, max, progress, indeterminate);
+                return this;
+            }
+
+            /**
+             * Set the isPlaying state
+             * @param isPlaying the is playing state
+             */
+            public void setIsPlaying(boolean isPlaying) {
+                RemoteViews views = getContentView(), bigViews = getBigContentView();
+                int imageSrc;
+                if(isPlaying) {
+                    imageSrc = R.drawable.ic_pause_white_24dp;
+                } else {
+                    imageSrc = R.drawable.ic_play_circle_filled_white_24dp;
+                }
+                views.setImageViewResource(R.id.notificationPlayPause, imageSrc);
+                bigViews.setImageViewResource(R.id.notificationPlayPause, imageSrc);
+
+            }
+
+        }
+    }
+
+    /**
+     * Represents the state of the player.
+     */
+    public static class PlaybackState implements Parcelable {
+
+        private static final int INDEX_IS_PLAYING = 0;
+        private static final int INDEX_IS_PREPARED= 1;
+        private static final int INDEX_HAS_ERROR  = 2;
+        private final int duration;
+        private final int played;
+        private final boolean[] booleanValues = new boolean[3];
+
+        static final PlaybackState UNPREPARED = new PlaybackState(false, false, false);
+        static final PlaybackState FAILED = new PlaybackState(false, false, true);
+
+
+        PlaybackState(Parcel in) {
+            duration = in.readInt();
+            played = in.readInt();
+            in.readBooleanArray(booleanValues);
+        }
+
+        PlaybackState(int duration, int played, boolean isPlaying) {
+            this.played = played;
+            this.duration = duration;
+            this.booleanValues[INDEX_IS_PLAYING] = isPlaying;
+            this.booleanValues[INDEX_IS_PREPARED] = true;
+            this.booleanValues[INDEX_HAS_ERROR] = false;
+        }
+
+        private PlaybackState(boolean isPlaying, boolean isPrepared, boolean hasErrors) {
+            this.played = 0;
+            this.duration = 0;
+            this.booleanValues[INDEX_IS_PLAYING] = isPlaying;
+            this.booleanValues[INDEX_IS_PREPARED] = isPrepared;
+            this.booleanValues[INDEX_HAS_ERROR] = hasErrors;
+        }
+
+        int getDuration() {
+            return duration;
+        }
+
+        int getPlayedTime() {
+            return played;
+        }
+
+        boolean isPlaying() {
+            return booleanValues[INDEX_IS_PLAYING];
+        }
+
+        boolean isPrepared() {
+            return booleanValues[INDEX_IS_PREPARED];
+        }
+
+        boolean hasErrors() {
+            return booleanValues[INDEX_HAS_ERROR];
+        }
+
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(duration);
+            dest.writeInt(played);
+            dest.writeBooleanArray(booleanValues);
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        public static final Creator<PlaybackState> CREATOR = new Creator<PlaybackState>() {
+            @Override
+            public PlaybackState createFromParcel(Parcel in) {
+                return new PlaybackState(in);
+            }
+
+            @Override
+            public PlaybackState[] newArray(int size) {
+                return new PlaybackState[size];
+            }
+        };
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            PlaybackState that = (PlaybackState) o;
+
+            if (duration != that.duration) return false;
+            if (played != that.played) return false;
+            return Arrays.equals(booleanValues, that.booleanValues);
+
+        }
+
+        @Override
+        public int hashCode() {
+            if(this == UNPREPARED) return 1;
+            if(this == FAILED) return 2;
+            int result = duration;
+            result = 31 * result + played;
+            result = 31 * result + Arrays.hashCode(booleanValues);
+            return result + 2;
         }
     }
 }

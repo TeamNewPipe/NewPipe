@@ -20,7 +20,7 @@
         android:layout_above="@+id/notificationButtons"
         android:layout_toRightOf="@+id/notificationCover"
         android:gravity="center_vertical"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/notificationSongName"
@@ -40,6 +40,13 @@
             android:ellipsize="marquee"
             android:singleLine="true"
             android:text="artist" />
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/playbackProgress"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_marginRight="8dp" />
     </LinearLayout>
 
     <ImageButton
