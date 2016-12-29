@@ -44,7 +44,6 @@
         android:title="@string/settings_category_appearance_title"
         android:textAllCaps="true">
 
-        <!-- Not yet working.
         <ListPreference
             android:key="@string/theme_key"
             android:title="@string/theme_title"
@@ -52,7 +51,6 @@
             android:entries="@array/theme_description_list"
             android:entryValues="@array/theme_list"
             android:defaultValue="@string/default_theme_value"/>
-            -->
 
         <CheckBoxPreference
             android:key="@string/show_play_with_kodi_key"

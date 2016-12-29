@@ -14,6 +14,7 @@ import android.widget.Toast;
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.Themer;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 
@@ -39,7 +40,7 @@ import java.util.HashSet;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class VideoItemDetailActivity extends AppCompatActivity {
+public class VideoItemDetailActivity extends Themer {
 
     /**
      * Removes invisible separators (\p{Z}) and punctuation characters including

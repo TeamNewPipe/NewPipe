@@ -48,6 +48,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         // init crashreport
         try {
             final ACRAConfiguration acraConfig = new ConfigurationBuilder(this)
