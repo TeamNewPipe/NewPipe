@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="main_bg_subtitle">Sentuh pencarian untuk memulai</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="main_bg_subtitle">Klik pada bagian search untuk memulai</string>
     <string name="view_count_text">%1$s tayang</string>
     <string name="upload_date_text">Diterbitkan pada %1$s</string>
     <string name="install">Pasang</string>
