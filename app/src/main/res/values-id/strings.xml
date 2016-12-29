@@ -288,4 +288,7 @@
 
 
  "</string>
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">Rintangan reCAPTCHA</string>
+
     </resources>
