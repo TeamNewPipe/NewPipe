@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -15,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
+
+import java.util.Objects;
 
 
 /**
@@ -43,6 +46,10 @@ public class SettingsActivity extends PreferenceActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {
+        if (Objects.equals(PreferenceManager.getDefaultSharedPreferences(this)
+                .getString("theme", "1"), "0")) {
+            setTheme(R.style.DarkTheme);
+        }
         getDelegate().installViewFactory();
         getDelegate().onCreate(savedInstanceBundle);
         super.onCreate(savedInstanceBundle);
