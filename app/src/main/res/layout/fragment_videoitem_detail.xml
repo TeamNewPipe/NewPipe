@@ -14,7 +14,6 @@
         android:id="@+id/detail_main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/dark_youtube_primary_color"
         android:visibility="visible"
         app:parallax_factor="1.9"
         tools:ignore="UselessParent">
