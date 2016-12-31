@@ -36,7 +36,6 @@ public class InfoItemHolder extends RecyclerView.ViewHolder {
             itemDurationView,
             itemUploadDateView,
             itemViewCountView;
-
     public Button itemButton;
 
     public InfoItemHolder(View v) {
