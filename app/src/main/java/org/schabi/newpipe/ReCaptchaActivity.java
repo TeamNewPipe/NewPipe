@@ -2,6 +2,7 @@ package org.schabi.newpipe;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -34,6 +35,8 @@ import android.webkit.WebViewClient;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 public class ReCaptchaActivity extends AppCompatActivity {
+    public static final int RECAPTCHA_REQUEST = 10;
+
     public static final String TAG = ReCaptchaActivity.class.toString();
     public static final String YT_URL = "https://www.youtube.com";
 
@@ -41,6 +44,9 @@ public class ReCaptchaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recaptcha);
+
+        // Set return to Cancel by default
+        setResult(RESULT_CANCELED);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -81,18 +87,25 @@ public class ReCaptchaActivity extends AppCompatActivity {
         }
 
         @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            // TODO: Start Loader
+            super.onPageStarted(view, url, favicon);
+        }
+
+        @Override
         public void onPageFinished(WebView view, String url) {
             String cookies = CookieManager.getInstance().getCookie(url);
+
+            // TODO: Stop Loader
 
             // find cookies : s_gl & goojf and Add cookies to Downloader
             if (find_access_cookies(cookies)) {
                 // Give cookies to Downloader class
                 Downloader.setCookies(mCookies);
 
-                // Closing activity and return to parent.
-                Intent intent = new Intent(context, org.schabi.newpipe.MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                NavUtils.navigateUpTo(context, intent);
+                // Closing activity and return to parent
+                setResult(RESULT_OK);
+                finish();
             }
         }
 
