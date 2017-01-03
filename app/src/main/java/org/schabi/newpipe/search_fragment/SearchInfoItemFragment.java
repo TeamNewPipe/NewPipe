@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +28,9 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.detail.VideoItemDetailActivity;
 import org.schabi.newpipe.detail.VideoItemDetailFragment;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+
+import static android.app.Activity.RESULT_OK;
+import static org.schabi.newpipe.ReCaptchaActivity.RECAPTCHA_REQUEST;
 
 /**
  * Created by Christian Schabesberger on 02.08.16.
@@ -180,9 +184,11 @@ public class SearchInfoItemFragment extends Fragment {
             public void onReCaptchaChallenge() {
                 Toast.makeText(getActivity(), "ReCaptcha Challenge requested",
                         Toast.LENGTH_LONG).show();
+
                 // Starting ReCaptcha Challenge Activity
-                Intent i = new Intent(getActivity(), ReCaptchaActivity.class);
-                getActivity().startActivity(i);
+                startActivityForResult(
+                        new Intent(getActivity(), ReCaptchaActivity.class),
+                        RECAPTCHA_REQUEST);
             }
         });
     }
@@ -288,5 +294,24 @@ public class SearchInfoItemFragment extends Fragment {
                 new SuggestionSearchRunnable(streamingServiceId, query, getActivity(), suggestionListAdapter);
         Thread suggestionThread = new Thread(suggestionSearchRunnable);
         suggestionThread.start();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case RECAPTCHA_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    if (searchQuery.length() != 0) {
+                        search(searchQuery);
+                    }
+                } else {
+                    Log.d(TAG, "ReCaptcha failed");
+                }
+                break;
+
+            default:
+                Log.e(TAG, "Request code from activity not supported [" + requestCode + "]");
+                break;
+        }
     }
 }
