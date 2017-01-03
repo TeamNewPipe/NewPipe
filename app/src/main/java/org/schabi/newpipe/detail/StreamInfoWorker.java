@@ -5,8 +5,8 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
-import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -44,6 +44,7 @@ public class StreamInfoWorker {
     public interface OnStreamInfoReceivedListener {
         void onReceive(StreamInfo info);
         void onError(int messageId);
+        void onReCaptchaException();
         void onBlockedByGemaError();
         void onContentErrorWithMessage(int messageId);
         void onContentError();
@@ -107,6 +108,13 @@ public class StreamInfoWorker {
                 }
 
                 // These errors render the stream information unusable.
+            } catch (ReCaptchaException e) {
+                h.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        onStreamInfoReceivedListener.onReCaptchaException();
+                    }
+                });
             } catch (IOException e) {
                 h.post(new Runnable() {
                     @Override

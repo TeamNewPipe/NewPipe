@@ -271,6 +271,7 @@
     <string name="action_settings">Settings</string>
     <string name="reCaptchaActivity">reCaptcha</string>
     <string name="reCaptcha_title">reCaptcha Challenge</string>
+    <string name="recaptcha_request_toast">ReCaptcha Challenge requested</string>
 
     <!-- End of GigaGet's Strings -->
 
