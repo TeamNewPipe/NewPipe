@@ -123,9 +123,8 @@ public class StreamInfoWorker {
                     }
                 });
                 e.printStackTrace();
-            }
-            // custom service related exceptions
-            catch (YoutubeStreamExtractor.DecryptException de) {
+            } catch (YoutubeStreamExtractor.DecryptException de) {
+                // custom service related exceptions
                 h.post(new Runnable() {
                     @Override
                     public void run() {
