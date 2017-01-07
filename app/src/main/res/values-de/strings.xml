@@ -300,4 +300,5 @@
 
 
  "</string>
+    <string name="reCaptchaActivity">reCaptcha</string>
     </resources>
