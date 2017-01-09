@@ -118,4 +118,42 @@
     <string name="duration_live">direkteoverført</string>
 
     <string name="error_instantiating_decoder">Kunne ikke igangsette dekoder <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="downloads">Nedlastinger</string>
+    <string name="downloads_title">Nedlastinger</string>
+    <string name="settings_title">Innstillinger</string>
+    <string name="error_report_title">Feilrapport</string>
+
+    <string name="could_not_load_image">Kunne ikke laste bilde</string>
+    <string name="app_ui_crash">Program/brukergrensesnitt kræsjet</string>
+    <string name="pause">Pause</string>
+    <string name="view">Vis</string>
+    <string name="delete">Slett</string>
+    <string name="checksum">Sjekksum</string>
+
+    <string name="finish">Okei</string>
+    <string name="switch_mode">Veksle mellom liste og rutenett</string>
+
+
+    <string name="msg_name">Filnavn</string>
+    <string name="msg_threads">Tråder</string>
+    <string name="msg_fetch_filename">Innhent filnavn</string>
+    <string name="msg_error">Feil</string>
+    <string name="msg_server_unsupported">Tjener ustøttet</string>
+    <string name="msg_exists">Fila finnes allerede</string>
+    <string name="msg_running">NewPipe laster ned</string>
+    <string name="msg_running_detail">Trykk for detaljer</string>
+    <string name="msg_wait">Vent…</string>
+    <string name="msg_copied">Kopiert til utklippstavle</string>
+    <string name="action_settings">Innstillinger</string>
+    <string name="info_labels">Hva:\\nForespørsel:\\nInnholdsspråk:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersjon:\\nOperativsystemsversjon:\\nGlobal IP-blokk:</string>
+    <string name="start">Start</string>
+    <string name="add">Nytt mål</string>
+    <string name="msg_url">Nedlastingsnettadresse</string>
+    <string name="msg_url_malform">Feilaktig nettadresse eller manglende internettilknytning</string>
+    <string name="no_available_dir">Velg ei tilgjengelig nedlastingsmappe.</string>
+
+    <string name="title_activity_channel">Kanalaktivitet</string>
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">reCAPTCHA-oppgave</string>
+
     </resources>
