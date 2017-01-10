@@ -136,7 +136,7 @@
     <string name="msg_url_malform">网址不正确或网络不可用</string>
     <string name="msg_running">NewPipe 正在下载</string>
     <string name="msg_running_detail">点击了解细节</string>
-    <string name="msg_wait">请稍候...</string>
+    <string name="msg_wait">请稍候…</string>
     <string name="msg_copied">已复制到剪贴板。</string>
     <string name="no_available_dir">请选择一个可用的下载目录。</string>
 
@@ -151,7 +151,9 @@
     <string name="could_not_load_image">无法加载图像</string>
     <string name="app_ui_crash">应用/界面已崩溃</string>
     <string name="info_labels">原因：\\n请求：\\n内容语言：\\n服务：\\nGMT时间：\\n包：\\n版本：\\n操作系统版本：\\nIP地理范围：</string>
-    <string name="reCaptchaActivity">reCaptcha</string>
-    <string name="reCaptcha_title">reCaptcha 验证</string>
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">reCAPTCHA 验证</string>
+
+    <string name="recaptcha_request_toast">需要 reCAPTCHA 验证</string>
 
     </resources>
