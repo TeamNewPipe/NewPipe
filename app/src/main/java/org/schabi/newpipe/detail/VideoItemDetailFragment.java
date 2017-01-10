@@ -43,6 +43,7 @@ import java.util.Vector;
 
 import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.ChannelActivity;
+import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
@@ -58,6 +59,9 @@ import org.schabi.newpipe.extractor.stream_info.VideoStream;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.PlayVideoActivity;
 import org.schabi.newpipe.player.ExoPlayerActivity;
+
+import static android.app.Activity.RESULT_OK;
+import static org.schabi.newpipe.ReCaptchaActivity.RECAPTCHA_REQUEST;
 
 
 /**
@@ -579,11 +583,6 @@ public class VideoItemDetailFragment extends Fragment {
         return true;
     }
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -602,6 +601,17 @@ public class VideoItemDetailFragment extends Fragment {
             @Override
             public void onError(int messageId) {
                 postNewErrorToast(messageId);
+            }
+
+            @Override
+            public void onReCaptchaException() {
+                Toast.makeText(getActivity(), R.string.recaptcha_request_toast,
+                        Toast.LENGTH_LONG).show();
+
+                // Starting ReCaptcha Challenge Activity
+                startActivityForResult(
+                        new Intent(getActivity(), ReCaptchaActivity.class),
+                        RECAPTCHA_REQUEST);
             }
 
             @Override
@@ -792,5 +802,24 @@ public class VideoItemDetailFragment extends Fragment {
         detailIntent.putExtra(
                 VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
         activity.startActivity(detailIntent);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case RECAPTCHA_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    String videoUrl = getArguments().getString(VIDEO_URL);
+                    StreamInfoWorker siw = StreamInfoWorker.getInstance();
+                    siw.search(streamingServiceId, videoUrl, getActivity());
+                } else {
+                    Log.d(TAG, "ReCaptcha failed");
+                }
+                break;
+
+            default:
+                Log.e(TAG, "Request code from activity not supported [" + requestCode + "]");
+                break;
+        }
     }
 }

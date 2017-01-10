@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +28,9 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.detail.VideoItemDetailActivity;
 import org.schabi.newpipe.detail.VideoItemDetailFragment;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+
+import static android.app.Activity.RESULT_OK;
+import static org.schabi.newpipe.ReCaptchaActivity.RECAPTCHA_REQUEST;
 
 /**
  * Created by Christian Schabesberger on 02.08.16.
@@ -68,7 +72,7 @@ public class SearchInfoItemFragment extends Fragment {
                     //noinspection ConstantConditions
                     inputManager.hideSoftInputFromWindow(
                             a.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                } catch(NullPointerException e) {
+                } catch (NullPointerException e) {
                     e.printStackTrace();
                     ErrorActivity.reportError(a, e, null,
                             a.findViewById(android.R.id.content),
@@ -82,7 +86,7 @@ public class SearchInfoItemFragment extends Fragment {
                 //    onQueryTextSubmit to trigger twice when focus is not cleared.
                 // See: http://stackoverflow.com/questions/17874951/searchview-onquerytextsubmit-runs-twice-while-i-pressed-once
                 a.getCurrentFocus().clearFocus();
-            } catch(Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             View bg = a.findViewById(R.id.mainBG);
@@ -92,7 +96,7 @@ public class SearchInfoItemFragment extends Fragment {
 
         @Override
         public boolean onQueryTextChange(String newText) {
-            if(!newText.isEmpty()) {
+            if (!newText.isEmpty()) {
                 searchSuggestions(newText);
             }
             return true;
@@ -133,13 +137,13 @@ public class SearchInfoItemFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             searchQuery = savedInstanceState.getString(QUERY);
             streamingServiceId = savedInstanceState.getInt(STREAMING_SERVICE);
         } else {
             try {
                 streamingServiceId = NewPipe.getIdOfService("Youtube");
-            } catch(Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 ErrorActivity.reportError(getActivity(), e, null,
                         getActivity().findViewById(android.R.id.content),
@@ -180,9 +184,11 @@ public class SearchInfoItemFragment extends Fragment {
             public void onReCaptchaChallenge() {
                 Toast.makeText(getActivity(), "ReCaptcha Challenge requested",
                         Toast.LENGTH_LONG).show();
+
                 // Starting ReCaptcha Challenge Activity
-                Intent i = new Intent(getActivity(), ReCaptchaActivity.class);
-                getActivity().startActivity(i);
+                startActivityForResult(
+                        new Intent(getActivity(), ReCaptchaActivity.class),
+                        RECAPTCHA_REQUEST);
             }
         });
     }
@@ -216,14 +222,13 @@ public class SearchInfoItemFragment extends Fragment {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 int pastVisiblesItems, visibleItemCount, totalItemCount;
                 super.onScrolled(recyclerView, dx, dy);
-                if(dy > 0) //check for scroll down
+                if (dy > 0) //check for scroll down
                 {
                     visibleItemCount = streamInfoListLayoutManager.getChildCount();
                     totalItemCount = streamInfoListLayoutManager.getItemCount();
                     pastVisiblesItems = streamInfoListLayoutManager.findFirstVisibleItemPosition();
 
-                    if ( (visibleItemCount + pastVisiblesItems) >= totalItemCount && !isLoading)
-                    {
+                    if ((visibleItemCount + pastVisiblesItems) >= totalItemCount && !isLoading) {
                         pageNumber++;
                         search(searchQuery, pageNumber);
                     }
@@ -264,7 +269,7 @@ public class SearchInfoItemFragment extends Fragment {
         searchView.setSuggestionsAdapter(suggestionListAdapter);
         searchView.setOnSuggestionListener(new SearchSuggestionListener(searchView, suggestionListAdapter));
         searchView.setOnQueryTextListener(new SearchQueryListener());
-        if(searchQuery != null && !searchQuery.isEmpty()) {
+        if (searchQuery != null && !searchQuery.isEmpty()) {
             searchView.setQuery(searchQuery, false);
             searchView.setIconifiedByDefault(false);
         }
@@ -288,5 +293,24 @@ public class SearchInfoItemFragment extends Fragment {
                 new SuggestionSearchRunnable(streamingServiceId, query, getActivity(), suggestionListAdapter);
         Thread suggestionThread = new Thread(suggestionSearchRunnable);
         suggestionThread.start();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case RECAPTCHA_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    if (searchQuery.length() != 0) {
+                        search(searchQuery);
+                    }
+                } else {
+                    Log.d(TAG, "ReCaptcha failed");
+                }
+                break;
+
+            default:
+                Log.e(TAG, "Request code from activity not supported [" + requestCode + "]");
+                break;
+        }
     }
 }
