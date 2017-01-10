@@ -306,4 +306,6 @@
 
     <string name="recaptcha_request_toast">Решите reCAPTCHA стопку</string>
 
+    <string name="black_theme_title">Црна</string>
+
     </resources>
