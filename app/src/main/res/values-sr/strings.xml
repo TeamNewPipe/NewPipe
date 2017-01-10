@@ -149,7 +149,7 @@
     <string name="msg_url_malform">Неисправан УРЛ или нема интернета</string>
     <string name="msg_running">Њупајп преузимање</string>
     <string name="msg_running_detail">Тапните за детаље</string>
-    <string name="msg_wait">Сачекајте...</string>
+    <string name="msg_wait">Сачекајте…</string>
     <string name="msg_copied">Копирано у привремену меморију.</string>
     <string name="no_available_dir">Одредите доступну фасциклу за преузимање.</string>
 
@@ -301,7 +301,9 @@
 
 
  "</string>
-    <string name="reCaptchaActivity">reCaptcha</string>
-    <string name="reCaptcha_title">reCaptcha стопка</string>
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">reCAPTCHA стопка</string>
+
+    <string name="recaptcha_request_toast">Решите reCAPTCHA стопку</string>
 
     </resources>
