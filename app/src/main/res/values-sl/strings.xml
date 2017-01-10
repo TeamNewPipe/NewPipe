@@ -125,7 +125,7 @@
 
     <string name="duration_live">v živo</string>
 
-    <string name="main_bg_subtitle">Za začetek začnite z iskanjem</string>
+    <string name="main_bg_subtitle">Začnite z iskanjem</string>
     <string name="start">Začni</string>
     <string name="pause">Premor</string>
     <string name="view">Poglej</string>
@@ -145,7 +145,7 @@
     <string name="msg_url_malform">Napačno oblikovan naslov URL oziroma nedostopen internet</string>
     <string name="msg_running">Prejemanje</string>
     <string name="msg_running_detail">Podrobnosti</string>
-    <string name="msg_wait">Počakajte ...</string>
+    <string name="msg_wait">Počakajte …</string>
     <string name="msg_copied">Kopirano v odložišče.</string>
     <string name="no_available_dir">Izberite mapo za prejem.</string>
 
@@ -155,5 +155,13 @@
     <string name="downloads_title">Prejemi</string>
     <string name="settings_title">Nastavitve</string>
     <string name="error_report_title">Poročilo o napaki</string>
+
+    <string name="could_not_load_image">Slike ni mogoče naložiti</string>
+    <string name="app_ui_crash">Program se je sesul!</string>
+    <string name="title_activity_channel">Dejavnost kanala</string>
+    <string name="action_settings">Nastavitve</string>
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">Izziv reCAPTCHA</string>
+    <string name="recaptcha_request_toast">Zahteva izziva reCAPTCHA</string>
 
     </resources>
