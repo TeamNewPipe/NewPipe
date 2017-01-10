@@ -1,6 +1,5 @@
 package us.shandian.giga.get;
 
-import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -10,39 +9,63 @@ import com.google.gson.Gson;
 import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import us.shandian.giga.util.Utility;
+
 import static org.schabi.newpipe.BuildConfig.DEBUG;
 
 public class DownloadMission
 {
 	private static final String TAG = DownloadMission.class.getSimpleName();
-	
+
 	public interface MissionListener {
 		HashMap<MissionListener, Handler> handlerStore = new HashMap<>();
 		
-		void onProgressUpdate(long done, long total);
-		void onFinish();
-		void onError(int errCode);
+		void onProgressUpdate(DownloadMission downloadMission, long done, long total);
+		void onFinish(DownloadMission downloadMission);
+		void onError(DownloadMission downloadMission, int errCode);
 	}
 	
 	public static final int ERROR_SERVER_UNSUPPORTED = 206;
 	public static final int ERROR_UNKNOWN = 233;
-	
-	public String name = "";
-	public String url = "";
-	public String location = "";
+
+	/**
+	 * The filename
+	 */
+	public String name;
+
+	/**
+	 * The url of the file to download
+	 */
+	public String url;
+
+	/**
+	 * The directory to store the download
+	 */
+	public String location;
+
+	/**
+	 * Number of blocks the size of {@link DownloadManager#BLOCK_SIZE}
+	 */
 	public long blocks;
+
+	/**
+	 * Number of bytes
+	 */
 	public long length;
+
+	/**
+	 * Number of bytes downloaded
+	 */
 	public long done;
 	public int threadCount = 3;
 	public int finishCount;
-	public List<Long> threadPositions = new ArrayList<Long>();
-	public Map<Long, Boolean> blockState = new HashMap<Long, Boolean>();
+	private List<Long> threadPositions = new ArrayList<Long>();
+	public final Map<Long, Boolean> blockState = new HashMap<Long, Boolean>();
 	public boolean running;
 	public boolean finished;
 	public boolean fallback;
@@ -53,23 +76,65 @@ public class DownloadMission
 	
 	private transient ArrayList<WeakReference<MissionListener>> mListeners = new ArrayList<WeakReference<MissionListener>>();
 	private transient boolean mWritingToFile;
-	
+
+	private static final int NO_IDENTIFIER = -1;
+	private long db_identifier = NO_IDENTIFIER;
+
+	public DownloadMission() {
+	}
+
+	public DownloadMission(String name, String url, String location) {
+		if(name == null) throw new NullPointerException("name is null");
+		if(name.isEmpty()) throw new IllegalArgumentException("name is empty");
+		if(url == null) throw new NullPointerException("url is null");
+		if(url.isEmpty()) throw new IllegalArgumentException("url is empty");
+		if(location == null) throw new NullPointerException("location is null");
+		if(location.isEmpty()) throw new IllegalArgumentException("location is empty");
+		this.url = url;
+		this.name = name;
+		this.location = location;
+	}
+
+
+	private void checkBlock(long block) {
+		if(block < 0 || block >= blocks) {
+			throw new IllegalArgumentException("illegal block identifier");
+		}
+	}
+
+	/**
+	 * Check if a block is reserved
+	 * @param block the block identifier
+	 * @return true if the block is reserved and false if otherwise
+     */
 	public boolean isBlockPreserved(long block) {
+		checkBlock(block);
 		return blockState.containsKey(block) ? blockState.get(block) : false;
 	}
 	
 	public void preserveBlock(long block) {
+		checkBlock(block);
 		synchronized (blockState) {
 			blockState.put(block, true);
 		}
 	}
-	
-	public void setPosition(int id, long position) {
-		threadPositions.set(id, position);
+
+	/**
+	 * Set the download position of the file
+	 * @param threadId the identifier of the thread
+	 * @param position the download position of the thread
+     */
+	public void setPosition(int threadId, long position) {
+		threadPositions.set(threadId, position);
 	}
-	
-	public long getPosition(int id) {
-		return threadPositions.get(id);
+
+	/**
+	 * Get the position of a thread
+	 * @param threadId the identifier of the thread
+	 * @return the position for the thread
+     */
+	public long getPosition(int threadId) {
+		return threadPositions.get(threadId);
 	}
 	
 	public synchronized void notifyProgress(long deltaLen) {
@@ -95,13 +160,16 @@ public class DownloadMission
 				MissionListener.handlerStore.get(listener).post(new Runnable() {
 					@Override
 					public void run() {
-						listener.onProgressUpdate(done, length);
+						listener.onProgressUpdate(DownloadMission.this, done, length);
 					}
 				});
 			}
 		}
 	}
-	
+
+	/**
+	 * Called by a download thread when it finished.
+	 */
 	public synchronized void notifyFinished() {
 		if (errCode > 0) return;
 		
@@ -111,7 +179,10 @@ public class DownloadMission
 			onFinish();
 		}
 	}
-	
+
+	/**
+	 * Called when all parts are downloaded
+	 */
 	private void onFinish() {
 		if (errCode > 0) return;
 		
@@ -130,7 +201,7 @@ public class DownloadMission
 				MissionListener.handlerStore.get(listener).post(new Runnable() {
 					@Override
 					public void run() {
-						listener.onFinish();
+						listener.onFinish(DownloadMission.this);
 					}
 				});
 			}
@@ -147,7 +218,7 @@ public class DownloadMission
 			MissionListener.handlerStore.get(listener).post(new Runnable() {
 				@Override
 				public void run() {
-					listener.onError(errCode);
+					listener.onError(DownloadMission.this, errCode);
 				}
 			});
 		}
@@ -169,7 +240,10 @@ public class DownloadMission
 			}
 		}
 	}
-	
+
+	/**
+	 * Start downloading with multiple threads.
+	 */
 	public void start() {
 		if (!running && !finished) {
 			running = true;
@@ -200,12 +274,19 @@ public class DownloadMission
 			// if (err)
 		}
 	}
-	
+
+	/**
+	 * Removes the file and the meta file
+	 */
 	public void delete() {
 		deleteThisFromFile();
-		new File(location + "/" + name).delete();
+		new File(location, name).delete();
 	}
-	
+
+	/**
+	 * Write this {@link DownloadMission} to the meta file asynchronously
+	 * if no thread is already running.
+	 */
 	public void writeThisToFile() {
 		if (!mWritingToFile) {
 			mWritingToFile = true;
@@ -218,14 +299,30 @@ public class DownloadMission
 			}.start();
 		}
 	}
-	
+
+	/**
+	 * Write this {@link DownloadMission} to the meta file.
+	 */
 	private void doWriteThisToFile() {
 		synchronized (blockState) {
-			Utility.writeToFile(location + "/" + name + ".giga", new Gson().toJson(this));
+			Utility.writeToFile(getMetaFilename(), new Gson().toJson(this));
 		}
 	}
 	
 	private void deleteThisFromFile() {
-		new File(location + "/" + name + ".giga").delete();
+		new File(getMetaFilename()).delete();
 	}
+
+	/**
+	 * Get the path of the meta file
+	 * @return the path to the meta file
+     */
+	private String getMetaFilename() {
+		return location + "/" + name + ".giga";
+	}
+
+	public File getDownloadedFile() {
+		return new File(location, name);
+	}
+
 }

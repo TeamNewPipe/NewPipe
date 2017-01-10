@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.v4.content.FileProvider;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,10 +31,14 @@ import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.common.ProgressDrawable;
 import us.shandian.giga.util.Utility;
 
+import static android.content.Intent.FLAG_GRANT_PREFIX_URI_PERMISSION;
+import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
+
 public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHolder>
 {
 	private static final Map<Integer, String> ALGORITHMS = new HashMap<>();
-	
+	private static final String TAG = "MissionAdapter";
+
 	static {
 		ALGORITHMS.put(R.id.md5, "MD5");
 		ALGORITHMS.put(R.id.sha1, "SHA1");
@@ -212,23 +219,23 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 						h.lastDone = -1;
 						return true;
 					case R.id.view:
-						Intent i = new Intent();
-						i.setAction(Intent.ACTION_VIEW);
-						File f = new File(h.mission.location + "/" + h.mission.name);
+						File f = new File(h.mission.location, h.mission.name);
 						String ext = Utility.getFileExt(h.mission.name);
-						
-						if (ext == null) return false;
+
+						Log.d(TAG, "Viewing file: " + f.getAbsolutePath() + " ext: " + ext);
+
+						if (ext == null) {
+							Log.w(TAG, "Can't view file because it has no extension: " +
+									h.mission.name);
+							return false;
+						}
 						
 						String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(ext.substring(1));
-						
+						Log.v(TAG, "Mime: " + mime + " package: " + mContext.getApplicationContext().getPackageName() + ".provider");
 						if (f.exists()) {
-							i.setDataAndType(Uri.fromFile(f), mime);
-							
-							try {
-								mContext.startActivity(i);
-							} catch (Exception e) {
-								
-							}
+							viewFileWithFileProvider(f, mime);
+						} else {
+							Log.w(TAG, "File doesn't exist");
 						}
 						
 						return true;
@@ -248,6 +255,34 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 		});
 		
 		popup.show();
+	}
+
+	private void viewFile(File file, String mimetype) {
+		Intent intent = new Intent();
+		intent.setAction(Intent.ACTION_VIEW);
+		intent.setDataAndType(Uri.fromFile(file), mimetype);
+		intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			intent.addFlags(FLAG_GRANT_PREFIX_URI_PERMISSION);
+		}
+		//mContext.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+		Log.v(TAG, "Starting intent: " + intent);
+		mContext.startActivity(intent);
+	}
+
+	private void viewFileWithFileProvider(File file, String mimetype) {
+		String ourPackage = mContext.getApplicationContext().getPackageName();
+		Uri uri = FileProvider.getUriForFile(mContext,  ourPackage + ".provider", file);
+		Intent intent = new Intent();
+		intent.setAction(Intent.ACTION_VIEW);
+		intent.setDataAndType(uri, mimetype);
+		intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			intent.addFlags(FLAG_GRANT_PREFIX_URI_PERMISSION);
+		}
+		//mContext.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+		Log.v(TAG, "Starting intent: " + intent);
+		mContext.startActivity(intent);
 	}
 	
 	private class ChecksumTask extends AsyncTask<String, Void, String> {
@@ -316,12 +351,12 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 		}
 		
 		@Override
-		public void onProgressUpdate(long done, long total) {
+		public void onProgressUpdate(DownloadMission downloadMission, long done, long total) {
 			mAdapter.updateProgress(mHolder);
 		}
 
 		@Override
-		public void onFinish() {
+		public void onFinish(DownloadMission downloadMission) {
 			//mAdapter.mManager.deleteMission(mHolder.position);
 			// TODO Notification
 			//mAdapter.notifyDataSetChanged();
@@ -332,7 +367,7 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 		}
 
 		@Override
-		public void onError(int errCode) {
+		public void onError(DownloadMission downloadMission, int errCode) {
 			mAdapter.updateProgress(mHolder);
 		}
 		

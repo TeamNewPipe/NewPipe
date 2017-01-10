@@ -9,14 +9,19 @@ import java.net.URL;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;
 
+/**
+ * Runnable to download blocks of a file until the file is completely downloaded,
+ * an error occurs or the process is stopped.
+ */
 public class DownloadRunnable implements Runnable
 {
 	private static final String TAG = DownloadRunnable.class.getSimpleName();
 	
-	private DownloadMission mMission;
-	private int mId;
+	private final DownloadMission mMission;
+	private final int mId;
 	
 	public DownloadRunnable(DownloadMission mission, int id) {
+		if(mission == null) throw new NullPointerException("mission is null");
 		mMission = mission;
 		mId = id;
 	}
@@ -86,7 +91,7 @@ public class DownloadRunnable implements Runnable
 					Log.d(TAG, mId + ":Content-Length=" + conn.getContentLength() + " Code:" + conn.getResponseCode());
 				}
 				
-				// A server may be ignoring the range requet
+				// A server may be ignoring the range request
 				if (conn.getResponseCode() != 206) {
 					mMission.errCode = DownloadMission.ERROR_SERVER_UNSUPPORTED;
 					notifyError(DownloadMission.ERROR_SERVER_UNSUPPORTED);
@@ -131,7 +136,7 @@ public class DownloadRunnable implements Runnable
 				notifyProgress(-total);
 				
 				if (DEBUG) {
-					Log.d(TAG, mId + ":position " + position + " retrying");
+					Log.d(TAG, mId + ":position " + position + " retrying", e);
 				}
 			}
 		}

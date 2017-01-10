@@ -1,17 +1,21 @@
 package us.shandian.giga.get;
 
-import android.content.Context;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.google.gson.Gson;
 
-import org.schabi.newpipe.settings.NewPipeSettings;
-
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import us.shandian.giga.util.Utility;
 import static org.schabi.newpipe.BuildConfig.DEBUG;
@@ -19,33 +23,48 @@ import static org.schabi.newpipe.BuildConfig.DEBUG;
 public class DownloadManagerImpl implements DownloadManager
 {
 	private static final String TAG = DownloadManagerImpl.class.getSimpleName();
-	
-	private Context mContext;
-	private String mLocation;
-	protected ArrayList<DownloadMission> mMissions = new ArrayList<DownloadMission>();
-	
-	public DownloadManagerImpl(Context context, String location) {
-		mContext = context;
-		mLocation = location;
-		loadMissions();
+	private final DownloadDataSource mDownloadDataSource;
+
+	private final ArrayList<DownloadMission> mMissions = new ArrayList<DownloadMission>();
+
+    /**
+     * Create a new instance
+     * @param searchLocations the directories to search for unfinished downloads
+     * @param downloadDataSource the data source for finished downloads
+     */
+	public DownloadManagerImpl(Collection<String> searchLocations, DownloadDataSource downloadDataSource) {
+		mDownloadDataSource = downloadDataSource;
+		loadMissions(searchLocations);
 	}
-	
+
 	@Override
-	public int startMission(String url, String name, boolean isAudio, int threads) {
-		DownloadMission mission = new DownloadMission();
-		mission.url = url;
-		mission.name = name;
-		if(isAudio) {
-			mission.location = NewPipeSettings.getAudioDownloadPath(mContext);
-		} else {
-			mission.location = NewPipeSettings.getVideoDownloadPath(mContext);
+	public int startMission(String url, String location, String name, boolean isAudio, int threads) {
+		DownloadMission existingMission = getMissionByLocation(location, name);
+		if(existingMission != null) {
+			// Already downloaded or downloading
+			if(existingMission.finished) {
+				// Overwrite mission
+                deleteMission(mMissions.indexOf(existingMission));
+			} else {
+				// Rename file (?)
+                try {
+                    name = generateUniqueName(location, name);
+                }catch (Exception e) {
+                    Log.e(TAG, "Unable to generate unique name", e);
+                    name = System.currentTimeMillis() + name ;
+                    Log.i(TAG, "Using " + name);
+                }
+			}
 		}
+
+		DownloadMission mission = new DownloadMission(name, url, location);
 		mission.timestamp = System.currentTimeMillis();
 		mission.threadCount = threads;
-		new Initializer(mContext, mission).start();
+		mission.addListener(new MissionListener(mission));
+		new Initializer(mission).start();
 		return insertMission(mission);
 	}
-	
+
 	@Override
 	public void resumeMission(int i) {
 		DownloadMission d = getMission(i);
@@ -53,7 +72,7 @@ public class DownloadManagerImpl implements DownloadManager
 			d.start();
 		}
 	}
-	
+
 	@Override
 	public void pauseMission(int i) {
 		DownloadMission d = getMission(i);
@@ -61,55 +80,94 @@ public class DownloadManagerImpl implements DownloadManager
 			d.pause();
 		}
 	}
-	
+
 	@Override
 	public void deleteMission(int i) {
-		getMission(i).delete();
+		DownloadMission mission = getMission(i);
+		if(mission.finished) {
+			mDownloadDataSource.deleteMission(mission);
+		}
+		mission.delete();
 		mMissions.remove(i);
 	}
-	
-	private void loadMissions() {
-		File f = new File(mLocation);
+
+	private void loadMissions(Iterable<String> searchLocations) {
+		mMissions.clear();
+		loadFinishedMissions();
+		for(String location: searchLocations) {
+			loadMissions(location);
+		}
+
+	}
+
+
+	/**
+	 * Loads finished missions from the data source
+	 */
+	private void loadFinishedMissions() {
+		List<DownloadMission> finishedMissions = mDownloadDataSource.loadMissions();
+        if(finishedMissions == null) {
+            finishedMissions = new ArrayList<>();
+        }
+        // Ensure its sorted
+        Collections.sort(finishedMissions, new Comparator<DownloadMission>() {
+            @Override
+            public int compare(DownloadMission o1, DownloadMission o2) {
+                return (int) (o1.timestamp - o2.timestamp);
+            }
+        });
+        mMissions.ensureCapacity(mMissions.size() + finishedMissions.size());
+		for(DownloadMission mission: finishedMissions) {
+			File downloadedFile = mission.getDownloadedFile();
+			if(!downloadedFile.isFile()) {
+				if(DEBUG) {
+					Log.d(TAG, "downloaded file removed: " + downloadedFile.getAbsolutePath());
+				}
+				mDownloadDataSource.deleteMission(mission);
+			} else {
+				mission.length = downloadedFile.length();
+				mission.finished = true;
+				mission.running = false;
+				mMissions.add(mission);
+			}
+		}
+	}
+
+	private void loadMissions(String location) {
+
+		File f = new File(location);
 
 		if (f.exists() && f.isDirectory()) {
 			File[] subs = f.listFiles();
-			
+
+            if(subs == null) {
+                Log.e(TAG, "listFiles() returned null");
+                return;
+            }
+
 			for (File sub : subs) {
-				if (sub.isDirectory()) {
-					continue;
-				}
-				
-				if (sub.getName().endsWith(".giga")) {
+				if (sub.isFile() && sub.getName().endsWith(".giga")) {
 					String str = Utility.readFromFile(sub.getAbsolutePath());
 					if (str != null && !str.trim().equals("")) {
-						
+
 						if (DEBUG) {
 							Log.d(TAG, "loading mission " + sub.getName());
 							Log.d(TAG, str);
 						}
-						
+
 						DownloadMission mis = new Gson().fromJson(str, DownloadMission.class);
-						
+
 						if (mis.finished) {
-							sub.delete();
+							if(!sub.delete()) {
+                                Log.w(TAG, "Unable to delete .giga file: " + sub.getPath());
+                            }
 							continue;
 						}
-						
+
 						mis.running = false;
 						mis.recovered = true;
 						insertMission(mis);
 					}
-				} else if (!sub.getName().startsWith(".") && !new File(sub.getPath() + ".giga").exists()) {
-					// Add a dummy mission for downloaded files
-					DownloadMission mis = new DownloadMission();
-					mis.length = sub.length();
-					mis.done = mis.length;
-					mis.finished = true;
-					mis.running = false;
-					mis.name = sub.getName();
-					mis.location = mLocation;
-					mis.timestamp = sub.lastModified();
-					insertMission(mis);
 				}
 			}
 		}
@@ -144,18 +202,81 @@ public class DownloadManagerImpl implements DownloadManager
 		
 		return i;
 	}
-	
-	@Override
-	public String getLocation() {
-		return mLocation;
+
+    /**
+	 * Get a mission by its location and name
+	 * @param location the location
+	 * @param name the name
+	 * @return the mission or null if no such mission exists
+	 */
+	private @Nullable DownloadMission getMissionByLocation(String location, String name) {
+		for(DownloadMission mission: mMissions) {
+			if(location.equals(mission.location) && name.equals(mission.name)) {
+				return mission;
+			}
+		}
+		return null;
 	}
-	
+
+	/**
+	 * Splits the filename into name and extension
+	 *
+	 * Dots are ignored if they appear: not at all, at the beginning of the file,
+	 * at the end of the file
+	 *
+	 * @param name the name to split
+	 * @return a string array with a length of 2 containing the name and the extension
+     */
+	private static String[] splitName(String name) {
+		int dotIndex = name.lastIndexOf('.');
+		if(dotIndex <= 0 || (dotIndex  == name.length() - 1)) {
+			return new String[]{name, ""};
+		} else {
+			return new String[]{name.substring(0, dotIndex), name.substring(dotIndex + 1)};
+		}
+	}
+
+	/**
+	 * Generates a unique file name.
+	 *
+	 * e.g. "myname (1).txt" if the name "myname.txt" exists.
+	 * @param location the location (to check for existing files)
+	 * @param name the name of the file
+     * @return the unique file name
+	 * @throws IllegalArgumentException if the location is not a directory
+	 * @throws SecurityException if the location is not readable
+     */
+	private static String generateUniqueName(String location, String name) {
+		if(location == null) throw new NullPointerException("location is null");
+		if(name == null) throw new NullPointerException("name is null");
+		File destination = new File(location);
+		if(!destination.isDirectory()) {
+			throw new IllegalArgumentException("location is not a directory: " + location);
+		}
+		final String[] nameParts = splitName(name);
+		String[] existingName = destination.list(new FilenameFilter() {
+			@Override
+			public boolean accept(File dir, String name) {
+				return name.startsWith(nameParts[0]);
+			}
+		});
+		Arrays.sort(existingName);
+		String newName;
+		int downloadIndex = 0;
+		do {
+			newName = nameParts[0] + " (" + downloadIndex + ")." + nameParts[1];
+			++downloadIndex;
+			if(downloadIndex == 1000) {  // Probably an error on our side
+				throw new RuntimeException("Too many existing files");
+			}
+		} while (Arrays.binarySearch(existingName, newName) >= 0);
+		return newName;
+	}
+
 	private class Initializer extends Thread {
-		private Context context;
 		private DownloadMission mission;
 		
-		public Initializer(Context context, DownloadMission mission) {
-			this.context = context;
+		public Initializer(DownloadMission mission) {
 			this.mission = mission;
 		}
 		
@@ -215,6 +336,32 @@ public class DownloadManagerImpl implements DownloadManager
 				// TODO Notify
 				throw new RuntimeException(e);
 			}
+		}
+	}
+
+	/**
+	 * Waits for mission to finish to add it to the {@link #mDownloadDataSource}
+	 */
+	private class MissionListener implements DownloadMission.MissionListener {
+		private final DownloadMission mMission;
+
+		private MissionListener(DownloadMission mission) {
+			if(mission == null) throw new NullPointerException("mission is null");
+			// Could the mission be passed in onFinish()?
+			mMission = mission;
+		}
+
+		@Override
+		public void onProgressUpdate(DownloadMission downloadMission, long done, long total) {
+		}
+
+		@Override
+		public void onFinish(DownloadMission downloadMission) {
+			mDownloadDataSource.addMission(mMission);
+		}
+
+		@Override
+		public void onError(DownloadMission downloadMission, int errCode) {
 		}
 	}
 }
