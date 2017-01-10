@@ -1,5 +1,6 @@
 package org.schabi.newpipe.extractor.stream_info;
 
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.exceptions.FoundAdException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
@@ -60,7 +61,7 @@ public class StreamPreviewInfoCollector {
             if (urlIdHandler == null) {
                 throw new ParsingException("Error: UrlIdHandler not set");
             } else if(!resultItem.webpage_url.isEmpty()) {
-                resultItem.id = (new YoutubeStreamUrlIdHandler()).getId(resultItem.webpage_url);
+                resultItem.id = NewPipe.getService(serviceId).getUrlIdHandlerInstance().getId(resultItem.webpage_url);
             }
             resultItem.title = extractor.getTitle();
             resultItem.stream_type = extractor.getStreamType();

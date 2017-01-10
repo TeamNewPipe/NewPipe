@@ -46,7 +46,7 @@ public class YoutubeService extends StreamingService {
     @Override
     public StreamExtractor getExtractorInstance(String url)
             throws ExtractionException, IOException {
-        UrlIdHandler urlIdHandler = new YoutubeStreamUrlIdHandler();
+        UrlIdHandler urlIdHandler = YoutubeStreamUrlIdHandler.getInstance();
         if(urlIdHandler.acceptUrl(url)) {
             return new YoutubeStreamExtractor(urlIdHandler, url, getServiceId());
         }
@@ -61,7 +61,7 @@ public class YoutubeService extends StreamingService {
 
     @Override
     public UrlIdHandler getUrlIdHandlerInstance() {
-        return new YoutubeStreamUrlIdHandler();
+        return YoutubeStreamUrlIdHandler.getInstance();
     }
 
     @Override
