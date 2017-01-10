@@ -1,5 +1,6 @@
 package us.shandian.giga.service;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -12,7 +13,10 @@ import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.Message;
 import android.support.v4.app.NotificationCompat.Builder;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.PermissionChecker;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.settings.NewPipeSettings;
@@ -36,7 +40,7 @@ public class DownloadManagerService extends Service implements DownloadMission.M
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		
+
 		if (DEBUG) {
 			Log.d(TAG, "onCreate");
 		}
@@ -50,7 +54,7 @@ public class DownloadManagerService extends Service implements DownloadMission.M
 				Log.d(TAG, "Download directory: " + path);
 			}
 		}
-		
+
 		Intent i = new Intent();
 		i.setAction(Intent.ACTION_MAIN);
 		i.setClass(this, DownloadActivity.class);
@@ -104,7 +108,7 @@ public class DownloadManagerService extends Service implements DownloadMission.M
 		if (DEBUG) {
 			Log.d(TAG, "Starting");
 		}
-		
+
 		return START_NOT_STICKY;
 	}
 
@@ -125,6 +129,19 @@ public class DownloadManagerService extends Service implements DownloadMission.M
 	
 	@Override
 	public IBinder onBind(Intent intent) {
+		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+			int permissionCheck = PermissionChecker.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+			if(permissionCheck == PermissionChecker.PERMISSION_DENIED) {
+				Toast.makeText(this, "Permission denied (read)", Toast.LENGTH_SHORT).show();
+				return null;
+			}
+			permissionCheck = PermissionChecker.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+			if(permissionCheck == PermissionChecker.PERMISSION_DENIED) {
+				Toast.makeText(this, "Permission denied (write)", Toast.LENGTH_SHORT).show();
+				return null;
+			}
+		}
+
 		return mBinder;
 	}
 	
