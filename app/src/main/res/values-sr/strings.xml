@@ -301,7 +301,7 @@
 
 
  "</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptchaActivity">Стопка</string>
     <string name="reCaptcha_title">reCAPTCHA стопка</string>
 
     <string name="recaptcha_request_toast">Решите reCAPTCHA стопку</string>
