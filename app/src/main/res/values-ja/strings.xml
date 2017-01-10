@@ -302,4 +302,6 @@
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA の要求</string>
 
+    <string name="recaptcha_request_toast">reCAPTCHA を要求しました</string>
+
     </resources>
