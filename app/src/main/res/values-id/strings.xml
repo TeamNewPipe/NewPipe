@@ -293,4 +293,6 @@
 
     <string name="recaptcha_request_toast">Meminta kode reCAPTCHA</string>
 
+    <string name="black_theme_title">Hitam</string>
+
     </resources>
