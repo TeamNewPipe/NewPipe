@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="main_bg_subtitle">Klik pada bagian search untuk memulai</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="main_bg_subtitle">Klik pencarian untuk memulai</string>
     <string name="view_count_text">%1$s tayang</string>
     <string name="upload_date_text">Diterbitkan pada %1$s</string>
     <string name="install">Pasang</string>
@@ -134,7 +134,7 @@
     <string name="msg_url_malform">URL salah atau tidak tersedia layanan internet</string>
     <string name="msg_running">NewPipe sedang Mengunduh</string>
     <string name="msg_running_detail">Sentuh untuk detail</string>
-    <string name="msg_wait">Mohon tunggu...</string>
+    <string name="msg_wait">Mohon tunggu…</string>
     <string name="msg_copied">Disalin ke papan klip.</string>
     <string name="no_available_dir">Silakan pilih direktori unduhan yang tersedia.</string>
 
@@ -290,5 +290,7 @@
  "</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">Rintangan reCAPTCHA</string>
+
+    <string name="recaptcha_request_toast">Meminta kode reCAPTCHA</string>
 
     </resources>
