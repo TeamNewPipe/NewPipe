@@ -82,6 +82,7 @@ public class SearchWorker {
         }
         @Override
         public void run() {
+            final String serviceName = NewPipe.getNameOfService(serviceId);
             SearchResult result = null;
             SearchEngine engine = null;
 
@@ -119,7 +120,7 @@ public class SearchWorker {
                     View rootView = a.findViewById(android.R.id.content);
                     ErrorActivity.reportError(h, a, result.errors, null, rootView,
                             ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
-                        /* todo: this shoudl not be assigned static */  YOUTUBE, query, R.string.light_parsing_error));
+                            serviceName, query, R.string.light_parsing_error));
 
                 }
                 // hard errors:
@@ -148,8 +149,7 @@ public class SearchWorker {
             } catch(ExtractionException e) {
                 ErrorActivity.reportError(h, a, e, null, null,
                         ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
-                        /* todo: this shoudl not be assigned static */
-                                YOUTUBE, query, R.string.parsing_error));
+                                serviceName, query, R.string.parsing_error));
                 //postNewErrorToast(h, R.string.parsing_error);
                 e.printStackTrace();
 

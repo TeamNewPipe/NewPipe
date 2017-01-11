@@ -56,13 +56,15 @@ public class SearchInfoItemFragment extends Fragment {
 
     private static final String TAG = SearchInfoItemFragment.class.toString();
 
+    /**
+     * Listener for search queries
+     */
     public class SearchQueryListener implements SearchView.OnQueryTextListener {
 
         @Override
         public boolean onQueryTextSubmit(String query) {
             Activity a = getActivity();
             try {
-                searchQuery = query;
                 search(query);
 
                 // hide virtual keyboard
@@ -89,8 +91,6 @@ public class SearchInfoItemFragment extends Fragment {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            View bg = a.findViewById(R.id.mainBG);
-            bg.setVisibility(View.GONE);
             return true;
         }
 
@@ -108,12 +108,10 @@ public class SearchInfoItemFragment extends Fragment {
     private boolean isLoading = false;
 
     private ProgressBar loadingIndicator = null;
-    private SearchView searchView = null;
     private int pageNumber = 0;
     private SuggestionListAdapter suggestionListAdapter = null;
     private InfoListAdapter infoListAdapter = null;
     private LinearLayoutManager streamInfoListLayoutManager = null;
-    private RecyclerView recyclerView = null;
 
     // savedInstanceBundle arguments
     private static final String QUERY = "query";
@@ -126,23 +124,32 @@ public class SearchInfoItemFragment extends Fragment {
     public SearchInfoItemFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static SearchInfoItemFragment newInstance(int columnCount) {
+    public static SearchInfoItemFragment newInstance(int streamingServiceId, String searchQuery) {
+        Bundle args = new Bundle();
+        args.putInt(STREAMING_SERVICE, streamingServiceId);
+        args.putString(QUERY, searchQuery);
         SearchInfoItemFragment fragment = new SearchInfoItemFragment();
+        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        searchQuery = "";
         if (savedInstanceState != null) {
             searchQuery = savedInstanceState.getString(QUERY);
             streamingServiceId = savedInstanceState.getInt(STREAMING_SERVICE);
         } else {
             try {
-                streamingServiceId = NewPipe.getIdOfService("Youtube");
+                Bundle args = getArguments();
+                if(args != null) {
+                    searchQuery = args.getString(QUERY);
+                    streamingServiceId = args.getInt(STREAMING_SERVICE);
+                } else {
+                    streamingServiceId = NewPipe.getIdOfService("Youtube");
+                }
             } catch (Exception e) {
                 e.printStackTrace();
                 ErrorActivity.reportError(getActivity(), e, null,
@@ -158,8 +165,7 @@ public class SearchInfoItemFragment extends Fragment {
             @Override
             public void onResult(SearchResult result) {
                 infoListAdapter.addStreamItemList(result.resultList);
-                isLoading = false;
-                loadingIndicator.setVisibility(View.GONE);
+                setDoneLoading();
             }
 
             @Override
@@ -167,8 +173,7 @@ public class SearchInfoItemFragment extends Fragment {
                 //setListShown(true);
                 Toast.makeText(getActivity(), getString(stringResource),
                         Toast.LENGTH_SHORT).show();
-                isLoading = false;
-                loadingIndicator.setVisibility(View.GONE);
+                setDoneLoading();
             }
 
             @Override
@@ -176,8 +181,7 @@ public class SearchInfoItemFragment extends Fragment {
                 //setListShown(true);
                 Toast.makeText(getActivity(), message,
                         Toast.LENGTH_LONG).show();
-                isLoading = false;
-                loadingIndicator.setVisibility(View.GONE);
+                setDoneLoading();
             }
 
             @Override
@@ -191,6 +195,7 @@ public class SearchInfoItemFragment extends Fragment {
                         RECAPTCHA_REQUEST);
             }
         });
+
     }
 
     @Override
@@ -200,7 +205,7 @@ public class SearchInfoItemFragment extends Fragment {
 
         Context context = view.getContext();
         loadingIndicator = (ProgressBar) view.findViewById(R.id.progressBar);
-        recyclerView = (RecyclerView) view.findViewById(R.id.list);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
         streamInfoListLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(streamInfoListLayoutManager);
 
@@ -209,15 +214,12 @@ public class SearchInfoItemFragment extends Fragment {
         infoListAdapter.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {
             @Override
             public void selected(String url) {
-                Intent i = new Intent(getActivity(), VideoItemDetailActivity.class);
-                i.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
-                i.putExtra(VideoItemDetailFragment.VIDEO_URL, url);
-                getActivity().startActivity(i);
+                startDetailActivity(url);
             }
         });
         recyclerView.setAdapter(infoListAdapter);
-
-        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        recyclerView.clearOnScrollListeners();
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 int pastVisiblesItems, visibleItemCount, totalItemCount;
@@ -239,14 +241,26 @@ public class SearchInfoItemFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    private void startDetailActivity(String url) {
+        Intent i = new Intent(getActivity(), VideoItemDetailActivity.class);
+        i.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
+        i.putExtra(VideoItemDetailFragment.VIDEO_URL, url);
+        getActivity().startActivity(i);
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
+    public void onStart() {
+        super.onStart();
+        if(!searchQuery.isEmpty()) {
+            search(searchQuery);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(QUERY, searchQuery);
+        outState.putInt(STREAMING_SERVICE, streamingServiceId);
     }
 
     @Override
@@ -255,13 +269,8 @@ public class SearchInfoItemFragment extends Fragment {
         inflater.inflate(R.menu.search_menu, menu);
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        searchView = (SearchView) searchItem.getActionView();
+        SearchView searchView = (SearchView) searchItem.getActionView();
         setupSearchView(searchView);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
     }
 
     private void setupSearchView(SearchView searchView) {
@@ -278,7 +287,9 @@ public class SearchInfoItemFragment extends Fragment {
     private void search(String query) {
         infoListAdapter.clearSteamItemList();
         pageNumber = 0;
+        searchQuery = query;
         search(query, pageNumber);
+        hideBackground();
         loadingIndicator.setVisibility(View.VISIBLE);
     }
 
@@ -286,6 +297,20 @@ public class SearchInfoItemFragment extends Fragment {
         isLoading = true;
         SearchWorker sw = SearchWorker.getInstance();
         sw.search(streamingServiceId, query, page, getActivity());
+    }
+
+    private void setDoneLoading() {
+        this.isLoading = false;
+        loadingIndicator.setVisibility(View.GONE);
+    }
+
+    /**
+     * Hides the "dummy" background when no results are shown
+     */
+    private void hideBackground() {
+        View view = getView();
+        if(view == null) return;
+        view.findViewById(R.id.mainBG).setVisibility(View.GONE);
     }
 
     private void searchSuggestions(String query) {

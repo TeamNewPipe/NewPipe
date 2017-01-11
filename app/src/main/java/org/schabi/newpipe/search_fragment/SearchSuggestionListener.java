@@ -25,8 +25,8 @@ import android.support.v7.widget.SearchView;
 
 public class SearchSuggestionListener implements SearchView.OnSuggestionListener{
 
-    private SearchView searchView;
-    private SuggestionListAdapter adapter;
+    private final SearchView searchView;
+    private final SuggestionListAdapter adapter;
 
     public SearchSuggestionListener(SearchView searchView, SuggestionListAdapter adapter) {
         this.searchView = searchView;
