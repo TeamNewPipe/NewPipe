@@ -647,8 +647,8 @@ public class VideoItemDetailFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceBundle) {
-        super.onActivityCreated(savedInstanceBundle);
+    public void onStart() {
+        super.onStart();
         Activity a = getActivity();
 
         infoItemBuilder = new InfoItemBuilder(a, a.findViewById(android.R.id.content));
