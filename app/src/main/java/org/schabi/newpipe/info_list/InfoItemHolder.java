@@ -36,6 +36,7 @@ public class InfoItemHolder extends RecyclerView.ViewHolder {
             itemDurationView,
             itemUploadDateView,
             itemViewCountView;
+
     public Button itemButton;
 
     public InfoItemHolder(View v) {
@@ -48,4 +49,5 @@ public class InfoItemHolder extends RecyclerView.ViewHolder {
         itemViewCountView = (TextView) v.findViewById(R.id.itemViewCountView);
         itemButton = (Button) v.findViewById(R.id.item_button);
     }
+
 }
