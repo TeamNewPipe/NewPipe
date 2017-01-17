@@ -74,7 +74,7 @@ public class ChannelActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (Objects.equals(PreferenceManager.getDefaultSharedPreferences(this)
-                .getString("theme", "1"), "0")) {
+                .getString("theme", getResources().getString(R.string.light_theme_title)), getResources().getString(R.string.dark_theme_title))) {
             setTheme(R.style.DarkTheme_NoActionBar);
         }
         super.onCreate(savedInstanceState);
