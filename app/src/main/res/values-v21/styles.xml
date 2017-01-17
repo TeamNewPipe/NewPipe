@@ -1,13 +1,30 @@
 <resources>
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <item name="android:actionBarStyle">@style/NewPipeActionbarTheme</item>
         <item name="actionBarStyle">@style/NewPipeActionbarTheme</item>
-        <item name="android:colorPrimary">@color/light_youtube_primary_color</item>
-        <item name="android:colorPrimaryDark">@color/light_youtube_dark_color</item>
+        <item name="colorPrimary">@color/light_youtube_primary_color</item>
+        <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
         <item name="colorAccent">@color/light_youtube_accent_color</item>
-        <item name="android:colorAccent">@color/light_youtube_accent_color</item>
         <item name="android:windowBackground">@color/light_background_color</item>
+        <item name="thumbs_up">@drawable/ic_thumb_up_black_24dp</item>
+        <item name="thumbs_down">@drawable/ic_thumb_down_black_24dp</item>
+        <item name="audio">@drawable/ic_headset_black_24dp</item>
+        <item name="download">@drawable/ic_file_download_black_24dp</item>
+    </style>
+
+
+    <!-- Dark Theme-->
+    <style name="DarkTheme" parent="Theme.AppCompat">
+        <item name="android:actionBarStyle">@style/NewPipeActionbarTheme</item>
+        <item name="actionBarStyle">@style/NewPipeActionbarTheme</item>
+        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
+        <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
+        <item name="colorAccent">@color/dark_youtube_accent_color</item>
+        <item name="android:windowBackground">@color/dark_background_color</item>
+        <item name="thumbs_up">@drawable/ic_thumb_up_white_24dp</item>
+        <item name="thumbs_down">@drawable/ic_thumb_down_white_24dp</item>
+        <item name="audio">@drawable/ic_headset_white_24dp</item>
+        <item name="download">@drawable/ic_file_download_white_24dp</item>
     </style>
 
     <!-- Dark Theme-->

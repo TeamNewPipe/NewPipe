@@ -13,6 +13,7 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,9 +28,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.schabi.newpipe.R;
 import org.schabi.newpipe.Themer;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.SettingsActivity;
 
 import java.io.File;

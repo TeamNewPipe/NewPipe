@@ -47,7 +47,6 @@ public class MainActivity extends Themer {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         mainFragment = getSupportFragmentManager()
                 .findFragmentById(R.id.search_fragment);

@@ -21,6 +21,7 @@ import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import info.guardianproject.netcipher.proxy.OrbotHelper;
 
@@ -67,7 +68,7 @@ public class SettingsFragment  extends PreferenceFragment
     private Preference downloadPathAudioPreference;
     private Preference themePreference;
     private SharedPreferences defaultPreferences;
-
+    private Preference themePreference;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -86,6 +87,7 @@ public class SettingsFragment  extends PreferenceFragment
         DOWNLOAD_PATH_AUDIO_PREFERENCE = getString(R.string.download_path_audio_key);
         THEME = getString(R.string.theme_key);
         USE_TOR_KEY = getString(R.string.use_tor_key);
+        THEME = getString(R.string.theme_key);
 
         // get pref objects
         defaultResolutionPreference =

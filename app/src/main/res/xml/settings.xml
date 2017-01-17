@@ -43,7 +43,7 @@
         android:key="@string/settings_category_appearance"
         android:title="@string/settings_category_appearance_title"
         android:textAllCaps="true">
-
+.
         <ListPreference
             android:key="@string/theme_key"
             android:title="@string/theme_title"

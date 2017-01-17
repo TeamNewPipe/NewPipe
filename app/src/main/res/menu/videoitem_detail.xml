@@ -5,12 +5,12 @@
     <item android:id="@+id/menu_item_play_audio"
         android:title="@string/play_audio"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_headset_black" />
+        android:icon="?attr/audio" />
 
     <item android:id="@+id/menu_item_download"
         app:showAsAction="ifRoom"
         android:title="@string/download"
-        android:icon="@drawable/ic_file_download_black"/>
+        android:icon="?attr/download"/>
 
     <item android:id="@+id/menu_item_share"
         android:title="@string/share"
