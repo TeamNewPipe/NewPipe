@@ -51,26 +51,6 @@
         <item name="android:windowBackground">@color/light_youtube_accent_color</item>
     </style>
 
-    <!-- Dark Theme-->
-    <style name="DarkTheme" parent="Theme.AppCompat">
-        <item name="android:actionBarStyle">@style/NewPipeActionbarTheme</item>
-        <item name="actionBarStyle">@style/NewPipeActionbarTheme</item>
-        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
-        <item name="colorAccent">@color/dark_youtube_accent_color</item>
-        <item name="android:windowBackground">@color/dark_background_color</item>
-    </style>
-
-    <!-- Dark Theme-->
-    <style name="DarkTheme" parent="Theme.AppCompat">
-        <item name="android:actionBarStyle">@style/NewPipeActionbarTheme</item>
-        <item name="actionBarStyle">@style/NewPipeActionbarTheme</item>
-        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
-        <item name="colorAccent">@color/dark_youtube_accent_color</item>
-        <item name="android:windowBackground">@color/dark_background_color</item>
-    </style>
-
     <style name="NewPipeActionbarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid">
         <item name="android:displayOptions">showHome</item>
         <item name="displayOptions">showHome</item>

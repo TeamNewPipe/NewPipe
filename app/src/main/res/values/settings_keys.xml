@@ -29,12 +29,10 @@
     <string-array name="theme_description_list">
         <item>@string/light_theme_title</item>
         <item>@string/dark_theme_title</item>
-        <item>@string/black_theme_title</item>
     </string-array>
     <string-array name="theme_list">
         <item>@string/light_theme_title</item>
         <item>@string/dark_theme_title</item>
-        <item>@string/black_theme_title</item>
     </string-array>
 
     <string name="default_audio_format_key">default_audio_format</string>

@@ -68,7 +68,6 @@ public class SettingsFragment  extends PreferenceFragment
     private Preference downloadPathAudioPreference;
     private Preference themePreference;
     private SharedPreferences defaultPreferences;
-    private Preference themePreference;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
