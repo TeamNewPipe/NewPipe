@@ -10,6 +10,7 @@
         <item name="thumbs_down">@drawable/ic_thumb_down_black_24dp</item>
         <item name="audio">@drawable/ic_headset_black_24dp</item>
         <item name="download">@drawable/ic_file_download_black_24dp</item>
+        <item name="share">@drawable/ic_share_black</item>
     </style>
 
 
@@ -25,6 +26,7 @@
         <item name="thumbs_down">@drawable/ic_thumb_down_white_24dp</item>
         <item name="audio">@drawable/ic_headset_white_24dp</item>
         <item name="download">@drawable/ic_file_download_white_24dp</item>
+        <item name="share">@drawable/ic_share_white_24dp</item>
     </style>
 
     <style name="NewPipeActionbarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid">
