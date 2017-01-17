@@ -54,12 +54,6 @@
                            android:src="@drawable/new_play_arrow"
                            android:visibility="invisible"/>
 
-                <Button
-                    android:id="@+id/detail_stream_thumbnail_window_background_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="?attr/selectableItemBackground"/>
-
             </RelativeLayout>
 
             <RelativeLayout android:id="@+id/detail_text_content_layout"

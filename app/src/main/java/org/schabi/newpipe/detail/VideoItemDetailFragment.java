@@ -142,8 +142,7 @@ public class VideoItemDetailFragment extends Fragment {
         RelativeLayout nextVideoRootFrame =
                 (RelativeLayout) activity.findViewById(R.id.detail_next_stream_root_layout);
         TextView similarTitle = (TextView) activity.findViewById(R.id.detail_similar_title);
-        Button backgroundButton = (Button)
-                activity.findViewById(R.id.detail_stream_thumbnail_window_background_button);
+        View backgroundButton = activity.findViewById(R.id.detail_thumbnail_view);
         View topView = activity.findViewById(R.id.detailTopView);
         Button channelButton = (Button) activity.findViewById(R.id.channel_button);
 
@@ -539,14 +538,12 @@ public class VideoItemDetailFragment extends Fragment {
     }
 
     private void onErrorBlockedByGema() {
-        Button backgroundButton = (Button)
-                activity.findViewById(R.id.detail_stream_thumbnail_window_background_button);
         ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detail_thumbnail_view);
 
         progressBar.setVisibility(View.GONE);
         thumbnailView.setImageBitmap(BitmapFactory.decodeResource(
                 getResources(), R.drawable.gruese_die_gema));
-        backgroundButton.setOnClickListener(new View.OnClickListener() {
+        thumbnailView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -661,8 +658,7 @@ public class VideoItemDetailFragment extends Fragment {
             playVideoButton = (FloatingActionButton) a.findViewById(R.id.play_video_button);
         }
         thumbnailWindowLayout = a.findViewById(R.id.detail_stream_thumbnail_window_layout);
-        Button backgroundButton = (Button)
-                a.findViewById(R.id.detail_stream_thumbnail_window_background_button);
+        View backgroundButton = a.findViewById(R.id.detail_thumbnail_view);
 
         // Sometimes when this fragment is not visible it still gets initiated
         // then we must not try to access objects of this fragment.
@@ -674,30 +670,6 @@ public class VideoItemDetailFragment extends Fragment {
             siw.search(streamingServiceId, videoUrl, getActivity());
 
             autoPlayEnabled = getArguments().getBoolean(AUTO_PLAY);
-
-            if(Build.VERSION.SDK_INT >= 18) {
-                ImageView thumbnailView = (ImageView) activity.findViewById(R.id.detail_thumbnail_view);
-                thumbnailView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-                    // This is used to synchronize the thumbnailWindowButton and the playVideoButton
-                    // inside the ScrollView with the actual size of the thumbnail.
-                    //todo: onLayoutChage sometimes not triggered
-                    // background buttons area seem to overlap the thumbnail view
-                    // So although you just clicked slightly beneath the thumbnail the action still
-                    // gets triggered.
-                    @Override
-                    public void onLayoutChange(View v, int left, int top, int right, int bottom,
-                                               int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                        RelativeLayout.LayoutParams newWindowLayoutParams =
-                                (RelativeLayout.LayoutParams) thumbnailWindowLayout.getLayoutParams();
-                        newWindowLayoutParams.height = bottom - top;
-                        thumbnailWindowLayout.setLayoutParams(newWindowLayoutParams);
-
-                        //noinspection SuspiciousNameCombination
-                        initialThumbnailPos.set(top, left);
-
-                    }
-                });
-            }
         }
     }
 

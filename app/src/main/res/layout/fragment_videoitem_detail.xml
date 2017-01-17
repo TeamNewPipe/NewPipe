@@ -56,12 +56,6 @@
                     android:src="@drawable/ic_play_arrow_black"
                     android:layout_margin="@dimen/video_item_detail_play_fab_margin"/>
 
-                <Button
-                    android:id="@+id/detail_stream_thumbnail_window_background_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="?attr/selectableItemBackground"/>
-
             </RelativeLayout>
 
             <RelativeLayout android:id="@+id/detail_text_content_layout"
