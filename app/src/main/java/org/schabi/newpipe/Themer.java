@@ -17,5 +17,6 @@ public class Themer extends AppCompatActivity {
                 .getString("theme", getResources().getString(R.string.light_theme_title)), getResources().getString(R.string.dark_theme_title))) {
             setTheme(R.style.DarkTheme);
         }
+        else setTheme(R.style.BlackTheme);
     }
 }

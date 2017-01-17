@@ -49,10 +49,6 @@
         <item name="rss">@drawable/ic_rss_feed_black_24dp</item>
     </style>
 
-    <style name="BlackTheme" parent="DarkTheme">
-        <item name="android:windowBackground">@color/light_youtube_accent_color</item>
-    </style>
-
     <style name="NewPipeActionbarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid">
         <item name="android:displayOptions">showHome</item>
         <item name="displayOptions">showHome</item>
