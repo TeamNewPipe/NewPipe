@@ -73,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_rss_feed_white_24dp"
+        android:src="?attr/rss"
         app:layout_anchor="@id/channel_app_bar"
         app:layout_anchorGravity="bottom|end" />
 

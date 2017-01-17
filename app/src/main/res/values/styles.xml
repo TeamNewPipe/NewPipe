@@ -28,6 +28,7 @@
         <item name="download">@drawable/ic_file_download_black_24dp</item>
         <item name="share">@drawable/ic_share_black</item>
         <item name="cast">@drawable/ic_cast_black_24dp</item>
+        <item name="rss">@drawable/ic_rss_feed_white_24dp</item>
     </style>
 
 
@@ -45,6 +46,7 @@
         <item name="download">@drawable/ic_file_download_white_24dp</item>
         <item name="share">@drawable/ic_share_white_24dp</item>
         <item name="cast">@drawable/ic_cast_white_24dp</item>
+        <item name="rss">@drawable/ic_rss_feed_black_24dp</item>
     </style>
 
     <style name="BlackTheme" parent="DarkTheme">

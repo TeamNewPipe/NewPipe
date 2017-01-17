@@ -6,4 +6,5 @@
     <attr name="download" format="reference"/>
     <attr name="share" format="reference"/>
     <attr name="cast" format="reference"/>
+    <attr name="rss" format="reference"/>
 </resources>
