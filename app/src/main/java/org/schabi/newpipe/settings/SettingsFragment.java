@@ -86,7 +86,6 @@ public class SettingsFragment  extends PreferenceFragment
         DOWNLOAD_PATH_AUDIO_PREFERENCE = getString(R.string.download_path_audio_key);
         THEME = getString(R.string.theme_key);
         USE_TOR_KEY = getString(R.string.use_tor_key);
-        THEME = getString(R.string.theme_key);
 
         // get pref objects
         defaultResolutionPreference =
