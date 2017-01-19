@@ -273,8 +273,7 @@ public class DownloadActivity extends AppCompatActivity implements AdapterView.O
                 return true;
             }
             default:
-                return mFragment.onOptionsItemSelected(item) ||
-                        super.onOptionsItemSelected(item);
+                return super.onOptionsItemSelected(item);
         }
     }
 }

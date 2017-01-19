@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
 
         inflater.inflate(R.menu.main_menu, menu);
-
-        mainFragment.onCreateOptionsMenu(menu, inflater);
         return true;
     }
 
@@ -79,8 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
             default:
-                return mainFragment.onOptionsItemSelected(item) ||
-                        super.onOptionsItemSelected(item);
+                return super.onOptionsItemSelected(item);
         }
     }
 }

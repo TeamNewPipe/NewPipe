@@ -629,6 +629,7 @@ public class VideoItemDetailFragment extends Fragment {
                 onNotSpecifiedContentError();
             }
         });
+        setHasOptionsMenu(true);
     }
 
     @Override

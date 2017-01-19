@@ -160,6 +160,8 @@ public class SearchInfoItemFragment extends Fragment {
             }
         }
 
+        setHasOptionsMenu(true);
+
         SearchWorker sw = SearchWorker.getInstance();
         sw.setSearchWorkerResultListener(new SearchWorker.SearchWorkerResultListener() {
             @Override
