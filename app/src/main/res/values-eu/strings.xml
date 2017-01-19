@@ -14,7 +14,7 @@
     <string name="screen_rotation">biratzea</string>
     <string name="settings_activity_title">Ezarpenak</string>
     <string name="download_path_title">Bideoak deskargatzeko kokapena</string>
-    <string name="download_path_summary">Deskargatutako bideoak gordetzeko lekua.</string>
+    <string name="download_path_summary">Deskargatutako bideoak gordetzeko bide-izena.</string>
     <string name="download_path_dialog_title">Sar ezazu bideoak deskargatzeko kokapena</string>
     <string name="default_resolution_title">Lehenetsitako bereizmena</string>
     <string name="play_with_kodi_title">Kodirekin erreproduzitu</string>
@@ -55,4 +55,12 @@
     <string name="download_path_audio_title">Audioa deskargatzeko kokapena</string>
     <string name="download_path_audio_dialog_title">Sar ezazu audioa deskargatzeko kokapena.</string>
 
+    <string name="download_path_audio_summary">Deskargatutako audioa gordetzeko bide-izena</string>
+    <string name="autoplay_by_calling_app_title">Automatikoki jo beste aplikazio batetik deitzean</string>
+    <string name="autoplay_by_calling_app_summary">Automatikoki jo bideoa NewPipe beste aplikazio batek deitu badu.</string>
+    <string name="theme_title"></string>
+    <string name="dark_theme_title">Iluna</string>
+    <string name="light_theme_title">Argia</string>
+
+    <string name="settings_category_appearance_title">Itxura</string>
     </resources>
