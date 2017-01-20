@@ -22,6 +22,7 @@ import android.support.v7.widget.RecyclerView;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import org.schabi.newpipe.R;
@@ -150,9 +151,8 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 				h.status.setText(R.string.msg_error);
 			} else {
 				float progress = (float) h.mission.done / h.mission.length;
-				h.status.setText(String.format("%.2f%%", progress * 100));
+				h.status.setText(String.format(Locale.US, "%.2f%%", progress * 100));
 				h.progress.setProgress(progress);
-			
 			}
 		}
 		
@@ -315,7 +315,7 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 	static class ViewHolder extends RecyclerView.ViewHolder {
 		public DownloadMission mission;
 		public int position;
-		
+
 		public TextView status;
 		public ImageView icon;
 		public TextView name;
@@ -324,7 +324,7 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 		public ImageView menu;
 		public ProgressDrawable progress;
 		public MissionObserver observer;
-		
+
 		public long lastTimeStamp = -1;
 		public long lastDone = -1;
 		public int colorId;

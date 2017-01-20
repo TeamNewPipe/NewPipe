@@ -17,7 +17,7 @@ public class DownloadMissionSQLiteHelper extends SQLiteOpenHelper {
     private final String TAG = "DownloadMissionHelper";
 
     // TODO: use NewPipeSQLiteHelper ('s constants) when playlist branch is merged (?)
-    private static final String DATABASE_NAME = "newpipe.db";
+    private static final String DATABASE_NAME = "downloads.db";
 
     private static final int DATABASE_VERSION = 2;
     /**
