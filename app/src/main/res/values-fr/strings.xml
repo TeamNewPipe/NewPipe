@@ -147,7 +147,7 @@
     <string name="msg_url_malform">URL malformée ou internet indisponible</string>
     <string name="msg_running">Téléchargement NewPipe</string>
     <string name="msg_running_detail">Toucher pour plus de détails</string>
-    <string name="msg_wait">Veuillez patienter...</string>
+    <string name="msg_wait">Veuillez patienter…</string>
     <string name="msg_copied">Copié dans le presse-papier.</string>
     <string name="no_available_dir">Sélectionner un répertoire de téléchargement disponible.</string>
 
@@ -156,4 +156,5 @@
     <string name="title_activity_channel">Activité de la chaine</string>
     <string name="action_settings">Paramètres</string>
 
+    <string name="reCaptchaActivity">reCAPTCHA</string>
     </resources>
