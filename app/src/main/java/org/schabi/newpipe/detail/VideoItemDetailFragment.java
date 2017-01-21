@@ -647,8 +647,8 @@ public class VideoItemDetailFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceBundle) {
-        super.onActivityCreated(savedInstanceBundle);
+    public void onStart() {
+        super.onStart();
         Activity a = getActivity();
 
         infoItemBuilder = new InfoItemBuilder(a, a.findViewById(android.R.id.content));
@@ -779,11 +779,13 @@ public class VideoItemDetailFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
         actionBarHandler.setupMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
         return actionBarHandler.onItemSelected(item);
     }
 
@@ -806,6 +808,7 @@ public class VideoItemDetailFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case RECAPTCHA_REQUEST:
                 if (resultCode == RESULT_OK) {

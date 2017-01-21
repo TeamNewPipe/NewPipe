@@ -141,6 +141,7 @@ public class VideoItemDetailActivity extends AppCompatActivity {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
         outState.putString(VideoItemDetailFragment.VIDEO_URL, videoUrl);
         outState.putInt(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingService);
         outState.putBoolean(VideoItemDetailFragment.AUTO_PLAY, false);
@@ -148,6 +149,7 @@ public class VideoItemDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
         int id = item.getItemId();
         if (id == android.R.id.home) {
             // This ID represents the Home or Up button. In the case of this
