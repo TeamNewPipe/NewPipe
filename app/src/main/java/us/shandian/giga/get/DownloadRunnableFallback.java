@@ -8,10 +8,11 @@ import java.net.URL;
 // Single-threaded fallback mode
 public class DownloadRunnableFallback implements Runnable
 {
-	private DownloadMission mMission;
+	private final DownloadMission mMission;
 	//private int mId;
 	
 	public DownloadRunnableFallback(DownloadMission mission) {
+		if(mission == null) throw new NullPointerException("mission is null");
 		//mId = id;
 		mMission = mission;
 	}
@@ -35,7 +36,7 @@ public class DownloadRunnableFallback implements Runnable
 					f.write(buf, 0, len);
 					notifyProgress(len);
 					
-					if (Thread.currentThread().interrupted()) {
+					if (Thread.interrupted()) {
 						break;
 					}
 					

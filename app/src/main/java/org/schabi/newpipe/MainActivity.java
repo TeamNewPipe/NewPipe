@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import org.schabi.newpipe.settings.SettingsActivity;
+import org.schabi.newpipe.util.PermissionHelper;
 
 /**
  * Created by Christian Schabesberger on 02.08.16.
@@ -72,6 +73,9 @@ public class MainActivity extends ThemableActivity {
                 return true;
             }
             case R.id.action_show_downloads: {
+                if(!PermissionHelper.checkStoragePermissions(this)) {
+                    return false;
+                }
                 Intent intent = new Intent(this, org.schabi.newpipe.download.DownloadActivity.class);
                 startActivity(intent);
                 return true;

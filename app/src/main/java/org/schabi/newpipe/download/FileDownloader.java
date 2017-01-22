@@ -42,7 +42,7 @@ import info.guardianproject.netcipher.NetCipher;
  */
 
 
-// TODO: FOR HEVEN SAKE !!! DO NOT SIMPLY USE ASYNCTASK. MAKE THIS A PROPER SERVICE !!!
+// TODO: FOR HEAVEN SAKE !!! DO NOT SIMPLY USE ASYNCTASK. MAKE THIS A PROPER SERVICE !!!
 public class FileDownloader extends AsyncTask<Void, Integer, Void> {
     public static final String TAG = "FileDownloader";
 

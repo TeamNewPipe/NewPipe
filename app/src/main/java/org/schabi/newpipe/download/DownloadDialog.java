@@ -26,6 +26,8 @@ import android.widget.TextView;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.settings.NewPipeSettings;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -65,24 +67,6 @@ public class DownloadDialog extends DialogFragment {
     public static final String AUDIO_URL = "audio_url";
     public static final String VIDEO_URL = "video_url";
 
-    private DownloadManager mManager;
-    private DownloadManagerService.DMBinder mBinder;
-
-    private ServiceConnection mConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName p1, IBinder binder) {
-            mBinder = (DownloadManagerService.DMBinder) binder;
-            mManager = mBinder.getDownloadManager();
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName p1) {
-
-        }
-    };
-
-
     public DownloadDialog() {
 
     }
@@ -101,12 +85,6 @@ public class DownloadDialog extends DialogFragment {
 
         if(ContextCompat.checkSelfPermission(this.getContext(),Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
             ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},0);
-
-        Intent i = new Intent();
-        i.setClass(getContext(), DownloadManagerService.class);
-        getContext().startService(i);
-        getContext().bindService(i, mConnection, Context.BIND_AUTO_CREATE);
-
 
         return inflater.inflate(R.layout.dialog_url, container);
     }
@@ -219,36 +197,22 @@ public class DownloadDialog extends DialogFragment {
 
         String fName = name.getText().toString().trim();
 
-        // todo: add timeout? would be bad if the thread gets locked dueto this.
-        while (mBinder == null);
-
-        if(audioButton.isChecked()){
-            int res = mManager.startMission(
-                    arguments.getString(AUDIO_URL),
-                    fName + arguments.getString(FILE_SUFFIX_AUDIO),
-                    audioButton.isChecked(),
-                    threads.getProgress() + 1);
-            DownloadMission mission = mManager.getMission(res);
-            mBinder.onMissionAdded(mission);
-            // add download listener to allow media scan notification
-            DownloadListener listener = new DownloadListener(getContext(), mission);
-            mission.addListener(listener);
+        boolean isAudio = audioButton.isChecked();
+        String url, location, filename;
+        if(isAudio) {
+            url = arguments.getString(AUDIO_URL);
+            location = NewPipeSettings.getAudioDownloadPath(getContext());
+            filename = fName + arguments.getString(FILE_SUFFIX_AUDIO);
+        } else {
+            url = arguments.getString(VIDEO_URL);
+            location = NewPipeSettings.getVideoDownloadPath(getContext());
+            filename = fName + arguments.getString(FILE_SUFFIX_VIDEO);
         }
 
-        if(videoButton.isChecked()){
-            int res = mManager.startMission(
-                    arguments.getString(VIDEO_URL),
-                    fName + arguments.getString(FILE_SUFFIX_VIDEO),
-                    audioButton.isChecked(),
-                    threads.getProgress() + 1);
-            DownloadMission mission = mManager.getMission(res);
-            mBinder.onMissionAdded(mission);
-            // add download listener to allow media scan notification
-            DownloadListener listener = new DownloadListener(getContext(), mission);
-            mission.addListener(listener);
-        }
+        DownloadManagerService.startMission(getContext(), url, location, filename, isAudio,
+                threads.getProgress() + 1);
+
         getDialog().dismiss();
-
     }
 
     private void download(String url, String title,

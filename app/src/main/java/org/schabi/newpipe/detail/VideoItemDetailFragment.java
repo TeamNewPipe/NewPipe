@@ -57,8 +57,8 @@ import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.ExoPlayerActivity;
 import org.schabi.newpipe.player.PlayVideoActivity;
 import org.schabi.newpipe.report.ErrorActivity;
-
 import java.util.Vector;
+import org.schabi.newpipe.util.PermissionHelper;
 
 import static android.app.Activity.RESULT_OK;
 import static org.schabi.newpipe.ReCaptchaActivity.RECAPTCHA_REQUEST;
@@ -393,6 +393,10 @@ public class VideoItemDetailFragment extends Fragment {
         actionBarHandler.setOnDownloadListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
+                if(!PermissionHelper.checkStoragePermissions(getActivity())) {
+                    return;
+                }
+
                 try {
                     Bundle args = new Bundle();
 
