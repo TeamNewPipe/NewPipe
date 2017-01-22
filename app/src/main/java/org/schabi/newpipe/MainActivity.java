@@ -1,23 +1,15 @@
 package org.schabi.newpipe;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.media.AudioManager;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.settings.SettingsActivity;
-
-import java.util.Objects;
-import java.util.prefs.Preferences;
 
 /**
  * Created by Christian Schabesberger on 02.08.16.
@@ -39,7 +31,7 @@ import java.util.prefs.Preferences;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class MainActivity extends Themer {
+public class MainActivity extends ThemableActivity {
 
     private Fragment mainFragment = null;
 

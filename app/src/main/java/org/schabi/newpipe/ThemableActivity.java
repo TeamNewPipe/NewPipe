@@ -8,7 +8,7 @@ import java.util.Objects;
 
 import static org.schabi.newpipe.R.attr.theme;
 
-public class Themer extends AppCompatActivity {
+public class ThemableActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

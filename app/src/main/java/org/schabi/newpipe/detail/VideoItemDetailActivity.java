@@ -5,7 +5,6 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,7 +13,7 @@ import android.widget.Toast;
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.Themer;
+import org.schabi.newpipe.ThemableActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 
@@ -40,7 +39,7 @@ import java.util.HashSet;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class VideoItemDetailActivity extends Themer {
+public class VideoItemDetailActivity extends ThemableActivity {
 
     /**
      * Removes invisible separators (\p{Z}) and punctuation characters including
