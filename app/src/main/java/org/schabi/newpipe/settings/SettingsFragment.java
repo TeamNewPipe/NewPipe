@@ -1,6 +1,7 @@
 package org.schabi.newpipe.settings;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,6 +21,7 @@ import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import info.guardianproject.netcipher.proxy.OrbotHelper;
 
@@ -55,6 +57,7 @@ public class SettingsFragment  extends PreferenceFragment
     String DOWNLOAD_PATH_PREFERENCE;
     String DOWNLOAD_PATH_AUDIO_PREFERENCE;
     String USE_TOR_KEY;
+    String THEME;
 
     public static final int REQUEST_INSTALL_ORBOT = 0x1234;
 
@@ -63,11 +66,11 @@ public class SettingsFragment  extends PreferenceFragment
     private ListPreference searchLanguagePreference;
     private Preference downloadPathPreference;
     private Preference downloadPathAudioPreference;
+    private Preference themePreference;
     private SharedPreferences defaultPreferences;
 
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings);
 
@@ -81,6 +84,7 @@ public class SettingsFragment  extends PreferenceFragment
         SEARCH_LANGUAGE_PREFERENCE = getString(R.string.search_language_key);
         DOWNLOAD_PATH_PREFERENCE = getString(R.string.download_path_key);
         DOWNLOAD_PATH_AUDIO_PREFERENCE = getString(R.string.download_path_audio_key);
+        THEME = getString(R.string.theme_key);
         USE_TOR_KEY = getString(R.string.use_tor_key);
 
         // get pref objects
@@ -92,6 +96,7 @@ public class SettingsFragment  extends PreferenceFragment
                 (ListPreference) findPreference(SEARCH_LANGUAGE_PREFERENCE);
         downloadPathPreference = findPreference(DOWNLOAD_PATH_PREFERENCE);
         downloadPathAudioPreference = findPreference(DOWNLOAD_PATH_AUDIO_PREFERENCE);
+        themePreference = findPreference(THEME);
 
         prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
@@ -132,6 +137,11 @@ public class SettingsFragment  extends PreferenceFragment
                     downloadPathAudioPreference
                             .setSummary(downloadPath);
                 }
+                else if (key == THEME)
+                {
+                    String theme = sharedPreferences.getString(THEME, "Light");
+                    themePreference.setSummary(theme);
+                }
                 updateSummary();
             }
         };
@@ -161,7 +171,6 @@ public class SettingsFragment  extends PreferenceFragment
                 activity.startActivityForResult(i, R.string.download_path_audio_key);
             }
         }
-
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
@@ -216,8 +225,8 @@ public class SettingsFragment  extends PreferenceFragment
             // installing the app does not necessarily return RESULT_OK
             App.configureTor(requestCode == REQUEST_INSTALL_ORBOT
                     && OrbotHelper.requestStartTor(a));
-
         }
+
         updateSummary();
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -239,6 +248,9 @@ public class SettingsFragment  extends PreferenceFragment
         downloadPathAudioPreference.setSummary(
                 defaultPreferences.getString(DOWNLOAD_PATH_AUDIO_PREFERENCE,
                         getString(R.string.download_path_audio_summary)));
+        themePreference.setSummary(
+                defaultPreferences.getString(THEME,
+                        getString(R.string.light_theme_title)));
     }
 
     @Override

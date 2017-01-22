@@ -48,4 +48,5 @@ public class InfoItemHolder extends RecyclerView.ViewHolder {
         itemViewCountView = (TextView) v.findViewById(R.id.itemViewCountView);
         itemButton = (Button) v.findViewById(R.id.item_button);
     }
+
 }

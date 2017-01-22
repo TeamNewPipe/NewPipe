@@ -42,7 +42,7 @@
                 android:id="@+id/errorMessageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
+                android:textColor="?android:attr/colorAccent"
                 android:text="@string/info_labels"/>
 
             <TextView
@@ -63,7 +63,7 @@
                     android:id="@+id/errorInfoLabelsView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
+                    android:textColor="?android:attr/colorAccent"
                     android:text="@string/info_labels"/>
 
                 <HorizontalScrollView

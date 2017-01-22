@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,7 @@ import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.report.ErrorActivity;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
@@ -71,6 +73,10 @@ public class ChannelActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (Objects.equals(PreferenceManager.getDefaultSharedPreferences(this)
+                .getString("theme", getResources().getString(R.string.light_theme_title)), getResources().getString(R.string.dark_theme_title))) {
+            setTheme(R.style.DarkTheme_NoActionBar);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_channel);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -128,7 +134,7 @@ public class ChannelActivity extends AppCompatActivity {
         CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.channel_toolbar_layout);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         ImageView channelBanner = (ImageView) findViewById(R.id.channel_banner_image);
-        FloatingActionButton feedButton = (FloatingActionButton) findViewById(R.id.channel_rss_fab);
+        final FloatingActionButton feedButton = (FloatingActionButton) findViewById(R.id.channel_rss_fab);
         ImageView avatarView = (ImageView) findViewById(R.id.channel_avatar_view);
         ImageView haloView = (ImageView) findViewById(R.id.channel_avatar_halo);
 
