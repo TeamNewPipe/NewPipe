@@ -184,7 +184,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     // cached values
     private static volatile String decryptionCode = "";
 
-    UrlIdHandler urlidhandler = new YoutubeStreamUrlIdHandler();
+    UrlIdHandler urlidhandler = YoutubeStreamUrlIdHandler.getInstance();
     String pageUrl = "";
 
     public YoutubeStreamExtractor(UrlIdHandler urlIdHandler, String pageUrl, int serviceId)
