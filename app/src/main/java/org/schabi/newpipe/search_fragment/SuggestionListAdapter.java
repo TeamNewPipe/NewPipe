@@ -3,10 +3,8 @@ package org.schabi.newpipe.search_fragment;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
-import android.support.v4.widget.CursorAdapter;
-import android.view.LayoutInflater;
+import android.support.v4.widget.ResourceCursorAdapter;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
@@ -31,52 +29,56 @@ import java.util.List;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class SuggestionListAdapter extends CursorAdapter {
+/**
+ * {@link ResourceCursorAdapter} to display suggestions.
+ */
+public class SuggestionListAdapter extends ResourceCursorAdapter {
 
-    private String[] columns = new String[]{"_id", "title"};
+    private static final String[] columns = new String[]{"_id", "title"};
+    private static final int INDEX_ID = 0;
+    private static final int INDEX_TITLE = 1;
+
 
     public SuggestionListAdapter(Context context) {
-        super(context, null, false);
-    }
-
-    @Override
-    public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        ViewHolder viewHolder;
-
-        View view = LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_1, parent, false);
-        viewHolder = new ViewHolder();
-        viewHolder.suggestionTitle = (TextView) view.findViewById(android.R.id.text1);
-        view.setTag(viewHolder);
-
-
-        return view;
+        super(context, android.R.layout.simple_list_item_1, null, 0);
     }
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        ViewHolder viewHolder = (ViewHolder) view.getTag();
-        viewHolder.suggestionTitle.setText(cursor.getString(1));
+        ViewHolder viewHolder = new ViewHolder(view);
+        viewHolder.suggestionTitle.setText(cursor.getString(INDEX_TITLE));
     }
 
-
+    /**
+     * Update the suggestion list
+     * @param suggestions the list of suggestions
+     */
     public void updateAdapter(List<String> suggestions) {
-        MatrixCursor cursor = new MatrixCursor(columns);
+        MatrixCursor cursor = new MatrixCursor(columns, suggestions.size());
         int i = 0;
-        for (String s : suggestions) {
-            String[] temp = new String[2];
-            temp[0] = Integer.toString(i);
-            temp[1] = s;
+        for (String suggestion : suggestions) {
+            String[] columnValues = new String[columns.length];
+            columnValues[INDEX_TITLE] = suggestion;
+            columnValues[INDEX_ID] = Integer.toString(i);
+            cursor.addRow(columnValues);
             i++;
-            cursor.addRow(temp);
         }
         changeCursor(cursor);
     }
 
+    /**
+     * Get the suggestion for a position
+     * @param position the position of the suggestion
+     * @return the suggestion
+     */
     public String getSuggestion(int position) {
-        return ((Cursor) getItem(position)).getString(1);
+        return ((Cursor) getItem(position)).getString(INDEX_TITLE);
     }
 
     private class ViewHolder {
-        public TextView suggestionTitle;
+        private final TextView suggestionTitle;
+        private ViewHolder(View view) {
+            this.suggestionTitle = (TextView) view.findViewById(android.R.id.text1);
+        }
     }
 }

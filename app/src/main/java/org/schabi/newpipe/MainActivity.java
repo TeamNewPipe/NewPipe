@@ -51,8 +51,6 @@ public class MainActivity extends ThemableActivity {
         MenuInflater inflater = getMenuInflater();
 
         inflater.inflate(R.menu.main_menu, menu);
-
-        mainFragment.onCreateOptionsMenu(menu, inflater);
         return true;
     }
 
@@ -81,8 +79,7 @@ public class MainActivity extends ThemableActivity {
                 return true;
             }
             default:
-                return mainFragment.onOptionsItemSelected(item) ||
-                        super.onOptionsItemSelected(item);
+                return super.onOptionsItemSelected(item);
         }
     }
 }

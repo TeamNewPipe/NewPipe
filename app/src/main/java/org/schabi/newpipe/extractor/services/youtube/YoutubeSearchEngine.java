@@ -85,18 +85,18 @@ public class YoutubeSearchEngine extends SearchEngine {
             Element el;
 
             // both types of spell correction item
-            if (!((el = item.select("div[class*=\"spell-correction\"]").first()) == null)) {
+            if ((el = item.select("div[class*=\"spell-correction\"]").first()) != null) {
                 collector.setSuggestion(el.select("a").first().text());
                 if(list.children().size() == 1) {
                     throw new NothingFoundException("Did you mean: " + el.select("a").first().text());
                 }
                 // search message item
-            } else if (!((el = item.select("div[class*=\"search-message\"]").first()) == null)) {
+            } else if ((el = item.select("div[class*=\"search-message\"]").first()) != null) {
                 //result.errorMessage = el.text();
                 throw new NothingFoundException(el.text());
 
                 // video item type
-            } else if (!((el = item.select("div[class*=\"yt-lockup-video\"").first()) == null)) {
+            } else if ((el = item.select("div[class*=\"yt-lockup-video\"").first()) != null) {
                 collector.commit(extractPreviewInfo(el));
             } else {
                 //noinspection ConstantConditions

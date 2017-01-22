@@ -4,7 +4,6 @@ import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by Christian Schabesberger on 10.08.15.
@@ -26,7 +25,6 @@ import java.util.List;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@SuppressWarnings("ALL")
 public abstract class SearchEngine {
     public static class NothingFoundException extends ExtractionException {
         public NothingFoundException(String message) {

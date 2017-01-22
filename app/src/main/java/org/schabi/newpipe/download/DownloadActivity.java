@@ -261,8 +261,7 @@ public class DownloadActivity extends ThemableActivity implements AdapterView.On
                 return true;
             }
             default:
-                return mFragment.onOptionsItemSelected(item) ||
-                        super.onOptionsItemSelected(item);
+                return super.onOptionsItemSelected(item);
         }
     }
 

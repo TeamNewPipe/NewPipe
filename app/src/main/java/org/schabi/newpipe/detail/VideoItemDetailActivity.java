@@ -164,18 +164,9 @@ public class VideoItemDetailActivity extends ThemableActivity {
             NavUtils.navigateUpTo(this, intent);
             return true;
         } else {
-            return fragment.onOptionsItemSelected(item) ||
-                    super.onOptionsItemSelected(item);
+            return super.onOptionsItemSelected(item);
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        fragment.onCreateOptionsMenu(menu, getMenuInflater());
-        return true;
-    }
-
 
     /**
      * Retrieves all Strings which look remotely like URLs from a text.

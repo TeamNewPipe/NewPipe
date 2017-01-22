@@ -30,13 +30,13 @@ import org.schabi.newpipe.R;
 
 public class InfoItemHolder extends RecyclerView.ViewHolder {
 
-    public ImageView itemThumbnailView;
-    public TextView itemVideoTitleView,
+    public final ImageView itemThumbnailView;
+    public final TextView itemVideoTitleView,
             itemUploaderView,
             itemDurationView,
             itemUploadDateView,
             itemViewCountView;
-    public Button itemButton;
+    public final Button itemButton;
 
     public InfoItemHolder(View v) {
         super(v);

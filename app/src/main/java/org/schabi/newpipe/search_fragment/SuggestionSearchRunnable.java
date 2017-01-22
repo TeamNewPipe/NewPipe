@@ -37,14 +37,15 @@ import java.util.List;
 
 public class SuggestionSearchRunnable implements Runnable{
 
+    /**
+     * Runnable to update a {@link SuggestionListAdapter}
+     */
     private class SuggestionResultRunnable implements Runnable{
 
-        private List<String> suggestions;
-        private SuggestionListAdapter adapter;
+        private final List<String> suggestions;
 
-        private SuggestionResultRunnable(List<String> suggestions, SuggestionListAdapter adapter) {
+        private SuggestionResultRunnable(List<String> suggestions) {
             this.suggestions = suggestions;
-            this.adapter = adapter;
         }
 
         @Override
@@ -55,9 +56,9 @@ public class SuggestionSearchRunnable implements Runnable{
 
     private final int serviceId;
     private final String query;
-    final Handler h = new Handler();
-    private Activity a = null;
-    private SuggestionListAdapter adapter;
+    private final Handler h = new Handler();
+    private final Activity a;
+    private final SuggestionListAdapter adapter;
     public SuggestionSearchRunnable(int serviceId, String query,
                                      Activity activity, SuggestionListAdapter adapter) {
         this.serviceId = serviceId;
@@ -76,7 +77,7 @@ public class SuggestionSearchRunnable implements Runnable{
             String searchLanguage = sp.getString(searchLanguageKey,
                     a.getString(R.string.default_language_value));
             List<String> suggestions = se.suggestionList(query, searchLanguage);
-            h.post(new SuggestionResultRunnable(suggestions, adapter));
+            h.post(new SuggestionResultRunnable(suggestions));
         } catch (ExtractionException e) {
             ErrorActivity.reportError(h, a, e, null, a.findViewById(android.R.id.content),
                     ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
