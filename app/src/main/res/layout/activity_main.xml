@@ -6,8 +6,6 @@
     tools:context="org.schabi.newpipe.MainActivity"
     android:orientation="vertical">
 
-    <include layout="@layout/main_bg" />
-
     <fragment
         android:id="@+id/search_fragment"
         android:name="org.schabi.newpipe.search_fragment.SearchInfoItemFragment"

@@ -73,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_rss_feed_white_24dp"
+        android:src="?attr/rss"
         app:layout_anchor="@id/channel_app_bar"
         app:layout_anchorGravity="bottom|end" />
 
@@ -91,6 +91,7 @@
         android:id="@+id/channel_streams_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?android:windowBackground"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:scrollbars="vertical"/>
 </android.support.design.widget.CoordinatorLayout>

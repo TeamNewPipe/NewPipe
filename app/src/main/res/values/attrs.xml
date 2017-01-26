@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="thumbs_up" format="reference"/>
+    <attr name="thumbs_down" format="reference"/>
+    <attr name="audio" format="reference"/>
+    <attr name="download" format="reference"/>
+    <attr name="share" format="reference"/>
+    <attr name="cast" format="reference"/>
+    <attr name="rss" format="reference"/>
+</resources>

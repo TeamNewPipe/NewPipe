@@ -7,6 +7,8 @@
     android:name="org.schabi.newpipe.SearchInfoItemFragment"
     tools:context=".search_fragment.SearchInfoItemFragment">
 
+    <include layout="@layout/main_bg" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"

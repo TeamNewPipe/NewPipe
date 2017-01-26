@@ -34,11 +34,12 @@ import java.util.Vector;
 
 public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
 
-    InfoItemBuilder infoItemBuilder = null;
-    List<StreamPreviewInfo> streamList = new Vector<>();
+    private final InfoItemBuilder infoItemBuilder;
+    private final List<StreamPreviewInfo> streamList;
 
     public InfoListAdapter(Activity a, View rootView) {
         infoItemBuilder = new InfoItemBuilder(a, rootView);
+        streamList = new Vector<>();
     }
 
     public void setOnItemSelectedListener
@@ -54,7 +55,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
     }
 
     public void clearSteamItemList() {
-        streamList = new Vector<>();
+        streamList.clear();
         notifyDataSetChanged();
     }
 

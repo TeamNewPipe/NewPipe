@@ -13,8 +13,8 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,8 +28,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.schabi.newpipe.ThemableActivity;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.settings.SettingsActivity;
 
 import java.io.File;
@@ -42,7 +44,7 @@ import us.shandian.giga.ui.fragment.MissionsFragment;
 import us.shandian.giga.util.CrashHandler;
 import us.shandian.giga.util.Utility;
 
-public class DownloadActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
+public class DownloadActivity extends ThemableActivity implements AdapterView.OnItemClickListener{
 
     public static final String INTENT_DOWNLOAD = "us.shandian.giga.intent.DOWNLOAD";
 
@@ -53,25 +55,10 @@ public class DownloadActivity extends AppCompatActivity implements AdapterView.O
 
 
     private MissionsFragment mFragment;
-    private DownloadManager mManager;
-    private DownloadManagerService.DMBinder mBinder;
+
 
     private String mPendingUrl;
     private SharedPreferences mPrefs;
-
-    private ServiceConnection mConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName p1, IBinder binder) {
-            mBinder = (DownloadManagerService.DMBinder) binder;
-            mManager = mBinder.getDownloadManager();
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName p1) {
-
-        }
-    };
 
     @Override
     @TargetApi(21)
@@ -83,7 +70,6 @@ public class DownloadActivity extends AppCompatActivity implements AdapterView.O
         Intent i = new Intent();
         i.setClass(this, DownloadManagerService.class);
         startService(i);
-        bindService(i, mConnection, Context.BIND_AUTO_CREATE);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_downloader);
@@ -91,7 +77,7 @@ public class DownloadActivity extends AppCompatActivity implements AdapterView.O
 
         //noinspection ConstantConditions
 
-        // its ok if this failes, we will catch that error later, and send it as report
+        // its ok if this fails, we will catch that error later, and send it as report
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(R.string.downloads_title);
@@ -202,22 +188,24 @@ public class DownloadActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.okay) {
+
+                    String location;
+                    if(audioButton.isChecked()) {
+                        location = NewPipeSettings.getAudioDownloadPath(DownloadActivity.this);
+                    } else {
+                        location = NewPipeSettings.getVideoDownloadPath(DownloadActivity.this);
+                    }
+
                     String fName = name.getText().toString().trim();
 
-                    File f = new File(mManager.getLocation() + "/" + fName);
-
+                    File f = new File(location, fName);
                     if (f.exists()) {
                         Toast.makeText(DownloadActivity.this, R.string.msg_exists, Toast.LENGTH_SHORT).show();
                     } else {
-
-                        while (mBinder == null);
-
-                        int res = mManager.startMission(
-                                getIntent().getData().toString(),
-                                fName,
-                                audioButton.isChecked(),
-                                threads.getProgress() + 1);
-                        mBinder.onMissionAdded(mManager.getMission(res));
+                        DownloadManagerService.startMission(
+                                DownloadActivity.this,
+                                getIntent().getData().toString(), location, fName,
+                                audioButton.isChecked(), threads.getProgress() + 1);
                         mFragment.notifyChange();
 
                         mPrefs.edit().putInt(THREADS, threads.getProgress() + 1).commit();
@@ -273,8 +261,8 @@ public class DownloadActivity extends AppCompatActivity implements AdapterView.O
                 return true;
             }
             default:
-                return mFragment.onOptionsItemSelected(item) ||
-                        super.onOptionsItemSelected(item);
+                return super.onOptionsItemSelected(item);
         }
     }
+
 }

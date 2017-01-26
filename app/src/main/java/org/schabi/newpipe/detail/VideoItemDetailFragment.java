@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.exoplayer.util.Util;
@@ -39,26 +39,26 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
-import java.util.Vector;
-
 import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.ChannelActivity;
-import org.schabi.newpipe.ReCaptchaActivity;
-import org.schabi.newpipe.extractor.stream_info.StreamInfo;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
-import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.Localization;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
-import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.stream_info.AudioStream;
+import org.schabi.newpipe.extractor.stream_info.StreamInfo;
+import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
+import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.player.BackgroundPlayer;
-import org.schabi.newpipe.player.PlayVideoActivity;
 import org.schabi.newpipe.player.ExoPlayerActivity;
+import org.schabi.newpipe.player.PlayVideoActivity;
+import org.schabi.newpipe.report.ErrorActivity;
+import java.util.Vector;
+import org.schabi.newpipe.util.PermissionHelper;
 
 import static android.app.Activity.RESULT_OK;
 import static org.schabi.newpipe.ReCaptchaActivity.RECAPTCHA_REQUEST;
@@ -393,6 +393,10 @@ public class VideoItemDetailFragment extends Fragment {
         actionBarHandler.setOnDownloadListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
+                if(!PermissionHelper.checkStoragePermissions(getActivity())) {
+                    return;
+                }
+
                 try {
                     Bundle args = new Bundle();
 
@@ -629,6 +633,7 @@ public class VideoItemDetailFragment extends Fragment {
                 onNotSpecifiedContentError();
             }
         });
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -650,7 +655,6 @@ public class VideoItemDetailFragment extends Fragment {
     public void onStart() {
         super.onStart();
         Activity a = getActivity();
-
         infoItemBuilder = new InfoItemBuilder(a, a.findViewById(android.R.id.content));
 
         if (android.os.Build.VERSION.SDK_INT < 18) {

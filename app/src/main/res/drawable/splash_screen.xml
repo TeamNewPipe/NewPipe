@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@color/light_background_color"/>
+        android:drawable="?android:attr/windowBackground"/>
 
     <item>
         <bitmap

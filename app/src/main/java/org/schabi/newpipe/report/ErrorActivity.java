@@ -14,7 +14,6 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -35,6 +34,7 @@ import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.ThemableActivity;
 import org.schabi.newpipe.extractor.Parser;
 
 import java.io.PrintWriter;
@@ -65,7 +65,7 @@ import java.util.Vector;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class ErrorActivity extends AppCompatActivity {
+public class ErrorActivity extends ThemableActivity {
     public static class ErrorInfo implements Parcelable {
         public int userAction;
         public String request;

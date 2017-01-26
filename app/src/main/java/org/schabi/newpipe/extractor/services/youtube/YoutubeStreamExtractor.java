@@ -88,7 +88,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     // $$el_type$$ will be replaced by the actual el_type (se the declarations below)
     private static final String GET_VIDEO_INFO_URL =
             "https://www.youtube.com/get_video_info?video_id=%%video_id%%$$el_type$$&ps=default&eurl=&gl=US&hl=en";
-    // eltype is nececeary for the url aboth
+    // eltype is necessary for the url above
     private static final String EL_INFO = "el=info";
 
     public enum ItagType {
@@ -184,7 +184,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     // cached values
     private static volatile String decryptionCode = "";
 
-    UrlIdHandler urlidhandler = new YoutubeStreamUrlIdHandler();
+    UrlIdHandler urlidhandler = YoutubeStreamUrlIdHandler.getInstance();
     String pageUrl = "";
 
     public YoutubeStreamExtractor(UrlIdHandler urlIdHandler, String pageUrl, int serviceId)

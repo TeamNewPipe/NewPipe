@@ -40,7 +40,7 @@ public abstract class MissionsFragment extends Fragment
 	private MissionAdapter mAdapter;
 	private GridLayoutManager mGridManager;
 	private LinearLayoutManager mLinearManager;
-	private Activity mActivity;
+	private Context mActivity;
 	
 	private ServiceConnection mConnection = new ServiceConnection() {
 
@@ -65,7 +65,7 @@ public abstract class MissionsFragment extends Fragment
 
 		mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		mLinear = mPrefs.getBoolean("linear", false);
-		
+
 		// Bind the service
 		Intent i = new Intent();
 		i.setClass(getActivity(), DownloadManagerService.class);
@@ -85,14 +85,15 @@ public abstract class MissionsFragment extends Fragment
 	}
 
 	@Override
-	public void onAttach(Activity activity) {
+	public void onAttach(Context activity) {
 		super.onAttach(activity);
 		mActivity = activity;
 	}
 
 	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-
+	public void onDestroyView() {
+		super.onDestroyView();
+		getActivity().unbindService(mConnection);
 	}
 
 	@Override
