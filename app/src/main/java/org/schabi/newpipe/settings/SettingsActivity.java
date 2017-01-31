@@ -46,9 +46,10 @@ public class SettingsActivity extends PreferenceActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {
-        if (Objects.equals(PreferenceManager.getDefaultSharedPreferences(this)
-                .getString("theme", getResources().getString(R.string.light_theme_title)), getResources().getString(R.string.dark_theme_title))) {
-                setTheme(R.style.DarkTheme);
+        if (PreferenceManager.getDefaultSharedPreferences(this)
+                .getString("theme", getResources().getString(R.string.light_theme_title)).
+                        equals(getResources().getString(R.string.dark_theme_title)))  {
+            setTheme(R.style.DarkTheme);
         }
         getDelegate().installViewFactory();
         getDelegate().onCreate(savedInstanceBundle);
