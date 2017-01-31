@@ -42,15 +42,23 @@ public class Parser {
     }
 
     public static String matchGroup1(String pattern, String input) throws RegexException {
+        return matchGroup(pattern, input, 1);
+    }
+
+    public static String matchGroup(String pattern, String input, int group) throws RegexException {
         Pattern pat = Pattern.compile(pattern);
         Matcher mat = pat.matcher(input);
         boolean foundMatch = mat.find();
         if (foundMatch) {
-            return mat.group(1);
+            return mat.group(group);
         }
         else {
             //Log.e(TAG, "failed to find pattern \""+pattern+"\" inside of \""+input+"\"");
-            throw new RegexException("failed to find pattern \""+pattern+" inside of "+input+"\"");
+            if(input.length() > 1024) {
+                throw new RegexException("failed to find pattern \""+pattern);
+            } else {
+                throw new RegexException("failed to find pattern \"" + pattern + " inside of " + input + "\"");
+            }
         }
     }
 
