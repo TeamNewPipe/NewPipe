@@ -84,9 +84,23 @@ public abstract class MissionsFragment extends Fragment
 		return v;
 	}
 
-	@Override
+	/** Added in API level 23. */
+    @Override
 	public void onAttach(Context activity) {
 		super.onAttach(activity);
+
+		// Bug: in api< 23 this is never called
+		// so mActivity=null
+		// so app crashes with nullpointer exception
+		mActivity = activity;
+	}
+
+	/** deprecated in API level 23,
+	 * but must remain to allow compatibility with api<23 */
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+
 		mActivity = activity;
 	}
 

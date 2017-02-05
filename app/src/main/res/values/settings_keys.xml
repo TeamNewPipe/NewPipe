@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources translatable="false">
     <!-- Categories -->
-    <string name="settings_category_video_audio">settings_category_video_audio</string>
-    <string name="settings_category_appearance">settings_category_appearance</string>
-    <string name="settings_content_options">settings_content_options</string>
-    <string name="settings_category_other">settings_category_other</string>
+    <string name="settings_category_video_audio" translatable="false">settings_category_video_audio</string>
+    <string name="settings_category_appearance" translatable="false">settings_category_appearance</string>
+    <string name="settings_content_options" translatable="false">settings_content_options</string>
+    <string name="settings_category_other" translatable="false">settings_category_other</string>
     <!-- Key values -->
-    <string name="download_path_key">download_path</string>
-    <string name="download_path_audio_key">download_path_audio</string>
-    <string name="use_external_video_player_key">use_external_video_player</string>
-    <string name="use_external_audio_player_key">use_external_audio_player</string>
-    <string name="autoplay_through_intent_key">autoplay_through_intent</string>
-    <string name="use_exoplayer_key">use_exoplayer</string>
+    <string name="download_path_key" translatable="false">download_path</string>
+    <string name="download_path_audio_key" translatable="false">download_path_audio</string>
+    <string name="use_external_video_player_key" translatable="false">use_external_video_player</string>
+    <string name="use_external_audio_player_key" translatable="false">use_external_audio_player</string>
+    <string name="autoplay_through_intent_key" translatable="false">autoplay_through_intent</string>
+    <string name="use_exoplayer_key" translatable="false">use_exoplayer</string>
 
-    <string name="default_resolution_key">default_resolution_preference</string>
-    <string name="default_resolution_value">360p</string>
+    <string name="default_resolution_key" translatable="false">default_resolution_preference</string>
+    <string name="default_resolution_value" translatable="false">360p</string>
     <string-array name="resolution_list">
         <item>720p</item>
         <item>360p</item>
@@ -22,10 +22,10 @@
         <item>144p</item>
     </string-array>
 
-    <string name="show_play_with_kodi_key">show_play_with_kodi</string>
+    <string name="show_play_with_kodi_key" translatable="false">show_play_with_kodi</string>
 
-    <string name="theme_key">theme</string>
-    <string name="default_theme_value">@string/light_theme_title</string>
+    <string name="theme_key" translatable="false">theme</string>
+    <string name="default_theme_value" translatable="false">@string/light_theme_title</string>
     <string-array name="theme_description_list">
         <item>@string/light_theme_title</item>
         <item>@string/dark_theme_title</item>
@@ -35,8 +35,8 @@
         <item>@string/dark_theme_title</item>
     </string-array>
 
-    <string name="default_audio_format_key">default_audio_format</string>
-    <string name="default_audio_format_value">m4a</string>
+    <string name="default_audio_format_key" translatable="false">default_audio_format</string>
+    <string name="default_audio_format_value" translatable="false">m4a</string>
     <string-array name="audio_format_description_list">
         <item>@string/webm_description</item>
         <item>@string/m4a_description</item>
@@ -46,9 +46,9 @@
         <item>m4a</item>
     </string-array>
 
-    <string name="show_next_video_key">show_next_video</string>
+    <string name="show_next_video_key" translatable="false">show_next_video</string>
     <string name="default_language_value">en</string>
-    <string name="search_language_key">search_language</string>
+    <string name="search_language_key" translatable="false">search_language</string>
     <!-- TODO: scrape these programmatically, then store in a local cache -->
     <!-- alternatively, load these from some local android data store -->
     <string-array name="language_codes">
@@ -209,6 +209,6 @@
         <item>日本語</item>
         <item>한국어</item>
     </string-array>
-    <string name="show_age_restricted_content">show_age_restricted_content</string>
-    <string name="use_tor_key">use_tor</string>
+    <string name="show_age_restricted_content" translatable="false">show_age_restricted_content</string>
+    <string name="use_tor_key" translatable="false">use_tor</string>
 </resources>

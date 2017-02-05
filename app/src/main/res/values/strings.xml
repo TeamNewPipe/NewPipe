@@ -180,7 +180,7 @@
     <string name="md5" translatable="false">MD5</string>
     <string name="sha1" translatable="false">SHA1</string>
     <string name="title_activity_channel">ChannelActivity</string>
-    <string name="large_text">
+    <string name="large_text" translatable="false">
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
