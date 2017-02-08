@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="upload_date_text">Publikováno %1$s</string>
-    <string name="no_player_found">Žádný přehrávač nenalezen. Nainstalovat VLC?</string>
+    <string name="no_player_found">Nenalezen žádný přehrávač. Nainstalovat VLC?</string>
     <string name="install">Instalovat</string>
     <string name="cancel">Zrušit</string>
     <string name="open_in_browser">Otevřít v prohlížeči</string>
@@ -18,23 +18,23 @@
     <string name="use_external_video_player_title">Použít externí video přehrávač</string>
     <string name="use_external_audio_player_title">Použít externí audio přehrávač</string>
 
-    <string name="download_path_audio_summary">Cesta, kam se uloží audio po stažení</string>
-    <string name="download_path_audio_dialog_title">Zadejte umístění pro uložení audio souborů.</string>
+    <string name="download_path_audio_summary">Cesta, kam se uloží stažené audio</string>
+    <string name="download_path_audio_dialog_title">Zadejte umístění pro stažené audio soubory.</string>
 
     <string name="download_path_audio_title">Umístění pro stažené audio</string>
     <string name="autoplay_through_intent_title">Automatické přehrávání skrze Intent</string>
     <string name="autoplay_through_intent_summary">Automaticky přehrávat video, jestliže je volané z jiné aplikace.</string>
     <string name="default_resolution_title">Výchozí rozlišení</string>
-    <string name="play_with_kodi_title">Přehrát s Kodi</string>
+    <string name="play_with_kodi_title">Přehrát pomocí Kodi</string>
     <string name="kore_not_found">Aplikace Kore nenalezena. Nainstalovat Kore?</string>
     <string name="view_count_text">%1$s zhlédnutí</string>
     <string name="background_player_name">NewPipe Přehrávač na pozadí</string>
     <string name="download_path_title">Umístění pro stažené video</string>
-    <string name="download_path_summary">Cesta, kam se uloží video po stažení.</string>
-    <string name="download_path_dialog_title">Zadejte umístění pro uložená videa</string>
+    <string name="download_path_summary">Cesta, kam se uloží stažené video.</string>
+    <string name="download_path_dialog_title">Zadejte umístění pro stažená videa</string>
 
-    <string name="show_play_with_kodi_title">Zobrazit možnost \"Přehrát s Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Zobrazit možnost přehrát video s multimediálním centrem Kodi.</string>
+    <string name="show_play_with_kodi_title">Zobrazit možnost \"Přehrát pomocí Kodi\"</string>
+    <string name="show_play_with_kodi_summary">Zobrazit možnost přehrání videa pomocí multimediálního centra Kodi.</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Výchozí audio formát</string>
     <string name="webm_description">WebM — svobodný formát</string>
@@ -43,11 +43,11 @@
     <string name="dark_theme_title">Tmavé</string>
     <string name="light_theme_title">Světlé</string>
 
-    <string name="download_dialog_title">Stažení</string>
+    <string name="download_dialog_title">Stáhnout</string>
     <string name="next_video_title">Následující video</string>
-    <string name="show_next_and_similar_title">Zobrazit následující a související videa</string>
+    <string name="show_next_and_similar_title">Zobrazit následující a podobná videa</string>
     <string name="url_not_supported_toast">URL není podporováno</string>
-    <string name="similar_videos_btn_text">Související videa</string>
+    <string name="similar_videos_btn_text">Podobná videa</string>
     <string name="search_language_title">Preferovaný jazyk obsahu</string>
     <string name="settings_category_video_audio_title">Video a audio</string>
     <string name="settings_category_appearance_title">Vzhled</string>
@@ -64,11 +64,11 @@
 
     <string name="list_thumbnail_view_description">Náhled videa</string>
     <string name="detail_thumbnail_view_description">Náhled videa</string>
-    <string name="detail_uploader_thumbnail_view_description">Náhled uploadera</string>
+    <string name="detail_uploader_thumbnail_view_description">Náhled obrázku uploadera</string>
     <string name="detail_likes_img_view_description">To se mi líbí</string>
     <string name="detail_dislikes_img_view_description">To se mi nelíbí</string>
     <string name="use_tor_title">Použít Tor</string>
-    <string name="use_tor_summary">(Experimentální) Vynutit stahování skrz Tor pro zvýšené soukromí (streaming není zatím podporován).</string>
+    <string name="use_tor_summary">(Experimentální) Vynutit stahování skrz Tor pro zvýšené soukromí (streaming zatím není podporován).</string>
 
     <string name="err_dir_create">Nebylo možné vytvořit složku pro stažené soubory \'%1$s\'</string>
     <string name="info_dir_created">Vytvořena složka pro stažené soubory \'%1$s\'</string>
