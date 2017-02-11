@@ -1,8 +1,9 @@
 package org.schabi.newpipe.extractor.channel;
 
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoCollector;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItemCollector;
 
 import java.util.List;
 import java.util.Vector;
@@ -59,7 +60,7 @@ public class ChannelInfo {
             info.errors.add(e);
         }
         try {
-            StreamPreviewInfoCollector c = extractor.getStreams();
+            StreamInfoItemCollector c = extractor.getStreams();
             info.related_streams = c.getItemList();
             info.errors.addAll(c.getErrors());
         } catch(Exception e) {
@@ -74,7 +75,7 @@ public class ChannelInfo {
     public String avatar_url = "";
     public String banner_url = "";
     public String feed_url = "";
-    public List<StreamPreviewInfo> related_streams = null;
+    public List<StreamInfoItem> related_streams = null;
     public boolean hasNextPage = false;
 
     public List<Throwable> errors = new Vector<>();

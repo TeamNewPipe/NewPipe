@@ -50,7 +50,7 @@ import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.player.BackgroundPlayer;
@@ -536,7 +536,7 @@ public class VideoItemDetailFragment extends Fragment {
 
     private void initSimilarVideos(final StreamInfo info) {
         LinearLayout similarLayout = (LinearLayout) activity.findViewById(R.id.similar_streams_view);
-        for (final StreamPreviewInfo item : info.related_streams) {
+        for (final StreamInfoItem item : info.related_streams) {
             similarLayout.addView(infoItemBuilder.buildView(similarLayout, item));
         }
         infoItemBuilder.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {

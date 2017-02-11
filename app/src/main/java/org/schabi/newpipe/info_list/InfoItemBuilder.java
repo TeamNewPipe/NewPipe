@@ -11,7 +11,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.AbstractStreamInfo;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
 
 /**
  * Created by Christian Schabesberger on 26.09.16.
@@ -55,7 +55,7 @@ public class InfoItemBuilder {
         this.onItemSelectedListener = onItemSelectedListener;
     }
 
-    public void buildByHolder(InfoItemHolder holder, final StreamPreviewInfo info) {
+    public void buildByHolder(InfoItemHolder holder, final StreamInfoItem info) {
         // fill holder with information
         holder.itemVideoTitleView.setText(info.title);
         if(info.uploader != null && !info.uploader.isEmpty()) {
@@ -97,7 +97,7 @@ public class InfoItemBuilder {
         });
     }
 
-    public View buildView(ViewGroup parent, final StreamPreviewInfo info) {
+    public View buildView(ViewGroup parent, final StreamInfoItem info) {
         View streamPreviewView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.video_item, parent, false);
         InfoItemHolder holder = new InfoItemHolder(streamPreviewView);

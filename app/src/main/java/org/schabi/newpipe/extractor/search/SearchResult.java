@@ -1,7 +1,7 @@
 package org.schabi.newpipe.extractor.search;
 
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
 
 import java.io.IOException;
 import java.util.List;
@@ -45,6 +45,6 @@ public class SearchResult {
     }
 
     public String suggestion = "";
-    public List<StreamPreviewInfo> resultList = new Vector<>();
+    public List<StreamInfoItem> resultList = new Vector<>();
     public List<Throwable> errors = new Vector<>();
 }

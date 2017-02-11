@@ -8,8 +8,8 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.search.SearchEngine;
-import org.schabi.newpipe.extractor.search.StreamPreviewInfoSearchCollector;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoExtractor;
+import org.schabi.newpipe.extractor.search.StreamInfoSearchItemCollector;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItemExtractor;
 
 import java.net.URLEncoder;
 import java.io.IOException;
@@ -45,9 +45,9 @@ public class YoutubeSearchEngine extends SearchEngine {
     }
 
     @Override
-    public StreamPreviewInfoSearchCollector search(String query, int page, String languageCode)
+    public StreamInfoSearchItemCollector search(String query, int page, String languageCode)
             throws IOException, ExtractionException {
-        StreamPreviewInfoSearchCollector collector = getStreamPreviewInfoSearchCollector();
+        StreamInfoSearchItemCollector collector = getStreamPreviewInfoSearchCollector();
 
         Downloader downloader = NewPipe.getDownloader();
 
@@ -107,7 +107,7 @@ public class YoutubeSearchEngine extends SearchEngine {
         return collector;
     }
 
-    private StreamPreviewInfoExtractor extractPreviewInfo(final Element item) {
-        return new YoutubeStreamPreviewInfoExtractor(item);
+    private StreamInfoItemExtractor extractPreviewInfo(final Element item) {
+        return new YoutubeStreamInfoItemExtractor(item);
     }
 }

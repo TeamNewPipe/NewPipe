@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
 
 import java.util.List;
 import java.util.Vector;
@@ -35,7 +35,7 @@ import java.util.Vector;
 public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
 
     private final InfoItemBuilder infoItemBuilder;
-    private final List<StreamPreviewInfo> streamList;
+    private final List<StreamInfoItem> streamList;
 
     public InfoListAdapter(Activity a, View rootView) {
         infoItemBuilder = new InfoItemBuilder(a, rootView);
@@ -47,7 +47,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
         infoItemBuilder.setOnItemSelectedListener(onItemSelectedListener);
     }
 
-    public void addStreamItemList(List<StreamPreviewInfo> videos) {
+    public void addStreamItemList(List<StreamInfoItem> videos) {
         if(videos!= null) {
             streamList.addAll(videos);
             notifyDataSetChanged();

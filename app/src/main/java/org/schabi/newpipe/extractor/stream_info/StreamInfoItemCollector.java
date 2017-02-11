@@ -4,7 +4,6 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.exceptions.FoundAdException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
-import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamUrlIdHandler;
 
 import java.util.List;
 import java.util.Vector;
@@ -13,7 +12,7 @@ import java.util.Vector;
  * Created by Christian Schabesberger on 28.02.16.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * StreamPreviewInfoCollector.java is part of NewPipe.
+ * StreamInfoItemCollector.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,18 +28,18 @@ import java.util.Vector;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class StreamPreviewInfoCollector {
-    private List<StreamPreviewInfo> itemList = new Vector<>();
+public class StreamInfoItemCollector {
+    private List<StreamInfoItem> itemList = new Vector<>();
     private List<Throwable> errors = new Vector<>();
     private UrlIdHandler urlIdHandler;
     private int serviceId = -1;
 
-    public StreamPreviewInfoCollector(UrlIdHandler handler, int serviceId) {
+    public StreamInfoItemCollector(UrlIdHandler handler, int serviceId) {
         urlIdHandler = handler;
         this.serviceId = serviceId;
     }
 
-    public List<StreamPreviewInfo> getItemList() {
+    public List<StreamInfoItem> getItemList() {
         return itemList;
     }
 
@@ -52,9 +51,9 @@ public class StreamPreviewInfoCollector {
         errors.add(e);
     }
 
-    public void commit(StreamPreviewInfoExtractor extractor) throws ParsingException {
+    public void commit(StreamInfoItemExtractor extractor) throws ParsingException {
         try {
-            StreamPreviewInfo resultItem = new StreamPreviewInfo();
+            StreamInfoItem resultItem = new StreamInfoItem();
             // importand information
             resultItem.service_id = serviceId;
             resultItem.webpage_url = extractor.getWebPageUrl();

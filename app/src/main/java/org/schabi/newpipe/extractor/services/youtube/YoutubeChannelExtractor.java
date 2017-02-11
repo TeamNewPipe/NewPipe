@@ -15,8 +15,8 @@ import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.channel.ChannelExtractor;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoCollector;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoExtractor;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItemCollector;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItemExtractor;
 
 
 import java.io.IOException;
@@ -150,8 +150,8 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
     }
 
     @Override
-    public StreamPreviewInfoCollector getStreams() throws ParsingException {
-        StreamPreviewInfoCollector collector = getStreamPreviewInfoCollector();
+    public StreamInfoItemCollector getStreams() throws ParsingException {
+        StreamInfoItemCollector collector = getStreamPreviewInfoCollector();
         Element ul = null;
         if(isAjaxPage) {
             ul = doc.select("body").first();
@@ -161,7 +161,7 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
 
         for(final Element li : ul.children()) {
             if (li.select("div[class=\"feed-item-dismissable\"]").first() != null) {
-                collector.commit(new StreamPreviewInfoExtractor() {
+                collector.commit(new StreamInfoItemExtractor() {
                     @Override
                     public AbstractStreamInfo.StreamType getStreamType() throws ParsingException {
                         return AbstractStreamInfo.StreamType.VIDEO_STREAM;

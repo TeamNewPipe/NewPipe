@@ -1,13 +1,13 @@
 package org.schabi.newpipe.extractor.search;
 
 import org.schabi.newpipe.extractor.UrlIdHandler;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoCollector;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItemCollector;
 
 /**
  * Created by Christian Schabesberger on 11.05.16.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * StreamPreviewInfoSearchCollector.java is part of NewPipe.
+ * StreamInfoSearchItemCollector.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,11 +23,11 @@ import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoCollector;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class StreamPreviewInfoSearchCollector extends StreamPreviewInfoCollector {
+public class StreamInfoSearchItemCollector extends StreamInfoItemCollector {
 
     private String suggestion = "";
 
-    public StreamPreviewInfoSearchCollector(UrlIdHandler handler, int serviceId) {
+    public StreamInfoSearchItemCollector(UrlIdHandler handler, int serviceId) {
         super(handler, serviceId);
     }
 

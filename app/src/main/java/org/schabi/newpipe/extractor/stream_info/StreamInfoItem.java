@@ -1,8 +1,10 @@
-package org.schabi.newpipe.extractor;
+package org.schabi.newpipe.extractor.stream_info;
 
 /**
+ * Created by Christian Schabesberger on 26.08.15.
+ *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * AbstractStreamInfo.java is part of NewPipe.
+ * StreamInfoItem.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,24 +20,9 @@ package org.schabi.newpipe.extractor;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**Common properties between StreamInfo and StreamInfoItem.*/
-public abstract class AbstractStreamInfo {
-    public enum StreamType {
-        NONE,   // placeholder to check if stream type was checked or not
-        VIDEO_STREAM,
-        AUDIO_STREAM,
-        LIVE_STREAM,
-        AUDIO_LIVE_STREAM,
-        FILE
-    }
+import org.schabi.newpipe.extractor.AbstractStreamInfo;
 
-    public StreamType stream_type;
-    public int service_id = -1;
-    public String id = "";
-    public String title = "";
-    public String uploader = "";
-    public String thumbnail_url = "";
-    public String webpage_url = "";
-    public String upload_date = "";
-    public long view_count = -1;
+/**Info object for previews of unopened videos, eg search results, related videos*/
+public class StreamInfoItem extends AbstractStreamInfo {
+    public int duration;
 }
