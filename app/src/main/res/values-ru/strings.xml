@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="view_count_text">%1$s просмотров</string>
     <string name="upload_date_text">Опубликовано %1$s</string>
     <string name="no_player_found">Ни одного потокового проигрывателя не было найдено. Установить?</string>
@@ -69,7 +69,7 @@
     <string name="download_path_audio_dialog_title">Введите путь к папке для загрузки аудио</string>
 
     <string name="main_bg_subtitle">Нажмите поиск чтобы начать</string>
-    <string name="msg_wait">Пожалуйста подождите...</string>
+    <string name="msg_wait">Пожалуйста подождите…</string>
     <string name="msg_exists">Файл уже существует</string>
     <string name="msg_threads">Потоки</string>
     <string name="finish">Окей</string>
@@ -143,4 +143,18 @@
     <string name="storage_permission_denied">В доступе к хранилищу было отказано</string>
     <string name="use_exoplayer_title">Использовать ExoPlayer</string>
     <string name="msg_fetch_filename">Получить название файла</string>
+    <string name="could_not_load_thumbnails">Невозможно загрузить все миниатюры</string>
+    <string name="youtube_signature_decryption_error">Невозможно расшифровать url у видео</string>
+    <string name="could_not_get_stream">Потоковое видео недоступно.</string>
+    <string name="off">[отключен]</string>
+    <string name="error_no_decoder">Это устройство не поддерживает декодер для <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_secure_decoder">Это устройство не поддерживает безопасный декодер для <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_querying_decoders">На этом устройстве недоступен декодер.</string>
+    <string name="error_instantiating_decoder">Невозможно инициировать декодер <xliff:g id="decoder_name"> 1%1$s</xliff:g> 2</string>
+    <string name="use_exoplayer_summary">Эксперементально</string>
+
+    <string name="view">Воспроизвести</string>
+    <string name="switch_mode">Переключатель между списком и сеткой</string>
+
+
     </resources>

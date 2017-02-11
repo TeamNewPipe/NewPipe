@@ -791,10 +791,15 @@ public class YoutubeStreamExtractor extends StreamExtractor {
 
         try {
             Downloader downloader = NewPipe.getDownloader();
+            if(!playerUrl.contains("https://youtube.com")) {
+                //sometimes the https://youtube.com part does not get send with
+                //than we have to add it by hand
+                playerUrl = "https://youtube.com" + playerUrl;
+            }
             String playerCode = downloader.download(playerUrl);
 
             decryptionFuncName =
-                    Parser.matchGroup1("\\.sig\\|\\|([a-zA-Z0-9$]+)\\(", playerCode);
+                    Parser.matchGroup("([\"\\'])signature\\1\\s*,\\s*([a-zA-Z0-9$]+)\\(", playerCode, 2);
 
             String functionPattern = "("
                     + decryptionFuncName.replace("$", "\\$")

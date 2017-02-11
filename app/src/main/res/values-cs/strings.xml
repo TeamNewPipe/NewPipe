@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="upload_date_text">Publikováno %1$s</string>
-    <string name="no_player_found">Žádný přehrávač nenalezen. Nainstalovat VLC?</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="upload_date_text">Publikováno %1$s</string>
+    <string name="no_player_found">Nenalezen žádný přehrávač. Nainstalovat VLC?</string>
     <string name="install">Instalovat</string>
     <string name="cancel">Zrušit</string>
     <string name="open_in_browser">Otevřít v prohlížeči</string>
@@ -18,45 +18,45 @@
     <string name="use_external_video_player_title">Použít externí video přehrávač</string>
     <string name="use_external_audio_player_title">Použít externí audio přehrávač</string>
 
-    <string name="download_path_audio_summary">Cesta, kde se uloží audio po stažení.</string>
-    <string name="download_path_audio_dialog_title">Zadejte umístění pro uložení audio souborů.</string>
+    <string name="download_path_audio_summary">Cesta, kam se uloží stažené audio</string>
+    <string name="download_path_audio_dialog_title">Zadejte umístění pro stažené audio soubory.</string>
 
     <string name="download_path_audio_title">Umístění pro stažené audio</string>
     <string name="autoplay_through_intent_title">Automatické přehrávání skrze Intent</string>
     <string name="autoplay_through_intent_summary">Automaticky přehrávat video, jestliže je volané z jiné aplikace.</string>
     <string name="default_resolution_title">Výchozí rozlišení</string>
-    <string name="play_with_kodi_title">Přehrát s Kodi</string>
+    <string name="play_with_kodi_title">Přehrát pomocí Kodi</string>
     <string name="kore_not_found">Aplikace Kore nenalezena. Nainstalovat Kore?</string>
     <string name="view_count_text">%1$s zhlédnutí</string>
     <string name="background_player_name">NewPipe Přehrávač na pozadí</string>
     <string name="download_path_title">Umístění pro stažené video</string>
-    <string name="download_path_summary">Cesta, kde se uloží video po stažení.</string>
-    <string name="download_path_dialog_title">Zadejte umístění pro uložená videa</string>
+    <string name="download_path_summary">Cesta, kam se uloží stažené video.</string>
+    <string name="download_path_dialog_title">Zadejte umístění pro stažená videa</string>
 
-    <string name="show_play_with_kodi_title">Zobrazit možnost \"Přehrát s Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Zobrazit možnost přehrát video s multimediálním centrem Kodi.</string>
+    <string name="show_play_with_kodi_title">Zobrazit možnost \"Přehrát pomocí Kodi\"</string>
+    <string name="show_play_with_kodi_summary">Zobrazit možnost přehrání videa pomocí multimediálního centra Kodi.</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Výchozí audio formát</string>
     <string name="webm_description">WebM — svobodný formát</string>
     <string name="m4a_description">m4a — lepší kvalita</string>
     <string name="theme_title">Téma</string>
-    <string name="dark_theme_title">Tmavý</string>
-    <string name="light_theme_title">Světlý</string>
+    <string name="dark_theme_title">Tmavé</string>
+    <string name="light_theme_title">Světlé</string>
 
-    <string name="download_dialog_title">Stažení</string>
+    <string name="download_dialog_title">Stáhnout</string>
     <string name="next_video_title">Následující video</string>
-    <string name="show_next_and_similar_title">Zobrazit následující a související videa</string>
+    <string name="show_next_and_similar_title">Zobrazit následující a podobná videa</string>
     <string name="url_not_supported_toast">URL není podporováno</string>
-    <string name="similar_videos_btn_text">Související videa</string>
+    <string name="similar_videos_btn_text">Podobná videa</string>
     <string name="search_language_title">Preferovaný jazyk obsahu</string>
-    <string name="settings_category_video_audio_title">Video &amp; audio</string>
+    <string name="settings_category_video_audio_title">Video a audio</string>
     <string name="settings_category_appearance_title">Vzhled</string>
     <string name="settings_category_other_title">Ostatní</string>
     <string name="background_player_playing_toast">Přehrávám na pozadí</string>
     <string name="play_btn_text">Přehrát</string>
     <string name="general_error">Chyba</string>
     <string name="network_error">Chyba sítě</string>
-    <string name="could_not_load_thumbnails">Nebylo možné stáhnout všechny náhledy</string>
+    <string name="could_not_load_thumbnails">Nebylo možné nahrát všechny náhledy</string>
     <string name="youtube_signature_decryption_error">Nebylo možné dekódovat URL videa.</string>
     <string name="parsing_error">Nebylo možné analyzovat webovou stránku.</string>
     <string name="content_not_available">Obsah není k dispozici.</string>
@@ -64,11 +64,11 @@
 
     <string name="list_thumbnail_view_description">Náhled videa</string>
     <string name="detail_thumbnail_view_description">Náhled videa</string>
-    <string name="detail_uploader_thumbnail_view_description">Náhled uploadera</string>
+    <string name="detail_uploader_thumbnail_view_description">Náhled obrázku uploadera</string>
     <string name="detail_likes_img_view_description">To se mi líbí</string>
     <string name="detail_dislikes_img_view_description">To se mi nelíbí</string>
     <string name="use_tor_title">Použít Tor</string>
-    <string name="use_tor_summary">Vynutit stahování skrz Tor pro zvýšené soukromí (streaming není zatím podporován)</string>
+    <string name="use_tor_summary">(Experimentální) Vynutit stahování skrz Tor pro zvýšené soukromí (streaming zatím není podporován).</string>
 
     <string name="err_dir_create">Nebylo možné vytvořit složku pro stažené soubory \'%1$s\'</string>
     <string name="info_dir_created">Vytvořena složka pro stažené soubory \'%1$s\'</string>
@@ -76,8 +76,229 @@
     <string name="autoplay_by_calling_app_summary">Automaticky přehrát video, když je NewPipe otevřen z jiné aplikace.</string>
     <string name="content">Obsah</string>
     <string name="show_age_restricted_content_title">Zobrazovat věkově omezený obsah</string>
-    <string name="video_is_age_restricted">Toto video je věkově omezeno. Povolte věkově omezená video v nastavení.</string>
+    <string name="video_is_age_restricted">Toto video je věkově omezeno. Povolte věkově omezená videa v nastavení.</string>
     <string name="duration_live">živě</string>
 
-    <string name="light_parsing_error">Nemůžu kompletně parsovat web.</string>
+    <string name="light_parsing_error">Nebylo možné kompletně analyzovat stránku.</string>
+    <string name="main_bg_subtitle">Pro začátek stiskni hledat</string>
+    <string name="msg_copied">Zkopírováno do schránky.</string>
+    <string name="msg_wait">Počkejte prosím…</string>
+    <string name="msg_running">NewPipe se stahuje</string>
+    <string name="msg_running_detail">Stiskněte pro detaily</string>
+    <string name="msg_server_unsupported">Server není podporován</string>
+    <string name="msg_exists">Soubor již existuje</string>
+    <string name="msg_url_malform">Špatné URL nebo připojení k Internetu není k disposici</string>
+    <string name="msg_error">Chyba</string>
+    <string name="msg_url">Stáhnout URL</string>
+    <string name="msg_name">Jméno souboru</string>
+    <string name="msg_threads">Vlákna</string>
+    <string name="pause">Zastavit</string>
+    <string name="delete">Smazat</string>
+    <string name="use_exoplayer_title">Použít ExoPlayer</string>
+    <string name="use_exoplayer_summary">Experimentální</string>
+
+    <string name="start">Začít</string>
+    <string name="error_drm_unknown">Neznámá chyba DRM</string>
+    <string name="retry">Zkusit znovu</string>
+    <string name="text">Text</string>
+    <string name="enable_background_audio">Hrát na pozadí</string>
+    <string name="video">Video</string>
+    <string name="audio">Audio</string>
+    <string name="report_error">Nahlásit chybu</string>
+    <string name="info_searched_lbl">Hledáno:</string>
+    <string name="error_details_headline">Detaily:</string>
+
+
+    <string name="info_requested_stream_lbl">Vyžádaný stream:</string>
+    <string name="what_happened_headline">Co se stalo:</string>
+    <string name="error_snackbar_action">NAHLÁSIT</string>
+    <string name="sorry_string">Omlouváme se, tohle se nemělo stát.</string>
+    <string name="error_report_button_text">Nahlásit chybu přes e-mail</string>
+    <string name="error_snackbar_message">Omlouváme se, staly se nějaké chyby.</string>
+    <string name="could_not_load_image">Nepodařilo se nahrát obrázek</string>
+    <string name="app_ui_crash">Aplikace/UI spadlo</string>
+    <string name="live_streams_not_supported">Tento stream je vysílán živě, funkce ještě není podporována.</string>
+    <string name="could_not_get_stream">Nepodařilo se dostat žádný stream.</string>
+    <string name="could_not_setup_download_menu">Nepodařilo se nastavit menu stahování.</string>
+    <string name="settings_title">Nastavení</string>
+    <string name="error_report_title">Nahlásit chybu</string>
+
+    <string name="downloads">Stažené soubory</string>
+    <string name="downloads_title">Stažené soubory</string>
+    <string name="what_device_headline">Info:</string>
+    <string name="your_comment">Vaše poznámky (Anglicky):</string>
+    <string name="logging">Logování</string>
+    <string name="logging_normal">Normální</string>
+    <string name="error_drm_not_supported">Chráněný obsah není podporován na API úrovni menší než 18</string>
+    <string name="error_drm_unsupported_scheme">Toto zařízení nepodporuje potřebné DRM schéma</string>
+    <string name="error_no_decoder">Toto zařízení nedodává dekodér pro <xliff:g id="mime_type">
+%1$s</xliff:g></string>
+    <string name="error_no_secure_decoder">Toto zařízení nedodává bezpečný dekodér pro
+<xliff:g id="mime_type">
+%1$s</xliff:g></string>
+    <string name="storage_permission_denied">Oprávnění přístupu do Úložiště bylo zamítnuto</string>
+    <string name="view">Shlédnout</string>
+    <string name="add">Nová mise</string>
+    <string name="finish">Hotovo</string>
+    <string name="switch_mode">Přepnout mezi listem a mřížkou</string>
+
+
+    <string name="msg_fetch_filename">Získej jméno souboru</string>
+    <string name="action_settings">Nastavení</string>
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">Výzva reCAPTCHA</string>
+    <string name="recaptcha_request_toast">Požadována výzva reCAPTCHA</string>
+
+    <string name="black_theme_title">Černé</string>
+
+    <string name="off">[vypnuto]</string>
+    <string name="checksum">Checksum</string>
+
+    <string name="no_available_dir">Prosím vyberte dostupnou složku pro stažení souborů.</string>
+
+    <string name="title_activity_channel">Aktivita kanálu</string>
+    <string name="user_report">Hlášení uživatele</string>
+
+    <string name="large_text">"
+ Material is the metaphor.
+
+
+
+ A material metaphor is the unifying theory of a rationalized space and a system of motion.
+ The material is grounded in tactile reality, inspired by the study of paper and ink, yet 
+ technologically advanced and open to imagination and magic.
+
+ Surfaces and edges of the material provide visual cues that are grounded in reality. The 
+ use of familiar tactile attributes helps users quickly understand affordances. Yet the 
+ flexibility of the material creates new affordances that supercede those in the physical 
+ world, without breaking the rules of physics.
+
+ The fundamentals of light, surface, and movement are key to conveying how objects move, 
+ interact, and exist in space and in relation to each other. Realistic lighting shows 
+ seams, divides space, and indicates moving parts.
+
+
+
+ Bold, graphic, intentional.
+
+
+
+ The foundational elements of print based design typography, grids, space, scale, color, 
+ and use of imagery guide visual treatments. These elements do far more than please the 
+ eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge 
+ imagery, large scale typography, and intentional white space create a bold and graphic 
+ interface that immerse the user in the experience.
+
+ An emphasis on user actions makes core functionality immediately apparent and provides 
+ waypoints for the user.
+
+
+
+ Motion provides meaning.
+
+
+
+ Motion respects and reinforces the user as the prime mover. Primary user actions are 
+ inflection points that initiate motion, transforming the whole design.
+
+ All action takes place in a single environment. Objects are presented to the user without 
+ breaking the continuity of experience even as they transform and reorganize.
+
+ Motion is meaningful and appropriate, serving to focus attention and maintain continuity. 
+ Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.
+
+
+
+ 3D world.
+
+
+
+ The material environment is a 3D space, which means all objects have x, y, and z 
+ dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the 
+ positive z-axis extending towards the viewer. Every sheet of material occupies a single 
+ position along the z-axis and has a standard 1dp thickness.
+
+ On the web, the z-axis is used for layering and not for perspective. The 3D world is 
+ emulated by manipulating the y-axis.
+
+
+
+ Light and shadow.
+
+
+
+ Within the material environment, virtual lights illuminate the scene. Key lights create 
+ directional shadows, while ambient light creates soft shadows from all angles.
+
+ Shadows in the material environment are cast by these two light sources. In Android 
+ development, shadows occur when light sources are blocked by sheets of material at 
+ various positions along the z-axis. On the web, shadows are depicted by manipulating the 
+ y-axis only. The following example shows the card with a height of 6dp.
+
+
+
+ Resting elevation.
+
+
+
+ All material objects, regardless of size, have a resting elevation, or default elevation 
+ that does not change. If an object changes elevation, it should return to its resting 
+ elevation as soon as possible.
+
+
+
+ Component elevations.
+
+
+
+ The resting elevation for a component type is consistent across apps (e.g., FAB elevation 
+ does not vary from 6dp in one app to 16dp in another app).
+
+ Components may have different resting elevations across platforms, depending on the depth 
+ of the environment (e.g., TV has a greater depth than mobile or desktop).
+
+
+
+ Responsive elevation and dynamic elevation offsets.
+
+
+
+ Some component types have responsive elevation, meaning they change elevation in response 
+ to user input (e.g., normal, focused, and pressed) or system events. These elevation 
+ changes are consistently implemented using dynamic elevation offsets.
+
+ Dynamic elevation offsets are the goal elevation that a component moves towards, relative 
+ to the component’s resting state. They ensure that elevation changes are consistent 
+ across actions and component types. For example, all components that lift on press have 
+ the same elevation change relative to their resting elevation.
+
+ Once the input event is completed or cancelled, the component will return to its resting 
+ elevation.
+
+
+
+ Avoiding elevation interference.
+
+
+
+ Components with responsive elevations may encounter other components as they move between 
+ their resting elevations and dynamic elevation offsets. Because material cannot pass 
+ through other material, components avoid interfering with one another any number of ways, 
+ whether on a per component basis or using the entire app layout.
+
+ On a component level, components can move or be removed before they cause interference. 
+ For example, a floating action button (FAB) can disappear or move off screen before a 
+ user picks up a card, or it can move if a snackbar appears.
+
+ On the layout level, design your app layout to minimize opportunities for interference. 
+ For example, position the FAB to one side of stream of a cards so the FAB won’t interfere 
+ when a user tries to pick up one of cards.
+
+
+ "</string>
+    <string name="logging_verbose">Podrobné</string>
+    <string name="error_querying_decoders">Nelze zjistit dekodéry zařízení</string>
+    <string name="error_instantiating_decoder">Nelze doložit dekodér <xliff:g id="decoder_name">
+%1$s</xliff:g></string>
+    <string name="info_labels">Co:\\nŽádost:\\nJazyk obsahu:\\nSlužba:\\nČas GMT:\\nBalíček:\\nVerze:\\nVerze OS:\\nGlobální rozsah IP:</string>
     </resources>

@@ -54,9 +54,9 @@
 
     <string name="use_tor_title">Tor を使用する</string>
     <string name="use_tor_summary">(実験的) 強制的に Tor を経由したトラフィックでダウンロードして、プライバシーを高めます (ビデオのストリーミングはまだサポートされていません)。</string>
-<string name="theme_title">外見</string>
-    <string name="dark_theme_title">暗</string>
-    <string name="light_theme_title">明</string>
+<string name="theme_title">テーマ</string>
+    <string name="dark_theme_title">ダーク</string>
+    <string name="light_theme_title">ライト</string>
 
     <string name="settings_category_appearance_title">外観</string>
     <string name="settings_category_other_title">その他</string>
@@ -303,5 +303,7 @@
     <string name="reCaptcha_title">reCAPTCHA の要求</string>
 
     <string name="recaptcha_request_toast">reCAPTCHA を要求しました</string>
+
+    <string name="black_theme_title">ブラック</string>
 
     </resources>

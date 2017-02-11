@@ -144,6 +144,7 @@ public class VideoItemDetailFragment extends Fragment {
         TextView similarTitle = (TextView) activity.findViewById(R.id.detail_similar_title);
         Button backgroundButton = (Button)
                 activity.findViewById(R.id.detail_stream_thumbnail_window_background_button);
+        View thumbnailView = activity.findViewById(R.id.detail_thumbnail_view);
         View topView = activity.findViewById(R.id.detailTopView);
         Button channelButton = (Button) activity.findViewById(R.id.channel_button);
 
@@ -269,6 +270,14 @@ public class VideoItemDetailFragment extends Fragment {
             }
 
             backgroundButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    playVideo(info);
+                }
+            });
+
+            //todo: make backgroundButton handle this
+            thumbnailView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     playVideo(info);

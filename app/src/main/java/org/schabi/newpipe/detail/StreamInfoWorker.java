@@ -125,10 +125,13 @@ public class StreamInfoWorker {
                 e.printStackTrace();
             } catch (YoutubeStreamExtractor.DecryptException de) {
                 // custom service related exceptions
+                ErrorActivity.reportError(h, a, de, VideoItemDetailFragment.class, null,
+                        ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM,
+                                service.getServiceInfo().name, videoUrl, R.string.youtube_signature_decryption_error));
                 h.post(new Runnable() {
                     @Override
                     public void run() {
-                        onStreamInfoReceivedListener.onError(R.string.youtube_signature_decryption_error);
+                        a.finish();
                     }
                 });
                 de.printStackTrace();

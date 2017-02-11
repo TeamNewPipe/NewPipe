@@ -150,7 +150,7 @@
     <string name="msg_url_malform">Verkeerde URL of internet niet beschikbaar</string>
     <string name="msg_running">NewPipe is aan het downloaden</string>
     <string name="msg_running_detail">Tik voor meer informatie</string>
-    <string name="msg_wait">Even geduld...</string>
+    <string name="msg_wait">Even geduld…</string>
     <string name="msg_copied">Gekopieerd naar klembord.</string>
     <string name="no_available_dir">Kies een beschikbare downloadmap.</string>
 
@@ -294,4 +294,10 @@
 
 
  "</string>
+    <string name="black_theme_title">Zwart</string>
+
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">reCAPTCHA-uitdaging</string>
+    <string name="recaptcha_request_toast">reCAPTCHA-uitdaging gevraagd</string>
+
     </resources>

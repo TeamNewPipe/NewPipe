@@ -301,4 +301,9 @@
 
  "</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="black_theme_title">Schwarz</string>
+
+    <string name="reCaptcha_title">reCAPTCHA Herausforderung</string>
+    <string name="recaptcha_request_toast">reCAPTCHA Herausforderung angefordert</string>
+
     </resources>
