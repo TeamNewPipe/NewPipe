@@ -32,17 +32,10 @@ public abstract class SearchEngine {
             super(message);
         }
     }
-
-    private StreamInfoItemCollector streamCollector;
     private InfoItemSearchCollector collector;
 
     public SearchEngine(UrlIdHandler urlIdHandler, int serviceId) {
-        streamCollector = new StreamInfoItemCollector(urlIdHandler, serviceId);
         collector = new InfoItemSearchCollector(urlIdHandler, serviceId);
-    }
-
-    protected StreamInfoItemCollector getStreamPreviewInfoCollector() {
-        return streamCollector;
     }
 
     protected  InfoItemSearchCollector getInfoItemSearchCollector() {

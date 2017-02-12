@@ -2,6 +2,10 @@ package org.schabi.newpipe.extractor.search;
 
 import org.schabi.newpipe.extractor.InfoItemCollector;
 import org.schabi.newpipe.extractor.UrlIdHandler;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItemCollector;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItemExtractor;
 
 /**
  * Created by Christian Schabesberger on 12.02.17.
@@ -25,20 +29,29 @@ import org.schabi.newpipe.extractor.UrlIdHandler;
 
 public class InfoItemSearchCollector extends InfoItemCollector {
     private String suggestion = "";
+    private StreamInfoItemCollector streamCollector;
 
     InfoItemSearchCollector(UrlIdHandler handler, int serviceId) {
         super(handler, serviceId);
+        streamCollector = new StreamInfoItemCollector(handler, serviceId);
     }
 
     public void setSuggestion(String suggestion) {
         this.suggestion = suggestion;
     }
 
-    public SearchResult getSearchResult() {
+    public SearchResult getSearchResult() throws ExtractionException {
         SearchResult result = new SearchResult();
+
+        addFromCollector(streamCollector);
+
         result.suggestion = suggestion;
         result.errors = getErrors();
         result.resultList = getItemList();
         return result;
+    }
+
+    public void commit(StreamInfoItemExtractor extractor) throws ParsingException {
+        streamCollector.commit(extractor);
     }
 }

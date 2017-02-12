@@ -42,7 +42,7 @@ public class InfoItemCollector {
     public List<Throwable> getErrors() {
         return errors;
     }
-    public void addFromCollector(InfoItemCollector otherC) throws ExtractionException {
+    protected void addFromCollector(InfoItemCollector otherC) throws ExtractionException {
         if(serviceId != otherC.serviceId) {
             throw new ExtractionException("Service Id does not equal: "
                     + NewPipe.getNameOfService(serviceId)

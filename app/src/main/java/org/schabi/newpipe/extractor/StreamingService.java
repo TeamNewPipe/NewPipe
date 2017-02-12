@@ -3,7 +3,6 @@ package org.schabi.newpipe.extractor;
 import org.schabi.newpipe.extractor.channel.ChannelExtractor;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.search.SearchEngine;
-import org.schabi.newpipe.extractor.search.SuggestionExtractor;
 import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
 
 import java.io.IOException;

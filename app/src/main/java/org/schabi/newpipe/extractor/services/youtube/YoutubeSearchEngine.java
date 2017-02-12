@@ -48,7 +48,6 @@ public class YoutubeSearchEngine extends SearchEngine {
     @Override
     public InfoItemSearchCollector search(String query, int page, String languageCode)
             throws IOException, ExtractionException {
-        StreamInfoItemCollector streamCollector = getStreamPreviewInfoCollector();
         InfoItemSearchCollector collector = getInfoItemSearchCollector();
 
 
@@ -100,17 +99,13 @@ public class YoutubeSearchEngine extends SearchEngine {
 
                 // video item type
             } else if ((el = item.select("div[class*=\"yt-lockup-video\"").first()) != null) {
-                streamCollector.commit(extractPreviewInfo(el));
+                collector.commit(new YoutubeStreamInfoItemExtractor(el));
             } else {
                 //noinspection ConstantConditions
                 throw new ExtractionException("unexpected element found:\"" + el + "\"");
             }
         }
-        collector.addFromCollector(streamCollector);
-        return collector;
-    }
 
-    private StreamInfoItemExtractor extractPreviewInfo(final Element item) {
-        return new YoutubeStreamInfoItemExtractor(item);
+        return collector;
     }
 }
