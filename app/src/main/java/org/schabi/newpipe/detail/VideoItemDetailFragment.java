@@ -540,7 +540,8 @@ public class VideoItemDetailFragment extends Fragment {
         for (final InfoItem item : info.related_streams) {
             similarLayout.addView(infoItemBuilder.buildView(similarLayout, item));
         }
-        infoItemBuilder.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {
+        infoItemBuilder.setOnStreamInfoItemSelectedListener(
+                new InfoItemBuilder.OnInfoItemSelectedListener() {
             @Override
             public void selected(String url) {
                 openStreamUrl(url);

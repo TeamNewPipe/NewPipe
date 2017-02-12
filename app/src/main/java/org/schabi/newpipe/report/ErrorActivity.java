@@ -297,6 +297,11 @@ public class ErrorActivity extends ThemableActivity {
         }
 
         errorView.setText(formErrorText(errorList));
+
+        //print stack trace once again for debugging:
+        for(String e : errorList) {
+            Log.e(TAG, e);
+        }
     }
 
     @Override
