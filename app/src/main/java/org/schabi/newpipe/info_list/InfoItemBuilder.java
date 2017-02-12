@@ -1,6 +1,7 @@
 package org.schabi.newpipe.info_list;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.AbstractStreamInfo;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
 
 /**
@@ -55,7 +57,11 @@ public class InfoItemBuilder {
         this.onItemSelectedListener = onItemSelectedListener;
     }
 
-    public void buildByHolder(InfoItemHolder holder, final StreamInfoItem info) {
+    public void buildByHolder(InfoItemHolder holder, final InfoItem i) {
+        final StreamInfoItem info = (StreamInfoItem) i;
+        if(info.infoType() != InfoItem.InfoType.STREAM) {
+            Log.e("InfoItemBuilder", "Info type not yet supported");
+        }
         // fill holder with information
         holder.itemVideoTitleView.setText(info.title);
         if(info.uploader != null && !info.uploader.isEmpty()) {
@@ -97,7 +103,7 @@ public class InfoItemBuilder {
         });
     }
 
-    public View buildView(ViewGroup parent, final StreamInfoItem info) {
+    public View buildView(ViewGroup parent, final InfoItem info) {
         View streamPreviewView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.video_item, parent, false);
         InfoItemHolder holder = new InfoItemHolder(streamPreviewView);

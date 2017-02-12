@@ -1,9 +1,5 @@
 package org.schabi.newpipe.extractor;
 
-import android.icu.text.IDNA;
-
-import static org.schabi.newpipe.extractor.InfoItem.InfoType.STREAM;
-
 /**
  * Created by the-scrabi on 11.02.17.
  *
@@ -30,6 +26,8 @@ public interface InfoItem {
         PLAYLIST,
         CHANNEL
     }
-    void setInfoType(InfoType iT);
-    InfoType getInfoType();
+
+    InfoType infoType();
+    String getTitle();
+    String getLink();
 }

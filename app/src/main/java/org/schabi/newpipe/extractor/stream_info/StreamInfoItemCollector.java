@@ -1,5 +1,6 @@
 package org.schabi.newpipe.extractor.stream_info;
 
+import org.schabi.newpipe.extractor.InfoItemCollector;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.exceptions.FoundAdException;
@@ -28,39 +29,24 @@ import java.util.Vector;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class StreamInfoItemCollector {
-    private List<StreamInfoItem> itemList = new Vector<>();
-    private List<Throwable> errors = new Vector<>();
-    private UrlIdHandler urlIdHandler;
-    private int serviceId = -1;
+public class StreamInfoItemCollector extends InfoItemCollector {
 
     public StreamInfoItemCollector(UrlIdHandler handler, int serviceId) {
-        urlIdHandler = handler;
-        this.serviceId = serviceId;
-    }
-
-    public List<StreamInfoItem> getItemList() {
-        return itemList;
-    }
-
-    public List<Throwable> getErrors() {
-        return errors;
-    }
-
-    public void addError(Exception e) {
-        errors.add(e);
+        super(handler, serviceId);
     }
 
     public void commit(StreamInfoItemExtractor extractor) throws ParsingException {
         try {
             StreamInfoItem resultItem = new StreamInfoItem();
             // importand information
-            resultItem.service_id = serviceId;
+            resultItem.service_id = getServiceId();
             resultItem.webpage_url = extractor.getWebPageUrl();
-            if (urlIdHandler == null) {
+            if (getUrlIdHandler() == null) {
                 throw new ParsingException("Error: UrlIdHandler not set");
             } else if(!resultItem.webpage_url.isEmpty()) {
-                resultItem.id = NewPipe.getService(serviceId).getUrlIdHandlerInstance().getId(resultItem.webpage_url);
+                resultItem.id = NewPipe.getService(getServiceId())
+                        .getUrlIdHandlerInstance()
+                        .getId(resultItem.webpage_url);
             }
             resultItem.title = extractor.getTitle();
             resultItem.stream_type = extractor.getStreamType();
@@ -91,7 +77,7 @@ public class StreamInfoItemCollector {
             } catch (Exception e) {
                 addError(e);
             }
-            itemList.add(resultItem);
+            addItem(resultItem);
         } catch(FoundAdException ae) {
             System.out.println("AD_WARNING: " + ae.getMessage());
         } catch (Exception e) {

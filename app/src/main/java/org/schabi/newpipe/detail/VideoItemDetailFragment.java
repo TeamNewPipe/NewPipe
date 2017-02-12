@@ -46,6 +46,7 @@ import org.schabi.newpipe.Localization;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.stream_info.AudioStream;
@@ -536,7 +537,7 @@ public class VideoItemDetailFragment extends Fragment {
 
     private void initSimilarVideos(final StreamInfo info) {
         LinearLayout similarLayout = (LinearLayout) activity.findViewById(R.id.similar_streams_view);
-        for (final StreamInfoItem item : info.related_streams) {
+        for (final InfoItem item : info.related_streams) {
             similarLayout.addView(infoItemBuilder.buildView(similarLayout, item));
         }
         infoItemBuilder.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {

@@ -2,6 +2,7 @@ package org.schabi.newpipe.extractor.stream_info;
 
 import org.schabi.newpipe.extractor.AbstractStreamInfo;
 import org.schabi.newpipe.extractor.DashMpdParser;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 
@@ -246,7 +247,7 @@ public class StreamInfo extends AbstractStreamInfo {
                 StreamInfoItemExtractor nextVideo = extractor.getNextVideo();
                 c.commit(nextVideo);
                 if(c.getItemList().size() != 0) {
-                    streamInfo.next_video = c.getItemList().get(0);
+                    streamInfo.next_video = (StreamInfoItem) c.getItemList().get(0);
                 }
                 streamInfo.errors.addAll(c.getErrors());
             }
@@ -285,7 +286,7 @@ public class StreamInfo extends AbstractStreamInfo {
     public int dislike_count = -1;
     public String average_rating = "";
     public StreamInfoItem next_video = null;
-    public List<StreamInfoItem> related_streams = null;
+    public List<InfoItem> related_streams = null;
     //in seconds. some metadata is not passed using a StreamInfo object!
     public int start_position = 0;
 

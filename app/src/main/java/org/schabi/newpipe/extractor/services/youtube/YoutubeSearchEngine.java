@@ -7,8 +7,9 @@ import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.search.InfoItemSearchCollector;
 import org.schabi.newpipe.extractor.search.SearchEngine;
-import org.schabi.newpipe.extractor.search.StreamInfoSearchItemCollector;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItemCollector;
 import org.schabi.newpipe.extractor.stream_info.StreamInfoItemExtractor;
 
 import java.net.URLEncoder;
@@ -45,9 +46,11 @@ public class YoutubeSearchEngine extends SearchEngine {
     }
 
     @Override
-    public StreamInfoSearchItemCollector search(String query, int page, String languageCode)
+    public InfoItemSearchCollector search(String query, int page, String languageCode)
             throws IOException, ExtractionException {
-        StreamInfoSearchItemCollector collector = getStreamPreviewInfoSearchCollector();
+        StreamInfoItemCollector streamCollector = getStreamPreviewInfoCollector();
+        InfoItemSearchCollector collector = getInfoItemSearchCollector();
+
 
         Downloader downloader = NewPipe.getDownloader();
 
@@ -97,13 +100,13 @@ public class YoutubeSearchEngine extends SearchEngine {
 
                 // video item type
             } else if ((el = item.select("div[class*=\"yt-lockup-video\"").first()) != null) {
-                collector.commit(extractPreviewInfo(el));
+                streamCollector.commit(extractPreviewInfo(el));
             } else {
                 //noinspection ConstantConditions
-                collector.addError(new Exception("unexpected element found:\"" + el + "\""));
+                throw new ExtractionException("unexpected element found:\"" + el + "\"");
             }
         }
-
+        collector.addFromCollector(streamCollector);
         return collector;
     }
 

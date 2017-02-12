@@ -21,8 +21,21 @@ package org.schabi.newpipe.extractor.stream_info;
  */
 
 import org.schabi.newpipe.extractor.AbstractStreamInfo;
+import org.schabi.newpipe.extractor.InfoItem;
 
 /**Info object for previews of unopened videos, eg search results, related videos*/
-public class StreamInfoItem extends AbstractStreamInfo {
+public class StreamInfoItem extends AbstractStreamInfo implements InfoItem {
     public int duration;
+
+    public InfoType infoType() {
+        return InfoType.STREAM;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getLink() {
+        return webpage_url;
+    }
 }

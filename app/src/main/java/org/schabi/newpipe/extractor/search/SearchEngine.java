@@ -2,6 +2,7 @@ package org.schabi.newpipe.extractor.search;
 
 import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItemCollector;
 
 import java.io.IOException;
 
@@ -32,18 +33,23 @@ public abstract class SearchEngine {
         }
     }
 
-    private StreamInfoSearchItemCollector collector;
+    private StreamInfoItemCollector streamCollector;
+    private InfoItemSearchCollector collector;
 
     public SearchEngine(UrlIdHandler urlIdHandler, int serviceId) {
-        collector = new StreamInfoSearchItemCollector(urlIdHandler, serviceId);
+        streamCollector = new StreamInfoItemCollector(urlIdHandler, serviceId);
+        collector = new InfoItemSearchCollector(urlIdHandler, serviceId);
     }
 
-    protected StreamInfoSearchItemCollector getStreamPreviewInfoSearchCollector() {
+    protected StreamInfoItemCollector getStreamPreviewInfoCollector() {
+        return streamCollector;
+    }
+
+    protected  InfoItemSearchCollector getInfoItemSearchCollector() {
         return collector;
     }
-
     //Result search(String query, int page);
-    public abstract StreamInfoSearchItemCollector search(
+    public abstract InfoItemSearchCollector search(
             String query, int page, String contentCountry)
             throws ExtractionException, IOException;
 }

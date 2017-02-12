@@ -75,7 +75,7 @@ public class ChannelInfo {
     public String avatar_url = "";
     public String banner_url = "";
     public String feed_url = "";
-    public List<StreamInfoItem> related_streams = null;
+    public List<InfoItem> related_streams = null;
     public boolean hasNextPage = false;
 
     public List<Throwable> errors = new Vector<>();

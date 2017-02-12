@@ -1,13 +1,13 @@
 package org.schabi.newpipe.extractor.search;
 
+import org.schabi.newpipe.extractor.InfoItemCollector;
 import org.schabi.newpipe.extractor.UrlIdHandler;
-import org.schabi.newpipe.extractor.stream_info.StreamInfoItemCollector;
 
 /**
- * Created by Christian Schabesberger on 11.05.16.
+ * Created by Christian Schabesberger on 12.02.17.
  *
- * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * StreamInfoSearchItemCollector.java is part of NewPipe.
+ * Copyright (C) Christian Schabesberger 2017 <chris.schabesberger@mailbox.org>
+ * InfoItemSearchCollector.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,11 +23,10 @@ import org.schabi.newpipe.extractor.stream_info.StreamInfoItemCollector;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class StreamInfoSearchItemCollector extends StreamInfoItemCollector {
-
+public class InfoItemSearchCollector extends InfoItemCollector {
     private String suggestion = "";
 
-    public StreamInfoSearchItemCollector(UrlIdHandler handler, int serviceId) {
+    InfoItemSearchCollector(UrlIdHandler handler, int serviceId) {
         super(handler, serviceId);
     }
 
