@@ -92,7 +92,8 @@ public class ChannelActivity extends AppCompatActivity {
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(infoListAdapter);
-        infoListAdapter.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {
+        infoListAdapter.setOnStreamItemSelectedListener(
+                new InfoItemBuilder.OnInfoItemSelectedListener() {
             @Override
             public void selected(String url) {
                 Intent detailIntent = new Intent(ChannelActivity.this, VideoItemDetailActivity.class);
@@ -172,7 +173,7 @@ public class ChannelActivity extends AppCompatActivity {
     }
 
     private void addVideos(final ChannelInfo info) {
-        infoListAdapter.addStreamItemList(info.related_streams);
+        infoListAdapter.addInfoItemList(info.related_streams);
     }
 
     private void postNewErrorToast(Handler h, final int stringResource) {

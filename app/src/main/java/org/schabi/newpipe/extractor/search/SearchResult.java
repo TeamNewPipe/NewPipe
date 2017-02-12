@@ -5,6 +5,7 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Vector;
 
@@ -30,10 +31,12 @@ import java.util.Vector;
 
 public class SearchResult {
     public static SearchResult getSearchResult(SearchEngine engine, String query,
-                                               int page, String languageCode)
+                                               int page, String languageCode, EnumSet<SearchEngine.Filter> filter)
             throws ExtractionException, IOException {
 
-        SearchResult result = engine.search(query, page, languageCode).getSearchResult();
+        SearchResult result = engine
+                .search(query, page, languageCode, filter)
+                .getSearchResult();
         if(result.resultList.isEmpty()) {
             if(result.suggestion.isEmpty()) {
                 throw new ExtractionException("Empty result despite no error");

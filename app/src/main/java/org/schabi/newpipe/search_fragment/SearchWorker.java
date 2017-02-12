@@ -16,6 +16,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 
 import java.io.IOException;
+import java.util.EnumSet;
 
 /**
  * Created by Christian Schabesberger on 02.08.16.
@@ -67,14 +68,21 @@ public class SearchWorker {
         public static final String YOUTUBE = "Youtube";
         private final String query;
         private final int page;
+        private final EnumSet<SearchEngine.Filter> filter;
         final Handler h = new Handler();
         private volatile boolean runs = true;
         private Activity a = null;
         private int serviceId = -1;
-        public SearchRunnable(int serviceId, String query, int page, Activity activity, int requestId) {
+        public SearchRunnable(int serviceId,
+                              String query,
+                              int page,
+                              EnumSet<SearchEngine.Filter> filter,
+                              Activity activity,
+                              int requestId) {
             this.serviceId = serviceId;
             this.query = query;
             this.page = page;
+            this.filter = filter;
             this.a = activity;
         }
         void terminate() {
@@ -102,7 +110,7 @@ public class SearchWorker {
                 String searchLanguage = sp.getString(searchLanguageKey,
                         a.getString(R.string.default_language_value));
                 result = SearchResult
-                        .getSearchResult(engine, query, page, searchLanguage);
+                        .getSearchResult(engine, query, page, searchLanguage, filter);
                 if(runs) {
                     h.post(new ResultRunnable(result, requestId));
                 }
@@ -180,11 +188,15 @@ public class SearchWorker {
 
     }
 
-    public void search(int serviceId, String query, int page, Activity a) {
+    public void search(int serviceId,
+                       String query,
+                       int page,
+                       Activity a,
+                       EnumSet<SearchEngine.Filter> filter) {
         if(runnable != null) {
             terminate();
         }
-        runnable = new SearchRunnable(serviceId, query, page, a, requestId);
+        runnable = new SearchRunnable(serviceId, query, page, filter, a, requestId);
         Thread thread = new Thread(runnable);
         thread.start();
     }

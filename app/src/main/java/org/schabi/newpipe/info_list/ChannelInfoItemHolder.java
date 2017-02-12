@@ -1,15 +1,19 @@
 package org.schabi.newpipe.info_list;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Christian Schabesberger on 12.02.17.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * InfoItemHolder.java is part of NewPipe.
+ * ChannelInfoItemHolder .java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,9 +29,20 @@ import org.schabi.newpipe.extractor.InfoItem;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public abstract class InfoItemHolder extends RecyclerView.ViewHolder {
-    public InfoItemHolder(View v) {
+public class ChannelInfoItemHolder extends InfoItemHolder {
+    public final CircleImageView itemThumbnailView;
+    public final TextView itemChannelTitleView;
+    public final Button itemButton;
+
+    ChannelInfoItemHolder(View v) {
         super(v);
+        itemThumbnailView = (CircleImageView) v.findViewById(R.id.itemThumbnailView);
+        itemChannelTitleView = (TextView) v.findViewById(R.id.itemChannelTitleView);
+        itemButton = (Button) v.findViewById(R.id.item_button);
     }
-    public abstract InfoItem.InfoType infoType();
+
+    @Override
+    public InfoItem.InfoType infoType() {
+        return InfoItem.InfoType.CHANNEL;
+    }
 }

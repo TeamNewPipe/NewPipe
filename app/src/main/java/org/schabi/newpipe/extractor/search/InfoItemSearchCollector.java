@@ -2,6 +2,8 @@ package org.schabi.newpipe.extractor.search;
 
 import org.schabi.newpipe.extractor.InfoItemCollector;
 import org.schabi.newpipe.extractor.UrlIdHandler;
+import org.schabi.newpipe.extractor.channel.ChannelInfoItemCollector;
+import org.schabi.newpipe.extractor.channel.ChannelInfoItemExtractor;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.stream_info.StreamInfoItemCollector;
@@ -30,10 +32,12 @@ import org.schabi.newpipe.extractor.stream_info.StreamInfoItemExtractor;
 public class InfoItemSearchCollector extends InfoItemCollector {
     private String suggestion = "";
     private StreamInfoItemCollector streamCollector;
+    private ChannelInfoItemCollector channelCollector;
 
     InfoItemSearchCollector(UrlIdHandler handler, int serviceId) {
-        super(handler, serviceId);
+        super(serviceId);
         streamCollector = new StreamInfoItemCollector(handler, serviceId);
+        channelCollector = new ChannelInfoItemCollector(serviceId);
     }
 
     public void setSuggestion(String suggestion) {
@@ -43,6 +47,7 @@ public class InfoItemSearchCollector extends InfoItemCollector {
     public SearchResult getSearchResult() throws ExtractionException {
         SearchResult result = new SearchResult();
 
+        addFromCollector(channelCollector);
         addFromCollector(streamCollector);
 
         result.suggestion = suggestion;
@@ -53,5 +58,9 @@ public class InfoItemSearchCollector extends InfoItemCollector {
 
     public void commit(StreamInfoItemExtractor extractor) throws ParsingException {
         streamCollector.commit(extractor);
+    }
+
+    public void commit(ChannelInfoItemExtractor extractor) throws ParsingException {
+        channelCollector.commit(extractor);
     }
 }

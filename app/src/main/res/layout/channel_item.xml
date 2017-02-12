@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    android:id="@+id/item_main_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp">
+
+            <RelativeLayout android:id="@+id/itemThumbnailViewContainer"
+                android:layout_marginRight="@dimen/video_item_search_image_right_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="RtlHardcoded">
+
+                <de.hdodenhof.circleimageview.CircleImageView android:id="@+id/itemThumbnailView"
+                    android:contentDescription="@string/list_thumbnail_view_description"
+                    android:layout_width="@dimen/video_item_search_thumbnail_image_width"
+                    android:layout_height="@dimen/video_item_search_thumbnail_image_height"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/buddy_channel_item"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/video_item_search_thumbnail_image_height"
+                android:layout_toRightOf="@id/itemThumbnailViewContainer"
+                tools:ignore="RtlHardcoded">
+
+                <TextView android:id="@+id/itemChannelTitleView"
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="@dimen/video_item_search_title_text_size"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/item_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackground"/>
+</FrameLayout>

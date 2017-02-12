@@ -28,11 +28,9 @@ import java.util.Vector;
 public class InfoItemCollector {
     private List<InfoItem> itemList = new Vector<>();
     private List<Throwable> errors = new Vector<>();
-    private UrlIdHandler urlIdHandler;
     private int serviceId = -1;
 
-    public InfoItemCollector(UrlIdHandler handler, int serviceId) {
-        urlIdHandler = handler;
+    public InfoItemCollector(int serviceId) {
         this.serviceId = serviceId;
     }
 
@@ -59,8 +57,5 @@ public class InfoItemCollector {
     }
     protected int getServiceId() {
         return serviceId;
-    }
-    protected UrlIdHandler getUrlIdHandler() {
-        return urlIdHandler;
     }
 }

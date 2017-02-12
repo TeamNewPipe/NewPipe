@@ -24,14 +24,18 @@ import org.schabi.newpipe.extractor.InfoItem;
 
 public class ChannelInfoItem implements InfoItem {
 
+    public int serviceId = -1;
+    public String channelName = "";
+    public String webPageUrl = "";
+    public int subscriberCount = -1;
+    public int videoAmount = -1;
+
     public InfoType infoType() {
         return InfoType.CHANNEL;
     }
-
     public String getTitle() {
         return "";
     }
-
     public String getLink() {
         return "";
     }

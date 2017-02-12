@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    android:id="@+id/item_main_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp">
+
+            <RelativeLayout android:id="@+id/itemThumbnailViewContainer"
+                android:layout_marginRight="@dimen/video_item_search_image_right_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="RtlHardcoded">
+
+                <ImageView android:id="@+id/itemThumbnailView"
+                    android:contentDescription="@string/list_thumbnail_view_description"
+                    android:layout_width="@dimen/video_item_search_thumbnail_image_width"
+                    android:layout_height="@dimen/video_item_search_thumbnail_image_height"
+                    android:scaleType="centerCrop"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/dummy_thumbnail"/>
+
+                <TextView android:id="@+id/itemDurationView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/itemThumbnailView"
+                    android:layout_alignRight="@id/itemThumbnailView"
+                    android:layout_alignEnd="@id/itemThumbnailView"
+                    android:layout_marginRight="@dimen/video_item_search_duration_margin"
+                    android:layout_marginEnd="@dimen/video_item_search_duration_margin"
+                    android:layout_marginBottom="@dimen/video_item_search_duration_margin"
+                    android:paddingTop="@dimen/video_item_search_duration_vertical_padding"
+                    android:paddingBottom="@dimen/video_item_search_duration_vertical_padding"
+                    android:paddingRight="@dimen/video_item_search_duration_horizontal_padding"
+                    android:paddingLeft="@dimen/video_item_search_duration_horizontal_padding"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="@dimen/video_item_search_duration_text_size"
+                    android:background="@color/duration_background_color"
+                    android:textColor="@color/duration_text_color"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/video_item_search_thumbnail_image_height"
+                android:layout_toRightOf="@id/itemThumbnailViewContainer"
+                tools:ignore="RtlHardcoded">
+
+                <TextView android:id="@+id/itemVideoTitleView"
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="@dimen/video_item_search_title_text_size"/>
+
+                <TextView android:id="@+id/itemUploaderView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="@dimen/video_item_search_uploader_text_size"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView android:id="@+id/itemUploadDateView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="@dimen/video_item_search_upload_date_text_size"/>
+
+                    <TextView android:id="@+id/itemViewCountView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="@dimen/video_item_search_upload_date_text_size"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/item_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackground"/>
+</FrameLayout>

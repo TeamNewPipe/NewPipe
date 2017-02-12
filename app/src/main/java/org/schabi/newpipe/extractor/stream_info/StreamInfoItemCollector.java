@@ -31,8 +31,15 @@ import java.util.Vector;
 
 public class StreamInfoItemCollector extends InfoItemCollector {
 
+    private UrlIdHandler urlIdHandler;
+
     public StreamInfoItemCollector(UrlIdHandler handler, int serviceId) {
-        super(handler, serviceId);
+        super(serviceId);
+        urlIdHandler = handler;
+    }
+
+    private UrlIdHandler getUrlIdHandler() {
+        return urlIdHandler;
     }
 
     public void commit(StreamInfoItemExtractor extractor) throws ParsingException {

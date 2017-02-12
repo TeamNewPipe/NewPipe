@@ -1,15 +1,12 @@
-package org.schabi.newpipe.info_list;
+package org.schabi.newpipe.extractor.channel;
 
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-
-import org.schabi.newpipe.extractor.InfoItem;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
 
 /**
  * Created by Christian Schabesberger on 12.02.17.
  *
- * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * InfoItemHolder.java is part of NewPipe.
+ * Copyright (C) Christian Schabesberger 2017 <chris.schabesberger@mailbox.org>
+ * ChannelInfoItemExtractor.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,9 +22,9 @@ import org.schabi.newpipe.extractor.InfoItem;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public abstract class InfoItemHolder extends RecyclerView.ViewHolder {
-    public InfoItemHolder(View v) {
-        super(v);
-    }
-    public abstract InfoItem.InfoType infoType();
+public interface ChannelInfoItemExtractor {
+    String getChannelName() throws ParsingException;
+    String getWebPageUrl() throws ParsingException;
+    int getSubscriberCount() throws ParsingException;
+    int getVideoAmount() throws ParsingException;
 }

@@ -2,13 +2,13 @@ package org.schabi.newpipe.info_list;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
 
 import java.util.List;
 import java.util.Vector;
@@ -34,47 +34,58 @@ import java.util.Vector;
  */
 
 public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
+    private static final String TAG = InfoListAdapter.class.toString();
 
     private final InfoItemBuilder infoItemBuilder;
-    private final List<InfoItem> streamList;
+    private final List<InfoItem> infoItemList;
 
     public InfoListAdapter(Activity a, View rootView) {
         infoItemBuilder = new InfoItemBuilder(a, rootView);
-        streamList = new Vector<>();
+        infoItemList = new Vector<>();
     }
 
-    public void setOnItemSelectedListener
-            (InfoItemBuilder.OnItemSelectedListener onItemSelectedListener) {
-        infoItemBuilder.setOnItemSelectedListener(onItemSelectedListener);
+    public void setOnStreamItemSelectedListener
+            (InfoItemBuilder.OnInfoItemSelectedListener onItemSelectedListener) {
+        infoItemBuilder.setOnStreamInfoItemSelectedListener(onItemSelectedListener);
     }
 
-    public void addStreamItemList(List<InfoItem> videos) {
+    public void addInfoItemList(List<InfoItem> videos) {
         if(videos!= null) {
-            streamList.addAll(videos);
+            infoItemList.addAll(videos);
             notifyDataSetChanged();
         }
     }
 
     public void clearSteamItemList() {
-        streamList.clear();
+        infoItemList.clear();
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return streamList.size();
+        return infoItemList.size();
     }
 
     @Override
     public InfoItemHolder onCreateViewHolder(ViewGroup parent, int i) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.video_item, parent, false);
-
-        return new InfoItemHolder(itemView);
+        switch(infoItemList.get(i).infoType()) {
+            case STREAM:
+                return new StreamInfoItemHolder(LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.stream_item, parent, false));
+            case CHANNEL:
+                return new ChannelInfoItemHolder(LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.channel_item, parent, false));
+            case PLAYLIST:
+                Log.e(TAG, "Playlist is not yet implemented");
+                return null;
+            default:
+                Log.e(TAG, "Trollolo");
+                return null;
+        }
     }
 
     @Override
     public void onBindViewHolder(InfoItemHolder holder, int i) {
-        infoItemBuilder.buildByHolder(holder, streamList.get(i));
+        infoItemBuilder.buildByHolder(holder, infoItemList.get(i));
     }
 }

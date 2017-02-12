@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.search.SearchEngine;
 import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -28,6 +29,8 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.detail.VideoItemDetailActivity;
 import org.schabi.newpipe.detail.VideoItemDetailFragment;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+
+import java.util.EnumSet;
 
 import static android.app.Activity.RESULT_OK;
 import static org.schabi.newpipe.ReCaptchaActivity.RECAPTCHA_REQUEST;
@@ -166,7 +169,7 @@ public class SearchInfoItemFragment extends Fragment {
         sw.setSearchWorkerResultListener(new SearchWorker.SearchWorkerResultListener() {
             @Override
             public void onResult(SearchResult result) {
-                infoListAdapter.addStreamItemList(result.resultList);
+                infoListAdapter.addInfoItemList(result.resultList);
                 setDoneLoading();
             }
 
@@ -213,7 +216,8 @@ public class SearchInfoItemFragment extends Fragment {
 
         infoListAdapter = new InfoListAdapter(getActivity(),
                 getActivity().findViewById(android.R.id.content));
-        infoListAdapter.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {
+        infoListAdapter.setOnStreamItemSelectedListener(
+                new InfoItemBuilder.OnInfoItemSelectedListener() {
             @Override
             public void selected(String url) {
                 startDetailActivity(url);
@@ -298,7 +302,11 @@ public class SearchInfoItemFragment extends Fragment {
     private void search(String query, int page) {
         isLoading = true;
         SearchWorker sw = SearchWorker.getInstance();
-        sw.search(streamingServiceId, query, page, getActivity());
+        sw.search(streamingServiceId,
+                query,
+                page,
+                getActivity(),
+                EnumSet.of(SearchEngine.Filter.CHANNEL));
     }
 
     private void setDoneLoading() {
