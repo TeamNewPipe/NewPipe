@@ -6,7 +6,7 @@
     <string name="title_videoitem_detail" translatable="false">NewPipe</string>
     <string name="view_count_text">%1$s views</string>
     <string name="upload_date_text">Published on %1$s</string>
-    <string name="no_player_found">No stream player found. Install VLC?</string>
+    <string name="no_player_found">No stream player found. Do you want to install VLC?</string>
     <string name="install">Install</string>
     <string name="cancel">Cancel</string>
     <string name="fdroid_vlc_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
@@ -17,7 +17,7 @@
     <string name="search">Search</string>
     <string name="settings">Settings</string>
     <string name="did_you_mean">Did you mean: %1$s ?</string>
-    <string name="search_page">Search page: </string>
+    <string name="search_page">"Search page: "</string>
     <string name="share_dialog_title">Share with</string>
     <string name="choose_browser">Choose browser</string>
     <string name="screen_rotation">rotation</string>
