@@ -3,6 +3,7 @@
 
     <!-- Video Item Search View Dimensions-->
     <!-- Text Size -->
+    <dimen name="channel_item_detail_title_text_size">33sp</dimen>
     <dimen name="video_item_search_title_text_size">22sp</dimen>
     <dimen name="video_item_search_duration_text_size">16sp</dimen>
     <dimen name="video_item_search_uploader_text_size">18sp</dimen>

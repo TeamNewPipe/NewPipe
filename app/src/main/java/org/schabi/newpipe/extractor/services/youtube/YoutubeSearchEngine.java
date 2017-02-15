@@ -109,7 +109,7 @@ public class YoutubeSearchEngine extends SearchEngine {
                 collector.commit(new YoutubeChannelInfoItemExtractor(el));
             } else {
                 //noinspection ConstantConditions
-                throw new ExtractionException("unexpected element found:\"" + el + "\"");
+                throw new ExtractionException("unexpected element found: \"" + el + "\"");
             }
         }
 

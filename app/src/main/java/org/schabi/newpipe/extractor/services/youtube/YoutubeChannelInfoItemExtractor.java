@@ -1,5 +1,6 @@
 package org.schabi.newpipe.extractor.services.youtube;
 
+import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItemExtractor;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.jsoup.nodes.Element;
@@ -31,19 +32,48 @@ public class YoutubeChannelInfoItemExtractor implements ChannelInfoItemExtractor
         this.el = el;
     }
 
+    public String getThumbnailUrl() throws ParsingException {
+        Element img = el.select("span[class*=\"yt-thumb-simple\"]").first()
+                .select("img").first();
+
+        String url = img.attr("abs:src");
+
+        if(url.contains("gif")) {
+            url = img.attr("abs:data-thumb");
+        }
+        return url;
+    }
+
     public String getChannelName() throws ParsingException {
-        return "";
+        return el.select("a[class*=\"yt-uix-tile-link\"]").first()
+                .text();
     }
 
     public String getWebPageUrl() throws ParsingException {
-        return "";
+        return el.select("a[class*=\"yt-uix-tile-link\"]").first()
+                .attr("abs:href");
     }
 
-    public int getSubscriberCount() throws ParsingException {
-        return 0;
+    public long getSubscriberCount() throws ParsingException {
+        return Long.parseLong(el.select("span[class*=\"yt-subscriber-count\"]").first()
+                .text().replaceAll("\\D+",""));
     }
 
     public int getVideoAmount() throws ParsingException {
-        return 0;
+        Element metaEl = el.select("ul[class*=\"yt-lockup-meta-info\"]").first();
+        if(metaEl == null) {
+            return 0;
+        } else {
+            return Integer.parseInt(metaEl.text().replaceAll("\\D+",""));
+        }
+    }
+
+    public String getDescription() throws ParsingException {
+        Element desEl = el.select("div[class*=\"yt-lockup-description\"]").first();
+        if(desEl == null) {
+            return "";
+        } else {
+            return desEl.text();
+        }
     }
 }

@@ -52,6 +52,16 @@ public class ChannelInfoItemCollector extends InfoItemCollector {
             } catch (Exception e) {
                 addError(e);
             }
+            try {
+                resultItem.thumbnailUrl = extractor.getThumbnailUrl();
+            } catch (Exception e) {
+                addError(e);
+            }
+            try {
+                resultItem.description = extractor.getDescription();
+            } catch (Exception e) {
+                addError(e);
+            }
 
             addItem(resultItem);
         } catch (Exception e) {

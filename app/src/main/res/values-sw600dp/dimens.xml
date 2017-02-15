@@ -3,6 +3,7 @@
 
     <!-- Video Item Detail View Dimensions-->
     <!-- Text Size -->
+    <dimen name="channel_item_detail_title_text_size">30sp</dimen>
     <dimen name="video_item_detail_title_text_size">20sp</dimen>
     <dimen name="video_item_detail_views_text_size">16sp</dimen>
     <dimen name="video_item_detail_likes_text_size">14sp</dimen>

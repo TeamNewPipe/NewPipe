@@ -26,17 +26,19 @@ public class ChannelInfoItem implements InfoItem {
 
     public int serviceId = -1;
     public String channelName = "";
+    public String thumbnailUrl = "";
     public String webPageUrl = "";
-    public int subscriberCount = -1;
+    public String description = "";
+    public long subscriberCount = -1;
     public int videoAmount = -1;
 
     public InfoType infoType() {
         return InfoType.CHANNEL;
     }
     public String getTitle() {
-        return "";
+        return channelName;
     }
     public String getLink() {
-        return "";
+        return webPageUrl;
     }
 }

@@ -23,8 +23,10 @@ import org.schabi.newpipe.extractor.exceptions.ParsingException;
  */
 
 public interface ChannelInfoItemExtractor {
+    String getThumbnailUrl() throws ParsingException;
     String getChannelName() throws ParsingException;
     String getWebPageUrl() throws ParsingException;
-    int getSubscriberCount() throws ParsingException;
+    String getDescription() throws ParsingException;
+    long getSubscriberCount() throws ParsingException;
     int getVideoAmount() throws ParsingException;
 }

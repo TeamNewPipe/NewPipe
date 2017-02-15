@@ -39,7 +39,9 @@ public class SearchResult {
                 .getSearchResult();
         if(result.resultList.isEmpty()) {
             if(result.suggestion.isEmpty()) {
-                throw new ExtractionException("Empty result despite no error");
+                if(result.errors.isEmpty()) {
+                    throw new ExtractionException("Empty result despite no error");
+                }
             } else {
                 // This is used as a fallback. Do not relay on it !!!
                 throw new SearchEngine.NothingFoundException(result.suggestion);

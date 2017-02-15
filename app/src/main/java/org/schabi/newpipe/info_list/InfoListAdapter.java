@@ -44,9 +44,14 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
         infoItemList = new Vector<>();
     }
 
-    public void setOnStreamItemSelectedListener
-            (InfoItemBuilder.OnInfoItemSelectedListener onItemSelectedListener) {
-        infoItemBuilder.setOnStreamInfoItemSelectedListener(onItemSelectedListener);
+    public void setOnStreamInfoItemSelectedListener
+            (InfoItemBuilder.OnInfoItemSelectedListener listener) {
+        infoItemBuilder.setOnStreamInfoItemSelectedListener(listener);
+    }
+
+    public void setOnChannelInfoItemSelectedListener
+            (InfoItemBuilder.OnInfoItemSelectedListener listener) {
+        infoItemBuilder.setOnChannelInfoItemSelectedListener(listener);
     }
 
     public void addInfoItemList(List<InfoItem> videos) {

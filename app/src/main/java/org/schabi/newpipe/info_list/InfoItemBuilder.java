@@ -39,9 +39,17 @@ import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
 
 public class InfoItemBuilder {
 
+    final String viewsS;
+    final String videosS;
+    final String subsS;
+
+    final String thousand;
+    final String million;
+    final String billion;
+
     private static final String TAG = InfoItemBuilder.class.toString();
     public interface OnInfoItemSelectedListener {
-        void selected(String url);
+        void selected(String url, int serviceId);
     }
 
     private Activity activity = null;
@@ -55,6 +63,12 @@ public class InfoItemBuilder {
     public InfoItemBuilder(Activity a, View rootView) {
         activity = a;
         this.rootView = rootView;
+        viewsS = a.getString(R.string.views);
+        videosS = a.getString(R.string.videos);
+        subsS = a.getString(R.string.subscriber);
+        thousand = a.getString(R.string.short_thousand);
+        million = a.getString(R.string.short_million);
+        billion = a.getString(R.string.short_billion);
     }
 
     public void setOnStreamInfoItemSelectedListener(
@@ -146,32 +160,55 @@ public class InfoItemBuilder {
         holder.itemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onStreamInfoItemSelectedListener.selected(info.webpage_url);
+                onStreamInfoItemSelectedListener.selected(info.webpage_url, info.service_id);
             }
         });
     }
 
     private void buildChannelInfoItem(ChannelInfoItemHolder holder, final ChannelInfoItem info) {
         holder.itemChannelTitleView.setText(info.getTitle());
+        holder.itemSubscriberCountView.setText(shortSubscriber(info.subscriberCount) + " • ");
+        holder.itemVideoCountView.setText(info.videoAmount + " " + videosS);
+        holder.itemChannelDescriptionView.setText(info.description);
+
+        holder.itemThumbnailView.setImageResource(R.drawable.buddy_channel_item);
+        if(info.thumbnailUrl != null && !info.thumbnailUrl.isEmpty()) {
+            imageLoader.displayImage(info.thumbnailUrl,
+                    holder.itemThumbnailView,
+                    displayImageOptions,
+                    new ImageErrorLoadingListener(activity, rootView, info.serviceId));
+        }
+
         holder.itemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onChannelInfoItemSelectedListener.selected(info.getLink());
+                onChannelInfoItemSelectedListener.selected(info.getLink(), info.serviceId);
             }
         });
     }
 
 
-
-    public static String shortViewCount(Long viewCount){
+    public String shortViewCount(Long viewCount){
         if(viewCount >= 1000000000){
-            return Long.toString(viewCount/1000000000)+"B views";
+            return Long.toString(viewCount/1000000000)+ billion + " " + viewsS;
         }else if(viewCount>=1000000){
-            return Long.toString(viewCount/1000000)+"M views";
+            return Long.toString(viewCount/1000000)+ million + " " + viewsS;
         }else if(viewCount>=1000){
-            return Long.toString(viewCount/1000)+"K views";
+            return Long.toString(viewCount/1000)+ thousand + " " + viewsS;
         }else {
-            return Long.toString(viewCount)+" views";
+            return Long.toString(viewCount)+ " " + viewsS;
+        }
+    }
+
+    public String shortSubscriber(Long viewCount){
+        if(viewCount >= 1000000000){
+            return Long.toString(viewCount/1000000000)+ billion + " " + subsS;
+        }else if(viewCount>=1000000){
+            return Long.toString(viewCount/1000000)+ million + " " + subsS;
+        }else if(viewCount>=1000){
+            return Long.toString(viewCount/1000)+ thousand + " " + subsS;
+        }else {
+            return Long.toString(viewCount)+ " " + subsS;
         }
     }
 

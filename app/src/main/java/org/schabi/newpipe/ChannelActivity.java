@@ -1,18 +1,24 @@
 package org.schabi.newpipe;
 
+import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -33,6 +39,9 @@ import org.schabi.newpipe.report.ErrorActivity;
 
 import java.io.IOException;
 import java.util.Objects;
+
+import static android.os.Build.VERSION.SDK;
+import static android.os.Build.VERSION.SDK_INT;
 
 /**
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
@@ -87,15 +96,17 @@ public class ChannelActivity extends AppCompatActivity {
         channelUrl = i.getStringExtra(CHANNEL_URL);
         serviceId = i.getIntExtra(SERVICE_ID, -1);
 
+        setTranslucentStatusBar(getWindow());
+
         infoListAdapter = new InfoListAdapter(this, rootView);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.channel_streams_view);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(infoListAdapter);
-        infoListAdapter.setOnStreamItemSelectedListener(
+        infoListAdapter.setOnStreamInfoItemSelectedListener(
                 new InfoItemBuilder.OnInfoItemSelectedListener() {
             @Override
-            public void selected(String url) {
+            public void selected(String url, int serviceId) {
                 Intent detailIntent = new Intent(ChannelActivity.this, VideoItemDetailActivity.class);
                 detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, url);
                 detailIntent.putExtra(
@@ -245,9 +256,13 @@ public class ChannelActivity extends AppCompatActivity {
                     });
                     pe.printStackTrace();
                 } catch(ExtractionException ex) {
+                    String name = "none";
+                    if(service != null) {
+                        name = service.getServiceInfo().name;
+                    }
                     ErrorActivity.reportError(h, ChannelActivity.this, ex, VideoItemDetailFragment.class, null,
                             ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL,
-                                    service.getServiceInfo().name, channelUrl, R.string.parsing_error));
+                                    name, channelUrl, R.string.parsing_error));
                     h.post(new Runnable() {
                         @Override
                         public void run() {
@@ -271,6 +286,30 @@ public class ChannelActivity extends AppCompatActivity {
         });
 
         channelExtractorThread.start();
+    }
+
+
+    // fix transparent statusbar fuckup (fuck google why can't they just leave something that worked
+    // as it is, and everyone gets happy)
+    public static void setTranslucentStatusBar(Window window) {
+        if (window == null) return;
+        int sdkInt = Build.VERSION.SDK_INT;
+        if (sdkInt >= Build.VERSION_CODES.LOLLIPOP) {
+            setTranslucentStatusBarLollipop(window);
+        } else if (sdkInt >= Build.VERSION_CODES.KITKAT) {
+            setTranslucentStatusBarKiKat(window);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private static void setTranslucentStatusBarLollipop(Window window) {
+        window.setStatusBarColor(
+                ContextCompat.getColor(window.getContext(), android.R.color.transparent));
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    private static void setTranslucentStatusBarKiKat(Window window) {
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
     }
 
 }

@@ -19,6 +19,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import org.schabi.newpipe.ChannelActivity;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.search.SearchEngine;
@@ -216,11 +217,17 @@ public class SearchInfoItemFragment extends Fragment {
 
         infoListAdapter = new InfoListAdapter(getActivity(),
                 getActivity().findViewById(android.R.id.content));
-        infoListAdapter.setOnStreamItemSelectedListener(
+        infoListAdapter.setOnStreamInfoItemSelectedListener(
                 new InfoItemBuilder.OnInfoItemSelectedListener() {
             @Override
-            public void selected(String url) {
+            public void selected(String url, int serviceId) {
                 startDetailActivity(url);
+            }
+        });
+        infoListAdapter.setOnChannelInfoItemSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener() {
+            @Override
+            public void selected(String url, int serviceId) {
+                startChannelActivity(url, serviceId);
             }
         });
         recyclerView.setAdapter(infoListAdapter);
@@ -252,6 +259,13 @@ public class SearchInfoItemFragment extends Fragment {
         i.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
         i.putExtra(VideoItemDetailFragment.VIDEO_URL, url);
         getActivity().startActivity(i);
+    }
+
+    private void startChannelActivity(String url, int serviceId) {
+        Intent i = new Intent(getActivity(), ChannelActivity.class);
+        i.putExtra(ChannelActivity.CHANNEL_URL, url);
+        i.putExtra(ChannelActivity.SERVICE_ID, serviceId);
+        startActivity(i);
     }
 
     @Override

@@ -543,7 +543,7 @@ public class VideoItemDetailFragment extends Fragment {
         infoItemBuilder.setOnStreamInfoItemSelectedListener(
                 new InfoItemBuilder.OnInfoItemSelectedListener() {
             @Override
-            public void selected(String url) {
+            public void selected(String url, int serviceId) {
                 openStreamUrl(url);
             }
         });

@@ -136,8 +136,9 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
             if(!isAjaxPage) {
                 Element el = doc.select("div[id=\"gh-banner\"]").first().select("style").first();
                 String cssContent = el.html();
-                String url = "https:" + Parser.matchGroup1("url\\(([^)]+)\\)", cssContent);
-                if (url.contains("s.ytimg.com")) {
+                String url = Parser.matchGroup1("url\\(([^)]+)\\)", cssContent);
+
+                if (url.contains("s.ytimg.com") || url.contains("default_banner")) {
                     bannerUrl = null;
                 } else {
                     bannerUrl = url;

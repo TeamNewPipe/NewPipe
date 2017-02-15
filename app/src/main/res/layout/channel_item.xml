@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout
-    android:id="@+id/item_main_layout"
+<FrameLayout android:id="@+id/item_main_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
@@ -46,13 +46,35 @@
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textSize="@dimen/video_item_search_title_text_size"/>
+                    android:textSize="@dimen/channel_item_detail_title_text_size"/>
+
+                <TextView android:id="@+id/itemChannelDescriptionView"
+                    android:layout_weight="2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="@dimen/video_item_search_uploader_text_size"/>
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+                    <TextView android:id="@+id/itemSubscriberCountView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="@dimen/video_item_search_upload_date_text_size"
+                        android:text="1000 subs"/>
+
+                    <TextView android:id="@+id/itemVideoCountView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="@dimen/video_item_search_upload_date_text_size"
+                        android:text="1000 vids"/>
                 </LinearLayout>
 
 

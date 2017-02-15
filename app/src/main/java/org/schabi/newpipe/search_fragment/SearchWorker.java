@@ -117,6 +117,7 @@ public class SearchWorker {
 
                 // look for errors during extraction
                 // soft errors:
+                View rootView = a.findViewById(android.R.id.content);
                 if(result != null &&
                         !result.errors.isEmpty()) {
                     Log.e(TAG, "OCCURRED ERRORS DURING SEARCH EXTRACTION:");
@@ -125,11 +126,17 @@ public class SearchWorker {
                         Log.e(TAG, "------");
                     }
 
-                    View rootView = a.findViewById(android.R.id.content);
-                    ErrorActivity.reportError(h, a, result.errors, null, rootView,
-                            ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
-                            serviceName, query, R.string.light_parsing_error));
-
+                    if(result.resultList.isEmpty()&& !result.errors.isEmpty()) {
+                        // if it compleatly failes dont show snackbar, instead show error directlry
+                        ErrorActivity.reportError(h, a, result.errors, null, null,
+                                ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
+                                        serviceName, query, R.string.parsing_error));
+                    } else {
+                        // if it partly show snackbar
+                        ErrorActivity.reportError(h, a, result.errors, null, rootView,
+                                ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
+                                        serviceName, query, R.string.light_parsing_error));
+                    }
                 }
                 // hard errors:
             } catch (ReCaptchaException e) {

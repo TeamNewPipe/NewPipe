@@ -138,6 +138,12 @@
 
     <string name="switch_mode">Zwischen Liste und Gitter umschalten</string>
 
+    <string name="videos">Videos</string>
+    <string name="subscriber">Abonenten</string>
+    <string name="views">Aufrufe</string>
+    <string name="short_thousand">Tsd.</string>
+    <string name="short_million">Mio.</string>
+    <string name="short_billion">Mrd.</string>
 
     <string name="msg_url">Download-URL</string>
     <string name="msg_name">Dateiname</string>
