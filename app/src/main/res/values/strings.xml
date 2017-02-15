@@ -84,6 +84,8 @@
     <string name="downloads_title">Downloads</string>
     <string name="settings_title">Settings</string>
     <string name="error_report_title">Error report</string>
+    <string name="all">All</string>
+    <string name="channel">Channel</string>
 
     <!-- error strings -->
     <string name="general_error">Error</string>

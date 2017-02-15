@@ -82,6 +82,8 @@ public class InfoItemBuilder {
     }
 
     public void buildByHolder(InfoItemHolder holder, final InfoItem i) {
+        if(i.infoType() != holder.infoType())
+            return;
         switch(i.infoType()) {
             case STREAM:
                 buildStreamInfoItem((StreamInfoItemHolder) holder, (StreamInfoItem) i);

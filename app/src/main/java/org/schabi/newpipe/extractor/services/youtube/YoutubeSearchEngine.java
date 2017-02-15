@@ -108,8 +108,9 @@ public class YoutubeSearchEngine extends SearchEngine {
             } else if((el = item.select("div[class*=\"yt-lockup-channel\"]").first()) != null) {
                 collector.commit(new YoutubeChannelInfoItemExtractor(el));
             } else {
-                //noinspection ConstantConditions
-                throw new ExtractionException("unexpected element found: \"" + el + "\"");
+                // noinspection ConstantConditions
+                // simply ignore not known items
+                // throw new ExtractionException("unexpected element found: \"" + item + "\"");
             }
         }
 

@@ -83,9 +83,12 @@ public class YoutubeStreamInfoItemExtractor implements StreamInfoItemExtractor {
     @Override
     public String getUploadDate() throws ParsingException {
         try {
-            return item.select("div[class=\"yt-lockup-meta\"]").first()
-                    .select("li").first()
-                    .text();
+            Element div = item.select("div[class=\"yt-lockup-meta\"]").first();
+            if(div == null) {
+                return null;
+            } else {
+                return div.select("li").first().text();
+            }
         } catch(Exception e) {
             throw new ParsingException("Could not get uplaod date", e);
         }
@@ -96,9 +99,13 @@ public class YoutubeStreamInfoItemExtractor implements StreamInfoItemExtractor {
         String output;
         String input;
         try {
-            input = item.select("div[class=\"yt-lockup-meta\"]").first()
-                    .select("li").get(1)
-                    .text();
+            Element div = item.select("div[class=\"yt-lockup-meta\"]").first();
+            if(div == null) {
+                return -1;
+            } else {
+                input = div.select("li").get(1)
+                        .text();
+            }
         } catch (IndexOutOfBoundsException e) {
             if(isLiveStream(item)) {
                 // -1 for no view count

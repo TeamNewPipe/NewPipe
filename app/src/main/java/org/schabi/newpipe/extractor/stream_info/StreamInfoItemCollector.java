@@ -42,49 +42,54 @@ public class StreamInfoItemCollector extends InfoItemCollector {
         return urlIdHandler;
     }
 
+    public StreamInfoItem extract(StreamInfoItemExtractor extractor) throws Exception {
+
+        StreamInfoItem resultItem = new StreamInfoItem();
+        // importand information
+        resultItem.service_id = getServiceId();
+        resultItem.webpage_url = extractor.getWebPageUrl();
+        if (getUrlIdHandler() == null) {
+            throw new ParsingException("Error: UrlIdHandler not set");
+        } else if (!resultItem.webpage_url.isEmpty()) {
+            resultItem.id = NewPipe.getService(getServiceId())
+                    .getUrlIdHandlerInstance()
+                    .getId(resultItem.webpage_url);
+        }
+        resultItem.title = extractor.getTitle();
+        resultItem.stream_type = extractor.getStreamType();
+
+        // optional information
+        try {
+            resultItem.duration = extractor.getDuration();
+        } catch (Exception e) {
+            addError(e);
+        }
+        try {
+            resultItem.uploader = extractor.getUploader();
+        } catch (Exception e) {
+            addError(e);
+        }
+        try {
+            resultItem.upload_date = extractor.getUploadDate();
+        } catch (Exception e) {
+            addError(e);
+        }
+        try {
+            resultItem.view_count = extractor.getViewCount();
+        } catch (Exception e) {
+            addError(e);
+        }
+        try {
+            resultItem.thumbnail_url = extractor.getThumbnailUrl();
+        } catch (Exception e) {
+            addError(e);
+        }
+        return resultItem;
+    }
+
     public void commit(StreamInfoItemExtractor extractor) throws ParsingException {
         try {
-            StreamInfoItem resultItem = new StreamInfoItem();
-            // importand information
-            resultItem.service_id = getServiceId();
-            resultItem.webpage_url = extractor.getWebPageUrl();
-            if (getUrlIdHandler() == null) {
-                throw new ParsingException("Error: UrlIdHandler not set");
-            } else if(!resultItem.webpage_url.isEmpty()) {
-                resultItem.id = NewPipe.getService(getServiceId())
-                        .getUrlIdHandlerInstance()
-                        .getId(resultItem.webpage_url);
-            }
-            resultItem.title = extractor.getTitle();
-            resultItem.stream_type = extractor.getStreamType();
-
-            // optional information
-            try {
-                resultItem.duration = extractor.getDuration();
-            } catch (Exception e) {
-                addError(e);
-            }
-            try {
-                resultItem.uploader = extractor.getUploader();
-            } catch (Exception e) {
-                addError(e);
-            }
-            try {
-                resultItem.upload_date = extractor.getUploadDate();
-            } catch (Exception e) {
-                addError(e);
-            }
-            try {
-                resultItem.view_count = extractor.getViewCount();
-            } catch (Exception e) {
-                addError(e);
-            }
-            try {
-                resultItem.thumbnail_url = extractor.getThumbnailUrl();
-            } catch (Exception e) {
-                addError(e);
-            }
-            addItem(resultItem);
+            addItem(extract(extractor));
         } catch(FoundAdException ae) {
             System.out.println("AD_WARNING: " + ae.getMessage());
         } catch (Exception e) {

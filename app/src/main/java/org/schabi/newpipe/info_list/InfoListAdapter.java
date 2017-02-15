@@ -71,16 +71,32 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
         return infoItemList.size();
     }
 
+    // don't ask why we have to do that this way... it's android accept it -.-
     @Override
-    public InfoItemHolder onCreateViewHolder(ViewGroup parent, int i) {
-        switch(infoItemList.get(i).infoType()) {
+    public int getItemViewType(int position) {
+        switch(infoItemList.get(position).infoType()) {
             case STREAM:
+                return 0;
+            case CHANNEL:
+                return 1;
+            case PLAYLIST:
+                return 2;
+            default:
+                Log.e(TAG, "Trollolo");
+                return -1;
+        }
+    }
+
+    @Override
+    public InfoItemHolder onCreateViewHolder(ViewGroup parent, int type) {
+        switch(type) {
+            case 0:
                 return new StreamInfoItemHolder(LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.stream_item, parent, false));
-            case CHANNEL:
+            case 1:
                 return new ChannelInfoItemHolder(LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.channel_item, parent, false));
-            case PLAYLIST:
+            case 2:
                 Log.e(TAG, "Playlist is not yet implemented");
                 return null;
             default:

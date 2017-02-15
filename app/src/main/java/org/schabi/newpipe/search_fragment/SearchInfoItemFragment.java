@@ -60,6 +60,9 @@ public class SearchInfoItemFragment extends Fragment {
 
     private static final String TAG = SearchInfoItemFragment.class.toString();
 
+    private EnumSet<SearchEngine.Filter> filter =
+            EnumSet.of(SearchEngine.Filter.CHANNEL, SearchEngine.Filter.VIDEO);
+
     /**
      * Listener for search queries
      */
@@ -293,6 +296,32 @@ public class SearchInfoItemFragment extends Fragment {
         setupSearchView(searchView);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.menu_filter_all:
+                changeFilter(item, EnumSet.of(SearchEngine.Filter.VIDEO, SearchEngine.Filter.CHANNEL));
+                return true;
+            case R.id.menu_filter_video:
+                changeFilter(item, EnumSet.of(SearchEngine.Filter.VIDEO));
+                return true;
+            case R.id.menu_filter_channel:
+                changeFilter(item, EnumSet.of(SearchEngine.Filter.CHANNEL));
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    private void changeFilter(MenuItem item, EnumSet<SearchEngine.Filter> filter) {
+        this.filter = filter;
+        item.setChecked(true);
+        if(searchQuery != null && !searchQuery.isEmpty()) {
+            Log.d(TAG, "Fuck+ " + searchQuery);
+            search(searchQuery);
+        }
+    }
+
     private void setupSearchView(SearchView searchView) {
         suggestionListAdapter = new SuggestionListAdapter(getActivity());
         searchView.setSuggestionsAdapter(suggestionListAdapter);
@@ -320,7 +349,7 @@ public class SearchInfoItemFragment extends Fragment {
                 query,
                 page,
                 getActivity(),
-                EnumSet.of(SearchEngine.Filter.CHANNEL));
+                filter);
     }
 
     private void setDoneLoading() {

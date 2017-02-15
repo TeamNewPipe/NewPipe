@@ -55,8 +55,12 @@ public class YoutubeChannelInfoItemExtractor implements ChannelInfoItemExtractor
     }
 
     public long getSubscriberCount() throws ParsingException {
-        return Long.parseLong(el.select("span[class*=\"yt-subscriber-count\"]").first()
-                .text().replaceAll("\\D+",""));
+        Element subsEl = el.select("span[class*=\"yt-subscriber-count\"]").first();
+        if(subsEl == null) {
+            return 0;
+        } else {
+            return Integer.parseInt(subsEl.text().replaceAll("\\D+",""));
+        }
     }
 
     public int getVideoAmount() throws ParsingException {

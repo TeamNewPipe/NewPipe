@@ -32,38 +32,41 @@ public class ChannelInfoItemCollector extends InfoItemCollector {
         super(serviceId);
     }
 
+    public ChannelInfoItem extract(ChannelInfoItemExtractor extractor) throws ParsingException {
+        ChannelInfoItem resultItem = new ChannelInfoItem();
+        // importand information
+        resultItem.channelName = extractor.getChannelName();
+
+        resultItem.serviceId = getServiceId();
+        resultItem.webPageUrl = extractor.getWebPageUrl();
+
+        // optional information
+        try {
+            resultItem.subscriberCount = extractor.getSubscriberCount();
+        } catch (Exception e) {
+            addError(e);
+        }
+        try {
+            resultItem.videoAmount = extractor.getVideoAmount();
+        } catch (Exception e) {
+            addError(e);
+        }
+        try {
+            resultItem.thumbnailUrl = extractor.getThumbnailUrl();
+        } catch (Exception e) {
+            addError(e);
+        }
+        try {
+            resultItem.description = extractor.getDescription();
+        } catch (Exception e) {
+            addError(e);
+        }
+        return resultItem;
+    }
+
     public void commit(ChannelInfoItemExtractor extractor) throws ParsingException {
         try {
-            ChannelInfoItem resultItem = new ChannelInfoItem();
-            // importand information
-            resultItem.channelName = extractor.getChannelName();
-
-            resultItem.serviceId = getServiceId();
-            resultItem.webPageUrl = extractor.getWebPageUrl();
-
-            // optional information
-            try {
-                resultItem.subscriberCount = extractor.getSubscriberCount();
-            } catch (Exception e) {
-                addError(e);
-            }
-            try {
-                resultItem.videoAmount = extractor.getVideoAmount();
-            } catch (Exception e) {
-                addError(e);
-            }
-            try {
-                resultItem.thumbnailUrl = extractor.getThumbnailUrl();
-            } catch (Exception e) {
-                addError(e);
-            }
-            try {
-                resultItem.description = extractor.getDescription();
-            } catch (Exception e) {
-                addError(e);
-            }
-
-            addItem(resultItem);
+            addItem(extract(extractor));
         } catch (Exception e) {
             addError(e);
         }

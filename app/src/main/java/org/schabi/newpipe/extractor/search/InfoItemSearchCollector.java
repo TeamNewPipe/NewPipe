@@ -5,6 +5,7 @@ import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItemCollector;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItemExtractor;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.exceptions.FoundAdException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.stream_info.StreamInfoItemCollector;
 import org.schabi.newpipe.extractor.stream_info.StreamInfoItemExtractor;
@@ -34,6 +35,8 @@ public class InfoItemSearchCollector extends InfoItemCollector {
     private StreamInfoItemCollector streamCollector;
     private ChannelInfoItemCollector channelCollector;
 
+    SearchResult result = new SearchResult();
+
     InfoItemSearchCollector(UrlIdHandler handler, int serviceId) {
         super(serviceId);
         streamCollector = new StreamInfoItemCollector(handler, serviceId);
@@ -45,22 +48,32 @@ public class InfoItemSearchCollector extends InfoItemCollector {
     }
 
     public SearchResult getSearchResult() throws ExtractionException {
-        SearchResult result = new SearchResult();
 
         addFromCollector(channelCollector);
         addFromCollector(streamCollector);
 
         result.suggestion = suggestion;
         result.errors = getErrors();
-        result.resultList = getItemList();
         return result;
     }
 
-    public void commit(StreamInfoItemExtractor extractor) throws ParsingException {
-        streamCollector.commit(extractor);
+    public void commit(StreamInfoItemExtractor extractor) {
+        try {
+            result.resultList.add(streamCollector.extract(extractor));
+        } catch(FoundAdException ae) {
+            System.err.println("Found add");
+        } catch (Exception e) {
+            addError(e);
+        }
     }
 
-    public void commit(ChannelInfoItemExtractor extractor) throws ParsingException {
-        channelCollector.commit(extractor);
+    public void commit(ChannelInfoItemExtractor extractor) {
+        try {
+            result.resultList.add(channelCollector.extract(extractor));
+        } catch(FoundAdException ae) {
+            System.err.println("Found add");
+        } catch (Exception e) {
+            addError(e);
+        }
     }
 }
