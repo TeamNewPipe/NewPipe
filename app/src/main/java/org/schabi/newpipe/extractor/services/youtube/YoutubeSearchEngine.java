@@ -58,9 +58,9 @@ public class YoutubeSearchEngine extends SearchEngine {
         String url = "https://www.youtube.com/results"
                 + "?q=" + URLEncoder.encode(query, CHARSET_UTF_8)
                 + "&page=" + Integer.toString(page + 1);
-        if(filter.contains(Filter.VIDEO) && !filter.contains(Filter.CHANNEL)) {
+        if(filter.contains(Filter.STREAM) && !filter.contains(Filter.CHANNEL)) {
             url += "&sp=EgIQAQ%253D%253D";
-        } else if(!filter.contains(Filter.VIDEO) && filter.contains(Filter.CHANNEL)) {
+        } else if(!filter.contains(Filter.STREAM) && filter.contains(Filter.CHANNEL)) {
             url += "&sp=EgIQAg%253D%253D";
         }
 

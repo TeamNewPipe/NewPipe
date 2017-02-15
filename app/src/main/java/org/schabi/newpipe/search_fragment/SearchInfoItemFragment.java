@@ -61,7 +61,7 @@ public class SearchInfoItemFragment extends Fragment {
     private static final String TAG = SearchInfoItemFragment.class.toString();
 
     private EnumSet<SearchEngine.Filter> filter =
-            EnumSet.of(SearchEngine.Filter.CHANNEL, SearchEngine.Filter.VIDEO);
+            EnumSet.of(SearchEngine.Filter.CHANNEL, SearchEngine.Filter.STREAM);
 
     /**
      * Listener for search queries
@@ -300,10 +300,10 @@ public class SearchInfoItemFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.menu_filter_all:
-                changeFilter(item, EnumSet.of(SearchEngine.Filter.VIDEO, SearchEngine.Filter.CHANNEL));
+                changeFilter(item, EnumSet.of(SearchEngine.Filter.STREAM, SearchEngine.Filter.CHANNEL));
                 return true;
             case R.id.menu_filter_video:
-                changeFilter(item, EnumSet.of(SearchEngine.Filter.VIDEO));
+                changeFilter(item, EnumSet.of(SearchEngine.Filter.STREAM));
                 return true;
             case R.id.menu_filter_channel:
                 changeFilter(item, EnumSet.of(SearchEngine.Filter.CHANNEL));

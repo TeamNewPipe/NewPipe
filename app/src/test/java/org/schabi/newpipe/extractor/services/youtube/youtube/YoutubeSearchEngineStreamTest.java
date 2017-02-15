@@ -1,19 +1,26 @@
-package org.schabi.newpipe.extractor.youtube;
+package org.schabi.newpipe.extractor.services.youtube.youtube;
 
-import android.test.AndroidTestCase;
+import org.junit.Before;
+import org.junit.Test;
 
 import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.search.SearchEngine;
 import org.schabi.newpipe.extractor.search.SearchResult;
 
-import java.util.List;
+import java.util.EnumSet;
+
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
+
 
 /**
  * Created by Christian Schabesberger on 29.12.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
- * YoutubeSearchEngineTest.java is part of NewPipe.
+ * YoutubeSearchEngineStreamTest.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,26 +36,37 @@ import java.util.List;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class YoutubeSearchEngineTest extends AndroidTestCase {
+/**
+ * Test for {@link SearchEngine}
+ */
+public class YoutubeSearchEngineStreamTest {
     private SearchResult result;
 
-    @Override
+    @Before
     public void setUp() throws Exception {
-        super.setUp();
         NewPipe.init(Downloader.getInstance());
         SearchEngine engine = NewPipe.getService("Youtube").getSearchEngineInstance();
 
-        result = engine.search("this is something boring", 0, "de").getSearchResult();
+        result = engine.search("this is something boring", 0, "de",
+                EnumSet.of(SearchEngine.Filter.STREAM)).getSearchResult();
     }
 
+    @Test
     public void testResultList() {
         assertFalse(result.resultList.isEmpty());
     }
 
+    @Test
+    public void testChannelItemType() {
+        assertEquals(result.resultList.get(0).infoType(), InfoItem.InfoType.STREAM);
+    }
+
+    @Test
     public void testResultErrors() {
         assertTrue(result.errors == null || result.errors.isEmpty());
     }
 
+    @Test
     public void testSuggestion() {
         //todo write a real test
         assertTrue(result.suggestion != null);

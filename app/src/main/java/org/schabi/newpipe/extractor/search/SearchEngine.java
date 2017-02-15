@@ -29,7 +29,7 @@ import java.util.EnumSet;
 
 public abstract class SearchEngine {
     public enum Filter {
-        VIDEO, CHANNEL, PLAY_LIST
+        STREAM, CHANNEL, PLAY_LIST
     }
 
     public static class NothingFoundException extends ExtractionException {

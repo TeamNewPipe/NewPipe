@@ -1,13 +1,13 @@
-package org.schabi.newpipe.extractor.youtube;
+package org.schabi.newpipe.extractor.services.youtube.youtube;
 
-import android.test.AndroidTestCase;
-
+import org.junit.Test;
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
-
 import java.io.IOException;
+
+import static junit.framework.Assert.assertTrue;
 
 /**
  * Created by Christian Schabesberger on 30.12.15.
@@ -31,11 +31,15 @@ import java.io.IOException;
 
 
 // This class only works in Germany.
-public class YoutubeStreamExtractorGemaTest extends AndroidTestCase {
+/**
+ * Test for {@link YoutubeStreamExtractor}
+ */
+public class YoutubeStreamExtractorGemaTest {
 
     // Deaktivate this Test Case bevore uploading it githup, otherwise CI will fail.
     private static final boolean testActive = false;
 
+    @Test
     public void testGemaError() throws IOException, ExtractionException {
         if(testActive) {
             try {
