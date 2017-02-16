@@ -15,12 +15,12 @@
     <item android:id="@+id/menu_item_share"
         android:title="@string/share"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_share_black"/>
+        android:icon="?attr/share"/>
 
     <item android:id="@+id/action_play_with_kodi"
         android:title="@string/play_with_kodi_title"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_cast_black"/>
+        android:icon="?attr/cast"/>
 
     <item android:id="@+id/menu_item_openInBrowser"
         app:showAsAction="never"

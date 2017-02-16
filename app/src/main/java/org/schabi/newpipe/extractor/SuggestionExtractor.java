@@ -1,4 +1,4 @@
-package org.schabi.newpipe.extractor.search;
+package org.schabi.newpipe.extractor;
 
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 

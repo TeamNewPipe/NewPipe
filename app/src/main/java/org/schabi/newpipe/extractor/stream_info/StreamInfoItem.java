@@ -4,7 +4,7 @@ package org.schabi.newpipe.extractor.stream_info;
  * Created by Christian Schabesberger on 26.08.15.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * StreamPreviewInfo.java is part of NewPipe.
+ * StreamInfoItem.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,8 +21,21 @@ package org.schabi.newpipe.extractor.stream_info;
  */
 
 import org.schabi.newpipe.extractor.AbstractStreamInfo;
+import org.schabi.newpipe.extractor.InfoItem;
 
 /**Info object for previews of unopened videos, eg search results, related videos*/
-public class StreamPreviewInfo extends AbstractStreamInfo {
+public class StreamInfoItem extends AbstractStreamInfo implements InfoItem {
     public int duration;
+
+    public InfoType infoType() {
+        return InfoType.STREAM;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getLink() {
+        return webpage_url;
+    }
 }

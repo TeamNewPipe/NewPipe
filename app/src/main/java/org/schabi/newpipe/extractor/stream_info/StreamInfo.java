@@ -2,6 +2,7 @@ package org.schabi.newpipe.extractor.stream_info;
 
 import org.schabi.newpipe.extractor.AbstractStreamInfo;
 import org.schabi.newpipe.extractor.DashMpdParser;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 
@@ -55,14 +56,14 @@ public class StreamInfo extends AbstractStreamInfo {
         this.view_count = avi.view_count;
 
         //todo: better than this
-        if(avi instanceof StreamPreviewInfo) {
+        if(avi instanceof StreamInfoItem) {
             //shitty String to convert code
             /*
-            String dur = ((StreamPreviewInfo)avi).duration;
+            String dur = ((StreamInfoItem)avi).duration;
             int minutes = Integer.parseInt(dur.substring(0, dur.indexOf(":")));
             int seconds = Integer.parseInt(dur.substring(dur.indexOf(":")+1, dur.length()));
             */
-            this.duration = ((StreamPreviewInfo)avi).duration;
+            this.duration = ((StreamInfoItem)avi).duration;
         }
     }
 
@@ -241,12 +242,12 @@ public class StreamInfo extends AbstractStreamInfo {
             // get next video
             if(streamInfo.next_video != null)
             {
-                StreamPreviewInfoCollector c = new StreamPreviewInfoCollector(
+                StreamInfoItemCollector c = new StreamInfoItemCollector(
                         extractor.getUrlIdHandler(), extractor.getServiceId());
-                StreamPreviewInfoExtractor nextVideo = extractor.getNextVideo();
+                StreamInfoItemExtractor nextVideo = extractor.getNextVideo();
                 c.commit(nextVideo);
                 if(c.getItemList().size() != 0) {
-                    streamInfo.next_video = c.getItemList().get(0);
+                    streamInfo.next_video = (StreamInfoItem) c.getItemList().get(0);
                 }
                 streamInfo.errors.addAll(c.getErrors());
             }
@@ -256,7 +257,7 @@ public class StreamInfo extends AbstractStreamInfo {
         }
         try {
             // get related videos
-            StreamPreviewInfoCollector c = extractor.getRelatedVideos();
+            StreamInfoItemCollector c = extractor.getRelatedVideos();
             streamInfo.related_streams = c.getItemList();
             streamInfo.errors.addAll(c.getErrors());
         } catch(Exception e) {
@@ -284,8 +285,8 @@ public class StreamInfo extends AbstractStreamInfo {
     public int like_count = -1;
     public int dislike_count = -1;
     public String average_rating = "";
-    public StreamPreviewInfo next_video = null;
-    public List<StreamPreviewInfo> related_streams = null;
+    public StreamInfoItem next_video = null;
+    public List<InfoItem> related_streams = null;
     //in seconds. some metadata is not passed using a StreamInfo object!
     public int start_position = 0;
 

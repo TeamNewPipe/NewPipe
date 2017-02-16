@@ -7,7 +7,7 @@ import org.schabi.newpipe.extractor.exceptions.ParsingException;
  * Created by Christian Schabesberger on 28.02.16.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * StreamPreviewInfoExtractor.java is part of NewPipe.
+ * StreamInfoItemExtractor.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ import org.schabi.newpipe.extractor.exceptions.ParsingException;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public interface StreamPreviewInfoExtractor {
+public interface StreamInfoItemExtractor {
     AbstractStreamInfo.StreamType getStreamType() throws ParsingException;
     String getWebPageUrl() throws ParsingException;
     String getTitle() throws ParsingException;

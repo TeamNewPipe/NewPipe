@@ -5,10 +5,14 @@ import android.media.AudioManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 
+import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.PermissionHelper;
 
@@ -33,8 +37,8 @@ import org.schabi.newpipe.util.PermissionHelper;
  */
 
 public class MainActivity extends ThemableActivity {
-
     private Fragment mainFragment = null;
+    private static final String TAG = MainActivity.class.toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +62,7 @@ public class MainActivity extends ThemableActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch(id) {
+        switch (id) {
             case android.R.id.home: {
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -71,10 +75,10 @@ public class MainActivity extends ThemableActivity {
                 return true;
             }
             case R.id.action_show_downloads: {
-                if(!PermissionHelper.checkStoragePermissions(this)) {
+                if (!PermissionHelper.checkStoragePermissions(this)) {
                     return false;
                 }
-                Intent intent = new Intent(this, org.schabi.newpipe.download.DownloadActivity.class);
+                Intent intent = new Intent(this, DownloadActivity.class);
                 startActivity(intent);
                 return true;
             }

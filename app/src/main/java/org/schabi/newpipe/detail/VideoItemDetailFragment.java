@@ -46,11 +46,12 @@ import org.schabi.newpipe.Localization;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.player.BackgroundPlayer;
@@ -536,12 +537,13 @@ public class VideoItemDetailFragment extends Fragment {
 
     private void initSimilarVideos(final StreamInfo info) {
         LinearLayout similarLayout = (LinearLayout) activity.findViewById(R.id.similar_streams_view);
-        for (final StreamPreviewInfo item : info.related_streams) {
+        for (final InfoItem item : info.related_streams) {
             similarLayout.addView(infoItemBuilder.buildView(similarLayout, item));
         }
-        infoItemBuilder.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {
+        infoItemBuilder.setOnStreamInfoItemSelectedListener(
+                new InfoItemBuilder.OnInfoItemSelectedListener() {
             @Override
-            public void selected(String url) {
+            public void selected(String url, int serviceId) {
                 openStreamUrl(url);
             }
         });

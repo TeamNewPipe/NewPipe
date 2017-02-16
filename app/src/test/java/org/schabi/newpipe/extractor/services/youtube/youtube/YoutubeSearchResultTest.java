@@ -1,15 +1,13 @@
-package org.schabi.newpipe.extractor.youtube;
+package org.schabi.newpipe.extractor.services.youtube.youtube;
 
-import android.test.AndroidTestCase;
-
+import org.junit.Before;
+import org.junit.Test;
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.search.SuggestionExtractor;
+import org.schabi.newpipe.extractor.SuggestionExtractor;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeSuggestionExtractor;
-
-import java.io.IOException;
 import java.util.List;
+import static junit.framework.Assert.assertFalse;
 
 /**
  * Created by Christian Schabesberger on 18.11.16.
@@ -31,18 +29,21 @@ import java.util.List;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class YoutubeSearchResultTest extends AndroidTestCase {
+/**
+ * Test for {@link SuggestionExtractor}
+ */
+public class YoutubeSearchResultTest {
     List<String> suggestionReply;
 
 
-    @Override
+    @Before
     public void setUp() throws Exception {
-        super.setUp();
         NewPipe.init(Downloader.getInstance());
         SuggestionExtractor engine = new YoutubeSuggestionExtractor(0);
         suggestionReply = engine.suggestionList("hello", "de");
     }
 
+    @Test
     public void testIfSuggestions() {
         assertFalse(suggestionReply.isEmpty());
     }

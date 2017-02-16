@@ -7,12 +7,12 @@ import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.search.InfoItemSearchCollector;
 import org.schabi.newpipe.extractor.search.SearchEngine;
-import org.schabi.newpipe.extractor.search.StreamPreviewInfoSearchCollector;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoExtractor;
 
 import java.net.URLEncoder;
 import java.io.IOException;
+import java.util.EnumSet;
 
 
 /**
@@ -45,16 +45,24 @@ public class YoutubeSearchEngine extends SearchEngine {
     }
 
     @Override
-    public StreamPreviewInfoSearchCollector search(String query, int page, String languageCode)
+    public InfoItemSearchCollector search(String query,
+                                          int page,
+                                          String languageCode,
+                                          EnumSet<Filter> filter)
             throws IOException, ExtractionException {
-        StreamPreviewInfoSearchCollector collector = getStreamPreviewInfoSearchCollector();
+        InfoItemSearchCollector collector = getInfoItemSearchCollector();
+
 
         Downloader downloader = NewPipe.getDownloader();
 
         String url = "https://www.youtube.com/results"
-                + "?search_query=" + URLEncoder.encode(query, CHARSET_UTF_8)
-                + "&page=" + Integer.toString(page + 1)
-                + "&filters=" + "video";
+                + "?q=" + URLEncoder.encode(query, CHARSET_UTF_8)
+                + "&page=" + Integer.toString(page + 1);
+        if(filter.contains(Filter.STREAM) && !filter.contains(Filter.CHANNEL)) {
+            url += "&sp=EgIQAQ%253D%253D";
+        } else if(!filter.contains(Filter.STREAM) && filter.contains(Filter.CHANNEL)) {
+            url += "&sp=EgIQAg%253D%253D";
+        }
 
         String site;
         //String url = builder.build().toString();
@@ -92,22 +100,20 @@ public class YoutubeSearchEngine extends SearchEngine {
                 }
                 // search message item
             } else if ((el = item.select("div[class*=\"search-message\"]").first()) != null) {
-                //result.errorMessage = el.text();
                 throw new NothingFoundException(el.text());
 
                 // video item type
-            } else if ((el = item.select("div[class*=\"yt-lockup-video\"").first()) != null) {
-                collector.commit(extractPreviewInfo(el));
+            } else if ((el = item.select("div[class*=\"yt-lockup-video\"]").first()) != null) {
+                collector.commit(new YoutubeStreamInfoItemExtractor(el));
+            } else if((el = item.select("div[class*=\"yt-lockup-channel\"]").first()) != null) {
+                collector.commit(new YoutubeChannelInfoItemExtractor(el));
             } else {
-                //noinspection ConstantConditions
-                collector.addError(new Exception("unexpected element found:\"" + el + "\""));
+                // noinspection ConstantConditions
+                // simply ignore not known items
+                // throw new ExtractionException("unexpected element found: \"" + item + "\"");
             }
         }
 
         return collector;
-    }
-
-    private StreamPreviewInfoExtractor extractPreviewInfo(final Element item) {
-        return new YoutubeStreamPreviewInfoExtractor(item);
     }
 }
