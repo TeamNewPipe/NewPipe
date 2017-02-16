@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="view_count_text">%1$s приказа</string>
     <string name="upload_date_text">Објављен %1$s</string>
-    <string name="no_player_found">Нема плејера токова. Инсталирати ВЛЦ?</string>
+    <string name="no_player_found">Нема плејера токова. Желите ли да инсталирате ВЛЦ?</string>
     <string name="install">Инсталирај</string>
     <string name="cancel">Одустани</string>
     <string name="open_in_browser">Отвори у прегледачу</string>
@@ -307,5 +307,15 @@
     <string name="recaptcha_request_toast">Решите reCAPTCHA стопку</string>
 
     <string name="black_theme_title">Црна</string>
+
+    <string name="all">Сви</string>
+    <string name="channel">Канал</string>
+
+    <string name="videos">видеи</string>
+    <string name="subscriber">претплатник</string>
+    <string name="views">прегледа</string>
+    <string name="short_thousand">х</string>
+    <string name="short_million">м</string>
+    <string name="short_billion">млрд</string>
 
     </resources>
