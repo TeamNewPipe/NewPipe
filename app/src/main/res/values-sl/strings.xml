@@ -167,4 +167,14 @@
     <string name="info_labels">Predmet:\\nZahteva:\\nJezik vsebine:\\nStoritev:\\nČas v GMT:\\nPaket:\\nRazličica:\\nRazličica OS:\\nObseg IP:</string>
     <string name="black_theme_title">Črna</string>
 
+    <string name="all">Vse</string>
+    <string name="channel">Kanal</string>
+
+    <string name="videos">videi</string>
+    <string name="subscriber">naročnik</string>
+    <string name="views">pogledi</string>
+    <string name="short_thousand">k</string>
+    <string name="short_million">mio</string>
+    <string name="short_billion">mrd</string>
+
     </resources>
