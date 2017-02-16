@@ -84,6 +84,8 @@
     <string name="downloads_title">Downloads</string>
     <string name="settings_title">Settings</string>
     <string name="error_report_title">Error report</string>
+    <string name="all">All</string>
+    <string name="channel">Channel</string>
 
     <!-- error strings -->
     <string name="general_error">Error</string>
@@ -147,6 +149,12 @@
     <string name="storage_permission_denied">Permission to access storage was denied</string>
     <string name="use_exoplayer_title">Use ExoPlayer</string>
     <string name="use_exoplayer_summary">Experimental</string>
+    <string name="videos">videos</string>
+    <string name="subscriber">subscriber</string>
+    <string name="views">views</string>
+    <string name="short_thousand">T</string>
+    <string name="short_million">M</string>
+    <string name="short_billion">B</string>
 
     <!-- Missions -->
     <string name="start">Start</string>

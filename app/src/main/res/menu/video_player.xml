@@ -5,5 +5,5 @@
     <item android:id="@+id/menu_item_screen_rotation"
         android:title="@string/screen_rotation"
         app:showAsAction="always"
-        android:icon="@drawable/ic_screen_rotation_white"/>
+        android:icon="@drawable/ic_screen_rotation_white_24dp"/>
 </menu>

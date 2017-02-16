@@ -26,7 +26,7 @@
         <item name="thumbs_down">@drawable/ic_thumb_down_black_24dp</item>
         <item name="audio">@drawable/ic_headset_black_24dp</item>
         <item name="download">@drawable/ic_file_download_black_24dp</item>
-        <item name="share">@drawable/ic_share_black</item>
+        <item name="share">@drawable/ic_share_black_24dp</item>
         <item name="cast">@drawable/ic_cast_black_24dp</item>
         <item name="rss">@drawable/ic_rss_feed_white_24dp</item>
     </style>

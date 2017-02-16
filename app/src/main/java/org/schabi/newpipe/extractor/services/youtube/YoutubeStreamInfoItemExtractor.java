@@ -4,11 +4,11 @@ import org.jsoup.nodes.Element;
 import org.schabi.newpipe.extractor.AbstractStreamInfo;
 import org.schabi.newpipe.extractor.Parser;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoExtractor;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItemExtractor;
 
 /**
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * YoutubeStreamPreviewInfoExtractor.java is part of NewPipe.
+ * YoutubeStreamInfoItemExtractor.java is part of NewPipe.
  *
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,11 +24,11 @@ import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoExtractor;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class YoutubeStreamPreviewInfoExtractor implements StreamPreviewInfoExtractor {
+public class YoutubeStreamInfoItemExtractor implements StreamInfoItemExtractor {
 
     private final Element item;
 
-    public YoutubeStreamPreviewInfoExtractor(Element item) {
+    public YoutubeStreamInfoItemExtractor(Element item) {
         this.item = item;
     }
 
@@ -83,9 +83,12 @@ public class YoutubeStreamPreviewInfoExtractor implements StreamPreviewInfoExtra
     @Override
     public String getUploadDate() throws ParsingException {
         try {
-            return item.select("div[class=\"yt-lockup-meta\"]").first()
-                    .select("li").first()
-                    .text();
+            Element div = item.select("div[class=\"yt-lockup-meta\"]").first();
+            if(div == null) {
+                return null;
+            } else {
+                return div.select("li").first().text();
+            }
         } catch(Exception e) {
             throw new ParsingException("Could not get uplaod date", e);
         }
@@ -96,9 +99,13 @@ public class YoutubeStreamPreviewInfoExtractor implements StreamPreviewInfoExtra
         String output;
         String input;
         try {
-            input = item.select("div[class=\"yt-lockup-meta\"]").first()
-                    .select("li").get(1)
-                    .text();
+            Element div = item.select("div[class=\"yt-lockup-meta\"]").first();
+            if(div == null) {
+                return -1;
+            } else {
+                input = div.select("li").get(1)
+                        .text();
+            }
         } catch (IndexOutOfBoundsException e) {
             if(isLiveStream(item)) {
                 // -1 for no view count

@@ -1,9 +1,11 @@
 package org.schabi.newpipe.info_list;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -11,7 +13,9 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.AbstractStreamInfo;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
+import org.schabi.newpipe.extractor.InfoItem;
+import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
 
 /**
  * Created by Christian Schabesberger on 26.09.16.
@@ -35,8 +39,17 @@ import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 
 public class InfoItemBuilder {
 
-    public interface OnItemSelectedListener {
-        void selected(String url);
+    final String viewsS;
+    final String videosS;
+    final String subsS;
+
+    final String thousand;
+    final String million;
+    final String billion;
+
+    private static final String TAG = InfoItemBuilder.class.toString();
+    public interface OnInfoItemSelectedListener {
+        void selected(String url, int serviceId);
     }
 
     private Activity activity = null;
@@ -44,18 +57,75 @@ public class InfoItemBuilder {
     private ImageLoader imageLoader = ImageLoader.getInstance();
     private DisplayImageOptions displayImageOptions =
             new DisplayImageOptions.Builder().cacheInMemory(true).build();
-    private OnItemSelectedListener onItemSelectedListener;
+    private OnInfoItemSelectedListener onStreamInfoItemSelectedListener;
+    private OnInfoItemSelectedListener onChannelInfoItemSelectedListener;
 
     public InfoItemBuilder(Activity a, View rootView) {
         activity = a;
         this.rootView = rootView;
+        viewsS = a.getString(R.string.views);
+        videosS = a.getString(R.string.videos);
+        subsS = a.getString(R.string.subscriber);
+        thousand = a.getString(R.string.short_thousand);
+        million = a.getString(R.string.short_million);
+        billion = a.getString(R.string.short_billion);
     }
 
-    public void setOnItemSelectedListener(OnItemSelectedListener onItemSelectedListener) {
-        this.onItemSelectedListener = onItemSelectedListener;
+    public void setOnStreamInfoItemSelectedListener(
+            OnInfoItemSelectedListener listener) {
+        this.onStreamInfoItemSelectedListener = listener;
     }
 
-    public void buildByHolder(InfoItemHolder holder, final StreamPreviewInfo info) {
+    public void setOnChannelInfoItemSelectedListener(
+            OnInfoItemSelectedListener listener) {
+        this.onChannelInfoItemSelectedListener = listener;
+    }
+
+    public void buildByHolder(InfoItemHolder holder, final InfoItem i) {
+        if(i.infoType() != holder.infoType())
+            return;
+        switch(i.infoType()) {
+            case STREAM:
+                buildStreamInfoItem((StreamInfoItemHolder) holder, (StreamInfoItem) i);
+                break;
+            case CHANNEL:
+                buildChannelInfoItem((ChannelInfoItemHolder) holder, (ChannelInfoItem) i);
+                break;
+            case PLAYLIST:
+                Log.e(TAG, "Not yet implemented");
+                break;
+            default:
+                Log.e(TAG, "Trollolo");
+        }
+    }
+
+    public View buildView(ViewGroup parent, final InfoItem info) {
+        View itemView = null;
+        InfoItemHolder holder = null;
+        switch(info.infoType()) {
+            case STREAM:
+                itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.stream_item, parent, false);
+                holder = new StreamInfoItemHolder(itemView);
+                break;
+            case CHANNEL:
+                itemView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.channel_item, parent, false);
+                holder = new ChannelInfoItemHolder(itemView);
+                break;
+            case PLAYLIST:
+                Log.e(TAG, "Not yet implemented");
+            default:
+                Log.e(TAG, "Trollolo");
+        }
+        buildByHolder(holder, info);
+        return itemView;
+    }
+
+    private void buildStreamInfoItem(StreamInfoItemHolder holder, final StreamInfoItem info) {
+        if(info.infoType() != InfoItem.InfoType.STREAM) {
+            Log.e("InfoItemBuilder", "Info type not yet supported");
+        }
         // fill holder with information
         holder.itemVideoTitleView.setText(info.title);
         if(info.uploader != null && !info.uploader.isEmpty()) {
@@ -92,29 +162,55 @@ public class InfoItemBuilder {
         holder.itemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onItemSelectedListener.selected(info.webpage_url);
+                onStreamInfoItemSelectedListener.selected(info.webpage_url, info.service_id);
             }
         });
     }
 
-    public View buildView(ViewGroup parent, final StreamPreviewInfo info) {
-        View streamPreviewView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.video_item, parent, false);
-        InfoItemHolder holder = new InfoItemHolder(streamPreviewView);
-        buildByHolder(holder, info);
-        return streamPreviewView;
+    private void buildChannelInfoItem(ChannelInfoItemHolder holder, final ChannelInfoItem info) {
+        holder.itemChannelTitleView.setText(info.getTitle());
+        holder.itemSubscriberCountView.setText(shortSubscriber(info.subscriberCount) + " • ");
+        holder.itemVideoCountView.setText(info.videoAmount + " " + videosS);
+        holder.itemChannelDescriptionView.setText(info.description);
+
+        holder.itemThumbnailView.setImageResource(R.drawable.buddy_channel_item);
+        if(info.thumbnailUrl != null && !info.thumbnailUrl.isEmpty()) {
+            imageLoader.displayImage(info.thumbnailUrl,
+                    holder.itemThumbnailView,
+                    displayImageOptions,
+                    new ImageErrorLoadingListener(activity, rootView, info.serviceId));
+        }
+
+        holder.itemButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onChannelInfoItemSelectedListener.selected(info.getLink(), info.serviceId);
+            }
+        });
     }
 
 
-    public static String shortViewCount(Long viewCount){
+    public String shortViewCount(Long viewCount){
         if(viewCount >= 1000000000){
-            return Long.toString(viewCount/1000000000)+"B views";
+            return Long.toString(viewCount/1000000000)+ billion + " " + viewsS;
         }else if(viewCount>=1000000){
-            return Long.toString(viewCount/1000000)+"M views";
+            return Long.toString(viewCount/1000000)+ million + " " + viewsS;
         }else if(viewCount>=1000){
-            return Long.toString(viewCount/1000)+"K views";
+            return Long.toString(viewCount/1000)+ thousand + " " + viewsS;
         }else {
-            return Long.toString(viewCount)+" views";
+            return Long.toString(viewCount)+ " " + viewsS;
+        }
+    }
+
+    public String shortSubscriber(Long viewCount){
+        if(viewCount >= 1000000000){
+            return Long.toString(viewCount/1000000000)+ billion + " " + subsS;
+        }else if(viewCount>=1000000){
+            return Long.toString(viewCount/1000000)+ million + " " + subsS;
+        }else if(viewCount>=1000){
+            return Long.toString(viewCount/1000)+ thousand + " " + subsS;
+        }else {
+            return Long.toString(viewCount)+ " " + subsS;
         }
     }
 

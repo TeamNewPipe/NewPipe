@@ -18,9 +18,9 @@ package org.schabi.newpipe.extractor;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**Common properties between StreamInfo and StreamPreviewInfo.*/
+/**Common properties between StreamInfo and StreamInfoItem.*/
 public abstract class AbstractStreamInfo {
-    public static enum StreamType {
+    public enum StreamType {
         NONE,   // placeholder to check if stream type was checked or not
         VIDEO_STREAM,
         AUDIO_STREAM,

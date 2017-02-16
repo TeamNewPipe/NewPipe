@@ -2,14 +2,11 @@ package org.schabi.newpipe.info_list;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.InfoItem;
 
 /**
- * Created by Christian Schabesberger on 01.08.16.
+ * Created by Christian Schabesberger on 12.02.17.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
  * InfoItemHolder.java is part of NewPipe.
@@ -28,25 +25,9 @@ import org.schabi.newpipe.R;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class InfoItemHolder extends RecyclerView.ViewHolder {
-
-    public final ImageView itemThumbnailView;
-    public final TextView itemVideoTitleView,
-            itemUploaderView,
-            itemDurationView,
-            itemUploadDateView,
-            itemViewCountView;
-    public final Button itemButton;
-
+public abstract class InfoItemHolder extends RecyclerView.ViewHolder {
     public InfoItemHolder(View v) {
         super(v);
-        itemThumbnailView = (ImageView) v.findViewById(R.id.itemThumbnailView);
-        itemVideoTitleView = (TextView) v.findViewById(R.id.itemVideoTitleView);
-        itemUploaderView = (TextView) v.findViewById(R.id.itemUploaderView);
-        itemDurationView = (TextView) v.findViewById(R.id.itemDurationView);
-        itemUploadDateView = (TextView) v.findViewById(R.id.itemUploadDateView);
-        itemViewCountView = (TextView) v.findViewById(R.id.itemViewCountView);
-        itemButton = (Button) v.findViewById(R.id.item_button);
     }
-
+    public abstract InfoItem.InfoType infoType();
 }

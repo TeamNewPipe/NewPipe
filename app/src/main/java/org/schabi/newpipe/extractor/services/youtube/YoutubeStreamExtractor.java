@@ -20,8 +20,8 @@ import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoCollector;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfoExtractor;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItemCollector;
+import org.schabi.newpipe.extractor.stream_info.StreamInfoItemExtractor;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
 
 import java.io.IOException;
@@ -657,7 +657,7 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     }
 
     @Override
-    public StreamPreviewInfoExtractor getNextVideo() throws ParsingException {
+    public StreamInfoItemExtractor getNextVideo() throws ParsingException {
         try {
             return extractVideoPreviewInfo(doc.select("div[class=\"watch-sidebar-section\"]").first()
                     .select("li").first());
@@ -667,9 +667,9 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     }
 
     @Override
-    public StreamPreviewInfoCollector getRelatedVideos() throws ParsingException {
+    public StreamInfoItemCollector getRelatedVideos() throws ParsingException {
         try {
-            StreamPreviewInfoCollector collector = getStreamPreviewInfoCollector();
+            StreamInfoItemCollector collector = getStreamPreviewInfoCollector();
             Element ul = doc.select("ul[id=\"watch-related\"]").first();
             if(ul != null) {
                 for (Element li : ul.children()) {
@@ -707,10 +707,10 @@ public class YoutubeStreamExtractor extends StreamExtractor {
     }
 
     /**Provides information about links to other videos on the video page, such as related videos.
-     * This is encapsulated in a StreamPreviewInfo object,
+     * This is encapsulated in a StreamInfoItem object,
      * which is a subset of the fields in a full StreamInfo.*/
-    private StreamPreviewInfoExtractor extractVideoPreviewInfo(final Element li) {
-        return new StreamPreviewInfoExtractor() {
+    private StreamInfoItemExtractor extractVideoPreviewInfo(final Element li) {
+        return new StreamInfoItemExtractor() {
             @Override
             public AbstractStreamInfo.StreamType getStreamType() throws ParsingException {
                 return null;

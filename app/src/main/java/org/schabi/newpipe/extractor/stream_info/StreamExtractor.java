@@ -35,7 +35,7 @@ public abstract class StreamExtractor {
     private int serviceId;
     private String url;
     private UrlIdHandler urlIdHandler;
-    private StreamPreviewInfoCollector previewInfoCollector;
+    private StreamInfoItemCollector previewInfoCollector;
 
     public class ExtractorInitException extends ExtractionException {
         public ExtractorInitException(String message) {
@@ -61,10 +61,10 @@ public abstract class StreamExtractor {
     public StreamExtractor(UrlIdHandler urlIdHandler, String url, int serviceId) {
         this.serviceId = serviceId;
         this.urlIdHandler = urlIdHandler;
-        previewInfoCollector = new StreamPreviewInfoCollector(urlIdHandler, serviceId);
+        previewInfoCollector = new StreamInfoItemCollector(urlIdHandler, serviceId);
     }
 
-    protected StreamPreviewInfoCollector getStreamPreviewInfoCollector() {
+    protected StreamInfoItemCollector getStreamPreviewInfoCollector() {
         return previewInfoCollector;
     }
 
@@ -94,8 +94,8 @@ public abstract class StreamExtractor {
     public abstract String getAverageRating() throws ParsingException;
     public abstract int getLikeCount() throws ParsingException;
     public abstract int getDislikeCount() throws ParsingException;
-    public abstract StreamPreviewInfoExtractor getNextVideo() throws ParsingException;
-    public abstract StreamPreviewInfoCollector getRelatedVideos() throws ParsingException;
+    public abstract StreamInfoItemExtractor getNextVideo() throws ParsingException;
+    public abstract StreamInfoItemCollector getRelatedVideos() throws ParsingException;
     public abstract String getPageUrl();
     public abstract StreamInfo.StreamType getStreamType() throws ParsingException;
     public int getServiceId() {
