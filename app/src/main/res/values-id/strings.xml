@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="main_bg_subtitle">Klik pencarian untuk memulai</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="main_bg_subtitle">Tekan pencarian untuk memulai</string>
     <string name="view_count_text">%1$s tayang</string>
     <string name="upload_date_text">Diterbitkan pada %1$s</string>
     <string name="install">Pasang</string>
@@ -142,7 +142,7 @@
     <string name="action_settings">Pengaturan</string>
 
     <string name="background_player_name">Pemutar Latar Belakang NewPipe</string>
-    <string name="no_player_found">Tidak ditemukan pemutar stream. Pasang VLC?</string>
+    <string name="no_player_found">Tidak ditemukan pemutar stream. Apakah anda ingin memasang VLC?</string>
     <string name="youtube_signature_decryption_error">Tidak bisa mendekrip tanda tangan url video.</string>
     <string name="app_ui_crash">App/UI rusak</string>
     <string name="could_not_get_stream">Tidak bisa mendapatkan stream apapun.</string>
@@ -295,4 +295,14 @@
 
     <string name="black_theme_title">Hitam</string>
 
+    <string name="all">Semua</string>
+    <string name="channel">Channel</string>
+
+    <string name="videos">video</string>
+    <string name="views">ditonton</string>
+    <string name="short_thousand">T</string>
+    <string name="short_million">M</string>
+    <string name="short_billion">B</string>
+
+    <string name="subscriber">subscriber</string>
     </resources>
