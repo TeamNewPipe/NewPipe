@@ -306,4 +306,14 @@
 
     <string name="black_theme_title">ブラック</string>
 
+    <string name="all">すべて</string>
+    <string name="channel">チャンネル</string>
+
+    <string name="videos">ビデオ</string>
+    <string name="subscriber">購読者</string>
+    <string name="views">表示</string>
+    <string name="short_thousand">千</string>
+    <string name="short_million">百万</string>
+    <string name="short_billion">十億</string>
+
     </resources>
