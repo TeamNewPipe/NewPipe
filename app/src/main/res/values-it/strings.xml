@@ -154,7 +154,7 @@
     <string name="msg_url_malform">URL errato od errore di rete</string>
     <string name="msg_running">Download di NewPipe</string>
     <string name="msg_running_detail">Fai tap per i dettagli</string>
-    <string name="msg_wait">Attendi...</string>
+    <string name="msg_wait">Attendi…</string>
     <string name="msg_copied">Copiato negli appunti.</string>
     <string name="no_available_dir">Seleziona una cartella disponibile in cui salvare i download.</string>
 
@@ -301,7 +301,21 @@
 
 
  "</string>
-    <string name="reCaptchaActivity">reCaptcha</string>
-    <string name="reCaptcha_title">Sfida reCaptcha</string>
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">Sfida reCAPTCHA</string>
+
+    <string name="black_theme_title">Nero</string>
+
+    <string name="all">Tutto</string>
+    <string name="channel">Canale</string>
+
+    <string name="videos">video</string>
+    <string name="subscriber">iscritto</string>
+    <string name="views">visualizzazioni</string>
+    <string name="short_thousand">K</string>
+    <string name="short_million">M</string>
+    <string name="short_billion">B</string>
+
+    <string name="recaptcha_request_toast">Richiesta sfida reCAPTCHA</string>
 
     </resources>
