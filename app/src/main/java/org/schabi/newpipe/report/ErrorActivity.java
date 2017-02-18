@@ -16,6 +16,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -160,6 +161,10 @@ public class ErrorActivity extends ThemableActivity {
     private Button reportButton;
     private TextView infoView;
     private TextView errorMessageView;
+
+    public static void reportUiError(final AppCompatActivity activity, final Throwable el) {
+        reportError(activity, el, activity.getClass(), null, ErrorInfo.make(UI_ERROR, "none", "", R.string.app_ui_crash));
+    }
 
     public static void reportError(final Context context, final List<Throwable> el,
                                    final Class returnAcitivty, View rootView, final ErrorInfo errorInfo) {

@@ -34,25 +34,22 @@ public class NewPipe {
 
     private static final String TAG = NewPipe.class.toString();
 
-    private static final StreamingService[] serviceList = {
-        new YoutubeService(0)
-    };
 
     private static Downloader downloader = null;
 
     public static StreamingService[] getServices() {
-        return serviceList;
+        return ServiceList.serviceList;
     }
     public static StreamingService getService(int serviceId)throws ExtractionException {
-        for(StreamingService s : serviceList) {
+        for(StreamingService s : ServiceList.serviceList) {
             if(s.getServiceId() == serviceId) {
                 return s;
             }
         }
-        throw new ExtractionException("Service not known: " + Integer.toString(serviceId));
+        return null;
     }
     public static StreamingService getService(String serviceName) throws ExtractionException {
-        return serviceList[getIdOfService(serviceName)];
+        return ServiceList.serviceList[getIdOfService(serviceName)];
     }
     public static String getNameOfService(int id) {
         try {
@@ -63,13 +60,13 @@ public class NewPipe {
             return "";
         }
     }
-    public static int getIdOfService(String serviceName) throws ExtractionException {
-        for(int i = 0; i < serviceList.length; i++) {
-            if(serviceList[i].getServiceInfo().name.equals(serviceName)) {
+    public static int getIdOfService(String serviceName) {
+        for(int i = 0; i < ServiceList.serviceList.length; i++) {
+            if(ServiceList.serviceList[i].getServiceInfo().name.equals(serviceName)) {
                 return i;
             }
         }
-        throw new ExtractionException("Error: Service " + serviceName + " not known.");
+        return -1;
     }
 
     public static void init(Downloader d) {
@@ -78,5 +75,14 @@ public class NewPipe {
 
     public static Downloader getDownloader() {
         return downloader;
+    }
+
+    public static StreamingService getServiceByUrl(String url) {
+        for(StreamingService s : ServiceList.serviceList) {
+            if(s.getLinkTypeByUrl(url) != StreamingService.LinkType.NONE) {
+                return s;
+            }
+        }
+        return null;
     }
 }

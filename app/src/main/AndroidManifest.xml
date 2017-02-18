@@ -156,6 +156,7 @@
         <activity
             android:name=".ChannelActivity"
             android:label="@string/title_activity_channel"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity

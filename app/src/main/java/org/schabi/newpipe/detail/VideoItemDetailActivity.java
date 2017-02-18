@@ -1,5 +1,6 @@
 package org.schabi.newpipe.detail;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -16,9 +17,13 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.ThemableActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.util.NavStack;
 
 import java.util.Collection;
 import java.util.HashSet;
+
+import static android.os.Build.VERSION.SDK_INT;
 
 
 /**
@@ -81,8 +86,8 @@ public class VideoItemDetailActivity extends ThemableActivity {
         if (savedInstanceState == null) {
             handleIntent(getIntent());
         } else {
-            videoUrl = savedInstanceState.getString(VideoItemDetailFragment.VIDEO_URL);
-            currentStreamingService = savedInstanceState.getInt(VideoItemDetailFragment.STREAMING_SERVICE);
+            videoUrl = savedInstanceState.getString(NavStack.URL);
+            currentStreamingService = savedInstanceState.getInt(NavStack.SERVICE_ID);
             addFragment(savedInstanceState);
         }
     }
@@ -114,12 +119,12 @@ public class VideoItemDetailActivity extends ThemableActivity {
             currentStreamingService = getServiceIdByUrl(videoUrl);
         } else {
             //this is if the video was called through another NewPipe activity
-            videoUrl = intent.getStringExtra(VideoItemDetailFragment.VIDEO_URL);
-            currentStreamingService = intent.getIntExtra(VideoItemDetailFragment.STREAMING_SERVICE, -1);
+            videoUrl = intent.getStringExtra(NavStack.URL);
+            currentStreamingService = intent.getIntExtra(NavStack.SERVICE_ID, -1);
         }
         arguments.putBoolean(VideoItemDetailFragment.AUTO_PLAY, autoplay);
-        arguments.putString(VideoItemDetailFragment.VIDEO_URL, videoUrl);
-        arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingService);
+        arguments.putString(NavStack.URL, videoUrl);
+        arguments.putInt(NavStack.SERVICE_ID, currentStreamingService);
         addFragment(arguments);
     }
 
@@ -142,8 +147,8 @@ public class VideoItemDetailActivity extends ThemableActivity {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(VideoItemDetailFragment.VIDEO_URL, videoUrl);
-        outState.putInt(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingService);
+        outState.putString(NavStack.URL, videoUrl);
+        outState.putInt(NavStack.SERVICE_ID, currentStreamingService);
         outState.putBoolean(VideoItemDetailFragment.AUTO_PLAY, false);
     }
 
@@ -165,6 +170,16 @@ public class VideoItemDetailActivity extends ThemableActivity {
             return true;
         } else {
             return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        try {
+            NavStack.getInstance()
+                    .navBack(this);
+        } catch (Exception e) {
+            ErrorActivity.reportUiError(this, e);
         }
     }
 
@@ -224,7 +239,7 @@ public class VideoItemDetailActivity extends ThemableActivity {
         StreamingService[] serviceList = NewPipe.getServices();
         int service = -1;
         for (int i = 0; i < serviceList.length; i++) {
-            if (serviceList[i].getUrlIdHandlerInstance().acceptUrl(videoUrl)) {
+            if (serviceList[i].getStreamUrlIdHandlerInstance().acceptUrl(videoUrl)) {
                 service = i;
                 //videoExtractor = ServiceList.getService(i).getExtractorInstance();
                 break;

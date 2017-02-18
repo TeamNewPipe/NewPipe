@@ -32,6 +32,13 @@ public abstract class StreamingService {
         public String name = "";
     }
 
+    public enum LinkType {
+        NONE,
+        STREAM,
+        CHANNEL,
+        PLAYLIST
+    }
+
     private int serviceId;
 
     public StreamingService(int id) {
@@ -43,7 +50,7 @@ public abstract class StreamingService {
     public abstract StreamExtractor getExtractorInstance(String url)
             throws IOException, ExtractionException;
     public abstract SearchEngine getSearchEngineInstance();
-    public abstract UrlIdHandler getUrlIdHandlerInstance();
+    public abstract UrlIdHandler getStreamUrlIdHandlerInstance();
     public abstract UrlIdHandler getChannelUrlIdHandlerInstance();
     public abstract ChannelExtractor getChannelExtractorInstance(String url, int page)
             throws ExtractionException, IOException;
@@ -51,5 +58,21 @@ public abstract class StreamingService {
 
     public final int getServiceId() {
         return serviceId;
+    }
+
+    /**
+     * figure out where the link is pointing to (a channel, video, playlist, etc.)
+     */
+    public final LinkType getLinkTypeByUrl(String url) {
+        UrlIdHandler sH = getStreamUrlIdHandlerInstance();
+        UrlIdHandler cH = getChannelUrlIdHandlerInstance();
+
+        if(sH.acceptUrl(url)) {
+            return LinkType.STREAM;
+        } else if(cH.acceptUrl(url)) {
+            return LinkType.CHANNEL;
+        } else {
+            return LinkType.NONE;
+        }
     }
 }

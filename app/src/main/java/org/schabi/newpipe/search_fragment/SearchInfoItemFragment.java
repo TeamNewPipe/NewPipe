@@ -30,6 +30,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.detail.VideoItemDetailActivity;
 import org.schabi.newpipe.detail.VideoItemDetailFragment;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.util.NavStack;
 
 import java.util.EnumSet;
 
@@ -224,13 +225,15 @@ public class SearchInfoItemFragment extends Fragment {
                 new InfoItemBuilder.OnInfoItemSelectedListener() {
             @Override
             public void selected(String url, int serviceId) {
-                startDetailActivity(url);
+                NavStack.getInstance()
+                    .openDetailActivity(getContext(), url, serviceId);
             }
         });
         infoListAdapter.setOnChannelInfoItemSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener() {
             @Override
             public void selected(String url, int serviceId) {
-                startChannelActivity(url, serviceId);
+                NavStack.getInstance()
+                        .openChannelActivity(getContext(), url, serviceId);
             }
         });
         recyclerView.setAdapter(infoListAdapter);
@@ -255,20 +258,6 @@ public class SearchInfoItemFragment extends Fragment {
         });
 
         return view;
-    }
-
-    private void startDetailActivity(String url) {
-        Intent i = new Intent(getActivity(), VideoItemDetailActivity.class);
-        i.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
-        i.putExtra(VideoItemDetailFragment.VIDEO_URL, url);
-        getActivity().startActivity(i);
-    }
-
-    private void startChannelActivity(String url, int serviceId) {
-        Intent i = new Intent(getActivity(), ChannelActivity.class);
-        i.putExtra(ChannelActivity.CHANNEL_URL, url);
-        i.putExtra(ChannelActivity.SERVICE_ID, serviceId);
-        startActivity(i);
     }
 
     @Override

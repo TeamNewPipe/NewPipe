@@ -150,7 +150,17 @@ public class YoutubeStreamUrlIdHandler implements UrlIdHandler {
     @Override
     public boolean acceptUrl(String videoUrl) {
         videoUrl = videoUrl.toLowerCase();
-        return videoUrl.contains("youtube") ||
-                videoUrl.contains("youtu.be");
+        if(videoUrl.contains("youtube") ||
+                videoUrl.contains("youtu.be")) {
+            // bad programming I know
+            try {
+                getId(videoUrl);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 }
