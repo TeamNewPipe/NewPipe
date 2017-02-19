@@ -88,6 +88,8 @@ public class VideoItemDetailActivity extends ThemableActivity {
         } else {
             videoUrl = savedInstanceState.getString(NavStack.URL);
             currentStreamingService = savedInstanceState.getInt(NavStack.SERVICE_ID);
+            NavStack.getInstance()
+                    .restoreSavedInstanceState(savedInstanceState);
             addFragment(savedInstanceState);
         }
     }
@@ -150,6 +152,8 @@ public class VideoItemDetailActivity extends ThemableActivity {
         outState.putString(NavStack.URL, videoUrl);
         outState.putInt(NavStack.SERVICE_ID, currentStreamingService);
         outState.putBoolean(VideoItemDetailFragment.AUTO_PLAY, false);
+        NavStack.getInstance()
+                .onSaveInstanceState(outState);
     }
 
     @Override
@@ -164,9 +168,8 @@ public class VideoItemDetailActivity extends ThemableActivity {
 
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
 
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            NavUtils.navigateUpTo(this, intent);
+            NavStack.getInstance()
+                    .openMainActivity(this);
             return true;
         } else {
             return super.onOptionsItemSelected(item);

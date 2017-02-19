@@ -91,9 +91,16 @@ public class ChannelActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         rootView = findViewById(R.id.rootView);
         setSupportActionBar(toolbar);
-        Intent i = getIntent();
-        channelUrl = i.getStringExtra(NavStack.URL);
-        serviceId = i.getIntExtra(NavStack.SERVICE_ID, -1);
+        if(savedInstanceState == null) {
+            Intent i = getIntent();
+            channelUrl = i.getStringExtra(NavStack.URL);
+            serviceId = i.getIntExtra(NavStack.SERVICE_ID, -1);
+        } else {
+            channelUrl = savedInstanceState.getString(NavStack.URL);
+            serviceId = savedInstanceState.getInt(NavStack.SERVICE_ID);
+            NavStack.getInstance()
+                    .restoreSavedInstanceState(savedInstanceState);
+        }
 
 
         infoListAdapter = new InfoListAdapter(this, rootView);
@@ -134,6 +141,15 @@ public class ChannelActivity extends AppCompatActivity {
         });
 
         requestData(false);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(NavStack.URL, channelUrl);
+        outState.putInt(NavStack.SERVICE_ID, serviceId);
+        NavStack.getInstance()
+                .onSaveInstanceState(outState);
     }
 
     private void updateUi(final ChannelInfo info) {
