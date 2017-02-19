@@ -40,7 +40,6 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import org.schabi.newpipe.ActivityCommunicator;
-import org.schabi.newpipe.ChannelActivity;
 import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.Localization;
 import org.schabi.newpipe.R;
@@ -51,7 +50,6 @@ import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
-import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.player.BackgroundPlayer;
@@ -59,6 +57,8 @@ import org.schabi.newpipe.player.ExoPlayerActivity;
 import org.schabi.newpipe.player.PlayVideoActivity;
 import org.schabi.newpipe.report.ErrorActivity;
 import java.util.Vector;
+
+import org.schabi.newpipe.util.NavStack;
 import org.schabi.newpipe.util.PermissionHelper;
 
 import static android.app.Activity.RESULT_OK;
@@ -92,8 +92,6 @@ public class VideoItemDetailFragment extends Fragment {
      * The fragment argument representing the item ID that this fragment
      * represents.
      */
-    public static final String VIDEO_URL = "video_url";
-    public static final String STREAMING_SERVICE = "streaming_service";
     public static final String AUTO_PLAY = "auto_play";
 
     private AppCompatActivity activity;
@@ -289,10 +287,8 @@ public class VideoItemDetailFragment extends Fragment {
                 channelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent i = new Intent(activity, ChannelActivity.class);
-                        i.putExtra(ChannelActivity.CHANNEL_URL, info.channel_url);
-                        i.putExtra(ChannelActivity.SERVICE_ID, info.service_id);
-                        startActivity(i);
+                        NavStack.getInstance()
+                                .openChannelActivity(getActivity(), info.channel_url, info.service_id);
                     }
                 });
             } else {
@@ -544,7 +540,8 @@ public class VideoItemDetailFragment extends Fragment {
                 new InfoItemBuilder.OnInfoItemSelectedListener() {
             @Override
             public void selected(String url, int serviceId) {
-                openStreamUrl(url);
+                NavStack.getInstance()
+                        .openDetailActivity(getContext(), url, serviceId);
             }
         });
     }
@@ -679,8 +676,8 @@ public class VideoItemDetailFragment extends Fragment {
         // then we must not try to access objects of this fragment.
         // Otherwise the applications would crash.
         if(backgroundButton != null) {
-            streamingServiceId = getArguments().getInt(STREAMING_SERVICE);
-            String videoUrl = getArguments().getString(VIDEO_URL);
+            streamingServiceId = getArguments().getInt(NavStack.SERVICE_ID);
+            String videoUrl = getArguments().getString(NavStack.URL);
             StreamInfoWorker siw = StreamInfoWorker.getInstance();
             siw.search(streamingServiceId, videoUrl, getActivity());
 
@@ -813,21 +810,13 @@ public class VideoItemDetailFragment extends Fragment {
                 stringResource, Toast.LENGTH_LONG).show();
     }
 
-    private void openStreamUrl(String url) {
-        Intent detailIntent = new Intent(activity, VideoItemDetailActivity.class);
-        detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, url);
-        detailIntent.putExtra(
-                VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
-        activity.startActivity(detailIntent);
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case RECAPTCHA_REQUEST:
                 if (resultCode == RESULT_OK) {
-                    String videoUrl = getArguments().getString(VIDEO_URL);
+                    String videoUrl = getArguments().getString(NavStack.URL);
                     StreamInfoWorker siw = StreamInfoWorker.getInstance();
                     siw.search(streamingServiceId, videoUrl, getActivity());
                 } else {

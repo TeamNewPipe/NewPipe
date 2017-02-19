@@ -86,4 +86,9 @@ public class MainActivity extends ThemableActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        //ignore back
+    }
 }

@@ -27,6 +27,7 @@ import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.detail.VideoItemDetailActivity;
 import org.schabi.newpipe.detail.VideoItemDetailFragment;
+import org.schabi.newpipe.util.NavStack;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -355,8 +356,8 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
             //build intent to return to video, on tapping notification
             Intent openDetailViewIntent = new Intent(getApplicationContext(),
                     VideoItemDetailActivity.class);
-            openDetailViewIntent.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, serviceId);
-            openDetailViewIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, webUrl);
+            openDetailViewIntent.putExtra(NavStack.SERVICE_ID, serviceId);
+            openDetailViewIntent.putExtra(NavStack.URL, webUrl);
             openDetailViewIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             PendingIntent openDetailView = PendingIntent.getActivity(owner, noteID,
                     openDetailViewIntent, PendingIntent.FLAG_UPDATE_CURRENT);

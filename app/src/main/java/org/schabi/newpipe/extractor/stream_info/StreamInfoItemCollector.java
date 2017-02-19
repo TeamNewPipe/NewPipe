@@ -52,7 +52,7 @@ public class StreamInfoItemCollector extends InfoItemCollector {
             throw new ParsingException("Error: UrlIdHandler not set");
         } else if (!resultItem.webpage_url.isEmpty()) {
             resultItem.id = NewPipe.getService(getServiceId())
-                    .getUrlIdHandlerInstance()
+                    .getStreamUrlIdHandlerInstance()
                     .getId(resultItem.webpage_url);
         }
         resultItem.title = extractor.getTitle();

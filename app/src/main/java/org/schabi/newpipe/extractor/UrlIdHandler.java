@@ -23,6 +23,7 @@ import org.schabi.newpipe.extractor.exceptions.ParsingException;
  */
 
 public interface UrlIdHandler {
+
     String getUrl(String videoId);
     String getId(String siteUrl) throws ParsingException;
     String cleanUrl(String siteUrl) throws ParsingException;
