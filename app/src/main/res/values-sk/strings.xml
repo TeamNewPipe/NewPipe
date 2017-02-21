@@ -3,7 +3,7 @@
     <string name="background_player_name">NewPipe Prehrávač na pozadí</string>
     <string name="view_count_text">%1$s pozretí</string>
     <string name="upload_date_text">Zverejnené %1$s</string>
-    <string name="no_player_found">Nenašiel sa prehrávač. Nainštalovať VLC?</string>
+    <string name="no_player_found">Nenašiel sa prehrávač. Chcete nainštalovať VLC?</string>
     <string name="install">Inštalovať</string>
     <string name="cancel">Zrušiť</string>
     <string name="open_in_browser">Otvoriť v prehliadači</string>
@@ -140,7 +140,7 @@
     <string name="msg_url_malform">Neplatná URL alebo bez pripojenia na Internet</string>
     <string name="msg_running">NewPipe Preberanie</string>
     <string name="msg_running_detail">Dotykom zobraziť detaily</string>
-    <string name="msg_wait">Čakajte prosím...</string>
+    <string name="msg_wait">Čakajte prosím…</string>
     <string name="msg_copied">Skopírované do schránky.</string>
     <string name="no_available_dir">Vyberte si dostupný adresár na preberanie.</string>
 
@@ -292,7 +292,21 @@
 
 
  "</string>
-    <string name="reCaptchaActivity">reCaptcha</string>
-    <string name="reCaptcha_title">Výzva reCaptcha</string>
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">Výzva reCAPTCHA</string>
+
+    <string name="black_theme_title">Tmavá</string>
+
+    <string name="all">Všetko</string>
+    <string name="channel">Kanály</string>
+
+    <string name="videos">videá</string>
+    <string name="subscriber">odberateľ</string>
+    <string name="views">videní</string>
+    <string name="short_thousand">k</string>
+    <string name="short_million">M</string>
+    <string name="short_billion">B</string>
+
+    <string name="recaptcha_request_toast">Požiadavka reCAPTCHA</string>
 
     </resources>
