@@ -242,22 +242,12 @@ public class DownloadActivity extends ThemableActivity implements AdapterView.On
 
         switch (id) {
             case android.R.id.home: {
-                Intent intent = new Intent(this, org.schabi.newpipe.MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                NavUtils.navigateUpTo(this, intent);
+                onBackPressed();
                 return true;
             }
             case R.id.action_settings: {
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
-                return true;
-            }
-            case R.id.action_report_error: {
-                ErrorActivity.reportError(DownloadActivity.this, new Vector<Throwable>(),
-                        null, null,
-                        ErrorActivity.ErrorInfo.make(ErrorActivity.USER_REPORT,
-                                null,
-                                "user_report", R.string.user_report));
                 return true;
             }
             default:

@@ -36,6 +36,7 @@ import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.util.NavStack;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -62,14 +63,8 @@ import static android.os.Build.VERSION.SDK_INT;
  */
 
 public class ChannelActivity extends AppCompatActivity {
-
-
     private static final String TAG = ChannelActivity.class.toString();
     private View rootView = null;
-
-    // intent const
-    public static final String CHANNEL_URL = "channel_url";
-    public static final String SERVICE_ID = "service_id";
 
     private int serviceId = -1;
     private String channelUrl = "";
@@ -82,21 +77,31 @@ public class ChannelActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        //since we set themeing we have to set translucent statusBar by hand
         if (PreferenceManager.getDefaultSharedPreferences(this)
                 .getString("theme", getResources().getString(R.string.light_theme_title)).
                         equals(getResources().getString(R.string.dark_theme_title)))  {
             setTheme(R.style.DarkTheme_NoActionBar);
         }
-        super.onCreate(savedInstanceState);
+        setTranslucentStatusBar(getWindow());
+
         setContentView(R.layout.activity_channel);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         rootView = findViewById(R.id.rootView);
         setSupportActionBar(toolbar);
-        Intent i = getIntent();
-        channelUrl = i.getStringExtra(CHANNEL_URL);
-        serviceId = i.getIntExtra(SERVICE_ID, -1);
+        if(savedInstanceState == null) {
+            Intent i = getIntent();
+            channelUrl = i.getStringExtra(NavStack.URL);
+            serviceId = i.getIntExtra(NavStack.SERVICE_ID, -1);
+        } else {
+            channelUrl = savedInstanceState.getString(NavStack.URL);
+            serviceId = savedInstanceState.getInt(NavStack.SERVICE_ID);
+            NavStack.getInstance()
+                    .restoreSavedInstanceState(savedInstanceState);
+        }
 
-        setTranslucentStatusBar(getWindow());
 
         infoListAdapter = new InfoListAdapter(this, rootView);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.channel_streams_view);
@@ -107,11 +112,8 @@ public class ChannelActivity extends AppCompatActivity {
                 new InfoItemBuilder.OnInfoItemSelectedListener() {
             @Override
             public void selected(String url, int serviceId) {
-                Intent detailIntent = new Intent(ChannelActivity.this, VideoItemDetailActivity.class);
-                detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, url);
-                detailIntent.putExtra(
-                        VideoItemDetailFragment.STREAMING_SERVICE, serviceId);
-                startActivity(detailIntent);
+                NavStack.getInstance()
+                        .openDetailActivity(ChannelActivity.this, url, serviceId);
             }
         });
 
@@ -141,7 +143,14 @@ public class ChannelActivity extends AppCompatActivity {
         requestData(false);
     }
 
-
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(NavStack.URL, channelUrl);
+        outState.putInt(NavStack.SERVICE_ID, serviceId);
+        NavStack.getInstance()
+                .onSaveInstanceState(outState);
+    }
 
     private void updateUi(final ChannelInfo info) {
         CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.channel_toolbar_layout);
@@ -310,6 +319,16 @@ public class ChannelActivity extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.KITKAT)
     private static void setTranslucentStatusBarKiKat(Window window) {
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+    }
+
+    @Override
+    public void onBackPressed() {
+        try {
+            NavStack.getInstance()
+                    .navBack(this);
+        } catch (Exception e) {
+            ErrorActivity.reportUiError(this, e);
+        }
     }
 
 }
