@@ -152,7 +152,7 @@
     <string name="videos">videos</string>
     <string name="subscriber">subscriber</string>
     <string name="views">views</string>
-    <string name="short_thousand">T</string>
+    <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
 
