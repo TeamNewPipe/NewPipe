@@ -86,6 +86,8 @@
     <string name="error_report_title">Error report</string>
     <string name="all">All</string>
     <string name="channel">Channel</string>
+    <string name="yes">Yes</string>
+    <string name="later">Later</string>
 
     <!-- error strings -->
     <string name="general_error">Error</string>
@@ -155,6 +157,7 @@
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
+    <string name="restart_title">Restart</string>
 
     <!-- Missions -->
     <string name="start">Start</string>
@@ -183,6 +186,7 @@
     <string name="msg_wait">Please wait…</string>
     <string name="msg_copied">Copied to clipboard.</string>
     <string name="no_available_dir">Please select an available download directory.</string>
+    <string name="msg_restart">You have to restart the application to apply the theme.\n\nDo you want to restart now?</string>
 
     <!-- Checksum types -->
     <string name="md5" translatable="false">MD5</string>
