@@ -98,6 +98,8 @@ public class SettingsFragment  extends PreferenceFragment
         downloadPathAudioPreference = findPreference(DOWNLOAD_PATH_AUDIO_PREFERENCE);
         themePreference = findPreference(THEME);
 
+        final String currentTheme = defaultPreferences.getString(THEME, "Light");
+
         prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
@@ -139,25 +141,27 @@ public class SettingsFragment  extends PreferenceFragment
                 }
                 else if (key == THEME)
                 {
-                    String theme = sharedPreferences.getString(THEME, "Light");
-                    themePreference.setSummary(theme);
+                    String selectedTheme = sharedPreferences.getString(THEME, "Light");
+                    themePreference.setSummary(selectedTheme);
 
-                    new AlertDialog.Builder(activity)
-                            .setTitle(R.string.restart_title)
-                            .setMessage(R.string.msg_restart)
-                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent intentToMain = new Intent(activity, MainActivity.class);
-                                    intentToMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    activity.startActivity(intentToMain);
+                    if(!selectedTheme.equals(currentTheme)) { // If it's not the current theme
+                        new AlertDialog.Builder(activity)
+                                .setTitle(R.string.restart_title)
+                                .setMessage(R.string.msg_restart)
+                                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToMain = new Intent(activity, MainActivity.class);
+                                        intentToMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        activity.startActivity(intentToMain);
 
-                                    activity.finish();
-                                    Runtime.getRuntime().exit(0);
-                                }
-                            })
-                            .setNegativeButton(R.string.later, null)
-                            .create().show();
+                                        activity.finish();
+                                        Runtime.getRuntime().exit(0);
+                                    }
+                                })
+                                .setNegativeButton(R.string.later, null)
+                                .create().show();
+                    }
                 }
                 updateSummary();
             }
