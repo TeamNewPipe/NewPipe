@@ -1,27 +1,27 @@
 package org.schabi.newpipe.settings;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+import android.support.v7.app.AlertDialog;
 
 import com.nononsenseapps.filepicker.FilePickerActivity;
 
 import org.schabi.newpipe.App;
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import info.guardianproject.netcipher.proxy.OrbotHelper;
 
@@ -141,6 +141,23 @@ public class SettingsFragment  extends PreferenceFragment
                 {
                     String theme = sharedPreferences.getString(THEME, "Light");
                     themePreference.setSummary(theme);
+
+                    new AlertDialog.Builder(activity)
+                            .setTitle(R.string.restart_title)
+                            .setMessage(R.string.msg_restart)
+                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intentToMain = new Intent(activity, MainActivity.class);
+                                    intentToMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    activity.startActivity(intentToMain);
+
+                                    activity.finish();
+                                    Runtime.getRuntime().exit(0);
+                                }
+                            })
+                            .setNegativeButton(R.string.later, null)
+                            .create().show();
                 }
                 updateSummary();
             }
