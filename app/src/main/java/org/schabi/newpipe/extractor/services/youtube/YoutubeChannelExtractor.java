@@ -55,6 +55,7 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
     private static String avatarUrl = "";
     private static String bannerUrl = "";
     private static String feedUrl = "";
+    private static long subscriberCount = -1;
     // the fist page is html all other pages are ajax. Every new page can be requested by sending
     // this request url.
     private static String nextPageUrl = "";
@@ -296,9 +297,14 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
 
     @Override
     public long getSubscriberCount() throws ParsingException {
-        String countRaw = doc.select("span[class*=\"yt-subscription-button-subscriber-count\"]").first()
-                .text();
-        return Long.parseLong(countRaw.replaceAll("\\D+",""));
+        Element el = doc.select("span[class*=\"yt-subscription-button-subscriber-count\"]")
+                .first();
+        if(el != null) {
+            subscriberCount = Long.parseLong(el.text().replaceAll("\\D+",""));
+        } else if(el == null && subscriberCount == -1) {
+            throw new ParsingException("Could not get subscriber count");
+        }
+        return subscriberCount;
     }
 
     @Override

@@ -232,15 +232,17 @@ public class ChannelActivity extends AppCompatActivity {
         // start processing
         isLoading = true;
 
-        //delete already displayed content
-        progressBar.setVisibility(View.VISIBLE);
-        infoListAdapter.clearSteamItemList();
-        if(SDK_INT >= 21) {
-            channelBanner.setImageDrawable(getDrawable(R.drawable.channel_banner));
-            avatarView.setImageDrawable(getDrawable(R.drawable.buddy));
-            subscriberLayout.setVisibility(View.GONE);
-            titleView.setText("");
-            getSupportActionBar().setTitle("");
+        if(!onlyVideos) {
+            //delete already displayed content
+            progressBar.setVisibility(View.VISIBLE);
+            infoListAdapter.clearSteamItemList();
+            if (SDK_INT >= 21) {
+                channelBanner.setImageDrawable(getDrawable(R.drawable.channel_banner));
+                avatarView.setImageDrawable(getDrawable(R.drawable.buddy));
+                subscriberLayout.setVisibility(View.GONE);
+                titleView.setText("");
+                getSupportActionBar().setTitle("");
+            }
         }
 
 
