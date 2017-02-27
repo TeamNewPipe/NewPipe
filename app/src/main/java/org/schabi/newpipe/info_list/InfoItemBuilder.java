@@ -105,7 +105,7 @@ public class InfoItemBuilder {
         switch(info.infoType()) {
             case STREAM:
                 itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.stream_item, parent, false);
+                        .inflate(R.layout.stream_item, parent, false);
                 holder = new StreamInfoItemHolder(itemView);
                 break;
             case CHANNEL:
@@ -202,15 +202,15 @@ public class InfoItemBuilder {
         }
     }
 
-    public String shortSubscriber(Long viewCount){
-        if(viewCount >= 1000000000){
-            return Long.toString(viewCount/1000000000)+ billion + " " + subsS;
-        }else if(viewCount>=1000000){
-            return Long.toString(viewCount/1000000)+ million + " " + subsS;
-        }else if(viewCount>=1000){
-            return Long.toString(viewCount/1000)+ thousand + " " + subsS;
+    public String shortSubscriber(Long count){
+        if(count >= 1000000000){
+            return Long.toString(count/1000000000)+ billion + " " + subsS;
+        }else if(count>=1000000){
+            return Long.toString(count/1000000)+ million + " " + subsS;
+        }else if(count>=1000){
+            return Long.toString(count/1000)+ thousand + " " + subsS;
         }else {
-            return Long.toString(viewCount)+ " " + subsS;
+            return Long.toString(count)+ " " + subsS;
         }
     }
 

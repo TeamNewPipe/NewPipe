@@ -88,6 +88,11 @@ public class YoutubeChannelExtractorTest  {
     }
 
     @Test
+    public void testGetSubscriberCount() throws Exception {
+        assertTrue("wrong subscriber count", extractor.getSubscriberCount() >= 0);
+    }
+
+    @Test
     public void testGetNextPage() throws Exception {
         extractor = NewPipe.getService("Youtube")
                 .getChannelExtractorInstance("https://www.youtube.com/channel/UCYJ61XIK64sp6ZFFS8sctxw", 1);

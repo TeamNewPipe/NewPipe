@@ -33,11 +33,20 @@ import java.util.Vector;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
+public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final String TAG = InfoListAdapter.class.toString();
 
     private final InfoItemBuilder infoItemBuilder;
     private final List<InfoItem> infoItemList;
+    private View header = null;
+
+    public class HeaderHolder extends RecyclerView.ViewHolder {
+        public HeaderHolder(View v) {
+            super(v);
+            view = v;
+        }
+        public View view;
+    }
 
     public InfoListAdapter(Activity a, View rootView) {
         infoItemBuilder = new InfoItemBuilder(a, rootView);
@@ -66,21 +75,30 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
         notifyDataSetChanged();
     }
 
+    public void setHeader(View header) {
+        this.header = header;
+    }
+
     @Override
     public int getItemCount() {
-        return infoItemList.size();
+        return (header == null) ? infoItemList.size() : (infoItemList.size() + 1);
     }
 
     // don't ask why we have to do that this way... it's android accept it -.-
     @Override
     public int getItemViewType(int position) {
+        if(header != null && position == 0) {
+            return 0;
+        } else if(header != null) {
+            position--;
+        }
         switch(infoItemList.get(position).infoType()) {
             case STREAM:
-                return 0;
-            case CHANNEL:
                 return 1;
-            case PLAYLIST:
+            case CHANNEL:
                 return 2;
+            case PLAYLIST:
+                return 3;
             default:
                 Log.e(TAG, "Trollolo");
                 return -1;
@@ -88,15 +106,17 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
     }
 
     @Override
-    public InfoItemHolder onCreateViewHolder(ViewGroup parent, int type) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int type) {
         switch(type) {
             case 0:
+                return new HeaderHolder(header);
+            case 1:
                 return new StreamInfoItemHolder(LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.stream_item, parent, false));
-            case 1:
+            case 2:
                 return new ChannelInfoItemHolder(LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.channel_item, parent, false));
-            case 2:
+            case 3:
                 Log.e(TAG, "Playlist is not yet implemented");
                 return null;
             default:
@@ -106,7 +126,15 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
     }
 
     @Override
-    public void onBindViewHolder(InfoItemHolder holder, int i) {
-        infoItemBuilder.buildByHolder(holder, infoItemList.get(i));
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int i) {
+        //god damen f*** ANDROID SH**
+        if(holder instanceof InfoItemHolder) {
+            if(header != null) {
+                i--;
+            }
+            infoItemBuilder.buildByHolder((InfoItemHolder) holder, infoItemList.get(i));
+        } else if(holder instanceof HeaderHolder && i == 0 && header != null) {
+            ((HeaderHolder) holder).view = header;
+        }
     }
 }

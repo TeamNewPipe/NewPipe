@@ -29,8 +29,6 @@ import java.util.Vector;
  */
 
 public class ChannelInfo {
-
-
     public void addException(Exception e) {
         errors.add(e);
     }
@@ -66,6 +64,11 @@ public class ChannelInfo {
         } catch(Exception e) {
             info.errors.add(e);
         }
+        try {
+            info.subscriberCount = extractor.getSubscriberCount();
+        } catch (Exception e) {
+            info.errors.add(e);
+        }
 
         return info;
     }
@@ -76,6 +79,7 @@ public class ChannelInfo {
     public String banner_url = "";
     public String feed_url = "";
     public List<InfoItem> related_streams = null;
+    public long subscriberCount = -1;
     public boolean hasNextPage = false;
 
     public List<Throwable> errors = new Vector<>();

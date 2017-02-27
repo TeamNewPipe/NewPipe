@@ -295,6 +295,13 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
     }
 
     @Override
+    public long getSubscriberCount() throws ParsingException {
+        String countRaw = doc.select("span[class*=\"yt-subscription-button-subscriber-count\"]").first()
+                .text();
+        return Long.parseLong(countRaw.replaceAll("\\D+",""));
+    }
+
+    @Override
     public String getFeedUrl() throws ParsingException {
         try {
             if(userUrl.contains("channel")) {

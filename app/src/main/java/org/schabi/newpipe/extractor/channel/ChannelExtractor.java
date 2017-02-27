@@ -54,6 +54,7 @@ public abstract class ChannelExtractor {
     public abstract String getBannerUrl() throws ParsingException;
     public abstract String getFeedUrl() throws ParsingException;
     public abstract StreamInfoItemCollector getStreams() throws ParsingException;
+    public abstract long getSubscriberCount() throws ParsingException;
     public abstract boolean hasNextPage() throws ParsingException;
     public int getServiceId() {
         return serviceId;
