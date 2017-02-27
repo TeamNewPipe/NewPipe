@@ -3,18 +3,15 @@ package org.schabi.newpipe.download;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,32 +25,28 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.schabi.newpipe.ThemableActivity;
-import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.settings.SettingsActivity;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.File;
 import java.util.Vector;
 
-import us.shandian.giga.get.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.fragment.AllMissionsFragment;
 import us.shandian.giga.ui.fragment.MissionsFragment;
 import us.shandian.giga.util.CrashHandler;
 import us.shandian.giga.util.Utility;
 
-public class DownloadActivity extends ThemableActivity implements AdapterView.OnItemClickListener{
+public class DownloadActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     public static final String INTENT_DOWNLOAD = "us.shandian.giga.intent.DOWNLOAD";
 
     public static final String INTENT_LIST = "us.shandian.giga.intent.LIST";
-
-    private static final String TAG = DownloadActivity.class.toString();
     public static final String THREADS = "threads";
-
-
+    private static final String TAG = DownloadActivity.class.toString();
     private MissionsFragment mFragment;
 
 
@@ -72,8 +65,8 @@ public class DownloadActivity extends ThemableActivity implements AdapterView.On
         startService(i);
 
         super.onCreate(savedInstanceState);
+        ThemeHelper.setTheme(this, true);
         setContentView(R.layout.activity_downloader);
-
 
         //noinspection ConstantConditions
 

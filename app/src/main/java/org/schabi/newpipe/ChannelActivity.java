@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -30,9 +29,9 @@ import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.IOException;
-import java.util.Objects;
 
 /**
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
@@ -55,13 +54,11 @@ import java.util.Objects;
 public class ChannelActivity extends AppCompatActivity {
 
 
-    private static final String TAG = ChannelActivity.class.toString();
-    private View rootView = null;
-
     // intent const
     public static final String CHANNEL_URL = "channel_url";
     public static final String SERVICE_ID = "service_id";
-
+    private static final String TAG = ChannelActivity.class.toString();
+    private View rootView = null;
     private int serviceId = -1;
     private String channelUrl = "";
     private int pageNumber = 0;
@@ -73,12 +70,8 @@ public class ChannelActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (PreferenceManager.getDefaultSharedPreferences(this)
-                .getString("theme", getResources().getString(R.string.light_theme_title)).
-                        equals(getResources().getString(R.string.dark_theme_title)))  {
-            setTheme(R.style.DarkTheme_NoActionBar);
-        }
         super.onCreate(savedInstanceState);
+        ThemeHelper.setTheme(this, false);
         setContentView(R.layout.activity_channel);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         rootView = findViewById(R.id.rootView);

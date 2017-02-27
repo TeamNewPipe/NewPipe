@@ -5,17 +5,17 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.ThemableActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -39,7 +39,7 @@ import java.util.HashSet;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class VideoItemDetailActivity extends ThemableActivity {
+public class VideoItemDetailActivity extends AppCompatActivity {
 
     /**
      * Removes invisible separators (\p{Z}) and punctuation characters including
@@ -55,8 +55,36 @@ public class VideoItemDetailActivity extends ThemableActivity {
     private String videoUrl;
     private int currentStreamingService = -1;
 
+    private static String removeHeadingGibberish(final String input) {
+        int start = 0;
+        for (int i = input.indexOf("://") - 1; i >= 0; i--) {
+            if (!input.substring(i, i + 1).matches("\\p{L}")) {
+                start = i + 1;
+                break;
+            }
+        }
+        return input.substring(start, input.length());
+    }
+
+    private static String trim(final String input) {
+        if (input == null || input.length() < 1) {
+            return input;
+        } else {
+            String output = input;
+            while (output.length() > 0 && output.substring(0, 1).matches(REGEX_REMOVE_FROM_URL)) {
+                output = output.substring(1);
+            }
+            while (output.length() > 0
+                    && output.substring(output.length() - 1, output.length()).matches(REGEX_REMOVE_FROM_URL)) {
+                output = output.substring(0, output.length() - 1);
+            }
+            return output;
+        }
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeHelper.setTheme(this, true);
         setContentView(R.layout.activity_videoitem_detail);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         // Show the Up button in the action bar.
@@ -191,33 +219,6 @@ public class VideoItemDetailActivity extends ThemableActivity {
             }
         }
         return result.toArray(new String[result.size()]);
-    }
-
-    private static String removeHeadingGibberish(final String input) {
-        int start = 0;
-        for (int i = input.indexOf("://") - 1; i >= 0; i--) {
-            if (!input.substring(i, i + 1).matches("\\p{L}")) {
-                start = i + 1;
-                break;
-            }
-        }
-        return input.substring(start, input.length());
-    }
-
-    private static String trim(final String input) {
-        if (input == null || input.length() < 1) {
-            return input;
-        } else {
-            String output = input;
-            while (output.length() > 0 && output.substring(0, 1).matches(REGEX_REMOVE_FROM_URL)) {
-                output = output.substring(1);
-            }
-            while (output.length() > 0
-                    && output.substring(output.length() - 1, output.length()).matches(REGEX_REMOVE_FROM_URL)) {
-                output = output.substring(0, output.length() - 1);
-            }
-            return output;
-        }
     }
 
     private int getServiceIdByUrl(String url) {

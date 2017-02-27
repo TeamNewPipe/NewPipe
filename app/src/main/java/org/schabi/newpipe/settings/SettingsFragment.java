@@ -1,14 +1,12 @@
 package org.schabi.newpipe.settings;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
@@ -21,7 +19,6 @@ import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import info.guardianproject.netcipher.proxy.OrbotHelper;
 
@@ -48,8 +45,8 @@ import info.guardianproject.netcipher.proxy.OrbotHelper;
 public class SettingsFragment  extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener
 {
+    public static final int REQUEST_INSTALL_ORBOT = 0x1234;
     SharedPreferences.OnSharedPreferenceChangeListener prefListener;
-
     // get keys
     String DEFAULT_RESOLUTION_PREFERENCE;
     String DEFAULT_AUDIO_FORMAT_PREFERENCE;
@@ -58,9 +55,6 @@ public class SettingsFragment  extends PreferenceFragment
     String DOWNLOAD_PATH_AUDIO_PREFERENCE;
     String USE_TOR_KEY;
     String THEME;
-
-    public static final int REQUEST_INSTALL_ORBOT = 0x1234;
-
     private ListPreference defaultResolutionPreference;
     private ListPreference defaultAudioFormatPreference;
     private ListPreference searchLanguagePreference;

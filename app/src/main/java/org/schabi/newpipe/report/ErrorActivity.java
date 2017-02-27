@@ -1,5 +1,3 @@
-
-
 package org.schabi.newpipe.report;
 
 import android.app.Activity;
@@ -8,14 +6,15 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
-import android.os.Bundle;
-import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,8 +33,8 @@ import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.ThemableActivity;
 import org.schabi.newpipe.extractor.Parser;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -65,65 +64,12 @@ import java.util.Vector;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class ErrorActivity extends ThemableActivity {
-    public static class ErrorInfo implements Parcelable {
-        public int userAction;
-        public String request;
-        public String serviceName;
-        public int message;
-
-        public static ErrorInfo make(int userAction, String serviceName, String request, int message) {
-            ErrorInfo info = new ErrorInfo();
-            info.userAction = userAction;
-            info.serviceName = serviceName;
-            info.request = request;
-            info.message = message;
-            return info;
-        }
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeInt(this.userAction);
-            dest.writeString(this.request);
-            dest.writeString(this.serviceName);
-            dest.writeInt(this.message);
-        }
-
-        public ErrorInfo() {
-        }
-
-        protected ErrorInfo(Parcel in) {
-            this.userAction = in.readInt();
-            this.request = in.readString();
-            this.serviceName = in.readString();
-            this.message = in.readInt();
-        }
-
-        public static final Parcelable.Creator<ErrorInfo> CREATOR = new Parcelable.Creator<ErrorInfo>() {
-            @Override
-            public ErrorInfo createFromParcel(Parcel source) {
-                return new ErrorInfo(source);
-            }
-
-            @Override
-            public ErrorInfo[] newArray(int size) {
-                return new ErrorInfo[size];
-            }
-        };
-    }
-
+public class ErrorActivity extends AppCompatActivity {
     // LOG TAGS
     public static final String TAG = ErrorActivity.class.toString();
-
     // BUNDLE TAGS
     public static final String ERROR_INFO = "error_info";
     public static final String ERROR_LIST = "error_list";
-
     // MESSAGE ID
     public static final int SEARCHED = 0;
     public static final int REQUESTED_STREAM = 1;
@@ -133,7 +79,6 @@ public class ErrorActivity extends ThemableActivity {
     public static final int LOAD_IMAGE = 5;
     public static final int UI_ERROR = 6;
     public static final int REQUESTED_CHANNEL = 7;
-
     // MESSAGE STRING
     public static final String SEARCHED_STRING = "searched";
     public static final String REQUESTED_STREAM_STRING = "requested stream";
@@ -143,17 +88,14 @@ public class ErrorActivity extends ThemableActivity {
     public static final String LOAD_IMAGE_STRING = "load image";
     public static final String UI_ERROR_STRING = "ui error";
     public static final String REQUESTED_CHANNEL_STRING = "requested channel";
-
     public static final String ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org";
     public static final String ERROR_EMAIL_SUBJECT = "Exception in NewPipe " + BuildConfig.VERSION_NAME;
-
+    Thread globIpRangeThread;
     private String[] errorList;
     private ErrorInfo errorInfo;
     private Class returnActivity;
     private String currentTimeStamp;
     private String globIpRange;
-    Thread globIpRangeThread;
-
     // views
     private TextView errorView;
     private EditText userCommentBox;
@@ -238,9 +180,26 @@ public class ErrorActivity extends ThemableActivity {
         context.startActivity(intent);
     }
 
+    private static String getStackTrace(final Throwable throwable) {
+        final StringWriter sw = new StringWriter();
+        final PrintWriter pw = new PrintWriter(sw, true);
+        throwable.printStackTrace(pw);
+        return sw.getBuffer().toString();
+    }
+
+    // errorList to StringList
+    private static String[] elToSl(List<Throwable> stackTraces) {
+        String[] out = new String[stackTraces.size()];
+        for (int i = 0; i < stackTraces.size(); i++) {
+            out[i] = getStackTrace(stackTraces.get(i));
+        }
+        return out;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeHelper.setTheme(this, true);
         setContentView(R.layout.activity_error);
 
         Intent intent = getIntent();
@@ -323,13 +282,6 @@ public class ErrorActivity extends ThemableActivity {
             break;
         }
         return false;
-    }
-
-    private static String getStackTrace(final Throwable throwable) {
-        final StringWriter sw = new StringWriter();
-        final PrintWriter pw = new PrintWriter(sw, true);
-        throwable.printStackTrace(pw);
-        return sw.getBuffer().toString();
     }
 
     private String formErrorText(String[] el) {
@@ -468,6 +420,56 @@ public class ErrorActivity extends ThemableActivity {
         return df.format(new Date());
     }
 
+    public static class ErrorInfo implements Parcelable {
+        public static final Parcelable.Creator<ErrorInfo> CREATOR = new Parcelable.Creator<ErrorInfo>() {
+            @Override
+            public ErrorInfo createFromParcel(Parcel source) {
+                return new ErrorInfo(source);
+            }
+
+            @Override
+            public ErrorInfo[] newArray(int size) {
+                return new ErrorInfo[size];
+            }
+        };
+        public int userAction;
+        public String request;
+        public String serviceName;
+        public int message;
+
+        public ErrorInfo() {
+        }
+
+        protected ErrorInfo(Parcel in) {
+            this.userAction = in.readInt();
+            this.request = in.readString();
+            this.serviceName = in.readString();
+            this.message = in.readInt();
+        }
+
+        public static ErrorInfo make(int userAction, String serviceName, String request, int message) {
+            ErrorInfo info = new ErrorInfo();
+            info.userAction = userAction;
+            info.serviceName = serviceName;
+            info.request = request;
+            info.message = message;
+            return info;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(this.userAction);
+            dest.writeString(this.request);
+            dest.writeString(this.serviceName);
+            dest.writeInt(this.message);
+        }
+    }
+
     private class IpRagneRequester implements Runnable {
         Handler h = new Handler();
         public void run() {
@@ -487,8 +489,6 @@ public class ErrorActivity extends ThemableActivity {
         }
     }
 
-
-
     private class IpRageReturnRunnable implements Runnable {
         String ipRange;
         public IpRageReturnRunnable(String ipRange) {
@@ -503,14 +503,5 @@ public class ErrorActivity extends ThemableActivity {
                 reportButton.setEnabled(true);
             }
         }
-    }
-
-    // errorList to StringList
-    private static String[] elToSl(List<Throwable> stackTraces) {
-        String[] out = new String[stackTraces.size()];
-        for(int i = 0; i < stackTraces.size(); i++) {
-            out[i] = getStackTrace(stackTraces.get(i));
-        }
-        return out;
     }
 }

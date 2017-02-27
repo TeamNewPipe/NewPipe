@@ -2,15 +2,17 @@ package org.schabi.newpipe;
 
 import android.content.Intent;
 import android.media.AudioManager;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.ThemeHelper;
 
 /**
  * Created by Christian Schabesberger on 02.08.16.
@@ -32,13 +34,14 @@ import org.schabi.newpipe.util.PermissionHelper;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class MainActivity extends ThemableActivity {
+public class MainActivity extends AppCompatActivity {
 
     private Fragment mainFragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeHelper.setTheme(this, true);
         setContentView(R.layout.activity_main);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         mainFragment = getSupportFragmentManager()
@@ -49,7 +52,6 @@ public class MainActivity extends ThemableActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
-
         inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
