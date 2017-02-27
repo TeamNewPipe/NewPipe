@@ -153,7 +153,7 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
     @Override
     public StreamInfoItemCollector getStreams() throws ParsingException {
         StreamInfoItemCollector collector = getStreamPreviewInfoCollector();
-        Element ul = null;
+        Element ul;
         if(isAjaxPage) {
             ul = doc.select("body").first();
         } else {
