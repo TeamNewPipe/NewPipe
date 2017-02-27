@@ -33,6 +33,8 @@ import org.schabi.newpipe.util.NavStack;
 
 import java.io.IOException;
 
+import static android.os.Build.VERSION.SDK_INT;
+
 /**
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
  * ChannelActivity.java is part of NewPipe.
@@ -66,6 +68,16 @@ public class ChannelActivity extends ThemableActivity {
 
     private String subS = "";
 
+    ProgressBar progressBar = null;
+    ImageView channelBanner = null;
+    ImageView avatarView = null;
+    TextView titleView = null;
+    TextView subscirberView = null;
+    Button subscriberButton = null;
+    View subscriberLayout = null;
+
+    View header = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,23 +87,13 @@ public class ChannelActivity extends ThemableActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
-        if(savedInstanceState == null) {
-            Intent i = getIntent();
-            channelUrl = i.getStringExtra(NavStack.URL);
-            serviceId = i.getIntExtra(NavStack.SERVICE_ID, -1);
-        } else {
-            channelUrl = savedInstanceState.getString(NavStack.URL);
-            serviceId = savedInstanceState.getInt(NavStack.SERVICE_ID);
-            NavStack.getInstance()
-                    .restoreSavedInstanceState(savedInstanceState);
-        }
-
 
         infoListAdapter = new InfoListAdapter(this, rootView);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.channel_streams_view);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        infoListAdapter.setHeader(getLayoutInflater().inflate(R.layout.channel_header, recyclerView, false));
+        header = getLayoutInflater().inflate(R.layout.channel_header, recyclerView, false);
+        infoListAdapter.setHeader(header);
         recyclerView.setAdapter(infoListAdapter);
         infoListAdapter.setOnStreamInfoItemSelectedListener(
                 new InfoItemBuilder.OnInfoItemSelectedListener() {
@@ -127,6 +129,34 @@ public class ChannelActivity extends ThemableActivity {
 
         subS = getString(R.string.subscriber);
 
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        channelBanner = (ImageView) header.findViewById(R.id.channel_banner_image);
+        avatarView = (ImageView) header.findViewById(R.id.channel_avatar_view);
+        titleView = (TextView) header.findViewById(R.id.channel_title_view);
+        subscirberView = (TextView) header.findViewById(R.id.channel_subscriber_view);
+        subscriberButton = (Button) header.findViewById(R.id.channel_subscribe_button);
+        subscriberLayout = header.findViewById(R.id.channel_subscriber_layout);
+
+        if(savedInstanceState == null) {
+            handleIntent(getIntent());
+        } else {
+            channelUrl = savedInstanceState.getString(NavStack.URL);
+            serviceId = savedInstanceState.getInt(NavStack.SERVICE_ID);
+            NavStack.getInstance()
+                    .restoreSavedInstanceState(savedInstanceState);
+        }
+
+    }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent i) {
+        channelUrl = i.getStringExtra(NavStack.URL);
+        serviceId = i.getIntExtra(NavStack.SERVICE_ID, -1);
         requestData(false);
     }
 
@@ -140,14 +170,7 @@ public class ChannelActivity extends ThemableActivity {
     }
 
     private void updateUi(final ChannelInfo info) {
-        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        ImageView channelBanner = (ImageView) findViewById(R.id.channel_banner_image);
-        ImageView avatarView = (ImageView) findViewById(R.id.channel_avatar_view);
-        ImageView haloView = (ImageView) findViewById(R.id.channel_avatar_halo);
-        TextView titleView = (TextView) findViewById(R.id.channel_title_view);
-        TextView subscirberView = (TextView) findViewById(R.id.channel_subscriber_view);
-        Button subscriberButton = (Button) findViewById(R.id.channel_subscribe_button);
-
+        findViewById(R.id.channel_header_layout).setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
 
         if(info.channel_name != null && !info.channel_name.isEmpty()) {
@@ -162,7 +185,6 @@ public class ChannelActivity extends ThemableActivity {
 
         if(info.avatar_url != null && !info.avatar_url.isEmpty()) {
             avatarView.setVisibility(View.VISIBLE);
-            haloView.setVisibility(View.VISIBLE);
             imageLoader.displayImage(info.avatar_url, avatarView,
                     new ImageErrorLoadingListener(this, rootView ,info.service_id));
         }
@@ -173,7 +195,7 @@ public class ChannelActivity extends ThemableActivity {
 
         if((info.feed_url != null && !info.feed_url.isEmpty()) ||
                 (info.subscriberCount != -1)) {
-            findViewById(R.id.channel_subscriber_layout).setVisibility(View.VISIBLE);
+            subscriberLayout.setVisibility(View.VISIBLE);
         }
 
         if(info.feed_url != null && !info.feed_url.isEmpty()) {
@@ -186,7 +208,7 @@ public class ChannelActivity extends ThemableActivity {
                 }
             });
         } else {
-            subscriberButton.setVisibility(View.GONE);
+            subscriberButton.setVisibility(View.INVISIBLE);
         }
 
     }
@@ -208,6 +230,19 @@ public class ChannelActivity extends ThemableActivity {
     private void requestData(final boolean onlyVideos) {
         // start processing
         isLoading = true;
+
+        //delete already displayed content
+        progressBar.setVisibility(View.VISIBLE);
+        infoListAdapter.clearSteamItemList();
+        if(SDK_INT >= 21) {
+            channelBanner.setImageDrawable(getDrawable(R.drawable.channel_banner));
+            avatarView.setImageDrawable(getDrawable(R.drawable.buddy));
+            subscriberLayout.setVisibility(View.GONE);
+            titleView.setText("");
+            getSupportActionBar().setTitle("");
+        }
+
+
         Thread channelExtractorThread = new Thread(new Runnable() {
             Handler h = new Handler();
 
