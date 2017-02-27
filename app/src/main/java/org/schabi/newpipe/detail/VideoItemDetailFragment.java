@@ -797,8 +797,11 @@ public class VideoItemDetailFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        super.onOptionsItemSelected(item);
-        return actionBarHandler.onItemSelected(item);
+        if(!actionBarHandler.onItemSelected(item)) {
+            return super.onOptionsItemSelected(item);
+        } else {
+            return true;
+        }
     }
 
     public void setOnInvokeCreateOptionsMenuListener(OnInvokeCreateOptionsMenuListener listener) {

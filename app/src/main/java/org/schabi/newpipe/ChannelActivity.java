@@ -7,6 +7,8 @@ import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,6 +28,7 @@ import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.NavStack;
 
 import java.io.IOException;
@@ -303,6 +306,41 @@ public class ChannelActivity extends ThemableActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_channel, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch(item.getItemId()) {
+            case R.id.action_settings: {
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
+            }
+            case R.id.menu_item_openInBrowser: {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(channelUrl));
+
+                startActivity(Intent.createChooser(intent, getString(R.string.choose_browser)));
+            }
+            case R.id.menu_item_share:
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, channelUrl);
+                intent.setType("text/plain");
+                startActivity(Intent.createChooser(intent, getString(R.string.share_dialog_title)));
+            case android.R.id.home:
+                NavStack.getInstance().openMainActivity(this);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     private String buildSubscriberString(long count) {
         String out = "";
