@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -16,8 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
-
-import java.util.Objects;
+import org.schabi.newpipe.util.ThemeHelper;
 
 
 /**
@@ -41,16 +39,16 @@ import java.util.Objects;
  */
 
 public class SettingsActivity extends PreferenceActivity  {
-    private AppCompatDelegate mDelegate = null;
     SettingsFragment f = new SettingsFragment();
+    private AppCompatDelegate mDelegate = null;
+
+    public static void initSettings(Context context) {
+        NewPipeSettings.initSettings(context);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {
-        if (PreferenceManager.getDefaultSharedPreferences(this)
-                .getString("theme", getResources().getString(R.string.light_theme_title)).
-                        equals(getResources().getString(R.string.dark_theme_title)))  {
-            setTheme(R.style.DarkTheme);
-        }
+        ThemeHelper.setTheme(this, true);
         getDelegate().installViewFactory();
         getDelegate().onCreate(savedInstanceBundle);
         super.onCreate(savedInstanceBundle);
@@ -155,9 +153,5 @@ public class SettingsActivity extends PreferenceActivity  {
             finish();
         }
         return true;
-    }
-
-    public static void initSettings(Context context) {
-        NewPipeSettings.initSettings(context);
     }
 }

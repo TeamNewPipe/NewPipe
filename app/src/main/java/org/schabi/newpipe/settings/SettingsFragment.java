@@ -48,8 +48,8 @@ import info.guardianproject.netcipher.proxy.OrbotHelper;
 public class SettingsFragment  extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener
 {
+    public static final int REQUEST_INSTALL_ORBOT = 0x1234;
     SharedPreferences.OnSharedPreferenceChangeListener prefListener;
-
     // get keys
     String DEFAULT_RESOLUTION_PREFERENCE;
     String DEFAULT_AUDIO_FORMAT_PREFERENCE;
@@ -58,9 +58,6 @@ public class SettingsFragment  extends PreferenceFragment
     String DOWNLOAD_PATH_AUDIO_PREFERENCE;
     String USE_TOR_KEY;
     String THEME;
-
-    public static final int REQUEST_INSTALL_ORBOT = 0x1234;
-
     private ListPreference defaultResolutionPreference;
     private ListPreference defaultAudioFormatPreference;
     private ListPreference searchLanguagePreference;

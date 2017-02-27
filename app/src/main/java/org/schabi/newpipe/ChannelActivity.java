@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -30,10 +31,10 @@ import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.NavStack;
-
 import java.io.IOException;
-
 import static android.os.Build.VERSION.SDK_INT;
+import org.schabi.newpipe.util.ThemeHelper;
+
 
 /**
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
@@ -53,7 +54,7 @@ import static android.os.Build.VERSION.SDK_INT;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class ChannelActivity extends ThemableActivity {
+public class ChannelActivity extends AppCompatActivity {
     private static final String TAG = ChannelActivity.class.toString();
     private View rootView = null;
 
@@ -81,7 +82,7 @@ public class ChannelActivity extends ThemableActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ThemeHelper.setTheme(this, true);
         setContentView(R.layout.activity_channel);
         rootView = findViewById(android.R.id.content);
 

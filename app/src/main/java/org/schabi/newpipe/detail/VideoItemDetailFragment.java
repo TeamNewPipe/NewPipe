@@ -33,6 +33,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.google.android.exoplayer.util.Util;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -62,6 +63,7 @@ import org.schabi.newpipe.util.NavStack;
 import org.schabi.newpipe.util.PermissionHelper;
 
 import static android.app.Activity.RESULT_OK;
+import static com.nononsenseapps.filepicker.R.styleable.AlertDialog;
 import static org.schabi.newpipe.ReCaptchaActivity.RECAPTCHA_REQUEST;
 
 
