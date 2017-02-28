@@ -95,6 +95,8 @@ public class ChannelActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         header = getLayoutInflater().inflate(R.layout.channel_header, recyclerView, false);
         infoListAdapter.setHeader(header);
+        infoListAdapter.setFooter(
+                getLayoutInflater().inflate(R.layout.pignate_footer, recyclerView, false));
         recyclerView.setAdapter(infoListAdapter);
         infoListAdapter.setOnStreamInfoItemSelectedListener(
                 new InfoItemBuilder.OnInfoItemSelectedListener() {
@@ -236,15 +238,16 @@ public class ChannelActivity extends AppCompatActivity {
             //delete already displayed content
             progressBar.setVisibility(View.VISIBLE);
             infoListAdapter.clearSteamItemList();
+            pageNumber = 0;
+            subscriberLayout.setVisibility(View.GONE);
+            titleView.setText("");
+            getSupportActionBar().setTitle("");
             if (SDK_INT >= 21) {
                 channelBanner.setImageDrawable(getDrawable(R.drawable.channel_banner));
                 avatarView.setImageDrawable(getDrawable(R.drawable.buddy));
-                subscriberLayout.setVisibility(View.GONE);
-                titleView.setText("");
-                getSupportActionBar().setTitle("");
             }
+            infoListAdapter.showFooter(false);
         }
-
 
         Thread channelExtractorThread = new Thread(new Runnable() {
             Handler h = new Handler();
@@ -266,8 +269,12 @@ public class ChannelActivity extends AppCompatActivity {
                             isLoading = false;
                             if(!onlyVideos) {
                                 updateUi(info);
+                                infoListAdapter.showFooter(true);
                             }
                             hasNextPage = info.hasNextPage;
+                            if(!hasNextPage) {
+                                infoListAdapter.showFooter(false);
+                            }
                             addVideos(info);
                         }
                     });
