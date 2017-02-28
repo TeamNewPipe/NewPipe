@@ -63,7 +63,6 @@ import org.schabi.newpipe.util.NavStack;
 import org.schabi.newpipe.util.PermissionHelper;
 
 import static android.app.Activity.RESULT_OK;
-import static com.nononsenseapps.filepicker.R.styleable.AlertDialog;
 import static org.schabi.newpipe.ReCaptchaActivity.RECAPTCHA_REQUEST;
 
 
