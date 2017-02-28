@@ -10,6 +10,7 @@ import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
 import org.schabi.newpipe.extractor.AbstractStreamInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.exceptions.FoundAdException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.stream_info.AudioStream;
@@ -725,7 +726,16 @@ public class YoutubeStreamExtractor extends StreamExtractor {
         return new StreamInfoItemExtractor() {
             @Override
             public AbstractStreamInfo.StreamType getStreamType() throws ParsingException {
-                return null;
+                return AbstractStreamInfo.StreamType.VIDEO_STREAM;
+            }
+
+            @Override
+            public boolean isAd() throws ParsingException {
+                if(!li.select("span[class*=\"icon-not-available\"]").isEmpty()) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
 
             @Override

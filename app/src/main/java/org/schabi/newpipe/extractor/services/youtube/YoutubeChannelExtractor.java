@@ -170,6 +170,15 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
                     }
 
                     @Override
+                    public boolean isAd() throws ParsingException {
+                        if(!li.select("span[class*=\"icon-not-available\"]").isEmpty()) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+
+                    @Override
                     public String getWebPageUrl() throws ParsingException {
                         try {
                             Element el = li.select("div[class=\"feed-item-dismissable\"]").first();
@@ -214,9 +223,14 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
                     @Override
                     public String getUploadDate() throws ParsingException {
                         try {
-                            return li.select("div[class=\"yt-lockup-meta\"]").first()
-                                    .select("li").first()
-                                    .text();
+                            Element meta = li.select("div[class=\"yt-lockup-meta\"]").first();
+                            Element li = meta.select("li").first();
+                            if (li == null && meta != null) {
+                                //this means we have a youtube red video
+                                return "";
+                            }else {
+                                return li.text();
+                            }
                         } catch(Exception e) {
                             throw new ParsingException("Could not get uplaod date", e);
                         }
@@ -231,13 +245,7 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
                                     .select("li").get(1)
                                     .text();
                         } catch (IndexOutOfBoundsException e) {
-                            if(isLiveStream(li)) {
-                                // -1 for no view count
-                                return -1;
-                            } else {
-                                throw new ParsingException(
-                                        "Could not parse yt-lockup-meta although available: " + getTitle(), e);
-                            }
+                            return -1;
                         }
 
                         output = Parser.matchGroup1("([0-9,\\. ]*)", input)

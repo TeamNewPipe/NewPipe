@@ -32,4 +32,5 @@ public interface StreamInfoItemExtractor {
     String getUploadDate() throws ParsingException;
     long getViewCount() throws  ParsingException;
     String getThumbnailUrl() throws  ParsingException;
+    boolean isAd() throws ParsingException;
 }
