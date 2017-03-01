@@ -312,8 +312,18 @@
     <string name="videos">動画</string>
     <string name="subscriber">購読者</string>
     <string name="views">表示</string>
-    <string name="short_thousand">000</string>
+    <string name="short_thousand">K</string>
     <string name="short_million">000000</string>
     <string name="short_billion">000000000</string>
+
+    <string name="yes">はい</string>
+    <string name="later">後で</string>
+
+    <string name="subscribe">購読</string>
+    <string name="restart_title">再起動</string>
+
+    <string name="msg_restart">テーマを適用するにはアプリケーションを再起動する必要があります。
+
+今すぐ再起動しますか?</string>
 
     </resources>
