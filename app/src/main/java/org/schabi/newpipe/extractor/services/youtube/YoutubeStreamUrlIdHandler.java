@@ -1,7 +1,5 @@
 package org.schabi.newpipe.extractor.services.youtube;
 
-import android.support.annotation.NonNull;
-
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Parser;
@@ -112,7 +110,7 @@ public class YoutubeStreamUrlIdHandler implements UrlIdHandler {
      * @return the id of the stream
      * @throws ParsingException
      */
-    private @NonNull String getRealIdFromSharedLink(String url) throws ParsingException {
+    private String getRealIdFromSharedLink(String url) throws ParsingException {
         URI uri;
         try {
             uri = new URI(url);
@@ -135,7 +133,7 @@ public class YoutubeStreamUrlIdHandler implements UrlIdHandler {
         return realId;
     }
 
-    private @NonNull String getSharedId(URI uri) throws ParsingException {
+    private String getSharedId(URI uri) throws ParsingException {
         if (!"/shared".equals(uri.getPath())) {
             throw new ParsingException("Not a shared link: " + uri.toString() + " (path != " + uri.getPath() + ")");
         }
