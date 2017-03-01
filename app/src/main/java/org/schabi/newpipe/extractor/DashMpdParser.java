@@ -1,16 +1,20 @@
 package org.schabi.newpipe.extractor;
 
-import android.util.Xml;
-
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.stream_info.AudioStream;
-import org.xmlpull.v1.XmlPullParser;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.StringReader;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Vector;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 /**
  * Created by Christian Schabesberger on 02.02.16.
@@ -55,57 +59,33 @@ public class DashMpdParser {
             throw new ReCaptchaException("reCaptcha Challenge needed");
         }
         Vector<AudioStream> audioStreams = new Vector<>();
+
         try {
-            XmlPullParser parser = Xml.newPullParser();
-            parser.setInput(new StringReader(dashDoc));
-            String tagName = "";
-            String currentMimeType = "";
-            int currentBandwidth = -1;
-            int currentSamplingRate = -1;
-            boolean currentTagIsBaseUrl = false;
-            for(int eventType = parser.getEventType();
-                eventType != XmlPullParser.END_DOCUMENT;
-                eventType = parser.next() ) {
-                switch(eventType) {
-                    case XmlPullParser.START_TAG:
-                        tagName = parser.getName();
-                        if(tagName.equals("AdaptationSet")) {
-                            currentMimeType = parser.getAttributeValue(XmlPullParser.NO_NAMESPACE, "mimeType");
-                        } else if(tagName.equals("Representation") && currentMimeType.contains("audio")) {
-                            currentBandwidth = Integer.parseInt(
-                                    parser.getAttributeValue(XmlPullParser.NO_NAMESPACE, "bandwidth"));
-                            currentSamplingRate = Integer.parseInt(
-                                    parser.getAttributeValue(XmlPullParser.NO_NAMESPACE, "audioSamplingRate"));
-                        } else if(tagName.equals("BaseURL")) {
-                            currentTagIsBaseUrl = true;
-                        }
-                        break;
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            InputStream stream = new ByteArrayInputStream(dashDoc.getBytes());
 
-                    case XmlPullParser.TEXT:
-                        // actual stream tag
-                        if(currentTagIsBaseUrl &&
-                                (currentMimeType.contains("audio"))) {
-                            int format = -1;
-                            if(currentMimeType.equals(MediaFormat.WEBMA.mimeType)) {
-                                format = MediaFormat.WEBMA.id;
-                            } else if(currentMimeType.equals(MediaFormat.M4A.mimeType)) {
-                                format = MediaFormat.M4A.id;
-                            }
-                            audioStreams.add(new AudioStream(parser.getText(),
-                                    format, currentBandwidth, currentSamplingRate));
-                        }
-                        break;
-
-                    case XmlPullParser.END_TAG:
-                        if(tagName.equals("AdaptationSet")) {
-                            currentMimeType = "";
-                        } else if(tagName.equals("BaseURL")) {
-                            currentTagIsBaseUrl = false;
-                        }
-                        break;
+            Document doc = builder.parse(stream);
+            NodeList adaptationSetList = doc.getElementsByTagName("AdaptationSet");
+            for(int i = 0; i < adaptationSetList.getLength(); i++) {
+                Element adaptationSet = (Element) adaptationSetList.item(i);
+                String memeType = adaptationSet.getAttribute("mimeType");
+                if(memeType.contains("audio")) {
+                    Element representation = (Element) adaptationSet.getElementsByTagName("Representation").item(0);
+                    String url = representation.getElementsByTagName("BaseURL").item(0).getTextContent();
+                    int bandwidth = Integer.parseInt(representation.getAttribute("bandwidth"));
+                    int samplingRate = Integer.parseInt(representation.getAttribute("audioSamplingRate"));
+                    int format = -1;
+                    if(memeType.equals(MediaFormat.WEBMA.mimeType)) {
+                        format = MediaFormat.WEBMA.id;
+                    } else if(memeType.equals(MediaFormat.M4A.mimeType)) {
+                        format = MediaFormat.M4A.id;
+                    }
+                    audioStreams.add(new AudioStream(url, format, bandwidth, samplingRate));
                 }
             }
-        } catch(Exception e) {
+        }
+        catch(Exception e) {
             throw new DashMpdParsingException("Could not parse Dash mpd", e);
         }
         return audioStreams;
