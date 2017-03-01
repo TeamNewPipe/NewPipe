@@ -311,17 +311,17 @@
     <string name="all">Сви</string>
     <string name="channel">Канал</string>
 
-    <string name="videos">видеи</string>
-    <string name="subscriber">претплатник</string>
+    <string name="videos">видеа</string>
+    <string name="subscriber">пријављених</string>
     <string name="views">прегледа</string>
-    <string name="short_thousand">х</string>
-    <string name="short_million">м</string>
+    <string name="short_thousand">хиљ</string>
+    <string name="short_million">мил</string>
     <string name="short_billion">млрд</string>
 
     <string name="yes">Да</string>
     <string name="later">Касније</string>
 
-    <string name="subscribe">Пријави се</string>
+    <string name="subscribe">Пријави ме</string>
     <string name="restart_title">Поново покрени</string>
 
     <string name="msg_restart">Морате поново да покренете апликацију да бисте применили тему.
