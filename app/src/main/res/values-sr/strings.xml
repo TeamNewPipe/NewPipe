@@ -318,4 +318,14 @@
     <string name="short_million">м</string>
     <string name="short_billion">млрд</string>
 
+    <string name="yes">Да</string>
+    <string name="later">Касније</string>
+
+    <string name="subscribe">Пријави се</string>
+    <string name="restart_title">Поново покрени</string>
+
+    <string name="msg_restart">Морате поново да покренете апликацију да бисте применили тему.
+
+Желите ли то сада да урадите?</string>
+
     </resources>
