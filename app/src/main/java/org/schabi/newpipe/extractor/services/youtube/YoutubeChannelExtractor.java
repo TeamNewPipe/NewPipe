@@ -55,6 +55,7 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
     private static String avatarUrl = "";
     private static String bannerUrl = "";
     private static String feedUrl = "";
+    private static long subscriberCount = -1;
     // the fist page is html all other pages are ajax. Every new page can be requested by sending
     // this request url.
     private static String nextPageUrl = "";
@@ -153,7 +154,7 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
     @Override
     public StreamInfoItemCollector getStreams() throws ParsingException {
         StreamInfoItemCollector collector = getStreamPreviewInfoCollector();
-        Element ul = null;
+        Element ul;
         if(isAjaxPage) {
             ul = doc.select("body").first();
         } else {
@@ -166,6 +167,15 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
                     @Override
                     public AbstractStreamInfo.StreamType getStreamType() throws ParsingException {
                         return AbstractStreamInfo.StreamType.VIDEO_STREAM;
+                    }
+
+                    @Override
+                    public boolean isAd() throws ParsingException {
+                        if(!li.select("span[class*=\"icon-not-available\"]").isEmpty()) {
+                            return true;
+                        } else {
+                            return false;
+                        }
                     }
 
                     @Override
@@ -213,9 +223,14 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
                     @Override
                     public String getUploadDate() throws ParsingException {
                         try {
-                            return li.select("div[class=\"yt-lockup-meta\"]").first()
-                                    .select("li").first()
-                                    .text();
+                            Element meta = li.select("div[class=\"yt-lockup-meta\"]").first();
+                            Element li = meta.select("li").first();
+                            if (li == null && meta != null) {
+                                //this means we have a youtube red video
+                                return "";
+                            }else {
+                                return li.text();
+                            }
                         } catch(Exception e) {
                             throw new ParsingException("Could not get uplaod date", e);
                         }
@@ -230,13 +245,7 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
                                     .select("li").get(1)
                                     .text();
                         } catch (IndexOutOfBoundsException e) {
-                            if(isLiveStream(li)) {
-                                // -1 for no view count
-                                return -1;
-                            } else {
-                                throw new ParsingException(
-                                        "Could not parse yt-lockup-meta although available: " + getTitle(), e);
-                            }
+                            return -1;
                         }
 
                         output = Parser.matchGroup1("([0-9,\\. ]*)", input)
@@ -292,6 +301,18 @@ public class YoutubeChannelExtractor extends ChannelExtractor {
         }
 
         return collector;
+    }
+
+    @Override
+    public long getSubscriberCount() throws ParsingException {
+        Element el = doc.select("span[class*=\"yt-subscription-button-subscriber-count\"]")
+                .first();
+        if(el != null) {
+            subscriberCount = Long.parseLong(el.text().replaceAll("\\D+",""));
+        } else if(el == null && subscriberCount == -1) {
+            throw new ParsingException("Could not get subscriber count");
+        }
+        return subscriberCount;
     }
 
     @Override

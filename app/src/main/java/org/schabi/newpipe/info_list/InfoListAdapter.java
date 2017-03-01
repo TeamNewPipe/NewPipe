@@ -33,11 +33,27 @@ import java.util.Vector;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
+public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final String TAG = InfoListAdapter.class.toString();
 
     private final InfoItemBuilder infoItemBuilder;
     private final List<InfoItem> infoItemList;
+    private boolean showFooter = false;
+    private View header = null;
+    private View footer = null;
+
+    public class HFHolder extends RecyclerView.ViewHolder {
+        public HFHolder(View v) {
+            super(v);
+            view = v;
+        }
+        public View view;
+    }
+
+    public void showFooter(boolean show) {
+        showFooter = show;
+        notifyDataSetChanged();
+    }
 
     public InfoListAdapter(Activity a, View rootView) {
         infoItemBuilder = new InfoItemBuilder(a, rootView);
@@ -54,9 +70,9 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
         infoItemBuilder.setOnChannelInfoItemSelectedListener(listener);
     }
 
-    public void addInfoItemList(List<InfoItem> videos) {
-        if(videos!= null) {
-            infoItemList.addAll(videos);
+    public void addInfoItemList(List<InfoItem> data) {
+        if(data != null) {
+            infoItemList.addAll(data);
             notifyDataSetChanged();
         }
     }
@@ -66,21 +82,42 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
         notifyDataSetChanged();
     }
 
+    public void setHeader(View header) {
+        this.header = header;
+        notifyDataSetChanged();
+    }
+
+    public void setFooter(View view) {
+        this.footer = view;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
-        return infoItemList.size();
+        int cound = infoItemList.size();
+        if(header != null) cound++;
+        if(footer != null && showFooter) cound++;
+        return cound;
     }
 
     // don't ask why we have to do that this way... it's android accept it -.-
     @Override
     public int getItemViewType(int position) {
+        if(header != null && position == 0) {
+            return 0;
+        } else if(header != null) {
+            position--;
+        }
+        if(footer != null && position == infoItemList.size() && showFooter) {
+            return 1;
+        }
         switch(infoItemList.get(position).infoType()) {
             case STREAM:
-                return 0;
-            case CHANNEL:
-                return 1;
-            case PLAYLIST:
                 return 2;
+            case CHANNEL:
+                return 3;
+            case PLAYLIST:
+                return 4;
             default:
                 Log.e(TAG, "Trollolo");
                 return -1;
@@ -88,15 +125,19 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
     }
 
     @Override
-    public InfoItemHolder onCreateViewHolder(ViewGroup parent, int type) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int type) {
         switch(type) {
             case 0:
+                return new HFHolder(header);
+            case 1:
+                return new HFHolder(footer);
+            case 2:
                 return new StreamInfoItemHolder(LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.stream_item, parent, false));
-            case 1:
+            case 3:
                 return new ChannelInfoItemHolder(LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.channel_item, parent, false));
-            case 2:
+            case 4:
                 Log.e(TAG, "Playlist is not yet implemented");
                 return null;
             default:
@@ -106,7 +147,17 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoItemHolder> {
     }
 
     @Override
-    public void onBindViewHolder(InfoItemHolder holder, int i) {
-        infoItemBuilder.buildByHolder(holder, infoItemList.get(i));
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int i) {
+        //god damen f*** ANDROID SH**
+        if(holder instanceof InfoItemHolder) {
+            if(header != null) {
+                i--;
+            }
+            infoItemBuilder.buildByHolder((InfoItemHolder) holder, infoItemList.get(i));
+        } else if(holder instanceof HFHolder && i == 0 && header != null) {
+            ((HFHolder) holder).view = header;
+        } else if(holder instanceof HFHolder && i == infoItemList.size() && footer != null && showFooter) {
+            ((HFHolder) holder).view = footer;
+        }
     }
 }

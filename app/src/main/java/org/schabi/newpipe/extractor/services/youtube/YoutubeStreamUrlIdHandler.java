@@ -15,7 +15,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLDecoder;
-import java.util.regex.Matcher;
 
 /**
  * Created by Christian Schabesberger on 02.02.16.
@@ -149,9 +148,9 @@ public class YoutubeStreamUrlIdHandler implements UrlIdHandler {
 
     @Override
     public boolean acceptUrl(String videoUrl) {
-        videoUrl = videoUrl.toLowerCase();
-        if(videoUrl.contains("youtube") ||
-                videoUrl.contains("youtu.be")) {
+        String lowercaseUrl = videoUrl.toLowerCase();
+        if(lowercaseUrl.contains("youtube") ||
+                lowercaseUrl.contains("youtu.be")) {
             // bad programming I know
             try {
                 getId(videoUrl);

@@ -3,6 +3,7 @@ package org.schabi.newpipe.extractor.services.youtube;
 import org.jsoup.nodes.Element;
 import org.schabi.newpipe.extractor.AbstractStreamInfo;
 import org.schabi.newpipe.extractor.Parser;
+import org.schabi.newpipe.extractor.exceptions.FoundAdException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.stream_info.StreamInfoItemExtractor;
 
@@ -28,7 +29,7 @@ public class YoutubeStreamInfoItemExtractor implements StreamInfoItemExtractor {
 
     private final Element item;
 
-    public YoutubeStreamInfoItemExtractor(Element item) {
+    public YoutubeStreamInfoItemExtractor(Element item) throws FoundAdException {
         this.item = item;
     }
 
@@ -158,6 +159,15 @@ public class YoutubeStreamInfoItemExtractor implements StreamInfoItemExtractor {
             return AbstractStreamInfo.StreamType.LIVE_STREAM;
         } else {
             return AbstractStreamInfo.StreamType.VIDEO_STREAM;
+        }
+    }
+
+    @Override
+    public boolean isAd() throws ParsingException {
+        if(!item.select("span[class*=\"icon-not-available\"]").isEmpty()) {
+            return true;
+        } else {
+            return false;
         }
     }
 

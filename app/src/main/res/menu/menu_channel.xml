@@ -2,6 +2,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="org.schabi.newpipe.ChannelActivity">
+
+    <item android:id="@+id/menu_item_openInBrowser"
+        app:showAsAction="never"
+        android:title="@string/open_in_browser" />
+
+    <item android:id="@+id/menu_item_share"
+        android:title="@string/share"
+        app:showAsAction="ifRoom"
+        android:icon="?attr/share"/>
+
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"

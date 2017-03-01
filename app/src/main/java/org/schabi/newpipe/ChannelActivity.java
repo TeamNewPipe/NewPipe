@@ -1,31 +1,24 @@
 package org.schabi.newpipe;
 
-import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import org.schabi.newpipe.detail.VideoItemDetailActivity;
 import org.schabi.newpipe.detail.VideoItemDetailFragment;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -36,13 +29,12 @@ import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.NavStack;
-
 import java.io.IOException;
-import java.util.Objects;
-
-import static android.os.Build.VERSION.SDK;
 import static android.os.Build.VERSION.SDK_INT;
+import org.schabi.newpipe.util.ThemeHelper;
+
 
 /**
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
@@ -75,38 +67,36 @@ public class ChannelActivity extends AppCompatActivity {
     private ImageLoader imageLoader = ImageLoader.getInstance();
     private InfoListAdapter infoListAdapter = null;
 
+    private String subS = "";
+
+    ProgressBar progressBar = null;
+    ImageView channelBanner = null;
+    ImageView avatarView = null;
+    TextView titleView = null;
+    TextView subscirberView = null;
+    Button subscriberButton = null;
+    View subscriberLayout = null;
+
+    View header = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //since we set themeing we have to set translucent statusBar by hand
-        if (PreferenceManager.getDefaultSharedPreferences(this)
-                .getString("theme", getResources().getString(R.string.light_theme_title)).
-                        equals(getResources().getString(R.string.dark_theme_title)))  {
-            setTheme(R.style.DarkTheme_NoActionBar);
-        }
-        setTranslucentStatusBar(getWindow());
-
+        ThemeHelper.setTheme(this, true);
         setContentView(R.layout.activity_channel);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        rootView = findViewById(R.id.rootView);
-        setSupportActionBar(toolbar);
-        if(savedInstanceState == null) {
-            Intent i = getIntent();
-            channelUrl = i.getStringExtra(NavStack.URL);
-            serviceId = i.getIntExtra(NavStack.SERVICE_ID, -1);
-        } else {
-            channelUrl = savedInstanceState.getString(NavStack.URL);
-            serviceId = savedInstanceState.getInt(NavStack.SERVICE_ID);
-            NavStack.getInstance()
-                    .restoreSavedInstanceState(savedInstanceState);
-        }
+        rootView = findViewById(android.R.id.content);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         infoListAdapter = new InfoListAdapter(this, rootView);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.channel_streams_view);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+        header = getLayoutInflater().inflate(R.layout.channel_header, recyclerView, false);
+        infoListAdapter.setHeader(header);
+        infoListAdapter.setFooter(
+                getLayoutInflater().inflate(R.layout.pignate_footer, recyclerView, false));
         recyclerView.setAdapter(infoListAdapter);
         infoListAdapter.setOnStreamInfoItemSelectedListener(
                 new InfoItemBuilder.OnInfoItemSelectedListener() {
@@ -140,6 +130,36 @@ public class ChannelActivity extends AppCompatActivity {
             }
         });
 
+        subS = getString(R.string.subscriber);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        channelBanner = (ImageView) header.findViewById(R.id.channel_banner_image);
+        avatarView = (ImageView) header.findViewById(R.id.channel_avatar_view);
+        titleView = (TextView) header.findViewById(R.id.channel_title_view);
+        subscirberView = (TextView) header.findViewById(R.id.channel_subscriber_view);
+        subscriberButton = (Button) header.findViewById(R.id.channel_subscribe_button);
+        subscriberLayout = header.findViewById(R.id.channel_subscriber_layout);
+
+        if(savedInstanceState == null) {
+            handleIntent(getIntent());
+        } else {
+            channelUrl = savedInstanceState.getString(NavStack.URL);
+            serviceId = savedInstanceState.getInt(NavStack.SERVICE_ID);
+            NavStack.getInstance()
+                    .restoreSavedInstanceState(savedInstanceState);
+        }
+
+    }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent i) {
+        channelUrl = i.getStringExtra(NavStack.URL);
+        serviceId = i.getIntExtra(NavStack.SERVICE_ID, -1);
         requestData(false);
     }
 
@@ -153,33 +173,36 @@ public class ChannelActivity extends AppCompatActivity {
     }
 
     private void updateUi(final ChannelInfo info) {
-        CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) findViewById(R.id.channel_toolbar_layout);
-        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        ImageView channelBanner = (ImageView) findViewById(R.id.channel_banner_image);
-        final FloatingActionButton feedButton = (FloatingActionButton) findViewById(R.id.channel_rss_fab);
-        ImageView avatarView = (ImageView) findViewById(R.id.channel_avatar_view);
-        ImageView haloView = (ImageView) findViewById(R.id.channel_avatar_halo);
-
+        findViewById(R.id.channel_header_layout).setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
 
         if(info.channel_name != null && !info.channel_name.isEmpty()) {
-            ctl.setTitle(info.channel_name);
+            getSupportActionBar().setTitle(info.channel_name);
+            titleView.setText(info.channel_name);
         }
 
         if(info.banner_url != null && !info.banner_url.isEmpty()) {
             imageLoader.displayImage(info.banner_url, channelBanner,
-                    new ImageErrorLoadingListener(this, rootView ,info.service_id));
+                   new ImageErrorLoadingListener(this, rootView ,info.service_id));
         }
 
         if(info.avatar_url != null && !info.avatar_url.isEmpty()) {
             avatarView.setVisibility(View.VISIBLE);
-            haloView.setVisibility(View.VISIBLE);
             imageLoader.displayImage(info.avatar_url, avatarView,
                     new ImageErrorLoadingListener(this, rootView ,info.service_id));
         }
 
+        if(info.subscriberCount != -1) {
+            subscirberView.setText(buildSubscriberString(info.subscriberCount));
+        }
+
+        if((info.feed_url != null && !info.feed_url.isEmpty()) ||
+                (info.subscriberCount != -1)) {
+            subscriberLayout.setVisibility(View.VISIBLE);
+        }
+
         if(info.feed_url != null && !info.feed_url.isEmpty()) {
-            feedButton.setOnClickListener(new View.OnClickListener() {
+            subscriberButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Log.d(TAG, info.feed_url);
@@ -188,8 +211,9 @@ public class ChannelActivity extends AppCompatActivity {
                 }
             });
         } else {
-            feedButton.setVisibility(View.GONE);
+            subscriberButton.setVisibility(View.INVISIBLE);
         }
+
     }
 
     private void addVideos(final ChannelInfo info) {
@@ -209,6 +233,22 @@ public class ChannelActivity extends AppCompatActivity {
     private void requestData(final boolean onlyVideos) {
         // start processing
         isLoading = true;
+
+        if(!onlyVideos) {
+            //delete already displayed content
+            progressBar.setVisibility(View.VISIBLE);
+            infoListAdapter.clearSteamItemList();
+            pageNumber = 0;
+            subscriberLayout.setVisibility(View.GONE);
+            titleView.setText("");
+            getSupportActionBar().setTitle("");
+            if (SDK_INT >= 21) {
+                channelBanner.setImageDrawable(getDrawable(R.drawable.channel_banner));
+                avatarView.setImageDrawable(getDrawable(R.drawable.buddy));
+            }
+            infoListAdapter.showFooter(false);
+        }
+
         Thread channelExtractorThread = new Thread(new Runnable() {
             Handler h = new Handler();
 
@@ -229,8 +269,12 @@ public class ChannelActivity extends AppCompatActivity {
                             isLoading = false;
                             if(!onlyVideos) {
                                 updateUi(info);
+                                infoListAdapter.showFooter(true);
                             }
                             hasNextPage = info.hasNextPage;
+                            if(!hasNextPage) {
+                                infoListAdapter.showFooter(false);
+                            }
                             addVideos(info);
                         }
                     });
@@ -297,30 +341,6 @@ public class ChannelActivity extends AppCompatActivity {
         channelExtractorThread.start();
     }
 
-
-    // fix transparent statusbar fuckup (fuck google why can't they just leave something that worked
-    // as it is, and everyone gets happy)
-    public static void setTranslucentStatusBar(Window window) {
-        if (window == null) return;
-        int sdkInt = Build.VERSION.SDK_INT;
-        if (sdkInt >= Build.VERSION_CODES.LOLLIPOP) {
-            setTranslucentStatusBarLollipop(window);
-        } else if (sdkInt >= Build.VERSION_CODES.KITKAT) {
-            setTranslucentStatusBarKiKat(window);
-        }
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private static void setTranslucentStatusBarLollipop(Window window) {
-        window.setStatusBarColor(
-                ContextCompat.getColor(window.getContext(), android.R.color.transparent));
-    }
-
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    private static void setTranslucentStatusBarKiKat(Window window) {
-        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-    }
-
     @Override
     public void onBackPressed() {
         try {
@@ -331,4 +351,54 @@ public class ChannelActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_channel, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch(item.getItemId()) {
+            case R.id.action_settings: {
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
+            }
+            case R.id.menu_item_openInBrowser: {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(channelUrl));
+
+                startActivity(Intent.createChooser(intent, getString(R.string.choose_browser)));
+            }
+            case R.id.menu_item_share:
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, channelUrl);
+                intent.setType("text/plain");
+                startActivity(Intent.createChooser(intent, getString(R.string.share_dialog_title)));
+            case android.R.id.home:
+                NavStack.getInstance().openMainActivity(this);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private String buildSubscriberString(long count) {
+        String out = "";
+        if(count >= 1000000000){
+            out += Long.toString((count/1000000000)%1000)+".";
+        }
+        if(count>=1000000){
+            out += Long.toString((count/1000000)%1000) + ".";
+        }
+        if(count>=1000){
+            out += Long.toString((count/1000)%1000)+".";
+        }
+        out += Long.toString(count%1000) + " " + subS;
+        return out;
+    }
 }

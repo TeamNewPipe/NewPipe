@@ -1,27 +1,27 @@
 package org.schabi.newpipe.settings;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+import android.support.v7.app.AlertDialog;
 
 import com.nononsenseapps.filepicker.FilePickerActivity;
 
 import org.schabi.newpipe.App;
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import info.guardianproject.netcipher.proxy.OrbotHelper;
 
@@ -48,8 +48,8 @@ import info.guardianproject.netcipher.proxy.OrbotHelper;
 public class SettingsFragment  extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener
 {
+    public static final int REQUEST_INSTALL_ORBOT = 0x1234;
     SharedPreferences.OnSharedPreferenceChangeListener prefListener;
-
     // get keys
     String DEFAULT_RESOLUTION_PREFERENCE;
     String DEFAULT_AUDIO_FORMAT_PREFERENCE;
@@ -58,9 +58,6 @@ public class SettingsFragment  extends PreferenceFragment
     String DOWNLOAD_PATH_AUDIO_PREFERENCE;
     String USE_TOR_KEY;
     String THEME;
-
-    public static final int REQUEST_INSTALL_ORBOT = 0x1234;
-
     private ListPreference defaultResolutionPreference;
     private ListPreference defaultAudioFormatPreference;
     private ListPreference searchLanguagePreference;
@@ -97,6 +94,8 @@ public class SettingsFragment  extends PreferenceFragment
         downloadPathPreference = findPreference(DOWNLOAD_PATH_PREFERENCE);
         downloadPathAudioPreference = findPreference(DOWNLOAD_PATH_AUDIO_PREFERENCE);
         themePreference = findPreference(THEME);
+
+        final String currentTheme = defaultPreferences.getString(THEME, "Light");
 
         prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
@@ -139,8 +138,27 @@ public class SettingsFragment  extends PreferenceFragment
                 }
                 else if (key == THEME)
                 {
-                    String theme = sharedPreferences.getString(THEME, "Light");
-                    themePreference.setSummary(theme);
+                    String selectedTheme = sharedPreferences.getString(THEME, "Light");
+                    themePreference.setSummary(selectedTheme);
+
+                    if(!selectedTheme.equals(currentTheme)) { // If it's not the current theme
+                        new AlertDialog.Builder(activity)
+                                .setTitle(R.string.restart_title)
+                                .setMessage(R.string.msg_restart)
+                                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToMain = new Intent(activity, MainActivity.class);
+                                        intentToMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        activity.startActivity(intentToMain);
+
+                                        activity.finish();
+                                        Runtime.getRuntime().exit(0);
+                                    }
+                                })
+                                .setNegativeButton(R.string.later, null)
+                                .create().show();
+                    }
                 }
                 updateSummary();
             }

@@ -10,6 +10,7 @@ import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
 import org.schabi.newpipe.extractor.AbstractStreamInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.exceptions.FoundAdException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.stream_info.AudioStream;
@@ -420,9 +421,15 @@ public class YoutubeStreamExtractor extends StreamExtractor {
 
     @Override
     public String getDashMpdUrl() throws ParsingException {
-        /*
         try {
-            String dashManifestUrl = videoInfoPage.get("dashmpd");
+            String dashManifestUrl = "";
+            if(videoInfoPage != null && videoInfoPage.containsKey("dashmpd")) {
+                dashManifestUrl = videoInfoPage.get("dashmpd");
+            } else if (playerArgs.has("dashmpd")) {
+                dashManifestUrl = playerArgs.getString("dashmpd");
+            } else {
+                return "";
+            }
             if(!dashManifestUrl.contains("/signature/")) {
                 String encryptedSig = Parser.matchGroup1("/s/([a-fA-F0-9\\.]+)", dashManifestUrl);
                 String decryptedSig;
@@ -435,8 +442,6 @@ public class YoutubeStreamExtractor extends StreamExtractor {
             throw new ParsingException(
                     "Could not get \"dashmpd\" maybe VideoInfoPage is broken.", e);
         }
-        */
-        return "";
     }
 
 
@@ -447,9 +452,17 @@ public class YoutubeStreamExtractor extends StreamExtractor {
             String encodedUrlMap;
             // playerArgs could be null if the video is age restricted
             if (playerArgs == null) {
-                encodedUrlMap = videoInfoPage.get("adaptive_fmts");
+                if(videoInfoPage.containsKey("adaptive_fmts")) {
+                    encodedUrlMap = videoInfoPage.get("adaptive_fmts");
+                } else {
+                    return null;
+                }
             } else {
-                encodedUrlMap = playerArgs.getString("adaptive_fmts");
+                if(playerArgs.has("adaptive_fmts")) {
+                    encodedUrlMap = playerArgs.getString("adaptive_fmts");
+                } else {
+                    return null;
+                }
             }
             for(String url_data_str : encodedUrlMap.split(",")) {
                 // This loop iterates through multiple streams, therefor tags
@@ -713,7 +726,16 @@ public class YoutubeStreamExtractor extends StreamExtractor {
         return new StreamInfoItemExtractor() {
             @Override
             public AbstractStreamInfo.StreamType getStreamType() throws ParsingException {
-                return null;
+                return AbstractStreamInfo.StreamType.VIDEO_STREAM;
+            }
+
+            @Override
+            public boolean isAd() throws ParsingException {
+                if(!li.select("span[class*=\"icon-not-available\"]").isEmpty()) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
 
             @Override

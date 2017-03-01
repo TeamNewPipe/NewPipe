@@ -43,6 +43,9 @@ public class StreamInfoItemCollector extends InfoItemCollector {
     }
 
     public StreamInfoItem extract(StreamInfoItemExtractor extractor) throws Exception {
+        if(extractor.isAd()) {
+            throw new FoundAdException("Found ad");
+        }
 
         StreamInfoItem resultItem = new StreamInfoItem();
         // importand information
@@ -91,7 +94,7 @@ public class StreamInfoItemCollector extends InfoItemCollector {
         try {
             addItem(extract(extractor));
         } catch(FoundAdException ae) {
-            System.out.println("AD_WARNING: " + ae.getMessage());
+            //System.out.println("AD_WARNING: " + ae.getMessage());
         } catch (Exception e) {
             addError(e);
         }

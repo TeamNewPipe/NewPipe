@@ -205,7 +205,6 @@ public class SearchInfoItemFragment extends Fragment {
                         RECAPTCHA_REQUEST);
             }
         });
-
     }
 
     @Override
@@ -221,6 +220,8 @@ public class SearchInfoItemFragment extends Fragment {
 
         infoListAdapter = new InfoListAdapter(getActivity(),
                 getActivity().findViewById(android.R.id.content));
+        infoListAdapter.setFooter(inflater.inflate(R.layout.pignate_footer, recyclerView, false));
+        infoListAdapter.showFooter(false);
         infoListAdapter.setOnStreamInfoItemSelectedListener(
                 new InfoItemBuilder.OnInfoItemSelectedListener() {
             @Override
@@ -324,6 +325,7 @@ public class SearchInfoItemFragment extends Fragment {
 
     private void search(String query) {
         infoListAdapter.clearSteamItemList();
+        infoListAdapter.showFooter(false);
         pageNumber = 0;
         searchQuery = query;
         search(query, pageNumber);
@@ -344,6 +346,7 @@ public class SearchInfoItemFragment extends Fragment {
     private void setDoneLoading() {
         this.isLoading = false;
         loadingIndicator.setVisibility(View.GONE);
+        infoListAdapter.showFooter(true);
     }
 
     /**
