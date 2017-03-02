@@ -177,4 +177,14 @@
     <string name="short_million">mio</string>
     <string name="short_billion">mrd</string>
 
+    <string name="yes">Da</string>
+    <string name="later">Kasneje</string>
+
+    <string name="subscribe">Naročilo</string>
+    <string name="restart_title">Ponovni zagon</string>
+
+    <string name="msg_restart">Za uveljavitev nastavitev teme je treba program znova zagnati.
+
+Ali želite to storiti takoj?</string>
+
     </resources>
