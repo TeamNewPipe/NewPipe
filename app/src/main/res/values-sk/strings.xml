@@ -309,4 +309,14 @@
 
     <string name="recaptcha_request_toast">Požiadavka reCAPTCHA</string>
 
+    <string name="yes">Áno</string>
+    <string name="later">Neskôr</string>
+
+    <string name="subscribe">Odoberať</string>
+    <string name="restart_title">Reštart</string>
+
+    <string name="msg_restart">Pre aplikovanie novej témy je potrebné reštartovať aplikáciu.
+
+Chcete aplikáciu reštartovať teraz?</string>
+
     </resources>
