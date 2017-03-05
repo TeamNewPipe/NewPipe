@@ -300,9 +300,19 @@
 
     <string name="videos">video</string>
     <string name="views">ditonton</string>
-    <string name="short_thousand">T</string>
+    <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
 
     <string name="subscriber">subscriber</string>
+    <string name="yes">Ya</string>
+    <string name="later">Nanti</string>
+
+    <string name="subscribe">Langganan</string>
+    <string name="restart_title">Mulai Ulang</string>
+
+    <string name="msg_restart">Anda harus memulai ulang aplikasi untuk menerapkan tema.
+
+Apakah Anda ingin memulai ulang sekarang?</string>
+
     </resources>
