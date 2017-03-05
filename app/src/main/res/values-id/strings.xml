@@ -296,15 +296,15 @@
     <string name="black_theme_title">Hitam</string>
 
     <string name="all">Semua</string>
-    <string name="channel">Channel</string>
+    <string name="channel">Saluran</string>
 
     <string name="videos">video</string>
     <string name="views">ditonton</string>
-    <string name="short_thousand">K</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_thousand">R</string>
+    <string name="short_million">J</string>
+    <string name="short_billion">T</string>
 
-    <string name="subscriber">subscriber</string>
+    <string name="subscriber">pelanggan</string>
     <string name="yes">Ya</string>
     <string name="later">Nanti</string>
 
