@@ -139,7 +139,7 @@
     <string name="switch_mode">Zwischen Liste und Gitter umschalten</string>
 
     <string name="videos">Videos</string>
-    <string name="subscriber">Abonenten</string>
+    <string name="subscriber">Abonnenten</string>
     <string name="views">Aufrufe</string>
     <string name="short_thousand">Tsd.</string>
     <string name="short_million">Mio.</string>
@@ -319,4 +319,9 @@
     <string name="channel">Kanal</string>
     <string name="restart_title">Neu starten</string>
 
+    <string name="msg_restart">Um die Änderung des Aussehens zu ändern, müssen Sie die App neu starten.
+
+Möchten Sie jetzt neu starten?</string>
+
+    <string name="subscribe">Abonnieren</string>
     </resources>
