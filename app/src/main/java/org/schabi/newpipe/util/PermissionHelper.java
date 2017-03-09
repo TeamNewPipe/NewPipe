@@ -2,8 +2,12 @@ package org.schabi.newpipe.util;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -11,7 +15,7 @@ import android.support.v4.content.ContextCompat;
 public class PermissionHelper {
     public static final int PERMISSION_WRITE_STORAGE = 778;
     public static final int PERMISSION_READ_STORAGE = 777;
-
+    public static final int PERMISSION_SYSTEM_ALERT_WINDOW = 779;
 
 
     public static boolean checkStoragePermissions(Activity activity) {
@@ -64,5 +68,28 @@ public class PermissionHelper {
             return false;
         }
         return true;
+    }
+
+
+    /**
+     * In order to be able to draw over other apps, the permission android.permission.SYSTEM_ALERT_WINDOW have to be granted.
+     * <p>
+     * On < API 23 (MarshMallow) the permission was granted when the user installed the application (via AndroidManifest),
+     * on > 23, however, it have to start a activity asking the user if he agree.
+     * <p>
+     * This method just return if canDraw over other apps, if it doesn't, try to get the permission,
+     * it does not get the result of the startActivityForResult, if the user accept, the next time that he tries to open
+     * it will return true.
+     *
+     * @param activity context to startActivityForResult
+     * @return returns {@link Settings#canDrawOverlays(Context)}
+     **/
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static boolean checkSystemAlertWindowPermission(Activity activity) {
+        if (!Settings.canDrawOverlays(activity)) {
+            Intent i = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + activity.getPackageName()));
+            activity.startActivityForResult(i, PERMISSION_SYSTEM_ALERT_WINDOW);
+            return false;
+        }else return true;
     }
 }

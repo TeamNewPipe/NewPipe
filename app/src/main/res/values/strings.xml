@@ -11,6 +11,7 @@
     <string name="cancel">Cancel</string>
     <string name="fdroid_vlc_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Open in browser</string>
+    <string name="open_in_popup_mode">Open in popup mode</string>
     <string name="share">Share</string>
     <string name="loading">Loading</string>
     <string name="download">Download</string>
@@ -188,6 +189,7 @@
     <string name="msg_copied">Copied to clipboard.</string>
     <string name="no_available_dir">Please select an available download directory.</string>
     <string name="msg_restart">You have to restart the application to apply the theme.\n\nDo you want to restart now?</string>
+    <string name="msg_popup_permission">This permission is needed to\nopen in popup mode</string>
 
     <!-- Checksum types -->
     <string name="md5" translatable="false">MD5</string>
