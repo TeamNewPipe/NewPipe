@@ -17,8 +17,7 @@ import java.util.Collection;
 import java.util.HashSet;
 
 /**
- * This Acitivty is designed to route share/open intents to the specified service, and
- * to the part of the service which can handle the url.
+ * This activity is thought to open video streams form an external app using the popup playser.
  */
 
 public class PopupActivity extends Activity {
