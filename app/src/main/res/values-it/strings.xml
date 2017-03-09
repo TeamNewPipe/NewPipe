@@ -318,4 +318,14 @@
 
     <string name="recaptcha_request_toast">Richiesta sfida reCAPTCHA</string>
 
+    <string name="yes">Si</string>
+    <string name="later">Più tardi</string>
+
+    <string name="subscribe">Iscriviti</string>
+    <string name="restart_title">Riavvia</string>
+
+    <string name="msg_restart">L\'applicazione deve essere riavviata per applicare il tema.
+
+Vuoi riavviare l\'app ora?</string>
+
     </resources>
