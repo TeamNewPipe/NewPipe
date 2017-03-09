@@ -301,4 +301,20 @@
     <string name="error_instantiating_decoder">Nelze doložit dekodér <xliff:g id="decoder_name">
 %1$s</xliff:g></string>
     <string name="info_labels">Co:\\nŽádost:\\nJazyk obsahu:\\nSlužba:\\nČas GMT:\\nBalíček:\\nVerze:\\nVerze OS:\\nGlobální rozsah IP:</string>
+    <string name="all">Vše</string>
+    <string name="channel">Kanál</string>
+    <string name="yes">Ano</string>
+    <string name="later">Později</string>
+
+    <string name="videos">videa</string>
+    <string name="subscriber">odběratel</string>
+    <string name="subscribe">Odebírat</string>
+    <string name="views">zobrazení</string>
+    <string name="short_thousand">k</string>
+    <string name="restart_title">Restart</string>
+
+    <string name="msg_restart">Pro aplikaci tématu je potřeba restartovat aplikaci.
+
+Chcete restartovat ihned?</string>
+
     </resources>
