@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:id="@+id/blackBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"/>
+
+    <com.devbrackets.android.exomedia.ui.widget.EMVideoView
+        android:id="@+id/popupVideoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+    <ImageView
+        android:id="@+id/endScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:background="@android:color/white"
+        tools:ignore="ContentDescription"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <ImageView
+            android:id="@+id/controlAnimationView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_action_av_fast_rewind"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:ignore="ContentDescription"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/playbackControlRoot"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:paddingBottom="5dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:gravity="bottom|center"
+        android:orientation="horizontal"
+        android:background="@drawable/popup_controls_bg"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/playbackCurrentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:textColor="@android:color/white"
+            tools:ignore="HardcodedText"
+            android:text="-:--:--"/>
+
+        <!--style="?android:attr/progressBarStyleHorizontal"-->
+        <SeekBar
+            android:id="@+id/playbackSeekBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:layout_weight="1"
+            android:progress="0"/>
+
+        <TextView
+            android:id="@+id/playbackEndTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:textColor="@android:color/white"
+            tools:ignore="HardcodedText"
+            android:text="-:--:--"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/loadingPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/black"
+        android:gravity="center"
+        android:padding="20dp"
+        tools:visibility="gone">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"/>
+    </RelativeLayout>
+</FrameLayout>
