@@ -22,6 +22,10 @@
         app:showAsAction="ifRoom"
         android:icon="?attr/cast"/>
 
+    <item android:id="@+id/menu_item_popup"
+          app:showAsAction="never"
+          android:title="@string/open_in_popup_mode"/>
+
     <item android:id="@+id/menu_item_openInBrowser"
         app:showAsAction="never"
         android:title="@string/open_in_browser" />

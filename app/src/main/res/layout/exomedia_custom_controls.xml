@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.devbrackets.android.exomedia.ui.widget.FitsSystemWindowRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/exomedia_controls_text_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/exomedia_default_controls_text_background"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/exomedia_controls_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="The Video Title"/>
+
+        <TextView
+            android:id="@+id/exomedia_controls_sub_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            tools:text="The Video Album"/>
+
+        <TextView
+            android:id="@+id/exomedia_controls_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            tools:text="The Video Artist"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/exomedia_controls_interactive_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/exomedia_default_controls_interactive_background"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/exomedia_controls_current_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:textColor="@android:color/white"
+                tools:ignore="RtlHardcoded"
+                tools:text="1:06:29"/>
+
+            <SeekBar
+                android:id="@+id/exomedia_controls_video_seek"
+                style="?android:seekBarStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:ignore="RtlHardcoded"/>
+
+            <TextView
+                android:id="@+id/exomedia_controls_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:textColor="@android:color/white"
+                tools:ignore="RtlHardcoded"
+                tools:text="1:23:49"/>
+
+            <LinearLayout
+                android:id="@+id/exomedia_controls_extra_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:ignore="RtlHardcoded,UselessLeaf"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/exomedia_controls_previous_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="24dp"
+                android:background="@android:color/transparent"
+                android:minHeight="24dp"
+                android:minWidth="24dp"
+                app:srcCompat="@drawable/exomedia_ic_skip_previous_white"
+                tools:ignore="ContentDescription,RtlHardcoded"
+                tools:visibility="visible"/>
+
+            <ImageButton
+                android:id="@+id/exomedia_controls_frewind_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="24dp"
+                android:background="@android:color/transparent"
+                android:minHeight="24dp"
+                android:minWidth="24dp"
+                android:src="@drawable/exomedia_ic_rewind_white"
+                tools:ignore="ContentDescription,RtlHardcoded"
+                tools:visibility="visible"/>
+
+            <ImageButton
+                android:id="@+id/exomedia_controls_play_pause_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:minHeight="24dp"
+                android:minWidth="24dp"
+                app:srcCompat="@drawable/exomedia_ic_play_arrow_white"
+                tools:ignore="ContentDescription"/>
+
+            <ImageButton
+                android:id="@+id/exomedia_controls_fforward_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:background="@android:color/transparent"
+                android:minHeight="24dp"
+                android:minWidth="24dp"
+                android:src="@drawable/exomedia_ic_fast_forward_white"
+                tools:ignore="ContentDescription,RtlHardcoded"
+                tools:visibility="visible"/>
+
+            <ImageButton
+                android:id="@+id/exomedia_controls_next_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:background="@android:color/transparent"
+                android:minHeight="24dp"
+                android:minWidth="24dp"
+                app:srcCompat="@drawable/exomedia_ic_skip_next_white"
+                tools:ignore="ContentDescription,RtlHardcoded"
+                tools:visibility="visible"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/exomedia_controls_video_loading"
+        style="?android:progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+</com.devbrackets.android.exomedia.ui.widget.FitsSystemWindowRelativeLayout>
