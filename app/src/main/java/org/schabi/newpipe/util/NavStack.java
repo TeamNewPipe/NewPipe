@@ -73,10 +73,6 @@ public class NavStack {
         return instance;
     }
 
-    private void addEntry(String url, Class ac, int serviceId) {
-        stack.push(new NavEntry(url, serviceId));
-    }
-
     public void navBack(Activity activity) throws Exception {
         if(stack.size() == 0) { // if stack is already empty here, activity was probably called
             // from another app
@@ -120,7 +116,10 @@ public class NavStack {
     }
 
     private void openActivity(Context context, String url, int serviceId, Class acitivtyClass) {
-        stack.push(new NavEntry(url, serviceId));
+        //if last element has the same url do not push to stack again
+        if(stack.isEmpty() || !stack.peek().url.equals(url)) {
+            stack.push(new NavEntry(url, serviceId));
+        }
         Intent i = new Intent(context, acitivtyClass);
         i.putExtra(SERVICE_ID, serviceId);
         i.putExtra(URL, url);
@@ -144,6 +143,7 @@ public class NavStack {
 
     public void restoreSavedInstanceState(Bundle state) {
         ArrayList<String> sa = state.getStringArrayList(NAV_STACK);
+        stack.clear();
         for(String url : sa) {
             stack.push(new NavEntry(url, NewPipe.getServiceByUrl(url).getServiceId()));
         }
