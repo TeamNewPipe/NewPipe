@@ -328,4 +328,8 @@
 
 Желите ли то сада да урадите?</string>
 
+    <string name="open_in_popup_mode">Отвори у искачућем режиму</string>
+    <string name="msg_popup_permission">Ова дозвола је потребна за
+отварање у искачућем режиму</string>
+
     </resources>
