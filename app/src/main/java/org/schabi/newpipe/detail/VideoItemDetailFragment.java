@@ -33,8 +33,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.google.android.exoplayer.util.Util;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -56,11 +54,12 @@ import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.ExoPlayerActivity;
 import org.schabi.newpipe.player.PlayVideoActivity;
+import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.report.ErrorActivity;
-import java.util.Vector;
-
 import org.schabi.newpipe.util.NavStack;
 import org.schabi.newpipe.util.PermissionHelper;
+
+import java.util.Vector;
 
 import static android.app.Activity.RESULT_OK;
 import static org.schabi.newpipe.ReCaptchaActivity.RECAPTCHA_REQUEST;
@@ -324,6 +323,19 @@ public class VideoItemDetailFragment extends Fragment {
                         @Override
                         public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                             streamThumbnail = loadedImage;
+
+                            if (streamThumbnail != null) {
+                                // TODO: Change the thumbnail implementation
+
+                                // When the thumbnail is not loaded yet, it not passes to the service in time
+                                // so, I can notify the service through a broadcast, but the problem is
+                                // when I click in another video, another thumbnail will be load, and will
+                                // notify again, so I send the videoUrl and compare with the service's url
+                                ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = streamThumbnail;
+                                Intent intent = new Intent(PopupVideoPlayer.InternalListener.ACTION_UPDATE_THUMB);
+                                intent.putExtra(PopupVideoPlayer.VIDEO_URL, info.webpage_url);
+                                getContext().sendBroadcast(intent);
+                            }
                         }
 
                         @Override
@@ -362,6 +374,28 @@ public class VideoItemDetailFragment extends Fragment {
                 intent.setData(Uri.parse(info.webpage_url));
 
                 activity.startActivity(Intent.createChooser(intent, activity.getString(R.string.choose_browser)));
+            }
+        });
+
+        actionBarHandler.setOnOpenInPopupListener(new ActionBarHandler.OnActionListener() {
+            @Override
+            public void onActionSelected(int selectedStreamId) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                        && !PermissionHelper.checkSystemAlertWindowPermission(activity)) {
+                    Toast.makeText(activity, R.string.msg_popup_permission, Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (streamThumbnail != null)
+                    ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = streamThumbnail;
+
+                VideoStream selectedVideoStream = info.video_streams.get(selectedStreamId);
+                Intent i = new Intent(activity, PopupVideoPlayer.class);
+                Toast.makeText(activity, "Starting in popup mode", Toast.LENGTH_SHORT).show();
+                i.putExtra(PopupVideoPlayer.VIDEO_TITLE, info.title)
+                        .putExtra(PopupVideoPlayer.STREAM_URL, selectedVideoStream.url)
+                        .putExtra(PopupVideoPlayer.CHANNEL_NAME, info.uploader)
+                        .putExtra(PopupVideoPlayer.VIDEO_URL, info.webpage_url);
+                activity.startService(i);
             }
         });
 
@@ -753,13 +787,16 @@ public class VideoItemDetailFragment extends Fragment {
             if (PreferenceManager.getDefaultSharedPreferences(activity)
                     .getBoolean(activity.getString(R.string.use_exoplayer_key), false)) {
 
+                // TODO: Fix this mess
+                if (streamThumbnail != null)
+                    ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = streamThumbnail;
                 // exo player
 
                 if(info.dashMpdUrl != null && !info.dashMpdUrl.isEmpty()) {
                     // try dash
                     Intent intent = new Intent(activity, ExoPlayerActivity.class)
-                            .setData(Uri.parse(info.dashMpdUrl))
-                            .putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_DASH);
+                            .setData(Uri.parse(info.dashMpdUrl));
+                            //.putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_DASH);
                     startActivity(intent);
                 } else if((info.audio_streams != null  && !info.audio_streams.isEmpty()) &&
                         (info.video_only_streams != null && !info.video_only_streams.isEmpty())) {
@@ -770,7 +807,10 @@ public class VideoItemDetailFragment extends Fragment {
                     Intent intent = new Intent(activity, ExoPlayerActivity.class)
                             .setDataAndType(Uri.parse(selectedVideoStream.url),
                                 MediaFormat.getMimeById(selectedVideoStream.format))
-                            .putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_OTHER);
+
+                            .putExtra(ExoPlayerActivity.VIDEO_TITLE, info.title)
+                            .putExtra(ExoPlayerActivity.CHANNEL_NAME, info.uploader);
+                            //.putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_OTHER);
 
                     activity.startActivity(intent);      // HERE !!!
                 }
