@@ -319,4 +319,8 @@
 
 Chcete aplikáciu reštartovať teraz?</string>
 
+    <string name="open_in_popup_mode">Otvoriť vo okne na popredí</string>
+    <string name="msg_popup_permission">Tieto práva vyžaduje
+otvorenie okna na popredí</string>
+
     </resources>
