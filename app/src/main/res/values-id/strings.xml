@@ -315,4 +315,8 @@
 
 Apakah Anda ingin memulai ulang sekarang?</string>
 
+    <string name="open_in_popup_mode">Buka di mode popup</string>
+    <string name="msg_popup_permission">Izin ini dibutuhkan untuk
+membuka di mode popup</string>
+
     </resources>
