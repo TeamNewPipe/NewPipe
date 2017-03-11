@@ -69,7 +69,7 @@
                             android:layout_height="match_parent"
                             android:layout_below="@id/detail_stream_thumbnail_window_layout"
                             android:background="?android:windowBackground"
-                            android:visibility="gone">
+                            android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -226,6 +226,9 @@
                             android:background="#000"
                             android:layout_width="match_parent"
                             android:layout_height="1px"
+
+                            android:layout_toRightOf="@+id/detail_uploader_thumbnail_view"
+                            android:layout_toEndOf="@+id/detail_uploader_thumbnail_view"
                             android:layout_below="@id/detail_uploader_thumbnail_view"/>
                     </RelativeLayout>
                     <Button

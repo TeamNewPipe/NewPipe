@@ -33,32 +33,33 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.exoplayer.util.Util;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import org.schabi.newpipe.ActivityCommunicator;
-import org.schabi.newpipe.ChannelActivity;
 import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.Localization;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
-import org.schabi.newpipe.extractor.stream_info.StreamPreviewInfo;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.ExoPlayerActivity;
 import org.schabi.newpipe.player.PlayVideoActivity;
+import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.report.ErrorActivity;
-import java.util.Vector;
+import org.schabi.newpipe.util.NavStack;
 import org.schabi.newpipe.util.PermissionHelper;
+
+import java.util.Vector;
 
 import static android.app.Activity.RESULT_OK;
 import static org.schabi.newpipe.ReCaptchaActivity.RECAPTCHA_REQUEST;
@@ -91,8 +92,6 @@ public class VideoItemDetailFragment extends Fragment {
      * The fragment argument representing the item ID that this fragment
      * represents.
      */
-    public static final String VIDEO_URL = "video_url";
-    public static final String STREAMING_SERVICE = "streaming_service";
     public static final String AUTO_PLAY = "auto_play";
 
     private AppCompatActivity activity;
@@ -288,10 +287,8 @@ public class VideoItemDetailFragment extends Fragment {
                 channelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent i = new Intent(activity, ChannelActivity.class);
-                        i.putExtra(ChannelActivity.CHANNEL_URL, info.channel_url);
-                        i.putExtra(ChannelActivity.SERVICE_ID, info.service_id);
-                        startActivity(i);
+                        NavStack.getInstance()
+                                .openChannelActivity(getActivity(), info.channel_url, info.service_id);
                     }
                 });
             } else {
@@ -326,6 +323,19 @@ public class VideoItemDetailFragment extends Fragment {
                         @Override
                         public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                             streamThumbnail = loadedImage;
+
+                            if (streamThumbnail != null) {
+                                // TODO: Change the thumbnail implementation
+
+                                // When the thumbnail is not loaded yet, it not passes to the service in time
+                                // so, I can notify the service through a broadcast, but the problem is
+                                // when I click in another video, another thumbnail will be load, and will
+                                // notify again, so I send the videoUrl and compare with the service's url
+                                ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = streamThumbnail;
+                                Intent intent = new Intent(PopupVideoPlayer.InternalListener.ACTION_UPDATE_THUMB);
+                                intent.putExtra(PopupVideoPlayer.VIDEO_URL, info.webpage_url);
+                                getContext().sendBroadcast(intent);
+                            }
                         }
 
                         @Override
@@ -364,6 +374,28 @@ public class VideoItemDetailFragment extends Fragment {
                 intent.setData(Uri.parse(info.webpage_url));
 
                 activity.startActivity(Intent.createChooser(intent, activity.getString(R.string.choose_browser)));
+            }
+        });
+
+        actionBarHandler.setOnOpenInPopupListener(new ActionBarHandler.OnActionListener() {
+            @Override
+            public void onActionSelected(int selectedStreamId) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                        && !PermissionHelper.checkSystemAlertWindowPermission(activity)) {
+                    Toast.makeText(activity, R.string.msg_popup_permission, Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (streamThumbnail != null)
+                    ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = streamThumbnail;
+
+                VideoStream selectedVideoStream = info.video_streams.get(selectedStreamId);
+                Intent i = new Intent(activity, PopupVideoPlayer.class);
+                Toast.makeText(activity, "Starting in popup mode", Toast.LENGTH_SHORT).show();
+                i.putExtra(PopupVideoPlayer.VIDEO_TITLE, info.title)
+                        .putExtra(PopupVideoPlayer.STREAM_URL, selectedVideoStream.url)
+                        .putExtra(PopupVideoPlayer.CHANNEL_NAME, info.uploader)
+                        .putExtra(PopupVideoPlayer.VIDEO_URL, info.webpage_url);
+                activity.startService(i);
             }
         });
 
@@ -536,13 +568,15 @@ public class VideoItemDetailFragment extends Fragment {
 
     private void initSimilarVideos(final StreamInfo info) {
         LinearLayout similarLayout = (LinearLayout) activity.findViewById(R.id.similar_streams_view);
-        for (final StreamPreviewInfo item : info.related_streams) {
+        for (final InfoItem item : info.related_streams) {
             similarLayout.addView(infoItemBuilder.buildView(similarLayout, item));
         }
-        infoItemBuilder.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {
+        infoItemBuilder.setOnStreamInfoItemSelectedListener(
+                new InfoItemBuilder.OnInfoItemSelectedListener() {
             @Override
-            public void selected(String url) {
-                openStreamUrl(url);
+            public void selected(String url, int serviceId) {
+                NavStack.getInstance()
+                        .openDetailActivity(getContext(), url, serviceId);
             }
         });
     }
@@ -677,8 +711,8 @@ public class VideoItemDetailFragment extends Fragment {
         // then we must not try to access objects of this fragment.
         // Otherwise the applications would crash.
         if(backgroundButton != null) {
-            streamingServiceId = getArguments().getInt(STREAMING_SERVICE);
-            String videoUrl = getArguments().getString(VIDEO_URL);
+            streamingServiceId = getArguments().getInt(NavStack.SERVICE_ID);
+            String videoUrl = getArguments().getString(NavStack.URL);
             StreamInfoWorker siw = StreamInfoWorker.getInstance();
             siw.search(streamingServiceId, videoUrl, getActivity());
 
@@ -753,13 +787,16 @@ public class VideoItemDetailFragment extends Fragment {
             if (PreferenceManager.getDefaultSharedPreferences(activity)
                     .getBoolean(activity.getString(R.string.use_exoplayer_key), false)) {
 
+                // TODO: Fix this mess
+                if (streamThumbnail != null)
+                    ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = streamThumbnail;
                 // exo player
 
                 if(info.dashMpdUrl != null && !info.dashMpdUrl.isEmpty()) {
                     // try dash
                     Intent intent = new Intent(activity, ExoPlayerActivity.class)
-                            .setData(Uri.parse(info.dashMpdUrl))
-                            .putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_DASH);
+                            .setData(Uri.parse(info.dashMpdUrl));
+                            //.putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_DASH);
                     startActivity(intent);
                 } else if((info.audio_streams != null  && !info.audio_streams.isEmpty()) &&
                         (info.video_only_streams != null && !info.video_only_streams.isEmpty())) {
@@ -770,7 +807,10 @@ public class VideoItemDetailFragment extends Fragment {
                     Intent intent = new Intent(activity, ExoPlayerActivity.class)
                             .setDataAndType(Uri.parse(selectedVideoStream.url),
                                 MediaFormat.getMimeById(selectedVideoStream.format))
-                            .putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_OTHER);
+
+                            .putExtra(ExoPlayerActivity.VIDEO_TITLE, info.title)
+                            .putExtra(ExoPlayerActivity.CHANNEL_NAME, info.uploader);
+                            //.putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_OTHER);
 
                     activity.startActivity(intent);      // HERE !!!
                 }
@@ -798,8 +838,11 @@ public class VideoItemDetailFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        super.onOptionsItemSelected(item);
-        return actionBarHandler.onItemSelected(item);
+        if(!actionBarHandler.onItemSelected(item)) {
+            return super.onOptionsItemSelected(item);
+        } else {
+            return true;
+        }
     }
 
     public void setOnInvokeCreateOptionsMenuListener(OnInvokeCreateOptionsMenuListener listener) {
@@ -811,21 +854,13 @@ public class VideoItemDetailFragment extends Fragment {
                 stringResource, Toast.LENGTH_LONG).show();
     }
 
-    private void openStreamUrl(String url) {
-        Intent detailIntent = new Intent(activity, VideoItemDetailActivity.class);
-        detailIntent.putExtra(VideoItemDetailFragment.VIDEO_URL, url);
-        detailIntent.putExtra(
-                VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
-        activity.startActivity(detailIntent);
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case RECAPTCHA_REQUEST:
                 if (resultCode == RESULT_OK) {
-                    String videoUrl = getArguments().getString(VIDEO_URL);
+                    String videoUrl = getArguments().getString(NavStack.URL);
                     StreamInfoWorker siw = StreamInfoWorker.getInstance();
                     siw.search(streamingServiceId, videoUrl, getActivity());
                 } else {

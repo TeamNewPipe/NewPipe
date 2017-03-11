@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
+import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -34,9 +34,10 @@ import org.schabi.newpipe.util.ThemeHelper;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class MainActivity extends AppCompatActivity {
 
+public class MainActivity extends AppCompatActivity {
     private Fragment mainFragment = null;
+    private static final String TAG = MainActivity.class.toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch(id) {
+        switch (id) {
             case android.R.id.home: {
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -73,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
             case R.id.action_show_downloads: {
-                if(!PermissionHelper.checkStoragePermissions(this)) {
+                if (!PermissionHelper.checkStoragePermissions(this)) {
                     return false;
                 }
-                Intent intent = new Intent(this, org.schabi.newpipe.download.DownloadActivity.class);
+                Intent intent = new Intent(this, DownloadActivity.class);
                 startActivity(intent);
                 return true;
             }

@@ -157,4 +157,15 @@
     <string name="action_settings">Paramètres</string>
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="black_theme_title">Noir</string>
+
+    <string name="all">Tout</string>
+    <string name="channel">Chaîne</string>
+
+    <string name="videos">vidéos</string>
+    <string name="subscriber">abonné</string>
+    <string name="views">vues</string>
+    <string name="reCaptcha_title">Test reCAPTCHA</string>
+    <string name="recaptcha_request_toast">Test reCAPTCHA demandé</string>
+
     </resources>

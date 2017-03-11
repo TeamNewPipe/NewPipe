@@ -5,7 +5,7 @@ android:
   components:
     # The BuildTools version used by NewPipe
     - tools
-    - build-tools-23.0.3
+    - build-tools-25.0.0
 
     # The SDK version used to compile NewPipe
     - android-25

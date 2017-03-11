@@ -111,9 +111,9 @@ public class YoutubeStreamUrlIdHandlerTest {
 
         assertTrue(urlIdHandler.acceptUrl("vnd.youtube:jZViOEv90dI"));
 
-        String sharedId = "7JIArTByb3E";
+        String sharedId = "8A940MXKFmQ";
         assertTrue(urlIdHandler.acceptUrl("vnd.youtube://www.youtube.com/shared?ci=" + sharedId + "&feature=twitter-deep-link"));
         assertTrue(urlIdHandler.acceptUrl("vnd.youtube://www.youtube.com/shared?ci=" + sharedId ));
-        assertTrue(urlIdHandler.acceptUrl("https://www.youtube.com/shared?ci=7JIArTByb3E"));
+        assertTrue(urlIdHandler.acceptUrl("https://www.youtube.com/shared?ci=" + sharedId));
     }
 }

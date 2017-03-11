@@ -103,6 +103,10 @@ public class ErrorActivity extends AppCompatActivity {
     private TextView infoView;
     private TextView errorMessageView;
 
+    public static void reportUiError(final AppCompatActivity activity, final Throwable el) {
+        reportError(activity, el, activity.getClass(), null, ErrorInfo.make(UI_ERROR, "none", "", R.string.app_ui_crash));
+    }
+
     public static void reportError(final Context context, final List<Throwable> el,
                                    final Class returnAcitivty, View rootView, final ErrorInfo errorInfo) {
 
@@ -256,6 +260,11 @@ public class ErrorActivity extends AppCompatActivity {
         }
 
         errorView.setText(formErrorText(errorList));
+
+        //print stack trace once again for debugging:
+        for(String e : errorList) {
+            Log.e(TAG, e);
+        }
     }
 
     @Override

@@ -53,6 +53,7 @@ class ActionBarHandler {
     // those are edited directly. Typically VideoItemDetailFragment will implement those callbacks.
     private OnActionListener onShareListener;
     private OnActionListener onOpenInBrowserListener;
+    private OnActionListener onOpenInPopupListener;
     private OnActionListener onDownloadListener;
     private OnActionListener onPlayWithKodiListener;
     private OnActionListener onPlayAudioListener;
@@ -190,6 +191,12 @@ class ActionBarHandler {
                 activity.startActivity(intent);
                 return true;
             }
+            case R.id.menu_item_popup: {
+                if(onOpenInPopupListener != null) {
+                    onOpenInPopupListener.onActionSelected(selectedVideoStream);
+                }
+                return true;
+            }
             default:
                 Log.e(TAG, "Menu Item not known");
         }
@@ -206,6 +213,10 @@ class ActionBarHandler {
 
     public void setOnOpenInBrowserListener(OnActionListener listener) {
         onOpenInBrowserListener = listener;
+    }
+
+    public void setOnOpenInPopupListener(OnActionListener listener) {
+        onOpenInPopupListener = listener;
     }
 
     public void setOnDownloadListener(OnActionListener listener) {

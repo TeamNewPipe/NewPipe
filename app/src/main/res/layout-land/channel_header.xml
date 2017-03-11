@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/channel_header_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/channel_banner_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:scaleType="center"
+        android:src="@drawable/channel_banner"
+        android:background="@android:color/black"
+        android:adjustViewBounds="true"/>
+
+    <RelativeLayout
+        android:id="@+id/channel_avatar_layout"
+        android:layout_alignTop="@id/channel_banner_image"
+        android:layout_width="@dimen/channel_avatar_halo_size"
+        android:layout_height="@dimen/channel_avatar_halo_size"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="60dp">
+
+        <ImageView
+            android:id="@+id/channel_avatar_halo"
+            android:layout_width="@dimen/channel_avatar_halo_size"
+            android:layout_height="@dimen/channel_avatar_halo_size"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/white_circle" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/channel_avatar_view"
+            android:layout_width="@dimen/channel_avatar_size"
+            android:layout_height="@dimen/channel_avatar_size"
+            android:src="@drawable/buddy"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/channel_title_view"
+        android:layout_below="@id/channel_banner_image"
+        android:layout_toEndOf="@id/channel_avatar_layout"
+        android:layout_toRightOf="@id/channel_avatar_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
+        android:textSize="@dimen/video_item_detail_title_text_size"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    <LinearLayout
+        android:id="@+id/channel_subscriber_layout"
+        android:layout_below="@id/channel_banner_image"
+        android:layout_toEndOf="@id/channel_title_view"
+        android:layout_toRightOf="@id/channel_title_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/channel_subscribe_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/subscribe"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"/>
+
+        <TextView
+            android:id="@+id/channel_subscriber_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -3,22 +3,15 @@ package org.schabi.newpipe.detail;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import org.schabi.newpipe.App;
-import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.util.NavStack;
 import org.schabi.newpipe.util.ThemeHelper;
-
-import java.util.Collection;
-import java.util.HashSet;
 
 
 /**
@@ -40,47 +33,12 @@ import java.util.HashSet;
  */
 
 public class VideoItemDetailActivity extends AppCompatActivity {
-
-    /**
-     * Removes invisible separators (\p{Z}) and punctuation characters including
-     * brackets (\p{P}). See http://www.regular-expressions.info/unicode.html for
-     * more details.
-     */
-    private final static String REGEX_REMOVE_FROM_URL = "[\\p{Z}\\p{P}]";
-
     private static final String TAG = VideoItemDetailActivity.class.toString();
 
     private VideoItemDetailFragment fragment;
 
     private String videoUrl;
     private int currentStreamingService = -1;
-
-    private static String removeHeadingGibberish(final String input) {
-        int start = 0;
-        for (int i = input.indexOf("://") - 1; i >= 0; i--) {
-            if (!input.substring(i, i + 1).matches("\\p{L}")) {
-                start = i + 1;
-                break;
-            }
-        }
-        return input.substring(start, input.length());
-    }
-
-    private static String trim(final String input) {
-        if (input == null || input.length() < 1) {
-            return input;
-        } else {
-            String output = input;
-            while (output.length() > 0 && output.substring(0, 1).matches(REGEX_REMOVE_FROM_URL)) {
-                output = output.substring(1);
-            }
-            while (output.length() > 0
-                    && output.substring(output.length() - 1, output.length()).matches(REGEX_REMOVE_FROM_URL)) {
-                output = output.substring(0, output.length() - 1);
-            }
-            return output;
-        }
-    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,8 +67,10 @@ public class VideoItemDetailActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             handleIntent(getIntent());
         } else {
-            videoUrl = savedInstanceState.getString(VideoItemDetailFragment.VIDEO_URL);
-            currentStreamingService = savedInstanceState.getInt(VideoItemDetailFragment.STREAMING_SERVICE);
+            videoUrl = savedInstanceState.getString(NavStack.URL);
+            currentStreamingService = savedInstanceState.getInt(NavStack.SERVICE_ID);
+            NavStack.getInstance()
+                    .restoreSavedInstanceState(savedInstanceState);
             addFragment(savedInstanceState);
         }
     }
@@ -125,29 +85,15 @@ public class VideoItemDetailActivity extends AppCompatActivity {
     private void handleIntent(Intent intent) {
         Bundle arguments = new Bundle();
         boolean autoplay = false;
-        if (intent.getData() != null) {
-            // this means the video was called though another app
-            videoUrl = intent.getData().toString();
-            currentStreamingService = getServiceIdByUrl(videoUrl);
-            if(currentStreamingService == -1) {
-                Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG)
-                        .show();
-            }
-            autoplay = PreferenceManager.getDefaultSharedPreferences(this)
-                            .getBoolean(getString(R.string.autoplay_through_intent_key), false);
-        } else if(intent.getStringExtra(Intent.EXTRA_TEXT) != null) {
-            //this means that vidoe was called through share menu
-            String extraText = intent.getStringExtra(Intent.EXTRA_TEXT);
-            videoUrl = getUris(extraText)[0];
-            currentStreamingService = getServiceIdByUrl(videoUrl);
-        } else {
-            //this is if the video was called through another NewPipe activity
-            videoUrl = intent.getStringExtra(VideoItemDetailFragment.VIDEO_URL);
-            currentStreamingService = intent.getIntExtra(VideoItemDetailFragment.STREAMING_SERVICE, -1);
+
+        videoUrl = intent.getStringExtra(NavStack.URL);
+        currentStreamingService = intent.getIntExtra(NavStack.SERVICE_ID, -1);
+        if(intent.hasExtra(VideoItemDetailFragment.AUTO_PLAY)) {
+            arguments.putBoolean(VideoItemDetailFragment.AUTO_PLAY,
+                    intent.getBooleanExtra(VideoItemDetailFragment.AUTO_PLAY, false));
         }
-        arguments.putBoolean(VideoItemDetailFragment.AUTO_PLAY, autoplay);
-        arguments.putString(VideoItemDetailFragment.VIDEO_URL, videoUrl);
-        arguments.putInt(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingService);
+        arguments.putString(NavStack.URL, videoUrl);
+        arguments.putInt(NavStack.SERVICE_ID, currentStreamingService);
         addFragment(arguments);
     }
 
@@ -170,9 +116,11 @@ public class VideoItemDetailActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(VideoItemDetailFragment.VIDEO_URL, videoUrl);
-        outState.putInt(VideoItemDetailFragment.STREAMING_SERVICE, currentStreamingService);
+        outState.putString(NavStack.URL, videoUrl);
+        outState.putInt(NavStack.SERVICE_ID, currentStreamingService);
         outState.putBoolean(VideoItemDetailFragment.AUTO_PLAY, false);
+        NavStack.getInstance()
+                .onSaveInstanceState(outState);
     }
 
     @Override
@@ -187,50 +135,21 @@ public class VideoItemDetailActivity extends AppCompatActivity {
 
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
 
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            NavUtils.navigateUpTo(this, intent);
+            NavStack.getInstance()
+                    .openMainActivity(this);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
     }
 
-    /**
-     * Retrieves all Strings which look remotely like URLs from a text.
-     * Used if NewPipe was called through share menu.
-     *
-     * @param sharedText text to scan for URLs.
-     * @return potential URLs
-     */
-    private String[] getUris(final String sharedText) {
-        final Collection<String> result = new HashSet<>();
-        if (sharedText != null) {
-            final String[] array = sharedText.split("\\p{Space}");
-            for (String s : array) {
-                s = trim(s);
-                if (s.length() != 0) {
-                    if (s.matches(".+://.+")) {
-                        result.add(removeHeadingGibberish(s));
-                    } else if (s.matches(".+\\..+")) {
-                        result.add("http://" + s);
-                    }
-                }
-            }
+    @Override
+    public void onBackPressed() {
+        try {
+            NavStack.getInstance()
+                    .navBack(this);
+        } catch (Exception e) {
+            ErrorActivity.reportUiError(this, e);
         }
-        return result.toArray(new String[result.size()]);
-    }
-
-    private int getServiceIdByUrl(String url) {
-        StreamingService[] serviceList = NewPipe.getServices();
-        int service = -1;
-        for (int i = 0; i < serviceList.length; i++) {
-            if (serviceList[i].getUrlIdHandlerInstance().acceptUrl(videoUrl)) {
-                service = i;
-                //videoExtractor = ServiceList.getService(i).getExtractorInstance();
-                break;
-            }
-        }
-        return service;
     }
 }

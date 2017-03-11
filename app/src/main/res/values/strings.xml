@@ -6,18 +6,19 @@
     <string name="title_videoitem_detail" translatable="false">NewPipe</string>
     <string name="view_count_text">%1$s views</string>
     <string name="upload_date_text">Published on %1$s</string>
-    <string name="no_player_found">No stream player found. Install VLC?</string>
+    <string name="no_player_found">No stream player found. Do you want to install VLC?</string>
     <string name="install">Install</string>
     <string name="cancel">Cancel</string>
     <string name="fdroid_vlc_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Open in browser</string>
+    <string name="open_in_popup_mode">Open in popup mode</string>
     <string name="share">Share</string>
     <string name="loading">Loading</string>
     <string name="download">Download</string>
     <string name="search">Search</string>
     <string name="settings">Settings</string>
     <string name="did_you_mean">Did you mean: %1$s ?</string>
-    <string name="search_page">Search page: </string>
+    <string name="search_page">"Search page: "</string>
     <string name="share_dialog_title">Share with</string>
     <string name="choose_browser">Choose browser</string>
     <string name="screen_rotation">rotation</string>
@@ -84,6 +85,10 @@
     <string name="downloads_title">Downloads</string>
     <string name="settings_title">Settings</string>
     <string name="error_report_title">Error report</string>
+    <string name="all">All</string>
+    <string name="channel">Channel</string>
+    <string name="yes">Yes</string>
+    <string name="later">Later</string>
 
     <!-- error strings -->
     <string name="general_error">Error</string>
@@ -147,6 +152,14 @@
     <string name="storage_permission_denied">Permission to access storage was denied</string>
     <string name="use_exoplayer_title">Use ExoPlayer</string>
     <string name="use_exoplayer_summary">Experimental</string>
+    <string name="videos">videos</string>
+    <string name="subscriber">subscriber</string>
+    <string name="subscribe">Subscribe</string>
+    <string name="views">views</string>
+    <string name="short_thousand">K</string>
+    <string name="short_million">M</string>
+    <string name="short_billion">B</string>
+    <string name="restart_title">Restart</string>
 
     <!-- Missions -->
     <string name="start">Start</string>
@@ -175,6 +188,8 @@
     <string name="msg_wait">Please wait…</string>
     <string name="msg_copied">Copied to clipboard.</string>
     <string name="no_available_dir">Please select an available download directory.</string>
+    <string name="msg_restart">You have to restart the application to apply the theme.\n\nDo you want to restart now?</string>
+    <string name="msg_popup_permission">This permission is needed to\nopen in popup mode</string>
 
     <!-- Checksum types -->
     <string name="md5" translatable="false">MD5</string>

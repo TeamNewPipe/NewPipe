@@ -19,8 +19,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import org.schabi.newpipe.ChannelActivity;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.search.SearchEngine;
 import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -28,6 +30,9 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.detail.VideoItemDetailActivity;
 import org.schabi.newpipe.detail.VideoItemDetailFragment;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.util.NavStack;
+
+import java.util.EnumSet;
 
 import static android.app.Activity.RESULT_OK;
 import static org.schabi.newpipe.ReCaptchaActivity.RECAPTCHA_REQUEST;
@@ -55,6 +60,9 @@ import static org.schabi.newpipe.ReCaptchaActivity.RECAPTCHA_REQUEST;
 public class SearchInfoItemFragment extends Fragment {
 
     private static final String TAG = SearchInfoItemFragment.class.toString();
+
+    private EnumSet<SearchEngine.Filter> filter =
+            EnumSet.of(SearchEngine.Filter.CHANNEL, SearchEngine.Filter.STREAM);
 
     /**
      * Listener for search queries
@@ -166,7 +174,7 @@ public class SearchInfoItemFragment extends Fragment {
         sw.setSearchWorkerResultListener(new SearchWorker.SearchWorkerResultListener() {
             @Override
             public void onResult(SearchResult result) {
-                infoListAdapter.addStreamItemList(result.resultList);
+                infoListAdapter.addInfoItemList(result.resultList);
                 setDoneLoading();
             }
 
@@ -197,7 +205,6 @@ public class SearchInfoItemFragment extends Fragment {
                         RECAPTCHA_REQUEST);
             }
         });
-
     }
 
     @Override
@@ -213,10 +220,21 @@ public class SearchInfoItemFragment extends Fragment {
 
         infoListAdapter = new InfoListAdapter(getActivity(),
                 getActivity().findViewById(android.R.id.content));
-        infoListAdapter.setOnItemSelectedListener(new InfoItemBuilder.OnItemSelectedListener() {
+        infoListAdapter.setFooter(inflater.inflate(R.layout.pignate_footer, recyclerView, false));
+        infoListAdapter.showFooter(false);
+        infoListAdapter.setOnStreamInfoItemSelectedListener(
+                new InfoItemBuilder.OnInfoItemSelectedListener() {
             @Override
-            public void selected(String url) {
-                startDetailActivity(url);
+            public void selected(String url, int serviceId) {
+                NavStack.getInstance()
+                    .openDetailActivity(getContext(), url, serviceId);
+            }
+        });
+        infoListAdapter.setOnChannelInfoItemSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener() {
+            @Override
+            public void selected(String url, int serviceId) {
+                NavStack.getInstance()
+                        .openChannelActivity(getContext(), url, serviceId);
             }
         });
         recyclerView.setAdapter(infoListAdapter);
@@ -241,13 +259,6 @@ public class SearchInfoItemFragment extends Fragment {
         });
 
         return view;
-    }
-
-    private void startDetailActivity(String url) {
-        Intent i = new Intent(getActivity(), VideoItemDetailActivity.class);
-        i.putExtra(VideoItemDetailFragment.STREAMING_SERVICE, streamingServiceId);
-        i.putExtra(VideoItemDetailFragment.VIDEO_URL, url);
-        getActivity().startActivity(i);
     }
 
     @Override
@@ -275,6 +286,32 @@ public class SearchInfoItemFragment extends Fragment {
         setupSearchView(searchView);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.menu_filter_all:
+                changeFilter(item, EnumSet.of(SearchEngine.Filter.STREAM, SearchEngine.Filter.CHANNEL));
+                return true;
+            case R.id.menu_filter_video:
+                changeFilter(item, EnumSet.of(SearchEngine.Filter.STREAM));
+                return true;
+            case R.id.menu_filter_channel:
+                changeFilter(item, EnumSet.of(SearchEngine.Filter.CHANNEL));
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    private void changeFilter(MenuItem item, EnumSet<SearchEngine.Filter> filter) {
+        this.filter = filter;
+        item.setChecked(true);
+        if(searchQuery != null && !searchQuery.isEmpty()) {
+            Log.d(TAG, "Fuck+ " + searchQuery);
+            search(searchQuery);
+        }
+    }
+
     private void setupSearchView(SearchView searchView) {
         suggestionListAdapter = new SuggestionListAdapter(getActivity());
         searchView.setSuggestionsAdapter(suggestionListAdapter);
@@ -288,6 +325,7 @@ public class SearchInfoItemFragment extends Fragment {
 
     private void search(String query) {
         infoListAdapter.clearSteamItemList();
+        infoListAdapter.showFooter(false);
         pageNumber = 0;
         searchQuery = query;
         search(query, pageNumber);
@@ -298,12 +336,17 @@ public class SearchInfoItemFragment extends Fragment {
     private void search(String query, int page) {
         isLoading = true;
         SearchWorker sw = SearchWorker.getInstance();
-        sw.search(streamingServiceId, query, page, getActivity());
+        sw.search(streamingServiceId,
+                query,
+                page,
+                getActivity(),
+                filter);
     }
 
     private void setDoneLoading() {
         this.isLoading = false;
         loadingIndicator.setVisibility(View.GONE);
+        infoListAdapter.showFooter(true);
     }
 
     /**

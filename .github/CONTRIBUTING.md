@@ -13,6 +13,9 @@ Do not report crashes in the GitHub issue tracker. NewPipe has an automated cras
 * Check if this issue/feature is already fixed/implemented in the repository
 * If you are an android/java developer you are always welcome to fix/implement an issue/a feature yourself
 
+## Bugfixing
+* If you want to help NewPipe getting bug free, you can send me a mail to tnp@newpipe.schabi.org to let me know that you intent to help, and than register at our [sentry](https://support.schabi.org) setup. 
+
 ## Translation
 
 * NewPipe can be translated on [weblate](https://hosted.weblate.org/projects/newpipe/strings/)
@@ -31,6 +34,6 @@ Do not report crashes in the GitHub issue tracker. NewPipe has an automated cras
 
 ## Communication
 
-* I hereby declare our Slack channel as dead!!! There are no plans on building a new chat, but if there is interest on creating one and keeping it alive, I'd be pleased to create one again. 
+* WE DO NOW HAVE A MAILING LIST: [newpipe@list.schabi.org](https://list.schabi.org/cgi-bin/mailman/listinfo/newpipe).
 * If you want to get in contact with me or one of our other contributors you can send me an email at tnp(at)schabi.org
 * Feel free to post suggestions, changes, ideas etc!

@@ -138,6 +138,12 @@
 
     <string name="switch_mode">Zwischen Liste und Gitter umschalten</string>
 
+    <string name="videos">Videos</string>
+    <string name="subscriber">Abonnenten</string>
+    <string name="views">Aufrufe</string>
+    <string name="short_thousand">Tsd.</string>
+    <string name="short_million">Mio.</string>
+    <string name="short_billion">Mrd.</string>
 
     <string name="msg_url">Download-URL</string>
     <string name="msg_name">Dateiname</string>
@@ -306,4 +312,16 @@
     <string name="reCaptcha_title">reCAPTCHA Herausforderung</string>
     <string name="recaptcha_request_toast">reCAPTCHA Herausforderung angefordert</string>
 
+    <string name="later">Später</string>
+
+    <string name="yes">Ja</string>
+    <string name="all">Alle</string>
+    <string name="channel">Kanal</string>
+    <string name="restart_title">Neu starten</string>
+
+    <string name="msg_restart">Um die Änderung des Aussehens zu ändern, müssen Sie die App neu starten.
+
+Möchten Sie jetzt neu starten?</string>
+
+    <string name="subscribe">Abonnieren</string>
     </resources>

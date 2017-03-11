@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="view_count_text">%1$s reproducciones</string>
     <string name="upload_date_text">Publicado en %1$s</string>
-    <string name="no_player_found">No se encontró ningún reproductor de vídeo. ¿Instalar VLC?</string>
+    <string name="no_player_found">No se encontró ningún reproductor de vídeo. ¿Desea instalar VLC?</string>
     <string name="install">Instalar</string>
     <string name="cancel">Cancelar</string>
     <string name="open_in_browser">Abrir en el navegador</string>
@@ -149,7 +149,7 @@
     <string name="msg_url_malform">URL mal formada o Internet no disponible</string>
     <string name="msg_running">Descarga de NewPipe</string>
     <string name="msg_running_detail">Toque para ver detalles</string>
-    <string name="msg_wait">Por favor espere...</string>
+    <string name="msg_wait">Espere, por favor…</string>
     <string name="msg_copied">Copiado al portapapeles.</string>
     <string name="no_available_dir">Por favor, seleccione un directorio de descarga disponible.</string>
 
@@ -296,4 +296,25 @@
 
 
  "</string>
+    <string name="black_theme_title">Oscuro</string>
+
+    <string name="all">Todo</string>
+    <string name="channel">Canal</string>
+    <string name="yes">Sí</string>
+    <string name="later">Después</string>
+
+    <string name="videos">videos</string>
+    <string name="subscriber">suscriptor</string>
+    <string name="subscribe">Suscribirse</string>
+    <string name="views">visualizaciones</string>
+    <string name="short_thousand">K</string>
+    <string name="short_million">M</string>
+    <string name="short_billion">MM</string>
+    <string name="restart_title">Reiniciar</string>
+
+    <string name="msg_restart">Debe reiniciar la aplicación para aplicar la plantilla
+
+¿Quieres reiniciar ahora?</string>
+
+    <string name="reCaptchaActivity">reCAPTCHA</string>
     </resources>

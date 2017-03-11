@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/video_item"
+        tools:listitem="@layout/stream_item"
         android:scrollbars="vertical"/>
 
     <ProgressBar android:id="@+id/progressBar"
