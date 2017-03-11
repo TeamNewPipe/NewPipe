@@ -326,4 +326,8 @@
 
 今すぐ再起動しますか?</string>
 
+    <string name="open_in_popup_mode">ポップアップモードで開く</string>
+    <string name="msg_popup_permission">ポップアップモードで開くには
+このアクセス許可が必要です</string>
+
     </resources>
