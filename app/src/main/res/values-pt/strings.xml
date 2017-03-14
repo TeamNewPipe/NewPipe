@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="view_count_text">%1$s visualizações</string>
     <string name="upload_date_text">Publicado em %1$s</string>
-    <string name="no_player_found">Reprodutor não disponível. Instalar o VLC?</string>
+    <string name="no_player_found">Reprodutor não disponível. Deseja instalar o VLC?</string>
     <string name="install">Instalar</string>
     <string name="cancel">Cancelar</string>
     <string name="open_in_browser">Abrir no navegador</string>
@@ -143,7 +143,7 @@
     <string name="msg_exists">Ficheiro já existe</string>
     <string name="msg_url_malform">URL deformado ou internet não disponível</string>
     <string name="msg_running_detail">Toque para detalhes</string>
-    <string name="msg_wait">Por favor aguarde...</string>
+    <string name="msg_wait">Por favor aguarde…</string>
     <string name="msg_copied">Copiado para a área de transferência.</string>
     <string name="no_available_dir">Por favor selecione um diretório disponível.</string>
 
@@ -295,4 +295,31 @@
 
 
  "</string>
+    <string name="open_in_popup_mode">Abrir no modo “popup“</string>
+    <string name="black_theme_title">Preto</string>
+
+    <string name="all">Tudo</string>
+    <string name="channel">Canais</string>
+    <string name="yes">Sim</string>
+    <string name="later">Depois</string>
+
+    <string name="videos">vídeos</string>
+    <string name="subscriber">subscritor</string>
+    <string name="subscribe">Subscrever</string>
+    <string name="views">visualizações</string>
+    <string name="short_thousand">K</string>
+    <string name="short_million">M</string>
+    <string name="short_billion">MM</string>
+    <string name="restart_title">Reiniciar</string>
+
+    <string name="msg_restart">Tem que reiniciar a aplicação para aplicar o tema.
+
+Deseja reiniciar agora?</string>
+    <string name="msg_popup_permission">Permissão necessário para
+o modo “popup“</string>
+
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">Desafio reCAPTCHA</string>
+    <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
+
     </resources>
