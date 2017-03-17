@@ -819,7 +819,14 @@ public class PopupVideoPlayer extends Service implements StateInterface {
                     }
                 });
             } catch (Exception e) {
-                e.printStackTrace();
+                if (DEBUG) e.printStackTrace();
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(PopupVideoPlayer.this, R.string.content_not_available, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                stopSelf();
             }
         }
     }
