@@ -317,4 +317,9 @@
 
 Chcete restartovat ihned?</string>
 
+    <string name="open_in_popup_mode">Otevřít ve vyskakovacím okně</string>
+    <string name="short_million">M</string>
+    <string name="msg_popup_permission">Toto oprávnění je vyžadováno pro
+otevření ve vyskakovacím okně</string>
+
     </resources>
