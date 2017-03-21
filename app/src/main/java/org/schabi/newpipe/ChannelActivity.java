@@ -147,6 +147,7 @@ public class ChannelActivity extends AppCompatActivity {
             serviceId = savedInstanceState.getInt(NavStack.SERVICE_ID);
             NavStack.getInstance()
                     .restoreSavedInstanceState(savedInstanceState);
+            handleIntent(getIntent());
         }
 
     }

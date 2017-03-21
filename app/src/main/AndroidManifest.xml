@@ -138,6 +138,7 @@
                 <data android:host="www.youtube.com" />
                 <!-- video prefix -->
                 <data android:pathPrefix="/v/" />
+                <data android:pathPrefix="/embed/" />
                 <data android:pathPrefix="/watch" />
                 <data android:pathPrefix="/attribution_link" />
                 <!-- channel prefix -->
@@ -195,6 +196,7 @@
                 <data android:host="www.youtube.com" />
                 <!-- video prefix -->
                 <data android:pathPrefix="/v/" />
+                <data android:pathPrefix="/embed/" />
                 <data android:pathPrefix="/watch" />
                 <data android:pathPrefix="/attribution_link" />
                 <!-- channel prefix -->

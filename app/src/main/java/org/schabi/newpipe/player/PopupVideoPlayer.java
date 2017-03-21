@@ -60,6 +60,8 @@ import org.schabi.newpipe.player.popup.PopupViewHolder;
 import org.schabi.newpipe.player.popup.StateInterface;
 import org.schabi.newpipe.util.NavStack;
 
+import java.io.IOException;
+
 public class PopupVideoPlayer extends Service implements StateInterface {
     private static final String TAG = ".PopupVideoPlayer";
     private static final boolean DEBUG = false;
@@ -818,8 +820,24 @@ public class PopupVideoPlayer extends Service implements StateInterface {
                         });
                     }
                 });
+            } catch (IOException ie) {
+                if (DEBUG) ie.printStackTrace();
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(PopupVideoPlayer.this, R.string.network_error, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                stopSelf();
             } catch (Exception e) {
-                e.printStackTrace();
+                if (DEBUG) e.printStackTrace();
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(PopupVideoPlayer.this, R.string.content_not_available, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                stopSelf();
             }
         }
     }
