@@ -300,4 +300,25 @@
     <string name="reCaptcha_title">reCAPTCHA-uitdaging</string>
     <string name="recaptcha_request_toast">reCAPTCHA-uitdaging gevraagd</string>
 
+    <string name="open_in_popup_mode">Openen in pop-upmodus</string>
+    <string name="all">Alles</string>
+    <string name="channel">Kanaal</string>
+    <string name="yes">Ja</string>
+    <string name="later">Later</string>
+
+    <string name="videos">video\'s</string>
+    <string name="subscriber">abonneren</string>
+    <string name="subscribe">Abonneren</string>
+    <string name="views">weergaven</string>
+    <string name="short_thousand">K</string>
+    <string name="short_million">M</string>
+    <string name="short_billion">B</string>
+    <string name="restart_title">Herstarten</string>
+
+    <string name="msg_restart">Je moet de applicatie herstarten om het thema toe te passen.
+
+Wil je nu herstarten?</string>
+    <string name="msg_popup_permission">Deze toestemming is vereist om
+te openen in pop-upmodus</string>
+
     </resources>
