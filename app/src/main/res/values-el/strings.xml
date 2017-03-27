@@ -28,8 +28,6 @@
     <string name="download_path_audio_summary">Διαδρομή για αποθήκευση αρχείων ήχου</string>
     <string name="download_path_audio_dialog_title">Εισάγετε διαδρομή για λήψη αρχείων ήχου.</string>
 
-    <string name="autoplay_through_intent_title">Αυτόματη αναπαραγωγή μέσω Intent</string>
-    <string name="autoplay_through_intent_summary">Αυτόματη αναπαραγωγή video όταν καλείται από άλλη εφαρμογή.</string>
     <string name="default_resolution_title">Προεπιλεγμένη ανάλυση</string>
     <string name="play_with_kodi_title">Αναπαραγωγή με το Kodi</string>
     <string name="kore_not_found">Η εφαρμογή Kore δεν βρέθηκε. Εγκατάσταση;</string>

@@ -16,16 +16,12 @@
     <string name="choose_browser">브라우저 선택</string>
     <string name="screen_rotation">회전</string>
     <string name="settings_activity_title">설정</string>
-    <string name="useExternalPlayerTitle">외부 플레이어 사용</string>
     <string name="download_path_title">비디오 다운로드 위치</string>
     <string name="download_path_summary">다운로드된 비디오가 저장될 경로를 선택하세요.</string>
     <string name="download_path_dialog_title">비디오 다운로드 경로 입력</string>
-    <string name="autoplay_through_intent_title">인텐트로 경유할 경우 자동 재생</string>
-    <string name="autoplay_through_intent_summary">다른 앱으로부터 호출되었을 경우에 비디오를 자동으로 재생합니다.</string>
     <string name="default_resolution_title">기본 해상도</string>
     <string name="play_with_kodi_title">Kodi로 재생</string>
     <string name="kore_not_found">Kore 앱이 발견되지 않았습니다. Kore를 설치할까요?</string>
-    <string name="installeKore">Kore 설치</string>
     <string name="show_play_with_kodi_title">\"Kodi로 재생\" 옵션 표시</string>
     <string name="show_play_with_kodi_summary">비디오를 Kodi media center를 사용해 재생하는 옵션을 표시합니다.</string>
     <string name="play_audio">오디오</string>
@@ -39,8 +35,6 @@
     <string name="similar_videos_btn_text">유사한 비디오</string>
     <string name="search_language_title">선호하는 컨텐츠 언어</string>
     <string name="settings_category_video_audio_title">비디오 &amp; 오디오</string>
-    <string name="settingsCategoryVideoInfoTittle">정보</string>
-    <string name="settingsCategoryEtcTitle">기타</string>
 
     <string name="list_thumbnail_view_description">비디오 미리보기 썸네일</string>
     <string name="detail_thumbnail_view_description">비디오 미리보기 썸네일</string>

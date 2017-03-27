@@ -143,7 +143,6 @@
     <string name="no_available_dir">Lütfen bir kullanılabilir indirme dizini seçin.</string>
 
     <string name="title_activity_channel"/>
-    <string name="large_text"/>
     <string name="action_settings">Ayarlar</string>
 
     <string name="could_not_setup_download_menu">İndirme menüsü kurulamıyor.</string>

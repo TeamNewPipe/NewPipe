@@ -23,8 +23,6 @@
     <string name="download_path_title">视频下载路径</string>
     <string name="download_path_summary">存放已下载视频的路径。</string>
     <string name="download_path_dialog_title">输入视频的下载路径</string>
-    <string name="autoplay_through_intent_title">刻意自动播放</string>
-    <string name="autoplay_through_intent_summary">当另一个程式发出要求时自动播放视频。</string>
     <string name="default_resolution_title">默认分辨率</string>
     <string name="play_with_kodi_title">用 Kodi 播放</string>
     <string name="kore_not_found">找不到 Kore 应用程式，您要安装 Kore 吗？</string>
