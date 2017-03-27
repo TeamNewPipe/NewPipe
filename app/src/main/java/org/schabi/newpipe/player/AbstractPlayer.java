@@ -18,7 +18,6 @@ import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceView;
@@ -232,8 +231,7 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
         this.playbackSeekBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) this.qualityPopupMenu = new PopupMenu(context, qualityTextView, Gravity.CENTER | Gravity.BOTTOM);
-        else this.qualityPopupMenu = new PopupMenu(context, qualityTextView);
+        this.qualityPopupMenu = new PopupMenu(context, qualityTextView);
 
         ((ProgressBar) this.loadingPanel.findViewById(R.id.progressBarLoadingPanel)).getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
 
@@ -419,7 +417,7 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         if (DEBUG) Log.d(TAG, "onBuffering() called");
         loadingPanel.setBackgroundColor(Color.TRANSPARENT);
         animateView(loadingPanel, true, 500, 0);
-        animateView(controlsRoot, false, 0, 0);
+        animateView(controlsRoot, false, 0, 0, true);
     }
 
     @Override

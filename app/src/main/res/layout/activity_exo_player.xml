@@ -105,9 +105,9 @@
                     android:id="@+id/qualityTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
-                    android:layout_marginLeft="4dp"
+                    android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
-                    android:layout_toLeftOf="@+id/repeatButton"
+                    android:layout_toLeftOf="@+id/screenRotationButton"
                     android:gravity="center"
                     android:minWidth="50dp"
                     android:text="720p"
@@ -116,11 +116,25 @@
                     tools:ignore="HardcodedText,RtlHardcoded"/>
 
                 <ImageButton
+                    android:id="@+id/screenRotationButton"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_toLeftOf="@+id/repeatButton"
+                    android:background="#00ffffff"
+                    android:clickable="true"
+                    android:padding="8dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_screen_rotation_white"
+                    tools:ignore="ContentDescription,RtlHardcoded"/>
+
+                <ImageButton
                     android:id="@+id/repeatButton"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
                     android:layout_toLeftOf="@+id/fullScreenButton"
                     android:background="#00ffffff"
                     android:clickable="true"
