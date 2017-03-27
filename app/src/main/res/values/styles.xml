@@ -2,7 +2,7 @@
 
     <style name="RootTheme" parent="android:Theme.Holo"/>
 
-    <style name="PlayerTheme" parent="@style/RootTheme">
+    <style name="PlayerTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/black</item>
     </style>

@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:maxLines="1"
-            tools:text="title"/>
+            tools:text="a long, long, long, long, long title"/>
 
         <TextView
             android:id="@+id/notificationArtist"
@@ -42,28 +42,38 @@
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:maxLines="1"
-            tools:text="artist"/>
+            tools:text="a long, long artist"/>
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/notificationPlayPause"
+        android:id="@+id/notificationRepeat"
         android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_margin="5dp"
-        android:background="#00ffffff"
+        android:layout_height="match_parent"
+        android:background="#00000000"
         android:clickable="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_pause_white_24dp"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_repeat_white"
+        tools:ignore="ContentDescription"/>
+
+    <ImageButton
+        android:id="@+id/notificationPlayPause"
+        android:layout_width="45dp"
+        android:layout_height="match_parent"
+        android:background="#00000000"
+        android:clickable="true"
+        android:src="@drawable/ic_pause_white"
         tools:ignore="ContentDescription"/>
 
     <ImageButton
         android:id="@+id/notificationStop"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_margin="5dp"
-        android:background="#00ffffff"
+        android:layout_marginLeft="5dp"
+        android:background="#00000000"
         android:clickable="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_close_white_24dp"
-        tools:ignore="ContentDescription"/>
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_close_white"
+        tools:ignore="ContentDescription,RtlHardcoded"/>
 </LinearLayout>

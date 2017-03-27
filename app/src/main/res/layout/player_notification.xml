@@ -65,7 +65,7 @@
             android:background="#00ffffff"
             android:clickable="true"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_pause_white_24dp" />
+            android:src="@drawable/ic_pause_white" />
 
         <ImageButton
             android:id="@+id/notificationStop"
@@ -75,7 +75,7 @@
             android:background="#00ffffff"
             android:clickable="true"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_close_white_24dp" />
+            android:src="@drawable/ic_close_white" />
     </LinearLayout>
 
 

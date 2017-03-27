@@ -58,7 +58,7 @@
         android:background="#00ffffff"
         android:clickable="true"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_close_white_24dp" />
+        android:src="@drawable/ic_close_white" />
 
 
     <RelativeLayout
@@ -77,7 +77,7 @@
             android:background="#00ffffff"
             android:clickable="true"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_pause_white_24dp"
+            android:src="@drawable/ic_pause_white"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 

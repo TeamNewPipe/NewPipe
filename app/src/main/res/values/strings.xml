@@ -25,6 +25,7 @@
     <string name="settings_activity_title">Settings</string>
     <string name="use_external_video_player_title">Use external video player</string>
     <string name="use_external_audio_player_title">Use external audio player</string>
+    <string name="popup_mode_share_menu_title">NewPipe Popup mode</string>
 
     <string name="download_path_title">Video download path</string>
     <string name="download_path_summary">Path to store downloaded videos in.</string>
@@ -75,6 +76,7 @@
     <string name="settings_category_other_title">Other</string>
     <string name="background_player_time_text" translatable="false">%1$s - NewPipe</string>
     <string name="background_player_playing_toast">Playing in background</string>
+    <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="c3s_url" translatable="false">https://www.c3s.cc/</string>
     <string name="play_btn_text">Play</string>
     <string name="content">Content</string>

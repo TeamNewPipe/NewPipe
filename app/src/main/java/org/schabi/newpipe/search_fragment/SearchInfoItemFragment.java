@@ -19,17 +19,14 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import org.schabi.newpipe.ChannelActivity;
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.search.SearchEngine;
 import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.R;
-import org.schabi.newpipe.detail.VideoItemDetailActivity;
-import org.schabi.newpipe.detail.VideoItemDetailFragment;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.NavStack;
 
 import java.util.EnumSet;
