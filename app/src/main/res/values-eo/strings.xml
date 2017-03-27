@@ -48,7 +48,6 @@
     <string name="detail_likes_img_view_description">Ŝatoj</string>
     <string name="detail_dislikes_img_view_description">Malŝatoj</string>
     <string name="use_tor_title">Uzi la programon Tor</string>
-    <string name="autoplay_through_intent_title">Ludi aŭtomate per Intent</string>
     <string name="no_player_found">Neniu elsendlflua ludilo trovita. Ĉu instali la aplikaĵon VLC?</string>
     <string name="kore_not_found">La aplikaĵo Kore ne estas trovita. Ĉu instali la aplikaĵon Kore?</string>
     <string name="show_next_and_similar_title">Montri la sekvan videon kaj similajn videojn</string>
@@ -67,7 +66,6 @@
     <string name="show_play_with_kodi_summary">Montri opcion por ludi videon per la aplikaĵo Kodi.</string>
     <string name="download_path_summary">Dosierujo por konservi elŝutitajn videojn.</string>
     <string name="download_path_audio_summary">Dosierujo por konservi elŝutitan muzikon</string>
-    <string name="autoplay_through_intent_summary">Ludi videon aŭtomate kiam ĝi estas vokita de alia aplikaĵo.</string>
     <string name="download_path_dialog_title">Elektu lokon por konservi elŝutitajn videojn</string>
 
     <string name="download_path_audio_dialog_title">Elektu lokon por konservi elŝutitan muzikon.</string>

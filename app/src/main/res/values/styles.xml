@@ -7,13 +7,6 @@
         <item name="android:windowBackground">@android:color/black</item>
     </style>
 
-    <style name="ExoPlayerButton">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:minWidth">40dp</item>
-    </style>
-
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <item name="android:actionBarStyle">@style/NewPipeActionbarTheme</item>

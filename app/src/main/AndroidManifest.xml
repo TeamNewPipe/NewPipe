@@ -53,11 +53,6 @@
             android:launchMode="singleInstance"
             android:theme="@style/PlayerTheme"/>
 
-        <service
-            android:name=".player.BackgroundPlayer"
-            android:exported="false"
-            android:label="@string/background_player_name" />
-
         <activity
             android:name=".settings.SettingsActivity"
             android:label="@string/settings_activity_title" />

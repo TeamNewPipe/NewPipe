@@ -1,27 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="abc_action_bar_home_description">Navigate home</string>
-    <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
-    <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
-    <string name="abc_action_bar_up_description">Navigate up</string>
-    <string name="abc_action_menu_overflow_description">More options</string>
-    <string name="abc_action_mode_done">Done</string>
-    <string name="abc_activity_chooser_view_see_all">See all</string>
-    <string name="abc_activitychooserview_choose_application">Choose an app</string>
-    <string name="abc_capital_off">OFF</string>
-    <string name="abc_capital_on">ON</string>
-    <string name="abc_search_hint">Search…</string>
-    <string name="abc_searchview_description_clear">Clear query</string>
-    <string name="abc_searchview_description_query">Search query</string>
-    <string name="abc_searchview_description_search">Search</string>
-    <string name="abc_searchview_description_submit">Submit query</string>
-    <string name="abc_searchview_description_voice">Voice search</string>
-    <string name="abc_shareactionprovider_share_with">Share with</string>
-    <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
-    <string name="abc_toolbar_collapse_description">Collapse</string>
-    <string name="status_bar_notification_info_overflow">999+</string>
-    <string name="autoplay_through_intent_summary">"بدء تشغيل الفيديو تلقائيًا عندما يتم فتحه من تطبيق أخر."</string>
-    <string name="autoplay_through_intent_title">التشغيل التلقائي</string>
     <string name="background_player_name">مشغل NewPipe في الخلفية</string>
     <string name="background_player_playing_toast">جاري التشغيل في الخلفية</string>
     <string name="cancel">إلغاء</string>
@@ -87,31 +65,4 @@
     <string name="general_error">خطأ</string>
     <string name="parsing_error">لا يمكن تحليل الموقع.</string>
     <string name="youtube_signature_decryption_error">لا يمكن فك تشفير توقيع رابط الفيديو.</string>
-    <string name="app_name">NewPipe</string>
-    <string name="appbar_scrolling_view_behavior">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
-    <string name="autoplay_through_intent_key">autoplay_through_intent</string>
-    <string name="background_player_time_text">%1$s - NewPipe</string>
-    <string name="c3s_url">https://www.c3s.cc/</string>
-    <string name="character_counter_pattern">%1$d / %2$d</string>
-    <string name="default_audio_format_key">default_audio_format</string>
-    <string name="default_audio_format_value">m4a</string>
-    <string name="default_language_value">en</string>
-    <string name="default_resolution_key">default_resolution_preference</string>
-    <string name="default_resolution_value">360p</string>
-    <string name="default_theme_value">0</string>
-    <string name="download_path_audio_key">download_path_audio</string>
-    <string name="download_path_key">download_path</string>
-    <string name="fdroid_kore_url">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
-    <string name="fdroid_vlc_url">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
-    <string name="search_language_key">search_language</string>
-    <string name="settings_category_appearance">settings_category_appearance</string>
-    <string name="settings_category_other">settings_category_other</string>
-    <string name="settings_category_video_audio">settings_category_video_audio</string>
-    <string name="show_next_video_key">show_next_video</string>
-    <string name="show_play_with_kodi_key">show_play_with_kodi</string>
-    <string name="theme_key">الثيمات</string>
-    <string name="title_videoitem_detail">NewPipe</string>
-    <string name="use_external_audio_player_key">use_external_audio_player</string>
-    <string name="use_external_video_player_key">use_external_video_player</string>
-    <string name="use_tor_key">use_tor</string>
 </resources>

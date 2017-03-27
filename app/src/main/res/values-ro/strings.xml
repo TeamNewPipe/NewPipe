@@ -28,8 +28,6 @@
     <string name="download_path_audio_summary">Locul în care se vor stoca fișierele audio descărcate</string>
     <string name="download_path_audio_dialog_title">Introduceți calea de descărcare pentru fișierele audio.</string>
 
-    <string name="autoplay_through_intent_title">Redare automată intenționată</string>
-    <string name="autoplay_through_intent_summary">Redați automat un videoclip atunci când este chemat din altă aplicație.</string>
     <string name="default_resolution_title">Rezoluție implicită</string>
     <string name="play_with_kodi_title">Redați folosind Kodi</string>
     <string name="kore_not_found">Aplicația Kore nu a fost găsită. Instalați Kore?</string>
