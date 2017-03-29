@@ -152,8 +152,8 @@
     <string name="error_querying_decoders">Unable to query device decoders</string>
     <string name="error_instantiating_decoder">Unable to instantiate decoder <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">Permission to access storage was denied</string>
-    <string name="use_exoplayer_title">Use ExoPlayer</string>
-    <string name="use_exoplayer_summary">Experimental</string>
+    <string name="use_old_player_title">Use old player</string>
+    <string name="use_old_player_summary">Old build in Mediaframework player.</string>
     <string name="videos">videos</string>
     <string name="subscriber">subscriber</string>
     <string name="subscribe">Subscribe</string>

@@ -791,7 +791,11 @@ public class VideoItemDetailFragment extends Fragment {
             }
         } else {
             Intent intent;
-            if (PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(activity.getString(R.string.use_exoplayer_key), false)) {
+            boolean useOldPlayer = PreferenceManager
+                    .getDefaultSharedPreferences(activity)
+                    .getBoolean(activity.getString(R.string.use_old_player_key), false)
+                    || (Build.VERSION.SDK_INT < 16);
+            if (!useOldPlayer) {
                 // ExoPlayer
                 if (streamThumbnail != null) ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = streamThumbnail;
                 intent = new Intent(activity, ExoPlayerActivity.class)
