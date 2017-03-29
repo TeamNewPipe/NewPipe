@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.net.Uri;
@@ -173,6 +174,12 @@ public class ExoPlayerActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
+    private void toggleOrientation() {
+        setRequestedOrientation(getResources().getDisplayMetrics().heightPixels > getResources().getDisplayMetrics().widthPixels
+                ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+                : ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+    }
+
     ///////////////////////////////////////////////////////////////////////////
 
     @SuppressWarnings({"unused", "WeakerAccess"})
@@ -183,6 +190,7 @@ public class ExoPlayerActivity extends Activity {
         private TextView brightnessTextView;
         private ImageButton repeatButton;
 
+        private ImageButton screenRotationButton;
         private ImageButton playPauseButton;
 
         AbstractPlayerImpl() {
@@ -198,6 +206,7 @@ public class ExoPlayerActivity extends Activity {
             this.brightnessTextView = (TextView) rootView.findViewById(R.id.brightnessTextView);
             this.repeatButton = (ImageButton) rootView.findViewById(R.id.repeatButton);
 
+            this.screenRotationButton = (ImageButton) rootView.findViewById(R.id.screenRotationButton);
             this.playPauseButton = (ImageButton) rootView.findViewById(R.id.playPauseButton);
 
             // Due to a bug on lower API, lets set the alpha instead of using a drawable
@@ -219,6 +228,7 @@ public class ExoPlayerActivity extends Activity {
 
             repeatButton.setOnClickListener(this);
             playPauseButton.setOnClickListener(this);
+            screenRotationButton.setOnClickListener(this);
         }
 
         @Override
@@ -285,6 +295,7 @@ public class ExoPlayerActivity extends Activity {
             super.onClick(v);
             if (v.getId() == repeatButton.getId()) onRepeatClicked();
             else if (v.getId() == playPauseButton.getId()) onVideoPlayPause();
+            else if (v.getId() == screenRotationButton.getId()) onScreenRotationClicked();
 
             if (getCurrentState() != STATE_COMPLETED) {
                 animateView(playerImpl.getControlsRoot(), true, 300, 0, new Runnable() {
@@ -296,6 +307,11 @@ public class ExoPlayerActivity extends Activity {
                     }
                 }, false);
             }
+        }
+
+        private void onScreenRotationClicked() {
+            if (DEBUG) Log.d(TAG, "onScreenRotationClicked() called");
+            toggleOrientation();
         }
 
         @Override
@@ -348,7 +364,6 @@ public class ExoPlayerActivity extends Activity {
         @Override
         public void onLoading() {
             super.onLoading();
-            hideSystemUi();
             playPauseButton.setImageResource(R.drawable.ic_pause_white);
         }
 
