@@ -180,4 +180,9 @@ o modo “popup“</string>
     <string name="reCaptcha_title">Desafio reCAPTCHA</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
 
+    <string name="popup_mode_share_menu_title">Modo popup de NewPipe</string>
+
+    <string name="popup_playing_toast">Jogando em modo de popup</string>
+    <string name="use_old_player_title">Use jogador velho</string>
+    <string name="use_old_player_summary">Versão antiga no jogador Mediaframework.</string>
     </resources>
