@@ -151,7 +151,7 @@
 
     <string name="could_not_load_image">No se pudo cargar la imagen</string>
     <string name="app_ui_crash">La interfaz de la app dejó de funcionar</string>
-    <string name="info_labels">Qué ocurrió:\\nSolicitud:\\nIdioma del contenido:\\nServicio:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del S.O:\\nRango global de la IP:</string>
+    <string name="info_labels">Lo sucedido:\\nSolicitud:\\nIdioma del contenido:\\nServicio:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del S.O:\\nRango global de la IP:</string>
     <string name="title_activity_channel">Actividad del canal</string>
     <string name="action_settings">Ajustes</string>
 
