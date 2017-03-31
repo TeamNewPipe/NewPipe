@@ -4,18 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     android:gravity="center">
 
-    <RelativeLayout
-        android:id="@+id/blackBackground"
+
+    <com.google.android.exoplayer2.ui.AspectRatioFrameLayout
+        android:id="@+id/aspectRatioLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black"/>
+        android:layout_gravity="center">
 
-    <com.devbrackets.android.exomedia.ui.widget.EMVideoView
-        android:id="@+id/popupVideoView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        <SurfaceView
+            android:id="@+id/surfaceView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"/>
+
+        <View
+            android:id="@+id/surfaceForeground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"/>
+
+    </com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
 
 
     <ImageView
@@ -24,72 +35,142 @@
         android:layout_height="match_parent"
         android:background="@color/black"
         android:visibility="gone"
-        tools:visibility="visible"
         tools:background="@android:color/white"
-        tools:ignore="ContentDescription"/>
+        tools:ignore="ContentDescription"
+        tools:visibility="visible"/>
+
+    <RelativeLayout
+        android:id="@+id/playbackControlRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#32000000"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <RelativeLayout
+            android:id="@+id/topControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/player_top_controls_bg"
+            android:paddingBottom="20dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:paddingTop="4dp">
+
+            <TextView
+                android:id="@+id/qualityTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:padding="5dp"
+                android:gravity="center"
+                android:text="720p"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"/>
+
+            <ImageButton
+                android:id="@+id/fullScreenButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:background="#00ffffff"
+                android:clickable="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_fullscreen_white"
+                tools:ignore="ContentDescription,RtlHardcoded"/>
+
+        </RelativeLayout>
+
+        <!--Shadow Bottom Control-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/player_controls_bg"
+            android:orientation="horizontal"
+            android:paddingTop="50dp"/>
+
+        <LinearLayout
+            android:id="@+id/bottomControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="2dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <TextView
+                android:id="@+id/playbackCurrentTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="-:--:--"
+                android:textColor="@android:color/white"
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"
+                tools:text="1:06:29"/>
+
+            <android.support.v7.widget.AppCompatSeekBar
+                android:id="@+id/playbackSeekBar"
+                style="@style/Widget.AppCompat.SeekBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                tools:progress="25"
+                tools:secondaryProgress="50"/>
+
+            <TextView
+                android:id="@+id/playbackEndTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="-:--:--"
+                android:textColor="@android:color/white"
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"
+                tools:text="1:23:49"/>
+        </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical"
-        android:weightSum="2">
+        android:orientation="horizontal"
+        android:weightSum="5">
+        <!--tools:visibility="gone">-->
 
         <ImageView
             android:id="@+id/controlAnimationView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/ic_action_av_fast_rewind"
             android:visibility="gone"
-            tools:visibility="visible"
-            tools:ignore="ContentDescription"/>
+            tools:ignore="ContentDescription"
+            tools:visibility="visible"/>
     </LinearLayout>
 
-
-    <LinearLayout
-        android:id="@+id/playbackControlRoot"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom"
+    <TextView
+        android:id="@+id/currentDisplaySeek"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#64000000"
         android:paddingBottom="5dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:gravity="bottom|center"
-        android:orientation="horizontal"
-        android:background="@drawable/popup_controls_bg"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="5dp"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:visibility="gone"
-        tools:visibility="visible">
-
-        <TextView
-            android:id="@+id/playbackCurrentTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:textColor="@android:color/white"
-            tools:ignore="HardcodedText"
-            android:text="-:--:--"/>
-
-        <!--style="?android:attr/progressBarStyleHorizontal"-->
-        <SeekBar
-            android:id="@+id/playbackSeekBar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:max="100"
-            android:layout_weight="1"
-            android:progress="0"/>
-
-        <TextView
-            android:id="@+id/playbackEndTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:textColor="@android:color/white"
-            tools:ignore="HardcodedText"
-            android:text="-:--:--"/>
-    </LinearLayout>
+        tools:ignore="RtlHardcoded"
+        tools:text="1:06:29"
+        tools:visibility="visible"/>
 
     <RelativeLayout
         android:id="@+id/loadingPanel"
@@ -102,6 +183,7 @@
         tools:visibility="gone">
 
         <ProgressBar
+            android:id="@+id/progressBarLoadingPanel"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

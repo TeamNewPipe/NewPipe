@@ -19,7 +19,6 @@
     <string name="default_resolution_title">Lehenetsitako bereizmena</string>
     <string name="play_with_kodi_title">Kodirekin erreproduzitu</string>
     <string name="kore_not_found">Kore aplikazioa ez da aurkitu. Kore beharrezkoa da Kodi multimedia zentroarekin bideoak erreproduzitzeko.</string>
-    <string name="installeKore">Kore instalatu</string>
     <string name="show_play_with_kodi_title">\"Kodirekin erreproduzitu\" aukera erakutsi</string>
     <string name="show_play_with_kodi_summary">Kodi multimedia zentroarekin bideoa erreproduzitzeko aukera erakusten du.</string>
     <string name="play_audio">Audioa</string>
@@ -48,8 +47,6 @@
     <string name="search_page">"Orrialdea bilatu: "</string>
     <string name="use_external_video_player_title">Kanpoko bideo erreproduzitzailea erabili</string>
     <string name="use_external_audio_player_title">Kanpoko audio erreproduzitzailea erabili</string>
-    <string name="autoplay_through_intent_title">Intent bidez automatikoki erreproduzitu</string>
-    <string name="autoplay_through_intent_summary">Bideoa automatikoki hasten du beste aplikazio batetik deitu denean.</string>
     <string name="background_player_playing_toast">Atzeko planoan erreproduzitzen</string>
 <string name="main_bg_subtitle">Ukitu bilaketa hasteko</string>
     <string name="download_path_audio_title">Audioa deskargatzeko kokapena</string>

@@ -2,17 +2,10 @@
 
     <style name="RootTheme" parent="android:Theme.Holo"/>
 
-    <style name="PlayerTheme" parent="@style/RootTheme">
+    <style name="PlayerTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/black</item>
     </style>
-
-    <style name="ExoPlayerButton">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:minWidth">40dp</item>
-    </style>
-
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">

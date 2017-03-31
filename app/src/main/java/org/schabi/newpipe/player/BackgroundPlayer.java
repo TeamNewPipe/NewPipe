@@ -26,7 +26,6 @@ import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.detail.VideoItemDetailActivity;
-import org.schabi.newpipe.detail.VideoItemDetailFragment;
 import org.schabi.newpipe.util.NavStack;
 
 import java.io.IOException;
@@ -343,7 +342,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
 
             /*
             NotificationCompat.Action pauseButton = new NotificationCompat.Action.Builder
-                    (R.drawable.ic_pause_white_24dp, "Pause", playPI).build();
+                    (R.drawable.ic_pause_white, "Pause", playPI).build();
             */
 
             PendingIntent playPI = PendingIntent.getBroadcast(owner, noteID,
@@ -465,7 +464,7 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                 RemoteViews views = getContentView(), bigViews = getBigContentView();
                 int imageSrc;
                 if(isPlaying) {
-                    imageSrc = R.drawable.ic_pause_white_24dp;
+                    imageSrc = R.drawable.ic_pause_white;
                 } else {
                     imageSrc = R.drawable.ic_play_circle_filled_white_24dp;
                 }

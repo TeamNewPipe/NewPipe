@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="autoplay_through_intent_summary">Lire automatiquement une vidéo lorsqu’elle a été appelée depuis une autre application.</string>
     <string name="cancel">Annuler</string>
     <string name="choose_browser">Choisir un navigateur </string>
     <string name="default_resolution_title">Définition par défaut</string>
@@ -10,11 +9,9 @@
     <string name="download_path_dialog_title">Entrer le chemin de téléchargement des vidéos</string>
     <string name="download_path_summary">Chemin de stockage des vidéos téléchargées.</string>
     <string name="install">Installer</string>
-    <string name="installeKore">Installer Kore</string>
     <string name="kore_not_found">L’application Kore est introuvable. Installer Kore ?</string>
     <string name="no_player_found">Aucun lecteur de flux réseau trouvé. Installer VLC ?</string>
     <string name="open_in_browser">Ouvrir dans le navigateur</string>
-    <string name="autoplay_through_intent_title">Lecture automatique via Intent</string>
     <string name="play_with_kodi_title">Lire avec Kodi</string>
     <string name="screen_rotation">rotation</string>
     <string name="search">Rechercher</string>
@@ -26,7 +23,6 @@
     <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
     <string name="settings_activity_title">Paramètres</string>
     <string name="upload_date_text">Ajoutée le %1$s</string>
-    <string name="useExternalPlayerTitle">Utiliser un lecteur externe</string>
     <string name="view_count_text">%1$s vues</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio par défaut</string>

@@ -51,6 +51,7 @@ import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.player.AbstractPlayer;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.ExoPlayerActivity;
 import org.schabi.newpipe.player.PlayVideoActivity;
@@ -59,6 +60,7 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.NavStack;
 import org.schabi.newpipe.util.PermissionHelper;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 import static android.app.Activity.RESULT_OK;
@@ -331,10 +333,12 @@ public class VideoItemDetailFragment extends Fragment {
                                 // so, I can notify the service through a broadcast, but the problem is
                                 // when I click in another video, another thumbnail will be load, and will
                                 // notify again, so I send the videoUrl and compare with the service's url
-                                ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = streamThumbnail;
-                                Intent intent = new Intent(PopupVideoPlayer.InternalListener.ACTION_UPDATE_THUMB);
-                                intent.putExtra(PopupVideoPlayer.VIDEO_URL, info.webpage_url);
-                                getContext().sendBroadcast(intent);
+                                if (getContext() != null) {
+                                    ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = streamThumbnail;
+                                    Intent intent = new Intent(AbstractPlayer.ACTION_UPDATE_THUMB);
+                                    intent.putExtra(AbstractPlayer.VIDEO_URL, info.webpage_url);
+                                    getContext().sendBroadcast(intent);
+                                }
                             }
                         }
 
@@ -388,13 +392,15 @@ public class VideoItemDetailFragment extends Fragment {
                 if (streamThumbnail != null)
                     ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = streamThumbnail;
 
-                VideoStream selectedVideoStream = info.video_streams.get(selectedStreamId);
                 Intent i = new Intent(activity, PopupVideoPlayer.class);
-                Toast.makeText(activity, "Starting in popup mode", Toast.LENGTH_SHORT).show();
-                i.putExtra(PopupVideoPlayer.VIDEO_TITLE, info.title)
-                        .putExtra(PopupVideoPlayer.STREAM_URL, selectedVideoStream.url)
-                        .putExtra(PopupVideoPlayer.CHANNEL_NAME, info.uploader)
-                        .putExtra(PopupVideoPlayer.VIDEO_URL, info.webpage_url);
+                Toast.makeText(activity, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
+                i.putExtra(AbstractPlayer.VIDEO_TITLE, info.title)
+                        .putExtra(AbstractPlayer.CHANNEL_NAME, info.uploader)
+                        .putExtra(AbstractPlayer.VIDEO_URL, info.webpage_url)
+                        .putExtra(AbstractPlayer.INDEX_SEL_VIDEO_STREAM, selectedStreamId)
+                        .putExtra(AbstractPlayer.VIDEO_STREAMS_LIST, new ArrayList<>(info.video_streams));
+                if (info.start_position > 0) i.putExtra(AbstractPlayer.START_POSITION, info.start_position * 1000);
+
                 activity.startService(i);
             }
         });
@@ -784,47 +790,31 @@ public class VideoItemDetailFragment extends Fragment {
                 builder.create().show();
             }
         } else {
-            if (PreferenceManager.getDefaultSharedPreferences(activity)
-                    .getBoolean(activity.getString(R.string.use_exoplayer_key), false)) {
-
-                // TODO: Fix this mess
-                if (streamThumbnail != null)
-                    ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = streamThumbnail;
-                // exo player
-
-                if(info.dashMpdUrl != null && !info.dashMpdUrl.isEmpty()) {
-                    // try dash
-                    Intent intent = new Intent(activity, ExoPlayerActivity.class)
-                            .setData(Uri.parse(info.dashMpdUrl));
-                            //.putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_DASH);
-                    startActivity(intent);
-                } else if((info.audio_streams != null  && !info.audio_streams.isEmpty()) &&
-                        (info.video_only_streams != null && !info.video_only_streams.isEmpty())) {
-                    // try smooth streaming
-
-                } else {
-                    //default streaming
-                    Intent intent = new Intent(activity, ExoPlayerActivity.class)
-                            .setDataAndType(Uri.parse(selectedVideoStream.url),
-                                MediaFormat.getMimeById(selectedVideoStream.format))
-
-                            .putExtra(ExoPlayerActivity.VIDEO_TITLE, info.title)
-                            .putExtra(ExoPlayerActivity.CHANNEL_NAME, info.uploader);
-                            //.putExtra(ExoPlayerActivity.CONTENT_TYPE_EXTRA, Util.TYPE_OTHER);
-
-                    activity.startActivity(intent);      // HERE !!!
-                }
-                //-------------
-
+            Intent intent;
+            boolean useOldPlayer = PreferenceManager
+                    .getDefaultSharedPreferences(activity)
+                    .getBoolean(activity.getString(R.string.use_old_player_key), false)
+                    || (Build.VERSION.SDK_INT < 16);
+            if (!useOldPlayer) {
+                // ExoPlayer
+                if (streamThumbnail != null) ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = streamThumbnail;
+                intent = new Intent(activity, ExoPlayerActivity.class)
+                        .putExtra(AbstractPlayer.VIDEO_TITLE, info.title)
+                        .putExtra(AbstractPlayer.VIDEO_URL, info.webpage_url)
+                        .putExtra(AbstractPlayer.CHANNEL_NAME, info.uploader)
+                        .putExtra(AbstractPlayer.INDEX_SEL_VIDEO_STREAM, actionBarHandler.getSelectedVideoStream())
+                        .putExtra(AbstractPlayer.VIDEO_STREAMS_LIST, new ArrayList<>(info.video_streams));
+                if (info.start_position > 0) intent.putExtra(AbstractPlayer.START_POSITION, info.start_position * 1000);
             } else {
                 // Internal Player
-                Intent intent = new Intent(activity, PlayVideoActivity.class)
+                intent = new Intent(activity, PlayVideoActivity.class)
                         .putExtra(PlayVideoActivity.VIDEO_TITLE, info.title)
                         .putExtra(PlayVideoActivity.STREAM_URL, selectedVideoStream.url)
                         .putExtra(PlayVideoActivity.VIDEO_URL, info.webpage_url)
                         .putExtra(PlayVideoActivity.START_POSITION, info.start_position);
-                activity.startActivity(intent);     //also HERE !!!
             }
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            activity.startActivity(intent);
         }
 
         // --------------------------------------------

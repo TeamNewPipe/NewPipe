@@ -28,7 +28,6 @@
     <string name="download_path_audio_summary">Sti å lagre nedlastet lyd i.</string>
     <string name="download_path_audio_dialog_title">Skriv inn nedlastingssti for lydfiler.</string>
 
-    <string name="autoplay_through_intent_summary">Automatisk avspilling av video når det blir forespurt fra et annet program.</string>
     <string name="default_resolution_title">Forvalgt oppløsning</string>
     <string name="play_with_kodi_title">Spill av med Kodi</string>
     <string name="kore_not_found">Kore-programmet ble ikke funnet. Installer Kore?</string>
@@ -65,7 +64,6 @@
 
     <string name="err_dir_create">Kan ikke opprette nedlastingsmappe \'%1$s\'</string>
     <string name="info_dir_created">Opprettet nedlastingsmappen \'%1$s\'</string>
-<string name="autoplay_through_intent_title">Automatisk avspilling med Intent</string>
     <string name="main_bg_subtitle">Trykk for å komme i gang</string>
     <string name="autoplay_by_calling_app_title">Automatisk avspilling når forespurt av et annet program</string>
     <string name="autoplay_by_calling_app_summary">Automatisk avspilling av video når NewPipe blir forespurt av et annet program.</string>
