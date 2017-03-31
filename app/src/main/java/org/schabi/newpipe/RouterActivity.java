@@ -2,14 +2,12 @@ package org.schabi.newpipe;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
 import org.schabi.newpipe.detail.VideoItemDetailActivity;
-import org.schabi.newpipe.detail.VideoItemDetailFragment;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.util.NavStack;
@@ -136,7 +134,7 @@ public class RouterActivity extends Activity {
                     break;
                 case STREAM:
                     callIntent.setClass(this, VideoItemDetailActivity.class);
-                    callIntent.putExtra(VideoItemDetailFragment.AUTO_PLAY,
+                    callIntent.putExtra(VideoItemDetailActivity.AUTO_PLAY,
                             PreferenceManager.getDefaultSharedPreferences(this)
                                     .getBoolean(
                                             getString(R.string.autoplay_through_intent_key), false));

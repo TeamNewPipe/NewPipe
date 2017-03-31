@@ -91,6 +91,7 @@
     <string name="channel">Channel</string>
     <string name="yes">Yes</string>
     <string name="later">Later</string>
+    <string name="disabled">Disabled</string>
 
     <!-- error strings -->
     <string name="general_error">Error</string>

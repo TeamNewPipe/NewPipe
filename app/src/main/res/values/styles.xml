@@ -22,6 +22,7 @@
         <item name="share">@drawable/ic_share_black_24dp</item>
         <item name="cast">@drawable/ic_cast_black_24dp</item>
         <item name="rss">@drawable/ic_rss_feed_white_24dp</item>
+        <item name="separatorColor">@color/light_separator_color</item>
     </style>
 
 
@@ -40,10 +41,12 @@
         <item name="share">@drawable/ic_share_white_24dp</item>
         <item name="cast">@drawable/ic_cast_white_24dp</item>
         <item name="rss">@drawable/ic_rss_feed_black_24dp</item>
+        <item name="separatorColor">@color/dark_separator_color</item>
     </style>
 
     <style name="BlackTheme" parent="DarkTheme">
         <item name="android:windowBackground">@color/black</item>
+        <item name="separatorColor">@color/black_separator_color</item>
     </style>
 
     <style name="NewPipeActionbarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid">
