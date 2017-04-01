@@ -189,4 +189,9 @@
     <string name="msg_popup_permission">ポップアップモードで開くには
 このアクセス許可が必要です</string>
 
+    <string name="popup_mode_share_menu_title">NewPipe ポップアップモード</string>
+
+    <string name="popup_playing_toast">ポップアップモードで再生中</string>
+    <string name="use_old_player_title">古いプレーヤーを使用する</string>
+    <string name="use_old_player_summary">Mediaframework プレーヤーの古いビルド。</string>
     </resources>
