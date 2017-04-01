@@ -180,4 +180,9 @@ Wil je nu herstarten?</string>
     <string name="msg_popup_permission">Deze toestemming is vereist om
 te openen in pop-upmodus</string>
 
+    <string name="popup_mode_share_menu_title">NewPipe-pop-upmodus</string>
+
+    <string name="popup_playing_toast">Speelt af in pop-upmodus</string>
+    <string name="use_old_player_title">Gebruik oude speler</string>
+    <string name="use_old_player_summary">Oude build in Mediaframework-speler.</string>
     </resources>
