@@ -187,4 +187,6 @@ membuka di mode popup</string>
     <string name="popup_playing_toast">Memutar dalam mode popup</string>
     <string name="use_old_player_title">Gunakan pemutar lama</string>
     <string name="use_old_player_summary">Versi lama dalam pemutar Mediaframework.</string>
+    <string name="disabled">Dinonaktifkan</string>
+
     </resources>
