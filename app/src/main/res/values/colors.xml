@@ -5,12 +5,17 @@
     <color name="light_youtube_primary_color">#CD322E</color>
     <color name="light_youtube_dark_color">#BC211D</color>
     <color name="light_youtube_accent_color">#000000</color>
+    <color name="light_separator_color">#32000000</color>
 
     <!-- Dark Theme -->
     <color name="dark_background_color">#222222</color>
     <color name="dark_youtube_primary_color">#CD322E</color>
     <color name="dark_youtube_dark_color">#BC211D</color>
     <color name="dark_youtube_accent_color">#FFFFFF</color>
+    <color name="dark_separator_color">#0affffff</color>
+
+    <!-- Black Theme -->
+    <color name="black_separator_color">#1effffff</color>
 
     <!-- Miscellaneous -->
     <color name="duration_background_color">#AA000000</color>
