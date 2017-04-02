@@ -7,4 +7,5 @@
     <attr name="share" format="reference"/>
     <attr name="cast" format="reference"/>
     <attr name="rss" format="reference"/>
+    <attr name="separatorColor" format="color"/>
 </resources>

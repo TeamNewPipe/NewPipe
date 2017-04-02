@@ -273,7 +273,7 @@ public class PopupVideoPlayer extends Service {
                 .putExtra(NavStack.URL, videoUrl)
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);
-        //NavStack.getInstance().openDetailActivity(context, videoUrl, 0);
+        context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
     }
 
     /*//////////////////////////////////////////////////////////////////////////

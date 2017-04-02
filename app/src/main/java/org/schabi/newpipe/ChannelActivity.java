@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import org.schabi.newpipe.detail.VideoItemDetailFragment;
+import org.schabi.newpipe.detail.VideoItemDetailActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.channel.ChannelExtractor;
@@ -31,9 +31,11 @@ import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.NavStack;
-import java.io.IOException;
-import static android.os.Build.VERSION.SDK_INT;
 import org.schabi.newpipe.util.ThemeHelper;
+
+import java.io.IOException;
+
+import static android.os.Build.VERSION.SDK_INT;
 
 
 /**
@@ -299,7 +301,7 @@ public class ChannelActivity extends AppCompatActivity {
                     postNewErrorToast(h, R.string.network_error);
                     ioe.printStackTrace();
                 } catch(ParsingException pe) {
-                    ErrorActivity.reportError(h, ChannelActivity.this, pe, VideoItemDetailFragment.class, null,
+                    ErrorActivity.reportError(h, ChannelActivity.this, pe, VideoItemDetailActivity.class, null,
                             ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL,
                                     service.getServiceInfo().name, channelUrl, R.string.parsing_error));
                     h.post(new Runnable() {
@@ -314,7 +316,7 @@ public class ChannelActivity extends AppCompatActivity {
                     if(service != null) {
                         name = service.getServiceInfo().name;
                     }
-                    ErrorActivity.reportError(h, ChannelActivity.this, ex, VideoItemDetailFragment.class, null,
+                    ErrorActivity.reportError(h, ChannelActivity.this, ex, VideoItemDetailActivity.class, null,
                             ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL,
                                     name, channelUrl, R.string.parsing_error));
                     h.post(new Runnable() {
@@ -325,7 +327,7 @@ public class ChannelActivity extends AppCompatActivity {
                     });
                     ex.printStackTrace();
                 } catch(Exception e) {
-                    ErrorActivity.reportError(h, ChannelActivity.this, e, VideoItemDetailFragment.class, null,
+                    ErrorActivity.reportError(h, ChannelActivity.this, e, VideoItemDetailActivity.class, null,
                             ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL,
                                     service.getServiceInfo().name, channelUrl, R.string.general_error));
                     h.post(new Runnable() {
