@@ -191,4 +191,10 @@
     <string name="msg_popup_permission">Ова дозвола је потребна за
 отварање у искачућем режиму</string>
 
+    <string name="popup_mode_share_menu_title">Режим прозорчета</string>
+
+    <string name="popup_playing_toast">Пуштање у режиму прозорчета</string>
+    <string name="disabled">Искључено</string>
+
+    <string name="use_old_player_title">Користи стари плејер</string>
     </resources>
