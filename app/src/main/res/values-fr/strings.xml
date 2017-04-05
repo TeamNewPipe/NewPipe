@@ -60,7 +60,7 @@
 
     <string name="download_path_audio_title">Chemin de téléchargement de l\'audio</string>
     <string name="download_path_audio_summary">Chemin de stockage des fichiers audio téléchargés</string>
-    <string name="download_path_audio_dialog_title">Entrer le chemin de téléchargement des fichiers audio.</string>
+    <string name="download_path_audio_dialog_title">Entrez le chemin de téléchargement des fichiers audio.</string>
 
     <string name="err_dir_create">Impossible de créer le répertoire de téléchargement « %1$s »</string>
     <string name="info_dir_created">Répertoire de téléchargement « %1$s » créé</string>
@@ -96,12 +96,12 @@
     <string name="logging_normal">Normal</string>
     <string name="retry">Réessayer</string>
     <string name="error_drm_unsupported_scheme">Cet appareil ne supporte pas le système DRM requis</string>
-    <string name="error_drm_unknown">Une erreur DRM s\'est produite</string>
+    <string name="error_drm_unknown">Une erreur DRM inconnue s\'est produite</string>
     <string name="storage_permission_denied">Autorisation d\'accès au stockage refusée</string>
     <string name="use_exoplayer_title">Utiliser ExoPlayer</string>
     <string name="use_exoplayer_summary">Expérimental</string>
 <string name="main_bg_subtitle">Faites une recherche pour commencer</string>
-    <string name="autoplay_by_calling_app_title">Lecture automatique quand ouvert depuis une autre application</string>
+    <string name="autoplay_by_calling_app_title">Lecture automatique lors de l\'ouverture depuis une autre application</string>
     <string name="video_is_age_restricted">Cette vidéo est soumise à une restriction d\'âge. Autoriser le contenu restreint dans les paramètres avant.</string>
     <string name="info_searched_lbl">Recherché :</string>
     <string name="user_report">Rapport utilisateur</string>
@@ -148,7 +148,7 @@
     <string name="no_available_dir">Sélectionner un répertoire de téléchargement disponible.</string>
 
     <string name="could_not_load_image">L’image ne peut pas être chargée</string>
-    <string name="app_ui_crash">L’appli / l’interface utilisateur a crashé</string>
+    <string name="app_ui_crash">L’appli/l’interface utilisateur a crashé</string>
     <string name="title_activity_channel">Activité de la chaine</string>
     <string name="action_settings">Paramètres</string>
 
@@ -179,5 +179,11 @@
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="restart_title">Redémarrer</string>
+
+    <string name="msg_restart">Vous devez redémarrer l\'application pour appliquer le thème.
+
+Voulez-vous redémarrer maintenant ?</string>
+    <string name="msg_popup_permission">Cette permission est nécessaire
+pour ouvrir en mode popup</string>
 
     </resources>
