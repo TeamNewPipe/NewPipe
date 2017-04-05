@@ -185,4 +185,11 @@
 
 Vuoi riavviare l\'app ora?</string>
 
+    <string name="open_in_popup_mode">Aprire in modo popup</string>
+    <string name="popup_mode_share_menu_title">Modo popup NewPipe</string>
+
+    <string name="popup_playing_toast">Riproduzione in modo popup</string>
+    <string name="disabled">Disattivato</string>
+
+    <string name="use_old_player_title">Usare anziane riproduttore</string>
     </resources>
