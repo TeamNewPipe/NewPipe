@@ -177,4 +177,5 @@
     <string name="use_old_player_summary">Ancien build dans le lecteur Mediaframework.</string>
     <string name="subscribe">S\'abonner</string>
     <string name="short_thousand">K</string>
+    <string name="short_million">M</string>
     </resources>
