@@ -10,7 +10,7 @@
     <string name="download_path_summary">Chemin de stockage des vidéos téléchargées.</string>
     <string name="install">Installer</string>
     <string name="kore_not_found">L’application Kore est introuvable. Installer Kore ?</string>
-    <string name="no_player_found">Aucun lecteur de flux réseau trouvé. IVoulez vous Installer VLC ?</string>
+    <string name="no_player_found">Aucun lecteur de flux réseau trouvé. Installer VLC ?</string>
     <string name="open_in_browser">Ouvrir dans le navigateur</string>
     <string name="play_with_kodi_title">Lire avec Kodi</string>
     <string name="screen_rotation">rotation</string>
