@@ -165,4 +165,15 @@
     <string name="recaptcha_request_toast">Test reCAPTCHA demandé</string>
 
     <string name="open_in_popup_mode">Ouvrir dans une fenêtre popup</string>
+    <string name="popup_mode_share_menu_title">Mode Popup de Newpipe</string>
+
+    <string name="popup_playing_toast">Lecture en mode popup</string>
+    <string name="yes">Oui</string>
+    <string name="later">Plus tard</string>
+    <string name="disabled">Désactivé</string>
+
+    <string name="info_labels">Quoi :\\nRequête :\\nLang. du contenu:\\nService :\\nHeure GMT :\\nPaquage :\\nVersion :\\nVersion de l\'OS:\\nGamme globale d\'IPs :</string>
+    <string name="use_old_player_title">Utiliser l\'ancien lecteur</string>
+    <string name="use_old_player_summary">Ancien build dans le lecteur Mediaframework.</string>
+    <string name="subscribe">S\'abonner</string>
     </resources>
