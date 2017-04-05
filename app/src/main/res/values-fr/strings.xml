@@ -176,4 +176,5 @@
     <string name="use_old_player_title">Utiliser l\'ancien lecteur</string>
     <string name="use_old_player_summary">Ancien build dans le lecteur Mediaframework.</string>
     <string name="subscribe">S\'abonner</string>
+    <string name="short_thousand">K</string>
     </resources>
