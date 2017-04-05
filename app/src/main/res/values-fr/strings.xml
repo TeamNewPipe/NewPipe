@@ -178,4 +178,6 @@
     <string name="subscribe">S\'abonner</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
+    <string name="restart_title">Redémarrer</string>
+
     </resources>
