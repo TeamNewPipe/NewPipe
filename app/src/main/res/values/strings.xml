@@ -45,6 +45,7 @@
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center.</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Default audio format</string>
+    <string name="preferred_video_format_title">Preferred video format</string>
     <string name="webm_description">WebM — free format</string>
     <string name="m4a_description">m4a — better quality</string>
     <string name="theme_title">Theme</string>

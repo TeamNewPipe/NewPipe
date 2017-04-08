@@ -26,6 +26,13 @@
             android:defaultValue="@string/default_resolution_value"/>
 
         <ListPreference
+            android:key="@string/preferred_video_format_key"
+            android:title="@string/preferred_video_format_title"
+            android:entries="@array/video_format_list"
+            android:entryValues="@array/video_format_list"
+            android:defaultValue="@string/preferred_video_format_default"/>
+
+        <ListPreference
             android:key="@string/default_audio_format_key"
             android:title="@string/default_audio_format_title"
             android:summary="%s"

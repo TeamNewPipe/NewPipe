@@ -119,15 +119,32 @@ class ActionBarHandler {
                 .getString(activity.getString(R.string.default_resolution_key),
                         activity.getString(R.string.default_resolution_value));
 
+        String preferedFormat = defaultPreferences
+                .getString(activity.getString(R.string.preferred_video_format_key),
+                        activity.getString(R.string.preferred_video_format_default));
+
+        // first try to find the one with the right resolution
+        int selectedFormat = 0;
         for (int i = 0; i < videoStreams.size(); i++) {
             VideoStream item = videoStreams.get(i);
             if (defaultResolution.equals(item.resolution)) {
-                return i;
+                selectedFormat = i;
             }
         }
+
+        // than try to find the one with the right resolution and format
+        for (int i = 0; i < videoStreams.size(); i++) {
+            VideoStream item = videoStreams.get(i);
+            if (defaultResolution.equals(item.resolution)
+                    && preferedFormat.equals(MediaFormat.getNameById(item.format))) {
+                selectedFormat = i;
+            }
+        }
+
+
         // this is actually an error,
         // but maybe there is really no stream fitting to the default value.
-        return 0;
+        return selectedFormat;
     }
 
     public void setupMenu(Menu menu, MenuInflater inflater) {

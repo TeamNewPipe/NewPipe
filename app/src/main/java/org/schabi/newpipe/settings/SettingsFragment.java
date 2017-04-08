@@ -22,6 +22,7 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import info.guardianproject.netcipher.proxy.OrbotHelper;
 
@@ -52,6 +53,7 @@ public class SettingsFragment  extends PreferenceFragment
     SharedPreferences.OnSharedPreferenceChangeListener prefListener;
     // get keys
     String DEFAULT_RESOLUTION_PREFERENCE;
+    String PREFERRED_VIDEO_FORMAT_PREFERENCE;
     String DEFAULT_AUDIO_FORMAT_PREFERENCE;
     String SEARCH_LANGUAGE_PREFERENCE;
     String DOWNLOAD_PATH_PREFERENCE;
@@ -59,6 +61,7 @@ public class SettingsFragment  extends PreferenceFragment
     String USE_TOR_KEY;
     String THEME;
     private ListPreference defaultResolutionPreference;
+    private ListPreference preferredVideoFormatPreference;
     private ListPreference defaultAudioFormatPreference;
     private ListPreference searchLanguagePreference;
     private Preference downloadPathPreference;
@@ -77,6 +80,7 @@ public class SettingsFragment  extends PreferenceFragment
 
         // get keys
         DEFAULT_RESOLUTION_PREFERENCE = getString(R.string.default_resolution_key);
+        PREFERRED_VIDEO_FORMAT_PREFERENCE = getString(R.string.preferred_video_format_key);
         DEFAULT_AUDIO_FORMAT_PREFERENCE = getString(R.string.default_audio_format_key);
         SEARCH_LANGUAGE_PREFERENCE = getString(R.string.search_language_key);
         DOWNLOAD_PATH_PREFERENCE = getString(R.string.download_path_key);
@@ -87,6 +91,8 @@ public class SettingsFragment  extends PreferenceFragment
         // get pref objects
         defaultResolutionPreference =
                 (ListPreference) findPreference(DEFAULT_RESOLUTION_PREFERENCE);
+        preferredVideoFormatPreference =
+                (ListPreference) findPreference(PREFERRED_VIDEO_FORMAT_PREFERENCE);
         defaultAudioFormatPreference =
                 (ListPreference) findPreference(DEFAULT_AUDIO_FORMAT_PREFERENCE);
         searchLanguagePreference =
@@ -254,6 +260,9 @@ public class SettingsFragment  extends PreferenceFragment
         defaultResolutionPreference.setSummary(
                 defaultPreferences.getString(DEFAULT_RESOLUTION_PREFERENCE,
                         getString(R.string.default_resolution_value)));
+        preferredVideoFormatPreference.setSummary(
+                defaultPreferences.getString(PREFERRED_VIDEO_FORMAT_PREFERENCE,
+                        getString(R.string.preferred_video_format_default)));
         defaultAudioFormatPreference.setSummary(
                 defaultPreferences.getString(DEFAULT_AUDIO_FORMAT_PREFERENCE,
                         getString(R.string.default_audio_format_value)));
