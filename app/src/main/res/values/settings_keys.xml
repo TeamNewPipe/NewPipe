@@ -22,6 +22,14 @@
         <item>144p</item>
     </string-array>
 
+    <string name="preferred_video_format_key" translatable="false">preferrfed_video_format</string>
+    <string name="preferred_video_format_default" translatable="false">WebM</string>
+    <string-array name="video_format_list">
+        <item>WebM</item>
+        <item>MPEG-4</item>
+        <item>3GPP</item>
+    </string-array>
+
     <string name="show_play_with_kodi_key" translatable="false">show_play_with_kodi</string>
 
     <string name="theme_key" translatable="false">theme</string>
