@@ -197,4 +197,5 @@
     <string name="disabled">Искључено</string>
 
     <string name="use_old_player_title">Користи стари плејер</string>
+    <string name="preferred_video_format_title">Пожељни формат видеа</string>
     </resources>
