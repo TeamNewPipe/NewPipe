@@ -1,6 +1,5 @@
-package org.schabi.newpipe.detail;
+package org.schabi.newpipe.fragments.detail;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
@@ -12,9 +11,9 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
+import org.schabi.newpipe.util.Utils;
 
 import java.util.List;
 
@@ -50,7 +49,7 @@ class ActionBarHandler {
     private Menu menu;
 
     // Only callbacks are listed here, there are more actions which don't need a callback.
-    // those are edited directly. Typically VideoItemDetailFragment will implement those callbacks.
+    // those are edited directly. Typically VideoDetailFragment will implement those callbacks.
     private OnActionListener onShareListener;
     private OnActionListener onOpenInBrowserListener;
     private OnActionListener onOpenInPopupListener;
@@ -89,7 +88,7 @@ class ActionBarHandler {
                 VideoStream item = videoStreams.get(i);
                 itemArray[i] = MediaFormat.getNameById(item.format) + " " + item.resolution;
             }
-            int defaultResolution = getDefaultResolution(videoStreams);
+            int defaultResolution = Utils.getPreferredResolution(activity, videoStreams);
 
             ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(activity.getBaseContext(),
                     android.R.layout.simple_spinner_dropdown_item, itemArray);
@@ -108,43 +107,6 @@ class ActionBarHandler {
 
             ab.setSelectedNavigationItem(defaultResolution);
         }
-    }
-
-
-    private int getDefaultResolution(final List<VideoStream> videoStreams) {
-        if (defaultPreferences == null)
-            return 0;
-
-        String defaultResolution = defaultPreferences
-                .getString(activity.getString(R.string.default_resolution_key),
-                        activity.getString(R.string.default_resolution_value));
-
-        String preferedFormat = defaultPreferences
-                .getString(activity.getString(R.string.preferred_video_format_key),
-                        activity.getString(R.string.preferred_video_format_default));
-
-        // first try to find the one with the right resolution
-        int selectedFormat = 0;
-        for (int i = 0; i < videoStreams.size(); i++) {
-            VideoStream item = videoStreams.get(i);
-            if (defaultResolution.equals(item.resolution)) {
-                selectedFormat = i;
-            }
-        }
-
-        // than try to find the one with the right resolution and format
-        for (int i = 0; i < videoStreams.size(); i++) {
-            VideoStream item = videoStreams.get(i);
-            if (defaultResolution.equals(item.resolution)
-                    && preferedFormat.equals(MediaFormat.getNameById(item.format))) {
-                selectedFormat = i;
-            }
-        }
-
-
-        // this is actually an error,
-        // but maybe there is really no stream fitting to the default value.
-        return selectedFormat;
     }
 
     public void setupMenu(Menu menu, MenuInflater inflater) {
@@ -187,11 +149,6 @@ class ActionBarHandler {
                     onDownloadListener.onActionSelected(selectedVideoStream);
                 }
                 return true;
-            case R.id.action_settings: {
-                Intent intent = new Intent(activity, SettingsActivity.class);
-                activity.startActivity(intent);
-                return true;
-            }
             case R.id.action_play_with_kodi:
                 if(onPlayWithKodiListener != null) {
                     onPlayWithKodiListener.onActionSelected(selectedVideoStream);
@@ -202,12 +159,6 @@ class ActionBarHandler {
                     onPlayAudioListener.onActionSelected(selectedVideoStream);
                 }
                 return true;
-            case R.id.menu_item_downloads: {
-                Intent intent =
-                        new Intent(activity, org.schabi.newpipe.download.DownloadActivity.class);
-                activity.startActivity(intent);
-                return true;
-            }
             case R.id.menu_item_popup: {
                 if(onOpenInPopupListener != null) {
                     onOpenInPopupListener.onActionSelected(selectedVideoStream);

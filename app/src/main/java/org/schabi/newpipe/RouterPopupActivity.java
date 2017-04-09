@@ -4,24 +4,22 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.player.PopupVideoPlayer;
-import org.schabi.newpipe.util.NavStack;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.PermissionHelper;
 
 import java.util.Collection;
 import java.util.HashSet;
 
 /**
- * This activity is thought to open video streams form an external app using the popup playser.
+ * This activity is thought to open video streams form an external app using the popup player.
  */
-
-public class PopupActivity extends Activity {
-    private static final String TAG = RouterActivity.class.toString();
+public class RouterPopupActivity extends Activity {
+    //private static final String TAG = "RouterPopupActivity";
 
     /**
      * Removes invisible separators (\p{Z}) and punctuation characters including
@@ -37,6 +35,45 @@ public class PopupActivity extends Activity {
         finish();
     }
 
+
+    private void handleIntent(Intent intent) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                && !PermissionHelper.checkSystemAlertWindowPermission(this)) {
+            Toast.makeText(this, R.string.msg_popup_permission, Toast.LENGTH_LONG).show();
+            return;
+        }
+        String videoUrl = "";
+        StreamingService service;
+
+        // first gather data and find service
+        if (intent.getData() != null) {
+            // this means the video was called though another app
+            videoUrl = intent.getData().toString();
+        } else if (intent.getStringExtra(Intent.EXTRA_TEXT) != null) {
+            //this means that vidoe was called through share menu
+            String extraText = intent.getStringExtra(Intent.EXTRA_TEXT);
+            videoUrl = getUris(extraText)[0];
+        }
+
+        service = NewPipe.getServiceByUrl(videoUrl);
+        if (service == null) {
+            Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        Intent callIntent = new Intent(this, PopupVideoPlayer.class);
+        switch (service.getLinkTypeByUrl(videoUrl)) {
+            case STREAM:
+                break;
+            default:
+                Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG).show();
+                return;
+        }
+
+        callIntent.putExtra(Constants.KEY_URL, videoUrl);
+        callIntent.putExtra(Constants.KEY_SERVICE_ID, service.getServiceId());
+        startService(callIntent);
+    }
 
     private static String removeHeadingGibberish(final String input) {
         int start = 0;
@@ -90,47 +127,4 @@ public class PopupActivity extends Activity {
         return result.toArray(new String[result.size()]);
     }
 
-    private void handleIntent(Intent intent) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                && !PermissionHelper.checkSystemAlertWindowPermission(this)) {
-            Toast.makeText(this, R.string.msg_popup_permission, Toast.LENGTH_LONG).show();
-            return;
-        }
-        String videoUrl = "";
-        StreamingService service = null;
-
-        // first gather data and find service
-        if (intent.getData() != null) {
-            // this means the video was called though another app
-            videoUrl = intent.getData().toString();
-        } else if (intent.getStringExtra(Intent.EXTRA_TEXT) != null) {
-            //this means that vidoe was called through share menu
-            String extraText = intent.getStringExtra(Intent.EXTRA_TEXT);
-            videoUrl = getUris(extraText)[0];
-        }
-
-        service = NewPipe.getServiceByUrl(videoUrl);
-        if (service == null) {
-            Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG)
-                    .show();
-            return;
-        } else {
-            Intent callIntent = new Intent();
-            switch (service.getLinkTypeByUrl(videoUrl)) {
-                case STREAM:
-                    callIntent.setClass(this, PopupVideoPlayer.class);
-                    break;
-                case PLAYLIST:
-                    Log.e(TAG, "NOT YET DEFINED");
-                    break;
-                default:
-                    Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG).show();
-                    return;
-            }
-
-            callIntent.putExtra(NavStack.URL, videoUrl);
-            callIntent.putExtra(NavStack.SERVICE_ID, service.getServiceId());
-            startService(callIntent);
-        }
-    }
 }

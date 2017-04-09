@@ -1,4 +1,4 @@
-package org.schabi.newpipe.search_fragment;
+package org.schabi.newpipe.fragments.search;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -6,11 +6,11 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
-import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.SuggestionExtractor;
-import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.SuggestionExtractor;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.report.ErrorActivity;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.schabi.newpipe.search_fragment;
+package org.schabi.newpipe.fragments.search;
 
 import android.support.v7.widget.SearchView;
 
