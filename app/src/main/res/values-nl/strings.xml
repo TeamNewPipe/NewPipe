@@ -185,4 +185,7 @@ te openen in pop-upmodus</string>
     <string name="popup_playing_toast">Speelt af in pop-upmodus</string>
     <string name="use_old_player_title">Gebruik oude speler</string>
     <string name="use_old_player_summary">Oude build in Mediaframework-speler.</string>
+    <string name="preferred_video_format_title">Voorkeursvideoformaat</string>
+    <string name="disabled">Uitgeschakeld</string>
+
     </resources>
