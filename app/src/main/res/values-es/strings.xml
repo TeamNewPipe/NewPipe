@@ -188,4 +188,7 @@ abrir en modo popup</string>
     <string name="popup_playing_toast">Reproduciendo en modo popup</string>
     <string name="use_old_player_title">Usar reproductor antiguo</string>
     <string name="use_old_player_summary">Versión antigua en reproductor Mediaframework.</string>
+    <string name="preferred_video_format_title">Formato de vídeo preferido</string>
+    <string name="disabled">Desactivado</string>
+
     </resources>
