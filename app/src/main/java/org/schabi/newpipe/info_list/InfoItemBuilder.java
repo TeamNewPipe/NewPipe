@@ -1,11 +1,10 @@
 package org.schabi.newpipe.info_list;
 
-import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -39,20 +38,21 @@ import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
 
 public class InfoItemBuilder {
 
-    final String viewsS;
-    final String videosS;
-    final String subsS;
+    private final String viewsS;
+    private final String videosS;
+    private final String subsS;
+    private final String subsPluralS;
 
-    final String thousand;
-    final String million;
-    final String billion;
+    private final String thousand;
+    private final String million;
+    private final String billion;
 
     private static final String TAG = InfoItemBuilder.class.toString();
     public interface OnInfoItemSelectedListener {
-        void selected(String url, int serviceId);
+        void selected(int serviceId, String url, String title);
     }
 
-    private Activity activity = null;
+    private Context mContext = null;
     private View rootView = null;
     private ImageLoader imageLoader = ImageLoader.getInstance();
     private DisplayImageOptions displayImageOptions =
@@ -60,15 +60,16 @@ public class InfoItemBuilder {
     private OnInfoItemSelectedListener onStreamInfoItemSelectedListener;
     private OnInfoItemSelectedListener onChannelInfoItemSelectedListener;
 
-    public InfoItemBuilder(Activity a, View rootView) {
-        activity = a;
+    public InfoItemBuilder(Context context, View rootView) {
+        mContext = context;
         this.rootView = rootView;
-        viewsS = a.getString(R.string.views);
-        videosS = a.getString(R.string.videos);
-        subsS = a.getString(R.string.subscriber);
-        thousand = a.getString(R.string.short_thousand);
-        million = a.getString(R.string.short_million);
-        billion = a.getString(R.string.short_billion);
+        viewsS = context.getString(R.string.views);
+        videosS = context.getString(R.string.videos);
+        subsS = context.getString(R.string.subscriber);
+        subsPluralS = context.getString(R.string.subscriber_plural);
+        thousand = context.getString(R.string.short_thousand);
+        million = context.getString(R.string.short_million);
+        billion = context.getString(R.string.short_billion);
     }
 
     public void setOnStreamInfoItemSelectedListener(
@@ -156,13 +157,13 @@ public class InfoItemBuilder {
             imageLoader.displayImage(info.thumbnail_url,
                     holder.itemThumbnailView,
                     displayImageOptions,
-                    new ImageErrorLoadingListener(activity, rootView, info.service_id));
+                    new ImageErrorLoadingListener(mContext, rootView, info.service_id));
         }
 
         holder.itemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onStreamInfoItemSelectedListener.selected(info.webpage_url, info.service_id);
+                onStreamInfoItemSelectedListener.selected(info.service_id, info.webpage_url, info.getTitle());
             }
         });
     }
@@ -178,13 +179,13 @@ public class InfoItemBuilder {
             imageLoader.displayImage(info.thumbnailUrl,
                     holder.itemThumbnailView,
                     displayImageOptions,
-                    new ImageErrorLoadingListener(activity, rootView, info.serviceId));
+                    new ImageErrorLoadingListener(mContext, rootView, info.serviceId));
         }
 
         holder.itemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onChannelInfoItemSelectedListener.selected(info.getLink(), info.serviceId);
+                onChannelInfoItemSelectedListener.selected(info.serviceId, info.getLink(), info.channelName);
             }
         });
     }
@@ -202,15 +203,17 @@ public class InfoItemBuilder {
         }
     }
 
-    public String shortSubscriber(Long count){
-        if(count >= 1000000000){
-            return Long.toString(count/1000000000)+ billion + " " + subsS;
-        }else if(count>=1000000){
-            return Long.toString(count/1000000)+ million + " " + subsS;
-        }else if(count>=1000){
-            return Long.toString(count/1000)+ thousand + " " + subsS;
-        }else {
-            return Long.toString(count)+ " " + subsS;
+    public String shortSubscriber(Long count) {
+        String curSubString = count > 1 ? subsPluralS : subsS;
+
+        if (count >= 1000000000) {
+            return Long.toString(count / 1000000000) + billion + " " + curSubString;
+        } else if (count >= 1000000) {
+            return Long.toString(count / 1000000) + million + " " + curSubString;
+        } else if (count >= 1000) {
+            return Long.toString(count / 1000) + thousand + " " + curSubString;
+        } else {
+            return Long.toString(count) + " " + curSubString;
         }
     }
 

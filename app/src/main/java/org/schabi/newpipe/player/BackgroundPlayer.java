@@ -24,9 +24,10 @@ import android.widget.Toast;
 
 import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.BuildConfig;
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.detail.VideoItemDetailActivity;
-import org.schabi.newpipe.util.NavStack;
+import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.util.Constants;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -353,10 +354,11 @@ public class BackgroundPlayer extends Service /*implements MediaPlayer.OnPrepare
                     new Intent(ACTION_REWIND), PendingIntent.FLAG_UPDATE_CURRENT);
 
             //build intent to return to video, on tapping notification
-            Intent openDetailViewIntent = new Intent(getApplicationContext(),
-                    VideoItemDetailActivity.class);
-            openDetailViewIntent.putExtra(NavStack.SERVICE_ID, serviceId);
-            openDetailViewIntent.putExtra(NavStack.URL, webUrl);
+            Intent openDetailViewIntent = new Intent(getApplicationContext(), MainActivity.class);
+            openDetailViewIntent.putExtra(Constants.KEY_SERVICE_ID, serviceId);
+            openDetailViewIntent.putExtra(Constants.KEY_URL, webUrl);
+            openDetailViewIntent.putExtra(Constants.KEY_TITLE, title);
+            openDetailViewIntent.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
             openDetailViewIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             PendingIntent openDetailView = PendingIntent.getActivity(owner, noteID,
                     openDetailViewIntent, PendingIntent.FLAG_UPDATE_CURRENT);

@@ -1,4 +1,4 @@
-package org.schabi.newpipe.search_fragment;
+package org.schabi.newpipe.fragments.search;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -7,13 +7,13 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 
+import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.search.SearchEngine;
 import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.NewPipe;
 
 import java.io.IOException;
 import java.util.EnumSet;
@@ -209,6 +209,7 @@ public class SearchWorker {
     }
 
     public void terminate() {
+        if (runnable == null) return;
         requestId++;
         runnable.terminate();
     }

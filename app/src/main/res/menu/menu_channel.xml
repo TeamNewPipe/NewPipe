@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="org.schabi.newpipe.ChannelActivity">
+    tools:context="org.schabi.newpipe.fragments.channel.ChannelFragment">
 
     <item android:id="@+id/menu_item_openInBrowser"
         app:showAsAction="never"
@@ -11,10 +11,4 @@
         android:title="@string/share"
         app:showAsAction="ifRoom"
         android:icon="?attr/share"/>
-
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
 </menu>

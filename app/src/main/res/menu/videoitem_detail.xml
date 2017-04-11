@@ -29,14 +29,4 @@
     <item android:id="@+id/menu_item_openInBrowser"
         app:showAsAction="never"
         android:title="@string/open_in_browser" />
-
-    <item android:id="@+id/menu_item_downloads"
-        app:showAsAction="never"
-        android:title="@string/downloads" />
-
-    <item android:id="@+id/action_settings"
-        app:showAsAction="never"
-        android:title="@string/settings"/>
-
-
 </menu>

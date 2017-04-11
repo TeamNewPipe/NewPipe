@@ -1,4 +1,4 @@
-package org.schabi.newpipe.search_fragment;
+package org.schabi.newpipe.fragments.search;
 
 import android.content.Context;
 import android.database.Cursor;

@@ -34,16 +34,17 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 
 import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.BuildConfig;
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.detail.VideoItemDetailActivity;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
-import org.schabi.newpipe.util.NavStack;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.Utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -107,7 +108,7 @@ public class PopupVideoPlayer extends Service {
         if (!playerImpl.isPlaying()) playerImpl.getPlayer().setPlayWhenReady(true);
 
         if (imageLoader != null) imageLoader.clearMemoryCache();
-        if (intent.getStringExtra(NavStack.URL) != null) {
+        if (intent.getStringExtra(Constants.KEY_URL) != null) {
             playerImpl.setStartedFromNewPipe(false);
             Thread fetcher = new Thread(new FetcherRunnable(intent));
             fetcher.start();
@@ -158,7 +159,7 @@ public class PopupVideoPlayer extends Service {
                         playerImpl.onVideoPlayPause();
                         break;
                     case ACTION_OPEN_DETAIL:
-                        onOpenDetail(PopupVideoPlayer.this, playerImpl.getVideoUrl());
+                        onOpenDetail(PopupVideoPlayer.this, playerImpl.getVideoUrl(), playerImpl.getVideoTitle());
                         break;
                     case ACTION_REPEAT:
                         playerImpl.onRepeatClicked();
@@ -266,12 +267,14 @@ public class PopupVideoPlayer extends Service {
         stopSelf();
     }
 
-    public void onOpenDetail(Context context, String videoUrl) {
+    public void onOpenDetail(Context context, String videoUrl, String videoTitle) {
         if (DEBUG) Log.d(TAG, "onOpenDetail() called with: context = [" + context + "], videoUrl = [" + videoUrl + "]");
-        Intent i = new Intent(context, VideoItemDetailActivity.class);
-        i.putExtra(NavStack.SERVICE_ID, 0)
-                .putExtra(NavStack.URL, videoUrl)
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent i = new Intent(context, MainActivity.class);
+        i.putExtra(Constants.KEY_SERVICE_ID, 0);
+        i.putExtra(Constants.KEY_URL, videoUrl);
+        i.putExtra(Constants.KEY_TITLE, videoTitle);
+        i.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);
         context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
     }
@@ -510,8 +513,6 @@ public class PopupVideoPlayer extends Service {
     private class FetcherRunnable implements Runnable {
         private final Intent intent;
         private final Handler mainHandler;
-        private final boolean printStreams = true;
-
 
         FetcherRunnable(Intent intent) {
             this.intent = intent;
@@ -524,47 +525,21 @@ public class PopupVideoPlayer extends Service {
             try {
                 StreamingService service = NewPipe.getService(0);
                 if (service == null) return;
-                streamExtractor = service.getExtractorInstance(intent.getStringExtra(NavStack.URL));
+                streamExtractor = service.getExtractorInstance(intent.getStringExtra(Constants.KEY_URL));
                 StreamInfo info = StreamInfo.getVideoInfo(streamExtractor);
-                String defaultResolution = playerImpl.getSharedPreferences().getString(
-                        getResources().getString(R.string.default_resolution_key),
-                        getResources().getString(R.string.default_resolution_value));
-
-                VideoStream chosen = null, secondary = null, fallback = null;
                 playerImpl.setVideoStreamsList(info.video_streams instanceof ArrayList
                         ? (ArrayList<VideoStream>) info.video_streams
                         : new ArrayList<>(info.video_streams));
 
-                for (VideoStream item : info.video_streams) {
-                    if (DEBUG && printStreams) {
-                        Log.d(TAG, "FetcherRunnable.StreamExtractor: current Item"
-                                + ", item.resolution = " + item.resolution
-                                + ", item.format = " + item.format
-                                + ", item.url = " + item.url);
-                    }
-                    if (defaultResolution.equals(item.resolution)) {
-                        if (item.format == MediaFormat.MPEG_4.id) {
-                            chosen = item;
-                            if (DEBUG) Log.d(TAG, "FetcherRunnable.StreamExtractor: CHOSEN item, item.resolution = " + item.resolution + ", item.format = " + item.format + ", item.url = " + item.url);
-                        } else if (item.format == 2) secondary = item;
-                        else fallback = item;
-                    }
+                int defaultResolution = Utils.getPreferredResolution(PopupVideoPlayer.this, info.video_streams);
+                playerImpl.setSelectedIndexStream(defaultResolution);
+
+                if (DEBUG) {
+                    Log.d(TAG, "FetcherRunnable.StreamExtractor: chosen = "
+                            + MediaFormat.getNameById(info.video_streams.get(defaultResolution).format) + " "
+                            + info.video_streams.get(defaultResolution).resolution + " > "
+                            + info.video_streams.get(defaultResolution).url);
                 }
-
-                int selectedIndexStream;
-
-                if (chosen != null) selectedIndexStream = info.video_streams.indexOf(chosen);
-                else if (secondary != null) selectedIndexStream = info.video_streams.indexOf(secondary);
-                else if (fallback != null) selectedIndexStream = info.video_streams.indexOf(fallback);
-                else selectedIndexStream = 0;
-
-                playerImpl.setSelectedIndexStream(selectedIndexStream);
-
-                if (DEBUG && printStreams) Log.d(TAG, "FetcherRunnable.StreamExtractor: chosen = " + chosen
-                        + "\n, secondary = " + secondary
-                        + "\n, fallback = " + fallback
-                        + "\n, info.video_streams.get(0).url = " + info.video_streams.get(0).url);
-
 
                 playerImpl.setVideoUrl(info.webpage_url);
                 playerImpl.setVideoTitle(info.title);
@@ -578,6 +553,8 @@ public class PopupVideoPlayer extends Service {
                         playerImpl.playVideo(playerImpl.getSelectedStreamUri(), true);
                     }
                 });
+
+                imageLoader.resume();
                 imageLoader.loadImage(info.thumbnail_url, displayImageOptions, new SimpleImageLoadingListener() {
                     @Override
                     public void onLoadingComplete(String imageUri, View view, final Bitmap loadedImage) {

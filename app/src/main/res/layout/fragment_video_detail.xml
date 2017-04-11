@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!-- THUMBNAIL -->
             <RelativeLayout
                 android:id="@+id/detail_thumbnail_root_layout"
                 android:layout_width="match_parent"
@@ -57,14 +58,13 @@
 
             </RelativeLayout>
 
+            <!-- TITLE -->
             <RelativeLayout
-                android:id="@+id/detail_content_root_layout"
+                android:id="@+id/detail_title_background"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/detail_thumbnail_root_layout"
-                android:background="?android:windowBackground"
-                android:visibility="gone"
-                tools:visibility="visible">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/detail_thumbnail_root_layout"
+                android:background="?android:windowBackground">
 
                 <RelativeLayout
                     android:id="@+id/detail_title_root_layout"
@@ -106,13 +106,25 @@
 
                 </RelativeLayout>
 
+            </RelativeLayout>
+
+            <!-- CONTENT -->
+            <RelativeLayout
+                android:id="@+id/detail_content_root_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/detail_title_background"
+                android:background="?android:windowBackground"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+
                 <TextView
                     android:id="@+id/detail_view_count_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@id/detail_title_root_layout"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
                     android:layout_marginTop="5dp"
@@ -309,14 +321,15 @@
 
             </RelativeLayout>
 
+            <!-- LOADING BAR -->
             <ProgressBar
                 android:id="@+id/detail_loading_progress_bar"
                 style="@style/Widget.AppCompat.ProgressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/detail_thumbnail_root_layout"
+                android:layout_below="@+id/detail_title_background"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:indeterminate="true"/>
 
         </RelativeLayout>
