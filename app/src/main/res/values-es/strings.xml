@@ -191,4 +191,5 @@ abrir en modo popup</string>
     <string name="preferred_video_format_title">Formato de vídeo preferido</string>
     <string name="disabled">Desactivado</string>
 
+    <string name="subscriber_plural">Suscriptores</string>
     </resources>
