@@ -88,6 +88,7 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
 
     private AppCompatActivity activity;
     private OnItemSelectedListener onItemSelectedListener;
+    private ArrayList<VideoStream> sortedStreamVideosList;
     private ActionBarHandler actionBarHandler;
 
     private InfoItemBuilder infoItemBuilder = null;
@@ -98,8 +99,11 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
     private String videoUrl;
     private int serviceId = -1;
 
+    private AtomicBoolean wasLoading = new AtomicBoolean(false);
     private AtomicBoolean isLoading = new AtomicBoolean(false);
-    private boolean needUpdate = false;
+    private static final int RELATED_STREAMS_UPDATE_FLAG = 0x1;
+    private static final int RESOLUTIONS_MENU_UPDATE_FLAG = 0x2;
+    private int updateFlags = 0;
 
     private boolean autoPlayEnabled;
     private boolean showRelatedStreams;
@@ -203,7 +207,8 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
     public void onViewCreated(View rootView, Bundle savedInstanceState) {
         initViews(rootView);
         initListeners();
-        isLoading.set(true);
+        selectAndLoadVideo(serviceId, videoUrl, videoTitle);
+        wasLoading.set(false);
     }
 
     @Override
@@ -251,19 +256,23 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
 
         // Currently only used for enable/disable related videos
         // but can be extended for other live settings changes
-        if (needUpdate) {
-            if (relatedStreamsView != null) initRelatedVideos(currentStreamInfo);
-            needUpdate = false;
+        if (updateFlags != 0) {
+            if (!isLoading.get()) {
+                if ((updateFlags & RELATED_STREAMS_UPDATE_FLAG) != 0) initRelatedVideos(currentStreamInfo);
+                if ((updateFlags & RESOLUTIONS_MENU_UPDATE_FLAG) != 0) setupActionBarHandler(currentStreamInfo);
+            }
+            updateFlags = 0;
         }
 
         // Check if it was loading when the activity was stopped/paused,
         // because when this happen, the curExtractorWorker is cancelled
-        if (isLoading.get()) selectAndLoadVideo(serviceId, videoUrl, videoTitle);
+        if (wasLoading.getAndSet(false)) selectAndLoadVideo(serviceId, videoUrl, videoTitle);
     }
 
     @Override
     public void onStop() {
         super.onStop();
+        wasLoading.set(curExtractorWorker.isRunning());
         if (curExtractorWorker != null && curExtractorWorker.isRunning()) curExtractorWorker.cancel();
     }
 
@@ -301,7 +310,11 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.show_next_video_key))) {
             showRelatedStreams = sharedPreferences.getBoolean(key, true);
-            needUpdate = true;
+            updateFlags |= RELATED_STREAMS_UPDATE_FLAG;
+        } else if (key.equals(getString(R.string.preferred_video_format_key))
+                || key.equals(getString(R.string.default_resolution_key))
+                || key.equals(getString(R.string.show_higher_resolutions_key))) {
+            updateFlags |= RESOLUTIONS_MENU_UPDATE_FLAG;
         }
     }
 
@@ -480,7 +493,8 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
             activity.getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         }
 
-        actionBarHandler.setupStreamList(info.video_streams);
+        sortedStreamVideosList = Utils.getSortedStreamVideosList(activity, info.video_streams, info.video_only_streams, false);
+        actionBarHandler.setupStreamList(sortedStreamVideosList);
         actionBarHandler.setOnShareListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
@@ -517,15 +531,10 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
                 }
                 if (streamThumbnail != null) ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = streamThumbnail;
 
-                Intent i = new Intent(activity, PopupVideoPlayer.class);
                 Toast.makeText(activity, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
-                i.putExtra(AbstractPlayer.VIDEO_TITLE, info.title)
-                        .putExtra(AbstractPlayer.CHANNEL_NAME, info.uploader)
-                        .putExtra(AbstractPlayer.VIDEO_URL, info.webpage_url)
-                        .putExtra(AbstractPlayer.INDEX_SEL_VIDEO_STREAM, selectedStreamId)
-                        .putExtra(AbstractPlayer.VIDEO_STREAMS_LIST, new ArrayList<>(info.video_streams));
-                if (info.start_position > 0) i.putExtra(AbstractPlayer.START_POSITION, info.start_position * 1000);
-                activity.startService(i);
+                Intent mIntent = NavigationHelper.getOpenPlayerIntent(activity, PopupVideoPlayer.class, info, selectedStreamId);
+                if (info.start_position > 0) mIntent.putExtra(AbstractPlayer.START_POSITION, info.start_position * 1000);
+                activity.startService(mIntent);
             }
         });
 
@@ -586,8 +595,8 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
                         args.putString(DownloadDialog.FILE_SUFFIX_AUDIO, audioSuffix);
                     }
 
-                    if (info.video_streams != null) {
-                        VideoStream selectedStreamItem = info.video_streams.get(selectedStreamId);
+                    if (sortedStreamVideosList != null) {
+                        VideoStream selectedStreamItem = sortedStreamVideosList.get(selectedStreamId);
                         String videoSuffix = "." + MediaFormat.getSuffixById(selectedStreamItem.format);
                         args.putString(DownloadDialog.FILE_SUFFIX_VIDEO, videoSuffix);
                         args.putString(DownloadDialog.VIDEO_URL, selectedStreamItem.url);
@@ -737,6 +746,7 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
     }
 
     public void loadSelectedVideo() {
+        isLoading.set(true);
         pushToStack(videoUrl, videoTitle);
 
         if (curExtractorWorker != null && curExtractorWorker.isRunning()) curExtractorWorker.cancel();
@@ -753,6 +763,7 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
         if (scrollY < 30) animateView(videoTitleTextView, false, 200, new Runnable() {
             @Override
             public void run() {
+                if (videoTitleTextView == null) return;
                 videoTitleTextView.setText(videoTitle != null ? videoTitle : "");
                 animateView(videoTitleTextView, true, 400, null);
             }
@@ -775,12 +786,11 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
 
         curExtractorWorker = new StreamExtractorWorker(activity, serviceId, videoUrl, this);
         curExtractorWorker.start();
-        isLoading.set(true);
     }
 
     public void playVideo(StreamInfo info) {
         // ----------- THE MAGIC MOMENT ---------------
-        VideoStream selectedVideoStream = info.video_streams.get(actionBarHandler.getSelectedVideoStream());
+        VideoStream selectedVideoStream = sortedStreamVideosList.get(actionBarHandler.getSelectedVideoStream());
 
         if (PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
 
@@ -813,30 +823,24 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
                 builder.create().show();
             }
         } else {
-            Intent intent;
+            Intent mIntent;
             boolean useOldPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
                     .getBoolean(getString(R.string.use_old_player_key), false)
                     || (Build.VERSION.SDK_INT < 16);
             if (!useOldPlayer) {
                 // ExoPlayer
                 if (streamThumbnail != null) ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = streamThumbnail;
-                intent = new Intent(activity, ExoPlayerActivity.class)
-                        .putExtra(AbstractPlayer.VIDEO_TITLE, info.title)
-                        .putExtra(AbstractPlayer.VIDEO_URL, info.webpage_url)
-                        .putExtra(AbstractPlayer.CHANNEL_NAME, info.uploader)
-                        .putExtra(AbstractPlayer.INDEX_SEL_VIDEO_STREAM, actionBarHandler.getSelectedVideoStream())
-                        .putExtra(AbstractPlayer.VIDEO_STREAMS_LIST, new ArrayList<>(info.video_streams));
-                if (info.start_position > 0) intent.putExtra(AbstractPlayer.START_POSITION, info.start_position * 1000);
+                mIntent = NavigationHelper.getOpenPlayerIntent(activity, ExoPlayerActivity.class, info, actionBarHandler.getSelectedVideoStream());
+                if (info.start_position > 0) mIntent.putExtra(AbstractPlayer.START_POSITION, info.start_position * 1000);
             } else {
                 // Internal Player
-                intent = new Intent(activity, PlayVideoActivity.class)
+                mIntent = new Intent(activity, PlayVideoActivity.class)
                         .putExtra(PlayVideoActivity.VIDEO_TITLE, info.title)
                         .putExtra(PlayVideoActivity.STREAM_URL, selectedVideoStream.url)
                         .putExtra(PlayVideoActivity.VIDEO_URL, info.webpage_url)
                         .putExtra(PlayVideoActivity.START_POSITION, info.start_position);
             }
-            //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+            startActivity(mIntent);
         }
     }
 
@@ -928,6 +932,7 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
 
         // Since newpipe is designed to work even if certain information is not available,
         // the UI has to react on missing information.
+        videoTitle = info.title;
         videoTitleTextView.setText(info.title);
         if (!info.uploader.isEmpty()) uploaderTextView.setText(info.uploader);
         uploaderTextView.setVisibility(!info.uploader.isEmpty() ? View.VISIBLE : View.GONE);
@@ -1030,5 +1035,10 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
         loadingProgressBar.setVisibility(View.GONE);
         thumbnailImageView.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.not_available_monkey));
         Toast.makeText(activity, R.string.content_not_available, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onUnrecoverableError(Exception exception) {
+        activity.finish();
     }
 }

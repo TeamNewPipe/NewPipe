@@ -35,6 +35,12 @@ public class StreamExtractorWorker extends ExtractorWorker {
         void onBlockedByGemaError();
         void onContentErrorWithMessage(int messageId);
         void onContentError();
+
+        /**
+         * Called when an unrecoverable error has occurred.
+         * <p> This is a good place to finish the caller. </p>
+         */
+        void onUnrecoverableError(Exception exception);
     }
 
     /**
@@ -62,7 +68,7 @@ public class StreamExtractorWorker extends ExtractorWorker {
 
         if (streamInfo != null && !streamInfo.errors.isEmpty()) handleErrorsDuringExtraction(streamInfo.errors, ErrorActivity.REQUESTED_STREAM);
 
-        if (callback != null && streamInfo != null && !isInterrupted()) getHandler().post(new Runnable() {
+        if (callback != null && getHandler() != null && streamInfo != null && !isInterrupted()) getHandler().post(new Runnable() {
             @Override
             public void run() {
                 if (isInterrupted() || callback == null) return;
@@ -75,37 +81,39 @@ public class StreamExtractorWorker extends ExtractorWorker {
     }
 
     @Override
-    protected void handleException(final Exception exception, int serviceId, String url) {
+    protected void handleException(final Exception exception, int serviceId, final String url) {
+        if (callback == null || getHandler() == null || isInterrupted()) return;
+
         if (exception instanceof ReCaptchaException) {
-            if (callback != null) getHandler().post(new Runnable() {
+            getHandler().post(new Runnable() {
                 @Override
                 public void run() {
                     callback.onReCaptchaException();
                 }
             });
         } else if (exception instanceof IOException) {
-            if (callback != null) getHandler().post(new Runnable() {
+            getHandler().post(new Runnable() {
                 @Override
                 public void run() {
                     callback.onError(R.string.network_error);
                 }
             });
         } else if (exception instanceof YoutubeStreamExtractor.GemaException) {
-            if (callback != null) getHandler().post(new Runnable() {
+            getHandler().post(new Runnable() {
                 @Override
                 public void run() {
                     callback.onBlockedByGemaError();
                 }
             });
         } else if (exception instanceof YoutubeStreamExtractor.LiveStreamException) {
-            if (callback != null) getHandler().post(new Runnable() {
+            getHandler().post(new Runnable() {
                 @Override
                 public void run() {
                     callback.onContentErrorWithMessage(R.string.live_streams_not_supported);
                 }
             });
         } else if (exception instanceof StreamExtractor.ContentNotAvailableException) {
-            if (callback != null) getHandler().post(new Runnable() {
+            getHandler().post(new Runnable() {
                 @Override
                 public void run() {
                     callback.onContentError();
@@ -114,7 +122,12 @@ public class StreamExtractorWorker extends ExtractorWorker {
         } else if (exception instanceof YoutubeStreamExtractor.DecryptException) {
             // custom service related exceptions
             ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM, getServiceName(), url, R.string.youtube_signature_decryption_error));
-            finishIfActivity();
+            getHandler().post(new Runnable() {
+                @Override
+                public void run() {
+                    callback.onUnrecoverableError(exception);
+                }
+            });
         } else if (exception instanceof StreamInfo.StreamExctractException) {
             if (!streamInfo.errors.isEmpty()) {
                 // !!! if this case ever kicks in someone gets kicked out !!!
@@ -122,13 +135,29 @@ public class StreamExtractorWorker extends ExtractorWorker {
             } else {
                 ErrorActivity.reportError(getHandler(), getContext(), streamInfo.errors, MainActivity.class, null, ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM, getServiceName(), url, R.string.could_not_get_stream));
             }
-            finishIfActivity();
+
+            getHandler().post(new Runnable() {
+                @Override
+                public void run() {
+                    callback.onUnrecoverableError(exception);
+                }
+            });
         } else if (exception instanceof ParsingException) {
             ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM, getServiceName(), url, R.string.parsing_error));
-            finishIfActivity();
+            getHandler().post(new Runnable() {
+                @Override
+                public void run() {
+                    callback.onUnrecoverableError(exception);
+                }
+            });
         } else {
             ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM, getServiceName(), url, R.string.general_error));
-            finishIfActivity();
+            getHandler().post(new Runnable() {
+                @Override
+                public void run() {
+                    callback.onUnrecoverableError(exception);
+                }
+            });
         }
 
     }

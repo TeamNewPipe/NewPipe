@@ -39,6 +39,7 @@ import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.MergingMediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
 import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource;
@@ -60,6 +61,7 @@ import com.google.android.exoplayer2.util.Util;
 import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
+import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
 
 import java.io.File;
@@ -93,6 +95,7 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
 
     public static final String VIDEO_URL = "video_url";
     public static final String VIDEO_STREAMS_LIST = "video_streams_list";
+    public static final String VIDEO_ONLY_AUDIO_STREAM = "video_only_audio_stream";
     public static final String VIDEO_TITLE = "video_title";
     public static final String INDEX_SEL_VIDEO_STREAM = "index_selected_video_stream";
     public static final String START_POSITION = "start_position";
@@ -105,7 +108,8 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
     private Bitmap videoThumbnail;
     private String channelName = "";
     private int selectedIndexStream;
-    private ArrayList<VideoStream> videoStreamsList;
+    private ArrayList<VideoStream> videoStreamsList = new ArrayList<>();
+    private AudioStream videoOnlyAudioStream;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Player
@@ -277,6 +281,9 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         if (serializable instanceof ArrayList) videoStreamsList = (ArrayList<VideoStream>) serializable;
         if (serializable instanceof Vector) videoStreamsList = new ArrayList<>((List<VideoStream>) serializable);
 
+        Serializable audioStream = intent.getSerializableExtra(VIDEO_ONLY_AUDIO_STREAM);
+        if (audioStream != null) videoOnlyAudioStream = (AudioStream) audioStream;
+
         videoUrl = intent.getStringExtra(VIDEO_URL);
         videoTitle = intent.getStringExtra(VIDEO_TITLE);
         videoStartPos = intent.getIntExtra(START_POSITION, -1);
@@ -288,13 +295,15 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
             e.printStackTrace();
         }
 
-        playVideo(getSelectedStreamUri(), true);
+        playVideo(getSelectedVideoStream(), true);
     }
 
-    public void playVideo(Uri videoURI, boolean autoPlay) {
-        if (DEBUG) Log.d(TAG, "playVideo() called with: videoURI = [" + videoURI + "], autoPlay = [" + autoPlay + "]");
+    public void playVideo(VideoStream videoStream, boolean autoPlay) {
+        if (DEBUG) {
+            Log.d(TAG, "playVideo() called with: videoStream = [" + videoStream + ", " + videoStream.url + ", isVideoOnly = " + videoStream.isVideoOnly + "], autoPlay = [" + autoPlay + "]");
+        }
 
-        if (videoURI == null || simpleExoPlayer == null) {
+        if (videoStream == null || videoStream.url == null || simpleExoPlayer == null) {
             onError();
             return;
         }
@@ -305,7 +314,7 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         qualityPopupMenu.getMenu().removeGroup(qualityPopupMenuGroupId);
         buildQualityMenu(qualityPopupMenu);
 
-        videoSource = buildMediaSource(videoURI, MediaFormat.getSuffixById(videoStreamsList.get(selectedIndexStream).format));
+        videoSource = buildMediaSource(videoStream, MediaFormat.getSuffixById(getSelectedVideoStream().format));
 
         if (simpleExoPlayer.getPlaybackState() != ExoPlayer.STATE_IDLE) simpleExoPlayer.stop();
         if (videoStartPos > 0) simpleExoPlayer.seekTo(videoStartPos);
@@ -323,22 +332,34 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         if (progressLoop != null) stopProgressLoop();
     }
 
-    private MediaSource buildMediaSource(Uri uri, String overrideExtension) {
-        if (DEBUG) Log.d(TAG, "buildMediaSource() called with: uri = [" + uri + "], overrideExtension = [" + overrideExtension + "]");
+    private MediaSource buildMediaSource(VideoStream videoStream, String overrideExtension) {
+        if (DEBUG) {
+            Log.d(TAG, "buildMediaSource() called with: videoStream = [" + videoStream + ", " + videoStream.url + "isVideoOnly = " + videoStream.isVideoOnly + "], overrideExtension = [" + overrideExtension + "]");
+        }
+        Uri uri = Uri.parse(videoStream.url);
         int type = TextUtils.isEmpty(overrideExtension) ? Util.inferContentType(uri) : Util.inferContentType("." + overrideExtension);
+        MediaSource mediaSource;
         switch (type) {
             case C.TYPE_SS:
-                return new SsMediaSource(uri, cacheDataSourceFactory, new DefaultSsChunkSource.Factory(cacheDataSourceFactory), null, null);
+                mediaSource = new SsMediaSource(uri, cacheDataSourceFactory, new DefaultSsChunkSource.Factory(cacheDataSourceFactory), null, null);
+                break;
             case C.TYPE_DASH:
-                return new DashMediaSource(uri, cacheDataSourceFactory, new DefaultDashChunkSource.Factory(cacheDataSourceFactory), null, null);
+                mediaSource = new DashMediaSource(uri, cacheDataSourceFactory, new DefaultDashChunkSource.Factory(cacheDataSourceFactory), null, null);
+                break;
             case C.TYPE_HLS:
-                return new HlsMediaSource(uri, cacheDataSourceFactory, null, null);
+                mediaSource = new HlsMediaSource(uri, cacheDataSourceFactory, null, null);
+                break;
             case C.TYPE_OTHER:
-                return new ExtractorMediaSource(uri, cacheDataSourceFactory, extractorsFactory, null, null);
+                mediaSource = new ExtractorMediaSource(uri, cacheDataSourceFactory, extractorsFactory, null, null);
+                break;
             default: {
                 throw new IllegalStateException("Unsupported type: " + type);
             }
         }
+        if (!videoStream.isVideoOnly) return mediaSource;
+
+        Uri audioUri = Uri.parse(videoOnlyAudioStream.url);
+        return new MergingMediaSource(mediaSource, new ExtractorMediaSource(audioUri, cacheDataSourceFactory, extractorsFactory, null, null));
     }
 
     public void buildQualityMenu(PopupMenu popupMenu) {
@@ -346,7 +367,7 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
             VideoStream videoStream = videoStreamsList.get(i);
             popupMenu.getMenu().add(qualityPopupMenuGroupId, i, Menu.NONE, MediaFormat.getNameById(videoStream.format) + " " + videoStream.resolution);
         }
-        qualityTextView.setText(videoStreamsList.get(selectedIndexStream).resolution);
+        qualityTextView.setText(getSelectedVideoStream().resolution);
         popupMenu.setOnMenuItemClickListener(this);
         popupMenu.setOnDismissListener(this);
 
@@ -590,7 +611,7 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         if (DEBUG) Log.d(TAG, "onVideoPlayPause() called");
         if (currentState == STATE_COMPLETED) {
             changeState(STATE_LOADING);
-            if (qualityChanged) playVideo(getSelectedStreamUri(), true);
+            if (qualityChanged) playVideo(getSelectedVideoStream(), true);
             simpleExoPlayer.seekTo(0);
             return;
         }
@@ -632,10 +653,10 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         if (selectedIndexStream == menuItem.getItemId()) return true;
         setVideoStartPos((int) getPlayer().getCurrentPosition());
 
-        if (!(getCurrentState() == STATE_COMPLETED)) playVideo(Uri.parse(getVideoStreamsList().get(menuItem.getItemId()).url), wasPlaying);
+        selectedIndexStream = menuItem.getItemId();
+        if (!(getCurrentState() == STATE_COMPLETED)) playVideo(getSelectedVideoStream(), wasPlaying);
         else qualityChanged = true;
 
-        selectedIndexStream = menuItem.getItemId();
         qualityTextView.setText(menuItem.getTitle());
         return true;
     }
@@ -647,7 +668,7 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
     public void onDismiss(PopupMenu menu) {
         if (DEBUG) Log.d(TAG, "onDismiss() called with: menu = [" + menu + "]");
         isQualityPopupMenuVisible = false;
-        qualityTextView.setText(videoStreamsList.get(selectedIndexStream).resolution);
+        qualityTextView.setText(getSelectedVideoStream().resolution);
     }
 
     public abstract void onFullScreenButtonClicked();
@@ -658,7 +679,7 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         isQualityPopupMenuVisible = true;
         animateView(getControlsRoot(), true, 300, 0);
 
-        VideoStream videoStream = videoStreamsList.get(selectedIndexStream);
+        VideoStream videoStream = getSelectedVideoStream();
         qualityTextView.setText(MediaFormat.getNameById(videoStream.format) + " " + videoStream.resolution);
         wasPlaying = isPlaying();
     }
@@ -967,8 +988,12 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         return currentState;
     }
 
+    public VideoStream getSelectedVideoStream() {
+        return videoStreamsList.get(selectedIndexStream);
+    }
+
     public Uri getSelectedStreamUri() {
-        return Uri.parse(videoStreamsList.get(selectedIndexStream).url);
+        return Uri.parse(getSelectedVideoStream().url);
     }
 
     public int getQualityPopupMenuGroupId() {
@@ -1015,12 +1040,20 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         this.channelName = channelName;
     }
 
-    public int getSelectedIndexStream() {
+    public int getSelectedStreamIndex() {
         return selectedIndexStream;
     }
 
     public void setSelectedIndexStream(int selectedIndexStream) {
         this.selectedIndexStream = selectedIndexStream;
+    }
+
+    public void setAudioStream(AudioStream audioStream) {
+        this.videoOnlyAudioStream = audioStream;
+    }
+
+    public AudioStream getAudioStream() {
+        return videoOnlyAudioStream;
     }
 
     public ArrayList<VideoStream> getVideoStreamsList() {

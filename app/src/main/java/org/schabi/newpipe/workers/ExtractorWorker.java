@@ -135,13 +135,6 @@ public abstract class ExtractorWorker extends Thread {
         this.service = null;
     }
 
-    /**
-     * If the context passed in the constructor is an {@link Activity}, finish it.
-     */
-    protected void finishIfActivity() {
-        if (getContext() instanceof Activity) ((Activity) getContext()).finish();
-    }
-
     public Handler getHandler() {
         return handler;
     }

@@ -88,7 +88,7 @@ class ActionBarHandler {
                 VideoStream item = videoStreams.get(i);
                 itemArray[i] = MediaFormat.getNameById(item.format) + " " + item.resolution;
             }
-            int defaultResolution = Utils.getPreferredResolution(activity, videoStreams);
+            int defaultResolution = Utils.getDefaultResolution(activity, videoStreams);
 
             ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(activity.getBaseContext(),
                     android.R.layout.simple_spinner_dropdown_item, itemArray);
