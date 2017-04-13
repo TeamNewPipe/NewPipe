@@ -186,4 +186,5 @@ Möchten Sie jetzt neu starten?</string>
     <string name="disabled">Deaktiviert</string>
 
     <string name="use_old_player_title">Benutze den alten Player</string>
+    <string name="open_in_popup_mode">Im Popup-Modus öffnen</string>
     </resources>
