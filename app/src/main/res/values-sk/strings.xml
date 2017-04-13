@@ -164,7 +164,7 @@
     <string name="videos">videá</string>
     <string name="subscriber">odberateľ</string>
     <string name="views">videní</string>
-    <string name="short_thousand">k</string>
+    <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
 
@@ -180,7 +180,7 @@
 
 Chcete aplikáciu reštartovať teraz?</string>
 
-    <string name="open_in_popup_mode">Otvoriť vo okne na popredí</string>
+    <string name="open_in_popup_mode">Spustiť v okne</string>
     <string name="msg_popup_permission">Tieto práva vyžaduje
 otvorenie okna na popredí</string>
 
