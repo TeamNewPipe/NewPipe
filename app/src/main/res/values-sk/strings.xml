@@ -184,4 +184,13 @@ Chcete aplikáciu reštartovať teraz?</string>
     <string name="msg_popup_permission">Tieto práva vyžaduje
 otvorenie okna na popredí</string>
 
+    <string name="popup_mode_share_menu_title">NewPipe v okne</string>
+
+    <string name="preferred_video_format_title">Preferovaný fromát videa</string>
+    <string name="popup_playing_toast">Prehrávanie v okne</string>
+    <string name="disabled">Vypnuté</string>
+
+    <string name="use_old_player_title">Použiť starší prehrávač</string>
+    <string name="use_old_player_summary">Pôvodná zostava v Mediaframework.</string>
+    <string name="subscriber_plural">odberatelia</string>
     </resources>
