@@ -188,4 +188,5 @@ Möchten Sie jetzt neu starten?</string>
     <string name="use_old_player_title">Benutze den alten Player</string>
     <string name="open_in_popup_mode">Im Popup-Modus öffnen</string>
     <string name="preferred_video_format_title">Bevorzugtes Videoformat</string>
+    <string name="popup_playing_toast">Spiele im Popup-Modus ab</string>
     </resources>
