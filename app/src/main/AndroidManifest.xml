@@ -19,22 +19,15 @@
         tools:ignore="AllowBackup">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".detail.VideoItemDetailActivity"
-            android:label="@string/title_videoitem_detail"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
+
         <activity
             android:name=".player.PlayVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -50,7 +43,7 @@
             android:name=".player.ExoPlayerActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
             android:theme="@style/PlayerTheme"/>
 
         <activity
@@ -88,9 +81,6 @@
             android:launchMode="singleTop"
             android:theme="@style/FilePickerTheme"/>
         <activity
-            android:name=".ChannelActivity"
-            android:launchMode="singleTask" />
-        <activity
             android:name=".ReCaptchaActivity"
             android:label="@string/reCaptchaActivity" />
 
@@ -104,7 +94,9 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".RouterActivity"
+        <activity
+            android:name=".RouterActivity"
+            android:taskAffinity=""
             android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -161,7 +153,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".PopupActivity"
+        <activity
+            android:name=".RouterPopupActivity"
+            android:taskAffinity=""
             android:theme="@android:style/Theme.NoDisplay"
             android:label="@string/popup_mode_share_menu_title">
             <intent-filter>
@@ -182,9 +176,6 @@
                 <data android:pathPrefix="/embed/" />
                 <data android:pathPrefix="/watch" />
                 <data android:pathPrefix="/attribution_link" />
-                <!-- channel prefix -->
-                <data android:pathPrefix="/channel/"/>
-                <data android:pathPrefix="/user/"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -212,9 +203,7 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-
                 <category android:name="android.intent.category.DEFAULT" />
-
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>

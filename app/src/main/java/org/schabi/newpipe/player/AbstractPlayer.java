@@ -299,7 +299,6 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
             return;
         }
 
-        changeState(STATE_LOADING);
         isPrepared = false;
         qualityChanged = false;
 
@@ -312,6 +311,7 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         if (videoStartPos > 0) simpleExoPlayer.seekTo(videoStartPos);
         simpleExoPlayer.prepare(videoSource);
         simpleExoPlayer.setPlayWhenReady(autoPlay);
+        changeState(STATE_LOADING);
     }
 
     public void destroy() {
@@ -396,7 +396,6 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
 
         animateView(endScreen, false, 0, 0);
-        animateView(controlsRoot, false, 0, 0);
         loadingPanel.setBackgroundColor(Color.BLACK);
         animateView(loadingPanel, true, 0, 0);
         animateView(surfaceForeground, true, 100, 0);
@@ -408,7 +407,12 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         if (!isProgressLoopRunning.get()) startProgressLoop();
         showAndAnimateControl(-1, true);
         loadingPanel.setVisibility(View.GONE);
-        animateView(controlsRoot, false, 500, DEFAULT_CONTROLS_HIDE_TIME, true);
+        animateView(controlsRoot, true, 500, 0, new Runnable() {
+            @Override
+            public void run() {
+                animateView(controlsRoot, false, 500, DEFAULT_CONTROLS_HIDE_TIME, true);
+            }
+        });
         animateView(currentDisplaySeek, false, 200, 0);
     }
 
@@ -417,7 +421,6 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         if (DEBUG) Log.d(TAG, "onBuffering() called");
         loadingPanel.setBackgroundColor(Color.TRANSPARENT);
         animateView(loadingPanel, true, 500, 0);
-        animateView(controlsRoot, false, 0, 0, true);
     }
 
     @Override
@@ -598,14 +601,12 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         if (DEBUG) Log.d(TAG, "onFastRewind() called");
         seekBy(-FAST_FORWARD_REWIND_AMOUNT);
         showAndAnimateControl(R.drawable.ic_action_av_fast_rewind, true);
-        animateView(controlsRoot, false, 100, 0);
     }
 
     public void onFastForward() {
         if (DEBUG) Log.d(TAG, "onFastForward() called");
         seekBy(FAST_FORWARD_REWIND_AMOUNT);
         showAndAnimateControl(R.drawable.ic_action_av_fast_forward, true);
-        animateView(controlsRoot, false, 100, 0);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

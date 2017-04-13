@@ -158,6 +158,7 @@
     <string name="use_old_player_summary">Old build in Mediaframework player.</string>
     <string name="videos">videos</string>
     <string name="subscriber">subscriber</string>
+    <string name="subscriber_plural">subscribers</string>
     <string name="subscribe">Subscribe</string>
     <string name="views">views</string>
     <string name="short_thousand">K</string>

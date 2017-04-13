@@ -24,7 +24,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.util.NavStack;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -70,6 +69,7 @@ public class ExoPlayerActivity extends Activity {
             return;
         }
 
+        showSystemUi();
         setContentView(R.layout.activity_exo_player);
         playerImpl = new AbstractPlayerImpl();
         playerImpl.setup(findViewById(android.R.id.content));
@@ -88,7 +88,6 @@ public class ExoPlayerActivity extends Activity {
     public void onBackPressed() {
         if (DEBUG) Log.d(TAG, "onBackPressed() called");
         super.onBackPressed();
-        if (playerImpl.isStartedFromNewPipe()) NavStack.getInstance().openDetailActivity(this, playerImpl.getVideoUrl(), 0);
         if (playerImpl.isPlaying()) playerImpl.getPlayer().setPlayWhenReady(false);
     }
 
@@ -340,8 +339,7 @@ public class ExoPlayerActivity extends Activity {
         public void onStopTrackingTouch(SeekBar seekBar) {
             super.onStopTrackingTouch(seekBar);
             if (playerImpl.wasPlaying()) {
-                hideSystemUi();
-                playerImpl.getControlsRoot().setVisibility(View.GONE);
+                animateView(playerImpl.getControlsRoot(), false, 100, 0);
             }
         }
 
@@ -365,6 +363,13 @@ public class ExoPlayerActivity extends Activity {
         public void onLoading() {
             super.onLoading();
             playPauseButton.setImageResource(R.drawable.ic_pause_white);
+            animateView(playPauseButton, false, 100, 0);
+        }
+
+        @Override
+        public void onBuffering() {
+            super.onBuffering();
+            animateView(playPauseButton, false, 100, 0);
         }
 
         @Override
@@ -384,6 +389,7 @@ public class ExoPlayerActivity extends Activity {
         public void onPlaying() {
             super.onPlaying();
             animateView(playPauseButton, true, 500, 0);
+            showSystemUi();
         }
 
         @Override

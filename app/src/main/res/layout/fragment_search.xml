@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:name="org.schabi.newpipe.SearchInfoItemFragment"
-    tools:context=".search_fragment.SearchInfoItemFragment">
+    tools:context=".fragments.search.SearchFragment">
 
     <include layout="@layout/main_bg" />
 
@@ -17,10 +17,11 @@
         tools:listitem="@layout/stream_item"
         android:scrollbars="vertical"/>
 
-    <ProgressBar android:id="@+id/progressBar"
+    <ProgressBar android:id="@+id/loading_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:indeterminate="true"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        tools:visibility="visible"/>
 </RelativeLayout>

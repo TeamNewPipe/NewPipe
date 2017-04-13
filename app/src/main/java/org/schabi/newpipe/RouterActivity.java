@@ -3,19 +3,14 @@ package org.schabi.newpipe;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.widget.Toast;
 
-import org.schabi.newpipe.detail.VideoItemDetailActivity;
-import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.util.NavStack;
+import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.Collection;
 import java.util.HashSet;
 
-/**
+/*
  * Copyright (C) Christian Schabesberger 2017 <chris.schabesberger@mailbox.org>
  * RouterActivity .java is part of NewPipe.
  *
@@ -38,7 +33,7 @@ import java.util.HashSet;
  * to the part of the service which can handle the url.
  */
 public class RouterActivity extends Activity {
-    private static final String TAG = RouterActivity.class.toString();
+    //private static final String TAG = "RouterActivity"
 
     /**
      * Removes invisible separators (\p{Z}) and punctuation characters including
@@ -54,6 +49,25 @@ public class RouterActivity extends Activity {
         finish();
     }
 
+    private void handleIntent(Intent intent) {
+        String videoUrl = "";
+
+        // first gather data and find service
+        if (intent.getData() != null) {
+            // this means the video was called though another app
+            videoUrl = intent.getData().toString();
+        } else if (intent.getStringExtra(Intent.EXTRA_TEXT) != null) {
+            //this means that vidoe was called through share menu
+            String extraText = intent.getStringExtra(Intent.EXTRA_TEXT);
+            videoUrl = getUris(extraText)[0];
+        }
+
+        try {
+            NavigationHelper.openByLink(this, videoUrl);
+        } catch (Exception e) {
+            Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG).show();
+        }
+    }
 
     private static String removeHeadingGibberish(final String input) {
         int start = 0;
@@ -107,50 +121,4 @@ public class RouterActivity extends Activity {
         return result.toArray(new String[result.size()]);
     }
 
-    private void handleIntent(Intent intent) {
-        String videoUrl = "";
-        StreamingService service = null;
-
-        // first gather data and find service
-        if (intent.getData() != null) {
-            // this means the video was called though another app
-            videoUrl = intent.getData().toString();
-        } else if(intent.getStringExtra(Intent.EXTRA_TEXT) != null) {
-            //this means that vidoe was called through share menu
-            String extraText = intent.getStringExtra(Intent.EXTRA_TEXT);
-            videoUrl = getUris(extraText)[0];
-        }
-
-        service = NewPipe.getServiceByUrl(videoUrl);
-        if(service == null) {
-            Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG)
-                    .show();
-            return;
-        } else {
-            Intent callIntent = new Intent();
-            switch(service.getLinkTypeByUrl(videoUrl)) {
-                case CHANNEL:
-                    callIntent.setClass(this, ChannelActivity.class);
-                    break;
-                case STREAM:
-                    callIntent.setClass(this, VideoItemDetailActivity.class);
-                    callIntent.putExtra(VideoItemDetailActivity.AUTO_PLAY,
-                            PreferenceManager.getDefaultSharedPreferences(this)
-                                    .getBoolean(
-                                            getString(R.string.autoplay_through_intent_key), false));
-                    break;
-                case PLAYLIST:
-                    Log.e(TAG, "NOT YET DEFINED");
-                    break;
-                default:
-                    Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG)
-                            .show();
-                    return;
-            }
-
-            callIntent.putExtra(NavStack.URL, videoUrl);
-            callIntent.putExtra(NavStack.SERVICE_ID, service.getServiceId());
-            startActivity(callIntent);
-        }
-    }
 }
