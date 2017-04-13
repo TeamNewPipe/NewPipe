@@ -1,14 +1,14 @@
 package org.schabi.newpipe;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.View;
 
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
-import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.report.ErrorActivity;
 
 /**
  * Created by Christian Schabesberger on 01.08.16.
@@ -33,11 +33,11 @@ import org.schabi.newpipe.extractor.NewPipe;
 public class ImageErrorLoadingListener implements ImageLoadingListener {
 
     private int serviceId = -1;
-    private Activity activity = null;
+    private Context context = null;
     private View rootView = null;
 
-    public ImageErrorLoadingListener(Activity activity, View rootView, int serviceId) {
-        this.activity = activity;
+    public ImageErrorLoadingListener(Context context, View rootView, int serviceId) {
+        this.context = context;
         this.serviceId= serviceId;
         this.rootView = rootView;
     }
@@ -47,7 +47,7 @@ public class ImageErrorLoadingListener implements ImageLoadingListener {
 
     @Override
     public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-        ErrorActivity.reportError(activity,
+        ErrorActivity.reportError(context,
                 failReason.getCause(), null, rootView,
                 ErrorActivity.ErrorInfo.make(ErrorActivity.LOAD_IMAGE,
                         NewPipe.getNameOfService(serviceId), imageUri,

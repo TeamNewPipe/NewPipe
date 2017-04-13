@@ -196,4 +196,6 @@
     <string name="use_old_player_summary">Mediaframework プレーヤーの古いビルド。</string>
     <string name="disabled">無効</string>
 
+    <string name="preferred_video_format_title">お好みのビデオ フォーマット</string>
+    <string name="subscriber_plural">購読者</string>
     </resources>

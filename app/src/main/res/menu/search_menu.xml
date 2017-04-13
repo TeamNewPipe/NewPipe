@@ -8,7 +8,8 @@
         app:actionViewClass="android.support.v7.widget.SearchView" />
 
     <group android:id="@+id/search_filter_group"
-        android:checkableBehavior="single">
+        android:checkableBehavior="single"
+        android:orderInCategory="999">
         <item android:id="@+id/menu_filter_all"
             android:title = "@string/all"
             android:checked = "true"/>

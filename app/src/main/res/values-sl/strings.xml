@@ -194,4 +194,5 @@ odpiranje v pojavnem načinu</string>
 
     <string name="use_old_player_title">Uporabi star predvajalnik</string>
     <string name="use_old_player_summary">Zastarela različica v predvajalniku Mediaframework.</string>
+    <string name="preferred_video_format_title">Prednostni zapis video datoteke</string>
     </resources>

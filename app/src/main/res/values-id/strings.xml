@@ -189,4 +189,6 @@ membuka di mode popup</string>
     <string name="use_old_player_summary">Versi lama dalam pemutar Mediaframework.</string>
     <string name="disabled">Dinonaktifkan</string>
 
+    <string name="preferred_video_format_title">Pilihan format video</string>
+    <string name="subscriber_plural">subscriber</string>
     </resources>

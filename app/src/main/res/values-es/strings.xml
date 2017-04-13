@@ -19,7 +19,7 @@
     <string name="download_path_title">Ruta de descarga de vídeo</string>
     <string name="download_path_summary">Ruta para almacenar los vídeos descargados.</string>
     <string name="download_path_dialog_title">Introducir directorio de descargas para vídeos</string>
-    <string name="default_resolution_title">Resolución por defecto</string>
+    <string name="default_resolution_title">Resolución de vídeo por defecto</string>
     <string name="play_with_kodi_title">Reproducir con Kodi</string>
     <string name="kore_not_found">Aplicación Kore no encontrada. ¿Instalar Kore?</string>
     <string name="show_play_with_kodi_title">Mostrar opción \"Reproducir con Kodi\"</string>
@@ -131,13 +131,13 @@
     <string name="checksum">Checksum</string>
 
     <string name="add">Nueva misión</string>
-    <string name="finish">Listo</string>
+    <string name="finish">Ok</string>
     <string name="switch_mode">Cambiar entre lista y cuadrícula</string>
 
 
     <string name="msg_url">URL de descarga</string>
     <string name="msg_name">Nombre del archivo</string>
-    <string name="msg_threads">Hilos de conexión</string>
+    <string name="msg_threads">Conexiones simultáneas</string>
     <string name="msg_fetch_filename">Obtener nombre de archivo</string>
     <string name="msg_error">Error</string>
     <string name="msg_server_unsupported">Servidor no soportado</string>
@@ -188,4 +188,7 @@ abrir en modo popup</string>
     <string name="popup_playing_toast">Reproduciendo en modo popup</string>
     <string name="use_old_player_title">Usar reproductor antiguo</string>
     <string name="use_old_player_summary">Versión antigua en reproductor Mediaframework.</string>
+    <string name="preferred_video_format_title">Formato de vídeo preferido</string>
+    <string name="disabled">Desactivado</string>
+
     </resources>
