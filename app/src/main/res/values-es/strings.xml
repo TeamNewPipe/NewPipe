@@ -23,7 +23,7 @@
     <string name="play_with_kodi_title">Reproducir con Kodi</string>
     <string name="kore_not_found">Aplicación Kore no encontrada. ¿Instalar Kore?</string>
     <string name="show_play_with_kodi_title">Mostrar opción \"Reproducir con Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Muestra una opción para reproducir el vídeo con Kodi Media Center.</string>
+    <string name="show_play_with_kodi_summary">Mostrar una opción para reproducir el vídeo con Kodi Media Center.</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato de audio por defecto</string>
     <string name="webm_description">WebM — formato libre</string>
