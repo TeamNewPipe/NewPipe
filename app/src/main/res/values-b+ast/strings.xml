@@ -3,7 +3,7 @@
     <string name="background_player_name">Reproductor de fondu NewPipe</string>
     <string name="view_count_text">%1$s visiones</string>
     <string name="upload_date_text">Espublizáu\'l %1$s</string>
-    <string name="no_player_found">Nun s\'alcontró\'l reproductor de tresmisiones. ¿Instalar VLC?</string>
+    <string name="no_player_found">Nun s\'alcontró un reproductor de fluxos. ¿Quies instalar VLC?</string>
     <string name="install">Instalar</string>
     <string name="cancel">Encaboxar</string>
     <string name="open_in_browser">Abrir nel restolador</string>
@@ -129,7 +129,7 @@
     <string name="msg_exists">Yá esiste\'l ficheru</string>
     <string name="msg_url_malform">URL malformada o internet non disponible</string>
     <string name="msg_running_detail">Calca pa detallles</string>
-    <string name="msg_wait">Espera, por favor...</string>
+    <string name="msg_wait">Espera, por favor…</string>
     <string name="msg_copied">Copióse al cartafueyu.</string>
     <string name="no_available_dir">Esbilla un direutoriu de descarga disponible, por favor.</string>
 
@@ -147,5 +147,40 @@
     <string name="search_page">"Guetar páxina: "</string>
     <string name="could_not_load_image">Nun pudo cargase la imaxe</string>
     <string name="app_ui_crash">Cascó l\'aplicación/IU</string>
-    <string name="info_labels"></string>
+    <string name="info_labels"/>
+    <string name="open_in_popup_mode">Abrir en ventanu emerxente</string>
+    <string name="popup_mode_share_menu_title">Mou de ventanu emerxente de NewPipe</string>
+
+    <string name="preferred_video_format_title">Formatu preferíu de videu</string>
+    <string name="black_theme_title">Prietu</string>
+
+    <string name="popup_playing_toast">Reproduciendo en ventanu emerxente</string>
+    <string name="all">Too</string>
+    <string name="channel">Canal</string>
+    <string name="yes">Sí</string>
+    <string name="later">Más sero</string>
+    <string name="disabled">Deshabilitóse</string>
+
+    <string name="use_old_player_title">Usar reproductor vieyu</string>
+    <string name="videos">vídeos</string>
+    <string name="subscriber">soscriptor</string>
+    <string name="subscriber_plural">soscriptores</string>
+    <string name="subscribe">Soscribise</string>
+    <string name="views">visiones</string>
+    <string name="short_thousand">M</string>
+    <string name="short_million">Mill</string>
+    <string name="short_billion">MMill</string>
+    <string name="restart_title">Reaniciar</string>
+
+    <string name="msg_restart">Tienes de reaniciar l\'aplicación p\'aplicar el tema.
+
+¿Quies reaniciala agora?</string>
+    <string name="msg_popup_permission">Precísase esti permisu pa
+abrir en ventanu emerxente</string>
+
+    <string name="action_settings">Axustes</string>
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">Prueba reCAPTCHA</string>
+    <string name="recaptcha_request_toast">Prueba reCAPTCHA solicitada</string>
+
     </resources>
