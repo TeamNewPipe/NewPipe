@@ -296,7 +296,7 @@ public class ChannelFragment extends Fragment implements ChannelExtractorWorker.
         });
 
         // detect if list has ben scrolled to the bottom
-        channelVideosList.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        channelVideosList.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 int pastVisiblesItems, visibleItemCount, totalItemCount;
