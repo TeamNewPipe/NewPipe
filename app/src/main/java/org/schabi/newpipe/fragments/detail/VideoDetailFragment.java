@@ -138,7 +138,6 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
     private Button uploaderButton;
     private TextView uploaderTextView;
     private ImageView uploaderThumb;
-    private Button uploaderSubscribe;
 
     private TextView thumbsUpTextView;
     private ImageView thumbsUpImageView;
@@ -238,7 +237,6 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
         uploaderButton = null;
         uploaderTextView = null;
         uploaderThumb = null;
-        uploaderSubscribe = null;
 
         thumbsUpTextView = null;
         thumbsUpImageView = null;
@@ -347,7 +345,6 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
         uploaderButton = (Button) rootView.findViewById(R.id.detail_uploader_button);
         uploaderTextView = (TextView) rootView.findViewById(R.id.detail_uploader_text_view);
         uploaderThumb = (ImageView) rootView.findViewById(R.id.detail_uploader_thumbnail_view);
-        uploaderSubscribe = (Button) rootView.findViewById(R.id.subscribe_button);
 
         relatedStreamRootLayout = (RelativeLayout) rootView.findViewById(R.id.detail_related_streams_root_layout);
         nextStreamTitle = (TextView) rootView.findViewById(R.id.detail_next_stream_title);
@@ -395,25 +392,6 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
             @Override
             public void onClick(View view) {
                 NavigationHelper.openChannel(onItemSelectedListener, currentStreamInfo.service_id, currentStreamInfo.channel_url, currentStreamInfo.uploader);
-            }
-        });
-
-        uploaderSubscribe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SubscriptionDBHelper subDB = new SubscriptionDBHelper(getActivity(), null);
-                SQLiteDatabase db = subDB.getWritableDatabase();
-
-                String name = currentStreamInfo.uploader;
-                String link = currentStreamInfo.channel_url;
-                String avatar = currentStreamInfo.uploader_thumbnail_url;
-
-                ContentValues values = new ContentValues();
-                values.put(Subscription.Entry.COLUMN_NAME, name);
-                values.put(Subscription.Entry.COLUMN_NAME, link);
-                values.put(Subscription.Entry.COLUMN_AVATAR, avatar);
-
-                db.insert(Subscription.Entry.TABLE_NAME, null, values);
             }
         });
     }
