@@ -189,4 +189,7 @@ o modo “popup“</string>
     <string name="disabled">Desativado</string>
 
     <string name="subscriber_plural">subscritores</string>
+    <string name="default_popup_resolution_title">Resolução padrão do popup</string>
+    <string name="show_higher_resolutions_title">Mostrar resoluções mais altas</string>
+    <string name="show_higher_resolutions_summary">Apenas alguns dispositivos possuem suporte a vídeos 2k/4k</string>
     </resources>
