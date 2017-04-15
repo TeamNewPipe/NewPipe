@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,38 +34,23 @@ public class SubscriptionDBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    static void read(Context context){
+    public static List<SubscribedChannelInfo> read(Context context){
         SQLiteDatabase db = new SubscriptionDBHelper(context, null).getReadableDatabase();
 
-        String[] projection = {
-                //Subscription.Entry.COLUMN_NAME,
-                Subscription.Entry.COLUMN_LINK,
-                //Subscription.Entry.COLUMN_AVATAR
-        };
+        Cursor cursor = db.rawQuery("SELECT * from " + Subscription.Entry.TABLE_NAME, null);
 
-        String selection = Subscription.Entry._ID + " = ?";
-        String[] selectionArgs = { "*" };
-
-       /* Cursor cursor = db.query(
-                Subscription.Entry.TABLE_NAME,            // The table to query
-                projection,                               // The columns to return
-                selection,                                // The columns for the WHERE clause
-                selectionArgs,                            // The values for the WHERE clause
-                null,                                     // don't group the rows
-                null,                                     // don't filter by row groups
-                null                                      // The sort order
-        );
-*/
-        Cursor kursor = db.rawQuery("SELECT * from " + Subscription.Entry.TABLE_NAME, null);
-
-        List<String> names = new ArrayList<>();
-        while(kursor.moveToNext()) {
-            String itemId = kursor.getString(
-                    kursor.getColumnIndexOrThrow(Subscription.Entry.COLUMN_NAME));
-            names.add(itemId);
+        List<SubscribedChannelInfo> infoList = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            String name = cursor.getString(
+                    cursor.getColumnIndexOrThrow(Subscription.Entry.COLUMN_NAME));
+            String link = cursor.getString(
+                    cursor.getColumnIndexOrThrow(Subscription.Entry.COLUMN_LINK));
+            String avatar = cursor.getString(
+                    cursor.getColumnIndexOrThrow(Subscription.Entry.COLUMN_AVATAR));
+            SubscribedChannelInfo subscribedChannelInfo = new SubscribedChannelInfo(name, link, avatar);
+            infoList.add(subscribedChannelInfo);
         }
-        kursor.close();
-        String test = names.get(1);
-        Toast.makeText(context, test, Toast.LENGTH_SHORT).show();
+        cursor.close();
+        return infoList;
     }
 }
