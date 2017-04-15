@@ -189,4 +189,7 @@ te openen in pop-upmodus</string>
     <string name="disabled">Uitgeschakeld</string>
 
     <string name="subscriber_plural">abonnees</string>
+    <string name="default_popup_resolution_title">Standaardresolutie voor pop-up</string>
+    <string name="show_higher_resolutions_title">Hogere resoluties weergeven</string>
+    <string name="show_higher_resolutions_summary">Video\'s afspelen in 2k/4k wordt maar op sommige apparaten ondersteund</string>
     </resources>
