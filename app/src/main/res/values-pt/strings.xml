@@ -185,4 +185,8 @@ o modo “popup“</string>
     <string name="popup_playing_toast">Jogando em modo de popup</string>
     <string name="use_old_player_title">Use jogador velho</string>
     <string name="use_old_player_summary">Versão antiga no jogador Mediaframework.</string>
+    <string name="preferred_video_format_title">Formato de vídeo preferido</string>
+    <string name="disabled">Desativado</string>
+
+    <string name="subscriber_plural">subscritores</string>
     </resources>
