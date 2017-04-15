@@ -43,12 +43,7 @@
     <string name="show_play_with_kodi_key" translatable="false">show_play_with_kodi</string>
 
     <string name="theme_key" translatable="false">theme</string>
-    <string name="default_theme_value" translatable="false">@string/light_theme_title</string>
-    <string-array name="theme_description_list">
-        <item>@string/light_theme_title</item>
-        <item>@string/dark_theme_title</item>
-        <item>@string/black_theme_title</item>
-    </string-array>
+    <string name="default_theme_value" translatable="false">@string/dark_theme_title</string>
     <string-array name="theme_list">
         <item>@string/light_theme_title</item>
         <item>@string/dark_theme_title</item>

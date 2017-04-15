@@ -70,6 +70,12 @@
         <item>Audio</item>
     </string-array>
 
+    <string-array name="theme_description_list">
+        <item>@string/light_theme_title</item>
+        <item>@string/dark_theme_title</item>
+        <item>@string/black_theme_title</item>
+    </string-array>
+
     <string name="next_video_title">Next video</string>
     <string name="show_next_and_similar_title">Show next and similar videos</string>
     <string name="url_not_supported_toast">URL not supported</string>
