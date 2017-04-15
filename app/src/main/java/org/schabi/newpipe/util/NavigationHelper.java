@@ -8,11 +8,35 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.fragments.OnItemSelectedListener;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
+import org.schabi.newpipe.player.AbstractPlayer;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NavigationHelper {
+
+    public static Intent getOpenPlayerIntent(Context context, Class targetClazz, StreamInfo info, int selectedStreamIndex) {
+        return new Intent(context, targetClazz)
+                .putExtra(AbstractPlayer.VIDEO_TITLE, info.title)
+                .putExtra(AbstractPlayer.VIDEO_URL, info.webpage_url)
+                .putExtra(AbstractPlayer.CHANNEL_NAME, info.uploader)
+                .putExtra(AbstractPlayer.INDEX_SEL_VIDEO_STREAM, selectedStreamIndex)
+                .putExtra(AbstractPlayer.VIDEO_STREAMS_LIST, Utils.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false))
+                .putExtra(AbstractPlayer.VIDEO_ONLY_AUDIO_STREAM, Utils.getHighestQualityAudio(info.audio_streams));
+    }
+
+    public static Intent getOpenPlayerIntent(Context context, Class targetClazz, AbstractPlayer instance) {
+        return new Intent(context, targetClazz)
+                .putExtra(AbstractPlayer.VIDEO_TITLE, instance.getVideoTitle())
+                .putExtra(AbstractPlayer.VIDEO_URL, instance.getVideoUrl())
+                .putExtra(AbstractPlayer.CHANNEL_NAME, instance.getChannelName())
+                .putExtra(AbstractPlayer.INDEX_SEL_VIDEO_STREAM, instance.getSelectedStreamIndex())
+                .putExtra(AbstractPlayer.VIDEO_STREAMS_LIST, instance.getVideoStreamsList())
+                .putExtra(AbstractPlayer.VIDEO_ONLY_AUDIO_STREAM, instance.getAudioStream())
+                .putExtra(AbstractPlayer.START_POSITION, ((int) instance.getPlayer().getCurrentPosition()));
+    }
+
 
     /*//////////////////////////////////////////////////////////////////////////
     // Through Interface (faster)

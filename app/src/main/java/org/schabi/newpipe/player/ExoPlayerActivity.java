@@ -8,7 +8,6 @@ import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.media.AudioManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.stream_info.VideoStream;
+import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -105,10 +106,9 @@ public class ExoPlayerActivity extends Activity {
         super.onResume();
         if (DEBUG) Log.d(TAG, "onResume() called");
         if (activityPaused) {
-            //playerImpl.getPlayer().setPlayWhenReady(true);
             playerImpl.getPlayPauseButton().setImageResource(R.drawable.ic_play_arrow_white);
             playerImpl.initPlayer();
-            playerImpl.playVideo(playerImpl.getSelectedStreamUri(), false);
+            playerImpl.playVideo(playerImpl.getSelectedVideoStream(), false);
             activityPaused = false;
         }
     }
@@ -238,8 +238,8 @@ public class ExoPlayerActivity extends Activity {
         }
 
         @Override
-        public void playVideo(Uri videoURI, boolean autoPlay) {
-            super.playVideo(videoURI, autoPlay);
+        public void playVideo(VideoStream videoStream, boolean autoPlay) {
+            super.playVideo(videoStream, autoPlay);
             playPauseButton.setImageResource(autoPlay ? R.drawable.ic_pause_white : R.drawable.ic_play_arrow_white);
         }
 
@@ -254,16 +254,10 @@ public class ExoPlayerActivity extends Activity {
                 return;
             }
 
-            Intent i = new Intent(ExoPlayerActivity.this, PopupVideoPlayer.class);
-            i.putExtra(AbstractPlayer.VIDEO_TITLE, getVideoTitle())
-                    .putExtra(AbstractPlayer.CHANNEL_NAME, getChannelName())
-                    .putExtra(AbstractPlayer.VIDEO_URL, getVideoUrl())
-                    .putExtra(AbstractPlayer.INDEX_SEL_VIDEO_STREAM, getSelectedIndexStream())
-                    .putExtra(AbstractPlayer.VIDEO_STREAMS_LIST, getVideoStreamsList())
-                    .putExtra(AbstractPlayer.START_POSITION, ((int) getPlayer().getCurrentPosition()));
-            context.startService(i);
+            if (playerImpl != null) playerImpl.destroy();
+            context.startService(NavigationHelper.getOpenPlayerIntent(context, PopupVideoPlayer.class, playerImpl));
+
             ((View) getControlAnimationView().getParent()).setVisibility(View.GONE);
-            if (playerImpl.isPlaying()) playerImpl.getPlayer().setPlayWhenReady(false);
             ExoPlayerActivity.this.finish();
         }
 
@@ -346,7 +340,7 @@ public class ExoPlayerActivity extends Activity {
         @Override
         public void onDismiss(PopupMenu menu) {
             super.onDismiss(menu);
-            if (isPlaying()) animateView(getControlsRoot(), false, 500, 0, true);
+            if (isPlaying()) animateView(getControlsRoot(), false, 500, 0);
         }
 
         @Override

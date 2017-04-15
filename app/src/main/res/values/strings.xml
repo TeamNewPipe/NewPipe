@@ -38,6 +38,9 @@
     <string name="autoplay_by_calling_app_title">Autoplay when called from another app</string>
     <string name="autoplay_by_calling_app_summary">Automatically play a video when NewPipe is called from another app.</string>
     <string name="default_resolution_title">Default resolution</string>
+    <string name="default_popup_resolution_title">Default popup resolution</string>
+    <string name="show_higher_resolutions_title">Show higher resolutions</string>
+    <string name="show_higher_resolutions_summary">Only some devices support playing 2k/4k videos</string>
     <string name="play_with_kodi_title">Play with Kodi</string>
     <string name="kore_not_found">Kore app not found. Install Kore?</string>
     <string name="fdroid_kore_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
@@ -65,6 +68,12 @@
 
     <string-array name="download_options_no_video">
         <item>Audio</item>
+    </string-array>
+
+    <string-array name="theme_description_list">
+        <item>@string/light_theme_title</item>
+        <item>@string/dark_theme_title</item>
+        <item>@string/black_theme_title</item>
     </string-array>
 
     <string name="next_video_title">Next video</string>

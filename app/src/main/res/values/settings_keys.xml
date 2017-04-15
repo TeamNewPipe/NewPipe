@@ -16,14 +16,24 @@
     <string name="default_resolution_key" translatable="false">default_resolution_preference</string>
     <string name="default_resolution_value" translatable="false">360p</string>
     <string-array name="resolution_list">
+        <item>Best resolution</item>
+        <item>1080p60</item>
+        <item>1080p</item>
+        <item>720p60</item>
         <item>720p</item>
+        <item>480p</item>
         <item>360p</item>
         <item>240p</item>
         <item>144p</item>
     </string-array>
 
-    <string name="preferred_video_format_key" translatable="false">preferrfed_video_format</string>
-    <string name="preferred_video_format_default" translatable="false">WebM</string>
+    <string name="default_popup_resolution_key" translatable="false">default_popup_resolution_key</string>
+    <string name="default_popup_resolution_value" translatable="false">480p</string>
+
+    <string name="show_higher_resolutions_key" translatable="false">show_higher_resolutions_key</string>
+
+    <string name="preferred_video_format_key" translatable="false">preferred_video_format</string>
+    <string name="preferred_video_format_default" translatable="false">MPEG-4</string>
     <string-array name="video_format_list">
         <item>WebM</item>
         <item>MPEG-4</item>
@@ -33,12 +43,7 @@
     <string name="show_play_with_kodi_key" translatable="false">show_play_with_kodi</string>
 
     <string name="theme_key" translatable="false">theme</string>
-    <string name="default_theme_value" translatable="false">@string/light_theme_title</string>
-    <string-array name="theme_description_list">
-        <item>@string/light_theme_title</item>
-        <item>@string/dark_theme_title</item>
-        <item>@string/black_theme_title</item>
-    </string-array>
+    <string name="default_theme_value" translatable="false">@string/dark_theme_title</string>
     <string-array name="theme_list">
         <item>@string/light_theme_title</item>
         <item>@string/dark_theme_title</item>
