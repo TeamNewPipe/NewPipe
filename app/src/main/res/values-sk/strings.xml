@@ -193,4 +193,7 @@ otvorenie okna na popredí</string>
     <string name="use_old_player_title">Použiť starší prehrávač</string>
     <string name="use_old_player_summary">Pôvodná zostava v Mediaframework.</string>
     <string name="subscriber_plural">odberatelia</string>
+    <string name="default_popup_resolution_title">Predvolená veľkosť okna</string>
+    <string name="show_higher_resolutions_title">Zobraziť vyššie rozlíšenie</string>
+    <string name="show_higher_resolutions_summary">Len niektoré zariadenia podporujú videá 2k/4k</string>
     </resources>
