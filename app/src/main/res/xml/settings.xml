@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/settings_activity_title"
-    android:key="general_preferences">
+                  xmlns:tools="http://schemas.android.com/tools"
+                  android:title="@string/settings_activity_title"
+                  android:key="general_preferences">
 
     <PreferenceCategory
         android:key="@string/settings_category_video_audio"
@@ -26,11 +27,25 @@
             android:defaultValue="@string/default_resolution_value"/>
 
         <ListPreference
+            android:key="@string/default_popup_resolution_key"
+            android:title="@string/default_popup_resolution_title"
+            android:entries="@array/resolution_list"
+            android:entryValues="@array/resolution_list"
+            android:defaultValue="@string/default_popup_resolution_value"/>
+
+        <CheckBoxPreference
+            android:key="@string/show_higher_resolutions_key"
+            android:title="@string/show_higher_resolutions_title"
+            android:summary="@string/show_higher_resolutions_summary"
+            android:defaultValue="false"/>
+
+        <ListPreference
             android:key="@string/preferred_video_format_key"
             android:title="@string/preferred_video_format_title"
             android:entries="@array/video_format_list"
             android:entryValues="@array/video_format_list"
-            android:defaultValue="@string/preferred_video_format_default"/>
+            android:defaultValue="@string/preferred_video_format_default"
+            tools:summary="MPEG-4"/>
 
         <ListPreference
             android:key="@string/default_audio_format_key"

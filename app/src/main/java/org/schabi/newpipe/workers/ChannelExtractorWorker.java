@@ -33,6 +33,11 @@ public class ChannelExtractorWorker extends ExtractorWorker {
     public interface OnChannelInfoReceive {
         void onReceive(ChannelInfo info);
         void onError(int messageId);
+        /**
+         * Called when an unrecoverable error has occurred.
+         * <p> This is a good place to finish the caller. </p>
+         */
+        void onUnrecoverableError(Exception exception);
     }
 
     /**
@@ -74,9 +79,11 @@ public class ChannelExtractorWorker extends ExtractorWorker {
 
 
     @Override
-    protected void handleException(Exception exception, int serviceId, String url) {
+    protected void handleException(final Exception exception, int serviceId, String url) {
+        if (callback == null || getHandler() == null || isInterrupted()) return;
+
         if (exception instanceof IOException) {
-            if (callback != null) getHandler().post(new Runnable() {
+            getHandler().post(new Runnable() {
                 @Override
                 public void run() {
                     callback.onError(R.string.network_error);
@@ -84,10 +91,20 @@ public class ChannelExtractorWorker extends ExtractorWorker {
             });
         } else if (exception instanceof ParsingException || exception instanceof ExtractionException) {
             ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL, getServiceName(), url, R.string.parsing_error));
-            finishIfActivity();
+            getHandler().post(new Runnable() {
+                @Override
+                public void run() {
+                    callback.onUnrecoverableError(exception);
+                }
+            });
         } else {
             ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL, getServiceName(), url, R.string.general_error));
-            finishIfActivity();
+            getHandler().post(new Runnable() {
+                @Override
+                public void run() {
+                    callback.onUnrecoverableError(exception);
+                }
+            });
         }
     }
 

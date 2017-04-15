@@ -413,4 +413,9 @@ public class ChannelFragment extends Fragment implements ChannelExtractorWorker.
     public void onError(int messageId) {
         Toast.makeText(activity, messageId, Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public void onUnrecoverableError(Exception exception) {
+        activity.finish();
+    }
 }

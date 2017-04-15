@@ -12,7 +12,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
@@ -36,18 +35,16 @@ import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.Utils;
-
-import java.io.IOException;
-import java.util.ArrayList;
+import org.schabi.newpipe.workers.StreamExtractorWorker;
 
 /**
  * Service Popup Player implementing AbstractPlayer
@@ -85,6 +82,7 @@ public class PopupVideoPlayer extends Service {
     private DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder().cacheInMemory(true).build();
 
     private AbstractPlayerImpl playerImpl;
+    private StreamExtractorWorker currentExtractorWorker;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service LifeCycle
@@ -110,8 +108,8 @@ public class PopupVideoPlayer extends Service {
         if (imageLoader != null) imageLoader.clearMemoryCache();
         if (intent.getStringExtra(Constants.KEY_URL) != null) {
             playerImpl.setStartedFromNewPipe(false);
-            Thread fetcher = new Thread(new FetcherRunnable(intent));
-            fetcher.start();
+            currentExtractorWorker = new StreamExtractorWorker(this, 0, intent.getStringExtra(Constants.KEY_URL), new FetcherRunnable(this));
+            currentExtractorWorker.start();
         } else {
             playerImpl.setStartedFromNewPipe(true);
             playerImpl.handleIntent(intent);
@@ -135,6 +133,10 @@ public class PopupVideoPlayer extends Service {
         if (imageLoader != null) imageLoader.clearMemoryCache();
         if (notificationManager != null) notificationManager.cancel(NOTIFICATION_ID);
         if (broadcastReceiver != null) unregisterReceiver(broadcastReceiver);
+        if (currentExtractorWorker != null) {
+            currentExtractorWorker.cancel();
+            currentExtractorWorker = null;
+        }
     }
 
     @Override
@@ -306,8 +308,8 @@ public class PopupVideoPlayer extends Service {
         }
 
         @Override
-        public void playVideo(Uri videoURI, boolean autoPlay) {
-            super.playVideo(videoURI, autoPlay);
+        public void playVideo(VideoStream videoStream, boolean autoPlay) {
+            super.playVideo(videoStream, autoPlay);
 
             windowLayoutParams.width = (int) getMinimumVideoWidth(currentPopupHeight);
             windowManager.updateViewLayout(getRootView(), windowLayoutParams);
@@ -321,18 +323,8 @@ public class PopupVideoPlayer extends Service {
         public void onFullScreenButtonClicked() {
             if (DEBUG) Log.d(TAG, "onFullScreenButtonClicked() called");
             Intent intent;
-            //if (getSharedPreferences().getBoolean(getResources().getString(R.string.use_exoplayer_key), false)) {
-            // TODO: Remove this check when ExoPlayer is the default
-            // For now just disable the non-exoplayer player
-            //noinspection ConstantConditions,ConstantIfStatement
-            if (true) {
-                intent = new Intent(PopupVideoPlayer.this, ExoPlayerActivity.class)
-                        .putExtra(AbstractPlayer.VIDEO_TITLE, getVideoTitle())
-                        .putExtra(AbstractPlayer.VIDEO_URL, getVideoUrl())
-                        .putExtra(AbstractPlayer.CHANNEL_NAME, getChannelName())
-                        .putExtra(AbstractPlayer.INDEX_SEL_VIDEO_STREAM, getSelectedIndexStream())
-                        .putExtra(AbstractPlayer.VIDEO_STREAMS_LIST, getVideoStreamsList())
-                        .putExtra(AbstractPlayer.START_POSITION, ((int) getPlayer().getCurrentPosition()));
+            if (!getSharedPreferences().getBoolean(getResources().getString(R.string.use_old_player_key), false)) {
+                intent = NavigationHelper.getOpenPlayerIntent(context, ExoPlayerActivity.class, playerImpl);
                 if (!playerImpl.isStartedFromNewPipe()) intent.putExtra(AbstractPlayer.STARTED_FROM_NEWPIPE, false);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             } else {
@@ -343,8 +335,9 @@ public class PopupVideoPlayer extends Service {
                         .putExtra(PlayVideoActivity.START_POSITION, Math.round(getPlayer().getCurrentPosition() / 1000f));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             }
-            context.startActivity(intent);
             stopSelf();
+            if (playerImpl != null) playerImpl.destroy();
+            context.startActivity(intent);
         }
 
         @Override
@@ -510,84 +503,123 @@ public class PopupVideoPlayer extends Service {
     /**
      * Fetcher used if open by a link out of NewPipe
      */
-    private class FetcherRunnable implements Runnable {
-        private final Intent intent;
+    private class FetcherRunnable implements StreamExtractorWorker.OnStreamInfoReceivedListener {
+        private final Context context;
         private final Handler mainHandler;
 
-        FetcherRunnable(Intent intent) {
-            this.intent = intent;
+        FetcherRunnable(Context context) {
             this.mainHandler = new Handler(PopupVideoPlayer.this.getMainLooper());
+            this.context = context;
         }
 
         @Override
-        public void run() {
-            StreamExtractor streamExtractor;
-            try {
-                StreamingService service = NewPipe.getService(0);
-                if (service == null) return;
-                streamExtractor = service.getExtractorInstance(intent.getStringExtra(Constants.KEY_URL));
-                StreamInfo info = StreamInfo.getVideoInfo(streamExtractor);
-                playerImpl.setVideoStreamsList(info.video_streams instanceof ArrayList
-                        ? (ArrayList<VideoStream>) info.video_streams
-                        : new ArrayList<>(info.video_streams));
+        public void onReceive(StreamInfo info) {
+            playerImpl.setVideoTitle(info.title);
+            playerImpl.setVideoUrl(info.webpage_url);
+            playerImpl.setChannelName(info.uploader);
 
-                int defaultResolution = Utils.getPreferredResolution(PopupVideoPlayer.this, info.video_streams);
-                playerImpl.setSelectedIndexStream(defaultResolution);
+            playerImpl.setVideoStreamsList(Utils.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false));
+            playerImpl.setAudioStream(Utils.getHighestQualityAudio(info.audio_streams));
 
-                if (DEBUG) {
-                    Log.d(TAG, "FetcherRunnable.StreamExtractor: chosen = "
-                            + MediaFormat.getNameById(info.video_streams.get(defaultResolution).format) + " "
-                            + info.video_streams.get(defaultResolution).resolution + " > "
-                            + info.video_streams.get(defaultResolution).url);
-                }
+            int defaultResolution = Utils.getPopupDefaultResolution(context, playerImpl.getVideoStreamsList());
+            playerImpl.setSelectedIndexStream(defaultResolution);
 
-                playerImpl.setVideoUrl(info.webpage_url);
-                playerImpl.setVideoTitle(info.title);
-                playerImpl.setChannelName(info.uploader);
-                if (info.start_position > 0) playerImpl.setVideoStartPos(info.start_position * 1000);
-                else playerImpl.setVideoStartPos(-1);
-
-                mainHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        playerImpl.playVideo(playerImpl.getSelectedStreamUri(), true);
-                    }
-                });
-
-                imageLoader.resume();
-                imageLoader.loadImage(info.thumbnail_url, displayImageOptions, new SimpleImageLoadingListener() {
-                    @Override
-                    public void onLoadingComplete(String imageUri, View view, final Bitmap loadedImage) {
-                        mainHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                playerImpl.setVideoThumbnail(loadedImage);
-                                if (loadedImage != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
-                                updateNotification(-1);
-                                ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = loadedImage;
-                            }
-                        });
-                    }
-                });
-            } catch (IOException ie) {
-                if (DEBUG) ie.printStackTrace();
-                mainHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(PopupVideoPlayer.this, R.string.network_error, Toast.LENGTH_SHORT).show();
-                    }
-                });
-                stopSelf();
-            } catch (Exception e) {
-                if (DEBUG) e.printStackTrace();
-                mainHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(PopupVideoPlayer.this, R.string.content_not_available, Toast.LENGTH_SHORT).show();
-                    }
-                });
-                stopSelf();
+            if (DEBUG) {
+                Log.d(TAG, "FetcherRunnable.StreamExtractor: chosen = "
+                        + MediaFormat.getNameById(info.video_streams.get(defaultResolution).format) + " "
+                        + info.video_streams.get(defaultResolution).resolution + " > "
+                        + info.video_streams.get(defaultResolution).url);
             }
+
+            if (info.start_position > 0) playerImpl.setVideoStartPos(info.start_position * 1000);
+            else playerImpl.setVideoStartPos(-1);
+
+            mainHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    playerImpl.playVideo(playerImpl.getSelectedVideoStream(), true);
+                }
+            });
+
+            imageLoader.resume();
+            imageLoader.loadImage(info.thumbnail_url, displayImageOptions, new SimpleImageLoadingListener() {
+                @Override
+                public void onLoadingComplete(String imageUri, View view, final Bitmap loadedImage) {
+                    mainHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            playerImpl.setVideoThumbnail(loadedImage);
+                            if (loadedImage != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
+                            updateNotification(-1);
+                            ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = loadedImage;
+                        }
+                    });
+                }
+            });
+        }
+
+        @Override
+        public void onError(final int messageId) {
+            mainHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(context, messageId, Toast.LENGTH_LONG).show();
+                }
+            });
+            stopSelf();
+        }
+
+        @Override
+        public void onReCaptchaException() {
+            mainHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(context, R.string.recaptcha_request_toast, Toast.LENGTH_LONG).show();
+                }
+            });
+            // Starting ReCaptcha Challenge Activity
+            Intent intent = new Intent(context, ReCaptchaActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+            stopSelf();
+        }
+
+        @Override
+        public void onBlockedByGemaError() {
+            mainHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(context, R.string.blocked_by_gema, Toast.LENGTH_LONG).show();
+                }
+            });
+            stopSelf();
+        }
+
+        @Override
+        public void onContentErrorWithMessage(final int messageId) {
+            mainHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(context, messageId, Toast.LENGTH_LONG).show();
+                }
+            });
+            stopSelf();
+        }
+
+        @Override
+        public void onContentError() {
+            mainHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(context, R.string.content_not_available, Toast.LENGTH_LONG).show();
+                }
+            });
+            stopSelf();
+        }
+
+        @Override
+        public void onUnrecoverableError(Exception exception) {
+            stopSelf();
         }
     }
 
