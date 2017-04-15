@@ -269,6 +269,13 @@
                             tools:ignore="RtlHardcoded"
                             tools:text="Uploader"/>
 
+                        <Button
+                            android:id="@+id/subscribe_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/subscribe"
+                            android:layout_alignParentRight="true"/>
+
                     </RelativeLayout>
 
                     <View
