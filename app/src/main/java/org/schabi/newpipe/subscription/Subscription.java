@@ -1,4 +1,4 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.subscription;
 
 import android.provider.BaseColumns;
 

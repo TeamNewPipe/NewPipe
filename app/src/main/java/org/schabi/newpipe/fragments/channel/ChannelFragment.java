@@ -13,7 +13,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,14 +29,14 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.Subscription;
-import org.schabi.newpipe.SubscriptionDBHelper;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.fragments.OnItemSelectedListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.subscription.Subscription;
+import org.schabi.newpipe.subscription.SubscriptionDBHelper;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.workers.ChannelExtractorWorker;
@@ -318,11 +317,6 @@ public class ChannelFragment extends Fragment implements ChannelExtractorWorker.
         headerSubscriberButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-////                Previous code / redirect to youtube app.
-//                Log.d(TAG, currentChannelInfo.feed_url);
-//                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(currentChannelInfo.feed_url));
-//                startActivity(i);
-
                 SubscriptionDBHelper subDB = new SubscriptionDBHelper(getActivity(), null);
                 SQLiteDatabase db = subDB.getWritableDatabase();
 
@@ -336,7 +330,6 @@ public class ChannelFragment extends Fragment implements ChannelExtractorWorker.
                 values.put(Subscription.Entry.COLUMN_AVATAR, avatar);
 
                 db.insert(Subscription.Entry.TABLE_NAME, null, values);
-
             }
         });
     }
