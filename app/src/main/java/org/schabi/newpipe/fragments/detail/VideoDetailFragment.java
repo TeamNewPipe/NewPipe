@@ -3,10 +3,12 @@ package org.schabi.newpipe.fragments.detail;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.net.Uri;
@@ -48,6 +50,8 @@ import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.Localization;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
+import org.schabi.newpipe.Subscription;
+import org.schabi.newpipe.SubscriptionDBHelper;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.MediaFormat;
@@ -134,6 +138,7 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
     private Button uploaderButton;
     private TextView uploaderTextView;
     private ImageView uploaderThumb;
+    private Button uploaderSubscribe;
 
     private TextView thumbsUpTextView;
     private ImageView thumbsUpImageView;
@@ -233,6 +238,7 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
         uploaderButton = null;
         uploaderTextView = null;
         uploaderThumb = null;
+        uploaderSubscribe = null;
 
         thumbsUpTextView = null;
         thumbsUpImageView = null;
@@ -341,6 +347,7 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
         uploaderButton = (Button) rootView.findViewById(R.id.detail_uploader_button);
         uploaderTextView = (TextView) rootView.findViewById(R.id.detail_uploader_text_view);
         uploaderThumb = (ImageView) rootView.findViewById(R.id.detail_uploader_thumbnail_view);
+        uploaderSubscribe = (Button) rootView.findViewById(R.id.subscribe_button);
 
         relatedStreamRootLayout = (RelativeLayout) rootView.findViewById(R.id.detail_related_streams_root_layout);
         nextStreamTitle = (TextView) rootView.findViewById(R.id.detail_next_stream_title);
@@ -388,6 +395,25 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
             @Override
             public void onClick(View view) {
                 NavigationHelper.openChannel(onItemSelectedListener, currentStreamInfo.service_id, currentStreamInfo.channel_url, currentStreamInfo.uploader);
+            }
+        });
+
+        uploaderSubscribe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SubscriptionDBHelper subDB = new SubscriptionDBHelper(getActivity(), null);
+                SQLiteDatabase db = subDB.getWritableDatabase();
+
+                String name = currentStreamInfo.uploader;
+                String link = currentStreamInfo.channel_url;
+                String avatar = currentStreamInfo.uploader_thumbnail_url;
+
+                ContentValues values = new ContentValues();
+                values.put(Subscription.Entry.COLUMN_NAME, name);
+                values.put(Subscription.Entry.COLUMN_NAME, link);
+                values.put(Subscription.Entry.COLUMN_AVATAR, avatar);
+
+                db.insert(Subscription.Entry.TABLE_NAME, null, values);
             }
         });
     }
