@@ -195,4 +195,8 @@ odpiranje v pojavnem načinu</string>
     <string name="use_old_player_title">Uporabi star predvajalnik</string>
     <string name="use_old_player_summary">Zastarela različica v predvajalniku Mediaframework.</string>
     <string name="preferred_video_format_title">Prednostni zapis video datoteke</string>
+    <string name="default_popup_resolution_title">Privzeta ločljivost pojavnega okna</string>
+    <string name="show_higher_resolutions_title">Pokaži večje ločljivosti</string>
+    <string name="show_higher_resolutions_summary">Predvajanje posnetkov 2k/4k omogočajo le nekatere naprave.</string>
+    <string name="subscriber_plural">naročniki</string>
     </resources>
