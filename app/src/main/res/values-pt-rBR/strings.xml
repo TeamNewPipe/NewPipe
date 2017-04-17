@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="action_settings">Configurações</string>
     <string name="audio">Áudio</string>
     <string name="youtube_signature_decryption_error">Não foi possível decriptar a assinatura de URL do vídeo.</string>
@@ -16,7 +16,7 @@
     <string name="black_theme_title">Preto</string>
     <string name="blocked_by_gema">Bloqueado pelo GEMA.</string>
     <string name="cancel">Cancelar</string>
-    <string name="checksum">Checksum</string>
+    <string name="checksum">Verificação</string>
     <string name="choose_browser">Escolher navegador</string>
     <string name="content">Conteúdo</string>
     <string name="content_not_available">Conteúdo não disponível.</string>
@@ -102,9 +102,9 @@
     <string name="error_drm_not_supported">Conteúdo protegido não é suportado em versões de API anterior a 18</string>
     <string name="error_drm_unknown">Ocorreu um erro DRM desconhecido</string>
     <string name="error_drm_unsupported_scheme">Este dispositivo não suporta o método DRM necessário</string>
-    <string name="error_instantiating_decoder">"Não foi possível inicializar o decodificador  "<xliff:g xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" id="decoder_name"> 1%1$s</xliff:g> 2</string>
-    <string name="error_no_decoder">Este dispositivo não possui um decodificador para <xliff:g xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" id="mime_type">%1$s</xliff:g></string>
-    <string name="error_no_secure_decoder">Este dispositivo não possui um decodificador seguro para <xliff:g xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" id="mime_type"> 1%1$s</xliff:g> 2</string>
+    <string name="error_instantiating_decoder">"Não foi possível inicializar o decodificador  "<xliff:g id="decoder_name"> 1%1$s</xliff:g> 2</string>
+    <string name="error_no_decoder">Este dispositivo não possui um decodificador para <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_secure_decoder">Este dispositivo não possui um decodificador seguro para <xliff:g id="mime_type"> 1%1$s</xliff:g> 2</string>
     <string name="error_querying_decoders">Não foi possível consultar os decodificadores do dispositivo</string>
     <string name="info_requested_stream_lbl">Stream requisitado:</string>
     <string name="info_searched_lbl">Busca por:</string>
@@ -128,7 +128,7 @@
     <string name="play_btn_text">Reproduzir</string>
     <string name="play_with_kodi_title">Reproduzir com Kodi</string>
     <string name="search">Buscar</string>
-    <string name="search_page">Buscar página:</string>
+    <string name="search_page">"Buscar página: "</string>
     <string name="show_play_with_kodi_summary">Exibir opção para reprodizir víedeo pela central de mídia Kodi.</string>
     <string name="use_exoplayer_summary">Experimental</string>
     <string name="use_exoplayer_title">Usar ExoPlayer</string>
@@ -140,8 +140,8 @@
     <string name="show_play_with_kodi_title">Exibir opção \"Reproduzir com Kodi\"</string>
     <string name="title_activity_channel">Atividade do canal</string>
     <string name="msg_fetch_filename">Buscar nome do arquivo</string>
-    <string name="info_labels">O que:\nRequisição:\nIdioma do conteúdo:\nServiço:\nHora GMT:\nPacote:\nVersão:\nVersão SO:\nFaixa de IP:</string>
-    <string name="off">[off]</string>
+    <string name="info_labels">O que:\\nRequisição:\\nIdioma do conteúdo:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão SO:\\nFaixa de IP:</string>
+    <string name="off">[desligado]</string>
 
 <string name="open_in_popup_mode">Abrir em modo popup</string>
     <string name="default_popup_resolution_title">Resolução padrão de popup</string>
@@ -172,5 +172,7 @@
 Deseja reiniciar agora?</string>
     <string name="msg_popup_permission">Essa permissão é necessária para
 abrir em modo popup</string>
+
+    <string name="popup_mode_share_menu_title">Modo de popup NewPipe</string>
 
     </resources>
