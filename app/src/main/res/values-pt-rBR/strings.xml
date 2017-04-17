@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="action_settings">Configurações</string>
     <string name="audio">Áudio</string>
@@ -21,8 +21,8 @@
     <string name="content">Conteúdo</string>
     <string name="content_not_available">Conteúdo não disponível.</string>
     <string name="could_not_get_stream">Não foi possível carregar nenhum stream.</string>
-    <string name="could_not_load_image">Não foi possível carregar a imagem.</string>
-    <string name="could_not_load_thumbnails">Não foi possível carregar os thumbnails.</string>
+    <string name="could_not_load_image">Não foi possível carregar a imagem</string>
+    <string name="could_not_load_thumbnails">Não foi possível carregar todas as miniaturas</string>
     <string name="dark_theme_title">Escuro</string>
     <string name="default_audio_format_title">Formato de áudio padrão</string>
     <string name="default_resolution_title">Resolução padrão</string>
@@ -96,15 +96,15 @@
     <string name="download_path_audio_summary">Local para salvar áudios baixados</string>
     <string name="download_path_audio_title">Local de download de áudio</string>
     <string name="download_path_dialog_title">Informe o local para download de vídeos</string>
-    <string name="download_path_summary">Local para salvar vídeos baixados</string>
+    <string name="download_path_summary">Local para salvar vídeos baixados.</string>
     <string name="download_path_title">Local de download de vídeo</string>
     <string name="enable_background_audio">Reproduzir em segundo plano</string>
     <string name="error_drm_not_supported">Conteúdo protegido não é suportado em versões de API anterior a 18</string>
     <string name="error_drm_unknown">Ocorreu um erro DRM desconhecido</string>
     <string name="error_drm_unsupported_scheme">Este dispositivo não suporta o método DRM necessário</string>
-    <string name="error_instantiating_decoder">Não foi possível inicializar o decodificador %1$s</string>
-    <string name="error_no_decoder">Este dispositivo não possui um decodificador para %1$s</string>
-    <string name="error_no_secure_decoder">Este dispositivo não possui um decodificador seguro para %1$s</string>
+    <string name="error_instantiating_decoder">"Não foi possível inicializar o decodificador  "<xliff:g xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" id="decoder_name"> 1%1$s</xliff:g> 2</string>
+    <string name="error_no_decoder">Este dispositivo não possui um decodificador para <xliff:g xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_secure_decoder">Este dispositivo não possui um decodificador seguro para <xliff:g xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" id="mime_type"> 1%1$s</xliff:g> 2</string>
     <string name="error_querying_decoders">Não foi possível consultar os decodificadores do dispositivo</string>
     <string name="info_requested_stream_lbl">Stream requisitado:</string>
     <string name="info_searched_lbl">Busca por:</string>
@@ -122,7 +122,7 @@
     <string name="msg_url">URL de download</string>
     <string name="msg_url_malform">URL inválida ou internet indisponível</string>
     <string name="no_available_dir">Selecione um diretório de download.</string>
-    <string name="no_player_found">Nenhum player de stream encontrado. Instalar VLC?</string>
+    <string name="no_player_found">Nenhum player de stream encontrado. Deseja instalar o VLC?</string>
     <string name="parsing_error">Não foi possível interpretar o site.</string>
     <string name="play_audio">Áudio</string>
     <string name="play_btn_text">Reproduzir</string>
@@ -143,4 +143,34 @@
     <string name="info_labels">O que:\nRequisição:\nIdioma do conteúdo:\nServiço:\nHora GMT:\nPacote:\nVersão:\nVersão SO:\nFaixa de IP:</string>
     <string name="off">[off]</string>
 
-</resources>
+<string name="open_in_popup_mode">Abrir em modo popup</string>
+    <string name="default_popup_resolution_title">Resolução padrão de popup</string>
+    <string name="show_higher_resolutions_title">Mostrar resoluções maiores</string>
+    <string name="show_higher_resolutions_summary">Apenas alguns dispositivos suportam reprodução de vídeos em 2k/4k</string>
+    <string name="preferred_video_format_title">Formato de vídeo preferido</string>
+    <string name="popup_playing_toast">Reproduzindo em modo popup</string>
+    <string name="all">Tudo</string>
+    <string name="channel">Canal</string>
+    <string name="yes">Sim</string>
+    <string name="later">Depois</string>
+    <string name="disabled">Desabilitado</string>
+
+    <string name="use_old_player_title">Usar player antigo</string>
+    <string name="use_old_player_summary">Antigo Mediaframework player interno.</string>
+    <string name="videos">vídeos</string>
+    <string name="subscriber">inscrito</string>
+    <string name="subscriber_plural">inscritos</string>
+    <string name="subscribe">Inscrever-se</string>
+    <string name="views">visualizações</string>
+    <string name="short_thousand">K</string>
+    <string name="short_million">M</string>
+    <string name="short_billion">B</string>
+    <string name="restart_title">Reiniciar</string>
+
+    <string name="msg_restart">Você precisa reiniciar a aplicação para aplicar o tema.
+
+Deseja reiniciar agora?</string>
+    <string name="msg_popup_permission">Essa permissão é necessária para
+abrir em modo popup</string>
+
+    </resources>
