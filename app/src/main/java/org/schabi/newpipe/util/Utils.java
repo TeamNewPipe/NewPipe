@@ -136,13 +136,19 @@ public class Utils {
                 break;
         }
 
+        int highestQualityIndex = 0;
+
+        // Try to find a audio stream with the preferred format
+        for (int i = 0; i < audioStreams.size(); i++) if (audioStreams.get(i).format == preferredFormat) highestQualityIndex = i;
+
+        // Try to find a audio stream with the highest bitrate and preferred format
         for (int i = 0; i < audioStreams.size(); i++) {
-            if (audioStreams.get(i).format == preferredFormat) {
-                return i;
-            }
+            AudioStream audioStream = audioStreams.get(i);
+            if (audioStream.avgBitrate > audioStreams.get(highestQualityIndex).avgBitrate
+                    && audioStream.format == preferredFormat) highestQualityIndex = i;
         }
 
-        return 0;
+        return highestQualityIndex;
     }
 
     /**
@@ -191,14 +197,13 @@ public class Utils {
         }
         return getSortedStreamVideosList(preferredFormat, showHigherResolutions, videoStreams, videoOnlyStreams, ascendingOrder);
     }
-    //show_higher_resolutions_key
 
     /**
      * Join the two lists of video streams (video_only and normal videos), and sort them according with preferred format
      * chosen by the user
      *
      * @param preferredFormat       format to give preference
-     * @param showHigherResolutions
+     * @param showHigherResolutions show >1080p resolutions
      * @param videoStreams          normal videos list
      * @param videoOnlyStreams      video only stream list
      * @param ascendingOrder        true -> smallest to greatest | false -> greatest to smallest    @return the sorted list
