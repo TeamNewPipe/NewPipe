@@ -198,4 +198,8 @@
 
     <string name="use_old_player_title">Користи стари плејер</string>
     <string name="preferred_video_format_title">Пожељни формат видеа</string>
+    <string name="default_popup_resolution_title">Резолуција искачућег прозора</string>
+    <string name="show_higher_resolutions_title">Прикажи више резолуције</string>
+    <string name="show_higher_resolutions_summary">Само неки уређаји подржавају пуштање 2k/4k видеа</string>
+    <string name="subscriber_plural">пријављених</string>
     </resources>
