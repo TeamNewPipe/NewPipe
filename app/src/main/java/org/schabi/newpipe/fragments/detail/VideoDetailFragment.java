@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
@@ -43,7 +42,6 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
-import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.Localization;
 import org.schabi.newpipe.R;
@@ -57,9 +55,7 @@ import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
 import org.schabi.newpipe.fragments.OnItemSelectedListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
-import org.schabi.newpipe.player.AbstractPlayer;
-import org.schabi.newpipe.player.BackgroundPlayer;
-import org.schabi.newpipe.player.ExoPlayerActivity;
+import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PlayVideoActivity;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -111,7 +107,6 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
     private static final ImageLoader imageLoader = ImageLoader.getInstance();
     private static final DisplayImageOptions displayImageOptions =
             new DisplayImageOptions.Builder().displayer(new FadeInBitmapDisplayer(400)).cacheInMemory(false).build();
-    private Bitmap streamThumbnail = null;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -409,25 +404,6 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
         if (info.thumbnail_url != null && !info.thumbnail_url.isEmpty()) {
             imageLoader.displayImage(info.thumbnail_url, thumbnailImageView,
                     displayImageOptions, new SimpleImageLoadingListener() {
-
-                        @Override
-                        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                            streamThumbnail = loadedImage;
-
-                            if (streamThumbnail != null) {
-                                // TODO: Change the thumbnail implementation
-
-                                // When the thumbnail is not loaded yet, it not passes to the service in time
-                                // so, I can notify the service through a broadcast, but the problem is
-                                // when I click in another video, another thumbnail will be load, and will
-                                // notify again, so I send the videoUrl and compare with the service's url
-                                ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = streamThumbnail;
-                                Intent intent = new Intent(AbstractPlayer.ACTION_UPDATE_THUMB);
-                                intent.putExtra(AbstractPlayer.VIDEO_URL, currentStreamInfo.webpage_url);
-                                activity.sendBroadcast(intent);
-                            }
-                        }
-
                         @Override
                         public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
                             ErrorActivity.reportError(activity,
@@ -529,11 +505,9 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
                     Toast.makeText(activity, R.string.msg_popup_permission, Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (streamThumbnail != null) ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = streamThumbnail;
 
                 Toast.makeText(activity, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
-                Intent mIntent = NavigationHelper.getOpenPlayerIntent(activity, PopupVideoPlayer.class, info, selectedStreamId);
-                if (info.start_position > 0) mIntent.putExtra(AbstractPlayer.START_POSITION, info.start_position * 1000);
+                Intent mIntent = NavigationHelper.getOpenVideoPlayerIntent(activity, PopupVideoPlayer.class, info, selectedStreamId);
                 activity.startService(mIntent);
             }
         });
@@ -624,24 +598,10 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
                     boolean useExternalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
                             .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
                     Intent intent;
-                    AudioStream audioStream =
-                            info.audio_streams.get(Utils.getPreferredAudioFormat(activity, info.audio_streams));
-                    if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 18) {
-                        //internal music player: explicit intent
-                        if (!BackgroundPlayer.isRunning && streamThumbnail != null) {
-                            ActivityCommunicator.getCommunicator()
-                                    .backgroundPlayerThumbnail = streamThumbnail;
-                            intent = new Intent(activity, BackgroundPlayer.class);
-
-                            intent.setAction(Intent.ACTION_VIEW);
-                            intent.setDataAndType(Uri.parse(audioStream.url),
-                                    MediaFormat.getMimeById(audioStream.format));
-                            intent.putExtra(BackgroundPlayer.TITLE, info.title);
-                            intent.putExtra(BackgroundPlayer.WEB_URL, info.webpage_url);
-                            intent.putExtra(BackgroundPlayer.SERVICE_ID, serviceId);
-                            intent.putExtra(BackgroundPlayer.CHANNEL_NAME, info.uploader);
-                            activity.startService(intent);
-                        }
+                    AudioStream audioStream = info.audio_streams.get(Utils.getPreferredAudioFormat(activity, info.audio_streams));
+                    if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 16) {
+                        activity.startService(NavigationHelper.getOpenBackgroundPlayerIntent(activity, info, audioStream));
+                        Toast.makeText(activity, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
                     } else {
                         intent = new Intent();
                         try {
@@ -829,9 +789,7 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
                     || (Build.VERSION.SDK_INT < 16);
             if (!useOldPlayer) {
                 // ExoPlayer
-                if (streamThumbnail != null) ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail = streamThumbnail;
-                mIntent = NavigationHelper.getOpenPlayerIntent(activity, ExoPlayerActivity.class, info, actionBarHandler.getSelectedVideoStream());
-                if (info.start_position > 0) mIntent.putExtra(AbstractPlayer.START_POSITION, info.start_position * 1000);
+                mIntent = NavigationHelper.getOpenVideoPlayerIntent(activity, MainVideoPlayer.class, info, actionBarHandler.getSelectedVideoStream());
             } else {
                 // Internal Player
                 mIntent = new Intent(activity, PlayVideoActivity.class)

@@ -40,7 +40,7 @@
             android:label="@string/background_player_name" />
 
         <activity
-            android:name=".player.ExoPlayerActivity"
+            android:name=".player.MainVideoPlayer"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:launchMode="singleTask"

@@ -1,10 +1,8 @@
 package org.schabi.newpipe.player;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.media.AudioManager;
@@ -23,22 +21,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.stream_info.VideoStream;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 /**
- * Activity Player implementing AbstractPlayer
+ * Activity Player implementing VideoPlayer
  *
  * @author mauriciocolli
  */
-public class ExoPlayerActivity extends Activity {
-    private static final String TAG = ".ExoPlayerActivity";
-    private static final boolean DEBUG = AbstractPlayer.DEBUG;
+public class MainVideoPlayer extends Activity {
+    private static final String TAG = ".MainVideoPlayer";
+    private static final boolean DEBUG = BasePlayer.DEBUG;
 
     private AudioManager audioManager;
-    private BroadcastReceiver broadcastReceiver;
     private GestureDetector gestureDetector;
 
     private final Runnable hideUiRunnable = new Runnable() {
@@ -49,7 +45,7 @@ public class ExoPlayerActivity extends Activity {
     };
     private boolean activityPaused;
 
-    private AbstractPlayerImpl playerImpl;
+    private VideoPlayerImpl playerImpl;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity LifeCycle
@@ -72,9 +68,8 @@ public class ExoPlayerActivity extends Activity {
 
         showSystemUi();
         setContentView(R.layout.activity_exo_player);
-        playerImpl = new AbstractPlayerImpl();
+        playerImpl = new VideoPlayerImpl();
         playerImpl.setup(findViewById(android.R.id.content));
-        initReceiver();
         playerImpl.handleIntent(getIntent());
     }
 
@@ -97,8 +92,10 @@ public class ExoPlayerActivity extends Activity {
         super.onStop();
         if (DEBUG) Log.d(TAG, "onStop() called");
         activityPaused = true;
-        playerImpl.destroy();
-        playerImpl.setVideoStartPos((int) playerImpl.getPlayer().getCurrentPosition());
+        if (playerImpl.getPlayer() != null) {
+            playerImpl.setVideoStartPos((int) playerImpl.getPlayer().getCurrentPosition());
+            playerImpl.destroyPlayer();
+        }
     }
 
     @Override
@@ -106,9 +103,9 @@ public class ExoPlayerActivity extends Activity {
         super.onResume();
         if (DEBUG) Log.d(TAG, "onResume() called");
         if (activityPaused) {
-            playerImpl.getPlayPauseButton().setImageResource(R.drawable.ic_play_arrow_white);
             playerImpl.initPlayer();
-            playerImpl.playVideo(playerImpl.getSelectedVideoStream(), false);
+            playerImpl.getPlayPauseButton().setImageResource(R.drawable.ic_play_arrow_white);
+            playerImpl.play(false);
             activityPaused = false;
         }
     }
@@ -118,29 +115,6 @@ public class ExoPlayerActivity extends Activity {
         super.onDestroy();
         if (DEBUG) Log.d(TAG, "onDestroy() called");
         if (playerImpl != null) playerImpl.destroy();
-        if (broadcastReceiver != null) unregisterReceiver(broadcastReceiver);
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Init
-    //////////////////////////////////////////////////////////////////////////*/
-
-    private void initReceiver() {
-        if (DEBUG) Log.d(TAG, "initReceiver() called");
-        broadcastReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (DEBUG) Log.d(TAG, "onReceive() called with: context = [" + context + "], intent = [" + intent + "]");
-                switch (intent.getAction()) {
-                    case AbstractPlayer.ACTION_UPDATE_THUMB:
-                        playerImpl.onUpdateThumbnail(intent);
-                        break;
-                }
-            }
-        };
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(AbstractPlayer.ACTION_UPDATE_THUMB);
-        registerReceiver(broadcastReceiver, intentFilter);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -182,7 +156,7 @@ public class ExoPlayerActivity extends Activity {
     ///////////////////////////////////////////////////////////////////////////
 
     @SuppressWarnings({"unused", "WeakerAccess"})
-    private class AbstractPlayerImpl extends AbstractPlayer {
+    private class VideoPlayerImpl extends VideoPlayer {
         private TextView titleTextView;
         private TextView channelTextView;
         private TextView volumeTextView;
@@ -192,8 +166,8 @@ public class ExoPlayerActivity extends Activity {
         private ImageButton screenRotationButton;
         private ImageButton playPauseButton;
 
-        AbstractPlayerImpl() {
-            super("AbstractPlayerImpl" + ExoPlayerActivity.TAG, ExoPlayerActivity.this);
+        VideoPlayerImpl() {
+            super("VideoPlayerImpl" + MainVideoPlayer.TAG, MainVideoPlayer.this);
         }
 
         @Override
@@ -238,8 +212,8 @@ public class ExoPlayerActivity extends Activity {
         }
 
         @Override
-        public void playVideo(VideoStream videoStream, boolean autoPlay) {
-            super.playVideo(videoStream, autoPlay);
+        public void playUrl(String url, String format, boolean autoPlay) {
+            super.playUrl(url, format, autoPlay);
             playPauseButton.setImageResource(autoPlay ? R.drawable.ic_pause_white : R.drawable.ic_play_arrow_white);
         }
 
@@ -249,16 +223,16 @@ public class ExoPlayerActivity extends Activity {
             if (playerImpl.getPlayer() == null) return;
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                    && !PermissionHelper.checkSystemAlertWindowPermission(ExoPlayerActivity.this)) {
-                Toast.makeText(ExoPlayerActivity.this, R.string.msg_popup_permission, Toast.LENGTH_LONG).show();
+                    && !PermissionHelper.checkSystemAlertWindowPermission(MainVideoPlayer.this)) {
+                Toast.makeText(MainVideoPlayer.this, R.string.msg_popup_permission, Toast.LENGTH_LONG).show();
                 return;
             }
 
-            if (playerImpl != null) playerImpl.destroy();
-            context.startService(NavigationHelper.getOpenPlayerIntent(context, PopupVideoPlayer.class, playerImpl));
+            context.startService(NavigationHelper.getOpenVideoPlayerIntent(context, PopupVideoPlayer.class, playerImpl));
+            if (playerImpl != null) playerImpl.destroyPlayer();
 
             ((View) getControlAnimationView().getParent()).setVisibility(View.GONE);
-            ExoPlayerActivity.this.finish();
+            MainVideoPlayer.this.finish();
         }
 
         @Override
@@ -308,28 +282,6 @@ public class ExoPlayerActivity extends Activity {
         }
 
         @Override
-        public void onVideoPlayPause() {
-            super.onVideoPlayPause();
-            if (getPlayer().getPlayWhenReady()) {
-                animateView(playPauseButton, false, 80, 0, new Runnable() {
-                    @Override
-                    public void run() {
-                        playPauseButton.setImageResource(R.drawable.ic_pause_white);
-                        animateView(playPauseButton, true, 200, 0);
-                    }
-                });
-            } else {
-                animateView(playPauseButton, false, 80, 0, new Runnable() {
-                    @Override
-                    public void run() {
-                        playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
-                        animateView(playPauseButton, true, 200, 0);
-                    }
-                });
-            }
-        }
-
-        @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             super.onStopTrackingTouch(seekBar);
             if (playerImpl.wasPlaying()) {
@@ -344,7 +296,8 @@ public class ExoPlayerActivity extends Activity {
         }
 
         @Override
-        public void onError() {
+        public void onError(Exception exception) {
+            exception.printStackTrace();
             Toast.makeText(context, "Failed to play this video", Toast.LENGTH_SHORT).show();
             finish();
         }
@@ -367,9 +320,36 @@ public class ExoPlayerActivity extends Activity {
         }
 
         @Override
+        public void onPlaying() {
+            super.onPlaying();
+            //playPauseButton.setImageResource(R.drawable.ic_pause_white);
+            //animateView(playPauseButton, true, 500, 0);
+
+            animateView(playPauseButton, false, 80, 0, new Runnable() {
+                @Override
+                public void run() {
+                    playPauseButton.setImageResource(R.drawable.ic_pause_white);
+                    animateView(playPauseButton, true, 200, 0);
+                }
+            });
+
+            showSystemUi();
+        }
+
+        @Override
         public void onPaused() {
             super.onPaused();
-            animateView(playPauseButton, true, 100, 0);
+            //playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
+            //animateView(playPauseButton, true, 100, 0);
+
+            animateView(playPauseButton, false, 80, 0, new Runnable() {
+                @Override
+                public void run() {
+                    playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
+                    animateView(playPauseButton, true, 200, 0);
+                }
+            });
+
             showSystemUi();
         }
 
@@ -379,12 +359,6 @@ public class ExoPlayerActivity extends Activity {
             animateView(playPauseButton, false, 100, 0);
         }
 
-        @Override
-        public void onPlaying() {
-            super.onPlaying();
-            animateView(playPauseButton, true, 500, 0);
-            showSystemUi();
-        }
 
         @Override
         public void onCompleted() {
@@ -467,14 +441,14 @@ public class ExoPlayerActivity extends Activity {
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onSingleTapConfirmed() called with: e = [" + e + "]");
-            if (playerImpl.getCurrentState() != StateInterface.STATE_PLAYING) return true;
+            if (playerImpl.getCurrentState() != BasePlayer.STATE_PLAYING) return true;
 
             if (playerImpl.isControlsVisible()) playerImpl.animateView(playerImpl.getControlsRoot(), false, 150, 0, true);
             else {
                 playerImpl.animateView(playerImpl.getControlsRoot(), true, 500, 0, new Runnable() {
                     @Override
                     public void run() {
-                        playerImpl.animateView(playerImpl.getControlsRoot(), false, 300, AbstractPlayer.DEFAULT_CONTROLS_HIDE_TIME, true);
+                        playerImpl.animateView(playerImpl.getControlsRoot(), false, 300, VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME, true);
                     }
                 });
                 showSystemUi();
@@ -482,25 +456,25 @@ public class ExoPlayerActivity extends Activity {
             return true;
         }
 
-        private final float stepsBrightness = 21, stepBrightness = (1f / stepsBrightness), minBrightness = .01f;
+        private final float stepsBrightness = 15, stepBrightness = (1f / stepsBrightness), minBrightness = .01f;
         private float currentBrightness = .5f;
 
         private int currentVolume, maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        private final float stepsVolume = 15, stepVolume = (float) Math.ceil(maxVolume / stepsVolume), minVolume = 0;
 
         private final String brightnessUnicode = new String(Character.toChars(0x2600));
-        //        private final String volumeUnicode = new String(Character.toChars(0x1F50A));
         private final String volumeUnicode = new String(Character.toChars(0x1F508));
 
-
         private final int MOVEMENT_THRESHOLD = 40;
-        private final int eventsThreshold = 3;
+        private final int eventsThreshold = 8;
         private boolean triggered = false;
         private int eventsNum;
 
+        // TODO: Improve video gesture controls
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             //noinspection PointlessBooleanExpression
-            if (DEBUG && false) Log.d(TAG, "ExoPlayerActivity.onScroll = " +
+            if (DEBUG && true) Log.d(TAG, "MainVideoPlayer.onScroll = " +
                     ", e1.getRaw = [" + e1.getRawX() + ", " + e1.getRawY() + "]" +
                     ", e2.getRaw = [" + e2.getRawX() + ", " + e2.getRawY() + "]" +
                     ", distanceXy = [" + distanceX + ", " + distanceY + "]");
@@ -510,16 +484,17 @@ public class ExoPlayerActivity extends Activity {
                 return false;
             }
 
-            if (eventsNum++ % eventsThreshold != 0 || playerImpl.getCurrentState() == StateInterface.STATE_COMPLETED) return false;
+            if (eventsNum++ % eventsThreshold != 0 || playerImpl.getCurrentState() == BasePlayer.STATE_COMPLETED) return false;
             isMoving = true;
 //            boolean up = !((e2.getY() - e1.getY()) > 0) && distanceY > 0; // Android's origin point is on top
             boolean up = distanceY > 0;
 
 
             if (e1.getX() > playerImpl.getRootView().getWidth() / 2) {
-                currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) + (up ? 1 : -1);
+                double floor = Math.floor(up ? stepVolume : -stepVolume);
+                currentVolume = (int) (audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) + floor);
                 if (currentVolume >= maxVolume) currentVolume = maxVolume;
-                if (currentVolume <= 0) currentVolume = 0;
+                if (currentVolume <= minVolume) currentVolume = (int) minVolume;
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);
 
                 if (DEBUG) Log.d(TAG, "onScroll().volumeControl, currentVolume = " + currentVolume);
@@ -555,8 +530,8 @@ public class ExoPlayerActivity extends Activity {
             if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) playerImpl.animateView(playerImpl.getVolumeTextView(), false, 200, 200);
             if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) playerImpl.animateView(playerImpl.getBrightnessTextView(), false, 200, 200);
 
-            if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == StateInterface.STATE_PLAYING) {
-                playerImpl.animateView(playerImpl.getControlsRoot(), false, 300, AbstractPlayer.DEFAULT_CONTROLS_HIDE_TIME);
+            if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == BasePlayer.STATE_PLAYING) {
+                playerImpl.animateView(playerImpl.getControlsRoot(), false, 300, VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME);
             }
         }
 

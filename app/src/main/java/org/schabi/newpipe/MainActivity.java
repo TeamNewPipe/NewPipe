@@ -45,7 +45,7 @@ import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 public class MainActivity extends AppCompatActivity implements OnItemSelectedListener {
-    private static final String TAG = MainActivity.class.toString();
+    //private static final String TAG = "MainActivity";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity's LifeCycle
@@ -57,12 +57,23 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        if (savedInstanceState == null) initFragments();
+
+        if (getSupportFragmentManager() != null && getSupportFragmentManager().getBackStackEntryCount() == 0) {
+            initFragments();
+        }
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
+        if (intent != null) {
+            // Return if launched from a launcher (e.g. Nova Launcher, Pixel Launcher ...)
+            // to not destroy the already created backstack
+            String action = intent.getAction();
+            if ((action != null && action.equals(Intent.ACTION_MAIN)) && intent.hasCategory(Intent.CATEGORY_LAUNCHER)) return;
+        }
+
         super.onNewIntent(intent);
+        setIntent(intent);
         handleIntent(intent);
     }
 
