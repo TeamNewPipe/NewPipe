@@ -196,4 +196,7 @@ Möchten Sie jetzt neu starten?</string>
 Öffnen im Popup-Modus erforderlich</string>
 
     <string name="use_old_player_summary">Mediaframework Player der vorherigen Version.</string>
+    <string name="default_popup_resolution_title">Standardauflösung des Popups</string>
+    <string name="show_higher_resolutions_title">Zeige höhere Auflösungen an</string>
+    <string name="show_higher_resolutions_summary">Nur einige Geräte unterstützen das Abspielen von 2k-/4k-Videos</string>
     </resources>
