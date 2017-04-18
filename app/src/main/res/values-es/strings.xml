@@ -192,4 +192,7 @@ abrir en modo popup</string>
     <string name="disabled">Desactivado</string>
 
     <string name="subscriber_plural">Suscriptores</string>
+    <string name="show_higher_resolutions_title">Mostrar resoluciones más altas</string>
+    <string name="show_higher_resolutions_summary">Solo algunos dispositivos soportan reproducción de vídeos de 2k/4k</string>
+    <string name="default_popup_resolution_title">Resolución predeterminada del popup</string>
     </resources>
