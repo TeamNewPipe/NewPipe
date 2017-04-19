@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/notificationContent"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:clickable="true"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:background="@color/background_notification_color">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="64dp"
+             xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/notificationContent"
         android:layout_width="match_parent"
         android:layout_height="64dp"
+        android:background="@color/background_notification_color"
+        android:clickable="true"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -18,65 +19,102 @@
             android:id="@+id/notificationCover"
             android:layout_width="64dp"
             android:layout_height="64dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/dummy_thumbnail"
-            android:scaleType="centerCrop"/>
+            tools:ignore="ContentDescription"/>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            tools:ignore="RtlHardcoded">
 
             <TextView
                 android:id="@+id/notificationSongName"
                 style="@android:style/TextAppearance.StatusBar.EventContent.Title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:ellipsize="end"
                 android:layout_height="wrap_content"
-                android:ellipsize="marquee"
-                android:singleLine="true"
-                android:text="title" />
+                android:maxLines="1"
+                android:textSize="14sp"
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta."/>
 
             <TextView
                 android:id="@+id/notificationArtist"
+                android:layout_width="match_parent"
                 style="@android:style/TextAppearance.StatusBar.EventContent"
-                android:layout_width="wrap_content"
+                android:ellipsize="end"
                 android:layout_height="wrap_content"
-                android:ellipsize="marquee"
-                android:singleLine="true"
-                android:text="artist" />
+                android:maxLines="1"
+                android:textSize="12sp"
+                tools:text="Duis posuere arcu condimentum lobortis mattis."/>
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/notificationRewind"
+            android:id="@+id/notificationRepeat"
             android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="5dp"
-            android:background="#00ffffff"
+            android:layout_height="match_parent"
+            android:background="#00000000"
             android:clickable="true"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_action_av_fast_rewind" />
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_repeat_white"
+            tools:ignore="ContentDescription"/>
+
+        <ImageButton
+            android:id="@+id/notificationFRewind"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:background="#00000000"
+            android:clickable="true"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_action_av_fast_rewind"
+            tools:ignore="ContentDescription"/>
 
         <ImageButton
             android:id="@+id/notificationPlayPause"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="5dp"
-            android:background="#00ffffff"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:background="#00000000"
             android:clickable="true"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_pause_white" />
+            android:src="@drawable/ic_pause_white"
+            tools:ignore="ContentDescription"/>
+
+        <ImageButton
+            android:id="@+id/notificationFForward"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:background="#00000000"
+            android:clickable="true"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_action_av_fast_forward"
+            tools:ignore="ContentDescription"/>
 
         <ImageButton
             android:id="@+id/notificationStop"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_margin="5dp"
-            android:background="#00ffffff"
+            android:layout_marginLeft="5dp"
+            android:background="#00000000"
             android:clickable="true"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_close_white" />
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_close_white"
+            tools:ignore="ContentDescription,RtlHardcoded"/>
     </LinearLayout>
 
-
-</RelativeLayout>
+    <ProgressBar
+        android:id="@+id/notificationProgressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="64dp"
+        android:progressDrawable="@drawable/custom_progress_bar"
+        tools:ignore="RtlHardcoded"
+        tools:progress="52"/>
+</FrameLayout>

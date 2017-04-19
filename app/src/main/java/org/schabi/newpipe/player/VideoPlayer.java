@@ -7,16 +7,12 @@ import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,84 +25,42 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.DefaultLoadControl;
-import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
-import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.Timeline;
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
-import com.google.android.exoplayer2.source.TrackGroupArray;
-import com.google.android.exoplayer2.source.dash.DashMediaSource;
-import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource;
-import com.google.android.exoplayer2.source.hls.HlsMediaSource;
-import com.google.android.exoplayer2.source.smoothstreaming.DefaultSsChunkSource;
-import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
-import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.upstream.cache.CacheDataSource;
-import com.google.android.exoplayer2.upstream.cache.CacheDataSourceFactory;
-import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor;
-import com.google.android.exoplayer2.upstream.cache.SimpleCache;
-import com.google.android.exoplayer2.util.Util;
 
-import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Formatter;
 import java.util.List;
-import java.util.Locale;
 import java.util.Vector;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Common properties of the players
+ * Base for <b>video</b> players
  *
  * @author mauriciocolli
  */
-@SuppressWarnings({"unused", "WeakerAccess"})
-public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBarChangeListener, View.OnClickListener, ExoPlayer.EventListener, PopupMenu.OnMenuItemClickListener, PopupMenu.OnDismissListener, SimpleExoPlayer.VideoListener {
-    public static final boolean DEBUG = false;
+@SuppressWarnings({"WeakerAccess", "unused"})
+public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.VideoListener, SeekBar.OnSeekBarChangeListener, View.OnClickListener, ExoPlayer.EventListener, PopupMenu.OnMenuItemClickListener, PopupMenu.OnDismissListener {
+    public static final boolean DEBUG = BasePlayer.DEBUG;
     public final String TAG;
-
-    protected Context context;
-    private SharedPreferences sharedPreferences;
-
-    private static int currentState = -1;
-    public static final String ACTION_UPDATE_THUMB = "org.schabi.newpipe.player.AbstractPlayer.UPDATE_THUMBNAIL";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Intent
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static final String VIDEO_URL = "video_url";
     public static final String VIDEO_STREAMS_LIST = "video_streams_list";
     public static final String VIDEO_ONLY_AUDIO_STREAM = "video_only_audio_stream";
-    public static final String VIDEO_TITLE = "video_title";
     public static final String INDEX_SEL_VIDEO_STREAM = "index_selected_video_stream";
-    public static final String START_POSITION = "start_position";
-    public static final String CHANNEL_NAME = "channel_name";
     public static final String STARTED_FROM_NEWPIPE = "started_from_newpipe";
 
-    private String videoUrl = "";
-    private int videoStartPos = -1;
-    private String videoTitle = "";
-    private Bitmap videoThumbnail;
-    private String channelName = "";
     private int selectedIndexStream;
     private ArrayList<VideoStream> videoStreamsList = new ArrayList<>();
     private AudioStream videoOnlyAudioStream;
@@ -115,36 +69,10 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
     // Player
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static final int FAST_FORWARD_REWIND_AMOUNT = 10000; // 10 Seconds
     public static final int DEFAULT_CONTROLS_HIDE_TIME = 3000;  // 3 Seconds
-    public static final String CACHE_FOLDER_NAME = "exoplayer";
 
     private boolean startedFromNewPipe = true;
-    private boolean isPrepared = false;
     private boolean wasPlaying = false;
-    private SimpleExoPlayer simpleExoPlayer;
-
-    @SuppressWarnings("FieldCanBeLocal")
-    private MediaSource videoSource;
-    private static CacheDataSourceFactory cacheDataSourceFactory;
-    private static final DefaultExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
-    private static final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
-
-    private AtomicBoolean isProgressLoopRunning = new AtomicBoolean();
-    private Handler progressLoop;
-    private Runnable progressUpdate;
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Repeat
-    //////////////////////////////////////////////////////////////////////////*/
-
-    private RepeatMode currentRepeatMode = RepeatMode.REPEAT_DISABLED;
-
-    public enum RepeatMode {
-        REPEAT_DISABLED,
-        REPEAT_ONE,
-        REPEAT_ALL
-    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -181,35 +109,15 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
 
     ///////////////////////////////////////////////////////////////////////////
 
-    public AbstractPlayer(String debugTag, Context context) {
+    public VideoPlayer(String debugTag, Context context) {
+        super(context);
         this.TAG = debugTag;
         this.context = context;
-        this.progressLoop = new Handler();
-        this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-
-        if (cacheDataSourceFactory == null) {
-            DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(context, Util.getUserAgent(context, context.getPackageName()), bandwidthMeter);
-            File cacheDir = new File(context.getExternalCacheDir(), CACHE_FOLDER_NAME);
-            if (!cacheDir.exists()) {
-                //noinspection ResultOfMethodCallIgnored
-                cacheDir.mkdir();
-            }
-
-            Log.d(TAG, "buildMediaSource: cacheDir = " + cacheDir.getAbsolutePath());
-            SimpleCache simpleCache = new SimpleCache(cacheDir, new LeastRecentlyUsedCacheEvictor(64 * 1024 * 1024L));
-            cacheDataSourceFactory = new CacheDataSourceFactory(simpleCache, dataSourceFactory, CacheDataSource.FLAG_BLOCK_ON_CACHE, 512 * 1024);
-        }
     }
 
     public void setup(View rootView) {
         initViews(rootView);
-        initListeners();
-        if (simpleExoPlayer == null) initPlayer();
-        else {
-            simpleExoPlayer.addListener(this);
-            simpleExoPlayer.setVideoListener(this);
-            simpleExoPlayer.setVideoSurfaceView(surfaceView);
-        }
+        setup();
     }
 
     public void initViews(View rootView) {
@@ -241,36 +149,24 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
 
     }
 
+    @Override
     public void initListeners() {
-        progressUpdate = new Runnable() {
-            @Override
-            public void run() {
-                //if(DEBUG) Log.d(TAG, "progressUpdate run() called");
-                onUpdateProgress((int) simpleExoPlayer.getCurrentPosition(), (int) simpleExoPlayer.getDuration(), simpleExoPlayer.getBufferedPercentage());
-                if (isProgressLoopRunning.get()) progressLoop.postDelayed(this, 100);
-            }
-        };
-
+        super.initListeners();
         playbackSeekBar.setOnSeekBarChangeListener(this);
         fullScreenButton.setOnClickListener(this);
         qualityTextView.setOnClickListener(this);
     }
 
+    @Override
     public void initPlayer() {
-        if (DEBUG) Log.d(TAG, "initPlayer() called with: context = [" + context + "]");
-
-        AdaptiveTrackSelection.Factory trackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
-        DefaultTrackSelector defaultTrackSelector = new DefaultTrackSelector(trackSelectionFactory);
-        DefaultLoadControl loadControl = new DefaultLoadControl();
-
-        simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(context, defaultTrackSelector, loadControl);
-        simpleExoPlayer.addListener(this);
-        simpleExoPlayer.setVideoListener(this);
+        super.initPlayer();
         simpleExoPlayer.setVideoSurfaceView(surfaceView);
+        simpleExoPlayer.setVideoListener(this);
     }
 
     @SuppressWarnings("unchecked")
     public void handleIntent(Intent intent) {
+        super.handleIntent(intent);
         if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
         if (intent == null) return;
 
@@ -284,79 +180,36 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         Serializable audioStream = intent.getSerializableExtra(VIDEO_ONLY_AUDIO_STREAM);
         if (audioStream != null) videoOnlyAudioStream = (AudioStream) audioStream;
 
-        videoUrl = intent.getStringExtra(VIDEO_URL);
-        videoTitle = intent.getStringExtra(VIDEO_TITLE);
-        videoStartPos = intent.getIntExtra(START_POSITION, -1);
-        channelName = intent.getStringExtra(CHANNEL_NAME);
         startedFromNewPipe = intent.getBooleanExtra(STARTED_FROM_NEWPIPE, true);
-        try {
-            videoThumbnail = ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        playVideo(getSelectedVideoStream(), true);
+        play(true);
     }
 
-    public void playVideo(VideoStream videoStream, boolean autoPlay) {
-        if (DEBUG) {
-            Log.d(TAG, "playVideo() called with: videoStream = [" + videoStream + ", " + videoStream.url + ", isVideoOnly = " + videoStream.isVideoOnly + "], autoPlay = [" + autoPlay + "]");
-        }
 
-        if (videoStream == null || videoStream.url == null || simpleExoPlayer == null) {
-            onError();
-            return;
-        }
+    public void play(boolean autoPlay) {
+        playUrl(getSelectedVideoStream().url, MediaFormat.getSuffixById(getSelectedVideoStream().format), autoPlay);
+    }
 
-        isPrepared = false;
+    @Override
+    public void playUrl(String url, String format, boolean autoPlay) {
+        if (DEBUG) Log.d(TAG, "play() called with: url = [" + url + "], autoPlay = [" + autoPlay + "]");
         qualityChanged = false;
+
+        if (url == null || simpleExoPlayer == null) {
+            RuntimeException runtimeException = new RuntimeException((url == null ? "Url " : "Player ") + " null");
+            onError(runtimeException);
+            throw runtimeException;
+        }
 
         qualityPopupMenu.getMenu().removeGroup(qualityPopupMenuGroupId);
         buildQualityMenu(qualityPopupMenu);
 
-        videoSource = buildMediaSource(videoStream, MediaFormat.getSuffixById(getSelectedVideoStream().format));
-
-        if (simpleExoPlayer.getPlaybackState() != ExoPlayer.STATE_IDLE) simpleExoPlayer.stop();
-        if (videoStartPos > 0) simpleExoPlayer.seekTo(videoStartPos);
-        simpleExoPlayer.prepare(videoSource);
-        simpleExoPlayer.setPlayWhenReady(autoPlay);
-        changeState(STATE_LOADING);
+        super.playUrl(url, format, autoPlay);
     }
 
-    public void destroy() {
-        if (DEBUG) Log.d(TAG, "destroy() called");
-        if (simpleExoPlayer != null) {
-            simpleExoPlayer.stop();
-            simpleExoPlayer.release();
-        }
-        if (progressLoop != null) stopProgressLoop();
-    }
-
-    private MediaSource buildMediaSource(VideoStream videoStream, String overrideExtension) {
-        if (DEBUG) {
-            Log.d(TAG, "buildMediaSource() called with: videoStream = [" + videoStream + ", " + videoStream.url + "isVideoOnly = " + videoStream.isVideoOnly + "], overrideExtension = [" + overrideExtension + "]");
-        }
-        Uri uri = Uri.parse(videoStream.url);
-        int type = TextUtils.isEmpty(overrideExtension) ? Util.inferContentType(uri) : Util.inferContentType("." + overrideExtension);
-        MediaSource mediaSource;
-        switch (type) {
-            case C.TYPE_SS:
-                mediaSource = new SsMediaSource(uri, cacheDataSourceFactory, new DefaultSsChunkSource.Factory(cacheDataSourceFactory), null, null);
-                break;
-            case C.TYPE_DASH:
-                mediaSource = new DashMediaSource(uri, cacheDataSourceFactory, new DefaultDashChunkSource.Factory(cacheDataSourceFactory), null, null);
-                break;
-            case C.TYPE_HLS:
-                mediaSource = new HlsMediaSource(uri, cacheDataSourceFactory, null, null);
-                break;
-            case C.TYPE_OTHER:
-                mediaSource = new ExtractorMediaSource(uri, cacheDataSourceFactory, extractorsFactory, null, null);
-                break;
-            default: {
-                throw new IllegalStateException("Unsupported type: " + type);
-            }
-        }
-        if (!videoStream.isVideoOnly) return mediaSource;
+    @Override
+    public MediaSource buildMediaSource(String url, String overrideExtension) {
+        MediaSource mediaSource = super.buildMediaSource(url, overrideExtension);
+        if (!getSelectedVideoStream().isVideoOnly) return mediaSource;
 
         Uri audioUri = Uri.parse(videoOnlyAudioStream.url);
         return new MergingMediaSource(mediaSource, new ExtractorMediaSource(audioUri, cacheDataSourceFactory, extractorsFactory, null, null));
@@ -370,38 +223,11 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         qualityTextView.setText(getSelectedVideoStream().resolution);
         popupMenu.setOnMenuItemClickListener(this);
         popupMenu.setOnDismissListener(this);
-
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // States Implementation
     //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void changeState(int state) {
-        if (DEBUG) Log.d(TAG, "changeState() called with: state = [" + state + "]");
-        currentState = state;
-        switch (state) {
-            case STATE_LOADING:
-                onLoading();
-                break;
-            case STATE_PLAYING:
-                onPlaying();
-                break;
-            case STATE_BUFFERING:
-                onBuffering();
-                break;
-            case STATE_PAUSED:
-                onPaused();
-                break;
-            case STATE_PAUSED_SEEK:
-                onPausedSeek();
-                break;
-            case STATE_COMPLETED:
-                onCompleted();
-                break;
-        }
-    }
 
     @Override
     public void onLoading() {
@@ -463,7 +289,6 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
 
         if (isProgressLoopRunning.get()) stopProgressLoop();
 
-        if (videoThumbnail != null) endScreen.setImageBitmap(videoThumbnail);
         animateView(controlsRoot, true, 500, 0);
         animateView(endScreen, true, 800, 0);
         animateView(currentDisplaySeek, false, 200, 0);
@@ -481,72 +306,8 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
 
         if (currentRepeatMode == RepeatMode.REPEAT_ONE) {
             changeState(STATE_LOADING);
-            getPlayer().seekTo(0);
+            simpleExoPlayer.seekTo(0);
         }
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // ExoPlayer Listener
-    //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void onTimelineChanged(Timeline timeline, Object manifest) {
-
-    }
-
-    @Override
-    public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
-
-    }
-
-    @Override
-    public void onLoadingChanged(boolean isLoading) {
-        if (DEBUG) Log.d(TAG, "onLoadingChanged() called with: isLoading = [" + isLoading + "]");
-
-        if (!isLoading && getCurrentState() == STATE_PAUSED && isProgressLoopRunning.get()) stopProgressLoop();
-        else if (isLoading && !isProgressLoopRunning.get()) startProgressLoop();
-    }
-
-    @Override
-    public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-        if (DEBUG) Log.d(TAG, "onPlayerStateChanged() called with: playWhenReady = [" + playWhenReady + "], playbackState = [" + playbackState + "]");
-        if (getCurrentState() == STATE_PAUSED_SEEK) {
-            if (DEBUG) Log.d(TAG, "onPlayerStateChanged() currently on PausedSeek");
-            return;
-        }
-
-        switch (playbackState) {
-            case ExoPlayer.STATE_IDLE: // 1
-                isPrepared = false;
-                break;
-            case ExoPlayer.STATE_BUFFERING: // 2
-                if (isPrepared && getCurrentState() != STATE_LOADING) changeState(STATE_BUFFERING);
-                break;
-            case ExoPlayer.STATE_READY: //3
-                if (!isPrepared) {
-                    isPrepared = true;
-                    onPrepared(playWhenReady);
-                    break;
-                }
-                if (currentState == STATE_PAUSED_SEEK) break;
-                changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
-                break;
-            case ExoPlayer.STATE_ENDED: // 4
-                changeState(STATE_COMPLETED);
-                isPrepared = false;
-                break;
-        }
-    }
-
-    @Override
-    public void onPlayerError(ExoPlaybackException error) {
-        if (DEBUG) Log.d(TAG, "onPlayerError() called with: error = [" + error + "]");
-        onError();
-    }
-
-    @Override
-    public void onPositionDiscontinuity() {
-        if (DEBUG) Log.d(TAG, "onPositionDiscontinuity() called");
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -570,8 +331,7 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
     // General Player
     //////////////////////////////////////////////////////////////////////////*/
 
-    public abstract void onError();
-
+    @Override
     public void onPrepared(boolean playWhenReady) {
         if (DEBUG) Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");
 
@@ -584,11 +344,19 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         playbackSeekBar.setMax((int) simpleExoPlayer.getDuration());
         playbackEndTime.setText(getTimeString((int) simpleExoPlayer.getDuration()));
 
-        changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
+        super.onPrepared(playWhenReady);
     }
 
+    @Override
+    public void destroy() {
+        super.destroy();
+        if (endScreen != null) endScreen.setImageBitmap(null);
+    }
+
+    @Override
     public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
         if (!isPrepared) return;
+
         if (currentState != STATE_PAUSED) {
             if (currentState != STATE_PAUSED_SEEK) playbackSeekBar.setProgress(currentProgress);
             playbackCurrentTime.setText(getTimeString(currentProgress));
@@ -601,32 +369,32 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         }
     }
 
-    public void onUpdateThumbnail(Intent intent) {
-        if (DEBUG) Log.d(TAG, "onUpdateThumbnail() called with: intent = [" + intent + "]");
-        if (!intent.getStringExtra(VIDEO_URL).equals(videoUrl)) return;
-        videoThumbnail = ActivityCommunicator.getCommunicator().backgroundPlayerThumbnail;
+    @Override
+    public void onVideoPlayPauseRepeat() {
+        if (DEBUG) Log.d(TAG, "onVideoPlayPauseRepeat() called");
+        if (qualityChanged) {
+            setVideoStartPos(0);
+            play(true);
+        } else super.onVideoPlayPauseRepeat();
     }
 
-    public void onVideoPlayPause() {
-        if (DEBUG) Log.d(TAG, "onVideoPlayPause() called");
-        if (currentState == STATE_COMPLETED) {
-            changeState(STATE_LOADING);
-            if (qualityChanged) playVideo(getSelectedVideoStream(), true);
-            simpleExoPlayer.seekTo(0);
-            return;
-        }
-        simpleExoPlayer.setPlayWhenReady(!isPlaying());
+    @Override
+    public void onThumbnailReceived(Bitmap thumbnail) {
+        super.onThumbnailReceived(thumbnail);
+        if (thumbnail != null) endScreen.setImageBitmap(thumbnail);
     }
 
+    protected abstract void onFullScreenButtonClicked();
+
+    @Override
     public void onFastRewind() {
-        if (DEBUG) Log.d(TAG, "onFastRewind() called");
-        seekBy(-FAST_FORWARD_REWIND_AMOUNT);
+        super.onFastRewind();
         showAndAnimateControl(R.drawable.ic_action_av_fast_rewind, true);
     }
 
+    @Override
     public void onFastForward() {
-        if (DEBUG) Log.d(TAG, "onFastForward() called");
-        seekBy(FAST_FORWARD_REWIND_AMOUNT);
+        super.onFastForward();
         showAndAnimateControl(R.drawable.ic_action_av_fast_forward, true);
     }
 
@@ -651,10 +419,10 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
     public boolean onMenuItemClick(MenuItem menuItem) {
         if (DEBUG) Log.d(TAG, "onMenuItemClick() called with: menuItem = [" + menuItem + "], menuItem.getItemId = [" + menuItem.getItemId() + "]");
         if (selectedIndexStream == menuItem.getItemId()) return true;
-        setVideoStartPos((int) getPlayer().getCurrentPosition());
+        setVideoStartPos((int) simpleExoPlayer.getCurrentPosition());
 
         selectedIndexStream = menuItem.getItemId();
-        if (!(getCurrentState() == STATE_COMPLETED)) playVideo(getSelectedVideoStream(), wasPlaying);
+        if (!(getCurrentState() == STATE_COMPLETED)) play(wasPlaying);
         else qualityChanged = true;
 
         qualityTextView.setText(menuItem.getTitle());
@@ -671,8 +439,6 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         qualityTextView.setText(getSelectedVideoStream().resolution);
     }
 
-    public abstract void onFullScreenButtonClicked();
-
     public void onQualitySelectorClicked() {
         if (DEBUG) Log.d(TAG, "onQualitySelectorClicked() called");
         qualityPopupMenu.show();
@@ -682,18 +448,6 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         VideoStream videoStream = getSelectedVideoStream();
         qualityTextView.setText(MediaFormat.getNameById(videoStream.format) + " " + videoStream.resolution);
         wasPlaying = isPlaying();
-    }
-
-    public void onRepeatClicked() {
-        if (DEBUG) Log.d(TAG, "onRepeatClicked() called");
-        // TODO: implement repeat all when playlist is implemented
-
-        // Switch the modes between DISABLED and REPEAT_ONE, till playlist is implemented
-        setCurrentRepeatMode(getCurrentRepeatMode() == RepeatMode.REPEAT_DISABLED ?
-                RepeatMode.REPEAT_ONE :
-                RepeatMode.REPEAT_DISABLED);
-
-        if (DEBUG) Log.d(TAG, "onRepeatClicked() currentRepeatMode = " + getCurrentRepeatMode().name());
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -736,21 +490,6 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
-
-    private static final StringBuilder stringBuilder = new StringBuilder();
-    private static final Formatter formatter = new Formatter(stringBuilder, Locale.getDefault());
-
-    public String getTimeString(int milliSeconds) {
-        long seconds = (milliSeconds % 60000L) / 1000L;
-        long minutes = (milliSeconds % 3600000L) / 60000L;
-        long hours = (milliSeconds % 86400000L) / 3600000L;
-        long days = (milliSeconds % (86400000L * 7L)) / 86400000L;
-
-        stringBuilder.setLength(0);
-        return days > 0 ? formatter.format("%d:%02d:%02d:%02d", days, hours, minutes, seconds).toString()
-                : hours > 0 ? formatter.format("%d:%02d:%02d", hours, minutes, seconds).toString()
-                : formatter.format("%02d:%02d", minutes, seconds).toString();
-    }
 
     public boolean isControlsVisible() {
         return controlsRoot != null && controlsRoot.getVisibility() == View.VISIBLE;
@@ -908,61 +647,13 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         }
     }
 
-    private void seekBy(int milliSeconds) {
-        if (DEBUG) Log.d(TAG, "seekBy() called with: milliSeconds = [" + milliSeconds + "]");
-        if (simpleExoPlayer == null) return;
-        int progress = (int) (simpleExoPlayer.getCurrentPosition() + milliSeconds);
-        simpleExoPlayer.seekTo(progress);
-    }
-
-    public boolean isPlaying() {
-        return simpleExoPlayer.getPlaybackState() == ExoPlayer.STATE_READY && simpleExoPlayer.getPlayWhenReady();
-    }
-
     public boolean isQualityMenuVisible() {
         return isQualityPopupMenuVisible;
-    }
-
-    private void startProgressLoop() {
-        progressLoop.removeCallbacksAndMessages(null);
-        isProgressLoopRunning.set(true);
-        progressLoop.post(progressUpdate);
-    }
-
-    private void stopProgressLoop() {
-        isProgressLoopRunning.set(false);
-        progressLoop.removeCallbacksAndMessages(null);
-    }
-
-    public void tryDeleteCacheFiles(Context context) {
-        File cacheDir = new File(context.getExternalCacheDir(), CACHE_FOLDER_NAME);
-
-        if (cacheDir.exists()) {
-            try {
-                if (cacheDir.isDirectory()) {
-                    for (File file : cacheDir.listFiles()) {
-                        try {
-                            if (DEBUG) Log.d(TAG, "tryDeleteCacheFiles: " + file.getAbsolutePath() + " deleted = " + file.delete());
-                        } catch (Exception ignored) {
-                        }
-                    }
-                }
-            } catch (Exception ignored) {
-            }
-        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Getters and Setters
     //////////////////////////////////////////////////////////////////////////*/
-
-    public SimpleExoPlayer getPlayer() {
-        return simpleExoPlayer;
-    }
-
-    public SharedPreferences getSharedPreferences() {
-        return sharedPreferences;
-    }
 
     public AspectRatioFrameLayout getAspectRatioFrameLayout() {
         return aspectRatioFrameLayout;
@@ -972,20 +663,8 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
         return surfaceView;
     }
 
-    public RepeatMode getCurrentRepeatMode() {
-        return currentRepeatMode;
-    }
-
-    public void setCurrentRepeatMode(RepeatMode mode) {
-        currentRepeatMode = mode;
-    }
-
     public boolean wasPlaying() {
         return wasPlaying;
-    }
-
-    public int getCurrentState() {
-        return currentState;
     }
 
     public VideoStream getSelectedVideoStream() {
@@ -998,46 +677,6 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
 
     public int getQualityPopupMenuGroupId() {
         return qualityPopupMenuGroupId;
-    }
-
-    public String getVideoUrl() {
-        return videoUrl;
-    }
-
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl;
-    }
-
-    public int getVideoStartPos() {
-        return videoStartPos;
-    }
-
-    public void setVideoStartPos(int videoStartPos) {
-        this.videoStartPos = videoStartPos;
-    }
-
-    public String getVideoTitle() {
-        return videoTitle;
-    }
-
-    public void setVideoTitle(String videoTitle) {
-        this.videoTitle = videoTitle;
-    }
-
-    public Bitmap getVideoThumbnail() {
-        return videoThumbnail;
-    }
-
-    public void setVideoThumbnail(Bitmap videoThumbnail) {
-        this.videoThumbnail = videoThumbnail;
-    }
-
-    public String getChannelName() {
-        return channelName;
-    }
-
-    public void setChannelName(String channelName) {
-        this.channelName = channelName;
     }
 
     public int getSelectedStreamIndex() {
@@ -1135,4 +774,5 @@ public abstract class AbstractPlayer implements StateInterface, SeekBar.OnSeekBa
     public TextView getCurrentDisplaySeek() {
         return currentDisplaySeek;
     }
+
 }
