@@ -191,4 +191,7 @@ membuka di mode popup</string>
 
     <string name="preferred_video_format_title">Pilihan format video</string>
     <string name="subscriber_plural">subscriber</string>
+    <string name="default_popup_resolution_title">Resolusi popup bawaan</string>
+    <string name="show_higher_resolutions_title">Tampilkan resolusi yang lebih tinggi</string>
+    <string name="show_higher_resolutions_summary">Hanya perangkat tertentu yang mendukung pemutaran video 2k/4k</string>
     </resources>
