@@ -53,7 +53,7 @@
     <string name="settings_category_video_audio_title">Video ve ses</string>
     <string name="settings_category_appearance_title">Görünüm</string>
     <string name="settings_category_other_title">Diğer</string>
-    <string name="background_player_playing_toast">Arkaplanda çalışır durumda</string>
+    <string name="background_player_playing_toast">Arka planda çalıyor</string>
     <string name="play_btn_text">Oynat</string>
     <string name="content">İçerik</string>
     <string name="show_age_restricted_content_title">Yaş kısıtlanmış içeriği göster</string>
