@@ -3,7 +3,7 @@
     <string name="background_player_name">NewPipe Arkaplan Oynatıcısı</string>
     <string name="view_count_text">%1$s izlenme</string>
     <string name="upload_date_text">Yayınlanma: %1$s</string>
-    <string name="no_player_found">Stream oynatıcı bulunamadı. VLC kur?</string>
+    <string name="no_player_found">Yayın oynatıcı bulunamadı. VLC\'yi yüklemek ister misiniz?</string>
     <string name="install">Kur</string>
     <string name="cancel">İptal</string>
     <string name="open_in_browser">Tarayıcıda aç</string>
@@ -82,9 +82,9 @@
     <string name="error_snackbar_action">RAPOR</string>
     <string name="what_device_headline">Bilgi:</string>
     <string name="what_happened_headline">Ne oldu:</string>
-    <string name="info_labels"></string>
+    <string name="info_labels">Ne:\\nİstek:\\nİçerik Dili:\\nServis:\\nGMT Zamanı:\\nPaket:\\nSürüm:\\nOS sürümü:\\nGlob. IP aralığı:</string>
     <string name="info_searched_lbl">Aramak için:</string>
-    <string name="info_requested_stream_lbl"/>
+    <string name="info_requested_stream_lbl">İstenen yayın:</string>
     <string name="detail_thumbnail_view_description">Video Önizleme küçük resmi</string>
     <string name="detail_uploader_thumbnail_view_description">Gönderen\'ın userpic küçük resim</string>
     <string name="detail_likes_img_view_description">Beğeniler</string>
@@ -121,7 +121,7 @@
     <string name="pause">Duraklat</string>
     <string name="view">Görünüm</string>
     <string name="delete">Sil</string>
-    <string name="checksum"/>
+    <string name="checksum">Sağlama</string>
 
     <string name="add">Yeni görev</string>
     <string name="finish">Tamam</string>
@@ -138,12 +138,55 @@
     <string name="msg_url_malform">Hatalı biçimlendirilmiş URL veya Internet mevcut değil</string>
     <string name="msg_running">NewPipe İndiriyor</string>
     <string name="msg_running_detail">Ayrıntılar için dokunun</string>
-    <string name="msg_wait">Lütfen bekleyin...</string>
+    <string name="msg_wait">Lütfen bekleyin…</string>
     <string name="msg_copied">Panoya kopyalandı.</string>
     <string name="no_available_dir">Lütfen bir kullanılabilir indirme dizini seçin.</string>
 
-    <string name="title_activity_channel"/>
+    <string name="title_activity_channel">Kanal Etkinliği</string>
     <string name="action_settings">Ayarlar</string>
 
     <string name="could_not_setup_download_menu">İndirme menüsü kurulamıyor.</string>
+    <string name="open_in_popup_mode">Açılır pencere modunda aç</string>
+    <string name="popup_mode_share_menu_title">NewPipe Açılır pencere modu</string>
+
+    <string name="default_popup_resolution_title">Varsayılan açılır pencere çözünürlüğü</string>
+    <string name="show_higher_resolutions_title">Daha yüksek çözünürlükleri göster</string>
+    <string name="show_higher_resolutions_summary">Sadece bazı cihazlar 2k/4k video oynatmayı destekler</string>
+    <string name="preferred_video_format_title">Tercih edilen video biçimi</string>
+    <string name="black_theme_title">Siyah</string>
+
+    <string name="popup_playing_toast">Açılır pencere modunda oynatılıyor</string>
+    <string name="all">Tümü</string>
+    <string name="channel">Kanal</string>
+    <string name="yes">Evet</string>
+    <string name="later">Sonra</string>
+    <string name="disabled">Devre dışı</string>
+
+    <string name="your_comment">Yorumunuz (İngilizce):</string>
+    <string name="error_details_headline">Detaylar:</string>
+
+
+    <string name="list_thumbnail_view_description">Video önizleme görüntüsü</string>
+    <string name="use_old_player_title">Eski oynatıcıyı kullan</string>
+    <string name="use_old_player_summary">Mediaframework oynatıcısında eski yapı.</string>
+    <string name="videos">videolar</string>
+    <string name="subscriber">abone</string>
+    <string name="subscriber_plural">aboneler</string>
+    <string name="subscribe">Abone ol</string>
+    <string name="views">görüntüleme</string>
+    <string name="short_thousand">K</string>
+    <string name="short_million">M</string>
+    <string name="short_billion">B</string>
+    <string name="restart_title">Yeniden başlat</string>
+
+    <string name="msg_restart">Temayı uygulamak için uygulamayı yeniden başlatmanız gerekir.
+
+Şimdi yeniden başlatmak istiyor musunuz?</string>
+    <string name="msg_popup_permission">Bu izin açılır pencere modunda
+açmak için gerekli</string>
+
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">reCAPTCHA Formu</string>
+    <string name="recaptcha_request_toast">reCAPTCHA Formu istendi</string>
+
     </resources>
