@@ -127,7 +127,7 @@
     <string name="pause">Pauză</string>
     <string name="view">Vezi</string>
     <string name="delete">Șterge</string>
-    <string name="checksum">Checksum</string>
+    <string name="checksum">Suma de control</string>
 
     <string name="add">Misiune nouă</string>
     <string name="finish">Ok</string>
@@ -157,7 +157,7 @@ pentru a deschide în mod pop-up</string>
     <string name="msg_restart">Trebuie sa reporniți aplicația pentru a aplica tema.
 
 Doriți sa reporniți acum?</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptchaActivity">ReCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA noua</string>
     <string name="recaptcha_request_toast">reCAPTCHA noua ceruta</string>
 
