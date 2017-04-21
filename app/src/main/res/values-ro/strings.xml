@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="background_player_name">Player NewPipe de fundal</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="background_player_name">NewPipe Player în fundal</string>
     <string name="view_count_text">%1$s (de) vizionări</string>
     <string name="upload_date_text">Încărcat pe %1$s</string>
-    <string name="no_player_found">Niciun player pentru stream-uri găsit. Instalați VLC?</string>
+    <string name="no_player_found">Nici un player pentru stream-uri găsit. Instalați VLC?</string>
     <string name="install">Instalare</string>
     <string name="cancel">Anulare</string>
     <string name="open_in_browser">Deschidere în browser</string>
@@ -77,7 +77,7 @@
     <string name="use_tor_summary">Forțați descărcarea traficului prin Tor pentru intimitate crescută (transmiterea în flux a videoclipurilor nu este deocamdată suportată).</string>
 
     <string name="err_dir_create">Nu s-a putut crea directorul de descărcare \'%1$s\'</string>
-    <string name="main_bg_subtitle">Apăsați Căutare pentru a începe</string>
+    <string name="main_bg_subtitle">Apăsați căutare pentru a începe</string>
     <string name="autoplay_by_calling_app_title">Autoredă când este rulat din altă aplicație</string>
     <string name="autoplay_by_calling_app_summary">Redă un videoclip automat când NewPipe este rulat din altă aplicație.</string>
     <string name="duration_live">în direct</string>
@@ -135,7 +135,7 @@
 
 
     <string name="msg_url">Descarcă URL-ul</string>
-    <string name="msg_name">Numele fișierului</string>
+    <string name="msg_name">Nume fișier</string>
     <string name="msg_threads">Thread-uri</string>
     <string name="msg_fetch_filename">Ia numele fișierului</string>
     <string name="msg_error">Eroare</string>
@@ -144,8 +144,51 @@
     <string name="msg_url_malform">URL malformat sau Internet indisponibil</string>
     <string name="msg_running">NewPipe Descarcă</string>
     <string name="msg_running_detail">Apasă pentru detalii</string>
-    <string name="msg_wait">Vă rugăm așteptați...</string>
+    <string name="msg_wait">Vă rugăm așteptați…</string>
     <string name="msg_copied">Copiat în clipboard.</string>
     <string name="no_available_dir">Vă rugăm selectați un director de descărcare disponibil.</string>
+
+    <string name="open_in_popup_mode">Deschide in mod pop-up</string>
+    <string name="action_settings">Setări</string>
+    <string name="title_activity_channel">ActivitateCanal</string>
+    <string name="msg_popup_permission">Aceasta permisiune este necesara
+pentru a deschide în mod pop-up</string>
+
+    <string name="msg_restart">Trebuie sa reporniți aplicația pentru a aplica tema.
+
+Doriți sa reporniți acum?</string>
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">reCAPTCHA noua</string>
+    <string name="recaptcha_request_toast">reCAPTCHA noua ceruta</string>
+
+    <string name="popup_mode_share_menu_title">NewPipe mod Pop-up</string>
+
+    <string name="default_popup_resolution_title">Rezoluție inițială pop-up</string>
+    <string name="show_higher_resolutions_title">Arată rezoluție mai mare</string>
+    <string name="show_higher_resolutions_summary">Doar anumite dispozitive suportă afișare video în mod 2k/4k</string>
+    <string name="preferred_video_format_title">Format video preferat</string>
+    <string name="black_theme_title">Negru</string>
+
+    <string name="popup_playing_toast">Redare în mod pop-up</string>
+    <string name="all">Tot</string>
+    <string name="channel">Canal</string>
+    <string name="yes">Da</string>
+    <string name="later">Mai târziu</string>
+    <string name="disabled">Dezactivat</string>
+
+    <string name="could_not_load_image">Nu s-a putut încărca imaginea</string>
+    <string name="app_ui_crash">App/UI eroare</string>
+    <string name="info_labels">What:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:\\nGlob. IP clasa:</string>
+    <string name="use_old_player_title">Folosește player vechi</string>
+    <string name="use_old_player_summary">Versiune veche în Mediaframework player.</string>
+    <string name="videos">video-uri</string>
+    <string name="subscriber">abonat</string>
+    <string name="subscriber_plural">abonați</string>
+    <string name="subscribe">Abonare</string>
+    <string name="views">vizualizări</string>
+    <string name="short_thousand">K</string>
+    <string name="short_million">M</string>
+    <string name="short_billion">B</string>
+    <string name="restart_title">Repornire</string>
 
     </resources>
