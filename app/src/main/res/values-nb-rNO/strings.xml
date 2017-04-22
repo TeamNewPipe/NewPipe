@@ -21,8 +21,8 @@
     <string name="use_external_audio_player_title">Bruk ekstern lydavspiller</string>
 
     <string name="download_path_title">Videoens nedlastingssti</string>
-    <string name="download_path_summary">Katalog lagrede nedlastinger skal puttes i.</string>
-    <string name="download_path_dialog_title">Skriv inn nedlastingskatalog for videoer</string>
+    <string name="download_path_summary">Mappe lagrede nedlastinger skal puttes i.</string>
+    <string name="download_path_dialog_title">Skriv inn nedlastingssti for videoer</string>
 
     <string name="download_path_audio_title">Nedlastingssti for lyd</string>
     <string name="download_path_audio_summary">Sti å lagre nedlastet lyd i</string>
@@ -32,7 +32,7 @@
     <string name="play_with_kodi_title">Spill av med Kodi</string>
     <string name="kore_not_found">Kore-programmet ble ikke funnet. Installer Kore?</string>
     <string name="show_play_with_kodi_title">Vis \"Spill av med Kodi\"-valg</string>
-    <string name="show_play_with_kodi_summary">Vis valg for avspilling via Kodi mediasenter</string>
+    <string name="show_play_with_kodi_summary">Vis valg for avspilling via Kodi mediasenter.</string>
     <string name="play_audio">Lyd</string>
     <string name="default_audio_format_title">Forvalgt lydformat</string>
     <string name="webm_description">WebM — fritt format</string>
@@ -55,7 +55,7 @@
     <string name="network_error">Nettverksfeil</string>
 
     <string name="list_thumbnail_view_description">Video-forhåndsvisning i miniatyrbilde</string>
-    <string name="detail_thumbnail_view_description">Video-forhåndsvisningsminiatyrbilde</string>
+    <string name="detail_thumbnail_view_description">Miniatyrbilde for video-forhåndsvisning</string>
     <string name="detail_uploader_thumbnail_view_description">Opplasterens avatar</string>
     <string name="detail_likes_img_view_description">Nikk</string>
     <string name="detail_dislikes_img_view_description">Nesetrekk</string>
@@ -82,7 +82,7 @@
     <string name="could_not_get_stream">Kunne ikke finne noen strømmer.</string>
     <string name="sorry_string">Beklager, dette skal ikke skje.</string>
     <string name="error_report_button_text">Rapporter feil via e-post</string>
-    <string name="error_snackbar_message">Beklager, noen feil inntraff</string>
+    <string name="error_snackbar_message">Beklager, noen feiler inntraff.</string>
     <string name="error_snackbar_action">RAPPORTER</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Hva skjedde:</string>
@@ -96,7 +96,7 @@
     <string name="user_report">Brukerrapport</string>
 
     <string name="enable_background_audio">Spill av i bakgrunnen</string>
-    <string name="video">VIdeo</string>
+    <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="text">Tekst</string>
     <string name="logging">Loggføring</string>
@@ -141,7 +141,7 @@
     <string name="msg_running">NewPipe laster ned</string>
     <string name="msg_running_detail">Trykk for detaljer</string>
     <string name="msg_wait">Vent…</string>
-    <string name="msg_copied">Kopiert til utklippstavle</string>
+    <string name="msg_copied">Kopiert til utklippstavle.</string>
     <string name="action_settings">Innstillinger</string>
     <string name="info_labels">Hva:\\nForespørsel:\\nInnholdsspråk:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersjon:\\nOperativsystemsversjon:\\nGlobal IP-blokk:</string>
     <string name="start">Start</string>
@@ -187,7 +187,7 @@ Omstart nå?</string>
     <string name="msg_popup_permission">Denne tilgangen trengs for
 åpning i oppsprettsmodus</string>
 
-    <string name="recaptcha_request_toast">reCAPTCHA-utfordring forespurt</string>
+    <string name="recaptcha_request_toast">reCAPTCHA-oppgave forespurt</string>
 
     <string name="use_old_player_summary">Gammel utgave i Mediaframework-avspiller.</string>
     </resources>
