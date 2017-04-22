@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="background_player_name">NewPipe bakgrunnsavspiller</string>
     <string name="view_count_text">%1$s visninger</string>
-    <string name="upload_date_text">Opplastet den %1$s</string>
+    <string name="upload_date_text">Publisert den %1$s</string>
     <string name="no_player_found">Fant ingen videostrøm. Installer VLC?</string>
     <string name="install">Installer</string>
     <string name="cancel">Avbryt</string>
@@ -11,7 +11,7 @@
     <string name="download">Last ned</string>
     <string name="search">Søk</string>
     <string name="settings">Innstillinger</string>
-    <string name="did_you_mean">"Mente du: "</string>
+    <string name="did_you_mean">Mente du: %1$s?</string>
     <string name="search_page">"Søk på siden: "</string>
     <string name="share_dialog_title">Del med</string>
     <string name="choose_browser">Velg nettleser</string>
@@ -20,12 +20,12 @@
     <string name="use_external_video_player_title">Bruk ekstern videoavspiller</string>
     <string name="use_external_audio_player_title">Bruk ekstern lydavspiller</string>
 
-    <string name="download_path_title">Last ned videoens sti</string>
+    <string name="download_path_title">Videoens nedlastingssti</string>
     <string name="download_path_summary">Katalog lagrede nedlastinger skal puttes i.</string>
     <string name="download_path_dialog_title">Skriv inn nedlastingskatalog for videoer</string>
 
     <string name="download_path_audio_title">Nedlastingssti for lyd</string>
-    <string name="download_path_audio_summary">Sti å lagre nedlastet lyd i.</string>
+    <string name="download_path_audio_summary">Sti å lagre nedlastet lyd i</string>
     <string name="download_path_audio_dialog_title">Skriv inn nedlastingssti for lydfiler.</string>
 
     <string name="default_resolution_title">Forvalgt oppløsning</string>
@@ -60,7 +60,7 @@
     <string name="detail_likes_img_view_description">Nikk</string>
     <string name="detail_dislikes_img_view_description">Nesetrekk</string>
     <string name="use_tor_title">Bruk Tor</string>
-    <string name="use_tor_summary">Tving nedlasting av trafikk gjennom Tor for forbedret personvern (strømming av videoer støttes ikke enda)</string>
+    <string name="use_tor_summary">(Eksperimentelt) Tving nedlasting av trafikk gjennom Tor for forbedret personvern (strømming av videoer støttes ikke enda).</string>
 
     <string name="err_dir_create">Kan ikke opprette nedlastingsmappe \'%1$s\'</string>
     <string name="info_dir_created">Opprettet nedlastingsmappen \'%1$s\'</string>
@@ -154,4 +154,40 @@
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA-oppgave</string>
 
+    <string name="open_in_popup_mode">Åpne i oppsprettsmodus</string>
+    <string name="popup_mode_share_menu_title">NewPipe oppsprettsmodus</string>
+
+    <string name="default_popup_resolution_title">Forvalgt oppsprettsoppløsning</string>
+    <string name="show_higher_resolutions_title">Vis høyere oppløsninger</string>
+    <string name="show_higher_resolutions_summary">Det er bare noen enheter som støtter avspilling av 2k-/4k-videoer</string>
+    <string name="preferred_video_format_title">Forvalgt videoformat</string>
+    <string name="black_theme_title">Svart</string>
+
+    <string name="popup_playing_toast">Spiller av i oppsprettsmodus</string>
+    <string name="all">Alle</string>
+    <string name="channel">Kanal</string>
+    <string name="yes">Ja</string>
+    <string name="later">Senere</string>
+    <string name="disabled">Avskrudd</string>
+
+    <string name="use_old_player_title">Bruk gammel avspiller</string>
+    <string name="videos">videoer</string>
+    <string name="subscriber">abonnent</string>
+    <string name="subscriber_plural">abonnenter</string>
+    <string name="subscribe">Abonner</string>
+    <string name="views">visninger</string>
+    <string name="short_thousand">K</string>
+    <string name="short_million">M</string>
+    <string name="short_billion">Mrd.</string>
+    <string name="restart_title">Omstart</string>
+
+    <string name="msg_restart">Du må starte programmet på nytt for å ikle ny drakt.
+
+Omstart nå?</string>
+    <string name="msg_popup_permission">Denne tilgangen trengs for
+åpning i oppsprettsmodus</string>
+
+    <string name="recaptcha_request_toast">reCAPTCHA-utfordring forespurt</string>
+
+    <string name="use_old_player_summary">Gammel utgave i Mediaframework-avspiller.</string>
     </resources>
