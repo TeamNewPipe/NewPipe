@@ -1,115 +1,94 @@
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-	<android.support.v7.widget.Toolbar
-		android:id="@+id/toolbar"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:theme="@style/NewPipeActionbarTheme" />
+    <include
+        android:id="@+id/toolbar_layout"
+        layout="@layout/toolbar_layout"/>
 
-	<View
-		android:layout_width="match_parent"
-		android:layout_height="4dp"
-		android:background="@drawable/action_shadow"/>
+    <TextView
+        android:id="@+id/file_name_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar_layout"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/msg_name"/>
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginLeft="24dp"
-		android:layout_marginRight="24dp"
-		android:layout_marginTop="9dp"
-		android:layout_marginBottom="24dp"
-		android:gravity="center_vertical"
-		android:orientation="vertical">
+    <EditText
+        android:id="@+id/file_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/file_name_text_view"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:inputType="text"
+        android:maxLines="1"/>
 
-	</LinearLayout>
+    <RadioGroup
+        android:id="@+id/video_audio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/file_name"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="left"
+        android:orientation="horizontal"
+        tools:ignore="RtlHardcoded">
 
+        <RadioButton
+            android:id="@+id/video_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/video"/>
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginLeft="24dp"
-		android:layout_marginRight="24dp"
-		android:layout_marginBottom="24dp"
-		android:gravity="center_vertical"
-		android:orientation="vertical">
-		
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/msg_name"/>
+        <RadioButton
+            android:id="@+id/audio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/audio"/>
+    </RadioGroup>
 
-		<EditText
-			android:id="@+id/file_name"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:singleLine="true"/>
+    <TextView
+        android:id="@+id/threads_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/video_audio_group"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:text="@string/msg_threads"/>
 
-	</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/threads_text_view"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:paddingBottom="12dp"
+        android:orientation="horizontal">
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginLeft="24dp"
-		android:layout_marginRight="24dp"
-		android:layout_marginBottom="24dp"
-		android:gravity="left"
-		android:orientation="horizontal">
-		<RadioGroup
-			android:id="@+id/video_audio_group"
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-			android:orientation="horizontal">
-			<RadioButton android:id="@+id/video_button"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/video"
-				android:checked="true"/>
-			<RadioButton android:id="@+id/audio_button"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/audio" />
-		</RadioGroup>
-	</LinearLayout>
-	
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginLeft="24dp"
-		android:layout_marginRight="24dp"
-		android:layout_marginBottom="24dp"
-		android:gravity="center_vertical"
-		android:orientation="vertical">
-	
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/msg_threads"/>
-		
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center_vertical"
-			android:orientation="horizontal">
-		
-			<TextView
-				android:id="@+id/threads_count"
-				android:layout_width="20dp"
-				android:layout_height="wrap_content"
-				android:text="0"/>
-		
-			<SeekBar
-				android:id="@+id/threads"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:max="31"
-				android:progress="3"/>
-		
-		</LinearLayout>
-		
-	</LinearLayout>
-	
-</LinearLayout>
+        <TextView
+            android:id="@+id/threads_count"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="2dp"
+            tools:ignore="RtlHardcoded,RtlSymmetry"
+            tools:text="3"/>
+
+        <SeekBar
+            android:id="@+id/threads"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="31"
+            android:progress="3"/>
+    </LinearLayout>
+</RelativeLayout>

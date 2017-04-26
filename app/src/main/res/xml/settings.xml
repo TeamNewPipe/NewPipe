@@ -24,6 +24,7 @@
             android:title="@string/default_resolution_title"
             android:entries="@array/resolution_list"
             android:entryValues="@array/resolution_list"
+            android:summary="%s"
             android:defaultValue="@string/default_resolution_value"/>
 
         <ListPreference
@@ -31,6 +32,7 @@
             android:title="@string/default_popup_resolution_title"
             android:entries="@array/resolution_list"
             android:entryValues="@array/resolution_list"
+            android:summary="%s"
             android:defaultValue="@string/default_popup_resolution_value"/>
 
         <CheckBoxPreference
@@ -45,6 +47,7 @@
             android:entries="@array/video_format_list"
             android:entryValues="@array/video_format_list"
             android:defaultValue="@string/preferred_video_format_default"
+            android:summary="%s"
             tools:summary="MPEG-4"/>
 
         <ListPreference

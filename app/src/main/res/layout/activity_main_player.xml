@@ -236,7 +236,7 @@
 
 
     <RelativeLayout
-        android:id="@+id/loadingPanel"
+        android:id="@+id/loading_panel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/black"
