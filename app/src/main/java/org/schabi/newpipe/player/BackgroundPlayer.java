@@ -78,7 +78,7 @@ public class BackgroundPlayer extends Service {
         powerManager = ((PowerManager) getSystemService(POWER_SERVICE));
         wifiManager = ((WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE));
 
-        ThemeHelper.setTheme(this, false);
+        ThemeHelper.setTheme(this);
         basePlayerImpl = new BasePlayerImpl(this);
         basePlayerImpl.setup();
     }
