@@ -2,13 +2,15 @@ package org.schabi.newpipe.fragments.detail;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
@@ -19,27 +21,27 @@ import java.util.List;
 
 /**
  * Created by Christian Schabesberger on 18.08.15.
- *
+ * <p>
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
  * DetailsMenuHandler.java is part of NewPipe.
- *
+ * <p>
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * NewPipe is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 
 class ActionBarHandler {
-    private static final String TAG = ActionBarHandler.class.toString();
+    private static final String TAG = "ActionBarHandler";
 
     private AppCompatActivity activity;
     private int selectedVideoStream = -1;
@@ -52,11 +54,8 @@ class ActionBarHandler {
     // those are edited directly. Typically VideoDetailFragment will implement those callbacks.
     private OnActionListener onShareListener;
     private OnActionListener onOpenInBrowserListener;
-    private OnActionListener onOpenInPopupListener;
     private OnActionListener onDownloadListener;
     private OnActionListener onPlayWithKodiListener;
-    private OnActionListener onPlayAudioListener;
-
 
     // Triggered when a stream related action is triggered.
     public interface OnActionListener {
@@ -67,46 +66,32 @@ class ActionBarHandler {
         this.activity = activity;
     }
 
-    @SuppressWarnings({"deprecation", "ConstantConditions"})
-    public void setupNavMenu(AppCompatActivity activity) {
-        this.activity = activity;
-        try {
-            activity.getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
+    public void setupStreamList(final List<VideoStream> videoStreams, Spinner toolbarSpinner) {
+        if (activity == null) return;
+        selectedVideoStream = 0;
+
+        // this array will be shown in the dropdown menu for selecting the stream/resolution.
+        String[] itemArray = new String[videoStreams.size()];
+        for (int i = 0; i < videoStreams.size(); i++) {
+            VideoStream item = videoStreams.get(i);
+            itemArray[i] = MediaFormat.getNameById(item.format) + " " + item.resolution;
         }
-    }
 
-    public void setupStreamList(final List<VideoStream> videoStreams) {
-        if (activity != null) {
-            selectedVideoStream = 0;
-
-
-            // this array will be shown in the dropdown menu for selecting the stream/resolution.
-            String[] itemArray = new String[videoStreams.size()];
-            for (int i = 0; i < videoStreams.size(); i++) {
-                VideoStream item = videoStreams.get(i);
-                itemArray[i] = MediaFormat.getNameById(item.format) + " " + item.resolution;
+        int defaultResolutionIndex = Utils.getDefaultResolution(activity, videoStreams);
+        ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(activity.getBaseContext(), android.R.layout.simple_spinner_dropdown_item, itemArray);
+        toolbarSpinner.setAdapter(itemAdapter);
+        toolbarSpinner.setSelection(defaultResolutionIndex);
+        toolbarSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedVideoStream = position;
             }
-            int defaultResolution = Utils.getDefaultResolution(activity, videoStreams);
 
-            ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(activity.getBaseContext(),
-                    android.R.layout.simple_spinner_dropdown_item, itemArray);
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
-            ActionBar ab = activity.getSupportActionBar();
-            //todo: make this throwsable
-            assert ab != null : "Could not get actionbar";
-            ab.setListNavigationCallbacks(itemAdapter
-                    , new ActionBar.OnNavigationListener() {
-                @Override
-                public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-                    selectedVideoStream = (int) itemId;
-                    return true;
-                }
-            });
-
-            ab.setSelectedNavigationItem(defaultResolution);
-        }
     }
 
     public void setupMenu(Menu menu, MenuInflater inflater) {
@@ -116,55 +101,36 @@ class ActionBarHandler {
         // appcompat itemsinflater.inflate(R.menu.videoitem_detail, menu);
 
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
-        inflater.inflate(R.menu.videoitem_detail, menu);
+        inflater.inflate(R.menu.video_detail_menu, menu);
 
-        showPlayWithKodiAction(defaultPreferences
-                .getBoolean(activity.getString(R.string.show_play_with_kodi_key), false));
+        showPlayWithKodiAction(defaultPreferences.getBoolean(activity.getString(R.string.show_play_with_kodi_key), false));
     }
 
     public boolean onItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
             case R.id.menu_item_share: {
-                    /*
-                    Intent intent = new Intent();
-                    intent.setAction(Intent.ACTION_SEND);
-                    intent.putExtra(Intent.EXTRA_TEXT, websiteUrl);
-                    intent.setType("text/plain");
-                    activity.startActivity(Intent.createChooser(intent, activity.getString(R.string.share_dialog_title)));
-                    */
-                if(onShareListener != null) {
+                if (onShareListener != null) {
                     onShareListener.onActionSelected(selectedVideoStream);
                 }
                 return true;
             }
             case R.id.menu_item_openInBrowser: {
-                if(onOpenInBrowserListener != null) {
+                if (onOpenInBrowserListener != null) {
                     onOpenInBrowserListener.onActionSelected(selectedVideoStream);
                 }
+                return true;
             }
-            return true;
             case R.id.menu_item_download:
-                if(onDownloadListener != null) {
+                if (onDownloadListener != null) {
                     onDownloadListener.onActionSelected(selectedVideoStream);
                 }
                 return true;
             case R.id.action_play_with_kodi:
-                if(onPlayWithKodiListener != null) {
+                if (onPlayWithKodiListener != null) {
                     onPlayWithKodiListener.onActionSelected(selectedVideoStream);
                 }
                 return true;
-            case R.id.menu_item_play_audio:
-                if(onPlayAudioListener != null) {
-                    onPlayAudioListener.onActionSelected(selectedVideoStream);
-                }
-                return true;
-            case R.id.menu_item_popup: {
-                if(onOpenInPopupListener != null) {
-                    onOpenInPopupListener.onActionSelected(selectedVideoStream);
-                }
-                return true;
-            }
             default:
                 Log.e(TAG, "Menu Item not known");
         }
@@ -183,24 +149,12 @@ class ActionBarHandler {
         onOpenInBrowserListener = listener;
     }
 
-    public void setOnOpenInPopupListener(OnActionListener listener) {
-        onOpenInPopupListener = listener;
-    }
-
     public void setOnDownloadListener(OnActionListener listener) {
         onDownloadListener = listener;
     }
 
     public void setOnPlayWithKodiListener(OnActionListener listener) {
         onPlayWithKodiListener = listener;
-    }
-
-    public void setOnPlayAudioListener(OnActionListener listener) {
-        onPlayAudioListener = listener;
-    }
-
-    public void showAudioAction(boolean visible) {
-        menu.findItem(R.id.menu_item_play_audio).setVisible(visible);
     }
 
     public void showDownloadAction(boolean visible) {

@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -26,13 +25,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.File;
-import java.util.Vector;
 
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.fragment.AllMissionsFragment;
@@ -64,17 +61,19 @@ public class DownloadActivity extends AppCompatActivity implements AdapterView.O
         i.setClass(this, DownloadManagerService.class);
         startService(i);
 
+        ThemeHelper.setTheme(this);
         super.onCreate(savedInstanceState);
-        ThemeHelper.setTheme(this, true);
         setContentView(R.layout.activity_downloader);
 
-        //noinspection ConstantConditions
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        // its ok if this fails, we will catch that error later, and send it as report
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(R.string.downloads_title);
-        actionBar.setDisplayShowTitleEnabled(true);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(R.string.downloads_title);
+            actionBar.setDisplayShowTitleEnabled(true);
+        }
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -159,7 +158,7 @@ public class DownloadActivity extends AppCompatActivity implements AdapterView.O
         name.setText(getIntent().getStringExtra("fileName"));
 
         toolbar.setTitle(R.string.add);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setNavigationIcon(ThemeHelper.isLightThemeSelected(this) ? R.drawable.ic_arrow_back_black_24dp : R.drawable.ic_arrow_back_white_24dp);
         toolbar.inflateMenu(R.menu.dialog_url);
 
         // Show the dialog
@@ -183,7 +182,7 @@ public class DownloadActivity extends AppCompatActivity implements AdapterView.O
                 if (item.getItemId() == R.id.okay) {
 
                     String location;
-                    if(audioButton.isChecked()) {
+                    if (audioButton.isChecked()) {
                         location = NewPipeSettings.getAudioDownloadPath(DownloadActivity.this);
                     } else {
                         location = NewPipeSettings.getVideoDownloadPath(DownloadActivity.this);
@@ -201,7 +200,7 @@ public class DownloadActivity extends AppCompatActivity implements AdapterView.O
                                 audioButton.isChecked(), threads.getProgress() + 1);
                         mFragment.notifyChange();
 
-                        mPrefs.edit().putInt(THREADS, threads.getProgress() + 1).commit();
+                        mPrefs.edit().putInt(THREADS, threads.getProgress() + 1).apply();
                         mPendingUrl = null;
                         dialog.dismiss();
                     }

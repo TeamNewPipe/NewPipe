@@ -1,6 +1,7 @@
 package org.schabi.newpipe.info_list;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,20 +19,20 @@ import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
 
 /**
  * Created by Christian Schabesberger on 26.09.16.
- *
+ * <p>
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
  * InfoItemBuilder.java is part of NewPipe.
- *
+ * <p>
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * NewPipe is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -48,11 +49,13 @@ public class InfoItemBuilder {
     private final String billion;
 
     private static final String TAG = InfoItemBuilder.class.toString();
+
     public interface OnInfoItemSelectedListener {
         void selected(int serviceId, String url, String title);
     }
 
     private Context mContext = null;
+    private LayoutInflater inflater;
     private View rootView = null;
     private ImageLoader imageLoader = ImageLoader.getInstance();
     private DisplayImageOptions displayImageOptions =
@@ -70,6 +73,7 @@ public class InfoItemBuilder {
         thousand = context.getString(R.string.short_thousand);
         million = context.getString(R.string.short_million);
         billion = context.getString(R.string.short_billion);
+        inflater = LayoutInflater.from(context);
     }
 
     public void setOnStreamInfoItemSelectedListener(
@@ -83,9 +87,9 @@ public class InfoItemBuilder {
     }
 
     public void buildByHolder(InfoItemHolder holder, final InfoItem i) {
-        if(i.infoType() != holder.infoType())
+        if (i.infoType() != holder.infoType())
             return;
-        switch(i.infoType()) {
+        switch (i.infoType()) {
             case STREAM:
                 buildStreamInfoItem((StreamInfoItemHolder) holder, (StreamInfoItem) i);
                 break;
@@ -103,15 +107,15 @@ public class InfoItemBuilder {
     public View buildView(ViewGroup parent, final InfoItem info) {
         View itemView = null;
         InfoItemHolder holder = null;
-        switch(info.infoType()) {
+        switch (info.infoType()) {
             case STREAM:
-                itemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.stream_item, parent, false);
+                //long start = System.nanoTime();
+                itemView = inflater.inflate(R.layout.stream_item, parent, false);
+                //Log.d(TAG, "time to inflate: " + ((System.nanoTime() - start) / 1000000L) + "ms");
                 holder = new StreamInfoItemHolder(itemView);
                 break;
             case CHANNEL:
-                itemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.channel_item, parent, false);
+                itemView = inflater.inflate(R.layout.channel_item, parent, false);
                 holder = new ChannelInfoItemHolder(itemView);
                 break;
             case PLAYLIST:
@@ -124,43 +128,39 @@ public class InfoItemBuilder {
     }
 
     private void buildStreamInfoItem(StreamInfoItemHolder holder, final StreamInfoItem info) {
-        if(info.infoType() != InfoItem.InfoType.STREAM) {
+        if (info.infoType() != InfoItem.InfoType.STREAM) {
             Log.e("InfoItemBuilder", "Info type not yet supported");
         }
         // fill holder with information
-        holder.itemVideoTitleView.setText(info.title);
-        if(info.uploader != null && !info.uploader.isEmpty()) {
-            holder.itemUploaderView.setText(info.uploader);
-        } else {
-            holder.itemUploaderView.setVisibility(View.INVISIBLE);
-        }
-        if(info.duration > 0) {
+        if (!TextUtils.isEmpty(info.title)) holder.itemVideoTitleView.setText(info.title);
+
+        if (!TextUtils.isEmpty(info.uploader)) holder.itemUploaderView.setText(info.uploader);
+        else holder.itemUploaderView.setVisibility(View.INVISIBLE);
+
+        if (info.duration > 0) {
             holder.itemDurationView.setText(getDurationString(info.duration));
         } else {
-            if(info.stream_type == AbstractStreamInfo.StreamType.LIVE_STREAM) {
+            if (info.stream_type == AbstractStreamInfo.StreamType.LIVE_STREAM) {
                 holder.itemDurationView.setText(R.string.duration_live);
             } else {
                 holder.itemDurationView.setVisibility(View.GONE);
             }
         }
-        if(info.view_count >= 0) {
+        if (info.view_count >= 0) {
             holder.itemViewCountView.setText(shortViewCount(info.view_count));
         } else {
             holder.itemViewCountView.setVisibility(View.GONE);
         }
-        if(info.upload_date != null && !info.upload_date.isEmpty()) {
-            holder.itemUploadDateView.setText(info.upload_date + " • ");
-        }
+        if (!TextUtils.isEmpty(info.upload_date)) holder.itemUploadDateView.setText(info.upload_date + " • ");
 
         holder.itemThumbnailView.setImageResource(R.drawable.dummy_thumbnail);
-        if(info.thumbnail_url != null && !info.thumbnail_url.isEmpty()) {
+        if (!TextUtils.isEmpty(info.thumbnail_url)) {
             imageLoader.displayImage(info.thumbnail_url,
-                    holder.itemThumbnailView,
-                    displayImageOptions,
+                    holder.itemThumbnailView, displayImageOptions,
                     new ImageErrorLoadingListener(mContext, rootView, info.service_id));
         }
 
-        holder.itemButton.setOnClickListener(new View.OnClickListener() {
+        holder.itemRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onStreamInfoItemSelectedListener.selected(info.service_id, info.webpage_url, info.getTitle());
@@ -169,20 +169,20 @@ public class InfoItemBuilder {
     }
 
     private void buildChannelInfoItem(ChannelInfoItemHolder holder, final ChannelInfoItem info) {
-        holder.itemChannelTitleView.setText(info.getTitle());
+        if (!TextUtils.isEmpty(info.getTitle())) holder.itemChannelTitleView.setText(info.getTitle());
         holder.itemSubscriberCountView.setText(shortSubscriber(info.subscriberCount) + " • ");
         holder.itemVideoCountView.setText(info.videoAmount + " " + videosS);
-        holder.itemChannelDescriptionView.setText(info.description);
+        if (!TextUtils.isEmpty(info.description)) holder.itemChannelDescriptionView.setText(info.description);
 
         holder.itemThumbnailView.setImageResource(R.drawable.buddy_channel_item);
-        if(info.thumbnailUrl != null && !info.thumbnailUrl.isEmpty()) {
+        if (!TextUtils.isEmpty(info.thumbnailUrl)) {
             imageLoader.displayImage(info.thumbnailUrl,
                     holder.itemThumbnailView,
                     displayImageOptions,
                     new ImageErrorLoadingListener(mContext, rootView, info.serviceId));
         }
 
-        holder.itemButton.setOnClickListener(new View.OnClickListener() {
+        holder.itemRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onChannelInfoItemSelectedListener.selected(info.serviceId, info.getLink(), info.channelName);
@@ -191,15 +191,15 @@ public class InfoItemBuilder {
     }
 
 
-    public String shortViewCount(Long viewCount){
-        if(viewCount >= 1000000000){
-            return Long.toString(viewCount/1000000000)+ billion + " " + viewsS;
-        }else if(viewCount>=1000000){
-            return Long.toString(viewCount/1000000)+ million + " " + viewsS;
-        }else if(viewCount>=1000){
-            return Long.toString(viewCount/1000)+ thousand + " " + viewsS;
-        }else {
-            return Long.toString(viewCount)+ " " + viewsS;
+    public String shortViewCount(Long viewCount) {
+        if (viewCount >= 1000000000) {
+            return Long.toString(viewCount / 1000000000) + billion + " " + viewsS;
+        } else if (viewCount >= 1000000) {
+            return Long.toString(viewCount / 1000000) + million + " " + viewsS;
+        } else if (viewCount >= 1000) {
+            return Long.toString(viewCount / 1000) + thousand + " " + viewsS;
+        } else {
+            return Long.toString(viewCount) + " " + viewsS;
         }
     }
 
@@ -227,13 +227,13 @@ public class InfoItemBuilder {
         int seconds = duration % 60;
 
         //handle days
-        if(days > 0) {
+        if (days > 0) {
             output = Integer.toString(days) + ":";
         }
         // handle hours
-        if(hours > 0 || !output.isEmpty()) {
-            if(hours > 0) {
-                if(hours >= 10 || output.isEmpty()) {
+        if (hours > 0 || !output.isEmpty()) {
+            if (hours > 0) {
+                if (hours >= 10 || output.isEmpty()) {
                     output += Integer.toString(hours);
                 } else {
                     output += "0" + Integer.toString(hours);
@@ -244,9 +244,9 @@ public class InfoItemBuilder {
             output += ":";
         }
         //handle minutes
-        if(minutes > 0 || !output.isEmpty()) {
-            if(minutes > 0) {
-                if(minutes >= 10 || output.isEmpty()) {
+        if (minutes > 0 || !output.isEmpty()) {
+            if (minutes > 0) {
+                if (minutes >= 10 || output.isEmpty()) {
                     output += Integer.toString(minutes);
                 } else {
                     output += "0" + Integer.toString(minutes);
@@ -258,11 +258,11 @@ public class InfoItemBuilder {
         }
 
         //handle seconds
-        if(output.isEmpty()) {
+        if (output.isEmpty()) {
             output += "0:";
         }
 
-        if(seconds >= 10) {
+        if (seconds >= 10) {
             output += Integer.toString(seconds);
         } else {
             output += "0" + Integer.toString(seconds);

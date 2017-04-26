@@ -21,19 +21,23 @@
 package org.schabi.newpipe;
 
 import android.content.Intent;
-import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.OnItemSelectedListener;
 import org.schabi.newpipe.fragments.channel.ChannelFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -45,7 +49,8 @@ import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 public class MainActivity extends AppCompatActivity implements OnItemSelectedListener {
-    //private static final String TAG = "MainActivity";
+    private static final String TAG = "MainActivity";
+    public static final boolean DEBUG = false;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity's LifeCycle
@@ -53,18 +58,22 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ThemeHelper.setTheme(this, true);
+        if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
+        ThemeHelper.setTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
         if (getSupportFragmentManager() != null && getSupportFragmentManager().getBackStackEntryCount() == 0) {
             initFragments();
         }
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
+        if (DEBUG) Log.d(TAG, "onNewIntent() called with: intent = [" + intent + "]");
         if (intent != null) {
             // Return if launched from a launcher (e.g. Nova Launcher, Pixel Launcher ...)
             // to not destroy the already created backstack
@@ -79,22 +88,11 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
 
     @Override
     public void onBackPressed() {
+        if (DEBUG) Log.d(TAG, "onBackPressed() called");
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
         if (fragment instanceof VideoDetailFragment) if (((VideoDetailFragment) fragment).onActivityBackPressed()) return;
 
-        if (getSupportFragmentManager().getBackStackEntryCount() >= 2) {
-            getSupportFragmentManager().popBackStackImmediate();
-        } else {
-            if (fragment instanceof SearchFragment) {
-                SearchFragment searchFragment = (SearchFragment) fragment;
-                if (!searchFragment.isMainBgVisible()) {
-                    getSupportFragmentManager().beginTransaction().remove(fragment).commitNow();
-                    NavigationHelper.openMainActivity(this);
-                    return;
-                }
-            }
-            finish();
-        }
+        super.onBackPressed();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -103,14 +101,32 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "]");
         super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
+
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+        if (!(fragment instanceof VideoDetailFragment)) {
+            findViewById(R.id.toolbar).findViewById(R.id.toolbar_spinner).setVisibility(View.GONE);
+        }
+
+        if (!(fragment instanceof SearchFragment)) {
+            findViewById(R.id.toolbar).findViewById(R.id.toolbar_search_container).setVisibility(View.GONE);
+
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.main_menu, menu);
+        }
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(false);
+        }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (DEBUG) Log.d(TAG, "onOptionsItemSelected() called with: item = [" + item + "]");
         int id = item.getItemId();
 
         switch (id) {
@@ -144,9 +160,10 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
     //////////////////////////////////////////////////////////////////////////*/
 
     private void initFragments() {
+        openMainFragment();
         if (getIntent() != null && getIntent().hasExtra(Constants.KEY_URL)) {
             handleIntent(getIntent());
-        } else openSearchFragment();
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -170,6 +187,13 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
     //////////////////////////////////////////////////////////////////////////*/
 
     private void handleIntent(Intent intent) {
+        if (intent.hasExtra(Constants.KEY_THEME_CHANGE) && intent.getBooleanExtra(Constants.KEY_THEME_CHANGE, false)) {
+            this.recreate();
+            Intent setI = new Intent(this, SettingsActivity.class);
+            startActivity(setI);
+            return;
+        }
+
         if (intent.hasExtra(Constants.KEY_LINK_TYPE)) {
             String url = intent.getStringExtra(Constants.KEY_URL);
             int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
@@ -187,24 +211,34 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else if (intent.hasExtra(Constants.KEY_OPEN_SEARCH)) {
+            String searchQuery = intent.getStringExtra(Constants.KEY_QUERY);
+            if (searchQuery == null) searchQuery = "";
+            int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
+            openSearchFragment(serviceId, searchQuery);
         } else {
             getSupportFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            openSearchFragment();
+            openMainFragment();//openSearchFragment();
         }
     }
 
-    private void openSearchFragment() {
+    private void openMainFragment() {
         ImageLoader.getInstance().clearMemoryCache();
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
-                .replace(R.id.fragment_holder, new SearchFragment())
+                .replace(R.id.fragment_holder, new MainFragment())
+                .commit();
+    }
+
+    private void openSearchFragment(int serviceId, String query) {
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
+                .replace(R.id.fragment_holder, SearchFragment.getInstance(serviceId, query))
                 .addToBackStack(null)
                 .commit();
     }
 
     private void openVideoDetailFragment(int serviceId, String url, String title, boolean autoPlay) {
-        ImageLoader.getInstance().clearMemoryCache();
-
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
         if (title == null) title = "";
 
@@ -226,11 +260,10 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
     }
 
     private void openChannelFragment(int serviceId, String url, String name) {
-        ImageLoader.getInstance().clearMemoryCache();
         if (name == null) name = "";
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
-                .replace(R.id.fragment_holder, ChannelFragment.newInstance(serviceId, url, name))
+                .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, url, name))
                 .addToBackStack(null)
                 .commit();
     }
