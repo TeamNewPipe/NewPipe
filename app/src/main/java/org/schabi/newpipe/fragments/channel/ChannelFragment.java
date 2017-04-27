@@ -1,9 +1,7 @@
 package org.schabi.newpipe.fragments.channel;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +11,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,8 +34,6 @@ import org.schabi.newpipe.fragments.OnItemSelectedListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.subscription.Subscription;
-import org.schabi.newpipe.subscription.SubscriptionDBHelper;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.workers.ChannelExtractorWorker;
@@ -317,19 +314,9 @@ public class ChannelFragment extends Fragment implements ChannelExtractorWorker.
         headerSubscriberButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SubscriptionDBHelper subDB = new SubscriptionDBHelper(getActivity(), null);
-                SQLiteDatabase db = subDB.getWritableDatabase();
-
-                String name = currentChannelInfo.channel_name;
-                String link = currentChannelInfo.feed_url;
-                String avatar = currentChannelInfo.avatar_url;
-
-                ContentValues values = new ContentValues();
-                values.put(Subscription.Entry.COLUMN_NAME, name);
-                values.put(Subscription.Entry.COLUMN_LINK, link);
-                values.put(Subscription.Entry.COLUMN_AVATAR, avatar);
-
-                db.insert(Subscription.Entry.TABLE_NAME, null, values);
+                Log.d(TAG, currentChannelInfo.feed_url);
+                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(currentChannelInfo.feed_url));
+                startActivity(i);
             }
         });
     }
