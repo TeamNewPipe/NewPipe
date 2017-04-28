@@ -59,6 +59,7 @@ import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PlayVideoActivity;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.subscription.SubscriptionDBHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.Utils;
@@ -133,6 +134,7 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
     private Button uploaderButton;
     private TextView uploaderTextView;
     private ImageView uploaderThumb;
+    private Button uploaderSubscribeButton;
 
     private TextView thumbsUpTextView;
     private ImageView thumbsUpImageView;
@@ -349,6 +351,7 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
         uploaderButton = (Button) rootView.findViewById(R.id.detail_uploader_button);
         uploaderTextView = (TextView) rootView.findViewById(R.id.detail_uploader_text_view);
         uploaderThumb = (ImageView) rootView.findViewById(R.id.detail_uploader_thumbnail_view);
+        uploaderSubscribeButton = (Button) rootView.findViewById(R.id.subscribe_button);
 
         relatedStreamRootLayout = (RelativeLayout) rootView.findViewById(R.id.detail_related_streams_root_layout);
         nextStreamTitle = (TextView) rootView.findViewById(R.id.detail_next_stream_title);
@@ -396,6 +399,13 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
             @Override
             public void onClick(View view) {
                 NavigationHelper.openChannel(onItemSelectedListener, currentStreamInfo.service_id, currentStreamInfo.channel_url, currentStreamInfo.uploader);
+            }
+        });
+
+        uploaderSubscribeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SubscriptionDBHelper.write(getActivity(), currentStreamInfo);
             }
         });
     }

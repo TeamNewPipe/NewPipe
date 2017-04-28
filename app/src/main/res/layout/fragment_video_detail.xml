@@ -246,6 +246,13 @@
                         android:layout_marginTop="8dp">
 
 
+                        <Button
+                            android:id="@+id/detail_uploader_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="?attr/selectableItemBackground"
+                            tools:visibility="gone"/>
+
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/detail_uploader_thumbnail_view"
                             android:layout_width="@dimen/video_item_detail_uploader_image_size"
@@ -269,6 +276,14 @@
                             tools:ignore="RtlHardcoded"
                             tools:text="Uploader"/>
 
+                        <Button
+                            android:id="@+id/subscribe_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:text="@string/subscribe"/>
+
                     </RelativeLayout>
 
                     <View
@@ -279,12 +294,6 @@
                         android:layout_marginRight="8dp"
                         android:background="?attr/separatorColor"/>
 
-                    <Button
-                        android:id="@+id/detail_uploader_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="?attr/selectableItemBackground"
-                        tools:visibility="gone"/>
                 </FrameLayout>
 
                 <RelativeLayout
