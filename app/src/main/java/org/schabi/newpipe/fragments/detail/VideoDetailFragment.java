@@ -8,8 +8,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
@@ -126,6 +128,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     private TextView videoUploadDateView;
     private TextView videoDescriptionView;
 
+    private View uploaderRootLayout;
     private Button uploaderButton;
     private TextView uploaderTextView;
     private ImageView uploaderThumb;
@@ -201,7 +204,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     public void onViewCreated(View rootView, Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
         if (currentStreamInfo == null) selectAndLoadVideo(serviceId, videoUrl, videoTitle);
-        else prepareAndLoad(currentStreamInfo);
+        else prepareAndLoad(currentStreamInfo, false);
     }
 
     @Override
@@ -364,7 +367,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         if (currentStreamInfo != null) StreamInfoCache.getInstance().removeInfo(currentStreamInfo);
         currentStreamInfo = null;
         for (StackItem stackItem : stack) if (stackItem.getUrl().equals(videoUrl)) stackItem.setInfo(null);
-        prepareAndLoad(null);
+        prepareAndLoad(null, true);
     }
 
     private void openInBackground() {
@@ -497,7 +500,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         thumbsDownImageView = (ImageView) rootView.findViewById(R.id.detail_thumbs_down_img_view);
         thumbsDisabledTextView = (TextView) rootView.findViewById(R.id.detail_thumbs_disabled_view);
 
-        //uploaderRootLayout = (FrameLayout) rootView.findViewById(R.id.detail_uploader_root_layout);
+        uploaderRootLayout = rootView.findViewById(R.id.detail_uploader_root_layout);
         uploaderButton = (Button) rootView.findViewById(R.id.detail_uploader_button);
         uploaderTextView = (TextView) rootView.findViewById(R.id.detail_uploader_text_view);
         uploaderThumb = (ImageView) rootView.findViewById(R.id.detail_uploader_thumbnail_view);
@@ -769,15 +772,26 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     }
 
     public void selectAndHandleInfo(StreamInfo info) {
-        if (DEBUG) Log.d(TAG, "selectAndHandleInfo() called with: info = [" + info + "]");
+        selectAndHandleInfo(info, true);
+    }
+
+    public void selectAndHandleInfo(StreamInfo info, boolean scrollToTop) {
+        if (DEBUG) Log.d(TAG, "selectAndHandleInfo() called with: info = [" + info + "], scrollToTop = [" + scrollToTop + "]");
         selectVideo(info.service_id, info.webpage_url, info.title);
-        prepareAndLoad(info);
+        prepareAndLoad(info, scrollToTop);
     }
 
     public void selectAndLoadVideo(int serviceId, String videoUrl, String videoTitle) {
-        if (DEBUG) Log.d(TAG, "selectAndLoadVideo() called with: serviceId = [" + serviceId + "], videoUrl = [" + videoUrl + "], videoTitle = [" + videoTitle + "]");
+        selectAndLoadVideo(serviceId, videoUrl, videoTitle, true);
+    }
+
+    public void selectAndLoadVideo(int serviceId, String videoUrl, String videoTitle, boolean scrollToTop) {
+        if (DEBUG) {
+            Log.d(TAG, "selectAndLoadVideo() called with: serviceId = [" + serviceId + "], videoUrl = [" + videoUrl + "], videoTitle = [" + videoTitle + "], scrollToTop = [" + scrollToTop + "]");
+        }
+
         selectVideo(serviceId, videoUrl, videoTitle);
-        prepareAndLoad(null);
+        prepareAndLoad(null, scrollToTop);
     }
 
     /**
@@ -787,8 +801,9 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
      * If the cache doesn't have the info, load from the network.
      *
      * @param info info to prepare and load, can be null
+     * @param scrollToTop whether or not scroll the scrollView to y = 0
      */
-    public void prepareAndLoad(StreamInfo info) {
+    public void prepareAndLoad(StreamInfo info, boolean scrollToTop) {
         if (DEBUG) Log.d(TAG, "prepareAndLoad() called with: info = [" + info + "]");
         isLoading.set(true);
 
@@ -803,15 +818,11 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         if (curExtractorWorker != null && curExtractorWorker.isRunning()) curExtractorWorker.cancel();
         animateView(spinnerToolbar, false, 200);
         animateView(errorPanel, false, 200);
-        animateView(videoTitleTextView, false, 100, new Runnable() {
-            @Override
-            public void run() {
-                if (videoTitleTextView == null) return;
-                videoTitleTextView.setText(videoTitle != null ? videoTitle : "");
-                videoTitleTextView.setMaxLines(1);
-                animateView(videoTitleTextView, true, 100);
-            }
-        });
+
+        videoTitleTextView.setText(videoTitle != null ? videoTitle : "");
+        videoTitleTextView.setMaxLines(1);
+        animateView(videoTitleTextView, true, 0);
+
         videoDescriptionRootLayout.setVisibility(View.GONE);
         videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
         videoTitleToggleArrow.setVisibility(View.GONE);
@@ -825,16 +836,24 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
 
         if (info != null) {
             final StreamInfo infoFinal = info;
-            animateView(contentRootLayoutHiding, false, 300, new Runnable() {
+            final boolean greaterThanThreshold = parallaxScrollRootView.getScrollY() >
+                    (int) (getResources().getDisplayMetrics().heightPixels * .1f);
+
+            if (scrollToTop) {
+                if (greaterThanThreshold) parallaxScrollRootView.smoothScrollTo(0, 0);
+                else parallaxScrollRootView.scrollTo(0, 0);
+            }
+
+            animateView(contentRootLayoutHiding, false, greaterThanThreshold ? 250 : 0, new Runnable() {
                 @Override
                 public void run() {
-                    if (contentRootLayoutHiding == null) return;
                     handleStreamInfo(infoFinal, false);
                     isLoading.set(false);
-                    animateView(contentRootLayoutHiding, true, 400, 200);
+                    showContentWithAnimation(greaterThanThreshold ? 120 : 200, 0, .02f);
                 }
             });
         } else {
+            if (scrollToTop) parallaxScrollRootView.smoothScrollTo(0, 0);
             curExtractorWorker = new StreamExtractorWorker(activity, serviceId, videoUrl, this);
             curExtractorWorker.start();
             animateView(loadingProgressBar, true, 200);
@@ -849,8 +868,6 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
 
         loadingProgressBar.setVisibility(View.GONE);
         animateView(thumbnailPlayButton, true, 200);
-        parallaxScrollRootView.scrollTo(0, 0);
-
 
         // Since newpipe is designed to work even if certain information is not available,
         // the UI has to react on missing information.
@@ -1001,6 +1018,33 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         }
     }
 
+    private void showContentWithAnimation(long duration, long delay, @FloatRange(from = 0.0f, to = 1.0f) float translationPercent) {
+        int translationY = (int) (getResources().getDisplayMetrics().heightPixels *
+                (translationPercent > 0.0f ? translationPercent : .12f));
+
+        contentRootLayoutHiding.animate().setListener(null).cancel();
+        contentRootLayoutHiding.setAlpha(0f);
+        contentRootLayoutHiding.setTranslationY(translationY);
+        contentRootLayoutHiding.setVisibility(View.VISIBLE);
+        contentRootLayoutHiding.animate().alpha(1f).translationY(0)
+                .setStartDelay(delay).setDuration(duration).setInterpolator(new FastOutSlowInInterpolator()).start();
+
+        uploaderRootLayout.animate().setListener(null).cancel();
+        uploaderRootLayout.setAlpha(0f);
+        uploaderRootLayout.setTranslationY(translationY);
+        uploaderRootLayout.setVisibility(View.VISIBLE);
+        uploaderRootLayout.animate().alpha(1f).translationY(0)
+                .setStartDelay((long) (duration * .5f) + delay).setDuration(duration).setInterpolator(new FastOutSlowInInterpolator()).start();
+
+        if (showRelatedStreams) {
+            relatedStreamRootLayout.animate().setListener(null).cancel();
+            relatedStreamRootLayout.setAlpha(0f);
+            relatedStreamRootLayout.setTranslationY(translationY);
+            relatedStreamRootLayout.setVisibility(View.VISIBLE);
+            relatedStreamRootLayout.animate().alpha(1f).translationY(0)
+                    .setStartDelay((long) (duration * .8f) + delay).setDuration(duration).setInterpolator(new FastOutSlowInInterpolator()).start();
+        }
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // OnStreamInfoReceivedListener callbacks
     //////////////////////////////////////////////////////////////////////////*/
@@ -1030,7 +1074,8 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         if (info == null || isRemoving() || !isVisible()) return;
 
         handleStreamInfo(info, true);
-        animateView(contentRootLayoutHiding, true, 400);
+        showContentWithAnimation(300, 0, 0);
+
         animateView(loadingProgressBar, false, 200);
 
         if (autoPlayEnabled) {
