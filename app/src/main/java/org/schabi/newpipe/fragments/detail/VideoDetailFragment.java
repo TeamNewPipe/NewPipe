@@ -214,7 +214,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         // Currently only used for enable/disable related videos
         // but can be extended for other live settings changes
         if (updateFlags != 0) {
-            if (!isLoading.get()) {
+            if (!isLoading.get() && currentStreamInfo != null) {
                 if ((updateFlags & RELATED_STREAMS_UPDATE_FLAG) != 0) initRelatedVideos(currentStreamInfo);
                 if ((updateFlags & RESOLUTIONS_MENU_UPDATE_FLAG) != 0) setupActionBarHandler(currentStreamInfo);
             }
