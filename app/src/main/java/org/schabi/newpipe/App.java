@@ -15,6 +15,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.report.AcraReportSenderFactory;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.settings.SettingsActivity;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import info.guardianproject.netcipher.NetCipher;
 import info.guardianproject.netcipher.proxy.OrbotHelper;
@@ -82,6 +83,8 @@ public class App extends Application {
         // DO NOT REMOVE THIS FUNCTION!!!
         // Otherwise downloadPathPreference has invalid value.
         SettingsActivity.initSettings(this);
+
+        ThemeHelper.setTheme(getApplicationContext());
     }
 
     /**

@@ -125,7 +125,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         this.aspectRatioFrameLayout = (AspectRatioFrameLayout) rootView.findViewById(R.id.aspectRatioLayout);
         this.surfaceView = (SurfaceView) rootView.findViewById(R.id.surfaceView);
         this.surfaceForeground = rootView.findViewById(R.id.surfaceForeground);
-        this.loadingPanel = rootView.findViewById(R.id.loadingPanel);
+        this.loadingPanel = rootView.findViewById(R.id.loading_panel);
         this.endScreen = (ImageView) rootView.findViewById(R.id.endScreen);
         this.controlAnimationView = (ImageView) rootView.findViewById(R.id.controlAnimationView);
         this.controlsRoot = rootView.findViewById(R.id.playbackControlRoot);

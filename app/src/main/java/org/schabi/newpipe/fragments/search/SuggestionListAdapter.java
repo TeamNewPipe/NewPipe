@@ -75,6 +75,11 @@ public class SuggestionListAdapter extends ResourceCursorAdapter {
         return ((Cursor) getItem(position)).getString(INDEX_TITLE);
     }
 
+    @Override
+    public CharSequence convertToString(Cursor cursor) {
+        return cursor.getString(INDEX_TITLE);
+    }
+
     private class ViewHolder {
         private final TextView suggestionTitle;
         private ViewHolder(View view) {

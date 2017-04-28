@@ -39,14 +39,16 @@ dependencies {
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
+
+    compile 'com.google.code.gson:gson:2.7'
     compile 'org.jsoup:jsoup:1.8.3'
     compile 'org.mozilla:rhino:1.7.7'
-    compile 'info.guardianproject.netcipher:netcipher:1.2'
-    compile 'de.hdodenhof:circleimageview:2.0.0'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    compile 'com.github.nirhart:parallaxscroll:1.0'
-    compile 'com.google.code.gson:gson:2.7'
-    compile 'com.nononsenseapps:filepicker:3.0.0'
     compile 'ch.acra:acra:4.9.0'
+    compile 'info.guardianproject.netcipher:netcipher:1.2'
+
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    compile 'de.hdodenhof:circleimageview:2.0.0'
+    compile 'com.github.nirhart:parallaxscroll:1.0'
+    compile 'com.nononsenseapps:filepicker:3.0.0'
     compile 'com.google.android.exoplayer:exoplayer:r2.3.1'
 }

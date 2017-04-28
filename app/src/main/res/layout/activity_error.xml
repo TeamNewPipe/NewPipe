@@ -5,10 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".report.ErrorActivity">
 
+    <include layout="@layout/toolbar_layout"/>
+
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize">
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -1,11 +1,14 @@
 package org.schabi.newpipe.fragments.detail;
 
+import org.schabi.newpipe.extractor.stream_info.StreamInfo;
+
 import java.io.Serializable;
 
 
 @SuppressWarnings("WeakerAccess")
 public class StackItem implements Serializable {
     private String title, url;
+    private StreamInfo info;
 
     public StackItem(String url, String title) {
         this.title = title;
@@ -22,6 +25,14 @@ public class StackItem implements Serializable {
 
     public String getUrl() {
         return url;
+    }
+
+    public void setInfo(StreamInfo info) {
+        this.info = info;
+    }
+
+    public StreamInfo getInfo() {
+        return info;
     }
 
     @Override

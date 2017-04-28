@@ -89,7 +89,7 @@ public class PopupVideoPlayer extends Service {
         notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
 
         playerImpl = new VideoPlayerImpl();
-        ThemeHelper.setTheme(this, false);
+        ThemeHelper.setTheme(this);
     }
 
     @Override
@@ -124,7 +124,6 @@ public class PopupVideoPlayer extends Service {
             playerImpl.destroy();
             if (playerImpl.getRootView() != null) windowManager.removeView(playerImpl.getRootView());
         }
-        if (imageLoader != null) imageLoader.clearMemoryCache();
         if (notificationManager != null) notificationManager.cancel(NOTIFICATION_ID);
         if (currentExtractorWorker != null) {
             currentExtractorWorker.cancel();

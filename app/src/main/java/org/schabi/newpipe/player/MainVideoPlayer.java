@@ -55,7 +55,7 @@ public class MainVideoPlayer extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
-        ThemeHelper.setTheme(this, false);
+        ThemeHelper.setTheme(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) getWindow().setStatusBarColor(Color.BLACK);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -67,7 +67,7 @@ public class MainVideoPlayer extends Activity {
         }
 
         showSystemUi();
-        setContentView(R.layout.activity_exo_player);
+        setContentView(R.layout.activity_main_player);
         playerImpl = new VideoPlayerImpl();
         playerImpl.setup(findViewById(android.R.id.content));
         playerImpl.handleIntent(getIntent());
@@ -474,7 +474,7 @@ public class MainVideoPlayer extends Activity {
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             //noinspection PointlessBooleanExpression
-            if (DEBUG && true) Log.d(TAG, "MainVideoPlayer.onScroll = " +
+            if (DEBUG && false) Log.d(TAG, "MainVideoPlayer.onScroll = " +
                     ", e1.getRaw = [" + e1.getRawX() + ", " + e1.getRawY() + "]" +
                     ", e2.getRaw = [" + e2.getRawX() + ", " + e2.getRawY() + "]" +
                     ", distanceXy = [" + distanceX + ", " + distanceY + "]");
@@ -531,12 +531,14 @@ public class MainVideoPlayer extends Activity {
             if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) playerImpl.animateView(playerImpl.getBrightnessTextView(), false, 200, 200);
 
             if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == BasePlayer.STATE_PLAYING) {
-                playerImpl.animateView(playerImpl.getControlsRoot(), false, 300, VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME);
+                playerImpl.animateView(playerImpl.getControlsRoot(), false, 300, VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME, true);
             }
         }
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
+            //noinspection PointlessBooleanExpression
+            if (DEBUG && false) Log.d(TAG, "onTouch() called with: v = [" + v + "], event = [" + event + "]");
             gestureDetector.onTouchEvent(event);
             if (event.getAction() == MotionEvent.ACTION_UP && isMoving) {
                 isMoving = false;
