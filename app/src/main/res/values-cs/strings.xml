@@ -183,4 +183,5 @@ Chcete restartovat ihned?</string>
     <string name="msg_popup_permission">Toto oprávnění je vyžadováno pro
 otevření ve vyskakovacím okně</string>
 
+    <string name="use_old_player_title">Použít starý přehrávač</string>
     </resources>
