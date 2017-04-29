@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.webkit.CookieManager;
 import android.webkit.ValueCallback;
@@ -48,10 +49,15 @@ public class ReCaptchaActivity extends AppCompatActivity {
         // Set return to Cancel by default
         setResult(RESULT_CANCELED);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(R.string.reCaptcha_title);
-        actionBar.setDisplayShowTitleEnabled(true);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(R.string.reCaptcha_title);
+            actionBar.setDisplayShowTitleEnabled(true);
+        }
 
         WebView myWebView = (WebView) findViewById(R.id.reCaptchaWebView);
 

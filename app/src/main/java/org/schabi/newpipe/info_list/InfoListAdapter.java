@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 /**
  * Created by Christian Schabesberger on 01.08.16.
@@ -57,7 +57,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public InfoListAdapter(Activity a, View rootView) {
         infoItemBuilder = new InfoItemBuilder(a, rootView);
-        infoItemList = new Vector<>();
+        infoItemList = new ArrayList<>();
     }
 
     public void setOnStreamInfoItemSelectedListener
@@ -77,7 +77,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    public void clearSteamItemList() {
+    public void clearStreamItemList() {
         infoItemList.clear();
         notifyDataSetChanged();
     }
@@ -92,12 +92,16 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
+    public List<InfoItem> getItemsList() {
+        return infoItemList;
+    }
+
     @Override
     public int getItemCount() {
-        int cound = infoItemList.size();
-        if(header != null) cound++;
-        if(footer != null && showFooter) cound++;
-        return cound;
+        int count = infoItemList.size();
+        if(header != null) count++;
+        if(footer != null && showFooter) count++;
+        return count;
     }
 
     // don't ask why we have to do that this way... it's android accept it -.-

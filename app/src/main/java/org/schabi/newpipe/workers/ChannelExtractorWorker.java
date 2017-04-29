@@ -31,7 +31,7 @@ public class ChannelExtractorWorker extends ExtractorWorker {
      * Interface which will be called for result and errors
      */
     public interface OnChannelInfoReceive {
-        void onReceive(ChannelInfo info);
+        void onReceive(ChannelInfo info, boolean onlyVideos);
         void onError(int messageId);
         /**
          * Called when an unrecoverable error has occurred.
@@ -44,12 +44,15 @@ public class ChannelExtractorWorker extends ExtractorWorker {
      * @param context           context for error reporting purposes
      * @param serviceId         id of the request service
      * @param channelUrl        channelUrl of the service (e.g. https://www.youtube.com/channel/UC_aEa8K-EOJ3D6gOs7HcyNg)
+     * @param pageNumber        which page to extract
+     * @param onlyVideos        flag that will be send by {@link OnChannelInfoReceive#onReceive(ChannelInfo, boolean)}
      * @param callback          listener that will be called-back when events occur (check {@link ChannelExtractorWorker.OnChannelInfoReceive})
      */
-    public ChannelExtractorWorker(Context context, int serviceId, String channelUrl, int pageNumber, OnChannelInfoReceive callback) {
+    public ChannelExtractorWorker(Context context, int serviceId, String channelUrl, int pageNumber, boolean onlyVideos, OnChannelInfoReceive callback) {
         super(context, channelUrl, serviceId);
         this.pageNumber = pageNumber;
         this.callback = callback;
+        this.onlyVideos = onlyVideos;
     }
 
     @Override
@@ -71,7 +74,7 @@ public class ChannelExtractorWorker extends ExtractorWorker {
             public void run() {
                 if (isInterrupted() || callback == null) return;
 
-                callback.onReceive(channelInfo);
+                callback.onReceive(channelInfo, onlyVideos);
                 onDestroy();
             }
         });
@@ -106,14 +109,6 @@ public class ChannelExtractorWorker extends ExtractorWorker {
                 }
             });
         }
-    }
-
-    public boolean isOnlyVideos() {
-        return onlyVideos;
-    }
-
-    public void setOnlyVideos(boolean onlyVideos) {
-        this.onlyVideos = onlyVideos;
     }
 }
 

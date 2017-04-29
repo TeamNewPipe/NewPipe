@@ -19,6 +19,10 @@ import org.schabi.newpipe.player.VideoPlayer;
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NavigationHelper {
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Players
+    //////////////////////////////////////////////////////////////////////////*/
+
     public static Intent getOpenVideoPlayerIntent(Context context, Class targetClazz, StreamInfo info, int selectedStreamIndex) {
         Intent mIntent = new Intent(context, targetClazz)
                 .putExtra(BasePlayer.VIDEO_TITLE, info.title)
@@ -60,7 +64,6 @@ public class NavigationHelper {
         if (info.start_position > 0) mIntent.putExtra(BasePlayer.START_POSITION, info.start_position * 1000);
         return mIntent;
     }
-
 
     /*//////////////////////////////////////////////////////////////////////////
     // Through Interface (faster)
@@ -112,6 +115,14 @@ public class NavigationHelper {
 
     public static void openMainActivity(Context context) {
         Intent mIntent = new Intent(context, MainActivity.class);
+        context.startActivity(mIntent);
+    }
+
+    public static void openSearch(Context context, int serviceId, String query) {
+        Intent mIntent = new Intent(context, MainActivity.class);
+        mIntent.putExtra(Constants.KEY_SERVICE_ID, serviceId);
+        mIntent.putExtra(Constants.KEY_QUERY, query);
+        mIntent.putExtra(Constants.KEY_OPEN_SEARCH, true);
         context.startActivity(mIntent);
     }
 

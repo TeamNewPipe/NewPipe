@@ -1,6 +1,5 @@
 package org.schabi.newpipe.fragments.channel;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,9 +7,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,103 +19,62 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
-import org.schabi.newpipe.fragments.OnItemSelectedListener;
+import org.schabi.newpipe.fragments.BaseFragment;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
-import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.workers.ChannelExtractorWorker;
 
+import java.io.Serializable;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 
-import static android.os.Build.VERSION.SDK_INT;
+public class ChannelFragment extends BaseFragment implements ChannelExtractorWorker.OnChannelInfoReceive {
+    private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
 
+    private static final String INFO_LIST_KEY = "info_list_key";
+    private static final String CHANNEL_INFO_KEY = "channel_info_key";
+    private static final String PAGE_NUMBER_KEY = "page_number_key";
 
-/**
- * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * ChannelFragment.java is part of NewPipe.
- * <p>
- * NewPipe is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * NewPipe is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-public class ChannelFragment extends Fragment implements ChannelExtractorWorker.OnChannelInfoReceive {
-    private static final String TAG = "ChannelFragment";
-
-    private AppCompatActivity activity;
-    private OnItemSelectedListener onItemSelectedListener;
     private InfoListAdapter infoListAdapter;
 
-    private ChannelExtractorWorker currentExtractorWorker;
+    private ChannelExtractorWorker currentChannelWorker;
     private ChannelInfo currentChannelInfo;
     private int serviceId = -1;
     private String channelName = "";
     private String channelUrl = "";
-
-    private boolean isLoading = false;
     private int pageNumber = 0;
     private boolean hasNextPage = true;
-
-    private ImageLoader imageLoader = ImageLoader.getInstance();
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
 
-    private View rootView = null;
-
     private RecyclerView channelVideosList;
-    private LinearLayoutManager layoutManager;
-    private ProgressBar loadingProgressBar;
 
     private View headerRootLayout;
     private ImageView headerChannelBanner;
     private ImageView headerAvatarView;
     private TextView headerTitleView;
-    private TextView headerSubscriberView;
-    private Button headerSubscriberButton;
-    private View headerSubscriberLayout;
+    private TextView headerSubscribersTextView;
+    private Button headerRssButton;
 
     /*////////////////////////////////////////////////////////////////////////*/
 
     public ChannelFragment() {
     }
 
-    public static ChannelFragment newInstance(int serviceId, String url, String name) {
-        ChannelFragment instance = newInstance();
-
-        Bundle bundle = new Bundle();
-        bundle.putString(Constants.KEY_URL, url);
-        bundle.putString(Constants.KEY_TITLE, name);
-        bundle.putInt(Constants.KEY_SERVICE_ID, serviceId);
-
-        instance.setArguments(bundle);
+    public static Fragment getInstance(int serviceId, String channelUrl, String name) {
+        ChannelFragment instance = new ChannelFragment();
+        instance.setChannel(serviceId, channelUrl, name);
         return instance;
-    }
-
-    public static ChannelFragment newInstance() {
-        return new ChannelFragment();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -124,118 +82,81 @@ public class ChannelFragment extends Fragment implements ChannelExtractorWorker.
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        activity = ((AppCompatActivity) context);
-        onItemSelectedListener = ((OnItemSelectedListener) context);
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
+        if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        isLoading = false;
         if (savedInstanceState != null) {
             channelUrl = savedInstanceState.getString(Constants.KEY_URL);
             channelName = savedInstanceState.getString(Constants.KEY_TITLE);
             serviceId = savedInstanceState.getInt(Constants.KEY_SERVICE_ID, -1);
-        } else {
-            try {
-                Bundle args = getArguments();
-                if (args != null) {
-                    channelUrl = args.getString(Constants.KEY_URL);
-                    channelName = args.getString(Constants.KEY_TITLE);
-                    serviceId = args.getInt(Constants.KEY_SERVICE_ID, 0);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                ErrorActivity.reportError(getActivity(), e, null,
-                        getActivity().findViewById(android.R.id.content),
-                        ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,
-                                NewPipe.getNameOfService(serviceId),
-                                "", R.string.general_error));
-            }
+
+            pageNumber = savedInstanceState.getInt(PAGE_NUMBER_KEY, 0);
+            Serializable serializable = savedInstanceState.getSerializable(CHANNEL_INFO_KEY);
+            if (serializable instanceof ChannelInfo) currentChannelInfo = (ChannelInfo) serializable;
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_channel, container, false);
-        return rootView;
+        if (DEBUG) Log.d(TAG, "onCreateView() called with: inflater = [" + inflater + "], container = [" + container + "], savedInstanceState = [" + savedInstanceState + "]");
+        return inflater.inflate(R.layout.fragment_channel, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        loadingProgressBar = (ProgressBar) view.findViewById(R.id.loading_progress_bar);
-        channelVideosList = (RecyclerView) view.findViewById(R.id.channel_streams_view);
+        super.onViewCreated(view, savedInstanceState);
 
-        infoListAdapter = new InfoListAdapter(activity, rootView);
-        layoutManager = new LinearLayoutManager(activity);
-        channelVideosList.setLayoutManager(layoutManager);
-
-        headerRootLayout = activity.getLayoutInflater().inflate(R.layout.channel_header, channelVideosList, false);
-        infoListAdapter.setHeader(headerRootLayout);
-        infoListAdapter.setFooter(activity.getLayoutInflater().inflate(R.layout.pignate_footer, channelVideosList, false));
-        channelVideosList.setAdapter(infoListAdapter);
-
-        headerChannelBanner = (ImageView) headerRootLayout.findViewById(R.id.channel_banner_image);
-        headerAvatarView = (ImageView) headerRootLayout.findViewById(R.id.channel_avatar_view);
-        headerTitleView = (TextView) headerRootLayout.findViewById(R.id.channel_title_view);
-        headerSubscriberView = (TextView) headerRootLayout.findViewById(R.id.channel_subscriber_view);
-        headerSubscriberButton = (Button) headerRootLayout.findViewById(R.id.channel_subscribe_button);
-        headerSubscriberLayout = headerRootLayout.findViewById(R.id.channel_subscriber_layout);
-
-        initListeners();
-
-        isLoading = true;
+        if (currentChannelInfo == null) loadPage(0);
+        else handleChannelInfo(currentChannelInfo, false, false);
     }
 
     @Override
     public void onDestroyView() {
-        super.onDestroyView();
+        if (DEBUG) Log.d(TAG, "onDestroyView() called");
         headerAvatarView.setImageBitmap(null);
         headerChannelBanner.setImageBitmap(null);
         channelVideosList.removeAllViews();
 
-        rootView = null;
         channelVideosList = null;
-        layoutManager = null;
-        loadingProgressBar = null;
         headerRootLayout = null;
         headerChannelBanner = null;
         headerAvatarView = null;
         headerTitleView = null;
-        headerSubscriberView = null;
-        headerSubscriberButton = null;
-        headerSubscriberLayout = null;
+        headerSubscribersTextView = null;
+        headerRssButton = null;
+
+        super.onDestroyView();
     }
 
     @Override
     public void onResume() {
+        if (DEBUG) Log.d(TAG, "onResume() called");
         super.onResume();
-        if (isLoading) {
-            requestData(false);
+        if (wasLoading.getAndSet(false) && (currentChannelWorker == null || !currentChannelWorker.isRunning())) {
+            loadPage(pageNumber);
         }
     }
 
     @Override
     public void onStop() {
+        if (DEBUG) Log.d(TAG, "onStop() called");
         super.onStop();
-        if (currentExtractorWorker != null) currentExtractorWorker.cancel();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        imageLoader.clearMemoryCache();
+        wasLoading.set(currentChannelWorker != null && currentChannelWorker.isRunning());
+        if (currentChannelWorker != null && currentChannelWorker.isRunning()) currentChannelWorker.cancel();
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
+        if (DEBUG) Log.d(TAG, "onSaveInstanceState() called with: outState = [" + outState + "]");
         super.onSaveInstanceState(outState);
         outState.putString(Constants.KEY_URL, channelUrl);
         outState.putString(Constants.KEY_TITLE, channelName);
         outState.putInt(Constants.KEY_SERVICE_ID, serviceId);
+
+        outState.putSerializable(INFO_LIST_KEY, ((ArrayList<InfoItem>) infoListAdapter.getItemsList()));
+        outState.putSerializable(CHANNEL_INFO_KEY, currentChannelInfo);
+        outState.putInt(PAGE_NUMBER_KEY, pageNumber);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -243,6 +164,7 @@ public class ChannelFragment extends Fragment implements ChannelExtractorWorker.
     //////////////////////////////////////////////////////////////////////////*/
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "], inflater = [" + inflater + "]");
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_channel, menu);
 
@@ -250,20 +172,18 @@ public class ChannelFragment extends Fragment implements ChannelExtractorWorker.
         if (supportActionBar != null) {
             supportActionBar.setDisplayShowTitleEnabled(true);
             supportActionBar.setDisplayHomeAsUpEnabled(true);
-            //noinspection deprecation
-            supportActionBar.setNavigationMode(0);
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (DEBUG) Log.d(TAG, "onOptionsItemSelected() called with: item = [" + item + "]");
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
             case R.id.menu_item_openInBrowser: {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(channelUrl));
-
                 startActivity(Intent.createChooser(intent, getString(R.string.choose_browser)));
                 return true;
             }
@@ -283,79 +203,185 @@ public class ChannelFragment extends Fragment implements ChannelExtractorWorker.
     // Init's
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void initListeners() {
+    @Override
+    protected void initViews(View rootView, Bundle savedInstanceState) {
+        super.initViews(rootView, savedInstanceState);
+
+        channelVideosList = (RecyclerView) rootView.findViewById(R.id.channel_streams_view);
+
+        channelVideosList.setLayoutManager(new LinearLayoutManager(activity));
+        if (infoListAdapter == null) {
+            infoListAdapter = new InfoListAdapter(activity, rootView);
+            if (savedInstanceState != null) {
+                //noinspection unchecked
+                ArrayList<InfoItem> serializable = (ArrayList<InfoItem>) savedInstanceState.getSerializable(INFO_LIST_KEY);
+                infoListAdapter.addInfoItemList(serializable);
+            }
+        }
+
+        channelVideosList.setAdapter(infoListAdapter);
+        headerRootLayout = activity.getLayoutInflater().inflate(R.layout.channel_header, channelVideosList, false);
+        infoListAdapter.setHeader(headerRootLayout);
+        infoListAdapter.setFooter(activity.getLayoutInflater().inflate(R.layout.pignate_footer, channelVideosList, false));
+
+        headerChannelBanner = (ImageView) headerRootLayout.findViewById(R.id.channel_banner_image);
+        headerAvatarView = (ImageView) headerRootLayout.findViewById(R.id.channel_avatar_view);
+        headerTitleView = (TextView) headerRootLayout.findViewById(R.id.channel_title_view);
+        headerSubscribersTextView = (TextView) headerRootLayout.findViewById(R.id.channel_subscriber_view);
+        headerRssButton = (Button) headerRootLayout.findViewById(R.id.channel_rss_button);
+    }
+
+    protected void initListeners() {
+        super.initListeners();
+
         infoListAdapter.setOnStreamInfoItemSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener() {
             @Override
             public void selected(int serviceId, String url, String title) {
+                if (DEBUG) Log.d(TAG, "selected() called with: serviceId = [" + serviceId + "], url = [" + url + "], title = [" + title + "]");
                 NavigationHelper.openVideoDetail(onItemSelectedListener, serviceId, url, title);
             }
         });
 
-        // detect if list has ben scrolled to the bottom
-        channelVideosList.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        channelVideosList.clearOnScrollListeners();
+        channelVideosList.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 int pastVisiblesItems, visibleItemCount, totalItemCount;
                 super.onScrolled(recyclerView, dx, dy);
                 //check for scroll down
                 if (dy > 0) {
+                    LinearLayoutManager layoutManager = (LinearLayoutManager) channelVideosList.getLayoutManager();
+
                     visibleItemCount = layoutManager.getChildCount();
                     totalItemCount = layoutManager.getItemCount();
                     pastVisiblesItems = layoutManager.findFirstVisibleItemPosition();
 
-                    if ((visibleItemCount + pastVisiblesItems) >= totalItemCount && !currentExtractorWorker.isRunning() && hasNextPage) {
+                    if ((visibleItemCount + pastVisiblesItems) >= totalItemCount && (currentChannelWorker == null || !currentChannelWorker.isRunning()) && hasNextPage && !isLoading.get()) {
                         pageNumber++;
-                        requestData(true);
+                        loadMoreVideos();
                     }
                 }
             }
         });
 
-        headerSubscriberButton.setOnClickListener(new View.OnClickListener() {
+        headerRssButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, currentChannelInfo.feed_url);
+                if (DEBUG) Log.d(TAG, "onClick() called with: view = [" + view + "] feed url > " + currentChannelInfo.feed_url);
                 Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(currentChannelInfo.feed_url));
                 startActivity(i);
             }
         });
     }
 
+    @Override
+    protected void reloadContent() {
+        if (DEBUG) Log.d(TAG, "reloadContent() called");
+        currentChannelInfo = null;
+        infoListAdapter.clearStreamItemList();
+        loadPage(0);
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
+
     private String buildSubscriberString(long count) {
         String out = NumberFormat.getNumberInstance().format(count);
         out += " " + getString(count > 1 ? R.string.subscriber_plural : R.string.subscriber);
         return out;
     }
 
-    private void requestData(boolean onlyVideos) {
-        if (currentExtractorWorker != null && currentExtractorWorker.isRunning()) currentExtractorWorker.cancel();
+    private void loadPage(int page) {
+        if (DEBUG) Log.d(TAG, "loadPage() called with: page = [" + page + "]");
+        if (currentChannelWorker != null && currentChannelWorker.isRunning()) currentChannelWorker.cancel();
+        isLoading.set(true);
+        pageNumber = page;
+        infoListAdapter.showFooter(false);
 
-        isLoading = true;
-        if (!onlyVideos) {
-            //delete already displayed content
-            loadingProgressBar.setVisibility(View.VISIBLE);
-            infoListAdapter.clearSteamItemList();
-            pageNumber = 0;
-            headerSubscriberLayout.setVisibility(View.GONE);
-            headerTitleView.setText(channelName != null ? channelName : "");
-            if (activity.getSupportActionBar() != null) activity.getSupportActionBar().setTitle(channelName != null ? channelName : "");
-            if (SDK_INT >= 21) {
-                headerChannelBanner.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.channel_banner));
-                headerAvatarView.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.buddy));
-            }
-            infoListAdapter.showFooter(false);
-        }
+        animateView(loadingProgressBar, true, 200);
+        animateView(errorPanel, false, 200);
 
-        currentExtractorWorker = new ChannelExtractorWorker(activity, serviceId, channelUrl, pageNumber, this);
-        currentExtractorWorker.setOnlyVideos(onlyVideos);
-        currentExtractorWorker.start();
+        imageLoader.cancelDisplayTask(headerChannelBanner);
+        imageLoader.cancelDisplayTask(headerAvatarView);
+
+        headerRssButton.setVisibility(View.GONE);
+        headerSubscribersTextView.setVisibility(View.GONE);
+
+        headerTitleView.setText(channelName != null ? channelName : "");
+        headerChannelBanner.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.channel_banner));
+        headerAvatarView.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.buddy));
+        if (activity.getSupportActionBar() != null) activity.getSupportActionBar().setTitle(channelName != null ? channelName : "");
+
+        currentChannelWorker = new ChannelExtractorWorker(activity, serviceId, channelUrl, page, false, this);
+        currentChannelWorker.start();
     }
 
-    private void addVideos(ChannelInfo info) {
-        infoListAdapter.addInfoItemList(info.related_streams);
+    private void loadMoreVideos() {
+        if (DEBUG) Log.d(TAG, "loadMoreVideos() called");
+        if (currentChannelWorker != null && currentChannelWorker.isRunning()) currentChannelWorker.cancel();
+        isLoading.set(true);
+        currentChannelWorker = new ChannelExtractorWorker(activity, serviceId, channelUrl, pageNumber, true, this);
+        currentChannelWorker.start();
+    }
+
+    private void setChannel(int serviceId, String channelUrl, String name) {
+        this.serviceId = serviceId;
+        this.channelUrl = channelUrl;
+        this.channelName = name;
+    }
+
+    private void handleChannelInfo(ChannelInfo info, boolean onlyVideos, boolean addVideos) {
+        currentChannelInfo = info;
+
+        animateView(errorPanel, false, 300);
+        animateView(channelVideosList, true, 200);
+        animateView(loadingProgressBar, false, 200);
+
+        if (!onlyVideos) {
+            headerRootLayout.setVisibility(View.VISIBLE);
+            //animateView(loadingProgressBar, false, 200, null);
+
+            if (!TextUtils.isEmpty(info.channel_name)) {
+                if (activity.getSupportActionBar() != null) activity.getSupportActionBar().setTitle(info.channel_name);
+                headerTitleView.setText(info.channel_name);
+                channelName = info.channel_name;
+            } else channelName = "";
+
+            if (!TextUtils.isEmpty(info.banner_url)) {
+                imageLoader.displayImage(info.banner_url, headerChannelBanner, displayImageOptions,  new ImageErrorLoadingListener(activity, getView(), info.service_id));
+            }
+
+            if (!TextUtils.isEmpty(info.avatar_url)) {
+                headerAvatarView.setVisibility(View.VISIBLE);
+                imageLoader.displayImage(info.avatar_url, headerAvatarView, displayImageOptions, new ImageErrorLoadingListener(activity, getView(), info.service_id));
+            }
+
+            if (info.subscriberCount != -1) {
+                headerSubscribersTextView.setText(buildSubscriberString(info.subscriberCount));
+                headerSubscribersTextView.setVisibility(View.VISIBLE);
+            } else headerSubscribersTextView.setVisibility(View.GONE);
+
+            if (!TextUtils.isEmpty(info.feed_url)) headerRssButton.setVisibility(View.VISIBLE);
+            else headerRssButton.setVisibility(View.INVISIBLE);
+
+            infoListAdapter.showFooter(true);
+        }
+
+        hasNextPage = info.hasNextPage;
+        if (!hasNextPage) infoListAdapter.showFooter(false);
+
+        //if (!listRestored) {
+        if (addVideos) infoListAdapter.addInfoItemList(info.related_streams);
+        //}
+    }
+
+    @Override
+    protected void setErrorMessage(String message, boolean showRetryButton) {
+        super.setErrorMessage(message, showRetryButton);
+
+        animateView(channelVideosList, false, 200);
+        currentChannelInfo = null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -363,59 +389,23 @@ public class ChannelFragment extends Fragment implements ChannelExtractorWorker.
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onReceive(ChannelInfo info) {
+    public void onReceive(ChannelInfo info, boolean onlyVideos) {
+        if (DEBUG) Log.d(TAG, "onReceive() called with: info = [" + info + "]");
         if (info == null || isRemoving() || !isVisible()) return;
 
-        currentChannelInfo = info;
-
-        if (!currentExtractorWorker.isOnlyVideos()) {
-            headerRootLayout.setVisibility(View.VISIBLE);
-            loadingProgressBar.setVisibility(View.GONE);
-
-            if (info.channel_name != null && !info.channel_name.isEmpty()) {
-                if (activity.getSupportActionBar() != null) activity.getSupportActionBar().setTitle(info.channel_name);
-                headerTitleView.setText(info.channel_name);
-                channelName = info.channel_name;
-            } else channelName = "";
-
-            if (info.banner_url != null && !info.banner_url.isEmpty()) {
-                imageLoader.displayImage(info.banner_url, headerChannelBanner,
-                        new ImageErrorLoadingListener(activity, rootView, info.service_id));
-            }
-
-            if (info.avatar_url != null && !info.avatar_url.isEmpty()) {
-                headerAvatarView.setVisibility(View.VISIBLE);
-                imageLoader.displayImage(info.avatar_url, headerAvatarView,
-                        new ImageErrorLoadingListener(activity, rootView, info.service_id));
-            }
-
-            if (info.subscriberCount != -1) {
-                headerSubscriberView.setText(buildSubscriberString(info.subscriberCount));
-            }
-
-            if ((info.feed_url != null && !info.feed_url.isEmpty()) || (info.subscriberCount != -1)) {
-                headerSubscriberLayout.setVisibility(View.VISIBLE);
-            }
-
-            if (info.feed_url == null || info.feed_url.isEmpty()) {
-                headerSubscriberButton.setVisibility(View.INVISIBLE);
-            }
-
-            infoListAdapter.showFooter(true);
-        }
-        hasNextPage = info.hasNextPage;
-        if (!hasNextPage) infoListAdapter.showFooter(false);
-        addVideos(info);
-        isLoading = false;
+        handleChannelInfo(info, onlyVideos, true);
+        isLoading.set(false);
     }
 
     @Override
     public void onError(int messageId) {
-        Toast.makeText(activity, messageId, Toast.LENGTH_LONG).show();
+        if (DEBUG) Log.d(TAG, "onError() called with: messageId = [" + messageId + "]");
+        setErrorMessage(getString(messageId), true);
     }
 
     @Override
     public void onUnrecoverableError(Exception exception) {
+        if (DEBUG) Log.d(TAG, "onUnrecoverableError() called with: exception = [" + exception + "]");
         activity.finish();
     }
 }

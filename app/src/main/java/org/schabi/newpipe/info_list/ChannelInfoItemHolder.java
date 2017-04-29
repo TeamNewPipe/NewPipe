@@ -1,7 +1,6 @@
 package org.schabi.newpipe.info_list;
 
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
@@ -35,16 +34,17 @@ public class ChannelInfoItemHolder extends InfoItemHolder {
     public final TextView itemSubscriberCountView;
     public final TextView itemVideoCountView;
     public final TextView itemChannelDescriptionView;
-    public final Button itemButton;
+
+    public final View itemRoot;
 
     ChannelInfoItemHolder(View v) {
         super(v);
+        itemRoot = v.findViewById(R.id.itemRoot);
         itemThumbnailView = (CircleImageView) v.findViewById(R.id.itemThumbnailView);
         itemChannelTitleView = (TextView) v.findViewById(R.id.itemChannelTitleView);
         itemSubscriberCountView = (TextView) v.findViewById(R.id.itemSubscriberCountView);
         itemVideoCountView = (TextView) v.findViewById(R.id.itemVideoCountView);
         itemChannelDescriptionView = (TextView) v.findViewById(R.id.itemChannelDescriptionView);
-        itemButton = (Button) v.findViewById(R.id.item_button);
     }
 
     @Override

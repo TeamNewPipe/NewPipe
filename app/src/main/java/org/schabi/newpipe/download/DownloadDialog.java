@@ -1,14 +1,11 @@
 package org.schabi.newpipe.download;
 
 import android.Manifest;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
@@ -26,34 +23,32 @@ import android.widget.TextView;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.settings.NewPipeSettings;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import us.shandian.giga.get.DownloadManager;
-import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.service.DownloadManagerService;
 
 
 /**
  * Created by Christian Schabesberger on 21.09.15.
- *
+ * <p>
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
  * DownloadDialog.java is part of NewPipe.
- *
+ * <p>
  * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * NewPipe is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -71,8 +66,7 @@ public class DownloadDialog extends DialogFragment {
 
     }
 
-    public static DownloadDialog newInstance(Bundle args)
-    {
+    public static DownloadDialog newInstance(Bundle args) {
         DownloadDialog dialog = new DownloadDialog();
         dialog.setArguments(args);
         dialog.setStyle(DialogFragment.STYLE_NO_TITLE, 0);
@@ -100,7 +94,7 @@ public class DownloadDialog extends DialogFragment {
         final SeekBar threads = (SeekBar) view.findViewById(R.id.threads);
 
         toolbar.setTitle(R.string.download_dialog_title);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setNavigationIcon(ThemeHelper.isLightThemeSelected(getActivity()) ? R.drawable.ic_arrow_back_black_24dp : R.drawable.ic_arrow_back_white_24dp);
         toolbar.inflateMenu(R.menu.dialog_url);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,16 +145,16 @@ public class DownloadDialog extends DialogFragment {
 
     }
 
-    protected void checkDownloadOptions(){
+    protected void checkDownloadOptions() {
         View view = getView();
         Bundle arguments = getArguments();
         RadioButton audioButton = (RadioButton) view.findViewById(R.id.audio_button);
         RadioButton videoButton = (RadioButton) view.findViewById(R.id.video_button);
 
-        if(arguments.getString(AUDIO_URL) == null) {
+        if (arguments.getString(AUDIO_URL) == null) {
             audioButton.setVisibility(View.GONE);
             videoButton.setChecked(true);
-        } else if(arguments.getString(VIDEO_URL) == null) {
+        } else if (arguments.getString(VIDEO_URL) == null) {
             videoButton.setVisibility(View.GONE);
             audioButton.setChecked(true);
         }
@@ -169,11 +163,11 @@ public class DownloadDialog extends DialogFragment {
     /**
      * #143 #44 #42 #22: make shure that the filename does not contain illegal chars.
      * This should fix some of the "cannot download" problems.
-     * */
+     */
     private String createFileName(String fName) {
         // from http://eng-przemelek.blogspot.de/2009/07/how-to-create-valid-file-name.html
 
-        List<String> forbiddenCharsPatterns = new ArrayList<> ();
+        List<String> forbiddenCharsPatterns = new ArrayList<>();
         forbiddenCharsPatterns.add("[:]+"); // Mac OS, but it looks that also Windows XP
         forbiddenCharsPatterns.add("[\\*\"/\\\\\\[\\]\\:\\;\\|\\=\\,]+");  // Windows
         forbiddenCharsPatterns.add("[^\\w\\d\\.]+");  // last chance... only latin letters and digits
@@ -186,8 +180,7 @@ public class DownloadDialog extends DialogFragment {
 
 
     //download audio, video or both?
-    private void download()
-    {
+    private void download() {
         View view = getView();
         Bundle arguments = getArguments();
         final EditText name = (EditText) view.findViewById(R.id.file_name);
@@ -199,7 +192,7 @@ public class DownloadDialog extends DialogFragment {
 
         boolean isAudio = audioButton.isChecked();
         String url, location, filename;
-        if(isAudio) {
+        if (isAudio) {
             url = arguments.getString(AUDIO_URL);
             location = NewPipeSettings.getAudioDownloadPath(getContext());
             filename = fName + arguments.getString(FILE_SUFFIX_AUDIO);
@@ -218,11 +211,11 @@ public class DownloadDialog extends DialogFragment {
     private void download(String url, String title,
                           String fileSuffix, File downloadDir, Context context) {
 
-        File saveFilePath = new File(downloadDir,createFileName(title) + fileSuffix);
+        File saveFilePath = new File(downloadDir, createFileName(title) + fileSuffix);
 
         long id = 0;
 
-        Log.i(TAG,"Started downloading '" + url +
+        Log.i(TAG, "Started downloading '" + url +
                 "' => '" + saveFilePath + "' #" + id);
 
         if (App.isUsingTor()) {
