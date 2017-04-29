@@ -202,4 +202,11 @@
     <string name="show_higher_resolutions_title">Прикажи више резолуције</string>
     <string name="show_higher_resolutions_summary">Само неки уређаји подржавају пуштање 2k/4k видеа</string>
     <string name="subscriber_plural">пријављених</string>
+    <string name="filter">Филтер</string>
+    <string name="refresh">Освежи</string>
+    <string name="clear">Очисти</string>
+
+    <string name="controls_background_title">Позадина</string>
+    <string name="controls_popup_title">Прозорче</string>
+
     </resources>
