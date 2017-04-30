@@ -201,4 +201,11 @@
     <string name="default_popup_resolution_title">デフォルトのポップアップ解像度</string>
     <string name="show_higher_resolutions_title">高い解像度で表示</string>
     <string name="show_higher_resolutions_summary">一部のデバイスのみ 2K/4K ビデオの再生をサポートしています</string>
+    <string name="controls_background_title">背景</string>
+    <string name="controls_popup_title">ポップアップ</string>
+
+    <string name="filter">フィルター</string>
+    <string name="refresh">更新</string>
+    <string name="clear">クリア</string>
+
     </resources>
