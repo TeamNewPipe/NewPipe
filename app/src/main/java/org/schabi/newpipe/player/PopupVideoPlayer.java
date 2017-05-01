@@ -7,13 +7,14 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -24,6 +25,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupMenu;
 import android.widget.RemoteViews;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -58,14 +60,19 @@ public class PopupVideoPlayer extends Service {
     public static final String ACTION_OPEN_DETAIL = "org.schabi.newpipe.player.PopupVideoPlayer.OPEN_DETAIL";
     public static final String ACTION_REPEAT = "org.schabi.newpipe.player.PopupVideoPlayer.REPEAT";
 
+    private static final String POPUP_SAVED_WIDTH = "popup_saved_width";
+    private static final String POPUP_SAVED_X = "popup_saved_x";
+    private static final String POPUP_SAVED_Y = "popup_saved_y";
+
     private WindowManager windowManager;
     private WindowManager.LayoutParams windowLayoutParams;
     private GestureDetector gestureDetector;
 
     private float screenWidth, screenHeight;
     private float popupWidth, popupHeight;
-    private float currentPopupHeight = 110.0f * Resources.getSystem().getDisplayMetrics().density;
-    //private float minimumHeight = 100; // TODO: Use it when implementing the resize of the popup
+
+    private float minimumWidth, minimumHeight;
+    private float maximumWidth, maximumHeight;
 
     private final String setAlphaMethodName = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) ? "setImageAlpha" : "setAlpha";
     private NotificationManager notificationManager;
@@ -114,6 +121,8 @@ public class PopupVideoPlayer extends Service {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         updateScreenSize();
+        updatePopupSize(windowLayoutParams.width, -1);
+        checkPositionBounds();
     }
 
     @Override
@@ -129,6 +138,8 @@ public class PopupVideoPlayer extends Service {
             currentExtractorWorker.cancel();
             currentExtractorWorker = null;
         }
+
+        savePositionAndSize();
     }
 
     @Override
@@ -144,21 +155,33 @@ public class PopupVideoPlayer extends Service {
     private void initPopup() {
         if (DEBUG) Log.d(TAG, "initPopup() called");
         View rootView = View.inflate(this, R.layout.player_popup, null);
-
         playerImpl.setup(rootView);
 
         updateScreenSize();
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean popupRememberSizeAndPos = sharedPreferences.getBoolean(getString(R.string.popup_remember_size_pos_key), true);
+
+        float defaultSize = getResources().getDimension(R.dimen.popup_default_width);
+        popupWidth = popupRememberSizeAndPos ? sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize) : defaultSize;
+
         windowLayoutParams = new WindowManager.LayoutParams(
-                (int) getMinimumVideoWidth(currentPopupHeight), (int) currentPopupHeight,
+                (int) popupWidth, (int) getMinimumVideoHeight(popupWidth),
                 WindowManager.LayoutParams.TYPE_PHONE,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT);
-
         windowLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
+
+        int centerX = (int) (screenWidth / 2f - popupWidth / 2f);
+        int centerY = (int) (screenHeight / 2f - popupHeight / 2f);
+        windowLayoutParams.x = popupRememberSizeAndPos ? sharedPreferences.getInt(POPUP_SAVED_X, centerX) : centerX;
+        windowLayoutParams.y = popupRememberSizeAndPos ? sharedPreferences.getInt(POPUP_SAVED_Y, centerY) : centerY;
+
+        checkPositionBounds();
 
         MySimpleOnGestureListener listener = new MySimpleOnGestureListener();
         gestureDetector = new GestureDetector(this, listener);
-        gestureDetector.setIsLongpressEnabled(false);
+        //gestureDetector.setIsLongpressEnabled(false);
         rootView.setOnTouchListener(listener);
         playerImpl.getLoadingPanel().setMinimumWidth(windowLayoutParams.width);
         playerImpl.getLoadingPanel().setMinimumHeight(windowLayoutParams.height);
@@ -219,13 +242,13 @@ public class PopupVideoPlayer extends Service {
         notificationManager.notify(NOTIFICATION_ID, notBuilder.build());
     }
 
-
     /*//////////////////////////////////////////////////////////////////////////
     // Misc
     //////////////////////////////////////////////////////////////////////////*/
 
     public void onVideoClose() {
         if (DEBUG) Log.d(TAG, "onVideoClose() called");
+        savePositionAndSize();
         stopSelf();
     }
 
@@ -245,10 +268,23 @@ public class PopupVideoPlayer extends Service {
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    private float getMinimumVideoWidth(float height) {
-        float width = height * (16.0f / 9.0f); // Respect the 16:9 ratio that most videos have
-        if (DEBUG) Log.d(TAG, "getMinimumVideoWidth() called with: height = [" + height + "], returned: " + width);
-        return width;
+    private void checkPositionBounds() {
+        if (windowLayoutParams.x > screenWidth - windowLayoutParams.width) windowLayoutParams.x = (int) (screenWidth - windowLayoutParams.width);
+        if (windowLayoutParams.x < 0) windowLayoutParams.x = 0;
+        if (windowLayoutParams.y > screenHeight - windowLayoutParams.height) windowLayoutParams.y = (int) (screenHeight - windowLayoutParams.height);
+        if (windowLayoutParams.y < 0) windowLayoutParams.y = 0;
+    }
+
+    private void savePositionAndSize() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(PopupVideoPlayer.this);
+        sharedPreferences.edit().putInt(POPUP_SAVED_X, windowLayoutParams.x).apply();
+        sharedPreferences.edit().putInt(POPUP_SAVED_Y, windowLayoutParams.y).apply();
+        sharedPreferences.edit().putFloat(POPUP_SAVED_WIDTH, windowLayoutParams.width).apply();
+    }
+
+    private float getMinimumVideoHeight(float width) {
+        //if (DEBUG) Log.d(TAG, "getMinimumVideoHeight() called with: width = [" + width + "], returned: " + height);
+        return width / (16.0f / 9.0f); // Respect the 16:9 ratio that most videos have
     }
 
     private void updateScreenSize() {
@@ -258,11 +294,39 @@ public class PopupVideoPlayer extends Service {
         screenWidth = metrics.widthPixels;
         screenHeight = metrics.heightPixels;
         if (DEBUG) Log.d(TAG, "updateScreenSize() called > screenWidth = " + screenWidth + ", screenHeight = " + screenHeight);
+
+        popupWidth = getResources().getDimension(R.dimen.popup_default_width);
+        popupHeight = getMinimumVideoHeight(popupWidth);
+
+        minimumWidth = getResources().getDimension(R.dimen.popup_minimum_width);
+        minimumHeight = getMinimumVideoHeight(minimumWidth);
+
+        maximumWidth = screenWidth;
+        maximumHeight = screenHeight;
+    }
+
+    private void updatePopupSize(int width, int height) {
+        //if (DEBUG) Log.d(TAG, "updatePopupSize() called with: width = [" + width + "], height = [" + height + "]");
+
+        width = (int) (width > maximumWidth ? maximumWidth : width < minimumWidth ? minimumWidth : width);
+
+        if (height == -1) height = (int) getMinimumVideoHeight(width);
+        else height = (int) (height > maximumHeight ? maximumHeight : height < minimumHeight ? minimumHeight : height);
+
+        windowLayoutParams.width = width;
+        windowLayoutParams.height = height;
+        popupWidth = width;
+        popupHeight = height;
+
+        if (DEBUG) Log.d(TAG, "updatePopupSize() updated values:  width = [" + width + "], height = [" + height + "]");
+        windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
     }
 
     ///////////////////////////////////////////////////////////////////////////
 
     private class VideoPlayerImpl extends VideoPlayer {
+        private TextView resizingIndicator;
+
         VideoPlayerImpl() {
             super("VideoPlayerImpl" + PopupVideoPlayer.TAG, PopupVideoPlayer.this);
         }
@@ -271,11 +335,18 @@ public class PopupVideoPlayer extends Service {
         public void playUrl(String url, String format, boolean autoPlay) {
             super.playUrl(url, format, autoPlay);
 
-            windowLayoutParams.width = (int) getMinimumVideoWidth(currentPopupHeight);
+            windowLayoutParams.width = (int) popupWidth;
+            windowLayoutParams.height = (int) getMinimumVideoHeight(popupWidth);
             windowManager.updateViewLayout(getRootView(), windowLayoutParams);
 
             notBuilder = createNotification();
             startForeground(NOTIFICATION_ID, notBuilder.build());
+        }
+
+        @Override
+        public void initViews(View rootView) {
+            super.initViews(rootView);
+            resizingIndicator = (TextView) rootView.findViewById(R.id.resizing_indicator);
         }
 
         @Override
@@ -422,11 +493,20 @@ public class PopupVideoPlayer extends Service {
             showAndAnimateControl(R.drawable.ic_replay_white, false);
         }
 
+
+        @SuppressWarnings("WeakerAccess")
+        public TextView getResizingIndicator() {
+            return resizingIndicator;
+        }
     }
 
     private class MySimpleOnGestureListener extends GestureDetector.SimpleOnGestureListener implements View.OnTouchListener {
         private int initialPopupX, initialPopupY;
         private boolean isMoving;
+
+        private int onDownPopupWidth = 0;
+        private boolean isResizing;
+        private boolean isResizingRightSide;
 
         @Override
         public boolean onDoubleTap(MotionEvent e) {
@@ -450,15 +530,32 @@ public class PopupVideoPlayer extends Service {
             if (DEBUG) Log.d(TAG, "onDown() called with: e = [" + e + "]");
             initialPopupX = windowLayoutParams.x;
             initialPopupY = windowLayoutParams.y;
-            popupWidth = playerImpl.getRootView().getWidth();
-            popupHeight = playerImpl.getRootView().getHeight();
+            popupWidth = windowLayoutParams.width;
+            popupHeight = windowLayoutParams.height;
+            onDownPopupWidth = windowLayoutParams.width;
             return false;
         }
 
         @Override
+        public void onLongPress(MotionEvent e) {
+            if (DEBUG) Log.d(TAG, "onLongPress() called with: e = [" + e + "]");
+            playerImpl.showAndAnimateControl(-1, true);
+            playerImpl.getLoadingPanel().setVisibility(View.GONE);
+            playerImpl.animateView(playerImpl.getControlsRoot(), false, 0, 0);
+            playerImpl.animateView(playerImpl.getCurrentDisplaySeek(), false, 0, 0);
+            playerImpl.animateView(playerImpl.getResizingIndicator(), true, 200, 0);
+
+            isResizing = true;
+            isResizingRightSide = e.getRawX() > windowLayoutParams.x + (windowLayoutParams.width / 2f);
+        }
+
+        @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            if (!isMoving || playerImpl.getControlsRoot().getAlpha() != 1f) playerImpl.animateView(playerImpl.getControlsRoot(), true, 30, 0);
+            if (isResizing) return false;
+
+            if (!isMoving || playerImpl.getControlsRoot().getAlpha() != 1f) playerImpl.animateView(playerImpl.getControlsRoot(), true, 0, 0);
             isMoving = true;
+
             float diffX = (int) (e2.getRawX() - e1.getRawX()), posX = (int) (initialPopupX + diffX);
             float diffY = (int) (e2.getRawY() - e1.getRawY()), posY = (int) (initialPopupY + diffY);
 
@@ -477,7 +574,7 @@ public class PopupVideoPlayer extends Service {
                     ", e2.getRaw = [" + e2.getRawX() + ", " + e2.getRawY() + "]" +
                     ", distanceXy = [" + distanceX + ", " + distanceY + "]" +
                     ", posXy = [" + posX + ", " + posY + "]" +
-                    ", popupWh rootView.get wh = [" + popupWidth + " x " + popupHeight + "]");
+                    ", popupWh = [" + popupWidth + " x " + popupHeight + "]");
             windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
             return true;
         }
@@ -492,9 +589,31 @@ public class PopupVideoPlayer extends Service {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             gestureDetector.onTouchEvent(event);
-            if (event.getAction() == MotionEvent.ACTION_UP && isMoving) {
-                isMoving = false;
-                onScrollEnd();
+            if (event.getAction() == MotionEvent.ACTION_MOVE && isResizing && !isMoving) {
+                //if (DEBUG) Log.d(TAG, "onTouch() ACTION_MOVE > v = [" + v + "],  e1.getRaw = [" + event.getRawX() + ", " + event.getRawY() + "]");
+                int width;
+                if (isResizingRightSide) width = (int) event.getRawX() - windowLayoutParams.x;
+                else {
+                    width = (int) (windowLayoutParams.width + (windowLayoutParams.x - event.getRawX()));
+                    if (width > minimumWidth) windowLayoutParams.x = initialPopupX - (width - onDownPopupWidth);
+                }
+                if (width <= maximumWidth && width >= minimumWidth) updatePopupSize(width, -1);
+                return true;
+            }
+
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (DEBUG) Log.d(TAG, "onTouch() ACTION_UP > v = [" + v + "],  e1.getRaw = [" + event.getRawX() + ", " + event.getRawY() + "]");
+                if (isMoving) {
+                    isMoving = false;
+                    onScrollEnd();
+                }
+
+                if (isResizing) {
+                    isResizing = false;
+                    playerImpl.animateView(playerImpl.getResizingIndicator(), false, 100, 0);
+                    playerImpl.changeState(playerImpl.getCurrentState());
+                }
+                savePositionAndSize();
             }
             return true;
         }

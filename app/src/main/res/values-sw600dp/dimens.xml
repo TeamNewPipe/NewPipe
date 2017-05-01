@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <dimen name="popup_default_width">230dp</dimen>
+    <dimen name="popup_minimum_width">140dp</dimen>
     <!-- Video Item Detail View Dimensions-->
     <!-- Text Size -->
     <dimen name="channel_item_detail_title_text_size">18sp</dimen>

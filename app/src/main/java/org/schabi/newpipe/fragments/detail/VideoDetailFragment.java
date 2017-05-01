@@ -19,6 +19,7 @@ import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -420,7 +421,10 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         if (isLoading.get()) return;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !PermissionHelper.checkSystemAlertWindowPermission(activity)) {
-            Toast.makeText(activity, R.string.msg_popup_permission, Toast.LENGTH_LONG).show();
+            Toast toast = Toast.makeText(activity, R.string.msg_popup_permission, Toast.LENGTH_LONG);
+            TextView messageView = (TextView) toast.getView().findViewById(android.R.id.message);
+            if (messageView != null) messageView.setGravity(Gravity.CENTER);
+            toast.show();
             return;
         }
 
