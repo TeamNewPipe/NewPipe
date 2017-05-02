@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="view_count_text">%1$s reproducciones</string>
+    <string name="view_count_text">%1$s visualizaciones</string>
     <string name="upload_date_text">Publicado en %1$s</string>
     <string name="no_player_found">No se encontró ningún reproductor de vídeo. ¿Desea instalar VLC?</string>
     <string name="install">Instalar</string>
@@ -188,14 +188,14 @@ abrir en modo popup</string>
     <string name="popup_playing_toast">Reproduciendo en modo popup</string>
     <string name="use_old_player_title">Usar reproductor antiguo</string>
     <string name="use_old_player_summary">Versión antigua en reproductor Mediaframework.</string>
-    <string name="preferred_video_format_title">Formato de vídeo preferido</string>
+    <string name="preferred_video_format_title">Formato de vídeo por defecto</string>
     <string name="disabled">Desactivado</string>
 
     <string name="subscriber_plural">Suscriptores</string>
     <string name="show_higher_resolutions_title">Mostrar resoluciones más altas</string>
-    <string name="show_higher_resolutions_summary">Solo algunos dispositivos soportan reproducción de vídeos de 2k/4k</string>
-    <string name="default_popup_resolution_title">Resolución predeterminada del popup</string>
-    <string name="controls_background_title">Fondo</string>
+    <string name="show_higher_resolutions_summary">Sólo algunos dispositivos soportan reproducción de vídeos en 2K/4K</string>
+    <string name="default_popup_resolution_title">Resolución del popup por defecto</string>
+    <string name="controls_background_title">Segundo plano</string>
     <string name="controls_popup_title">Popup</string>
 
     <string name="filter">Filtro</string>
