@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -32,10 +33,11 @@ class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapter.ViewH
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView nameTextView;
         ImageView avatarImage;
+        LinearLayout container;
 
         ViewHolder(View itemView) {
             super(itemView);
-
+            container = (LinearLayout) itemView.findViewById(R.id.channel_item);
             nameTextView = (TextView) itemView.findViewById(R.id.channel_name);
             avatarImage = (ImageView) itemView.findViewById(R.id.channel_avatar);
         }
@@ -57,7 +59,7 @@ class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapter.ViewH
     public void onBindViewHolder(SubscriptionAdapter.ViewHolder holder, int position) {
         channelInfo = (SubscribedChannelInfo) subInfoList.get(position);
         holder.nameTextView.setText(channelInfo.getName());
-        holder.nameTextView.setOnClickListener(this);
+        holder.container.setOnClickListener(this);
         try {
             imageloader.displayImage(channelInfo.getAvatar(), holder.avatarImage);
         }

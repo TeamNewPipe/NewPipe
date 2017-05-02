@@ -6,7 +6,6 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -197,7 +196,7 @@ public class DownloadManagerService extends Service
 
 		permissionCheck = PermissionChecker.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 		if(permissionCheck == PermissionChecker.PERMISSION_DENIED) {
-			Toast.makeText(this, "Permission denied (write)", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Permission denied (subscribe)", Toast.LENGTH_SHORT).show();
 		}
 
 		return mBinder;

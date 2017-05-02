@@ -344,7 +344,6 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
         uploaderTextView = (TextView) rootView.findViewById(R.id.detail_uploader_text_view);
         uploaderThumb = (ImageView) rootView.findViewById(R.id.detail_uploader_thumbnail_view);
         uploaderSubscribeButton = (Button) rootView.findViewById(R.id.subscribe_button);
-
         relatedStreamRootLayout = (RelativeLayout) rootView.findViewById(R.id.detail_related_streams_root_layout);
         nextStreamTitle = (TextView) rootView.findViewById(R.id.detail_next_stream_title);
         relatedStreamsView = (LinearLayout) rootView.findViewById(R.id.detail_related_streams_view);
@@ -397,7 +396,14 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
         uploaderSubscribeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SubscriptionDBHelper.write(getActivity(), currentStreamInfo);
+                if(SubscriptionDBHelper.checkSubscription(getActivity(), currentStreamInfo)){
+                    SubscriptionDBHelper.unsubscribe(getActivity(), currentStreamInfo);
+                    uploaderSubscribeButton.setText(getString(R.string.subscribe));
+                }
+                else {
+                    SubscriptionDBHelper.subscribe(getActivity(), currentStreamInfo);
+                    uploaderSubscribeButton.setText(getString(R.string.unsubscribe));
+                }
             }
         });
     }
@@ -940,6 +946,10 @@ public class VideoDetailFragment extends Fragment implements StreamExtractorWork
         // the UI has to react on missing information.
         videoTitleTextView.setText(info.title);
         if (!info.uploader.isEmpty()) uploaderTextView.setText(info.uploader);
+        if(SubscriptionDBHelper.checkSubscription(getActivity(), currentStreamInfo))
+            uploaderSubscribeButton.setText(getString(R.string.unsubscribe));
+        else
+            uploaderSubscribeButton.setText(getString(R.string.subscribe));
         uploaderTextView.setVisibility(!info.uploader.isEmpty() ? View.VISIBLE : View.GONE);
         uploaderButton.setVisibility(!info.channel_url.isEmpty() ? View.VISIBLE : View.GONE);
         uploaderThumb.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.buddy));

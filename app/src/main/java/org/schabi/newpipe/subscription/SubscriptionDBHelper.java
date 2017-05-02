@@ -63,7 +63,7 @@ public class SubscriptionDBHelper extends SQLiteOpenHelper {
         return infoList;
     }
 
-    public static void write(Activity activity, StreamInfo streamInfo){
+    public static void subscribe(Activity activity, StreamInfo streamInfo){
         SQLiteDatabase db = new SubscriptionDBHelper(activity).getWritableDatabase();
 
         int serviceID = streamInfo.service_id;
@@ -81,4 +81,17 @@ public class SubscriptionDBHelper extends SQLiteOpenHelper {
         db.insert(Subscription.Entry.TABLE_NAME, null, values);
     }
 
+    public static void unsubscribe(Activity activity, StreamInfo streamInfo){
+        SQLiteDatabase db = new SubscriptionDBHelper(activity).getWritableDatabase();
+        String link = streamInfo.channel_url;
+        db.delete(Subscription.Entry.TABLE_NAME, Subscription.Entry.COLUMN_LINK + "=?", new String[]{link});
+    }
+
+    public static boolean checkSubscription(Activity activity, StreamInfo streamInfo){
+        SQLiteDatabase db = new SubscriptionDBHelper(activity).getWritableDatabase();
+        String link = streamInfo.channel_url;
+        Cursor query = db.rawQuery("SELECT * from " + Subscription.Entry.TABLE_NAME + " WHERE " +
+                                    Subscription.Entry.COLUMN_LINK + "=?", new String[]{link});
+        return query.getCount() == 1;
+    }
 }
