@@ -19,11 +19,11 @@ Project status:
 
 ## Screenshots
 
-[<img src="screenshots/screenshot_1.png" width=150>](screenshots/screenshot_1.png)
-[<img src="screenshots/screenshot_2.png" width=150>](screenshots/screenshot_2.png)
-[<img src="screenshots/screenshot_3.png" width=150>](screenshots/screenshot_3.png)
-[<img src="screenshots/screenshot_4.png" width=150>](screenshots/screenshot_4.png)
-[<img src="screenshots/screenshot_5.png" width=150>](screenshots/screenshot_5.png)
+[<img src="screenshots/screenshot_1.png" width=160>](screenshots/screenshot_1.png)
+[<img src="screenshots/screenshot_2.png" width=160>](screenshots/screenshot_2.png)
+[<img src="screenshots/screenshot_3.png" width=160>](screenshots/screenshot_3.png)
+[<img src="screenshots/screenshot_4.png" width=160>](screenshots/screenshot_4.png)
+[<img src="screenshots/screenshot_5.png" width=160>](screenshots/screenshot_5.png)
 
 ## Description
 
@@ -35,6 +35,7 @@ NewPipe does not use any Google framework libraries, or the YouTube API. It only
 * Display general information about a video
 * Watch YouTube videos
 * Listen to YouTube videos (experimental)
+* Popup mode (floating player)
 * Select the streaming player to watch the video with
 * Download videos 
 * Download audio only
