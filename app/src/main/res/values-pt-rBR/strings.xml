@@ -175,4 +175,8 @@ abrir em modo popup</string>
 
     <string name="popup_mode_share_menu_title">Modo de popup NewPipe</string>
 
+    <string name="filter">Filtro</string>
+    <string name="refresh">Atualizar</string>
+    <string name="clear">Limpar</string>
+
     </resources>
