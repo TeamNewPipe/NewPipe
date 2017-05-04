@@ -59,6 +59,8 @@
     <string name="light_theme_title">Light</string>
     <string name="dark_theme_title">Dark</string>
     <string name="black_theme_title">Black</string>
+    <string name="popup_remember_size_pos_title">Remember popup size and position</string>
+    <string name="popup_remember_size_pos_summary">Remember the last size and position set to the popup</string>
 
     <string name="download_dialog_title">Download</string>
     <string-array name="download_options">
@@ -86,6 +88,7 @@
     <string name="similar_videos_btn_text">Similar videos</string>
     <string name="search_language_title">Preferred content language</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
+    <string name="settings_category_popup_title">Popup</string>
     <string name="settings_category_appearance_title">Appearance</string>
     <string name="settings_category_other_title">Other</string>
     <string name="background_player_time_text" translatable="false">%1$s - NewPipe</string>
@@ -109,6 +112,7 @@
     <string name="filter">Filter</string>
     <string name="refresh">Refresh</string>
     <string name="clear">Clear</string>
+    <string name="popup_resizing_indicator_title">Resizing</string>
 
     <!-- error strings -->
     <string name="general_error">Error</string>
