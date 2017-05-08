@@ -1,9 +1,11 @@
-package org.schabi.newpipe;
+package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
+
+import org.schabi.newpipe.R;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
