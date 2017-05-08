@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
@@ -36,11 +37,14 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
+import org.schabi.newpipe.util.AnimationUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+
+import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 /**
  * Base for <b>video</b> players
@@ -101,6 +105,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     private ImageButton fullScreenButton;
 
     private ValueAnimator controlViewAnimator;
+    private Handler controlsVisibilityHandler = new Handler();
 
     private boolean isQualityPopupMenuVisible = false;
     private boolean qualityChanged = false;
@@ -235,6 +240,9 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
         if (!isProgressLoopRunning.get()) startProgressLoop();
 
+        controlsVisibilityHandler.removeCallbacksAndMessages(null);
+        animateView(controlsRoot, false, 300);
+
         showAndAnimateControl(-1, true);
         playbackSeekBar.setEnabled(true);
         playbackSeekBar.setProgress(0);
@@ -242,10 +250,10 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         // Bug on lower api, disabling and enabling the seekBar resets the thumb color -.-, so sets the color again
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
 
-        animateView(endScreen, false, 0, 0);
+        animateView(endScreen, false, 0);
         loadingPanel.setBackgroundColor(Color.BLACK);
-        animateView(loadingPanel, true, 0, 0);
-        animateView(surfaceForeground, true, 100, 0);
+        animateView(loadingPanel, true, 0);
+        animateView(surfaceForeground, true, 100);
     }
 
     @Override
@@ -254,26 +262,21 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         if (!isProgressLoopRunning.get()) startProgressLoop();
         showAndAnimateControl(-1, true);
         loadingPanel.setVisibility(View.GONE);
-        animateView(controlsRoot, true, 500, 0, new Runnable() {
-            @Override
-            public void run() {
-                animateView(controlsRoot, false, 500, DEFAULT_CONTROLS_HIDE_TIME, true);
-            }
-        });
-        animateView(currentDisplaySeek, false, 200, 0);
+        showControlsThenHide();
+        animateView(currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, false, 200);
     }
 
     @Override
     public void onBuffering() {
         if (DEBUG) Log.d(TAG, "onBuffering() called");
         loadingPanel.setBackgroundColor(Color.TRANSPARENT);
-        animateView(loadingPanel, true, 500, 0);
+        animateView(loadingPanel, true, 500);
     }
 
     @Override
     public void onPaused() {
         if (DEBUG) Log.d(TAG, "onPaused() called");
-        animateView(controlsRoot, true, 500, 100);
+        showControls(400);
         loadingPanel.setVisibility(View.GONE);
     }
 
@@ -289,9 +292,9 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
         if (isProgressLoopRunning.get()) stopProgressLoop();
 
-        animateView(controlsRoot, true, 500, 0);
-        animateView(endScreen, true, 800, 0);
-        animateView(currentDisplaySeek, false, 200, 0);
+        showControls(500);
+        animateView(endScreen, true, 800);
+        animateView(currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, false, 200);
         loadingPanel.setVisibility(View.GONE);
 
         playbackSeekBar.setMax((int) simpleExoPlayer.getDuration());
@@ -302,7 +305,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         // Bug on lower api, disabling and enabling the seekBar resets the thumb color -.-, so sets the color again
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
 
-        animateView(surfaceForeground, true, 100, 0);
+        animateView(surfaceForeground, true, 100);
 
         if (currentRepeatMode == RepeatMode.REPEAT_ONE) {
             changeState(STATE_LOADING);
@@ -324,7 +327,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
     @Override
     public void onRenderedFirstFrame() {
-        animateView(surfaceForeground, false, 100, 0);
+        animateView(surfaceForeground, false, 100);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -443,7 +446,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         if (DEBUG) Log.d(TAG, "onQualitySelectorClicked() called");
         qualityPopupMenu.show();
         isQualityPopupMenuVisible = true;
-        animateView(getControlsRoot(), true, 300, 0);
+        showControls(300);
 
         VideoStream videoStream = getSelectedVideoStream();
         qualityTextView.setText(MediaFormat.getNameById(videoStream.format) + " " + videoStream.resolution);
@@ -469,8 +472,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         wasPlaying = isPlaying();
         if (isPlaying()) simpleExoPlayer.setPlayWhenReady(false);
 
-        animateView(controlsRoot, true, 0, 0);
-        animateView(currentDisplaySeek, true, 300, 0);
+        showControls(0);
+        animateView(currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, true, 300);
     }
 
     @Override
@@ -481,7 +484,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         if (wasPlaying || simpleExoPlayer.getDuration() == seekBar.getProgress()) simpleExoPlayer.setPlayWhenReady(true);
 
         playbackCurrentTime.setText(getTimeString(seekBar.getProgress()));
-        animateView(currentDisplaySeek, false, 200, 0);
+        animateView(currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, false, 200);
 
         if (getCurrentState() == STATE_PAUSED_SEEK) changeState(STATE_BUFFERING);
         if (!isProgressLoopRunning.get()) startProgressLoop();
@@ -550,105 +553,35 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         controlViewAnimator.start();
     }
 
-    public void animateView(View view, boolean enterOrExit, long duration, long delay) {
-        animateView(view, enterOrExit, duration, delay, null, false);
-    }
-
-    public void animateView(View view, boolean enterOrExit, long duration, long delay, boolean hideUi) {
-        animateView(view, enterOrExit, duration, delay, null, hideUi);
-    }
-
-    public void animateView(final View view, final boolean enterOrExit, long duration, long delay, final Runnable execOnEnd) {
-        animateView(view, enterOrExit, duration, delay, execOnEnd, false);
-    }
-
-    /**
-     * Animate the view
-     *
-     * @param view        view that will be animated
-     * @param enterOrExit true to enter, false to exit
-     * @param duration    how long the animation will take, in milliseconds
-     * @param delay       how long the animation will wait to start, in milliseconds
-     * @param execOnEnd   runnable that will be executed when the animation ends
-     * @param hideUi      need to hide ui when animation ends,
-     *                    just a helper for classes extending this
-     */
-    public void animateView(final View view, final boolean enterOrExit, long duration, long delay, final Runnable execOnEnd, boolean hideUi) {
-        if (DEBUG) {
-            Log.d(TAG, "animateView() called with: view = [" + view + "], enterOrExit = [" + enterOrExit + "], duration = [" + duration + "], delay = [" + delay + "], execOnEnd = [" + execOnEnd + "]");
-        }
-        if (view.getVisibility() == View.VISIBLE && enterOrExit) {
-            if (DEBUG) Log.d(TAG, "animateView() view was already visible > view = [" + view + "]");
-            view.animate().setListener(null).cancel();
-            view.setVisibility(View.VISIBLE);
-            view.setAlpha(1f);
-            if (execOnEnd != null) execOnEnd.run();
-            return;
-        } else if ((view.getVisibility() == View.GONE || view.getVisibility() == View.INVISIBLE) && !enterOrExit) {
-            if (DEBUG) Log.d(TAG, "animateView() view was already gone > view = [" + view + "]");
-            view.animate().setListener(null).cancel();
-            view.setVisibility(View.GONE);
-            view.setAlpha(0f);
-            if (execOnEnd != null) execOnEnd.run();
-            return;
-        }
-
-        view.animate().setListener(null).cancel();
-        view.setVisibility(View.VISIBLE);
-
-        if (view == controlsRoot) {
-            if (enterOrExit) {
-                view.animate().alpha(1f).setDuration(duration).setStartDelay(delay)
-                        .setListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animation) {
-                                if (execOnEnd != null) execOnEnd.run();
-                            }
-                        }).start();
-            } else {
-                view.animate().alpha(0f)
-                        .setDuration(duration).setStartDelay(delay)
-                        .setListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animation) {
-                                view.setVisibility(View.GONE);
-                                if (execOnEnd != null) execOnEnd.run();
-                            }
-                        })
-                        .start();
-            }
-            return;
-        }
-
-        if (enterOrExit) {
-            view.setAlpha(0f);
-            view.setScaleX(.8f);
-            view.setScaleY(.8f);
-            view.animate().alpha(1f).scaleX(1f).scaleY(1f).setDuration(duration).setStartDelay(delay)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            if (execOnEnd != null) execOnEnd.run();
-                        }
-                    }).start();
-        } else {
-            view.setAlpha(1f);
-            view.setScaleX(1f);
-            view.setScaleY(1f);
-            view.animate().alpha(0f).scaleX(.8f).scaleY(.8f).setDuration(duration).setStartDelay(delay)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            view.setVisibility(View.GONE);
-                            if (execOnEnd != null) execOnEnd.run();
-                        }
-                    })
-                    .start();
-        }
-    }
-
     public boolean isQualityMenuVisible() {
         return isQualityPopupMenuVisible;
+    }
+
+    public void showControlsThenHide() {
+        if (DEBUG) Log.d(TAG, "showControlsThenHide() called");
+        animateView(controlsRoot, true, 300, 0, new Runnable() {
+            @Override
+            public void run() {
+                hideControls(300, DEFAULT_CONTROLS_HIDE_TIME);
+            }
+        });
+    }
+
+    public void showControls(long duration) {
+        if (DEBUG) Log.d(TAG, "showControls() called");
+        controlsVisibilityHandler.removeCallbacksAndMessages(null);
+        animateView(controlsRoot, true, duration);
+    }
+
+    public void hideControls(final long duration, long delay) {
+        if (DEBUG) Log.d(TAG, "hideControls() called with: delay = [" + delay + "]");
+        controlsVisibilityHandler.removeCallbacksAndMessages(null);
+        controlsVisibilityHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                animateView(controlsRoot, false, duration);
+            }
+        }, delay);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -709,6 +642,10 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
     public void setStartedFromNewPipe(boolean startedFromNewPipe) {
         this.startedFromNewPipe = startedFromNewPipe;
+    }
+
+    public Handler getControlsVisibilityHandler() {
+        return controlsVisibilityHandler;
     }
 
     public View getRootView() {

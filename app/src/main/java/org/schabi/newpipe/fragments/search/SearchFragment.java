@@ -37,6 +37,7 @@ import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.fragments.BaseFragment;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.workers.SearchWorker;
 import org.schabi.newpipe.workers.SuggestionWorker;
@@ -45,12 +46,13 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
+import static org.schabi.newpipe.util.AnimationUtils.animateView;
+
 public class SearchFragment extends BaseFragment implements SuggestionWorker.OnSuggestionResult, SearchWorker.OnSearchResult {
     private final String TAG = "SearchFragment@" + Integer.toHexString(hashCode());
     // savedInstanceBundle arguments
     private static final String QUERY_KEY = "query_key";
     private static final String PAGE_NUMBER_KEY = "page_number_key";
-    private static final String SERVICE_KEY = "service_key";
     private static final String INFO_LIST_KEY = "info_list_key";
     private static final String WAS_LOADING_KEY = "was_loading_key";
     private static final String ERROR_KEY = "error_key";
@@ -101,7 +103,7 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
         setHasOptionsMenu(true);
         if (savedInstanceState != null) {
             searchQuery = savedInstanceState.getString(QUERY_KEY);
-            serviceId = savedInstanceState.getInt(SERVICE_KEY, 0);
+            serviceId = savedInstanceState.getInt(Constants.KEY_SERVICE_ID, 0);
             pageNumber = savedInstanceState.getInt(PAGE_NUMBER_KEY, 0);
             wasLoading.set(savedInstanceState.getBoolean(WAS_LOADING_KEY, false));
             filterItemCheckedId = savedInstanceState.getInt(FILTER_CHECKED_ID_KEY, 0);
@@ -171,7 +173,7 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
         String query = searchEditText != null && !TextUtils.isEmpty(searchEditText.getText().toString())
                 ? searchEditText.getText().toString() : searchQuery;
         outState.putString(QUERY_KEY, query);
-        outState.putInt(SERVICE_KEY, serviceId);
+        outState.putInt(Constants.KEY_SERVICE_ID, serviceId);
         outState.putInt(PAGE_NUMBER_KEY, pageNumber);
         outState.putSerializable(INFO_LIST_KEY, ((ArrayList<InfoItem>) infoListAdapter.getItemsList()));
         outState.putBoolean(WAS_LOADING_KEY, curSearchWorker != null && curSearchWorker.isRunning());

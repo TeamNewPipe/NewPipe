@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupMenu;
 import android.widget.RemoteViews;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,8 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.Utils;
 import org.schabi.newpipe.workers.StreamExtractorWorker;
+
+import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 /**
  * Service Popup Player implementing VideoPlayer
@@ -408,7 +411,7 @@ public class PopupVideoPlayer extends Service {
         @Override
         public void onDismiss(PopupMenu menu) {
             super.onDismiss(menu);
-            if (isPlaying()) animateView(getControlsRoot(), false, 500, 0);
+            if (isPlaying()) hideControls(500, 0);
         }
 
         @Override
@@ -418,7 +421,14 @@ public class PopupVideoPlayer extends Service {
             stopSelf();
         }
 
-        /*//////////////////////////////////////////////////////////////////////////
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+            super.onStopTrackingTouch(seekBar);
+            if (playerImpl.wasPlaying()) {
+                hideControls(100, 0);
+            }
+        }
+/*//////////////////////////////////////////////////////////////////////////
         // Broadcast Receiver
         //////////////////////////////////////////////////////////////////////////*/
 
@@ -541,9 +551,10 @@ public class PopupVideoPlayer extends Service {
             if (DEBUG) Log.d(TAG, "onLongPress() called with: e = [" + e + "]");
             playerImpl.showAndAnimateControl(-1, true);
             playerImpl.getLoadingPanel().setVisibility(View.GONE);
-            playerImpl.animateView(playerImpl.getControlsRoot(), false, 0, 0);
-            playerImpl.animateView(playerImpl.getCurrentDisplaySeek(), false, 0, 0);
-            playerImpl.animateView(playerImpl.getResizingIndicator(), true, 200, 0);
+
+            playerImpl.hideControls(0, 0);
+            animateView(playerImpl.getCurrentDisplaySeek(), false, 0, 0);
+            animateView(playerImpl.getResizingIndicator(), true, 200, 0);
 
             isResizing = true;
             isResizingRightSide = e.getRawX() > windowLayoutParams.x + (windowLayoutParams.width / 2f);
@@ -553,7 +564,8 @@ public class PopupVideoPlayer extends Service {
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             if (isResizing) return false;
 
-            if (!isMoving || playerImpl.getControlsRoot().getAlpha() != 1f) playerImpl.animateView(playerImpl.getControlsRoot(), true, 0, 0);
+            if (playerImpl.getCurrentState() != BasePlayer.STATE_BUFFERING
+                    && (!isMoving || playerImpl.getControlsRoot().getAlpha() != 1f)) playerImpl.showControls(0);
             isMoving = true;
 
             float diffX = (int) (e2.getRawX() - e1.getRawX()), posX = (int) (initialPopupX + diffX);
@@ -582,7 +594,7 @@ public class PopupVideoPlayer extends Service {
         private void onScrollEnd() {
             if (DEBUG) Log.d(TAG, "onScrollEnd() called");
             if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == BasePlayer.STATE_PLAYING) {
-                playerImpl.animateView(playerImpl.getControlsRoot(), false, 300, VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME);
+                playerImpl.hideControls(300, VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME);
             }
         }
 
@@ -610,7 +622,7 @@ public class PopupVideoPlayer extends Service {
 
                 if (isResizing) {
                     isResizing = false;
-                    playerImpl.animateView(playerImpl.getResizingIndicator(), false, 100, 0);
+                    animateView(playerImpl.getResizingIndicator(), false, 100, 0);
                     playerImpl.changeState(playerImpl.getCurrentState());
                 }
                 savePositionAndSize();

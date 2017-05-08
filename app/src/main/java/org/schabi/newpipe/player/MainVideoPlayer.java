@@ -21,9 +21,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+
+import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 /**
  * Activity Player implementing VideoPlayer
@@ -37,14 +40,7 @@ public class MainVideoPlayer extends Activity {
     private AudioManager audioManager;
     private GestureDetector gestureDetector;
 
-    private final Runnable hideUiRunnable = new Runnable() {
-        @Override
-        public void run() {
-            hideSystemUi();
-        }
-    };
     private boolean activityPaused;
-
     private VideoPlayerImpl playerImpl;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -265,14 +261,15 @@ public class MainVideoPlayer extends Activity {
             else if (v.getId() == screenRotationButton.getId()) onScreenRotationClicked();
 
             if (getCurrentState() != STATE_COMPLETED) {
+                getControlsVisibilityHandler().removeCallbacksAndMessages(null);
                 animateView(playerImpl.getControlsRoot(), true, 300, 0, new Runnable() {
                     @Override
                     public void run() {
                         if (getCurrentState() == STATE_PLAYING && !playerImpl.isQualityMenuVisible()) {
-                            animateView(playerImpl.getControlsRoot(), false, 300, DEFAULT_CONTROLS_HIDE_TIME, true);
+                            hideControls(300, DEFAULT_CONTROLS_HIDE_TIME);
                         }
                     }
-                }, false);
+                });
             }
         }
 
@@ -285,14 +282,14 @@ public class MainVideoPlayer extends Activity {
         public void onStopTrackingTouch(SeekBar seekBar) {
             super.onStopTrackingTouch(seekBar);
             if (playerImpl.wasPlaying()) {
-                animateView(playerImpl.getControlsRoot(), false, 100, 0);
+                hideControls(100, 0);
             }
         }
 
         @Override
         public void onDismiss(PopupMenu menu) {
             super.onDismiss(menu);
-            if (isPlaying()) animateView(getControlsRoot(), false, 500, 0);
+            if (isPlaying()) hideControls(300, 0);
         }
 
         @Override
@@ -310,26 +307,23 @@ public class MainVideoPlayer extends Activity {
         public void onLoading() {
             super.onLoading();
             playPauseButton.setImageResource(R.drawable.ic_pause_white);
-            animateView(playPauseButton, false, 100, 0);
+            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 100);
         }
 
         @Override
         public void onBuffering() {
             super.onBuffering();
-            animateView(playPauseButton, false, 100, 0);
+            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 100);
         }
 
         @Override
         public void onPlaying() {
             super.onPlaying();
-            //playPauseButton.setImageResource(R.drawable.ic_pause_white);
-            //animateView(playPauseButton, true, 500, 0);
-
-            animateView(playPauseButton, false, 80, 0, new Runnable() {
+            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, new Runnable() {
                 @Override
                 public void run() {
                     playPauseButton.setImageResource(R.drawable.ic_pause_white);
-                    animateView(playPauseButton, true, 200, 0);
+                    animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, true, 200);
                 }
             });
 
@@ -339,14 +333,11 @@ public class MainVideoPlayer extends Activity {
         @Override
         public void onPaused() {
             super.onPaused();
-            //playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
-            //animateView(playPauseButton, true, 100, 0);
-
-            animateView(playPauseButton, false, 80, 0, new Runnable() {
+            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, new Runnable() {
                 @Override
                 public void run() {
                     playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
-                    animateView(playPauseButton, true, 200, 0);
+                    animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, true, 200);
                 }
             });
 
@@ -356,7 +347,7 @@ public class MainVideoPlayer extends Activity {
         @Override
         public void onPausedSeek() {
             super.onPausedSeek();
-            animateView(playPauseButton, false, 100, 0);
+            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 100);
         }
 
 
@@ -366,11 +357,11 @@ public class MainVideoPlayer extends Activity {
                 playPauseButton.setImageResource(R.drawable.ic_pause_white);
             } else {
                 showSystemUi();
-                animateView(playPauseButton, false, 0, 0, new Runnable() {
+                animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 0, 0, new Runnable() {
                     @Override
                     public void run() {
                         playPauseButton.setImageResource(R.drawable.ic_replay_white);
-                        animateView(playPauseButton, true, 300, 0);
+                        animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, true, 300);
                     }
                 });
             }
@@ -382,19 +373,20 @@ public class MainVideoPlayer extends Activity {
         //////////////////////////////////////////////////////////////////////////*/
 
         @Override
-        public void animateView(View view, boolean enterOrExit, long duration, long delay, final Runnable execOnEnd, boolean hideUi) {
-            //if (execOnEnd == null) playerImpl.setDefaultAnimationEnd(hideUiRunnable);
-
-            if (hideUi && execOnEnd != null) {
-                Runnable combinedRunnable = new Runnable() {
-                    @Override
-                    public void run() {
-                        execOnEnd.run();
-                        hideUiRunnable.run();
-                    }
-                };
-                super.animateView(view, enterOrExit, duration, delay, combinedRunnable, true);
-            } else super.animateView(view, enterOrExit, duration, delay, hideUi ? hideUiRunnable : execOnEnd, hideUi);
+        public void hideControls(final long duration, long delay) {
+            if (DEBUG) Log.d(TAG, "hideControls() called with: delay = [" + delay + "]");
+            getControlsVisibilityHandler().removeCallbacksAndMessages(null);
+            getControlsVisibilityHandler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    animateView(getControlsRoot(), false, duration, 0, new Runnable() {
+                        @Override
+                        public void run() {
+                            hideSystemUi();
+                        }
+                    });
+                }
+            }, delay);
         }
 
         ///////////////////////////////////////////////////////////////////////////
@@ -443,14 +435,9 @@ public class MainVideoPlayer extends Activity {
             if (DEBUG) Log.d(TAG, "onSingleTapConfirmed() called with: e = [" + e + "]");
             if (playerImpl.getCurrentState() != BasePlayer.STATE_PLAYING) return true;
 
-            if (playerImpl.isControlsVisible()) playerImpl.animateView(playerImpl.getControlsRoot(), false, 150, 0, true);
+            if (playerImpl.isControlsVisible()) playerImpl.hideControls(150, 0);
             else {
-                playerImpl.animateView(playerImpl.getControlsRoot(), true, 500, 0, new Runnable() {
-                    @Override
-                    public void run() {
-                        playerImpl.animateView(playerImpl.getControlsRoot(), false, 300, VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME, true);
-                    }
-                });
+                playerImpl.showControlsThenHide();
                 showSystemUi();
             }
             return true;
@@ -500,7 +487,7 @@ public class MainVideoPlayer extends Activity {
                 if (DEBUG) Log.d(TAG, "onScroll().volumeControl, currentVolume = " + currentVolume);
                 playerImpl.getVolumeTextView().setText(volumeUnicode + " " + Math.round((((float) currentVolume) / maxVolume) * 100) + "%");
 
-                if (playerImpl.getVolumeTextView().getVisibility() != View.VISIBLE) playerImpl.animateView(playerImpl.getVolumeTextView(), true, 200, 0);
+                if (playerImpl.getVolumeTextView().getVisibility() != View.VISIBLE) animateView(playerImpl.getVolumeTextView(), true, 200);
                 if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) playerImpl.getBrightnessTextView().setVisibility(View.GONE);
             } else {
                 WindowManager.LayoutParams lp = getWindow().getAttributes();
@@ -515,7 +502,7 @@ public class MainVideoPlayer extends Activity {
 
                 playerImpl.getBrightnessTextView().setText(brightnessUnicode + " " + (brightnessNormalized == 1 ? 0 : brightnessNormalized) + "%");
 
-                if (playerImpl.getBrightnessTextView().getVisibility() != View.VISIBLE) playerImpl.animateView(playerImpl.getBrightnessTextView(), true, 200, 0);
+                if (playerImpl.getBrightnessTextView().getVisibility() != View.VISIBLE) animateView(playerImpl.getBrightnessTextView(), true, 200);
                 if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) playerImpl.getVolumeTextView().setVisibility(View.GONE);
             }
             return true;
@@ -527,11 +514,11 @@ public class MainVideoPlayer extends Activity {
             eventsNum = 0;
             /* if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) playerImpl.getVolumeTextView().setVisibility(View.GONE);
             if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) playerImpl.getBrightnessTextView().setVisibility(View.GONE);*/
-            if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) playerImpl.animateView(playerImpl.getVolumeTextView(), false, 200, 200);
-            if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) playerImpl.animateView(playerImpl.getBrightnessTextView(), false, 200, 200);
+            if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) animateView(playerImpl.getVolumeTextView(), false, 200, 200);
+            if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) animateView(playerImpl.getBrightnessTextView(), false, 200, 200);
 
             if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == BasePlayer.STATE_PLAYING) {
-                playerImpl.animateView(playerImpl.getControlsRoot(), false, 300, VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME, true);
+                playerImpl.hideControls(300, VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME);
             }
         }
 

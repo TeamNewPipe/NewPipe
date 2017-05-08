@@ -40,7 +40,6 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import org.schabi.newpipe.ImageErrorLoadingListener;
-import org.schabi.newpipe.Localization;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
@@ -56,6 +55,8 @@ import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PlayVideoActivity;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.Utils;
@@ -65,6 +66,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import static org.schabi.newpipe.util.AnimationUtils.animateView;
+
 public class VideoDetailFragment extends BaseFragment implements StreamExtractorWorker.OnStreamInfoReceivedListener, SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener {
     private final String TAG = "VideoDetailFragment@" + Integer.toHexString(hashCode());
 
@@ -72,9 +75,6 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     private static final int INITIAL_RELATED_VIDEOS = 8;
 
     private static final String KORE_PACKET = "org.xbmc.kore";
-    private static final String SERVICE_ID_KEY = "service_id_key";
-    private static final String VIDEO_URL_KEY = "video_url_key";
-    private static final String VIDEO_TITLE_KEY = "video_title_key";
     private static final String STACK_KEY = "stack_key";
     private static final String INFO_KEY = "info_key";
     private static final String WAS_RELATED_EXPANDED_KEY = "was_related_expanded_key";
@@ -171,9 +171,9 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
 
         if (savedInstanceState != null) {
-            videoTitle = savedInstanceState.getString(VIDEO_TITLE_KEY);
-            videoUrl = savedInstanceState.getString(VIDEO_URL_KEY);
-            serviceId = savedInstanceState.getInt(SERVICE_ID_KEY, 0);
+            videoTitle = savedInstanceState.getString(Constants.KEY_TITLE);
+            videoUrl = savedInstanceState.getString(Constants.KEY_URL);
+            serviceId = savedInstanceState.getInt(Constants.KEY_SERVICE_ID, 0);
             wasRelatedStreamsExpanded = savedInstanceState.getBoolean(WAS_RELATED_EXPANDED_KEY, false);
             Serializable serializable = savedInstanceState.getSerializable(STACK_KEY);
             if (serializable instanceof Stack) {
@@ -290,9 +290,9 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     @Override
     public void onSaveInstanceState(Bundle outState) {
         if (DEBUG) Log.d(TAG, "onSaveInstanceState() called with: outState = [" + outState + "]");
-        outState.putString(VIDEO_URL_KEY, videoUrl);
-        outState.putString(VIDEO_TITLE_KEY, videoTitle);
-        outState.putInt(SERVICE_ID_KEY, serviceId);
+        outState.putString(Constants.KEY_URL, videoUrl);
+        outState.putString(Constants.KEY_TITLE, videoTitle);
+        outState.putInt(Constants.KEY_SERVICE_ID, serviceId);
         outState.putSerializable(STACK_KEY, stack);
 
         int nextCount = currentStreamInfo != null && currentStreamInfo.next_video != null ? 2 : 0;
@@ -804,7 +804,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
      * If it is, check if the cache contains the info already.</br>
      * If the cache doesn't have the info, load from the network.
      *
-     * @param info info to prepare and load, can be null
+     * @param info        info to prepare and load, can be null
      * @param scrollToTop whether or not scroll the scrollView to y = 0
      */
     public void prepareAndLoad(StreamInfo info, boolean scrollToTop) {
@@ -848,7 +848,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
                 else parallaxScrollRootView.scrollTo(0, 0);
             }
 
-            animateView(contentRootLayoutHiding, false, greaterThanThreshold ? 250 : 0, new Runnable() {
+            animateView(contentRootLayoutHiding, false, greaterThanThreshold ? 250 : 0, 0, new Runnable() {
                 @Override
                 public void run() {
                     handleStreamInfo(infoFinal, false);
@@ -1056,7 +1056,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     private void setErrorImage(final int imageResource) {
         if (thumbnailImageView == null || activity == null) return;
         thumbnailImageView.setImageDrawable(ContextCompat.getDrawable(activity, imageResource));
-        animateView(thumbnailImageView, false, 0, new Runnable() {
+        animateView(thumbnailImageView, false, 0, 0, new Runnable() {
             @Override
             public void run() {
                 animateView(thumbnailImageView, true, 500);

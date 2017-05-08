@@ -36,6 +36,8 @@ import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
+import static org.schabi.newpipe.util.AnimationUtils.animateView;
+
 public class ChannelFragment extends BaseFragment implements ChannelExtractorWorker.OnChannelInfoReceive {
     private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
 

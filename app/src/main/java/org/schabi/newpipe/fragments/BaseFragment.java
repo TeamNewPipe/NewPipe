@@ -1,7 +1,5 @@
 package org.schabi.newpipe.fragments;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
@@ -27,6 +25,8 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public abstract class BaseFragment extends Fragment {
     protected final String TAG = "BaseFragment@" + Integer.toHexString(hashCode());
@@ -129,70 +129,6 @@ public abstract class BaseFragment extends Fragment {
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
-
-    public void animateView(final View view, final boolean enterOrExit, long duration) {
-        animateView(view, enterOrExit, duration, 0, null);
-    }
-
-    public void animateView(final View view, final boolean enterOrExit, long duration, final Runnable execOnEnd) {
-        animateView(view, enterOrExit, duration, 0, execOnEnd);
-    }
-
-    public void animateView(final View view, final boolean enterOrExit, long duration, long delay) {
-        animateView(view, enterOrExit, duration, delay, null);
-    }
-
-    /**
-     * Animate the view
-     *
-     * @param view        view that will be animated
-     * @param enterOrExit true to enter, false to exit
-     * @param duration    how long the animation will take, in milliseconds
-     * @param delay       how long the animation will take to start, in milliseconds
-     * @param execOnEnd   runnable that will be executed when the animation ends
-     */
-    public void animateView(final View view, final boolean enterOrExit, long duration, long delay, final Runnable execOnEnd) {
-        if (DEBUG) Log.d(TAG, "animateView() called with: view = [" + view + "], enterOrExit = [" + enterOrExit + "], duration = [" + duration + "], execOnEnd = [" + execOnEnd + "]");
-        if (view == null) return;
-
-        if (view.getVisibility() == View.VISIBLE && enterOrExit) {
-            view.animate().setListener(null).cancel();
-            view.setVisibility(View.VISIBLE);
-            view.setAlpha(1f);
-            if (execOnEnd != null) execOnEnd.run();
-            return;
-        } else if ((view.getVisibility() == View.GONE || view.getVisibility() == View.INVISIBLE) && !enterOrExit) {
-            view.animate().setListener(null).cancel();
-            view.setVisibility(View.GONE);
-            view.setAlpha(0f);
-            if (execOnEnd != null) execOnEnd.run();
-            return;
-        }
-
-        view.animate().setListener(null).cancel();
-        view.setVisibility(View.VISIBLE);
-
-        if (enterOrExit) {
-            view.animate().alpha(1f).setDuration(duration).setStartDelay(delay)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            if (execOnEnd != null) execOnEnd.run();
-                        }
-                    }).start();
-        } else {
-            view.animate().alpha(0f)
-                    .setDuration(duration).setStartDelay(delay)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            view.setVisibility(View.GONE);
-                            if (execOnEnd != null) execOnEnd.run();
-                        }
-                    })
-                    .start();
-        }
-    }
 
     protected void setErrorMessage(String message, boolean showRetryButton) {
         if (errorTextView == null || activity == null) return;
