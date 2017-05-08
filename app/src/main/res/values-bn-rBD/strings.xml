@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<!--     <string name="app_name" translatable="false">NewPipe</string> -->
+    <string name="main_bg_subtitle">শুরু করতে অনুসন্ধান এ আলতো চাপ</string>
+    <string name="background_player_name">NewPipe ব্যাকগ্রাউন্ড প্লেয়ার</string>
+<!--     <string name="title_videoitem_detail" translatable="false">NewPipe</string> -->
+    <string name="view_count_text">%1$s বার দেখা হয়েছে</string>
+    <string name="upload_date_text">প্রকাশকাল %1$s</string>
+    <string name="no_player_found">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি। তুমি কি VLC ইনস্টল করতে চাও?</string>
+    <string name="install">ইনস্টল</string>
+    <string name="cancel">বাদ দাও</string>
+<!--     <string name="fdroid_vlc_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string> -->
+    <string name="open_in_browser">ব্রাউজারে খোলো</string>
+    <string name="open_in_popup_mode">পপআপ মোডে খোলো</string>
+    <string name="share">শেয়ার</string>
+    <string name="loading">লোড হচ্ছে</string>
+    <string name="download">ডাউনলোড</string>
+    <string name="search">খোঁজ</string>
+    <string name="settings">সেটিং</string>
+    <string name="did_you_mean">তুমি কি বলতে চাচ্ছ %1$s ?</string>
+    <string name="search_page">"পেজ খোঁজ : "</string>
+    <string name="share_dialog_title">শেয়ার কর</string>
+    <string name="choose_browser">ব্রাউজার পছন্দ কর</string>
+    <string name="screen_rotation">রোটেশন</string>
+    <string name="settings_activity_title">সেটিং</string>
+    <string name="use_external_video_player_title">বাহ্যিক ভিডিও প্লেয়ার ব্যবহার করো</string>
+    <string name="use_external_audio_player_title">বাহ্যিক অডিও প্লেয়ার ব্যবহার করো</string>
+    <string name="popup_mode_share_menu_title">NewPipe পপআপ মোড</string>
+    <string name="rss_button_title" translatable="false">RSS</string>
+
+    <string name="controls_background_title">ব্যাকগ্রাউন্ড</string>
+    <string name="controls_popup_title">পপআপ</string>
+
+    <string name="download_path_title">Video download path</string>
+    <string name="download_path_summary">ডাউনলোড করা ভিডিও সঞ্চয় পাথ করার পাথ</string>
+    <string name="download_path_dialog_title">ভিডিওগুলির জন্য ডাউনলোডের পাথ প্রবেশ করাও</string>
+
+    <string name="download_path_audio_title">অডিও ডাউনলোড পাথ</string>
+    <string name="download_path_audio_summary">ডাউনলোড করা অডিও সঞ্চয় পাথ করার পাথ</string>
+    <string name="download_path_audio_dialog_title">অডিও ফাইলগুলির জন্য ডাউনলোডের পাথ প্রবেশ করাও</string>
+
+    <string name="autoplay_by_calling_app_title"> স্বয়ংক্রিয়ভাবে প্লে করুন যখন অন্য অ্যাপ্লিকেশন থেকে চালু করা হয়</string>
+    <string name="autoplay_by_calling_app_summary">স্বয়ংক্রিয়ভাবে একটি ভিডিও প্লে করো যখন NewPipe অন্য অ্যাপ্লিকেশন থেকে চালু করা হয়।</string>
+    <string name="default_resolution_title">ডিফল্ট রেজল্যুশন</string>
+    <string name="default_popup_resolution_title">ডিফল্ট পপআপ রেজল্যুশন</string>
+    <string name="show_higher_resolutions_title">উচ্চ রেজুলেশন দেখাও</string>
+    <string name="show_higher_resolutions_summary">শুধুমাত্র কিছু ডিভাইস 2k / 4k ভিডিও চালানোয় সমর্থন</string>
+    <string name="play_with_kodi_title">Kodi এর মাধ্যমে চালাও</string>
+    <string name="kore_not_found">Kore অ্যাপ্লিকেশন খুঁজে পাওয়া যায়নি। Kore ইনস্টল করবে?</string>
+<!--     <string name="fdroid_kore_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string> -->
+    <string name="show_play_with_kodi_title">দেখাও \"Kodi এর মাধ্যমে চালাও \" বিকল্প</string>
+    <string name="show_play_with_kodi_summary">Kodi মিডিয়া সেন্টারে এর মাধ্যমে একটি ভিডিও প্লে করার জন্য একটি বিকল্প প্রদর্শন কর</string>
+    <string name="play_audio">অডিও</string>
+    <string name="default_audio_format_title">ডিফল্ট অডিও ফরম্যাট</string>
+    <string name="preferred_video_format_title">পছন্দের ভিডিও ফরম্যাট</string>
+    <string name="webm_description">WebM — বিনামূল্য/স্বাধীন ফরম্যাট</string>
+    <string name="m4a_description">m4a — ভালো মানের</string>
+    <string name="theme_title">থিম</string>
+    <string name="light_theme_title">উজ্জ্বল</string>
+    <string name="dark_theme_title">অন্ধকার</string>
+    <string name="black_theme_title">কালো</string>
+    <string name="popup_remember_size_pos_title">পপআপ আকার এবং অবস্থান মনে রাখো</string>
+    <string name="popup_remember_size_pos_summary">শেষ আকার এবং পপআপ সেট অবস্থান মনে রাখো</string>
+
+    <string name="download_dialog_title">ডাউনলোড</string>
+    <string-array name="download_options">
+        <item>ভিডিও</item>
+        <item>অডিও</item>
+    </string-array>
+
+    <string-array name="download_options_no_audio">
+        <item>ভিডিও</item>
+    </string-array>
+
+    <string-array name="download_options_no_video">
+        <item>অডিও</item>
+    </string-array>
+
+<!--     <string-array name="theme_description_list">
+        <item>@string/light_theme_title</item>
+        <item>@string/dark_theme_title</item>
+        <item>@string/black_theme_title</item>
+    </string-array> -->
+
+    <string name="next_video_title">পরবর্তী ভিডিওগুলি</string>
+    <string name="show_next_and_similar_title">পরবর্তী এবং অনুরূপ ভিডিওগুলি দেখাও</string>
+    <string name="url_not_supported_toast">URL সমর্থিত নয়</string>
+    <string name="similar_videos_btn_text">অনুরূপ ভিডিওগুলি</string>
+    <string name="search_language_title">Preferred content language</string>
+    <string name="settings_category_video_audio_title">ভিডিও এবং অডিও</string>
+    <string name="settings_category_popup_title">পপআপ</string>
+    <string name="settings_category_appearance_title">এপিয়ারেন্স</string>
+    <string name="settings_category_other_title">অন্যান্য</string>
+<!--     <string name="background_player_time_text" translatable="false">%1$s - NewPipe</string> -->
+    <string name="background_player_playing_toast">ব্যাকগ্রাউন্ডে বাজাও</string>
+    <string name="popup_playing_toast">পপআপ মোডে চালাও</string>
+<!--     <string name="c3s_url" translatable="false">https://www.c3s.cc/</string> -->
+    <string name="play_btn_text">চালাও</string>
+    <string name="content">কনটেন্ট</string>
+    <string name="show_age_restricted_content_title">বয়স সীমাবদ্ধ কনটেন্ট দেখাও</string>
+    <string name="video_is_age_restricted">ভিডিওটিকে বয়স সীমিত করা হয়েছে। প্রথমে সেটিংসে বয়স সীমাবদ্ধ ভিডিওগুলি সক্ষম করুন।</string>
+    <string name="duration_live">লাইভ</string>
+    <string name="downloads">ডাউনলোড</string>
+    <string name="downloads_title">ডাউনলোড</string>
+    <string name="settings_title">সেটিং</string>
+    <string name="error_report_title">ত্রুটির তথ্য প্রতিবেদন</string>
+    <string name="all">সবগুলি</string>
+    <string name="channel">চ্যানেল</string>
+    <string name="yes">হ্যা</string>
+    <string name="later">পরবর্তী সময়ে</string>
+    <string name="disabled">নিস্ক্রীয়</string>
+    <string name="filter">Filter</string>
+    <string name="refresh">রিফ্রেশ</string>
+    <string name="clear">পরিষ্কার</string>
+    <string name="popup_resizing_indicator_title">আকার পরিবর্তন</string>
+
+    <!-- error strings -->
+    <string name="general_error">ত্রুটি</string>
+    <string name="network_error">নেটওয়ার্ক ত্রুটি</string>
+    <string name="could_not_load_thumbnails">সব থাম্বনেইল লোড করা যায়নি</string>
+    <string name="youtube_signature_decryption_error">ভিডিও URL স্বাক্ষর ডিক্রিপ্ট করা যায়নি।</string>
+    <string name="parsing_error">ওয়েবসাইট বিশ্লেষন করা যায়নি।</string>
+    <string name="light_parsing_error">ওয়েবসাইট সম্পুর্নভাবে বিশ্লেষন করা যায়নি।</string>
+    <string name="content_not_available">কনটেন্ট উপলব্ধ নয়</string>
+    <string name="blocked_by_gema">GEMA কর্তৃক ব্লক করা হয়েছে</string>
+    <string name="could_not_setup_download_menu">ডাউনলোড মেনু সেটআপ করা যায়নি</string>
+    <string name="live_streams_not_supported">এটি একটি লাইভ স্ট্রিম। যা এখনও সমর্থিত নয়।</string>
+    <string name="could_not_get_stream">কোনও স্ট্রিম পাওয়া যায়নি।</string>
+    <string name="could_not_load_image">চিত্র লোড করা যায়নি</string>
+    <string name="app_ui_crash">অ্যাপ / UI ক্র্যাশ করেছে</string>
+    <!-- error activity -->
+    <string name="sorry_string">দুঃখিত এটা ঘটা উচিত ছিল না</string>
+<!--     <string name="guru_meditation" translatable="false">Guru Meditation.</string> -->
+    <string name="error_report_button_text">মেলের মাধ্যমে ত্রুটি প্রতিবেদন করুন</string>
+    <string name="error_snackbar_message">দুঃখিত কিছু ত্রুটি ঘটেছে</string>
+    <string name="error_snackbar_action">প্রতিবেদন</string>
+    <string name="what_device_headline">তথ্য:</string>
+    <string name="what_happened_headline">কি হয়েছিল:</string>
+<!--     <string name="info_labels">What:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:\\nGlob. IP range:</string> -->
+    <string name="info_searched_lbl">অনুসন্ধান:</string>
+    <string name="info_requested_stream_lbl">অনুরোধ করা স্ট্রিম:</string>
+    <string name="your_comment">তোমার মন্তব্য (ইংরেজিতে):</string>
+    <string name="error_details_headline">বর্ণনা:</string>
+
+
+    <!-- Content descriptions (for better accessibility) -->
+    <string name="list_thumbnail_view_description">ভিডিও প্রাকদর্শন থাম্বনেইল</string>
+    <string name="detail_thumbnail_view_description">ভিডিও প্রাকদর্শন থাম্বনেইল</string>
+    <string name="detail_uploader_thumbnail_view_description">আপলোডারের ইউজারপিক থাম্বনেইল</string>
+    <string name="detail_likes_img_view_description">পছন্দ</string>
+    <string name="detail_dislikes_img_view_description">অপছন্দ</string>
+    <string name="use_tor_title">টর ব্যবহার করো</string>
+    <string name="use_tor_summary">(পরীক্ষামূলক) গোপনীয়তা বর্ধিত করতে টর এর মাধ্যমে ডাউনলোড ট্রাফিক জোরপুর্বক পাঠাও (ভিডিওগুলি স্ট্রিমিং সমর্থিত নয়)</string>
+    <string name="report_error">একটি ত্রুটি রিপোর্ট করো</string>
+    <string name="user_report">ব্যবহারকারীর প্রতিবেদন</string>
+
+    <string name="err_dir_create">\'%1$s\' ডাউনলোড ডিরেক্টরি তৈরি করতে পারছে না</string>
+    <string name="info_dir_created">\'%1$s\' ডাউনলোড ডিরেক্টরি তৈরি করা হয়েছে</string>
+
+    <string name="enable_background_audio">ব্যাকগ্রাউন্ড এ চালাও</string>
+    <string name="video">ভিডিও</string>
+    <string name="audio">অডিও</string>
+    <string name="text">টেক্সট</string>
+    <string name="logging">লগিং</string>
+    <string name="logging_normal">সাধারণ</string>
+    <string name="logging_verbose">বাগাড়ম্বরপূর্ণ</string>
+    <string name="retry">পুনরায় চেষ্টা করো</string>
+    <string name="off">[বন্ধ]</string>
+    <string name="error_drm_not_supported">সুরক্ষিত কনটেন্ট 18 বছরের নিচে API মাত্রাগুলি সমর্থিত নয়</string>
+    <string name="error_drm_unsupported_scheme">এই ডিভাইসটি প্রয়োজনীয় DRM স্কিমের সমর্থন করে না</string>
+    <string name="error_drm_unknown">একটি অজানা DRM ত্রূটি ঘটেছে</string>
+    <string name="error_no_decoder">এই ডিভাইসটি <xliff:g id="mime_type">%1$s</xliff:g> এর জন্য একটি ডিকোডার প্রদান করে না</string>
+    <string name="error_no_secure_decoder">এই ডিভাইসটি <xliff:g id="mime_type">%1$s</xliff:g> এর জন্য একটি নিরাপদ ডিকোডার প্রদান করে না</string>
+    <string name="error_querying_decoders">ডিভাইস ডিকোডার জিজ্ঞাসা করতে অক্ষমs</string>
+    <string name="error_instantiating_decoder">ডিকোডার চালু করতে অক্ষম <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="storage_permission_denied">স্টোরেজ অ্যাক্সেস করার অনুমতি অস্বীকার করা হয়েছে</string>
+    <string name="use_old_player_title">পুরানো প্লেয়ার ব্যবহার করো</string>
+    <string name="use_old_player_summary">মিডিয়াফ্রেমওয়ার্ক প্লেয়ারের পুরানো বিল্ড।</string>
+    <string name="videos">ভিডিওগুলি</string>
+    <string name="subscriber">গ্রাহক</string>
+    <string name="subscriber_plural">গ্রাহকরা</string>
+    <string name="subscribe">সাবস্ক্রাইব</string>
+    <string name="views">প্রদর্শন</string>
+    <string name="short_thousand">K</string>
+    <string name="short_million">M</string>
+    <string name="short_billion">B</string>
+
+    <!-- Missions -->
+    <string name="start">শুরু</string>
+    <string name="pause">বিরতি</string>
+    <string name="view">প্রদর্শন</string>
+    <string name="delete">ডিলেট</string>
+    <string name="checksum">চেকসাম</string>
+
+    <!-- Fragment -->
+    <string name="add">নতুন মিশন</string>
+    <string name="finish">ঠিক আছে</string>
+    <string name="switch_mode">তালিকা এবং গ্রিডের মধ্যে পরিবর্তন করো</string>
+
+
+    <!-- Msg -->
+    <string name="msg_url">ডাউনলোড URL</string>
+    <string name="msg_name">ফাইলের নাম</string>
+    <string name="msg_threads">থ্রেড</string>
+    <string name="msg_fetch_filename">ফাইলের নাম আনো</string>
+    <string name="msg_error">ভুল বার্তা</string>
+    <string name="msg_server_unsupported">সার্ভার অসমর্থিত</string>
+    <string name="msg_exists">ফাইল ইতিমধ্যে বিদ্যমান</string>
+    <string name="msg_url_malform">বিকৃত URL অথবা ইন্টারনেট নেই</string>
+    <string name="msg_running">NewPipe ডাউনলোড হচ্ছে</string>
+    <string name="msg_running_detail">বিস্তারিত জানার জন্য আলতো চাপ</string>
+    <string name="msg_wait">অনুগ্রহপূর্বক অপেক্ষা করো…</string>
+    <string name="msg_copied">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
+    <string name="no_available_dir">অনুগ্রহ করে একটি ডাউনলোড ডিরেক্টরি নির্বাচন করো</string>
+    <string name="msg_popup_permission">এই অনুমতিটি পপআপ মোডে খুলতে প্রয়োজন</string>
+
+    <!-- Checksum types -->
+<!--     <string name="md5" translatable="false">MD5</string> -->
+<!--     <string name="sha1" translatable="false">SHA1</string> -->
+    <string name="title_activity_channel">চ্যানেলের ক্রিয়াকলাপ</string>
+    <string name="action_settings">সেটিং</string>
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">reCAPTCHA চ্যালেঞ্জ</string>
+    <string name="recaptcha_request_toast">reCAPTCHA চ্যালেঞ্জ অনুরোধ করা হয়েছে</string>
+
+    <!-- End of GigaGet's Strings -->
+
+</resources>
