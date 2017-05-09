@@ -31,7 +31,7 @@
 
     <string name="autoplay_by_calling_app_title">Başka uygulamadan çağrıldığında kendiliğinden oynat</string>
     <string name="autoplay_by_calling_app_summary">NewPipe başka bir uygulamadan çağırıldığında videoyu kendiliğinden oynatır.</string>
-    <string name="default_resolution_title">Öntanımlı çözünürlük</string>
+    <string name="default_resolution_title">Varsayılan çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile çal</string>
     <string name="kore_not_found">Kore uygulaması bulunamadı. Kurmak ister misin?</string>
     <string name="show_play_with_kodi_title">\"Kodi ile oynat\" seçeneğini göster</string>
