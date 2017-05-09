@@ -3,9 +3,9 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_item_share"
-        android:icon="?attr/share"
-        android:title="@string/share"
+        android:id="@+id/menu_item_download"
+        android:icon="?attr/download"
+        android:title="@string/download"
         app:showAsAction="always"/>
 
     <item
@@ -15,9 +15,9 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/menu_item_download"
-        android:icon="?attr/download"
-        android:title="@string/download"
+        android:id="@+id/menu_item_share"
+        android:icon="?attr/share"
+        android:title="@string/share"
         app:showAsAction="ifRoom"/>
 
     <item
