@@ -145,7 +145,7 @@
     <string name="msg_url_malform">URL mal formada o Internet no disponible</string>
     <string name="msg_running">Descarga de NewPipe</string>
     <string name="msg_running_detail">Toque para ver detalles</string>
-    <string name="msg_wait">Espere, por favor...</string>
+    <string name="msg_wait">Espere, por favor …</string>
     <string name="msg_copied">Copiado al portapapeles.</string>
     <string name="no_available_dir">Por favor, seleccione un directorio de descarga disponible.</string>
 
