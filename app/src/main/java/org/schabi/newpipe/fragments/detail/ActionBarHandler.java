@@ -40,6 +40,7 @@ import java.util.List;
  */
 
 
+@SuppressWarnings("WeakerAccess")
 class ActionBarHandler {
     private static final String TAG = "ActionBarHandler";
 
@@ -103,6 +104,10 @@ class ActionBarHandler {
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
         inflater.inflate(R.menu.video_detail_menu, menu);
 
+        updateItemsVisibility();
+    }
+
+    public void updateItemsVisibility(){
         showPlayWithKodiAction(defaultPreferences.getBoolean(activity.getString(R.string.show_play_with_kodi_key), false));
     }
 
