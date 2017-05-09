@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    android:gravity="center">
+    android:gravity="center"
+    tools:layout_width="@dimen/popup_default_width"
+    tools:layout_height="101.25dp">
 
 
     <com.google.android.exoplayer2.ui.AspectRatioFrameLayout
@@ -189,4 +191,21 @@
             android:layout_height="wrap_content"
             android:indeterminate="true"/>
     </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/resizing_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|top"
+        android:background="#6e000000"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="@string/popup_resizing_indicator_title"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:ignore="RtlHardcoded"
+        tools:visibility="visible"/>
 </FrameLayout>

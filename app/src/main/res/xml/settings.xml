@@ -27,14 +27,6 @@
             android:summary="%s"
             android:defaultValue="@string/default_resolution_value"/>
 
-        <ListPreference
-            android:key="@string/default_popup_resolution_key"
-            android:title="@string/default_popup_resolution_title"
-            android:entries="@array/resolution_list"
-            android:entryValues="@array/resolution_list"
-            android:summary="%s"
-            android:defaultValue="@string/default_popup_resolution_value"/>
-
         <CheckBoxPreference
             android:key="@string/show_higher_resolutions_key"
             android:title="@string/show_higher_resolutions_title"
@@ -64,6 +56,28 @@
             android:summary="@string/use_old_player_summary"
             android:defaultValue="false"/>
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="@string/settings_category_popup"
+        android:title="@string/settings_category_popup_title"
+        android:textAllCaps="true">
+
+        <ListPreference
+            android:key="@string/default_popup_resolution_key"
+            android:title="@string/default_popup_resolution_title"
+            android:entries="@array/resolution_list"
+            android:entryValues="@array/resolution_list"
+            android:summary="%s"
+            android:defaultValue="@string/default_popup_resolution_value"/>
+
+        <CheckBoxPreference
+            android:key="@string/popup_remember_size_pos_key"
+            android:title="@string/popup_remember_size_pos_title"
+            android:summary="@string/popup_remember_size_pos_summary"
+            android:defaultValue="true"/>
+
+    </PreferenceCategory>
+
     <PreferenceCategory
         android:key="@string/settings_category_appearance"
         android:title="@string/settings_category_appearance_title"

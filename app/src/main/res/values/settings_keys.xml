@@ -2,6 +2,7 @@
 <resources translatable="false">
     <!-- Categories -->
     <string name="settings_category_video_audio" translatable="false">settings_category_video_audio</string>
+    <string name="settings_category_popup" translatable="false">settings_category_popup</string>
     <string name="settings_category_appearance" translatable="false">settings_category_appearance</string>
     <string name="settings_content_options" translatable="false">settings_content_options</string>
     <string name="settings_category_other" translatable="false">settings_category_other</string>
@@ -26,6 +27,8 @@
         <item>240p</item>
         <item>144p</item>
     </string-array>
+
+    <string name="popup_remember_size_pos_key" translatable="false">popup_remember_size_pos_key</string>
 
     <string name="default_popup_resolution_key" translatable="false">default_popup_resolution_key</string>
     <string name="default_popup_resolution_value" translatable="false">480p</string>
