@@ -202,4 +202,10 @@ abrir en modo popup</string>
     <string name="refresh">Actualizar</string>
     <string name="clear">Limpiar</string>
 
+    <string name="popup_remember_size_pos_title">Recordar tamaño y posición del popup</string>
+    <string name="popup_remember_size_pos_summary">Recordar el último tamaño y posición establecido para el popup</string>
+
+    <string name="settings_category_popup_title">Popup</string>
+    <string name="popup_resizing_indicator_title">Redimensionando</string>
+
     </resources>
