@@ -208,4 +208,10 @@
     <string name="refresh">更新</string>
     <string name="clear">クリア</string>
 
+    <string name="popup_remember_size_pos_title">ポップアップのサイズと位置を記憶する</string>
+    <string name="popup_remember_size_pos_summary">最後のサイズと位置を記憶してポップアップを設定します</string>
+
+    <string name="settings_category_popup_title">ポップアップ</string>
+    <string name="popup_resizing_indicator_title">サイズを変更</string>
+
     </resources>
