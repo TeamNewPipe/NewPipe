@@ -677,7 +677,9 @@ public class PopupVideoPlayer extends Service {
             imageLoader.resume();
             imageLoader.loadImage(info.thumbnail_url, displayImageOptions, new SimpleImageLoadingListener() {
                 @Override
-                public void onLoadingComplete(String imageUri, View view, final Bitmap loadedImage) {
+                public void onLoadingComplete(final String imageUri, View view, final Bitmap loadedImage) {
+                    if (playerImpl == null || playerImpl.getPlayer() == null) return;
+                    if (DEBUG) Log.d(TAG, "FetcherRunnable.imageLoader.onLoadingComplete() called with: imageUri = [" + imageUri + "]");
                     mainHandler.post(new Runnable() {
                         @Override
                         public void run() {
