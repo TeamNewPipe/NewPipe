@@ -62,37 +62,37 @@
     <string name="downloads">İndirilenler</string>
     <string name="downloads_title">İndirilenler</string>
     <string name="settings_title">Ayarlar</string>
-    <string name="error_report_title">Hata raporu</string>
+    <string name="error_report_title">Hata bildirimi</string>
 
     <string name="general_error">Hata</string>
     <string name="network_error">Ağ hatası</string>
-    <string name="could_not_load_thumbnails">Tüm küçük resimler yüklenemedi</string>
-    <string name="youtube_signature_decryption_error">Video url imza şifresi çözülemedi.</string>
+    <string name="could_not_load_thumbnails">Küçük resimlerin tümü yüklenemedi</string>
+    <string name="youtube_signature_decryption_error">Video url imzası çözülemedi.</string>
     <string name="parsing_error">Web sitesi ayrıştırılamadı.</string>
     <string name="light_parsing_error">Web sitesi tümüyle ayrıştırılamadı.</string>
-    <string name="content_not_available">İçerik kullanılamaz.</string>
+    <string name="content_not_available">İçerik yok.</string>
     <string name="blocked_by_gema">GEMA tarafından engellendi.</string>
-    <string name="live_streams_not_supported">Bu bir CANLI akıştır. Bunlar henüz desteklenmiyor.</string>
-    <string name="could_not_get_stream">Herhangi bir akış alınamadı.</string>
+    <string name="live_streams_not_supported">Bu bir CANLI YAYIN. Bunlar henüz desteklenmiyor.</string>
+    <string name="could_not_get_stream">Herhangi bir yayın alınamadı.</string>
     <string name="could_not_load_image">Resim yüklenemedi</string>
     <string name="app_ui_crash">Uygulama/Kullanıcı arayüzü çöktü</string>
-    <string name="sorry_string">Üzgünüm bu olmamalıydı.</string>
-    <string name="error_report_button_text">Posta yoluyla hata bildir</string>
-    <string name="error_snackbar_message">Üzgünüm bazı hatalar oluştu.</string>
-    <string name="error_snackbar_action">RAPOR</string>
+    <string name="sorry_string">Üzgünüz bu olmamalıydı.</string>
+    <string name="error_report_button_text">Hatayı posta yoluyla bildir</string>
+    <string name="error_snackbar_message">Üzgünüz bazı hatalar oluştu.</string>
+    <string name="error_snackbar_action">BİLDİR</string>
     <string name="what_device_headline">Bilgi:</string>
     <string name="what_happened_headline">Ne oldu:</string>
     <string name="info_labels">Ne:\\nİstek:\\nİçerik Dili:\\nHizmet:\\nGMT Zamanı:\\nPaket:\\nSürüm:\\nİşletim sistemi sürümü:\\nGlob. IP aralığı:</string>
-    <string name="info_searched_lbl">Aramak için:</string>
+    <string name="info_searched_lbl">Aranan:</string>
     <string name="info_requested_stream_lbl">İstenen yayın:</string>
     <string name="detail_thumbnail_view_description">Video ön izleme küçük resmi</string>
-    <string name="detail_uploader_thumbnail_view_description">Yükleyenin küçük resmi</string>
+    <string name="detail_uploader_thumbnail_view_description">Yükleyenin kullanıcı küçük resmi</string>
     <string name="detail_likes_img_view_description">Beğeni</string>
     <string name="detail_dislikes_img_view_description">Beğenmeme</string>
     <string name="use_tor_title">Tor kullan</string>
-    <string name="use_tor_summary">(Deneysel) Artırılmış gizlilik için indirme trafiğini Tor üzerinden geçir (video akışları henüz desteklenmemektedir).</string>
-    <string name="report_error">Hata bildir</string>
-    <string name="user_report">Kullanıcı raporu</string>
+    <string name="use_tor_summary">(Deneysel) Artırılmış gizlilik için indirme trafiğini Tor\'dan geçmesi için zorla (video yayımlama henüz desteklenmemektedir).</string>
+    <string name="report_error">Bir hata bildir</string>
+    <string name="user_report">Kullanıcı bildirimi</string>
 
     <string name="err_dir_create">İndirme dizini \'%1$s\' oluşturulamıyor</string>
     <string name="info_dir_created">İndirme dizini \'%1$s\' oluşturuldu</string>
@@ -104,16 +104,16 @@
     <string name="logging">Günlükleme</string>
     <string name="logging_normal">Olağan</string>
     <string name="logging_verbose">Ayrıntılı</string>
-    <string name="retry">Yeniden deneme</string>
+    <string name="retry">Yeniden dene</string>
     <string name="off">[kapalı]</string>
     <string name="error_drm_not_supported">Korumalı içerik 18\'in altındaki API düzeylerinde desteklenmez</string>
     <string name="error_drm_unsupported_scheme">Bu aygıt gerekli DRM düzenini desteklemiyor</string>
     <string name="error_drm_unknown">Bilinmeyen bir DRM hatası oluştu</string>
-    <string name="error_no_decoder">Bu aygıt <xliff:g id="mime_type"> 1%1$s</xliff:g> için bir kod çözücü sağlamıyor</string>
-    <string name="error_no_secure_decoder">Bu aygıt <xliff:g id="mime_type"> 1%1$s</xliff:g> için bir kod çözücü sağlamıyor</string>
-    <string name="error_querying_decoders">Aygıt kod çözücüleri sorgulanamıyor</string>
-    <string name="error_instantiating_decoder"><xliff:g id="decoder_name"> 1%1$s</xliff:g> kod çözücü başlatılamıyor</string>
-    <string name="storage_permission_denied">Depolamaya erişim izni verilmedi</string>
+    <string name="error_no_decoder">Bu aygıt <xliff:g id="mime_type">%1$s</xliff:g> için bir çözücü sağlamıyor</string>
+    <string name="error_no_secure_decoder">Bu aygıt <xliff:g id="mime_type">%1$s</xliff:g> için bir çözücü sağlamıyor</string>
+    <string name="error_querying_decoders">Aygıt çözücüleri sorgulanamıyor</string>
+    <string name="error_instantiating_decoder"><xliff:g id="decoder_name">%1$s</xliff:g> çözücü başlatılamıyor</string>
+    <string name="storage_permission_denied">Depolamaya erişme izni reddedildi</string>
     <string name="use_exoplayer_title">ExoPlayer kullan</string>
     <string name="use_exoplayer_summary">Deneysel</string>
 
@@ -131,16 +131,16 @@
     <string name="msg_url">İndirme URL\'si</string>
     <string name="msg_name">Dosya adı</string>
     <string name="msg_threads">İş parçacığı</string>
-    <string name="msg_fetch_filename">Dosya adını getir</string>
+    <string name="msg_fetch_filename">Dosya adını al</string>
     <string name="msg_error">Hata</string>
-    <string name="msg_server_unsupported">Desteklenmeyen sunucu</string>
+    <string name="msg_server_unsupported">Sunucu desteklenmiyor</string>
     <string name="msg_exists">Dosya zaten var</string>
     <string name="msg_url_malform">Hatalı biçimlendirilmiş URL veya İnternet yok</string>
     <string name="msg_running">NewPipe İndiriyor</string>
     <string name="msg_running_detail">Ayrıntılar için dokun</string>
-    <string name="msg_wait">Lütfen bekle…</string>
+    <string name="msg_wait">Lütfen bekleyin…</string>
     <string name="msg_copied">Panoya kopyalandı.</string>
-    <string name="no_available_dir">Lütfen bir kullanılabilir indirme dizini seçin.</string>
+    <string name="no_available_dir">Lütfen mevcut bir indirme dizini seçin.</string>
 
     <string name="title_activity_channel">Kanal Etkinliği</string>
     <string name="action_settings">Ayarlar</string>
@@ -166,7 +166,7 @@
     <string name="error_details_headline">Ayrıntılar:</string>
 
 
-    <string name="list_thumbnail_view_description">Video ön izleme görüntüsü</string>
+    <string name="list_thumbnail_view_description">Video ön izleme küçük resmi</string>
     <string name="use_old_player_title">Eski oynatıcıyı kullan</string>
     <string name="use_old_player_summary">Mediaframework oynatıcısında eski yapı.</string>
     <string name="videos">videolar</string>
