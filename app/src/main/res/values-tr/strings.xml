@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="main_bg_subtitle">Başlamak için aramaya bas</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="main_bg_subtitle">Başlamak için aramaya dokun</string>
     <string name="background_player_name">NewPipe Arka Plan Oynatıcısı</string>
     <string name="view_count_text">%1$s izlenme</string>
     <string name="upload_date_text">Yayımlanma: %1$s</string>
@@ -13,7 +13,7 @@
     <string name="search">Ara</string>
     <string name="settings">Ayarlar</string>
     <string name="did_you_mean">Bunu mu demek istediniz: %1$s ?</string>
-    <string name="search_page">"Sayfada ara: "</string>
+    <string name="search_page">"Sayfayı ara: "</string>
     <string name="share_dialog_title">Bununla paylaş</string>
     <string name="choose_browser">Tarayıcı seç</string>
     <string name="screen_rotation">döndürme</string>
@@ -21,43 +21,43 @@
     <string name="use_external_video_player_title">Harici video oynatıcı kullan</string>
     <string name="use_external_audio_player_title">Harici ses oynatıcı kullan</string>
 
-    <string name="download_path_title">Video indirme yeri</string>
-    <string name="download_path_summary">İndirilen videoların saklanacağı yer.</string>
-    <string name="download_path_dialog_title">Videolar için indirme dizini gir</string>
+    <string name="download_path_title">Video indirme konumu</string>
+    <string name="download_path_summary">İndirilen videoların saklanacağı konum.</string>
+    <string name="download_path_dialog_title">Videolar için indirme konumu gir</string>
 
-    <string name="download_path_audio_title">Ses indirme dizini</string>
-    <string name="download_path_audio_summary">İndirilmiş seslerin saklanacağı dizin</string>
-    <string name="download_path_audio_dialog_title">Ses dosyaları için indirme dizini gir.</string>
+    <string name="download_path_audio_title">Ses indirme konumu</string>
+    <string name="download_path_audio_summary">İndirilmiş seslerin saklanacağı konum</string>
+    <string name="download_path_audio_dialog_title">Ses dosyaları için indirme konumu gir.</string>
 
     <string name="autoplay_by_calling_app_title">Başka uygulamadan çağrıldığında kendiliğinden oynat</string>
     <string name="autoplay_by_calling_app_summary">NewPipe başka bir uygulamadan çağırıldığında videoyu kendiliğinden oynatır.</string>
     <string name="default_resolution_title">Varsayılan çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile çal</string>
     <string name="kore_not_found">Kore uygulaması bulunamadı. Kurmak ister misin?</string>
-    <string name="show_play_with_kodi_title">\"Kodi ile oynat\" seçeneğini göster</string>
+    <string name="show_play_with_kodi_title">\"Kodi ile Oynat\" seçeneğini göster</string>
     <string name="show_play_with_kodi_summary">Kodi medya merkezi aracılığıyla video oynatmak için bir seçenek görüntüler.</string>
-    <string name="default_audio_format_title">Öntanımlı ses biçimi</string>
-    <string name="webm_description">WebM - Özgür biçim</string>
-    <string name="m4a_description">m4a — daha iyi nitelik</string>
-    <string name="theme_title">Gövde</string>
+    <string name="default_audio_format_title">Varsayılan ses biçimi</string>
+    <string name="webm_description">WebM - özgür biçim</string>
+    <string name="m4a_description">m4a — daha iyi kalite</string>
+    <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Koyu</string>
     <string name="light_theme_title">Açık</string>
 
     <string name="download_dialog_title">İndir</string>
     <string name="next_video_title">Sonraki video</string>
-    <string name="show_next_and_similar_title">Sıradaki ve benzer videoları göster</string>
+    <string name="show_next_and_similar_title">Sonraki ve benzer videoları göster</string>
     <string name="url_not_supported_toast">URL desteklenmiyor</string>
     <string name="similar_videos_btn_text">Benzer videolar</string>
-    <string name="search_language_title">Öncelikli içerik dili</string>
+    <string name="search_language_title">Tercih edilen içerik dili</string>
     <string name="play_audio">Ses</string>
-    <string name="settings_category_video_audio_title">Video ve ses</string>
+    <string name="settings_category_video_audio_title">Video ve Ses</string>
     <string name="settings_category_appearance_title">Görünüm</string>
     <string name="settings_category_other_title">Diğer</string>
     <string name="background_player_playing_toast">Arka planda çalıyor</string>
     <string name="play_btn_text">Oynat</string>
     <string name="content">İçerik</string>
     <string name="show_age_restricted_content_title">Yaş sınırlı içeriği göster</string>
-    <string name="video_is_age_restricted">Bu video yaş sınırlıdır. İlk önce ayarlardan yaş sınırlı içeriği etkinleştiriniz.</string>
+    <string name="video_is_age_restricted">Bu video yaş sınırlıdır. İlk önce ayarlardaki yaş sınırlı videoları etkinleştiriniz.</string>
     <string name="duration_live">canlı</string>
     <string name="downloads">İndirilenler</string>
     <string name="downloads_title">İndirilenler</string>
@@ -149,10 +149,10 @@
     <string name="open_in_popup_mode">Açılır pencere kipinde aç</string>
     <string name="popup_mode_share_menu_title">NewPipe Açılır pencere kipi</string>
 
-    <string name="default_popup_resolution_title">Öntanımlı açılır pencere çözünürlüğü</string>
+    <string name="default_popup_resolution_title">Varsayılan açılır pencere çözünürlüğü</string>
     <string name="show_higher_resolutions_title">Daha yüksek çözünürlükleri göster</string>
     <string name="show_higher_resolutions_summary">Yalnızca bazı aygıtlar 2k/4k video oynatmayı destekler</string>
-    <string name="preferred_video_format_title">Yeğlenen video biçimi</string>
+    <string name="preferred_video_format_title">Tercih edilen video biçimi</string>
     <string name="black_theme_title">Siyah</string>
 
     <string name="popup_playing_toast">Açılır pencere kipinde oynatılıyor</string>
@@ -195,5 +195,11 @@
     <string name="filter">Süzgeç</string>
     <string name="refresh">Yenile</string>
     <string name="clear">Temizle</string>
+
+    <string name="popup_remember_size_pos_title">Açılır pencere boyutunu ve yerini hatırla</string>
+    <string name="popup_remember_size_pos_summary">Açılır pencerenin ayarlandığı en son boyutu ve yeri hatırla</string>
+
+    <string name="settings_category_popup_title">Açılır Pencere</string>
+    <string name="popup_resizing_indicator_title">Yeniden boyutlandırılıyor</string>
 
     </resources>
