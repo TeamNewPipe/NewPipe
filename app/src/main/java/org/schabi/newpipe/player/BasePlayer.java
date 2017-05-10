@@ -189,6 +189,7 @@ public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManage
         ImageLoader.getInstance().loadImage(videoThumbnailUrl, new SimpleImageLoadingListener() {
             @Override
             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                if (simpleExoPlayer == null) return;
                 if (DEBUG) Log.d(TAG, "onLoadingComplete() called with: imageUri = [" + imageUri + "], view = [" + view + "], loadedImage = [" + loadedImage + "]");
                 videoThumbnail = loadedImage;
                 onThumbnailReceived(loadedImage);
