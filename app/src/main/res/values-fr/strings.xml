@@ -186,4 +186,5 @@ Voulez-vous redémarrer maintenant ?</string>
     <string name="msg_popup_permission">Cette permission est nécessaire
 pour ouvrir en mode popup</string>
 
+    <string name="controls_background_title">Arrière plan</string>
     </resources>
