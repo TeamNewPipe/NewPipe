@@ -188,4 +188,5 @@ abrir em modo popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Redimensionamento</string>
 
+    <string name="use_external_video_player_summary">Algumas resoluções não terão áudio quando esta opção estiver habilitada</string>
     </resources>
