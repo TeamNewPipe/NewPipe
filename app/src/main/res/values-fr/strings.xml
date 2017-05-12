@@ -205,4 +205,5 @@ pour ouvrir en mode popup</string>
     <string name="subscriber_plural">abonnés</string>
     <string name="short_billion">M</string>
 
+    <string name="use_external_video_player_summary">Certaines résolutions n\'auront PAS de son si cette option est activée</string>
     </resources>
