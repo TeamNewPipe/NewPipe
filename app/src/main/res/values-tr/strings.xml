@@ -31,12 +31,12 @@
 
     <string name="autoplay_by_calling_app_title">Başka uygulamadan çağrıldığında kendiliğinden oynat</string>
     <string name="autoplay_by_calling_app_summary">NewPipe başka bir uygulamadan çağırıldığında videoyu kendiliğinden oynatır.</string>
-    <string name="default_resolution_title">Varsayılan çözünürlük</string>
+    <string name="default_resolution_title">Öntanımlı çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile çal</string>
     <string name="kore_not_found">Kore uygulaması bulunamadı. Kurmak ister misin?</string>
     <string name="show_play_with_kodi_title">\"Kodi ile Oynat\" seçeneğini göster</string>
     <string name="show_play_with_kodi_summary">Kodi medya merkezi aracılığıyla video oynatmak için bir seçenek görüntüler.</string>
-    <string name="default_audio_format_title">Varsayılan ses biçimi</string>
+    <string name="default_audio_format_title">Öntanımlı ses biçimi</string>
     <string name="webm_description">WebM - özgür biçim</string>
     <string name="m4a_description">m4a — daha iyi kalite</string>
     <string name="theme_title">Tema</string>
@@ -48,7 +48,7 @@
     <string name="show_next_and_similar_title">Sonraki ve benzer videoları göster</string>
     <string name="url_not_supported_toast">URL desteklenmiyor</string>
     <string name="similar_videos_btn_text">Benzer videolar</string>
-    <string name="search_language_title">Tercih edilen içerik dili</string>
+    <string name="search_language_title">Yeğlenen içerik dili</string>
     <string name="play_audio">Ses</string>
     <string name="settings_category_video_audio_title">Video ve Ses</string>
     <string name="settings_category_appearance_title">Görünüm</string>
@@ -149,10 +149,10 @@
     <string name="open_in_popup_mode">Açılır pencere kipinde aç</string>
     <string name="popup_mode_share_menu_title">NewPipe Açılır pencere kipi</string>
 
-    <string name="default_popup_resolution_title">Varsayılan açılır pencere çözünürlüğü</string>
+    <string name="default_popup_resolution_title">Öntanımlı açılır pencere çözünürlüğü</string>
     <string name="show_higher_resolutions_title">Daha yüksek çözünürlükleri göster</string>
     <string name="show_higher_resolutions_summary">Yalnızca bazı aygıtlar 2k/4k video oynatmayı destekler</string>
-    <string name="preferred_video_format_title">Tercih edilen video biçimi</string>
+    <string name="preferred_video_format_title">Yeğlenen video biçimi</string>
     <string name="black_theme_title">Siyah</string>
 
     <string name="popup_playing_toast">Açılır pencere kipinde oynatılıyor</string>
