@@ -218,7 +218,7 @@
 <!--     <string name="sha1" translatable="false">SHA1</string> -->
     <string name="title_activity_channel">চ্যানেলের ক্রিয়াকলাপ</string>
     <string name="action_settings">সেটিং</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptchaActivity">রিক্যাপচা</string>
     <string name="reCaptcha_title">reCAPTCHA চ্যালেঞ্জ</string>
     <string name="recaptcha_request_toast">reCAPTCHA চ্যালেঞ্জ অনুরোধ করা হয়েছে</string>
 
