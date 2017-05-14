@@ -53,15 +53,17 @@ public class SettingsActivity extends AppCompatActivity {
             actionBar.setDisplayShowTitleEnabled(true);
         }
 
-        getFragmentManager().beginTransaction()
-                .replace(R.id.fragment_holder,  new SettingsFragment())
-                .commit();
+        if (savedInstanceBundle == null) {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_holder, new SettingsFragment())
+                    .commit();
+        }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == android.R.id.home) {
+        if (id == android.R.id.home) {
             finish();
         }
         return true;
