@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    android:gravity="center"
-    android:keepScreenOn="true">
+    android:gravity="center">
 
     <com.google.android.exoplayer2.ui.AspectRatioFrameLayout
         android:id="@+id/aspectRatioLayout"
