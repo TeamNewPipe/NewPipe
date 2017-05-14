@@ -98,6 +98,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
 
     private static final int RELATED_STREAMS_UPDATE_FLAG = 0x1;
     private static final int RESOLUTIONS_MENU_UPDATE_FLAG = 0x2;
+    private static final int TOOLBAR_ITEMS_UPDATE_FLAG = 0x4;
     private int updateFlags = 0;
 
     private boolean autoPlayEnabled;
@@ -219,6 +220,8 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
                 if ((updateFlags & RELATED_STREAMS_UPDATE_FLAG) != 0) initRelatedVideos(currentStreamInfo);
                 if ((updateFlags & RESOLUTIONS_MENU_UPDATE_FLAG) != 0) setupActionBarHandler(currentStreamInfo);
             }
+
+            if ((updateFlags & TOOLBAR_ITEMS_UPDATE_FLAG) != 0 && actionBarHandler != null) actionBarHandler.updateItemsVisibility();
             updateFlags = 0;
         }
 
@@ -329,6 +332,8 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
                 || key.equals(getString(R.string.default_resolution_key))
                 || key.equals(getString(R.string.show_higher_resolutions_key))) {
             updateFlags |= RESOLUTIONS_MENU_UPDATE_FLAG;
+        } else if (key.equals(getString(R.string.show_play_with_kodi_key))) {
+            updateFlags |= TOOLBAR_ITEMS_UPDATE_FLAG;
         }
     }
 
