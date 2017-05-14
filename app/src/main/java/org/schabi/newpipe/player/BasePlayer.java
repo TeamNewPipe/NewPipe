@@ -320,7 +320,6 @@ public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManage
         if (DEBUG) Log.d(TAG, "onAudioFocusGain() called");
         if (simpleExoPlayer != null) simpleExoPlayer.setVolume(DUCK_AUDIO_TO);
         animateAudio(DUCK_AUDIO_TO, 1f, DUCK_DURATION);
-        simpleExoPlayer.setPlayWhenReady(true);
     }
 
     protected void onAudioFocusLoss() {
