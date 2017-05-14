@@ -31,7 +31,7 @@
     <string name="popup_remember_size_pos_key" translatable="false">popup_remember_size_pos_key</string>
 
     <string name="default_popup_resolution_key" translatable="false">default_popup_resolution_key</string>
-    <string name="default_popup_resolution_value" translatable="false">480p</string>
+    <string name="default_popup_resolution_value" translatable="false">360p</string>
 
     <string name="show_higher_resolutions_key" translatable="false">show_higher_resolutions_key</string>
 
