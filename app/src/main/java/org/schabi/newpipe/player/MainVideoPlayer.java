@@ -184,6 +184,7 @@ public class MainVideoPlayer extends Activity {
                 repeatButton.setAlpha(77);
             }
 
+            getRootView().setKeepScreenOn(true);
         }
 
         @Override
@@ -308,12 +309,14 @@ public class MainVideoPlayer extends Activity {
             super.onLoading();
             playPauseButton.setImageResource(R.drawable.ic_pause_white);
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 100);
+            getRootView().setKeepScreenOn(true);
         }
 
         @Override
         public void onBuffering() {
             super.onBuffering();
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 100);
+            getRootView().setKeepScreenOn(true);
         }
 
         @Override
@@ -326,8 +329,8 @@ public class MainVideoPlayer extends Activity {
                     animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, true, 200);
                 }
             });
-
             showSystemUi();
+            getRootView().setKeepScreenOn(true);
         }
 
         @Override
@@ -342,12 +345,14 @@ public class MainVideoPlayer extends Activity {
             });
 
             showSystemUi();
+            getRootView().setKeepScreenOn(false);
         }
 
         @Override
         public void onPausedSeek() {
             super.onPausedSeek();
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 100);
+            getRootView().setKeepScreenOn(true);
         }
 
 
@@ -365,6 +370,7 @@ public class MainVideoPlayer extends Activity {
                     }
                 });
             }
+            getRootView().setKeepScreenOn(false);
             super.onCompleted();
         }
 
