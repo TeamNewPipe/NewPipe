@@ -13,5 +13,6 @@
     <attr name="popup" format="reference"/>
     <attr name="expand" format="reference"/>
     <attr name="collapse" format="reference"/>
+    <attr name="volume_off" format="reference"/>
     <attr name="separatorColor" format="color"/>
 </resources>

@@ -330,7 +330,8 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
             updateFlags |= RELATED_STREAMS_UPDATE_FLAG;
         } else if (key.equals(getString(R.string.preferred_video_format_key))
                 || key.equals(getString(R.string.default_resolution_key))
-                || key.equals(getString(R.string.show_higher_resolutions_key))) {
+                || key.equals(getString(R.string.show_higher_resolutions_key))
+                || key.equals(getString(R.string.use_external_video_player_key))) {
             updateFlags |= RESOLUTIONS_MENU_UPDATE_FLAG;
         } else if (key.equals(getString(R.string.show_play_with_kodi_key))) {
             updateFlags |= TOOLBAR_ITEMS_UPDATE_FLAG;
@@ -682,33 +683,10 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
                 }
 
                 try {
-                    Bundle args = new Bundle();
-
-                    // Sometimes it may be that some information is not available due to changes fo the
-                    // website which was crawled. Then the ui has to understand this and act right.
-
-                    if (info.audio_streams != null) {
-                        AudioStream audioStream =
-                                info.audio_streams.get(Utils.getPreferredAudioFormat(activity, info.audio_streams));
-
-                        String audioSuffix = "." + MediaFormat.getSuffixById(audioStream.format);
-                        args.putString(DownloadDialog.AUDIO_URL, audioStream.url);
-                        args.putString(DownloadDialog.FILE_SUFFIX_AUDIO, audioSuffix);
-                    }
-
-                    if (sortedStreamVideosList != null) {
-                        VideoStream selectedStreamItem = sortedStreamVideosList.get(selectedStreamId);
-                        String videoSuffix = "." + MediaFormat.getSuffixById(selectedStreamItem.format);
-                        args.putString(DownloadDialog.FILE_SUFFIX_VIDEO, videoSuffix);
-                        args.putString(DownloadDialog.VIDEO_URL, selectedStreamItem.url);
-                    }
-
-                    args.putString(DownloadDialog.TITLE, info.title);
-                    DownloadDialog downloadDialog = DownloadDialog.newInstance(args);
+                    DownloadDialog downloadDialog = DownloadDialog.newInstance(info, sortedStreamVideosList, selectedStreamId);
                     downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
                 } catch (Exception e) {
-                    Toast.makeText(activity,
-                            R.string.could_not_setup_download_menu, Toast.LENGTH_LONG).show();
+                    Toast.makeText(activity, R.string.could_not_setup_download_menu, Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
             }

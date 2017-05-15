@@ -12,6 +12,7 @@
         <CheckBoxPreference
             android:key="@string/use_external_video_player_key"
             android:title="@string/use_external_video_player_title"
+            android:summary="@string/use_external_video_player_summary"
             android:defaultValue="false"/>
 
         <CheckBoxPreference

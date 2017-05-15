@@ -9,11 +9,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
 import org.schabi.newpipe.util.Utils;
 
@@ -71,16 +69,9 @@ class ActionBarHandler {
         if (activity == null) return;
         selectedVideoStream = 0;
 
-        // this array will be shown in the dropdown menu for selecting the stream/resolution.
-        String[] itemArray = new String[videoStreams.size()];
-        for (int i = 0; i < videoStreams.size(); i++) {
-            VideoStream item = videoStreams.get(i);
-            itemArray[i] = MediaFormat.getNameById(item.format) + " " + item.resolution;
-        }
-
         int defaultResolutionIndex = Utils.getDefaultResolution(activity, videoStreams);
-        ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(activity.getBaseContext(), android.R.layout.simple_spinner_dropdown_item, itemArray);
-        toolbarSpinner.setAdapter(itemAdapter);
+        boolean isExternalPlayerEnabled = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(activity.getString(R.string.use_external_video_player_key), false);
+        toolbarSpinner.setAdapter(new SpinnerToolbarAdapter(activity, videoStreams, isExternalPlayerEnabled));
         toolbarSpinner.setSelection(defaultResolutionIndex);
         toolbarSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
