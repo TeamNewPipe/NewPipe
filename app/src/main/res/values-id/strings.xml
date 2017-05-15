@@ -201,4 +201,11 @@ membuka di mode popup</string>
     <string name="clear">Bersihkan</string>
 
     <string name="filter">Filter</string>
+    <string name="use_external_video_player_summary">Beberapa resolusi TIDAK akan memiliki suara ketika opsi ini diaktifkan</string>
+    <string name="popup_remember_size_pos_title">Ingat ukuran dan posisi sembulan</string>
+    <string name="popup_remember_size_pos_summary">Ingat ukuran terakhir dan pengaturan posisi sembulan</string>
+
+    <string name="settings_category_popup_title">Sembulan</string>
+    <string name="popup_resizing_indicator_title">Ubah ukuran</string>
+
     </resources>
