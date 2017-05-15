@@ -26,6 +26,7 @@
         <item name="popup">@drawable/ic_picture_in_picture_black_24dp</item>
         <item name="expand">@drawable/ic_expand_more_black_24dp</item>
         <item name="collapse">@drawable/ic_expand_less_black_24dp</item>
+        <item name="volume_off">@drawable/ic_volume_off_black_24dp</item>
         <item name="separatorColor">@color/light_separator_color</item>
         <item name="colorControlHighlight">@color/light_ripple_color</item>
     </style>
@@ -50,6 +51,7 @@
         <item name="popup">@drawable/ic_picture_in_picture_white_24dp</item>
         <item name="expand">@drawable/ic_expand_more_white_24dp</item>
         <item name="collapse">@drawable/ic_expand_less_white_24dp</item>
+        <item name="volume_off">@drawable/ic_volume_off_white_24dp</item>
         <item name="separatorColor">@color/dark_separator_color</item>
         <item name="colorControlHighlight">@color/dark_ripple_color</item>
     </style>
