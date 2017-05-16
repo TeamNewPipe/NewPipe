@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
@@ -17,23 +20,30 @@ import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Display;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.nirhart.parallaxscroll.views.ParallaxScrollView;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -81,6 +91,8 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
 
     public static final String AUTO_PLAY = "auto_play";
 
+    private static final long HIDING_DELAY = 3000;
+
     private String thousand;
     private String million;
     private String billion;
@@ -105,6 +117,12 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     private boolean showRelatedStreams;
     private boolean wasRelatedStreamsExpanded = false;
 
+    private int position;
+    private boolean uiIsHidden;
+    private static long lastUiShowTime;
+    private boolean isLandscape = true;
+    private boolean hasSoftKeys;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -117,6 +135,12 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     private Button thumbnailBackgroundButton;
     private ImageView thumbnailImageView;
     private ImageView thumbnailPlayButton;
+
+    private VideoView videoView;
+    private MediaController mediaController;
+    private ProgressBar progressBar;
+    private Button contentButton;
+    private View decorView;
 
     private View videoTitleRoot;
     private TextView videoTitleTextView;
@@ -210,6 +234,12 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        videoView.pause();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
 
@@ -259,6 +289,12 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         thumbnailBackgroundButton = null;
         thumbnailImageView = null;
         thumbnailPlayButton = null;
+
+        videoView = null;
+        mediaController = null;
+        progressBar = null;
+        contentButton = null;
+        decorView = null;
 
         videoTitleRoot = null;
         videoTitleTextView = null;
@@ -489,6 +525,11 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         thumbnailImageView = (ImageView) rootView.findViewById(R.id.detail_thumbnail_image_view);
         thumbnailPlayButton = (ImageView) rootView.findViewById(R.id.detail_thumbnail_play_button);
 
+        videoView = (VideoView) rootView.findViewById(R.id.video_view);
+        progressBar = (ProgressBar) rootView.findViewById(R.id.play_video_progress_bar);
+        progressBar.setVisibility(View.GONE);
+        contentButton = (Button) rootView.findViewById(R.id.content_button);
+
         contentRootLayoutHiding = (RelativeLayout) rootView.findViewById(R.id.detail_content_root_hiding);
 
         videoTitleRoot = rootView.findViewById(R.id.detail_title_root_layout);
@@ -560,6 +601,8 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
             imageLoader.displayImage(info.uploader_thumbnail_url, uploaderThumb, displayImageOptions,
                     new ImageErrorLoadingListener(activity, activity.findViewById(android.R.id.content), info.service_id));
         }
+
+        thumbnailImageView.setVisibility(View.VISIBLE);
     }
 
     private void initRelatedVideos(StreamInfo info) {
@@ -810,6 +853,8 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         videoTitleTextView.setMaxLines(1);
         animateView(videoTitleTextView, true, 0);
 
+        videoView.stopPlayback();
+
         videoDescriptionRootLayout.setVisibility(View.GONE);
         videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
         videoTitleToggleArrow.setVisibility(View.GONE);
@@ -868,6 +913,11 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         if (info.view_count >= 0) videoCountView.setText(Localization.localizeViewCount(info.view_count, activity));
         videoCountView.setVisibility(info.view_count >= 0 ? View.VISIBLE : View.GONE);
 
+        videoView.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
+        thumbnailPlayButton.setVisibility(View.VISIBLE);
+        thumbnailBackgroundButton.setVisibility(View.VISIBLE);
+
         if (info.dislike_count == -1 && info.like_count == -1) {
             thumbsDownImageView.setVisibility(View.VISIBLE);
             thumbsUpImageView.setVisibility(View.VISIBLE);
@@ -913,57 +963,216 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         setStreamInfoToUrl(info.webpage_url, info);
     }
 
+    private void adjustMediaControlMetrics() {
+        MediaController.LayoutParams mediaControllerLayout
+                = new MediaController.LayoutParams(MediaController.LayoutParams.MATCH_PARENT,
+                MediaController.LayoutParams.WRAP_CONTENT);
+
+        if(!hasSoftKeys) {
+            mediaControllerLayout.setMargins(20, 0, 20, 20);
+        } else {
+            int width = getNavigationBarWidth();
+            int height = getNavigationBarHeight();
+            mediaControllerLayout.setMargins(width + 20, 0, width + 20, height + 20);
+        }
+        mediaController.setLayoutParams(mediaControllerLayout);
+    }
+
+    private boolean checkIfHasSoftKeys(){
+        return Build.VERSION.SDK_INT >= 17 ||
+                getNavigationBarHeight() != 0 ||
+                getNavigationBarWidth() != 0;
+    }
+
+    private int getNavigationBarHeight() {
+        if(Build.VERSION.SDK_INT >= 17) {
+            Display d = getActivity().getWindowManager().getDefaultDisplay();
+
+            DisplayMetrics realDisplayMetrics = new DisplayMetrics();
+            d.getRealMetrics(realDisplayMetrics);
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            d.getMetrics(displayMetrics);
+
+            int realHeight = realDisplayMetrics.heightPixels;
+            int displayHeight = displayMetrics.heightPixels;
+            return realHeight - displayHeight;
+        } else {
+            return 50;
+        }
+    }
+
+    private int getNavigationBarWidth() {
+        if(Build.VERSION.SDK_INT >= 17) {
+            Display d = getActivity().getWindowManager().getDefaultDisplay();
+
+            DisplayMetrics realDisplayMetrics = new DisplayMetrics();
+            d.getRealMetrics(realDisplayMetrics);
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            d.getMetrics(displayMetrics);
+
+            int realWidth = realDisplayMetrics.widthPixels;
+            int displayWidth = displayMetrics.widthPixels;
+            return realWidth - displayWidth;
+        } else {
+            return 50;
+        }
+    }
+
+    private boolean checkIfLandscape() {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels < displayMetrics.widthPixels;
+    }
+
+    private void showUi() {
+        try {
+            uiIsHidden = false;
+            mediaController.show(100000);
+            /*actionBar.show();*/
+            adjustMediaControlMetrics();
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                if ((System.currentTimeMillis() - lastUiShowTime) >= HIDING_DELAY) {
+                    hideUi();
+                }
+                }
+            }, HIDING_DELAY);
+            lastUiShowTime = System.currentTimeMillis();
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void hideUi() {
+        uiIsHidden = true;
+        //actionBar.hide();
+        mediaController.hide();
+    }
+
     public void playVideo(StreamInfo info) {
         // ----------- THE MAGIC MOMENT ---------------
         VideoStream selectedVideoStream = sortedStreamVideosList.get(actionBarHandler.getSelectedVideoStream());
 
-        if (PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
+        if (PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(this.getString(R.string.use_in_details_player_key), true)) {
+            position = 0*1000;//convert from seconds to milliseconds
 
-            // External Player
-            Intent intent = new Intent();
+            if(mediaController == null) {
+                //prevents back button hiding media controller controls (after showing them)
+                //instead of exiting video
+                //see http://stackoverflow.com/questions/6051825
+                //also solves https://github.com/theScrabi/NewPipe/issues/99
+                mediaController = new MediaController(getActivity()) {
+                    @Override
+                    public boolean dispatchKeyEvent(KeyEvent event) {
+                        int keyCode = event.getKeyCode();
+                        final boolean uniqueDown = event.getRepeatCount() == 0
+                                && event.getAction() == KeyEvent.ACTION_DOWN;
+                        if (keyCode == KeyEvent.KEYCODE_BACK) {
+                            if (uniqueDown) {
+                                if (isShowing()) {
+                                    //finish();
+                                } else {
+                                    hide();
+                                }
+                            }
+                            return true;
+                        }
+                        return super.dispatchKeyEvent(event);
+                    }
+                };
+            }
+
+            thumbnailPlayButton.setVisibility(View.GONE);
+            thumbnailBackgroundButton.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
+            videoView.pause();
+            videoView.setVisibility(View.VISIBLE);
+
             try {
-                intent.setAction(Intent.ACTION_VIEW)
-                        .setDataAndType(Uri.parse(selectedVideoStream.url), MediaFormat.getMimeById(selectedVideoStream.format))
-                        .putExtra(Intent.EXTRA_TITLE, info.title)
-                        .putExtra("title", info.title);
-                this.startActivity(intent);
+                videoView.setMediaController(mediaController);
+                mediaController.setAnchorView((View) getActivity().findViewById(R.id.detail_thumbnail_image_view));
+                videoView.setVideoURI(Uri.parse(selectedVideoStream.url));
             } catch (Exception e) {
                 e.printStackTrace();
-                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                builder.setMessage(R.string.no_player_found)
-                        .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent()
-                                        .setAction(Intent.ACTION_VIEW)
-                                        .setData(Uri.parse(getString(R.string.fdroid_vlc_url)));
-                                startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
-                        });
-                builder.create().show();
             }
+
+            videoView.requestFocus();
+            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    progressBar.setVisibility(View.GONE);
+                    thumbnailImageView.setVisibility(View.GONE);
+
+                    videoView.seekTo(position);
+                    if (position <= 0) {
+                        videoView.start();
+                        showUi();
+                    } else {
+                        videoView.pause();
+                    }
+                }
+            });
+
+            contentButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(uiIsHidden) {
+                        showUi();
+                    } else {
+                        hideUi();
+                    }
+                }
+            });
         } else {
-            Intent mIntent;
-            boolean useOldPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
-                    .getBoolean(getString(R.string.use_old_player_key), false)
-                    || (Build.VERSION.SDK_INT < 16);
-            if (!useOldPlayer) {
-                // ExoPlayer
-                mIntent = NavigationHelper.getOpenVideoPlayerIntent(activity, MainVideoPlayer.class, info, actionBarHandler.getSelectedVideoStream());
+            if (PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
+                // External Player
+                Intent intent = new Intent();
+                try {
+                    intent.setAction(Intent.ACTION_VIEW)
+                            .setDataAndType(Uri.parse(selectedVideoStream.url), MediaFormat.getMimeById(selectedVideoStream.format))
+                            .putExtra(Intent.EXTRA_TITLE, info.title)
+                            .putExtra("title", info.title);
+                    this.startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                    builder.setMessage(R.string.no_player_found)
+                            .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent()
+                                            .setAction(Intent.ACTION_VIEW)
+                                            .setData(Uri.parse(getString(R.string.fdroid_vlc_url)));
+                                    startActivity(intent);
+                                }
+                            })
+                            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            });
+                    builder.create().show();
+                }
             } else {
-                // Internal Player
-                mIntent = new Intent(activity, PlayVideoActivity.class)
-                        .putExtra(PlayVideoActivity.VIDEO_TITLE, info.title)
-                        .putExtra(PlayVideoActivity.STREAM_URL, selectedVideoStream.url)
-                        .putExtra(PlayVideoActivity.VIDEO_URL, info.webpage_url)
-                        .putExtra(PlayVideoActivity.START_POSITION, info.start_position);
+                Intent mIntent;
+                boolean useOldPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
+                        .getBoolean(getString(R.string.use_old_player_key), false)
+                        || (Build.VERSION.SDK_INT < 16);
+                if (!useOldPlayer) {
+                    // ExoPlayer
+                    mIntent = NavigationHelper.getOpenVideoPlayerIntent(activity, MainVideoPlayer.class, info, actionBarHandler.getSelectedVideoStream());
+                } else {
+                    // Internal Player
+                    mIntent = new Intent(activity, PlayVideoActivity.class)
+                            .putExtra(PlayVideoActivity.VIDEO_TITLE, info.title)
+                            .putExtra(PlayVideoActivity.STREAM_URL, selectedVideoStream.url)
+                            .putExtra(PlayVideoActivity.VIDEO_URL, info.webpage_url)
+                            .putExtra(PlayVideoActivity.START_POSITION, info.start_position);
+                }
+                startActivity(mIntent);
             }
-            startActivity(mIntent);
         }
     }
 
@@ -989,6 +1198,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         thumbnailImageView.setScaleType(isPortrait ? ImageView.ScaleType.CENTER_CROP : ImageView.ScaleType.FIT_CENTER);
         thumbnailImageView.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, height));
         thumbnailImageView.setMinimumHeight(height);
+        videoView.setMinimumHeight(height);
         thumbnailBackgroundButton.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, height));
         thumbnailBackgroundButton.setMinimumHeight(height);
     }

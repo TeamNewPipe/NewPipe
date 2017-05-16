@@ -20,6 +20,11 @@
             android:title="@string/use_external_audio_player_title"
             android:defaultValue="false"/>
 
+        <CheckBoxPreference
+            android:key="use_in_details_player"
+            android:title="Play video in details view"
+            android:defaultValue="true"/>
+
         <ListPreference
             android:key="@string/default_resolution_key"
             android:title="@string/default_resolution_title"

@@ -27,6 +27,21 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/black">
 
+                <Button
+                    android:id="@+id/content_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:focusable="false" />
+
+                <VideoView
+                    android:id="@+id/video_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:focusable="false"
+                    tools:layout_height="200dp" />
+
                 <ImageView
                     android:id="@+id/detail_thumbnail_image_view"
                     android:layout_width="match_parent"
@@ -37,9 +52,10 @@
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/detail_thumbnail_view_description"
                     android:scaleType="centerCrop"
+                    android:visibility="visible"
                     tools:ignore="RtlHardcoded"
                     tools:layout_height="200dp"
-                    tools:src="@drawable/dummy_thumbnail"/>
+                    tools:src="@drawable/dummy_thumbnail" />
 
                 <ImageView
                     android:id="@+id/detail_thumbnail_play_button"
@@ -57,6 +73,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="?attr/selectableItemBackground"/>
+
+                <ProgressBar
+                    android:id="@+id/play_video_progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:focusable="false"
+                    android:indeterminate="true"
+                    android:visibility="visible"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true" />
 
             </RelativeLayout>
 
@@ -449,4 +476,5 @@
             </RelativeLayout>
         </RelativeLayout>
     </com.nirhart.parallaxscroll.views.ParallaxScrollView>
+
 </RelativeLayout>
