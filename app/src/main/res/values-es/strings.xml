@@ -105,7 +105,7 @@
     <string name="user_report">Reporte de usuario</string>
 
     <string name="enable_background_audio">Reproducir en segundo plano</string>
-    <string name="video">Vídeo</string>
+    <string name="video">Vídeos</string>
     <string name="audio">Audio</string>
     <string name="text">Texto</string>
     <string name="logging">Registro</string>
@@ -158,7 +158,7 @@
     <string name="black_theme_title">Oscuro</string>
 
     <string name="all">Todo</string>
-    <string name="channel">Canal</string>
+    <string name="channel">Canales</string>
     <string name="yes">Sí</string>
     <string name="later">Después</string>
 
@@ -181,7 +181,7 @@
 abrir en modo popup</string>
 
     <string name="reCaptcha_title">reCAPTCHA Challenge</string>
-    <string name="recaptcha_request_toast">Desafío reCAPTCHA requerido</string>
+    <string name="recaptcha_request_toast">reCAPTCHA Challenge requerido</string>
 
     <string name="popup_mode_share_menu_title">Modo popup de NewPipe</string>
 
