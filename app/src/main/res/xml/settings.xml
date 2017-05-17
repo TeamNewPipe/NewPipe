@@ -155,6 +155,12 @@
             android:summary="@string/autoplay_by_calling_app_summary"
             android:defaultValue="false" />
 
+        <CheckBoxPreference
+            android:key="@string/show_search_suggestions_key"
+            android:title="@string/show_search_suggestions_title"
+            android:summary="@string/show_search_suggestions_summary"
+            android:defaultValue="true"/>
+
         <!--
         <CheckBoxPreference
             android:key="@string/use_tor_key"
