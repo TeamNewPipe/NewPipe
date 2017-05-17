@@ -13,6 +13,7 @@
     <string name="use_external_audio_player_key" translatable="false">use_external_audio_player</string>
     <string name="autoplay_through_intent_key" translatable="false">autoplay_through_intent</string>
     <string name="use_old_player_key" translatable="false">use_oldplayer</string>
+    <string name="player_gesture_controls_key" translatable="false">player_gesture_controls</string>
 
     <string name="default_resolution_key" translatable="false">default_resolution_preference</string>
     <string name="default_resolution_value" translatable="false">360p</string>

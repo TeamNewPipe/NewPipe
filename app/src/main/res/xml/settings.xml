@@ -56,6 +56,13 @@
             android:title="@string/use_old_player_title"
             android:summary="@string/use_old_player_summary"
             android:defaultValue="false"/>
+
+        <CheckBoxPreference
+            android:key="@string/player_gesture_controls_key"
+            android:title="@string/player_gesture_controls_title"
+            android:summary="@string/player_gesture_controls_summary"
+            android:defaultValue="true"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory
