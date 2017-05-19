@@ -209,4 +209,9 @@ abrir en modo popup</string>
     <string name="popup_resizing_indicator_title">Redimensionando</string>
 
     <string name="use_external_video_player_summary">Algunas resoluciones podrían no tener audio cuando esta opción está activada</string>
+    <string name="player_gesture_controls_title">Controles de gestos del reproductor</string>
+    <string name="player_gesture_controls_summary">Usar gestos para controlar el brillo y volumen del reproductor</string>
+    <string name="show_search_suggestions_title">Sugerencias de búsqueda</string>
+    <string name="show_search_suggestions_summary">Mostrar sugerencias cuando esté buscando</string>
+
     </resources>
