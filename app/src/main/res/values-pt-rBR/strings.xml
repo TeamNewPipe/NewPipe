@@ -189,4 +189,9 @@ abrir em modo popup</string>
     <string name="popup_resizing_indicator_title">Redimensionamento</string>
 
     <string name="use_external_video_player_summary">Algumas resoluções não terão áudio quando esta opção estiver habilitada</string>
+    <string name="player_gesture_controls_title">Controle do player por gestos</string>
+    <string name="player_gesture_controls_summary">Use gestos para controlar o brilho da tela e volume do player</string>
+    <string name="show_search_suggestions_title">Pesquisar sugestões</string>
+    <string name="show_search_suggestions_summary">Mostrar sugestões quando pesquisar</string>
+
     </resources>
