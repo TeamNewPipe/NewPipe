@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -68,6 +69,7 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
     private int serviceId = -1;
     private String searchQuery = "";
     private int pageNumber = 0;
+    private boolean showSuggestions = true;
 
     private SearchWorker curSearchWorker;
     private SuggestionWorker curSuggestionWorker;
@@ -135,6 +137,8 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
             if (pageNumber > 0) search(searchQuery, pageNumber);
             else search(searchQuery, 0, true);
         }
+
+        showSuggestions = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.show_search_suggestions_key), true);
     }
 
     @Override
@@ -523,6 +527,11 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
     }
 
     private void searchSuggestions(String query) {
+        if (!showSuggestions) {
+            if (DEBUG) Log.d(TAG, "searchSuggestions() showSuggestions is disabled");
+            return;
+        }
+
         if (DEBUG) Log.d(TAG, "searchSuggestions() called with: query = [" + query + "]");
         if (curSuggestionWorker != null && curSuggestionWorker.isRunning()) curSuggestionWorker.cancel();
         curSuggestionWorker = SuggestionWorker.startForQuery(activity, serviceId, query, this);

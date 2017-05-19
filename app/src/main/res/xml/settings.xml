@@ -56,6 +56,13 @@
             android:title="@string/use_old_player_title"
             android:summary="@string/use_old_player_summary"
             android:defaultValue="false"/>
+
+        <CheckBoxPreference
+            android:key="@string/player_gesture_controls_key"
+            android:title="@string/player_gesture_controls_title"
+            android:summary="@string/player_gesture_controls_summary"
+            android:defaultValue="true"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -147,6 +154,12 @@
             android:title="@string/autoplay_by_calling_app_title"
             android:summary="@string/autoplay_by_calling_app_summary"
             android:defaultValue="false" />
+
+        <CheckBoxPreference
+            android:key="@string/show_search_suggestions_key"
+            android:title="@string/show_search_suggestions_title"
+            android:summary="@string/show_search_suggestions_summary"
+            android:defaultValue="true"/>
 
         <!--
         <CheckBoxPreference

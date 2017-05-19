@@ -449,6 +449,8 @@ public class MainVideoPlayer extends Activity {
             return true;
         }
 
+        private final boolean isGestureControlsEnabled = playerImpl.getSharedPreferences().getBoolean(getString(R.string.player_gesture_controls_key), true);
+
         private final float stepsBrightness = 15, stepBrightness = (1f / stepsBrightness), minBrightness = .01f;
         private float currentBrightness = .5f;
 
@@ -466,6 +468,8 @@ public class MainVideoPlayer extends Activity {
         // TODO: Improve video gesture controls
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            if (!isGestureControlsEnabled) return false;
+
             //noinspection PointlessBooleanExpression
             if (DEBUG && false) Log.d(TAG, "MainVideoPlayer.onScroll = " +
                     ", e1.getRaw = [" + e1.getRawX() + ", " + e1.getRawY() + "]" +

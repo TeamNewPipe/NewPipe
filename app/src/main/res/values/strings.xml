@@ -62,6 +62,10 @@
     <string name="black_theme_title">Black</string>
     <string name="popup_remember_size_pos_title">Remember popup size and position</string>
     <string name="popup_remember_size_pos_summary">Remember the last size and position set to the popup</string>
+    <string name="player_gesture_controls_title">Player gesture controls</string>
+    <string name="player_gesture_controls_summary">Use gestures to control the brightness and volume of the player</string>
+    <string name="show_search_suggestions_title">Search suggestions</string>
+    <string name="show_search_suggestions_summary">Show suggestions when searching</string>
 
     <string name="download_dialog_title">Download</string>
     <string-array name="download_options">
