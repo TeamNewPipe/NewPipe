@@ -203,4 +203,9 @@
     <string name="popup_resizing_indicator_title">Yeniden boyutlandırılıyor</string>
 
     <string name="use_external_video_player_summary">Bu seçenek etkinken bazı çözünürlüklerde ses olmayacak</string>
+    <string name="player_gesture_controls_summary">Oynatıcının parlaklığını ve sesini yönetmek için el hareketlerini kullan</string>
+    <string name="player_gesture_controls_title">Oynatıcı el hareketi kontrolleri</string>
+    <string name="show_search_suggestions_title">Arama önerileri</string>
+    <string name="show_search_suggestions_summary">Ararken önerileri göster</string>
+
     </resources>
