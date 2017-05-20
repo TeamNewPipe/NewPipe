@@ -47,8 +47,8 @@
     <string name="detail_uploader_thumbnail_view_description">Миниатюра аватара пользователся</string>
     <string name="detail_dislikes_img_view_description">Дислайки</string>
     <string name="detail_likes_img_view_description">Лайки</string>
-<string name="use_external_video_player_title">Использовать внешний медиаплеер</string>
-    <string name="use_external_audio_player_title">Использовать внешний проигрыватель для аудио</string>
+<string name="use_external_video_player_title">Использовать внешний видеоплеер</string>
+    <string name="use_external_audio_player_title">Использовать внешний аудиоплеер</string>
     <string name="background_player_playing_toast">Проигрывание в фоновом режиме</string>
     <string name="background_player_name">Фоновый проигрыватель NewPipe</string>
     <string name="loading">Загрузка</string>
