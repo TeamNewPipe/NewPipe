@@ -16,10 +16,10 @@
     <string name="choose_browser">Выбрать браузер</string>
     <string name="screen_rotation">поворот</string>
     <string name="settings_activity_title">Настройки</string>
-    <string name="download_path_title">Место для загрузок</string>
+    <string name="download_path_title">Папка для загрузки видео</string>
     <string name="download_path_summary">Папка для хранения загруженных видео</string>
     <string name="download_path_dialog_title">Введите путь к папке для загрузки видео</string>
-    <string name="default_resolution_title">Разрешение по-умолчанию</string>
+    <string name="default_resolution_title">Разрешение по умолчанию</string>
     <string name="play_with_kodi_title">Воспроизвести с помощью Kodi</string>
     <string name="kore_not_found">Приложение Kore не наидено. Установить Kore?</string>
     <string name="show_play_with_kodi_title">Показывать опцию \"Воспроизвести с помощью Kodi\"</string>
@@ -62,7 +62,7 @@
     <string name="use_tor_title">Использовать Tor</string>
     <string name="download_path_audio_title">Папка для загрузки аудио</string>
     <string name="download_path_audio_summary">Папка для хранения загруженных аудио</string>
-    <string name="download_path_audio_dialog_title">Введите путь к папке для загрузки аудио</string>
+    <string name="download_path_audio_dialog_title">Введите путь к папке для загрузки аудио.</string>
 
     <string name="main_bg_subtitle">Нажмите поиск, чтобы начать</string>
     <string name="msg_wait">Пожалуйста подождите…</string>
@@ -153,4 +153,8 @@
     <string name="switch_mode">Переключатель между списком и сеткой</string>
 
 
+    <string name="controls_background_title">В фоне</string>
+    <string name="controls_popup_title">В окне</string>
+
+    <string name="show_higher_resolutions_summary">Только некоторые устройства могут воспроизводить видео в 2K/4K</string>
     </resources>
