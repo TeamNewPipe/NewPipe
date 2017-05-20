@@ -159,4 +159,5 @@
     <string name="show_higher_resolutions_summary">Только некоторые устройства могут воспроизводить видео в 2K/4K</string>
     <string name="preferred_video_format_title">Предпочитаемый формат видео</string>
     <string name="black_theme_title">Чёрная</string>
+    <string name="popup_remember_size_pos_title">Запомнить размер и положение всплывающего окна</string>
     </resources>
