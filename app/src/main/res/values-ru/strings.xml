@@ -22,10 +22,10 @@
     <string name="default_resolution_title">Разрешение по умолчанию</string>
     <string name="play_with_kodi_title">Воспроизвести с помощью Kodi</string>
     <string name="kore_not_found">Приложение Kore не найдено. Установить Kore?</string>
-    <string name="show_play_with_kodi_title">Показывать опцию \"Воспроизвести с помощью Kodi\"</string>
+    <string name="show_play_with_kodi_title">Показывать опцию «Воспроизвести с помощью Kodi»</string>
     <string name="show_play_with_kodi_summary">Показать опцию воспроизведения видео через Kodi media center</string>
     <string name="play_audio">Аудио</string>
-    <string name="default_audio_format_title">Формат аудио по-умолчанию</string>
+    <string name="default_audio_format_title">Формат аудио по умолчанию</string>
     <string name="webm_description">WebM — свободный формат</string>
     <string name="m4a_description">m4a — лучшее качество</string>
     <string name="download_dialog_title">Скачать</string>
