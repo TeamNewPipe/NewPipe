@@ -49,7 +49,7 @@
     <string name="detail_likes_img_view_description">Лайки</string>
 <string name="use_external_video_player_title">Использовать внешний видеоплеер</string>
     <string name="use_external_audio_player_title">Использовать внешний аудиоплеер</string>
-    <string name="background_player_playing_toast">Проигрывание в фоновом режиме</string>
+    <string name="background_player_playing_toast">Воспроизведение в фоновом режиме</string>
     <string name="background_player_name">Фоновый проигрыватель NewPipe</string>
     <string name="loading">Загрузка</string>
     <string name="theme_title">Тема</string>
@@ -99,7 +99,7 @@
     <string name="downloads">Загрузки</string>
     <string name="downloads_title">Загрузки</string>
     <string name="settings_title">Настройки</string>
-    <string name="error_report_title">Отчет об ошибке</string>
+    <string name="error_report_title">Отчёт об ошибке</string>
 
     <string name="parsing_error">Сайт невозможно разобрать</string>
     <string name="light_parsing_error">Невозможно полностью разобрать сайт</string>
@@ -162,4 +162,5 @@
     <string name="popup_remember_size_pos_title">Запоминать размер и положение всплывающего окна</string>
     <string name="player_gesture_controls_summary">Использовать жесты для изменения яркости и громкости</string>
     <string name="settings_category_popup_title">Всплывающее окно</string>
+    <string name="popup_playing_toast">Воспроизведение во всплывающем окне</string>
     </resources>
