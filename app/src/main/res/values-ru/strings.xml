@@ -75,7 +75,7 @@
     <string name="checksum">Контрольная сумма</string>
 
     <string name="msg_url">Скачать URL</string>
-    <string name="msg_name">Названия файла</string>
+    <string name="msg_name">Название файла</string>
     <string name="msg_error">Ошибка</string>
     <string name="msg_server_unsupported">Сервер не поддерживается</string>
     <string name="msg_running">NewPipe скачивает</string>
