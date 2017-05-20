@@ -167,4 +167,5 @@
     <string name="yes">Да</string>
     <string name="refresh">Обновить</string>
     <string name="clear">Очистить</string>
+    <string name="use_old_player_title">Использовать старый плеер</string>
     </resources>
