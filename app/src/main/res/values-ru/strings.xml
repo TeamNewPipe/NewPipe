@@ -170,4 +170,9 @@
     <string name="use_old_player_title">Использовать старый плеер</string>
     <string name="player_gesture_controls_title">Управление жестами</string>
     <string name="all">Всё</string>
+    <string name="filter">Фильтр</string>
+    <string name="videos">видео</string>
+    <string name="subscriber">подписчик</string>
+    <string name="subscriber_plural">подписчиков</string>
+    <string name="views">просмотров</string>
     </resources>
