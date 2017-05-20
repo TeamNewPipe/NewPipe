@@ -53,7 +53,7 @@
     <string name="background_player_name">Фоновый проигрыватель NewPipe</string>
     <string name="loading">Загрузка</string>
     <string name="theme_title">Тема</string>
-    <string name="dark_theme_title">Темная</string>
+    <string name="dark_theme_title">Тёмная</string>
     <string name="light_theme_title">Светлая</string>
 
     <string name="play_btn_text">Воспроизвести</string>
@@ -158,4 +158,5 @@
 
     <string name="show_higher_resolutions_summary">Только некоторые устройства могут воспроизводить видео в 2K/4K</string>
     <string name="preferred_video_format_title">Предпочитаемый формат видео</string>
+    <string name="black_theme_title">Чёрная</string>
     </resources>
