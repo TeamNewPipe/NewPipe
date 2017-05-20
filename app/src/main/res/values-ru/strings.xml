@@ -101,21 +101,21 @@
     <string name="settings_title">Настройки</string>
     <string name="error_report_title">Отчёт об ошибке</string>
 
-    <string name="parsing_error">Сайт невозможно разобрать</string>
-    <string name="light_parsing_error">Невозможно полностью разобрать сайт</string>
-    <string name="content_not_available">Контент недоступен</string>
+    <string name="parsing_error">Не удалось разобрать веб-сайт.</string>
+    <string name="light_parsing_error">Не удалось полностью разобрать веб-сайт.</string>
+    <string name="content_not_available">Контент недоступен.</string>
     <string name="blocked_by_gema">Заблокировано правообладателями</string>
     <string name="could_not_setup_download_menu">Невозможно установить меню загрузки</string>
-    <string name="live_streams_not_supported">Это прямая трансляция. Они пока не поддерживаются</string>
-    <string name="could_not_load_image">Изображение не может быть загружено</string>
+    <string name="live_streams_not_supported">Это прямая трансляция. Они пока не поддерживаются.</string>
+    <string name="could_not_load_image">Не удалось загрузить изображение</string>
     <string name="app_ui_crash">"Падение приложения/пользовательского интерфейса "</string>
-    <string name="sorry_string">Простите, такое не должно было произойти</string>
-    <string name="error_report_button_text">Отправить отчет об ошибке с помощью электронной почты</string>
-    <string name="error_snackbar_message">Простите, произошла ошибка</string>
+    <string name="sorry_string">Простите, такое не должно было произойти.</string>
+    <string name="error_report_button_text">Отправить отчёт об ошибке по электронной почте</string>
+    <string name="error_snackbar_message">Простите, произошли ошибки.</string>
     <string name="error_snackbar_action">ОТЧЕТ</string>
-    <string name="what_device_headline">"Информация: "</string>
-    <string name="what_happened_headline">"Что произошло: "</string>
-    <string name="info_searched_lbl">"Вы искали: "</string>
+    <string name="what_device_headline">Информация:</string>
+    <string name="what_happened_headline">Что произошло:</string>
+    <string name="info_searched_lbl">Вы искали:</string>
     <string name="error_details_headline">Детали:</string>
 
 
@@ -140,8 +140,8 @@
     <string name="use_exoplayer_title">Использовать ExoPlayer</string>
     <string name="msg_fetch_filename">Получить название файла</string>
     <string name="could_not_load_thumbnails">Не удалось загрузить все миниатюры</string>
-    <string name="youtube_signature_decryption_error">Невозможно расшифровать подпись url у видео</string>
-    <string name="could_not_get_stream">Потоковое видео недоступно.</string>
+    <string name="youtube_signature_decryption_error">Не удалось расшифровать подпись url у видео.</string>
+    <string name="could_not_get_stream">Не удалось найти ни один поток.</string>
     <string name="off">[отключен]</string>
     <string name="error_no_decoder">Это устройство не поддерживает декодер для <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string name="error_no_secure_decoder">Это устройство не поддерживает безопасный декодер для <xliff:g id="mime_type">%1$s</xliff:g></string>
