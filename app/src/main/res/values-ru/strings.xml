@@ -88,8 +88,8 @@
 
     <string name="show_age_restricted_content_title">Показывать контент с ограничением по возрасту</string>
     <string name="general_error">Ошибка</string>
-    <string name="info_requested_stream_lbl">Запрашиваемый поток</string>
-    <string name="your_comment">Ваши комментарии (на английском):</string>
+    <string name="info_requested_stream_lbl">Запрашиваемый поток:</string>
+    <string name="your_comment">Ваш комментарий (на английском):</string>
     <string name="err_dir_create">Невозможно создать папку для загрузки \'%1$s\'</string>
     <string name="autoplay_by_calling_app_title">Автоматически воспроизводить при открытии из другого приложения</string>
     <string name="autoplay_by_calling_app_summary">Автоматически воспроизводить видео при вызове NewPipe из другого приложения</string>
