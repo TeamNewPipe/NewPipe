@@ -140,7 +140,7 @@
     <string name="use_exoplayer_title">Использовать ExoPlayer</string>
     <string name="msg_fetch_filename">Получить название файла</string>
     <string name="could_not_load_thumbnails">Не удалось загрузить все миниатюры</string>
-    <string name="youtube_signature_decryption_error">Невозможно расшифровать url у видео</string>
+    <string name="youtube_signature_decryption_error">Невозможно расшифровать подпись url у видео</string>
     <string name="could_not_get_stream">Потоковое видео недоступно.</string>
     <string name="off">[отключен]</string>
     <string name="error_no_decoder">Это устройство не поддерживает декодер для <xliff:g id="mime_type">%1$s</xliff:g></string>
