@@ -165,4 +165,6 @@
     <string name="popup_playing_toast">Воспроизведение во всплывающем окне</string>
     <string name="channel">Канал</string>
     <string name="yes">Да</string>
+    <string name="refresh">Обновить</string>
+    <string name="clear">Очистить</string>
     </resources>
