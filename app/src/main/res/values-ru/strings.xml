@@ -164,4 +164,5 @@
     <string name="settings_category_popup_title">Всплывающее окно</string>
     <string name="popup_playing_toast">Воспроизведение во всплывающем окне</string>
     <string name="channel">Канал</string>
+    <string name="yes">Да</string>
     </resources>
