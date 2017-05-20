@@ -168,4 +168,5 @@
     <string name="refresh">Обновить</string>
     <string name="clear">Очистить</string>
     <string name="use_old_player_title">Использовать старый плеер</string>
+    <string name="player_gesture_controls_title">Управление жестами</string>
     </resources>
