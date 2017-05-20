@@ -186,4 +186,6 @@
     <string name="show_search_suggestions_title">検索候補</string>
     <string name="show_search_suggestions_summary">検索時に候補を表示します</string>
 
-</resources>
+<string name="best_resolution">最適な解像度</string>
+
+    </resources>
