@@ -161,4 +161,5 @@
     <string name="black_theme_title">Чёрная</string>
     <string name="popup_remember_size_pos_title">Запоминать размер и положение всплывающего окна</string>
     <string name="player_gesture_controls_summary">Использовать жесты для изменения яркости и громкости</string>
+    <string name="settings_category_popup_title">Всплывающее окно</string>
     </resources>
