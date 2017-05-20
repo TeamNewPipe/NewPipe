@@ -139,7 +139,7 @@
     <string name="storage_permission_denied">В доступе к хранилищу было отказано</string>
     <string name="use_exoplayer_title">Использовать ExoPlayer</string>
     <string name="msg_fetch_filename">Получить название файла</string>
-    <string name="could_not_load_thumbnails">Невозможно загрузить все миниатюры</string>
+    <string name="could_not_load_thumbnails">Не удалось загрузить все миниатюры</string>
     <string name="youtube_signature_decryption_error">Невозможно расшифровать url у видео</string>
     <string name="could_not_get_stream">Потоковое видео недоступно.</string>
     <string name="off">[отключен]</string>
