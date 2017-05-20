@@ -44,7 +44,7 @@
 
     <string name="list_thumbnail_view_description">Миниатюра видео-превью</string>
     <string name="detail_thumbnail_view_description">Миниатюра видео-превью</string>
-    <string name="detail_uploader_thumbnail_view_description">Миниатюра аватара пользователся</string>
+    <string name="detail_uploader_thumbnail_view_description">Миниатюра аватара пользователя</string>
     <string name="detail_dislikes_img_view_description">Дислайки</string>
     <string name="detail_likes_img_view_description">Лайки</string>
 <string name="use_external_video_player_title">Использовать внешний видеоплеер</string>
@@ -146,7 +146,7 @@
     <string name="error_no_decoder">Это устройство не поддерживает декодер для <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string name="error_no_secure_decoder">Это устройство не поддерживает безопасный декодер для <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string name="error_querying_decoders">На этом устройстве недоступен декодер.</string>
-    <string name="error_instantiating_decoder">Невозможно инициировать декодер <xliff:g id="decoder_name"> 1%1$s</xliff:g> 2</string>
+    <string name="error_instantiating_decoder">Невозможно инициировать декодер <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="use_exoplayer_summary">Эксперементально</string>
 
     <string name="view">Воспроизвести</string>
