@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="view_count_text">%1$s просмотров</string>
     <string name="upload_date_text">Опубликовано %1$s</string>
-    <string name="no_player_found">Ни одного потокового проигрывателя не было найдено. Установить?</string>
+    <string name="no_player_found">Ни одного потокового проигрывателя не было найдено. Установить VLC?</string>
     <string name="install">Установить</string>
     <string name="cancel">Отмена</string>
     <string name="open_in_browser">Открыть в браузере</string>
@@ -10,7 +10,7 @@
     <string name="download">Скачать</string>
     <string name="search">Найти</string>
     <string name="settings">Настройки</string>
-    <string name="did_you_mean">Возможно, вы имели в виду: %1$s ?</string>
+    <string name="did_you_mean">Возможно, вы имели в виду: %1$s?</string>
     <string name="search_page">Страница поиска: </string>
     <string name="share_dialog_title">Поделиться с помощью</string>
     <string name="choose_browser">Выбрать браузер</string>
@@ -64,7 +64,7 @@
     <string name="download_path_audio_summary">Папка для хранения загруженных аудио</string>
     <string name="download_path_audio_dialog_title">Введите путь к папке для загрузки аудио</string>
 
-    <string name="main_bg_subtitle">Нажмите поиск чтобы начать</string>
+    <string name="main_bg_subtitle">Нажмите поиск, чтобы начать</string>
     <string name="msg_wait">Пожалуйста подождите…</string>
     <string name="msg_exists">Файл уже существует</string>
     <string name="msg_threads">Потоки</string>
