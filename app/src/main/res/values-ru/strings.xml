@@ -82,7 +82,7 @@
     <string name="msg_url_malform">Неправильный URL или Интернет не доступен</string>
     <string name="msg_running_detail">Нажмите для деталей</string>
     <string name="msg_copied">Скопировано в буфер обмена.</string>
-    <string name="no_available_dir">Пожалуйста выберите доступную папку для скачивания.</string>
+    <string name="no_available_dir">Выберите доступную папку для загрузки.</string>
 
     <string name="action_settings">Настройки</string>
 
@@ -175,4 +175,6 @@
     <string name="subscriber">подписчик</string>
     <string name="subscriber_plural">подписчиков</string>
     <string name="views">просмотров</string>
+    <string name="add">Новая миссия</string>
+    <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:\\nГлобальный диапазон IP:</string>
     </resources>
