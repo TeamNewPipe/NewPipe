@@ -104,7 +104,7 @@
     <string name="parsing_error">Не удалось разобрать веб-сайт.</string>
     <string name="light_parsing_error">Не удалось полностью разобрать веб-сайт.</string>
     <string name="content_not_available">Контент недоступен.</string>
-    <string name="blocked_by_gema">Заблокировано правообладателями</string>
+    <string name="blocked_by_gema">Заблокировано GEMA.</string>
     <string name="could_not_setup_download_menu">Невозможно установить меню загрузки</string>
     <string name="live_streams_not_supported">Это прямая трансляция. Они пока не поддерживаются.</string>
     <string name="could_not_load_image">Не удалось загрузить изображение</string>
@@ -119,7 +119,7 @@
     <string name="error_details_headline">Детали:</string>
 
 
-    <string name="use_tor_summary">(Экспериментально) Перенаправлять трафик через Tor для повышения конфиденциальности (прямая трансляция пока не поддерживается)</string>
+    <string name="use_tor_summary">(Экспериментально) Загружать через Tor для повышения конфиденциальности (прямые трансляции пока не поддерживаются).</string>
     <string name="report_error">Сообщить об ошибке</string>
     <string name="user_report">Сообщить о нарушении</string>
 
@@ -145,7 +145,7 @@
     <string name="off">[отключен]</string>
     <string name="error_no_decoder">Это устройство не поддерживает декодер для <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string name="error_no_secure_decoder">Это устройство не поддерживает безопасный декодер для <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_querying_decoders">На этом устройстве недоступен декодер.</string>
+    <string name="error_querying_decoders">Не удалось получить список декодеров устройства</string>
     <string name="error_instantiating_decoder">Невозможно инициировать декодер <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="use_exoplayer_summary">Эксперементально</string>
 
@@ -178,6 +178,8 @@
     <string name="add">Новая миссия</string>
     <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:\\nГлобальный диапазон IP:</string>
     <string name="subscribe">Подписаться</string>
-    <string name="msg_popup_permission">Необходимо разрешение, чтобы показывать видео во отдельном окне</string>
+    <string name="msg_popup_permission">Это разрешение нужно,
+\nчтобы показывать всплывающее окно</string>
 
+    <string name="reCaptchaActivity">reCAPTCHA</string>
     </resources>
