@@ -208,4 +208,9 @@ membuka di mode popup</string>
     <string name="settings_category_popup_title">Sembulan</string>
     <string name="popup_resizing_indicator_title">Ubah ukuran</string>
 
+    <string name="player_gesture_controls_title">Kontrol gerak pemutar</string>
+    <string name="player_gesture_controls_summary">Gunakan gerak untuk mengontrol kecerahan dan volume pemutar</string>
+    <string name="show_search_suggestions_title">Saran pencarian</string>
+    <string name="show_search_suggestions_summary">Tampilkan saran ketika mencari</string>
+
     </resources>
