@@ -177,4 +177,7 @@
     <string name="views">просмотров</string>
     <string name="add">Новая миссия</string>
     <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:\\nГлобальный диапазон IP:</string>
+    <string name="subscribe">Подписаться</string>
+    <string name="msg_popup_permission">Необходимо разрешение, чтобы показывать видео во отдельном окне</string>
+
     </resources>
