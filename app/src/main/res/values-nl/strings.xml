@@ -179,4 +179,6 @@ te openen in pop-upmodus</string>
 
     <string name="player_gesture_controls_title">Bewegingscontrole</string>
     <string name="player_gesture_controls_summary">Gebruik bewegingen om helderheid en volume van de speler aan te passen</string>
-</resources>
+<string name="best_resolution">Beste resolutie</string>
+
+    </resources>
