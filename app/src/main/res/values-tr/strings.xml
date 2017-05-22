@@ -177,4 +177,6 @@
     <string name="show_search_suggestions_title">Arama önerileri</string>
     <string name="show_search_suggestions_summary">Ararken önerileri göster</string>
 
-</resources>
+<string name="best_resolution">En iyi çözünürlük</string>
+
+    </resources>
