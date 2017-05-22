@@ -190,4 +190,5 @@
     <string name="popup_resizing_indicator_title">Изменение размера</string>
 
     <string name="use_external_video_player_summary">Для некоторых видео может отсутствовать звук, если включена эта опция</string>
+    <string name="short_million">" млн."</string>
     </resources>
