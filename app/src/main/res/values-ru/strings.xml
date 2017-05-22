@@ -182,4 +182,12 @@
 \nчтобы показывать всплывающее окно</string>
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="open_in_popup_mode">Открыть во всплывающем окне</string>
+    <string name="show_search_suggestions_summary">Показывать подсказки во время поиска</string>
+
+    <string name="later">Позже</string>
+    <string name="disabled">Отключено</string>
+    <string name="popup_resizing_indicator_title">Изменение размера</string>
+
+    <string name="use_external_video_player_summary">Для некоторых видео может отсутствовать звук, если включена эта опция</string>
     </resources>
