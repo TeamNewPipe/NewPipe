@@ -12,6 +12,7 @@ Do not report crashes in the GitHub issue tracker. NewPipe has an automated cras
 * Search the [existing issues](https://github.com/theScrabi/NewPipe/issues) first to make sure your issue/feature hasn't been reported/requested before
 * Check if this issue/feature is already fixed/implemented in the repository
 * If you are an android/java developer you are always welcome to fix/implement an issue/a feature yourself
+* Use english
 
 ## Bugfixing
 * If you want to help NewPipe getting bug free, you can send me a mail to tnp@newpipe.schabi.org to let me know that you intent to help, and than register at our [sentry](https://support.schabi.org) setup. 
