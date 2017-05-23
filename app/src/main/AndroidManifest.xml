@@ -36,8 +36,7 @@
 
         <service
             android:name=".player.BackgroundPlayer"
-            android:exported="false"
-            android:label="@string/background_player_name" />
+            android:exported="false"/>
 
         <activity
             android:name=".player.MainVideoPlayer"
@@ -48,7 +47,7 @@
 
         <activity
             android:name=".settings.SettingsActivity"
-            android:label="@string/settings_activity_title" />
+            android:label="@string/settings" />
         <activity
             android:name=".PanicResponderActivity"
             android:launchMode="singleInstance"

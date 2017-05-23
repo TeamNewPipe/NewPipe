@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
     <string name="view_count_text">%1$s keer bekeken</string>
     <string name="upload_date_text">Gepubliceerd op %1$s</string>
     <string name="no_player_found">Geen speler met streamondersteuning gevonden. Wil je VLC installeren?</string>
@@ -11,11 +11,9 @@
     <string name="search">Zoeken</string>
     <string name="settings">Instellingen</string>
     <string name="did_you_mean">Bedoelde je: %1$s ?</string>
-    <string name="search_page">Zoekpagina: </string>
     <string name="share_dialog_title">Delen met</string>
     <string name="choose_browser">Kies een browser</string>
     <string name="screen_rotation">rotatie</string>
-    <string name="settings_activity_title">Instellingen</string>
     <string name="download_path_title">Downloadlocatie voor video\'s</string>
     <string name="download_path_summary">Locatie om gedownloade video\'s in op te slaan.</string>
     <string name="download_path_dialog_title">Voer downloadlocatie in voor video\'s</string>
@@ -31,7 +29,6 @@
     <string name="download_dialog_title">Downloaden</string>
     <string name="next_video_title">Volgende video</string>
     <string name="url_not_supported_toast">URL wordt niet ondersteund</string>
-    <string name="similar_videos_btn_text">Vergelijkbare video\'s</string>
     <string name="show_next_and_similar_title">Toon volgende en vergelijkbare video\'s</string>
     <string name="search_language_title">Voorkeurstaal voor inhoud</string>
     <string name="use_external_video_player_title">Externe videospeler gebruiken</string>
@@ -42,8 +39,6 @@
     <string name="detail_thumbnail_view_description">Videovoorbeeldminiatuur</string>
     <string name="detail_uploader_thumbnail_view_description">Uploaderminiatuur</string>
     <string name="detail_dislikes_img_view_description">Duimpjes omlaag</string>
-    <string name="background_player_name">NewPipe-achtergrondspeler</string>
-    <string name="loading">Laden</string>
     <string name="download_path_audio_title">Downloadlocatie voor audio</string>
     <string name="download_path_audio_summary">Locatie om gedownloade muziek in op te slaan</string>
     <string name="download_path_audio_dialog_title">Voer downloadlocatie in voor audiobestanden.</string>
@@ -77,7 +72,7 @@
 
     <string name="err_dir_create">Kan downloadmap \'%1$s\' niet aanmaken</string>
     <string name="info_dir_created">Downloadmap \'%1$s\' aangemaakt</string>
-<string name="light_parsing_error">Kon de website niet volledig inlezen.</string>
+    <string name="light_parsing_error">Kon de website niet volledig inlezen.</string>
     <string name="could_not_get_stream">Kon geen streams vinden.</string>
     <string name="sorry_string">Sorry, dit zou niet moeten gebeuren.</string>
     <string name="error_report_button_text">Meld fout via e-mail</string>
@@ -85,34 +80,19 @@
     <string name="error_snackbar_action">MELD</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Wat is er gebeurd:</string>
-    <string name="info_searched_lbl">Gezocht naar:</string>
-    <string name="info_requested_stream_lbl">Aangevraagde stream:</string>
     <string name="your_comment">Je opmerking (in het Engels):</string>
     <string name="error_details_headline">Details:</string>
 
 
-    <string name="use_exoplayer_summary">Experimenteel</string>
-<string name="enable_background_audio">Afspelen in de achtergrond</string>
     <string name="video">Video</string>
     <string name="audio">Geluid</string>
-    <string name="text">Tekst</string>
-    <string name="logging_normal">Normaal</string>
-    <string name="logging_verbose">Uitgebreid</string>
     <string name="retry">Opnieuw proberen</string>
-    <string name="off">[uit]</string>
-    <string name="error_drm_not_supported">Beschermde inhoud wordt niet ondersteund op API-versies lager dan 18</string>
-    <string name="error_drm_unsupported_scheme">Dit apparaat ondersteunt het vereiste DRM-schema niet</string>
-    <string name="error_drm_unknown">Er is een onbekende DRM-fout opgetreden</string>
-    <string name="error_no_decoder">Dit apparaat heeft geen decoder voor <xliff:g id="mime_type"> 1%1$s</xliff:g> 2</string>
-    <string name="error_no_secure_decoder">Dit apparaat heeft geen veilige decoder voor<xliff:g id="mime_type"> 1%1$s</xliff:g></string>
-    <string name="error_querying_decoders">Kan apparaatdecoders niet ophalen</string>
     <string name="main_bg_subtitle">Tik op zoeken om te beginnen</string>
     <string name="autoplay_by_calling_app_title">Automatisch afspelen wanneer geopend vanuit een andere app</string>
     <string name="autoplay_by_calling_app_summary">Speel video\'s automatisch af wanneer NewPipe vanuit een andere app geopend wordt.</string>
     <string name="duration_live">live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
-    <string name="settings_title">Instellingen</string>
     <string name="error_report_title">Foutrapport</string>
 
     <string name="could_not_load_image">Kon afbeelding niet laden</string>
@@ -121,10 +101,7 @@
     <string name="report_error">Meld een probleem</string>
     <string name="user_report">Gebruikersrapport</string>
 
-    <string name="logging">Loggen</string>
-    <string name="error_instantiating_decoder">Kan decoder niet instantiëren <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">Toegang tot opslag geweigerd</string>
-    <string name="use_exoplayer_title">Gebruik ExoPlayer</string>
     <string name="start">Begin</string>
     <string name="pause">Pauzeren</string>
     <string name="view">Bekijken</string>
@@ -133,13 +110,10 @@
 
     <string name="add">Nieuwe missie</string>
     <string name="finish">Oké</string>
-    <string name="switch_mode">Wissel tussen lijst en raster</string>
 
 
-    <string name="msg_url">Download-URL</string>
     <string name="msg_name">Bestandsnaam</string>
     <string name="msg_threads">Threads</string>
-    <string name="msg_fetch_filename">Bestandsnaam ophalen</string>
     <string name="msg_error">Fout</string>
     <string name="msg_server_unsupported">Server wordt niet ondersteund</string>
     <string name="msg_exists">Bestand bestaat al</string>
@@ -150,8 +124,6 @@
     <string name="msg_copied">Gekopieerd naar klembord.</string>
     <string name="no_available_dir">Kies een beschikbare downloadmap.</string>
 
-    <string name="title_activity_channel">ChannelActivity</string>
-    <string name="action_settings">Instellingen</string>
 
     <string name="black_theme_title">Zwart</string>
 
@@ -172,11 +144,7 @@
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-    <string name="restart_title">Herstarten</string>
 
-    <string name="msg_restart">Je moet de applicatie herstarten om het thema toe te passen.
-
-Wil je nu herstarten?</string>
     <string name="msg_popup_permission">Deze toestemming is vereist om
 te openen in pop-upmodus</string>
 
@@ -211,4 +179,4 @@ te openen in pop-upmodus</string>
 
     <string name="player_gesture_controls_title">Bewegingscontrole</string>
     <string name="player_gesture_controls_summary">Gebruik bewegingen om helderheid en volume van de speler aan te passen</string>
-    </resources>
+</resources>

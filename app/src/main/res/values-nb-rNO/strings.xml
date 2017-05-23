@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="background_player_name">NewPipe bakgrunnsavspiller</string>
+<resources>
     <string name="view_count_text">%1$s visninger</string>
     <string name="upload_date_text">Publisert den %1$s</string>
     <string name="no_player_found">Fant ingen videostrøm. Installer VLC?</string>
@@ -7,16 +7,13 @@
     <string name="cancel">Avbryt</string>
     <string name="open_in_browser">Åpne i nettleser</string>
     <string name="share">Del</string>
-    <string name="loading">Laster inn</string>
     <string name="download">Last ned</string>
     <string name="search">Søk</string>
     <string name="settings">Innstillinger</string>
     <string name="did_you_mean">Mente du: %1$s?</string>
-    <string name="search_page">"Søk på siden: "</string>
     <string name="share_dialog_title">Del med</string>
     <string name="choose_browser">Velg nettleser</string>
     <string name="screen_rotation">sideoppsett</string>
-    <string name="settings_activity_title">Innstillinger</string>
     <string name="use_external_video_player_title">Bruk ekstern videoavspiller</string>
     <string name="use_external_audio_player_title">Bruk ekstern lydavspiller</string>
 
@@ -45,7 +42,6 @@
     <string name="next_video_title">Neste video</string>
     <string name="show_next_and_similar_title">Vis neste og lignende videoer</string>
     <string name="url_not_supported_toast">Nettadressen støttes ikke</string>
-    <string name="similar_videos_btn_text">Lignende videoer</string>
     <string name="search_language_title">Foretrukket innholdsspråk</string>
     <string name="settings_category_video_audio_title">Video og lyd</string>
     <string name="settings_category_appearance_title">Utseende</string>
@@ -86,8 +82,6 @@
     <string name="error_snackbar_action">RAPPORTER</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Hva skjedde:</string>
-    <string name="info_searched_lbl">Søkte etter:</string>
-    <string name="info_requested_stream_lbl">Forespurt strøm:</string>
     <string name="your_comment">Din kommentar (på Engelsk):</string>
     <string name="error_details_headline">Detaljer:</string>
 
@@ -95,30 +89,14 @@
     <string name="report_error">Rapporter en feil</string>
     <string name="user_report">Brukerrapport</string>
 
-    <string name="enable_background_audio">Spill av i bakgrunnen</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
-    <string name="text">Tekst</string>
-    <string name="logging">Loggføring</string>
-    <string name="logging_normal">Normal</string>
-    <string name="logging_verbose">Utfyllende</string>
     <string name="retry">Prøv igjen</string>
-    <string name="off">[av]</string>
-    <string name="error_drm_not_supported">Beskyttet innhold støttes ikke på API-nivåer under 18</string>
-    <string name="error_drm_unsupported_scheme">Denne enheten støtter ikke påkrevd DRM-anordning</string>
-    <string name="error_drm_unknown">En ukjent DRM-feil inntraff</string>
-    <string name="error_no_decoder">Denne enheten mangler dekoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_no_secure_decoder">Denne enheten mangler sikker dekoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_querying_decoders">Kunne ikke sjekke enhetens dekodere</string>
     <string name="storage_permission_denied">Tilgang til lagring nektet</string>
-    <string name="use_exoplayer_title">Bruk ExoPlayer</string>
-    <string name="use_exoplayer_summary">Eksperimentelt</string>
     <string name="duration_live">direkteoverført</string>
 
-    <string name="error_instantiating_decoder">Kunne ikke igangsette dekoder <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="downloads">Nedlastinger</string>
     <string name="downloads_title">Nedlastinger</string>
-    <string name="settings_title">Innstillinger</string>
     <string name="error_report_title">Feilrapport</string>
 
     <string name="could_not_load_image">Kunne ikke laste bilde</string>
@@ -129,12 +107,10 @@
     <string name="checksum">Sjekksum</string>
 
     <string name="finish">Okei</string>
-    <string name="switch_mode">Veksle mellom liste og rutenett</string>
 
 
     <string name="msg_name">Filnavn</string>
     <string name="msg_threads">Tråder</string>
-    <string name="msg_fetch_filename">Innhent filnavn</string>
     <string name="msg_error">Feil</string>
     <string name="msg_server_unsupported">Tjener ustøttet</string>
     <string name="msg_exists">Fila finnes allerede</string>
@@ -142,15 +118,12 @@
     <string name="msg_running_detail">Trykk for detaljer</string>
     <string name="msg_wait">Vent…</string>
     <string name="msg_copied">Kopiert til utklippstavle.</string>
-    <string name="action_settings">Innstillinger</string>
     <string name="info_labels">Hva:\\nForespørsel:\\nInnholdsspråk:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersjon:\\nOperativsystemsversjon:\\nGlobal IP-blokk:</string>
     <string name="start">Start</string>
     <string name="add">Nytt mål</string>
-    <string name="msg_url">Nedlastingsnettadresse</string>
     <string name="msg_url_malform">Feilaktig nettadresse eller manglende internettilknytning</string>
     <string name="no_available_dir">Velg ei tilgjengelig nedlastingsmappe.</string>
 
-    <string name="title_activity_channel">Kanalaktivitet</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA-oppgave</string>
 
@@ -179,15 +152,11 @@
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">Mrd.</string>
-    <string name="restart_title">Omstart</string>
 
-    <string name="msg_restart">Du må starte programmet på nytt for å ikle ny drakt.
-
-Omstart nå?</string>
     <string name="msg_popup_permission">Denne tilgangen trengs for
 åpning i oppsprettsmodus</string>
 
     <string name="recaptcha_request_toast">reCAPTCHA-oppgave forespurt</string>
 
     <string name="use_old_player_summary">Gammel utgave i Mediaframework-avspiller.</string>
-    </resources>
+</resources>

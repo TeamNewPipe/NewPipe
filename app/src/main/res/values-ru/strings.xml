@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
     <string name="view_count_text">%1$s просмотров</string>
     <string name="upload_date_text">Опубликовано %1$s</string>
     <string name="no_player_found">Ни одного потокового проигрывателя не было найдено. Установить VLC?</string>
@@ -11,11 +11,9 @@
     <string name="search">Найти</string>
     <string name="settings">Настройки</string>
     <string name="did_you_mean">Возможно, вы имели в виду: %1$s?</string>
-    <string name="search_page">Страница поиска: </string>
     <string name="share_dialog_title">Поделиться с помощью</string>
     <string name="choose_browser">Выбрать браузер</string>
     <string name="screen_rotation">поворот</string>
-    <string name="settings_activity_title">Настройки</string>
     <string name="download_path_title">Папка для загрузки видео</string>
     <string name="download_path_summary">Папка для хранения загруженных видео</string>
     <string name="download_path_dialog_title">Введите путь к папке для загрузки видео</string>
@@ -29,13 +27,8 @@
     <string name="webm_description">WebM — свободный формат</string>
     <string name="m4a_description">m4a — лучшее качество</string>
     <string name="download_dialog_title">Скачать</string>
-    <string-array name="downloadOptions">
-        <item>Видео</item>
-        <item>Аудио</item>
-    </string-array>
     <string name="next_video_title">Следующее видео</string>
     <string name="url_not_supported_toast">URL не поддерживается</string>
-    <string name="similar_videos_btn_text">Похожие видео</string>
     <string name="show_next_and_similar_title">Показывать следующее и предложенные видео</string>
     <string name="search_language_title">Предпочитаемый язык контента</string>
     <string name="settings_category_video_audio_title">Видео и Аудио</string>
@@ -47,11 +40,9 @@
     <string name="detail_uploader_thumbnail_view_description">Миниатюра аватара пользователя</string>
     <string name="detail_dislikes_img_view_description">Дислайки</string>
     <string name="detail_likes_img_view_description">Лайки</string>
-<string name="use_external_video_player_title">Использовать внешний видеоплеер</string>
+    <string name="use_external_video_player_title">Использовать внешний видеоплеер</string>
     <string name="use_external_audio_player_title">Использовать внешний аудиоплеер</string>
     <string name="background_player_playing_toast">Воспроизведение в фоновом режиме</string>
-    <string name="background_player_name">Фоновый проигрыватель NewPipe</string>
-    <string name="loading">Загрузка</string>
     <string name="theme_title">Тема</string>
     <string name="dark_theme_title">Тёмная</string>
     <string name="light_theme_title">Светлая</string>
@@ -74,7 +65,6 @@
     <string name="delete">Удалить</string>
     <string name="checksum">Контрольная сумма</string>
 
-    <string name="msg_url">Скачать URL</string>
     <string name="msg_name">Название файла</string>
     <string name="msg_error">Ошибка</string>
     <string name="msg_server_unsupported">Сервер не поддерживается</string>
@@ -84,11 +74,9 @@
     <string name="msg_copied">Скопировано в буфер обмена.</string>
     <string name="no_available_dir">Выберите доступную папку для загрузки.</string>
 
-    <string name="action_settings">Настройки</string>
 
     <string name="show_age_restricted_content_title">Показывать контент с ограничением по возрасту</string>
     <string name="general_error">Ошибка</string>
-    <string name="info_requested_stream_lbl">Запрашиваемый поток:</string>
     <string name="your_comment">Ваш комментарий (на английском):</string>
     <string name="err_dir_create">Невозможно создать папку для загрузки \'%1$s\'</string>
     <string name="autoplay_by_calling_app_title">Автоматически воспроизводить при открытии из другого приложения</string>
@@ -98,7 +86,6 @@
     <string name="duration_live">вживую</string>
     <string name="downloads">Загрузки</string>
     <string name="downloads_title">Загрузки</string>
-    <string name="settings_title">Настройки</string>
     <string name="error_report_title">Отчёт об ошибке</string>
 
     <string name="parsing_error">Не удалось разобрать веб-сайт.</string>
@@ -115,7 +102,6 @@
     <string name="error_snackbar_action">ОТЧЕТ</string>
     <string name="what_device_headline">Информация:</string>
     <string name="what_happened_headline">Что произошло:</string>
-    <string name="info_searched_lbl">Вы искали:</string>
     <string name="error_details_headline">Детали:</string>
 
 
@@ -125,32 +111,15 @@
 
     <string name="info_dir_created">Создать папку для загруженного \'%1$s\'</string>
 
-    <string name="enable_background_audio">Воспроизвести в фоновом режиме</string>
     <string name="video">Видео</string>
     <string name="audio">Аудио</string>
-    <string name="text">Текст</string>
-    <string name="logging">Авторизация</string>
-    <string name="logging_normal">Нормальный</string>
-    <string name="logging_verbose">Подробный</string>
     <string name="retry">Повторить попытку</string>
-    <string name="error_drm_not_supported">Защищенный контент не поддерживается версиями API ниже 18</string>
-    <string name="error_drm_unsupported_scheme">Данное устройство не поддерживает требуемую схему DRM</string>
-    <string name="error_drm_unknown">Произошла неизвестная ошибка DRM</string>
     <string name="storage_permission_denied">В доступе к хранилищу было отказано</string>
-    <string name="use_exoplayer_title">Использовать ExoPlayer</string>
-    <string name="msg_fetch_filename">Получить название файла</string>
     <string name="could_not_load_thumbnails">Не удалось загрузить все миниатюры</string>
     <string name="youtube_signature_decryption_error">Не удалось расшифровать подпись url у видео.</string>
     <string name="could_not_get_stream">Не удалось найти ни один поток.</string>
-    <string name="off">[отключен]</string>
-    <string name="error_no_decoder">Это устройство не поддерживает декодер для <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_no_secure_decoder">Это устройство не поддерживает безопасный декодер для <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_querying_decoders">Не удалось получить список декодеров устройства</string>
-    <string name="error_instantiating_decoder">Невозможно инициировать декодер <xliff:g id="decoder_name">%1$s</xliff:g></string>
-    <string name="use_exoplayer_summary">Эксперементально</string>
 
     <string name="view">Воспроизвести</string>
-    <string name="switch_mode">Переключатель между списком и сеткой</string>
 
 
     <string name="controls_background_title">В фоне</string>
@@ -191,4 +160,4 @@
 
     <string name="use_external_video_player_summary">Для некоторых видео может отсутствовать звук, если включена эта опция</string>
     <string name="short_million">" млн."</string>
-    </resources>
+</resources>

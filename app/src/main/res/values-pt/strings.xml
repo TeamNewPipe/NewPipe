@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
     <string name="view_count_text">%1$s visualizações</string>
     <string name="upload_date_text">Publicado em %1$s</string>
     <string name="no_player_found">Reprodutor não disponível. Deseja instalar o VLC?</string>
@@ -11,11 +11,9 @@
     <string name="search">Pesquisar</string>
     <string name="settings">Definições</string>
     <string name="did_you_mean">Será que queria dizer: %1$s?</string>
-    <string name="search_page">"Procurar na página: "</string>
     <string name="share_dialog_title">Partilhar com</string>
     <string name="choose_browser">Escolher navegador</string>
     <string name="screen_rotation">rotação</string>
-    <string name="settings_activity_title">Definições</string>
     <string name="use_external_video_player_title">Utilizar reprodutor de vídeo externo</string>
     <string name="use_external_audio_player_title">Utilizar reprodutor de áudio externo</string>
     <string name="download_path_title">Local de transferência de vídeo</string>
@@ -34,7 +32,6 @@
     <string name="next_video_title">Vídeo seguinte</string>
     <string name="show_next_and_similar_title">Mostrar vídeos seguintes e semelhantes</string>
     <string name="url_not_supported_toast">URL não suportado</string>
-    <string name="similar_videos_btn_text">Vídeos semelhantes</string>
     <string name="search_language_title">Idioma preferido do conteúdo</string>
     <string name="settings_category_video_audio_title">Vídeo e áudio</string>
 
@@ -43,8 +40,6 @@
     <string name="detail_uploader_thumbnail_view_description">Miniatura da foto do canal</string>
     <string name="detail_dislikes_img_view_description">Não gostou</string>
     <string name="detail_likes_img_view_description">Gostos</string>
-<string name="background_player_name">Reprodutor de fundo NewPipe</string>
-    <string name="loading">A carregar</string>
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Escuro</string>
     <string name="light_theme_title">Claro</string>
@@ -57,13 +52,13 @@
 
     <string name="use_tor_title">Usar Tor</string>
     <string name="use_tor_summary">(Experimental) Usar a rede Tor para aumentar a privacidade (ainda não é suportada a emissão de vídeos).</string>
-<string name="download_path_audio_title">Local de transferência de áudio</string>
+    <string name="download_path_audio_title">Local de transferência de áudio</string>
     <string name="download_path_audio_summary">Local para guardar o áudio transferido.</string>
     <string name="download_path_audio_dialog_title">Escreva o caminho para os ficheiros de áudio.</string>
 
     <string name="err_dir_create">Não foi possível criar o diretório \'%1$s\'</string>
     <string name="info_dir_created">Diretório \'%1$s\' criado com sucesso</string>
-<string name="general_error">Erro</string>
+    <string name="general_error">Erro</string>
     <string name="could_not_load_thumbnails">Incapaz de carregar todas as miniaturas</string>
     <string name="youtube_signature_decryption_error">Incapaz de decifrar a assinatura do vídeo.</string>
     <string name="parsing_error">Incapaz de processar o sítio web.</string>
@@ -84,31 +79,14 @@
     <string name="error_snackbar_action">Relatório</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">O que ocorreu:</string>
-    <string name="info_searched_lbl">Pesquisou por:</string>
-    <string name="info_requested_stream_lbl">Emissão solicitada:</string>
     <string name="your_comment">Comentários (em Inglês):</string>
     <string name="error_details_headline">Detalhes:</string>
 
 
-    <string name="enable_background_audio">Reproduzir em segundo plano</string>
     <string name="video">Vídeo</string>
     <string name="audio">Áudio</string>
-    <string name="text">Texto</string>
-    <string name="logging">Registo</string>
-    <string name="logging_normal">Normal</string>
-    <string name="logging_verbose">Detalhado</string>
     <string name="retry">Tentar novamente</string>
-    <string name="off">[off]</string>
-    <string name="error_drm_not_supported">O conteúdo protegido não é permitido em API com nível inferior a 18</string>
-    <string name="error_drm_unsupported_scheme">Este dispositivo não tem suporte ao esquema DRM necessário</string>
-    <string name="error_drm_unknown">Ocorreu um erro de DRM desconhecido</string>
-    <string name="error_no_decoder">Este dispositivo não disponibiliza um descodificador para <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_no_secure_decoder">Este dispositivo não disponibiliza um descodificador seguro para <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_querying_decoders">Incapaz de processar os descodificadores</string>
-    <string name="error_instantiating_decoder">Incapaz de iniciar o descodificador <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">Não foi concedida permissão para aceder ao armazenamento</string>
-    <string name="use_exoplayer_title">Usar ExoPlayer</string>
-    <string name="use_exoplayer_summary">Experimental</string>
     <string name="main_bg_subtitle">Toque para iniciar a pesquisa</string>
     <string name="autoplay_by_calling_app_title">Reproduzir se invocado por outra aplicação</string>
     <string name="autoplay_by_calling_app_summary">Reproduzir vídeo automaticamente se o NewPipe for invocado por outra aplicação.</string>
@@ -119,7 +97,6 @@
 
     <string name="downloads">Transferências</string>
     <string name="downloads_title">Descargas</string>
-    <string name="settings_title">Definições</string>
     <string name="error_report_title">Relatório de erro</string>
 
     <string name="start">Iniciar</string>
@@ -129,7 +106,6 @@
     <string name="checksum">Checksum</string>
 
     <string name="add">Nova missão</string>
-    <string name="switch_mode">Alternar entre lista e grelha</string>
 
 
     <string name="msg_name">Nome do ficheiro</string>
@@ -143,16 +119,12 @@
     <string name="no_available_dir">Por favor selecione um diretório disponível.</string>
 
     <string name="finish">OK</string>
-    <string name="msg_url">URL da transferência</string>
     <string name="msg_threads">Processos</string>
-    <string name="msg_fetch_filename">Obter nome de ficheiro</string>
     <string name="msg_running">NewPipe a Transferir</string>
     <string name="could_not_load_image">Não foi possível carregar a Imagem</string>
-    <string name="action_settings">Definições</string>
 
     <string name="app_ui_crash">Aplicação encerrada</string>
     <string name="info_labels">O quê:\\nPedido:\\nIdioma do conteúdo:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão do SO:\\nIP global:</string>
-    <string name="title_activity_channel">Atividade do canal</string>
     <string name="open_in_popup_mode">Abrir no modo “popup“</string>
     <string name="black_theme_title">Preto</string>
 
@@ -168,11 +140,7 @@
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>
-    <string name="restart_title">Reiniciar</string>
 
-    <string name="msg_restart">Tem que reiniciar a aplicação para aplicar o tema.
-
-Deseja reiniciar agora?</string>
     <string name="msg_popup_permission">Permissão necessário para
 o modo “popup“</string>
 
@@ -205,4 +173,4 @@ o modo “popup“</string>
 
     <string name="popup_resizing_indicator_title">Redimensionar</string>
 
-    </resources>
+</resources>

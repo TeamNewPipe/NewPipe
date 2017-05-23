@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
     <string name="view_count_text">%1$s приказа</string>
     <string name="upload_date_text">Објављен %1$s</string>
     <string name="no_player_found">Нема плејера токова. Желите ли да инсталирате ВЛЦ?</string>
@@ -11,11 +11,9 @@
     <string name="search">Тражи</string>
     <string name="settings">Поставке</string>
     <string name="did_you_mean">Да ли сте мислили: %1$s ?</string>
-    <string name="search_page">Страница претраге: </string>
     <string name="share_dialog_title">Подели помоћу</string>
     <string name="choose_browser">Отвори помоћу</string>
     <string name="screen_rotation">ротација</string>
-    <string name="settings_activity_title">Поставке</string>
     <string name="download_path_title">Одредиште преузимања за видео</string>
     <string name="download_path_summary">Путања за упис преузетих видеа.</string>
     <string name="download_path_dialog_title">Унесите путању за преузимање видеа</string>
@@ -29,14 +27,9 @@
     <string name="webm_description">WebM — слободни формат</string>
     <string name="m4a_description">m4a — бољи квалитет</string>
     <string name="download_dialog_title">Преузми</string>
-    <string-array name="downloadOptions">
-        <item>Видео</item>
-        <item>Аудио</item>
-    </string-array>
     <string name="next_video_title">Следећи видео</string>
     <string name="url_not_supported_toast">УРЛ није подржан</string>
     <string name="show_next_and_similar_title">Прикажи следећи и слични видео</string>
-    <string name="similar_videos_btn_text">Слични видео</string>
     <string name="search_language_title">Пожељни језик садржаја</string>
     <string name="settings_category_video_audio_title">Видео и аудио</string>
     <string name="settings_category_other_title">Остало</string>
@@ -49,13 +42,11 @@
     <string name="use_external_audio_player_title">Користи спољашњи аудио плејер</string>
     <string name="background_player_playing_toast">Пуштам у позадини</string>
 
-    <string name="background_player_name">Позадински плејер за Њупајп</string>
-    <string name="loading">Учитавам</string>
     <string name="play_btn_text">Пусти</string>
 
     <string name="use_tor_title">Користи Тор</string>
     <string name="use_tor_summary">(Експериментално) Принудно преусмерење саобраћаја кроз Тор за доданту приватност (токови још нису подржани).</string>
-<string name="theme_title">Тема</string>
+    <string name="theme_title">Тема</string>
     <string name="dark_theme_title">Тамна</string>
     <string name="light_theme_title">Светла</string>
 
@@ -67,7 +58,7 @@
 
     <string name="download_path_audio_summary">Путања за упис преузетих аудио фајлова</string>
     <string name="info_dir_created">Направљен директоријум за преузимање „%1$s“</string>
-<string name="err_dir_create">Не могу да направим директоријум за преузимање„ %1$s“</string>
+    <string name="err_dir_create">Не могу да направим директоријум за преузимање„ %1$s“</string>
     <string name="general_error">Грешка</string>
     <string name="could_not_load_thumbnails">Не могох да учитам све сличице</string>
     <string name="youtube_signature_decryption_error">Не могох да дешифрујем потпис видео урл-а.</string>
@@ -95,26 +86,9 @@
     <string name="error_details_headline">Детаљи:</string>
 
 
-    <string name="enable_background_audio">Пусти у позадини</string>
     <string name="video">Видео</string>
     <string name="audio">Аудио</string>
-    <string name="text">Текст</string>
-    <string name="logging">Записивање</string>
-    <string name="logging_normal">Нормално</string>
-    <string name="logging_verbose">Исцрпно</string>
     <string name="retry">Покушај поново</string>
-    <string name="off">[искљ.]</string>
-    <string name="use_exoplayer_title">Користи ExoPlayer</string>
-    <string name="use_exoplayer_summary">Експериментално</string>
-<string name="info_searched_lbl">Тражено:</string>
-    <string name="info_requested_stream_lbl">Захтевани ток:</string>
-    <string name="error_drm_not_supported">Заштићени садржај није подржани на издањима АПИ-ија испод 18</string>
-    <string name="error_drm_unsupported_scheme">Овај уређај не подржава захтевану ДРМ шему</string>
-    <string name="error_drm_unknown">Десила се непозната грешка ДРМ-а</string>
-    <string name="error_no_decoder">Овај уређај не обезбеђује декодер за <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_no_secure_decoder">Овај уређај не обезбеђује безбедни декодер за <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_querying_decoders">Не могох да потражим декодере уређаја</string>
-    <string name="error_instantiating_decoder">Не могох да покренем декодер <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">Дозвола за приступ складишту је одбијена</string>
     <string name="report_error">Пријавите грешку</string>
     <string name="user_report">Извештај корисника</string>
@@ -132,13 +106,10 @@
 
     <string name="add">Нова мисија</string>
     <string name="finish">У реду</string>
-    <string name="switch_mode">Пребацивање мрежног и приказа листе</string>
 
 
-    <string name="msg_url">УРЛ преузимања</string>
     <string name="msg_name">Назив фајла</string>
     <string name="msg_threads">Нити</string>
-    <string name="msg_fetch_filename">Добави назив фајла</string>
     <string name="msg_error">Грешка</string>
     <string name="msg_server_unsupported">Сервер није подржан</string>
     <string name="msg_exists">Фајл већ постоји</string>
@@ -151,14 +122,11 @@
 
     <string name="downloads">Преузимања</string>
     <string name="downloads_title">Преузимања</string>
-    <string name="settings_title">Поставке</string>
     <string name="error_report_title">Извештај о грешци</string>
 
     <string name="could_not_load_image">Не могох да учитам слику</string>
     <string name="app_ui_crash">Апликација/УИ је краховала</string>
     <string name="info_labels">Шта:\\nЗахтев:\\nЈезик садржаја:\\nУслуга:\\nГМТ време:\\nПакет:\\nИздање:\\nИздање ОС-а:\\nГлоб. ИП распон:</string>
-    <string name="title_activity_channel">Активност канала</string>
-    <string name="action_settings">Поставке</string>
 
     <string name="reCaptchaActivity">Стопка</string>
     <string name="reCaptcha_title">reCAPTCHA стопка</string>
@@ -181,11 +149,6 @@
     <string name="later">Касније</string>
 
     <string name="subscribe">Пријави ме</string>
-    <string name="restart_title">Поново покрени</string>
-
-    <string name="msg_restart">Морате поново да покренете апликацију да бисте применили тему.
-
-Желите ли то сада да урадите?</string>
 
     <string name="open_in_popup_mode">Отвори у искачућем режиму</string>
     <string name="msg_popup_permission">Ова дозвола је потребна за
@@ -209,4 +172,4 @@
     <string name="controls_background_title">Позадина</string>
     <string name="controls_popup_title">Прозорче</string>
 
-    </resources>
+</resources>

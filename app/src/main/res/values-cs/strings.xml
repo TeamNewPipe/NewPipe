@@ -1,20 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="upload_date_text">Publikováno %1$s</string>
+<resources>
+    <string name="upload_date_text">Publikováno %1$s</string>
     <string name="no_player_found">Nenalezen žádný přehrávač. Nainstalovat VLC?</string>
     <string name="install">Instalovat</string>
     <string name="cancel">Zrušit</string>
     <string name="open_in_browser">Otevřít v prohlížeči</string>
     <string name="share">Sdílet</string>
-    <string name="loading">Načítám</string>
     <string name="download">Stáhnout</string>
     <string name="search">Vyhledat</string>
     <string name="settings">Nastavení</string>
     <string name="did_you_mean">Měli jste na mysli: %1$s?</string>
-    <string name="search_page">"Vyhledat stránku: "</string>
     <string name="share_dialog_title">Sdílet s</string>
     <string name="choose_browser">Vybrat prohlížeč</string>
     <string name="screen_rotation">otočení</string>
-    <string name="settings_activity_title">Nastavení</string>
     <string name="use_external_video_player_title">Použít externí video přehrávač</string>
     <string name="use_external_audio_player_title">Použít externí audio přehrávač</string>
 
@@ -26,7 +24,6 @@
     <string name="play_with_kodi_title">Přehrát pomocí Kodi</string>
     <string name="kore_not_found">Aplikace Kore nenalezena. Nainstalovat Kore?</string>
     <string name="view_count_text">%1$s zhlédnutí</string>
-    <string name="background_player_name">NewPipe Přehrávač na pozadí</string>
     <string name="download_path_title">Umístění pro stažené video</string>
     <string name="download_path_summary">Cesta, kam se uloží stažené video.</string>
     <string name="download_path_dialog_title">Zadejte umístění pro stažená videa</string>
@@ -45,7 +42,6 @@
     <string name="next_video_title">Následující video</string>
     <string name="show_next_and_similar_title">Zobrazit následující a podobná videa</string>
     <string name="url_not_supported_toast">URL není podporováno</string>
-    <string name="similar_videos_btn_text">Podobná videa</string>
     <string name="search_language_title">Preferovaný jazyk obsahu</string>
     <string name="settings_category_video_audio_title">Video a audio</string>
     <string name="settings_category_appearance_title">Vzhled</string>
@@ -70,7 +66,7 @@
 
     <string name="err_dir_create">Nebylo možné vytvořit složku pro stažené soubory \'%1$s\'</string>
     <string name="info_dir_created">Vytvořena složka pro stažené soubory \'%1$s\'</string>
-<string name="autoplay_by_calling_app_title">Automaticky přehrávat při otevření z jiné aplikace</string>
+    <string name="autoplay_by_calling_app_title">Automaticky přehrávat při otevření z jiné aplikace</string>
     <string name="autoplay_by_calling_app_summary">Automaticky přehrát video, když je NewPipe otevřen z jiné aplikace.</string>
     <string name="content">Obsah</string>
     <string name="show_age_restricted_content_title">Zobrazovat věkově omezený obsah</string>
@@ -87,27 +83,19 @@
     <string name="msg_exists">Soubor již existuje</string>
     <string name="msg_url_malform">Špatné URL nebo připojení k Internetu není k disposici</string>
     <string name="msg_error">Chyba</string>
-    <string name="msg_url">Stáhnout URL</string>
     <string name="msg_name">Jméno souboru</string>
     <string name="msg_threads">Vlákna</string>
     <string name="pause">Zastavit</string>
     <string name="delete">Smazat</string>
-    <string name="use_exoplayer_title">Použít ExoPlayer</string>
-    <string name="use_exoplayer_summary">Experimentální</string>
 
     <string name="start">Začít</string>
-    <string name="error_drm_unknown">Neznámá chyba DRM</string>
     <string name="retry">Zkusit znovu</string>
-    <string name="text">Text</string>
-    <string name="enable_background_audio">Hrát na pozadí</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="report_error">Nahlásit chybu</string>
-    <string name="info_searched_lbl">Hledáno:</string>
     <string name="error_details_headline">Detaily:</string>
 
 
-    <string name="info_requested_stream_lbl">Vyžádaný stream:</string>
     <string name="what_happened_headline">Co se stalo:</string>
     <string name="error_snackbar_action">NAHLÁSIT</string>
     <string name="sorry_string">Omlouváme se, tohle se nemělo stát.</string>
@@ -118,49 +106,29 @@
     <string name="live_streams_not_supported">Tento stream je vysílán živě, funkce ještě není podporována.</string>
     <string name="could_not_get_stream">Nepodařilo se dostat žádný stream.</string>
     <string name="could_not_setup_download_menu">Nepodařilo se nastavit menu stahování.</string>
-    <string name="settings_title">Nastavení</string>
     <string name="error_report_title">Nahlásit chybu</string>
 
     <string name="downloads">Stažené soubory</string>
     <string name="downloads_title">Stažené soubory</string>
     <string name="what_device_headline">Info:</string>
     <string name="your_comment">Vaše poznámky (Anglicky):</string>
-    <string name="logging">Logování</string>
-    <string name="logging_normal">Normální</string>
-    <string name="error_drm_not_supported">Chráněný obsah není podporován na API úrovni menší než 18</string>
-    <string name="error_drm_unsupported_scheme">Toto zařízení nepodporuje potřebné DRM schéma</string>
-    <string name="error_no_decoder">Toto zařízení nedodává dekodér pro <xliff:g id="mime_type">
-%1$s</xliff:g></string>
-    <string name="error_no_secure_decoder">Toto zařízení nedodává bezpečný dekodér pro
-<xliff:g id="mime_type">
-%1$s</xliff:g></string>
     <string name="storage_permission_denied">Oprávnění přístupu do Úložiště bylo zamítnuto</string>
     <string name="view">Shlédnout</string>
     <string name="add">Nová mise</string>
     <string name="finish">Hotovo</string>
-    <string name="switch_mode">Přepnout mezi listem a mřížkou</string>
 
-
-    <string name="msg_fetch_filename">Získej jméno souboru</string>
-    <string name="action_settings">Nastavení</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">Výzva reCAPTCHA</string>
     <string name="recaptcha_request_toast">Požadována výzva reCAPTCHA</string>
 
     <string name="black_theme_title">Černé</string>
 
-    <string name="off">[vypnuto]</string>
     <string name="checksum">Checksum</string>
 
     <string name="no_available_dir">Prosím vyberte dostupnou složku pro stažení souborů.</string>
 
-    <string name="title_activity_channel">Aktivita kanálu</string>
     <string name="user_report">Hlášení uživatele</string>
 
-    <string name="logging_verbose">Podrobné</string>
-    <string name="error_querying_decoders">Nelze zjistit dekodéry zařízení</string>
-    <string name="error_instantiating_decoder">Nelze doložit dekodér <xliff:g id="decoder_name">
-%1$s</xliff:g></string>
     <string name="info_labels">Co:\\nŽádost:\\nJazyk obsahu:\\nSlužba:\\nČas GMT:\\nBalíček:\\nVerze:\\nVerze OS:\\nGlobální rozsah IP:</string>
     <string name="all">Vše</string>
     <string name="channel">Kanál</string>
@@ -172,11 +140,6 @@
     <string name="subscribe">Odebírat</string>
     <string name="views">zobrazení</string>
     <string name="short_thousand">k</string>
-    <string name="restart_title">Restart</string>
-
-    <string name="msg_restart">Pro aplikaci tématu je potřeba restartovat aplikaci.
-
-Chcete restartovat ihned?</string>
 
     <string name="open_in_popup_mode">Otevřít ve vyskakovacím okně</string>
     <string name="short_million">M</string>
@@ -184,4 +147,4 @@ Chcete restartovat ihned?</string>
 otevření ve vyskakovacím okně</string>
 
     <string name="use_old_player_title">Použít starý přehrávač</string>
-    </resources>
+</resources>

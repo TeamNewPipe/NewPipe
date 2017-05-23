@@ -17,8 +17,9 @@
 
     <string name="default_resolution_key" translatable="false">default_resolution_preference</string>
     <string name="default_resolution_value" translatable="false">360p</string>
-    <string-array name="resolution_list">
-        <item>Best resolution</item>
+
+    <string-array name="resolution_list" translatable="false">
+        <item>@string/best_resolution</item>
         <item>1080p60</item>
         <item>1080p</item>
         <item>720p60</item>
@@ -38,7 +39,7 @@
 
     <string name="preferred_video_format_key" translatable="false">preferred_video_format</string>
     <string name="preferred_video_format_default" translatable="false">MPEG-4</string>
-    <string-array name="video_format_list">
+    <string-array name="video_format_list" translatable="false">
         <item>WebM</item>
         <item>MPEG-4</item>
         <item>3GPP</item>
@@ -61,7 +62,7 @@
         <item>@string/webm_description</item>
         <item>@string/m4a_description</item>
     </string-array>
-    <string-array name="audio_format_list">
+    <string-array name="audio_format_list" translatable="false">
         <item>webm</item>
         <item>m4a</item>
     </string-array>
@@ -71,7 +72,7 @@
     <string name="search_language_key" translatable="false">search_language</string>
     <!-- TODO: scrape these programmatically, then store in a local cache -->
     <!-- alternatively, load these from some local android data store -->
-    <string-array name="language_codes">
+    <string-array name="language_codes" translatable="false">
         <item>af</item>
         <item>az</item>
         <item>id</item>
@@ -150,7 +151,7 @@
         <item>ja</item>
         <item>ko</item>
     </string-array>
-    <string-array name="language_names">
+    <string-array name="language_names" translatable="false">
         <item>Afrikaans</item>
         <item>Azərbaycan</item>
         <item>Bahasa Indonesia</item>

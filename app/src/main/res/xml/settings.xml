@@ -1,165 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:tools="http://schemas.android.com/tools"
-                  android:title="@string/settings_activity_title"
-                  android:key="general_preferences">
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:key="general_preferences"
+    android:title="@string/settings">
 
     <PreferenceCategory
         android:key="@string/settings_category_video_audio"
-        android:title="@string/settings_category_video_audio_title"
-        android:textAllCaps="true">
+        android:textAllCaps="true"
+        android:title="@string/settings_category_video_audio_title">
 
         <CheckBoxPreference
+            android:defaultValue="false"
             android:key="@string/use_external_video_player_key"
-            android:title="@string/use_external_video_player_title"
             android:summary="@string/use_external_video_player_summary"
-            android:defaultValue="false"/>
+            android:title="@string/use_external_video_player_title"/>
 
         <CheckBoxPreference
+            android:defaultValue="false"
             android:key="@string/use_external_audio_player_key"
-            android:title="@string/use_external_audio_player_title"
-            android:defaultValue="false"/>
+            android:title="@string/use_external_audio_player_title"/>
 
         <ListPreference
-            android:key="@string/default_resolution_key"
-            android:title="@string/default_resolution_title"
+            android:defaultValue="@string/default_resolution_value"
             android:entries="@array/resolution_list"
             android:entryValues="@array/resolution_list"
+            android:key="@string/default_resolution_key"
             android:summary="%s"
-            android:defaultValue="@string/default_resolution_value"/>
+            android:title="@string/default_resolution_title"/>
 
         <CheckBoxPreference
+            android:defaultValue="false"
             android:key="@string/show_higher_resolutions_key"
-            android:title="@string/show_higher_resolutions_title"
             android:summary="@string/show_higher_resolutions_summary"
-            android:defaultValue="false"/>
+            android:title="@string/show_higher_resolutions_title"/>
 
         <ListPreference
-            android:key="@string/preferred_video_format_key"
-            android:title="@string/preferred_video_format_title"
+            android:defaultValue="@string/preferred_video_format_default"
             android:entries="@array/video_format_list"
             android:entryValues="@array/video_format_list"
-            android:defaultValue="@string/preferred_video_format_default"
+            android:key="@string/preferred_video_format_key"
             android:summary="%s"
+            android:title="@string/preferred_video_format_title"
             tools:summary="MPEG-4"/>
 
         <ListPreference
-            android:key="@string/default_audio_format_key"
-            android:title="@string/default_audio_format_title"
-            android:summary="%s"
+            android:defaultValue="@string/default_audio_format_value"
             android:entries="@array/audio_format_description_list"
             android:entryValues="@array/audio_format_list"
-            android:defaultValue="@string/default_audio_format_value"/>
+            android:key="@string/default_audio_format_key"
+            android:summary="%s"
+            android:title="@string/default_audio_format_title"/>
 
         <CheckBoxPreference
+            android:defaultValue="false"
             android:key="@string/use_old_player_key"
-            android:title="@string/use_old_player_title"
             android:summary="@string/use_old_player_summary"
-            android:defaultValue="false"/>
+            android:title="@string/use_old_player_title"/>
 
         <CheckBoxPreference
+            android:defaultValue="true"
             android:key="@string/player_gesture_controls_key"
-            android:title="@string/player_gesture_controls_title"
             android:summary="@string/player_gesture_controls_summary"
-            android:defaultValue="true"/>
+            android:title="@string/player_gesture_controls_title"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory
         android:key="@string/settings_category_popup"
-        android:title="@string/settings_category_popup_title"
-        android:textAllCaps="true">
+        android:textAllCaps="true"
+        android:title="@string/settings_category_popup_title">
 
         <ListPreference
-            android:key="@string/default_popup_resolution_key"
-            android:title="@string/default_popup_resolution_title"
+            android:defaultValue="@string/default_popup_resolution_value"
             android:entries="@array/resolution_list"
             android:entryValues="@array/resolution_list"
+            android:key="@string/default_popup_resolution_key"
             android:summary="%s"
-            android:defaultValue="@string/default_popup_resolution_value"/>
+            android:title="@string/default_popup_resolution_title"/>
 
         <CheckBoxPreference
+            android:defaultValue="true"
             android:key="@string/popup_remember_size_pos_key"
-            android:title="@string/popup_remember_size_pos_title"
             android:summary="@string/popup_remember_size_pos_summary"
-            android:defaultValue="true"/>
+            android:title="@string/popup_remember_size_pos_title"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory
         android:key="@string/settings_category_appearance"
-        android:title="@string/settings_category_appearance_title"
-        android:textAllCaps="true">
-.
+        android:textAllCaps="true"
+        android:title="@string/settings_category_appearance_title">
+        .
         <ListPreference
-            android:key="@string/theme_key"
-            android:title="@string/theme_title"
-            android:summary="%s"
+            android:defaultValue="@string/default_theme_value"
             android:entries="@array/theme_description_list"
             android:entryValues="@array/theme_list"
-            android:defaultValue="@string/default_theme_value"/>
+            android:key="@string/theme_key"
+            android:summary="%s"
+            android:title="@string/theme_title"/>
 
         <CheckBoxPreference
+            android:defaultValue="false"
             android:key="@string/show_play_with_kodi_key"
-            android:title="@string/show_play_with_kodi_title"
             android:summary="@string/show_play_with_kodi_summary"
-            android:defaultValue="false" />
+            android:title="@string/show_play_with_kodi_title"/>
 
         <CheckBoxPreference
+            android:defaultValue="true"
             android:key="@string/show_next_video_key"
-            android:title="@string/show_next_and_similar_title"
-            android:defaultValue="true" />
+            android:title="@string/show_next_and_similar_title"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory
         android:key="@string/settings_content_options"
-        android:title="@string/content"
-        android:textAllCaps="true">
+        android:textAllCaps="true"
+        android:title="@string/content">
 
         <ListPreference
-            android:key="@string/search_language_key"
-            android:title="@string/search_language_title"
-            android:summary="%s"
+            android:defaultValue="@string/default_language_value"
             android:entries="@array/language_names"
             android:entryValues="@array/language_codes"
-            android:defaultValue="@string/default_language_value" />
+            android:key="@string/search_language_key"
+            android:summary="%s"
+            android:title="@string/search_language_title"/>
 
         <CheckBoxPreference
+            android:defaultValue="false"
             android:key="@string/show_age_restricted_content"
-            android:title="@string/show_age_restricted_content_title"
-            android:defaultValue="false"/>
+            android:title="@string/show_age_restricted_content_title"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory
         android:key="@string/settings_category_other"
-        android:title="@string/settings_category_other_title"
-        android:textAllCaps="true">
+        android:textAllCaps="true"
+        android:title="@string/settings_category_other_title">
 
         <Preference
+            android:dialogTitle="@string/download_path_dialog_title"
             android:key="@string/download_path_key"
-            android:title="@string/download_path_title"
             android:summary="@string/download_path_summary"
-            android:dialogTitle="@string/download_path_dialog_title" />
+            android:title="@string/download_path_title"/>
 
         <Preference
+            android:dialogTitle="@string/download_path_audio_dialog_title"
             android:key="@string/download_path_audio_key"
-            android:title="@string/download_path_audio_title"
             android:summary="@string/download_path_audio_summary"
-            android:dialogTitle="@string/download_path_audio_dialog_title" />
+            android:title="@string/download_path_audio_title"/>
 
         <CheckBoxPreference
+            android:defaultValue="false"
             android:key="@string/autoplay_through_intent_key"
-            android:title="@string/autoplay_by_calling_app_title"
             android:summary="@string/autoplay_by_calling_app_summary"
-            android:defaultValue="false" />
+            android:title="@string/autoplay_by_calling_app_title"/>
 
         <CheckBoxPreference
+            android:defaultValue="true"
             android:key="@string/show_search_suggestions_key"
-            android:title="@string/show_search_suggestions_title"
             android:summary="@string/show_search_suggestions_summary"
-            android:defaultValue="true"/>
+            android:title="@string/show_search_suggestions_title"/>
 
         <!--
         <CheckBoxPreference
