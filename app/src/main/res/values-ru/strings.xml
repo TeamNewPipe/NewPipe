@@ -191,10 +191,17 @@
 
     <string name="use_external_video_player_summary">Для некоторых видео может отсутствовать звук, если включена эта опция</string>
     <string name="short_million"> млн.</string>
-    <string name="short_billion">" млрд."</string>
+    <string name="short_billion"> млрд.</string>
 
-    <string name="short_thousand">тыс.</string>
+    <string name="short_thousand"> тыс.</string>
     <string name="default_popup_resolution_title">Разрешение в режиме всплывающего окна</string>
     <string name="popup_remember_size_pos_summary">Запоминать последний размер и положение всплывающего окна</string>
     <string name="show_search_suggestions_title">Живой поиск</string>
+    <string name="popup_mode_share_menu_title">Режим всплывающего окна</string>
+    <string name="show_higher_resolutions_title">Показать другие разрешения</string>
+    <string name="use_old_player_summary">Использовать устаревший Mediaframework плеер</string>
+    <string name="title_activity_channel">Канал</string>
+    <string name="reCaptcha_title">Капча</string>
+    <string name="recaptcha_request_toast">Запрос капчи</string>
+
     </resources>
