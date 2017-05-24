@@ -1,18 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
     <string name="install">安裝</string>
     <string name="cancel">取消</string>
     <string name="upload_date_text">於 %1$s 發佈</string>
     <string name="share">分享</string>
-    <string name="loading">加載中</string>
     <string name="download">下載</string>
     <string name="search">搜尋</string>
     <string name="settings">設定</string>
     <string name="did_you_mean">您是不是要查：%1$s？</string>
-    <string name="search_page">"搜尋頁面： "</string>
     <string name="choose_browser">選擇瀏覽器</string>
     <string name="screen_rotation">旋轉</string>
-    <string name="settings_activity_title">設定</string>
     <string name="use_external_video_player_title">使用外置影片播放器</string>
     <string name="use_external_audio_player_title">使用外置聲音播放器</string>
     <string name="download_path_title">影片下載路徑</string>
@@ -35,7 +32,6 @@
     <string name="next_video_title">下一部影片</string>
     <string name="show_next_and_similar_title">顯示下一部及相關的影片</string>
     <string name="url_not_supported_toast">不支援此網址</string>
-    <string name="similar_videos_btn_text">相關影片</string>
     <string name="search_language_title">喜好的內容語言</string>
     <string name="settings_category_video_audio_title">影片及聲音</string>
     <string name="settings_category_appearance_title">外觀</string>
@@ -51,7 +47,6 @@
     <string name="detail_dislikes_img_view_description">討厭</string>
     <string name="use_tor_title">使用 Tor</string>
     <string name="use_tor_summary">(測試中) 強迫下載流量通過 Tor 加強私隱 (暫時不支援串流影片)。</string>
-<string name="background_player_name">NewPipe 背景播放器</string>
     <string name="view_count_text">觀看次數：%1$s</string>
     <string name="no_player_found">找不到任何串流播放器，您要安裝 VLC 嗎？</string>
     <string name="open_in_browser">使用瀏覽器開啟</string>
@@ -62,7 +57,7 @@
 
     <string name="err_dir_create">未能建立下載路徑「%1$s」</string>
     <string name="info_dir_created">已建立下載路徑「%1$s」</string>
-<string name="blocked_by_gema">內容被 GEMA 封鎖。</string>
+    <string name="blocked_by_gema">內容被 GEMA 封鎖。</string>
     <string name="main_bg_subtitle">請按一下上方的搜尋按鈕</string>
     <string name="autoplay_by_calling_app_title">當其他應用程式要求時自動播放</string>
     <string name="autoplay_by_calling_app_summary">當其他應用程式要求播放影片時，NewPipe 將會自動播放。</string>
@@ -85,7 +80,6 @@
     <string name="error_snackbar_action">報告</string>
     <string name="what_device_headline">資料：</string>
     <string name="what_happened_headline">事發經過：</string>
-    <string name="info_requested_stream_lbl">所要求的串流：</string>
     <string name="your_comment">您的意見 (請以英文輸入)：</string>
     <string name="error_details_headline">詳情：</string>
 
@@ -93,46 +87,28 @@
     <string name="report_error">報告問題</string>
     <string name="user_report">用戶報告</string>
 
-    <string name="enable_background_audio">在背景播放</string>
     <string name="video">影片</string>
     <string name="audio">聲音</string>
-    <string name="text">文字</string>
-    <string name="logging">記錄</string>
-    <string name="logging_normal">正常</string>
-    <string name="logging_verbose">Verbose</string>
     <string name="retry">重試</string>
-    <string name="off">[關閉]</string>
-    <string name="error_drm_not_supported">API 等級低於 18 時將無法顯示受保護的內容</string>
-    <string name="error_drm_unknown">發生了不明的 DRM 問題</string>
-    <string name="error_no_decoder">此裝置未能為 <xliff:g id="mime_type">%1$s</xliff:g> 提供解碼器</string>
-    <string name="error_no_secure_decoder">此裝置未能為 <xliff:g id="mime_type">%1$s</xliff:g> 提供安全的解碼器</string>
-    <string name="error_querying_decoders">無法尋找裝置解碼器</string>
     <string name="downloads">下載</string>
     <string name="downloads_title">下載</string>
-    <string name="settings_title">設定</string>
     <string name="error_report_title">問題報告</string>
 
     <string name="content_not_available">未能提供內容。</string>
     <string name="storage_permission_denied">存取儲存空間的權限被拒</string>
-    <string name="use_exoplayer_title">使用 ExoPlayer</string>
-    <string name="use_exoplayer_summary">實驗性</string>
 
     <string name="start">開始</string>
     <string name="pause">暫停</string>
-    <string name="error_drm_unsupported_scheme">本裝置不支援所需的 DRM 方案</string>
     <string name="view">觀看</string>
     <string name="delete">刪除</string>
     <string name="checksum">校驗和</string>
 
     <string name="add">新任務</string>
     <string name="finish">好</string>
-    <string name="switch_mode">切換列表或網格佈局</string>
 
 
-    <string name="msg_url">下載網址</string>
     <string name="msg_name">檔案名稱</string>
     <string name="msg_threads">線程</string>
-    <string name="msg_fetch_filename">獲取檔案名稱</string>
     <string name="msg_error">錯誤</string>
     <string name="msg_server_unsupported">伺服器不支援</string>
     <string name="msg_exists">檔案已經存在</string>
@@ -160,7 +136,6 @@
     <string name="could_not_load_image">無法取得圖片。</string>
     <string name="app_ui_crash">應用程式或介面出現問題</string>
     <string name="info_labels">事件：\\n請求：\\nContent 語言：\\nService:\\nGMT 事件：\\nPackage:\\n版本：\\nOS 版本：\\nGlob. IP range:</string>
-    <string name="info_searched_lbl">搜尋了：</string>
     <string name="use_old_player_title">使用舊播放器</string>
     <string name="videos">影片</string>
     <string name="subscriber">訂閱者</string>
@@ -169,18 +144,12 @@
     <string name="views">觀看次數</string>
     <string name="short_thousand">千</string>
     <string name="short_million">百萬</string>
-    <string name="restart_title">重新開啟</string>
 
-    <string name="msg_restart">使用新的主題需要重新開啟程式。
-
-您是否要現在重啟程式？</string>
-    <string name="action_settings">設定</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA 挑戰</string>
-    <string name="title_activity_channel">ChannelActivity</string>
     <string name="msg_popup_permission">以彈幕模式開啟
 需要此權限</string>
 
     <string name="recaptcha_request_toast">需完成 reCAPTCHA 挑戰</string>
 
-    </resources>
+</resources>

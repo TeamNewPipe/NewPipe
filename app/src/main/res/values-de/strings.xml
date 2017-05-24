@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
     <string name="view_count_text">%1$s Aufrufe</string>
     <string name="upload_date_text">Veröffentlicht am %1$s</string>
     <string name="no_player_found">Keinen Streamplayer gefunden. Möchtest du VLC installieren?</string>
@@ -11,11 +11,9 @@
     <string name="search">Suchen</string>
     <string name="settings">Einstellungen</string>
     <string name="did_you_mean">Meintest du: %1$s ?</string>
-    <string name="search_page">Suchseite: </string>
     <string name="share_dialog_title">Teilen mit</string>
     <string name="choose_browser">Browser</string>
     <string name="screen_rotation">Rotation</string>
-    <string name="settings_activity_title">Einstellungen</string>
     <string name="download_path_title">Downloadverzeichnis für Videos</string>
     <string name="download_path_summary">Verzeichnis in dem heruntergeladene Videos gespeichert werden.</string>
     <string name="download_path_dialog_title">Downloadverzeichnis für Videos eingeben</string>
@@ -29,14 +27,9 @@
     <string name="webm_description">WebM — freies Format</string>
     <string name="m4a_description">m4a — bessere Qualität</string>
     <string name="download_dialog_title">Herunterladen</string>
-    <string-array name="downloadOptions">
-        <item>Video</item>
-        <item>Audio</item>
-    </string-array>
     <string name="next_video_title">Nächstes Video</string>
     <string name="show_next_and_similar_title">Zeige nächstes und ähnliche Videos</string>
     <string name="url_not_supported_toast">URL wird nicht unterstützt</string>
-    <string name="similar_videos_btn_text">Ähnliche Videos</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
     <string name="search_language_title">Bevorzugte Sprache des Inhalts</string>
     <string name="list_thumbnail_view_description">Video-Vorschaubild</string>
@@ -44,7 +37,6 @@
     <string name="detail_uploader_thumbnail_view_description">Nutzerbild</string>
     <string name="detail_dislikes_img_view_description">Gefällt nicht</string>
     <string name="detail_likes_img_view_description">Gefällt</string>
-    <string name="loading">Lade</string>
     <string name="use_external_video_player_title">Benutze externen Videoabspieler</string>
     <string name="use_external_audio_player_title">Benutze externen Audioabspieler</string>
     <string name="background_player_playing_toast">Spiele im Hintergrund ab</string>
@@ -52,7 +44,6 @@
 
     <string name="use_tor_title">Benutze TOR</string>
     <string name="use_tor_summary">(Experimentell) Erzwinge das Herunterladen durch TOR für verbesserte Privatsphäre (Videostream noch nicht unterstützt).</string>
-    <string name="background_player_name">NewPipe Hintergrundwiedergabe</string>
     <string name="network_error">Netzwerkfehler</string>
 
     <string name="download_path_audio_title">Downloadverzeichnis für Musik</string>
@@ -90,32 +81,14 @@
     <string name="info_labels">Was:\\nAnfrage:\\nSprache des Inhalts:\\nDienst:\\nZeit (GMT):\\nPacket:\\nVersion:\\nOS-Version:\\nGlob. IP-Bereich:</string>
     <string name="error_details_headline">Details:</string>
 
-
-    <string name="enable_background_audio">Im Hintergrund abspielen</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
-    <string name="text">Text</string>
-    <string name="logging_normal">Normal</string>
-    <string name="logging_verbose">Ausführlich</string>
     <string name="retry">Wiederholen</string>
-    <string name="off">[aus]</string>
-    <string name="error_drm_unsupported_scheme">Dieses Gerät unterstützt das erforderliche DRM-Schema nicht</string>
-    <string name="error_drm_unknown">Ein unbekannter DRM-Fehler ist aufgetreten</string>
-    <string name="error_querying_decoders">Konnte Dekodierer des Gerätes nicht abrufen</string>
-    <string name="error_instantiating_decoder">Konnte Dekodierer <xliff:g id="decoder_name">%1$s</xliff:g> nicht instantiieren</string>
     <string name="storage_permission_denied">Zugriff auf den Massenspeicher wurde verweigert</string>
-    <string name="use_exoplayer_title">Benutze ExoPlayer</string>
-    <string name="use_exoplayer_summary">Experimentell</string>
     <string name="sorry_string">Entschuldigung. Dies sollte nicht passieren.</string>
     <string name="error_snackbar_message">Entschuldigung. Es sind einige Fehler aufgetreten.</string>
-    <string name="info_searched_lbl">Gesucht:</string>
-    <string name="info_requested_stream_lbl">Angeforderter Stream:</string>
     <string name="your_comment">Dein Kommentar (auf englisch):</string>
-    <string name="logging">Protokollierung</string>
-    <string name="error_no_decoder">Dieses Gerät stellt keinen Dekodierer für <xliff:g id="mime_type">%1$s</xliff:g> bereit</string>
-    <string name="error_no_secure_decoder">Dieses Gerät stellt keinen abgesicherten Dekodierer für <xliff:g id="mime_type">%1$s</xliff:g> bereit</string>
     <string name="could_not_get_stream">Konnte keinen Stream holen.</string>
-    <string name="error_drm_not_supported">Geschützte Inhalte werden von API-Ebenen unterhalb von 18 nicht unterstützt</string>
     <string name="autoplay_by_calling_app_title">Bei Aufruf aus einer anderen App automatisch abspielen</string>
     <string name="autoplay_by_calling_app_summary">Spielt ein Video automatisch ab, wenn NewPipe von einer anderen App aufgerufen wurde.</string>
     <string name="report_error">Einen Fehler melden</string>
@@ -126,13 +99,11 @@
     <string name="main_bg_subtitle">„Suchen“ antippen und loslegen</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
-    <string name="settings_title">Einstellungen</string>
     <string name="error_report_title">Fehlerbericht</string>
 
     <string name="delete">Löschen</string>
     <string name="checksum">Prüfsumme</string>
 
-    <string name="switch_mode">Zwischen Liste und Gitter umschalten</string>
 
     <string name="videos">Videos</string>
     <string name="subscriber">Abonnent</string>
@@ -141,7 +112,6 @@
     <string name="short_million">Mio.</string>
     <string name="short_billion">Mrd.</string>
 
-    <string name="msg_url">Download-URL</string>
     <string name="msg_name">Dateiname</string>
     <string name="msg_error">Fehler</string>
     <string name="msg_exists">Datei existiert bereits</string>
@@ -160,11 +130,8 @@
     <string name="msg_threads">Threads</string>
     <string name="msg_running">NewPipe lädt herunter</string>
     <string name="msg_running_detail">Für Details antippen</string>
-    <string name="action_settings">Einstellungen</string>
 
     <string name="msg_url_malform">Beschädigte URL oder Internet nicht erreichbar</string>
-    <string name="msg_fetch_filename">Vorgeschlagener Dateiname</string>
-    <string name="title_activity_channel">Kanalaktivität</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="black_theme_title">Schwarz</string>
 
@@ -176,11 +143,6 @@
     <string name="yes">Ja</string>
     <string name="all">Alle</string>
     <string name="channel">Kanal</string>
-    <string name="restart_title">Neu starten</string>
-
-    <string name="msg_restart">Um die Änderung des Aussehens zu ändern, müssen Sie die App neu starten.
-
-Möchten Sie jetzt neu starten?</string>
 
     <string name="subscribe">Abonnieren</string>
     <string name="disabled">Deaktiviert</string>
@@ -203,4 +165,4 @@ Möchten Sie jetzt neu starten?</string>
     <string name="controls_popup_title">Popup</string>
 
     <string name="popup_remember_size_pos_title">Größe und Position des Popups merken</string>
-    </resources>
+</resources>

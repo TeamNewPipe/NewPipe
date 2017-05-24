@@ -1,18 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="view_count_text">%1$s ikustaldi</string>
+<resources>
+    <string name="view_count_text">%1$s ikustaldi</string>
     <string name="upload_date_text">Argitaratze-data: %1$s</string>
     <string name="install">Instalatu</string>
     <string name="cancel">Utzi</string>
     <string name="open_in_browser">Nabigatzailean ireki</string>
     <string name="share">Partekatu</string>
-    <string name="loading">Kargatzen</string>
     <string name="download">Deskargatu</string>
     <string name="search">Bilatu</string>
     <string name="settings">Ezarpenak</string>
     <string name="share_dialog_title">Partekatu honekin</string>
     <string name="choose_browser">Nabigatzailea aukeratu</string>
     <string name="screen_rotation">biratzea</string>
-    <string name="settings_activity_title">Ezarpenak</string>
     <string name="download_path_title">Bideoak deskargatzeko kokapena</string>
     <string name="download_path_summary">Deskargatutako bideoak gordetzeko bide-izena.</string>
     <string name="download_path_dialog_title">Sar ezazu bideoak deskargatzeko kokapena</string>
@@ -29,7 +28,6 @@
     <string name="next_video_title">Hurrengo bideoa</string>
     <string name="show_next_and_similar_title">Hurrengo bideoa eta antzekoak erakutsi</string>
     <string name="url_not_supported_toast">URLa ez da onartzen.</string>
-    <string name="similar_videos_btn_text">Antzeko bideoak</string>
     <string name="search_language_title">Edukiaren hizkuntz lehenetsia</string>
     <string name="settings_category_video_audio_title">Bideoa eta Audioa</string>
     <string name="play_btn_text">Erreproduzitu</string>
@@ -41,23 +39,20 @@
     <string name="detail_likes_img_view_description">Gustoko dute</string>
     <string name="use_tor_title">Tor erabili</string>
     <string name="use_tor_summary">Trafikoa Tor bidez deskargatzea behartzen du pribatutasuna hobetzeko (jario bideoak ez daude oraindik onartuta)</string>
-    <string name="background_player_name">NewPipe atzeko planoko erreproduzitzailea</string>
     <string name="no_player_found">Jario erreproduzitzailerik ez da aurkitu. Agian bat instalatu nahi dezakezu.</string>
     <string name="did_you_mean">Hau esan nahi al zenuen: %1$s?</string>
-    <string name="search_page">"Orrialdea bilatu: "</string>
     <string name="use_external_video_player_title">Kanpoko bideo erreproduzitzailea erabili</string>
     <string name="use_external_audio_player_title">Kanpoko audio erreproduzitzailea erabili</string>
     <string name="background_player_playing_toast">Atzeko planoan erreproduzitzen</string>
-<string name="main_bg_subtitle">Ukitu bilaketa hasteko</string>
+    <string name="main_bg_subtitle">Ukitu bilaketa hasteko</string>
     <string name="download_path_audio_title">Audioa deskargatzeko kokapena</string>
     <string name="download_path_audio_dialog_title">Sar ezazu audioa deskargatzeko kokapena.</string>
 
     <string name="download_path_audio_summary">Deskargatutako audioa gordetzeko bide-izena</string>
     <string name="autoplay_by_calling_app_title">Automatikoki jo beste aplikazio batetik deitzean</string>
     <string name="autoplay_by_calling_app_summary">Automatikoki jo bideoa NewPipe beste aplikazio batek deitu badu.</string>
-    <string name="theme_title"></string>
     <string name="dark_theme_title">Iluna</string>
     <string name="light_theme_title">Argia</string>
 
     <string name="settings_category_appearance_title">Itxura</string>
-    </resources>
+</resources>

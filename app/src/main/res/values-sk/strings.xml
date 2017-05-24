@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="background_player_name">NewPipe Prehrávač na pozadí</string>
+<resources>
     <string name="view_count_text">%1$s pozretí</string>
     <string name="upload_date_text">Zverejnené %1$s</string>
     <string name="no_player_found">Nenašiel sa prehrávač. Chcete nainštalovať VLC?</string>
@@ -8,16 +7,13 @@
     <string name="cancel">Zrušiť</string>
     <string name="open_in_browser">Otvoriť v prehliadači</string>
     <string name="share">Zdieľať</string>
-    <string name="loading">Nahrávanie</string>
     <string name="download">Prevziať</string>
     <string name="search">Hľadať</string>
     <string name="settings">Nastavenia</string>
     <string name="did_you_mean">Mysleli ste: %1$s?</string>
-    <string name="search_page">"Hľadať stránku: "</string>
     <string name="share_dialog_title">Zdieľať s</string>
     <string name="choose_browser">Vyberte prehliadač</string>
     <string name="screen_rotation">otočenie</string>
-    <string name="settings_activity_title">Nastavenia</string>
     <string name="use_external_video_player_title">Použiť externý prehrávač videa</string>
     <string name="use_external_audio_player_title">Použiť externý prehravač zvuku</string>
 
@@ -46,7 +42,6 @@
     <string name="next_video_title">Ďaľšie video</string>
     <string name="show_next_and_similar_title">Ukázať ďaľšie a podobné videá</string>
     <string name="url_not_supported_toast">URL nie je podporovaná</string>
-    <string name="similar_videos_btn_text">Podobné videá</string>
     <string name="search_language_title">Preferovaný jazyk obsahu</string>
     <string name="settings_category_video_audio_title">Video &amp; Zvuk</string>
     <string name="settings_category_appearance_title">Vzhľad</string>
@@ -71,7 +66,7 @@
 
     <string name="err_dir_create">Nemožno vytvoriť adresár na preberanie \'%1$s\'</string>
     <string name="info_dir_created">Adresár na preberanie bol vytvorený \'%1$s\'</string>
-<string name="main_bg_subtitle">Začnite vyhľadaním obsahu</string>
+    <string name="main_bg_subtitle">Začnite vyhľadaním obsahu</string>
     <string name="autoplay_by_calling_app_title">Automaticky prehrať video pri zavolaní</string>
     <string name="autoplay_by_calling_app_summary">Video bude automaticky prehrané pri zavolaní NewPipe inou aplikáciou.</string>
     <string name="content">Obsah</string>
@@ -89,8 +84,6 @@
     <string name="error_snackbar_action">SPRÁVA</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Čo sa stalo:</string>
-    <string name="info_searched_lbl">Hľadané:</string>
-    <string name="info_requested_stream_lbl">Požadované vysielanie:</string>
     <string name="your_comment">Váš komentár (v Angličtine):</string>
     <string name="error_details_headline">Detaily:</string>
 
@@ -98,26 +91,11 @@
     <string name="report_error">Nahlásiť chybu</string>
     <string name="user_report">Hlásenie používateľa</string>
 
-    <string name="enable_background_audio">Prehrávať na pozadí</string>
     <string name="video">Video</string>
     <string name="audio">Zvuk</string>
-    <string name="text">Text</string>
-    <string name="logging">Záznamy</string>
-    <string name="logging_normal">Normálne</string>
-    <string name="logging_verbose">Podrobné</string>
     <string name="retry">Znova</string>
-    <string name="off">[vypnuté]</string>
-    <string name="error_drm_not_supported">Chránený obsah nie je podporovaný cez API úrovne pod 18</string>
-    <string name="error_drm_unsupported_scheme">Toto zariadenie nepodporuje požadovanú DRM schému</string>
-    <string name="error_drm_unknown">Nastala neznáma chyba DRM</string>
-    <string name="error_no_decoder">Toto zariadenie nemá dekóder pre <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_no_secure_decoder">Toto zariadenie nemá zabezpečený dekóder pre <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_querying_decoders">Nemožno zavolať dekódery zariadenia</string>
-    <string name="error_instantiating_decoder">Nemožno vytvoriť inštanciu dekódera <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">Prístup na úložisko bol zakázaný</string>
-    <string name="use_exoplayer_title">Použit ExoPlayer</string>
-    <string name="use_exoplayer_summary">Experimentálne</string>
-<string name="start">Štart</string>
+    <string name="start">Štart</string>
     <string name="pause">Pauza</string>
     <string name="view">Zobraziť</string>
     <string name="delete">Zmazať</string>
@@ -125,13 +103,10 @@
 
     <string name="add">Nová misia</string>
     <string name="finish">Dobre</string>
-    <string name="switch_mode">Prepnúť medzi zoznamom a mriežkou</string>
 
 
-    <string name="msg_url">Stiahnuť URL</string>
     <string name="msg_name">Názov súboru</string>
     <string name="msg_threads">Vlákna</string>
-    <string name="msg_fetch_filename">Získať názov súboru</string>
     <string name="msg_error">Chyba</string>
     <string name="msg_server_unsupported">Nepodporovaný server</string>
     <string name="msg_exists">Súbor už existuje</string>
@@ -144,14 +119,11 @@
 
     <string name="downloads">Prevzaté</string>
     <string name="downloads_title">Prevzaté</string>
-    <string name="settings_title">Nastavenia</string>
     <string name="error_report_title">Hlásenie o chybe</string>
 
     <string name="could_not_load_image">Nemožno načítať obrázok</string>
     <string name="app_ui_crash">Aplikácia/UP zlyhalo</string>
     <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nSlužba:\\nČas v GMT:\\nBalík:\\nVerzia:\\nVerzia OS:\\nGlob. IP rozsah:</string>
-    <string name="title_activity_channel">Aktivita kanálov</string>
-    <string name="action_settings">Nastavenia</string>
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">Výzva reCAPTCHA</string>
@@ -174,11 +146,6 @@
     <string name="later">Neskôr</string>
 
     <string name="subscribe">Odoberať</string>
-    <string name="restart_title">Reštart</string>
-
-    <string name="msg_restart">Pre aplikovanie novej témy je potrebné reštartovať aplikáciu.
-
-Chcete aplikáciu reštartovať teraz?</string>
 
     <string name="open_in_popup_mode">Spustiť v okne</string>
     <string name="msg_popup_permission">Tieto práva vyžaduje
@@ -203,4 +170,4 @@ otvorenie okna na popredí</string>
     <string name="refresh">Obnoviť</string>
     <string name="clear">Vyčistiť</string>
 
-    </resources>
+</resources>

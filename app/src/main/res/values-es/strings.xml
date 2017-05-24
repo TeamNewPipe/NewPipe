@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
     <string name="view_count_text">%1$s visualizaciones</string>
     <string name="upload_date_text">Publicado en %1$s</string>
     <string name="no_player_found">No se encontró ningún reproductor de vídeo. ¿Desea instalar VLC?</string>
@@ -11,11 +11,9 @@
     <string name="search">Buscar</string>
     <string name="settings">Ajustes</string>
     <string name="did_you_mean">¿Quiso decir: %1$s?</string>
-    <string name="search_page">Buscar página: </string>
     <string name="share_dialog_title">Compartir con</string>
     <string name="choose_browser">Seleccionar navegador</string>
     <string name="screen_rotation">rotación</string>
-    <string name="settings_activity_title">Ajustes</string>
     <string name="download_path_title">Ruta de descarga de vídeo</string>
     <string name="download_path_summary">Ruta para almacenar los vídeos descargados.</string>
     <string name="download_path_dialog_title">Introducir directorio de descargas para vídeos</string>
@@ -31,9 +29,6 @@
     <string name="download_dialog_title">Descargar</string>
     <string name="next_video_title">Siguiente vídeo</string>
     <string name="url_not_supported_toast">URL no soportada</string>
-    <string name="similar_videos_btn_text">Vídeos similares</string>
-<string name="background_player_name">Reproductor de fondo NewPipe</string>
-    <string name="loading">Cargando</string>
     <string name="use_external_video_player_title">Usar reproductor de vídeo externo</string>
     <string name="use_external_audio_player_title">Usar reproductor de audio externo</string>
 
@@ -50,7 +45,7 @@
 
     <string name="err_dir_create">No se puede crear la carpeta de descarga \'%1$s\'</string>
     <string name="info_dir_created">Carpeta de descarga creada \'%1$s\'</string>
-<string name="download_path_audio_summary">Ruta para almacenar los audios descargados</string>
+    <string name="download_path_audio_summary">Ruta para almacenar los audios descargados</string>
     <string name="download_path_audio_dialog_title">Introducir ruta de descarga para archivos de audio.</string>
 
     <string name="blocked_by_gema">Bloqueado por GEMA.</string>
@@ -83,7 +78,6 @@
     <string name="duration_live">en vivo</string>
     <string name="downloads">Descargas</string>
     <string name="downloads_title">Descargas</string>
-    <string name="settings_title">Ajustes</string>
     <string name="error_report_title">Reportar error</string>
 
     <string name="light_parsing_error">No se pudo analizar el sitio web completamente.</string>
@@ -95,8 +89,6 @@
     <string name="error_snackbar_action">REPORTAR</string>
     <string name="what_device_headline">Información:</string>
     <string name="what_happened_headline">Qué ha ocurrido:</string>
-    <string name="info_searched_lbl">Buscado:</string>
-    <string name="info_requested_stream_lbl">Transmisión solicitada:</string>
     <string name="your_comment">Su comentario (en Inglés):</string>
     <string name="error_details_headline">Detalles:</string>
 
@@ -104,25 +96,10 @@
     <string name="report_error">Reportar un error</string>
     <string name="user_report">Reporte de usuario</string>
 
-    <string name="enable_background_audio">Reproducir en segundo plano</string>
     <string name="video">Vídeos</string>
     <string name="audio">Audio</string>
-    <string name="text">Texto</string>
-    <string name="logging">Registro</string>
-    <string name="logging_normal">Normal</string>
-    <string name="logging_verbose">Detallado</string>
     <string name="retry">Reintentar</string>
-    <string name="off">[off]</string>
-    <string name="error_drm_not_supported">Contenido protegido no soportado en niveles de API inferiores a 18</string>
-    <string name="error_drm_unsupported_scheme">Este dispositivo no soporta el esquema DRM requerido</string>
-    <string name="error_drm_unknown">Ocurrió un error desconocido de DRM</string>
-    <string name="error_no_decoder">Este dispositivo no proporciona un decodificador para <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_no_secure_decoder">Este dispositivo no proporciona un decodificador seguro para <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_querying_decoders">No es posible consultar los decodificadores del dispositivo</string>
-    <string name="error_instantiating_decoder">No se ha podido instanciar el decodificador <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">El permiso de acceso al almacenamiento fue negado</string>
-    <string name="use_exoplayer_title">Usar ExoPlayer</string>
-    <string name="use_exoplayer_summary">Experimental</string>
 
     <string name="start">Iniciar</string>
     <string name="pause">Pausar</string>
@@ -132,13 +109,9 @@
 
     <string name="add">Nueva misión</string>
     <string name="finish">Ok</string>
-    <string name="switch_mode">Cambiar entre lista y cuadrícula</string>
 
-
-    <string name="msg_url">URL de descarga</string>
     <string name="msg_name">Nombre del archivo</string>
     <string name="msg_threads">Conexiones simultáneas</string>
-    <string name="msg_fetch_filename">Obtener nombre de archivo</string>
     <string name="msg_error">Error</string>
     <string name="msg_server_unsupported">Servidor no soportado</string>
     <string name="msg_exists">El archivo ya existe</string>
@@ -152,8 +125,6 @@
     <string name="could_not_load_image">No se pudo cargar la imagen</string>
     <string name="app_ui_crash">La interfaz de la app dejó de funcionar</string>
     <string name="info_labels">Lo sucedido:\\nSolicitud:\\nIdioma del contenido:\\nServicio:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del S.O:\\nRango global de la IP:</string>
-    <string name="title_activity_channel">Actividad del canal</string>
-    <string name="action_settings">Ajustes</string>
 
     <string name="black_theme_title">Oscuro</string>
 
@@ -169,11 +140,6 @@
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>
-    <string name="restart_title">Reiniciar</string>
-
-    <string name="msg_restart">Debe reiniciar la aplicación para aplicar la plantilla
-
-¿Quieres reiniciar ahora?</string>
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="open_in_popup_mode">Abrir en modo popup</string>
@@ -214,4 +180,4 @@ abrir en modo popup</string>
     <string name="show_search_suggestions_title">Sugerencias de búsqueda</string>
     <string name="show_search_suggestions_summary">Mostrar sugerencias cuando esté buscando</string>
 
-    </resources>
+</resources>

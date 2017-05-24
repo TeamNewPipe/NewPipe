@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<resources><string name="background_player_name">NewPipe 背景播放器</string>
+<resources>
     <string name="view_count_text">觀看次數：%1$s</string>
     <string name="upload_date_text">發佈日期：%1$s</string>
     <string name="no_player_found">找不到任何串流播放器，您要否安裝 VLC？</string>
@@ -7,16 +7,13 @@
     <string name="cancel">取消</string>
     <string name="open_in_browser">在瀏覽器開啟</string>
     <string name="share">分享</string>
-    <string name="loading">加載中</string>
     <string name="download">下載</string>
     <string name="search">搜尋</string>
     <string name="settings">設定</string>
-    <string name="did_you_mean">"您是不是要查： "</string>
-    <string name="search_page">"搜尋頁面： "</string>
+    <string name="did_you_mean">"您是不是要查： %1$s ?"</string>
     <string name="share_dialog_title">分享影片</string>
     <string name="choose_browser">選擇瀏覽器</string>
     <string name="screen_rotation">旋轉</string>
-    <string name="settings_activity_title">設定</string>
     <string name="use_external_video_player_title">使用外置影片播放器</string>
     <string name="use_external_audio_player_title">使用外置聲音播放器</string>
     <string name="download_path_title">影片下載路徑</string>
@@ -39,7 +36,6 @@
     <string name="next_video_title">下一部影片</string>
     <string name="show_next_and_similar_title">顯示下一部和相關的影片</string>
     <string name="url_not_supported_toast">不支援此網址</string>
-    <string name="similar_videos_btn_text">相關影片</string>
     <string name="search_language_title">內容位置</string>
     <string name="settings_category_video_audio_title">影片和聲音</string>
     <string name="settings_category_appearance_title">外觀</string>
@@ -55,7 +51,7 @@
     <string name="detail_dislikes_img_view_description">不喜歡</string>
     <string name="use_tor_title">使用 Tor</string>
     <string name="use_tor_summary">強迫下載流量通過 Tor 以加強隱私 (暫時不支援串流影片)</string>
-<string name="download_path_audio_title">聲音下載路徑</string>
+    <string name="download_path_audio_title">聲音下載路徑</string>
     <string name="download_path_audio_summary">存放已下載聲音的路徑。</string>
     <string name="download_path_audio_dialog_title">輸入聲音檔案的下載路徑。</string>
 

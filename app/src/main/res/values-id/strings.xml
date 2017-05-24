@@ -1,18 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="main_bg_subtitle">Tekan pencarian untuk memulai</string>
+<resources>
+    <string name="main_bg_subtitle">Tekan pencarian untuk memulai</string>
     <string name="view_count_text">%1$s tayang</string>
     <string name="upload_date_text">Diterbitkan pada %1$s</string>
     <string name="install">Pasang</string>
     <string name="cancel">Batal</string>
     <string name="open_in_browser">Buka di peramban</string>
     <string name="share">Bagikan</string>
-    <string name="loading">Memuat</string>
     <string name="download">Unduh</string>
     <string name="search">Cari</string>
     <string name="settings">Pengaturan</string>
     <string name="share_dialog_title">Bagikan dengan</string>
     <string name="choose_browser">Pilih peramban</string>
-    <string name="settings_activity_title">Pengaturan</string>
     <string name="use_external_video_player_title">Gunakan pemutar video eksternal</string>
     <string name="use_external_audio_player_title">Gunakan pemutar audio eksternal</string>
 
@@ -43,7 +42,6 @@
     <string name="next_video_title">Video berikutnya</string>
     <string name="show_next_and_similar_title">Tampilkan video berikutnya dan terkait</string>
     <string name="url_not_supported_toast">URL tidak didukung</string>
-    <string name="similar_videos_btn_text">Video terkait</string>
     <string name="search_language_title">Bahasa konten</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
     <string name="settings_category_appearance_title">Tampilan</string>
@@ -56,12 +54,10 @@
     <string name="network_error">Galat jaringan</string>
     <string name="could_not_load_thumbnails">Tidak bisa memuat semua Thumbnail</string>
     <string name="did_you_mean">Mungkin maksud Anda: %1$s ?</string>
-    <string name="search_page">"Cari halaman: "</string>
     <string name="screen_rotation">rotasi</string>
     <string name="duration_live">langsung</string>
     <string name="downloads">Unduhan</string>
     <string name="downloads_title">Unduhan</string>
-    <string name="settings_title">Pengaturan</string>
     <string name="error_report_title">Laporan galat</string>
 
     <string name="general_error">Galat</string>
@@ -78,7 +74,6 @@
     <string name="error_snackbar_action">LAPOR</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Yang terjadi:</string>
-    <string name="info_searched_lbl">Mencari:</string>
     <string name="your_comment">Komentar Anda (dalam bahasa Inggris):</string>
     <string name="error_details_headline">Detail:</string>
 
@@ -94,25 +89,10 @@
     <string name="err_dir_create">Tidak bisa membuat direktori unduhan \'%1$s\'</string>
     <string name="info_dir_created">Membuat direktori unduhan \'%1$s\'</string>
 
-    <string name="enable_background_audio">Putar di latar belakang</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
-    <string name="text">Teks</string>
-    <string name="logging">Pencatatan Log</string>
-    <string name="logging_normal">Normal</string>
-    <string name="logging_verbose">Detail</string>
     <string name="retry">Ulangi</string>
-    <string name="off">[mati]</string>
-    <string name="error_drm_not_supported">Konten yang dilindungi tidak didukung pada API dengan level dibawah 18</string>
-    <string name="error_drm_unsupported_scheme">Perangkat ini tidak mendukung skema DRM yang dibutuhkan</string>
-    <string name="error_drm_unknown">Telah terjadi galat DRM yang tidak dikenal</string>
-    <string name="error_no_decoder">Perangkat ini tidak menyediakan dekoder untuk <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_no_secure_decoder">Perangkat ini tidak menyediakan dekoder yang aman untuk <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_instantiating_decoder">Tidak bisa menginisiasi dekoder <xliff:g id="decoder_name">%1$s</xliff:g></string>
-    <string name="error_querying_decoders">Tidak bisa mengambil dekoder perangkat</string>
     <string name="storage_permission_denied">Izin untuk mengakses penyimpanan ditolak</string>
-    <string name="use_exoplayer_title">Gunakan ExoPlayer</string>
-    <string name="use_exoplayer_summary">Eksperimental</string>
 
     <string name="delete">Hapus</string>
     <string name="view">Tonton</string>
@@ -122,12 +102,8 @@
 
     <string name="add">Misi baru</string>
     <string name="finish">Oke</string>
-    <string name="switch_mode">Beralih antara list dan grid</string>
 
-
-    <string name="msg_url">URL Unduhan</string>
     <string name="msg_name">Nama berkas</string>
-    <string name="msg_fetch_filename">Ambil nama berkas</string>
     <string name="msg_error">Galat</string>
     <string name="msg_server_unsupported">Server tidak didukung</string>
     <string name="msg_exists">Berkas telah ada</string>
@@ -138,16 +114,11 @@
     <string name="msg_copied">Disalin ke papan klip.</string>
     <string name="no_available_dir">Silakan pilih direktori unduhan yang tersedia.</string>
 
-    <string name="title_activity_channel">AktivitasSaluran</string>
-    <string name="action_settings">Pengaturan</string>
-
-    <string name="background_player_name">Pemutar Latar Belakang NewPipe</string>
     <string name="no_player_found">Tidak ditemukan pemutar stream. Apakah anda ingin memasang VLC?</string>
     <string name="youtube_signature_decryption_error">Tidak bisa mendekrip tanda tangan url video.</string>
     <string name="app_ui_crash">App/UI rusak</string>
     <string name="could_not_get_stream">Tidak bisa mendapatkan stream apapun.</string>
     <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:\\nIP:</string>
-    <string name="info_requested_stream_lbl">Stream yang diminta:</string>
     <string name="user_report">Laporan pengguna</string>
 
     <string name="msg_threads">Thread</string>
@@ -172,11 +143,6 @@
     <string name="later">Nanti</string>
 
     <string name="subscribe">Langganan</string>
-    <string name="restart_title">Mulai Ulang</string>
-
-    <string name="msg_restart">Anda harus memulai ulang aplikasi untuk menerapkan tema.
-
-Apakah Anda ingin memulai ulang sekarang?</string>
 
     <string name="open_in_popup_mode">Buka di mode popup</string>
     <string name="msg_popup_permission">Izin ini dibutuhkan untuk
@@ -213,4 +179,4 @@ membuka di mode popup</string>
     <string name="show_search_suggestions_title">Saran pencarian</string>
     <string name="show_search_suggestions_summary">Tampilkan saran ketika mencari</string>
 
-    </resources>
+</resources>

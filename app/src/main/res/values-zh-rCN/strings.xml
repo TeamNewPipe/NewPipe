@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="background_player_name">NewPipe 背景播放器</string>
+<resources>
     <string name="view_count_text">%1$s 次观看</string>
     <string name="upload_date_text">于 %1$s 发布</string>
     <string name="no_player_found">找不到任何串流播放器。您是否要安装 VLC？</string>
@@ -8,16 +7,13 @@
     <string name="cancel">取消</string>
     <string name="open_in_browser">在浏览器打开</string>
     <string name="share">分享</string>
-    <string name="loading">载入中</string>
     <string name="download">下载</string>
     <string name="search">搜索</string>
     <string name="settings">设置</string>
-    <string name="did_you_mean">您是不是要找：</string>
-    <string name="search_page">"搜索页面： "</string>
+    <string name="did_you_mean">您是不是要找： %1$s ?</string>
     <string name="share_dialog_title">分享视频</string>
     <string name="choose_browser">选择浏览器</string>
     <string name="screen_rotation">旋转</string>
-    <string name="settings_activity_title">设置</string>
     <string name="use_external_video_player_title">使用外置视频播放器</string>
     <string name="use_external_audio_player_title">使用外置音频播放器</string>
     <string name="download_path_title">视频下载路径</string>
@@ -40,7 +36,6 @@
     <string name="next_video_title">即将播放</string>
     <string name="show_next_and_similar_title">显示下一部和相近的视频</string>
     <string name="url_not_supported_toast">不支援此网址</string>
-    <string name="similar_videos_btn_text">相近的视频</string>
     <string name="search_language_title">首选内容语言</string>
     <string name="settings_category_video_audio_title">视频和音频</string>
     <string name="settings_category_appearance_title">外观</string>
@@ -56,13 +51,13 @@
     <string name="detail_dislikes_img_view_description">不喜欢</string>
     <string name="use_tor_title">使用 Tor</string>
     <string name="use_tor_summary">（实验性）强制下载流量使用 Tor 加强隐私（暂不支援流媒体视频）。</string>
-<string name="download_path_audio_title">音频下载路径</string>
+    <string name="download_path_audio_title">音频下载路径</string>
     <string name="download_path_audio_summary">存放已下载音频的路径</string>
     <string name="download_path_audio_dialog_title">输入音频的下载路径。</string>
 
     <string name="err_dir_create">未能建立下载路径 “%1$s”</string>
     <string name="info_dir_created">已建立下载路径 “%1$s”</string>
-<string name="content">内容</string>
+    <string name="content">内容</string>
     <string name="show_age_restricted_content_title">显示年龄限制内容</string>
     <string name="video_is_age_restricted">视频有年龄限制。请先在设置中启用年龄限制视频。</string>
     <string name="general_error">错误</string>
@@ -81,8 +76,6 @@
     <string name="error_snackbar_action">报告</string>
     <string name="what_device_headline">信息：</string>
     <string name="what_happened_headline">发生什么：</string>
-    <string name="info_searched_lbl">搜索：</string>
-    <string name="info_requested_stream_lbl">已请求流：</string>
     <string name="your_comment">您的注释（英文）：</string>
     <string name="error_details_headline">详细信息：</string>
 
@@ -90,25 +83,10 @@
     <string name="report_error">报告错误</string>
     <string name="user_report">用户报告</string>
 
-    <string name="enable_background_audio">在后台播放</string>
     <string name="video">视频</string>
     <string name="audio">音频</string>
-    <string name="text">文本</string>
-    <string name="logging">日志记录</string>
-    <string name="logging_normal">正常</string>
-    <string name="logging_verbose">详细</string>
     <string name="retry">重试</string>
-    <string name="off">[关]</string>
-    <string name="error_drm_not_supported">已保护内容在 API 级别低于 18 时不支持</string>
-    <string name="error_drm_unsupported_scheme">此设备不支持 DRM 模式</string>
-    <string name="error_drm_unknown">发生未知 DRM 错误</string>
-    <string name="error_no_decoder">此设备未提供一个 <xliff:g id="mime_type">%1$s</xliff:g> 的解码器</string>
-    <string name="error_no_secure_decoder">此设备未提供一个 <xliff:g id="mime_type">%1$s</xliff:g> 的安全解码器</string>
-    <string name="error_querying_decoders">无法查询设备解码器</string>
-    <string name="error_instantiating_decoder">无法实例化解码器 <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">访问存储的权限被拒绝</string>
-    <string name="use_exoplayer_summary">实验性</string>
-<string name="use_exoplayer_title">使用 ExoPlayer</string>
     <string name="autoplay_by_calling_app_title">另一应用调用时自动播放</string>
     <string name="autoplay_by_calling_app_summary">NewPipe 是被另一应用调用时自动开始播放视频。</string>
     <string name="duration_live">直播</string>
@@ -121,13 +99,9 @@
     <string name="checksum">校验和</string>
 
     <string name="finish">确定</string>
-    <string name="switch_mode">切换列表与网格</string>
 
-
-    <string name="msg_url">下载网址</string>
     <string name="msg_name">文件名</string>
     <string name="msg_threads">线程</string>
-    <string name="msg_fetch_filename">获取文件名</string>
     <string name="msg_error">错误</string>
     <string name="msg_server_unsupported">服务器不支持</string>
     <string name="msg_exists">文件已经存在</string>
@@ -141,10 +115,7 @@
     <string name="add">新任务</string>
     <string name="downloads">下载</string>
     <string name="downloads_title">下载</string>
-    <string name="settings_title">设置</string>
     <string name="error_report_title">错误报告</string>
-
-    <string name="action_settings">设置</string>
 
     <string name="could_not_load_image">无法加载图像</string>
     <string name="app_ui_crash">应用/界面已崩溃</string>
@@ -154,4 +125,4 @@
 
     <string name="recaptcha_request_toast">需要 reCAPTCHA 验证</string>
 
-    </resources>
+</resources>

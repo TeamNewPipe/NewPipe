@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="main_bg_subtitle">Başlamak için aramaya dokun</string>
-    <string name="background_player_name">NewPipe Arka Plan Oynatıcısı</string>
+<resources>
+    <string name="main_bg_subtitle">Başlamak için aramaya dokun</string>
     <string name="view_count_text">%1$s izlenme</string>
     <string name="upload_date_text">Yayımlanma: %1$s</string>
     <string name="no_player_found">Yayın oynatıcı bulunamadı. VLC\'yi kurmak ister misiniz?</string>
@@ -8,16 +8,13 @@
     <string name="cancel">İptal</string>
     <string name="open_in_browser">Tarayıcıda aç</string>
     <string name="share">Paylaş</string>
-    <string name="loading">Yükleniyor</string>
     <string name="download">İndir</string>
     <string name="search">Ara</string>
     <string name="settings">Ayarlar</string>
     <string name="did_you_mean">Bunu mu demek istediniz: %1$s ?</string>
-    <string name="search_page">"Sayfayı ara: "</string>
     <string name="share_dialog_title">Bununla paylaş</string>
     <string name="choose_browser">Tarayıcı seç</string>
     <string name="screen_rotation">döndürme</string>
-    <string name="settings_activity_title">Ayarlar</string>
     <string name="use_external_video_player_title">Harici video oynatıcı kullan</string>
     <string name="use_external_audio_player_title">Harici ses oynatıcı kullan</string>
 
@@ -47,7 +44,6 @@
     <string name="next_video_title">Sonraki video</string>
     <string name="show_next_and_similar_title">Sonraki ve benzer videoları göster</string>
     <string name="url_not_supported_toast">URL desteklenmiyor</string>
-    <string name="similar_videos_btn_text">Benzer videolar</string>
     <string name="search_language_title">Yeğlenen içerik dili</string>
     <string name="play_audio">Ses</string>
     <string name="settings_category_video_audio_title">Video ve Ses</string>
@@ -61,7 +57,6 @@
     <string name="duration_live">canlı</string>
     <string name="downloads">İndirilenler</string>
     <string name="downloads_title">İndirilenler</string>
-    <string name="settings_title">Ayarlar</string>
     <string name="error_report_title">Hata bildirimi</string>
 
     <string name="general_error">Hata</string>
@@ -83,8 +78,6 @@
     <string name="what_device_headline">Bilgi:</string>
     <string name="what_happened_headline">Ne oldu:</string>
     <string name="info_labels">Ne:\\nİstek:\\nİçerik Dili:\\nHizmet:\\nGMT Zamanı:\\nPaket:\\nSürüm:\\nİşletim sistemi sürümü:\\nGlob. IP aralığı:</string>
-    <string name="info_searched_lbl">Aranan:</string>
-    <string name="info_requested_stream_lbl">İstenen yayın:</string>
     <string name="detail_thumbnail_view_description">Video ön izleme küçük resmi</string>
     <string name="detail_uploader_thumbnail_view_description">Yükleyenin kullanıcı küçük resmi</string>
     <string name="detail_likes_img_view_description">Beğeni</string>
@@ -97,25 +90,10 @@
     <string name="err_dir_create">İndirme dizini \'%1$s\' oluşturulamıyor</string>
     <string name="info_dir_created">İndirme dizini \'%1$s\' oluşturuldu</string>
 
-    <string name="enable_background_audio">Arka planda oynat</string>
     <string name="video">Video</string>
     <string name="audio">Ses</string>
-    <string name="text">Metin</string>
-    <string name="logging">Günlükleme</string>
-    <string name="logging_normal">Olağan</string>
-    <string name="logging_verbose">Ayrıntılı</string>
     <string name="retry">Yeniden dene</string>
-    <string name="off">[kapalı]</string>
-    <string name="error_drm_not_supported">Korumalı içerik 18\'in altındaki API düzeylerinde desteklenmez</string>
-    <string name="error_drm_unsupported_scheme">Bu aygıt gerekli DRM düzenini desteklemiyor</string>
-    <string name="error_drm_unknown">Bilinmeyen bir DRM hatası oluştu</string>
-    <string name="error_no_decoder">Bu aygıt <xliff:g id="mime_type">%1$s</xliff:g> için bir çözücü sağlamıyor</string>
-    <string name="error_no_secure_decoder">Bu aygıt <xliff:g id="mime_type">%1$s</xliff:g> için bir çözücü sağlamıyor</string>
-    <string name="error_querying_decoders">Aygıt çözücüleri sorgulanamıyor</string>
-    <string name="error_instantiating_decoder"><xliff:g id="decoder_name">%1$s</xliff:g> çözücü başlatılamıyor</string>
     <string name="storage_permission_denied">Depolamaya erişme izni reddedildi</string>
-    <string name="use_exoplayer_title">ExoPlayer kullan</string>
-    <string name="use_exoplayer_summary">Deneysel</string>
 
     <string name="start">Başlat</string>
     <string name="pause">Duraklat</string>
@@ -125,13 +103,10 @@
 
     <string name="add">Yeni görev</string>
     <string name="finish">Tamam</string>
-    <string name="switch_mode">Liste ve tablo arasında geçiş yap</string>
 
 
-    <string name="msg_url">İndirme URL\'si</string>
     <string name="msg_name">Dosya adı</string>
     <string name="msg_threads">İş parçacığı</string>
-    <string name="msg_fetch_filename">Dosya adını al</string>
     <string name="msg_error">Hata</string>
     <string name="msg_server_unsupported">Sunucu desteklenmiyor</string>
     <string name="msg_exists">Dosya zaten var</string>
@@ -142,8 +117,6 @@
     <string name="msg_copied">Panoya kopyalandı.</string>
     <string name="no_available_dir">Lütfen mevcut bir indirme dizini seçin.</string>
 
-    <string name="title_activity_channel">Kanal Etkinliği</string>
-    <string name="action_settings">Ayarlar</string>
 
     <string name="could_not_setup_download_menu">İndirme menüsü kurulamıyor.</string>
     <string name="open_in_popup_mode">Açılır pencere kipinde aç</string>
@@ -177,11 +150,7 @@
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-    <string name="restart_title">Yeniden başlat</string>
 
-    <string name="msg_restart">Temayı uygulamak için uygulamayı yeniden başlatmanız gerekir.
-
-Şimdi yeniden başlatmak istiyor musunuz?</string>
     <string name="msg_popup_permission">Bu izin açılır pencere kipinde
 \naçmak için gerekli</string>
 
@@ -208,4 +177,4 @@
     <string name="show_search_suggestions_title">Arama önerileri</string>
     <string name="show_search_suggestions_summary">Ararken önerileri göster</string>
 
-    </resources>
+</resources>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="background_player_name">NewPipe Player în fundal</string>
+<resources>
     <string name="view_count_text">%1$s (de) vizionări</string>
     <string name="upload_date_text">Încărcat pe %1$s</string>
     <string name="no_player_found">Nici un player pentru stream-uri găsit. Instalați VLC?</string>
@@ -7,16 +7,13 @@
     <string name="cancel">Anulare</string>
     <string name="open_in_browser">Deschidere în browser</string>
     <string name="share">Partajează</string>
-    <string name="loading">Se încarcă</string>
     <string name="download">Descărcare</string>
     <string name="search">Căutare</string>
     <string name="settings">Setări</string>
     <string name="did_you_mean">V-ați referit la: %1$s ?</string>
-    <string name="search_page">"Pagina de căutare: "</string>
     <string name="share_dialog_title">Partajează cu</string>
     <string name="choose_browser">Alegeți browser-ul</string>
     <string name="screen_rotation">rotație</string>
-    <string name="settings_activity_title">Setări</string>
     <string name="use_external_video_player_title">Folosește un player video extern</string>
     <string name="use_external_audio_player_title">Folosește un player audio extern</string>
 
@@ -36,7 +33,7 @@
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio de bază</string>
     <string name="info_dir_created">Directorul de descărcare \'%1$s\' a fost creat</string>
-<string name="webm_description">WebM — format liber</string>
+    <string name="webm_description">WebM — format liber</string>
     <string name="m4a_description">m4a — calitate superioară</string>
     <string name="theme_title">Temă</string>
     <string name="dark_theme_title">Întunecat</string>
@@ -46,7 +43,6 @@
     <string name="next_video_title">Următorul videoclip</string>
     <string name="show_next_and_similar_title">Arată videoclipurile care urmează și pe cele similare</string>
     <string name="url_not_supported_toast">URL nesuportat</string>
-    <string name="similar_videos_btn_text">Videoclipuri similare</string>
     <string name="search_language_title">Limba dorită a conținutului</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
     <string name="settings_category_appearance_title">Aspect</string>
@@ -83,7 +79,6 @@
     <string name="duration_live">în direct</string>
     <string name="downloads">Descărcări</string>
     <string name="downloads_title">Descărcări</string>
-    <string name="settings_title">Setări</string>
     <string name="error_report_title">Raport de erori</string>
 
     <string name="light_parsing_error">Nu s-a putut analiza complet website-ul.</string>
@@ -94,8 +89,6 @@
     <string name="error_snackbar_action">RAPORTAȚI</string>
     <string name="what_device_headline">Informații:</string>
     <string name="what_happened_headline">Ce s-a întâmplat:</string>
-    <string name="info_searched_lbl">S-a căutat pentru:</string>
-    <string name="info_requested_stream_lbl">Fluxul cerut:</string>
     <string name="your_comment">Comentariul tău (în engleză):</string>
     <string name="error_details_headline">Detalii:</string>
 
@@ -103,25 +96,10 @@
     <string name="report_error">Raportează o eroare</string>
     <string name="user_report">Raportul utilizatorului</string>
 
-    <string name="enable_background_audio">Redă în fundal</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
-    <string name="text">Text</string>
-    <string name="logging">Înregistrare</string>
-    <string name="logging_normal">Normal</string>
-    <string name="logging_verbose">Prolix</string>
     <string name="retry">Reîncearcă</string>
-    <string name="off">[oprit]</string>
-    <string name="error_drm_not_supported">Conținutul protejat nu este suportat pe nivelurile API sub 18</string>
-    <string name="error_drm_unsupported_scheme">Acest dispozitiv nu suportă schema DRM necesară</string>
-    <string name="error_drm_unknown">O eroare DRM necunoscută a apărut</string>
-    <string name="error_no_decoder">Acest dispozitiv nu furnizează un decodor pentru <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_no_secure_decoder">Acest dispozitiv nu furnizează un decodor sigur pentru <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_querying_decoders">Nu am reușit să pun decodoarele dispozitivelor în coadă</string>
-    <string name="error_instantiating_decoder">Nu am reușit să instanționez decodorul <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">Permisiunea de a accesa mediul de stocare a fost refuzată</string>
-    <string name="use_exoplayer_title">Folosește ExoPlayer</string>
-    <string name="use_exoplayer_summary">Experimental</string>
 
     <string name="start">Start</string>
     <string name="pause">Pauză</string>
@@ -131,13 +109,10 @@
 
     <string name="add">Misiune nouă</string>
     <string name="finish">Ok</string>
-    <string name="switch_mode">Schimbă între listă și grilă</string>
 
 
-    <string name="msg_url">Descarcă URL-ul</string>
     <string name="msg_name">Nume fișier</string>
     <string name="msg_threads">Thread-uri</string>
-    <string name="msg_fetch_filename">Ia numele fișierului</string>
     <string name="msg_error">Eroare</string>
     <string name="msg_server_unsupported">Server nesuportat</string>
     <string name="msg_exists">Fișierul există deja</string>
@@ -149,14 +124,9 @@
     <string name="no_available_dir">Vă rugăm selectați un director de descărcare disponibil.</string>
 
     <string name="open_in_popup_mode">Deschide in mod pop-up</string>
-    <string name="action_settings">Setări</string>
-    <string name="title_activity_channel">ActivitateCanal</string>
     <string name="msg_popup_permission">Aceasta permisiune este necesara
 pentru a deschide în mod pop-up</string>
 
-    <string name="msg_restart">Trebuie sa reporniți aplicația pentru a aplica tema.
-
-Doriți sa reporniți acum?</string>
     <string name="reCaptchaActivity">ReCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA noua</string>
     <string name="recaptcha_request_toast">reCAPTCHA noua ceruta</string>
@@ -189,6 +159,5 @@ Doriți sa reporniți acum?</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-    <string name="restart_title">Repornire</string>
 
-    </resources>
+</resources>
