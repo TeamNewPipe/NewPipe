@@ -14,16 +14,16 @@
     <string name="search_page">Страница поиска: </string>
     <string name="share_dialog_title">Поделиться с помощью</string>
     <string name="choose_browser">Выбрать браузер</string>
-    <string name="screen_rotation">поворот</string>
+    <string name="screen_rotation">ориентация</string>
     <string name="settings_activity_title">Настройки</string>
     <string name="download_path_title">Папка для загрузки видео</string>
-    <string name="download_path_summary">Папка для хранения загруженных видео</string>
+    <string name="download_path_summary">Папка для хранения загруженных видео.</string>
     <string name="download_path_dialog_title">Введите путь к папке для загрузки видео</string>
     <string name="default_resolution_title">Разрешение по умолчанию</string>
     <string name="play_with_kodi_title">Воспроизвести с помощью Kodi</string>
     <string name="kore_not_found">Приложение Kore не найдено. Установить Kore?</string>
     <string name="show_play_with_kodi_title">Показывать опцию «Воспроизвести с помощью Kodi»</string>
-    <string name="show_play_with_kodi_summary">Показать опцию воспроизведения видео через Kodi media center</string>
+    <string name="show_play_with_kodi_summary">Показать опцию воспроизведения видео через Kodi media center.</string>
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Формат аудио по умолчанию</string>
     <string name="webm_description">WebM — свободный формат</string>
@@ -92,7 +92,7 @@
     <string name="your_comment">Ваш комментарий (на английском):</string>
     <string name="err_dir_create">Невозможно создать папку для загрузки \'%1$s\'</string>
     <string name="autoplay_by_calling_app_title">Автоматически воспроизводить при открытии из другого приложения</string>
-    <string name="autoplay_by_calling_app_summary">Автоматически воспроизводить видео при вызове NewPipe из другого приложения</string>
+    <string name="autoplay_by_calling_app_summary">Автоматически воспроизводить видео при вызове NewPipe из другого приложения.</string>
     <string name="content">Контент</string>
     <string name="video_is_age_restricted">Видео имеет возрастные ограничения. Сначала разрешите видео с возрастными ограничениями в настройках.</string>
     <string name="duration_live">вживую</string>
@@ -105,7 +105,7 @@
     <string name="light_parsing_error">Не удалось полностью разобрать веб-сайт.</string>
     <string name="content_not_available">Контент недоступен.</string>
     <string name="blocked_by_gema">Заблокировано GEMA.</string>
-    <string name="could_not_setup_download_menu">Невозможно установить меню загрузки</string>
+    <string name="could_not_setup_download_menu">Невозможно установить меню загрузки.</string>
     <string name="live_streams_not_supported">Это прямая трансляция. Они пока не поддерживаются.</string>
     <string name="could_not_load_image">Не удалось загрузить изображение</string>
     <string name="app_ui_crash">"Падение приложения/пользовательского интерфейса "</string>
@@ -153,7 +153,7 @@
     <string name="switch_mode">Переключатель между списком и сеткой</string>
 
 
-    <string name="controls_background_title">В фоне</string>
+    <string name="controls_background_title">Фон</string>
     <string name="controls_popup_title">В окне</string>
 
     <string name="show_higher_resolutions_summary">Только некоторые устройства могут воспроизводить видео в 2K/4K</string>
@@ -182,7 +182,7 @@
 \nчтобы показывать всплывающее окно</string>
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="open_in_popup_mode">Открыть во всплывающем окне</string>
+    <string name="open_in_popup_mode">Открыть в отдельном окне</string>
     <string name="show_search_suggestions_summary">Показывать подсказки во время поиска</string>
 
     <string name="later">Позже</string>
@@ -199,7 +199,7 @@
     <string name="show_search_suggestions_title">Живой поиск</string>
     <string name="popup_mode_share_menu_title">Режим всплывающего окна</string>
     <string name="show_higher_resolutions_title">Показать другие разрешения</string>
-    <string name="use_old_player_summary">Использовать устаревший Mediaframework плеер</string>
+    <string name="use_old_player_summary">Использовать устаревший Mediaframework плеер.</string>
     <string name="title_activity_channel">Канал</string>
     <string name="reCaptcha_title">Капча</string>
     <string name="recaptcha_request_toast">Запрос капчи</string>
