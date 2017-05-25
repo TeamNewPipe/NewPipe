@@ -13,4 +13,20 @@
     <string name="light_theme_title">Բաց</string>
     <string name="dark_theme_title">Մուգ</string>
     <string name="similar_videos_btn_text">Նման տեսանյութեր</string>
+    <string name="msg_wait">Սպասեք…</string>
+    <string name="msg_exists">Ֆայլ արդեն կա</string>
+    <string name="msg_error">Սխալ</string>
+    <string name="msg_name">ֆայլի անունը</string>
+    <string name="finish">Այո</string>
+    <string name="delete">Ջնջել</string>
+    <string name="start">Սկսել</string>
+    <string name="subscribe">Բաժանորդագրվել</string>
+    <string name="subscriber_plural">Բաժանորդները</string>
+    <string name="subscriber">Բաժանորդ</string>
+    <string name="detail_likes_img_view_description">Հավանում եմ</string>
+    <string name="detail_dislikes_img_view_description">Չեմ հավանում</string>
+    <string name="clear">Մաքրել</string>
+    <string name="view_count_text">%1$s դիտում</string>
+    <string name="upload_date_text">Հրապարակվել է %1$s</string>
+    <string name="install">Տեղադրել</string>
     </resources>
