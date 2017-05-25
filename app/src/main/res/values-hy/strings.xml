@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="main_bg_subtitle">Սեղմեք որոնման կոճակը որ սկսել</string>
     <string name="search">Որոնել</string>
     <string name="downloads">Բեռնված</string>
