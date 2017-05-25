@@ -205,4 +205,9 @@ o modo “popup“</string>
 
     <string name="popup_resizing_indicator_title">Redimensionar</string>
 
+    <string name="player_gesture_controls_title">Controlos de gesto do reprodutor</string>
+    <string name="player_gesture_controls_summary">Use gestos para controlar o brilho e o volume do reprodutor</string>
+    <string name="show_search_suggestions_title">Sugestões de pesquisa</string>
+    <string name="show_search_suggestions_summary">Apresentar sugestões ao procurar</string>
+
     </resources>
