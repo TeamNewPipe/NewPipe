@@ -32,4 +32,5 @@
     <string name="cancel">Վերացնել</string>
     <string name="open_in_browser">Բացել բրաուզերում</string>
     <string name="loading">Բեռնում</string>
+    <string name="choose_browser">Ընտրեք բրաուզերը</string>
     </resources>
