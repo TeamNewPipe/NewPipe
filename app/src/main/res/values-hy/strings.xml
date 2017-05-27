@@ -29,4 +29,7 @@
     <string name="view_count_text">%1$s դիտում</string>
     <string name="upload_date_text">Հրապարակվել է %1$s</string>
     <string name="install">Տեղադրել</string>
+    <string name="cancel">Վերացնել</string>
+    <string name="open_in_browser">Բացել բրաուզերում</string>
+    <string name="loading">բեռնում</string>
     </resources>
