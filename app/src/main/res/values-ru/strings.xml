@@ -25,7 +25,7 @@
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Формат аудио по умолчанию</string>
     <string name="webm_description">WebM — свободный формат</string>
-    <string name="m4a_description">m4a — лучшее качество</string>
+    <string name="m4a_description">m4a — более хорошее качество</string>
     <string name="download_dialog_title">Скачать</string>
     <string name="next_video_title">Следующее видео</string>
     <string name="url_not_supported_toast">URL не поддерживается</string>

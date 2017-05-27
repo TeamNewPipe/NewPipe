@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="audio">Áudio</string>
-    <string name="youtube_signature_decryption_error">Não foi possível decriptar a assinatura de URL do vídeo.</string>
+    <string name="youtube_signature_decryption_error">Não foi possível descriptografar assinatura de URL do vídeo.</string>
     <string name="your_comment">Seu comentário (em inglês):</string>
     <string name="what_happened_headline">O que aconteceu:</string>
     <string name="what_device_headline">Informações:</string>
@@ -15,7 +15,7 @@
     <string name="black_theme_title">Preto</string>
     <string name="blocked_by_gema">Bloqueado pelo GEMA.</string>
     <string name="cancel">Cancelar</string>
-    <string name="checksum">Verificação</string>
+    <string name="checksum">Soma de Verificação</string>
     <string name="choose_browser">Escolher navegador</string>
     <string name="content">Conteúdo</string>
     <string name="content_not_available">Conteúdo não disponível.</string>
@@ -36,7 +36,7 @@
     <string name="error_report_title">Relatório de erro</string>
     <string name="error_snackbar_action">RELATÓRIO</string>
     <string name="error_snackbar_message">Desculpe, ocorreram alguns erros.</string>
-    <string name="finish">OK</string>
+    <string name="finish">Ok</string>
     <string name="general_error">Erro</string>
     <string name="info_dir_created">Pasta de download criada \'%1$s\'</string>
     <string name="install">Instalar</string>
@@ -118,7 +118,7 @@
     <string name="open_in_popup_mode">Abrir em modo popup</string>
     <string name="default_popup_resolution_title">Resolução padrão de popup</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções maiores</string>
-    <string name="show_higher_resolutions_summary">Apenas alguns dispositivos suportam reprodução de vídeos em 2k/4k</string>
+    <string name="show_higher_resolutions_summary">Apenas alguns dispositivos suportam reprodução de vídeos em 2K/4K</string>
     <string name="preferred_video_format_title">Formato de vídeo preferido</string>
     <string name="popup_playing_toast">Reproduzindo em modo popup</string>
     <string name="all">Tudo</string>

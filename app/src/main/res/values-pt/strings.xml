@@ -18,7 +18,7 @@
     <string name="use_external_audio_player_title">Utilizar reprodutor de áudio externo</string>
     <string name="download_path_title">Local de transferência de vídeo</string>
     <string name="download_path_summary">Local para guardar os vídeos transferidos.</string>
-    <string name="download_path_dialog_title">Digite o caminho para os vídeos</string>
+    <string name="download_path_dialog_title">Introduza o caminho para os vídeos</string>
     <string name="default_resolution_title">Resolução padrão</string>
     <string name="play_with_kodi_title">Reproduzir no Kodi</string>
     <string name="kore_not_found">Aplicação não encontrada. Instalar o Kore?</string>
@@ -28,7 +28,7 @@
     <string name="default_audio_format_title">Formato áudio padrão</string>
     <string name="webm_description">WebM — formato livre</string>
     <string name="m4a_description">m4a — melhor qualidade</string>
-    <string name="download_dialog_title">Descarregar</string>
+    <string name="download_dialog_title">Transferir</string>
     <string name="next_video_title">Vídeo seguinte</string>
     <string name="show_next_and_similar_title">Mostrar vídeos seguintes e semelhantes</string>
     <string name="url_not_supported_toast">URL não suportado</string>
@@ -54,7 +54,7 @@
     <string name="use_tor_summary">(Experimental) Usar a rede Tor para aumentar a privacidade (ainda não é suportada a emissão de vídeos).</string>
     <string name="download_path_audio_title">Local de transferência de áudio</string>
     <string name="download_path_audio_summary">Local para guardar o áudio transferido.</string>
-    <string name="download_path_audio_dialog_title">Escreva o caminho para os ficheiros de áudio.</string>
+    <string name="download_path_audio_dialog_title">Introduza o caminho para os ficheiros de áudio.</string>
 
     <string name="err_dir_create">Não foi possível criar o diretório \'%1$s\'</string>
     <string name="info_dir_created">Diretório \'%1$s\' criado com sucesso</string>
@@ -96,7 +96,8 @@
     <string name="user_report">Relatório</string>
 
     <string name="downloads">Transferências</string>
-    <string name="downloads_title">Descargas</string>
+    <string name="downloads_title">Transferências</string>
+    <string name="settings_title">Definições</string>
     <string name="error_report_title">Relatório de erro</string>
 
     <string name="start">Iniciar</string>
@@ -167,10 +168,9 @@ o modo “popup“</string>
     <string name="filter">Filtrar</string>
     <string name="refresh">Atualizar</string>
     <string name="clear">Limpar</string>
-    <string name="controls_background_title">Plano de fundo</string>
+    <string name="controls_background_title">Em segundo plano</string>
     <string name="use_external_video_player_summary">Algumas resoluções NÃO terão áudio quando esta opção estiver ativada</string>
     <string name="popup_remember_size_pos_summary">Lembrar ultimo tamanho e posição do popup</string>
 
     <string name="popup_resizing_indicator_title">Redimensionar</string>
-
 </resources>
