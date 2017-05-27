@@ -105,7 +105,7 @@
     <string name="user_report">Reporte de usuario</string>
 
     <string name="enable_background_audio">Reproducir en segundo plano</string>
-    <string name="video">Vídeos</string>
+    <string name="video">Vídeo</string>
     <string name="audio">Audio</string>
     <string name="text">Texto</string>
     <string name="logging">Registro</string>
