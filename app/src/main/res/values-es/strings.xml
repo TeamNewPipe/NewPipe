@@ -97,6 +97,7 @@
     <string name="user_report">Reporte de usuario</string>
 
     <string name="video">Vídeos</string>
+
     <string name="audio">Audio</string>
     <string name="retry">Reintentar</string>
     <string name="storage_permission_denied">El permiso de acceso al almacenamiento fue negado</string>
