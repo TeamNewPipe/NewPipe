@@ -203,4 +203,15 @@ otvorenie okna na popredí</string>
     <string name="refresh">Obnoviť</string>
     <string name="clear">Vyčistiť</string>
 
+    <string name="use_external_video_player_summary">Niektoré rozlíšenia nebudú mať pri tejto voľbe zvukovú stopu</string>
+    <string name="popup_remember_size_pos_title">Zapamätať si veľkosť a polohu okna</string>
+    <string name="popup_remember_size_pos_summary">Zapamätať si poslednú veľkosť z polohu pre okno</string>
+    <string name="player_gesture_controls_title">Kontrola prehrávača gestami</string>
+    <string name="player_gesture_controls_summary">Použivať gestá pre kontrolu jasu a hlasitosti prehrávača</string>
+    <string name="show_search_suggestions_title">Návrhy pri hľadaní</string>
+    <string name="show_search_suggestions_summary">Zobrazovať návrhy pri hľadaní</string>
+
+    <string name="settings_category_popup_title">V okne</string>
+    <string name="popup_resizing_indicator_title">Zmena veľkosti</string>
+
     </resources>
