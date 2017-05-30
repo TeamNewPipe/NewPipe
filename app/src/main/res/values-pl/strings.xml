@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="main_bg_subtitle">Wciśnij wyszukaj, aby rozpocząć</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="main_bg_subtitle">Stuknij wyszukaj, aby rozpocząć</string>
     <string name="install">Instaluj</string>
     <string name="cancel">Anuluj</string>
     <string name="open_in_browser">Otwórz w przeglądarce</string>
@@ -67,7 +67,7 @@
     <string name="general_error">Błąd</string>
     <string name="network_error">Błąd sieci</string>
     <string name="could_not_load_thumbnails">Nie można załadować wszystkich miniatur</string>
-    <string name="youtube_signature_decryption_error">Nie można zdeszyfrować sygnatury url filmu.</string>
+    <string name="youtube_signature_decryption_error">Nie można zdeszyfrować sygnatury URL filmu.</string>
     <string name="parsing_error">Nie można zanalizować strony.</string>
     <string name="light_parsing_error">Nie można całkowicie zanalizować strony.</string>
     <string name="content_not_available">Zawartość niedostępna.</string>
@@ -155,7 +155,7 @@
     <string name="start">Start</string>
     <string name="title_activity_channel">AktywnośćKanału</string>
     <string name="action_settings">Ustawienia</string>
-    <string name="reCaptchaActivity">CAPTCHA</string>
+    <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">Rozwiąż ReCAPTCHA</string>
     <string name="recaptcha_request_toast">Prośba o ReCAPTCHA</string>
 
