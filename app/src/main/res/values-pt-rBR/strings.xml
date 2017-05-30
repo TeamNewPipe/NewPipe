@@ -12,7 +12,7 @@
     <string name="video_is_age_restricted">Vídeo com restrição de idade. Ative os vídeos com restrição de idade nas configurações.</string>
     <string name="video">Vídeo</string>
     <string name="autoplay_by_calling_app_summary">Reproduz o vídeo automaticamente quando o NewPipe for aberto a partir de outro app.</string>
-    <string name="autoplay_by_calling_app_title">Reproduzir automaticamente</string>
+    <string name="autoplay_by_calling_app_title">Reproduzir automaticamente quando chamado a partir de outro aplicativo</string>
     <string name="black_theme_title">Preto</string>
     <string name="blocked_by_gema">Bloqueado pelo GEMA.</string>
     <string name="cancel">Cancelar</string>
@@ -20,7 +20,7 @@
     <string name="choose_browser">Escolher navegador</string>
     <string name="content">Conteúdo</string>
     <string name="content_not_available">Conteúdo não disponível.</string>
-    <string name="could_not_get_stream">Não foi possível carregar nenhum stream.</string>
+    <string name="could_not_get_stream">Não foi possível obter nenhuma stream.</string>
     <string name="could_not_load_image">Não foi possível carregar a imagem</string>
     <string name="could_not_load_thumbnails">Não foi possível carregar todas as miniaturas</string>
     <string name="dark_theme_title">Escuro</string>
@@ -57,9 +57,9 @@
     <string name="reCaptcha_title">Desafio reCAPTCHA</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
     <string name="report_error">Reportar um erro</string>
-    <string name="retry">Tentar de novo</string>
+    <string name="retry">Tentar novamente</string>
     <string name="screen_rotation">Rotação</string>
-    <string name="search_language_title">Idioma preferido de conteúdo</string>
+    <string name="search_language_title">Idioma de conteúdo preferido</string>
     <string name="settings">Configurações</string>
     <string name="settings_activity_title">Configurações</string>
     <string name="settings_category_appearance_title">Aparência</string>
@@ -73,7 +73,7 @@
     <string name="similar_videos_btn_text">Vídeos relacionados</string>
     <string name="sorry_string">Desculpe, isto não deveria acontecer.</string>
     <string name="start">Iniciar</string>
-    <string name="storage_permission_denied">Permissão para acessar o armazenamento negada</string>
+    <string name="storage_permission_denied">Permissão para acessar armazenamento negada</string>
     <string name="switch_mode">Alternar entre lista e grade</string>
     <string name="text">Texto</string>
     <string name="theme_title">Tema</string>
@@ -91,7 +91,7 @@
     <string name="background_player_playing_toast">Reproduzindo em segundo plano</string>
     <string name="could_not_setup_download_menu">Não foi possível preparar o menu de download.</string>
     <string name="detail_thumbnail_view_description">Thumbnail do vídeo</string>
-    <string name="detail_uploader_thumbnail_view_description">Thumbnail do usuário que enviou o vídeo</string>
+    <string name="detail_uploader_thumbnail_view_description">Miniatura do usuário que enviou o vídeo</string>
     <string name="download_path_audio_dialog_title">Informe o local para download de áudios.</string>
     <string name="download_path_audio_summary">Local para salvar áudios baixados</string>
     <string name="download_path_audio_title">Local de download de áudio</string>
@@ -110,7 +110,7 @@
     <string name="info_searched_lbl">Busca por:</string>
     <string name="kore_not_found">App Kore não instalado. Instalar?</string>
     <string name="light_parsing_error">Não foi possível interpretar completamente o site.</string>
-    <string name="list_thumbnail_view_description">Thumbnail do vídeo</string>
+    <string name="list_thumbnail_view_description">Miniatura do vídeo</string>
     <string name="live_streams_not_supported">Transmissões ao vivo ainda não são suportadas.</string>
     <string name="loading">Carregando</string>
     <string name="logging">Nível de log</string>
@@ -183,14 +183,14 @@ abrir em modo popup</string>
 
     <string name="controls_background_title">Plano de fundo</string>
     <string name="popup_remember_size_pos_title">Lembrar tamanho e posição do popup</string>
-    <string name="popup_remember_size_pos_summary">Lembrar do último tamanho e posição definido no popup</string>
+    <string name="popup_remember_size_pos_summary">Lembrar do último tamanho e posição definido para o popup</string>
 
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Redimensionamento</string>
 
     <string name="use_external_video_player_summary">Algumas resoluções não terão áudio quando esta opção estiver habilitada</string>
     <string name="player_gesture_controls_title">Controle do player por gestos</string>
-    <string name="player_gesture_controls_summary">Use gestos para controlar o brilho da tela e volume do player</string>
+    <string name="player_gesture_controls_summary">Usar gestos para controlar o brilho da tela e volume do player</string>
     <string name="show_search_suggestions_title">Sugestões de busca</string>
     <string name="show_search_suggestions_summary">Mostrar sugestões quando pesquisar</string>
 
