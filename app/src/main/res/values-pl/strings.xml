@@ -18,7 +18,7 @@
     <string name="use_external_audio_player_title">Użyj zewnętrznego odtwarzacza audio</string>
 
     <string name="view_count_text">%1$s wyświetleń</string>
-    <string name="upload_date_text">"Opublikowany  %1$s"</string>
+    <string name="upload_date_text">Opublikowano %1$s</string>
     <string name="no_player_found">Nie znaleziono odtwarzacza strumieni. Zainstalować VLC?</string>
     <string name="background_player_name">Odtwarzacz w tle NewPipe</string>
     <string name="download_path_title">Ścieżka zapisu video</string>
