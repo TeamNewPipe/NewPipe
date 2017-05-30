@@ -162,4 +162,6 @@ abrir em modo popup</string>
     <string name="show_search_suggestions_title">Sugestões de busca</string>
     <string name="show_search_suggestions_summary">Mostrar sugestões quando pesquisar</string>
 
-</resources>
+<string name="best_resolution">Melhor resolução</string>
+
+    </resources>
