@@ -155,7 +155,7 @@
     <string name="start">Start</string>
     <string name="title_activity_channel">AktywnośćKanału</string>
     <string name="action_settings">Ustawienia</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptchaActivity">CAPTCHA</string>
     <string name="reCaptcha_title">Rozwiąż ReCAPTCHA</string>
     <string name="recaptcha_request_toast">Prośba o ReCAPTCHA</string>
 
