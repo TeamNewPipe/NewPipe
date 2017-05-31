@@ -193,4 +193,16 @@ abrir en ventanu emerxente</string>
     <string name="refresh">Refrescar</string>
     <string name="clear">Llimpiar</string>
 
+    <string name="use_external_video_player_summary">Delles resoluciones NUN tendrán audiu al habilitar esta opción</string>
+    <string name="popup_remember_size_pos_title">Tamañu y posición del ventanu emerxente</string>
+    <string name="popup_remember_size_pos_summary">Recuerda la cabera posición y resolución afitada nel ventanu emerxente</string>
+    <string name="player_gesture_controls_title">Controles per xestos del reproductor</string>
+    <string name="player_gesture_controls_summary">Usa xestos pa controlar el brilléu y volume del reproductor</string>
+    <string name="show_search_suggestions_title">Suxerencies de gueta</string>
+    <string name="show_search_suggestions_summary">Amuesa suxerencies al guetar</string>
+
+    <string name="settings_category_popup_title">Ventanu emerxente</string>
+    <string name="popup_resizing_indicator_title">Redimensionáu</string>
+
+    <string name="use_old_player_summary">Compilación vieya del reproductor Mediaframework.</string>
     </resources>
