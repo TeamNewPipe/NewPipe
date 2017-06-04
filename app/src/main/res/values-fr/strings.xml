@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="cancel">Annuler</string>
     <string name="choose_browser">Choisir un navigateur </string>
     <string name="default_resolution_title">Définition par défaut</string>
@@ -15,11 +15,13 @@
     <string name="play_with_kodi_title">Lire avec Kodi</string>
     <string name="screen_rotation">rotation</string>
     <string name="search">Rechercher</string>
+    <string name="search_page">"Numéro de la page de recherche : "</string>
     <string name="settings">Paramètres</string>
     <string name="share">Partager</string>
     <string name="share_dialog_title">Partager avec</string>
     <string name="show_play_with_kodi_summary">Afficher une option pour lire la vidéo via la médiathèque Kodi.</string>
     <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
+    <string name="settings_activity_title">Paramètres</string>
     <string name="upload_date_text">Ajoutée le %1$s</string>
     <string name="view_count_text">%1$s vues</string>
     <string name="play_audio">Audio</string>
@@ -30,6 +32,7 @@
     <string name="next_video_title">Vidéo suivante</string>
     <string name="show_next_and_similar_title">Afficher les vidéos suivantes et similaires</string>
     <string name="url_not_supported_toast">URL non pris en charge</string>
+    <string name="similar_videos_btn_text">Vidéos similaires</string>
     <string name="settings_category_video_audio_title">Vidéo et audio</string>
     <string name="settings_category_other_title">Autre</string>
 
@@ -42,11 +45,13 @@
     <string name="use_external_video_player_title">Utiliser un lecteur vidéo externe</string>
     <string name="use_external_audio_player_title">Utiliser un lecteur audio externe</string>
     <string name="background_player_playing_toast">Lecture en arrière-plan</string>
+    <string name="background_player_name">Lecteur NewPipe en arrière-plan</string>
+    <string name="loading">Chargement</string>
     <string name="play_btn_text">Lire</string>
 
     <string name="use_tor_title">Utiliser Tor</string>
     <string name="use_tor_summary">(Expérimental) Rediriger le trafic de téléchargement via Tor pour plus de confidentialité (streaming non supporté pour le moment).</string>
-    <string name="theme_title">Thème</string>
+<string name="theme_title">Thème</string>
     <string name="dark_theme_title">Sombre</string>
     <string name="light_theme_title">Clair</string>
 
@@ -59,7 +64,7 @@
 
     <string name="err_dir_create">Impossible de créer le répertoire de téléchargement « %1$s »</string>
     <string name="info_dir_created">Répertoire de téléchargement « %1$s » créé</string>
-    <string name="general_error">Erreur</string>
+<string name="general_error">Erreur</string>
     <string name="parsing_error">Impossible d\'analyser le site web.</string>
     <string name="content_not_available">Contenu non disponible.</string>
     <string name="blocked_by_gema">Bloqué par GEMA.</string>
@@ -78,25 +83,43 @@
     <string name="error_report_button_text">Signaler l\'erreur par e-mail</string>
     <string name="what_device_headline">Information :</string>
     <string name="what_happened_headline">Ce qui s\'est passé :</string>
+    <string name="info_requested_stream_lbl">Flux demandé :</string>
     <string name="your_comment">Votre commentaire (en anglais) :</string>
     <string name="error_details_headline">Détails :</string>
 
 
     <string name="report_error">Signaler une erreur</string>
+    <string name="enable_background_audio">Lire en arrière-plan</string>
     <string name="video">Vidéo</string>
     <string name="audio">Audio</string>
+    <string name="text">Texte</string>
+    <string name="logging_normal">Normal</string>
     <string name="retry">Réessayer</string>
+    <string name="error_drm_unsupported_scheme">Cet appareil ne supporte pas le système DRM requis</string>
+    <string name="error_drm_unknown">Une erreur DRM inconnue s\'est produite</string>
     <string name="storage_permission_denied">Autorisation d\'accès au stockage refusée</string>
-    <string name="main_bg_subtitle">Faites une recherche pour commencer</string>
+    <string name="use_exoplayer_title">Utiliser ExoPlayer</string>
+    <string name="use_exoplayer_summary">Expérimental</string>
+<string name="main_bg_subtitle">Faites une recherche pour commencer</string>
     <string name="autoplay_by_calling_app_title">Lecture automatique lors de l\'ouverture depuis une autre application</string>
     <string name="video_is_age_restricted">Cette vidéo est soumise à une restriction d\'âge. Autoriser le contenu restreint dans les paramètres avant.</string>
+    <string name="info_searched_lbl">Recherché :</string>
     <string name="user_report">Rapport utilisateur</string>
 
+    <string name="logging">Connexion</string>
+    <string name="error_drm_not_supported">Contenu protégé non supporté par les API antérieures à la version 18</string>
+    <string name="error_no_decoder">Cet appareil ne fournit pas de décodeur pour <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_secure_decoder">Cet appareil ne fournit pas de décodeur sécurisé pour <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_instantiating_decoder">Impossible d\'instancier le décodeur <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="error_snackbar_action">SIGNALER</string>
     <string name="could_not_setup_download_menu">Impossible de mettre en place le menu de téléchargement.</string>
     <string name="could_not_get_stream">Impossible d\'obtenir un flux.</string>
+    <string name="logging_verbose">Verbeux</string>
+    <string name="off">[désactivé]</string>
+    <string name="error_querying_decoders">Impossible d\'accéder aux décodeurs de l\'appareil</string>
     <string name="downloads">Téléchargements</string>
     <string name="downloads_title">Téléchargements</string>
+    <string name="settings_title">Paramètres</string>
     <string name="error_report_title">Rapport d\'erreur</string>
 
     <string name="start">Lire</string>
@@ -107,9 +130,13 @@
 
     <string name="add">Nouveau</string>
     <string name="finish">OK</string>
+    <string name="switch_mode">Commuter entre l\'affichage liste et grille</string>
 
+
+    <string name="msg_url">URL de téléchargement</string>
     <string name="msg_name">Nom du fichier</string>
     <string name="msg_threads">Threads</string>
+    <string name="msg_fetch_filename">Récupérer le nom du fichier</string>
     <string name="msg_error">Erreur</string>
     <string name="msg_server_unsupported">Serveur non supporté</string>
     <string name="msg_exists">Fichier déjà existant</string>
@@ -122,6 +149,8 @@
 
     <string name="could_not_load_image">L’image ne peut pas être chargée</string>
     <string name="app_ui_crash">L’appli/l’interface utilisateur a crashé</string>
+    <string name="title_activity_channel">Activité de la chaine</string>
+    <string name="action_settings">Paramètres</string>
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="black_theme_title">Noir</string>
@@ -149,19 +178,23 @@
     <string name="subscribe">S\'abonner</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
+    <string name="restart_title">Redémarrer</string>
 
+    <string name="msg_restart">Vous devez redémarrer l\'application pour appliquer le thème.
+
+Voulez-vous redémarrer maintenant ?</string>
     <string name="msg_popup_permission">Cette permission est nécessaire
 pour ouvrir en mode popup</string>
 
-    <string name="controls_background_title">Arrière plan</string>
+    <string name="controls_background_title">Arrière-plan</string>
     <string name="controls_popup_title">Lecture intégrée</string>
 
     <string name="default_popup_resolution_title">Résolution de la lecture intégrée</string>
     <string name="show_higher_resolutions_title">Afficher des résolutions plus grandes</string>
     <string name="show_higher_resolutions_summary">Seulement certains périphériques supportent la lecture 2k/4k</string>
     <string name="preferred_video_format_title">Format de vidéo préféré</string>
-    <string name="popup_remember_size_pos_title">Mémoriser taille et position lecteur intégré</string>
-    <string name="popup_remember_size_pos_summary">Mémoriser les dernier emplacement et taille du lecteur intégré</string>
+    <string name="popup_remember_size_pos_title">Mémoriser la taille et la position du lecteur intégré</string>
+    <string name="popup_remember_size_pos_summary">Mémoriser les derniers emplacements et la taille du lecteur intégré</string>
 
     <string name="settings_category_popup_title">Lecteur intégré</string>
     <string name="filter">Filtre</string>
@@ -173,4 +206,8 @@ pour ouvrir en mode popup</string>
     <string name="short_billion">M</string>
 
     <string name="use_external_video_player_summary">Certaines résolutions n\'auront PAS de son si cette option est activée</string>
-</resources>
+    <string name="player_gesture_controls_summary">Utilisez les gestes pour contrôler la luminosité et le volume du lecteur</string>
+    <string name="show_search_suggestions_title">Chercher des suggestions</string>
+    <string name="show_search_suggestions_summary">Montrer les suggestions pendant la recherche</string>
+
+    </resources>

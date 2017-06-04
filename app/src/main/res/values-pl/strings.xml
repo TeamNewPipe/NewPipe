@@ -1,23 +1,26 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="main_bg_subtitle">Stuknij wyszukaj, aby rozpocząć</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="main_bg_subtitle">Stuknij wyszukaj, aby rozpocząć</string>
     <string name="install">Instaluj</string>
     <string name="cancel">Anuluj</string>
     <string name="open_in_browser">Otwórz w przeglądarce</string>
     <string name="share">Udostępnij</string>
+    <string name="loading">Ładowanie</string>
     <string name="download">Pobierz</string>
     <string name="search">Wyszukaj</string>
     <string name="settings">Ustawienia</string>
     <string name="did_you_mean">Miałeś na myśli: %1$s ?</string>
+    <string name="search_page">"Szukana strona: "</string>
     <string name="share_dialog_title">Udostępnij przez</string>
     <string name="choose_browser">Wybierz przeglądarkę</string>
     <string name="screen_rotation">rotacja</string>
+    <string name="settings_activity_title">Ustawienia</string>
     <string name="use_external_video_player_title">Użyj zewnętrznego odtwarzacza video</string>
     <string name="use_external_audio_player_title">Użyj zewnętrznego odtwarzacza audio</string>
 
     <string name="view_count_text">%1$s wyświetleń</string>
-    <string name="upload_date_text">"Opublikowany  %1$s"</string>
+    <string name="upload_date_text">Opublikowano %1$s</string>
     <string name="no_player_found">Nie znaleziono odtwarzacza strumieni. Zainstalować VLC?</string>
+    <string name="background_player_name">Odtwarzacz w tle NewPipe</string>
     <string name="download_path_title">Ścieżka zapisu video</string>
     <string name="download_path_summary">Ścieżka zapisu pobranych video.</string>
     <string name="download_path_dialog_title">Podaj ścieżkę zapisu video</string>
@@ -45,6 +48,7 @@
     <string name="next_video_title">Następne video</string>
     <string name="show_next_and_similar_title">Pokaż następne i podobne filmy</string>
     <string name="url_not_supported_toast">URL nie obsługiwany</string>
+    <string name="similar_videos_btn_text">Podobne filmy</string>
     <string name="search_language_title">Preferowany język zawartości</string>
     <string name="settings_category_video_audio_title">Video i Audio</string>
     <string name="settings_category_appearance_title">Wygląd</string>
@@ -57,6 +61,7 @@
     <string name="duration_live">Na żywo</string>
     <string name="downloads">Pobrania</string>
     <string name="downloads_title">Pobrania</string>
+    <string name="settings_title">Ustawienia</string>
     <string name="error_report_title">Raport błędu</string>
 
     <string name="general_error">Błąd</string>
@@ -76,13 +81,9 @@
     <string name="error_snackbar_action">RAPORT</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Co się stało:</string>
-<<<<<<< HEAD
-    <string name="info_labels">Co:\\nŻądanie:\\nJęzyk zawartości:\\nUsługa:\\nCzas GMT:\\nPakiet:\\nWersja systemu:\\nGlobalny zakres IP:</string>
-=======
     <string name="info_labels">Co:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:\\nGlob. Zakres IP:</string>
     <string name="info_searched_lbl">Szukane dla:</string>
     <string name="info_requested_stream_lbl">Żądany strumień:</string>
->>>>>>> 409b36c254fea4ac30a73d11b6e949e45dfd8b99
     <string name="your_comment">Twój komentarz (po angielsku):</string>
     <string name="error_details_headline">Szczegóły:</string>
 
@@ -99,10 +100,21 @@
     <string name="err_dir_create">Nie można utworzyć katalogu pobierania \'%1$s\'</string>
     <string name="info_dir_created">Utworzono katalog pobierania \'%1$s\'</string>
 
+	<string name="enable_background_audio">Odtwarzaj w tle</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
+    <string name="text">Tekst</string>
+    <string name="logging">Logowanie</string>
+    <string name="logging_normal">Normalny</string>
+    <string name="logging_verbose">Szczegółowy</string>
     <string name="retry">Ponów</string>
+    <string name="off">[wył]</string>
+    <string name="error_drm_not_supported">Zabezpieczona zawartość nie jest wspierana w poziomach API mniejszych od 18</string>
+    <string name="error_drm_unsupported_scheme">To urządzenie nie wspiera wymaganego schematu DRM</string>
+    <string name="error_drm_unknown">Wystąpił nieznany błąd DRM</string>
     <string name="storage_permission_denied">Pozwolenie dostępu do pamięci zostało zabronione</string>
+    <string name="use_exoplayer_title">Użyj ExoPlayer</string>
+    <string name="use_exoplayer_summary">Experymentalne</string>
 
     <string name="pause">Pauza</string>
     <string name="view">Widok</string>
@@ -111,14 +123,13 @@
 
     <string name="add">Nowa misja</string>
     <string name="finish">OK</string>
+    <string name="switch_mode">Przełącz pomiędzy listą, a siatką</string>
 
 
+    <string name="msg_url">URL pobierania</string>
     <string name="msg_name">Nazwa pliku</string>
     <string name="msg_threads">Wątki</string>
-<<<<<<< HEAD
-=======
     <string name="msg_fetch_filename">Pobierz nazwę pliku</string>
->>>>>>> 409b36c254fea4ac30a73d11b6e949e45dfd8b99
     <string name="msg_error">Błąd</string>
     <string name="msg_server_unsupported">Serwer niewspierany</string>
     <string name="msg_exists">Plik już istnieje</string>
@@ -131,12 +142,6 @@
 
     <string name="could_not_load_image">Nie można załadować obrazu</string>
     <string name="app_ui_crash">Aplikacja/Interfejs uległ awarii</string>
-<<<<<<< HEAD
-    <string name="use_tor_summary">(Eksperymentalne) Wymuś pobieranie przez Tor dla zwiększonej prywatności 
-(streaming video nie jest jeszcze wspierany).</string>
-    <string name="start">Start</string>
-    <string name="reCaptchaActivity">CAPTCHA</string>
-=======
     <string name="use_tor_summary">(Eksperymentalne) Wymuś pobieranie przez Tor dla zwiększonej prywatności (strumieniowanie video nie jest jeszcze wspierane).</string>
     <string name="error_no_decoder">To urządzenie nie dostarcza dekodera dla 
 <xliff:g id="mime_type">
@@ -150,14 +155,10 @@
     <string name="start">Start</string>
     <string name="title_activity_channel">AktywnośćKanału</string>
     <string name="action_settings">Ustawienia</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
->>>>>>> 409b36c254fea4ac30a73d11b6e949e45dfd8b99
+    <string name="reCaptchaActivity">CAPTCHA</string>
     <string name="reCaptcha_title">Rozwiąż ReCAPTCHA</string>
     <string name="recaptcha_request_toast">Prośba o ReCAPTCHA</string>
 
-<<<<<<< HEAD
-</resources>
-=======
     <string name="error_querying_decoders">Nie można utworzyć zapytania o dekodery urządzenia</string>
     <string name="use_external_video_player_summary">Niektóre rozdzielczości nie będą miały dźwięku jeśli ta opcja jest włączona</string>
     <string name="controls_background_title">W tle</string>
@@ -204,4 +205,3 @@
     <string name="controls_popup_title">Wyskakujące okienko</string>
 
     </resources>
->>>>>>> 409b36c254fea4ac30a73d11b6e949e45dfd8b99
