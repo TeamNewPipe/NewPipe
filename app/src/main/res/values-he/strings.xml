@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="main_bg_subtitle">לחץ \"חפש\" כדי להתחיל</string>
-    <string name="background_player_name">NewPipe מנגן ברקע</string>
+<resources>
+    <string name="main_bg_subtitle">לחץ \"חפש\" כדי להתחיל</string>
     <string name="view_count_text">%1$s צפיות</string>
     <string name="upload_date_text">פורבם ב:-%1$s</string>
     <string name="no_player_found">לא נמצאו נגני רשת, להתקין את נגן הרשת VLC?</string>
@@ -9,16 +9,13 @@
     <string name="open_in_browser">פתח בדפדפן</string>
     <string name="open_in_popup_mode">פתח במצב חלון מוקטן</string>
     <string name="share">שתף</string>
-    <string name="loading">טוען</string>
     <string name="download">הורד</string>
     <string name="search">חפש</string>
     <string name="settings">הגדרות</string>
     <string name="did_you_mean">האם התכוונת ל-%1$s ?</string>
-    <string name="search_page">"דף החיפוש: "</string>
     <string name="share_dialog_title">שתף עם</string>
     <string name="choose_browser">בחר דפדפן</string>
     <string name="screen_rotation">סיבוב</string>
-    <string name="settings_activity_title">הגדרות</string>
     <string name="use_external_video_player_title">השתמש בנגן וידאו חיצוני</string>
     <string name="use_external_video_player_summary">לחלק מהסרטונים עם רזולוציה גבוהה לא יהיה שמע כאשר אפשרות זו פועלת</string>
     <string name="use_external_audio_player_title">השתמש בנגן וידאו חיצוני</string>
@@ -64,7 +61,6 @@
     <string name="next_video_title">הסרטון הבא</string>
     <string name="show_next_and_similar_title">הראה את הסרטונים הבאים וסרטונים דומים</string>
     <string name="url_not_supported_toast">כתובת URL לא נתמכת</string>
-    <string name="similar_videos_btn_text">סרטונים דומים</string>
     <string name="search_language_title">השפה המועדפת לסרטונים</string>
     <string name="settings_category_video_audio_title">וידאו ושמע</string>
     <string name="settings_category_popup_title">חלון מוקטן</string>
@@ -79,7 +75,6 @@
     <string name="duration_live">חי</string>
     <string name="downloads">הורדות</string>
     <string name="downloads_title">הורדות</string>
-    <string name="settings_title">הגדרות</string>
     <string name="error_report_title">דו\"ח שגיאה</string>
     <string name="all">הכל</string>
     <string name="channel">ערוץ</string>
@@ -111,4 +106,4 @@
     <string name="what_device_headline">מידע:</string>
     <string name="what_happened_headline">מה קרה:</string>
     <string name="info_labels">מה:\\nבקשה:\\nשפת התוכן:\\nשירות:\\nזמן GMT:\\nחבילה:\\nגרסה:\\nגרסת מערכת ההפעלה:\\nGlob. טווח IP:</string>
-    </resources>
+</resources>

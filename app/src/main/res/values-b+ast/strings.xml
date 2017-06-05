@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="main_bg_subtitle">Calca na gueta pa entamar</string>
-    <string name="background_player_name">Reproductor de fondu NewPipe</string>
+<resources>
+    <string name="main_bg_subtitle">Calca na gueta pa entamar</string>
     <string name="view_count_text">%1$s visiones</string>
     <string name="upload_date_text">Espublizáu\'l %1$s</string>
     <string name="no_player_found">Nun s\'alcontró un reproductor de fluxos. ¿Quies instalar VLC?</string>
@@ -8,7 +8,6 @@
     <string name="cancel">Encaboxar</string>
     <string name="open_in_browser">Abrir nel restolador</string>
     <string name="share">Compartir</string>
-    <string name="loading">Cargando</string>
     <string name="download">Baxar</string>
     <string name="search">Guetar</string>
     <string name="settings">Axustes</string>
@@ -16,7 +15,6 @@
     <string name="share_dialog_title">Compartir con</string>
     <string name="choose_browser">Escoyer restolador</string>
     <string name="screen_rotation">rotación</string>
-    <string name="settings_activity_title">Axustes</string>
     <string name="use_external_video_player_title">Usar reproductor de videu esternu</string>
     <string name="use_external_audio_player_title">Usar reproductor d\'audiu esternu</string>
 
@@ -45,7 +43,6 @@
     <string name="next_video_title">Videu siguiente</string>
     <string name="show_next_and_similar_title">Amosar vídeos siguientes y asemeyaos</string>
     <string name="url_not_supported_toast">URL non sofitada</string>
-    <string name="similar_videos_btn_text">Vídeos asemeyaos</string>
     <string name="search_language_title">Llingua de conteníu preferíu</string>
     <string name="settings_category_video_audio_title">Videu y audiu</string>
     <string name="settings_category_appearance_title">Aspeutu</string>
@@ -58,7 +55,6 @@
     <string name="duration_live">en direuto</string>
     <string name="downloads">Descargues</string>
     <string name="downloads_title">Descargues</string>
-    <string name="settings_title">Axustes</string>
     <string name="error_report_title">Informe de fallu</string>
 
     <string name="general_error">Fallu</string>
@@ -78,8 +74,6 @@
     <string name="error_snackbar_action">INFORMAR</string>
     <string name="what_device_headline">Información:</string>
     <string name="what_happened_headline">Qué asocedió:</string>
-    <string name="info_searched_lbl">Guetóse:</string>
-    <string name="info_requested_stream_lbl">Tresmisión solicitada:</string>
     <string name="your_comment">El to comentariu (n\'inglés):</string>
     <string name="error_details_headline">Detalles:</string>
 
@@ -95,23 +89,10 @@
     <string name="err_dir_create">Nun pue crease\'l direutoriu de descarga «%1$s»</string>
     <string name="info_dir_created">Creose\'l direutoriu de descarga «%1$s»</string>
 
-	<string name="enable_background_audio">Reproducir de fondu</string>
     <string name="video">Videu</string>
     <string name="audio">Audiu</string>
-    <string name="text">Testu</string>
-    <string name="logging">Rexistru</string>
-    <string name="logging_normal">Normal</string>
-    <string name="logging_verbose">Detalláu</string>
     <string name="retry">Retentar</string>
-    <string name="off">[desactivao]</string>
-    <string name="error_drm_not_supported">Conteníu protexíu non sofitáu en niveles d\'API pembaxo de 18</string>
-    <string name="error_drm_unsupported_scheme">Esti preséu nun sofita l\'esquema DRM riquíu</string>
-    <string name="error_drm_unknown">Asocedió un fallu de DRM desconocíu</string>
-    <string name="error_no_decoder">Esti preséu nun apurre un descodificador pa <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_no_secure_decoder">Esti preséu nun apurre un descodificador seguru pa <xliff:g id="mime_type">%1$s</xliff:g></string>
     <string name="storage_permission_denied">Ñegóse l\'accesu al almacenamientu</string>
-    <string name="use_exoplayer_title">Usar ExoPlayer</string>
-    <string name="use_exoplayer_summary">Esperimental</string>
 
     <string name="start">Aniciar</string>
     <string name="pause">Posar</string>
@@ -121,7 +102,6 @@
 
     <string name="add">Misión nueva</string>
     <string name="finish">Val</string>
-    <string name="msg_url">URL de descarga</string>
     <string name="msg_name">Nome de ficheru</string>
     <string name="msg_threads">Filos</string>
     <string name="msg_error">Fallu</string>
@@ -137,14 +117,9 @@
     <string name="autoplay_by_calling_app_title">Auto-reproducir al llamar dende otra aplicación</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura del xubidor</string>
     <string name="detail_dislikes_img_view_description">Despréstames</string>
-    <string name="error_querying_decoders">Nun puen consultase los descodificadores del preséu</string>
-    <string name="error_instantiating_decoder">Nun pue instanciase\'l descodificador <xliff:g id="decoder_name">%1$s</xliff:g></string>
-    <string name="switch_mode">Conmutar ente llistáu y rexáu</string>
 
 
-    <string name="msg_fetch_filename">Dir en cata del nome de ficheru</string>
     <string name="msg_running">NewPipe baxando</string>
-    <string name="search_page">"Guetar páxina: "</string>
     <string name="could_not_load_image">Nun pudo cargase la imaxe</string>
     <string name="app_ui_crash">Cascó l\'aplicación/IU</string>
     <string name="info_labels"/>
@@ -170,15 +145,9 @@
     <string name="short_thousand">M</string>
     <string name="short_million">Mill</string>
     <string name="short_billion">MMill</string>
-    <string name="restart_title">Reaniciar</string>
-
-    <string name="msg_restart">Tienes de reaniciar l\'aplicación p\'aplicar el tema.
-
-¿Quies reaniciala agora?</string>
     <string name="msg_popup_permission">Precísase esti permisu pa
 abrir en ventanu emerxente</string>
 
-    <string name="action_settings">Axustes</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">Prueba reCAPTCHA</string>
     <string name="recaptcha_request_toast">Prueba reCAPTCHA solicitada</string>
@@ -205,4 +174,4 @@ abrir en ventanu emerxente</string>
     <string name="popup_resizing_indicator_title">Redimensionáu</string>
 
     <string name="use_old_player_summary">Compilación vieya del reproductor Mediaframework.</string>
-    </resources>
+</resources>

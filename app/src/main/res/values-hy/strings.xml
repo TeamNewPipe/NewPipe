@@ -1,18 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
     <string name="main_bg_subtitle">Սեղմեք որոնման կոճակը որ սկսել</string>
     <string name="search">Որոնել</string>
     <string name="downloads">Բեռնված</string>
     <string name="downloads_title">Բեռնված</string>
     <string name="settings">Պարամետրեր</string>
-    <string name="settings_title">Պարամետրեր</string>
-<string name="share">Կիսվել</string>
+    <string name="share">Կիսվել</string>
     <string name="black_theme_title">Սև</string>
     <string name="theme_title">Թեմա</string>
     <string name="next_video_title">Հաջորդ վիդեո</string>
     <string name="light_theme_title">Բաց</string>
     <string name="dark_theme_title">Մուգ</string>
-    <string name="similar_videos_btn_text">Նման տեսանյութեր</string>
     <string name="msg_wait">Սպասեք…</string>
     <string name="msg_exists">Ֆայլ արդեն կա</string>
     <string name="msg_error">Սխալ</string>
@@ -31,6 +29,5 @@
     <string name="install">Տեղադրել</string>
     <string name="cancel">Վերացնել</string>
     <string name="open_in_browser">Բացել բրաուզերում</string>
-    <string name="loading">Բեռնում</string>
     <string name="choose_browser">Ընտրեք բրաուզերը</string>
-    </resources>
+</resources>
