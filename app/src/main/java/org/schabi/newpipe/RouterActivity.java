@@ -33,26 +33,39 @@ import java.util.HashSet;
  * to the part of the service which can handle the url.
  */
 public class RouterActivity extends Activity {
-    //private static final String TAG = "RouterActivity"
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        String videoUrl = getUrl(getIntent());
+        handleUrl(videoUrl);
+
+        finish();
+    }
+
+    protected void handleUrl(String url) {
+        try {
+            NavigationHelper.openByLink(this, url);
+        } catch (Exception e) {
+            Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Utils
+    //////////////////////////////////////////////////////////////////////////*/
 
     /**
      * Removes invisible separators (\p{Z}) and punctuation characters including
      * brackets (\p{P}). See http://www.regular-expressions.info/unicode.html for
      * more details.
      */
-    private final static String REGEX_REMOVE_FROM_URL = "[\\p{Z}\\p{P}]";
+    protected final static String REGEX_REMOVE_FROM_URL = "[\\p{Z}\\p{P}]";
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        handleIntent(getIntent());
-        finish();
-    }
-
-    private void handleIntent(Intent intent) {
-        String videoUrl = "";
-
+    protected String getUrl(Intent intent) {
         // first gather data and find service
+        String videoUrl = null;
         if (intent.getData() != null) {
             // this means the video was called though another app
             videoUrl = intent.getData().toString();
@@ -62,14 +75,10 @@ public class RouterActivity extends Activity {
             videoUrl = getUris(extraText)[0];
         }
 
-        try {
-            NavigationHelper.openByLink(this, videoUrl);
-        } catch (Exception e) {
-            Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG).show();
-        }
+        return videoUrl;
     }
 
-    private static String removeHeadingGibberish(final String input) {
+    protected String removeHeadingGibberish(final String input) {
         int start = 0;
         for (int i = input.indexOf("://") - 1; i >= 0; i--) {
             if (!input.substring(i, i + 1).matches("\\p{L}")) {
@@ -80,7 +89,7 @@ public class RouterActivity extends Activity {
         return input.substring(start, input.length());
     }
 
-    private static String trim(final String input) {
+    protected String trim(final String input) {
         if (input == null || input.length() < 1) {
             return input;
         } else {
@@ -103,7 +112,7 @@ public class RouterActivity extends Activity {
      * @param sharedText text to scan for URLs.
      * @return potential URLs
      */
-    private String[] getUris(final String sharedText) {
+    protected String[] getUris(final String sharedText)  {
         final Collection<String> result = new HashSet<>();
         if (sharedText != null) {
             final String[] array = sharedText.split("\\p{Space}");

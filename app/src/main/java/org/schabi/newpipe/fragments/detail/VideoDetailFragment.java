@@ -314,7 +314,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         switch (requestCode) {
             case ReCaptchaActivity.RECAPTCHA_REQUEST:
                 if (resultCode == Activity.RESULT_OK) {
-                    NavigationHelper.openVideoDetail(onItemSelectedListener, serviceId, videoUrl, videoTitle);
+                    NavigationHelper.openVideoDetailFragment(getFragmentManager(), serviceId, videoUrl, videoTitle);
                 } else Log.e(TAG, "ReCaptcha failed");
                 break;
             default:
@@ -354,7 +354,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
                 openInPopup();
                 break;
             case R.id.detail_uploader_button:
-                NavigationHelper.openChannel(onItemSelectedListener, currentStreamInfo.service_id, currentStreamInfo.channel_url, currentStreamInfo.uploader);
+                NavigationHelper.openChannelFragment(getFragmentManager(), currentStreamInfo.service_id, currentStreamInfo.channel_url, currentStreamInfo.uploader);
                 break;
             case R.id.detail_thumbnail_background_button:
                 playVideo(currentStreamInfo);

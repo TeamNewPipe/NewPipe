@@ -69,7 +69,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        Log.d("TAG", "onPreferenceTreeClick() called with: preferenceScreen = [" + preferenceScreen + "], preference = [" + preference + "]");
+        if (MainActivity.DEBUG) Log.d("TAG", "onPreferenceTreeClick() called with: preferenceScreen = [" + preferenceScreen + "], preference = [" + preference + "]");
         if (preference.getKey().equals(DOWNLOAD_PATH_PREFERENCE) || preference.getKey().equals(DOWNLOAD_PATH_AUDIO_PREFERENCE)) {
             Intent i = new Intent(activity, FilePickerActivity.class)
                     .putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
@@ -87,7 +87,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("TAG", "onActivityResult() called with: requestCode = [" + requestCode + "], resultCode = [" + resultCode + "], data = [" + data + "]");
+        if (MainActivity.DEBUG) Log.d("TAG", "onActivityResult() called with: requestCode = [" + requestCode + "], resultCode = [" + resultCode + "], data = [" + data + "]");
 
         if ((requestCode == REQUEST_DOWNLOAD_PATH || requestCode == REQUEST_DOWNLOAD_AUDIO_PATH) && resultCode == Activity.RESULT_OK) {
             String key = getString(requestCode == REQUEST_DOWNLOAD_PATH ? R.string.download_path_key : R.string.download_path_audio_key);
@@ -101,7 +101,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         }
     }
 
-    /**
+    /*
      * Update ONLY the summary of some preferences that don't fire in the onSharedPreferenceChanged or CAN'T be update via xml (%s)
      *
      * For example, the download_path use the startActivityForResult, firing the onStop of this fragment,
@@ -114,7 +114,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        Log.d("TAG", "onSharedPreferenceChanged() called with: sharedPreferences = [" + sharedPreferences + "], key = [" + key + "]");
+        if (MainActivity.DEBUG) Log.d("TAG", "onSharedPreferenceChanged() called with: sharedPreferences = [" + sharedPreferences + "], key = [" + key + "]");
         String summary = null;
 
         if (key.equals(USE_TOR_KEY)) {
@@ -131,10 +131,10 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         } else if (key.equals(THEME)) {
             summary = sharedPreferences.getString(THEME, getString(R.string.default_theme_value));
             if (!summary.equals(currentTheme)) { // If it's not the current theme
-                Intent intentToMain = new Intent(activity, MainActivity.class);
-                intentToMain.putExtra(Constants.KEY_THEME_CHANGE, true);
-                startActivity(intentToMain);
+                getActivity().recreate();
             }
+
+            defaultPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, true).apply();
         }
 
         if (!TextUtils.isEmpty(summary)) findPreference(key).setSummary(summary);
