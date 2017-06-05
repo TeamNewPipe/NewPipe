@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
     <string name="view_count_text">%1$s megtekintés</string>
     <string name="upload_date_text">Közzétéve: %1$s</string>
     <string name="no_player_found">Nem található megfelelő lejátszó. Feltelepíti a VLC lejátszót?</string>
@@ -11,11 +11,9 @@
     <string name="search">Keresés</string>
     <string name="settings">Beállítások</string>
     <string name="did_you_mean">Erre gondolt: %1$s ?</string>
-    <string name="search_page">"Keresőlap: "</string>
     <string name="share_dialog_title">Megosztás ezzel</string>
     <string name="choose_browser">Válasszon böngészőt</string>
     <string name="screen_rotation">forgatás</string>
-    <string name="settings_activity_title">Beállítások</string>
     <string name="download_path_title">Videófájlok letöltési helye</string>
     <string name="download_path_summary">Útvonal a letöltött videók tárolásához.</string>
     <string name="download_path_dialog_title">Adja meg a videófájlok letöltési helyét</string>
@@ -29,20 +27,13 @@
     <string name="webm_description">WebM — szabad formátum</string>
     <string name="m4a_description">m4a — jobb minőség</string>
     <string name="download_dialog_title">Letöltés</string>
-    <string-array name="downloadOptions">
-        <item>Videó</item>
-        <item>Hang</item>
-    </string-array>
     <string name="next_video_title">Következő videó</string>
     <string name="url_not_supported_toast">A webcím nem támogatott</string>
-    <string name="similar_videos_btn_text">Hasonló videók</string>
-<string name="use_external_video_player_title">Külső videólejátszó használata</string>
+    <string name="use_external_video_player_title">Külső videólejátszó használata</string>
     <string name="use_external_audio_player_title">Külső hanglejátszó használata</string>
 
     <string name="download_path_audio_dialog_title">Adja meg a hangfájlok letöltési helyét.</string>
 
-    <string name="background_player_name">NewPipe Háttérlejátszó</string>
-    <string name="loading">Töltés</string>
     <string name="use_tor_title">Tor használata</string>
     <string name="use_tor_summary">(Kísérleti) Adatforgalom Tor-on keresztüli kényszerítése a biztonság fokozása érdekében (a videó stream-elés még nem támogatott).</string>
 
@@ -68,15 +59,13 @@
     <string name="detail_uploader_thumbnail_view_description">Fetöltő profilképe</string>
     <string name="err_dir_create">Nem lehet létrehozni a letöltési mappát \'%1$s\'</string>
     <string name="info_dir_created">Letöltés mappa létrehozása \'%1$s\'</string>
-<string name="content">Tartalom</string>
+    <string name="content">Tartalom</string>
     <string name="show_age_restricted_content_title">Korhatáros tartalom mutatása</string>
     <string name="general_error">Hiba</string>
     <string name="content_not_available">A tartalom nem elérhető.</string>
     <string name="blocked_by_gema">GEMA által blokkolt.</string>
     <string name="live_streams_not_supported">Ez egy élö közvetités. Még nem támogatva.</string>
-    <string name="use_exoplayer_title">ExoPlayer használata</string>
-    <string name="use_exoplayer_summary">Kísérleti</string>
-<string name="autoplay_by_calling_app_title">Automatikus lejátszás külső indítás esetén</string>
+    <string name="autoplay_by_calling_app_title">Automatikus lejátszás külső indítás esetén</string>
     <string name="autoplay_by_calling_app_summary">Videók automatikus lejátszása a NewPipe külső indításakor.</string>
     <string name="video_is_age_restricted">A video korhatáros. A megtekintéséhez engedélyezze a korhatáros videókat.</string>
     <string name="duration_live">élő</string>
@@ -88,8 +77,6 @@
     <string name="error_details_headline">Részletek:</string>
 
 
-    <string name="info_searched_lbl">Keresés:</string>
-    <string name="info_requested_stream_lbl">Kívánt stream:</string>
     <string name="error_snackbar_message">Sajnos hiba történt.</string>
     <string name="sorry_string">Ennek nem kellett volna megtörténnie.</string>
     <string name="error_report_button_text">Hibajelentés emailben</string>
@@ -97,34 +84,20 @@
     <string name="could_not_setup_download_menu">Nem sikerült a letöltés menü beállítása.</string>
     <string name="youtube_signature_decryption_error">Nem sikerült a video url aláírás azonosítása.</string>
     <string name="storage_permission_denied">Háttértárhoz való hozzáférés megtagadva</string>
-    <string name="error_drm_unknown">Ismeretlen DRM hiba történt</string>
     <string name="retry">Újra</string>
-    <string name="text">Szöveg</string>
-    <string name="enable_background_audio">Háttérben való lejátszás</string>
     <string name="report_error">Hibajelentés</string>
     <string name="user_report">Felhasználói jelentés</string>
 
     <string name="video">Videó</string>
     <string name="audio">Audio</string>
-    <string name="logging_normal">Normál</string>
-    <string name="logging_verbose">Terjedelmes</string>
-    <string name="off">[ki]</string>
     <string name="main_bg_subtitle">A kezdéshez koppints a keresésre</string>
     <string name="could_not_load_thumbnails">Nem sikerült az összes előnézeti kép betöltése</string>
     <string name="parsing_error">Nem sikerült a weblap betöltése.</string>
     <string name="light_parsing_error">Nem sikerült a weblap teljes betöltése.</string>
-    <string name="error_drm_not_supported">Védett tartalom nincs támogatva 18-as API alatt (Android 4.3)</string>
-    <string name="error_drm_unsupported_scheme">Ez az eszköz nem támogatja a szükséges DRM sémát</string>
-    <string name="logging">Naplózás</string>
-    <string name="error_no_decoder">Ez az eszköz nem rendelkezik dekóderrel a következőhöz: <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_no_secure_decoder">Ez az eszköz nem rendelkezik biztonságos dekóderrel a következőhöz: <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_querying_decoders">Nem lehet lekérdezni az eszköz dekódereit</string>
     <string name="downloads">Letöltések</string>
     <string name="downloads_title">Letöltések</string>
-    <string name="settings_title">Beállítások</string>
     <string name="error_report_title">Hibabejelentés</string>
 
-    <string name="error_instantiating_decoder">Dekóder hiba: <xliff:g id="decoder_name">%1$S</xliff:g></string>
     <string name="start">Indít</string>
     <string name="pause">Szünet</string>
     <string name="view">Megtekintés</string>
@@ -132,8 +105,6 @@
     <string name="checksum">Ellenőrző összeg</string>
 
     <string name="finish">Ok</string>
-    <string name="switch_mode">Nézet váltása</string>
-
 
     <string name="msg_name">Filenév</string>
     <string name="msg_threads">Threadek</string>
@@ -146,8 +117,6 @@
     <string name="msg_copied">Vágólapra másolva.</string>
     <string name="no_available_dir">Kérlek válassz egy létező könyvtárat a letöltésekhez.</string>
 
-    <string name="msg_url">Eredeti URL</string>
     <string name="msg_server_unsupported">Nem támogatott szerver</string>
-    <string name="msg_fetch_filename">Filenév lekérése</string>
     <string name="add">Új küldetés</string>
-    </resources>
+</resources>

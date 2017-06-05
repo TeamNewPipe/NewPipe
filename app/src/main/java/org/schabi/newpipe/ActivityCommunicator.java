@@ -20,10 +20,6 @@ package org.schabi.newpipe;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import android.graphics.Bitmap;
-
-import java.util.List;
-
 /**
  * Singleton:
  * Used to send data between certain Activity/Services within the same process.
@@ -38,9 +34,6 @@ public class ActivityCommunicator {
         }
         return activityCommunicator;
     }
-
-    // Thumbnail send from VideoItemDetailFragment to BackgroundPlayer
-    public volatile Bitmap backgroundPlayerThumbnail;
 
     public volatile Class returnActivity;
 }

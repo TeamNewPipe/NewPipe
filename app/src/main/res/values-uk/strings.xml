@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="background_player_name">Фоновий програвач NewPipe</string>
+<resources>
     <string name="view_count_text">%1$s переглядів</string>
     <string name="upload_date_text">Опубліковано %1$s</string>
     <string name="no_player_found">Потоковий програвач не знайдено. Бажаєте встановити VLC?</string>
@@ -7,16 +7,13 @@
     <string name="cancel">Скасувати</string>
     <string name="open_in_browser">Відкрити в браузері</string>
     <string name="share">Поділитись</string>
-    <string name="loading">Завантаження</string>
     <string name="download">Завантажити</string>
     <string name="search">Пошук</string>
     <string name="settings">Налаштування</string>
     <string name="did_you_mean">Ви мали на увазі: %1$s ?</string>
-    <string name="search_page">"Пошукова сторінка: "</string>
     <string name="share_dialog_title">Поділитись з</string>
     <string name="choose_browser">Виберіть браузер</string>
     <string name="screen_rotation">обертання</string>
-    <string name="settings_activity_title">Налаштування</string>
     <string name="use_external_video_player_title">Використовувати зовнішній відео програвач</string>
     <string name="use_external_audio_player_title">Використовувати зовнішній аудіо програвач</string>
 
@@ -47,7 +44,6 @@
     <string name="next_video_title">Наступне відео</string>
     <string name="show_next_and_similar_title">Показувати наступні та схожі відео</string>
     <string name="url_not_supported_toast">URL не підтримується</string>
-    <string name="similar_videos_btn_text">Схожі відео</string>
     <string name="search_language_title">Переважна мова контенту</string>
     <string name="settings_category_video_audio_title">Відео та Аудіо</string>
     <string name="settings_category_appearance_title">Зовнішній вигляд</string>
@@ -55,9 +51,7 @@
     <string name="background_player_playing_toast">Відтворення у фоновому режимі</string>
     <string name="play_btn_text">Відтворити</string>
     <string name="storage_permission_denied">В доступі відмовлено</string>
-    <string name="use_exoplayer_title">Використовувати ExoPlayer</string>
-    <string name="use_exoplayer_summary">Експериментальний</string>
-<string name="content">Контент</string>
+    <string name="content">Контент</string>
     <string name="show_age_restricted_content_title">Показувати контент з віковим обмеженням</string>
     <string name="video_is_age_restricted">Відео має вікові обмеження. Спершу активуйте опцію для відображення таких відео в налаштуваннях.</string>
     <string name="duration_live">наживо</string>
@@ -84,7 +78,6 @@
 
     <string name="downloads">Завантаження</string>
     <string name="downloads_title">Завантаження</string>
-    <string name="settings_title">Налаштування</string>
     <string name="error_report_title">Звіт про помилку</string>
     <string name="all">Все</string>
     <string name="channel">Канал</string>
@@ -106,27 +99,13 @@
     <string name="err_dir_create">Не вдалося створити теку для завантаження \'%1$s\'</string>
     <string name="info_dir_created">Створити теку для завантаження \'%1$s\'</string>
 
-    <string name="enable_background_audio">Відтворювати у фоні</string>
     <string name="video">Відео</string>
     <string name="audio">Аудіо</string>
-    <string name="text">Текст</string>
     <string name="retry">Повторити</string>
-    <string name="off">[вимкнено]</string>
-    <string name="error_drm_not_supported">Захищений контент не підтримується версіями API нижче 18</string>
-    <string name="error_drm_unsupported_scheme">Поточний пристрій не підтримує необхідну схему DRM</string>
-    <string name="error_drm_unknown">Виникла невідома помилка DRM</string>
-    <string name="error_no_decoder">Поточний пристрій не підтримує декодер для <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_no_secure_decoder">Поточний пристрій не підтримує безпечний декодер для <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="logging">Звітування</string>
-    <string name="logging_normal">Нормальне</string>
-    <string name="logging_verbose">Детальне</string>
-    <string name="error_querying_decoders">На пристрої недоступний декодер</string>
-    <string name="error_instantiating_decoder">Не вдалося ініціювати декодер <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="use_old_player_title">Використовувати старий плеер</string>
     <string name="short_thousand">К</string>
     <string name="short_million">М</string>
     <string name="short_billion">Б</string>
-    <string name="restart_title">Перезапуск</string>
 
     <string name="start">Почати</string>
     <string name="pause">Пауза</string>
@@ -135,7 +114,6 @@
     <string name="checksum">Контрольна сума</string>
 
     <string name="finish">Гаразд</string>
-    <string name="msg_url">Завантажити URL</string>
     <string name="msg_name">Назва файлу</string>
     <string name="msg_threads">Потоки</string>
     <string name="msg_error">Помилка</string>
@@ -146,8 +124,5 @@
     <string name="msg_wait">Будь ласка, зачекайте…</string>
     <string name="msg_copied">Скопійовано до буферу обміну.</string>
     <string name="no_available_dir">Будь ласка, оберіть теку для завантаження.</string>
-    <string name="msg_restart">Ви маєте перезавантажити додаток, аби застосувати тему.
 
-Бажаєте перезапустити зараз?</string>
-    <string name="action_settings">Налаштування</string>
-    </resources>
+</resources>

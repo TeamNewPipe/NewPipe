@@ -31,20 +31,28 @@ public class ChannelExtractorWorker extends ExtractorWorker {
      * Interface which will be called for result and errors
      */
     public interface OnChannelInfoReceive {
-        void onReceive(ChannelInfo info);
+        void onReceive(ChannelInfo info, boolean onlyVideos);
         void onError(int messageId);
+        /**
+         * Called when an unrecoverable error has occurred.
+         * <p> This is a good place to finish the caller. </p>
+         */
+        void onUnrecoverableError(Exception exception);
     }
 
     /**
      * @param context           context for error reporting purposes
      * @param serviceId         id of the request service
      * @param channelUrl        channelUrl of the service (e.g. https://www.youtube.com/channel/UC_aEa8K-EOJ3D6gOs7HcyNg)
+     * @param pageNumber        which page to extract
+     * @param onlyVideos        flag that will be send by {@link OnChannelInfoReceive#onReceive(ChannelInfo, boolean)}
      * @param callback          listener that will be called-back when events occur (check {@link ChannelExtractorWorker.OnChannelInfoReceive})
      */
-    public ChannelExtractorWorker(Context context, int serviceId, String channelUrl, int pageNumber, OnChannelInfoReceive callback) {
+    public ChannelExtractorWorker(Context context, int serviceId, String channelUrl, int pageNumber, boolean onlyVideos, OnChannelInfoReceive callback) {
         super(context, channelUrl, serviceId);
         this.pageNumber = pageNumber;
         this.callback = callback;
+        this.onlyVideos = onlyVideos;
     }
 
     @Override
@@ -66,7 +74,7 @@ public class ChannelExtractorWorker extends ExtractorWorker {
             public void run() {
                 if (isInterrupted() || callback == null) return;
 
-                callback.onReceive(channelInfo);
+                callback.onReceive(channelInfo, onlyVideos);
                 onDestroy();
             }
         });
@@ -74,9 +82,11 @@ public class ChannelExtractorWorker extends ExtractorWorker {
 
 
     @Override
-    protected void handleException(Exception exception, int serviceId, String url) {
+    protected void handleException(final Exception exception, int serviceId, String url) {
+        if (callback == null || getHandler() == null || isInterrupted()) return;
+
         if (exception instanceof IOException) {
-            if (callback != null) getHandler().post(new Runnable() {
+            getHandler().post(new Runnable() {
                 @Override
                 public void run() {
                     callback.onError(R.string.network_error);
@@ -84,19 +94,21 @@ public class ChannelExtractorWorker extends ExtractorWorker {
             });
         } else if (exception instanceof ParsingException || exception instanceof ExtractionException) {
             ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL, getServiceName(), url, R.string.parsing_error));
-            finishIfActivity();
+            getHandler().post(new Runnable() {
+                @Override
+                public void run() {
+                    callback.onUnrecoverableError(exception);
+                }
+            });
         } else {
             ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL, getServiceName(), url, R.string.general_error));
-            finishIfActivity();
+            getHandler().post(new Runnable() {
+                @Override
+                public void run() {
+                    callback.onUnrecoverableError(exception);
+                }
+            });
         }
-    }
-
-    public boolean isOnlyVideos() {
-        return onlyVideos;
-    }
-
-    public void setOnlyVideos(boolean onlyVideos) {
-        this.onlyVideos = onlyVideos;
     }
 }
 

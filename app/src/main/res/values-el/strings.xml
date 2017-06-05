@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="background_player_name">NewPipe Background Player</string>
+<resources>
     <string name="view_count_text">%1$s προβολές</string>
     <string name="upload_date_text">Ανέβηκε στις %1$s</string>
     <string name="no_player_found">Δεν βρέθηκε πρόγραμμα αναπαραγωγής. Εγκατάσταση του VLC;</string>
@@ -7,16 +7,13 @@
     <string name="cancel">Ακύρωση</string>
     <string name="open_in_browser">Άνοιγμα στον browser</string>
     <string name="share">Κοινοποίηση</string>
-    <string name="loading">Φορτώνει</string>
     <string name="download">Λήψη</string>
     <string name="search">Αναζήτηση</string>
     <string name="settings">Ρυθμίσεις</string>
-    <string name="did_you_mean">"Μήπως εννοείτε: "</string>
-    <string name="search_page">"Αναζήτηση σελίδας: "</string>
+    <string name="did_you_mean">"Μήπως εννοείτε: %1$s ?"</string>
     <string name="share_dialog_title">Κοινοποίηση με</string>
     <string name="choose_browser">Επιλέξτε browser</string>
     <string name="screen_rotation">περιστροφή</string>
-    <string name="settings_activity_title">Ρυθμίσεις</string>
     <string name="use_external_video_player_title">Χρήση εξωτερικού video player</string>
     <string name="use_external_audio_player_title">Χρήση εξωτερικού audio player</string>
 
@@ -45,7 +42,6 @@
     <string name="next_video_title">Επόμενο video</string>
     <string name="show_next_and_similar_title">Προβολή επόμενου και σχετικών video</string>
     <string name="url_not_supported_toast">Δεν υποστηρίζεται η διεύθυνση URL</string>
-    <string name="similar_videos_btn_text">Σχετικά video</string>
     <string name="search_language_title">Προτιμώμενη γλώσσα περιεχομένου</string>
     <string name="settings_category_video_audio_title">Video &amp; Ήχος</string>
     <string name="settings_category_appearance_title">Εμφάνιση</string>

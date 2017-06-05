@@ -10,18 +10,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MenuInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
+
 import us.shandian.giga.get.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.adapter.MissionAdapter;
@@ -112,14 +110,16 @@ public abstract class MissionsFragment extends Fragment
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
+		return super.onOptionsItemSelected(item);
+
+		/*switch (item.getItemId()) {
 			case R.id.switch_mode:
 				mLinear = !mLinear;
 				updateList();
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
-		}
+		}*/
 	}
 
 	public void notifyChange() {

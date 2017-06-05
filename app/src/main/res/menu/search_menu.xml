@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/action_search"
-        android:icon="@android:drawable/ic_menu_search"
-        app:showAsAction="ifRoom"
-        android:title="@string/search"
-        app:actionViewClass="android.support.v7.widget.SearchView" />
+      xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <group android:id="@+id/search_filter_group"
-        android:checkableBehavior="single"
-        android:orderInCategory="999">
-        <item android:id="@+id/menu_filter_all"
-            android:title = "@string/all"
-            android:checked = "true"/>
-        <item android:id="@+id/menu_filter_video"
-            android:title = "@string/video"/>
-        <item android:id="@+id/menu_filter_channel"
-            android:title = "@string/channel"/>
-    </group>
+    <item
+        android:id="@+id/filter"
+        android:icon="?attr/filter"
+        android:title="@string/filter"
+        app:showAsAction="always">
+        <menu>
+            <group
+                android:id="@+id/search_filter_group"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_filter_all"
+                    android:checked="true"
+                    android:title="@string/all"/>
+                <item
+                    android:id="@+id/menu_filter_video"
+                    android:title="@string/video"/>
+                <item
+                    android:id="@+id/menu_filter_channel"
+                    android:title="@string/channel"/>
+            </group>
+        </menu>
+    </item>
+
+
 </menu>

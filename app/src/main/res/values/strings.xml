@@ -1,9 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
     <string name="app_name" translatable="false">NewPipe</string>
     <string name="main_bg_subtitle">Tap search to get started</string>
-    <string name="background_player_name">NewPipe Background Player</string>
-    <string name="title_videoitem_detail" translatable="false">NewPipe</string>
     <string name="view_count_text">%1$s views</string>
     <string name="upload_date_text">Published on %1$s</string>
     <string name="no_player_found">No stream player found. Do you want to install VLC?</string>
@@ -13,19 +11,21 @@
     <string name="open_in_browser">Open in browser</string>
     <string name="open_in_popup_mode">Open in popup mode</string>
     <string name="share">Share</string>
-    <string name="loading">Loading</string>
     <string name="download">Download</string>
     <string name="search">Search</string>
     <string name="settings">Settings</string>
     <string name="did_you_mean">Did you mean: %1$s ?</string>
-    <string name="search_page">"Search page: "</string>
     <string name="share_dialog_title">Share with</string>
     <string name="choose_browser">Choose browser</string>
     <string name="screen_rotation">rotation</string>
-    <string name="settings_activity_title">Settings</string>
     <string name="use_external_video_player_title">Use external video player</string>
+    <string name="use_external_video_player_summary">Some resolutions will NOT have audio when this option is enabled</string>
     <string name="use_external_audio_player_title">Use external audio player</string>
     <string name="popup_mode_share_menu_title">NewPipe Popup mode</string>
+    <string name="rss_button_title" translatable="false">RSS</string>
+
+    <string name="controls_background_title">Background</string>
+    <string name="controls_popup_title">Popup</string>
 
     <string name="download_path_title">Video download path</string>
     <string name="download_path_summary">Path to store downloaded videos in.</string>
@@ -38,6 +38,9 @@
     <string name="autoplay_by_calling_app_title">Autoplay when called from another app</string>
     <string name="autoplay_by_calling_app_summary">Automatically play a video when NewPipe is called from another app.</string>
     <string name="default_resolution_title">Default resolution</string>
+    <string name="default_popup_resolution_title">Default popup resolution</string>
+    <string name="show_higher_resolutions_title">Show higher resolutions</string>
+    <string name="show_higher_resolutions_summary">Only some devices support playing 2k/4k videos</string>
     <string name="play_with_kodi_title">Play with Kodi</string>
     <string name="kore_not_found">Kore app not found. Install Kore?</string>
     <string name="fdroid_kore_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
@@ -52,30 +55,29 @@
     <string name="light_theme_title">Light</string>
     <string name="dark_theme_title">Dark</string>
     <string name="black_theme_title">Black</string>
+    <string name="popup_remember_size_pos_title">Remember popup size and position</string>
+    <string name="popup_remember_size_pos_summary">Remember the last size and position set to the popup</string>
+    <string name="player_gesture_controls_title">Player gesture controls</string>
+    <string name="player_gesture_controls_summary">Use gestures to control the brightness and volume of the player</string>
+    <string name="show_search_suggestions_title">Search suggestions</string>
+    <string name="show_search_suggestions_summary">Show suggestions when searching</string>
 
     <string name="download_dialog_title">Download</string>
-    <string-array name="download_options">
-        <item>Video</item>
-        <item>Audio</item>
-    </string-array>
 
-    <string-array name="download_options_no_audio">
-        <item>Video</item>
-    </string-array>
-
-    <string-array name="download_options_no_video">
-        <item>Audio</item>
+    <string-array name="theme_description_list">
+        <item>@string/light_theme_title</item>
+        <item>@string/dark_theme_title</item>
+        <item>@string/black_theme_title</item>
     </string-array>
 
     <string name="next_video_title">Next video</string>
     <string name="show_next_and_similar_title">Show next and similar videos</string>
     <string name="url_not_supported_toast">URL not supported</string>
-    <string name="similar_videos_btn_text">Similar videos</string>
     <string name="search_language_title">Preferred content language</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
+    <string name="settings_category_popup_title">Popup</string>
     <string name="settings_category_appearance_title">Appearance</string>
     <string name="settings_category_other_title">Other</string>
-    <string name="background_player_time_text" translatable="false">%1$s - NewPipe</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="c3s_url" translatable="false">https://www.c3s.cc/</string>
@@ -86,13 +88,17 @@
     <string name="duration_live">live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
-    <string name="settings_title">Settings</string>
     <string name="error_report_title">Error report</string>
     <string name="all">All</string>
     <string name="channel">Channel</string>
     <string name="yes">Yes</string>
     <string name="later">Later</string>
     <string name="disabled">Disabled</string>
+    <string name="filter">Filter</string>
+    <string name="refresh">Refresh</string>
+    <string name="clear">Clear</string>
+    <string name="popup_resizing_indicator_title">Resizing</string>
+    <string name="best_resolution">Best resolution</string>
 
     <!-- error strings -->
     <string name="general_error">Error</string>
@@ -117,8 +123,6 @@
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">What happened:</string>
     <string name="info_labels">What:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:\\nGlob. IP range:</string>
-    <string name="info_searched_lbl">Searched for:</string>
-    <string name="info_requested_stream_lbl">Requested stream:</string>
     <string name="your_comment">Your comment (in English):</string>
     <string name="error_details_headline">Details:</string>
 
@@ -137,22 +141,9 @@
     <string name="err_dir_create">Cannot create download directory \'%1$s\'</string>
     <string name="info_dir_created">Created download directory \'%1$s\'</string>
 
-    <string name="enable_background_audio">Play in background</string>
     <string name="video">Video</string>
     <string name="audio">Audio</string>
-    <string name="text">Text</string>
-    <string name="logging">Logging</string>
-    <string name="logging_normal">Normal</string>
-    <string name="logging_verbose">Verbose</string>
     <string name="retry">Retry</string>
-    <string name="off">[off]</string>
-    <string name="error_drm_not_supported">Protected content not supported on API levels below 18</string>
-    <string name="error_drm_unsupported_scheme">This device does not support the required DRM scheme</string>
-    <string name="error_drm_unknown">An unknown DRM error occurred</string>
-    <string name="error_no_decoder">This device does not provide a decoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_no_secure_decoder">This device does not provide a secure decoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
-    <string name="error_querying_decoders">Unable to query device decoders</string>
-    <string name="error_instantiating_decoder">Unable to instantiate decoder <xliff:g id="decoder_name">%1$s</xliff:g></string>
     <string name="storage_permission_denied">Permission to access storage was denied</string>
     <string name="use_old_player_title">Use old player</string>
     <string name="use_old_player_summary">Old build in Mediaframework player.</string>
@@ -164,7 +155,6 @@
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-    <string name="restart_title">Restart</string>
 
     <!-- Missions -->
     <string name="start">Start</string>
@@ -176,14 +166,10 @@
     <!-- Fragment -->
     <string name="add">New mission</string>
     <string name="finish">Okay</string>
-    <string name="switch_mode">Switch between list and grid</string>
-
 
     <!-- Msg -->
-    <string name="msg_url">Download URL</string>
     <string name="msg_name">File name</string>
     <string name="msg_threads">Threads</string>
-    <string name="msg_fetch_filename">Fetch file name</string>
     <string name="msg_error">Error</string>
     <string name="msg_server_unsupported">Server unsupported</string>
     <string name="msg_exists">File already exists</string>
@@ -193,14 +179,11 @@
     <string name="msg_wait">Please wait…</string>
     <string name="msg_copied">Copied to clipboard.</string>
     <string name="no_available_dir">Please select an available download directory.</string>
-    <string name="msg_restart">You have to restart the application to apply the theme.\n\nDo you want to restart now?</string>
     <string name="msg_popup_permission">This permission is needed to\nopen in popup mode</string>
 
     <!-- Checksum types -->
     <string name="md5" translatable="false">MD5</string>
     <string name="sha1" translatable="false">SHA1</string>
-    <string name="title_activity_channel">ChannelActivity</string>
-    <string name="action_settings">Settings</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA Challenge</string>
     <string name="recaptcha_request_toast">reCAPTCHA Challenge requested</string>

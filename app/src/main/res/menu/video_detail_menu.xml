@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_item_download"
+        android:icon="?attr/download"
+        android:title="@string/download"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_play_with_kodi"
+        android:icon="?attr/cast"
+        android:title="@string/play_with_kodi_title"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/menu_item_share"
+        android:icon="?attr/share"
+        android:title="@string/share"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/menu_item_openInBrowser"
+        android:title="@string/open_in_browser"
+        app:showAsAction="never"/>
+</menu>

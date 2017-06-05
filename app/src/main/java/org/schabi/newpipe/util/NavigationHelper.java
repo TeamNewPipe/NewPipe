@@ -8,11 +8,62 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.stream_info.AudioStream;
+import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.fragments.OnItemSelectedListener;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
+import org.schabi.newpipe.player.BackgroundPlayer;
+import org.schabi.newpipe.player.BasePlayer;
+import org.schabi.newpipe.player.VideoPlayer;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NavigationHelper {
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Players
+    //////////////////////////////////////////////////////////////////////////*/
+
+    public static Intent getOpenVideoPlayerIntent(Context context, Class targetClazz, StreamInfo info, int selectedStreamIndex) {
+        Intent mIntent = new Intent(context, targetClazz)
+                .putExtra(BasePlayer.VIDEO_TITLE, info.title)
+                .putExtra(BasePlayer.VIDEO_URL, info.webpage_url)
+                .putExtra(BasePlayer.VIDEO_THUMBNAIL_URL, info.thumbnail_url)
+                .putExtra(BasePlayer.CHANNEL_NAME, info.uploader)
+                .putExtra(VideoPlayer.INDEX_SEL_VIDEO_STREAM, selectedStreamIndex)
+                .putExtra(VideoPlayer.VIDEO_STREAMS_LIST, Utils.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false))
+                .putExtra(VideoPlayer.VIDEO_ONLY_AUDIO_STREAM, Utils.getHighestQualityAudio(info.audio_streams));
+        if (info.start_position > 0) mIntent.putExtra(BasePlayer.START_POSITION, info.start_position * 1000);
+        return mIntent;
+    }
+
+
+    public static Intent getOpenVideoPlayerIntent(Context context, Class targetClazz, VideoPlayer instance) {
+        return new Intent(context, targetClazz)
+                .putExtra(BasePlayer.VIDEO_TITLE, instance.getVideoTitle())
+                .putExtra(BasePlayer.VIDEO_URL, instance.getVideoUrl())
+                .putExtra(BasePlayer.VIDEO_THUMBNAIL_URL, instance.getVideoThumbnailUrl())
+                .putExtra(BasePlayer.CHANNEL_NAME, instance.getChannelName())
+                .putExtra(VideoPlayer.INDEX_SEL_VIDEO_STREAM, instance.getSelectedStreamIndex())
+                .putExtra(VideoPlayer.VIDEO_STREAMS_LIST, instance.getVideoStreamsList())
+                .putExtra(VideoPlayer.VIDEO_ONLY_AUDIO_STREAM, instance.getAudioStream())
+                .putExtra(BasePlayer.START_POSITION, ((int) instance.getPlayer().getCurrentPosition()));
+    }
+
+    public static Intent getOpenBackgroundPlayerIntent(Context context, StreamInfo info) {
+        return getOpenBackgroundPlayerIntent(context, info, info.audio_streams.get(Utils.getPreferredAudioFormat(context, info.audio_streams)));
+    }
+
+    public static Intent getOpenBackgroundPlayerIntent(Context context, StreamInfo info, AudioStream audioStream) {
+        Intent mIntent = new Intent(context, BackgroundPlayer.class)
+                .putExtra(BasePlayer.VIDEO_TITLE, info.title)
+                .putExtra(BasePlayer.VIDEO_URL, info.webpage_url)
+                .putExtra(BasePlayer.VIDEO_THUMBNAIL_URL, info.thumbnail_url)
+                .putExtra(BasePlayer.CHANNEL_NAME, info.uploader)
+                .putExtra(BasePlayer.CHANNEL_NAME, info.uploader)
+                .putExtra(BackgroundPlayer.AUDIO_STREAM, audioStream);
+        if (info.start_position > 0) mIntent.putExtra(BasePlayer.START_POSITION, info.start_position * 1000);
+        return mIntent;
+    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Through Interface (faster)
@@ -64,6 +115,14 @@ public class NavigationHelper {
 
     public static void openMainActivity(Context context) {
         Intent mIntent = new Intent(context, MainActivity.class);
+        context.startActivity(mIntent);
+    }
+
+    public static void openSearch(Context context, int serviceId, String query) {
+        Intent mIntent = new Intent(context, MainActivity.class);
+        mIntent.putExtra(Constants.KEY_SERVICE_ID, serviceId);
+        mIntent.putExtra(Constants.KEY_QUERY, query);
+        mIntent.putExtra(Constants.KEY_OPEN_SEARCH, true);
         context.startActivity(mIntent);
     }
 

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+    <string name="main_bg_subtitle">Սեղմեք որոնման կոճակը որ սկսել</string>
+    <string name="search">Որոնել</string>
+    <string name="downloads">Բեռնված</string>
+    <string name="downloads_title">Բեռնված</string>
+    <string name="settings">Պարամետրեր</string>
+    <string name="share">Կիսվել</string>
+    <string name="black_theme_title">Սև</string>
+    <string name="theme_title">Թեմա</string>
+    <string name="next_video_title">Հաջորդ վիդեո</string>
+    <string name="light_theme_title">Բաց</string>
+    <string name="dark_theme_title">Մուգ</string>
+    <string name="msg_wait">Սպասեք…</string>
+    <string name="msg_exists">Ֆայլ արդեն կա</string>
+    <string name="msg_error">Սխալ</string>
+    <string name="msg_name">ֆայլի անունը</string>
+    <string name="finish">Այո</string>
+    <string name="delete">Ջնջել</string>
+    <string name="start">Սկսել</string>
+    <string name="subscribe">Բաժանորդագրվել</string>
+    <string name="subscriber_plural">Բաժանորդները</string>
+    <string name="subscriber">Բաժանորդ</string>
+    <string name="detail_likes_img_view_description">Հավանում եմ</string>
+    <string name="detail_dislikes_img_view_description">Չեմ հավանում</string>
+    <string name="clear">Մաքրել</string>
+    <string name="view_count_text">%1$s դիտում</string>
+    <string name="upload_date_text">Հրապարակվել է %1$s</string>
+    <string name="install">Տեղադրել</string>
+    <string name="cancel">Վերացնել</string>
+    <string name="open_in_browser">Բացել բրաուզերում</string>
+    <string name="choose_browser">Ընտրեք բրաուզերը</string>
+</resources>
