@@ -135,7 +135,7 @@
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="black_theme_title">Schwarz</string>
 
-    <string name="reCaptcha_title">reCAPTCHA Aufgabe</string>
+    <string name="reCaptcha_title">reCAPTCHA-Aufgabe</string>
     <string name="recaptcha_request_toast">reCAPTCHA Herausforderung angefordert</string>
 
     <string name="later">Später</string>
