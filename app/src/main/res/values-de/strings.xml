@@ -3,7 +3,7 @@
     <string name="view_count_text">%1$s Aufrufe</string>
     <string name="upload_date_text">Veröffentlicht am %1$s</string>
     <string name="no_player_found">Keinen Streamplayer gefunden. Möchtest du VLC installieren?</string>
-    <string name="install">Jetzt installieren</string>
+    <string name="install">Installieren</string>
     <string name="cancel">Abbrechen</string>
     <string name="open_in_browser">In Browser öffnen</string>
     <string name="share">Teilen</string>
@@ -172,7 +172,7 @@
     <string name="show_search_suggestions_title">Suchvorschläge</string>
     <string name="show_search_suggestions_summary">Beim Suchen Vorschläge anzeigen</string>
 
-    <string name="settings_category_popup_title">Popup</string>
+    <string name="settings_category_popup_title">Hinweis</string>
     <string name="filter">Filter</string>
     <string name="refresh">Aktualisieren</string>
     <string name="clear">Löschen</string>
