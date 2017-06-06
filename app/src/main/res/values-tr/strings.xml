@@ -19,20 +19,20 @@
     <string name="use_external_audio_player_title">Harici ses oynatıcı kullan</string>
 
     <string name="download_path_title">Video indirme konumu</string>
-    <string name="download_path_summary">İndirilen videoların saklanacağı konum.</string>
+    <string name="download_path_summary">İndirilen videoların saklanacağı konum</string>
     <string name="download_path_dialog_title">Videolar için indirme konumu gir</string>
 
     <string name="download_path_audio_title">Ses indirme konumu</string>
     <string name="download_path_audio_summary">İndirilmiş seslerin saklanacağı konum</string>
-    <string name="download_path_audio_dialog_title">Ses dosyaları için indirme konumu gir.</string>
+    <string name="download_path_audio_dialog_title">Ses dosyaları için indirme konumu girin</string>
 
     <string name="autoplay_by_calling_app_title">Başka uygulamadan çağrıldığında kendiliğinden oynat</string>
-    <string name="autoplay_by_calling_app_summary">NewPipe başka bir uygulamadan çağırıldığında videoyu kendiliğinden oynatır.</string>
+    <string name="autoplay_by_calling_app_summary">NewPipe başka bir uygulamadan çağırıldığında videoyu kendiliğinden oynatır</string>
     <string name="default_resolution_title">Öntanımlı çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile çal</string>
     <string name="kore_not_found">Kore uygulaması bulunamadı. Kurmak ister misin?</string>
     <string name="show_play_with_kodi_title">\"Kodi ile Oynat\" seçeneğini göster</string>
-    <string name="show_play_with_kodi_summary">Kodi medya merkezi aracılığıyla video oynatmak için bir seçenek görüntüler.</string>
+    <string name="show_play_with_kodi_summary">Kodi medya merkezi aracılığıyla video oynatmak için bir seçenek görüntüler</string>
     <string name="default_audio_format_title">Öntanımlı ses biçimi</string>
     <string name="webm_description">WebM - özgür biçim</string>
     <string name="m4a_description">m4a — daha iyi kalite</string>
@@ -53,7 +53,7 @@
     <string name="play_btn_text">Oynat</string>
     <string name="content">İçerik</string>
     <string name="show_age_restricted_content_title">Yaş sınırlı içeriği göster</string>
-    <string name="video_is_age_restricted">Bu video yaş sınırlıdır. İlk önce ayarlardaki yaş sınırlı videoları etkinleştiriniz.</string>
+    <string name="video_is_age_restricted">Bu video Yaş Sınırlıdır. İlk önce ayarlardaki yaş sınırlı videoları etkinleştirin.</string>
     <string name="duration_live">canlı</string>
     <string name="downloads">İndirilenler</string>
     <string name="downloads_title">İndirilenler</string>
@@ -71,9 +71,9 @@
     <string name="could_not_get_stream">Herhangi bir yayın alınamadı.</string>
     <string name="could_not_load_image">Resim yüklenemedi</string>
     <string name="app_ui_crash">Uygulama/Kullanıcı arayüzü çöktü</string>
-    <string name="sorry_string">Üzgünüz bu olmamalıydı.</string>
+    <string name="sorry_string">Üzgünüz, bu olmamalıydı.</string>
     <string name="error_report_button_text">Hatayı posta yoluyla bildir</string>
-    <string name="error_snackbar_message">Üzgünüz bazı hatalar oluştu.</string>
+    <string name="error_snackbar_message">Üzgünüz, bazı hatalar oluştu.</string>
     <string name="error_snackbar_action">BİLDİR</string>
     <string name="what_device_headline">Bilgi:</string>
     <string name="what_happened_headline">Ne oldu:</string>
