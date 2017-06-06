@@ -10,7 +10,7 @@
     <string name="view">Ver</string>
     <string name="video_is_age_restricted">Vídeo com restrição de idade. Ative os vídeos com restrição de idade nas configurações.</string>
     <string name="video">Vídeo</string>
-    <string name="autoplay_by_calling_app_summary">Reproduz o vídeo automaticamente quando o NewPipe for aberto a partir de outro app.</string>
+    <string name="autoplay_by_calling_app_summary">Reproduz o vídeo automaticamente quando o NewPipe for aberto a partir de outro app</string>
     <string name="autoplay_by_calling_app_title">Reproduzir automaticamente quando chamado a partir de outro aplicativo</string>
     <string name="black_theme_title">Preto</string>
     <string name="blocked_by_gema">Bloqueado pelo GEMA.</string>
@@ -85,11 +85,11 @@
     <string name="could_not_setup_download_menu">Não foi possível preparar o menu de download.</string>
     <string name="detail_thumbnail_view_description">Thumbnail do vídeo</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura do usuário que enviou o vídeo</string>
-    <string name="download_path_audio_dialog_title">Informe o local para download de áudios.</string>
+    <string name="download_path_audio_dialog_title">Informe o local para download de áudios</string>
     <string name="download_path_audio_summary">Local para salvar áudios baixados</string>
     <string name="download_path_audio_title">Local de download de áudio</string>
     <string name="download_path_dialog_title">Informe o local para download de vídeos</string>
-    <string name="download_path_summary">Local para salvar vídeos baixados.</string>
+    <string name="download_path_summary">Local para salvar vídeos baixados</string>
     <string name="download_path_title">Local de download de vídeo</string>
     <string name="kore_not_found">App Kore não instalado. Instalar?</string>
     <string name="light_parsing_error">Não foi possível interpretar completamente o site.</string>
@@ -106,7 +106,7 @@
     <string name="play_btn_text">Reproduzir</string>
     <string name="play_with_kodi_title">Reproduzir com Kodi</string>
     <string name="search">Buscar</string>
-    <string name="show_play_with_kodi_summary">Exibir opção para reprodizir víedeo pela central de mídia Kodi.</string>
+    <string name="show_play_with_kodi_summary">Exibir opção para reprodizir víedeo pela central de mídia Kodi</string>
     <string name="use_external_audio_player_title">Usar reprodutor de áudio externo</string>
     <string name="use_external_video_player_title">Usar reprodutor de vídeo externo</string>
     <string name="use_tor_summary">(Experimental) Forçar o download de conteúdo através do Tor para maior privacidade (streaming de vídeos ainda não suportado).</string>
