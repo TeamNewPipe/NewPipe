@@ -40,7 +40,7 @@
     <string name="default_resolution_title">Default resolution</string>
     <string name="default_popup_resolution_title">Default popup resolution</string>
     <string name="show_higher_resolutions_title">Show higher resolutions</string>
-    <string name="show_higher_resolutions_summary">Only some devices support playing 2k/4k videos</string>
+    <string name="show_higher_resolutions_summary">Only some devices support playing 2K/4K videos</string>
     <string name="play_with_kodi_title">Play with Kodi</string>
     <string name="kore_not_found">Kore app not found. Install Kore?</string>
     <string name="fdroid_kore_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=Kore&amp;fdid=org.xbmc.kore</string>
@@ -84,7 +84,7 @@
     <string name="play_btn_text">Play</string>
     <string name="content">Content</string>
     <string name="show_age_restricted_content_title">Show age restricted content</string>
-    <string name="video_is_age_restricted">Video is Age restricted. Enable age restricted videos in the settings first.</string>
+    <string name="video_is_age_restricted">Video is Age Restricted. Enable age restricted videos in the settings first.</string>
     <string name="duration_live">live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
@@ -104,7 +104,7 @@
     <string name="general_error">Error</string>
     <string name="network_error">Network error</string>
     <string name="could_not_load_thumbnails">Could not load all Thumbnails</string>
-    <string name="youtube_signature_decryption_error">Could not decrypt video url signature.</string>
+    <string name="youtube_signature_decryption_error">Could not decrypt video URL signature.</string>
     <string name="parsing_error">Could not parse website.</string>
     <string name="light_parsing_error">Could not parse website completely.</string>
     <string name="content_not_available">Content not available.</string>
@@ -115,10 +115,10 @@
     <string name="could_not_load_image">Could not load Image</string>
     <string name="app_ui_crash">App/UI crashed</string>
     <!-- error activity -->
-    <string name="sorry_string">Sorry that should not happen.</string>
+    <string name="sorry_string">Sorry, that should not have happened.</string>
     <string name="guru_meditation" translatable="false">Guru Meditation.</string>
     <string name="error_report_button_text">Report error via mail</string>
-    <string name="error_snackbar_message">Sorry some errors occurred.</string>
+    <string name="error_snackbar_message">Sorry, some errors occurred.</string>
     <string name="error_snackbar_action">REPORT</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">What happened:</string>
@@ -146,7 +146,7 @@
     <string name="retry">Retry</string>
     <string name="storage_permission_denied">Permission to access storage was denied</string>
     <string name="use_old_player_title">Use old player</string>
-    <string name="use_old_player_summary">Old build in Mediaframework player.</string>
+    <string name="use_old_player_summary">Old built-in Mediaframework player.</string>
     <string name="videos">videos</string>
     <string name="subscriber">subscriber</string>
     <string name="subscriber_plural">subscribers</string>
