@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <string name="main_bg_subtitle">Başlamak için aramaya dokun</string>
+    <string name="main_bg_subtitle">Başlamak için aramaya dokunun</string>
     <string name="view_count_text">%1$s izlenme</string>
     <string name="upload_date_text">Yayımlanma: %1$s</string>
     <string name="no_player_found">Yayın oynatıcı bulunamadı. VLC\'yi kurmak ister misiniz?</string>
@@ -20,7 +20,7 @@
 
     <string name="download_path_title">Video indirme konumu</string>
     <string name="download_path_summary">İndirilen videoların saklanacağı konum</string>
-    <string name="download_path_dialog_title">Videolar için indirme konumu gir</string>
+    <string name="download_path_dialog_title">Videolar için indirme konumu girin</string>
 
     <string name="download_path_audio_title">Ses indirme konumu</string>
     <string name="download_path_audio_summary">İndirilmiş seslerin saklanacağı konum</string>
@@ -30,7 +30,7 @@
     <string name="autoplay_by_calling_app_summary">NewPipe başka bir uygulamadan çağırıldığında videoyu kendiliğinden oynatır</string>
     <string name="default_resolution_title">Öntanımlı çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile çal</string>
-    <string name="kore_not_found">Kore uygulaması bulunamadı. Kurmak ister misin?</string>
+    <string name="kore_not_found">Kore uygulaması bulunamadı. Kurmak ister misiniz?</string>
     <string name="show_play_with_kodi_title">\"Kodi ile Oynat\" seçeneğini göster</string>
     <string name="show_play_with_kodi_summary">Kodi medya merkezi aracılığıyla video oynatmak için bir seçenek görüntüler</string>
     <string name="default_audio_format_title">Öntanımlı ses biçimi</string>
@@ -72,7 +72,7 @@
     <string name="could_not_load_image">Resim yüklenemedi</string>
     <string name="app_ui_crash">Uygulama/Kullanıcı arayüzü çöktü</string>
     <string name="sorry_string">Üzgünüz, bu olmamalıydı.</string>
-    <string name="error_report_button_text">Hatayı posta yoluyla bildir</string>
+    <string name="error_report_button_text">Hatayı postayla bildir</string>
     <string name="error_snackbar_message">Üzgünüz, bazı hatalar oluştu.</string>
     <string name="error_snackbar_action">BİLDİR</string>
     <string name="what_device_headline">Bilgi:</string>
@@ -115,10 +115,10 @@
     <string name="msg_running_detail">Ayrıntılar için dokun</string>
     <string name="msg_wait">Lütfen bekleyin…</string>
     <string name="msg_copied">Panoya kopyalandı.</string>
-    <string name="no_available_dir">Lütfen mevcut bir indirme dizini seçin.</string>
+    <string name="no_available_dir">Lütfen kullanılabilir bir indirme dizini seçin.</string>
 
 
-    <string name="could_not_setup_download_menu">İndirme menüsü kurulamıyor.</string>
+    <string name="could_not_setup_download_menu">İndirme menüsü kurulamadı.</string>
     <string name="open_in_popup_mode">Açılır pencere kipinde aç</string>
     <string name="popup_mode_share_menu_title">NewPipe Açılır pencere kipi</string>
 
@@ -169,7 +169,7 @@
     <string name="popup_remember_size_pos_summary">Açılır pencerenin ayarlandığı en son boyutu ve yeri hatırla</string>
 
     <string name="settings_category_popup_title">Açılır Pencere</string>
-    <string name="popup_resizing_indicator_title">Yeniden boyutlandırılıyor</string>
+    <string name="popup_resizing_indicator_title">Boyutlandırılıyor</string>
 
     <string name="use_external_video_player_summary">Bu seçenek etkinken bazı çözünürlüklerin sesi olmayacak</string>
     <string name="player_gesture_controls_summary">Oynatıcının parlaklığını ve sesini yönetmek için el hareketlerini kullan</string>
