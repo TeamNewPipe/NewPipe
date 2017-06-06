@@ -42,17 +42,18 @@
         tools:ignore="RtlHardcoded">
 
         <RadioButton
-            android:id="@+id/video_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/video"/>
-
-        <RadioButton
             android:id="@+id/audio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/audio"/>
+            android:checked="true"
+            android:text="@string/audio" />
+
+        <RadioButton
+            android:id="@+id/video_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/video" />
     </RadioGroup>
 
     <Spinner
@@ -74,7 +75,8 @@
         android:layout_marginBottom="6dp"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-        android:text="@string/msg_threads"/>
+        android:text="@string/msg_threads"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -82,8 +84,9 @@
         android:layout_below="@+id/threads_text_view"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
+        android:orientation="horizontal"
         android:paddingBottom="12dp"
-        android:orientation="horizontal">
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/threads_count"
@@ -92,13 +95,13 @@
             android:gravity="center_vertical"
             android:paddingLeft="2dp"
             tools:ignore="RtlHardcoded,RtlSymmetry"
-            tools:text="3"/>
+            tools:text="3" />
 
         <SeekBar
             android:id="@+id/threads"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:max="31"
-            android:progress="3"/>
+            android:progress="3" />
     </LinearLayout>
 </RelativeLayout>
