@@ -189,9 +189,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void handleIntent(Intent intent) {
         if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
-        if (intent.getBooleanExtra(Constants.KEY_THEME_CHANGE, false)) {
-            return;
-        }
 
         if (intent.hasExtra(Constants.KEY_LINK_TYPE)) {
             String url = intent.getStringExtra(Constants.KEY_URL);
