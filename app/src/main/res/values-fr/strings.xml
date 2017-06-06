@@ -7,7 +7,7 @@
     <string name="download">Télécharger</string>
     <string name="download_path_title">Chemin de téléchargement</string>
     <string name="download_path_dialog_title">Entrer le chemin de téléchargement des vidéos</string>
-    <string name="download_path_summary">Chemin de stockage des vidéos téléchargées.</string>
+    <string name="download_path_summary">Chemin de stockage des vidéos téléchargées</string>
     <string name="install">Installer</string>
     <string name="kore_not_found">L’application Kore est introuvable. Installer Kore ?</string>
     <string name="no_player_found">Aucun lecteur de flux réseau trouvé. Installer VLC ?</string>
@@ -18,7 +18,7 @@
     <string name="settings">Paramètres</string>
     <string name="share">Partager</string>
     <string name="share_dialog_title">Partager avec</string>
-    <string name="show_play_with_kodi_summary">Afficher une option pour lire la vidéo via la médiathèque Kodi.</string>
+    <string name="show_play_with_kodi_summary">Afficher une option pour lire la vidéo via la médiathèque Kodi</string>
     <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
     <string name="upload_date_text">Ajoutée le %1$s</string>
     <string name="view_count_text">%1$s vues</string>
@@ -55,7 +55,7 @@
 
     <string name="download_path_audio_title">Chemin de téléchargement de l\'audio</string>
     <string name="download_path_audio_summary">Chemin de stockage des fichiers audio téléchargés</string>
-    <string name="download_path_audio_dialog_title">Entrez le chemin de téléchargement des fichiers audio.</string>
+    <string name="download_path_audio_dialog_title">Entrez le chemin de téléchargement des fichiers audio</string>
 
     <string name="err_dir_create">Impossible de créer le répertoire de téléchargement « %1$s »</string>
     <string name="info_dir_created">Répertoire de téléchargement « %1$s » créé</string>
@@ -74,7 +74,7 @@
     <string name="light_parsing_error">Impossible d\'analyser le site complètement.</string>
     <string name="live_streams_not_supported">Il s\'agit d\'un direct. Non supporté pour le moment.</string>
     <string name="sorry_string">Désolé, une erreur inattendue s\'est produite.</string>
-    <string name="autoplay_by_calling_app_summary">Lire automatiquement la vidéo lorsque NewPipe est appelée par une autre application.</string>
+    <string name="autoplay_by_calling_app_summary">Lire automatiquement la vidéo lorsque NewPipe est appelée par une autre application</string>
     <string name="error_report_button_text">Signaler l\'erreur par e-mail</string>
     <string name="what_device_headline">Information :</string>
     <string name="what_happened_headline">Ce qui s\'est passé :</string>
@@ -89,7 +89,7 @@
     <string name="storage_permission_denied">Autorisation d\'accès au stockage refusée</string>
     <string name="main_bg_subtitle">Faites une recherche pour commencer</string>
     <string name="autoplay_by_calling_app_title">Lecture automatique lors de l\'ouverture depuis une autre application</string>
-    <string name="video_is_age_restricted">Cette vidéo est soumise à une restriction d\'âge. Autoriser le contenu restreint dans les paramètres avant.</string>
+    <string name="video_is_age_restricted">Cette vidéo est soumise à une restriction d\'âge. Autoriser le contenu restreint par âge dans les paramètres avant de continuer.</string>
     <string name="user_report">Rapport utilisateur</string>
 
     <string name="error_snackbar_action">SIGNALER</string>
@@ -145,7 +145,7 @@
 
     <string name="info_labels">Quoi :\\nRequête :\\nLang. du contenu:\\nService :\\nHeure GMT :\\nPaquage :\\nVersion :\\nVersion de l\'OS:\\nGamme globale d\'IPs :</string>
     <string name="use_old_player_title">Utiliser l\'ancien lecteur</string>
-    <string name="use_old_player_summary">Ancien build dans le lecteur Mediaframework.</string>
+    <string name="use_old_player_summary">Ancienne version du lecteur Mediaframework.</string>
     <string name="subscribe">S\'abonner</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
@@ -158,7 +158,7 @@ pour ouvrir en mode popup</string>
 
     <string name="default_popup_resolution_title">Résolution de la lecture intégrée</string>
     <string name="show_higher_resolutions_title">Afficher des résolutions plus grandes</string>
-    <string name="show_higher_resolutions_summary">Seulement certains périphériques supportent la lecture 2k/4k</string>
+    <string name="show_higher_resolutions_summary">Seulement certains périphériques supportent la lecture 2K/4K</string>
     <string name="preferred_video_format_title">Format de vidéo préféré</string>
     <string name="popup_remember_size_pos_title">Mémoriser la taille et la position du lecteur intégré</string>
     <string name="popup_remember_size_pos_summary">Mémoriser les derniers emplacements et la taille du lecteur intégré</string>
@@ -177,4 +177,7 @@ pour ouvrir en mode popup</string>
     <string name="show_search_suggestions_title">Chercher des suggestions</string>
     <string name="show_search_suggestions_summary">Montrer les suggestions pendant la recherche</string>
 
-</resources>
+<string name="player_gesture_controls_title">Gestes pour contrôler la lecture</string>
+    <string name="best_resolution">Meilleure résolution</string>
+
+    </resources>
