@@ -24,15 +24,15 @@
 
     <string name="download_path_audio_title">Ścieżka zapisu audio</string>
     <string name="download_path_audio_summary">Ścieżka zapisu pobranych audio</string>
-    <string name="download_path_audio_dialog_title">Podaj ścieżkę zapisu audio.</string>
+    <string name="download_path_audio_dialog_title">Podaj ścieżkę zapisu audio</string>
 
     <string name="autoplay_by_calling_app_title">Autoodtwarzanie po wezwaniu z innej aplikacji</string>
-    <string name="autoplay_by_calling_app_summary">Automatycznie odtwórz video kiedy NewPipe zostanie wywołany z innej aplikacji.</string>
+    <string name="autoplay_by_calling_app_summary">Automatycznie odtwórz video kiedy NewPipe zostanie wywołany z innej aplikacji</string>
     <string name="default_resolution_title">Domyślna rozdzielczość</string>
     <string name="play_with_kodi_title">Odtwórz w Kodi</string>
     <string name="kore_not_found">Aplikacja Kore nie znaleziona. Zainstalować Kore?</string>
     <string name="show_play_with_kodi_title">Pokaż opcję \"Odtwórz z Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Wyświetl opcję odtwarzania video przez Kodi.</string>
+    <string name="show_play_with_kodi_summary">Wyświetl opcję odtwarzania video przez Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Domyślny format audio</string>
     <string name="webm_description">WebM — darmowy format</string>
@@ -130,7 +130,7 @@
     <string name="controls_background_title">W tle</string>
     <string name="default_popup_resolution_title">Domyślna rozdzielczość okienka wyskakującego</string>
     <string name="show_higher_resolutions_title">Pokaż wyższe rozdzielczości</string>
-    <string name="show_higher_resolutions_summary">Tylko niektóre urządzenia wspierają odtwarzanie video w 2k/4k</string>
+    <string name="show_higher_resolutions_summary">Tylko niektóre urządzenia wspierają odtwarzanie video w 2K/4K</string>
     <string name="preferred_video_format_title">Preferowany format video</string>
     <string name="black_theme_title">Czarny</string>
     <string name="popup_remember_size_pos_title">Zapamiętaj rozdzielczość i pozycję okienka wyskakującego</string>
@@ -153,7 +153,7 @@
     <string name="popup_resizing_indicator_title">Zmienianie rozmiaru</string>
 
     <string name="use_old_player_title">Użyj starego odtwarzacza</string>
-    <string name="use_old_player_summary">Stary build w odtwarzaczu Mediaframework.</string>
+    <string name="use_old_player_summary">Stary wbudowany w Mediaframework odtwarzacz.</string>
     <string name="videos">filmy</string>
     <string name="subscriber">subskrybent</string>
     <string name="subscriber_plural">subskrybenci</string>
@@ -170,4 +170,6 @@
     <string name="popup_mode_share_menu_title">NewPipe tryb wyskakującego okienka</string>
     <string name="controls_popup_title">Wyskakujące okienko</string>
 
-</resources>
+<string name="best_resolution">Najlepsza rozdzielczość</string>
+
+    </resources>
