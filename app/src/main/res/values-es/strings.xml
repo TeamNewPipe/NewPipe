@@ -15,13 +15,13 @@
     <string name="choose_browser">Seleccionar navegador</string>
     <string name="screen_rotation">rotación</string>
     <string name="download_path_title">Ruta de descarga de vídeo</string>
-    <string name="download_path_summary">Ruta para almacenar los vídeos descargados.</string>
+    <string name="download_path_summary">Ruta para almacenar los vídeos descargados</string>
     <string name="download_path_dialog_title">Introducir directorio de descargas para vídeos</string>
     <string name="default_resolution_title">Resolución de vídeo por defecto</string>
     <string name="play_with_kodi_title">Reproducir con Kodi</string>
     <string name="kore_not_found">Aplicación Kore no encontrada. ¿Instalar Kore?</string>
     <string name="show_play_with_kodi_title">Mostrar opción \"Reproducir con Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Mostrar una opción para reproducir el vídeo con Kodi Media Center.</string>
+    <string name="show_play_with_kodi_summary">Mostrar una opción para reproducir vídeo con Kodi Media Center</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato de audio por defecto</string>
     <string name="webm_description">WebM — formato libre</string>
@@ -46,7 +46,7 @@
     <string name="err_dir_create">No se puede crear la carpeta de descarga \'%1$s\'</string>
     <string name="info_dir_created">Carpeta de descarga creada \'%1$s\'</string>
     <string name="download_path_audio_summary">Ruta para almacenar los audios descargados</string>
-    <string name="download_path_audio_dialog_title">Introducir ruta de descarga para archivos de audio.</string>
+    <string name="download_path_audio_dialog_title">Introducir ruta de descarga para archivos de audio</string>
 
     <string name="blocked_by_gema">Bloqueado por GEMA.</string>
 
@@ -56,7 +56,7 @@
     <string name="general_error">Error</string>
     <string name="network_error">Error de conexión</string>
     <string name="could_not_load_thumbnails">No se pudo cargar las miniaturas</string>
-    <string name="youtube_signature_decryption_error">No se pudo descifrar la url del vídeo.</string>
+    <string name="youtube_signature_decryption_error">No se pudo descifrar la URL del vídeo.</string>
     <string name="parsing_error">No se pudo analizar el sitio web.</string>
     <string name="show_next_and_similar_title">Mostrar vídeos siguientes y similares</string>
     <string name="search_language_title">Idioma preferido del contenido</string>
@@ -70,11 +70,11 @@
 
     <string name="content">Contenido</string>
     <string name="show_age_restricted_content_title">Mostrar contenido restringido por edad</string>
-    <string name="video_is_age_restricted">El vídeo tiene restricción de edad. Habilite los vídeos con restricción de edad en los ajustes.</string>
+    <string name="video_is_age_restricted">El vídeo tiene restricción de edad. Active los vídeos con restricción de edad en los ajustes.</string>
 
     <string name="main_bg_subtitle">Toque buscar para empezar</string>
     <string name="autoplay_by_calling_app_title">Autoreproducir al llamar desde otra app</string>
-    <string name="autoplay_by_calling_app_summary">Reproducir automáticamente un vídeo cuando NewPipe es llamado desde otra aplicación.</string>
+    <string name="autoplay_by_calling_app_summary">Reproducir automáticamente un vídeo cuando NewPipe es llamado desde otra aplicación</string>
     <string name="duration_live">en vivo</string>
     <string name="downloads">Descargas</string>
     <string name="downloads_title">Descargas</string>
@@ -83,7 +83,7 @@
     <string name="light_parsing_error">No se pudo analizar el sitio web completamente.</string>
     <string name="could_not_setup_download_menu">No se pudo configurar el menú de descarga.</string>
     <string name="could_not_get_stream">No se pudo obtener ninguna transmisión.</string>
-    <string name="sorry_string">Lo siento, esto no debería ocurrir.</string>
+    <string name="sorry_string">Lo siento, esto no debería haber ocurrido.</string>
     <string name="error_report_button_text">Reportar error vía email</string>
     <string name="error_snackbar_message">Lo siento, ocurrieron algunos errores.</string>
     <string name="error_snackbar_action">REPORTAR</string>
@@ -154,13 +154,13 @@ abrir en modo popup</string>
 
     <string name="popup_playing_toast">Reproduciendo en modo popup</string>
     <string name="use_old_player_title">Usar reproductor antiguo</string>
-    <string name="use_old_player_summary">Versión antigua en reproductor Mediaframework.</string>
+    <string name="use_old_player_summary">Versión antigua en reproductor Media Framework.</string>
     <string name="preferred_video_format_title">Formato de vídeo por defecto</string>
     <string name="disabled">Desactivado</string>
 
     <string name="subscriber_plural">Suscriptores</string>
     <string name="show_higher_resolutions_title">Mostrar resoluciones más altas</string>
-    <string name="show_higher_resolutions_summary">Sólo algunos dispositivos soportan reproducción de vídeos en 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Solo algunos dispositivos soportan reproducción de vídeos en 2K/4K</string>
     <string name="default_popup_resolution_title">Resolución del popup por defecto</string>
     <string name="controls_background_title">Segundo plano</string>
     <string name="controls_popup_title">Popup</string>
