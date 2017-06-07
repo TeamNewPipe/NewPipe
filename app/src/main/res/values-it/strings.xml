@@ -15,13 +15,13 @@
     <string name="choose_browser">Scegli browser</string>
     <string name="screen_rotation">rotazione</string>
     <string name="download_path_title">Cartella dei video scaricati</string>
-    <string name="download_path_summary">Percorso dove memorizzare i video scaricati.</string>
+    <string name="download_path_summary">Cartella in cui memorizzare i video scaricati.</string>
     <string name="download_path_dialog_title">Inserisci il percorso per i download</string>
     <string name="default_resolution_title">Risoluzione predefinita</string>
     <string name="play_with_kodi_title">Riproduci con Kodi</string>
     <string name="kore_not_found">L\'applicazione Kore non è stata trovata. Kore è necessario per riprodurre video con Kodi media center. Vorresti installarlo?</string>
     <string name="show_play_with_kodi_title">Mostra l\'opzione \"Riproduci con Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Mostra un opzione per riprodurre un video attraverso Kodi media center.</string>
+    <string name="show_play_with_kodi_summary">Mostra l\'opzione per riprodurre i video tramite Kodi.</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato audio predefinito</string>
     <string name="webm_description">WebM — formato libero</string>
@@ -45,7 +45,7 @@
 
     <string name="download_path_audio_title">Cartella degli audio scaricati</string>
     <string name="download_path_audio_summary">Cartella dove salvare gli audio scaricati.</string>
-    <string name="download_path_audio_dialog_title">Inserisci la cartella per i file audio.</string>
+    <string name="download_path_audio_dialog_title">Inserisci la cartella per i file audio</string>
 
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Scuro</string>
@@ -158,5 +158,31 @@
     <string name="disabled">Disattivato</string>
 
     <string name="use_old_player_title">Usare anziane riproduttore</string>
-</resources>
+<string name="use_external_video_player_summary">Alcune risoluzioni non avranno audio se questa opzione viene abilitata.</string>
+    <string name="controls_background_title">In sottofondo</string>
+    <string name="controls_popup_title">Popup</string>
 
+    <string name="default_popup_resolution_title">Risoluzione predefinita per il popup</string>
+    <string name="show_higher_resolutions_title">Mostra risoluzioni più alte</string>
+    <string name="show_higher_resolutions_summary">Solo alcuni dispositivi supportano la riproduzione di video in 2K e 4K.</string>
+    <string name="preferred_video_format_title">Formato video preferito</string>
+    <string name="popup_remember_size_pos_title">Ricorda grandezza e posizione del popup</string>
+    <string name="popup_remember_size_pos_summary">Ricorda l\'ultima grandezza e l\'ultima posizione impostate per il popup.</string>
+    <string name="player_gesture_controls_title">Controlli gestuali</string>
+    <string name="player_gesture_controls_summary">Usa i gesti per controllare luminosità e volume.</string>
+    <string name="show_search_suggestions_title">Suggerimenti di ricerca</string>
+    <string name="show_search_suggestions_summary">Mostra suggerimenti durante la ricerca.</string>
+
+    <string name="settings_category_popup_title">Popup</string>
+    <string name="filter">Filtro</string>
+    <string name="refresh">Ricarica</string>
+    <string name="clear">Pulisci</string>
+    <string name="popup_resizing_indicator_title">Ridimensionamento</string>
+    <string name="best_resolution">Risoluzione migliore</string>
+
+    <string name="use_old_player_summary">Precedente riproduttore integrato facente uso di Mediaframework.</string>
+    <string name="subscriber_plural">iscritti</string>
+    <string name="msg_popup_permission">Questo permesso è necessario
+\nper la modalità popup</string>
+
+    </resources>
