@@ -19,7 +19,7 @@
     <string name="upload_date_text">Opublikowano %1$s</string>
     <string name="no_player_found">Nie znaleziono odtwarzacza strumieni. Zainstalować VLC?</string>
     <string name="download_path_title">Ścieżka zapisu video</string>
-    <string name="download_path_summary">Ścieżka zapisu pobranych video.</string>
+    <string name="download_path_summary">Ścieżka zapisu pobranych video</string>
     <string name="download_path_dialog_title">Podaj ścieżkę zapisu video</string>
 
     <string name="download_path_audio_title">Ścieżka zapisu audio</string>
