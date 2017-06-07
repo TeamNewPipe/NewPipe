@@ -36,7 +36,7 @@
     <string name="list_thumbnail_view_description">Sličica predogleda videa</string>
     <string name="detail_thumbnail_view_description">Sličica predogleda videa</string>
     <string name="detail_uploader_thumbnail_view_description">Sličica pošiljalnika</string>
-    <string name="show_play_with_kodi_summary">Pokaže možnost predvajanja videa preko predstavnega središča Kodi.</string>
+    <string name="show_play_with_kodi_summary">Pokaži možnost predvajanja videa preko predstavnega središča Kodi</string>
 
     <string name="detail_likes_img_view_description">Všeč mi je</string>
     <string name="detail_dislikes_img_view_description">Ni mi všeč</string>
@@ -61,7 +61,7 @@
     <string name="info_dir_created">Ustvarjena je mapa za prejem \'%1$s\'</string>
     <string name="general_error">Napaka</string>
     <string name="could_not_load_thumbnails">Vseh sličic videov ni mogoče naložiti</string>
-    <string name="youtube_signature_decryption_error">Ni mogoče dešifrirati podpisa naslova URL videa.</string>
+    <string name="youtube_signature_decryption_error">Ni mogoče odšifrirati podpisa naslova URL videa.</string>
     <string name="parsing_error">Ni mogoče razčleniti spletišča.</string>
     <string name="content_not_available">Vsebina ni na voljo.</string>
     <string name="blocked_by_gema">Blokirano zaradi pripomb GEMA.</string>
@@ -93,7 +93,7 @@
     <string name="your_comment">Opomba (v angleščini):</string>
     <string name="storage_permission_denied">Dovoljenje za dostop do shrambe je zavrnjeno</string>
     <string name="autoplay_by_calling_app_title">Samodejno predvajaj vsebino, poslano iz drugega programa</string>
-    <string name="autoplay_by_calling_app_summary">Samodejno predvajaj vsebino, če je NewPipe klican iz drugega programa.</string>
+    <string name="autoplay_by_calling_app_summary">Samodejno predvajaj vsebino, če je NewPipe klican iz drugega programa</string>
     <string name="report_error">Pošlji poročilo o napaki</string>
     <string name="user_report">Poročilo uporabnika</string>
 
@@ -159,11 +159,11 @@ odpiranje v pojavnem načinu</string>
     <string name="disabled">Onemogočeno</string>
 
     <string name="use_old_player_title">Uporabi star predvajalnik</string>
-    <string name="use_old_player_summary">Zastarela različica v predvajalniku Mediaframework.</string>
+    <string name="use_old_player_summary">Zastarela različica v predvajalniku Mediaframework</string>
     <string name="preferred_video_format_title">Prednostni zapis video datoteke</string>
     <string name="default_popup_resolution_title">Privzeta ločljivost pojavnega okna</string>
     <string name="show_higher_resolutions_title">Pokaži večje ločljivosti</string>
-    <string name="show_higher_resolutions_summary">Predvajanje posnetkov 2k/4k omogočajo le nekatere naprave.</string>
+    <string name="show_higher_resolutions_summary">Predvajanje posnetkov 2K/4K omogočajo le nekatere naprave.</string>
     <string name="subscriber_plural">naročniki</string>
     <string name="controls_background_title">Ozadje</string>
     <string name="controls_popup_title">Pojavno okno</string>
@@ -184,4 +184,6 @@ odpiranje v pojavnem načinu</string>
     <string name="show_search_suggestions_title">Predlogi iskanja</string>
     <string name="show_search_suggestions_summary">Pokaži predloge med iskanjem</string>
 
-</resources>
+<string name="best_resolution">Najboljša ločljivost</string>
+
+    </resources>
