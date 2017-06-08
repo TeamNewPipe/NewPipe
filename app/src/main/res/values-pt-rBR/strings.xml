@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="audio">Áudio</string>
-    <string name="youtube_signature_decryption_error">Não foi possível descriptografar assinatura de URL do vídeo.</string>
+    <string name="youtube_signature_decryption_error">Não foi possível decriptografar assinatura de URL do vídeo.</string>
     <string name="your_comment">Seu comentário (em inglês):</string>
     <string name="what_happened_headline">O que aconteceu:</string>
     <string name="what_device_headline">Informações:</string>
@@ -67,7 +67,7 @@
     <string name="share_dialog_title">Compartilhar com</string>
     <string name="show_age_restricted_content_title">Exibir conteúdo com restrição de idade</string>
     <string name="show_next_and_similar_title">Exibir próximo vídeo e relacionados</string>
-    <string name="sorry_string">Desculpe, isto não deveria acontecer.</string>
+    <string name="sorry_string">Desculpe, isto não deveria ter acontecido.</string>
     <string name="start">Iniciar</string>
     <string name="storage_permission_denied">Permissão para acessar armazenamento negada</string>
     <string name="theme_title">Tema</string>
@@ -128,7 +128,7 @@
     <string name="disabled">Desabilitado</string>
 
     <string name="use_old_player_title">Usar player antigo</string>
-    <string name="use_old_player_summary">Antigo Mediaframework player interno.</string>
+    <string name="use_old_player_summary">Antigo player interno Mediaframework.</string>
     <string name="videos">vídeos</string>
     <string name="subscriber">inscrito</string>
     <string name="subscriber_plural">inscritos</string>
