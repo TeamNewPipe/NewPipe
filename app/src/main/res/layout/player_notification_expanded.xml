@@ -76,6 +76,20 @@
         tools:ignore="RtlHardcoded"
         tools:progress="52"/>
 
+    <TextView
+        android:id="@+id/notificationTime"
+        style="@android:style/TextAppearance.StatusBar.EventContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_alignTop="@+id/notificationProgressBar"
+        android:layout_toRightOf="@+id/notificationCover"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="12sp"
+        tools:text="Duis posuere"/>
+
     <RelativeLayout
         android:id="@+id/notificationControls"
         android:layout_width="match_parent"
@@ -88,17 +102,14 @@
 
         <ImageButton
             android:id="@+id/notificationRepeat"
-            android:layout_width="45dp"
-            android:layout_height="match_parent"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="8dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:background="#00000000"
             android:clickable="true"
-            android:paddingBottom="4dp"
-            android:paddingLeft="11dp"
-            android:paddingRight="11dp"
-            android:paddingTop="4dp"
-            android:scaleType="fitCenter"
+            android:scaleType="fitXY"
             android:src="@drawable/ic_repeat_white"
             tools:ignore="ContentDescription"/>
 
