@@ -16,20 +16,20 @@
     <string name="use_external_audio_player_title">Gunakan pemutar audio eksternal</string>
 
     <string name="download_path_title">Lokasi unduhan video</string>
-    <string name="download_path_summary">Lokasi untuk menyimpan video yang diunduh.</string>
+    <string name="download_path_summary">Lokasi untuk menyimpan video yang diunduh</string>
     <string name="download_path_dialog_title">Masukkan lokasi unduhan video</string>
 
     <string name="download_path_audio_title">Lokasi unduhan audio</string>
     <string name="download_path_audio_summary">Lokasi untuk menyimpan audio yang diunduh</string>
-    <string name="download_path_audio_dialog_title">Masukkan lokasi unduhan berkas audio.</string>
+    <string name="download_path_audio_dialog_title">Masukkan lokasi unduhan berkas audio</string>
 
     <string name="autoplay_by_calling_app_title">Putar otomatis ketika dipanggil dari aplikasi lain</string>
-    <string name="autoplay_by_calling_app_summary">Otomatis memutar video ketika NewPipe dipanggil dari aplikasi lain.</string>
+    <string name="autoplay_by_calling_app_summary">Otomatis memutar video ketika NewPipe dijalankan dari aplikasi lain</string>
     <string name="default_resolution_title">Resolusi baku</string>
     <string name="play_with_kodi_title">Putar dengan Kodi</string>
     <string name="kore_not_found">Aplikasi Kore tidak ditemukan. Pasang Kore?</string>
     <string name="show_play_with_kodi_title">Tampilkan opsi \"Putar dengan Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Menampilkan opsi untuk memutar video menggunakan Kodi media center.</string>
+    <string name="show_play_with_kodi_summary">Menampilkan opsi untuk memutar video menggunakan Kodi media center</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio baku</string>
     <string name="webm_description">WebM — format bebas</string>
@@ -50,7 +50,7 @@
     <string name="play_btn_text">Putar</string>
     <string name="content">Konten</string>
     <string name="show_age_restricted_content_title">Tampilkan konten batasan usia</string>
-    <string name="video_is_age_restricted">Video dibatasi Usia. Aktifkan video batasan usia di pengaturan terlebih dahulu.</string>
+    <string name="video_is_age_restricted">Video Dibatasi Usia. Aktifkan video batasan usia di pengaturan terlebih dahulu.</string>
     <string name="network_error">Galat jaringan</string>
     <string name="could_not_load_thumbnails">Tidak bisa memuat semua Thumbnail</string>
     <string name="did_you_mean">Mungkin maksud Anda: %1$s ?</string>
@@ -68,9 +68,9 @@
     <string name="could_not_setup_download_menu">Tidak bisa menyiapkan menu unduhan.</string>
     <string name="live_streams_not_supported">Ini adalah SIARAN LANGSUNG. Fitur ini belum didukung.</string>
     <string name="could_not_load_image">Tidak bisa memuat gambar</string>
-    <string name="sorry_string">Maaf hal tersebut seharusnya tidak terjadi.</string>
+    <string name="sorry_string">Maaf, hal tersebut seharusnya tidak terjadi.</string>
     <string name="error_report_button_text">Lapor galat via surel</string>
-    <string name="error_snackbar_message">Maaf terjadi galat.</string>
+    <string name="error_snackbar_message">Maaf, telah terjadi galat.</string>
     <string name="error_snackbar_action">LAPOR</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Yang terjadi:</string>
@@ -115,7 +115,7 @@
     <string name="no_available_dir">Silakan pilih direktori unduhan yang tersedia.</string>
 
     <string name="no_player_found">Tidak ditemukan pemutar stream. Apakah anda ingin memasang VLC?</string>
-    <string name="youtube_signature_decryption_error">Tidak bisa mendekrip tanda tangan url video.</string>
+    <string name="youtube_signature_decryption_error">Tidak bisa mendekrip tanda tangan URL video.</string>
     <string name="app_ui_crash">App/UI rusak</string>
     <string name="could_not_get_stream">Tidak bisa mendapatkan stream apapun.</string>
     <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:\\nIP:</string>
@@ -152,14 +152,14 @@ membuka di mode popup</string>
 
     <string name="popup_playing_toast">Memutar dalam mode popup</string>
     <string name="use_old_player_title">Gunakan pemutar lama</string>
-    <string name="use_old_player_summary">Versi lama dalam pemutar Mediaframework.</string>
+    <string name="use_old_player_summary">Versi lama pemutar Mediaframework.</string>
     <string name="disabled">Dinonaktifkan</string>
 
     <string name="preferred_video_format_title">Pilihan format video</string>
     <string name="subscriber_plural">subscriber</string>
     <string name="default_popup_resolution_title">Resolusi popup bawaan</string>
     <string name="show_higher_resolutions_title">Tampilkan resolusi yang lebih tinggi</string>
-    <string name="show_higher_resolutions_summary">Hanya perangkat tertentu yang mendukung pemutaran video 2k/4k</string>
+    <string name="show_higher_resolutions_summary">Hanya perangkat tertentu yang mendukung pemutaran video 2K/4K</string>
     <string name="controls_background_title">Latar Belakang</string>
     <string name="controls_popup_title">Popup</string>
 
@@ -179,4 +179,6 @@ membuka di mode popup</string>
     <string name="show_search_suggestions_title">Saran pencarian</string>
     <string name="show_search_suggestions_summary">Tampilkan saran ketika mencari</string>
 
-</resources>
+<string name="best_resolution">Resolusi terbaik</string>
+
+    </resources>
