@@ -224,13 +224,13 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
             infoListAdapter.setOnStreamInfoItemSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener() {
                 @Override
                 public void selected(int serviceId, String url, String title) {
-                    NavigationHelper.openVideoDetail(onItemSelectedListener, serviceId, url, title);
+                    NavigationHelper.openVideoDetailFragment(getFragmentManager(), serviceId, url, title);
                 }
             });
             infoListAdapter.setOnChannelInfoItemSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener() {
                 @Override
                 public void selected(int serviceId, String url, String title) {
-                    NavigationHelper.openChannel(onItemSelectedListener, serviceId, url, title);
+                    NavigationHelper.openChannelFragment(getFragmentManager(), serviceId, url, title);
                 }
             });
         }
@@ -389,7 +389,7 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
             public void onClick(View v) {
                 if (DEBUG) Log.d(TAG, "onClick() called with: v = [" + v + "]");
                 if (TextUtils.isEmpty(searchEditText.getText())) {
-                    NavigationHelper.openMainActivity(activity);
+                    NavigationHelper.openMainFragment(getFragmentManager());
                     return;
                 }
 

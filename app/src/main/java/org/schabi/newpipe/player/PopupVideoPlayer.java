@@ -263,6 +263,7 @@ public class PopupVideoPlayer extends Service {
         i.putExtra(Constants.KEY_TITLE, videoTitle);
         i.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(i);
         context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
     }

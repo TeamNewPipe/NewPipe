@@ -3,6 +3,10 @@ package org.schabi.newpipe.util;
 import android.content.Context;
 import android.content.Intent;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
@@ -10,8 +14,10 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
-import org.schabi.newpipe.fragments.OnItemSelectedListener;
+import org.schabi.newpipe.fragments.MainFragment;
+import org.schabi.newpipe.fragments.channel.ChannelFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
+import org.schabi.newpipe.fragments.search.SearchFragment;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.VideoPlayer;
@@ -35,7 +41,6 @@ public class NavigationHelper {
         if (info.start_position > 0) mIntent.putExtra(BasePlayer.START_POSITION, info.start_position * 1000);
         return mIntent;
     }
-
 
     public static Intent getOpenVideoPlayerIntent(Context context, Class targetClazz, VideoPlayer instance) {
         return new Intent(context, targetClazz)
@@ -66,31 +71,69 @@ public class NavigationHelper {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Through Interface (faster)
+    // Through FragmentManager
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static void openChannel(OnItemSelectedListener listener, int serviceId, String url) {
-        openChannel(listener, serviceId, url, null);
+    public static void openMainFragment(FragmentManager fragmentManager) {
+        ImageLoader.getInstance().clearMemoryCache();
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
+                .replace(R.id.fragment_holder, new MainFragment())
+                .commit();
     }
 
-    public static void openChannel(OnItemSelectedListener listener, int serviceId, String url, String name) {
-        listener.onItemSelected(StreamingService.LinkType.CHANNEL, serviceId, url, name);
+    public static void openSearchFragment(FragmentManager fragmentManager, int serviceId, String query) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
+                .replace(R.id.fragment_holder, SearchFragment.getInstance(serviceId, query))
+                .addToBackStack(null)
+                .commit();
     }
 
-    public static void openVideoDetail(OnItemSelectedListener listener, int serviceId, String url) {
-        openVideoDetail(listener, serviceId, url, null);
+    public static void openVideoDetailFragment(FragmentManager fragmentManager, int serviceId, String url, String title) {
+        openVideoDetailFragment(fragmentManager, serviceId, url, title, false);
     }
 
-    public static void openVideoDetail(OnItemSelectedListener listener, int serviceId, String url, String title) {
-        listener.onItemSelected(StreamingService.LinkType.STREAM, serviceId, url, title);
+    public static void openVideoDetailFragment(FragmentManager fragmentManager, int serviceId, String url, String title, boolean autoPlay) {
+        Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_holder);
+        if (title == null) title = "";
+
+        if (fragment instanceof VideoDetailFragment && fragment.isVisible()) {
+            VideoDetailFragment detailFragment = (VideoDetailFragment) fragment;
+            detailFragment.setAutoplay(autoPlay);
+            detailFragment.selectAndLoadVideo(serviceId, url, title);
+            return;
+        }
+
+        VideoDetailFragment instance = VideoDetailFragment.getInstance(serviceId, url, title);
+        instance.setAutoplay(autoPlay);
+
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
+                .replace(R.id.fragment_holder, instance)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public static void openChannelFragment(FragmentManager fragmentManager, int serviceId, String url, String name) {
+        if (name == null) name = "";
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
+                .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, url, name))
+                .addToBackStack(null)
+                .commit();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Through Intents
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static void openByLink(Context context, String url) throws Exception {
-        context.startActivity(getIntentByLink(context, url));
+    public static void openSearch(Context context, int serviceId, String query) {
+        Intent mIntent = new Intent(context, MainActivity.class);
+        mIntent.putExtra(Constants.KEY_SERVICE_ID, serviceId);
+        mIntent.putExtra(Constants.KEY_QUERY, query);
+        mIntent.putExtra(Constants.KEY_OPEN_SEARCH, true);
+        context.startActivity(mIntent);
     }
 
     public static void openChannel(Context context, int serviceId, String url) {
@@ -118,12 +161,12 @@ public class NavigationHelper {
         context.startActivity(mIntent);
     }
 
-    public static void openSearch(Context context, int serviceId, String query) {
-        Intent mIntent = new Intent(context, MainActivity.class);
-        mIntent.putExtra(Constants.KEY_SERVICE_ID, serviceId);
-        mIntent.putExtra(Constants.KEY_QUERY, query);
-        mIntent.putExtra(Constants.KEY_OPEN_SEARCH, true);
-        context.startActivity(mIntent);
+    public static void openByLink(Context context, String url) throws Exception {
+        Intent intentByLink = getIntentByLink(context, url);
+        if (intentByLink == null) throw new NullPointerException("getIntentByLink(context = [" + context + "], url = [" + url + "]) returned null");
+        intentByLink.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intentByLink.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(intentByLink);
     }
 
     private static Intent getOpenIntent(Context context, String url, int serviceId, StreamingService.LinkType type) {
@@ -147,8 +190,7 @@ public class NavigationHelper {
             case CHANNEL:
                 return getOpenIntent(context, url, serviceId, StreamingService.LinkType.CHANNEL);
             case NONE:
-                throw new Exception("Url not known to service. service="
-                        + Integer.toString(serviceId) + " url=" + url);
+                throw new Exception("Url not known to service. service=" + serviceId + " url=" + url);
         }
         return null;
     }
