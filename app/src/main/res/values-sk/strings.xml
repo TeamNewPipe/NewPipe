@@ -18,18 +18,18 @@
     <string name="use_external_audio_player_title">Použiť externý prehravač zvuku</string>
 
     <string name="download_path_title">Prevzaté video ukladať do</string>
-    <string name="download_path_summary">Cesta kam sa budú ukladať prevzaté videá.</string>
+    <string name="download_path_summary">Cesta kam sa budú ukladať prevzaté videá</string>
     <string name="download_path_dialog_title">Vložte cestu kam sa budú ukladať videá</string>
 
     <string name="download_path_audio_title">Prevzaté audio ukladať do</string>
-    <string name="download_path_audio_dialog_title">Vložte cestu kam sa budú ukladať zvukové súbory.</string>
+    <string name="download_path_audio_dialog_title">Vložte cestu kam sa budú ukladať zvukové súbory</string>
 
     <string name="download_path_audio_summary">Cesta kam sa bude ukladať prevzaté audio</string>
     <string name="default_resolution_title">Štandardné rozlíšenie</string>
     <string name="play_with_kodi_title">Prehrať cez Kodi</string>
     <string name="kore_not_found">Aplikácia Kore nenajdená. Inštalovať Kore?</string>
     <string name="show_play_with_kodi_title">Zobraziť možnosť \"Prehrať cez Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Zobrazovať možnosť prehrať video cez mediálne centrum Kodi.</string>
+    <string name="show_play_with_kodi_summary">Zobrazovať možnosť prehrať video cez mediálne centrum Kodi</string>
     <string name="play_audio">Zvuk</string>
     <string name="default_audio_format_title">Predvolený zvukový formát</string>
     <string name="webm_description">WebM — voľný formát</string>
@@ -51,7 +51,7 @@
     <string name="general_error">Chyba</string>
     <string name="network_error">Chyba siete</string>
     <string name="could_not_load_thumbnails">Nemožno zobraziť všetky náhľady</string>
-    <string name="youtube_signature_decryption_error">Nepodarilo sa dekódovať url videa.</string>
+    <string name="youtube_signature_decryption_error">Nepodarilo sa dekódovať URL videa.</string>
     <string name="parsing_error">Nemožno analyzovať webovú stránku.</string>
     <string name="content_not_available">Obsah nie je dostupný.</string>
     <string name="blocked_by_gema">Obsah blokuje GEMA.</string>
@@ -68,7 +68,7 @@
     <string name="info_dir_created">Adresár na preberanie bol vytvorený \'%1$s\'</string>
     <string name="main_bg_subtitle">Začnite vyhľadaním obsahu</string>
     <string name="autoplay_by_calling_app_title">Automaticky prehrať video pri zavolaní</string>
-    <string name="autoplay_by_calling_app_summary">Video bude automaticky prehrané pri zavolaní NewPipe inou aplikáciou.</string>
+    <string name="autoplay_by_calling_app_summary">Video bude automaticky prehrané pri zavolaní NewPipe inou aplikáciou</string>
     <string name="content">Obsah</string>
     <string name="show_age_restricted_content_title">Zobraziť vekovo obmedzený obsah</string>
     <string name="video_is_age_restricted">Toto video je vekovo obmedzené. Povoľte zobrazenie obsahu v nastavení.</string>
@@ -162,7 +162,7 @@ otvorenie okna na popredí</string>
     <string name="subscriber_plural">odberatelia</string>
     <string name="default_popup_resolution_title">Predvolená veľkosť okna</string>
     <string name="show_higher_resolutions_title">Zobraziť vyššie rozlíšenie</string>
-    <string name="show_higher_resolutions_summary">Len niektoré zariadenia podporujú videá 2k/4k</string>
+    <string name="show_higher_resolutions_summary">Len niektoré zariadenia podporujú videá 2K/4K</string>
     <string name="controls_background_title">Pozadie</string>
     <string name="controls_popup_title">V okne</string>
 
@@ -170,5 +170,16 @@ otvorenie okna na popredí</string>
     <string name="refresh">Obnoviť</string>
     <string name="clear">Vyčistiť</string>
 
-</resources>
+<string name="use_external_video_player_summary">Po zapnutí tejto funkcie niektoré formáty NEBUDÚ obsahovať zvukovú stopu</string>
+    <string name="popup_remember_size_pos_title">Zapamätať si veľkosť a pozíciu okna na vrchu</string>
+    <string name="popup_remember_size_pos_summary">Zapamätať si posledné nastavenie veľkosti a pozície okna na vrchu</string>
+    <string name="player_gesture_controls_title">Ovládanie prehrávača gestami</string>
+    <string name="player_gesture_controls_summary">Používať gestá pre kontrolu jasu a hlasitosti prehrávača</string>
+    <string name="show_search_suggestions_title">Hľadať návrhy</string>
+    <string name="show_search_suggestions_summary">Zobrazovať návrhy pri vyhľadávaní</string>
 
+    <string name="settings_category_popup_title">Okno na vrchu</string>
+    <string name="popup_resizing_indicator_title">Zmena veľkosti</string>
+    <string name="best_resolution">Najlepšie rozlíšenie</string>
+
+    </resources>
