@@ -8,8 +8,8 @@ android {
         applicationId "org.schabi.newpipe"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 34
-        versionName "0.9.7"
+        versionCode 35
+        versionName "0.9.8"
     }
     buildTypes {
         release {
