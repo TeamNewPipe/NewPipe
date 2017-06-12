@@ -33,7 +33,6 @@ public abstract class BaseFragment extends Fragment {
     protected static final boolean DEBUG = MainActivity.DEBUG;
 
     protected AppCompatActivity activity;
-    protected OnItemSelectedListener onItemSelectedListener;
 
     protected AtomicBoolean isLoading = new AtomicBoolean(false);
     protected AtomicBoolean wasLoading = new AtomicBoolean(false);
@@ -64,7 +63,6 @@ public abstract class BaseFragment extends Fragment {
         if (DEBUG) Log.d(TAG, "onAttach() called with: context = [" + context + "]");
 
         activity = (AppCompatActivity) context;
-        onItemSelectedListener = (OnItemSelectedListener) context;
     }
 
     @Override

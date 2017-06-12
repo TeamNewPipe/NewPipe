@@ -240,7 +240,7 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
             @Override
             public void selected(int serviceId, String url, String title) {
                 if (DEBUG) Log.d(TAG, "selected() called with: serviceId = [" + serviceId + "], url = [" + url + "], title = [" + title + "]");
-                NavigationHelper.openVideoDetail(onItemSelectedListener, serviceId, url, title);
+                NavigationHelper.openVideoDetailFragment(getFragmentManager(), serviceId, url, title);
             }
         });
 

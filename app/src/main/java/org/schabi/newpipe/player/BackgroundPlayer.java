@@ -286,15 +286,13 @@ public class BackgroundPlayer extends Service {
         public void onPrepared(boolean playWhenReady) {
             super.onPrepared(playWhenReady);
             if (simpleExoPlayer.getDuration() < 15000) {
-                PROGRESS_LOOP_INTERVAL = 1000;
                 FAST_FORWARD_REWIND_AMOUNT = 2000;
             } else if (simpleExoPlayer.getDuration() > 60 * 60 * 1000) {
-                PROGRESS_LOOP_INTERVAL = 2000;
                 FAST_FORWARD_REWIND_AMOUNT = 60000;
             } else {
-                PROGRESS_LOOP_INTERVAL = 2000;
                 FAST_FORWARD_REWIND_AMOUNT = 10000;
             }
+            PROGRESS_LOOP_INTERVAL = 1000;
             basePlayerImpl.getPlayer().setVolume(1f);
         }
 
@@ -323,6 +321,7 @@ public class BackgroundPlayer extends Service {
         public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
             if (bigNotRemoteView != null) bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
             if (notRemoteView != null) notRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
+            if (bigNotRemoteView != null) bigNotRemoteView.setTextViewText(R.id.notificationTime, getTimeString(currentProgress) + " / " + getTimeString(duration));
             updateNotification(-1);
         }
 

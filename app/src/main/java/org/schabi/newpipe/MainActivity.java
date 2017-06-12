@@ -21,7 +21,9 @@
 package org.schabi.newpipe;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
@@ -33,13 +35,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.fragments.MainFragment;
-import org.schabi.newpipe.fragments.OnItemSelectedListener;
-import org.schabi.newpipe.fragments.channel.ChannelFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.search.SearchFragment;
 import org.schabi.newpipe.settings.SettingsActivity;
@@ -48,7 +46,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
-public class MainActivity extends AppCompatActivity implements OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public static final boolean DEBUG = false;
 
@@ -72,6 +70,19 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (sharedPreferences.getBoolean(Constants.KEY_THEME_CHANGE, false)) {
+            if (DEBUG) Log.d(TAG, "Theme has changed, recreating activity...");
+            sharedPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, false).apply();
+            this.recreate();
+        }
+
+    }
+
+    @Override
     protected void onNewIntent(Intent intent) {
         if (DEBUG) Log.d(TAG, "onNewIntent() called with: intent = [" + intent + "]");
         if (intent != null) {
@@ -89,10 +100,16 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
     @Override
     public void onBackPressed() {
         if (DEBUG) Log.d(TAG, "onBackPressed() called");
+
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
         if (fragment instanceof VideoDetailFragment) if (((VideoDetailFragment) fragment).onActivityBackPressed()) return;
 
         super.onBackPressed();
+
+        fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0 && !(fragment instanceof MainFragment)) {
+            super.onBackPressed();
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -134,7 +151,8 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
                 Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
                 if (fragment instanceof VideoDetailFragment) ((VideoDetailFragment) fragment).clearHistory();
 
-                NavigationHelper.openMainActivity(this);
+                getSupportFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                NavigationHelper.openMainFragment(getSupportFragmentManager());
                 return true;
             }
             case R.id.action_settings: {
@@ -160,26 +178,9 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
     //////////////////////////////////////////////////////////////////////////*/
 
     private void initFragments() {
-        openMainFragment();
         if (getIntent() != null && getIntent().hasExtra(Constants.KEY_URL)) {
             handleIntent(getIntent());
-        }
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // OnItemSelectedListener
-    //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void onItemSelected(StreamingService.LinkType linkType, int serviceId, String url, String name) {
-        switch (linkType) {
-            case STREAM:
-                openVideoDetailFragment(serviceId, url, name, false);
-                break;
-            case CHANNEL:
-                openChannelFragment(serviceId, url, name);
-                break;
-        }
+        } else NavigationHelper.openMainFragment(getSupportFragmentManager());
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -187,96 +188,29 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
     //////////////////////////////////////////////////////////////////////////*/
 
     private void handleIntent(Intent intent) {
-        if (intent.hasExtra(Constants.KEY_THEME_CHANGE) && intent.getBooleanExtra(Constants.KEY_THEME_CHANGE, false)) {
-            this.recreate();
-            Intent setI = new Intent(this, SettingsActivity.class);
-            startActivity(setI);
-            return;
-        }
+        if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
 
         if (intent.hasExtra(Constants.KEY_LINK_TYPE)) {
             String url = intent.getStringExtra(Constants.KEY_URL);
             int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
-            try {
-                switch (((StreamingService.LinkType) intent.getSerializableExtra(Constants.KEY_LINK_TYPE))) {
-                    case STREAM:
-                        handleVideoDetailIntent(serviceId, url, intent);
-                        break;
-                    case CHANNEL:
-                        handleChannelIntent(serviceId, url, intent);
-                        break;
-                    case NONE:
-                        throw new Exception("Url not known to service. service=" + Integer.toString(serviceId) + " url=" + url);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            String title = intent.getStringExtra(Constants.KEY_TITLE);
+            switch (((StreamingService.LinkType) intent.getSerializableExtra(Constants.KEY_LINK_TYPE))) {
+                case STREAM:
+                    boolean autoPlay = intent.getBooleanExtra(VideoDetailFragment.AUTO_PLAY, false);
+                    NavigationHelper.openVideoDetailFragment(getSupportFragmentManager(), serviceId, url, title, autoPlay);
+                    break;
+                case CHANNEL:
+                    NavigationHelper.openChannelFragment(getSupportFragmentManager(), serviceId, url, title);
+                    break;
             }
         } else if (intent.hasExtra(Constants.KEY_OPEN_SEARCH)) {
             String searchQuery = intent.getStringExtra(Constants.KEY_QUERY);
             if (searchQuery == null) searchQuery = "";
             int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
-            openSearchFragment(serviceId, searchQuery);
+            NavigationHelper.openSearchFragment(getSupportFragmentManager(), serviceId, searchQuery);
         } else {
             getSupportFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            openMainFragment();//openSearchFragment();
+            NavigationHelper.openMainFragment(getSupportFragmentManager());
         }
     }
-
-    private void openMainFragment() {
-        ImageLoader.getInstance().clearMemoryCache();
-        getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
-                .replace(R.id.fragment_holder, new MainFragment())
-                .commit();
-    }
-
-    private void openSearchFragment(int serviceId, String query) {
-        getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
-                .replace(R.id.fragment_holder, SearchFragment.getInstance(serviceId, query))
-                .addToBackStack(null)
-                .commit();
-    }
-
-    private void openVideoDetailFragment(int serviceId, String url, String title, boolean autoPlay) {
-        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
-        if (title == null) title = "";
-
-        if (fragment instanceof VideoDetailFragment && fragment.isVisible()) {
-            VideoDetailFragment detailFragment = (VideoDetailFragment) fragment;
-            detailFragment.setAutoplay(autoPlay);
-            detailFragment.selectAndLoadVideo(serviceId, url, title);
-            return;
-        }
-
-        VideoDetailFragment instance = VideoDetailFragment.getInstance(serviceId, url, title);
-        instance.setAutoplay(autoPlay);
-
-        getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
-                .replace(R.id.fragment_holder, instance)
-                .addToBackStack(null)
-                .commit();
-    }
-
-    private void openChannelFragment(int serviceId, String url, String name) {
-        if (name == null) name = "";
-        getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
-                .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, url, name))
-                .addToBackStack(null)
-                .commit();
-    }
-
-    private void handleVideoDetailIntent(int serviceId, String url, Intent intent) {
-        boolean autoPlay = intent.getBooleanExtra(VideoDetailFragment.AUTO_PLAY, false);
-        String title = intent.getStringExtra(Constants.KEY_TITLE);
-        openVideoDetailFragment(serviceId, url, title, autoPlay);
-    }
-
-    private void handleChannelIntent(int serviceId, String url, Intent intent) {
-        String name = intent.getStringExtra(Constants.KEY_TITLE);
-        openChannelFragment(serviceId, url, name);
-    }
-
 }

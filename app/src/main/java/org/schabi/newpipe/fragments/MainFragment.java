@@ -51,6 +51,7 @@ public class MainFragment extends Fragment {
     /*//////////////////////////////////////////////////////////////////////////
     // Menu
     //////////////////////////////////////////////////////////////////////////*/
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -68,7 +69,7 @@ public class MainFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_search:
-                NavigationHelper.openSearch(activity, 0, "");
+                NavigationHelper.openSearchFragment(getFragmentManager(), 0, "");
                 return true;
         }
         return super.onOptionsItemSelected(item);
