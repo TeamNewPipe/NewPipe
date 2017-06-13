@@ -1,2 +1,111 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="main_bg_subtitle">Tryck på sök för att börja</string>
+    <string name="upload_date_text">Publicerad den %1$s</string>
+    <string name="no_player_found">Ingen strömspelare hittades. Vill du installera VLC?</string>
+    <string name="install">Installera</string>
+    <string name="cancel">Avbryt</string>
+    <string name="open_in_browser">Öppna i bläddrare</string>
+    <string name="open_in_popup_mode">Öppna i popup-läge</string>
+    <string name="share">Dela</string>
+    <string name="download">Ladda ner</string>
+    <string name="search">Sök</string>
+    <string name="settings">Inställningar</string>
+    <string name="did_you_mean">Menade du: %1$s ?</string>
+    <string name="share_dialog_title">Dela med</string>
+    <string name="choose_browser">Välj bläddrare</string>
+    <string name="screen_rotation">rotering</string>
+    <string name="use_external_video_player_title">Använd extern videospelare</string>
+    <string name="use_external_video_player_summary">Några upplösningar kommer INTE ha ljud när det här alternativet är aktiverat</string>
+    <string name="use_external_audio_player_title">Använd extern ljudspelare</string>
+    <string name="popup_mode_share_menu_title">NewPipe popup-läge</string>
+    <string name="controls_background_title">Bakgrund</string>
+    <string name="controls_popup_title">Extrafönster</string>
+
+    <string name="download_path_title">Genväg för nerladdning av video</string>
+    <string name="download_path_summary">Genväg för att lagra nerladdade videor i</string>
+    <string name="download_path_dialog_title">Fyll i genvägen som videor ska laddas ner till</string>
+
+    <string name="download_path_audio_title">Plats för att ladda ner ljud till</string>
+    <string name="download_path_audio_summary">Plats för att lagra nerladdat ljud i</string>
+    <string name="download_path_audio_dialog_title">Ange nerladdningsplats för ljudfiler</string>
+
+    <string name="autoplay_by_calling_app_summary">Spela automatiskt upp en video när NewPipe är kallad från en annan app</string>
+    <string name="default_resolution_title">Standardupplösning</string>
+    <string name="default_popup_resolution_title">Standardupplösning för popup</string>
+    <string name="show_higher_resolutions_title">Visa högre upplösningar</string>
+    <string name="show_higher_resolutions_summary">Det finns endast ett fåtal enheter som har stöd för uppspelning av 2K/4K-videor</string>
+    <string name="play_with_kodi_title">Spela upp med Kodi</string>
+    <string name="kore_not_found">Kore-appen hittades inte. Installera Kore?</string>
+    <string name="show_play_with_kodi_title">Visa alternativet \"Spela upp med Kodi\"</string>
+    <string name="show_play_with_kodi_summary">Visa ett alternativ för att spela upp en video med mediacentret Kodi</string>
+    <string name="play_audio">Ljud</string>
+    <string name="default_audio_format_title">Standardformat för ljud</string>
+    <string name="preferred_video_format_title">Videoformat som föredras</string>
+    <string name="webm_description">WebM — fritt format</string>
+    <string name="m4a_description">m4a — bättre kvalité</string>
+    <string name="theme_title">Tema</string>
+    <string name="light_theme_title">Ljus</string>
+    <string name="dark_theme_title">Mörk</string>
+    <string name="black_theme_title">Svart</string>
+    <string name="popup_remember_size_pos_title">Kom ihåg storleken och positionen för popup</string>
+    <string name="popup_remember_size_pos_summary">Kom ihåg den senast inställda storleken och positionen av popup-rutan</string>
+    <string name="player_gesture_controls_title">Gestkontroller för spelare</string>
+    <string name="player_gesture_controls_summary">Använd gester för att kontrollera spelarens ljusstyrka och volym</string>
+    <string name="show_search_suggestions_title">Sökförslag</string>
+    <string name="show_search_suggestions_summary">Visa förslag i samband med sökning</string>
+
+    <string name="download_dialog_title">Ladda ner</string>
+
+    <string name="next_video_title">Nästa video</string>
+    <string name="show_next_and_similar_title">Visa nästkommande och liknande videor</string>
+    <string name="url_not_supported_toast">Webbadressen stöds inte</string>
+    <string name="search_language_title">Språk som föredras för innehållet</string>
+    <string name="settings_category_video_audio_title">Video &amp; Ljud</string>
+    <string name="settings_category_popup_title">Popup-ruta</string>
+    <string name="settings_category_appearance_title">Utseende</string>
+    <string name="settings_category_other_title">Andra</string>
+    <string name="background_player_playing_toast">Spelar upp i bakgrunden</string>
+    <string name="popup_playing_toast">Spelar upp i popup-läge</string>
+    <string name="play_btn_text">Spela upp</string>
+    <string name="content">Innehåll</string>
+    <string name="show_age_restricted_content_title">Visa åldersbegränsat innehåll</string>
+    <string name="video_is_age_restricted">Videon är åldersbegränsad. Aktivera åldersbegränsade videor i inställningarna först.</string>
+    <string name="duration_live">direkt</string>
+    <string name="downloads">Nerladdningar</string>
+    <string name="downloads_title">Nerladdningar</string>
+    <string name="error_report_title">Felrapport</string>
+    <string name="all">Alla</string>
+    <string name="channel">Kanal</string>
+    <string name="yes">Ja</string>
+    <string name="later">Senare</string>
+    <string name="disabled">Inaktiverad</string>
+    <string name="filter">Filtrera</string>
+    <string name="refresh">Uppdatera</string>
+    <string name="clear">Rensa</string>
+    <string name="best_resolution">Bästa upplösningen</string>
+
+    <string name="general_error">Fel</string>
+    <string name="network_error">Nätverksfel</string>
+    <string name="could_not_load_thumbnails">Kunde inte ladda alla miniatyrbilder</string>
+    <string name="parsing_error">Kunde inte tolka hemsidan.</string>
+    <string name="light_parsing_error">Kunde inte tolka hemsidan fullt ut.</string>
+    <string name="content_not_available">Innehållet är inte tillgängligt.</string>
+    <string name="blocked_by_gema">Blockerat av GEMA.</string>
+    <string name="could_not_setup_download_menu">Kunde inte ställa in nerladdningsmenyn.</string>
+    <string name="live_streams_not_supported">Det här är en DIREKTSÄNDNING. Det finns ännu inget stöd för dessa.</string>
+    <string name="could_not_load_image">Kunde inte ladda Bild</string>
+    <string name="app_ui_crash">App/AnvändarGränssnitt kraschade</string>
+    <string name="sorry_string">Oj, det där skulle inte ha hänt.</string>
+    <string name="error_snackbar_message">Tyvärr så inträffade det några fel.</string>
+    <string name="error_snackbar_action">RAPPORTERA</string>
+    <string name="what_device_headline">Info:</string>
+    <string name="what_happened_headline">Vad som skedde:</string>
+    <string name="your_comment">Din kommentar (på Engelska):</string>
+    <string name="error_details_headline">Detaljer:</string>
+
+
+    <string name="detail_likes_img_view_description">Gillanden</string>
+    <string name="detail_dislikes_img_view_description">Ogillanden</string>
+    <string name="use_tor_title">Använd Tor</string>
+    <string name="report_error">Rapportera ett fel</string>
+    </resources>
