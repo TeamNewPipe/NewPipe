@@ -91,7 +91,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
         if ((requestCode == REQUEST_DOWNLOAD_PATH || requestCode == REQUEST_DOWNLOAD_AUDIO_PATH) && resultCode == Activity.RESULT_OK) {
             String key = getString(requestCode == REQUEST_DOWNLOAD_PATH ? R.string.download_path_key : R.string.download_path_audio_key);
-            String path = data.getData().toString().substring(7);
+            String path = data.getData().getPath();
             defaultPreferences.edit().putString(key, path).apply();
             updatePreferencesSummary();
         } else if (requestCode == REQUEST_INSTALL_ORBOT) {
