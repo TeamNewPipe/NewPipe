@@ -15,7 +15,7 @@
     <string name="choose_browser">Выбрать браузер</string>
     <string name="screen_rotation">поворот</string>
     <string name="download_path_title">Папка для загрузки видео</string>
-    <string name="download_path_summary">Папка для хранения загруженных видео.</string>
+    <string name="download_path_summary">Папка для хранения загруженных видео</string>
     <string name="download_path_dialog_title">Введите путь к папке для загрузки видео</string>
     <string name="default_resolution_title">Разрешение по умолчанию</string>
     <string name="play_with_kodi_title">Воспроизвести с помощью Kodi</string>
@@ -25,7 +25,7 @@
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Формат аудио по умолчанию</string>
     <string name="webm_description">WebM — свободный формат</string>
-    <string name="m4a_description">m4a — более хорошее качество</string>
+    <string name="m4a_description">m4a — лучше качество</string>
     <string name="download_dialog_title">Скачать</string>
     <string name="next_video_title">Следующее видео</string>
     <string name="url_not_supported_toast">URL не поддерживается</string>
@@ -53,7 +53,7 @@
     <string name="use_tor_title">Использовать Tor</string>
     <string name="download_path_audio_title">Папка для загрузки аудио</string>
     <string name="download_path_audio_summary">Папка для хранения загруженных аудио</string>
-    <string name="download_path_audio_dialog_title">Введите путь к папке для загрузки аудио.</string>
+    <string name="download_path_audio_dialog_title">Введите путь к папке для загрузки аудио</string>
 
     <string name="main_bg_subtitle">Нажмите поиск, чтобы начать</string>
     <string name="msg_wait">Подождите…</string>
@@ -80,7 +80,7 @@
     <string name="your_comment">Ваш комментарий (на английском):</string>
     <string name="err_dir_create">Невозможно создать папку для загрузки \'%1$s\'</string>
     <string name="autoplay_by_calling_app_title">Автоматически воспроизводить при открытии из другого приложения</string>
-    <string name="autoplay_by_calling_app_summary">Автоматически воспроизводить видео при вызове NewPipe из другого приложения.</string>
+    <string name="autoplay_by_calling_app_summary">Автоматически воспроизводить видео при вызове NewPipe из другого приложения</string>
     <string name="content">Контент</string>
     <string name="video_is_age_restricted">Видео имеет возрастные ограничения. Сначала разрешите видео с возрастными ограничениями в настройках.</string>
     <string name="duration_live">вживую</string>
@@ -116,7 +116,7 @@
     <string name="retry">Повторить попытку</string>
     <string name="storage_permission_denied">В доступе к хранилищу было отказано</string>
     <string name="could_not_load_thumbnails">Не удалось загрузить все миниатюры</string>
-    <string name="youtube_signature_decryption_error">Не удалось расшифровать подпись url у видео.</string>
+    <string name="youtube_signature_decryption_error">Не удалось расшифровать подпись URL у видео.</string>
     <string name="could_not_get_stream">Не удалось найти ни один поток.</string>
 
     <string name="view">Воспроизвести</string>
@@ -125,7 +125,7 @@
     <string name="controls_background_title">Фон</string>
     <string name="controls_popup_title">В окне</string>
 
-    <string name="show_higher_resolutions_summary">Не все устройства поддерживают видео разрешения 2k/4k</string>
+    <string name="show_higher_resolutions_summary">Только некоторые устройства могут воспроизводить видео в 2K/4K</string>
     <string name="preferred_video_format_title">Предпочитаемый формат видео</string>
     <string name="black_theme_title">Чёрная</string>
     <string name="popup_remember_size_pos_title">Запоминать размер и положение всплывающего окна</string>
@@ -141,7 +141,7 @@
     <string name="all">Всё</string>
     <string name="filter">Фильтр</string>
     <string name="videos">видео</string>
-    <string name="subscriber">подписаться</string>
+    <string name="subscriber">подписчик</string>
     <string name="subscriber_plural">подписчиков</string>
     <string name="views">просмотров</string>
     <string name="add">Новая миссия</string>
@@ -166,4 +166,6 @@
     <string name="default_popup_resolution_title">Разрешение в режиме всплывающего окна</string>
     <string name="popup_remember_size_pos_summary">Запоминать последний размер и положение всплывающего окна</string>
     <string name="show_search_suggestions_title">Живой поиск</string>
-</resources>
+<string name="best_resolution">Лучшее разрешение</string>
+
+    </resources>
