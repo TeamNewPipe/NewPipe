@@ -17,6 +17,8 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
 
+import java.util.Locale;
+
 /**
  * Created by Christian Schabesberger on 26.09.16.
  * <p>
@@ -54,18 +56,30 @@ public class InfoItemBuilder {
         void selected(int serviceId, String url, String title);
     }
 
-    private Context mContext = null;
-    private LayoutInflater inflater;
-    private View rootView = null;
     private ImageLoader imageLoader = ImageLoader.getInstance();
-    private DisplayImageOptions displayImageOptions =
-            new DisplayImageOptions.Builder().cacheInMemory(true).build();
+    private static final DisplayImageOptions DISPLAY_IMAGE_OPTIONS =
+            new DisplayImageOptions.Builder()
+                    .cacheInMemory(true)
+                    .build();
+    private static final DisplayImageOptions DISPLAY_STREAM_THUMBNAIL_OPTIONS =
+            new DisplayImageOptions.Builder()
+            .cloneFrom(DISPLAY_IMAGE_OPTIONS)
+            .showImageOnFail(R.drawable.dummy_thumbnail)
+            .showImageForEmptyUri(R.drawable.dummy_thumbnail)
+            .showImageOnLoading(R.drawable.dummy_thumbnail)
+            .build();
+
+    private static final DisplayImageOptions DISPLAY_CHANNEL_THUMBNAIL_OPTIONS =
+            new DisplayImageOptions.Builder()
+            .cloneFrom(DISPLAY_IMAGE_OPTIONS)
+            .showImageOnLoading(R.drawable.buddy_channel_item)
+            .showImageForEmptyUri(R.drawable.buddy_channel_item)
+            .showImageOnFail(R.drawable.buddy_channel_item)
+            .build();
     private OnInfoItemSelectedListener onStreamInfoItemSelectedListener;
     private OnInfoItemSelectedListener onChannelInfoItemSelectedListener;
 
-    public InfoItemBuilder(Context context, View rootView) {
-        mContext = context;
-        this.rootView = rootView;
+    public InfoItemBuilder(Context context) {
         viewsS = context.getString(R.string.views);
         videosS = context.getString(R.string.videos);
         subsS = context.getString(R.string.subscriber);
@@ -73,7 +87,6 @@ public class InfoItemBuilder {
         thousand = context.getString(R.string.short_thousand);
         million = context.getString(R.string.short_million);
         billion = context.getString(R.string.short_billion);
-        inflater = LayoutInflater.from(context);
     }
 
     public void setOnStreamInfoItemSelectedListener(
@@ -104,27 +117,19 @@ public class InfoItemBuilder {
         }
     }
 
-    public View buildView(ViewGroup parent, final InfoItem info) {
-        View itemView = null;
-        InfoItemHolder holder = null;
-        switch (info.infoType()) {
-            case STREAM:
-                //long start = System.nanoTime();
-                itemView = inflater.inflate(R.layout.stream_item, parent, false);
-                //Log.d(TAG, "time to inflate: " + ((System.nanoTime() - start) / 1000000L) + "ms");
-                holder = new StreamInfoItemHolder(itemView);
-                break;
-            case CHANNEL:
-                itemView = inflater.inflate(R.layout.channel_item, parent, false);
-                holder = new ChannelInfoItemHolder(itemView);
-                break;
-            case PLAYLIST:
-                Log.e(TAG, "Not yet implemented");
-            default:
-                Log.e(TAG, "Trollolo");
+    private String getStreamInfoDetailLine(final StreamInfoItem info) {
+        String viewsAndDate = "";
+        if(info.view_count >= 0) {
+            viewsAndDate = shortViewCount(info.view_count);
         }
-        buildByHolder(holder, info);
-        return itemView;
+        if(!TextUtils.isEmpty(info.upload_date)) {
+            if(viewsAndDate.isEmpty()) {
+                viewsAndDate = info.upload_date;
+            } else {
+                viewsAndDate += " • " + info.upload_date;
+            }
+        }
+        return viewsAndDate;
     }
 
     private void buildStreamInfoItem(StreamInfoItemHolder holder, final StreamInfoItem info) {
@@ -146,46 +151,59 @@ public class InfoItemBuilder {
                 holder.itemDurationView.setVisibility(View.GONE);
             }
         }
-        if (info.view_count >= 0) {
-            holder.itemViewCountView.setText(shortViewCount(info.view_count));
-        } else {
-            holder.itemViewCountView.setVisibility(View.GONE);
-        }
-        if (!TextUtils.isEmpty(info.upload_date)) holder.itemUploadDateView.setText(info.upload_date + " • ");
 
-        holder.itemThumbnailView.setImageResource(R.drawable.dummy_thumbnail);
-        if (!TextUtils.isEmpty(info.thumbnail_url)) {
-            imageLoader.displayImage(info.thumbnail_url,
-                    holder.itemThumbnailView, displayImageOptions,
-                    new ImageErrorLoadingListener(mContext, rootView, info.service_id));
-        }
+        holder.itemAdditionalDetails.setText(getStreamInfoDetailLine(info));
+
+        // Default thumbnail is shown on error, while loading and if the url is empty
+        imageLoader.displayImage(info.thumbnail_url,
+                holder.itemThumbnailView,
+                DISPLAY_STREAM_THUMBNAIL_OPTIONS,
+                new ImageErrorLoadingListener(holder.itemRoot.getContext(), holder.itemRoot.getRootView(), info.service_id));
+
 
         holder.itemRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onStreamInfoItemSelectedListener.selected(info.service_id, info.webpage_url, info.getTitle());
+                if(onStreamInfoItemSelectedListener != null) {
+                    onStreamInfoItemSelectedListener.selected(info.service_id, info.webpage_url, info.getTitle());
+                }
             }
         });
     }
 
+    private String getChannelInfoDetailLine(final ChannelInfoItem info) {
+        String details = "";
+        if(info.subscriberCount >= 0) {
+            details = shortSubscriber(info.subscriberCount);
+        }
+        if(info.videoAmount >= 0) {
+            String formattedVideoAmount = info.videoAmount + " " + videosS;
+            if(!details.isEmpty()) {
+                details += " • " + formattedVideoAmount;
+            } else {
+                details = formattedVideoAmount;
+            }
+        }
+        return details;
+    }
+
     private void buildChannelInfoItem(ChannelInfoItemHolder holder, final ChannelInfoItem info) {
         if (!TextUtils.isEmpty(info.getTitle())) holder.itemChannelTitleView.setText(info.getTitle());
-        holder.itemSubscriberCountView.setText(shortSubscriber(info.subscriberCount) + " • ");
-        holder.itemVideoCountView.setText(info.videoAmount + " " + videosS);
+        holder.itemAdditionalDetailView.setText(getChannelInfoDetailLine(info));
         if (!TextUtils.isEmpty(info.description)) holder.itemChannelDescriptionView.setText(info.description);
 
-        holder.itemThumbnailView.setImageResource(R.drawable.buddy_channel_item);
-        if (!TextUtils.isEmpty(info.thumbnailUrl)) {
-            imageLoader.displayImage(info.thumbnailUrl,
-                    holder.itemThumbnailView,
-                    displayImageOptions,
-                    new ImageErrorLoadingListener(mContext, rootView, info.serviceId));
-        }
+        imageLoader.displayImage(info.thumbnailUrl,
+                holder.itemThumbnailView,
+                DISPLAY_CHANNEL_THUMBNAIL_OPTIONS,
+                new ImageErrorLoadingListener(holder.itemRoot.getContext(), holder.itemRoot.getRootView(), info.serviceId));
+
 
         holder.itemRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onChannelInfoItemSelectedListener.selected(info.serviceId, info.getLink(), info.channelName);
+                if(onStreamInfoItemSelectedListener != null) {
+                    onChannelInfoItemSelectedListener.selected(info.serviceId, info.getLink(), info.channelName);
+                }
             }
         });
     }
@@ -218,7 +236,10 @@ public class InfoItemBuilder {
     }
 
     public static String getDurationString(int duration) {
-        String output = "";
+        if(duration < 0) {
+            duration = 0;
+        }
+        String output;
         int days = duration / (24 * 60 * 60); /* greater than a day */
         duration %= (24 * 60 * 60);
         int hours = duration / (60 * 60); /* greater than an hour */
@@ -228,46 +249,12 @@ public class InfoItemBuilder {
 
         //handle days
         if (days > 0) {
-            output = Integer.toString(days) + ":";
-        }
-        // handle hours
-        if (hours > 0 || !output.isEmpty()) {
-            if (hours > 0) {
-                if (hours >= 10 || output.isEmpty()) {
-                    output += Integer.toString(hours);
-                } else {
-                    output += "0" + Integer.toString(hours);
-                }
-            } else {
-                output += "00";
-            }
-            output += ":";
-        }
-        //handle minutes
-        if (minutes > 0 || !output.isEmpty()) {
-            if (minutes > 0) {
-                if (minutes >= 10 || output.isEmpty()) {
-                    output += Integer.toString(minutes);
-                } else {
-                    output += "0" + Integer.toString(minutes);
-                }
-            } else {
-                output += "00";
-            }
-            output += ":";
-        }
-
-        //handle seconds
-        if (output.isEmpty()) {
-            output += "0:";
-        }
-
-        if (seconds >= 10) {
-            output += Integer.toString(seconds);
+            output = String.format(Locale.US, "%d:%02d:%02d:%02d", days, hours, minutes, seconds);
+        } else if(hours > 0) {
+            output = String.format(Locale.US, "%d:%02d:%02d", hours, minutes, seconds);
         } else {
-            output += "0" + Integer.toString(seconds);
+            output = String.format(Locale.US, "%d:%02d", minutes, seconds);
         }
-
         return output;
     }
 }

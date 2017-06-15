@@ -213,7 +213,7 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
 
         channelVideosList.setLayoutManager(new LinearLayoutManager(activity));
         if (infoListAdapter == null) {
-            infoListAdapter = new InfoListAdapter(activity, rootView);
+            infoListAdapter = new InfoListAdapter(activity);
             if (savedInstanceState != null) {
                 //noinspection unchecked
                 ArrayList<InfoItem> serializable = (ArrayList<InfoItem>) savedInstanceState.getSerializable(INFO_LIST_KEY);

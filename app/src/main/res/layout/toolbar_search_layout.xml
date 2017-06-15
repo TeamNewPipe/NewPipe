@@ -22,7 +22,7 @@
         android:background="?attr/colorPrimary"
         android:drawableLeft="?attr/search"
         android:drawablePadding="8dp"
-        android:dropDownAnchor="@+id/dropdown_anchor"
+        android:dropDownAnchor="@id/dropdown_anchor"
         android:focusable="true"
         android:imeOptions="actionSearch|flagNoFullscreen"
         android:inputType="textFilter|textNoSuggestions"
@@ -35,13 +35,8 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="right|center_vertical"
+        android:background="?attr/selectableItemBackgroundBorderless"
         tools:ignore="RtlHardcoded">
-
-        <FrameLayout
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_gravity="center"
-            android:background="?attr/selectableItemBackgroundBorderless"/>
 
         <ImageView
             android:layout_width="24dp"

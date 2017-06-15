@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemRoot"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/video_item_search_height"
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
-    android:orientation="vertical"
-    android:padding="12dp">
+    android:padding="@dimen/video_item_search_padding">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/itemThumbnailView"
@@ -22,55 +21,43 @@
         android:src="@drawable/buddy_channel_item"
         tools:ignore="RtlHardcoded"/>
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/itemChannelTitleView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/video_item_search_thumbnail_image_height"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/itemThumbnailView"
-        android:orientation="vertical"
-        tools:ignore="RtlHardcoded">
+        android:layout_marginBottom="@dimen/video_item_search_image_right_margin"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="@dimen/video_item_search_title_text_size"
+        tools:text="Channel Title, Lorem ipsum"/>
 
-        <TextView
-            android:id="@+id/itemChannelTitleView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="@dimen/channel_item_detail_title_text_size"
-            tools:text="Channel Title, Lorem ipsum"/>
+  <TextView
+        android:id="@+id/itemAdditionalDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/itemThumbnailView"
+        android:lines="1"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="@dimen/video_item_search_upload_date_text_size"
+        tools:text="10M subscribers • 1000 videos"/>
 
-        <TextView
-            android:id="@+id/itemChannelDescriptionView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/itemSubscriberCountView"
-            android:layout_below="@+id/itemChannelTitleView"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textSize="@dimen/video_item_search_uploader_text_size"
-            tools:text="Channel description, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blandit"/>
 
-        <TextView
-            android:id="@+id/itemSubscriberCountView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:maxLines="1"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textSize="@dimen/video_item_search_upload_date_text_size"
-            tools:text="10M subscribers • "/>
+    <TextView
+        android:id="@+id/itemChannelDescriptionView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/itemAdditionalDetails"
+        android:layout_marginBottom="@dimen/video_item_detail_description_to_details_margin"
+        android:layout_toRightOf="@id/itemThumbnailView"
+        android:ellipsize="end"
+        android:lines="2"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="@dimen/video_item_search_uploader_text_size"
+        tools:text="Channel description, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blandit"/>
 
-        <TextView
-            android:id="@+id/itemVideoCountView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/itemSubscriberCountView"
-            android:maxLines="1"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textSize="@dimen/video_item_search_upload_date_text_size"
-            tools:text="1000 videos"/>
-    </RelativeLayout>
+
 </RelativeLayout>

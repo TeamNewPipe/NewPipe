@@ -102,7 +102,9 @@ public class MainActivity extends AppCompatActivity {
         if (DEBUG) Log.d(TAG, "onBackPressed() called");
 
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
-        if (fragment instanceof VideoDetailFragment) if (((VideoDetailFragment) fragment).onActivityBackPressed()) return;
+        if (fragment instanceof VideoDetailFragment) {
+            if (((VideoDetailFragment) fragment).onActivityBackPressed()) return;
+        }
 
         super.onBackPressed();
 

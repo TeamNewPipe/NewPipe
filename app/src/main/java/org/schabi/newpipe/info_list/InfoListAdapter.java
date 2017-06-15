@@ -11,6 +11,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -37,7 +38,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final String TAG = InfoListAdapter.class.toString();
 
     private final InfoItemBuilder infoItemBuilder;
-    private final List<InfoItem> infoItemList;
+    private final InfoItemList infoItemList;
     private boolean showFooter = false;
     private View header = null;
     private View footer = null;
@@ -55,9 +56,9 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
-    public InfoListAdapter(Activity a, View rootView) {
-        infoItemBuilder = new InfoItemBuilder(a, rootView);
-        infoItemList = new ArrayList<>();
+    public InfoListAdapter(Activity a) {
+        infoItemBuilder = new InfoItemBuilder(a);
+        infoItemList = new InfoItemList();
     }
 
     public void setOnStreamInfoItemSelectedListener
@@ -70,14 +71,26 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         infoItemBuilder.setOnChannelInfoItemSelectedListener(listener);
     }
 
-    public void addInfoItemList(List<InfoItem> data) {
+    public void addInfoItemList(Collection<InfoItem> data) {
         if(data != null) {
+            int sizeBefore = infoItemList.size();
             infoItemList.addAll(data);
-            notifyDataSetChanged();
+            notifyItemRangeInserted(sizeBefore, data.size());
         }
     }
 
+    public void addInfoItem(InfoItem infoItem) {
+        if(infoItem == null) {
+            throw new NullPointerException("infoItem is null");
+        }
+        infoItemList.add(infoItem);
+        notifyItemInserted(infoItemList.size());
+    }
+
     public void clearStreamItemList() {
+        if(infoItemList.isEmpty()) {
+            return;
+        }
         infoItemList.clear();
         notifyDataSetChanged();
     }
@@ -94,6 +107,15 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public List<InfoItem> getItemsList() {
         return infoItemList;
+    }
+
+    /**
+     * Removes all items in a given range
+     * @param fromIndex from index inclusive
+     * @param toIndex to index excluseive
+     */
+    public void removeItemRange(int fromIndex, int toIndex) {
+        infoItemList.removeRange(fromIndex, toIndex);
     }
 
     @Override
@@ -162,6 +184,13 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             ((HFHolder) holder).view = header;
         } else if(holder instanceof HFHolder && i == infoItemList.size() && footer != null && showFooter) {
             ((HFHolder) holder).view = footer;
+        }
+    }
+
+    private class InfoItemList extends ArrayList<InfoItem> {
+        @Override
+        protected void removeRange(int fromIndex, int toIndex) {
+            super.removeRange(fromIndex, toIndex);
         }
     }
 }
