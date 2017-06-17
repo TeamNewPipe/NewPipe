@@ -69,18 +69,16 @@
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:paddingLeft="12dp"
-                    android:paddingRight="12dp"
-                    android:paddingTop="12dp">
+                    android:paddingRight="12dp">
 
                     <TextView
                         android:id="@+id/detail_video_title_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="12dp"
                         android:ellipsize="end"
-                        android:gravity="center_vertical"
                         android:maxLines="1"
-                        android:paddingBottom="2dp"
-                        android:paddingTop="6dp"
                         android:layout_marginRight="20dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textSize="@dimen/video_item_detail_title_text_size"
@@ -92,9 +90,8 @@
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginTop="6dp"
                         android:src="@drawable/arrow_down"
-                        android:layout_gravity="right"
+                        android:layout_gravity="center_vertical|right"
                         tools:ignore="ContentDescription,RtlHardcoded"/>
 
                 </FrameLayout>
@@ -130,6 +127,8 @@
                                 android:textAppearance="?android:attr/textAppearanceLarge"
                                 android:textSize="@dimen/video_item_detail_views_text_size"
                                 tools:ignore="RtlHardcoded"
+                                android:layout_marginBottom="6dp"
+                                android:layout_marginTop="6dp"
                                 tools:text="2,816,821,505 views"/>
 
 
