@@ -122,7 +122,7 @@
     <string name="view">Воспроизвести</string>
 
 
-    <string name="controls_background_title">Фон</string>
+    <string name="controls_background_title">В фоне</string>
     <string name="controls_popup_title">В окне</string>
 
     <string name="show_higher_resolutions_summary">Только некоторые устройства могут воспроизводить видео в 2K/4K</string>
@@ -168,4 +168,5 @@
     <string name="show_search_suggestions_title">Живой поиск</string>
 <string name="best_resolution">Лучшее разрешение</string>
 
+    <string name="use_old_player_summary">Старый встроенный плеер на Mediaframework.</string>
     </resources>
