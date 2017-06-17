@@ -355,12 +355,13 @@
                             android:textSize="@dimen/video_item_detail_next_text_size"
                             tools:ignore="RtlHardcoded"/>
 
-                        <android.support.v7.widget.RecyclerView
+                        <LinearLayout
                             android:id="@+id/detail_related_streams_view"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginTop="2dp"
-                            tools:listitem="@layout/stream_item" />
+                            android:orientation="vertical"
+                            tools:minHeight="50dp"/>
 
                         <ImageButton
                             android:id="@+id/detail_related_streams_expand"

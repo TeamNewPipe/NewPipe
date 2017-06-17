@@ -51,6 +51,7 @@ import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.stream_info.AudioStream;
@@ -97,6 +98,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     private ArrayList<VideoStream> sortedStreamVideosList;
     private ActionBarHandler actionBarHandler;
 
+    private InfoItemBuilder infoItemBuilder = null;
     private StreamInfo currentStreamInfo = null;
     private StreamExtractorWorker curExtractorWorker;
 
@@ -150,9 +152,9 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
 
     private TextView nextStreamTitle;
     private LinearLayout relatedStreamRootLayout;
+    private LinearLayout relatedStreamsView;
     private ImageButton relatedStreamExpandButton;
     private Handler uiHandler;
-    private InfoListAdapter relatedStreamsAdapter;
     private Handler backgroundHandler;
     private HandlerThread backgroundHandlerThread;
 
@@ -214,7 +216,6 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
             backgroundHandlerThread = handlerThread;
             backgroundHandler = new Handler(handlerThread.getLooper(), new BackgroundCallback(uiHandler, getContext()));
         }
-        relatedStreamsAdapter = new InfoListAdapter(getActivity());
     }
 
     @Override
@@ -274,7 +275,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     public void onDestroyView() {
         if (DEBUG) Log.d(TAG, "onDestroyView() called");
         thumbnailImageView.setImageBitmap(null);
-        relatedStreamsAdapter.clearStreamItemList();
+        relatedStreamsView.removeAllViews();
         spinnerToolbar.setOnItemSelectedListener(null);
 
         spinnerToolbar = null;
@@ -310,6 +311,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
 
         nextStreamTitle = null;
         relatedStreamRootLayout = null;
+        relatedStreamsView = null;
         relatedStreamExpandButton = null;
 
         super.onDestroyView();
@@ -324,7 +326,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         outState.putSerializable(STACK_KEY, stack);
 
         int nextCount = currentStreamInfo != null && currentStreamInfo.next_video != null ? 2 : 0;
-        if (relatedStreamsAdapter != null && relatedStreamsAdapter.getItemCount() > INITIAL_RELATED_VIDEOS + nextCount) {
+        if (relatedStreamsView != null && relatedStreamsView.getChildCount() > INITIAL_RELATED_VIDEOS + nextCount) {
             outState.putSerializable(WAS_RELATED_EXPANDED_KEY, true);
         }
 
@@ -487,13 +489,19 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         int nextCount = info.next_video != null ? 2 : 0;
         int initialCount = INITIAL_RELATED_VIDEOS + nextCount;
 
-        if (relatedStreamsAdapter.getItemCount() > initialCount) {
-            relatedStreamsAdapter.removeItemRange(initialCount, relatedStreamsAdapter.getItemCount());
+        if (relatedStreamsView.getChildCount() > initialCount) {
+            relatedStreamsView.removeViews(initialCount, relatedStreamsView.getChildCount() - (initialCount));
             relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(activity, getResourceIdFromAttr(R.attr.expand)));
-        } else {
-            relatedStreamsAdapter.addInfoItemList(info.related_streams.subList(INITIAL_RELATED_VIDEOS, info.related_streams.size()));
-            relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(activity, getResourceIdFromAttr(R.attr.collapse)));
+            return;
         }
+
+        //Log.d(TAG, "toggleExpandRelatedVideos() called with: info = [" + info + "], from = [" + INITIAL_RELATED_VIDEOS + "]");
+        for (int i = INITIAL_RELATED_VIDEOS; i < info.related_streams.size(); i++) {
+            InfoItem item = info.related_streams.get(i);
+            //Log.d(TAG, "i = " + i);
+            relatedStreamsView.addView(infoItemBuilder.buildView(relatedStreamsView, item));
+        }
+        relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(activity, getResourceIdFromAttr(R.attr.collapse)));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -538,23 +546,21 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
 
         relatedStreamRootLayout = (LinearLayout) rootView.findViewById(R.id.detail_related_streams_root_layout);
         nextStreamTitle = (TextView) rootView.findViewById(R.id.detail_next_stream_title);
-        RecyclerView relatedStreamsView = (RecyclerView) rootView.findViewById(R.id.detail_related_streams_view);
-        LinearLayoutManager llm = new LinearLayoutManager(rootView.getContext());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        relatedStreamsView.setLayoutManager(llm);
-        relatedStreamsView.setAdapter(relatedStreamsAdapter);
+        relatedStreamsView = (LinearLayout) rootView.findViewById(R.id.detail_related_streams_view);
 
         relatedStreamExpandButton = ((ImageButton) rootView.findViewById(R.id.detail_related_streams_expand));
 
         actionBarHandler = new ActionBarHandler(activity);
         videoDescriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
+        infoItemBuilder = new InfoItemBuilder(activity);
+
         setHeightThumbnail();
     }
 
     protected void initListeners() {
         super.initListeners();
-        relatedStreamsAdapter.setOnStreamInfoItemSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener() {
+        infoItemBuilder.setOnStreamInfoItemSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener() {
             @Override
             public void selected(int serviceId, String url, String title) {
                 //NavigationHelper.openVideoDetail(activity, url, serviceId);
@@ -587,18 +593,24 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     }
 
     private void initRelatedVideos(StreamInfo info) {
-        relatedStreamsAdapter.clearStreamItemList();
+        if (relatedStreamsView.getChildCount() > 0) relatedStreamsView.removeAllViews();
 
         if (info.next_video != null && showRelatedStreams) {
             nextStreamTitle.setVisibility(View.VISIBLE);
-            relatedStreamsAdapter.addInfoItem(info.next_video);
+            relatedStreamsView.addView(infoItemBuilder.buildView(relatedStreamsView, info.next_video));
+            relatedStreamsView.addView(getSeparatorView());
             relatedStreamRootLayout.setVisibility(View.VISIBLE);
         } else nextStreamTitle.setVisibility(View.GONE);
 
         if (info.related_streams != null && !info.related_streams.isEmpty() && showRelatedStreams) {
             //long first = System.nanoTime(), each;
             int to = info.related_streams.size() >= INITIAL_RELATED_VIDEOS ? INITIAL_RELATED_VIDEOS : info.related_streams.size();
-            relatedStreamsAdapter.addInfoItemList(info.related_streams.subList(0, to));
+            for (int i = 0; i < to; i++) {
+                InfoItem item = info.related_streams.get(i);
+                //each = System.nanoTime();
+                relatedStreamsView.addView(infoItemBuilder.buildView(relatedStreamsView, item));
+                //if (DEBUG) Log.d(TAG, "each took " + ((System.nanoTime() - each) / 1000000L) + "ms");
+            }
             //if (DEBUG) Log.d(TAG, "Total time " + ((System.nanoTime() - first) / 1000000L) + "ms");
 
             relatedStreamRootLayout.setVisibility(View.VISIBLE);
@@ -610,6 +622,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
             relatedStreamExpandButton.setVisibility(View.GONE);
         }
     }
+
 
     /*//////////////////////////////////////////////////////////////////////////
     // Menu

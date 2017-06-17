@@ -117,6 +117,31 @@ public class InfoItemBuilder {
         }
     }
 
+    public View buildView(ViewGroup parent, final InfoItem info) {
+        View itemView = null;
+        InfoItemHolder holder = null;
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        switch (info.infoType()) {
+            case STREAM:
+                //long start = System.nanoTime();
+                itemView = inflater.inflate(R.layout.stream_item, parent, false);
+                //Log.d(TAG, "time to inflate: " + ((System.nanoTime() - start) / 1000000L) + "ms");
+                holder = new StreamInfoItemHolder(itemView);
+                break;
+            case CHANNEL:
+                itemView = inflater.inflate(R.layout.channel_item, parent, false);
+                holder = new ChannelInfoItemHolder(itemView);
+                break;
+            case PLAYLIST:
+                Log.e(TAG, "Not yet implemented");
+            default:
+                Log.e(TAG, "Trollolo");
+        }
+        buildByHolder(holder, info);
+        return itemView;
+    }
+
+
     private String getStreamInfoDetailLine(final StreamInfoItem info) {
         String viewsAndDate = "";
         if(info.view_count >= 0) {
