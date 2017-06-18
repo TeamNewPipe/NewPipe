@@ -38,7 +38,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final String TAG = InfoListAdapter.class.toString();
 
     private final InfoItemBuilder infoItemBuilder;
-    private final InfoItemList infoItemList;
+    private final ArrayList<InfoItem> infoItemList;
     private boolean showFooter = false;
     private View header = null;
     private View footer = null;
@@ -58,7 +58,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public InfoListAdapter(Activity a) {
         infoItemBuilder = new InfoItemBuilder(a);
-        infoItemList = new InfoItemList();
+        infoItemList = new ArrayList<>();
     }
 
     public void setOnStreamInfoItemSelectedListener
@@ -77,14 +77,6 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             infoItemList.addAll(data);
             notifyItemRangeInserted(sizeBefore, data.size());
         }
-    }
-
-    public void addInfoItem(InfoItem infoItem) {
-        if(infoItem == null) {
-            throw new NullPointerException("infoItem is null");
-        }
-        infoItemList.add(infoItem);
-        notifyItemInserted(infoItemList.size());
     }
 
     public void clearStreamItemList() {
@@ -107,15 +99,6 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public List<InfoItem> getItemsList() {
         return infoItemList;
-    }
-
-    /**
-     * Removes all items in a given range
-     * @param fromIndex from index inclusive
-     * @param toIndex to index excluseive
-     */
-    public void removeItemRange(int fromIndex, int toIndex) {
-        infoItemList.removeRange(fromIndex, toIndex);
     }
 
     @Override
@@ -184,13 +167,6 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             ((HFHolder) holder).view = header;
         } else if(holder instanceof HFHolder && i == infoItemList.size() && footer != null && showFooter) {
             ((HFHolder) holder).view = footer;
-        }
-    }
-
-    private class InfoItemList extends ArrayList<InfoItem> {
-        @Override
-        protected void removeRange(int fromIndex, int toIndex) {
-            super.removeRange(fromIndex, toIndex);
         }
     }
 }

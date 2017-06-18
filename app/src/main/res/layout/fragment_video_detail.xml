@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/video_item_detail"
@@ -43,12 +42,12 @@
                     android:id="@+id/detail_thumbnail_play_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:src="@drawable/new_play_arrow"
                     android:visibility="invisible"
                     tools:ignore="ContentDescription"
-                    tools:visibility="visible"
-                    android:layout_gravity="center"/>
+                    tools:visibility="visible" />
 
             </FrameLayout>
 
@@ -57,9 +56,9 @@
                 android:id="@+id/detail_content_root_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:background="?android:windowBackground"
                 android:gravity="center_horizontal"
-                android:background="?android:windowBackground">
+                android:orientation="vertical">
 
                 <!-- TITLE -->
                 <FrameLayout
@@ -75,222 +74,222 @@
                         android:id="@+id/detail_video_title_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingBottom="8dp"
-                        android:paddingTop="12dp"
+                        android:layout_marginRight="20dp"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:layout_marginRight="20dp"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="12dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textSize="@dimen/video_item_detail_title_text_size"
                         tools:ignore="RtlHardcoded"
-                        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum. Nunc eleifend est quis ipsum porttitor egestas. Sed facilisis, nisl quis eleifend pellentesque, orci metus egestas dolor, at accumsan eros metus quis libero."/>
+                        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum. Nunc eleifend est quis ipsum porttitor egestas. Sed facilisis, nisl quis eleifend pellentesque, orci metus egestas dolor, at accumsan eros metus quis libero." />
 
                     <ImageView
                         android:id="@+id/detail_toggle_description_view"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
+                        android:layout_gravity="center_vertical|right"
                         android:layout_marginLeft="5dp"
                         android:src="@drawable/arrow_down"
-                        android:layout_gravity="center_vertical|right"
-                        tools:ignore="ContentDescription,RtlHardcoded"/>
+                        tools:ignore="ContentDescription,RtlHardcoded" />
 
                 </FrameLayout>
-                    <!--HIDING ROOT-->
-                    <LinearLayout
-                        android:id="@+id/detail_content_root_hiding"
+                <!--HIDING ROOT-->
+                <LinearLayout
+                    android:id="@+id/detail_content_root_hiding"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <!--DETAIL-->
+                    <RelativeLayout
+                        android:id="@+id/detail_root"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        tools:visibility="visible"
-                        android:orientation="vertical">
+                        android:layout_height="55dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="6dp"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal">
 
-                        <!--DETAIL-->
-                        <RelativeLayout
-                            android:id="@+id/detail_root"
-                            android:layout_width="match_parent"
+                        <!-- VIEW & THUMBS -->
+
+
+                        <TextView
+                            android:id="@+id/detail_view_count_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginBottom="6dp"
+                            android:layout_marginTop="6dp"
+                            android:lines="1"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textSize="@dimen/video_item_detail_views_text_size"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="2,816,821,505 views" />
+
+
+                        <ImageView
+                            android:id="@+id/detail_thumbs_up_img_view"
+                            android:layout_width="@dimen/video_item_detail_like_image_width"
+                            android:layout_height="@dimen/video_item_detail_like_image_height"
+                            android:layout_below="@id/detail_view_count_view"
+                            android:contentDescription="@string/detail_likes_img_view_description"
+                            android:src="?attr/thumbs_up" />
+
+                        <TextView
+                            android:id="@+id/detail_thumbs_up_count_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/video_item_detail_like_image_height"
+                            android:layout_below="@id/detail_view_count_view"
+                            android:layout_marginLeft="@dimen/video_item_detail_like_margin"
+                            android:layout_toRightOf="@id/detail_thumbs_up_img_view"
+                            android:gravity="left|center_vertical"
+                            android:lines="1"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="@dimen/video_item_detail_likes_text_size"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="12M" />
+
+                        <ImageView
+                            android:id="@+id/detail_thumbs_down_img_view"
+                            android:layout_width="@dimen/video_item_detail_like_image_width"
+                            android:layout_height="@dimen/video_item_detail_like_image_height"
+                            android:layout_below="@id/detail_view_count_view"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@id/detail_thumbs_up_count_view"
+                            android:contentDescription="@string/detail_dislikes_img_view_description"
+                            android:src="?attr/thumbs_down"
+                            tools:ignore="RtlHardcoded" />
+
+                        <TextView
+                            android:id="@+id/detail_thumbs_down_count_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/video_item_detail_like_image_height"
+                            android:layout_below="@id/detail_view_count_view"
+                            android:layout_marginLeft="@dimen/video_item_detail_like_margin"
+                            android:layout_toRightOf="@id/detail_thumbs_down_img_view"
+                            android:gravity="left|center_vertical"
+                            android:lines="1"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="@dimen/video_item_detail_likes_text_size"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="10K" />
+
+                        <TextView
+                            android:id="@+id/detail_thumbs_disabled_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_below="@id/detail_view_count_view"
+                            android:layout_marginLeft="15dp"
+                            android:gravity="left|center_vertical"
+                            android:text="@string/disabled"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textSize="@dimen/video_item_detail_likes_text_size"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            tools:ignore="RtlHardcoded" />
+
+                        <!-- CONTROLS -->
+                        <TextView
+                            android:id="@+id/detail_controls_popup"
+                            android:layout_width="80dp"
                             android:layout_height="55dp"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:baselineAligned="false"
-                            android:orientation="horizontal"
-                            android:layout_marginTop="6dp">
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_gravity="center_vertical"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:contentDescription="@string/open_in_popup_mode"
+                            android:drawableTop="?attr/popup"
+                            android:gravity="center"
+                            android:paddingBottom="6dp"
+                            android:paddingTop="6dp"
+                            android:text="@string/controls_popup_title"
+                            android:textSize="12sp" />
 
-                            <!-- VIEW & THUMBS -->
+                        <TextView
+                            android:id="@+id/detail_controls_background"
+                            android:layout_width="80dp"
+                            android:layout_height="55dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_toLeftOf="@id/detail_controls_popup"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:contentDescription="@string/play_audio"
+                            android:drawableTop="?attr/audio"
+                            android:gravity="center"
+                            android:paddingBottom="6dp"
+                            android:paddingTop="6dp"
+                            android:text="@string/controls_background_title"
+                            android:textSize="12sp" />
+                    </RelativeLayout>
+
+                    <!--UPLOADER-->
+                    <LinearLayout
+                        android:id="@+id/detail_uploader_root_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="8dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
 
-                            <TextView
-                                android:id="@+id/detail_view_count_view"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentLeft="true"
-                                android:lines="1"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:textSize="@dimen/video_item_detail_views_text_size"
-                                tools:ignore="RtlHardcoded"
-                                android:layout_marginBottom="6dp"
-                                android:layout_marginTop="6dp"
-                                tools:text="2,816,821,505 views"/>
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/detail_uploader_thumbnail_view"
+                            android:layout_width="@dimen/video_item_detail_uploader_image_size"
+                            android:layout_height="@dimen/video_item_detail_uploader_image_size"
+                            android:contentDescription="@string/detail_uploader_thumbnail_view_description"
+                            android:src="@drawable/buddy"
+                            tools:ignore="RtlHardcoded" />
 
-
-                            <ImageView
-                                android:id="@+id/detail_thumbs_up_img_view"
-                                android:layout_below="@id/detail_view_count_view"
-                                android:layout_width="@dimen/video_item_detail_like_image_width"
-                                android:layout_height="@dimen/video_item_detail_like_image_height"
-                                android:contentDescription="@string/detail_likes_img_view_description"
-                                android:src="?attr/thumbs_up"/>
-
-                            <TextView
-                                android:id="@+id/detail_thumbs_up_count_view"
-                                android:layout_below="@id/detail_view_count_view"
-                                android:layout_toRightOf="@id/detail_thumbs_up_img_view"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/video_item_detail_like_image_height"
-                                android:layout_marginLeft="@dimen/video_item_detail_like_margin"
-                                android:gravity="left|center_vertical"
-                                android:lines="1"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textSize="@dimen/video_item_detail_likes_text_size"
-                                tools:ignore="RtlHardcoded"
-                                tools:text="12M"/>
-
-                            <ImageView
-                                android:id="@+id/detail_thumbs_down_img_view"
-                                android:layout_below="@id/detail_view_count_view"
-                                android:layout_toRightOf="@id/detail_thumbs_up_count_view"
-                                android:layout_width="@dimen/video_item_detail_like_image_width"
-                                android:layout_height="@dimen/video_item_detail_like_image_height"
-                                android:layout_marginLeft="15dp"
-                                android:contentDescription="@string/detail_dislikes_img_view_description"
-                                android:src="?attr/thumbs_down"
-                                tools:ignore="RtlHardcoded"/>
-
-                            <TextView
-                                android:id="@+id/detail_thumbs_down_count_view"
-                                android:layout_below="@id/detail_view_count_view"
-                                android:layout_toRightOf="@id/detail_thumbs_down_img_view"
-                                android:layout_width="wrap_content"
-                                android:layout_height="@dimen/video_item_detail_like_image_height"
-                                android:lines="1"
-                                android:layout_marginLeft="@dimen/video_item_detail_like_margin"
-                                android:gravity="left|center_vertical"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textSize="@dimen/video_item_detail_likes_text_size"
-                                tools:ignore="RtlHardcoded"
-                                tools:text="10K" />
-
-                            <TextView
-                                android:layout_below="@id/detail_view_count_view"
-                                android:id="@+id/detail_thumbs_disabled_view"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="15dp"
-                                android:gravity="left|center_vertical"
-                                android:text="@string/disabled"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:textSize="@dimen/video_item_detail_likes_text_size"
-                                android:textStyle="bold"
-                                android:visibility="gone"
-                                tools:ignore="RtlHardcoded"/>
-
-                            <!-- CONTROLS -->
-                            <TextView
-                                android:id="@+id/detail_controls_popup"
-                                android:layout_alignParentRight="true"
-                                android:layout_alignParentTop="true"
-                                android:layout_width="80dp"
-                                android:layout_height="55dp"
-                                android:layout_gravity="center_vertical"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:clickable="true"
-                                android:contentDescription="@string/open_in_popup_mode"
-                                android:drawableTop="?attr/popup"
-                                android:gravity="center"
-                                android:paddingBottom="6dp"
-                                android:paddingTop="6dp"
-                                android:text="@string/controls_popup_title"
-                                android:textSize="12sp"/>
-
-                            <TextView
-                                android:id="@+id/detail_controls_background"
-                                android:layout_toLeftOf="@id/detail_controls_popup"
-                                android:layout_alignParentTop="true"
-                                android:layout_width="80dp"
-                                android:layout_height="55dp"
-                                android:layout_gravity="center_vertical"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:clickable="true"
-                                android:contentDescription="@string/play_audio"
-                                android:drawableTop="?attr/audio"
-                                android:gravity="center"
-                                android:paddingBottom="6dp"
-                                android:paddingTop="6dp"
-                                android:text="@string/controls_background_title"
-                                android:textSize="12sp"/>
-                        </RelativeLayout>
-
-                        <!--UPLOADER-->
-                        <LinearLayout
-                            android:id="@+id/detail_uploader_root_layout"
+                        <TextView
+                            android:id="@+id/detail_uploader_text_view"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:layout_marginTop="8dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:background="?attr/selectableItemBackground">
+                            android:layout_marginLeft="15dp"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textSize="@dimen/video_item_detail_uploader_text_size"
+                            android:textStyle="bold"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="Uploader" />
 
-
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:id="@+id/detail_uploader_thumbnail_view"
-                                android:layout_width="@dimen/video_item_detail_uploader_image_size"
-                                android:layout_height="@dimen/video_item_detail_uploader_image_size"
-                                android:contentDescription="@string/detail_uploader_thumbnail_view_description"
-                                android:src="@drawable/buddy"
-                                tools:ignore="RtlHardcoded"/>
-
-                            <TextView
-                                android:id="@+id/detail_uploader_text_view"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:textSize="@dimen/video_item_detail_uploader_text_size"
-                                android:textStyle="bold"
-                                tools:ignore="RtlHardcoded"
-                                tools:text="Uploader"/>
-
-                            <!--
-                            <Button
-                                android:id="@+id/detail_uploader_button"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                tools:visibility="gone"/>
-                              -->
-
-                            <!--<Button
-                                android:id="@+id/detail_uploader_subscribe"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical|right"
-                                android:layout_marginRight="12dp"
-                                android:text="@string/rss_button_title"
-                                android:textSize="12sp"
-                                android:theme="@style/RedButton"
-                                android:drawableLeft="@drawable/ic_rss_feed_white_24dp"
-                                tools:ignore="RtlHardcoded"
-                                android:visibility="gone"/>-->
-                        </LinearLayout>
-
-                        <View
+                        <!--
+                        <Button
+                            android:id="@+id/detail_uploader_button"
                             android:layout_width="match_parent"
-                            android:layout_height="1px"
-                            android:layout_gravity="bottom"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
-                            android:background="?attr/separatorColor"/>
+                            android:layout_height="match_parent"
+                            tools:visibility="gone"/>
+                          -->
+
+                        <!--<Button
+                            android:id="@+id/detail_uploader_subscribe"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|right"
+                            android:layout_marginRight="12dp"
+                            android:text="@string/rss_button_title"
+                            android:textSize="12sp"
+                            android:theme="@style/RedButton"
+                            android:drawableLeft="@drawable/ic_rss_feed_white_24dp"
+                            tools:ignore="RtlHardcoded"
+                            android:visibility="gone"/>-->
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="?attr/separatorColor" />
 
                     <!--DESCRIPTIONS-->
                     <LinearLayout
@@ -298,9 +297,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:orientation="vertical"
                         android:visibility="gone"
-                        tools:visibility="visible"
-                        android:orientation="vertical">
+                        tools:visibility="visible">
 
                         <TextView
                             android:id="@+id/detail_upload_date_view"
@@ -311,7 +310,7 @@
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textSize="@dimen/video_item_detail_upload_date_text_size"
                             android:textStyle="bold"
-                            tools:text="Upload date"/>
+                            tools:text="Upload date" />
 
                         <TextView
                             android:id="@+id/detail_description_view"
@@ -323,14 +322,14 @@
                             android:layout_marginTop="3dp"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textSize="@dimen/video_item_detail_description_text_size"
-                            tools:text="Description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum."/>
+                            tools:text="Description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum." />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1px"
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
-                            android:background="?attr/separatorColor"/>
+                            android:background="?attr/separatorColor" />
 
                     </LinearLayout>
 
@@ -352,7 +351,7 @@
                             android:textAllCaps="true"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textSize="@dimen/video_item_detail_next_text_size"
-                            tools:ignore="RtlHardcoded"/>
+                            tools:ignore="RtlHardcoded" />
 
                         <LinearLayout
                             android:id="@+id/detail_related_streams_view"
@@ -360,7 +359,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginTop="2dp"
                             android:orientation="vertical"
-                            tools:minHeight="50dp"/>
+                            tools:minHeight="50dp" />
 
                         <ImageButton
                             android:id="@+id/detail_related_streams_expand"
@@ -372,7 +371,7 @@
                             android:src="?attr/expand"
                             android:textAlignment="center"
                             android:textAllCaps="true"
-                            tools:ignore="ContentDescription"/>
+                            tools:ignore="ContentDescription" />
 
 
                     </LinearLayout>
@@ -388,7 +387,7 @@
                     android:layout_marginTop="15dp"
                     android:indeterminate="true"
                     android:visibility="gone"
-                    tools:visibility="visible"/>
+                    tools:visibility="visible" />
 
                 <!--ERROR PANEL-->
                 <include
@@ -398,7 +397,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/video_item_detail_error_panel_margin"
                     android:visibility="gone"
-                    tools:visibility="visible"/>
+                    tools:visibility="visible" />
 
             </LinearLayout>
         </LinearLayout>

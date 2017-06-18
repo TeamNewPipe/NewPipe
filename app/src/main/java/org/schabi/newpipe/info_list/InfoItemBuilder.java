@@ -57,10 +57,14 @@ public class InfoItemBuilder {
     }
 
     private ImageLoader imageLoader = ImageLoader.getInstance();
+
+    /** Base display options */
     private static final DisplayImageOptions DISPLAY_IMAGE_OPTIONS =
             new DisplayImageOptions.Builder()
                     .cacheInMemory(true)
                     .build();
+
+    /** Display options for stream thumbnails */
     private static final DisplayImageOptions DISPLAY_STREAM_THUMBNAIL_OPTIONS =
             new DisplayImageOptions.Builder()
             .cloneFrom(DISPLAY_IMAGE_OPTIONS)
@@ -69,6 +73,7 @@ public class InfoItemBuilder {
             .showImageOnLoading(R.drawable.dummy_thumbnail)
             .build();
 
+    /** Display options for channel thumbnails */
     private static final DisplayImageOptions DISPLAY_CHANNEL_THUMBNAIL_OPTIONS =
             new DisplayImageOptions.Builder()
             .cloneFrom(DISPLAY_IMAGE_OPTIONS)
