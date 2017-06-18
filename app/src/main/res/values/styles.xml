@@ -31,7 +31,6 @@
         <item name="colorControlHighlight">@color/light_ripple_color</item>
     </style>
 
-
     <!-- Dark Theme-->
     <style name="DarkTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/dark_youtube_primary_color</item>
@@ -85,6 +84,10 @@
 
     <style name="SplashScreenTheme" parent="@style/AppTheme">
         <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
+    <style name="NoSplashScreenTheme" parent="AppTheme">
+        <item name="android:windowDisablePreview">true</item>
     </style>
 
     <!-- You can also inherit from NNF_BaseTheme.Light -->
