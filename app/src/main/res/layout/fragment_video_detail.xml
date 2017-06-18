@@ -25,7 +25,9 @@
                 android:id="@+id/detail_thumbnail_root_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/black">
+                android:background="@android:color/black"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground">
 
                 <ImageView
                     android:id="@+id/detail_thumbnail_image_view"
@@ -57,7 +59,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?android:windowBackground"
-                android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <!-- TITLE -->
@@ -115,8 +116,6 @@
                         android:orientation="horizontal">
 
                         <!-- VIEW & THUMBS -->
-
-
                         <TextView
                             android:id="@+id/detail_view_count_view"
                             android:layout_width="wrap_content"
@@ -129,7 +128,6 @@
                             android:textSize="@dimen/video_item_detail_views_text_size"
                             tools:ignore="RtlHardcoded"
                             tools:text="2,816,821,505 views" />
-
 
                         <ImageView
                             android:id="@+id/detail_thumbs_up_img_view"
@@ -233,13 +231,13 @@
                         android:id="@+id/detail_uploader_root_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp"
-                        android:layout_marginTop="8dp"
                         android:background="?attr/selectableItemBackground"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:paddingBottom="8dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="8dp">
 
 
                         <de.hdodenhof.circleimageview.CircleImageView
@@ -261,14 +259,6 @@
                             tools:ignore="RtlHardcoded"
                             tools:text="Uploader" />
 
-                        <!--
-                        <Button
-                            android:id="@+id/detail_uploader_button"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            tools:visibility="gone"/>
-                          -->
-
                         <!--<Button
                             android:id="@+id/detail_uploader_subscribe"
                             android:layout_width="wrap_content"
@@ -286,7 +276,6 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:layout_gravity="bottom"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
                         android:background="?attr/separatorColor" />
@@ -310,7 +299,7 @@
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textSize="@dimen/video_item_detail_upload_date_text_size"
                             android:textStyle="bold"
-                            tools:text="Upload date" />
+                            tools:text="Published on Oct 2, 2009" />
 
                         <TextView
                             android:id="@+id/detail_description_view"
@@ -372,17 +361,14 @@
                             android:textAlignment="center"
                             android:textAllCaps="true"
                             tools:ignore="ContentDescription" />
-
-
                     </LinearLayout>
-
                 </LinearLayout>
 
                 <!-- LOADING BAR -->
                 <ProgressBar
                     android:id="@+id/loading_progress_bar"
                     style="@style/Widget.AppCompat.ProgressBar"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:indeterminate="true"
@@ -393,12 +379,11 @@
                 <include
                     android:id="@+id/error_panel"
                     layout="@layout/error_retry"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/video_item_detail_error_panel_margin"
                     android:visibility="gone"
                     tools:visibility="visible" />
-
             </LinearLayout>
         </LinearLayout>
     </com.nirhart.parallaxscroll.views.ParallaxScrollView>
