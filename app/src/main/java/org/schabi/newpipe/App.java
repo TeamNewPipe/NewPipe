@@ -3,6 +3,7 @@ package org.schabi.newpipe;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.stetho.Stetho;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
@@ -64,6 +65,8 @@ public class App extends Application {
                             "Could not initialize ACRA crash report", R.string.app_ui_crash));
         }
 
+        initStetho();
+
         //init NewPipe
         NewPipe.init(Downloader.getInstance());
 
@@ -108,5 +111,27 @@ public class App extends Application {
 
     public static boolean isUsingTor() {
         return useTor;
+    }
+
+    private void initStetho() {
+        // Create an InitializerBuilder
+        Stetho.InitializerBuilder initializerBuilder =
+                Stetho.newInitializerBuilder(this);
+
+        // Enable Chrome DevTools
+        initializerBuilder.enableWebKitInspector(
+                Stetho.defaultInspectorModulesProvider(this)
+        );
+
+        // Enable command line interface
+        initializerBuilder.enableDumpapp(
+                Stetho.defaultDumperPluginsProvider(getApplicationContext())
+        );
+
+        // Use the InitializerBuilder to generate an Initializer
+        Stetho.Initializer initializer = initializerBuilder.build();
+
+        // Initialize Stetho with the Initializer
+        Stetho.initialize(initializer);
     }
 }
