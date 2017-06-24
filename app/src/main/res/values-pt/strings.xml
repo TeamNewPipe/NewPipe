@@ -17,13 +17,13 @@
     <string name="use_external_video_player_title">Utilizar reprodutor de vídeo externo</string>
     <string name="use_external_audio_player_title">Utilizar reprodutor de áudio externo</string>
     <string name="download_path_title">Local de transferência de vídeo</string>
-    <string name="download_path_summary">Local para guardar os vídeos transferidos.</string>
+    <string name="download_path_summary">Local para guardar os vídeos transferidos</string>
     <string name="download_path_dialog_title">Introduza o caminho para os vídeos</string>
     <string name="default_resolution_title">Resolução padrão</string>
     <string name="play_with_kodi_title">Reproduzir no Kodi</string>
     <string name="kore_not_found">Aplicação não encontrada. Instalar o Kore?</string>
     <string name="show_play_with_kodi_title">Mostrar opção \"Reproduzir no Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Mostra uma opção para reproduzir o vídeo no Kodi.</string>
+    <string name="show_play_with_kodi_summary">Mostra uma opção para reproduzir o vídeo no Kodi</string>
     <string name="play_audio">Áudio</string>
     <string name="default_audio_format_title">Formato áudio padrão</string>
     <string name="webm_description">WebM — formato livre</string>
@@ -54,7 +54,7 @@
     <string name="use_tor_summary">(Experimental) Usar a rede Tor para aumentar a privacidade (ainda não é suportada a emissão de vídeos).</string>
     <string name="download_path_audio_title">Local de transferência de áudio</string>
     <string name="download_path_audio_summary">Local para guardar o áudio transferido.</string>
-    <string name="download_path_audio_dialog_title">Introduza o caminho para os ficheiros de áudio.</string>
+    <string name="download_path_audio_dialog_title">Introduza o caminho para os ficheiros de áudio</string>
 
     <string name="err_dir_create">Não foi possível criar o diretório \'%1$s\'</string>
     <string name="info_dir_created">Diretório \'%1$s\' criado com sucesso</string>
@@ -89,7 +89,7 @@
     <string name="storage_permission_denied">Não foi concedida permissão para aceder ao armazenamento</string>
     <string name="main_bg_subtitle">Toque para iniciar a pesquisa</string>
     <string name="autoplay_by_calling_app_title">Reproduzir se invocado por outra aplicação</string>
-    <string name="autoplay_by_calling_app_summary">Reproduzir vídeo automaticamente se o NewPipe for invocado por outra aplicação.</string>
+    <string name="autoplay_by_calling_app_summary">Reproduzir vídeo automaticamente se o NewPipe for invocado por outra aplicação</string>
     <string name="duration_live">direto</string>
 
     <string name="report_error">Reportar um erro</string>
@@ -159,7 +159,7 @@ o modo “popup“</string>
     <string name="subscriber_plural">subscritores</string>
     <string name="default_popup_resolution_title">Resolução padrão do popup</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções mais altas</string>
-    <string name="show_higher_resolutions_summary">Apenas alguns dispositivos possuem suporte a vídeos 2k/4k</string>
+    <string name="show_higher_resolutions_summary">Apenas alguns dispositivos possuem suporte a vídeos 2K/4K</string>
     <string name="controls_popup_title">Popup</string>
 
     <string name="popup_remember_size_pos_title">Lembrar tamanho e posição do popup</string>
