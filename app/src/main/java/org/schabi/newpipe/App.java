@@ -65,6 +65,7 @@ public class App extends Application {
                             "Could not initialize ACRA crash report", R.string.app_ui_crash));
         }
 
+        NewPipeDatabase.getInstance( getApplicationContext() );
         initStetho();
 
         //init NewPipe

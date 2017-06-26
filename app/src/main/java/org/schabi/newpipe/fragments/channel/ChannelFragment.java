@@ -20,9 +20,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.schabi.newpipe.ImageErrorLoadingListener;
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.AppDatabase;
+import org.schabi.newpipe.database.channel.ChannelEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.fragments.BaseFragment;
@@ -36,6 +40,17 @@ import org.schabi.newpipe.workers.ChannelExtractorWorker;
 import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
+
+import io.reactivex.Completable;
+import io.reactivex.Maybe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -56,6 +71,8 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
     private int pageNumber = 0;
     private boolean hasNextPage = true;
 
+    private CompositeDisposable disposables;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -68,6 +85,7 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
     private TextView headerTitleView;
     private TextView headerSubscribersTextView;
     private Button headerRssButton;
+    private Button headerSubscribeButton;
 
     /*////////////////////////////////////////////////////////////////////////*/
 
@@ -98,6 +116,7 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
             Serializable serializable = savedInstanceState.getSerializable(CHANNEL_INFO_KEY);
             if (serializable instanceof ChannelInfo) currentChannelInfo = (ChannelInfo) serializable;
         }
+        disposables = new CompositeDisposable();
     }
 
     @Override
@@ -128,7 +147,9 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
         headerTitleView = null;
         headerSubscribersTextView = null;
         headerRssButton = null;
+        headerSubscribeButton = null;
 
+        disposables.dispose();
         super.onDestroyView();
     }
 
@@ -232,6 +253,7 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
         headerTitleView = (TextView) headerRootLayout.findViewById(R.id.channel_title_view);
         headerSubscribersTextView = (TextView) headerRootLayout.findViewById(R.id.channel_subscriber_view);
         headerRssButton = (Button) headerRootLayout.findViewById(R.id.channel_rss_button);
+        headerSubscribeButton = (Button) headerRootLayout.findViewById(R.id.channel_subscribe_button);
     }
 
     protected void initListeners() {
@@ -264,6 +286,131 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
                 startActivity(i);
             }
         });
+    }
+
+    private Disposable subscriptionStatus(final ChannelEntity channel) {
+
+        final Callable<ChannelEntity> status = new Callable<ChannelEntity>() {
+            @Override
+            public ChannelEntity call() throws Exception {
+                final AppDatabase db = NewPipeDatabase.getInstance( getContext() );
+                return db.channelDAO().findByUrl( channel.getUrl() );
+            }
+        };
+
+        final Consumer<ChannelEntity> onSuccess = new Consumer<ChannelEntity>() {
+            @Override
+            public void accept(@NonNull final ChannelEntity channelEntity) throws Exception {
+                headerSubscribeButton.setText(R.string.subscribed_button_title);
+                headerSubscribeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        disposables.add( rxUnsubscribe( channelEntity ) );
+                    }
+                });
+                headerSubscribeButton.setVisibility(View.VISIBLE);
+            }
+        };
+
+        final Action onEmpty = new Action() {
+            @Override
+            public void run() throws Exception {
+                headerSubscribeButton.setText(R.string.subscribe_button_title);
+                headerSubscribeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        disposables.add( rxSubscribe( channel ) );
+                    }
+                });
+                headerSubscribeButton.setVisibility(View.VISIBLE);
+            }
+        };
+
+        final Consumer<Throwable> onError = new Consumer<Throwable>() {
+            @Override
+            public void accept(@NonNull Throwable throwable) throws Exception {
+                Log.e(TAG, "Status get failed", throwable);
+                headerSubscribeButton.setVisibility(View.INVISIBLE);
+            }
+        };
+
+        return Maybe.fromCallable( status )
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(onSuccess, onError, onEmpty);
+    }
+
+    private Disposable rxUnsubscribe(final ChannelEntity channel) {
+        final Runnable subscribe = new Runnable() {
+            @Override
+            public void run() {
+                final AppDatabase db = NewPipeDatabase.getInstance( getContext() );
+                db.beginTransaction();
+                try {
+                    db.channelDAO().delete( channel );
+                    db.setTransactionSuccessful();
+                } finally {
+                    db.endTransaction();
+                }
+            }
+        };
+
+        final Action onSubscribe = new Action() {
+            @Override
+            public void run() throws Exception {
+                disposables.add( subscriptionStatus( channel ) );
+            }
+        };
+
+        final Consumer<Throwable> onSubscribeError = new Consumer<Throwable>() {
+            @Override
+            public void accept(@NonNull Throwable e) throws Exception {
+                Log.e(TAG, "Subscription Fatal Error: ", e.getCause());
+                Toast.makeText(getContext(), "Unable to unsubscribe", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        return Completable.fromRunnable(subscribe)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(onSubscribe, onSubscribeError);
+    }
+
+    private Disposable rxSubscribe(final ChannelEntity channel) {
+
+        final Runnable subscribe = new Runnable() {
+            @Override
+            public void run() {
+                final AppDatabase db = NewPipeDatabase.getInstance( getContext() );
+                db.beginTransaction();
+                try {
+                    db.channelDAO().insert( channel );
+                    db.setTransactionSuccessful();
+                } finally {
+                    db.endTransaction();
+                }
+            }
+        };
+
+        final Action onSubscribe = new Action() {
+            @Override
+            public void run() throws Exception {
+                disposables.add( subscriptionStatus( channel ) );
+            }
+        };
+
+        final Consumer<Throwable> onSubscribeError = new Consumer<Throwable>() {
+            @Override
+            public void accept(@NonNull Throwable e) throws Exception {
+                Log.e(TAG, "Subscription Fatal Error: ", e.getCause());
+                Toast.makeText(getContext(), "Unable to subscribe", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        return Completable.fromRunnable(subscribe)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(onSubscribe, onSubscribeError);
     }
 
     @Override
@@ -356,6 +503,11 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
 
             if (!TextUtils.isEmpty(info.feed_url)) headerRssButton.setVisibility(View.VISIBLE);
             else headerRssButton.setVisibility(View.INVISIBLE);
+
+            ChannelEntity channel = new ChannelEntity();
+            channel.setServiceId( serviceId );
+            channel.setUrl( channelUrl );
+            disposables.add( subscriptionStatus( channel ) );
 
             infoListAdapter.showFooter(true);
         }

@@ -72,6 +72,7 @@ dependencies {
     compile "android.arch.persistence.room:runtime:1.0.0-alpha3"
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha3"
 
-    compile 'io.reactivex.rxjava2:rxjava:2.0.6'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile "io.reactivex.rxjava2:rxjava:2.x.y"
+    compile "io.reactivex.rxjava2:rxandroid:2.0.1"
+    compile "android.arch.persistence.room:rxjava2:1.0.0-alpha3"
 }
