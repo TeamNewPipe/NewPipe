@@ -50,5 +50,5 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.github.nirhart:parallaxscroll:1.0'
     compile 'com.nononsenseapps:filepicker:3.0.0'
-    compile 'com.google.android.exoplayer:exoplayer:r2.3.1'
+    compile 'com.google.android.exoplayer:exoplayer:r2.4.2'
 }

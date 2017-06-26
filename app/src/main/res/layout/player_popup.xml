@@ -72,6 +72,17 @@
                 android:textStyle="bold"
                 tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"/>
 
+            <TextView
+                android:id="@+id/playbackSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@id/qualityTextView"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textColor="@android:color/white"
+                tools:ignore="RtlHardcoded,RtlSymmetry"
+                tools:text="1x" />
+
             <ImageButton
                 android:id="@+id/fullScreenButton"
                 android:layout_width="30dp"

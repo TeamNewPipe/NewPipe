@@ -51,7 +51,8 @@ public class NavigationHelper {
                 .putExtra(VideoPlayer.INDEX_SEL_VIDEO_STREAM, instance.getSelectedStreamIndex())
                 .putExtra(VideoPlayer.VIDEO_STREAMS_LIST, instance.getVideoStreamsList())
                 .putExtra(VideoPlayer.VIDEO_ONLY_AUDIO_STREAM, instance.getAudioStream())
-                .putExtra(BasePlayer.START_POSITION, ((int) instance.getPlayer().getCurrentPosition()));
+                .putExtra(BasePlayer.START_POSITION, ((int) instance.getPlayer().getCurrentPosition()))
+                .putExtra(BasePlayer.PLAYBACK_SPEED, instance.getPlaybackSpeed());
     }
 
     public static Intent getOpenBackgroundPlayerIntent(Context context, StreamInfo info) {
