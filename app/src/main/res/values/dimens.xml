@@ -11,11 +11,15 @@
     <!-- 16 / 9 ratio-->
     <dimen name="video_item_search_thumbnail_image_width">124dp</dimen>
     <dimen name="video_item_search_thumbnail_image_height">70dp</dimen>
+    <!-- Calculated: 2*video_item_search_padding + video_item_search_thumbnail_image_height -->
+    <dimen name="video_item_search_height">94dp</dimen>
     <!-- Paddings & Margins -->
+    <dimen name="video_item_search_padding">12dp</dimen>
     <dimen name="video_item_search_image_right_margin">6dp</dimen>
     <dimen name="video_item_search_duration_vertical_padding">1sp</dimen>
     <dimen name="video_item_search_duration_horizontal_padding">5sp</dimen>
     <dimen name="video_item_search_duration_margin">2sp</dimen>
+    <dimen name="video_item_detail_description_to_details_margin">4dp</dimen>
     <!-- Miscellaneous -->
     <dimen name="popup_default_width">180dp</dimen>
     <dimen name="popup_minimum_width">120dp</dimen>

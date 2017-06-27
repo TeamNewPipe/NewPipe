@@ -37,7 +37,7 @@
         android:layout_gravity="right|center_vertical"
         tools:ignore="RtlHardcoded">
 
-        <FrameLayout
+        <View
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_gravity="center"

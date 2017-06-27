@@ -33,8 +33,7 @@ public class StreamInfoItemHolder extends InfoItemHolder {
     public final TextView itemVideoTitleView,
             itemUploaderView,
             itemDurationView,
-            itemUploadDateView,
-            itemViewCountView;
+            itemAdditionalDetails;
     public final View itemRoot;
 
     public StreamInfoItemHolder(View v) {
@@ -44,8 +43,7 @@ public class StreamInfoItemHolder extends InfoItemHolder {
         itemVideoTitleView = (TextView) v.findViewById(R.id.itemVideoTitleView);
         itemUploaderView = (TextView) v.findViewById(R.id.itemUploaderView);
         itemDurationView = (TextView) v.findViewById(R.id.itemDurationView);
-        itemUploadDateView = (TextView) v.findViewById(R.id.itemUploadDateView);
-        itemViewCountView = (TextView) v.findViewById(R.id.itemViewCountView);
+        itemAdditionalDetails = (TextView) v.findViewById(R.id.itemAdditionalDetails);
     }
 
     @Override

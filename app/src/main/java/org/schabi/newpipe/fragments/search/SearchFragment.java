@@ -212,7 +212,7 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
         resultRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
 
         if (infoListAdapter == null) {
-            infoListAdapter = new InfoListAdapter(getActivity(), getActivity().findViewById(android.R.id.content));
+            infoListAdapter = new InfoListAdapter(getActivity());
             if (savedInstanceState != null) {
                 //noinspection unchecked
                 ArrayList<InfoItem> serializable = (ArrayList<InfoItem>) savedInstanceState.getSerializable(INFO_LIST_KEY);

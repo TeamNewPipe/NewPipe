@@ -31,8 +31,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ChannelInfoItemHolder extends InfoItemHolder {
     public final CircleImageView itemThumbnailView;
     public final TextView itemChannelTitleView;
-    public final TextView itemSubscriberCountView;
-    public final TextView itemVideoCountView;
+    public final TextView itemAdditionalDetailView;
     public final TextView itemChannelDescriptionView;
 
     public final View itemRoot;
@@ -42,8 +41,7 @@ public class ChannelInfoItemHolder extends InfoItemHolder {
         itemRoot = v.findViewById(R.id.itemRoot);
         itemThumbnailView = (CircleImageView) v.findViewById(R.id.itemThumbnailView);
         itemChannelTitleView = (TextView) v.findViewById(R.id.itemChannelTitleView);
-        itemSubscriberCountView = (TextView) v.findViewById(R.id.itemSubscriberCountView);
-        itemVideoCountView = (TextView) v.findViewById(R.id.itemVideoCountView);
+        itemAdditionalDetailView = (TextView) v.findViewById(R.id.itemAdditionalDetails);
         itemChannelDescriptionView = (TextView) v.findViewById(R.id.itemChannelDescriptionView);
     }
 
