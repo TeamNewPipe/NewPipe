@@ -11,7 +11,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -38,7 +37,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final String TAG = InfoListAdapter.class.toString();
 
     private final InfoItemBuilder infoItemBuilder;
-    private final ArrayList<InfoItem> infoItemList;
+    private final List<InfoItem> infoItemList;
     private boolean showFooter = false;
     private View header = null;
     private View footer = null;
@@ -71,11 +70,10 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         infoItemBuilder.setOnChannelInfoItemSelectedListener(listener);
     }
 
-    public void addInfoItemList(Collection<InfoItem> data) {
+    public void addInfoItemList(List<InfoItem> data) {
         if(data != null) {
-            int sizeBefore = infoItemList.size();
             infoItemList.addAll(data);
-            notifyItemRangeInserted(sizeBefore, data.size());
+            notifyDataSetChanged();
         }
     }
 
