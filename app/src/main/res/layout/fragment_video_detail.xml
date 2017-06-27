@@ -364,26 +364,8 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <!-- LOADING BAR -->
-                <ProgressBar
-                    android:id="@+id/loading_progress_bar"
-                    style="@style/Widget.AppCompat.ProgressBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:indeterminate="true"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
-
-                <!--ERROR PANEL-->
-                <include
-                    android:id="@+id/error_panel"
-                    layout="@layout/error_retry"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/video_item_detail_error_panel_margin"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
+                <!-- LOADING BAR, ERROR & RETRY -->
+                <include layout="@layout/loading_error_retry" />
             </LinearLayout>
         </LinearLayout>
     </com.nirhart.parallaxscroll.views.ParallaxScrollView>
