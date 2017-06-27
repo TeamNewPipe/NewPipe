@@ -768,7 +768,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
 
         if (peek.getInfo() != null) {
             final StreamInfo streamInfo = peek.getInfo();
-            uiHandler.post(new Runnable() {
+            getActivity().runOnUiThread(new Runnable() {
                @Override
                public void run() {
                    selectAndHandleInfo(streamInfo);
@@ -932,16 +932,11 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         animateView(spinnerToolbar, true, 500);
         setupActionBarHandler(info);
         initThumbnailViews(info);
-        uiHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                initRelatedVideos(info);
-                if (wasRelatedStreamsExpanded) {
-                    toggleExpandRelatedVideos(currentStreamInfo);
-                    wasRelatedStreamsExpanded = false;
-                }
-            }
-        });
+        initRelatedVideos(info);
+        if (wasRelatedStreamsExpanded) {
+            toggleExpandRelatedVideos(currentStreamInfo);
+            wasRelatedStreamsExpanded = false;
+        }
         setTitleToUrl(info.webpage_url, info.title);
         setStreamInfoToUrl(info.webpage_url, info);
 

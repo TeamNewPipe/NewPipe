@@ -55,14 +55,14 @@ public class AnimationUtils {
             view.animate().setListener(null).cancel();
             view.setVisibility(View.VISIBLE);
             view.setAlpha(1f);
-            if (execOnEnd != null) view.post(execOnEnd);
+            if (execOnEnd != null) execOnEnd.run();
             return;
         } else if ((view.getVisibility() == View.GONE || view.getVisibility() == View.INVISIBLE) && !enterOrExit) {
             if (DEBUG) Log.d(TAG, "animateView() view was already gone > view = [" + view + "]");
             view.animate().setListener(null).cancel();
             view.setVisibility(View.GONE);
             view.setAlpha(0f);
-            if (execOnEnd != null) view.post(execOnEnd);
+            if (execOnEnd != null) execOnEnd.run();
             return;
         }
 
