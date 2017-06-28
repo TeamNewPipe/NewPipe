@@ -9,6 +9,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.UserAction;
 
 /**
  * Created by Christian Schabesberger on 01.08.16.
@@ -49,7 +50,7 @@ public class ImageErrorLoadingListener implements ImageLoadingListener {
     public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
         ErrorActivity.reportError(context,
                 failReason.getCause(), null, rootView,
-                ErrorActivity.ErrorInfo.make(ErrorActivity.LOAD_IMAGE,
+                ErrorActivity.ErrorInfo.make(UserAction.LOAD_IMAGE,
                         NewPipe.getNameOfService(serviceId), imageUri,
                         R.string.could_not_load_image));
     }

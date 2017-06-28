@@ -253,7 +253,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     }
 
     /**
-     * #143 #44 #42 #22: make shure that the filename does not contain illegal chars.
+     * #143 #44 #42 #22: make sure that the filename does not contain illegal chars.
      * This should fix some of the "cannot download" problems.
      */
     private String createFileName(String fileName) {

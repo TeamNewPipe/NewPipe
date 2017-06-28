@@ -13,9 +13,12 @@ import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.search.SearchEngine;
 import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.UserAction;
 
 import java.io.IOException;
 import java.util.EnumSet;
+
+import static org.schabi.newpipe.report.UserAction.*;
 
 /**
  * Return list of results based on a query
@@ -106,7 +109,7 @@ public class SearchWorker extends AbstractWorker {
             });
         } else if (exception instanceof ExtractionException) {
             View rootView = getContext() instanceof Activity ? ((Activity) getContext()).findViewById(android.R.id.content) : null;
-            ErrorActivity.reportError(getHandler(), getContext(), exception, null, rootView, ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED, getServiceName(), query, R.string.parsing_error));
+            ErrorActivity.reportError(getHandler(), getContext(), exception, null, rootView, ErrorActivity.ErrorInfo.make(SEARCHED, getServiceName(), query, R.string.parsing_error));
             getHandler().post(new Runnable() {
                 @Override
                 public void run() {
@@ -115,7 +118,7 @@ public class SearchWorker extends AbstractWorker {
             });
         } else {
             View rootView = getContext() instanceof Activity ? ((Activity) getContext()).findViewById(android.R.id.content) : null;
-            ErrorActivity.reportError(getHandler(), getContext(), exception, null, rootView, ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED, getServiceName(), query, R.string.general_error));
+            ErrorActivity.reportError(getHandler(), getContext(), exception, null, rootView, ErrorActivity.ErrorInfo.make(SEARCHED, getServiceName(), query, R.string.general_error));
             getHandler().post(new Runnable() {
                 @Override
                 public void run() {

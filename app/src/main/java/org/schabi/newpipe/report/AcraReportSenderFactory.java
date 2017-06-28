@@ -1,6 +1,7 @@
 package org.schabi.newpipe.report;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import org.acra.config.ACRAConfiguration;
 import org.acra.sender.ReportSender;
@@ -28,7 +29,8 @@ import org.schabi.newpipe.report.AcraReportSender;
  */
 
 public class AcraReportSenderFactory implements ReportSenderFactory {
-    public ReportSender create(Context context, ACRAConfiguration config) {
+    @NonNull
+    public ReportSender create(@NonNull Context context, @NonNull ACRAConfiguration config) {
         return new AcraReportSender();
     }
 }

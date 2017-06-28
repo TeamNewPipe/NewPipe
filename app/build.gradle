@@ -10,6 +10,8 @@ android {
         targetSdkVersion 25
         versionCode 35
         versionName "0.9.8"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -31,6 +33,11 @@ android {
 }
 
 dependencies {
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
+        exclude module: 'support-annotations'
+    }
+
+
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
     testCompile 'org.json:json:20160810'

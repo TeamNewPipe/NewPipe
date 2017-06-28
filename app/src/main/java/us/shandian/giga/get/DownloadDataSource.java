@@ -9,12 +9,14 @@ public interface DownloadDataSource {
 
     /**
      * Load all missions
+     *
      * @return a list of download missions
      */
     List<DownloadMission> loadMissions();
 
     /**
-     * Add a downlaod mission to the storage
+     * Add a download mission to the storage
+     *
      * @param downloadMission the download mission to add
      * @return the identifier of the mission
      */
@@ -22,6 +24,7 @@ public interface DownloadDataSource {
 
     /**
      * Update a download mission which exists in the storage
+     *
      * @param downloadMission the download mission to update
      * @throws IllegalArgumentException if the mission was not added to storage
      */
@@ -30,6 +33,7 @@ public interface DownloadDataSource {
 
     /**
      * Delete a download mission
+     *
      * @param downloadMission the mission to delete
      */
     void deleteMission(DownloadMission downloadMission);

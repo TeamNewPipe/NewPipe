@@ -31,18 +31,18 @@ import static org.mockito.Mockito.when;
 public class DownloadManagerImplTest {
 
     private DownloadManagerImpl downloadManager;
-    private DownloadDataSource dowloadDataSource;
+    private DownloadDataSource downloadDataSource;
     private ArrayList<DownloadMission> missions;
 
     @org.junit.Before
     public void setUp() throws Exception {
-        dowloadDataSource = mock(DownloadDataSource.class);
+        downloadDataSource = mock(DownloadDataSource.class);
         missions = new ArrayList<>();
         for(int i = 0; i < 50; ++i){
             missions.add(generateFinishedDownloadMission());
         }
-        when(dowloadDataSource.loadMissions()).thenReturn(new ArrayList<>(missions));
-        downloadManager = new DownloadManagerImpl(new ArrayList<String>(), dowloadDataSource);
+        when(downloadDataSource.loadMissions()).thenReturn(new ArrayList<>(missions));
+        downloadManager = new DownloadManagerImpl(new ArrayList<String>(), downloadDataSource);
     }
 
     @Test(expected = NullPointerException.class)
@@ -82,10 +82,10 @@ public class DownloadManagerImplTest {
             missions.add(mission);
         }
 
-        dowloadDataSource = mock(DownloadDataSource.class);
-        when(dowloadDataSource.loadMissions()).thenReturn(new ArrayList<>(missions));
-        downloadManager = new DownloadManagerImpl(new ArrayList<String>(), dowloadDataSource);
-        verify(dowloadDataSource, times(1)).loadMissions();
+        downloadDataSource = mock(DownloadDataSource.class);
+        when(downloadDataSource.loadMissions()).thenReturn(new ArrayList<>(missions));
+        downloadManager = new DownloadManagerImpl(new ArrayList<String>(), downloadDataSource);
+        verify(downloadDataSource, times(1)).loadMissions();
 
         assertEquals(50, downloadManager.getCount());
 

@@ -155,7 +155,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int i) {
-        //god damen f*** ANDROID SH**
+        //god damn f*** ANDROID SH**
         if(holder instanceof InfoItemHolder) {
             if(header != null) {
                 i--;
