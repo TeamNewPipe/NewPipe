@@ -111,6 +111,10 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     private boolean showRelatedStreams;
     private boolean wasRelatedStreamsExpanded = false;
 
+    private Handler uiHandler;
+    private Handler backgroundHandler;
+    private HandlerThread backgroundHandlerThread;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -150,9 +154,6 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     private LinearLayout relatedStreamRootLayout;
     private LinearLayout relatedStreamsView;
     private ImageButton relatedStreamExpandButton;
-    private Handler uiHandler;
-    private Handler backgroundHandler;
-    private HandlerThread backgroundHandlerThread;
 
     /*////////////////////////////////////////////////////////////////////////*/
 
@@ -203,10 +204,10 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         million = getString(R.string.short_million);
         billion = getString(R.string.short_billion);
 
-        if(uiHandler == null) {
+        if (uiHandler == null) {
             uiHandler = new Handler(Looper.getMainLooper(), new UICallback());
         }
-        if(backgroundHandler == null) {
+        if (backgroundHandler == null) {
             HandlerThread handlerThread = new HandlerThread("VideoDetailFragment-BG");
             handlerThread.start();
             backgroundHandlerThread = handlerThread;
@@ -259,7 +260,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(backgroundHandlerThread != null) {
+        if (backgroundHandlerThread != null) {
             backgroundHandlerThread.quit();
         }
         backgroundHandlerThread = null;
@@ -377,7 +378,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
                 openInPopup();
                 break;
             case R.id.detail_uploader_root_layout:
-                if(currentStreamInfo.channel_url == null || currentStreamInfo.channel_url.isEmpty()) {
+                if (currentStreamInfo.channel_url == null || currentStreamInfo.channel_url.isEmpty()) {
                     Log.w(TAG, "Can't open channel because we got no channel URL");
                 } else {
                     NavigationHelper.openChannelFragment(getFragmentManager(), currentStreamInfo.service_id, currentStreamInfo.channel_url, currentStreamInfo.uploader);
@@ -619,7 +620,6 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         }
     }
 
-
     /*//////////////////////////////////////////////////////////////////////////
     // Menu
     //////////////////////////////////////////////////////////////////////////*/
@@ -769,11 +769,11 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         if (peek.getInfo() != null) {
             final StreamInfo streamInfo = peek.getInfo();
             getActivity().runOnUiThread(new Runnable() {
-               @Override
-               public void run() {
-                   selectAndHandleInfo(streamInfo);
-               }
-           });
+                @Override
+                public void run() {
+                    selectAndHandleInfo(streamInfo);
+                }
+            });
         } else {
             selectAndLoadVideo(0, peek.getUrl(), !TextUtils.isEmpty(peek.getTitle()) ? peek.getTitle() : "");
         }
@@ -940,10 +940,16 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         setTitleToUrl(info.webpage_url, info.title);
         setStreamInfoToUrl(info.webpage_url, info);
 
-
         prepareDescription(info.description);
         prepareUploadDate(info.upload_date);
+
+        if (autoPlayEnabled) {
+            playVideo(info);
+            // Only auto play in the first open
+            autoPlayEnabled = false;
+        }
     }
+
     private void prepareUploadDate(final String uploadDate) {
         // Hide until date is prepared or forever if no date is supplied
         videoUploadDateView.setVisibility(View.GONE);
@@ -1076,9 +1082,6 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
                     .setStartDelay((long) (duration * .8f) + delay).setDuration(duration).setInterpolator(new FastOutSlowInInterpolator()).start();
         }
     }
-    /*//////////////////////////////////////////////////////////////////////////
-    // OnStreamInfoReceivedListener callbacks
-    //////////////////////////////////////////////////////////////////////////*/
 
     private void setErrorImage(final int imageResource) {
         if (thumbnailImageView == null || activity == null) return;
@@ -1099,6 +1102,10 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         currentStreamInfo = null;
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // OnStreamInfoReceivedListener callbacks
+    //////////////////////////////////////////////////////////////////////////*/
+
     @Override
     public void onReceive(StreamInfo info) {
         if (DEBUG) Log.d(TAG, "onReceive() called with: info = [" + info + "]");
@@ -1106,14 +1113,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
 
         handleStreamInfo(info, true);
         showContentWithAnimation(300, 0, 0);
-
         animateView(loadingProgressBar, false, 200);
-
-        if (autoPlayEnabled) {
-            playVideo(info);
-            // Only auto play in the first open
-            autoPlayEnabled = false;
-        }
 
         StreamInfoCache.getInstance().putInfo(info);
         isLoading.set(false);
@@ -1170,6 +1170,10 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     public void onUnrecoverableError(Exception exception) {
         activity.finish();
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Background handling
+    //////////////////////////////////////////////////////////////////////////*/
 
     private static class BackgroundCallback implements Handler.Callback {
         private static final int MESSAGE_DESCRIPTION = 1;
