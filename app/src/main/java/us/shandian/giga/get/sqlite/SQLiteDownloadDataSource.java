@@ -37,7 +37,7 @@ public class SQLiteDownloadDataSource implements DownloadDataSource {
                 null, null, null, DownloadMissionSQLiteHelper.KEY_TIMESTAMP);
 
         int count = cursor.getCount();
-        if(count == 0) return new ArrayList<>();
+        if (count == 0) return new ArrayList<>();
         result = new ArrayList<>(count);
         while (cursor.moveToNext()) {
             result.add(DownloadMissionSQLiteHelper.getMissionFromCursor(cursor));
@@ -47,7 +47,7 @@ public class SQLiteDownloadDataSource implements DownloadDataSource {
 
     @Override
     public void addMission(DownloadMission downloadMission) {
-        if(downloadMission == null) throw new NullPointerException("downloadMission is null");
+        if (downloadMission == null) throw new NullPointerException("downloadMission is null");
         SQLiteDatabase database = downloadMissionSQLiteHelper.getWritableDatabase();
         ContentValues values = DownloadMissionSQLiteHelper.getValuesOfMission(downloadMission);
         database.insert(MISSIONS_TABLE_NAME, null, values);
@@ -55,25 +55,25 @@ public class SQLiteDownloadDataSource implements DownloadDataSource {
 
     @Override
     public void updateMission(DownloadMission downloadMission) {
-        if(downloadMission == null) throw new NullPointerException("downloadMission is null");
+        if (downloadMission == null) throw new NullPointerException("downloadMission is null");
         SQLiteDatabase database = downloadMissionSQLiteHelper.getWritableDatabase();
         ContentValues values = DownloadMissionSQLiteHelper.getValuesOfMission(downloadMission);
-        String whereClause = KEY_LOCATION+ " = ? AND " +
+        String whereClause = KEY_LOCATION + " = ? AND " +
                 KEY_NAME + " = ?";
         int rowsAffected = database.update(MISSIONS_TABLE_NAME, values,
                 whereClause, new String[]{downloadMission.location, downloadMission.name});
-        if(rowsAffected != 1) {
+        if (rowsAffected != 1) {
             Log.e(TAG, "Expected 1 row to be affected by update but got " + rowsAffected);
         }
     }
 
     @Override
     public void deleteMission(DownloadMission downloadMission) {
-        if(downloadMission == null) throw new NullPointerException("downloadMission is null");
+        if (downloadMission == null) throw new NullPointerException("downloadMission is null");
         SQLiteDatabase database = downloadMissionSQLiteHelper.getWritableDatabase();
         database.delete(MISSIONS_TABLE_NAME,
                 KEY_LOCATION + " = ? AND " +
-                KEY_NAME + " = ?",
+                        KEY_NAME + " = ?",
                 new String[]{downloadMission.location, downloadMission.name});
     }
 }

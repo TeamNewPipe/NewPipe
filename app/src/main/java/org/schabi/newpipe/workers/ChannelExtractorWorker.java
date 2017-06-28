@@ -12,6 +12,8 @@ import org.schabi.newpipe.report.ErrorActivity;
 
 import java.io.IOException;
 
+import static org.schabi.newpipe.report.UserAction.REQUESTED_CHANNEL;
+
 /**
  * Extract {@link ChannelInfo} with {@link ChannelExtractor} from the given url of the given service
  *
@@ -67,7 +69,7 @@ public class ChannelExtractorWorker extends ExtractorWorker {
         ChannelExtractor extractor = getService().getChannelExtractorInstance(url, pageNumber);
         channelInfo = ChannelInfo.getInfo(extractor);
 
-        if (!channelInfo.errors.isEmpty()) handleErrorsDuringExtraction(channelInfo.errors, ErrorActivity.REQUESTED_CHANNEL);
+        if (!channelInfo.errors.isEmpty()) handleErrorsDuringExtraction(channelInfo.errors, REQUESTED_CHANNEL);
 
         if (callback != null && channelInfo != null && !isInterrupted()) getHandler().post(new Runnable() {
             @Override
@@ -93,7 +95,7 @@ public class ChannelExtractorWorker extends ExtractorWorker {
                 }
             });
         } else if (exception instanceof ParsingException || exception instanceof ExtractionException) {
-            ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL, getServiceName(), url, R.string.parsing_error));
+            ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(REQUESTED_CHANNEL, getServiceName(), url, R.string.parsing_error));
             getHandler().post(new Runnable() {
                 @Override
                 public void run() {
@@ -101,7 +103,7 @@ public class ChannelExtractorWorker extends ExtractorWorker {
                 }
             });
         } else {
-            ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_CHANNEL, getServiceName(), url, R.string.general_error));
+            ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(REQUESTED_CHANNEL, getServiceName(), url, R.string.general_error));
             getHandler().post(new Runnable() {
                 @Override
                 public void run() {

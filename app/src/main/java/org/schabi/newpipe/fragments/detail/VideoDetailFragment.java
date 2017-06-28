@@ -61,6 +61,7 @@ import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PlayVideoActivity;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -578,7 +579,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
             imageLoader.displayImage(info.thumbnail_url, thumbnailImageView, displayImageOptions, new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                    ErrorActivity.reportError(activity, failReason.getCause(), null, activity.findViewById(android.R.id.content), ErrorActivity.ErrorInfo.make(ErrorActivity.LOAD_IMAGE, NewPipe.getNameOfService(currentStreamInfo.service_id), imageUri, R.string.could_not_load_thumbnails));
+                    ErrorActivity.reportError(activity, failReason.getCause(), null, activity.findViewById(android.R.id.content), ErrorActivity.ErrorInfo.make(UserAction.LOAD_IMAGE, NewPipe.getNameOfService(currentStreamInfo.service_id), imageUri, R.string.could_not_load_thumbnails));
                 }
             });
         } else thumbnailImageView.setImageResource(R.drawable.dummy_thumbnail_dark);

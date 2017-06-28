@@ -11,9 +11,12 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.SuggestionExtractor;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.UserAction;
 
 import java.io.IOException;
 import java.util.List;
+
+import static org.schabi.newpipe.report.UserAction.*;
 
 /**
  * Worker that get suggestions based on the query
@@ -79,7 +82,7 @@ public class SuggestionWorker extends AbstractWorker {
 
         if (exception instanceof ExtractionException) {
             View rootView = getContext() instanceof Activity ? ((Activity) getContext()).findViewById(android.R.id.content) : null;
-            ErrorActivity.reportError(getHandler(), getContext(), exception, null, rootView, ErrorActivity.ErrorInfo.make(ErrorActivity.GET_SUGGESTIONS, getServiceName(), query, R.string.parsing_error));
+            ErrorActivity.reportError(getHandler(), getContext(), exception, null, rootView, ErrorActivity.ErrorInfo.make(GET_SUGGESTIONS, getServiceName(), query, R.string.parsing_error));
             getHandler().post(new Runnable() {
                 @Override
                 public void run() {
@@ -95,7 +98,7 @@ public class SuggestionWorker extends AbstractWorker {
             });
         } else {
             View rootView = getContext() instanceof Activity ? ((Activity) getContext()).findViewById(android.R.id.content) : null;
-            ErrorActivity.reportError(getHandler(), getContext(), exception, null, rootView, ErrorActivity.ErrorInfo.make(ErrorActivity.GET_SUGGESTIONS, getServiceName(), query, R.string.general_error));
+            ErrorActivity.reportError(getHandler(), getContext(), exception, null, rootView, ErrorActivity.ErrorInfo.make(GET_SUGGESTIONS, getServiceName(), query, R.string.general_error));
             getHandler().post(new Runnable() {
                 @Override
                 public void run() {

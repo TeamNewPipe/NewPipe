@@ -14,6 +14,7 @@ import org.acra.sender.ReportSenderFactory;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.report.AcraReportSenderFactory;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -59,7 +60,7 @@ public class App extends Application {
         } catch(ACRAConfigurationException ace) {
             ace.printStackTrace();
             ErrorActivity.reportError(this, ace, null, null,
-                    ErrorActivity.ErrorInfo.make(ErrorActivity.SEARCHED,"none",
+                    ErrorActivity.ErrorInfo.make(UserAction.SEARCHED,"none",
                             "Could not initialize ACRA crash report", R.string.app_ui_crash));
         }
 

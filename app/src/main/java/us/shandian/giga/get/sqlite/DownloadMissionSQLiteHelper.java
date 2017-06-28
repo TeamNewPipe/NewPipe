@@ -64,6 +64,7 @@ public class DownloadMissionSQLiteHelper extends SQLiteOpenHelper {
 
     /**
      * Returns all values of the download mission as ContentValues.
+     *
      * @param downloadMission the download mission
      * @return the content values
      */
@@ -88,7 +89,7 @@ public class DownloadMissionSQLiteHelper extends SQLiteOpenHelper {
     }
 
     public static DownloadMission getMissionFromCursor(Cursor cursor) {
-        if(cursor == null) throw new NullPointerException("cursor is null");
+        if (cursor == null) throw new NullPointerException("cursor is null");
         int pos;
         String name = cursor.getString(cursor.getColumnIndexOrThrow(KEY_NAME));
         String location = cursor.getString(cursor.getColumnIndexOrThrow(KEY_LOCATION));

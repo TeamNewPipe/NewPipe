@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.UserAction;
 
 import java.util.List;
 
@@ -59,14 +60,14 @@ public abstract class ExtractorWorker extends AbstractWorker {
      * @param errorUserAction   what action was the user performing during the error.
      *                          (One of the {@link ErrorActivity}.REQUEST_* error (message) ids)
      */
-    protected void handleErrorsDuringExtraction(List<Throwable> errorsList, int errorUserAction){
+    protected void handleErrorsDuringExtraction(List<Throwable> errorsList, UserAction errorUserAction){
         String errorString = "<error id>";
         switch (errorUserAction) {
-            case ErrorActivity.REQUESTED_STREAM:
-                errorString=  ErrorActivity.REQUESTED_STREAM_STRING;
+            case REQUESTED_STREAM:
+                errorString=  errorUserAction.getMessage();
                 break;
-            case ErrorActivity.REQUESTED_CHANNEL:
-                errorString=  ErrorActivity.REQUESTED_CHANNEL_STRING;
+            case REQUESTED_CHANNEL:
+                errorString=  errorUserAction.getMessage();
                 break;
         }
 
