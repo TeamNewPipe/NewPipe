@@ -89,29 +89,21 @@ public class DownloadManagerService extends Service {
             }
         }
 
-        Intent i = new Intent();
-        i.setAction(Intent.ACTION_MAIN);
-        i.setClass(this, DownloadActivity.class);
+        Intent openDownloadListIntent = new Intent(this, DownloadActivity.class)
+                .setAction(Intent.ACTION_MAIN);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+                openDownloadListIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
 
         Drawable icon = ContextCompat.getDrawable(this, R.mipmap.ic_launcher);
 
         Builder builder = new Builder(this)
-                .setContentIntent(PendingIntent.getActivity(this, 0, i, 0))
+                .setContentIntent(pendingIntent)
                 .setSmallIcon(android.R.drawable.stat_sys_download)
                 .setLargeIcon(((BitmapDrawable) icon).getBitmap())
                 .setContentTitle(getString(R.string.msg_running))
                 .setContentText(getString(R.string.msg_running_detail));
-
-        PendingIntent pendingIntent =
-                PendingIntent.getActivity(
-                        this,
-                        0,
-                        new Intent(this, DownloadActivity.class)
-                                .setAction(DownloadActivity.INTENT_LIST),
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                );
-
-        builder.setContentIntent(pendingIntent);
 
         mNotification = builder.build();
 
