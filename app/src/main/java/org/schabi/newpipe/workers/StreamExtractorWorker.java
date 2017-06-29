@@ -10,8 +10,11 @@ import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.UserAction;
 
 import java.io.IOException;
+
+import static org.schabi.newpipe.report.UserAction.*;
 
 /**
  * Extract {@link StreamInfo} with {@link StreamExtractor} from the given url of the given service
@@ -66,7 +69,7 @@ public class StreamExtractorWorker extends ExtractorWorker {
         StreamExtractor streamExtractor = getService().getExtractorInstance(url);
         streamInfo = StreamInfo.getVideoInfo(streamExtractor);
 
-        if (streamInfo != null && !streamInfo.errors.isEmpty()) handleErrorsDuringExtraction(streamInfo.errors, ErrorActivity.REQUESTED_STREAM);
+        if (streamInfo != null && !streamInfo.errors.isEmpty()) handleErrorsDuringExtraction(streamInfo.errors, REQUESTED_STREAM);
 
         if (callback != null && getHandler() != null && streamInfo != null && !isInterrupted()) getHandler().post(new Runnable() {
             @Override
@@ -121,7 +124,7 @@ public class StreamExtractorWorker extends ExtractorWorker {
             });
         } else if (exception instanceof YoutubeStreamExtractor.DecryptException) {
             // custom service related exceptions
-            ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM, getServiceName(), url, R.string.youtube_signature_decryption_error));
+            ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(REQUESTED_STREAM, getServiceName(), url, R.string.youtube_signature_decryption_error));
             getHandler().post(new Runnable() {
                 @Override
                 public void run() {
@@ -131,9 +134,9 @@ public class StreamExtractorWorker extends ExtractorWorker {
         } else if (exception instanceof StreamInfo.StreamExctractException) {
             if (!streamInfo.errors.isEmpty()) {
                 // !!! if this case ever kicks in someone gets kicked out !!!
-                ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM, getServiceName(), url, R.string.could_not_get_stream));
+                ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(REQUESTED_STREAM, getServiceName(), url, R.string.could_not_get_stream));
             } else {
-                ErrorActivity.reportError(getHandler(), getContext(), streamInfo.errors, MainActivity.class, null, ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM, getServiceName(), url, R.string.could_not_get_stream));
+                ErrorActivity.reportError(getHandler(), getContext(), streamInfo.errors, MainActivity.class, null, ErrorActivity.ErrorInfo.make(REQUESTED_STREAM, getServiceName(), url, R.string.could_not_get_stream));
             }
 
             getHandler().post(new Runnable() {
@@ -143,7 +146,7 @@ public class StreamExtractorWorker extends ExtractorWorker {
                 }
             });
         } else if (exception instanceof ParsingException) {
-            ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM, getServiceName(), url, R.string.parsing_error));
+            ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(REQUESTED_STREAM, getServiceName(), url, R.string.parsing_error));
             getHandler().post(new Runnable() {
                 @Override
                 public void run() {
@@ -151,7 +154,7 @@ public class StreamExtractorWorker extends ExtractorWorker {
                 }
             });
         } else {
-            ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(ErrorActivity.REQUESTED_STREAM, getServiceName(), url, R.string.general_error));
+            ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(REQUESTED_STREAM, getServiceName(), url, R.string.general_error));
             getHandler().post(new Runnable() {
                 @Override
                 public void run() {

@@ -35,7 +35,6 @@ import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.fragment.AllMissionsFragment;
 import us.shandian.giga.ui.fragment.MissionsFragment;
 import us.shandian.giga.util.CrashHandler;
-import us.shandian.giga.util.Utility;
 
 public class DownloadActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -125,11 +124,11 @@ public class DownloadActivity extends AppCompatActivity implements AdapterView.O
         // Create the view
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(R.layout.dialog_url, null);
-        final EditText name = Utility.findViewById(v, R.id.file_name);
-        final TextView tCount = Utility.findViewById(v, R.id.threads_count);
-        final SeekBar threads = Utility.findViewById(v, R.id.threads);
-        final Toolbar toolbar = Utility.findViewById(v, R.id.toolbar);
-        final RadioButton audioButton = (RadioButton) Utility.findViewById(v, R.id.audio_button);
+        final EditText name = (EditText) v.findViewById(R.id.file_name);
+        final TextView tCount = (TextView) v.findViewById(R.id.threads_count);
+        final SeekBar threads = (SeekBar) v.findViewById(R.id.threads);
+        final Toolbar toolbar = (Toolbar) v.findViewById(R.id.toolbar);
+        final RadioButton audioButton = (RadioButton) v.findViewById(R.id.audio_button);
 
 
         threads.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

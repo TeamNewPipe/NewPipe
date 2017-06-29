@@ -77,14 +77,14 @@ public class NavigationHelper {
     public static void openMainFragment(FragmentManager fragmentManager) {
         ImageLoader.getInstance().clearMemoryCache();
         fragmentManager.beginTransaction()
-                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
+                .setCustomAnimations(R.anim.custom_fade_in, R.anim.custom_fade_out, R.anim.custom_fade_in, R.anim.custom_fade_out)
                 .replace(R.id.fragment_holder, new MainFragment())
                 .commit();
     }
 
     public static void openSearchFragment(FragmentManager fragmentManager, int serviceId, String query) {
         fragmentManager.beginTransaction()
-                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
+                .setCustomAnimations(R.anim.custom_fade_in, R.anim.custom_fade_out, R.anim.custom_fade_in, R.anim.custom_fade_out)
                 .replace(R.id.fragment_holder, SearchFragment.getInstance(serviceId, query))
                 .addToBackStack(null)
                 .commit();
@@ -109,7 +109,7 @@ public class NavigationHelper {
         instance.setAutoplay(autoPlay);
 
         fragmentManager.beginTransaction()
-                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
+                .setCustomAnimations(R.anim.custom_fade_in, R.anim.custom_fade_out, R.anim.custom_fade_in, R.anim.custom_fade_out)
                 .replace(R.id.fragment_holder, instance)
                 .addToBackStack(null)
                 .commit();
@@ -118,7 +118,7 @@ public class NavigationHelper {
     public static void openChannelFragment(FragmentManager fragmentManager, int serviceId, String url, String name) {
         if (name == null) name = "";
         fragmentManager.beginTransaction()
-                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
+                .setCustomAnimations(R.anim.custom_fade_in, R.anim.custom_fade_out, R.anim.custom_fade_in, R.anim.custom_fade_out)
                 .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, url, name))
                 .addToBackStack(null)
                 .commit();

@@ -26,6 +26,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.fragments.BaseFragment;
+import org.schabi.newpipe.fragments.search.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.util.Constants;
@@ -213,7 +214,7 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
 
         channelVideosList.setLayoutManager(new LinearLayoutManager(activity));
         if (infoListAdapter == null) {
-            infoListAdapter = new InfoListAdapter(activity, rootView);
+            infoListAdapter = new InfoListAdapter(activity);
             if (savedInstanceState != null) {
                 //noinspection unchecked
                 ArrayList<InfoItem> serializable = (ArrayList<InfoItem>) savedInstanceState.getSerializable(INFO_LIST_KEY);
@@ -245,23 +246,12 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
         });
 
         channelVideosList.clearOnScrollListeners();
-        channelVideosList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        channelVideosList.addOnScrollListener(new OnScrollBelowItemsListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                int pastVisiblesItems, visibleItemCount, totalItemCount;
-                super.onScrolled(recyclerView, dx, dy);
-                //check for scroll down
-                if (dy > 0) {
-                    LinearLayoutManager layoutManager = (LinearLayoutManager) channelVideosList.getLayoutManager();
-
-                    visibleItemCount = layoutManager.getChildCount();
-                    totalItemCount = layoutManager.getItemCount();
-                    pastVisiblesItems = layoutManager.findFirstVisibleItemPosition();
-
-                    if ((visibleItemCount + pastVisiblesItems) >= totalItemCount && (currentChannelWorker == null || !currentChannelWorker.isRunning()) && hasNextPage && !isLoading.get()) {
-                        pageNumber++;
-                        loadMoreVideos();
-                    }
+            public void onScrolledDown(RecyclerView recyclerView) {
+                if ((currentChannelWorker == null || !currentChannelWorker.isRunning()) && hasNextPage && !isLoading.get()) {
+                    pageNumber++;
+                    loadMoreVideos();
                 }
             }
         });

@@ -11,6 +11,8 @@ import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
@@ -71,24 +73,7 @@ public class ErrorActivity extends AppCompatActivity {
     // BUNDLE TAGS
     public static final String ERROR_INFO = "error_info";
     public static final String ERROR_LIST = "error_list";
-    // MESSAGE ID
-    public static final int SEARCHED = 0;
-    public static final int REQUESTED_STREAM = 1;
-    public static final int GET_SUGGESTIONS = 2;
-    public static final int SOMETHING_ELSE = 3;
-    public static final int USER_REPORT = 4;
-    public static final int LOAD_IMAGE = 5;
-    public static final int UI_ERROR = 6;
-    public static final int REQUESTED_CHANNEL = 7;
-    // MESSAGE STRING
-    public static final String SEARCHED_STRING = "searched";
-    public static final String REQUESTED_STREAM_STRING = "requested stream";
-    public static final String GET_SUGGESTIONS_STRING = "get suggestions";
-    public static final String SOMETHING_ELSE_STRING = "something";
-    public static final String USER_REPORT_STRING = "user report";
-    public static final String LOAD_IMAGE_STRING = "load image";
-    public static final String UI_ERROR_STRING = "ui error";
-    public static final String REQUESTED_CHANNEL_STRING = "requested channel";
+
     public static final String ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org";
     public static final String ERROR_EMAIL_SUBJECT = "Exception in NewPipe " + BuildConfig.VERSION_NAME;
     Thread globIpRangeThread;
@@ -105,11 +90,11 @@ public class ErrorActivity extends AppCompatActivity {
     private TextView errorMessageView;
 
     public static void reportUiError(final AppCompatActivity activity, final Throwable el) {
-        reportError(activity, el, activity.getClass(), null, ErrorInfo.make(UI_ERROR, "none", "", R.string.app_ui_crash));
+        reportError(activity, el, activity.getClass(), null, ErrorInfo.make(UserAction.UI_ERROR, "none", "", R.string.app_ui_crash));
     }
 
     public static void reportError(final Context context, final List<Throwable> el,
-                                   final Class returnAcitivty, View rootView, final ErrorInfo errorInfo) {
+                                   final Class returnActivity, View rootView, final ErrorInfo errorInfo) {
 
         if (rootView != null) {
             Snackbar.make(rootView, R.string.error_snackbar_message, Snackbar.LENGTH_LONG)
@@ -118,7 +103,7 @@ public class ErrorActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
-                            ac.returnActivity = returnAcitivty;
+                            ac.returnActivity = returnActivity;
                             Intent intent = new Intent(context, ErrorActivity.class);
                             intent.putExtra(ERROR_INFO, errorInfo);
                             intent.putExtra(ERROR_LIST, elToSl(el));
@@ -128,7 +113,7 @@ public class ErrorActivity extends AppCompatActivity {
                     }).show();
         } else {
             ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
-            ac.returnActivity = returnAcitivty;
+            ac.returnActivity = returnActivity;
             Intent intent = new Intent(context, ErrorActivity.class);
             intent.putExtra(ERROR_INFO, errorInfo);
             intent.putExtra(ERROR_LIST, elToSl(el));
@@ -138,34 +123,34 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     public static void reportError(final Context context, final Throwable e,
-                                   final Class returnAcitivty, View rootView, final ErrorInfo errorInfo) {
+                                   final Class returnActivity, View rootView, final ErrorInfo errorInfo) {
         List<Throwable> el = null;
         if(e != null) {
             el = new Vector<>();
             el.add(e);
         }
-        reportError(context, el, returnAcitivty, rootView, errorInfo);
+        reportError(context, el, returnActivity, rootView, errorInfo);
     }
 
     // async call
     public static void reportError(Handler handler, final Context context, final Throwable e,
-                                   final Class returnAcitivty, final View rootView, final ErrorInfo errorInfo) {
+                                   final Class returnActivity, final View rootView, final ErrorInfo errorInfo) {
 
         List<Throwable> el = null;
         if(e != null) {
             el = new Vector<>();
             el.add(e);
         }
-        reportError(handler, context, el, returnAcitivty, rootView, errorInfo);
+        reportError(handler, context, el, returnActivity, rootView, errorInfo);
     }
 
     // async call
     public static void reportError(Handler handler, final Context context, final List<Throwable> el,
-                                   final Class returnAcitivty, final View rootView, final ErrorInfo errorInfo) {
+                                   final Class returnActivity, final View rootView, final ErrorInfo errorInfo) {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                reportError(context, el, returnAcitivty, rootView, errorInfo);
+                reportError(context, el, returnActivity, rootView, errorInfo);
             }
         });
     }
@@ -232,7 +217,7 @@ public class ErrorActivity extends AppCompatActivity {
         errorInfo = intent.getParcelableExtra(ERROR_INFO);
         errorList = intent.getStringArrayExtra(ERROR_LIST);
 
-                //importand add gurumeditaion
+        // important add guru meditation
         addGuruMeditaion();
         currentTimeStamp = getCurrentTimeStamp();
 
@@ -250,7 +235,7 @@ public class ErrorActivity extends AppCompatActivity {
         });
         reportButton.setEnabled(false);
 
-        globIpRangeThread = new Thread(new IpRagneRequester());
+        globIpRangeThread = new Thread(new IpRangeRequester());
         globIpRangeThread.start();
 
         // normal bugreport
@@ -308,17 +293,30 @@ public class ErrorActivity extends AppCompatActivity {
         return text;
     }
 
+    /**
+     * Get the checked activity.
+     * @param returnActivity the activity to return to
+     * @return the casted return activity or null
+     */
+    @Nullable
+    static Class<? extends Activity> getReturnActivity(Class<?> returnActivity) {
+        Class<? extends Activity> checkedReturnActivity = null;
+        if (returnActivity != null){
+            if (Activity.class.isAssignableFrom(returnActivity)) {
+                checkedReturnActivity = returnActivity.asSubclass(Activity.class);
+            } else {
+                checkedReturnActivity = MainActivity.class;
+            }
+        }
+        return checkedReturnActivity;
+    }
+
     private void goToReturnActivity() {
-        if (returnActivity == null) {
+        Class<? extends Activity> checkedReturnActivity = getReturnActivity(returnActivity);
+        if (checkedReturnActivity == null) {
             super.onBackPressed();
         } else {
-            Intent intent;
-            if (returnActivity != null &&
-                    returnActivity.isAssignableFrom(Activity.class)) {
-                intent = new Intent(this, returnActivity);
-            } else {
-                intent = new Intent(this, MainActivity.class);
-            }
+            Intent intent = new Intent(this, checkedReturnActivity);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             NavUtils.navigateUpTo(this, intent);
         }
@@ -376,26 +374,11 @@ public class ErrorActivity extends AppCompatActivity {
         return "";
     }
 
-    private String getUserActionString(int userAction) {
-        switch (userAction) {
-            case REQUESTED_STREAM:
-                return REQUESTED_STREAM_STRING;
-            case SEARCHED:
-                return SEARCHED_STRING;
-            case GET_SUGGESTIONS:
-                return GET_SUGGESTIONS_STRING;
-            case SOMETHING_ELSE:
-                return SOMETHING_ELSE_STRING;
-            case USER_REPORT:
-                return USER_REPORT_STRING;
-            case LOAD_IMAGE:
-                return LOAD_IMAGE_STRING;
-            case UI_ERROR:
-                return UI_ERROR_STRING;
-            case REQUESTED_CHANNEL:
-                return REQUESTED_CHANNEL_STRING;
-            default:
-                return "Your description is in another castle.";
+    private String getUserActionString(UserAction userAction) {
+        if(userAction == null) {
+            return "Your description is in another castle.";
+        } else {
+            return userAction.getMessage();
         }
     }
 
@@ -444,28 +427,28 @@ public class ErrorActivity extends AppCompatActivity {
                 return new ErrorInfo[size];
             }
         };
-        public int userAction;
-        public String request;
-        public String serviceName;
-        public int message;
+        final public UserAction userAction;
+        final public String request;
+        final public String serviceName;
+        @StringRes
+        final public int message;
 
-        public ErrorInfo() {
+        private ErrorInfo(UserAction userAction, String serviceName, String request, @StringRes int message) {
+            this.userAction = userAction;
+            this.serviceName = serviceName;
+            this.request = request;
+            this.message = message;
         }
 
         protected ErrorInfo(Parcel in) {
-            this.userAction = in.readInt();
+            this.userAction = UserAction.valueOf(in.readString());
             this.request = in.readString();
             this.serviceName = in.readString();
             this.message = in.readInt();
         }
 
-        public static ErrorInfo make(int userAction, String serviceName, String request, int message) {
-            ErrorInfo info = new ErrorInfo();
-            info.userAction = userAction;
-            info.serviceName = serviceName;
-            info.request = request;
-            info.message = message;
-            return info;
+        public static ErrorInfo make(UserAction userAction, String serviceName, String request, @StringRes int message) {
+            return new ErrorInfo(userAction, serviceName, request, message);
         }
 
         @Override
@@ -475,14 +458,14 @@ public class ErrorActivity extends AppCompatActivity {
 
         @Override
         public void writeToParcel(Parcel dest, int flags) {
-            dest.writeInt(this.userAction);
+            dest.writeString(this.userAction.name());
             dest.writeString(this.request);
             dest.writeString(this.serviceName);
             dest.writeInt(this.message);
         }
     }
 
-    private class IpRagneRequester implements Runnable {
+    private class IpRangeRequester implements Runnable {
         Handler h = new Handler();
         public void run() {
             String ipRange = "none";
@@ -493,17 +476,16 @@ public class ErrorActivity extends AppCompatActivity {
                 ipRange = Parser.matchGroup1("([0-9]*\\.[0-9]*\\.)[0-9]*\\.[0-9]*", ip)
                         + "0.0";
             } catch(Throwable e) {
-                Log.d(TAG, "Error while error: could not get iprange");
-                e.printStackTrace();
+                Log.w(TAG, "Error while error: could not get iprange", e);
             } finally {
-                h.post(new IpRageReturnRunnable(ipRange));
+                h.post(new IpRangeReturnRunnable(ipRange));
             }
         }
     }
 
-    private class IpRageReturnRunnable implements Runnable {
+    private class IpRangeReturnRunnable implements Runnable {
         String ipRange;
-        public IpRageReturnRunnable(String ipRange) {
+        public IpRangeReturnRunnable(String ipRange) {
             this.ipRange = ipRange;
         }
         public void run() {

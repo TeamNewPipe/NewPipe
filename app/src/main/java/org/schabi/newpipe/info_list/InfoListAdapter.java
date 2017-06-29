@@ -55,8 +55,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
-    public InfoListAdapter(Activity a, View rootView) {
-        infoItemBuilder = new InfoItemBuilder(a, rootView);
+    public InfoListAdapter(Activity a) {
+        infoItemBuilder = new InfoItemBuilder(a);
         infoItemList = new ArrayList<>();
     }
 
@@ -78,6 +78,9 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void clearStreamItemList() {
+        if(infoItemList.isEmpty()) {
+            return;
+        }
         infoItemList.clear();
         notifyDataSetChanged();
     }
@@ -152,7 +155,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int i) {
-        //god damen f*** ANDROID SH**
+        //god damn f*** ANDROID SH**
         if(holder instanceof InfoItemHolder) {
             if(header != null) {
                 i--;

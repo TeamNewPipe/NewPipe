@@ -1,12 +1,17 @@
 package org.schabi.newpipe.fragments.detail;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
@@ -15,6 +20,7 @@ import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -26,7 +32,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -55,6 +61,7 @@ import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PlayVideoActivity;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -105,6 +112,10 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     private boolean showRelatedStreams;
     private boolean wasRelatedStreamsExpanded = false;
 
+    private Handler uiHandler;
+    private Handler backgroundHandler;
+    private HandlerThread backgroundHandlerThread;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -112,9 +123,9 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     private Spinner spinnerToolbar;
 
     private ParallaxScrollView parallaxScrollRootView;
-    private RelativeLayout contentRootLayoutHiding;
+    private LinearLayout contentRootLayoutHiding;
 
-    private Button thumbnailBackgroundButton;
+    private View thumbnailBackgroundButton;
     private ImageView thumbnailImageView;
     private ImageView thumbnailPlayButton;
 
@@ -126,12 +137,11 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     private TextView detailControlsBackground;
     private TextView detailControlsPopup;
 
-    private RelativeLayout videoDescriptionRootLayout;
+    private LinearLayout videoDescriptionRootLayout;
     private TextView videoUploadDateView;
     private TextView videoDescriptionView;
 
     private View uploaderRootLayout;
-    private Button uploaderButton;
     private TextView uploaderTextView;
     private ImageView uploaderThumb;
 
@@ -142,7 +152,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     private TextView thumbsDisabledTextView;
 
     private TextView nextStreamTitle;
-    private RelativeLayout relatedStreamRootLayout;
+    private LinearLayout relatedStreamRootLayout;
     private LinearLayout relatedStreamsView;
     private ImageButton relatedStreamExpandButton;
 
@@ -194,6 +204,16 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         thousand = getString(R.string.short_thousand);
         million = getString(R.string.short_million);
         billion = getString(R.string.short_billion);
+
+        if (uiHandler == null) {
+            uiHandler = new Handler(Looper.getMainLooper(), new UICallback());
+        }
+        if (backgroundHandler == null) {
+            HandlerThread handlerThread = new HandlerThread("VideoDetailFragment-BG");
+            handlerThread.start();
+            backgroundHandlerThread = handlerThread;
+            backgroundHandler = new Handler(handlerThread.getLooper(), new BackgroundCallback(uiHandler, getContext()));
+        }
     }
 
     @Override
@@ -241,6 +261,11 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (backgroundHandlerThread != null) {
+            backgroundHandlerThread.quit();
+        }
+        backgroundHandlerThread = null;
+        backgroundHandler = null;
         PreferenceManager.getDefaultSharedPreferences(activity).unregisterOnSharedPreferenceChangeListener(this);
     }
 
@@ -272,7 +297,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         videoUploadDateView = null;
         videoDescriptionView = null;
 
-        uploaderButton = null;
+        uploaderRootLayout = null;
         uploaderTextView = null;
         uploaderThumb = null;
 
@@ -353,10 +378,14 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
             case R.id.detail_controls_popup:
                 openInPopup();
                 break;
-            case R.id.detail_uploader_button:
-                NavigationHelper.openChannelFragment(getFragmentManager(), currentStreamInfo.service_id, currentStreamInfo.channel_url, currentStreamInfo.uploader);
+            case R.id.detail_uploader_root_layout:
+                if (currentStreamInfo.channel_url == null || currentStreamInfo.channel_url.isEmpty()) {
+                    Log.w(TAG, "Can't open channel because we got no channel URL");
+                } else {
+                    NavigationHelper.openChannelFragment(getFragmentManager(), currentStreamInfo.service_id, currentStreamInfo.channel_url, currentStreamInfo.uploader);
+                }
                 break;
-            case R.id.detail_thumbnail_background_button:
+            case R.id.detail_thumbnail_root_layout:
                 playVideo(currentStreamInfo);
                 break;
             case R.id.detail_title_root_layout:
@@ -484,12 +513,11 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
 
         parallaxScrollRootView = (ParallaxScrollView) rootView.findViewById(R.id.detail_main_content);
 
-        //thumbnailRootLayout = (RelativeLayout) rootView.findViewById(R.id.detail_thumbnail_root_layout);
-        thumbnailBackgroundButton = (Button) rootView.findViewById(R.id.detail_thumbnail_background_button);
+        thumbnailBackgroundButton = rootView.findViewById(R.id.detail_thumbnail_root_layout);
         thumbnailImageView = (ImageView) rootView.findViewById(R.id.detail_thumbnail_image_view);
         thumbnailPlayButton = (ImageView) rootView.findViewById(R.id.detail_thumbnail_play_button);
 
-        contentRootLayoutHiding = (RelativeLayout) rootView.findViewById(R.id.detail_content_root_hiding);
+        contentRootLayoutHiding = (LinearLayout) rootView.findViewById(R.id.detail_content_root_hiding);
 
         videoTitleRoot = rootView.findViewById(R.id.detail_title_root_layout);
         videoTitleTextView = (TextView) rootView.findViewById(R.id.detail_video_title_view);
@@ -499,7 +527,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         detailControlsBackground = (TextView) rootView.findViewById(R.id.detail_controls_background);
         detailControlsPopup = (TextView) rootView.findViewById(R.id.detail_controls_popup);
 
-        videoDescriptionRootLayout = (RelativeLayout) rootView.findViewById(R.id.detail_description_root_layout);
+        videoDescriptionRootLayout = (LinearLayout) rootView.findViewById(R.id.detail_description_root_layout);
         videoUploadDateView = (TextView) rootView.findViewById(R.id.detail_upload_date_view);
         videoDescriptionView = (TextView) rootView.findViewById(R.id.detail_description_view);
 
@@ -511,19 +539,19 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         thumbsDisabledTextView = (TextView) rootView.findViewById(R.id.detail_thumbs_disabled_view);
 
         uploaderRootLayout = rootView.findViewById(R.id.detail_uploader_root_layout);
-        uploaderButton = (Button) rootView.findViewById(R.id.detail_uploader_button);
         uploaderTextView = (TextView) rootView.findViewById(R.id.detail_uploader_text_view);
         uploaderThumb = (ImageView) rootView.findViewById(R.id.detail_uploader_thumbnail_view);
 
-        relatedStreamRootLayout = (RelativeLayout) rootView.findViewById(R.id.detail_related_streams_root_layout);
+        relatedStreamRootLayout = (LinearLayout) rootView.findViewById(R.id.detail_related_streams_root_layout);
         nextStreamTitle = (TextView) rootView.findViewById(R.id.detail_next_stream_title);
         relatedStreamsView = (LinearLayout) rootView.findViewById(R.id.detail_related_streams_view);
+
         relatedStreamExpandButton = ((ImageButton) rootView.findViewById(R.id.detail_related_streams_expand));
 
         actionBarHandler = new ActionBarHandler(activity);
         videoDescriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
-        infoItemBuilder = new InfoItemBuilder(activity, rootView.findViewById(android.R.id.content));
+        infoItemBuilder = new InfoItemBuilder(activity);
 
         setHeightThumbnail();
     }
@@ -539,7 +567,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         });
 
         videoTitleRoot.setOnClickListener(this);
-        uploaderButton.setOnClickListener(this);
+        uploaderRootLayout.setOnClickListener(this);
         thumbnailBackgroundButton.setOnClickListener(this);
         detailControlsBackground.setOnClickListener(this);
         detailControlsPopup.setOnClickListener(this);
@@ -551,7 +579,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
             imageLoader.displayImage(info.thumbnail_url, thumbnailImageView, displayImageOptions, new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                    ErrorActivity.reportError(activity, failReason.getCause(), null, activity.findViewById(android.R.id.content), ErrorActivity.ErrorInfo.make(ErrorActivity.LOAD_IMAGE, NewPipe.getNameOfService(currentStreamInfo.service_id), imageUri, R.string.could_not_load_thumbnails));
+                    ErrorActivity.reportError(activity, failReason.getCause(), null, activity.findViewById(android.R.id.content), ErrorActivity.ErrorInfo.make(UserAction.LOAD_IMAGE, NewPipe.getNameOfService(currentStreamInfo.service_id), imageUri, R.string.could_not_load_thumbnails));
                 }
             });
         } else thumbnailImageView.setImageResource(R.drawable.dummy_thumbnail_dark);
@@ -739,8 +767,17 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         // Get url from the new top
         StackItem peek = stack.peek();
 
-        if (peek.getInfo() != null) selectAndHandleInfo(peek.getInfo());
-        else selectAndLoadVideo(0, peek.getUrl(), !TextUtils.isEmpty(peek.getTitle()) ? peek.getTitle() : "");
+        if (peek.getInfo() != null) {
+            final StreamInfo streamInfo = peek.getInfo();
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    selectAndHandleInfo(streamInfo);
+                }
+            });
+        } else {
+            selectAndLoadVideo(0, peek.getUrl(), !TextUtils.isEmpty(peek.getTitle()) ? peek.getTitle() : "");
+        }
         return true;
     }
 
@@ -848,7 +885,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         }
     }
 
-    private void handleStreamInfo(@NonNull StreamInfo info, boolean fromNetwork) {
+    private void handleStreamInfo(@NonNull final StreamInfo info, boolean fromNetwork) {
         if (DEBUG) Log.d(TAG, "handleStreamInfo() called with: info = [" + info + "]");
         currentStreamInfo = info;
         selectVideo(info.service_id, info.webpage_url, info.title);
@@ -862,7 +899,6 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
 
         if (!TextUtils.isEmpty(info.uploader)) uploaderTextView.setText(info.uploader);
         uploaderTextView.setVisibility(!TextUtils.isEmpty(info.uploader) ? View.VISIBLE : View.GONE);
-        uploaderButton.setVisibility(!TextUtils.isEmpty(info.channel_url) ? View.VISIBLE : View.GONE);
         uploaderThumb.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.buddy));
 
         if (info.view_count >= 0) videoCountView.setText(Localization.localizeViewCount(info.view_count, activity));
@@ -887,14 +923,8 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
             thumbsUpImageView.setVisibility(info.like_count >= 0 ? View.VISIBLE : View.GONE);
         }
 
-        if (!TextUtils.isEmpty(info.upload_date)) videoUploadDateView.setText(Localization.localizeDate(info.upload_date, activity));
-        videoUploadDateView.setVisibility(!TextUtils.isEmpty(info.upload_date) ? View.VISIBLE : View.GONE);
 
-        if (!TextUtils.isEmpty(info.description)) { //noinspection deprecation
-            videoDescriptionView.setText(Build.VERSION.SDK_INT >= 24 ? Html.fromHtml(info.description, 0) : Html.fromHtml(info.description));
-        }
-        videoDescriptionView.setVisibility(!TextUtils.isEmpty(info.description) ? View.VISIBLE : View.GONE);
-
+        videoDescriptionView.setVisibility(View.GONE);
         videoDescriptionRootLayout.setVisibility(View.GONE);
         videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
         videoTitleToggleArrow.setVisibility(View.VISIBLE);
@@ -908,9 +938,32 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
             toggleExpandRelatedVideos(currentStreamInfo);
             wasRelatedStreamsExpanded = false;
         }
-
         setTitleToUrl(info.webpage_url, info.title);
         setStreamInfoToUrl(info.webpage_url, info);
+
+        prepareDescription(info.description);
+        prepareUploadDate(info.upload_date);
+
+        if (autoPlayEnabled) {
+            playVideo(info);
+            // Only auto play in the first open
+            autoPlayEnabled = false;
+        }
+    }
+
+    private void prepareUploadDate(final String uploadDate) {
+        // Hide until date is prepared or forever if no date is supplied
+        videoUploadDateView.setVisibility(View.GONE);
+        if (!TextUtils.isEmpty(uploadDate)) {
+            backgroundHandler.sendMessage(Message.obtain(backgroundHandler, BackgroundCallback.MESSAGE_UPLOADER_DATE, uploadDate));
+        }
+    }
+
+    private void prepareDescription(final String descriptionHtml) {
+        // Send the unparsed description to the handler as a message
+        if (!TextUtils.isEmpty(descriptionHtml)) {
+            backgroundHandler.sendMessage(Message.obtain(backgroundHandler, BackgroundCallback.MESSAGE_DESCRIPTION, descriptionHtml));
+        }
     }
 
     public void playVideo(StreamInfo info) {
@@ -987,10 +1040,8 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         int height = isPortrait ? (int) (getResources().getDisplayMetrics().widthPixels / (16.0f / 9.0f))
                 : (int) (getResources().getDisplayMetrics().heightPixels / 2f);
         thumbnailImageView.setScaleType(isPortrait ? ImageView.ScaleType.CENTER_CROP : ImageView.ScaleType.FIT_CENTER);
-        thumbnailImageView.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, height));
+        thumbnailImageView.setLayoutParams(new FrameLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, height));
         thumbnailImageView.setMinimumHeight(height);
-        thumbnailBackgroundButton.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, height));
-        thumbnailBackgroundButton.setMinimumHeight(height);
     }
 
     public String getShortCount(Long viewCount) {
@@ -1032,9 +1083,6 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
                     .setStartDelay((long) (duration * .8f) + delay).setDuration(duration).setInterpolator(new FastOutSlowInInterpolator()).start();
         }
     }
-    /*//////////////////////////////////////////////////////////////////////////
-    // OnStreamInfoReceivedListener callbacks
-    //////////////////////////////////////////////////////////////////////////*/
 
     private void setErrorImage(final int imageResource) {
         if (thumbnailImageView == null || activity == null) return;
@@ -1055,6 +1103,10 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         currentStreamInfo = null;
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // OnStreamInfoReceivedListener callbacks
+    //////////////////////////////////////////////////////////////////////////*/
+
     @Override
     public void onReceive(StreamInfo info) {
         if (DEBUG) Log.d(TAG, "onReceive() called with: info = [" + info + "]");
@@ -1062,14 +1114,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
 
         handleStreamInfo(info, true);
         showContentWithAnimation(300, 0, 0);
-
         animateView(loadingProgressBar, false, 200);
-
-        if (autoPlayEnabled) {
-            playVideo(info);
-            // Only auto play in the first open
-            autoPlayEnabled = false;
-        }
 
         StreamInfoCache.getInstance().putInfo(info);
         isLoading.set(false);
@@ -1125,5 +1170,70 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     @Override
     public void onUnrecoverableError(Exception exception) {
         activity.finish();
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Background handling
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private static class BackgroundCallback implements Handler.Callback {
+        private static final int MESSAGE_DESCRIPTION = 1;
+        public static final int MESSAGE_UPLOADER_DATE = 2;
+        private final Handler uiHandler;
+        private final Context context;
+
+        BackgroundCallback(Handler uiHandler, Context context) {
+            this.uiHandler = uiHandler;
+            this.context = context;
+        }
+
+        @Override
+        public boolean handleMessage(Message msg) {
+            switch (msg.what) {
+                case MESSAGE_DESCRIPTION:
+                    handleDescription((String) msg.obj);
+                    return true;
+                case MESSAGE_UPLOADER_DATE:
+                    handleUploadDate((String) msg.obj);
+                    return true;
+            }
+            return false;
+        }
+
+        private void handleUploadDate(String uploadDate) {
+            String localizedDate = Localization.localizeDate(uploadDate, context);
+            uiHandler.sendMessage(Message.obtain(uiHandler, MESSAGE_UPLOADER_DATE, localizedDate));
+        }
+
+        private void handleDescription(String description) {
+            Spanned parsedDescription;
+            if (TextUtils.isEmpty(description)) {
+                return;
+            }
+            if (Build.VERSION.SDK_INT >= 24) {
+                parsedDescription = Html.fromHtml(description, 0);
+            } else {
+                //noinspection deprecation
+                parsedDescription = Html.fromHtml(description);
+            }
+            uiHandler.sendMessage(Message.obtain(uiHandler, MESSAGE_DESCRIPTION, parsedDescription));
+        }
+    }
+
+    private class UICallback implements Handler.Callback {
+        @Override
+        public boolean handleMessage(Message msg) {
+            switch (msg.what) {
+                case BackgroundCallback.MESSAGE_DESCRIPTION:
+                    videoDescriptionView.setText((Spanned) msg.obj);
+                    videoDescriptionView.setVisibility(View.VISIBLE);
+                    return true;
+                case BackgroundCallback.MESSAGE_UPLOADER_DATE:
+                    videoUploadDateView.setText((String) msg.obj);
+                    videoUploadDateView.setVisibility(View.VISIBLE);
+                    return true;
+            }
+            return false;
+        }
     }
 }

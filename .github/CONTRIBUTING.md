@@ -5,7 +5,7 @@ READ THIS GUIDELINES CAREFULLY BEFORE CONTRIBUTING.
 
 ## Crash reporting
 
-Do not report crashes in the GitHub issue tracker. NewPipe has an automated crash report system that will ask you to send a report if a crash occures.
+Do not report crashes in the GitHub issue tracker. NewPipe has an automated crash report system that will ask you to send a report if a crash occurs.
 
 ## Issue reporting/feature request
 

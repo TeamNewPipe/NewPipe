@@ -23,126 +23,128 @@ import org.schabi.newpipe.R;
 import us.shandian.giga.get.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.adapter.MissionAdapter;
-import us.shandian.giga.util.Utility;
 
-public abstract class MissionsFragment extends Fragment
-{
-	private DownloadManager mManager;
-	private DownloadManagerService.DMBinder mBinder;
-	
-	private SharedPreferences mPrefs;
-	private boolean mLinear;
-	private MenuItem mSwitch;
-	
-	private RecyclerView mList;
-	private MissionAdapter mAdapter;
-	private GridLayoutManager mGridManager;
-	private LinearLayoutManager mLinearManager;
-	private Context mActivity;
-	
-	private ServiceConnection mConnection = new ServiceConnection() {
+public abstract class MissionsFragment extends Fragment {
+    private DownloadManager mManager;
+    private DownloadManagerService.DMBinder mBinder;
 
-		@Override
-		public void onServiceConnected(ComponentName name, IBinder binder) {
-			mBinder = (DownloadManagerService.DMBinder) binder;
-			mManager = setupDownloadManager(mBinder);
-			updateList();
-		}
+    private SharedPreferences mPrefs;
+    private boolean mLinear;
+    private MenuItem mSwitch;
 
-		@Override
-		public void onServiceDisconnected(ComponentName name) {
-			// What to do?
-		}
+    private RecyclerView mList;
+    private MissionAdapter mAdapter;
+    private GridLayoutManager mGridManager;
+    private LinearLayoutManager mLinearManager;
+    private Context mActivity;
 
-		
-	};
+    private ServiceConnection mConnection = new ServiceConnection() {
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.missions, container, false);
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder binder) {
+            mBinder = (DownloadManagerService.DMBinder) binder;
+            mManager = setupDownloadManager(mBinder);
+            updateList();
+        }
 
-		mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		mLinear = mPrefs.getBoolean("linear", false);
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            // What to do?
+        }
 
-		// Bind the service
-		Intent i = new Intent();
-		i.setClass(getActivity(), DownloadManagerService.class);
-		getActivity().bindService(i, mConnection, Context.BIND_AUTO_CREATE);
-		
-		// Views
-		mList = Utility.findViewById(v, R.id.mission_recycler);
-		
-		// Init
-		mGridManager = new GridLayoutManager(getActivity(), 2);
-		mLinearManager = new LinearLayoutManager(getActivity());
-		mList.setLayoutManager(mGridManager);
-		
-		setHasOptionsMenu(true);
-		
-		return v;
-	}
 
-	/** Added in API level 23. */
+    };
+
     @Override
-	public void onAttach(Context activity) {
-		super.onAttach(activity);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.missions, container, false);
 
-		// Bug: in api< 23 this is never called
-		// so mActivity=null
-		// so app crashes with nullpointer exception
-		mActivity = activity;
-	}
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        mLinear = mPrefs.getBoolean("linear", false);
 
-	/** deprecated in API level 23,
-	 * but must remain to allow compatibility with api<23 */
-	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
+        // Bind the service
+        Intent i = new Intent();
+        i.setClass(getActivity(), DownloadManagerService.class);
+        getActivity().bindService(i, mConnection, Context.BIND_AUTO_CREATE);
 
-		mActivity = activity;
-	}
+        // Views
+        mList = (RecyclerView) v.findViewById(R.id.mission_recycler);
 
-	@Override
-	public void onDestroyView() {
-		super.onDestroyView();
-		getActivity().unbindService(mConnection);
-	}
+        // Init
+        mGridManager = new GridLayoutManager(getActivity(), 2);
+        mLinearManager = new LinearLayoutManager(getActivity());
+        mList.setLayoutManager(mGridManager);
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		return super.onOptionsItemSelected(item);
+        setHasOptionsMenu(true);
+
+        return v;
+    }
+
+    /**
+     * Added in API level 23.
+     */
+    @Override
+    public void onAttach(Context activity) {
+        super.onAttach(activity);
+
+        // Bug: in api< 23 this is never called
+        // so mActivity=null
+        // so app crashes with nullpointer exception
+        mActivity = activity;
+    }
+
+    /**
+     * deprecated in API level 23,
+     * but must remain to allow compatibility with api<23
+     */
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        mActivity = activity;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        getActivity().unbindService(mConnection);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
 
 		/*switch (item.getItemId()) {
-			case R.id.switch_mode:
+            case R.id.switch_mode:
 				mLinear = !mLinear;
 				updateList();
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}*/
-	}
+    }
 
-	public void notifyChange() {
-		mAdapter.notifyDataSetChanged();
-	}
-	
-	private void updateList() {
-		mAdapter = new MissionAdapter(mActivity, mBinder, mManager, mLinear);
-		
-		if (mLinear) {
-			mList.setLayoutManager(mLinearManager);
-		} else {
-			mList.setLayoutManager(mGridManager);
-		}
-		
-		mList.setAdapter(mAdapter);
-		
-		if (mSwitch != null) {
-			mSwitch.setIcon(mLinear ? R.drawable.grid : R.drawable.list);
-		}
-		
-		mPrefs.edit().putBoolean("linear", mLinear).commit();
-	}
-	
-	protected abstract DownloadManager setupDownloadManager(DownloadManagerService.DMBinder binder);
+    public void notifyChange() {
+        mAdapter.notifyDataSetChanged();
+    }
+
+    private void updateList() {
+        mAdapter = new MissionAdapter(mActivity, mBinder, mManager, mLinear);
+
+        if (mLinear) {
+            mList.setLayoutManager(mLinearManager);
+        } else {
+            mList.setLayoutManager(mGridManager);
+        }
+
+        mList.setAdapter(mAdapter);
+
+        if (mSwitch != null) {
+            mSwitch.setIcon(mLinear ? R.drawable.grid : R.drawable.list);
+        }
+
+        mPrefs.edit().putBoolean("linear", mLinear).commit();
+    }
+
+    protected abstract DownloadManager setupDownloadManager(DownloadManagerService.DMBinder binder);
 }

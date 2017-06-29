@@ -212,7 +212,7 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
         resultRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
 
         if (infoListAdapter == null) {
-            infoListAdapter = new InfoListAdapter(getActivity(), getActivity().findViewById(android.R.id.content));
+            infoListAdapter = new InfoListAdapter(getActivity());
             if (savedInstanceState != null) {
                 //noinspection unchecked
                 ArrayList<InfoItem> serializable = (ArrayList<InfoItem>) savedInstanceState.getSerializable(INFO_LIST_KEY);
@@ -242,32 +242,23 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
     protected void initListeners() {
         super.initListeners();
         resultRecyclerView.clearOnScrollListeners();
-        resultRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        resultRecyclerView.addOnScrollListener(new OnScrollBelowItemsListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                int pastVisiblesItems, visibleItemCount, totalItemCount;
-                super.onScrolled(recyclerView, dx, dy);
-                //check for scroll down
-                if (dy > 0) {
-                    LinearLayoutManager layoutManager = (LinearLayoutManager) resultRecyclerView.getLayoutManager();
-                    visibleItemCount = resultRecyclerView.getLayoutManager().getChildCount();
-                    totalItemCount = resultRecyclerView.getLayoutManager().getItemCount();
-                    pastVisiblesItems = layoutManager.findFirstVisibleItemPosition();
-
-                    if ((visibleItemCount + pastVisiblesItems) >= totalItemCount && !isLoading.get()) {
-                        pageNumber++;
-                        recyclerView.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                infoListAdapter.showFooter(true);
-                            }
-                        });
-                        search(searchQuery, pageNumber);
-                    }
+            public void onScrolledDown(RecyclerView recyclerView) {
+                if(!isLoading.get()) {
+                    pageNumber++;
+                    recyclerView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            infoListAdapter.showFooter(true);
+                        }
+                    });
+                    search(searchQuery, pageNumber);
                 }
             }
         });
     }
+
 
     @Override
     protected void reloadContent() {

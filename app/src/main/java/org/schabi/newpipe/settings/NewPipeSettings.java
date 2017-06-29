@@ -72,9 +72,7 @@ public class NewPipeSettings {
     public static String getVideoDownloadPath(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         final String key = context.getString(R.string.download_path_key);
-        String downloadPath = prefs.getString(key, Environment.DIRECTORY_MOVIES);
-
-        return downloadPath;
+        return prefs.getString(key, Environment.DIRECTORY_MOVIES);
     }
 
     public static File getAudioDownloadFolder(Context context) {
@@ -84,9 +82,7 @@ public class NewPipeSettings {
     public static String getAudioDownloadPath(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         final String key = context.getString(R.string.download_path_audio_key);
-        String downloadPath = prefs.getString(key, Environment.DIRECTORY_MUSIC);
-
-        return downloadPath;
+        return prefs.getString(key, Environment.DIRECTORY_MUSIC);
     }
 
     private static File getFolder(Context context, int keyID, String defaultDirectoryName) {
