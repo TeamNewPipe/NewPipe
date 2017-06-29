@@ -21,7 +21,7 @@
     <string name="play_with_kodi_title">Воспроизвести с помощью Kodi</string>
     <string name="kore_not_found">Приложение Kore не найдено. Установить Kore?</string>
     <string name="show_play_with_kodi_title">Показывать опцию «Воспроизвести с помощью Kodi»</string>
-    <string name="show_play_with_kodi_summary">Показать опцию воспроизведения видео через Kodi media center.</string>
+    <string name="show_play_with_kodi_summary">Показать опцию воспроизведения видео через Kodi media center</string>
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Формат аудио по умолчанию</string>
     <string name="webm_description">WebM — свободный формат</string>
@@ -169,4 +169,9 @@
 <string name="best_resolution">Лучшее разрешение</string>
 
     <string name="use_old_player_summary">Старый встроенный плеер на Mediaframework.</string>
+    <string name="reCaptcha_title">Запрос reCAPTCHA</string>
+    <string name="recaptcha_request_toast">Запрошен ввод reCAPTCHA</string>
+
+    <string name="show_higher_resolutions_title">Показывать более высокие разрешения</string>
+    <string name="popup_mode_share_menu_title">NewPipe в окне</string>
     </resources>
