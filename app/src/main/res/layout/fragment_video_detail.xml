@@ -365,7 +365,10 @@
                 </LinearLayout>
 
                 <!-- LOADING BAR, ERROR & RETRY -->
-                <include layout="@layout/loading_error_retry" />
+                <org.schabi.newpipe.fragments.LoadingIndicator
+                    android:id="@+id/loading_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
     </com.nirhart.parallaxscroll.views.ParallaxScrollView>

@@ -15,6 +15,7 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
@@ -827,7 +828,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
      * @param info        info to prepare and load, can be null
      * @param scrollToTop whether or not scroll the scrollView to y = 0
      */
-    public void prepareAndLoad(StreamInfo info, boolean scrollToTop) {
+    public void prepareAndLoad(@Nullable StreamInfo info, boolean scrollToTop) {
         if (DEBUG) Log.d(TAG, "prepareAndLoad() called with: info = [" + info + "]");
         isLoading.set(true);
 
@@ -841,7 +842,6 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
 
         if (curExtractorWorker != null && curExtractorWorker.isRunning()) curExtractorWorker.cancel();
         animateView(spinnerToolbar, false, 200);
-        animateView(errorPanel, false, 200);
 
         videoTitleTextView.setText(videoTitle != null ? videoTitle : "");
         videoTitleTextView.setMaxLines(1);
@@ -880,7 +880,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
             if (scrollToTop) parallaxScrollRootView.smoothScrollTo(0, 0);
             curExtractorWorker = new StreamExtractorWorker(activity, serviceId, videoUrl, this);
             curExtractorWorker.start();
-            animateView(loadingProgressBar, true, 200);
+            notifyLoading();
             animateView(contentRootLayoutHiding, false, 200);
         }
     }
@@ -890,7 +890,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         currentStreamInfo = info;
         selectVideo(info.service_id, info.webpage_url, info.title);
 
-        loadingProgressBar.setVisibility(View.GONE);
+        notifySuccessfullyLoaded();
         animateView(thumbnailPlayButton, true, 200);
 
         // Since newpipe is designed to work even if certain information is not available,
@@ -1114,7 +1114,6 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
 
         handleStreamInfo(info, true);
         showContentWithAnimation(300, 0, 0);
-        animateView(loadingProgressBar, false, 200);
 
         StreamInfoCache.getInstance().putInfo(info);
         isLoading.set(false);

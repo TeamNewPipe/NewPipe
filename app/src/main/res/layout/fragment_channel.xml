@@ -13,9 +13,9 @@
         android:scrollbars="vertical"
         tools:listitem="@layout/stream_item" />
 
-    <include
-        layout="@layout/loading_error_retry"
+    <org.schabi.newpipe.fragments.LoadingIndicator
+        android:layout_gravity="center"
+        android:id="@+id/loading_indicator"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_height="wrap_content" />
 </FrameLayout>

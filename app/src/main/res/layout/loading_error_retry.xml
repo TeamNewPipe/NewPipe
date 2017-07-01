@@ -1,26 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="15dp">
-
+    tools:parentTag="LinearLayout"
+    tools:orientation="vertical"
+    tools:gravity="center_horizontal"
+    tools:layout_width="match_parent"
+    tools:layout_height="wrap_content">
     <ProgressBar
         android:id="@+id/loading_progress_bar"
         style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:indeterminate="true"
         android:visibility="gone"
         tools:visibility="visible" />
 
-    <!--ERROR PANEL-->
-    <include
-        android:id="@+id/error_panel"
-        layout="@layout/error_retry"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/error_message_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/video_item_detail_error_panel_margin"
+        android:gravity="center"
+        android:text="@string/general_error"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:text="@string/network_error"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/error_button_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/retry"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="16sp"
+        android:theme="@style/RedButton"
         android:visibility="gone"
         tools:visibility="visible" />
-</FrameLayout>
+</merge>
