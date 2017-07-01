@@ -12,9 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -46,11 +44,7 @@ public abstract class BaseFragment extends Fragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     protected Toolbar toolbar;
-
-    protected View errorPanel;
-    protected Button errorButtonRetry;
-    protected TextView errorTextView;
-    protected ProgressBar loadingProgressBar;
+    private LoadingIndicator loadingIndicator;
     //protected SwipeRefreshLayout swipeRefreshLayout;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -87,10 +81,7 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroyView();
         if (DEBUG) Log.d(TAG, "onDestroyView() called");
         toolbar = null;
-
-        errorPanel = null;
-        errorButtonRetry = null;
-        errorTextView = null;
+        loadingIndicator = null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -100,16 +91,12 @@ public abstract class BaseFragment extends Fragment {
     protected void initViews(View rootView, Bundle savedInstanceState) {
         toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
 
-        loadingProgressBar = (ProgressBar) rootView.findViewById(R.id.loading_progress_bar);
+        loadingIndicator = (LoadingIndicator) rootView.findViewById(R.id.loading_indicator);
         //swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh);
-
-        errorPanel = rootView.findViewById(R.id.error_panel);
-        errorButtonRetry = (Button) rootView.findViewById(R.id.error_button_retry);
-        errorTextView = (TextView) rootView.findViewById(R.id.error_message_view);
     }
 
     protected void initListeners() {
-        errorButtonRetry.setOnClickListener(new View.OnClickListener() {
+        loadingIndicator.setOnRetryClickedListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onRetryButtonClicked();
@@ -128,18 +115,30 @@ public abstract class BaseFragment extends Fragment {
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected void setErrorMessage(String message, boolean showRetryButton) {
-        if (errorTextView == null || activity == null) return;
-
-        errorTextView.setText(message);
-        if (showRetryButton) animateView(errorButtonRetry, true, 300);
-        else animateView(errorButtonRetry, false, 0);
-
-        animateView(errorPanel, true, 300);
-        isLoading.set(false);
-
-        animateView(loadingProgressBar, false, 200);
+    protected void notifySuccessfullyLoaded() {
+        if(loadingIndicator != null) {
+            loadingIndicator.setSuccessful();
+        }
     }
+
+    protected void notifyLoading() {
+        if(loadingIndicator != null) {
+            loadingIndicator.setLoading();
+        }
+    }
+
+    protected void setErrorMessage(String message, boolean showRetryButton) {
+        if(loadingIndicator != null) {
+            loadingIndicator.setErrorMessage(message, showRetryButton);
+        }
+        isLoading.set(false);
+    }
+
+
+    protected boolean isErrorShown() {
+        return loadingIndicator != null && loadingIndicator.isErrorShown();
+    }
+
 
     protected int getResourceIdFromAttr(@AttrRes int attr) {
         TypedArray a = activity.getTheme().obtainStyledAttributes(new int[]{attr});
@@ -174,4 +173,5 @@ public abstract class BaseFragment extends Fragment {
         }
         cheatSheet.show();
     }
+
 }

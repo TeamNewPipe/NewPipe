@@ -182,7 +182,7 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
         outState.putSerializable(INFO_LIST_KEY, ((ArrayList<InfoItem>) infoListAdapter.getItemsList()));
         outState.putBoolean(WAS_LOADING_KEY, curSearchWorker != null && curSearchWorker.isRunning());
 
-        if (errorPanel != null && errorPanel.getVisibility() == View.VISIBLE) outState.putBoolean(ERROR_KEY, true);
+        if (isErrorShown()) outState.putBoolean(ERROR_KEY, true);
         if (filterItemCheckedId != -1) outState.putInt(FILTER_CHECKED_ID_KEY, filterItemCheckedId);
     }
 
@@ -259,18 +259,18 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
         });
     }
 
-
     @Override
     protected void reloadContent() {
         if (DEBUG) Log.d(TAG, "reloadContent() called");
         if (!TextUtils.isEmpty(searchQuery) || (searchEditText != null && !TextUtils.isEmpty(searchEditText.getText()))) {
             search(!TextUtils.isEmpty(searchQuery) ? searchQuery : searchEditText.getText().toString(), 0, true);
         } else {
+            // No search query present
             if (searchEditText != null) {
                 searchEditText.setText("");
                 showSoftKeyboard(searchEditText);
             }
-            animateView(errorPanel, false, 200);
+            notifySuccessfullyLoaded();
         }
     }
 
@@ -545,9 +545,8 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
             animateView(resultRecyclerView, false, 50);
             infoListAdapter.clearStreamItemList();
             infoListAdapter.showFooter(false);
-            animateView(loadingProgressBar, true, 200);
+            notifyLoading();
         }
-        animateView(errorPanel, false, 200);
 
         if (curSearchWorker != null && curSearchWorker.isRunning()) curSearchWorker.cancel();
         curSearchWorker = SearchWorker.startForQuery(activity, serviceId, query, pageNumber, filter, this);
@@ -585,7 +584,7 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
         if (DEBUG) Log.d(TAG, "onSearchResult() called with: result = [" + result + "]");
         infoListAdapter.addInfoItemList(result.resultList);
         animateView(resultRecyclerView, true, 400);
-        animateView(loadingProgressBar, false, 200);
+        notifySuccessfullyLoaded();
         isLoading.set(false);
     }
 
@@ -611,5 +610,4 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
         // Starting ReCaptcha Challenge Activity
         startActivityForResult(new Intent(getActivity(), ReCaptchaActivity.class), ReCaptchaActivity.RECAPTCHA_REQUEST);
     }
-
 }

@@ -291,8 +291,7 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
         pageNumber = page;
         infoListAdapter.showFooter(false);
 
-        animateView(loadingProgressBar, true, 200);
-        animateView(errorPanel, false, 200);
+        notifyLoading();
 
         imageLoader.cancelDisplayTask(headerChannelBanner);
         imageLoader.cancelDisplayTask(headerAvatarView);
@@ -326,9 +325,9 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
     private void handleChannelInfo(ChannelInfo info, boolean onlyVideos, boolean addVideos) {
         currentChannelInfo = info;
 
-        animateView(errorPanel, false, 300);
+        notifySuccessfullyLoaded();
         animateView(channelVideosList, true, 200);
-        animateView(loadingProgressBar, false, 200);
+
 
         if (!onlyVideos) {
             headerRootLayout.setVisibility(View.VISIBLE);

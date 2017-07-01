@@ -2,6 +2,7 @@ package org.schabi.newpipe.util;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 
@@ -23,7 +24,7 @@ public class AnimationUtils {
         animateView(view, Type.ALPHA, enterOrExit, duration, delay, null);
     }
 
-    public static void animateView(View view, boolean enterOrExit, long duration, long delay, Runnable execOnEnd) {
+    public static void animateView(View view, boolean enterOrExit, long duration, long delay, @Nullable Runnable execOnEnd) {
         animateView(view, Type.ALPHA, enterOrExit, duration, delay, execOnEnd);
     }
 
@@ -45,7 +46,7 @@ public class AnimationUtils {
      * @param delay         how long the animation will wait to start, in milliseconds
      * @param execOnEnd     runnable that will be executed when the animation ends
      */
-    public static void animateView(final View view, Type animationType, boolean enterOrExit, long duration, long delay, Runnable execOnEnd) {
+    public static void animateView(final View view, Type animationType, boolean enterOrExit, long duration, long delay, @Nullable Runnable execOnEnd) {
         if (DEBUG) {
             Log.d(TAG, "animateView() called with: view = [" + view + "], animationType = [" + animationType + "], enterOrExit = [" + enterOrExit + "], duration = [" + duration + "], delay = [" + delay + "], execOnEnd = [" + execOnEnd + "]");
         }
@@ -79,7 +80,7 @@ public class AnimationUtils {
         }
     }
 
-    private static void animateScaleAndAlpha(final View view, boolean enterOrExit, long duration, long delay, final Runnable execOnEnd) {
+    private static void animateScaleAndAlpha(final View view, boolean enterOrExit, long duration, long delay, final @Nullable Runnable execOnEnd) {
         if (enterOrExit) {
             view.setAlpha(0f);
             view.setScaleX(.8f);
@@ -105,7 +106,7 @@ public class AnimationUtils {
     }
 
 
-    private static void animateAlpha(final View view, boolean enterOrExit, long duration, long delay, final Runnable execOnEnd) {
+    private static void animateAlpha(final View view, boolean enterOrExit, long duration, long delay, final @Nullable Runnable execOnEnd) {
         if (enterOrExit) {
             view.animate().alpha(1f).setDuration(duration).setStartDelay(delay).setListener(new AnimatorListenerAdapter() {
                 @Override
