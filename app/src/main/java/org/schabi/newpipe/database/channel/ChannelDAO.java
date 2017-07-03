@@ -24,6 +24,7 @@ public interface ChannelDAO extends BasicDAO<ChannelEntity> {
     @Query("SELECT * FROM " + CHANNEL_TABLE + " WHERE " + CHANNEL_SERVICE_ID + " = :serviceId")
     Flowable<List<ChannelEntity>> listByService(int serviceId);
 
+    /* Single entity query should not use flowable in case of empty result */
     @Query("SELECT * FROM " + CHANNEL_TABLE + " WHERE " + CHANNEL_URL + " LIKE :url LIMIT 1")
     ChannelEntity findByUrl(String url);
 }

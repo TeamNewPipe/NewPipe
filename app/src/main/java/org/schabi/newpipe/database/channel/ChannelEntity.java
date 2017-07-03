@@ -5,6 +5,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
+import static org.schabi.newpipe.database.channel.ChannelEntity.CHANNEL_LAST_VIDEO_ID;
 import static org.schabi.newpipe.database.channel.ChannelEntity.CHANNEL_SERVICE_ID;
 import static org.schabi.newpipe.database.channel.ChannelEntity.CHANNEL_TABLE;
 import static org.schabi.newpipe.database.channel.ChannelEntity.CHANNEL_URL;
@@ -16,6 +17,8 @@ public class ChannelEntity {
     final static String CHANNEL_TABLE       = "channel";
     final static String CHANNEL_SERVICE_ID  = "service_id";
     final static String CHANNEL_URL         = "url";
+    final static String CHANNEL_LAST_VIDEO_ID = "last_video_id";
+    final static String CHANNEL_LAST_VIDEO_VIEWED = "last_video_viewed";
 
     @PrimaryKey(autoGenerate = true)
     private long uid = 0;
@@ -26,6 +29,12 @@ public class ChannelEntity {
     /* Do not keep extraneous information on entities as they are dynamic */
     @ColumnInfo(name = CHANNEL_URL)
     private String url;
+
+    @ColumnInfo(name = CHANNEL_LAST_VIDEO_ID)
+    private String lastVideoId;
+
+    @ColumnInfo(name = CHANNEL_LAST_VIDEO_VIEWED)
+    private boolean lastVideoViewed;
 
     public long getUid() {
         return uid;
@@ -50,5 +59,21 @@ public class ChannelEntity {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getLastVideoId() {
+        return lastVideoId;
+    }
+
+    public void setLastVideoId(String lastVideoId) {
+        this.lastVideoId = lastVideoId;
+    }
+
+    public boolean isLastVideoViewed() {
+        return lastVideoViewed;
+    }
+
+    public void setLastVideoViewed(boolean lastVideoViewed) {
+        this.lastVideoViewed = lastVideoViewed;
     }
 }

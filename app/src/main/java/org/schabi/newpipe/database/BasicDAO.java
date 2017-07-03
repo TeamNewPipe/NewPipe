@@ -15,13 +15,13 @@ import io.reactivex.Flowable;
 @Dao
 public interface BasicDAO<Entity> {
     /* Inserts */
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.FAIL)
     void insert(final Entity entity);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.FAIL)
     void insertAll(final Entity... entities);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.FAIL)
     void insertAll(final Collection<Entity> entities);
 
     /* Searches */

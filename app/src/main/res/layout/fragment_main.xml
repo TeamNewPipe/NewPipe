@@ -3,6 +3,17 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
-    <include layout="@layout/main_bg" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/main_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+    <org.schabi.newpipe.fragments.NonScrollingViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/main_tab_layout"/>
 
 </RelativeLayout>

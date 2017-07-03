@@ -15,6 +15,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.AbstractStreamInfo;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
+import org.schabi.newpipe.extractor.channel.SubscriptionInfoItem;
 import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
 
 import java.util.Locale;
@@ -116,6 +117,9 @@ public class InfoItemBuilder {
                 break;
             case PLAYLIST:
                 Log.e(TAG, "Not yet implemented");
+                break;
+            case SUBSCRIPTION:
+                buildSubscriptionInfoItem((SubscriptionInfoItemHolder) holder, (SubscriptionInfoItem) i);
                 break;
             default:
                 Log.e(TAG, "Trollolo");
@@ -238,6 +242,27 @@ public class InfoItemBuilder {
         });
     }
 
+    private void buildSubscriptionInfoItem(SubscriptionInfoItemHolder holder, final SubscriptionInfoItem info) {
+        if (!TextUtils.isEmpty(info.getTitle())) holder.itemChannelTitleView.setText(info.getTitle());
+        holder.itemSubscriberCountView.setText(shortSubscriber(info.subscriberCount) + " • ");
+        final String newVideoSignal = info.newVideoAvailable ? "new videos available" : "no new video";
+        holder.itemNewVideoSignalView.setText(newVideoSignal);
+
+        holder.itemThumbnailView.setImageResource(R.drawable.buddy_channel_item);
+        if (!TextUtils.isEmpty(info.thumbnailUrl)) {
+            imageLoader.displayImage(info.thumbnailUrl,
+                    holder.itemThumbnailView,
+                    displayImageOptions,
+                    new ImageErrorLoadingListener(mContext, rootView, info.serviceId));
+        }
+
+        holder.itemRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onChannelInfoItemSelectedListener.selected(info.serviceId, info.getLink(), info.channelName);
+            }
+        });
+    }
 
     public String shortViewCount(Long viewCount) {
         if (viewCount >= 1000000000) {

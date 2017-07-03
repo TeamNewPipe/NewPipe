@@ -43,6 +43,7 @@ import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
 import io.reactivex.Completable;
+import io.reactivex.CompletableObserver;
 import io.reactivex.Maybe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
@@ -288,6 +289,39 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
         });
     }
 
+    private void channelViewed(final String url) {
+        final Runnable update = new Runnable() {
+            @Override
+            public void run() {
+                final AppDatabase db = NewPipeDatabase.getInstance( getContext() );
+
+                ChannelEntity channel = db.channelDAO().findByUrl( url );
+                channel.setLastVideoViewed( true );
+                db.channelDAO().update( channel );
+            }
+        };
+
+        final CompletableObserver updateObserver = new CompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add( d );
+            }
+
+            @Override
+            public void onComplete() {}
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e(TAG, "Subscription Fatal Error: ", e.getCause());
+            }
+        };
+
+        Completable.fromRunnable(update)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(updateObserver);
+    }
+
     private Disposable subscriptionStatus(final ChannelEntity channel) {
 
         final Callable<ChannelEntity> status = new Callable<ChannelEntity>() {
@@ -508,6 +542,8 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
             channel.setServiceId( serviceId );
             channel.setUrl( channelUrl );
             disposables.add( subscriptionStatus( channel ) );
+
+            channelViewed( channel.getUrl() );
 
             infoListAdapter.showFooter(true);
         }

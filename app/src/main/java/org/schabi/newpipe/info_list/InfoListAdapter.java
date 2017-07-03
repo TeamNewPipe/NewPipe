@@ -77,6 +77,13 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+    public void addInfoItem(InfoItem data) {
+        if (data != null) {
+            infoItemList.add( data );
+            notifyDataSetChanged();
+        }
+    }
+
     public void clearStreamItemList() {
         if(infoItemList.isEmpty()) {
             return;
@@ -125,6 +132,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return 3;
             case PLAYLIST:
                 return 4;
+            case SUBSCRIPTION:
+                return 5;
             default:
                 Log.e(TAG, "Trollolo");
                 return -1;
@@ -147,6 +156,9 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             case 4:
                 Log.e(TAG, "Playlist is not yet implemented");
                 return null;
+            case 5:
+                return new SubscriptionInfoItemHolder(LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.subscription_item, parent, false));
             default:
                 Log.e(TAG, "Trollolo");
                 return null;
