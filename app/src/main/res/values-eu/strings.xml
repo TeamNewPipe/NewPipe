@@ -13,11 +13,11 @@
     <string name="choose_browser">Nabigatzailea aukeratu</string>
     <string name="screen_rotation">biratzea</string>
     <string name="download_path_title">Bideoak deskargatzeko kokapena</string>
-    <string name="download_path_summary">Deskargatutako bideoak gordetzeko bide-izena.</string>
+    <string name="download_path_summary">Deskargatutako bideoak gordetzeko bide-izena</string>
     <string name="download_path_dialog_title">Sar ezazu bideoak deskargatzeko kokapena</string>
     <string name="default_resolution_title">Lehenetsitako bereizmena</string>
     <string name="play_with_kodi_title">Kodirekin erreproduzitu</string>
-    <string name="kore_not_found">Kore aplikazioa ez da aurkitu. Kore beharrezkoa da Kodi multimedia zentroarekin bideoak erreproduzitzeko.</string>
+    <string name="kore_not_found">Kore aplikazioa ez da aurkitu. Kore instalatu?</string>
     <string name="show_play_with_kodi_title">\"Kodirekin erreproduzitu\" aukera erakutsi</string>
     <string name="show_play_with_kodi_summary">Kodi multimedia zentroarekin bideoa erreproduzitzeko aukera erakusten du.</string>
     <string name="play_audio">Audioa</string>
@@ -27,7 +27,7 @@
     <string name="download_dialog_title">Deskargatu</string>
     <string name="next_video_title">Hurrengo bideoa</string>
     <string name="show_next_and_similar_title">Hurrengo bideoa eta antzekoak erakutsi</string>
-    <string name="url_not_supported_toast">URLa ez da onartzen.</string>
+    <string name="url_not_supported_toast">URLak ez du euskarririk</string>
     <string name="search_language_title">Edukiaren hizkuntz lehenetsia</string>
     <string name="settings_category_video_audio_title">Bideoa eta Audioa</string>
     <string name="play_btn_text">Erreproduzitu</string>
@@ -38,21 +38,133 @@
     <string name="detail_dislikes_img_view_description">Ez dute gustoko</string>
     <string name="detail_likes_img_view_description">Gustoko dute</string>
     <string name="use_tor_title">Tor erabili</string>
-    <string name="use_tor_summary">Trafikoa Tor bidez deskargatzea behartzen du pribatutasuna hobetzeko (jario bideoak ez daude oraindik onartuta)</string>
-    <string name="no_player_found">Jario erreproduzitzailerik ez da aurkitu. Agian bat instalatu nahi dezakezu.</string>
+    <string name="use_tor_summary">(Esperimentala) Trafikoa Tor bidez deskargatzea behartzen du pribatutasuna hobetzeko (bideo-jarioak ez daude oraindik onartuta).</string>
+    <string name="no_player_found">Ez da jario erreproduzigailurik aurkitu. VLC instalatu nahi duzu?</string>
     <string name="did_you_mean">Hau esan nahi al zenuen: %1$s?</string>
     <string name="use_external_video_player_title">Kanpoko bideo erreproduzitzailea erabili</string>
     <string name="use_external_audio_player_title">Kanpoko audio erreproduzitzailea erabili</string>
     <string name="background_player_playing_toast">Atzeko planoan erreproduzitzen</string>
     <string name="main_bg_subtitle">Ukitu bilaketa hasteko</string>
     <string name="download_path_audio_title">Audioa deskargatzeko kokapena</string>
-    <string name="download_path_audio_dialog_title">Sar ezazu audioa deskargatzeko kokapena.</string>
+    <string name="download_path_audio_dialog_title">Zehaztu audioa deskargatzeko bide-izena</string>
 
     <string name="download_path_audio_summary">Deskargatutako audioa gordetzeko bide-izena</string>
     <string name="autoplay_by_calling_app_title">Automatikoki jo beste aplikazio batetik deitzean</string>
-    <string name="autoplay_by_calling_app_summary">Automatikoki jo bideoa NewPipe beste aplikazio batek deitu badu.</string>
+    <string name="autoplay_by_calling_app_summary">Automatikoki jo bideoa NewPipe beste aplikazio batek deitu badu</string>
     <string name="dark_theme_title">Iluna</string>
     <string name="light_theme_title">Argia</string>
 
     <string name="settings_category_appearance_title">Itxura</string>
-</resources>
+<string name="open_in_popup_mode">Ireki laster-leiho moduan</string>
+    <string name="use_external_video_player_summary">Bereizmen batzuetan ez da audiorik izango aukera hau gaituz gero</string>
+    <string name="popup_mode_share_menu_title">NewPipe laster-leiho modua</string>
+    <string name="controls_background_title">Bigarren planoa</string>
+    <string name="controls_popup_title">Laster-leihoa</string>
+
+    <string name="default_popup_resolution_title">Laster-leihoaren lehenetsitako bereizmena</string>
+    <string name="show_higher_resolutions_title">Bistaratu bereizmen altuagoak</string>
+    <string name="show_higher_resolutions_summary">Gailu batzuk besterik ez dute onartzen 2K/4K bideoak erreproduzitzea</string>
+    <string name="preferred_video_format_title">Hobetsitako bideo-formatua</string>
+    <string name="theme_title">Itxura</string>
+    <string name="black_theme_title">Beltza</string>
+    <string name="popup_remember_size_pos_title">Gogoratu laster-leihoaren tamaina eta posizioa</string>
+    <string name="popup_remember_size_pos_summary">Gogoratu laster-leihoari ezarritako azken tamaina eta posizioa</string>
+    <string name="player_gesture_controls_title">Erreproduzigailuaren keinu bidezko kontrola</string>
+    <string name="player_gesture_controls_summary">Erabili keinuak erreproduzigailuaren distira eta bolumena kontrolatzeko</string>
+    <string name="show_search_suggestions_title">Bilaketa-iradokizunak</string>
+    <string name="show_search_suggestions_summary">Erakutsi iradokizunak bilatzean</string>
+
+    <string name="settings_category_popup_title">Laster-leihoa</string>
+    <string name="settings_category_other_title">Besteak</string>
+    <string name="popup_playing_toast">Laster-leiho moduan erreproduzitzen</string>
+    <string name="content">Edukia</string>
+    <string name="show_age_restricted_content_title">Erakutsi adinez mugatutako edukia</string>
+    <string name="video_is_age_restricted">Bideoa adinez mugatuta dago. Gaitu adinez mugatutako bideoak ezarpenetan aurrena.</string>
+    <string name="duration_live">zuzenean</string>
+    <string name="downloads">Deskargak</string>
+    <string name="downloads_title">Deskargak</string>
+    <string name="error_report_title">Errore-txostena</string>
+    <string name="all">Dena</string>
+    <string name="channel">Kanala</string>
+    <string name="yes">Bai</string>
+    <string name="later">Geroago</string>
+    <string name="disabled">Desgaituta</string>
+    <string name="filter">Iragazkia</string>
+    <string name="refresh">Freskatu</string>
+    <string name="clear">Garbitu</string>
+    <string name="popup_resizing_indicator_title">Tamainaz aldatzen</string>
+    <string name="best_resolution">Bereizmen onena</string>
+
+    <string name="general_error">Errorea</string>
+    <string name="network_error">Sare-errorea</string>
+    <string name="could_not_load_thumbnails">Ezin izan dira iruditxo guztiak deskargatu</string>
+    <string name="youtube_signature_decryption_error">Ezin izan da bideoaren URL sinadura deskodetu.</string>
+    <string name="parsing_error">Ezin izan da webgunea analizatu.</string>
+    <string name="light_parsing_error">Ezin izan da webgunea guztiz analizatu.</string>
+    <string name="content_not_available">Edukia ez dago eskuragarri.</string>
+    <string name="blocked_by_gema">GEMAk blokeatuta.</string>
+    <string name="could_not_setup_download_menu">Ezin izan da deskargen menua ezarri.</string>
+    <string name="live_streams_not_supported">Hau ZUZENEKO JARIO bat da. Ez dago hauentzako euskarririk oraindik.</string>
+    <string name="could_not_get_stream">Ezin izan da jariorik eskuratu.</string>
+    <string name="could_not_load_image">Ezin izan da irudia kargatu</string>
+    <string name="app_ui_crash">Aplikazioa/interfazea kraskatu da</string>
+    <string name="sorry_string">Hori ez litzateke gertatu behar.</string>
+    <string name="error_report_button_text">Eman errorearen berri e-posta bidez</string>
+    <string name="error_snackbar_message">Erroreak gertatu dira.</string>
+    <string name="error_snackbar_action">TXOSTENA</string>
+    <string name="what_device_headline">Informazioa:</string>
+    <string name="what_happened_headline">Zer gertatu da:</string>
+    <string name="info_labels">Zer:\\nEskaria:\\nEdukiaren hizkuntza:\\nZerbitzua:\\nGMT Ordua:\\nPaketea:\\nBertsioa:\\nSE bertsioa:\\nIP barruti orokorra:</string>
+    <string name="your_comment">Zure iruzkina (Ingelesez):</string>
+    <string name="error_details_headline">Xehetasunak:</string>
+
+
+    <string name="report_error">Eman errore baten berri</string>
+    <string name="user_report">Erabiltzaile-txostena</string>
+
+    <string name="err_dir_create">Ezin izan da \'%1$s\' karpeta sortu deskargetarako</string>
+    <string name="info_dir_created">\'%1$s\' karpeta sortu da deskargetarako</string>
+
+    <string name="video">Bideoa</string>
+    <string name="audio">Audioa</string>
+    <string name="retry">Saiatu berriro</string>
+    <string name="storage_permission_denied">Biltegia atzitzeko baimena ukatu da</string>
+    <string name="use_old_player_title">Erabili erreproduzigailu zaharra</string>
+    <string name="use_old_player_summary">Barne Media Framework erreproduzigailu zaharra.</string>
+    <string name="videos">bideoak</string>
+    <string name="subscriber">harpideduna</string>
+    <string name="subscriber_plural">hapidedunak</string>
+    <string name="subscribe">Harpidetu</string>
+    <string name="views">ikustaldiak</string>
+    <string name="short_thousand">K</string>
+    <string name="short_million">M</string>
+    <string name="short_billion">MM</string>
+
+    <string name="start">Hasi</string>
+    <string name="pause">Pausatu</string>
+    <string name="view">Ikusi</string>
+    <string name="delete">Ezabatu</string>
+    <string name="checksum">Egiaztaketa-batura</string>
+
+    <string name="add">Misio berria</string>
+    <string name="finish">Ados</string>
+
+    <string name="msg_name">Fitxategi-izena</string>
+    <string name="msg_threads">Hariak</string>
+    <string name="msg_error">Errorea</string>
+    <string name="msg_server_unsupported">Euskarririk gabeko zerbitzaria</string>
+    <string name="msg_exists">Fitxategia badago aurretik</string>
+    <string name="msg_url_malform">Eragabeko URLa edo Internet ez dago eskuragarri</string>
+    <string name="msg_running">NewPipe deskargatzen</string>
+    <string name="msg_running_detail">Ukitu xehetasunetarako</string>
+    <string name="msg_wait">Itxaron mesedez…</string>
+    <string name="msg_copied">Arbelera kopiatuta.</string>
+    <string name="no_available_dir">Aukeratu eskuragarri dagoen karpeta bat deskargetarako.</string>
+    <string name="msg_popup_permission">Baimen hau beharrezkoa da
+\nlaster-leiho moduan irekitzeko</string>
+
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">reCAPTCHA erronka</string>
+    <string name="recaptcha_request_toast">reCAPTCHA erronka eskatu da</string>
+
+    </resources>
