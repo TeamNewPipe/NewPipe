@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
@@ -59,7 +60,8 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
         tabLayout = (TabLayout) inflatedView.findViewById(R.id.main_tab_layout);
         viewPager = (NonScrollingViewPager) inflatedView.findViewById(R.id.pager);
 
-        PagerAdapter adapter = new PagerAdapter(getFragmentManager());
+        /*  Nested fragment, use child fragment here to maintain backstack in view pager. */
+        PagerAdapter adapter = new PagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(adapter);
 
         tabLayout.setupWithViewPager(viewPager);

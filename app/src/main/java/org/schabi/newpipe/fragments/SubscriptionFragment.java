@@ -15,7 +15,6 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
-import org.schabi.newpipe.database.channel.ChannelDAO;
 import org.schabi.newpipe.database.channel.ChannelEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -23,7 +22,6 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.channel.ChannelExtractor;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
-import org.schabi.newpipe.extractor.channel.SubscriptionInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
@@ -38,8 +36,9 @@ import java.util.concurrent.Callable;
 
 import io.reactivex.Completable;
 import io.reactivex.CompletableObserver;
-import io.reactivex.Observable;
 import io.reactivex.Observer;
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -93,7 +92,8 @@ public class SubscriptionFragment extends BaseFragment {
             infoListAdapter.setOnChannelInfoItemSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener() {
                 @Override
                 public void selected(int serviceId, String url, String title) {
-                    NavigationHelper.openChannelFragment(getFragmentManager(), serviceId, url, title);
+                    /* Requires the parent fragment to find holder for fragment replacement */
+                    NavigationHelper.openChannelFragment(getParentFragment().getFragmentManager(), serviceId, url, title);
                 }
             });
         }
@@ -160,6 +160,7 @@ public class SubscriptionFragment extends BaseFragment {
     private void populateView() {
         final AppDatabase db = NewPipeDatabase.getInstance( getContext() );
 
+        /* Backpressure not expected here, switch to observable */
         db.channelDAO().findAll().toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -206,36 +207,37 @@ public class SubscriptionFragment extends BaseFragment {
                 }
             };
 
-            Observable.fromCallable(infoCallable)
+            Single.fromCallable(infoCallable)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(extractionObserver(channel));
+                    .subscribe(singleExtractionObserver(channel));
         }
     }
 
-    private Observer<ChannelInfo> extractionObserver(final ChannelEntity channel) {
-        return new Observer<ChannelInfo>() {
+    private SingleObserver<ChannelInfo> singleExtractionObserver(final ChannelEntity channel) {
+        return new SingleObserver<ChannelInfo>() {
             @Override
             public void onSubscribe(Disposable d) {
                 disposables.add( d );
             }
 
             @Override
-            public void onNext(ChannelInfo channelInfo) {
-                SubscriptionInfoItem item = new SubscriptionInfoItem();
+            public void onSuccess(ChannelInfo channelInfo) {
+                ChannelInfoItem item = new ChannelInfoItem();
                 item.webPageUrl = channel.getUrl();
                 item.serviceId = channelInfo.service_id;
                 item.channelName = channelInfo.channel_name;
                 item.thumbnailUrl = channelInfo.avatar_url;
                 item.subscriberCount = channelInfo.subscriberCount;
 
+                // TODO: fix this when extractor allows subscription info types
                 if (!channelInfo.related_streams.isEmpty() &&
                         !channelInfo.related_streams.get(0).getLink().equals(channel.getLastVideoId())) {
 
                     updateLatest( channel, channelInfo.related_streams.get(0).getLink() );
-                    item.newVideoAvailable = true;
+                    item.videoAmount = 1;
                 } else {
-                    item.newVideoAvailable = !channel.isLastVideoViewed();
+                    item.videoAmount = channel.isLastVideoViewed() ? 1 : -1;
                 }
                 infoListAdapter.addInfoItem( item );
             }
@@ -258,9 +260,6 @@ public class SubscriptionFragment extends BaseFragment {
                     onUnrecoverableError(exception);
                 }
             }
-
-            @Override
-            public void onComplete() {}
         };
     }
 
@@ -298,7 +297,6 @@ public class SubscriptionFragment extends BaseFragment {
 
     @Override
     protected void reloadContent() {
-
     }
 
     private void onRecoverableError(int messageId) {
@@ -311,6 +309,7 @@ public class SubscriptionFragment extends BaseFragment {
         activity.finish();
     }
 
+    // TODO: refactor this to a common util
     private String getServiceName(final int serviceId) {
         final StreamingService service = getService( serviceId );
         return (service != null) ? service.getServiceInfo().name : "none";
@@ -322,10 +321,5 @@ public class SubscriptionFragment extends BaseFragment {
         } catch (ExtractionException e) {
             return null;
         }
-    }
-
-    private ChannelDAO channelTable() {
-        final AppDatabase db = NewPipeDatabase.getInstance( getContext() );
-        return db.channelDAO();
     }
 }
