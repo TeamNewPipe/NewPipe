@@ -27,6 +27,7 @@ import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.io.IOException;
@@ -80,7 +81,7 @@ public class SubscriptionFragment extends BaseFragment {
         resultRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
 
         if (infoListAdapter == null) {
-            infoListAdapter = new InfoListAdapter(getActivity(), getActivity().findViewById(android.R.id.content));
+            infoListAdapter = new InfoListAdapter(getActivity());
             if (savedInstanceState != null) {
                 //noinspection unchecked
                 ArrayList<InfoItem> serializable = (ArrayList<InfoItem>) savedInstanceState.getSerializable(INFO_LIST_KEY);
@@ -121,6 +122,12 @@ public class SubscriptionFragment extends BaseFragment {
             infoListAdapter.notifyDataSetChanged();
         }
     };
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(INFO_LIST_KEY, ((ArrayList<InfoItem>) infoListAdapter.getItemsList()));
+    }
 
     private void removeSubscription(final String url) {
         final Runnable unsubscribe = new Runnable() {
@@ -248,13 +255,13 @@ public class SubscriptionFragment extends BaseFragment {
                     onRecoverableError(R.string.network_error);
                 } else if (exception instanceof ParsingException || exception instanceof ExtractionException) {
                     ErrorActivity.reportError(getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(
-                            ErrorActivity.REQUESTED_CHANNEL, getServiceName(channel.getServiceId()), channel.getUrl(), R.string.parsing_error
+                            UserAction.REQUESTED_CHANNEL, getServiceName(channel.getServiceId()), channel.getUrl(), R.string.parsing_error
                     ));
 
                     onUnrecoverableError(exception);
                 } else {
                     ErrorActivity.reportError(getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(
-                            ErrorActivity.REQUESTED_CHANNEL, getServiceName(channel.getServiceId()), channel.getUrl(), R.string.general_error
+                            UserAction.REQUESTED_CHANNEL, getServiceName(channel.getServiceId()), channel.getUrl(), R.string.general_error
                     ));
 
                     onUnrecoverableError(exception);
