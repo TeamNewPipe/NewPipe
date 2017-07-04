@@ -15,6 +15,7 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
+import org.schabi.newpipe.database.channel.ChannelDAO;
 import org.schabi.newpipe.database.channel.ChannelEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -133,10 +134,8 @@ public class SubscriptionFragment extends BaseFragment {
         final Runnable unsubscribe = new Runnable() {
             @Override
             public void run() {
-                final AppDatabase db = NewPipeDatabase.getInstance( getContext() );
-
-                final ChannelEntity channel = db.channelDAO().findByUrl( url );
-                db.channelDAO().delete( channel );
+                final ChannelEntity channel = subscriptionTable().findByUrl( url );
+                subscriptionTable().delete( channel );
             }
         };
 
@@ -165,10 +164,8 @@ public class SubscriptionFragment extends BaseFragment {
     }
 
     private void populateView() {
-        final AppDatabase db = NewPipeDatabase.getInstance( getContext() );
-
         /* Backpressure not expected here, switch to observable */
-        db.channelDAO().findAll().toObservable()
+        subscriptionTable().findAll().toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriptionObserver());
@@ -274,10 +271,9 @@ public class SubscriptionFragment extends BaseFragment {
         final Runnable update = new Runnable() {
             @Override
             public void run() {
-                final AppDatabase db = NewPipeDatabase.getInstance( getContext() );
                 channel.setLastVideoId( url );
                 channel.setLastVideoViewed( false );
-                db.channelDAO().update(channel);
+                subscriptionTable().update(channel);
             }
         };
 
@@ -307,6 +303,8 @@ public class SubscriptionFragment extends BaseFragment {
     }
 
     private void onRecoverableError(int messageId) {
+        if (!this.isAdded()) return;
+
         if (DEBUG) Log.d(TAG, "onError() called with: messageId = [" + messageId + "]");
         setErrorMessage(getString(messageId), true);
     }
@@ -328,5 +326,9 @@ public class SubscriptionFragment extends BaseFragment {
         } catch (ExtractionException e) {
             return null;
         }
+    }
+
+    private ChannelDAO subscriptionTable() {
+        return NewPipeDatabase.getInstance( getContext() ).channelDAO();
     }
 }
