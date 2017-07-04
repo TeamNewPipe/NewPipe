@@ -156,18 +156,15 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
             case R.id.action_settings: {
-                Intent intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
+                NavigationHelper.openSettings(this);
                 return true;
             }
             case R.id.action_show_downloads: {
-                if (!PermissionHelper.checkStoragePermissions(this)) {
-                    return false;
-                }
-                Intent intent = new Intent(this, DownloadActivity.class);
-                startActivity(intent);
-                return true;
+                return NavigationHelper.openDownloads(this);
             }
+            case R.id.action_about:
+                NavigationHelper.openAbout(this);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

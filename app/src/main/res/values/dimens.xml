@@ -20,6 +20,7 @@
     <dimen name="video_item_search_duration_horizontal_padding">5sp</dimen>
     <dimen name="video_item_search_duration_margin">2sp</dimen>
     <dimen name="video_item_detail_description_to_details_margin">4dp</dimen>
+    <dimen name="software_component_item_padding">8dp</dimen>
     <!-- Miscellaneous -->
     <dimen name="popup_default_width">180dp</dimen>
     <dimen name="popup_minimum_width">120dp</dimen>
@@ -46,5 +47,9 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
 
 </resources>

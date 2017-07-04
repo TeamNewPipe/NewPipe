@@ -1,15 +1,19 @@
 package org.schabi.newpipe.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.preference.PreferenceManager;
+import android.support.annotation.CheckResult;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.schabi.newpipe.about.AboutActivity;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream_info.AudioStream;
@@ -21,6 +25,7 @@ import org.schabi.newpipe.fragments.search.SearchFragment;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.VideoPlayer;
+import org.schabi.newpipe.settings.SettingsActivity;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NavigationHelper {
@@ -193,5 +198,24 @@ public class NavigationHelper {
                 throw new Exception("Url not known to service. service=" + serviceId + " url=" + url);
         }
         return null;
+    }
+
+    public static void openAbout(Context context) {
+        Intent intent = new Intent(context, AboutActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void openSettings(Context context) {
+        Intent intent = new Intent(context, SettingsActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static boolean openDownloads(Activity activity) {
+        if (!PermissionHelper.checkStoragePermissions(activity)) {
+            return false;
+        }
+        Intent intent = new Intent(activity, DownloadActivity.class);
+        activity.startActivity(intent);
+        return true;
     }
 }

@@ -209,7 +209,15 @@
                 <data android:mimeType="text/plain"/>
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".about.AboutActivity"
+            android:label="@string/title_activity_about"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.schabi.newpipe.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
