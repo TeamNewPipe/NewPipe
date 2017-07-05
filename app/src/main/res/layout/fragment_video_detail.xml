@@ -54,12 +54,11 @@
             </FrameLayout>
 
             <!-- CONTENT -->
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/detail_content_root_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="?android:windowBackground"
-                android:orientation="vertical">
+                android:background="?android:windowBackground">
 
                 <!-- TITLE -->
                 <FrameLayout
@@ -95,11 +94,36 @@
                         tools:ignore="ContentDescription,RtlHardcoded" />
 
                 </FrameLayout>
+
+                <!-- LOADING INDICATOR-->
+                <ProgressBar
+                    android:id="@+id/loading_progress_bar"
+                    style="@style/Widget.AppCompat.ProgressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/detail_title_root_layout"
+                    android:layout_marginTop="@dimen/video_item_detail_error_panel_margin"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <!--ERROR PANEL-->
+                <include
+                    android:id="@+id/error_panel"
+                    layout="@layout/error_retry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/detail_title_root_layout"
+                    android:layout_marginTop="@dimen/video_item_detail_error_panel_margin"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
                 <!--HIDING ROOT-->
                 <LinearLayout
                     android:id="@+id/detail_content_root_hiding"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_below="@+id/detail_title_root_layout"
                     android:orientation="vertical"
                     android:visibility="gone"
                     tools:visibility="visible">
@@ -364,9 +388,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <!-- LOADING BAR, ERROR & RETRY -->
-                <include layout="@layout/loading_error_retry" />
-            </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
     </com.nirhart.parallaxscroll.views.ParallaxScrollView>
 </FrameLayout>
