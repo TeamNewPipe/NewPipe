@@ -46,13 +46,16 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class SubscriptionFragment extends BaseFragment {
+import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-    private static final String INFO_LIST_KEY = "info_list_key";
+public class SubscriptionFragment extends BaseFragment {
 
     private InfoListAdapter infoListAdapter;
     private RecyclerView resultRecyclerView;
 
+    /* Used for tracking subscription list items */
+    private CompositeDisposable subscriptionMonitor;
+    /* Used for independent events */
     private CompositeDisposable disposables;
 
     @Nullable
@@ -65,12 +68,14 @@ public class SubscriptionFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        subscriptionMonitor = new CompositeDisposable();
         disposables = new CompositeDisposable();
     }
 
     @Override
     public void onDestroy() {
         disposables.dispose();
+        subscriptionMonitor.dispose();
 
         super.onDestroy();
     }
@@ -83,12 +88,6 @@ public class SubscriptionFragment extends BaseFragment {
 
         if (infoListAdapter == null) {
             infoListAdapter = new InfoListAdapter(getActivity());
-            if (savedInstanceState != null) {
-                //noinspection unchecked
-                ArrayList<InfoItem> serializable = (ArrayList<InfoItem>) savedInstanceState.getSerializable(INFO_LIST_KEY);
-                infoListAdapter.addInfoItemList(serializable);
-            }
-
             infoListAdapter.setFooter(activity.getLayoutInflater().inflate(R.layout.pignate_footer, resultRecyclerView, false));
             infoListAdapter.showFooter(false);
             infoListAdapter.setOnChannelInfoItemSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener() {
@@ -124,12 +123,6 @@ public class SubscriptionFragment extends BaseFragment {
         }
     };
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putSerializable(INFO_LIST_KEY, ((ArrayList<InfoItem>) infoListAdapter.getItemsList()));
-    }
-
     private void removeSubscription(final String url) {
         final Runnable unsubscribe = new Runnable() {
             @Override
@@ -164,6 +157,8 @@ public class SubscriptionFragment extends BaseFragment {
     }
 
     private void populateView() {
+        animateView(errorPanel, false, 200);
+
         /* Backpressure not expected here, switch to observable */
         subscriptionTable().findAll().toObservable()
                 .subscribeOn(Schedulers.io())
@@ -181,6 +176,7 @@ public class SubscriptionFragment extends BaseFragment {
             @Override
             public void onNext(List<ChannelEntity> channels) {
                 infoListAdapter.clearStreamItemList();
+                subscriptionMonitor.clear();
                 for (final ChannelEntity channel: channels) {
                     displayChannel( channel );
                 }
@@ -222,7 +218,7 @@ public class SubscriptionFragment extends BaseFragment {
         return new SingleObserver<ChannelInfo>() {
             @Override
             public void onSubscribe(Disposable d) {
-                disposables.add( d );
+                subscriptionMonitor.add( d );
             }
 
             @Override
@@ -280,7 +276,7 @@ public class SubscriptionFragment extends BaseFragment {
         final CompletableObserver updateObserver = new CompletableObserver() {
             @Override
             public void onSubscribe(Disposable d) {
-                disposables.add( d );
+                subscriptionMonitor.add( d );
             }
 
             @Override
@@ -300,6 +296,16 @@ public class SubscriptionFragment extends BaseFragment {
 
     @Override
     protected void reloadContent() {
+        populateView();
+    }
+
+    @Override
+    protected void setErrorMessage(String message, boolean showRetryButton) {
+        super.setErrorMessage(message, showRetryButton);
+
+        disposables.clear();
+        subscriptionMonitor.clear();
+        infoListAdapter.clearStreamItemList();
     }
 
     private void onRecoverableError(int messageId) {
