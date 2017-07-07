@@ -11,36 +11,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import org.schabi.newpipe.MainActivity;
-import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.AppDatabase;
-import org.schabi.newpipe.database.channel.ChannelDAO;
-import org.schabi.newpipe.database.channel.ChannelEntity;
+import org.schabi.newpipe.database.subscription.SubscriptionDAO;
+import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.channel.ChannelExtractor;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
-import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
+import java.util.Map;
 
 import io.reactivex.Completable;
 import io.reactivex.CompletableObserver;
 import io.reactivex.Observer;
-import io.reactivex.Single;
-import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -53,10 +41,9 @@ public class SubscriptionFragment extends BaseFragment {
     private InfoListAdapter infoListAdapter;
     private RecyclerView resultRecyclerView;
 
-    /* Used for tracking subscription list items */
-    private CompositeDisposable subscriptionMonitor;
     /* Used for independent events */
     private CompositeDisposable disposables;
+    private SubscriptionService subscriptionService;
 
     @Nullable
     @Override
@@ -68,14 +55,14 @@ public class SubscriptionFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        subscriptionMonitor = new CompositeDisposable();
         disposables = new CompositeDisposable();
+        subscriptionService = SubscriptionService.getInstance( getContext() );
     }
 
     @Override
     public void onDestroy() {
+        subscriptionService = null;
         disposables.dispose();
-        subscriptionMonitor.dispose();
 
         super.onDestroy();
     }
@@ -123,12 +110,82 @@ public class SubscriptionFragment extends BaseFragment {
         }
     };
 
+    private void populateView() {
+        resetFragment();
+
+        animateView(loadingProgressBar, true, 200);
+        animateView(errorPanel, false, 200);
+
+        subscriptionService.getSubscription()
+                .toObservable()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getSubscriptionObserver());
+    }
+
+    private Observer<Map<SubscriptionEntity, ChannelInfo>> getSubscriptionObserver() {
+        return new Observer<Map<SubscriptionEntity, ChannelInfo>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add( d );
+                animateView(loadingProgressBar, true, 200);
+                subscriptionService.getSubscription().connect();
+            }
+
+            @Override
+            public void onNext(Map<SubscriptionEntity, ChannelInfo> channelInfos) {
+                infoListAdapter.clearStreamItemList();
+                animateView(loadingProgressBar, true, 200);
+
+                List<InfoItem> items = new ArrayList<>();
+                for (final Map.Entry<SubscriptionEntity, ChannelInfo> pair: channelInfos.entrySet()) {
+                    final SubscriptionEntity channel = pair.getKey();
+                    final ChannelInfo channelInfo = pair.getValue();
+
+                    ChannelInfoItem item = new ChannelInfoItem();
+                    item.webPageUrl = channel.getUrl();
+                    item.serviceId = channelInfo.service_id;
+                    item.channelName = channelInfo.channel_name;
+                    item.thumbnailUrl = channelInfo.avatar_url;
+                    item.subscriberCount = channelInfo.subscriberCount;
+
+                    // TODO: fix this when extractor allows subscription info types
+                    if (!channelInfo.related_streams.isEmpty() &&
+                            !channelInfo.related_streams.get(0).getLink().equals(channel.getLastVideoId())) {
+
+                        updateLatest( channel, channelInfo.related_streams.get(0).getLink() );
+                        item.videoAmount = 1;
+                    } else {
+                        item.videoAmount = channel.isLastVideoViewed() ? 1 : -1;
+                    }
+                    items.add( item );
+                }
+                animateView(loadingProgressBar, false, 200);
+                infoListAdapter.addInfoItemList( items );
+            }
+
+            @Override
+            public void onError(Throwable exception) {
+                if (exception instanceof IOException) {
+                    onRecoverableError(R.string.network_error);
+                } else {
+                    onUnrecoverableError(exception);
+                }
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
     private void removeSubscription(final String url) {
         final Runnable unsubscribe = new Runnable() {
             @Override
             public void run() {
-                final ChannelEntity channel = subscriptionTable().findByUrl( url );
-                subscriptionTable().delete( channel );
+                final SubscriptionDAO subscriptionTable = subscriptionService.subscriptionTable();
+                final SubscriptionEntity channel = subscriptionTable.findByUrl( url );
+                if (channel != null) subscriptionTable.delete( channel );
             }
         };
 
@@ -156,127 +213,20 @@ public class SubscriptionFragment extends BaseFragment {
                 .subscribe(unsubscriptionObserver);
     }
 
-    private void populateView() {
-        animateView(errorPanel, false, 200);
-
-        /* Backpressure not expected here, switch to observable */
-        subscriptionTable().findAll().toObservable()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(subscriptionObserver());
-    }
-
-    private Observer<List<ChannelEntity>> subscriptionObserver() {
-        return new Observer<List<ChannelEntity>>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-                disposables.add( d );
-            }
-
-            @Override
-            public void onNext(List<ChannelEntity> channels) {
-                infoListAdapter.clearStreamItemList();
-                subscriptionMonitor.clear();
-                for (final ChannelEntity channel: channels) {
-                    displayChannel( channel );
-                }
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.e(TAG, "Subscription Retrieval Error: ", e);
-            }
-
-            @Override
-            public void onComplete() {}
-        };
-    }
-
-    private void displayChannel(final ChannelEntity channel) {
-        final int serviceId = channel.getServiceId();
-        final String url = channel.getUrl();
-
-        final StreamingService service = getService( serviceId );
-
-        if (service != null) {
-            final Callable<ChannelInfo> infoCallable = new Callable<ChannelInfo>() {
-                @Override
-                public ChannelInfo call() throws Exception {
-                    final ChannelExtractor extractor = service.getChannelExtractorInstance(url, 0);
-                    return ChannelInfo.getInfo(extractor);
-                }
-            };
-
-            Single.fromCallable(infoCallable)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(singleExtractionObserver(channel));
-        }
-    }
-
-    private SingleObserver<ChannelInfo> singleExtractionObserver(final ChannelEntity channel) {
-        return new SingleObserver<ChannelInfo>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-                subscriptionMonitor.add( d );
-            }
-
-            @Override
-            public void onSuccess(ChannelInfo channelInfo) {
-                ChannelInfoItem item = new ChannelInfoItem();
-                item.webPageUrl = channel.getUrl();
-                item.serviceId = channelInfo.service_id;
-                item.channelName = channelInfo.channel_name;
-                item.thumbnailUrl = channelInfo.avatar_url;
-                item.subscriberCount = channelInfo.subscriberCount;
-
-                // TODO: fix this when extractor allows subscription info types
-                if (!channelInfo.related_streams.isEmpty() &&
-                        !channelInfo.related_streams.get(0).getLink().equals(channel.getLastVideoId())) {
-
-                    updateLatest( channel, channelInfo.related_streams.get(0).getLink() );
-                    item.videoAmount = 1;
-                } else {
-                    item.videoAmount = channel.isLastVideoViewed() ? 1 : -1;
-                }
-                infoListAdapter.addInfoItem( item );
-            }
-
-            @Override
-            public void onError(Throwable exception) {
-                if (exception instanceof IOException) {
-                    onRecoverableError(R.string.network_error);
-                } else if (exception instanceof ParsingException || exception instanceof ExtractionException) {
-                    ErrorActivity.reportError(getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(
-                            UserAction.REQUESTED_CHANNEL, getServiceName(channel.getServiceId()), channel.getUrl(), R.string.parsing_error
-                    ));
-
-                    onUnrecoverableError(exception);
-                } else {
-                    ErrorActivity.reportError(getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(
-                            UserAction.REQUESTED_CHANNEL, getServiceName(channel.getServiceId()), channel.getUrl(), R.string.general_error
-                    ));
-
-                    onUnrecoverableError(exception);
-                }
-            }
-        };
-    }
-
-    private void updateLatest(final ChannelEntity channel, final String url) {
+    private void updateLatest(final SubscriptionEntity channel, final String url) {
         final Runnable update = new Runnable() {
             @Override
             public void run() {
                 channel.setLastVideoId( url );
                 channel.setLastVideoViewed( false );
-                subscriptionTable().update(channel);
+                subscriptionService.subscriptionTable().update(channel);
             }
         };
 
         final CompletableObserver updateObserver = new CompletableObserver() {
             @Override
             public void onSubscribe(Disposable d) {
-                subscriptionMonitor.add( d );
+                disposables.add( d );
             }
 
             @Override
@@ -302,9 +252,11 @@ public class SubscriptionFragment extends BaseFragment {
     @Override
     protected void setErrorMessage(String message, boolean showRetryButton) {
         super.setErrorMessage(message, showRetryButton);
+        resetFragment();
+    }
 
+    private void resetFragment() {
         disposables.clear();
-        subscriptionMonitor.clear();
         infoListAdapter.clearStreamItemList();
     }
 
@@ -318,23 +270,5 @@ public class SubscriptionFragment extends BaseFragment {
     private void onUnrecoverableError(Throwable exception) {
         if (DEBUG) Log.d(TAG, "onUnrecoverableError() called with: exception = [" + exception + "]");
         activity.finish();
-    }
-
-    // TODO: refactor this to a common util
-    private String getServiceName(final int serviceId) {
-        final StreamingService service = getService( serviceId );
-        return (service != null) ? service.getServiceInfo().name : "none";
-    }
-
-    private StreamingService getService(final int serviceId) {
-        try {
-            return NewPipe.getService(serviceId);
-        } catch (ExtractionException e) {
-            return null;
-        }
-    }
-
-    private ChannelDAO subscriptionTable() {
-        return NewPipeDatabase.getInstance( getContext() ).channelDAO();
     }
 }

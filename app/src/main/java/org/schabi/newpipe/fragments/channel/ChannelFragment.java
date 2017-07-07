@@ -26,10 +26,12 @@ import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
-import org.schabi.newpipe.database.channel.ChannelEntity;
+import org.schabi.newpipe.database.subscription.SubscriptionDAO;
+import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.fragments.BaseFragment;
+import org.schabi.newpipe.fragments.SubscriptionService;
 import org.schabi.newpipe.fragments.search.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
@@ -73,7 +75,7 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
     private boolean hasNextPage = true;
 
     private CompositeDisposable disposables;
-
+    private SubscriptionService subscriptionService;
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -117,7 +119,9 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
             Serializable serializable = savedInstanceState.getSerializable(CHANNEL_INFO_KEY);
             if (serializable instanceof ChannelInfo) currentChannelInfo = (ChannelInfo) serializable;
         }
+
         disposables = new CompositeDisposable();
+        subscriptionService = SubscriptionService.getInstance( getContext() );
     }
 
     @Override
@@ -150,7 +154,9 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
         headerRssButton = null;
         headerSubscribeButton = null;
 
+        subscriptionService = null;
         disposables.dispose();
+
         super.onDestroyView();
     }
 
@@ -293,11 +299,13 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
         final Runnable update = new Runnable() {
             @Override
             public void run() {
-                final AppDatabase db = NewPipeDatabase.getInstance( getContext() );
+                final SubscriptionDAO subscriptionTable = subscriptionService.subscriptionTable();
 
-                ChannelEntity channel = db.channelDAO().findByUrl( url );
-                channel.setLastVideoViewed( true );
-                db.channelDAO().update( channel );
+                SubscriptionEntity channel = subscriptionTable.findByUrl( url );
+                if (channel != null) {
+                    channel.setLastVideoViewed( true );
+                    subscriptionTable.update( channel );
+                }
             }
         };
 
@@ -322,19 +330,18 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
                 .subscribe(updateObserver);
     }
 
-    private Disposable subscriptionStatus(final ChannelEntity channel) {
+    private Disposable subscriptionStatus(final SubscriptionEntity channel) {
 
-        final Callable<ChannelEntity> status = new Callable<ChannelEntity>() {
+        final Callable<SubscriptionEntity> status = new Callable<SubscriptionEntity>() {
             @Override
-            public ChannelEntity call() throws Exception {
-                final AppDatabase db = NewPipeDatabase.getInstance( getContext() );
-                return db.channelDAO().findByUrl( channel.getUrl() );
+            public SubscriptionEntity call() throws Exception {
+                return subscriptionService.subscriptionTable().findByUrl( channel.getUrl() );
             }
         };
 
-        final Consumer<ChannelEntity> onSuccess = new Consumer<ChannelEntity>() {
+        final Consumer<SubscriptionEntity> onSuccess = new Consumer<SubscriptionEntity>() {
             @Override
-            public void accept(@NonNull final ChannelEntity channelEntity) throws Exception {
+            public void accept(@NonNull final SubscriptionEntity channelEntity) throws Exception {
                 headerSubscribeButton.setText(R.string.subscribed_button_title);
                 headerSubscribeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -374,18 +381,11 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
                 .subscribe(onSuccess, onError, onEmpty);
     }
 
-    private Disposable rxUnsubscribe(final ChannelEntity channel) {
+    private Disposable rxUnsubscribe(final SubscriptionEntity channel) {
         final Runnable subscribe = new Runnable() {
             @Override
             public void run() {
-                final AppDatabase db = NewPipeDatabase.getInstance( getContext() );
-                db.beginTransaction();
-                try {
-                    db.channelDAO().delete( channel );
-                    db.setTransactionSuccessful();
-                } finally {
-                    db.endTransaction();
-                }
+                subscriptionService.subscriptionTable().delete( channel );
             }
         };
 
@@ -410,19 +410,12 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
                 .subscribe(onSubscribe, onSubscribeError);
     }
 
-    private Disposable rxSubscribe(final ChannelEntity channel) {
+    private Disposable rxSubscribe(final SubscriptionEntity channel) {
 
         final Runnable subscribe = new Runnable() {
             @Override
             public void run() {
-                final AppDatabase db = NewPipeDatabase.getInstance( getContext() );
-                db.beginTransaction();
-                try {
-                    db.channelDAO().insert( channel );
-                    db.setTransactionSuccessful();
-                } finally {
-                    db.endTransaction();
-                }
+                subscriptionService.subscriptionTable().insert( channel );
             }
         };
 
@@ -538,7 +531,7 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
             if (!TextUtils.isEmpty(info.feed_url)) headerRssButton.setVisibility(View.VISIBLE);
             else headerRssButton.setVisibility(View.INVISIBLE);
 
-            ChannelEntity channel = new ChannelEntity();
+            SubscriptionEntity channel = new SubscriptionEntity();
             channel.setServiceId( serviceId );
             channel.setUrl( channelUrl );
             disposables.add( subscriptionStatus( channel ) );

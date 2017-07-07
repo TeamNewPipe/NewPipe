@@ -1,18 +1,17 @@
-package org.schabi.newpipe.database.channel;
+package org.schabi.newpipe.database.subscription;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-import static org.schabi.newpipe.database.channel.ChannelEntity.CHANNEL_LAST_VIDEO_ID;
-import static org.schabi.newpipe.database.channel.ChannelEntity.CHANNEL_SERVICE_ID;
-import static org.schabi.newpipe.database.channel.ChannelEntity.CHANNEL_TABLE;
-import static org.schabi.newpipe.database.channel.ChannelEntity.CHANNEL_URL;
+import static org.schabi.newpipe.database.subscription.SubscriptionEntity.CHANNEL_SERVICE_ID;
+import static org.schabi.newpipe.database.subscription.SubscriptionEntity.CHANNEL_TABLE;
+import static org.schabi.newpipe.database.subscription.SubscriptionEntity.CHANNEL_URL;
 
 @Entity(tableName = CHANNEL_TABLE,
         indices = {@Index(value = {CHANNEL_SERVICE_ID, CHANNEL_URL}, unique = true)})
-public class ChannelEntity {
+public class SubscriptionEntity {
 
     final static String CHANNEL_TABLE       = "channel";
     final static String CHANNEL_SERVICE_ID  = "service_id";
