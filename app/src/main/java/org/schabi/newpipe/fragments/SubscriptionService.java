@@ -6,6 +6,7 @@ import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.subscription.SubscriptionDAO;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.channel.ChannelExtractor;
@@ -59,17 +60,28 @@ public class SubscriptionService {
         subscription = getSubscriptionInfos();
     }
 
-    private ConnectableFlowable<Map<SubscriptionEntity, ChannelInfo>> getSubscriptionInfos() {
-        final Flowable<List<SubscriptionEntity>> subscriptions = db.subscriptionDAO().findAll()
+    /** Part of subscription observation pipeline
+     * @see SubscriptionService#getSubscription()
+     */
+     private ConnectableFlowable<Map<SubscriptionEntity, ChannelInfo>> getSubscriptionInfos() {
+        final Flowable<List<SubscriptionEntity>> subscriptions = subscriptionTable().findAll()
                 // Use only the latest change per interval
                 .debounce(SUBSCRIPTION_DEBOUNCE_INTERVAL, TimeUnit.MILLISECONDS);
 
         // Concat merges nested observables into a single one
         return Flowable.concat(subscriptions.map(getMapper()))
+                .map(getUpdateMapper())
                 .share()            // Share allows multiple subscribers on the same observable
                 .replay();          // Replay synchronizes subscribers to the last emitted result
     }
 
+    /** Part of subscription observation pipeline:
+     * getMapper is responsible for dividing the list of subscriptions from database
+     *  and map each one of into a web source of that subscription.
+     *
+     * After obtaining the results of the above sources, combine all these results
+     * into a single observable
+     * */
     private Function<List<SubscriptionEntity>, Flowable<Map<SubscriptionEntity, ChannelInfo>>> getMapper() {
         return new Function<List<SubscriptionEntity>, Flowable<Map<SubscriptionEntity, ChannelInfo>>>() {
             @Override
@@ -85,7 +97,8 @@ public class SubscriptionService {
                     if (service != null) {
                         result.add(
                                 /* Set the subscription scheduler to use IO here for concurrency */
-                                Flowable.fromCallable(extract(subscription)).subscribeOn(Schedulers.io())
+                                Flowable.fromCallable(extract(subscription, service))
+                                        .subscribeOn(Schedulers.io())
                         );
                     }
                 }
@@ -96,28 +109,32 @@ public class SubscriptionService {
         };
     }
 
-    private Callable<Map<SubscriptionEntity, ChannelInfo>> extract(final SubscriptionEntity subscription) {
+    /** Part of subscription observation pipeline:
+     * extract is responsible for extracting the channel info for a given subscription item
+     * from given web service. */
+    private Callable<Map<SubscriptionEntity, ChannelInfo>> extract(final SubscriptionEntity subscription,
+                                                                   final @NonNull StreamingService service) {
         return new Callable<Map<SubscriptionEntity, ChannelInfo>>() {
             @Override
             public Map<SubscriptionEntity, ChannelInfo> call() throws Exception {
-                final int serviceId = subscription.getServiceId();
                 final String url = subscription.getUrl();
 
-                final StreamingService service = getService( serviceId );
-
                 Map<SubscriptionEntity, ChannelInfo> result = new HashMap<>();
-                if (service != null) {
-                    final ChannelExtractor extractor = service.getChannelExtractorInstance(url, 0);
+                final ChannelExtractor extractor = service.getChannelExtractorInstance(url, 0);
+                final ChannelInfo channelInfo = ChannelInfo.getInfo(extractor);
+
                     /* Need to keep track of both subscription and channel info since
                     * channel info does not contain web page url */
-                    result.put(subscription, ChannelInfo.getInfo(extractor));
-                }
-
+                result.put(subscription, channelInfo);
                 return result;
             }
         };
     }
 
+    /** Part of subscription observation pipeline:
+     * getCombiner combines a list of <SubscriptionEntity, ChannelInfo> paring into a single
+     *  map.
+     * */
     private Function<Object[], Map<SubscriptionEntity, ChannelInfo>> getCombiner() {
         return new Function<Object[], Map<SubscriptionEntity, ChannelInfo>>() {
             @Override
@@ -132,6 +149,47 @@ public class SubscriptionService {
                 return result;
             }
         };
+    }
+
+    /** Part of subscription observation pipeline:
+     * getUpdateMapper provides update to database when web source contains new information
+     * when compared to local database.
+     *
+     * @see SubscriptionService#updateSubscriptions(Map)
+     * */
+    private Function<Map<SubscriptionEntity, ChannelInfo>, Map<SubscriptionEntity, ChannelInfo>> getUpdateMapper() {
+        return new Function<Map<SubscriptionEntity, ChannelInfo>, Map<SubscriptionEntity, ChannelInfo>>() {
+            @Override
+            public Map<SubscriptionEntity, ChannelInfo> apply(@NonNull Map<SubscriptionEntity, ChannelInfo> subscriptionEntityChannelInfoMap) throws Exception {
+                return updateSubscriptions(subscriptionEntityChannelInfoMap);
+            }
+        };
+    }
+
+    /** Part of subscription observation pipeline:
+     * updateSubscriptions is responsible for
+     * */
+    private Map<SubscriptionEntity, ChannelInfo> updateSubscriptions(final @NonNull Map<SubscriptionEntity, ChannelInfo> channelInfoBySubscription) {
+        List<SubscriptionEntity> updates = new ArrayList<>();
+        for (final Map.Entry<SubscriptionEntity, ChannelInfo> entry: channelInfoBySubscription.entrySet()) {
+            SubscriptionEntity subscription = entry.getKey();
+            final ChannelInfo channelInfo = entry.getValue();
+            String lastStreamId = subscription.getLatestStreamUrl();
+            final List<InfoItem> relatedStreams = channelInfo.related_streams;
+
+            if (relatedStreams.isEmpty() || relatedStreams.get(0).getLink() == null) continue;
+
+            final String latestStreamUrl = relatedStreams.get(0).getLink();
+            if (!latestStreamUrl.equals(lastStreamId)) {
+                subscription.setLatestStreamUrl(latestStreamUrl);
+                subscription.setLatestStreamViewed(false);
+
+                updates.add(subscription);
+            }
+        }
+
+        subscriptionTable().update(updates);
+        return channelInfoBySubscription;
     }
 
     /**

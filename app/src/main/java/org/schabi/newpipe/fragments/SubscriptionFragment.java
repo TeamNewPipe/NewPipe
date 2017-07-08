@@ -23,6 +23,8 @@ import org.schabi.newpipe.util.NavigationHelper;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -61,7 +63,7 @@ public class SubscriptionFragment extends BaseFragment {
 
     @Override
     public void onDestroy() {
-        disposables.dispose();
+        if (disposables != null) disposables.dispose();
 
         subscriptionService = null;
         disposables = null;
@@ -107,6 +109,7 @@ public class SubscriptionFragment extends BaseFragment {
             final int pos = viewHolder.getAdapterPosition();
             final InfoItem item = infoListAdapter.getItemsList().remove( pos );
 
+            // TODO: need to update extractor to expose service id
             removeSubscription(item.getLink());
             infoListAdapter.notifyDataSetChanged();
         }
@@ -138,31 +141,8 @@ public class SubscriptionFragment extends BaseFragment {
                 infoListAdapter.clearStreamItemList();
                 animateView(loadingProgressBar, true, 200);
 
-                List<InfoItem> items = new ArrayList<>();
-                for (final Map.Entry<SubscriptionEntity, ChannelInfo> pair: channelInfos.entrySet()) {
-                    final SubscriptionEntity channel = pair.getKey();
-                    final ChannelInfo channelInfo = pair.getValue();
-
-                    ChannelInfoItem item = new ChannelInfoItem();
-                    item.webPageUrl = channel.getUrl();
-                    item.serviceId = channelInfo.service_id;
-                    item.channelName = channelInfo.channel_name;
-                    item.thumbnailUrl = channelInfo.avatar_url;
-                    item.subscriberCount = channelInfo.subscriberCount;
-
-                    // TODO: fix this when extractor allows subscription info types
-                    if (!channelInfo.related_streams.isEmpty() &&
-                            !channelInfo.related_streams.get(0).getLink().equals(channel.getLastVideoId())) {
-
-                        updateLatest( channel, channelInfo.related_streams.get(0).getLink() );
-                        item.videoAmount = 1;
-                    } else {
-                        item.videoAmount = channel.isLastVideoViewed() ? 1 : -1;
-                    }
-                    items.add( item );
-                }
+                infoListAdapter.addInfoItemList( getChannelItems(channelInfos) );
                 animateView(loadingProgressBar, false, 200);
-                infoListAdapter.addInfoItemList( items );
             }
 
             @Override
@@ -179,6 +159,33 @@ public class SubscriptionFragment extends BaseFragment {
 
             }
         };
+    }
+
+    private List<InfoItem> getChannelItems(Map<SubscriptionEntity, ChannelInfo> channelInfos) {
+        List<InfoItem> items = new ArrayList<>();
+        for (final Map.Entry<SubscriptionEntity, ChannelInfo> pair: channelInfos.entrySet()) {
+            final SubscriptionEntity channel = pair.getKey();
+            final ChannelInfo channelInfo = pair.getValue();
+
+            ChannelInfoItem item = new ChannelInfoItem();
+            item.webPageUrl = channel.getUrl();
+            item.serviceId = channelInfo.service_id;
+            item.channelName = channelInfo.channel_name;
+            item.thumbnailUrl = channelInfo.avatar_url;
+            item.subscriberCount = channelInfo.subscriberCount;
+
+            // TODO: fix this when extractor allows subscription info types
+            item.videoAmount = channel.isLatestStreamViewed() ? 1 : -1;
+            items.add( item );
+        }
+        Collections.sort(items, new Comparator<InfoItem>() {
+            @Override
+            public int compare(InfoItem o1, InfoItem o2) {
+                return o1.getTitle().compareToIgnoreCase(o2.getTitle());
+            }
+        });
+
+        return items;
     }
 
     private void removeSubscription(final String url) {
@@ -209,41 +216,10 @@ public class SubscriptionFragment extends BaseFragment {
             }
         };
 
-        Completable.fromRunnable( unsubscribe )
+        Completable.fromRunnable(unsubscribe)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(unsubscriptionObserver);
-    }
-
-    private void updateLatest(final SubscriptionEntity channel, final String url) {
-        final Runnable update = new Runnable() {
-            @Override
-            public void run() {
-                channel.setLastVideoId( url );
-                channel.setLastVideoViewed( false );
-                subscriptionService.subscriptionTable().update(channel);
-            }
-        };
-
-        final CompletableObserver updateObserver = new CompletableObserver() {
-            @Override
-            public void onSubscribe(Disposable d) {
-                disposables.add( d );
-            }
-
-            @Override
-            public void onComplete() {}
-
-            @Override
-            public void onError(Throwable e) {
-                Log.e(TAG, "Subscription Fatal Error: ", e.getCause());
-            }
-        };
-
-        Completable.fromRunnable(update)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(updateObserver);
     }
 
     @Override

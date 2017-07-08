@@ -24,7 +24,7 @@ public interface SubscriptionDAO extends BasicDAO<SubscriptionEntity> {
     Flowable<List<SubscriptionEntity>> listByService(int serviceId);
 
     /* Single entity query should not use flowable in case of empty result */
-    /* TODO: make query require service id when */
+    /* TODO: make query require service id when extractor exposes service id */
     @Query("SELECT * FROM " + CHANNEL_TABLE + " WHERE " + CHANNEL_URL + " LIKE :url LIMIT 1")
     SubscriptionEntity findSingle(String url);
 

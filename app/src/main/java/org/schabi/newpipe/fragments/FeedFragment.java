@@ -54,7 +54,7 @@ public class FeedFragment extends BaseFragment {
 
     @Override
     public void onDestroy() {
-        disposables.dispose();
+        if (disposables != null) disposables.dispose();
 
         subscriptionService = null;
         disposables = null;

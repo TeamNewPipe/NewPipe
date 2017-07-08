@@ -125,9 +125,6 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
             Serializable serializable = savedInstanceState.getSerializable(CHANNEL_INFO_KEY);
             if (serializable instanceof ChannelInfo) currentChannelInfo = (ChannelInfo) serializable;
         }
-
-        disposables = new CompositeDisposable();
-        subscriptionService = SubscriptionService.getInstance( getContext() );
     }
 
     @Override
@@ -160,8 +157,8 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
         headerRssButton = null;
         headerSubscribeButton = null;
 
-        disposables.dispose();
-        subscribeButtonMonitor.dispose();
+        if (disposables != null) disposables.dispose();
+        if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();
         disposables = null;
         subscribeButtonMonitor = null;
         subscriptionService = null;
@@ -270,6 +267,9 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
         headerSubscribersTextView = (TextView) headerRootLayout.findViewById(R.id.channel_subscriber_view);
         headerRssButton = (Button) headerRootLayout.findViewById(R.id.channel_rss_button);
         headerSubscribeButton = (Button) headerRootLayout.findViewById(R.id.channel_subscribe_button);
+
+        disposables = new CompositeDisposable();
+        subscriptionService = SubscriptionService.getInstance( getContext() );
     }
 
     protected void initListeners() {
@@ -311,8 +311,8 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
                 final SubscriptionDAO subscriptionTable = subscriptionService.subscriptionTable();
 
                 SubscriptionEntity channel = subscriptionTable.findSingle( url );
-                if (channel != null && !channel.isLastVideoViewed()) {
-                    channel.setLastVideoViewed( true );
+                if (channel != null && !channel.isLatestStreamViewed()) {
+                    channel.setLatestStreamViewed( true );
                     subscriptionTable.update( channel );
                 }
             }
@@ -321,11 +321,14 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
         final CompletableObserver updateObserver = new CompletableObserver() {
             @Override
             public void onSubscribe(Disposable d) {
+                Log.d(TAG, "channelviewed onsub");
                 disposables.add( d );
             }
 
             @Override
-            public void onComplete() {}
+            public void onComplete() {
+                Log.d(TAG, "channelviewed done");
+            }
 
             @Override
             public void onError(Throwable e) {
@@ -384,7 +387,6 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
                     SubscriptionEntity channel = new SubscriptionEntity();
                     channel.setServiceId( serviceId );
                     channel.setUrl( channelUrl );
-
                     subscribeButtonMonitor = changeSubscription(headerSubscribeButton, mapOnSubscribe(channel));
 
                     headerSubscribeButton.setText(R.string.subscribe_button_title);
@@ -528,7 +530,7 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
             else headerRssButton.setVisibility(View.INVISIBLE);
 
             if (disposables != null) disposables.clear();
-            if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();;
+            if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();
             monitorSubscription(serviceId, channelUrl);
             channelViewed(channelUrl);
 

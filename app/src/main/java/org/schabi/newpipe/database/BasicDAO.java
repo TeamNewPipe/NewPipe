@@ -39,4 +39,7 @@ public interface BasicDAO<Entity> {
     /* Updates */
     @Update
     void update(final Entity entity);
+
+    @Update
+    void update(final Collection<Entity> entities);
 }

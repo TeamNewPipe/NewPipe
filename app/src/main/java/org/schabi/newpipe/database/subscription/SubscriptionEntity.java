@@ -13,11 +13,11 @@ import static org.schabi.newpipe.database.subscription.SubscriptionEntity.CHANNE
         indices = {@Index(value = {CHANNEL_SERVICE_ID, CHANNEL_URL}, unique = true)})
 public class SubscriptionEntity {
 
-    final static String CHANNEL_TABLE       = "channel";
-    final static String CHANNEL_SERVICE_ID  = "service_id";
-    final static String CHANNEL_URL         = "url";
-    final static String CHANNEL_LAST_VIDEO_ID = "last_video_id";
-    final static String CHANNEL_LAST_VIDEO_VIEWED = "last_video_viewed";
+    final static String CHANNEL_TABLE                   = "channel";
+    final static String CHANNEL_SERVICE_ID              = "service_id";
+    final static String CHANNEL_URL                     = "url";
+    final static String CHANNEL_LATEST_STREAM_URL       = "latest_stream_url";
+    final static String CHANNEL_LATEST_STREAM_VIEWED    = "latest_stream_viewed";
 
     @PrimaryKey(autoGenerate = true)
     private long uid = 0;
@@ -29,11 +29,11 @@ public class SubscriptionEntity {
     @ColumnInfo(name = CHANNEL_URL)
     private String url;
 
-    @ColumnInfo(name = CHANNEL_LAST_VIDEO_ID)
-    private String lastVideoId;
+    @ColumnInfo(name = CHANNEL_LATEST_STREAM_URL)
+    private String latestStreamUrl;
 
-    @ColumnInfo(name = CHANNEL_LAST_VIDEO_VIEWED)
-    private boolean lastVideoViewed;
+    @ColumnInfo(name = CHANNEL_LATEST_STREAM_VIEWED)
+    private boolean latestStreamViewed;
 
     public long getUid() {
         return uid;
@@ -60,19 +60,19 @@ public class SubscriptionEntity {
         this.url = url;
     }
 
-    public String getLastVideoId() {
-        return lastVideoId;
+    public String getLatestStreamUrl() {
+        return latestStreamUrl;
     }
 
-    public void setLastVideoId(String lastVideoId) {
-        this.lastVideoId = lastVideoId;
+    public void setLatestStreamUrl(String latestStreamUrl) {
+        this.latestStreamUrl = latestStreamUrl;
     }
 
-    public boolean isLastVideoViewed() {
-        return lastVideoViewed;
+    public boolean isLatestStreamViewed() {
+        return latestStreamViewed;
     }
 
-    public void setLastVideoViewed(boolean lastVideoViewed) {
-        this.lastVideoViewed = lastVideoViewed;
+    public void setLatestStreamViewed(boolean latestStreamViewed) {
+        this.latestStreamViewed = latestStreamViewed;
     }
 }
