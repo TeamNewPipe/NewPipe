@@ -7,20 +7,15 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
@@ -103,18 +98,18 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
     }
 
     @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-
-    }
+    public void onTabUnselected(TabLayout.Tab tab) {}
 
     @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-
-    }
+    public void onTabReselected(TabLayout.Tab tab) {}
 
     private class PagerAdapter extends FragmentPagerAdapter {
 
-        private String[] tabTitles = new String[]{"Main", "Subscriptions", "Feeds"};
+        private int[] tabTitles = new int[]{
+                R.string.tab_main,
+                R.string.tab_subscriptions,
+                R.string.tab_feed
+        };
 
         PagerAdapter(FragmentManager fm) {
             super(fm);
@@ -134,7 +129,7 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return this.tabTitles[ position ];
+            return getString(this.tabTitles[position]);
         }
 
         @Override

@@ -61,8 +61,10 @@ public class SubscriptionFragment extends BaseFragment {
 
     @Override
     public void onDestroy() {
-        subscriptionService = null;
         disposables.dispose();
+
+        subscriptionService = null;
+        disposables = null;
 
         super.onDestroy();
     }
@@ -184,7 +186,7 @@ public class SubscriptionFragment extends BaseFragment {
             @Override
             public void run() {
                 final SubscriptionDAO subscriptionTable = subscriptionService.subscriptionTable();
-                final SubscriptionEntity channel = subscriptionTable.findByUrl( url );
+                final SubscriptionEntity channel = subscriptionTable.findSingle( url );
                 if (channel != null) subscriptionTable.delete( channel );
             }
         };
@@ -197,13 +199,13 @@ public class SubscriptionFragment extends BaseFragment {
 
             @Override
             public void onComplete() {
-                Toast.makeText(getContext(), "Channel unsubscribed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.channel_unsubscribed, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.e(TAG, "Subscription Fatal Error: ", e.getCause());
-                Toast.makeText(getContext(), "Unable to unsubscribe", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.subscription_change_failed, Toast.LENGTH_SHORT).show();
             }
         };
 

@@ -33,7 +33,6 @@ public class FeedFragment extends BaseFragment {
     private InfoListAdapter infoListAdapter;
     private RecyclerView resultRecyclerView;
 
-
     /* Used for subscription following fragment lifecycle */
     private CompositeDisposable disposables;
     private SubscriptionService subscriptionService;
@@ -55,8 +54,10 @@ public class FeedFragment extends BaseFragment {
 
     @Override
     public void onDestroy() {
-        subscriptionService = null;
         disposables.dispose();
+
+        subscriptionService = null;
+        disposables = null;
 
         super.onDestroy();
     }

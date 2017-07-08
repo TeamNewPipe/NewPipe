@@ -33,6 +33,9 @@ public interface BasicDAO<Entity> {
     @Delete
     void delete(final Entity entity);
 
+    @Delete
+    void delete(final Collection<Entity> entities);
+
     /* Updates */
     @Update
     void update(final Entity entity);

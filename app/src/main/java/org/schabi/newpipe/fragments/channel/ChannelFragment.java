@@ -22,10 +22,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jakewharton.rxbinding2.view.RxView;
+
 import org.schabi.newpipe.ImageErrorLoadingListener;
-import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.subscription.SubscriptionDAO;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -42,27 +42,30 @@ import org.schabi.newpipe.workers.ChannelExtractorWorker;
 import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.concurrent.Callable;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Completable;
 import io.reactivex.CompletableObserver;
-import io.reactivex.Maybe;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class ChannelFragment extends BaseFragment implements ChannelExtractorWorker.OnChannelInfoReceive {
-    private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
+private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
 
     private static final String INFO_LIST_KEY = "info_list_key";
     private static final String CHANNEL_INFO_KEY = "channel_info_key";
     private static final String PAGE_NUMBER_KEY = "page_number_key";
+
+    private static final int BUTTON_DEBOUNCE_INTERVAL = 500;
 
     private InfoListAdapter infoListAdapter;
 
@@ -74,8 +77,11 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
     private int pageNumber = 0;
     private boolean hasNextPage = true;
 
-    private CompositeDisposable disposables;
     private SubscriptionService subscriptionService;
+
+    private CompositeDisposable disposables;
+    private Disposable subscribeButtonMonitor;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -154,8 +160,11 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
         headerRssButton = null;
         headerSubscribeButton = null;
 
-        subscriptionService = null;
         disposables.dispose();
+        subscribeButtonMonitor.dispose();
+        disposables = null;
+        subscribeButtonMonitor = null;
+        subscriptionService = null;
 
         super.onDestroyView();
     }
@@ -301,8 +310,8 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
             public void run() {
                 final SubscriptionDAO subscriptionTable = subscriptionService.subscriptionTable();
 
-                SubscriptionEntity channel = subscriptionTable.findByUrl( url );
-                if (channel != null) {
+                SubscriptionEntity channel = subscriptionTable.findSingle( url );
+                if (channel != null && !channel.isLastVideoViewed()) {
                     channel.setLastVideoViewed( true );
                     subscriptionTable.update( channel );
                 }
@@ -330,114 +339,101 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
                 .subscribe(updateObserver);
     }
 
-    private Disposable subscriptionStatus(final SubscriptionEntity channel) {
+    private void monitorSubscription(final int serviceId, final String channelUrl) {
+        subscriptionService.subscriptionTable().findAll(serviceId, channelUrl)
+                .toObservable()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getSubscribeButtonMonitor(serviceId, channelUrl));
+    }
 
-        final Callable<SubscriptionEntity> status = new Callable<SubscriptionEntity>() {
+    private Function<Object, Object> mapOnSubscribe(final SubscriptionEntity subscription) {
+        return new Function<Object, Object>() {
             @Override
-            public SubscriptionEntity call() throws Exception {
-                return subscriptionService.subscriptionTable().findByUrl( channel.getUrl() );
+            public Object apply(@NonNull Object o) throws Exception {
+                subscriptionService.subscriptionTable().insert( subscription );
+                return o;
             }
         };
+    }
 
-        final Consumer<SubscriptionEntity> onSuccess = new Consumer<SubscriptionEntity>() {
+    private Function<Object, Object> mapOnUnsubscribe(final SubscriptionEntity subscription) {
+        return new Function<Object, Object>() {
             @Override
-            public void accept(@NonNull final SubscriptionEntity channelEntity) throws Exception {
-                headerSubscribeButton.setText(R.string.subscribed_button_title);
-                headerSubscribeButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        disposables.add( rxUnsubscribe( channelEntity ) );
-                    }
-                });
-                headerSubscribeButton.setVisibility(View.VISIBLE);
+            public Object apply(@NonNull Object o) throws Exception {
+                subscriptionService.subscriptionTable().delete( subscription );
+                return o;
             }
         };
+    }
 
-        final Action onEmpty = new Action() {
+    private Observer<List<SubscriptionEntity>> getSubscribeButtonMonitor(final int serviceId,
+                                                                         final String channelUrl) {
+        return new Observer<List<SubscriptionEntity>>() {
             @Override
-            public void run() throws Exception {
-                headerSubscribeButton.setText(R.string.subscribe_button_title);
-                headerSubscribeButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        disposables.add( rxSubscribe( channel ) );
-                    }
-                });
+            public void onSubscribe(Disposable d) {
+                disposables.add( d );
+            }
+
+            @Override
+            public void onNext(List<SubscriptionEntity> subscriptionEntities) {
+                if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();
+
+                if (subscriptionEntities.isEmpty()) {
+                    Log.d(TAG, "No subscription to this channel!");
+                    SubscriptionEntity channel = new SubscriptionEntity();
+                    channel.setServiceId( serviceId );
+                    channel.setUrl( channelUrl );
+
+                    subscribeButtonMonitor = changeSubscription(headerSubscribeButton, mapOnSubscribe(channel));
+
+                    headerSubscribeButton.setText(R.string.subscribe_button_title);
+                } else {
+                    Log.d(TAG, "Found subscription to this channel!");
+                    final SubscriptionEntity subscription = subscriptionEntities.get(0);
+                    subscribeButtonMonitor = changeSubscription(headerSubscribeButton, mapOnUnsubscribe(subscription));
+
+                    headerSubscribeButton.setText(R.string.subscribed_button_title);
+                }
+
                 headerSubscribeButton.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                Log.e(TAG, "Status get failed", throwable);
+                headerSubscribeButton.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onComplete() {}
+        };
+    }
+
+    private Disposable changeSubscription(final Button subscribeButton,
+                                          final Function<Object, Object> action) {
+        final Consumer<Object> onNext = new Consumer<Object>() {
+            @Override
+            public void accept(@NonNull Object o) throws Exception {
+                Log.d(TAG, "Changed subscription status to this channel!");
             }
         };
 
         final Consumer<Throwable> onError = new Consumer<Throwable>() {
             @Override
             public void accept(@NonNull Throwable throwable) throws Exception {
-                Log.e(TAG, "Status get failed", throwable);
-                headerSubscribeButton.setVisibility(View.INVISIBLE);
+                Log.e(TAG, "Subscription Fatal Error: ", throwable.getCause());
+                Toast.makeText(getContext(), R.string.subscription_change_failed, Toast.LENGTH_SHORT).show();
             }
         };
 
-        return Maybe.fromCallable( status )
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(onSuccess, onError, onEmpty);
-    }
-
-    private Disposable rxUnsubscribe(final SubscriptionEntity channel) {
-        final Runnable subscribe = new Runnable() {
-            @Override
-            public void run() {
-                subscriptionService.subscriptionTable().delete( channel );
-            }
-        };
-
-        final Action onSubscribe = new Action() {
-            @Override
-            public void run() throws Exception {
-                disposables.add( subscriptionStatus( channel ) );
-            }
-        };
-
-        final Consumer<Throwable> onSubscribeError = new Consumer<Throwable>() {
-            @Override
-            public void accept(@NonNull Throwable e) throws Exception {
-                Log.e(TAG, "Subscription Fatal Error: ", e.getCause());
-                Toast.makeText(getContext(), "Unable to unsubscribe", Toast.LENGTH_SHORT).show();
-            }
-        };
-
-        return Completable.fromRunnable(subscribe)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(onSubscribe, onSubscribeError);
-    }
-
-    private Disposable rxSubscribe(final SubscriptionEntity channel) {
-
-        final Runnable subscribe = new Runnable() {
-            @Override
-            public void run() {
-                subscriptionService.subscriptionTable().insert( channel );
-            }
-        };
-
-        final Action onSubscribe = new Action() {
-            @Override
-            public void run() throws Exception {
-                disposables.add( subscriptionStatus( channel ) );
-            }
-        };
-
-        final Consumer<Throwable> onSubscribeError = new Consumer<Throwable>() {
-            @Override
-            public void accept(@NonNull Throwable e) throws Exception {
-                Log.e(TAG, "Subscription Fatal Error: ", e.getCause());
-                Toast.makeText(getContext(), "Unable to subscribe", Toast.LENGTH_SHORT).show();
-            }
-        };
-
-        return Completable.fromRunnable(subscribe)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(onSubscribe, onSubscribeError);
+        /* Emit clicks from main thread unto io thread */
+        return RxView.clicks(subscribeButton)
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(Schedulers.io())
+                .debounce(BUTTON_DEBOUNCE_INTERVAL, TimeUnit.MILLISECONDS) // Ignore rapid clicks
+                .map(action)
+                .subscribe(onNext, onError);
     }
 
     @Override
@@ -531,12 +527,10 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
             if (!TextUtils.isEmpty(info.feed_url)) headerRssButton.setVisibility(View.VISIBLE);
             else headerRssButton.setVisibility(View.INVISIBLE);
 
-            SubscriptionEntity channel = new SubscriptionEntity();
-            channel.setServiceId( serviceId );
-            channel.setUrl( channelUrl );
-            disposables.add( subscriptionStatus( channel ) );
-
-            channelViewed( channel.getUrl() );
+            if (disposables != null) disposables.clear();
+            if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();;
+            monitorSubscription(serviceId, channelUrl);
+            channelViewed(channelUrl);
 
             infoListAdapter.showFooter(true);
         }
