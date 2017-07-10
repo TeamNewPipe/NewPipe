@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="view_count_text">觀看次數：%1$s</string>
     <string name="upload_date_text">發佈日期：%1$s</string>
@@ -17,11 +17,11 @@
     <string name="use_external_video_player_title">使用外置影片播放器</string>
     <string name="use_external_audio_player_title">使用外置聲音播放器</string>
     <string name="download_path_title">影片下載路徑</string>
-    <string name="download_path_summary">存放已下載影片的路徑。</string>
+    <string name="download_path_summary">存放已下載影片的路徑</string>
     <string name="download_path_dialog_title">輸入影片的下載路徑</string>
     <string name="default_resolution_title">預設解析度</string>
     <string name="play_with_kodi_title">用 Kodi 播放</string>
-    <string name="show_play_with_kodi_summary">顯示以 Kodi 媒體中心播放影片的選項。</string>
+    <string name="show_play_with_kodi_summary">顯示以 Kodi 媒體中心播放影片的選項</string>
     <string name="play_audio">聲音</string>
     <string name="kore_not_found">找不到 Kore 應用程式，您要安裝 Kore 嗎？</string>
     <string name="show_play_with_kodi_title">顯示「用 Kodi 播放」的選項</string>
@@ -53,8 +53,116 @@
     <string name="use_tor_summary">強迫下載流量通過 Tor 以加強隱私 (暫時不支援串流影片)</string>
     <string name="download_path_audio_title">聲音下載路徑</string>
     <string name="download_path_audio_summary">存放已下載聲音的路徑。</string>
-    <string name="download_path_audio_dialog_title">輸入聲音檔案的下載路徑。</string>
+    <string name="download_path_audio_dialog_title">輸入音效檔案的下載路徑</string>
 
     <string name="err_dir_create">未能建立下載路徑「%1$s」</string>
     <string name="info_dir_created">已建立下載路徑「%1$s」</string>
-</resources>
+<string name="main_bg_subtitle">輕觸搜尋按鈕以開始</string>
+    <string name="open_in_popup_mode">在懸浮視窗中開啟</string>
+    <string name="use_external_video_player_summary">勾選後，部分解析度可能不會有音訊</string>
+    <string name="popup_mode_share_menu_title">NewPipe 懸浮模式</string>
+    <string name="controls_background_title">背景</string>
+    <string name="autoplay_by_calling_app_title">從其他應用程式開啟時自動播放</string>
+    <string name="autoplay_by_calling_app_summary">當 NewPipe 被其他應用程式呼叫時自動播放影片</string>
+    <string name="default_popup_resolution_title">懸浮視窗預設解析度</string>
+    <string name="show_higher_resolutions_title">顯示更高的解析度</string>
+    <string name="show_higher_resolutions_summary">僅部分裝置支援播放 2K/4K 解析度的影片</string>
+    <string name="preferred_video_format_title">預設影片格式</string>
+    <string name="black_theme_title">黑色</string>
+    <string name="popup_remember_size_pos_title">記住懸浮視窗的大小與位置</string>
+    <string name="popup_remember_size_pos_summary">記住上一次的懸浮視窗大小與位置</string>
+    <string name="player_gesture_controls_title">播放器手勢控制</string>
+    <string name="player_gesture_controls_summary">使用手勢來控制亮度及播放器的音量</string>
+    <string name="show_search_suggestions_title">搜尋建議</string>
+    <string name="show_search_suggestions_summary">在搜尋時顯示搜尋建議</string>
+
+    <string name="settings_category_popup_title">懸浮視窗</string>
+    <string name="popup_playing_toast">在懸浮視窗中播放</string>
+    <string name="content">內容</string>
+    <string name="show_age_restricted_content_title">顯示受年齡限制的內容</string>
+    <string name="video_is_age_restricted">此影片具有年齡限制請，請先在設定關閉年齡限制。</string>
+    <string name="downloads">下載</string>
+    <string name="downloads_title">下載</string>
+    <string name="error_report_title">錯誤回報</string>
+    <string name="all">全部</string>
+    <string name="channel">頻道</string>
+    <string name="yes">是</string>
+    <string name="later">稍後</string>
+    <string name="disabled">已停用</string>
+    <string name="filter">篩選器</string>
+    <string name="refresh">重新整理</string>
+    <string name="clear">清除</string>
+    <string name="best_resolution">最佳解析度</string>
+
+    <string name="popup_resizing_indicator_title">重新設定大小</string>
+    <string name="general_error">錯誤</string>
+    <string name="could_not_load_thumbnails">無法載入所有縮圖</string>
+    <string name="youtube_signature_decryption_error">無法解析影片 URL 簽名。</string>
+    <string name="parsing_error">無法解析網站。</string>
+    <string name="light_parsing_error">無法完全解析網站。</string>
+    <string name="content_not_available">內容無法使用。</string>
+    <string name="blocked_by_gema">已被 GEMA 阻擋。</string>
+    <string name="could_not_setup_download_menu">無法設定下載選單。</string>
+    <string name="live_streams_not_supported">尚未支援現場直播。</string>
+    <string name="could_not_get_stream">無法取得串流。</string>
+    <string name="could_not_load_image">無法載入圖片</string>
+    <string name="app_ui_crash">應用程式或 UI 已停止運作</string>
+    <string name="sorry_string">抱歉，這不應該發生的。</string>
+    <string name="error_report_button_text">使用電子郵件回報錯誤</string>
+    <string name="error_snackbar_message">抱歉，發生了一些問題。</string>
+    <string name="error_snackbar_action">回報</string>
+    <string name="what_device_headline">資訊：</string>
+    <string name="what_happened_headline">發生了什麼事：</string>
+    <string name="info_labels">發生了什麼：\\n請求：\\n內容：\\n語言：\\n服務：\\nGMT 時間：\\n套件：\\n版本：\\n系統版本：\\nGlob. IP 範圍：</string>
+    <string name="your_comment">您的留言(請用英文)：</string>
+    <string name="error_details_headline">詳細資訊：</string>
+
+
+    <string name="report_error">回報錯誤</string>
+    <string name="user_report">使用者回報</string>
+
+    <string name="video">影片</string>
+    <string name="audio">音效</string>
+    <string name="retry">重試</string>
+    <string name="storage_permission_denied">無法存取儲存空間</string>
+    <string name="use_old_player_title">使用舊的播放器</string>
+    <string name="use_old_player_summary">舊型內建媒體播放器。</string>
+    <string name="videos">影片</string>
+    <string name="subscriber">訂閱者</string>
+    <string name="subscriber_plural">訂閱者</string>
+    <string name="subscribe">訂閱</string>
+    <string name="views">觀看次數</string>
+    <string name="short_thousand">千</string>
+    <string name="short_million">百萬</string>
+    <string name="short_billion">十億</string>
+
+    <string name="start">開始</string>
+    <string name="pause">暫停</string>
+    <string name="view">檢視</string>
+    <string name="delete">刪除</string>
+    <string name="checksum">檢查碼</string>
+
+    <string name="add">新任務</string>
+    <string name="finish">好</string>
+
+    <string name="msg_name">檔案名稱</string>
+    <string name="msg_threads">連線數</string>
+    <string name="msg_error">錯誤</string>
+    <string name="msg_server_unsupported">不支援的伺服器</string>
+    <string name="msg_exists">檔案已存在</string>
+    <string name="msg_url_malform">錯誤的網址或網路無法使用</string>
+    <string name="msg_running">NewPipe 下載中</string>
+    <string name="msg_running_detail">輕觸顯示詳細資訊</string>
+    <string name="msg_wait">請稍候…</string>
+    <string name="msg_copied">已複製至剪貼簿。</string>
+    <string name="no_available_dir">請選擇下載資料夾。</string>
+    <string name="msg_popup_permission">使用懸浮視窗模式需要此權限。</string>
+
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">reCAPTCHA 驗證</string>
+    <string name="recaptcha_request_toast">已請求 reCAPTCHA 驗證</string>
+
+    <string name="controls_popup_title">懸浮視窗</string>
+
+    <string name="duration_live">現場直播</string>
+    </resources>
