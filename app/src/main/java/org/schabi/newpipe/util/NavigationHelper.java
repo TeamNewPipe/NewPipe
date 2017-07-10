@@ -24,6 +24,7 @@ import org.schabi.newpipe.player.VideoPlayer;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NavigationHelper {
+    public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Players
@@ -75,11 +76,19 @@ public class NavigationHelper {
     // Through FragmentManager
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static void openMainFragment(FragmentManager fragmentManager) {
+    public static void gotoMainFragment(FragmentManager fragmentManager) {
         ImageLoader.getInstance().clearMemoryCache();
+
+        boolean popped = fragmentManager.popBackStackImmediate(MAIN_FRAGMENT_TAG, 0);
+        if (!popped) openMainFragment(fragmentManager);
+    }
+
+    private static void openMainFragment(FragmentManager fragmentManager) {
+        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.anim.custom_fade_in, R.anim.custom_fade_out, R.anim.custom_fade_in, R.anim.custom_fade_out)
                 .replace(R.id.fragment_holder, new MainFragment())
+                .addToBackStack(MAIN_FRAGMENT_TAG)
                 .commit();
     }
 

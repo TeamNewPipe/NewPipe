@@ -25,7 +25,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -37,7 +36,6 @@ import android.view.View;
 
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.search.SearchFragment;
 import org.schabi.newpipe.settings.SettingsActivity;
@@ -104,12 +102,10 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
         if (fragment instanceof VideoDetailFragment) if (((VideoDetailFragment) fragment).onActivityBackPressed()) return;
 
-        super.onBackPressed();
 
-        fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
-        if (getSupportFragmentManager().getBackStackEntryCount() == 0 && !(fragment instanceof MainFragment)) {
-            super.onBackPressed();
-        }
+        if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
+            finish();
+        } else super.onBackPressed();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -148,11 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (id) {
             case android.R.id.home: {
-                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
-                if (fragment instanceof VideoDetailFragment) ((VideoDetailFragment) fragment).clearHistory();
-
-                getSupportFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                NavigationHelper.openMainFragment(getSupportFragmentManager());
+                NavigationHelper.gotoMainFragment(getSupportFragmentManager());
                 return true;
             }
             case R.id.action_settings: {
@@ -178,9 +170,9 @@ public class MainActivity extends AppCompatActivity {
     //////////////////////////////////////////////////////////////////////////*/
 
     private void initFragments() {
-        if (getIntent() != null && getIntent().hasExtra(Constants.KEY_URL)) {
+        if (getIntent() != null && getIntent().hasExtra(Constants.KEY_LINK_TYPE)) {
             handleIntent(getIntent());
-        } else NavigationHelper.openMainFragment(getSupportFragmentManager());
+        } else NavigationHelper.gotoMainFragment(getSupportFragmentManager());
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -209,8 +201,7 @@ public class MainActivity extends AppCompatActivity {
             int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
             NavigationHelper.openSearchFragment(getSupportFragmentManager(), serviceId, searchQuery);
         } else {
-            getSupportFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            NavigationHelper.openMainFragment(getSupportFragmentManager());
+            NavigationHelper.gotoMainFragment(getSupportFragmentManager());
         }
     }
 }
