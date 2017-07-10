@@ -1,6 +1,7 @@
 package org.schabi.newpipe.fragments;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -39,9 +40,12 @@ import io.reactivex.schedulers.Schedulers;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class SubscriptionFragment extends BaseFragment {
+    private static final String VIEW_STATE_KEY = "view_state_key";
+    private final String TAG = "SubscriptionFragment@" + Integer.toHexString(hashCode());
 
     private InfoListAdapter infoListAdapter;
     private RecyclerView resultRecyclerView;
+    private Parcelable viewState;
 
     /* Used for independent events */
     private CompositeDisposable disposables;
@@ -59,6 +63,10 @@ public class SubscriptionFragment extends BaseFragment {
 
         disposables = new CompositeDisposable();
         subscriptionService = SubscriptionService.getInstance( getContext() );
+
+        if (savedInstanceState != null) {
+            viewState = savedInstanceState.getParcelable(VIEW_STATE_KEY);
+        }
     }
 
     @Override
@@ -72,10 +80,30 @@ public class SubscriptionFragment extends BaseFragment {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putParcelable(VIEW_STATE_KEY, viewState);
+    }
+
+    private RecyclerView.OnScrollListener getOnScrollListener() {
+        return new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    viewState = recyclerView.getLayoutManager().onSaveInstanceState();
+                }
+            }
+        };
+    }
+
+    @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
         resultRecyclerView = ((RecyclerView) rootView.findViewById(R.id.result_list_view));
         resultRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
+        resultRecyclerView.addOnScrollListener(getOnScrollListener());
 
         if (infoListAdapter == null) {
             infoListAdapter = new InfoListAdapter(getActivity());
@@ -143,6 +171,10 @@ public class SubscriptionFragment extends BaseFragment {
 
                 infoListAdapter.addInfoItemList( getChannelItems(channelInfos) );
                 animateView(loadingProgressBar, false, 200);
+
+                if (viewState != null && resultRecyclerView != null) {
+                    resultRecyclerView.getLayoutManager().onRestoreInstanceState(viewState);
+                }
             }
 
             @Override

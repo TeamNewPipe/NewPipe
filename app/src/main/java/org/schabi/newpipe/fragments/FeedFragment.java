@@ -1,6 +1,7 @@
 package org.schabi.newpipe.fragments;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,8 +31,12 @@ import io.reactivex.disposables.Disposable;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class FeedFragment extends BaseFragment {
+    private static final String VIEW_STATE_KEY = "view_state_key";
+    private final String TAG = "FeedFragment@" + Integer.toHexString(hashCode());
+
     private InfoListAdapter infoListAdapter;
     private RecyclerView resultRecyclerView;
+    private Parcelable viewState;
 
     /* Used for subscription following fragment lifecycle */
     private CompositeDisposable disposables;
@@ -49,6 +54,10 @@ public class FeedFragment extends BaseFragment {
 
         disposables = new CompositeDisposable();
         subscriptionService = SubscriptionService.getInstance( getContext() );
+
+        if (savedInstanceState != null) {
+            viewState = savedInstanceState.getParcelable(VIEW_STATE_KEY);
+        }
     }
 
 
@@ -63,11 +72,22 @@ public class FeedFragment extends BaseFragment {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        if (resultRecyclerView != null) {
+            outState.putParcelable(
+                    VIEW_STATE_KEY,
+                    resultRecyclerView.getLayoutManager().onSaveInstanceState()
+            );
+        }
+    }
+
+    @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
         resultRecyclerView = ((RecyclerView) rootView.findViewById(R.id.result_list_view));
         resultRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
-
         if (infoListAdapter == null) {
             infoListAdapter = new InfoListAdapter(getActivity());
             infoListAdapter.setFooter(activity.getLayoutInflater().inflate(R.layout.pignate_footer, resultRecyclerView, false));
@@ -122,6 +142,14 @@ public class FeedFragment extends BaseFragment {
 
                 animateView(loadingProgressBar, false, 200);
                 infoListAdapter.addInfoItemList( items );
+
+                /* Restore saved states and clear to prevent re-use since feed fragment only
+                 * restores states on reconstruction (e.g. screen rotation).
+                 * This means list refresh expects the view to reset to the top.*/
+                if (viewState != null && resultRecyclerView != null) {
+                    resultRecyclerView.getLayoutManager().onRestoreInstanceState(viewState);
+                    viewState = null;
+                }
             }
 
             @Override

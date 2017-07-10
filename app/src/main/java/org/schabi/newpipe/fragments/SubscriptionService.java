@@ -19,9 +19,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Flowable;
+import io.reactivex.Scheduler;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.flowables.ConnectableFlowable;
 import io.reactivex.functions.Function;
@@ -35,6 +37,7 @@ import io.reactivex.schedulers.Schedulers;
 public class SubscriptionService {
     protected final String TAG = "SubscriptionService@" + Integer.toHexString(hashCode());
 
+    private static final int SUBSCRIPTION_THREAD_POOL_SIZE = 10;
     private static final int SUBSCRIPTION_DEBOUNCE_INTERVAL = 1000;
     private static final Object LOCK = new Object();
 
@@ -53,11 +56,16 @@ public class SubscriptionService {
 
     private AppDatabase db;
 
+    /** Subscription creates its own thread pool since too many subscriptions may cause exceeded
+     * web service quota when using io scheduler. */
+    private Scheduler subscriptionScheduler;
+
     private ConnectableFlowable<Map<SubscriptionEntity, ChannelInfo>> subscription;
 
     private SubscriptionService(Context context) {
         db = NewPipeDatabase.getInstance( context );
         subscription = getSubscriptionInfos();
+        subscriptionScheduler = Schedulers.from(Executors.newFixedThreadPool(SUBSCRIPTION_THREAD_POOL_SIZE));
     }
 
     /** Part of subscription observation pipeline
@@ -98,7 +106,7 @@ public class SubscriptionService {
                         result.add(
                                 /* Set the subscription scheduler to use IO here for concurrency */
                                 Flowable.fromCallable(extract(subscription, service))
-                                        .subscribeOn(Schedulers.io())
+                                        .subscribeOn(subscriptionScheduler)
                         );
                     }
                 }
@@ -167,7 +175,9 @@ public class SubscriptionService {
     }
 
     /** Part of subscription observation pipeline:
-     * updateSubscriptions is responsible for
+     * updateSubscriptions is responsible for extracting the latest available stream of
+     * subscriptions and updating the database entry for subscriptions if the actual
+     * latest stream differs from the database entry.
      * */
     private Map<SubscriptionEntity, ChannelInfo> updateSubscriptions(final @NonNull Map<SubscriptionEntity, ChannelInfo> channelInfoBySubscription) {
         List<SubscriptionEntity> updates = new ArrayList<>();
