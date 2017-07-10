@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:background="@android:color/black"
     android:gravity="center"
-    tools:layout_width="@dimen/popup_default_width"
-    tools:layout_height="101.25dp">
+    tools:layout_height="84dp"
+    tools:layout_width="@dimen/popup_minimum_width">
 
 
     <com.google.android.exoplayer2.ui.AspectRatioFrameLayout
@@ -56,32 +56,34 @@
             android:layout_alignParentTop="true"
             android:background="@drawable/player_top_controls_bg"
             android:paddingBottom="20dp"
-            android:paddingLeft="6dp"
+            android:paddingLeft="2dp"
             android:paddingRight="6dp"
-            android:paddingTop="4dp">
+            android:paddingTop="4dp"
+            tools:ignore="RtlHardcoded">
 
             <TextView
                 android:id="@+id/qualityTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_alignParentLeft="true"
-                android:padding="5dp"
                 android:gravity="center"
-                android:text="720p"
+                android:padding="5dp"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
-                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"/>
+                tools:ignore="RtlHardcoded,RtlSymmetry"
+                tools:text="1080p60"/>
 
             <TextView
                 android:id="@+id/playbackSpeed"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_toRightOf="@id/qualityTextView"
+                android:layout_toRightOf="@+id/qualityTextView"
                 android:gravity="center"
-                android:padding="5dp"
+                android:padding="6dp"
                 android:textColor="@android:color/white"
-                tools:ignore="RtlHardcoded,RtlSymmetry"
-                tools:text="1x" />
+                android:textStyle="bold"
+                tools:ignore="RelativeOverlap,RtlHardcoded,RtlSymmetry"
+                tools:text="1.75x"/>
 
             <ImageButton
                 android:id="@+id/fullScreenButton"
@@ -153,7 +155,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="horizontal"
-        android:weightSum="5">
+        android:weightSum="5.5">
         <!--tools:visibility="gone">-->
 
         <ImageView
@@ -218,5 +220,5 @@
         android:textStyle="bold"
         android:visibility="gone"
         tools:ignore="RtlHardcoded"
-        tools:visibility="visible"/>
+        tools:visibility="gone"/>
 </FrameLayout>

@@ -109,7 +109,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     private ValueAnimator controlViewAnimator;
     private Handler controlsVisibilityHandler = new Handler();
 
-    private boolean isQualityPopupMenuVisible = false;
+    private boolean isSomePopupMenuVisible = false;
     private boolean qualityChanged = false;
     private int qualityPopupMenuGroupId = 69;
     private PopupMenu qualityPopupMenu;
@@ -467,19 +467,19 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     }
 
     /**
-     * Called when the quality selector is dismissed
+     * Called when some popup menu is dismissed
      */
     @Override
     public void onDismiss(PopupMenu menu) {
         if (DEBUG) Log.d(TAG, "onDismiss() called with: menu = [" + menu + "]");
-        isQualityPopupMenuVisible = false;
+        isSomePopupMenuVisible = false;
         qualityTextView.setText(getSelectedVideoStream().resolution);
     }
 
     public void onQualitySelectorClicked() {
         if (DEBUG) Log.d(TAG, "onQualitySelectorClicked() called");
         qualityPopupMenu.show();
-        isQualityPopupMenuVisible = true;
+        isSomePopupMenuVisible = true;
         showControls(300);
 
         VideoStream videoStream = getSelectedVideoStream();
@@ -490,6 +490,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     private void onPlaybackSpeedClicked() {
         if (DEBUG) Log.d(TAG, "onPlaybackSpeedClicked() called");
         playbackSpeedPopupMenu.show();
+        isSomePopupMenuVisible = true;
+        showControls(300);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -592,8 +594,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         controlViewAnimator.start();
     }
 
-    public boolean isQualityMenuVisible() {
-        return isQualityPopupMenuVisible;
+    public boolean isSomePopupMenuVisible() {
+        return isSomePopupMenuVisible;
     }
 
     public void showControlsThenHide() {
