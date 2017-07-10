@@ -266,7 +266,7 @@ public class MainVideoPlayer extends Activity {
                 animateView(playerImpl.getControlsRoot(), true, 300, 0, new Runnable() {
                     @Override
                     public void run() {
-                        if (getCurrentState() == STATE_PLAYING && !playerImpl.isQualityMenuVisible()) {
+                        if (getCurrentState() == STATE_PLAYING && !playerImpl.isSomePopupMenuVisible()) {
                             hideControls(300, DEFAULT_CONTROLS_HIDE_TIME);
                         }
                     }
