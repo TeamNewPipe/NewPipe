@@ -107,13 +107,27 @@
                     android:layout_height="35dp"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
-                    android:layout_toLeftOf="@+id/screenRotationButton"
+                    android:layout_toLeftOf="@+id/playbackSpeed"
                     android:gravity="center"
                     android:minWidth="50dp"
                     android:text="720p"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText,RtlHardcoded"/>
+
+                <TextView
+                    android:id="@+id/playbackSpeed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_toLeftOf="@+id/screenRotationButton"
+                    android:gravity="center"
+                    android:minHeight="35dp"
+                    android:minWidth="40dp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded,RtlSymmetry"
+                    tools:text="1x" />
 
                 <ImageButton
                     android:id="@+id/screenRotationButton"

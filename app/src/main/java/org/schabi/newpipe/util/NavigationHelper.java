@@ -24,6 +24,7 @@ import org.schabi.newpipe.player.VideoPlayer;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NavigationHelper {
+    public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Players
@@ -51,7 +52,8 @@ public class NavigationHelper {
                 .putExtra(VideoPlayer.INDEX_SEL_VIDEO_STREAM, instance.getSelectedStreamIndex())
                 .putExtra(VideoPlayer.VIDEO_STREAMS_LIST, instance.getVideoStreamsList())
                 .putExtra(VideoPlayer.VIDEO_ONLY_AUDIO_STREAM, instance.getAudioStream())
-                .putExtra(BasePlayer.START_POSITION, ((int) instance.getPlayer().getCurrentPosition()));
+                .putExtra(BasePlayer.START_POSITION, ((int) instance.getPlayer().getCurrentPosition()))
+                .putExtra(BasePlayer.PLAYBACK_SPEED, instance.getPlaybackSpeed());
     }
 
     public static Intent getOpenBackgroundPlayerIntent(Context context, StreamInfo info) {
@@ -74,11 +76,19 @@ public class NavigationHelper {
     // Through FragmentManager
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static void openMainFragment(FragmentManager fragmentManager) {
+    public static void gotoMainFragment(FragmentManager fragmentManager) {
         ImageLoader.getInstance().clearMemoryCache();
+
+        boolean popped = fragmentManager.popBackStackImmediate(MAIN_FRAGMENT_TAG, 0);
+        if (!popped) openMainFragment(fragmentManager);
+    }
+
+    private static void openMainFragment(FragmentManager fragmentManager) {
+        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.anim.custom_fade_in, R.anim.custom_fade_out, R.anim.custom_fade_in, R.anim.custom_fade_out)
                 .replace(R.id.fragment_holder, new MainFragment())
+                .addToBackStack(MAIN_FRAGMENT_TAG)
                 .commit();
     }
 

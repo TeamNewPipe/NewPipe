@@ -22,6 +22,7 @@ import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.ExoPlayerFactory;
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
@@ -47,6 +48,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.io.File;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Formatter;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -77,6 +80,7 @@ public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManage
     public static final String VIDEO_THUMBNAIL_URL = "video_thumbnail_url";
     public static final String START_POSITION = "start_position";
     public static final String CHANNEL_NAME = "channel_name";
+    public static final String PLAYBACK_SPEED = "playback_speed";
 
     protected Bitmap videoThumbnail = null;
     protected String videoUrl = "";
@@ -176,6 +180,7 @@ public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManage
         videoThumbnailUrl = intent.getStringExtra(VIDEO_THUMBNAIL_URL);
         videoStartPos = intent.getIntExtra(START_POSITION, -1);
         channelName = intent.getStringExtra(CHANNEL_NAME);
+        setPlaybackSpeed(intent.getFloatExtra(PLAYBACK_SPEED, getPlaybackSpeed()));
 
         initThumbnail();
         //play(getSelectedVideoStream(), true);
@@ -439,6 +444,10 @@ public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManage
     }
 
     @Override
+    public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+    }
+
+    @Override
     public void onLoadingChanged(boolean isLoading) {
         if (DEBUG) Log.d(TAG, "onLoadingChanged() called with: isLoading = [" + isLoading + "]");
 
@@ -556,6 +565,7 @@ public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManage
 
     private final StringBuilder stringBuilder = new StringBuilder();
     private final Formatter formatter = new Formatter(stringBuilder, Locale.getDefault());
+    private final NumberFormat speedFormatter = new DecimalFormat("0.##x");
 
     public String getTimeString(int milliSeconds) {
         long seconds = (milliSeconds % 60000L) / 1000L;
@@ -567,6 +577,10 @@ public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManage
         return days > 0 ? formatter.format("%d:%02d:%02d:%02d", days, hours, minutes, seconds).toString()
                 : hours > 0 ? formatter.format("%d:%02d:%02d", hours, minutes, seconds).toString()
                 : formatter.format("%02d:%02d", minutes, seconds).toString();
+    }
+
+    protected String formatSpeed(float speed) {
+        return speedFormatter.format(speed);
     }
 
     protected void startProgressLoop() {
@@ -713,5 +727,13 @@ public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManage
 
     public void setVideoThumbnailUrl(String videoThumbnailUrl) {
         this.videoThumbnailUrl = videoThumbnailUrl;
+    }
+
+    public float getPlaybackSpeed() {
+        return simpleExoPlayer.getPlaybackParameters().speed;
+    }
+
+    public void setPlaybackSpeed(float speed) {
+        simpleExoPlayer.setPlaybackParameters(new PlaybackParameters(speed, 1f));
     }
 }

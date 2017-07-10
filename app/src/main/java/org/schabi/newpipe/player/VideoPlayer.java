@@ -74,6 +74,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     //////////////////////////////////////////////////////////////////////////*/
 
     public static final int DEFAULT_CONTROLS_HIDE_TIME = 3000;  // 3 Seconds
+    private static final float[] PLAYBACK_SPEEDS = {0.5f, 0.75f, 1f, 1.25f, 1.5f, 1.75f, 2f};
 
     private boolean startedFromNewPipe = true;
     private boolean wasPlaying = false;
@@ -99,6 +100,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     private SeekBar playbackSeekBar;
     private TextView playbackCurrentTime;
     private TextView playbackEndTime;
+    private TextView playbackSpeed;
 
     private View topControlsRoot;
     private TextView qualityTextView;
@@ -107,10 +109,13 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     private ValueAnimator controlViewAnimator;
     private Handler controlsVisibilityHandler = new Handler();
 
-    private boolean isQualityPopupMenuVisible = false;
+    private boolean isSomePopupMenuVisible = false;
     private boolean qualityChanged = false;
     private int qualityPopupMenuGroupId = 69;
     private PopupMenu qualityPopupMenu;
+
+    private int playbackSpeedPopupMenuGroupId = 79;
+    private PopupMenu playbackSpeedPopupMenu;
 
     ///////////////////////////////////////////////////////////////////////////
 
@@ -138,6 +143,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         this.playbackSeekBar = (SeekBar) rootView.findViewById(R.id.playbackSeekBar);
         this.playbackCurrentTime = (TextView) rootView.findViewById(R.id.playbackCurrentTime);
         this.playbackEndTime = (TextView) rootView.findViewById(R.id.playbackEndTime);
+        this.playbackSpeed = (TextView) rootView.findViewById(R.id.playbackSpeed);
         this.bottomControlsRoot = rootView.findViewById(R.id.bottomControls);
         this.topControlsRoot = rootView.findViewById(R.id.topControls);
         this.qualityTextView = (TextView) rootView.findViewById(R.id.qualityTextView);
@@ -149,6 +155,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         this.playbackSeekBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
 
         this.qualityPopupMenu = new PopupMenu(context, qualityTextView);
+        this.playbackSpeedPopupMenu = new PopupMenu(context, playbackSpeed);
 
         ((ProgressBar) this.loadingPanel.findViewById(R.id.progressBarLoadingPanel)).getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
 
@@ -158,6 +165,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     public void initListeners() {
         super.initListeners();
         playbackSeekBar.setOnSeekBarChangeListener(this);
+        playbackSpeed.setOnClickListener(this);
         fullScreenButton.setOnClickListener(this);
         qualityTextView.setOnClickListener(this);
     }
@@ -208,6 +216,9 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         qualityPopupMenu.getMenu().removeGroup(qualityPopupMenuGroupId);
         buildQualityMenu(qualityPopupMenu);
 
+        playbackSpeedPopupMenu.getMenu().removeGroup(playbackSpeedPopupMenuGroupId);
+        buildPlaybackSpeedMenu(playbackSpeedPopupMenu);
+
         super.playUrl(url, format, autoPlay);
     }
 
@@ -226,6 +237,15 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
             popupMenu.getMenu().add(qualityPopupMenuGroupId, i, Menu.NONE, MediaFormat.getNameById(videoStream.format) + " " + videoStream.resolution);
         }
         qualityTextView.setText(getSelectedVideoStream().resolution);
+        popupMenu.setOnMenuItemClickListener(this);
+        popupMenu.setOnDismissListener(this);
+    }
+
+    private void buildPlaybackSpeedMenu(PopupMenu popupMenu) {
+        for (int i = 0; i < PLAYBACK_SPEEDS.length; i++) {
+            popupMenu.getMenu().add(playbackSpeedPopupMenuGroupId, i, Menu.NONE, formatSpeed(PLAYBACK_SPEEDS[i]));
+        }
+        playbackSpeed.setText(formatSpeed(getPlaybackSpeed()));
         popupMenu.setOnMenuItemClickListener(this);
         popupMenu.setOnDismissListener(this);
     }
@@ -346,6 +366,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
         playbackSeekBar.setMax((int) simpleExoPlayer.getDuration());
         playbackEndTime.setText(getTimeString((int) simpleExoPlayer.getDuration()));
+        playbackSpeed.setText(formatSpeed(getPlaybackSpeed()));
 
         super.onPrepared(playWhenReady);
     }
@@ -412,45 +433,65 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
             onFullScreenButtonClicked();
         } else if (v.getId() == qualityTextView.getId()) {
             onQualitySelectorClicked();
+        } else if (v.getId() == playbackSpeed.getId()) {
+            onPlaybackSpeedClicked();
         }
     }
 
     /**
-     * Called when an item of the quality selector is selected
+     * Called when an item of the quality selector or the playback speed selector is selected
      */
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
         if (DEBUG) Log.d(TAG, "onMenuItemClick() called with: menuItem = [" + menuItem + "], menuItem.getItemId = [" + menuItem.getItemId() + "]");
-        if (selectedIndexStream == menuItem.getItemId()) return true;
-        setVideoStartPos((int) simpleExoPlayer.getCurrentPosition());
 
-        selectedIndexStream = menuItem.getItemId();
-        if (!(getCurrentState() == STATE_COMPLETED)) play(wasPlaying);
-        else qualityChanged = true;
+        if (qualityPopupMenuGroupId == menuItem.getGroupId()) {
+            if (selectedIndexStream == menuItem.getItemId()) return true;
+            setVideoStartPos((int) simpleExoPlayer.getCurrentPosition());
 
-        qualityTextView.setText(menuItem.getTitle());
-        return true;
+            selectedIndexStream = menuItem.getItemId();
+            if (!(getCurrentState() == STATE_COMPLETED)) play(wasPlaying);
+            else qualityChanged = true;
+
+            qualityTextView.setText(menuItem.getTitle());
+            return true;
+        } else if (playbackSpeedPopupMenuGroupId == menuItem.getGroupId()) {
+            int speedIndex = menuItem.getItemId();
+            float speed = PLAYBACK_SPEEDS[speedIndex];
+
+            setPlaybackSpeed(speed);
+            playbackSpeed.setText(formatSpeed(speed));
+        }
+
+        return false;
     }
 
     /**
-     * Called when the quality selector is dismissed
+     * Called when some popup menu is dismissed
      */
     @Override
     public void onDismiss(PopupMenu menu) {
         if (DEBUG) Log.d(TAG, "onDismiss() called with: menu = [" + menu + "]");
-        isQualityPopupMenuVisible = false;
+        isSomePopupMenuVisible = false;
         qualityTextView.setText(getSelectedVideoStream().resolution);
     }
 
     public void onQualitySelectorClicked() {
         if (DEBUG) Log.d(TAG, "onQualitySelectorClicked() called");
         qualityPopupMenu.show();
-        isQualityPopupMenuVisible = true;
+        isSomePopupMenuVisible = true;
         showControls(300);
 
         VideoStream videoStream = getSelectedVideoStream();
         qualityTextView.setText(MediaFormat.getNameById(videoStream.format) + " " + videoStream.resolution);
         wasPlaying = isPlaying();
+    }
+
+    private void onPlaybackSpeedClicked() {
+        if (DEBUG) Log.d(TAG, "onPlaybackSpeedClicked() called");
+        playbackSpeedPopupMenu.show();
+        isSomePopupMenuVisible = true;
+        showControls(300);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -553,8 +594,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         controlViewAnimator.start();
     }
 
-    public boolean isQualityMenuVisible() {
-        return isQualityPopupMenuVisible;
+    public boolean isSomePopupMenuVisible() {
+        return isSomePopupMenuVisible;
     }
 
     public void showControlsThenHide() {

@@ -380,7 +380,7 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
             public void onClick(View v) {
                 if (DEBUG) Log.d(TAG, "onClick() called with: v = [" + v + "]");
                 if (TextUtils.isEmpty(searchEditText.getText())) {
-                    NavigationHelper.openMainFragment(getFragmentManager());
+                    NavigationHelper.gotoMainFragment(getFragmentManager());
                     return;
                 }
 
