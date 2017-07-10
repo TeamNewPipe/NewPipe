@@ -2,20 +2,20 @@
 <resources>
     <string name="view_count_text">觀看次數：%1$s</string>
     <string name="upload_date_text">發佈日期：%1$s</string>
-    <string name="no_player_found">找不到任何串流播放器，您要否安裝 VLC？</string>
+    <string name="no_player_found">找不到任何串流播放器，您是否要安裝 VLC？</string>
     <string name="install">安裝</string>
     <string name="cancel">取消</string>
-    <string name="open_in_browser">在瀏覽器開啟</string>
+    <string name="open_in_browser">在瀏覽器中開啟</string>
     <string name="share">分享</string>
     <string name="download">下載</string>
     <string name="search">搜尋</string>
     <string name="settings">設定</string>
-    <string name="did_you_mean">"您是不是要查： %1$s ?"</string>
+    <string name="did_you_mean">您是不是要找： %1$s ?</string>
     <string name="share_dialog_title">分享影片</string>
     <string name="choose_browser">選擇瀏覽器</string>
     <string name="screen_rotation">旋轉</string>
-    <string name="use_external_video_player_title">使用外置影片播放器</string>
-    <string name="use_external_audio_player_title">使用外置聲音播放器</string>
+    <string name="use_external_video_player_title">使用外部影片播放器</string>
+    <string name="use_external_audio_player_title">使用外部音訊播放器</string>
     <string name="download_path_title">影片下載路徑</string>
     <string name="download_path_summary">存放已下載影片的路徑</string>
     <string name="download_path_dialog_title">輸入影片的下載路徑</string>
@@ -23,9 +23,9 @@
     <string name="play_with_kodi_title">用 Kodi 播放</string>
     <string name="show_play_with_kodi_summary">顯示以 Kodi 媒體中心播放影片的選項</string>
     <string name="play_audio">聲音</string>
-    <string name="kore_not_found">找不到 Kore 應用程式，您要安裝 Kore 嗎？</string>
+    <string name="kore_not_found">找不到 Kore，您要安裝 Kore 嗎？</string>
     <string name="show_play_with_kodi_title">顯示「用 Kodi 播放」的選項</string>
-    <string name="default_audio_format_title">預設聲音檔案格式</string>
+    <string name="default_audio_format_title">預設音訊格式</string>
     <string name="webm_description">WebM — 開放格式</string>
     <string name="m4a_description">m4a — 更佳畫質</string>
     <string name="theme_title">主題</string>
@@ -36,13 +36,13 @@
     <string name="next_video_title">下一部影片</string>
     <string name="show_next_and_similar_title">顯示下一部和相關的影片</string>
     <string name="url_not_supported_toast">不支援此網址</string>
-    <string name="search_language_title">內容位置</string>
-    <string name="settings_category_video_audio_title">影片和聲音</string>
+    <string name="search_language_title">內容語言</string>
+    <string name="settings_category_video_audio_title">影片和音訊</string>
     <string name="settings_category_appearance_title">外觀</string>
     <string name="settings_category_other_title">其他</string>
-    <string name="background_player_playing_toast">背景播放</string>
+    <string name="background_player_playing_toast">在背景播放</string>
     <string name="play_btn_text">播放</string>
-    <string name="network_error">網絡錯誤</string>
+    <string name="network_error">網路錯誤</string>
 
     <string name="list_thumbnail_view_description">影片預覽縮圖</string>
     <string name="detail_thumbnail_view_description">影片預覽縮圖</string>
@@ -50,17 +50,17 @@
     <string name="detail_likes_img_view_description">喜歡</string>
     <string name="detail_dislikes_img_view_description">不喜歡</string>
     <string name="use_tor_title">使用 Tor</string>
-    <string name="use_tor_summary">強迫下載流量通過 Tor 以加強隱私 (暫時不支援串流影片)</string>
-    <string name="download_path_audio_title">聲音下載路徑</string>
-    <string name="download_path_audio_summary">存放已下載聲音的路徑。</string>
-    <string name="download_path_audio_dialog_title">輸入音效檔案的下載路徑</string>
+    <string name="use_tor_summary">(實驗性功能)強制使用 Tor 下載(暫時不支援串流影片)。</string>
+    <string name="download_path_audio_title">音訊下載路徑</string>
+    <string name="download_path_audio_summary">存放已下載音訊的路徑</string>
+    <string name="download_path_audio_dialog_title">輸入音訊檔案的下載路徑</string>
 
-    <string name="err_dir_create">未能建立下載路徑「%1$s」</string>
-    <string name="info_dir_created">已建立下載路徑「%1$s」</string>
+    <string name="err_dir_create">無法建立下載目錄「%1$s」</string>
+    <string name="info_dir_created">已建立下載目錄「%1$s」</string>
 <string name="main_bg_subtitle">輕觸搜尋按鈕以開始</string>
     <string name="open_in_popup_mode">在懸浮視窗中開啟</string>
     <string name="use_external_video_player_summary">勾選後，部分解析度可能不會有音訊</string>
-    <string name="popup_mode_share_menu_title">NewPipe 懸浮模式</string>
+    <string name="popup_mode_share_menu_title">NewPipe 懸浮視窗模式</string>
     <string name="controls_background_title">背景</string>
     <string name="autoplay_by_calling_app_title">從其他應用程式開啟時自動播放</string>
     <string name="autoplay_by_calling_app_summary">當 NewPipe 被其他應用程式呼叫時自動播放影片</string>
@@ -68,7 +68,7 @@
     <string name="show_higher_resolutions_title">顯示更高的解析度</string>
     <string name="show_higher_resolutions_summary">僅部分裝置支援播放 2K/4K 解析度的影片</string>
     <string name="preferred_video_format_title">預設影片格式</string>
-    <string name="black_theme_title">黑色</string>
+    <string name="black_theme_title">黑色系</string>
     <string name="popup_remember_size_pos_title">記住懸浮視窗的大小與位置</string>
     <string name="popup_remember_size_pos_summary">記住上一次的懸浮視窗大小與位置</string>
     <string name="player_gesture_controls_title">播放器手勢控制</string>
@@ -80,7 +80,7 @@
     <string name="popup_playing_toast">在懸浮視窗中播放</string>
     <string name="content">內容</string>
     <string name="show_age_restricted_content_title">顯示受年齡限制的內容</string>
-    <string name="video_is_age_restricted">此影片具有年齡限制請，請先在設定關閉年齡限制。</string>
+    <string name="video_is_age_restricted">此影片具有年齡限制，請先在設定中關閉年齡限制。</string>
     <string name="downloads">下載</string>
     <string name="downloads_title">下載</string>
     <string name="error_report_title">錯誤回報</string>
@@ -113,7 +113,7 @@
     <string name="error_snackbar_action">回報</string>
     <string name="what_device_headline">資訊：</string>
     <string name="what_happened_headline">發生了什麼事：</string>
-    <string name="info_labels">發生了什麼：\\n請求：\\n內容：\\n語言：\\n服務：\\nGMT 時間：\\n套件：\\n版本：\\n系統版本：\\nGlob. IP 範圍：</string>
+    <string name="info_labels">發生了什麼：\\n請求：\\n內容語言：\\n服務：\\nGMT 時間：\\n套件：\\n版本：\\n系統版本：\\nGlob. IP 範圍：</string>
     <string name="your_comment">您的留言(請用英文)：</string>
     <string name="error_details_headline">詳細資訊：</string>
 
@@ -122,7 +122,7 @@
     <string name="user_report">使用者回報</string>
 
     <string name="video">影片</string>
-    <string name="audio">音效</string>
+    <string name="audio">音訊</string>
     <string name="retry">重試</string>
     <string name="storage_permission_denied">無法存取儲存空間</string>
     <string name="use_old_player_title">使用舊的播放器</string>
@@ -156,9 +156,9 @@
     <string name="msg_wait">請稍候…</string>
     <string name="msg_copied">已複製至剪貼簿。</string>
     <string name="no_available_dir">請選擇下載資料夾。</string>
-    <string name="msg_popup_permission">使用懸浮視窗模式需要此權限。</string>
+    <string name="msg_popup_permission">使用懸浮視窗模式需要此權限</string>
 
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptchaActivity">reCAPTCHA 驗證</string>
     <string name="reCaptcha_title">reCAPTCHA 驗證</string>
     <string name="recaptcha_request_toast">已請求 reCAPTCHA 驗證</string>
 
