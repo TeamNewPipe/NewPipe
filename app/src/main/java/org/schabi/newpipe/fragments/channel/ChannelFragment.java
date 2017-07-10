@@ -74,6 +74,7 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
     private int serviceId = -1;
     private String channelName = "";
     private String channelUrl = "";
+    private String feedUrl = "";
     private int pageNumber = 0;
     private boolean hasNextPage = true;
 
@@ -93,7 +94,6 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
     private ImageView headerAvatarView;
     private TextView headerTitleView;
     private TextView headerSubscribersTextView;
-    private Button headerRssButton;
     private Button headerSubscribeButton;
 
     /*////////////////////////////////////////////////////////////////////////*/
@@ -154,7 +154,6 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
         headerAvatarView = null;
         headerTitleView = null;
         headerSubscribersTextView = null;
-        headerRssButton = null;
         headerSubscribeButton = null;
 
         if (disposables != null) disposables.dispose();
@@ -210,6 +209,7 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
             supportActionBar.setDisplayShowTitleEnabled(true);
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
+        menu.findItem(R.id.menu_item_rss).setVisible( !TextUtils.isEmpty(feedUrl) );
     }
 
     @Override
@@ -224,13 +224,21 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
                 startActivity(Intent.createChooser(intent, getString(R.string.choose_browser)));
                 return true;
             }
-            case R.id.menu_item_share:
+            case R.id.menu_item_rss: {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(currentChannelInfo.feed_url));
+                startActivity(intent);
+                return true;
+            }
+            case R.id.menu_item_share: {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_TEXT, channelUrl);
                 intent.setType("text/plain");
                 startActivity(Intent.createChooser(intent, getString(R.string.share_dialog_title)));
                 return true;
+            }
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -265,7 +273,6 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
         headerAvatarView = (ImageView) headerRootLayout.findViewById(R.id.channel_avatar_view);
         headerTitleView = (TextView) headerRootLayout.findViewById(R.id.channel_title_view);
         headerSubscribersTextView = (TextView) headerRootLayout.findViewById(R.id.channel_subscriber_view);
-        headerRssButton = (Button) headerRootLayout.findViewById(R.id.channel_rss_button);
         headerSubscribeButton = (Button) headerRootLayout.findViewById(R.id.channel_subscribe_button);
 
         disposables = new CompositeDisposable();
@@ -291,15 +298,6 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
                     pageNumber++;
                     loadMoreVideos();
                 }
-            }
-        });
-
-        headerRssButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (DEBUG) Log.d(TAG, "onClick() called with: view = [" + view + "] feed url > " + currentChannelInfo.feed_url);
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(currentChannelInfo.feed_url));
-                startActivity(i);
             }
         });
     }
@@ -469,7 +467,7 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
         imageLoader.cancelDisplayTask(headerChannelBanner);
         imageLoader.cancelDisplayTask(headerAvatarView);
 
-        headerRssButton.setVisibility(View.GONE);
+        headerSubscribeButton.setVisibility(View.GONE);
         headerSubscribersTextView.setVisibility(View.GONE);
 
         headerTitleView.setText(channelName != null ? channelName : "");
@@ -503,6 +501,9 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
         animateView(loadingProgressBar, false, 200);
 
         if (!onlyVideos) {
+            feedUrl = info.feed_url;
+            if (activity.getSupportActionBar() != null) activity.getSupportActionBar().invalidateOptionsMenu();
+
             headerRootLayout.setVisibility(View.VISIBLE);
             //animateView(loadingProgressBar, false, 200, null);
 
@@ -525,9 +526,6 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
                 headerSubscribersTextView.setText(buildSubscriberString(info.subscriberCount));
                 headerSubscribersTextView.setVisibility(View.VISIBLE);
             } else headerSubscribersTextView.setVisibility(View.GONE);
-
-            if (!TextUtils.isEmpty(info.feed_url)) headerRssButton.setVisibility(View.VISIBLE);
-            else headerRssButton.setVisibility(View.INVISIBLE);
 
             if (disposables != null) disposables.clear();
             if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();
