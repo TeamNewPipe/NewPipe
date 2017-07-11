@@ -94,6 +94,9 @@ public class AboutActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         switch (id) {
+            case android.R.id.home:
+                finish();
+                return true;
             case R.id.action_settings:
                 NavigationHelper.openSettings(this);
                 return true;
