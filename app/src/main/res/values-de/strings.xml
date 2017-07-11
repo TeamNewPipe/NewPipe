@@ -172,7 +172,7 @@
     <string name="show_search_suggestions_title">Suchvorschläge</string>
     <string name="show_search_suggestions_summary">Beim Suchen Vorschläge anzeigen</string>
 
-    <string name="settings_category_popup_title">Hinweis</string>
+    <string name="settings_category_popup_title">Popup</string>
     <string name="filter">Filter</string>
     <string name="refresh">Aktualisieren</string>
     <string name="clear">Löschen</string>
