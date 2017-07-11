@@ -155,6 +155,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     private LinearLayout relatedStreamRootLayout;
     private LinearLayout relatedStreamsView;
     private ImageButton relatedStreamExpandButton;
+    private OnVideoPlayListener onVideoPlayedListener;
 
     /*////////////////////////////////////////////////////////////////////////*/
 
@@ -227,6 +228,18 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         super.onViewCreated(rootView, savedInstanceState);
         if (currentStreamInfo == null) selectAndLoadVideo(serviceId, videoUrl, videoTitle);
         else prepareAndLoad(currentStreamInfo, false);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        onVideoPlayedListener = (OnVideoPlayListener) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        onVideoPlayedListener = null;
     }
 
     @Override
@@ -970,6 +983,10 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         // ----------- THE MAGIC MOMENT ---------------
         VideoStream selectedVideoStream = sortedStreamVideosList.get(actionBarHandler.getSelectedVideoStream());
 
+        if(onVideoPlayedListener != null) {
+            onVideoPlayedListener.onVideoPlayed(selectedVideoStream, info);
+        }
+
         if (PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
 
             // External Player
@@ -1235,5 +1252,14 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
             }
             return false;
         }
+    }
+
+    public interface OnVideoPlayListener {
+        /**
+         * Called when a video is palyed
+         * @param videoStream the video stream that is played
+         * @param streamInfo the video stream info
+         */
+        void onVideoPlayed(VideoStream videoStream, StreamInfo streamInfo);
     }
 }

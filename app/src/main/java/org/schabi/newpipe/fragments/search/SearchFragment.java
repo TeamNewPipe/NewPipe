@@ -3,6 +3,7 @@ package org.schabi.newpipe.fragments.search;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -85,6 +86,7 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
     private View searchClear;
 
     private RecyclerView resultRecyclerView;
+    private OnSearchListener onSearchListener;
 
     /*////////////////////////////////////////////////////////////////////////*/
 
@@ -127,6 +129,18 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
             search(searchQuery, 0, true);
         }
 
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        onSearchListener = (OnSearchListener) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        onSearchListener = null;
     }
 
     @Override
@@ -537,7 +551,11 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
         if (DEBUG) Log.d(TAG, "search() called with: query = [" + query + "], pageNumber = [" + pageNumber + "], clearList = [" + clearList + "]");
         isLoading.set(true);
         hideSoftKeyboard(searchEditText);
-
+        if(pageNumber == 0) {
+            if(onSearchListener != null) {
+                onSearchListener.onSearch(serviceId, query);
+            }
+        }
         searchQuery = query;
         this.pageNumber = pageNumber;
 
@@ -612,4 +630,7 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
         startActivityForResult(new Intent(getActivity(), ReCaptchaActivity.class), ReCaptchaActivity.RECAPTCHA_REQUEST);
     }
 
+    public interface OnSearchListener {
+        void onSearch(int serviceId, String query);
+    }
 }

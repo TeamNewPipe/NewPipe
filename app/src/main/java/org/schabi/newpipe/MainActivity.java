@@ -36,17 +36,32 @@ import android.view.View;
 
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.stream_info.StreamInfo;
+import org.schabi.newpipe.extractor.stream_info.VideoStream;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.search.SearchFragment;
+import org.schabi.newpipe.history.HistoryActivity;
+import org.schabi.newpipe.history.HistoryDatabase;
+import org.schabi.newpipe.history.dao.SearchHistoryDAO;
+import org.schabi.newpipe.history.dao.WatchHistoryDAO;
+import org.schabi.newpipe.history.model.SearchHistoryEntry;
+import org.schabi.newpipe.history.model.WatchHistoryEntry;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
+import java.util.Date;
+
+public class MainActivity extends AppCompatActivity implements
+        VideoDetailFragment.OnVideoPlayListener,
+        SearchFragment.OnSearchListener {
     public static final boolean DEBUG = false;
+    private static final String TAG = "MainActivity";
+    private WatchHistoryDAO watchHistoryDAO;
+    private SearchHistoryDAO searchHistoryDAO;
+    private SharedPreferences sharedPreferences;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity's LifeCycle
@@ -65,13 +80,22 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        watchHistoryDAO = HistoryDatabase.getInstance(this).watchHistoryDAO();
+        searchHistoryDAO = HistoryDatabase.getInstance(this).searchHistoryDAO();
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        watchHistoryDAO = null;
+        searchHistoryDAO = null;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getBoolean(Constants.KEY_THEME_CHANGE, false)) {
             if (DEBUG) Log.d(TAG, "Theme has changed, recreating activity...");
             sharedPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, false).apply();
@@ -100,7 +124,8 @@ public class MainActivity extends AppCompatActivity {
         if (DEBUG) Log.d(TAG, "onBackPressed() called");
 
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
-        if (fragment instanceof VideoDetailFragment) if (((VideoDetailFragment) fragment).onActivityBackPressed()) return;
+        if (fragment instanceof VideoDetailFragment)
+            if (((VideoDetailFragment) fragment).onActivityBackPressed()) return;
 
 
         if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
@@ -157,6 +182,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_about:
                 NavigationHelper.openAbout(this);
                 return true;
+            case R.id.action_history:
+                Intent intent = new Intent(this, HistoryActivity.class);
+                startActivity(intent);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -199,6 +228,24 @@ public class MainActivity extends AppCompatActivity {
             NavigationHelper.openSearchFragment(getSupportFragmentManager(), serviceId, searchQuery);
         } else {
             NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+        }
+    }
+
+    @Override
+    public void onVideoPlayed(VideoStream videoStream, StreamInfo streamInfo) {
+        // Add watch history entry
+        if (sharedPreferences.getBoolean(getString(R.string.enable_watch_history_key), false)) {
+            WatchHistoryEntry entry = new WatchHistoryEntry(streamInfo);
+            watchHistoryDAO.addHistoryEntry(entry);
+        }
+    }
+
+    @Override
+    public void onSearch(int serviceId, String query) {
+        // Add search history entry
+        if (sharedPreferences.getBoolean(getString(R.string.enable_search_history_key), false)) {
+            SearchHistoryEntry searchHistoryEntry = new SearchHistoryEntry(new Date(), serviceId, query);
+            searchHistoryDAO.addHistoryEntry(searchHistoryEntry);
         }
     }
 }

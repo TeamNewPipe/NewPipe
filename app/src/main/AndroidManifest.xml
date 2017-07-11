@@ -212,8 +212,11 @@
         <activity
             android:name=".about.AboutActivity"
             android:label="@string/title_activity_about"
-            android:theme="@style/AppTheme">
-        </activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".history.HistoryActivity"
+            android:label="@string/title_activity_history"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
