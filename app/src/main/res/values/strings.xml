@@ -61,6 +61,10 @@
     <string name="player_gesture_controls_summary">Use gestures to control the brightness and volume of the player</string>
     <string name="show_search_suggestions_title">Search suggestions</string>
     <string name="show_search_suggestions_summary">Show suggestions when searching</string>
+    <string name="resume_on_audio_focus_gain_title">Resume audio on focus gain</string>
+    <string name="resume_on_audio_focus_gain_summary">Continue playing background audio after interruptions</string>
+    <string name="ignore_audio_focus_loss_title">Ignore permanent audio focus loss</string>
+    <string name="ignore_audio_focus_loss_summary">Allow multiple audio and video streams to play in tandem</string>
 
     <string name="download_dialog_title">Download</string>
 
