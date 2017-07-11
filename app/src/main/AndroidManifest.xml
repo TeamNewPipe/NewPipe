@@ -209,7 +209,11 @@
                 <data android:mimeType="text/plain"/>
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".about.AboutActivity"
+            android:label="@string/title_activity_about"
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>
