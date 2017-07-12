@@ -193,10 +193,12 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
         outState.putString(QUERY_KEY, query);
         outState.putInt(Constants.KEY_SERVICE_ID, serviceId);
         outState.putInt(PAGE_NUMBER_KEY, pageNumber);
-        outState.putSerializable(INFO_LIST_KEY, ((ArrayList<InfoItem>) infoListAdapter.getItemsList()));
+        outState.putSerializable(INFO_LIST_KEY, infoListAdapter.getItemsList());
         outState.putBoolean(WAS_LOADING_KEY, curSearchWorker != null && curSearchWorker.isRunning());
 
-        if (errorPanel != null && errorPanel.getVisibility() == View.VISIBLE) outState.putBoolean(ERROR_KEY, true);
+        if (errorPanel != null && errorPanel.getVisibility() == View.VISIBLE) {
+            outState.putBoolean(ERROR_KEY, true);
+        }
         if (filterItemCheckedId != -1) outState.putInt(FILTER_CHECKED_ID_KEY, filterItemCheckedId);
     }
 

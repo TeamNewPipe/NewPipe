@@ -37,7 +37,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final String TAG = InfoListAdapter.class.toString();
 
     private final InfoItemBuilder infoItemBuilder;
-    private final List<InfoItem> infoItemList;
+    private final ArrayList<InfoItem> infoItemList;
     private boolean showFooter = false;
     private View header = null;
     private View footer = null;
@@ -95,7 +95,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
-    public List<InfoItem> getItemsList() {
+    public ArrayList<InfoItem> getItemsList() {
         return infoItemList;
     }
 
