@@ -48,7 +48,7 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         // Read history enabled from preferences
-        mHistoryIsEnabled = mSharedPreferences.getBoolean(mHistoryIsEnabledKey, false);
+        mHistoryIsEnabled = isHistoryEnabled();
         // Register history enabled listener
         mSharedPreferences.registerOnSharedPreferenceChangeListener(mHistoryIsEnabledChangeListener);
 
@@ -62,6 +62,21 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
     public void onResume() {
         super.onResume();
         onHistoryEntriesLoaded(mHistoryDataSource.loadAllHistoryEntries());
+
+        boolean newEnabled = isHistoryEnabled();
+        if(newEnabled != mHistoryIsEnabled) {
+            onHistoryIsEnabledChanged(newEnabled);
+        }
+    }
+
+    private boolean isHistoryEnabled() {
+        return mSharedPreferences.getBoolean(mHistoryIsEnabledKey, false);
+    }
+
+    private void onEmptyHistory() {
+        if (mHistoryIsEnabled) {
+            animateView(mEmptyHistoryView, true, 200);
+        }
     }
 
     public void onHistoryEntriesLoaded(@NonNull E[] historyEntries) {
@@ -70,9 +85,7 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
             animateView(mEmptyHistoryView, false, 200);
         } else {
             mHistoryAdapter.clear();
-            if (mHistoryIsEnabled) {
-                animateView(mEmptyHistoryView, true, 200);
-            }
+            onEmptyHistory();
         }
     }
 
@@ -120,6 +133,7 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
     public void onClearHistory() {
         mHistoryDataSource.clearHistory();
         mHistoryAdapter.clear();
+        onEmptyHistory();
     }
 
     /**
