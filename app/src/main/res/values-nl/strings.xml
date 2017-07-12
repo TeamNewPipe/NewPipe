@@ -181,4 +181,21 @@ te openen in pop-upmodus</string>
     <string name="player_gesture_controls_summary">Gebruik bewegingen om helderheid en volume van de speler aan te passen</string>
 <string name="best_resolution">Beste resolutie</string>
 
-    </resources>
+    <string name="title_activity_about">Over NewPipe</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="action_about">Over</string>
+    <string name="title_licenses">Derdepartijlicenties</string>
+    <string name="copyright" formatted="true">© %1$s door %2$s onder %3$s</string>
+    <string name="error_unable_to_load_license">Kon licentie niet laden</string>
+    <string name="action_open_website">Website openen</string>
+    <string name="tab_about">Over</string>
+    <string name="tab_contributors">Bijdragers</string>
+    <string name="tab_licenses">Licenties</string>
+    <string name="github_url">https://github.com/TeamNewPipe/NewPipe</string>
+    <string name="app_description">Een vrije en lichte YouTube-cliënt voor Android.</string>
+    <string name="view_on_github">Bekijken op GitHub</string>
+    <string name="app_license_title">Licentie van NewPipe</string>
+    <string name="contribution_encouragement">Hulp is altijd welkom, of je nu nieuwe ideeën hebt, vertalingen kan bijdragen, wijzigingen in het ontwerp, opschonen van of grote wijzigingen in de code. Hoe meer hulp, hoe beter het wordt!</string>
+    <string name="read_full_license">Licentie lezen</string>
+    <string name="contribution_title">Bijdragen</string>
+</resources>
