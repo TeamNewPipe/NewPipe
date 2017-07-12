@@ -179,4 +179,21 @@
 
 <string name="best_resolution">En iyi çözünürlük</string>
 
-    </resources>
+    <string name="title_activity_about">NewPipe Hakkında</string>
+    <string name="action_settings">Ayarlar</string>
+    <string name="action_about">Hakkında</string>
+    <string name="title_licenses">Üçüncü-taraf Lisanslar</string>
+    <string name="copyright" formatted="true">© %1$s, %2$s tarafından %3$s altında</string>
+    <string name="error_unable_to_load_license">Lisans yüklenemedi</string>
+    <string name="action_open_website">Web sitesini aç</string>
+    <string name="tab_about">Hakkında</string>
+    <string name="tab_contributors">Katkıda bulunanlar</string>
+    <string name="tab_licenses">Lisanslar</string>
+    <string name="github_url">https://github.com/TeamNewPipe/NewPipe</string>
+    <string name="app_description">Android için hafif ücretsiz bir Youtube arayüzü.</string>
+    <string name="view_on_github">Github\'da görüntüle</string>
+    <string name="app_license_title">NewPipe\'ın Lisansı</string>
+    <string name="contribution_encouragement">Fikirleriniz, çeviri, tasarım değişiklikleri olsun, kod temizliği, yada gerçek köklü kod değişikleri olsun, yardımınıza her zaman açığız. Daha çok yapıldıkça daha iyiye gider!</string>
+    <string name="read_full_license">Lisansı oku</string>
+    <string name="contribution_title">Katkı</string>
+</resources>
