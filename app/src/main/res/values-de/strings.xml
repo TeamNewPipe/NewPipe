@@ -179,4 +179,12 @@
     <string name="popup_resizing_indicator_title">Größenänderung</string>
     <string name="best_resolution">Beste Auflösung</string>
 
+    <string name="action_about">Über</string>
+    <string name="title_activity_about">Über NewPipe</string>
+    <string name="action_open_website">Website öffnen</string>
+    <string name="tab_contributors">Mitwirkende</string>
+    <string name="tab_licenses">Lizenzen</string>
+    <string name="read_full_license">Lizenz lesen</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="error_unable_to_load_license">Lizenz konnte nicht geladen werden</string>
     </resources>
