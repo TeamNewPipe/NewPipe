@@ -93,6 +93,9 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
     public static SearchFragment getInstance(int serviceId, String query) {
         SearchFragment searchFragment = new SearchFragment();
         searchFragment.setQuery(serviceId, query);
+        if(!TextUtils.isEmpty(query)) {
+            searchFragment.wasLoading.set(true);
+        }
         return searchFragment;
     }
 
@@ -122,13 +125,14 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
 
     @Override
     public void onViewCreated(View rootView, @Nullable Bundle savedInstanceState) {
+        final boolean wasLoadingPreserved = wasLoading.get();
         super.onViewCreated(rootView, savedInstanceState);
+        wasLoading.set(wasLoadingPreserved);
         if (DEBUG) Log.d(TAG, "onViewCreated() called with: rootView = [" + rootView + "], savedInstanceState = [" + savedInstanceState + "]");
 
         if (savedInstanceState != null && savedInstanceState.getBoolean(ERROR_KEY, false)) {
             search(searchQuery, 0, true);
         }
-
     }
 
     @Override
