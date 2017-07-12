@@ -1225,12 +1225,16 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
                 case BackgroundCallback.MESSAGE_DESCRIPTION:
-                    videoDescriptionView.setText((Spanned) msg.obj);
-                    videoDescriptionView.setVisibility(View.VISIBLE);
+                    if (videoDescriptionView != null) {
+                        videoDescriptionView.setText((Spanned) msg.obj);
+                        videoDescriptionView.setVisibility(View.VISIBLE);
+                    }
                     return true;
                 case BackgroundCallback.MESSAGE_UPLOADER_DATE:
-                    videoUploadDateView.setText((String) msg.obj);
-                    videoUploadDateView.setVisibility(View.VISIBLE);
+                    if (videoUploadDateView != null) {
+                        videoUploadDateView.setText((String) msg.obj);
+                        videoUploadDateView.setVisibility(View.VISIBLE);
+                    }
                     return true;
             }
             return false;
