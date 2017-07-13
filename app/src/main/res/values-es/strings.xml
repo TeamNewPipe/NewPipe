@@ -183,4 +183,21 @@ abrir en modo popup</string>
 
 <string name="best_resolution">Mejor resolución</string>
 
-    </resources>
+    <string name="title_activity_about">Acerca de NewPipe</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="action_about">Acerca de</string>
+    <string name="title_licenses">Licencias de terceros</string>
+    <string name="copyright" formatted="true">© %1$s por %2$s bajo %3$s</string>
+    <string name="error_unable_to_load_license">No se pudo cargar la licencia</string>
+    <string name="action_open_website">Abrir sitio web</string>
+    <string name="tab_about">Acerca de</string>
+    <string name="tab_contributors">Colaboradores</string>
+    <string name="tab_licenses">Licencias</string>
+    <string name="github_url">https://github.com/TeamNewPipe/NewPipe</string>
+    <string name="app_description">Una gratuita y ligera interfaz de Youtube para Android.</string>
+    <string name="view_on_github">Ver en Github</string>
+    <string name="app_license_title">Licencia de NewPipe</string>
+    <string name="contribution_encouragement">Si tiene ideas, traducción, cambios de diseño, limpieza de código o cambios de código realmente fuertes, la ayuda siempre es bienvenida. Cuanto más se hace, mejor se pone!</string>
+    <string name="read_full_license">Leer licencia</string>
+    <string name="contribution_title">Contribución</string>
+</resources>
