@@ -166,13 +166,13 @@
 
     <string name="popup_remember_size_pos_title">Größe und Position des Popups merken</string>
 <string name="use_external_video_player_summary">Manche Auflösungen werden KEINE Tonspur haben, wenn diese Option eingeschaltet ist</string>
-    <string name="popup_remember_size_pos_summary">Letzte Größe und Position des Popups merken</string>
+    <string name="popup_remember_size_pos_summary">Letzte Größe und Position des Pop-up merken</string>
     <string name="player_gesture_controls_title">Gestensteuerung</string>
     <string name="player_gesture_controls_summary">Gesten benutzen, um Helligkeit und Lautstärke des Players zu steuern</string>
     <string name="show_search_suggestions_title">Suchvorschläge</string>
     <string name="show_search_suggestions_summary">Beim Suchen Vorschläge anzeigen</string>
 
-    <string name="settings_category_popup_title">Popup</string>
+    <string name="settings_category_popup_title">Pop-up</string>
     <string name="filter">Filter</string>
     <string name="refresh">Aktualisieren</string>
     <string name="clear">Löschen</string>
@@ -187,4 +187,9 @@
     <string name="read_full_license">Lizenz lesen</string>
     <string name="action_settings">Einstellungen</string>
     <string name="error_unable_to_load_license">Lizenz konnte nicht geladen werden</string>
+    <string name="copyright" formatted="true">© %1$s von %2$s unter %3$s</string>
+    <string name="tab_about">Über</string>
+    <string name="app_description">Ein offenes, leichtgewichtiges Frontend für Android.</string>
+    <string name="app_license_title">NewPipe\'s Lizenz</string>
+    <string name="contribution_encouragement">Ob Ideen, Übersetzung, Design-Änderungen, Code-Aufräumung oder richtig große Code-Änderungen - Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
     </resources>
