@@ -188,4 +188,21 @@
 
 <string name="best_resolution">最適な解像度</string>
 
-    </resources>
+    <string name="title_activity_about">NewPipe について</string>
+    <string name="action_settings">設定</string>
+    <string name="action_about">アプリについて</string>
+    <string name="title_licenses">サードパーティー ライセンス</string>
+    <string name="copyright" formatted="true">© %1$s 作者 %2$s ライセンス %3$s</string>
+    <string name="error_unable_to_load_license">ライセンスをロードできません</string>
+    <string name="action_open_website">Web サイトを開く</string>
+    <string name="tab_about">アプリについて</string>
+    <string name="tab_contributors">貢献者</string>
+    <string name="tab_licenses">ライセンス</string>
+    <string name="github_url">https://github.com/TeamNewPipe/NewPipe</string>
+    <string name="app_description">Android 用の無料で軽量な Youtube フロントエンド。</string>
+    <string name="view_on_github">Github で表示</string>
+    <string name="app_license_title">NewPipe のライセンス</string>
+    <string name="contribution_encouragement">アイデア、翻訳、デザインの変更、コードのクリーニング、または本当に重いコードの変更がありますか。ヘルプは常に歓迎します。さらに良いものになりますように!</string>
+    <string name="read_full_license">ライセンスを読む</string>
+    <string name="contribution_title">貢献</string>
+</resources>
