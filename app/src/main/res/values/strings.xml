@@ -221,5 +221,6 @@
     <string name="history_disabled">History is disabled</string>
     <string name="action_history">History</string>
     <string name="history_empty">The History is empty.</string>
+    <string name="history_cleared">History cleared</string>
 
 </resources>

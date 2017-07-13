@@ -68,7 +68,7 @@ public class HistoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 clearHistory();
-                Snackbar.make(view, "History cleared", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, R.string.history_cleared, Snackbar.LENGTH_LONG).show();
             }
         });
     }
@@ -119,7 +119,7 @@ public class HistoryActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            Fragment fragment = null;
+            Fragment fragment;
             switch (position) {
                 case 0:
                     fragment = SearchHistoryFragment.newInstance();
@@ -127,9 +127,8 @@ public class HistoryActivity extends AppCompatActivity {
                 case 1:
                     fragment = WatchedHistoryFragment.newInstance();
                     break;
-            }
-            if(fragment == null) {
-                throw new IllegalArgumentException("position: " + position);
+                default:
+                    throw new IllegalArgumentException("position: " + position);
             }
             fragments.put(position, fragment);
             return fragment;
