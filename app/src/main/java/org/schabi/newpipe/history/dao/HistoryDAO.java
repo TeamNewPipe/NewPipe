@@ -10,4 +10,6 @@ public interface HistoryDAO<T> {
 
     @NonNull
     T[] loadAllHistoryEntries();
+
+    void removeHistoryEntry(T historyEntry);
 }

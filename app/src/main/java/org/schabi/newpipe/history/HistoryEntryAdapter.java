@@ -89,6 +89,12 @@ public abstract class HistoryEntryAdapter<E extends HistoryEntry, VH extends Rec
         return mEntries.isEmpty();
     }
 
+    public E removeItemAt(int position) {
+        E entry = mEntries.remove(position);
+        notifyItemRemoved(position);
+        return entry;
+    }
+
     public interface OnHistoryItemClickListener<E extends HistoryEntry> {
         void onHistoryItemClick(E historyItem);
     }

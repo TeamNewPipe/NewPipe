@@ -12,6 +12,7 @@ import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
     private HistoryDAO<E> mHistoryDataSource;
     private HistoryEntryAdapter<E, ? extends RecyclerView.ViewHolder> mHistoryAdapter;
     private View mEmptyHistoryView;
+    private ItemTouchHelper.SimpleCallback mHistoryItemSwipeCallback;
 
 
     @StringRes
@@ -53,6 +55,22 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
         mSharedPreferences.registerOnSharedPreferenceChangeListener(mHistoryIsEnabledChangeListener);
 
         mHistoryDataSource = createHistoryDAO(getContext());
+
+        mHistoryItemSwipeCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                if(mHistoryAdapter != null) {
+                    E historyEntry = mHistoryAdapter.removeItemAt(viewHolder.getAdapterPosition());
+                    mHistoryDataSource.removeHistoryEntry(historyEntry);
+                }
+            }
+        };
+
     }
 
     @NonNull
@@ -103,6 +121,8 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
         mHistoryAdapter = createAdapter();
         mHistoryAdapter.setOnHistoryItemClickListener(this);
         mRecyclerView.setAdapter(mHistoryAdapter);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(mHistoryItemSwipeCallback);
+        itemTouchHelper.attachToRecyclerView(mRecyclerView);
         mDisabledView = rootView.findViewById(R.id.history_disabled_view);
         mEmptyHistoryView = rootView.findViewById(R.id.history_empty);
 

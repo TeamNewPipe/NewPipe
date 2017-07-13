@@ -2,6 +2,7 @@ package org.schabi.newpipe.history.dao;
 
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.support.annotation.NonNull;
@@ -23,4 +24,8 @@ public interface WatchHistoryDAO extends HistoryDAO<WatchHistoryEntry> {
     @NonNull
     WatchHistoryEntry[] loadAllHistoryEntries();
 
+
+    @Delete
+    @Override
+    void removeHistoryEntry(WatchHistoryEntry historyEntry);
 }
