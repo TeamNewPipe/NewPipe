@@ -426,6 +426,8 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
         Intent intent;
         AudioStream audioStream = currentStreamInfo.audio_streams.get(Utils.getPreferredAudioFormat(activity, currentStreamInfo.audio_streams));
+        onVideoPlayedListener.onBackgroundPlayed(currentStreamInfo, audioStream);
+
         if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 16) {
             activity.startService(NavigationHelper.getOpenBackgroundPlayerIntent(activity, currentStreamInfo, audioStream));
             Toast.makeText(activity, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
@@ -476,6 +478,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
             return;
         }
 
+        onVideoPlayedListener.onVideoPlayed(getSelectedVideoStream(), currentStreamInfo);
         Toast.makeText(activity, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
         Intent mIntent = NavigationHelper.getOpenVideoPlayerIntent(activity, PopupVideoPlayer.class, currentStreamInfo, actionBarHandler.getSelectedVideoStream());
         activity.startService(mIntent);
@@ -979,9 +982,17 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         }
     }
 
+    /**
+     * Get the currently selected video stream
+     * @return the selected video stream
+     */
+    private VideoStream getSelectedVideoStream() {
+        return sortedStreamVideosList.get(actionBarHandler.getSelectedVideoStream());
+    }
+
     public void playVideo(StreamInfo info) {
         // ----------- THE MAGIC MOMENT ---------------
-        VideoStream selectedVideoStream = sortedStreamVideosList.get(actionBarHandler.getSelectedVideoStream());
+        VideoStream selectedVideoStream = getSelectedVideoStream();
 
         if(onVideoPlayedListener != null) {
             onVideoPlayedListener.onVideoPlayed(selectedVideoStream, info);
@@ -1256,10 +1267,17 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
 
     public interface OnVideoPlayListener {
         /**
-         * Called when a video is palyed
+         * Called when a video is played
          * @param videoStream the video stream that is played
-         * @param streamInfo the video stream info
+         * @param streamInfo the stream info
          */
         void onVideoPlayed(VideoStream videoStream, StreamInfo streamInfo);
+
+        /**
+         * Called when the audio is played in the background
+         * @param streamInfo the stream info
+         * @param audioStream the audio stream that is played
+         */
+        void onBackgroundPlayed(StreamInfo streamInfo, AudioStream audioStream);
     }
 }

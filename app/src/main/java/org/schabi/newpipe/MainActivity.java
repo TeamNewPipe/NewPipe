@@ -36,6 +36,7 @@ import android.view.View;
 
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -231,13 +232,22 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    @Override
-    public void onVideoPlayed(VideoStream videoStream, StreamInfo streamInfo) {
-        // Add watch history entry
+
+    private void addWatchHistoryEntry(StreamInfo streamInfo) {
         if (sharedPreferences.getBoolean(getString(R.string.enable_watch_history_key), false)) {
             WatchHistoryEntry entry = new WatchHistoryEntry(streamInfo);
             watchHistoryDAO.addHistoryEntry(entry);
         }
+    }
+
+    @Override
+    public void onVideoPlayed(VideoStream videoStream, StreamInfo streamInfo) {
+        addWatchHistoryEntry(streamInfo);
+    }
+
+    @Override
+    public void onBackgroundPlayed(StreamInfo streamInfo, AudioStream audioStream) {
+        addWatchHistoryEntry(streamInfo);
     }
 
     @Override
