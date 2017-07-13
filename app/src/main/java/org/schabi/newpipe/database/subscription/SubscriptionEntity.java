@@ -5,35 +5,35 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-import static org.schabi.newpipe.database.subscription.SubscriptionEntity.CHANNEL_SERVICE_ID;
-import static org.schabi.newpipe.database.subscription.SubscriptionEntity.CHANNEL_TABLE;
-import static org.schabi.newpipe.database.subscription.SubscriptionEntity.CHANNEL_URL;
+import static org.schabi.newpipe.database.subscription.SubscriptionEntity.SUBSCRIPTION_SERVICE_ID;
+import static org.schabi.newpipe.database.subscription.SubscriptionEntity.SUBSCRIPTION_TABLE;
+import static org.schabi.newpipe.database.subscription.SubscriptionEntity.SUBSCRIPTION_URL;
 
-@Entity(tableName = CHANNEL_TABLE,
-        indices = {@Index(value = {CHANNEL_SERVICE_ID, CHANNEL_URL}, unique = true)})
+@Entity(tableName = SUBSCRIPTION_TABLE,
+        indices = {@Index(value = {SUBSCRIPTION_SERVICE_ID, SUBSCRIPTION_URL}, unique = true)})
 public class SubscriptionEntity {
 
-    final static String CHANNEL_TABLE                   = "channel";
-    final static String CHANNEL_SERVICE_ID              = "service_id";
-    final static String CHANNEL_URL                     = "url";
-    final static String CHANNEL_LATEST_STREAM_URL       = "latest_stream_url";
-    final static String CHANNEL_LATEST_STREAM_VIEWED    = "latest_stream_viewed";
+    final static String SUBSCRIPTION_TABLE          = "subscriptions";
+    final static String SUBSCRIPTION_SERVICE_ID     = "service_id";
+    final static String SUBSCRIPTION_URL            = "url";
+    final static String SUBSCRIPTION_TITLE          = "title";
+    final static String SUBSCRIPTION_THUMBNAIL_URL  = "thumbnail_url";
 
     @PrimaryKey(autoGenerate = true)
     private long uid = 0;
 
-    @ColumnInfo(name = CHANNEL_SERVICE_ID)
+    @ColumnInfo(name = SUBSCRIPTION_SERVICE_ID)
     private int serviceId = -1;
 
     /* Do not keep extraneous information on entities as they are dynamic */
-    @ColumnInfo(name = CHANNEL_URL)
+    @ColumnInfo(name = SUBSCRIPTION_URL)
     private String url;
 
-    @ColumnInfo(name = CHANNEL_LATEST_STREAM_URL)
-    private String latestStreamUrl;
+    @ColumnInfo(name = SUBSCRIPTION_TITLE)
+    private String title;
 
-    @ColumnInfo(name = CHANNEL_LATEST_STREAM_VIEWED)
-    private boolean latestStreamViewed;
+    @ColumnInfo(name = SUBSCRIPTION_THUMBNAIL_URL)
+    private String thumbnailUrl;
 
     public long getUid() {
         return uid;
@@ -60,19 +60,19 @@ public class SubscriptionEntity {
         this.url = url;
     }
 
-    public String getLatestStreamUrl() {
-        return latestStreamUrl;
+    public String getTitle() {
+        return title;
     }
 
-    public void setLatestStreamUrl(String latestStreamUrl) {
-        this.latestStreamUrl = latestStreamUrl;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public boolean isLatestStreamViewed() {
-        return latestStreamViewed;
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
     }
 
-    public void setLatestStreamViewed(boolean latestStreamViewed) {
-        this.latestStreamViewed = latestStreamViewed;
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
     }
 }

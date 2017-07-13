@@ -14,6 +14,7 @@ import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.AbstractStreamInfo;
 import org.schabi.newpipe.extractor.InfoItem;
+import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
 
@@ -112,7 +113,17 @@ public class InfoItemBuilder {
                 buildStreamInfoItem((StreamInfoItemHolder) holder, (StreamInfoItem) i);
                 break;
             case CHANNEL:
-                buildChannelInfoItem((ChannelInfoItemHolder) holder, (ChannelInfoItem) i);
+                if (holder instanceof ChannelInfoItemHolder && i instanceof ChannelInfoItem) {
+                    buildChannelInfoItem(
+                            (ChannelInfoItemHolder) holder,
+                            (ChannelInfoItem) i
+                    );
+                } else if (holder instanceof SubscriptionInfoItemHolder && i instanceof SubscriptionInfoItem) {
+                    buildSubscriptionInfoItem(
+                            (SubscriptionInfoItemHolder) holder,
+                            (SubscriptionInfoItem) i
+                    );
+                }
                 break;
             case PLAYLIST:
                 Log.e(TAG, "Not yet implemented");
@@ -134,8 +145,13 @@ public class InfoItemBuilder {
                 holder = new StreamInfoItemHolder(itemView);
                 break;
             case CHANNEL:
-                itemView = inflater.inflate(R.layout.channel_item, parent, false);
-                holder = new ChannelInfoItemHolder(itemView);
+                if (info instanceof ChannelInfoItem) {
+                    itemView = inflater.inflate(R.layout.channel_item, parent, false);
+                    holder = new ChannelInfoItemHolder(itemView);
+                } else if (info instanceof SubscriptionInfoItem) {
+                    itemView = inflater.inflate(R.layout.subscription_item, parent, false);
+                    holder = new SubscriptionInfoItemHolder(itemView);
+                }
                 break;
             case PLAYLIST:
                 Log.e(TAG, "Not yet implemented");
@@ -227,6 +243,25 @@ public class InfoItemBuilder {
                 DISPLAY_CHANNEL_THUMBNAIL_OPTIONS,
                 new ImageErrorLoadingListener(holder.itemRoot.getContext(), holder.itemRoot.getRootView(), info.serviceId));
 
+
+        holder.itemRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onChannelInfoItemSelectedListener != null) {
+                    onChannelInfoItemSelectedListener.selected(info.serviceId, info.getLink(), info.channelName);
+                }
+            }
+        });
+    }
+
+    private void buildSubscriptionInfoItem(SubscriptionInfoItemHolder holder,
+                                           final SubscriptionInfoItem info) {
+        if (!TextUtils.isEmpty(info.getTitle())) holder.itemChannelTitleView.setText(info.getTitle());
+
+        imageLoader.displayImage(info.thumbnailUrl,
+                holder.itemThumbnailView,
+                DISPLAY_CHANNEL_THUMBNAIL_OPTIONS,
+                new ImageErrorLoadingListener(holder.itemRoot.getContext(), holder.itemRoot.getRootView(), info.serviceId));
 
         holder.itemRoot.setOnClickListener(new View.OnClickListener() {
             @Override

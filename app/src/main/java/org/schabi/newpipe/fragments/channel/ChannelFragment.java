@@ -52,6 +52,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
@@ -65,7 +66,7 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
     private static final String CHANNEL_INFO_KEY = "channel_info_key";
     private static final String PAGE_NUMBER_KEY = "page_number_key";
 
-    private static final int BUTTON_DEBOUNCE_INTERVAL = 500;
+    private static final int BUTTON_DEBOUNCE_INTERVAL = 100;
 
     private InfoListAdapter infoListAdapter;
 
@@ -302,50 +303,14 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
         });
     }
 
-    private void channelViewed(final String url) {
-        final Runnable update = new Runnable() {
-            @Override
-            public void run() {
-                final SubscriptionDAO subscriptionTable = subscriptionService.subscriptionTable();
-
-                SubscriptionEntity channel = subscriptionTable.findSingle( url );
-                if (channel != null && !channel.isLatestStreamViewed()) {
-                    channel.setLatestStreamViewed( true );
-                    subscriptionTable.update( channel );
-                }
-            }
-        };
-
-        final CompletableObserver updateObserver = new CompletableObserver() {
-            @Override
-            public void onSubscribe(Disposable d) {
-                Log.d(TAG, "channelviewed onsub");
-                disposables.add( d );
-            }
-
-            @Override
-            public void onComplete() {
-                Log.d(TAG, "channelviewed done");
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.e(TAG, "Subscription Fatal Error: ", e.getCause());
-            }
-        };
-
-        Completable.fromRunnable(update)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(updateObserver);
-    }
-
-    private void monitorSubscription(final int serviceId, final String channelUrl) {
+    private void monitorSubscription(final int serviceId,
+                                     final String channelUrl,
+                                     final ChannelInfo info) {
         subscriptionService.subscriptionTable().findAll(serviceId, channelUrl)
                 .toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getSubscribeButtonMonitor(serviceId, channelUrl));
+                .subscribe(getSubscribeButtonMonitor(serviceId, channelUrl, info));
     }
 
     private Function<Object, Object> mapOnSubscribe(final SubscriptionEntity subscription) {
@@ -369,7 +334,8 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
     }
 
     private Observer<List<SubscriptionEntity>> getSubscribeButtonMonitor(final int serviceId,
-                                                                         final String channelUrl) {
+                                                                         final String channelUrl,
+                                                                         final ChannelInfo info) {
         return new Observer<List<SubscriptionEntity>>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -385,6 +351,8 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
                     SubscriptionEntity channel = new SubscriptionEntity();
                     channel.setServiceId( serviceId );
                     channel.setUrl( channelUrl );
+                    channel.setTitle( info.channel_name );
+                    channel.setThumbnailUrl( info.avatar_url );
                     subscribeButtonMonitor = changeSubscription(headerSubscribeButton, mapOnSubscribe(channel));
 
                     headerSubscribeButton.setText(R.string.subscribe_button_title);
@@ -434,6 +402,47 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
                 .debounce(BUTTON_DEBOUNCE_INTERVAL, TimeUnit.MILLISECONDS) // Ignore rapid clicks
                 .map(action)
                 .subscribe(onNext, onError);
+    }
+
+    private Disposable updateDatabase(final int serviceId,
+                                      final String channelUrl,
+                                      final ChannelInfo info) {
+        final Function<List<SubscriptionEntity>, Void> update = new Function<List<SubscriptionEntity>, Void>() {
+            @Override
+            public Void apply(@NonNull List<SubscriptionEntity> subscriptionEntities) throws Exception {
+                if (subscriptionEntities.size() == 1) {
+                    SubscriptionEntity subscription = subscriptionEntities.get(0);
+                    subscription.setThumbnailUrl( info.avatar_url );
+                    subscription.setTitle( info.channel_name );
+                    subscriptionService.subscriptionTable().update(subscription);
+                }
+                return null;
+            }
+        };
+
+        final Action onComplete = new Action() {
+            @Override
+            public void run() throws Exception {
+                Log.d(TAG, "Updated subscription: " + channelUrl);
+            }
+        };
+
+        final Consumer<Throwable> onError = new Consumer<Throwable>() {
+            @Override
+            public void accept(@NonNull Throwable throwable) throws Exception {
+                Log.e(TAG, "Subscription Update Fatal Error: ", throwable.getCause());
+                Toast.makeText(getContext(), R.string.subscription_update_failed, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        return subscriptionService.subscriptionTable()
+                .findAll(serviceId, channelUrl)
+                .firstOrError()
+                .map(update)
+                .toCompletable()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(onComplete, onError);
     }
 
     @Override
@@ -529,8 +538,8 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
 
             if (disposables != null) disposables.clear();
             if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();
-            monitorSubscription(serviceId, channelUrl);
-            channelViewed(channelUrl);
+            disposables.add( updateDatabase(serviceId, channelUrl, info) );
+            monitorSubscription(serviceId, channelUrl, info);
 
             infoListAdapter.showFooter(true);
         }

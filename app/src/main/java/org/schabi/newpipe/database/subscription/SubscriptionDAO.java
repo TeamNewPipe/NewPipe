@@ -9,27 +9,27 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 
-import static org.schabi.newpipe.database.subscription.SubscriptionEntity.CHANNEL_SERVICE_ID;
-import static org.schabi.newpipe.database.subscription.SubscriptionEntity.CHANNEL_TABLE;
-import static org.schabi.newpipe.database.subscription.SubscriptionEntity.CHANNEL_URL;
+import static org.schabi.newpipe.database.subscription.SubscriptionEntity.SUBSCRIPTION_SERVICE_ID;
+import static org.schabi.newpipe.database.subscription.SubscriptionEntity.SUBSCRIPTION_TABLE;
+import static org.schabi.newpipe.database.subscription.SubscriptionEntity.SUBSCRIPTION_URL;
 
 @Dao
 public interface SubscriptionDAO extends BasicDAO<SubscriptionEntity> {
     @Override
-    @Query("SELECT * FROM " + CHANNEL_TABLE)
+    @Query("SELECT * FROM " + SUBSCRIPTION_TABLE)
     Flowable<List<SubscriptionEntity>> findAll();
 
     @Override
-    @Query("SELECT * FROM " + CHANNEL_TABLE + " WHERE " + CHANNEL_SERVICE_ID + " = :serviceId")
+    @Query("SELECT * FROM " + SUBSCRIPTION_TABLE + " WHERE " + SUBSCRIPTION_SERVICE_ID + " = :serviceId")
     Flowable<List<SubscriptionEntity>> listByService(int serviceId);
 
     /* Single entity query should not use flowable in case of empty result */
     /* TODO: make query require service id when extractor exposes service id */
-    @Query("SELECT * FROM " + CHANNEL_TABLE + " WHERE " + CHANNEL_URL + " LIKE :url LIMIT 1")
+    @Query("SELECT * FROM " + SUBSCRIPTION_TABLE + " WHERE " + SUBSCRIPTION_URL + " LIKE :url LIMIT 1")
     SubscriptionEntity findSingle(String url);
 
-    @Query("SELECT * FROM " + CHANNEL_TABLE + " WHERE " +
-            CHANNEL_URL + " LIKE :url AND " +
-            CHANNEL_SERVICE_ID + " = :serviceId")
+    @Query("SELECT * FROM " + SUBSCRIPTION_TABLE + " WHERE " +
+            SUBSCRIPTION_URL + " LIKE :url AND " +
+            SUBSCRIPTION_SERVICE_ID + " = :serviceId")
     Flowable<List<SubscriptionEntity>> findAll(int serviceId, String url);
 }

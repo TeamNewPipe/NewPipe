@@ -7,6 +7,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -28,7 +29,7 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
     private AppCompatActivity activity;
 
     private TabLayout tabLayout;
-    private NonScrollingViewPager viewPager;
+    private ViewPager viewPager;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
@@ -54,7 +55,7 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
         View inflatedView = inflater.inflate(R.layout.fragment_main, container, false);
 
         tabLayout = (TabLayout) inflatedView.findViewById(R.id.main_tab_layout);
-        viewPager = (NonScrollingViewPager) inflatedView.findViewById(R.id.pager);
+        viewPager = (ViewPager) inflatedView.findViewById(R.id.pager);
 
         /*  Nested fragment, use child fragment here to maintain backstack in view pager. */
         PagerAdapter adapter = new PagerAdapter(getChildFragmentManager());

@@ -5,21 +5,17 @@ import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.subscription.SubscriptionDAO;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.channel.ChannelInfo;
-import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.info_list.SubscriptionInfoItem;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.io.IOException;
@@ -27,10 +23,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
-import io.reactivex.Completable;
-import io.reactivex.CompletableObserver;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -119,29 +112,9 @@ public class SubscriptionFragment extends BaseFragment {
         }
 
         resultRecyclerView.setAdapter(infoListAdapter);
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeCallback);
-        itemTouchHelper.attachToRecyclerView(resultRecyclerView);
 
         populateView();
     }
-
-    ItemTouchHelper.SimpleCallback swipeCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-
-        @Override
-        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-           return false;
-        }
-
-        @Override
-        public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-            final int pos = viewHolder.getAdapterPosition();
-            final InfoItem item = infoListAdapter.getItemsList().remove( pos );
-
-            // TODO: need to update extractor to expose service id
-            removeSubscription(item.getLink());
-            infoListAdapter.notifyDataSetChanged();
-        }
-    };
 
     private void populateView() {
         resetFragment();
@@ -149,27 +122,29 @@ public class SubscriptionFragment extends BaseFragment {
         animateView(loadingProgressBar, true, 200);
         animateView(errorPanel, false, 200);
 
-        subscriptionService.getSubscription()
-                .toObservable()
+        subscriptionService.getSubscription().toObservable()
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getSubscriptionObserver());
     }
 
-    private Observer<Map<SubscriptionEntity, ChannelInfo>> getSubscriptionObserver() {
-        return new Observer<Map<SubscriptionEntity, ChannelInfo>>() {
+    private Observer<List<SubscriptionEntity>> getSubscriptionObserver() {
+        return new Observer<List<SubscriptionEntity>>() {
             @Override
             public void onSubscribe(Disposable d) {
-                disposables.add( d );
                 animateView(loadingProgressBar, true, 200);
+
+                disposables.add( d );
                 subscriptionService.getSubscription().connect();
             }
 
             @Override
-            public void onNext(Map<SubscriptionEntity, ChannelInfo> channelInfos) {
-                infoListAdapter.clearStreamItemList();
+            public void onNext(List<SubscriptionEntity> subscriptions) {
                 animateView(loadingProgressBar, true, 200);
 
-                infoListAdapter.addInfoItemList( getChannelItems(channelInfos) );
+                infoListAdapter.clearStreamItemList();
+                infoListAdapter.addInfoItemList( getSubscriptionItems(subscriptions) );
+
                 animateView(loadingProgressBar, false, 200);
 
                 if (viewState != null && resultRecyclerView != null) {
@@ -193,21 +168,15 @@ public class SubscriptionFragment extends BaseFragment {
         };
     }
 
-    private List<InfoItem> getChannelItems(Map<SubscriptionEntity, ChannelInfo> channelInfos) {
+    private List<InfoItem> getSubscriptionItems(List<SubscriptionEntity> subscriptions) {
         List<InfoItem> items = new ArrayList<>();
-        for (final Map.Entry<SubscriptionEntity, ChannelInfo> pair: channelInfos.entrySet()) {
-            final SubscriptionEntity channel = pair.getKey();
-            final ChannelInfo channelInfo = pair.getValue();
+        for (final SubscriptionEntity subscription: subscriptions) {
+            SubscriptionInfoItem item = new SubscriptionInfoItem();
+            item.webPageUrl = subscription.getUrl();
+            item.serviceId = subscription.getServiceId();
+            item.channelName = subscription.getTitle();
+            item.thumbnailUrl = subscription.getThumbnailUrl();
 
-            ChannelInfoItem item = new ChannelInfoItem();
-            item.webPageUrl = channel.getUrl();
-            item.serviceId = channelInfo.service_id;
-            item.channelName = channelInfo.channel_name;
-            item.thumbnailUrl = channelInfo.avatar_url;
-            item.subscriberCount = channelInfo.subscriberCount;
-
-            // TODO: fix this when extractor allows subscription info types
-            item.videoAmount = channel.isLatestStreamViewed() ? 1 : -1;
             items.add( item );
         }
         Collections.sort(items, new Comparator<InfoItem>() {
@@ -218,40 +187,6 @@ public class SubscriptionFragment extends BaseFragment {
         });
 
         return items;
-    }
-
-    private void removeSubscription(final String url) {
-        final Runnable unsubscribe = new Runnable() {
-            @Override
-            public void run() {
-                final SubscriptionDAO subscriptionTable = subscriptionService.subscriptionTable();
-                final SubscriptionEntity channel = subscriptionTable.findSingle( url );
-                if (channel != null) subscriptionTable.delete( channel );
-            }
-        };
-
-        final CompletableObserver unsubscriptionObserver = new CompletableObserver() {
-            @Override
-            public void onSubscribe(Disposable d) {
-                disposables.add( d );
-            }
-
-            @Override
-            public void onComplete() {
-                Toast.makeText(getContext(), R.string.channel_unsubscribed, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.e(TAG, "Subscription Fatal Error: ", e.getCause());
-                Toast.makeText(getContext(), R.string.subscription_change_failed, Toast.LENGTH_SHORT).show();
-            }
-        };
-
-        Completable.fromRunnable(unsubscribe)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(unsubscriptionObserver);
     }
 
     @Override

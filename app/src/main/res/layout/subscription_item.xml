@@ -12,8 +12,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/itemThumbnailView"
-        android:layout_width="@dimen/video_item_search_thumbnail_image_width"
-        android:layout_height="@dimen/video_item_search_thumbnail_image_height"
+        android:layout_width="@dimen/video_item_search_thumbnail_image_width_small"
+        android:layout_height="@dimen/video_item_search_thumbnail_image_height_small"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -24,7 +24,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/video_item_search_thumbnail_image_height"
+        android:layout_height="@dimen/video_item_search_thumbnail_image_height_small"
         android:layout_toRightOf="@id/itemThumbnailView"
         android:orientation="vertical"
         tools:ignore="RtlHardcoded">
@@ -33,32 +33,12 @@
             android:id="@+id/itemChannelTitleView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
             android:ellipsize="end"
-            android:maxLines="3"
+            android:maxLines="2"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="@dimen/channel_item_detail_title_text_size"
-            tools:text="Channel Title, Lorem ipsum"/>
+            tools:text="Channel Title: Lorem ipsum dolor sit amet, consectetur adipiscing elit"/>
 
-        <TextView
-            android:id="@+id/itemSubscriberCountView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:maxLines="1"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textSize="@dimen/video_item_search_upload_date_text_size"
-            tools:text="10M subscribers • "/>
-
-        <TextView
-            android:id="@+id/itemNewVideoSignal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/itemSubscriberCountView"
-            android:maxLines="1"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textSize="@dimen/video_item_search_upload_date_text_size"
-            tools:text="new videos available"/>
     </RelativeLayout>
 </RelativeLayout>
