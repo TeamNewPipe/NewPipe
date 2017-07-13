@@ -201,7 +201,7 @@
     <string name="tab_about">About</string>
     <string name="tab_contributors">Contributors</string>
     <string name="tab_licenses">Licenses</string>
-    <string name="github_url">https://github.com/TeamNewPipe/NewPipe</string>
+    <string name="github_url" translatable="false">https://github.com/TeamNewPipe/NewPipe</string>
     <string name="app_description">A free lightweight Youtube frontend for Android.</string>
     <string name="app_license" translatable="false">NewPipe is Free Software: You can use, study share and improve it at your will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
     <string name="view_on_github">View on Github</string>
