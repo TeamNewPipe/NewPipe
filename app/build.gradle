@@ -8,8 +8,8 @@ android {
         applicationId "org.schabi.newpipe"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 36
-        versionName "0.9.9"
+        versionCode 37
+        versionName "0.9.10"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
