@@ -186,4 +186,17 @@ odpiranje v pojavnem načinu</string>
 
 <string name="best_resolution">Najboljša ločljivost</string>
 
+    <string name="title_activity_about">O programu</string>
+    <string name="action_settings">Nastavitve</string>
+    <string name="action_about">O programu</string>
+    <string name="title_licenses">Dovoljenja zunanjih programskih paketov</string>
+    <string name="copyright" formatted="true">© %1$s z %2$s z dovoljenjem %3$s</string>
+    <string name="error_unable_to_load_license">Ni mogoče naložiti dovoljenja</string>
+    <string name="action_open_website">Odpri spletišče</string>
+    <string name="tab_about">O programu</string>
+    <string name="tab_contributors">Sodelavci</string>
+    <string name="tab_licenses">Dovoljenja</string>
+    <string name="view_on_github">Pokaži na Github</string>
+    <string name="app_license_title">Dovoljenje NewPipe</string>
+    <string name="read_full_license">Preberi določila dovoljenja</string>
     </resources>
