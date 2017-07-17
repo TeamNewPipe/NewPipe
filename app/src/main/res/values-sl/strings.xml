@@ -199,4 +199,5 @@ odpiranje v pojavnem načinu</string>
     <string name="view_on_github">Pokaži na Github</string>
     <string name="app_license_title">Dovoljenje NewPipe</string>
     <string name="read_full_license">Preberi določila dovoljenja</string>
+    <string name="app_description">Odprtokodni predvajalnik Youtube za Android.</string>
     </resources>
