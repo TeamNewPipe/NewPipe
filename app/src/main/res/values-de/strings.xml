@@ -166,7 +166,7 @@
 
     <string name="popup_remember_size_pos_title">Größe und Position des Popups merken</string>
 <string name="use_external_video_player_summary">Manche Auflösungen werden KEINE Tonspur haben, wenn diese Option eingeschaltet ist</string>
-    <string name="popup_remember_size_pos_summary">Letzte Größe und Position des Pop-up merken</string>
+    <string name="popup_remember_size_pos_summary">Merke Position und Größe des Popups</string>
     <string name="player_gesture_controls_title">Gestensteuerung</string>
     <string name="player_gesture_controls_summary">Gesten benutzen, um Helligkeit und Lautstärke des Players zu steuern</string>
     <string name="show_search_suggestions_title">Suchvorschläge</string>
