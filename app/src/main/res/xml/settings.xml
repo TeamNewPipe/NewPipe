@@ -133,10 +133,10 @@
 
     </PreferenceCategory>
 
+
     <PreferenceCategory
-        android:key="@string/settings_category_other"
-        android:textAllCaps="true"
-        android:title="@string/settings_category_other_title">
+        android:key="@string/settings_category_downloads"
+        android:title="@string/settings_category_downloads_title">
 
         <Preference
             android:dialogTitle="@string/download_path_dialog_title"
@@ -149,6 +149,26 @@
             android:key="@string/download_path_audio_key"
             android:summary="@string/download_path_audio_summary"
             android:title="@string/download_path_audio_title"/>
+
+        <ListPreference
+            android:key="@string/settings_file_charset_key"
+            android:summary="%s"
+            android:defaultValue="@string/default_file_charset_value"
+            android:title="@string/settings_file_charset_title"
+            android:entryValues="@array/settings_filename_charset"
+            android:entries="@array/settings_filename_charset_name" />
+
+        <EditTextPreference
+            android:key="@string/settings_file_replacement_character_key"
+            android:summary="@string/settings_file_replacement_character_summary"
+            android:defaultValue="@string/settings_file_replacement_character_default_value"
+            android:title="@string/settings_file_replacement_character_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="@string/settings_category_other"
+        android:textAllCaps="true"
+        android:title="@string/settings_category_other_title">
 
         <CheckBoxPreference
             android:defaultValue="false"

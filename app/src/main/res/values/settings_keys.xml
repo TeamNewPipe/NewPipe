@@ -232,4 +232,22 @@
     </string-array>
     <string name="show_age_restricted_content" translatable="false">show_age_restricted_content</string>
     <string name="use_tor_key" translatable="false">use_tor</string>
+
+    <string name="settings_file_charset_key" translatable="false">file_rename</string>
+    <string name="settings_file_replacement_character_key" translatable="false">file_replacement_character</string>
+    <string name="settings_file_replacement_character_default_value" translatable="false">_</string>
+
+    <string-array
+        translatable="false"
+        name="settings_filename_charset">
+        <item>@string/charset_letters_and_digits_value</item>
+        <item>@string/charset_most_special_characters_value</item>
+    </string-array>
+
+    <string-array name="settings_filename_charset_name">
+        <item>@string/charset_letters_and_digits</item>
+        <item>@string/charset_most_special_characters</item>
+    </string-array>
+    
+    <string name="default_file_charset_value" translatable="false">@string/charset_most_special_characters</string>
 </resources>
