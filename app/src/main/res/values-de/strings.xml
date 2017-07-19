@@ -194,4 +194,5 @@
     <string name="contribution_encouragement">Ob Ideen, Übersetzung, Design-Änderungen, Code-Aufräumung oder richtig große Code-Änderungen - Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
     <string name="title_licenses">Drittanbieter Lizenzen</string>
     <string name="view_on_github">Auf GitHub ansehen</string>
-    </resources>
+    <string name="contribution_title">Beitrag</string>
+</resources>
