@@ -23,6 +23,7 @@ import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -549,6 +550,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         relatedStreamExpandButton = ((ImageButton) rootView.findViewById(R.id.detail_related_streams_expand));
 
         actionBarHandler = new ActionBarHandler(activity);
+        videoDescriptionView.setAutoLinkMask(Linkify.WEB_URLS);
         videoDescriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
         infoItemBuilder = new InfoItemBuilder(activity);
