@@ -308,7 +308,6 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
                                      final ChannelInfo info) {
         subscriptionService.subscriptionTable().findAll(serviceId, channelUrl)
                 .toObservable()
-                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getSubscribeButtonMonitor(serviceId, channelUrl, info));
     }
@@ -440,7 +439,6 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
                 .firstOrError()
                 .map(update)
                 .toCompletable()
-                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(onComplete, onError);
     }

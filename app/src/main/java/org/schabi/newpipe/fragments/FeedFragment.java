@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -23,26 +24,34 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.search.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
 
 import io.reactivex.Completable;
 import io.reactivex.CompletableObserver;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
+import io.reactivex.functions.LongConsumer;
 import io.reactivex.schedulers.Schedulers;
 
+import static org.schabi.newpipe.report.UserAction.REQUESTED_CHANNEL;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class FeedFragment extends BaseFragment {
     private static final String VIEW_STATE_KEY = "view_state_key";
+    private static final String INFO_ITEMS_KEY = "info_items_key";
+
     private static final int INITIAL_FEED_SIZE = 8;
     private static final int SPINNER_DURATION = 3000;
 
@@ -60,6 +69,8 @@ public class FeedFragment extends BaseFragment {
     private Subscription feedSubscriber;
     private Disposable timerDisposable;
 
+    private AtomicLong pendingRequestCount;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -71,21 +82,23 @@ public class FeedFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
 
         disposables = new CompositeDisposable();
-        subscriptionService = SubscriptionService.getInstance( getContext() );
+        subscriptionService = SubscriptionService.getInstance(getContext());
+
+        pendingRequestCount = new AtomicLong();
 
         if (savedInstanceState != null) {
             // Get recycler view state
             viewState = savedInstanceState.getParcelable(VIEW_STATE_KEY);
 
             // Deserialize and get recycler adapter list
-            final Object[] serializedInfoItems = (Object[]) savedInstanceState.getSerializable("list");
+            final Object[] serializedInfoItems = (Object[]) savedInstanceState.getSerializable(INFO_ITEMS_KEY);
             if (serializedInfoItems != null) {
                 final InfoItem[] infoItems = Arrays.copyOf(
                         serializedInfoItems,
                         serializedInfoItems.length,
                         InfoItem[].class
                 );
-                feedInfos = Arrays.asList( infoItems );
+                feedInfos = Arrays.asList(infoItems);
             }
         }
     }
@@ -116,7 +129,7 @@ public class FeedFragment extends BaseFragment {
         }
 
         if (infoListAdapter != null) {
-            outState.putSerializable("list", infoListAdapter.getItemsList().toArray());
+            outState.putSerializable(INFO_ITEMS_KEY, infoListAdapter.getItemsList().toArray());
         }
     }
 
@@ -137,7 +150,7 @@ public class FeedFragment extends BaseFragment {
         return new OnScrollBelowItemsListener() {
             @Override
             public void onScrolledDown(RecyclerView recyclerView) {
-                if (feedSubscriber != null) feedSubscriber.request(1);
+                requestFeed(1, false);
             }
         };
     }
@@ -166,6 +179,31 @@ public class FeedFragment extends BaseFragment {
         populateView();
     }
 
+    private Single<ChannelInfo> getChannelInfoFetcher(final SubscriptionEntity subscriptionEntity) {
+        final StreamingService service = getService(subscriptionEntity.getServiceId());
+        final String url = subscriptionEntity.getUrl();
+        final Callable<ChannelInfo> callable = new Callable<ChannelInfo>() {
+            @Override
+            public ChannelInfo call() throws Exception {
+                final ChannelExtractor extractor = service != null ? service.getChannelExtractorInstance(url, 0) : null;
+                return ChannelInfo.getInfo(extractor);
+            }
+        };
+
+        return Single.fromCallable(callable)
+                .subscribeOn(subscriptionService.subscriptionScheduler())
+                .observeOn(AndroidSchedulers.mainThread());
+
+    }
+
+    private StreamingService getService(final int serviceId) {
+        try {
+            return NewPipe.getService(serviceId);
+        } catch (ExtractionException e) {
+            return null;
+        }
+    }
+
     private void populateView() {
         resetFragment();
 
@@ -179,31 +217,26 @@ public class FeedFragment extends BaseFragment {
             }
         };
 
-        final Function<SubscriptionEntity, ChannelInfo> mapper = new Function<SubscriptionEntity, ChannelInfo>() {
+        final Function<SubscriptionEntity, Single<ChannelInfo>> toChannelInfo = new Function<SubscriptionEntity, Single<ChannelInfo>>() {
             @Override
-            public ChannelInfo apply(@NonNull SubscriptionEntity subscriptionEntity) throws Exception {
-                final StreamingService service = getService(subscriptionEntity.getServiceId());
-                final String url = subscriptionEntity.getUrl();
+            public Single<ChannelInfo> apply(@NonNull SubscriptionEntity subscriptionEntity) throws Exception {
+                return getChannelInfoFetcher(subscriptionEntity);
+            }
+        };
 
-                final ChannelExtractor extractor = service != null ? service.getChannelExtractorInstance(url, 0) : null;
-                return ChannelInfo.getInfo(extractor);
+        final LongConsumer addToPendingCount = new LongConsumer() {
+            @Override
+            public void accept(long t) throws Exception {
+                pendingRequestCount.getAndAdd(t);
             }
         };
 
         subscriptionService.getSubscription()
-                .subscribeOn(Schedulers.io())
                 .flatMapIterable(unroll)
-                .map(mapper)
+                .flatMapSingle(toChannelInfo)
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnRequest(addToPendingCount)
                 .subscribe(getChannelInfoSubscriber());
-    }
-
-    private StreamingService getService(final int serviceId) {
-        try {
-            return NewPipe.getService(serviceId);
-        } catch (ExtractionException e) {
-            return null;
-        }
     }
 
     private Subscriber<ChannelInfo> getChannelInfoSubscriber() {
@@ -214,34 +247,39 @@ public class FeedFragment extends BaseFragment {
                 subscriptionService.getSubscription().connect();
 
                 if (viewState != null && resultRecyclerView != null &&
-                        feedInfos != null && infoListAdapter != null &&
-                        feedInfos.size() >= INITIAL_FEED_SIZE) {
+                        feedInfos != null && infoListAdapter != null && !feedInfos.isEmpty()) {
 
                     infoListAdapter.addInfoItemList(feedInfos);
                     resultRecyclerView.getLayoutManager().onRestoreInstanceState(viewState);
-                    animateView(loadingProgressBar, false, 200);
+
+                    final int pendingRequestCount = INITIAL_FEED_SIZE - feedInfos.size();
+                    if (pendingRequestCount > 0) {
+                        requestFeed(pendingRequestCount, true);
+                        infoListAdapter.showFooter(true);
+                    }
+
                 } else {
-                    feedSubscriber.request( INITIAL_FEED_SIZE );
+                    requestFeed(INITIAL_FEED_SIZE, true);
                 }
             }
 
             @Override
             public void onNext(final ChannelInfo channelInfo) {
+                pendingRequestCount.getAndDecrement();
+
+                if (infoListAdapter == null || channelInfo.related_streams.isEmpty()) return;
+
                 animateView(loadingProgressBar, false, 200);
 
-                if (!channelInfo.related_streams.isEmpty()) {
-                    final InfoItem item = channelInfo.related_streams.get( 0 );
-                    // Keep requesting new items if the current one already exists
-                    if (!isItemExist(infoListAdapter.getItemsList(), item)) {
-                        infoListAdapter.addInfoItem( item );
-                    } else if (feedSubscriber != null) {
-                        feedSubscriber.request(1);
-                    }
-
-                    if (infoListAdapter != null) infoListAdapter.showFooter(true);
+                final InfoItem item = channelInfo.related_streams.get(0);
+                // Keep requesting new items if the current one already exists
+                if (!doesItemExist(infoListAdapter.getItemsList(), item)) {
+                    infoListAdapter.addInfoItem(item);
+                    infoListAdapter.showFooter(true);
+                    startLoadSpinnerTimer();
+                } else if (feedSubscriber != null) {
+                    requestFeed(1, false);
                 }
-
-                startLoadSpinnerTimer();
             }
 
             @Override
@@ -258,7 +296,7 @@ public class FeedFragment extends BaseFragment {
         };
     }
 
-    private boolean isItemExist(final List<InfoItem> items, final InfoItem item) {
+    private boolean doesItemExist(final List<InfoItem> items, final InfoItem item) {
         for (final InfoItem existingItem: items) {
             if (existingItem.infoType() == item.infoType() &&
                     existingItem.getTitle().equals(item.getTitle()) &&
@@ -291,7 +329,15 @@ public class FeedFragment extends BaseFragment {
         Completable.timer(SPINNER_DURATION, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe( timerObserver );
+                .subscribe(timerObserver);
+    }
+
+    private void requestFeed(final int count, final boolean isSubscriber) {
+        if (feedSubscriber == null) return;
+
+        if (isSubscriber || pendingRequestCount.get() < 1) {
+            feedSubscriber.request(count);
+        }
     }
 
     private void onRecoverableError(int messageId) {
@@ -303,6 +349,8 @@ public class FeedFragment extends BaseFragment {
 
     private void onUnrecoverableError(Throwable exception) {
         if (DEBUG) Log.d(TAG, "onUnrecoverableError() called with: exception = [" + exception + "]");
+        ErrorActivity.reportError(getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(REQUESTED_CHANNEL, "unknown", "unknown", R.string.general_error));
+
         activity.finish();
     }
 

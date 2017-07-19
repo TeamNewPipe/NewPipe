@@ -10,12 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
+import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
-import org.schabi.newpipe.info_list.SubscriptionInfoItem;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.io.IOException;
@@ -30,6 +32,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+import static org.schabi.newpipe.report.UserAction.REQUESTED_CHANNEL;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class SubscriptionFragment extends BaseFragment {
@@ -171,7 +174,7 @@ public class SubscriptionFragment extends BaseFragment {
     private List<InfoItem> getSubscriptionItems(List<SubscriptionEntity> subscriptions) {
         List<InfoItem> items = new ArrayList<>();
         for (final SubscriptionEntity subscription: subscriptions) {
-            SubscriptionInfoItem item = new SubscriptionInfoItem();
+            ChannelInfoItem item = new ChannelInfoItem();
             item.webPageUrl = subscription.getUrl();
             item.serviceId = subscription.getServiceId();
             item.channelName = subscription.getTitle();
@@ -214,6 +217,7 @@ public class SubscriptionFragment extends BaseFragment {
 
     private void onUnrecoverableError(Throwable exception) {
         if (DEBUG) Log.d(TAG, "onUnrecoverableError() called with: exception = [" + exception + "]");
+        ErrorActivity.reportError(getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(REQUESTED_CHANNEL, "unknown", "unknown", R.string.general_error));
         activity.finish();
     }
 }

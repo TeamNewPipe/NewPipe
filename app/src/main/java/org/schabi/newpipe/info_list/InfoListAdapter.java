@@ -132,9 +132,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             case STREAM:
                 return 2;
             case CHANNEL:
-                // TODO: remove this hack by creating additional info item type
-                if (item instanceof SubscriptionInfoItem) return 5;
-                else return 3;
+                return 3;
             case PLAYLIST:
                 return 4;
             default:
@@ -159,9 +157,6 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             case 4:
                 Log.e(TAG, "Playlist is not yet implemented");
                 return null;
-            case 5:
-                return new SubscriptionInfoItemHolder(LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.subscription_item, parent, false));
             default:
                 Log.e(TAG, "Trollolo");
                 return null;
