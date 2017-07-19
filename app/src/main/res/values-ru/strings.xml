@@ -174,4 +174,20 @@
 
     <string name="show_higher_resolutions_title">Показывать более высокие разрешения</string>
     <string name="popup_mode_share_menu_title">NewPipe в окне</string>
-    </resources>
+    <string name="title_activity_about">О NewPipe</string>
+    <string name="action_settings">Настройки</string>
+    <string name="app_license_title">Лицензия NewPipe</string>
+    <string name="tab_licenses">Лицензии</string>
+    <string name="title_licenses">Сторонние лицензии</string>
+    <string name="action_open_website">Открыть веб-сайт</string>
+    <string name="action_about">О приложении</string>
+    <string name="error_unable_to_load_license">Не удалось загрузить лицензию</string>
+    <string name="tab_about">О приложении</string>
+    <string name="tab_contributors">Участники</string>
+    <string name="read_full_license">Прочитать лицензию</string>
+    <string name="app_description">Бесплатный лёгкий интерфейс Youtube для Android.</string>
+    <string name="view_on_github">Открыть на Github</string>
+    <string name="contribution_encouragement">Приветствуется всё — идеи, перевод, изменения дизайна, чистка кода или огромные изменения в коде. Чем больше сделано, тем лучше!</string>
+    <string name="copyright" formatted="true">© %1$s за авторством %2$s под %3$s</string>
+    <string name="contribution_title">Помощь проекту</string>
+</resources>
