@@ -133,7 +133,7 @@
     <string name="channel">頻道</string>
     <string name="yes">是</string>
     <string name="later">稍候</string>
-    <string name="could_not_load_image">無法取得圖片。</string>
+    <string name="could_not_load_image">無法取得圖片</string>
     <string name="app_ui_crash">應用程式或介面出現問題</string>
     <string name="info_labels">事件：\\n請求：\\n內容語言：\\n服務：\\nGMT 時間：\\nPackage：\\n版本：\\n作業系統版本：\\n全球 IP 域：</string>
     <string name="use_old_player_title">使用舊播放器</string>
