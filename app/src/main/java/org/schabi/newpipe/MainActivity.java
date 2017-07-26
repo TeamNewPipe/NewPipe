@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements
 
 
     private void addWatchHistoryEntry(StreamInfo streamInfo) {
-        if (sharedPreferences.getBoolean(getString(R.string.enable_watch_history_key), false)) {
+        if (sharedPreferences.getBoolean(getString(R.string.enable_watch_history_key), true)) {
             WatchHistoryEntry entry = new WatchHistoryEntry(streamInfo);
             watchHistoryDAO.addHistoryEntry(entry);
         }
@@ -253,7 +253,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onSearch(int serviceId, String query) {
         // Add search history entry
-        if (sharedPreferences.getBoolean(getString(R.string.enable_search_history_key), false)) {
+        if (sharedPreferences.getBoolean(getString(R.string.enable_search_history_key), true)) {
             SearchHistoryEntry searchHistoryEntry = new SearchHistoryEntry(new Date(), serviceId, query);
             searchHistoryDAO.addHistoryEntry(searchHistoryEntry);
         }
