@@ -10,12 +10,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.history.dao.HistoryDAO;
 import org.schabi.newpipe.history.model.WatchHistoryEntry;
+import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.util.NavigationHelper;
+
+import static org.schabi.newpipe.info_list.InfoItemBuilder.getDurationString;
 
 public class WatchedHistoryFragment extends HistoryFragment<WatchHistoryEntry> {
 
@@ -65,30 +71,42 @@ public class WatchedHistoryFragment extends HistoryFragment<WatchHistoryEntry> {
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            View itemView = inflater.inflate(R.layout.item_watch_history, parent, false);
+            View itemView = inflater.inflate(R.layout.stream_item, parent, false);
             return new ViewHolder(itemView);
         }
 
         @Override
         public void onViewRecycled(ViewHolder holder) {
             holder.itemView.setOnClickListener(null);
+            ImageLoader.getInstance()
+                    .cancelDisplayTask(holder.thumbnailView);
         }
 
         @Override
         void onBindViewHolder(ViewHolder holder, WatchHistoryEntry entry, int position) {
             holder.date.setText(getFormattedDate(entry.getCreationDate()));
             holder.streamTitle.setText(entry.getTitle());
+            holder.uploader.setText(entry.getUploader());
+            holder.duration.setText(getDurationString(entry.getDuration()));
+            ImageLoader.getInstance()
+                    .displayImage(entry.getThumbnailURL(), holder.thumbnailView);
         }
     }
 
     private static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView date;
         private final TextView streamTitle;
+        private final ImageView thumbnailView;
+        private final TextView uploader;
+        private final TextView duration;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            date = (TextView) itemView.findViewById(R.id.history_date);
-            streamTitle = (TextView) itemView.findViewById(R.id.stream_title);
+            thumbnailView = (ImageView) itemView.findViewById(R.id.itemThumbnailView);
+            date = (TextView) itemView.findViewById(R.id.itemAdditionalDetails);
+            streamTitle = (TextView) itemView.findViewById(R.id.itemVideoTitleView);
+            uploader = (TextView) itemView.findViewById(R.id.itemUploaderView);
+            duration = (TextView) itemView.findViewById(R.id.itemDurationView);
         }
     }
 }
