@@ -1,2 +1,185 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="main_bg_subtitle">Nhấp tìm kiếm để bắt đầu</string>
+    <string name="view_count_text">%1$s lượt xem</string>
+    <string name="upload_date_text">Đăng vào</string>
+    <string name="no_player_found">Không tìm thấy trình phát. Bạn có muốn cài đặt VLC?</string>
+    <string name="install">Cài đặt</string>
+    <string name="cancel">Hủy</string>
+    <string name="open_in_browser">Mở trong teinhf duyệt</string>
+    <string name="open_in_popup_mode">Mở trong chế độ popup</string>
+    <string name="share">Chia sẻ</string>
+    <string name="download">Tải về</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="settings">Cài đặt</string>
+    <string name="did_you_mean">Ý của bạn là %1$s ?</string>
+    <string name="share_dialog_title">Chia sẻ với</string>
+    <string name="choose_browser">Chọn trình duyệt</string>
+    <string name="use_external_video_player_title">Sử dụng trình phát video bên ngoài</string>
+    <string name="use_external_video_player_summary">Một số độ phân giải sẽ KHÔNG có âm thanh khi chế độ này</string>
+    <string name="use_external_audio_player_title">Sử dụng trình phát âm thanh bên ngoài</string>
+    <string name="popup_mode_share_menu_title">Chế độ Popup của NewPipe</string>
+    <string name="controls_popup_title">Chế độ Popup</string>
+
+    <string name="download_path_title">Đường dẫn tải xuống video</string>
+    <string name="download_path_summary">Đường dẫn để lưu trữ video đã tải xuống</string>
+    <string name="download_path_dialog_title">Nhập đường dẫn tải xuống cho video</string>
+
+    <string name="download_path_audio_title">Đường dẫn tải audio</string>
+    <string name="download_path_audio_summary">Đường dẫn để lưu trữ âm thanh đã tải xuống</string>
+    <string name="download_path_audio_dialog_title">Nhập đường dẫn tải xuống cho tệp âm thanh</string>
+
+    <string name="autoplay_by_calling_app_title">Tự động phát khi được gọi từ một ứng dụng khác</string>
+    <string name="autoplay_by_calling_app_summary">Tự động phát một video khi NewPipe được gọi từ một ứng dụng khác</string>
+    <string name="default_resolution_title">Độ phân giải mặc định</string>
+    <string name="default_popup_resolution_title">Độ phân giải popup mặc định</string>
+    <string name="show_higher_resolutions_title">Hiển thị độ phân giải cao hơn</string>
+    <string name="show_higher_resolutions_summary">Chỉ một số thiết bị hỗ trợ chơi các video 2K / 4K</string>
+    <string name="play_with_kodi_title">Phát với Kodi</string>
+    <string name="kore_not_found">Ứng dụng Kore không tìm thấy. Cài đặt Kore?</string>
+    <string name="show_play_with_kodi_title">Hiển thị tùy chọn \"Phát với Kodi\"</string>
+    <string name="show_play_with_kodi_summary">Hiển thị tùy chọn để phát video qua trung tâm media Kodi</string>
+    <string name="play_audio">Âm thanh</string>
+    <string name="default_audio_format_title">Định dạng âm thanh mặc định</string>
+    <string name="preferred_video_format_title">Định dạng video ưa thích</string>
+    <string name="webm_description">WebM -- Định dạng miễn phí</string>
+    <string name="m4a_description">M4a -- chất lượng tốt hơn</string>
+    <string name="controls_background_title">Nền</string>
+    <string name="theme_title">Chủ đề</string>
+    <string name="light_theme_title">Sáng</string>
+    <string name="dark_theme_title">Tối</string>
+    <string name="black_theme_title">Đen</string>
+    <string name="popup_remember_size_pos_title">Nhớ kích thước và vị trí bật lên</string>
+    <string name="popup_remember_size_pos_summary">Nhớ kích thước và vị trí cuối cùng được đặt vào cửa sổ bật lên</string>
+    <string name="player_gesture_controls_title">Điều khiển cử chỉ trình phát</string>
+    <string name="player_gesture_controls_summary">Sử dụng cử chỉ để kiểm soát độ sáng và âm lượng của trình phát</string>
+    <string name="show_search_suggestions_title">Đề xuất tìm kiếm</string>
+    <string name="show_search_suggestions_summary">Hiển thị các đề xuất khi tìm kiếm</string>
+
+    <string name="download_dialog_title">Tải về</string>
+
+    <string name="next_video_title">Video tiếp theo</string>
+    <string name="show_next_and_similar_title">Hiển thị các video tiếp theo và tương tự</string>
+    <string name="url_not_supported_toast">URL không được hỗ trợ</string>
+    <string name="settings_category_appearance_title">Hiển thị</string>
+    <string name="settings_category_other_title">Khác</string>
+    <string name="background_player_playing_toast">Phát ở chế độ nền</string>
+    <string name="popup_playing_toast">Phát ở chế độ cửa sổ bật lên (Popup)</string>
+    <string name="play_btn_text">Phát</string>
+    <string name="content">Nội dung</string>
+    <string name="show_age_restricted_content_title">Hiển thị nội dung bị hạn chế độ tuổi</string>
+    <string name="video_is_age_restricted">Video bị giới hạn về tuổi. Bật chế độ cho phép hiển thị video bị hạn chế về độ tuổi ở trong cài đặt trước.</string>
+    <string name="duration_live">Trực tiếp</string>
+    <string name="downloads">Tải xuống</string>
+    <string name="downloads_title">Tải xuống</string>
+    <string name="error_report_title">Báo lỗi</string>
+    <string name="all">Tất cả</string>
+    <string name="channel">Kênh</string>
+    <string name="yes">Có</string>
+    <string name="later">Để sau</string>
+    <string name="disabled">Vô hiệu</string>
+    <string name="filter">Bộ lọc</string>
+    <string name="refresh">Tải lại</string>
+    <string name="clear">Xóa</string>
+    <string name="popup_resizing_indicator_title">Thay đổi kích thước</string>
+    <string name="best_resolution">Độ phân giải tốt nhất</string>
+
+    <string name="general_error">Lỗi</string>
+    <string name="network_error">Lỗi kết nối mạng</string>
+    <string name="could_not_load_thumbnails">Không thể tải tất cả các thumbnails</string>
+    <string name="youtube_signature_decryption_error">Không thể giải mã chữ ký URL của video.</string>
+    <string name="parsing_error">Không thể phân tích trang web.</string>
+    <string name="light_parsing_error">Không thể phân tích trang web hoàn toàn.</string>
+    <string name="content_not_available">Nội dung không có sẵn.</string>
+    <string name="blocked_by_gema">Chặn bởi GEMA.</string>
+    <string name="could_not_setup_download_menu">Không thể thiết lập trình đơn tải xuống.</string>
+    <string name="live_streams_not_supported">Đây là một video phát trực tiếp. Chúng chưa được hỗ trợ.</string>
+    <string name="could_not_get_stream">Không thể lấy bất kỳ luồng nào.</string>
+    <string name="could_not_load_image">Không thể tải hình ảnh</string>
+    <string name="app_ui_crash">Ứng dụng / Giao diện người dùng bị lỗi</string>
+    <string name="sorry_string">Xin lỗi, điều đó không nên xảy ra.</string>
+    <string name="error_report_button_text">Báo lỗi qua email</string>
+    <string name="error_snackbar_message">Xin lỗi, một số lỗi đã xảy ra.</string>
+    <string name="error_snackbar_action">BÁo CÁO</string>
+    <string name="what_device_headline">Thông tin:</string>
+    <string name="what_happened_headline">Chuyện gì đã xảy ra:</string>
+    <string name="info_labels">Gì: \\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:\\nGlob. IP range:</string>
+    <string name="your_comment">Nhận xét của bạn (bằng tiếng Anh):</string>
+    <string name="error_details_headline">Chi tiết:</string>
+
+
+    <string name="list_thumbnail_view_description">Hình thu nhỏ xem trước video</string>
+    <string name="detail_thumbnail_view_description">Hình thu nhỏ xem trước video</string>
+    <string name="detail_uploader_thumbnail_view_description">Hình thu nhỏ người dùng của người tải lên</string>
+    <string name="detail_likes_img_view_description">Lượt thích</string>
+    <string name="detail_dislikes_img_view_description">Dislike</string>
+    <string name="use_tor_title">Dùng Tor</string>
+    <string name="use_tor_summary">(Thử nghiệm) Buộc tải thông tin lưu lượng truy cập thông qua Tor để tăng tính riêng tư (streaming video chưa được hỗ trợ).</string>
+    <string name="report_error">Báo lỗi</string>
+    <string name="user_report">Báo cáo người dùng</string>
+
+    <string name="err_dir_create">Không thể tạo thư mục tải xuống \'% 1 $ s\'</string>
+    <string name="info_dir_created">Đã tạo thư mục tải xuống \'% 1 $ s\'</string>
+
+    <string name="video">Video</string>
+    <string name="audio">Âm thanh</string>
+    <string name="retry">Thử lại</string>
+    <string name="storage_permission_denied">Quyền truy cập vào bộ nhớ đã bị từ chối</string>
+    <string name="use_old_player_title">Sử dụng trình phát cũ</string>
+    <string name="use_old_player_summary">Máy nghe nhạc Mediaframework tích hợp sẵn.</string>
+    <string name="videos">Video</string>
+    <string name="subscriber">người đăng kí</string>
+    <string name="subscriber_plural">người đăng ký</string>
+    <string name="subscribe">Đăng ký</string>
+    <string name="views">lượt xem</string>
+    <string name="short_thousand">ngàn</string>
+    <string name="short_million">triệu</string>
+    <string name="short_billion">tỉ</string>
+
+    <string name="start">Bắt đầu</string>
+    <string name="pause">Dừng</string>
+    <string name="view">Xem</string>
+    <string name="delete">Xóa</string>
+    <string name="checksum">checksum</string>
+
+    <string name="add">Nhiệm vụ mới</string>
+    <string name="finish">Được</string>
+
+    <string name="msg_name">Tên file</string>
+    <string name="msg_threads">Chủ đề</string>
+    <string name="msg_error">Lỗi</string>
+    <string name="msg_server_unsupported">Sever không được hỗ trợ</string>
+    <string name="msg_exists">Tập tin đã tồn tại</string>
+    <string name="msg_url_malform">URL không hợp lệ hoặc Internet không khả dụng</string>
+    <string name="msg_running">NewPipe đang tải xuống</string>
+    <string name="msg_running_detail">Chạm để biết chi tiết</string>
+    <string name="msg_wait">Vui lòng đợi …</string>
+    <string name="msg_copied">Sao chép vào clipboard.</string>
+    <string name="no_available_dir">Hãy chọn một thư mục tải về có sẵn.</string>
+    <string name="msg_popup_permission">Sự cho phép này là cần thiết để
+\nMở trong chế độ bật lên</string>
+
+    <string name="reCaptchaActivity">ReCAPTCHA</string>
+    <string name="reCaptcha_title">ReCAPTCHA Challenge</string>
+    <string name="recaptcha_request_toast">Yêu cầu reCAPTCHA</string>
+
+    <string name="title_activity_about">Giới thiệu về NewPipe</string>
+    <string name="action_settings">Cài đặt</string>
+    <string name="action_about">Về</string>
+    <string name="title_licenses">Giấy phép của bên thứ ba</string>
+    <string name="copyright" formatted="true">© %1$s bởi %2$s dưới %3$s</string>
+    <string name="error_unable_to_load_license">Không thể tải giấy phép</string>
+    <string name="action_open_website">Mở trang web</string>
+    <string name="tab_about">Về</string>
+    <string name="tab_contributors">Cộng tác viên</string>
+    <string name="tab_licenses">Giấy phép</string>
+    <string name="app_description">Giao diện trực quan nhẹ cho Android.</string>
+    <string name="view_on_github">Xem trên Github</string>
+    <string name="app_license_title">Giấy phép của NewPipe</string>
+    <string name="contribution_encouragement">Cho dù bạn có ý tưởng, dịch, thay đổi thiết kế, làm sạch mã hoặc thay đổi mã, sự trợ giúp luôn được hoan nghênh. Càng làm nhiều thì càng tốt!</string>
+    <string name="read_full_license">Đọc giấy phép</string>
+    <string name="contribution_title">Sự đóng góp</string>
+<string name="screen_rotation">Quay</string>
+    <string name="search_language_title">Ngôn ngữ nội dung ưu tiên</string>
+    <string name="settings_category_video_audio_title">Video &amp; Âm thanh</string>
+    <string name="settings_category_popup_title">Bật lên</string>
+    </resources>
