@@ -185,4 +185,16 @@
     <string name="msg_popup_permission">Questo permesso è necessario
 \nper la modalità popup</string>
 
+    <string name="action_settings">Impostazioni</string>
+    <string name="action_about">Informazioni</string>
+    <string name="title_licenses">Licenze di terzi</string>
+    <string name="copyright" formatted="true">© %1$s %2$s protetto da licenza %3$s</string>
+    <string name="error_unable_to_load_license">Impossible caricare il contratto di licenza</string>
+    <string name="action_open_website">Visita il sito</string>
+    <string name="tab_about">Informazioni</string>
+    <string name="tab_contributors">Contributori</string>
+    <string name="tab_licenses">Licenze</string>
+    <string name="app_description">Un\'interfaccia leggera e gratuita per accedere a Youtube su Android.</string>
+    <string name="view_on_github">Apri in Github</string>
+    <string name="app_license_title">Licenza d\'uso di NewPipe</string>
     </resources>
