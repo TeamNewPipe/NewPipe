@@ -53,7 +53,7 @@
 
     <string name="settings_category_appearance_title">Aspetto</string>
     <string name="settings_category_other_title">Altro</string>
-    <string name="background_player_playing_toast">Riproduzione in sottofondo</string>
+    <string name="background_player_playing_toast">In riproduzione in sottofondo</string>
     <string name="play_btn_text">Riproduci</string>
 
     <string name="general_error">Errore</string>
