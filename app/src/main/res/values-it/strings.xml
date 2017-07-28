@@ -200,4 +200,5 @@
     <string name="contribution_encouragement">Un aiuto è sempre il benvenuto: nuove idee, design o traduzioni, piccoli cambi o modifiche radicali del codice rendono l\'applicazione sempre migliore!</string>
     <string name="read_full_license">Leggi la licenza d\'uso</string>
     <string name="contribution_title">Contributi</string>
-</resources>
+<string name="title_activity_about">Informazioni su NewPipe</string>
+    </resources>
