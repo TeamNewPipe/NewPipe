@@ -174,7 +174,7 @@
     <string name="show_search_suggestions_summary">Mostra suggerimenti durante la ricerca.</string>
 
     <string name="settings_category_popup_title">Popup</string>
-    <string name="filter">Filtro</string>
+    <string name="filter">Filtra i risultati</string>
     <string name="refresh">Ricarica</string>
     <string name="clear">Pulisci</string>
     <string name="popup_resizing_indicator_title">Ridimensionamento</string>
