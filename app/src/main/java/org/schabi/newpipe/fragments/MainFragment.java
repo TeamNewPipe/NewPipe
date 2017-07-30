@@ -28,7 +28,6 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
 
     private AppCompatActivity activity;
 
-    private TabLayout tabLayout;
     private ViewPager viewPager;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -54,12 +53,13 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
         if (DEBUG) Log.d(TAG, "onCreateView() called with: inflater = [" + inflater + "], container = [" + container + "], savedInstanceState = [" + savedInstanceState + "]");
         View inflatedView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        tabLayout = (TabLayout) inflatedView.findViewById(R.id.main_tab_layout);
+        TabLayout tabLayout = (TabLayout) inflatedView.findViewById(R.id.main_tab_layout);
         viewPager = (ViewPager) inflatedView.findViewById(R.id.pager);
 
         /*  Nested fragment, use child fragment here to maintain backstack in view pager. */
         PagerAdapter adapter = new PagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(adapter.getCount());
 
         tabLayout.setupWithViewPager(viewPager);
 

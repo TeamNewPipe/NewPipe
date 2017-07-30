@@ -2,6 +2,7 @@ package org.schabi.newpipe.database.subscription;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
@@ -13,11 +14,13 @@ import static org.schabi.newpipe.database.subscription.SubscriptionEntity.SUBSCR
         indices = {@Index(value = {SUBSCRIPTION_SERVICE_ID, SUBSCRIPTION_URL}, unique = true)})
 public class SubscriptionEntity {
 
-    final static String SUBSCRIPTION_TABLE          = "subscriptions";
-    final static String SUBSCRIPTION_SERVICE_ID     = "service_id";
-    final static String SUBSCRIPTION_URL            = "url";
-    final static String SUBSCRIPTION_TITLE          = "title";
-    final static String SUBSCRIPTION_THUMBNAIL_URL  = "thumbnail_url";
+    final static String SUBSCRIPTION_TABLE              = "subscriptions";
+    final static String SUBSCRIPTION_SERVICE_ID         = "service_id";
+    final static String SUBSCRIPTION_URL                = "url";
+    final static String SUBSCRIPTION_TITLE              = "title";
+    final static String SUBSCRIPTION_THUMBNAIL_URL      = "thumbnail_url";
+    final static String SUBSCRIPTION_SUBSCRIBER_COUNT   = "subscriber_count";
+    final static String SUBSCRIPTION_DESCRIPTION        = "description";
 
     @PrimaryKey(autoGenerate = true)
     private long uid = 0;
@@ -25,7 +28,6 @@ public class SubscriptionEntity {
     @ColumnInfo(name = SUBSCRIPTION_SERVICE_ID)
     private int serviceId = -1;
 
-    /* Do not keep extraneous information on entities as they are dynamic */
     @ColumnInfo(name = SUBSCRIPTION_URL)
     private String url;
 
@@ -34,6 +36,12 @@ public class SubscriptionEntity {
 
     @ColumnInfo(name = SUBSCRIPTION_THUMBNAIL_URL)
     private String thumbnailUrl;
+
+    @ColumnInfo(name = SUBSCRIPTION_SUBSCRIBER_COUNT)
+    private Long subscriberCount;
+
+    @ColumnInfo(name = SUBSCRIPTION_DESCRIPTION)
+    private String description;
 
     public long getUid() {
         return uid;
@@ -74,5 +82,32 @@ public class SubscriptionEntity {
 
     public void setThumbnailUrl(String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
+    }
+
+    public Long getSubscriberCount() {
+        return subscriberCount;
+    }
+
+    public void setSubscriberCount(Long subscriberCount) {
+        this.subscriberCount = subscriberCount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Ignore
+    public void setData(final String title,
+                        final String thumbnailUrl,
+                        final String description,
+                        final Long subscriberCount) {
+        this.setTitle(title);
+        this.setThumbnailUrl(thumbnailUrl);
+        this.setDescription(description);
+        this.setSubscriberCount(subscriberCount);
     }
 }

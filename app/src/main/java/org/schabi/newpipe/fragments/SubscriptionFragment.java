@@ -39,6 +39,7 @@ public class SubscriptionFragment extends BaseFragment {
     private static final String VIEW_STATE_KEY = "view_state_key";
     private final String TAG = "SubscriptionFragment@" + Integer.toHexString(hashCode());
 
+    private View inflatedView;
     private InfoListAdapter infoListAdapter;
     private RecyclerView resultRecyclerView;
     private Parcelable viewState;
@@ -50,7 +51,10 @@ public class SubscriptionFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_subscription, container, false);
+        if (inflatedView == null) {
+            inflatedView = inflater.inflate(R.layout.fragment_subscription, container, false);
+        }
+        return inflatedView;
     }
 
     @Override
@@ -179,6 +183,8 @@ public class SubscriptionFragment extends BaseFragment {
             item.serviceId = subscription.getServiceId();
             item.channelName = subscription.getTitle();
             item.thumbnailUrl = subscription.getThumbnailUrl();
+            item.subscriberCount = subscription.getSubscriberCount();
+            item.description = subscription.getDescription();
 
             items.add( item );
         }

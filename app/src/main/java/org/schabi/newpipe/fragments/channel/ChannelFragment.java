@@ -346,17 +346,17 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
                 if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();
 
                 if (subscriptionEntities.isEmpty()) {
-                    Log.d(TAG, "No subscription to this channel!");
+                    if (DEBUG) Log.d(TAG, "No subscription to this channel!");
                     SubscriptionEntity channel = new SubscriptionEntity();
                     channel.setServiceId( serviceId );
                     channel.setUrl( channelUrl );
-                    channel.setTitle( info.channel_name );
-                    channel.setThumbnailUrl( info.avatar_url );
+                    channel.setData(info.channel_name, info.avatar_url, "", info.subscriberCount);
+
                     subscribeButtonMonitor = changeSubscription(headerSubscribeButton, mapOnSubscribe(channel));
 
                     headerSubscribeButton.setText(R.string.subscribe_button_title);
                 } else {
-                    Log.d(TAG, "Found subscription to this channel!");
+                    if (DEBUG) Log.d(TAG, "Found subscription to this channel!");
                     final SubscriptionEntity subscription = subscriptionEntities.get(0);
                     subscribeButtonMonitor = changeSubscription(headerSubscribeButton, mapOnUnsubscribe(subscription));
 
@@ -382,14 +382,14 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
         final Consumer<Object> onNext = new Consumer<Object>() {
             @Override
             public void accept(@NonNull Object o) throws Exception {
-                Log.d(TAG, "Changed subscription status to this channel!");
+                if (DEBUG) Log.d(TAG, "Changed subscription status to this channel!");
             }
         };
 
         final Consumer<Throwable> onError = new Consumer<Throwable>() {
             @Override
             public void accept(@NonNull Throwable throwable) throws Exception {
-                Log.e(TAG, "Subscription Fatal Error: ", throwable.getCause());
+                if (DEBUG) Log.e(TAG, "Subscription Fatal Error: ", throwable.getCause());
                 Toast.makeText(getContext(), R.string.subscription_change_failed, Toast.LENGTH_SHORT).show();
             }
         };
@@ -411,8 +411,8 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
             public Void apply(@NonNull List<SubscriptionEntity> subscriptionEntities) throws Exception {
                 if (subscriptionEntities.size() == 1) {
                     SubscriptionEntity subscription = subscriptionEntities.get(0);
-                    subscription.setThumbnailUrl( info.avatar_url );
-                    subscription.setTitle( info.channel_name );
+                    subscription.setData(info.channel_name, info.avatar_url, "", info.subscriberCount);
+
                     subscriptionService.subscriptionTable().update(subscription);
                 }
                 return null;
@@ -422,7 +422,7 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
         final Action onComplete = new Action() {
             @Override
             public void run() throws Exception {
-                Log.d(TAG, "Updated subscription: " + channelUrl);
+                if (DEBUG) Log.d(TAG, "Updated subscription: " + channelUrl);
             }
         };
 

@@ -54,7 +54,7 @@ public class SubscriptionService {
     }
 
     protected final String TAG = "SubscriptionService@" + Integer.toHexString(hashCode());
-    private static final int SUBSCRIPTION_DEBOUNCE_INTERVAL = 500;
+    private static final int SUBSCRIPTION_DEBOUNCE_INTERVAL = 2000;
     private static final int SUBSCRIPTION_THREAD_POOL_SIZE = 4;
 
     private AppDatabase db;

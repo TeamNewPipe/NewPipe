@@ -41,6 +41,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.LongConsumer;
 import io.reactivex.schedulers.Schedulers;
@@ -57,6 +58,7 @@ public class FeedFragment extends BaseFragment {
 
     private final String TAG = "FeedFragment@" + Integer.toHexString(hashCode());
 
+    private View inflatedView;
     private InfoListAdapter infoListAdapter;
     private RecyclerView resultRecyclerView;
 
@@ -74,7 +76,10 @@ public class FeedFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_subscription, container, false);
+        if (inflatedView == null) {
+            inflatedView = inflater.inflate(R.layout.fragment_subscription, container, false);
+        }
+        return inflatedView;
     }
 
     @Override
@@ -101,6 +106,12 @@ public class FeedFragment extends BaseFragment {
                 feedInfos = Arrays.asList(infoItems);
             }
         }
+
+        if (infoListAdapter == null) {
+            infoListAdapter = new InfoListAdapter(getActivity());
+        }
+
+        populateFeed();
     }
 
     @Override
@@ -158,26 +169,42 @@ public class FeedFragment extends BaseFragment {
     @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
+
+        if (infoListAdapter == null) return;
+
+        animateView(errorPanel, false, 200);
+
         resultRecyclerView = ((RecyclerView) rootView.findViewById(R.id.result_list_view));
         resultRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
-        if (infoListAdapter == null) {
-            infoListAdapter = new InfoListAdapter(getActivity());
-            infoListAdapter.setFooter(activity.getLayoutInflater().inflate(R.layout.pignate_footer, resultRecyclerView, false));
-            infoListAdapter.showFooter(false);
-            infoListAdapter.setOnStreamInfoItemSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener() {
-                @Override
-                public void selected(int serviceId, String url, String title) {
-                    NavigationHelper.openVideoDetailFragment(getParentFragment().getFragmentManager(), serviceId, url, title);
-                }
-            });
-        }
+
+        infoListAdapter.setFooter(activity.getLayoutInflater().inflate(R.layout.pignate_footer, resultRecyclerView, false));
+        infoListAdapter.showFooter(false);
+        infoListAdapter.setOnStreamInfoItemSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener() {
+            @Override
+            public void selected(int serviceId, String url, String title) {
+                NavigationHelper.openVideoDetailFragment(getParentFragment().getFragmentManager(), serviceId, url, title);
+            }
+        });
 
         resultRecyclerView.setAdapter(infoListAdapter);
         resultRecyclerView.addOnScrollListener(getOnScrollListener());
         resultRecyclerView.addOnScrollListener(getOnBottomListener());
 
-        populateView();
+        if (viewState != null && feedInfos != null && !feedInfos.isEmpty()) {
+            infoListAdapter.addInfoItemList(feedInfos);
+            resultRecyclerView.getLayoutManager().onRestoreInstanceState(viewState);
+            final int pendingRequestCount = INITIAL_FEED_SIZE - feedInfos.size();
+
+            feedInfos = null;
+            viewState = null;
+
+            if (pendingRequestCount > 0) {
+                requestFeed(pendingRequestCount, true);
+                showFooterSpinner();
+            }
+        }
     }
+
 
     private Single<ChannelInfo> getChannelInfoFetcher(final SubscriptionEntity subscriptionEntity) {
         final StreamingService service = getService(subscriptionEntity.getServiceId());
@@ -204,13 +231,18 @@ public class FeedFragment extends BaseFragment {
         }
     }
 
-    private void populateView() {
+    private void populateFeed() {
         resetFragment();
 
-        animateView(loadingProgressBar, true, 200);
-        animateView(errorPanel, false, 200);
+        final Consumer<List<SubscriptionEntity>> onDatabaseUpdate = new Consumer<List<SubscriptionEntity>>() {
+            @Override
+            public void accept(@NonNull List<SubscriptionEntity> subscriptionEntities) throws Exception {
+                if (infoListAdapter != null) infoListAdapter.clearStreamItemList();
+                requestFeed(INITIAL_FEED_SIZE, true);
+            }
+        };
 
-        final Function<List<SubscriptionEntity>, List<SubscriptionEntity>> unroll = new Function<List<SubscriptionEntity>, List<SubscriptionEntity>>() {
+        final Function<List<SubscriptionEntity>, List<SubscriptionEntity>> unrollEntities = new Function<List<SubscriptionEntity>, List<SubscriptionEntity>>() {
             @Override
             public List<SubscriptionEntity> apply(@NonNull List<SubscriptionEntity> subscriptionEntities) throws Exception {
                 return subscriptionEntities;
@@ -232,7 +264,8 @@ public class FeedFragment extends BaseFragment {
         };
 
         subscriptionService.getSubscription()
-                .flatMapIterable(unroll)
+                .doOnNext(onDatabaseUpdate)
+                .flatMapIterable(unrollEntities)
                 .flatMapSingle(toChannelInfo)
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnRequest(addToPendingCount)
@@ -245,38 +278,20 @@ public class FeedFragment extends BaseFragment {
             public void onSubscribe(Subscription s) {
                 feedSubscriber = s;
                 subscriptionService.getSubscription().connect();
-
-                if (viewState != null && resultRecyclerView != null &&
-                        feedInfos != null && infoListAdapter != null && !feedInfos.isEmpty()) {
-
-                    infoListAdapter.addInfoItemList(feedInfos);
-                    resultRecyclerView.getLayoutManager().onRestoreInstanceState(viewState);
-
-                    final int pendingRequestCount = INITIAL_FEED_SIZE - feedInfos.size();
-                    if (pendingRequestCount > 0) {
-                        requestFeed(pendingRequestCount, true);
-                        infoListAdapter.showFooter(true);
-                    }
-
-                } else {
-                    requestFeed(INITIAL_FEED_SIZE, true);
-                }
             }
 
             @Override
             public void onNext(final ChannelInfo channelInfo) {
+                if (loadingProgressBar != null) animateView(loadingProgressBar, false, 200);
+
                 pendingRequestCount.getAndDecrement();
 
                 if (infoListAdapter == null || channelInfo.related_streams.isEmpty()) return;
-
-                animateView(loadingProgressBar, false, 200);
 
                 final InfoItem item = channelInfo.related_streams.get(0);
                 // Keep requesting new items if the current one already exists
                 if (!doesItemExist(infoListAdapter.getItemsList(), item)) {
                     infoListAdapter.addInfoItem(item);
-                    infoListAdapter.showFooter(true);
-                    startLoadSpinnerTimer();
                 } else if (feedSubscriber != null) {
                     requestFeed(1, false);
                 }
@@ -303,6 +318,13 @@ public class FeedFragment extends BaseFragment {
                     existingItem.getLink().equals(item.getLink())) return true;
         }
         return false;
+    }
+
+    private void showFooterSpinner() {
+        if (infoListAdapter == null) return;
+
+        infoListAdapter.showFooter(true);
+        startLoadSpinnerTimer();
     }
 
     private void startLoadSpinnerTimer() {
@@ -332,10 +354,10 @@ public class FeedFragment extends BaseFragment {
                 .subscribe(timerObserver);
     }
 
-    private void requestFeed(final int count, final boolean isSubscriber) {
+    private void requestFeed(final int count, final boolean isInitialFeed) {
         if (feedSubscriber == null) return;
 
-        if (isSubscriber || pendingRequestCount.get() < 1) {
+        if (isInitialFeed || pendingRequestCount.get() < 1) {
             feedSubscriber.request(count);
         }
     }
@@ -361,7 +383,7 @@ public class FeedFragment extends BaseFragment {
 
     @Override
     protected void reloadContent() {
-        populateView();
+        populateFeed();
     }
 
     @Override
