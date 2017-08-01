@@ -16,11 +16,7 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.channel.ChannelExtractor;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
-import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.search.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
@@ -29,22 +25,16 @@ import org.schabi.newpipe.util.NavigationHelper;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-import io.reactivex.Completable;
-import io.reactivex.CompletableObserver;
-import io.reactivex.Single;
+import io.reactivex.Flowable;
+import io.reactivex.MaybeObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.functions.LongConsumer;
-import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.report.UserAction.REQUESTED_CHANNEL;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -54,7 +44,6 @@ public class FeedFragment extends BaseFragment {
     private static final String INFO_ITEMS_KEY = "info_items_key";
 
     private static final int INITIAL_FEED_SIZE = 8;
-    private static final int SPINNER_DURATION = 3000;
 
     private final String TAG = "FeedFragment@" + Integer.toHexString(hashCode());
 
@@ -63,33 +52,27 @@ public class FeedFragment extends BaseFragment {
     private RecyclerView resultRecyclerView;
 
     private Parcelable viewState;
-    private List<InfoItem> feedInfos;
+    private AtomicBoolean retainFeedItems;
 
-    /* Used for subscription following fragment lifecycle */
-    private CompositeDisposable disposables;
     private SubscriptionService subscriptionService;
+
+    private Disposable subscriptionObserver;
     private Subscription feedSubscriber;
-    private Disposable timerDisposable;
 
-    private AtomicLong pendingRequestCount;
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        if (inflatedView == null) {
-            inflatedView = inflater.inflate(R.layout.fragment_subscription, container, false);
-        }
-        return inflatedView;
-    }
-
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment LifeCycle
+    ///////////////////////////////////////////////////////////////////////////
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        disposables = new CompositeDisposable();
         subscriptionService = SubscriptionService.getInstance(getContext());
 
-        pendingRequestCount = new AtomicLong();
+        retainFeedItems = new AtomicBoolean(false);
+
+        if (infoListAdapter == null) {
+            infoListAdapter = new InfoListAdapter(getActivity());
+        }
 
         if (savedInstanceState != null) {
             // Get recycler view state
@@ -103,29 +86,22 @@ public class FeedFragment extends BaseFragment {
                         serializedInfoItems.length,
                         InfoItem[].class
                 );
-                feedInfos = Arrays.asList(infoItems);
+                final List<InfoItem> feedInfos = Arrays.asList(infoItems);
+                infoListAdapter.addInfoItemList( feedInfos );
             }
-        }
 
-        if (infoListAdapter == null) {
-            infoListAdapter = new InfoListAdapter(getActivity());
+            // Already displayed feed items survive configuration changes
+            retainFeedItems.set(true);
         }
-
-        populateFeed();
     }
 
+    @Nullable
     @Override
-    public void onDestroy() {
-        if (disposables != null) disposables.dispose();
-        if (feedSubscriber != null) feedSubscriber.cancel();
-        if (timerDisposable != null) timerDisposable.dispose();
-
-        timerDisposable = null;
-        feedSubscriber = null;
-        subscriptionService = null;
-        disposables = null;
-
-        super.onDestroy();
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        if (inflatedView == null) {
+            inflatedView = inflater.inflate(R.layout.fragment_subscription, container, false);
+        }
+        return inflatedView;
     }
 
     @Override
@@ -144,6 +120,32 @@ public class FeedFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void onDestroyView() {
+        // Do not monitor for updates when user is not viewing the feed fragment.
+        // This is a waste of bandwidth.
+        if (subscriptionObserver != null) subscriptionObserver.dispose();
+        if (feedSubscriber != null) feedSubscriber.cancel();
+
+        subscriptionObserver = null;
+        feedSubscriber = null;
+
+        // Retain the already displayed items for backstack pops
+        retainFeedItems.set(true);
+
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onDestroy() {
+        subscriptionService = null;
+
+        super.onDestroy();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment Views
+    ///////////////////////////////////////////////////////////////////////////
 
     private RecyclerView.OnScrollListener getOnScrollListener() {
         return new RecyclerView.OnScrollListener() {
@@ -161,7 +163,7 @@ public class FeedFragment extends BaseFragment {
         return new OnScrollBelowItemsListener() {
             @Override
             public void onScrolledDown(RecyclerView recyclerView) {
-                requestFeed(1, false);
+                requestFeed(1);
             }
         };
     }
@@ -173,6 +175,7 @@ public class FeedFragment extends BaseFragment {
         if (infoListAdapter == null) return;
 
         animateView(errorPanel, false, 200);
+        animateView(loadingProgressBar, true, 200);
 
         resultRecyclerView = ((RecyclerView) rootView.findViewById(R.id.result_list_view));
         resultRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
@@ -190,101 +193,158 @@ public class FeedFragment extends BaseFragment {
         resultRecyclerView.addOnScrollListener(getOnScrollListener());
         resultRecyclerView.addOnScrollListener(getOnBottomListener());
 
-        if (viewState != null && feedInfos != null && !feedInfos.isEmpty()) {
-            infoListAdapter.addInfoItemList(feedInfos);
+        if (viewState != null) {
             resultRecyclerView.getLayoutManager().onRestoreInstanceState(viewState);
-            final int pendingRequestCount = INITIAL_FEED_SIZE - feedInfos.size();
-
-            feedInfos = null;
             viewState = null;
-
-            if (pendingRequestCount > 0) {
-                requestFeed(pendingRequestCount, true);
-                showFooterSpinner();
-            }
         }
+
+        populateFeed();
     }
 
-
-    private Single<ChannelInfo> getChannelInfoFetcher(final SubscriptionEntity subscriptionEntity) {
-        final StreamingService service = getService(subscriptionEntity.getServiceId());
-        final String url = subscriptionEntity.getUrl();
-        final Callable<ChannelInfo> callable = new Callable<ChannelInfo>() {
-            @Override
-            public ChannelInfo call() throws Exception {
-                final ChannelExtractor extractor = service != null ? service.getChannelExtractorInstance(url, 0) : null;
-                return ChannelInfo.getInfo(extractor);
-            }
-        };
-
-        return Single.fromCallable(callable)
-                .subscribeOn(subscriptionService.subscriptionScheduler())
-                .observeOn(AndroidSchedulers.mainThread());
-
+    private void resetFragment() {
+        if (subscriptionObserver != null) subscriptionObserver.dispose();
+        if (infoListAdapter != null) infoListAdapter.clearStreamItemList();
     }
 
-    private StreamingService getService(final int serviceId) {
-        try {
-            return NewPipe.getService(serviceId);
-        } catch (ExtractionException e) {
-            return null;
-        }
-    }
-
-    private void populateFeed() {
+    @Override
+    protected void reloadContent() {
         resetFragment();
+        populateFeed();
+    }
 
-        final Consumer<List<SubscriptionEntity>> onDatabaseUpdate = new Consumer<List<SubscriptionEntity>>() {
+    @Override
+    protected void setErrorMessage(String message, boolean showRetryButton) {
+        super.setErrorMessage(message, showRetryButton);
+
+        resetFragment();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment Feeds
+    ///////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Responsible for reacting to subscription database updates and displaying feeds.
+     *
+     * Upon each update, the feed info list is cleared unless the fragment is
+     * recently recovered from a configuration change or backstack.
+     *
+     * All existing and pending feed requests are dropped.
+     *
+     * The newly received list of subscriptions is then transformed into a
+     * flowable, reacting to pulling requests.
+     *
+     * Pulled requests are transformed first into ChannelInfo, then Stream Info items and
+     * displayed on the feed fragment.
+     **/
+    private void populateFeed() {
+        final Consumer<List<SubscriptionEntity>> consumer = new Consumer<List<SubscriptionEntity>>() {
             @Override
             public void accept(@NonNull List<SubscriptionEntity> subscriptionEntities) throws Exception {
-                if (infoListAdapter != null) infoListAdapter.clearStreamItemList();
-                requestFeed(INITIAL_FEED_SIZE, true);
+                animateView(loadingProgressBar, false, 200);
+
+                // show progress bar on receiving a non-empty updated list of subscriptions
+                if (!retainFeedItems.get() && !subscriptionEntities.isEmpty() && infoListAdapter != null) {
+                    infoListAdapter.clearStreamItemList();
+                    animateView(loadingProgressBar, true, 200);
+                }
+
+                retainFeedItems.set(false);
+                Flowable.fromIterable(subscriptionEntities)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(getSubscriptionObserver());
             }
         };
 
-        final Function<List<SubscriptionEntity>, List<SubscriptionEntity>> unrollEntities = new Function<List<SubscriptionEntity>, List<SubscriptionEntity>>() {
+        final Consumer<Throwable> onError = new Consumer<Throwable>() {
             @Override
-            public List<SubscriptionEntity> apply(@NonNull List<SubscriptionEntity> subscriptionEntities) throws Exception {
-                return subscriptionEntities;
+            public void accept(@NonNull Throwable exception) throws Exception {
+                onRxError(exception);
             }
         };
 
-        final Function<SubscriptionEntity, Single<ChannelInfo>> toChannelInfo = new Function<SubscriptionEntity, Single<ChannelInfo>>() {
-            @Override
-            public Single<ChannelInfo> apply(@NonNull SubscriptionEntity subscriptionEntity) throws Exception {
-                return getChannelInfoFetcher(subscriptionEntity);
-            }
-        };
-
-        final LongConsumer addToPendingCount = new LongConsumer() {
-            @Override
-            public void accept(long t) throws Exception {
-                pendingRequestCount.getAndAdd(t);
-            }
-        };
-
-        subscriptionService.getSubscription()
-                .doOnNext(onDatabaseUpdate)
-                .flatMapIterable(unrollEntities)
-                .flatMapSingle(toChannelInfo)
+        if (subscriptionObserver != null) subscriptionObserver.dispose();
+        subscriptionObserver = subscriptionService.getSubscription()
+                .onErrorReturnItem(Collections.<SubscriptionEntity>emptyList())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnRequest(addToPendingCount)
-                .subscribe(getChannelInfoSubscriber());
+                .subscribe(consumer, onError);
     }
 
-    private Subscriber<ChannelInfo> getChannelInfoSubscriber() {
-        return new Subscriber<ChannelInfo>() {
+    /**
+     * Responsible for reacting to user pulling request and starting a request for new feed stream.
+     *
+     * On initialization, it automatically requests the amount of feed needed to display
+     * a minimum amount required (INITIAL_FEED_SIZE).
+     *
+     * Upon receiving a user pull, it creates a Single Observer to fetch the ChannelInfo
+     * containing the feed streams.
+     **/
+    private Subscriber<SubscriptionEntity> getSubscriptionObserver() {
+        return new Subscriber<SubscriptionEntity>() {
             @Override
             public void onSubscribe(Subscription s) {
+                if (feedSubscriber != null) feedSubscriber.cancel();
                 feedSubscriber = s;
-                subscriptionService.getSubscription().connect();
+
+                final int requestSize = INITIAL_FEED_SIZE - infoListAdapter.getItemsList().size();
+                if (requestSize > 0) {
+                    feedSubscriber.request(requestSize);
+                }
+
+                animateView(loadingProgressBar, false, 200);
+                // Footer spinner persists until subscription list is exhausted.
+                infoListAdapter.showFooter(true);
             }
 
             @Override
-            public void onNext(final ChannelInfo channelInfo) {
-                if (loadingProgressBar != null) animateView(loadingProgressBar, false, 200);
+            public void onNext(SubscriptionEntity subscriptionEntity) {
 
-                pendingRequestCount.getAndDecrement();
+                subscriptionService.getChannelInfo(subscriptionEntity)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(getChannelInfoObserver());
+            }
+
+            @Override
+            public void onError(Throwable exception) {
+                onRxError(exception);
+            }
+
+            @Override
+            public void onComplete() {
+                infoListAdapter.showFooter(false);
+            }
+        };
+    }
+
+    /**
+     * On each request, a subscription item from the updated table is transformed
+     * into a ChannelInfo, containing the latest streams from the channel.
+     *
+     * Currently, the feed uses the first into from the list of streams.
+     *
+     * If chosen feed already displayed, then we request another feed from another
+     * subscription, until the subscription table runs out of new items.
+     *
+     * This Observer is self-contained and will dispose itself when complete. However, this
+     * does not obey the fragment lifecycle and may continue running in the background
+     * until it is complete. This is done due to RxJava2 no longer propagate errors once
+     * an observer is unsubscribed while the thread process is still running.
+     *
+     * To solve the above issue, we can either set a global RxJava Error Handler, or
+     * manage exceptions case by case. This should be done if the current implementation is
+     * too costly when dealing with larger subscription sets.
+     **/
+    private MaybeObserver<ChannelInfo> getChannelInfoObserver() {
+        return new MaybeObserver<ChannelInfo>() {
+            Disposable observer;
+            @Override
+            public void onSubscribe(Disposable d) {
+                observer = d;
+            }
+
+            @Override
+            public void onSuccess(ChannelInfo channelInfo) {
+                if (loadingProgressBar != null) animateView(loadingProgressBar, false, 200);
 
                 if (infoListAdapter == null || channelInfo.related_streams.isEmpty()) return;
 
@@ -292,22 +352,21 @@ public class FeedFragment extends BaseFragment {
                 // Keep requesting new items if the current one already exists
                 if (!doesItemExist(infoListAdapter.getItemsList(), item)) {
                     infoListAdapter.addInfoItem(item);
-                } else if (feedSubscriber != null) {
-                    requestFeed(1, false);
+                } else {
+                    requestFeed(1);
                 }
             }
 
             @Override
             public void onError(Throwable exception) {
-                if (exception instanceof IOException) {
-                    onRecoverableError(R.string.network_error);
-                } else {
-                    onUnrecoverableError(exception);
-                }
+                onRxError(exception);
             }
 
             @Override
-            public void onComplete() {}
+            public void onComplete() {
+                observer.dispose();
+                observer = null;
+            }
         };
     }
 
@@ -320,45 +379,21 @@ public class FeedFragment extends BaseFragment {
         return false;
     }
 
-    private void showFooterSpinner() {
-        if (infoListAdapter == null) return;
-
-        infoListAdapter.showFooter(true);
-        startLoadSpinnerTimer();
-    }
-
-    private void startLoadSpinnerTimer() {
-        final CompletableObserver timerObserver = new CompletableObserver() {
-            @Override
-            public void onSubscribe(Disposable d) {
-                if (timerDisposable != null) timerDisposable.dispose();
-                timerDisposable = d;
-            }
-
-            @Override
-            public void onComplete() {
-                if (infoListAdapter != null) {
-                    infoListAdapter.showFooter(false);
-                }
-            }
-
-            @Override
-            public void onError(Throwable exception) {
-                Log.e(TAG, "Timer exception", exception);
-            }
-        };
-
-        Completable.timer(SPINNER_DURATION, TimeUnit.MILLISECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(timerObserver);
-    }
-
-    private void requestFeed(final int count, final boolean isInitialFeed) {
+    private void requestFeed(final int count) {
         if (feedSubscriber == null) return;
 
-        if (isInitialFeed || pendingRequestCount.get() < 1) {
-            feedSubscriber.request(count);
+        feedSubscriber.request(count);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment Error Handling
+    ///////////////////////////////////////////////////////////////////////////
+
+    private void onRxError(final Throwable exception) {
+        if (exception instanceof IOException) {
+            onRecoverableError(R.string.network_error);
+        } else {
+            onUnrecoverableError(exception);
         }
     }
 
@@ -371,26 +406,8 @@ public class FeedFragment extends BaseFragment {
 
     private void onUnrecoverableError(Throwable exception) {
         if (DEBUG) Log.d(TAG, "onUnrecoverableError() called with: exception = [" + exception + "]");
-        ErrorActivity.reportError(getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(REQUESTED_CHANNEL, "unknown", "unknown", R.string.general_error));
+        ErrorActivity.reportError(getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(REQUESTED_CHANNEL, "Feed", "Subscription", R.string.general_error));
 
         activity.finish();
-    }
-
-    private void resetFragment() {
-        disposables.clear();
-        infoListAdapter.clearStreamItemList();
-    }
-
-    @Override
-    protected void reloadContent() {
-        populateFeed();
-    }
-
-    @Override
-    protected void setErrorMessage(String message, boolean showRetryButton) {
-        super.setErrorMessage(message, showRetryButton);
-
-        disposables.clear();
-        infoListAdapter.clearStreamItemList();
     }
 }

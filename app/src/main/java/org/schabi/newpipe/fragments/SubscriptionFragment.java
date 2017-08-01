@@ -142,7 +142,6 @@ public class SubscriptionFragment extends BaseFragment {
                 animateView(loadingProgressBar, true, 200);
 
                 disposables.add( d );
-                subscriptionService.getSubscription().connect();
             }
 
             @Override

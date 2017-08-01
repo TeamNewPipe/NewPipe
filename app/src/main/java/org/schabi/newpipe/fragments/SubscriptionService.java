@@ -6,30 +6,21 @@ import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.subscription.SubscriptionDAO;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.channel.ChannelExtractor;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Flowable;
+import io.reactivex.Maybe;
 import io.reactivex.Scheduler;
-import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.flowables.ConnectableFlowable;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /** Subscription Service singleton:
@@ -58,7 +49,7 @@ public class SubscriptionService {
     private static final int SUBSCRIPTION_THREAD_POOL_SIZE = 4;
 
     private AppDatabase db;
-    private ConnectableFlowable<List<SubscriptionEntity>> subscription;
+    private Flowable<List<SubscriptionEntity>> subscription;
 
     private Scheduler subscriptionScheduler;
 
@@ -73,12 +64,13 @@ public class SubscriptionService {
     /** Part of subscription observation pipeline
      * @see SubscriptionService#getSubscription()
      */
-    private ConnectableFlowable<List<SubscriptionEntity>> getSubscriptionInfos() {
+    private Flowable<List<SubscriptionEntity>> getSubscriptionInfos() {
         return subscriptionTable().findAll()
                 // Wait for a period of infrequent updates and return the latest update
                 .debounce(SUBSCRIPTION_DEBOUNCE_INTERVAL, TimeUnit.MILLISECONDS)
                 .share()            // Share allows multiple subscribers on the same observable
-                .replay();          // Replay synchronizes subscribers to the last emitted result
+                .replay(1)          // Replay synchronizes subscribers to the last emitted result
+                .autoConnect();
     }
 
     /**
@@ -93,13 +85,32 @@ public class SubscriptionService {
      *  This reduces the amount of observations caused by frequent updates to the database.
      *  */
     @android.support.annotation.NonNull
-    public ConnectableFlowable<List<SubscriptionEntity>> getSubscription() {
+    public Flowable<List<SubscriptionEntity>> getSubscription() {
         return subscription;
     }
 
-    @android.support.annotation.NonNull
-    public Scheduler subscriptionScheduler() {
-        return subscriptionScheduler;
+    public Maybe<ChannelInfo> getChannelInfo(final SubscriptionEntity subscriptionEntity) {
+        final StreamingService service = getService(subscriptionEntity.getServiceId());
+        if (service == null) return Maybe.empty();
+
+        final String url = subscriptionEntity.getUrl();
+        final Callable<ChannelInfo> callable = new Callable<ChannelInfo>() {
+            @Override
+            public ChannelInfo call() throws Exception {
+                final ChannelExtractor extractor = service.getChannelExtractorInstance(url, 0);
+                return ChannelInfo.getInfo(extractor);
+            }
+        };
+
+        return Maybe.fromCallable(callable).subscribeOn(subscriptionScheduler);
+    }
+
+    private StreamingService getService(final int serviceId) {
+        try {
+            return NewPipe.getService(serviceId);
+        } catch (ExtractionException e) {
+            return null;
+        }
     }
 
     /** Returns the database access interface for subscription table. */
