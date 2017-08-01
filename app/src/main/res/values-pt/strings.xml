@@ -60,7 +60,7 @@
     <string name="info_dir_created">Diretório \'%1$s\' criado com sucesso</string>
     <string name="general_error">Erro</string>
     <string name="could_not_load_thumbnails">Incapaz de carregar todas as miniaturas</string>
-    <string name="youtube_signature_decryption_error">Incapaz de decifrar a assinatura do vídeo.</string>
+    <string name="youtube_signature_decryption_error">Incapaz de decodificar a assinatura do vídeo.</string>
     <string name="parsing_error">Incapaz de processar o sítio web.</string>
     <string name="content_not_available">Conteúdo não disponível.</string>
     <string name="blocked_by_gema">Bloqueado pela GEMA.</string>
@@ -73,7 +73,7 @@
     <string name="could_not_setup_download_menu">Não foi possível configurar o menu de transferências.</string>
     <string name="live_streams_not_supported">Esta é uma EMISSÃO EM DIRETO. Estas emissões ainda não são suportadas.</string>
     <string name="could_not_get_stream">Não foi possível obter a emissão.</string>
-    <string name="sorry_string">Isto não deveria ter acontecido.</string>
+    <string name="sorry_string">Desculpe, isto não deveria ter acontecido.</string>
     <string name="error_report_button_text">Reportar erro por e-mail</string>
     <string name="error_snackbar_message">Ocorreram alguns erros.</string>
     <string name="error_snackbar_action">Relatório</string>
@@ -172,4 +172,27 @@ o modo “popup“</string>
     <string name="popup_remember_size_pos_summary">Lembrar ultimo tamanho e posição do popup</string>
 
     <string name="popup_resizing_indicator_title">Redimensionar</string>
+<string name="player_gesture_controls_title">Controlos de gesto do reprodutor</string>
+    <string name="player_gesture_controls_summary">Usar gestos para controlar o brilho e o volume do reprodutor</string>
+    <string name="show_search_suggestions_title">Sugestões de pesquisa</string>
+    <string name="show_search_suggestions_summary">Apresentar sugestões ao procurar</string>
+
+    <string name="best_resolution">Melhor resolução</string>
+
+    <string name="title_activity_about">Sobre NewPipe</string>
+    <string name="action_settings">Definições</string>
+    <string name="action_about">Sobre</string>
+    <string name="title_licenses">Licenças de terceiros</string>
+    <string name="copyright" formatted="true">© %1$s %2$s protegido pela licença %3$s</string>
+    <string name="error_unable_to_load_license">Não foi possível carregar licença</string>
+    <string name="action_open_website">Abrir website</string>
+    <string name="tab_about">Sobre</string>
+    <string name="tab_contributors">Colaboradores</string>
+    <string name="tab_licenses">Licenças</string>
+    <string name="app_description">Aplicação leve, simples e grátis de Youtube para Android.</string>
+    <string name="view_on_github">Ver no Github</string>
+    <string name="app_license_title">Licença do NewPipe</string>
+    <string name="contribution_encouragement">Se tem ideias, tradução, alterações de design, limpeza de código ou alterações de código pesado, ajuda é sempre bem-vinda. Quanto mais se faz melhor fica!</string>
+    <string name="read_full_license">Ler licença</string>
+    <string name="contribution_title">Contribuição</string>
 </resources>
