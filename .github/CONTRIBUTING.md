@@ -15,7 +15,7 @@ Do not report crashes in the GitHub issue tracker. NewPipe has an automated cras
 * Use english
 
 ## Bugfixing
-* If you want to help NewPipe getting bug free, you can send me a mail to tnp@newpipe.schabi.org to let me know that you intent to help, and than register at our [sentry](https://support.schabi.org) setup. 
+* If you want to help NewPipe getting bug free, you can send me a mail to tnp@newpipe.schabi.org to let me know that you intent to help, and than register at our [sentry](https://sentry.schabi.org) setup. 
 
 ## Translation
 
