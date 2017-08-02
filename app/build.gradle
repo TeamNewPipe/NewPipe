@@ -1,12 +1,5 @@
 apply plugin: 'com.android.application'
 
-allprojects {
-    repositories {
-        jcenter()
-        maven { url 'https://maven.google.com' }
-    }
-}
-
 android {
     compileSdkVersion 26
     buildToolsVersion '26.0.1'
@@ -73,11 +66,11 @@ dependencies {
     debugCompile 'com.facebook.stetho:stetho:1.5.0'
     debugCompile 'com.facebook.stetho:stetho-urlconnection:1.5.0'
 
-    compile "android.arch.persistence.room:runtime:1.0.0-alpha5"
-    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha5"
+    compile "android.arch.persistence.room:runtime:1.0.0-alpha7"
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha7"
 
     compile "io.reactivex.rxjava2:rxjava:2.x.y"
     compile "io.reactivex.rxjava2:rxandroid:2.0.1"
     compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
-    compile "android.arch.persistence.room:rxjava2:1.0.0-alpha5"
+    compile "android.arch.persistence.room:rxjava2:1.0.0-alpha7"
 }
