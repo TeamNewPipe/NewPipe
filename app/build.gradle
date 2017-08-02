@@ -1,12 +1,5 @@
 apply plugin: 'com.android.application'
 
-allprojects {
-    repositories {
-        jcenter()
-        maven { url 'https://maven.google.com' }
-    }
-}
-
 android {
     compileSdkVersion 26
     buildToolsVersion '26.0.1'
