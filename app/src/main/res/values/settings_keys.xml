@@ -249,5 +249,5 @@
         <item>@string/charset_most_special_characters</item>
     </string-array>
     
-    <string name="default_file_charset_value" translatable="false">@string/charset_most_special_characters</string>
+    <string name="default_file_charset_value" translatable="false">@string/charset_most_special_characters_value</string>
 </resources>

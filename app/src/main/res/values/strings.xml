@@ -197,8 +197,8 @@
     <string name="settings_file_replacement_character_summary">Invalid characters are replaced with this value</string>
     <string name="settings_file_replacement_character_title">Replacement character</string>
 
-    <string name="charset_letters_and_digits_value" translatable="false">[^\w\d]+</string>
-    <string name="charset_most_special_characters_value" translatable="false">[\n\r|\\?*&lt;":&gt;/']+</string>
+    <string name="charset_letters_and_digits_value" translatable="false">[^\\w\\d]+</string>
+    <string name="charset_most_special_characters_value" translatable="false">[\\n\\r|\\?*&lt;":&gt;/']+</string>
     <string name="charset_letters_and_digits">Letters and digits</string>
     <string name="charset_most_special_characters">Most special characters</string>
 
