@@ -27,6 +27,7 @@ import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.extractor.stream_info.VideoStream;
 import org.schabi.newpipe.fragments.detail.SpinnerToolbarAdapter;
 import org.schabi.newpipe.settings.NewPipeSettings;
+import org.schabi.newpipe.util.FilenameUtils;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.util.Utils;
@@ -107,7 +108,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         nameEditText = ((EditText) view.findViewById(R.id.file_name));
-        nameEditText.setText(createFileName(currentInfo.title));
+        nameEditText.setText(FilenameUtils.createFilename(getContext(), currentInfo.title));
         selectedAudioIndex = Utils.getPreferredAudioFormat(getContext(), currentInfo.audio_streams);
 
         streamsSpinner = (Spinner) view.findViewById(R.id.quality_spinner);
@@ -252,30 +253,12 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         }
     }
 
-    /**
-     * #143 #44 #42 #22: make sure that the filename does not contain illegal chars.
-     * This should fix some of the "cannot download" problems.
-     */
-    private String createFileName(String fileName) {
-        // from http://eng-przemelek.blogspot.de/2009/07/how-to-create-valid-file-name.html
-
-        List<String> forbiddenCharsPatterns = new ArrayList<>();
-        forbiddenCharsPatterns.add("[:]+"); // Mac OS, but it looks that also Windows XP
-        forbiddenCharsPatterns.add("[\\*\"/\\\\\\[\\]\\:\\;\\|\\=\\,]+");  // Windows
-        forbiddenCharsPatterns.add("[^\\w\\d\\.]+");  // last chance... only latin letters and digits
-        String nameToTest = fileName;
-        for (String pattern : forbiddenCharsPatterns) {
-            nameToTest = nameToTest.replaceAll(pattern, "_");
-        }
-        return nameToTest;
-    }
-
 
     private void downloadSelected() {
         String url, location;
 
         String fileName = nameEditText.getText().toString().trim();
-        if (fileName.isEmpty()) fileName = createFileName(currentInfo.title);
+        if (fileName.isEmpty()) fileName = FilenameUtils.createFilename(getContext(), currentInfo.title);
 
         boolean isAudio = radioVideoAudioGroup.getCheckedRadioButtonId() == R.id.audio_button;
         url = isAudio ? currentInfo.audio_streams.get(selectedAudioIndex).url : sortedStreamVideosList.get(selectedVideoIndex).url;
