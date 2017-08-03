@@ -178,4 +178,6 @@ abrir em modo popup</string>
     <string name="contribution_encouragement">Sempre que tiver ideias, traduções, mudanças do design, limpeza de código ou grandes alterações de código, a ajuda é bem vinda. Quanto mais for feito melhor o aplicativo fica!</string>
     <string name="read_full_license">Ler licença</string>
     <string name="contribution_title">Contribuição</string>
-</resources>
+<string name="copyright" formatted="true">© %1$s %2$s protegido pela licença %3$s</string>
+    <string name="title_activity_about">Sobre NewPipe</string>
+    </resources>
