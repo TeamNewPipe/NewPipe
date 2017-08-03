@@ -180,4 +180,12 @@ abrir em modo popup</string>
     <string name="contribution_title">Contribuição</string>
 <string name="copyright" formatted="true">© %1$s %2$s protegido pela licença %3$s</string>
     <string name="title_activity_about">Sobre NewPipe</string>
+    <string name="settings_category_downloads_title">Download</string>
+    <string name="settings_file_charset_title">Caracteres permitidos em nome de arquivos</string>
+    <string name="settings_file_replacement_character_summary">Caracteres inválidos são substituídos por este valor</string>
+    <string name="settings_file_replacement_character_title">Caractere de substituição</string>
+
+    <string name="charset_letters_and_digits">Letras e dígitos</string>
+    <string name="charset_most_special_characters">Caracteres especiais</string>
+
     </resources>
