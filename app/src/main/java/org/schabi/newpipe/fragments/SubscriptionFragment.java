@@ -40,6 +40,7 @@ public class SubscriptionFragment extends BaseFragment {
     private final String TAG = "SubscriptionFragment@" + Integer.toHexString(hashCode());
 
     private View inflatedView;
+    private View emptyPanel;
     private InfoListAdapter infoListAdapter;
     private RecyclerView resultRecyclerView;
     private Parcelable viewState;
@@ -101,7 +102,10 @@ public class SubscriptionFragment extends BaseFragment {
     @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
-        resultRecyclerView = ((RecyclerView) rootView.findViewById(R.id.result_list_view));
+
+        emptyPanel = rootView.findViewById(R.id.empty_panel);
+
+        resultRecyclerView = rootView.findViewById(R.id.result_list_view);
         resultRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
         resultRecyclerView.addOnScrollListener(getOnScrollListener());
 
@@ -152,6 +156,8 @@ public class SubscriptionFragment extends BaseFragment {
                 infoListAdapter.addInfoItemList( getSubscriptionItems(subscriptions) );
 
                 animateView(loadingProgressBar, false, 200);
+
+                emptyPanel.setVisibility(subscriptions.isEmpty() ? View.VISIBLE : View.INVISIBLE);
 
                 if (viewState != null && resultRecyclerView != null) {
                     resultRecyclerView.getLayoutManager().onRestoreInstanceState(viewState);

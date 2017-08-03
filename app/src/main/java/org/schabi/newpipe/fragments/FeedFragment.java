@@ -48,6 +48,7 @@ public class FeedFragment extends BaseFragment {
     private final String TAG = "FeedFragment@" + Integer.toHexString(hashCode());
 
     private View inflatedView;
+    private View emptyPanel;
     private InfoListAdapter infoListAdapter;
     private RecyclerView resultRecyclerView;
 
@@ -177,7 +178,9 @@ public class FeedFragment extends BaseFragment {
         animateView(errorPanel, false, 200);
         animateView(loadingProgressBar, true, 200);
 
-        resultRecyclerView = ((RecyclerView) rootView.findViewById(R.id.result_list_view));
+        emptyPanel = rootView.findViewById(R.id.empty_panel);
+
+        resultRecyclerView = rootView.findViewById(R.id.result_list_view);
         resultRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
 
         infoListAdapter.setFooter(activity.getLayoutInflater().inflate(R.layout.pignate_footer, resultRecyclerView, false));
@@ -244,10 +247,12 @@ public class FeedFragment extends BaseFragment {
                 animateView(loadingProgressBar, false, 200);
 
                 // show progress bar on receiving a non-empty updated list of subscriptions
-                if (!retainFeedItems.get() && !subscriptionEntities.isEmpty() && infoListAdapter != null) {
+                if (!retainFeedItems.get() && !subscriptionEntities.isEmpty()) {
                     infoListAdapter.clearStreamItemList();
                     animateView(loadingProgressBar, true, 200);
                 }
+
+                emptyPanel.setVisibility(subscriptionEntities.isEmpty() ? View.VISIBLE : View.INVISIBLE);
 
                 retainFeedItems.set(false);
                 Flowable.fromIterable(subscriptionEntities)
@@ -288,7 +293,7 @@ public class FeedFragment extends BaseFragment {
 
                 final int requestSize = INITIAL_FEED_SIZE - infoListAdapter.getItemsList().size();
                 if (requestSize > 0) {
-                    feedSubscriber.request(requestSize);
+                    requestFeed(requestSize);
                 }
 
                 animateView(loadingProgressBar, false, 200);
@@ -301,6 +306,7 @@ public class FeedFragment extends BaseFragment {
 
                 subscriptionService.getChannelInfo(subscriptionEntity)
                         .observeOn(AndroidSchedulers.mainThread())
+                        .onErrorComplete()
                         .subscribe(getChannelInfoObserver());
             }
 
@@ -342,9 +348,10 @@ public class FeedFragment extends BaseFragment {
                 observer = d;
             }
 
+            // Called only when response is non-empty
             @Override
             public void onSuccess(ChannelInfo channelInfo) {
-                if (loadingProgressBar != null) animateView(loadingProgressBar, false, 200);
+                emptyPanel.setVisibility(View.INVISIBLE);
 
                 if (infoListAdapter == null || channelInfo.related_streams.isEmpty()) return;
 
@@ -355,15 +362,22 @@ public class FeedFragment extends BaseFragment {
                 } else {
                     requestFeed(1);
                 }
+                onDone();
             }
 
             @Override
             public void onError(Throwable exception) {
                 onRxError(exception);
+                onDone();
             }
 
+            // Called only when response is empty
             @Override
             public void onComplete() {
+                onDone();
+            }
+
+            private void onDone() {
                 observer.dispose();
                 observer = null;
             }

@@ -18,9 +18,13 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Completable;
+import io.reactivex.CompletableSource;
 import io.reactivex.Flowable;
 import io.reactivex.Maybe;
 import io.reactivex.Scheduler;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /** Subscription Service singleton:
@@ -116,5 +120,51 @@ public class SubscriptionService {
     /** Returns the database access interface for subscription table. */
     public SubscriptionDAO subscriptionTable() {
         return db.subscriptionDAO();
+    }
+
+    public Completable updateChannelInfo(final int serviceId,
+                                          final String channelUrl,
+                                          final ChannelInfo info) {
+        final Function<List<SubscriptionEntity>, CompletableSource> update = new Function<List<SubscriptionEntity>, CompletableSource>() {
+            @Override
+            public CompletableSource apply(@NonNull List<SubscriptionEntity> subscriptionEntities) throws Exception {
+                if (subscriptionEntities.size() == 1) {
+                    SubscriptionEntity subscription = subscriptionEntities.get(0);
+
+                    // Subscriber count changes very often, making this check almost unnecessary.
+                    // Consider removing it later.
+                    if (isSubscriptionUpToDate(channelUrl, info, subscription)) {
+                        subscription.setData(info.channel_name, info.avatar_url, "", info.subscriberCount);
+
+                        return update(subscription);
+                    }
+                }
+
+                return Completable.complete();
+            }
+        };
+
+        return subscriptionTable().findAll(serviceId, channelUrl)
+                .firstOrError()
+                .flatMapCompletable(update);
+    }
+
+    private Completable update(final SubscriptionEntity updatedSubscription) {
+        return Completable.fromRunnable(new Runnable() {
+            @Override
+            public void run() {
+                subscriptionTable().update(updatedSubscription);
+            }
+        });
+    }
+
+    private boolean isSubscriptionUpToDate(final String channelUrl,
+                                           final ChannelInfo info,
+                                           final SubscriptionEntity entity) {
+        return channelUrl.equals( entity.getUrl() ) &&
+                info.service_id == entity.getServiceId() &&
+                info.channel_name.equals( entity.getTitle() ) &&
+                info.avatar_url.equals( entity.getThumbnailUrl() ) &&
+                info.subscriberCount == entity.getSubscriberCount();
     }
 }
