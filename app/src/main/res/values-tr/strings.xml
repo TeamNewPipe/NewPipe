@@ -196,4 +196,12 @@
     <string name="contribution_encouragement">Fikirleriniz, çeviri, tasarım değişiklikleri olsun, kod temizliği, yada gerçek köklü kod değişikleri olsun, yardımınıza her zaman açığız. Daha çok yapıldıkça daha iyiye gider!</string>
     <string name="read_full_license">Lisansı oku</string>
     <string name="contribution_title">Katkı</string>
-</resources>
+<string name="settings_category_downloads_title">İndirme</string>
+    <string name="settings_file_charset_title">Dosya adlarında izin verilen karakterler</string>
+    <string name="settings_file_replacement_character_summary">Geçersiz karakterler bu değer ile değiştirilir</string>
+    <string name="settings_file_replacement_character_title">Değiştirme karakteri</string>
+
+    <string name="charset_letters_and_digits">Harfler ve rakamlar</string>
+    <string name="charset_most_special_characters">Özel karakterlerin çoğu</string>
+
+    </resources>
