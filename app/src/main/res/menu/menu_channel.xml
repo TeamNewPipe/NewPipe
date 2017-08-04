@@ -10,7 +10,7 @@
     <item android:id="@+id/menu_item_rss"
         app:showAsAction="ifRoom"
         android:title="@string/rss_button_title"
-        android:icon="@drawable/ic_rss_feed_white_24dp"/>
+        android:icon="?attr/rss"/>
 
     <item android:id="@+id/menu_item_share"
         android:title="@string/share"

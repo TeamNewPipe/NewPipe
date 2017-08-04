@@ -16,13 +16,16 @@ import io.reactivex.Flowable;
 public interface BasicDAO<Entity> {
     /* Inserts */
     @Insert(onConflict = OnConflictStrategy.FAIL)
-    void insert(final Entity entity);
+    long insert(final Entity entity);
 
     @Insert(onConflict = OnConflictStrategy.FAIL)
-    void insertAll(final Entity... entities);
+    List<Long> insertAll(final Entity... entities);
 
     @Insert(onConflict = OnConflictStrategy.FAIL)
-    void insertAll(final Collection<Entity> entities);
+    List<Long> insertAll(final Collection<Entity> entities);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long upsert(final Entity entity);
 
     /* Searches */
     Flowable<List<Entity>> findAll();
@@ -31,15 +34,15 @@ public interface BasicDAO<Entity> {
 
     /* Deletes */
     @Delete
-    void delete(final Entity entity);
+    int delete(final Entity entity);
 
     @Delete
-    void delete(final Collection<Entity> entities);
+    int delete(final Collection<Entity> entities);
 
     /* Updates */
     @Update
-    void update(final Entity entity);
+    int update(final Entity entity);
 
     @Update
-    void update(final Collection<Entity> entities);
+    int update(final Collection<Entity> entities);
 }

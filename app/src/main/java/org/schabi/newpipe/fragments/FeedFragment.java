@@ -3,10 +3,13 @@ package org.schabi.newpipe.fragments;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -28,6 +31,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import io.reactivex.Flowable;
 import io.reactivex.MaybeObserver;
@@ -43,7 +47,8 @@ public class FeedFragment extends BaseFragment {
     private static final String VIEW_STATE_KEY = "view_state_key";
     private static final String INFO_ITEMS_KEY = "info_items_key";
 
-    private static final int INITIAL_FEED_SIZE = 8;
+    private static final int INITIAL_FEED_SIZE = 16;
+    private static final int PARTIAL_LOAD_SIZE = 4;
 
     private final String TAG = "FeedFragment@" + Integer.toHexString(hashCode());
 
@@ -60,6 +65,8 @@ public class FeedFragment extends BaseFragment {
     private Disposable subscriptionObserver;
     private Subscription feedSubscriber;
 
+    private AtomicInteger requestCount;
+
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle
     ///////////////////////////////////////////////////////////////////////////
@@ -70,6 +77,7 @@ public class FeedFragment extends BaseFragment {
         subscriptionService = SubscriptionService.getInstance(getContext());
 
         retainFeedItems = new AtomicBoolean(false);
+        requestCount = new AtomicInteger();
 
         if (infoListAdapter == null) {
             infoListAdapter = new InfoListAdapter(getActivity());
@@ -148,6 +156,18 @@ public class FeedFragment extends BaseFragment {
     // Fragment Views
     ///////////////////////////////////////////////////////////////////////////
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "], inflater = [" + inflater + "]");
+        super.onCreateOptionsMenu(menu, inflater);
+
+        ActionBar supportActionBar = activity.getSupportActionBar();
+        if (supportActionBar != null) {
+            supportActionBar.setDisplayShowTitleEnabled(true);
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
     private RecyclerView.OnScrollListener getOnScrollListener() {
         return new RecyclerView.OnScrollListener() {
             @Override
@@ -164,7 +184,7 @@ public class FeedFragment extends BaseFragment {
         return new OnScrollBelowItemsListener() {
             @Override
             public void onScrolledDown(RecyclerView recyclerView) {
-                requestFeed(1);
+                if (requestCount.get() <= 0) requestFeed(PARTIAL_LOAD_SIZE);
             }
         };
     }
@@ -188,7 +208,7 @@ public class FeedFragment extends BaseFragment {
         infoListAdapter.setOnStreamInfoItemSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener() {
             @Override
             public void selected(int serviceId, String url, String title) {
-                NavigationHelper.openVideoDetailFragment(getParentFragment().getFragmentManager(), serviceId, url, title);
+                NavigationHelper.openVideoDetailFragment(getFragmentManager(), serviceId, url, title);
             }
         });
 
@@ -200,6 +220,8 @@ public class FeedFragment extends BaseFragment {
             resultRecyclerView.getLayoutManager().onRestoreInstanceState(viewState);
             viewState = null;
         }
+
+        if (activity.getSupportActionBar() != null) activity.getSupportActionBar().setTitle(R.string.fragment_whats_new);
 
         populateFeed();
     }
@@ -223,7 +245,7 @@ public class FeedFragment extends BaseFragment {
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // Fragment Feeds
+    // Feeds Loader
     ///////////////////////////////////////////////////////////////////////////
 
     /**
@@ -246,15 +268,21 @@ public class FeedFragment extends BaseFragment {
             public void accept(@NonNull List<SubscriptionEntity> subscriptionEntities) throws Exception {
                 animateView(loadingProgressBar, false, 200);
 
+                if (subscriptionEntities.isEmpty()) {
+                    infoListAdapter.clearStreamItemList();
+                    emptyPanel.setVisibility(View.VISIBLE);
+                } else {
+                    emptyPanel.setVisibility(View.INVISIBLE);
+                }
+
                 // show progress bar on receiving a non-empty updated list of subscriptions
                 if (!retainFeedItems.get() && !subscriptionEntities.isEmpty()) {
                     infoListAdapter.clearStreamItemList();
                     animateView(loadingProgressBar, true, 200);
                 }
 
-                emptyPanel.setVisibility(subscriptionEntities.isEmpty() ? View.VISIBLE : View.INVISIBLE);
-
                 retainFeedItems.set(false);
+                requestCount.set(0);
                 Flowable.fromIterable(subscriptionEntities)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(getSubscriptionObserver());
@@ -378,6 +406,8 @@ public class FeedFragment extends BaseFragment {
             }
 
             private void onDone() {
+                requestCount.decrementAndGet();
+
                 observer.dispose();
                 observer = null;
             }
@@ -396,6 +426,7 @@ public class FeedFragment extends BaseFragment {
     private void requestFeed(final int count) {
         if (feedSubscriber == null) return;
 
+        requestCount.addAndGet(count);
         feedSubscriber.request(count);
     }
 

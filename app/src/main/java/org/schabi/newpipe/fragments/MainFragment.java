@@ -108,8 +108,7 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
 
         private int[] tabTitles = new int[]{
                 R.string.tab_main,
-                R.string.tab_subscriptions,
-                R.string.tab_feed
+                R.string.tab_subscriptions
         };
 
         PagerAdapter(FragmentManager fm) {
@@ -121,8 +120,6 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
             switch ( position ) {
                 case 1:
                     return new SubscriptionFragment();
-                case 2:
-                    return new FeedFragment();
                 default:
                     return new BlankFragment();
             }

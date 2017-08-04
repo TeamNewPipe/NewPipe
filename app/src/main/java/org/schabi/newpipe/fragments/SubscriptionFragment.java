@@ -41,6 +41,9 @@ public class SubscriptionFragment extends BaseFragment {
 
     private View inflatedView;
     private View emptyPanel;
+    private View headerRootLayout;
+    private View whatsNewView;
+
     private InfoListAdapter infoListAdapter;
     private RecyclerView resultRecyclerView;
     private Parcelable viewState;
@@ -49,14 +52,9 @@ public class SubscriptionFragment extends BaseFragment {
     private CompositeDisposable disposables;
     private SubscriptionService subscriptionService;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        if (inflatedView == null) {
-            inflatedView = inflater.inflate(R.layout.fragment_subscription, container, false);
-        }
-        return inflatedView;
-    }
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment LifeCycle
+    ///////////////////////////////////////////////////////////////////////////
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,14 +68,13 @@ public class SubscriptionFragment extends BaseFragment {
         }
     }
 
+    @Nullable
     @Override
-    public void onDestroy() {
-        if (disposables != null) disposables.dispose();
-
-        subscriptionService = null;
-        disposables = null;
-
-        super.onDestroy();
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        if (inflatedView == null) {
+            inflatedView = inflater.inflate(R.layout.fragment_subscription, container, false);
+        }
+        return inflatedView;
     }
 
     @Override
@@ -87,6 +84,30 @@ public class SubscriptionFragment extends BaseFragment {
         outState.putParcelable(VIEW_STATE_KEY, viewState);
     }
 
+    @Override
+    public void onDestroyView() {
+        if (disposables != null) disposables.clear();
+
+        headerRootLayout = null;
+        whatsNewView = null;
+
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onDestroy() {
+        if (disposables != null) disposables.dispose();
+        disposables = null;
+
+        subscriptionService = null;
+
+        super.onDestroy();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment Views
+    ///////////////////////////////////////////////////////////////////////////
+
     private RecyclerView.OnScrollListener getOnScrollListener() {
         return new RecyclerView.OnScrollListener() {
             @Override
@@ -95,6 +116,15 @@ public class SubscriptionFragment extends BaseFragment {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     viewState = recyclerView.getLayoutManager().onSaveInstanceState();
                 }
+            }
+        };
+    }
+
+    private View.OnClickListener getWhatsNewOnClickListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavigationHelper.openWhatsNewFragment(getParentFragment().getFragmentManager());
             }
         };
     }
@@ -122,10 +152,36 @@ public class SubscriptionFragment extends BaseFragment {
             });
         }
 
+        headerRootLayout = activity.getLayoutInflater().inflate(R.layout.subscription_header, resultRecyclerView, false);
+        infoListAdapter.setHeader(headerRootLayout);
+
+        whatsNewView = headerRootLayout.findViewById(R.id.whatsNew);
+        whatsNewView.setOnClickListener(getWhatsNewOnClickListener());
+
         resultRecyclerView.setAdapter(infoListAdapter);
 
         populateView();
     }
+
+    @Override
+    protected void reloadContent() {
+        populateView();
+    }
+
+    @Override
+    protected void setErrorMessage(String message, boolean showRetryButton) {
+        super.setErrorMessage(message, showRetryButton);
+        resetFragment();
+    }
+
+    private void resetFragment() {
+        if (disposables != null) disposables.clear();
+        if (infoListAdapter != null) infoListAdapter.clearStreamItemList();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Subscriptions Loader
+    ///////////////////////////////////////////////////////////////////////////
 
     private void populateView() {
         resetFragment();
@@ -203,21 +259,9 @@ public class SubscriptionFragment extends BaseFragment {
         return items;
     }
 
-    @Override
-    protected void reloadContent() {
-        populateView();
-    }
-
-    @Override
-    protected void setErrorMessage(String message, boolean showRetryButton) {
-        super.setErrorMessage(message, showRetryButton);
-        resetFragment();
-    }
-
-    private void resetFragment() {
-        disposables.clear();
-        infoListAdapter.clearStreamItemList();
-    }
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment Error Handling
+    ///////////////////////////////////////////////////////////////////////////
 
     private void onRecoverableError(int messageId) {
         if (!this.isAdded()) return;
