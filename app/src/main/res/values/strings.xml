@@ -63,8 +63,6 @@
     <string name="show_search_suggestions_summary">Show suggestions when searching</string>
     <string name="resume_on_audio_focus_gain_title">Resume on focus gain</string>
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phone calls)</string>
-    <string name="ignore_audio_focus_loss_title">Ignore permanent audio focus loss</string>
-    <string name="ignore_audio_focus_loss_summary">(Experimental) Allow multiple audio and video streams to play in tandem. Running multiple NewPipe players concurrently may cause issues.</string>
 
     <string name="download_dialog_title">Download</string>
 

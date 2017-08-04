@@ -309,7 +309,6 @@ public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManage
     public void onAudioFocusChange(int focusChange) {
         if (DEBUG) Log.d(TAG, "onAudioFocusChange() called with: focusChange = [" + focusChange + "]");
         if (simpleExoPlayer == null) return;
-
         switch (focusChange) {
             case AudioManager.AUDIOFOCUS_GAIN:
                 onAudioFocusGain();
@@ -318,7 +317,6 @@ public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManage
                 onAudioFocusLossCanDuck();
                 break;
             case AudioManager.AUDIOFOCUS_LOSS:
-                if (isAudioFocusLossIgnored()) break;
             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
                 onAudioFocusLoss();
                 break;
@@ -333,16 +331,6 @@ public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManage
                 false
         );
     }
-
-    private boolean isAudioFocusLossIgnored() {
-        if (this.sharedPreferences == null || this.context == null) return false;
-
-        return this.sharedPreferences.getBoolean(
-                this.context.getString(R.string.ignore_audio_focus_loss_key),
-                false
-        );
-    }
-
 
     protected void onAudioFocusGain() {
         if (DEBUG) Log.d(TAG, "onAudioFocusGain() called");
