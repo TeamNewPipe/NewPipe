@@ -198,4 +198,12 @@ te openen in pop-upmodus</string>
     <string name="contribution_encouragement">Hulp is altijd welkom, of je nu nieuwe ideeën hebt, vertalingen kan bijdragen, wijzigingen in het ontwerp, opschonen van of grote wijzigingen in de code. Hoe meer hulp, hoe beter het wordt!</string>
     <string name="read_full_license">Licentie lezen</string>
     <string name="contribution_title">Bijdragen</string>
-</resources>
+<string name="settings_category_downloads_title">Download</string>
+    <string name="settings_file_charset_title">Toegestane tekens in bestandsnamen</string>
+    <string name="settings_file_replacement_character_summary">Ongeldige tekens worden vervangen door deze waarde</string>
+    <string name="settings_file_replacement_character_title">Vervangend teken</string>
+
+    <string name="charset_letters_and_digits">Letters en cijfers</string>
+    <string name="charset_most_special_characters">Meeste speciale tekens</string>
+
+    </resources>
