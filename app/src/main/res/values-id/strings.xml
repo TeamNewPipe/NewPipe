@@ -181,4 +181,28 @@ membuka di mode popup</string>
 
 <string name="best_resolution">Resolusi terbaik</string>
 
-    </resources>
+    <string name="settings_category_downloads_title">Unduh</string>
+    <string name="settings_file_charset_title">Karakter yang diizinkan sebagai nama berkas</string>
+    <string name="settings_file_replacement_character_summary">Karakter yang tidak valid akan diganti dengan karakter ini</string>
+    <string name="settings_file_replacement_character_title">Karakter pengganti</string>
+
+    <string name="charset_letters_and_digits">Huruf dan angka</string>
+    <string name="charset_most_special_characters">Karakter spesial umum</string>
+
+    <string name="title_activity_about">Tentang NewPipe</string>
+    <string name="action_settings">Pengaturan</string>
+    <string name="action_about">Tentang</string>
+    <string name="title_licenses">Lisensi pihak ketiga</string>
+    <string name="copyright" formatted="true">© %1$s oleh %2$s di bawah %3$s</string>
+    <string name="error_unable_to_load_license">Tidak bisa memuat lisensi</string>
+    <string name="action_open_website">Buka situs web</string>
+    <string name="tab_about">Tentang</string>
+    <string name="tab_contributors">Kontributor</string>
+    <string name="tab_licenses">Lisensi</string>
+    <string name="app_description">Antarmuka YouTube yang ringan dan gratis untuk Android.</string>
+    <string name="view_on_github">Lihat di Github</string>
+    <string name="app_license_title">Lisensi NewPipe</string>
+    <string name="contribution_encouragement">Terlepas apakah Anda memiliki ide, terjemahan, perubahan desain, pembersihan kode, atau perubahan kode yang signifikan, segala bantuan akan selalu diterima. Semakin banyak akan semakin baik jadinya!</string>
+    <string name="read_full_license">Baca lisensi</string>
+    <string name="contribution_title">Kontribusi</string>
+</resources>
