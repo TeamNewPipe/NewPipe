@@ -334,10 +334,10 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
             headerRootLayout.setVisibility(View.VISIBLE);
             //animateView(loadingProgressBar, false, 200, null);
 
-            if (!TextUtils.isEmpty(info.channel_name)) {
-                if (activity.getSupportActionBar() != null) activity.getSupportActionBar().setTitle(info.channel_name);
-                headerTitleView.setText(info.channel_name);
-                channelName = info.channel_name;
+            if (!TextUtils.isEmpty(info.name)) {
+                if (activity.getSupportActionBar() != null) activity.getSupportActionBar().setTitle(info.name);
+                headerTitleView.setText(info.name);
+                channelName = info.name;
             } else channelName = "";
 
             if (!TextUtils.isEmpty(info.banner_url)) {
@@ -349,8 +349,8 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
                 imageLoader.displayImage(info.avatar_url, headerAvatarView, displayImageOptions, new ImageErrorLoadingListener(activity, getView(), info.service_id));
             }
 
-            if (info.subscriberCount != -1) {
-                headerSubscribersTextView.setText(buildSubscriberString(info.subscriberCount));
+            if (info.subscriber_count != -1) {
+                headerSubscribersTextView.setText(buildSubscriberString(info.subscriber_count));
                 headerSubscribersTextView.setVisibility(View.VISIBLE);
             } else headerSubscribersTextView.setVisibility(View.GONE);
 
@@ -360,7 +360,7 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
             infoListAdapter.showFooter(true);
         }
 
-        hasNextPage = info.hasNextPage;
+        hasNextPage = info.has_more_streams;
         if (!hasNextPage) infoListAdapter.showFooter(false);
 
         //if (!listRestored) {

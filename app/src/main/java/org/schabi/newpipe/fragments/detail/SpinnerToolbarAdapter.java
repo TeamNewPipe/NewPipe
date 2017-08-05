@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.stream_info.VideoStream;
+import org.schabi.newpipe.extractor.stream.VideoStream;
 
 import java.util.List;
 

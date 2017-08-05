@@ -66,7 +66,7 @@ public class ChannelExtractorWorker extends ExtractorWorker {
 
     @Override
     protected void doWork(int serviceId, String url) throws Exception {
-        ChannelExtractor extractor = getService().getChannelExtractorInstance(url, pageNumber);
+        ChannelExtractor extractor = getService().getChannelExtractorInstance(url);
         channelInfo = ChannelInfo.getInfo(extractor);
 
         if (!channelInfo.errors.isEmpty()) handleErrorsDuringExtraction(channelInfo.errors, REQUESTED_CHANNEL);

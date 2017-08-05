@@ -5,7 +5,7 @@ import android.os.Handler;
 
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.stream_info.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 
 import java.io.InterruptedIOException;
 import java.util.concurrent.atomic.AtomicBoolean;

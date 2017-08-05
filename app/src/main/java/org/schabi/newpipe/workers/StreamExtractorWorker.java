@@ -7,10 +7,11 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
-import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
-import org.schabi.newpipe.extractor.stream_info.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamExtractor;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 
 import java.io.IOException;
 
@@ -66,7 +67,7 @@ public class StreamExtractorWorker extends ExtractorWorker {
 
     @Override
     protected void doWork(int serviceId, String url) throws Exception {
-        StreamExtractor streamExtractor = getService().getExtractorInstance(url);
+        StreamExtractor streamExtractor = getService().getStreamExtractorInstance(url);
         streamInfo = StreamInfo.getVideoInfo(streamExtractor);
 
         if (streamInfo != null && !streamInfo.errors.isEmpty()) handleErrorsDuringExtraction(streamInfo.errors, REQUESTED_STREAM);
@@ -115,7 +116,7 @@ public class StreamExtractorWorker extends ExtractorWorker {
                     callback.onContentErrorWithMessage(R.string.live_streams_not_supported);
                 }
             });
-        } else if (exception instanceof StreamExtractor.ContentNotAvailableException) {
+        } else if (exception instanceof ContentNotAvailableException) {
             getHandler().post(new Runnable() {
                 @Override
                 public void run() {
@@ -131,7 +132,7 @@ public class StreamExtractorWorker extends ExtractorWorker {
                     callback.onUnrecoverableError(exception);
                 }
             });
-        } else if (exception instanceof StreamInfo.StreamExctractException) {
+        } else if (exception instanceof ExtractionException) {
             if (!streamInfo.errors.isEmpty()) {
                 // !!! if this case ever kicks in someone gets kicked out !!!
                 ErrorActivity.reportError(getHandler(), getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(REQUESTED_STREAM, getServiceName(), url, R.string.could_not_get_stream));

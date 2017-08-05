@@ -118,7 +118,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if(footer != null && position == infoItemList.size() && showFooter) {
             return 1;
         }
-        switch(infoItemList.get(position).infoType()) {
+        switch(infoItemList.get(position).info_type) {
             case STREAM:
                 return 2;
             case CHANNEL:

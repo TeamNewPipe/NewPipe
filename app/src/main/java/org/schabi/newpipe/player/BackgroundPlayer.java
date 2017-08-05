@@ -22,7 +22,7 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.stream_info.AudioStream;
+import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ThemeHelper;
 

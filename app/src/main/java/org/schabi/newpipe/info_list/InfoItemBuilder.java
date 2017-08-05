@@ -12,10 +12,10 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.AbstractStreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
-import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 
 import java.util.Locale;
 
@@ -105,9 +105,9 @@ public class InfoItemBuilder {
     }
 
     public void buildByHolder(InfoItemHolder holder, final InfoItem i) {
-        if (i.infoType() != holder.infoType())
+        if (i.info_type != holder.infoType())
             return;
-        switch (i.infoType()) {
+        switch (i.info_type) {
             case STREAM:
                 buildStreamInfoItem((StreamInfoItemHolder) holder, (StreamInfoItem) i);
                 break;
@@ -126,7 +126,7 @@ public class InfoItemBuilder {
         View itemView = null;
         InfoItemHolder holder = null;
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        switch (info.infoType()) {
+        switch (info.info_type) {
             case STREAM:
                 //long start = System.nanoTime();
                 itemView = inflater.inflate(R.layout.stream_item, parent, false);
@@ -163,11 +163,11 @@ public class InfoItemBuilder {
     }
 
     private void buildStreamInfoItem(StreamInfoItemHolder holder, final StreamInfoItem info) {
-        if (info.infoType() != InfoItem.InfoType.STREAM) {
+        if (info.info_type != InfoItem.InfoType.STREAM) {
             Log.e("InfoItemBuilder", "Info type not yet supported");
         }
         // fill holder with information
-        if (!TextUtils.isEmpty(info.title)) holder.itemVideoTitleView.setText(info.title);
+        if (!TextUtils.isEmpty(info.name)) holder.itemVideoTitleView.setText(info.name);
 
         if (!TextUtils.isEmpty(info.uploader)) holder.itemUploaderView.setText(info.uploader);
         else holder.itemUploaderView.setVisibility(View.INVISIBLE);
@@ -175,7 +175,7 @@ public class InfoItemBuilder {
         if (info.duration > 0) {
             holder.itemDurationView.setText(getDurationString(info.duration));
         } else {
-            if (info.stream_type == AbstractStreamInfo.StreamType.LIVE_STREAM) {
+            if (info.stream_type == StreamType.LIVE_STREAM) {
                 holder.itemDurationView.setText(R.string.duration_live);
             } else {
                 holder.itemDurationView.setVisibility(View.GONE);
@@ -195,7 +195,7 @@ public class InfoItemBuilder {
             @Override
             public void onClick(View view) {
                 if(onStreamInfoItemSelectedListener != null) {
-                    onStreamInfoItemSelectedListener.selected(info.service_id, info.webpage_url, info.getTitle());
+                    onStreamInfoItemSelectedListener.selected(info.service_id, info.url, info.name);
                 }
             }
         });
@@ -203,11 +203,11 @@ public class InfoItemBuilder {
 
     private String getChannelInfoDetailLine(final ChannelInfoItem info) {
         String details = "";
-        if(info.subscriberCount >= 0) {
-            details = shortSubscriber(info.subscriberCount);
+        if(info.subscriber_count >= 0) {
+            details = shortSubscriber(info.subscriber_count);
         }
-        if(info.videoAmount >= 0) {
-            String formattedVideoAmount = info.videoAmount + " " + videosS;
+        if(info.view_count >= 0) {
+            String formattedVideoAmount = info.view_count + " " + videosS;
             if(!details.isEmpty()) {
                 details += " • " + formattedVideoAmount;
             } else {
@@ -218,21 +218,21 @@ public class InfoItemBuilder {
     }
 
     private void buildChannelInfoItem(ChannelInfoItemHolder holder, final ChannelInfoItem info) {
-        if (!TextUtils.isEmpty(info.getTitle())) holder.itemChannelTitleView.setText(info.getTitle());
+        if (!TextUtils.isEmpty(info.name)) holder.itemChannelTitleView.setText(info.name);
         holder.itemAdditionalDetailView.setText(getChannelInfoDetailLine(info));
         if (!TextUtils.isEmpty(info.description)) holder.itemChannelDescriptionView.setText(info.description);
 
-        imageLoader.displayImage(info.thumbnailUrl,
+        imageLoader.displayImage(info.thumbnail_url,
                 holder.itemThumbnailView,
                 DISPLAY_CHANNEL_THUMBNAIL_OPTIONS,
-                new ImageErrorLoadingListener(holder.itemRoot.getContext(), holder.itemRoot.getRootView(), info.serviceId));
+                new ImageErrorLoadingListener(holder.itemRoot.getContext(), holder.itemRoot.getRootView(), info.service_id));
 
 
         holder.itemRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(onStreamInfoItemSelectedListener != null) {
-                    onChannelInfoItemSelectedListener.selected(info.serviceId, info.getLink(), info.channelName);
+                    onChannelInfoItemSelectedListener.selected(info.service_id, info.url, info.name);
                 }
             }
         });
