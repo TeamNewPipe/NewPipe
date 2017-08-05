@@ -53,9 +53,9 @@ import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.stream_info.AudioStream;
-import org.schabi.newpipe.extractor.stream_info.StreamInfo;
-import org.schabi.newpipe.extractor.stream_info.VideoStream;
+import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BaseFragment;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.player.MainVideoPlayer;
@@ -423,8 +423,8 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
                 intent.setAction(Intent.ACTION_VIEW);
                 intent.setDataAndType(Uri.parse(audioStream.url),
                         MediaFormat.getMimeById(audioStream.format));
-                intent.putExtra(Intent.EXTRA_TITLE, currentStreamInfo.title);
-                intent.putExtra("title", currentStreamInfo.title);
+                intent.putExtra(Intent.EXTRA_TITLE, currentStreamInfo.name);
+                intent.putExtra("title", currentStreamInfo.name);
                 // HERE !!!
                 activity.startActivity(intent);
             } catch (Exception e) {
@@ -652,7 +652,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
 
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, info.webpage_url);
+                intent.putExtra(Intent.EXTRA_TEXT, info.url);
                 intent.setType("text/plain");
                 startActivity(Intent.createChooser(intent, activity.getString(R.string.share_dialog_title)));
             }
@@ -665,7 +665,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
 
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(info.webpage_url));
+                intent.setData(Uri.parse(info.url));
                 startActivity(Intent.createChooser(intent, activity.getString(R.string.choose_browser)));
             }
         });
@@ -678,7 +678,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
                 try {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setPackage(KORE_PACKET);
-                    intent.setData(Uri.parse(info.webpage_url.replace("https", "http")));
+                    intent.setData(Uri.parse(info.url.replace("https", "http")));
                     activity.startActivity(intent);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -803,7 +803,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
 
     public void selectAndHandleInfo(StreamInfo info, boolean scrollToTop) {
         if (DEBUG) Log.d(TAG, "selectAndHandleInfo() called with: info = [" + info + "], scrollToTop = [" + scrollToTop + "]");
-        selectVideo(info.service_id, info.webpage_url, info.title);
+        selectVideo(info.service_id, info.url, info.name);
         prepareAndLoad(info, scrollToTop);
     }
 
@@ -838,7 +838,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
             info = StreamInfoCache.getInstance().getFromKey(videoUrl);
         }
 
-        if (info != null) selectVideo(info.service_id, info.webpage_url, info.title);
+        if (info != null) selectVideo(info.service_id, info.url, info.name);
         pushToStack(videoUrl, videoTitle);
 
         if (curExtractorWorker != null && curExtractorWorker.isRunning()) curExtractorWorker.cancel();
@@ -890,14 +890,14 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
     private void handleStreamInfo(@NonNull final StreamInfo info, boolean fromNetwork) {
         if (DEBUG) Log.d(TAG, "handleStreamInfo() called with: info = [" + info + "]");
         currentStreamInfo = info;
-        selectVideo(info.service_id, info.webpage_url, info.title);
+        selectVideo(info.service_id, info.url, info.name);
 
         loadingProgressBar.setVisibility(View.GONE);
         animateView(thumbnailPlayButton, true, 200);
 
         // Since newpipe is designed to work even if certain information is not available,
         // the UI has to react on missing information.
-        if (fromNetwork) videoTitleTextView.setText(info.title);
+        if (fromNetwork) videoTitleTextView.setText(info.name);
 
         if (!TextUtils.isEmpty(info.uploader)) uploaderTextView.setText(info.uploader);
         uploaderTextView.setVisibility(!TextUtils.isEmpty(info.uploader) ? View.VISIBLE : View.GONE);
@@ -940,8 +940,8 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
             toggleExpandRelatedVideos(currentStreamInfo);
             wasRelatedStreamsExpanded = false;
         }
-        setTitleToUrl(info.webpage_url, info.title);
-        setStreamInfoToUrl(info.webpage_url, info);
+        setTitleToUrl(info.url, info.name);
+        setStreamInfoToUrl(info.url, info);
 
         prepareDescription(info.description);
         prepareUploadDate(info.upload_date);
@@ -979,8 +979,8 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
             try {
                 intent.setAction(Intent.ACTION_VIEW)
                         .setDataAndType(Uri.parse(selectedVideoStream.url), MediaFormat.getMimeById(selectedVideoStream.format))
-                        .putExtra(Intent.EXTRA_TITLE, info.title)
-                        .putExtra("title", info.title);
+                        .putExtra(Intent.EXTRA_TITLE, info.name)
+                        .putExtra("title", info.name);
                 this.startActivity(intent);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -1013,9 +1013,9 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
             } else {
                 // Internal Player
                 mIntent = new Intent(activity, PlayVideoActivity.class)
-                        .putExtra(PlayVideoActivity.VIDEO_TITLE, info.title)
+                        .putExtra(PlayVideoActivity.VIDEO_TITLE, info.name)
                         .putExtra(PlayVideoActivity.STREAM_URL, selectedVideoStream.url)
-                        .putExtra(PlayVideoActivity.VIDEO_URL, info.webpage_url)
+                        .putExtra(PlayVideoActivity.VIDEO_URL, info.url)
                         .putExtra(PlayVideoActivity.START_POSITION, info.start_position);
             }
             startActivity(mIntent);

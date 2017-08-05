@@ -1,6 +1,6 @@
 package org.schabi.newpipe.fragments.detail;
 
-import org.schabi.newpipe.extractor.stream_info.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 
 import java.io.Serializable;
 

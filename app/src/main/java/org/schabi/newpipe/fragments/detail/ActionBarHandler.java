@@ -12,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.stream_info.VideoStream;
+import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.util.Utils;
 
 import java.util.List;

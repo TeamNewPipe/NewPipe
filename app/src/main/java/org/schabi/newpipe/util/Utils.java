@@ -6,8 +6,8 @@ import android.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.stream_info.AudioStream;
-import org.schabi.newpipe.extractor.stream_info.VideoStream;
+import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.VideoStream;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -144,7 +144,7 @@ public class Utils {
         // Try to find a audio stream with the highest bitrate and preferred format
         for (int i = 0; i < audioStreams.size(); i++) {
             AudioStream audioStream = audioStreams.get(i);
-            if (audioStream.avgBitrate > audioStreams.get(highestQualityIndex).avgBitrate
+            if (audioStream.average_bitrate > audioStreams.get(highestQualityIndex).average_bitrate
                     && audioStream.format == preferredFormat) highestQualityIndex = i;
         }
 
@@ -162,7 +162,7 @@ public class Utils {
 
         for (int i = 1; i < audioStreams.size(); i++) {
             AudioStream audioStream = audioStreams.get(i);
-            if (audioStream.avgBitrate > audioStreams.get(highestQualityIndex).avgBitrate) highestQualityIndex = i;
+            if (audioStream.average_bitrate > audioStreams.get(highestQualityIndex).average_bitrate) highestQualityIndex = i;
         }
 
         return audioStreams.get(highestQualityIndex);

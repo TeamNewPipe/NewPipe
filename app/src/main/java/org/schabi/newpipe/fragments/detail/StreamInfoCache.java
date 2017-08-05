@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import org.schabi.newpipe.MainActivity;
-import org.schabi.newpipe.extractor.stream_info.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -41,7 +41,7 @@ public class StreamInfoCache {
 
     public void putInfo(@NonNull StreamInfo info) {
         if (DEBUG) Log.d(TAG, "putInfo() called with: info = [" + info + "]");
-        putInfo(info.webpage_url, info);
+        putInfo(info.url, info);
     }
 
     public void putInfo(@NonNull String url, @NonNull StreamInfo info) {
@@ -51,7 +51,7 @@ public class StreamInfoCache {
 
     public void removeInfo(@NonNull StreamInfo info) {
         if (DEBUG) Log.d(TAG, "removeInfo() called with: info = [" + info + "]");
-        myCache.remove(info.webpage_url);
+        myCache.remove(info.url);
     }
 
     public void removeInfo(@NonNull String url) {

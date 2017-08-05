@@ -2,8 +2,8 @@ package org.schabi.newpipe.util;
 
 import org.junit.Test;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.stream_info.AudioStream;
-import org.schabi.newpipe.extractor.stream_info.VideoStream;
+import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.VideoStream;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,12 +12,12 @@ import static org.junit.Assert.assertEquals;
 
 public class UtilsTest {
     private List<AudioStream> audioStreamsTestList = Arrays.asList(
-            new AudioStream("", MediaFormat.M4A.id,   /**/ 120, 0, 0),
-            new AudioStream("", MediaFormat.WEBMA.id, /**/ 190, 0, 0),
-            new AudioStream("", MediaFormat.M4A.id,   /**/ 130, 0, 0),
-            new AudioStream("", MediaFormat.WEBMA.id, /**/ 60, 0, 0),
-            new AudioStream("", MediaFormat.M4A.id,   /**/ 320, 0, 0),
-            new AudioStream("", MediaFormat.WEBMA.id, /**/ 320, 0, 0));
+            new AudioStream("", MediaFormat.M4A.id,   /**/ 120),
+            new AudioStream("", MediaFormat.WEBMA.id, /**/ 190),
+            new AudioStream("", MediaFormat.M4A.id,   /**/ 130),
+            new AudioStream("", MediaFormat.WEBMA.id, /**/ 60),
+            new AudioStream("", MediaFormat.M4A.id,   /**/ 320),
+            new AudioStream("", MediaFormat.WEBMA.id, /**/ 320));
 
     private List<VideoStream> videoStreamsTestList = Arrays.asList(
             new VideoStream("",       /**/ MediaFormat.MPEG_4.id,   /**/ "720p"),
@@ -28,19 +28,19 @@ public class UtilsTest {
             new VideoStream("",       /**/ MediaFormat.WEBM.id,     /**/ "360p"));
 
     private List<VideoStream> videoOnlyStreamsTestList = Arrays.asList(
-            new VideoStream(true, "", /**/ MediaFormat.MPEG_4.id,  /**/ "720p"),
-            new VideoStream(true, "", /**/ MediaFormat.MPEG_4.id,  /**/ "720p"),
-            new VideoStream(true, "", /**/ MediaFormat.MPEG_4.id,  /**/ "2160p"),
-            new VideoStream(true, "", /**/ MediaFormat.MPEG_4.id,  /**/ "1440p60"),
-            new VideoStream(true, "", /**/ MediaFormat.WEBM.id,    /**/ "720p60"),
-            new VideoStream(true, "", /**/ MediaFormat.MPEG_4.id,  /**/ "2160p60"),
-            new VideoStream(true, "", /**/ MediaFormat.MPEG_4.id,  /**/ "720p60"),
-            new VideoStream(true, "", /**/ MediaFormat.MPEG_4.id,  /**/ "1080p"),
-            new VideoStream(true, "", /**/ MediaFormat.MPEG_4.id,  /**/ "1080p60"));
+            new VideoStream("", /**/ MediaFormat.MPEG_4.id,  /**/ "720p",    true),
+            new VideoStream("", /**/ MediaFormat.MPEG_4.id,  /**/ "720p",    true),
+            new VideoStream("", /**/ MediaFormat.MPEG_4.id,  /**/ "2160p",   true),
+            new VideoStream("", /**/ MediaFormat.MPEG_4.id,  /**/ "1440p60", true),
+            new VideoStream("", /**/ MediaFormat.WEBM.id,    /**/ "720p60",  true),
+            new VideoStream("", /**/ MediaFormat.MPEG_4.id,  /**/ "2160p60", true),
+            new VideoStream("", /**/ MediaFormat.MPEG_4.id,  /**/ "720p60",  true),
+            new VideoStream("", /**/ MediaFormat.MPEG_4.id,  /**/ "1080p",   true),
+            new VideoStream("", /**/ MediaFormat.MPEG_4.id,  /**/ "1080p60", true));
 
     @Test
     public void getHighestQualityAudioTest() throws Exception {
-        assertEquals(320, Utils.getHighestQualityAudio(audioStreamsTestList).avgBitrate);
+        assertEquals(320, Utils.getHighestQualityAudio(audioStreamsTestList).average_bitrate);
     }
 
     @Test

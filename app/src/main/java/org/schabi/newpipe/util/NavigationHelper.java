@@ -16,8 +16,8 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.stream_info.AudioStream;
-import org.schabi.newpipe.extractor.stream_info.StreamInfo;
+import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.channel.ChannelFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -37,8 +37,8 @@ public class NavigationHelper {
 
     public static Intent getOpenVideoPlayerIntent(Context context, Class targetClazz, StreamInfo info, int selectedStreamIndex) {
         Intent mIntent = new Intent(context, targetClazz)
-                .putExtra(BasePlayer.VIDEO_TITLE, info.title)
-                .putExtra(BasePlayer.VIDEO_URL, info.webpage_url)
+                .putExtra(BasePlayer.VIDEO_TITLE, info.name)
+                .putExtra(BasePlayer.VIDEO_URL, info.url)
                 .putExtra(BasePlayer.VIDEO_THUMBNAIL_URL, info.thumbnail_url)
                 .putExtra(BasePlayer.CHANNEL_NAME, info.uploader)
                 .putExtra(VideoPlayer.INDEX_SEL_VIDEO_STREAM, selectedStreamIndex)
@@ -67,8 +67,8 @@ public class NavigationHelper {
 
     public static Intent getOpenBackgroundPlayerIntent(Context context, StreamInfo info, AudioStream audioStream) {
         Intent mIntent = new Intent(context, BackgroundPlayer.class)
-                .putExtra(BasePlayer.VIDEO_TITLE, info.title)
-                .putExtra(BasePlayer.VIDEO_URL, info.webpage_url)
+                .putExtra(BasePlayer.VIDEO_TITLE, info.name)
+                .putExtra(BasePlayer.VIDEO_URL, info.url)
                 .putExtra(BasePlayer.VIDEO_THUMBNAIL_URL, info.thumbnail_url)
                 .putExtra(BasePlayer.CHANNEL_NAME, info.uploader)
                 .putExtra(BasePlayer.CHANNEL_NAME, info.uploader)

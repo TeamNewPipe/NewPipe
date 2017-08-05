@@ -39,7 +39,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.stream_info.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -647,8 +647,8 @@ public class PopupVideoPlayer extends Service {
 
         @Override
         public void onReceive(StreamInfo info) {
-            playerImpl.setVideoTitle(info.title);
-            playerImpl.setVideoUrl(info.webpage_url);
+            playerImpl.setVideoTitle(info.name);
+            playerImpl.setVideoUrl(info.url);
             playerImpl.setVideoThumbnailUrl(info.thumbnail_url);
             playerImpl.setChannelName(info.uploader);
 

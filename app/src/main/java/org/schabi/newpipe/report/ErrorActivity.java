@@ -36,7 +36,7 @@ import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.Parser;
+import org.schabi.newpipe.extractor.utils.Parser;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.PrintWriter;
