@@ -13,6 +13,8 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jakewharton.rxbinding2.view.RxView;
+
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.MainActivity;
@@ -20,7 +22,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
-import org.schabi.newpipe.fragments.search.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -30,8 +31,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import io.reactivex.Flowable;
 import io.reactivex.MaybeObserver;
@@ -47,13 +48,15 @@ public class FeedFragment extends BaseFragment {
     private static final String VIEW_STATE_KEY = "view_state_key";
     private static final String INFO_ITEMS_KEY = "info_items_key";
 
-    private static final int INITIAL_FEED_SIZE = 16;
-    private static final int PARTIAL_LOAD_SIZE = 4;
+    private static final int FEED_LOAD_SIZE = 4;
+    private static final int LOAD_ITEM_DEBOUNCE_INTERVAL = 500;
 
     private final String TAG = "FeedFragment@" + Integer.toHexString(hashCode());
 
     private View inflatedView;
     private View emptyPanel;
+    private View loadItemFooter;
+
     private InfoListAdapter infoListAdapter;
     private RecyclerView resultRecyclerView;
 
@@ -62,10 +65,9 @@ public class FeedFragment extends BaseFragment {
 
     private SubscriptionService subscriptionService;
 
+    private Disposable loadItemObserver;
     private Disposable subscriptionObserver;
     private Subscription feedSubscriber;
-
-    private AtomicInteger requestCount;
 
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle
@@ -77,7 +79,6 @@ public class FeedFragment extends BaseFragment {
         subscriptionService = SubscriptionService.getInstance(getContext());
 
         retainFeedItems = new AtomicBoolean(false);
-        requestCount = new AtomicInteger();
 
         if (infoListAdapter == null) {
             infoListAdapter = new InfoListAdapter(getActivity());
@@ -133,11 +134,15 @@ public class FeedFragment extends BaseFragment {
     public void onDestroyView() {
         // Do not monitor for updates when user is not viewing the feed fragment.
         // This is a waste of bandwidth.
+        if (loadItemObserver != null) loadItemObserver.dispose();
         if (subscriptionObserver != null) subscriptionObserver.dispose();
         if (feedSubscriber != null) feedSubscriber.cancel();
 
+        loadItemObserver = null;
         subscriptionObserver = null;
         feedSubscriber = null;
+
+        loadItemFooter = null;
 
         // Retain the already displayed items for backstack pops
         retainFeedItems.set(true);
@@ -180,15 +185,6 @@ public class FeedFragment extends BaseFragment {
         };
     }
 
-    private RecyclerView.OnScrollListener getOnBottomListener() {
-        return new OnScrollBelowItemsListener() {
-            @Override
-            public void onScrolledDown(RecyclerView recyclerView) {
-                if (requestCount.get() <= 0) requestFeed(PARTIAL_LOAD_SIZE);
-            }
-        };
-    }
-
     @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
@@ -203,7 +199,8 @@ public class FeedFragment extends BaseFragment {
         resultRecyclerView = rootView.findViewById(R.id.result_list_view);
         resultRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
 
-        infoListAdapter.setFooter(activity.getLayoutInflater().inflate(R.layout.pignate_footer, resultRecyclerView, false));
+        loadItemFooter = activity.getLayoutInflater().inflate(R.layout.load_item_footer, resultRecyclerView, false);
+        infoListAdapter.setFooter(loadItemFooter);
         infoListAdapter.showFooter(false);
         infoListAdapter.setOnStreamInfoItemSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener() {
             @Override
@@ -214,7 +211,6 @@ public class FeedFragment extends BaseFragment {
 
         resultRecyclerView.setAdapter(infoListAdapter);
         resultRecyclerView.addOnScrollListener(getOnScrollListener());
-        resultRecyclerView.addOnScrollListener(getOnBottomListener());
 
         if (viewState != null) {
             resultRecyclerView.getLayoutManager().onRestoreInstanceState(viewState);
@@ -242,6 +238,26 @@ public class FeedFragment extends BaseFragment {
         super.setErrorMessage(message, showRetryButton);
 
         resetFragment();
+    }
+
+    /**
+     * Changes the state of the load item footer.
+     *
+     * If the current state of the feed is loaded, this displays the load item button and
+     * starts its reactor.
+     *
+     * Otherwise, show a spinner in place of the loader button. */
+    private void setLoader(final boolean isLoaded) {
+        if (loadItemFooter == null) return;
+
+        if (loadItemObserver != null) loadItemObserver.dispose();
+
+        if (isLoaded) {
+            loadItemObserver = getLoadItemObserver(loadItemFooter);
+        }
+
+        loadItemFooter.findViewById(R.id.paginate_progress_bar).setVisibility(isLoaded ? View.GONE : View.VISIBLE);
+        loadItemFooter.findViewById(R.id.load_more_text).setVisibility(isLoaded ? View.VISIBLE : View.GONE);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -282,7 +298,6 @@ public class FeedFragment extends BaseFragment {
                 }
 
                 retainFeedItems.set(false);
-                requestCount.set(0);
                 Flowable.fromIterable(subscriptionEntities)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(getSubscriptionObserver());
@@ -292,7 +307,7 @@ public class FeedFragment extends BaseFragment {
         final Consumer<Throwable> onError = new Consumer<Throwable>() {
             @Override
             public void accept(@NonNull Throwable exception) throws Exception {
-                onRxError(exception);
+                onRxError(exception, "Subscription Database Reactor");
             }
         };
 
@@ -307,7 +322,7 @@ public class FeedFragment extends BaseFragment {
      * Responsible for reacting to user pulling request and starting a request for new feed stream.
      *
      * On initialization, it automatically requests the amount of feed needed to display
-     * a minimum amount required (INITIAL_FEED_SIZE).
+     * a minimum amount required (FEED_LOAD_SIZE).
      *
      * Upon receiving a user pull, it creates a Single Observer to fetch the ChannelInfo
      * containing the feed streams.
@@ -319,9 +334,11 @@ public class FeedFragment extends BaseFragment {
                 if (feedSubscriber != null) feedSubscriber.cancel();
                 feedSubscriber = s;
 
-                final int requestSize = INITIAL_FEED_SIZE - infoListAdapter.getItemsList().size();
+                final int requestSize = FEED_LOAD_SIZE - infoListAdapter.getItemsList().size();
                 if (requestSize > 0) {
                     requestFeed(requestSize);
+                } else {
+                    setLoader(true);
                 }
 
                 animateView(loadingProgressBar, false, 200);
@@ -331,6 +348,7 @@ public class FeedFragment extends BaseFragment {
 
             @Override
             public void onNext(SubscriptionEntity subscriptionEntity) {
+                setLoader(false);
 
                 subscriptionService.getChannelInfo(subscriptionEntity)
                         .observeOn(AndroidSchedulers.mainThread())
@@ -340,7 +358,7 @@ public class FeedFragment extends BaseFragment {
 
             @Override
             public void onError(Throwable exception) {
-                onRxError(exception);
+                onRxError(exception, "Feed Pull Reactor");
             }
 
             @Override
@@ -395,7 +413,7 @@ public class FeedFragment extends BaseFragment {
 
             @Override
             public void onError(Throwable exception) {
-                onRxError(exception);
+                onRxError(exception, "Feed Display Reactor");
                 onDone();
             }
 
@@ -406,7 +424,7 @@ public class FeedFragment extends BaseFragment {
             }
 
             private void onDone() {
-                requestCount.decrementAndGet();
+                setLoader(true);
 
                 observer.dispose();
                 observer = null;
@@ -426,19 +444,38 @@ public class FeedFragment extends BaseFragment {
     private void requestFeed(final int count) {
         if (feedSubscriber == null) return;
 
-        requestCount.addAndGet(count);
         feedSubscriber.request(count);
+    }
+
+    private Disposable getLoadItemObserver(@NonNull final View itemLoader) {
+        final Consumer<Object> onNext = new Consumer<Object>() {
+            @Override
+            public void accept(Object o) throws Exception {
+                requestFeed(FEED_LOAD_SIZE);
+            }
+        };
+
+        final Consumer<Throwable> onError = new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                onRxError(throwable, "Load Button Reactor");
+            }
+        };
+
+        return RxView.clicks(itemLoader)
+                .debounce(LOAD_ITEM_DEBOUNCE_INTERVAL, TimeUnit.MILLISECONDS)
+                .subscribe(onNext, onError);
     }
 
     ///////////////////////////////////////////////////////////////////////////
     // Fragment Error Handling
     ///////////////////////////////////////////////////////////////////////////
 
-    private void onRxError(final Throwable exception) {
+    private void onRxError(final Throwable exception, final String tag) {
         if (exception instanceof IOException) {
             onRecoverableError(R.string.network_error);
         } else {
-            onUnrecoverableError(exception);
+            onUnrecoverableError(exception, tag);
         }
     }
 
@@ -449,9 +486,9 @@ public class FeedFragment extends BaseFragment {
         setErrorMessage(getString(messageId), true);
     }
 
-    private void onUnrecoverableError(Throwable exception) {
+    private void onUnrecoverableError(Throwable exception, final String tag) {
         if (DEBUG) Log.d(TAG, "onUnrecoverableError() called with: exception = [" + exception + "]");
-        ErrorActivity.reportError(getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(REQUESTED_CHANNEL, "Feed", "Subscription", R.string.general_error));
+        ErrorActivity.reportError(getContext(), exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(REQUESTED_CHANNEL, "Feed", tag, R.string.general_error));
 
         activity.finish();
     }

@@ -17,7 +17,7 @@
         android:drawablePadding="5dp"
         android:text="@string/fragment_whats_new"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="@dimen/subscription_page_header_text_size"
+        android:textSize="@dimen/header_footer_text_size"
         android:gravity="left|center"
         android:clickable="true"
         tools:ignore="RtlHardcoded"/>
