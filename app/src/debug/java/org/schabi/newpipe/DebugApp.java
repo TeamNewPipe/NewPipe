@@ -1,26 +1,9 @@
 package org.schabi.newpipe;
 
-import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.facebook.stetho.Stetho;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-
-import org.acra.ACRA;
-import org.acra.config.ACRAConfiguration;
-import org.acra.config.ACRAConfigurationException;
-import org.acra.config.ConfigurationBuilder;
-import org.acra.sender.ReportSenderFactory;
-import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.report.AcraReportSenderFactory;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.settings.SettingsActivity;
-import org.schabi.newpipe.util.ThemeHelper;
-
-import info.guardianproject.netcipher.NetCipher;
-import info.guardianproject.netcipher.proxy.OrbotHelper;
 
 /**
  * Copyright (C) Hans-Christoph Steiner 2016 <hans@eds.org>
@@ -42,6 +25,12 @@ import info.guardianproject.netcipher.proxy.OrbotHelper;
 
 public class DebugApp extends App {
     private static final String TAG = DebugApp.class.toString();
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     @Override
     public void onCreate() {

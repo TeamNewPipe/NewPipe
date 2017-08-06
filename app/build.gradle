@@ -19,6 +19,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
+            multiDexEnabled true
+
             debuggable true
             applicationIdSuffix ".debug"
         }
@@ -65,6 +67,7 @@ dependencies {
 
     debugCompile 'com.facebook.stetho:stetho:1.5.0'
     debugCompile 'com.facebook.stetho:stetho-urlconnection:1.5.0'
+    debugCompile 'com.android.support:multidex:1.0.1'
 
     compile "android.arch.persistence.room:runtime:1.0.0-alpha8"
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha8"
