@@ -1,4 +1,4 @@
-package org.schabi.newpipe.history.dao;
+package org.schabi.newpipe.database.history.dao;
 
 
 import android.arch.persistence.room.Dao;
@@ -7,7 +7,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.support.annotation.NonNull;
 
-import org.schabi.newpipe.history.model.SearchHistoryEntry;
+import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 
 @Dao
 public interface SearchHistoryDAO extends HistoryDAO<SearchHistoryEntry> {

@@ -1,4 +1,4 @@
-package org.schabi.newpipe.history.model;
+package org.schabi.newpipe.database.history.model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;

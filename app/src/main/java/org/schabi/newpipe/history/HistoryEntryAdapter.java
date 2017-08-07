@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import org.schabi.newpipe.history.model.HistoryEntry;
+import org.schabi.newpipe.database.history.model.HistoryEntry;
 
 import java.text.DateFormat;
 import java.util.ArrayList;

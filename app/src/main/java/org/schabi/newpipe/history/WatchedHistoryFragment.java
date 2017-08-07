@@ -15,10 +15,10 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.history.dao.HistoryDAO;
-import org.schabi.newpipe.history.model.WatchHistoryEntry;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.database.history.dao.HistoryDAO;
+import org.schabi.newpipe.database.history.model.WatchHistoryEntry;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import static org.schabi.newpipe.info_list.InfoItemBuilder.getDurationString;
@@ -51,7 +51,7 @@ public class WatchedHistoryFragment extends HistoryFragment<WatchHistoryEntry> {
     @NonNull
     @Override
     protected HistoryDAO<WatchHistoryEntry> createHistoryDAO(Context context) {
-        return HistoryDatabase.getInstance(context).watchHistoryDAO();
+        return NewPipeDatabase.getInstance(context).watchHistoryDAO();
     }
 
     @Override

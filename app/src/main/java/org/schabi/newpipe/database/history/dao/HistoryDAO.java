@@ -1,4 +1,4 @@
-package org.schabi.newpipe.history.dao;
+package org.schabi.newpipe.database.history.dao;
 
 
 import android.support.annotation.NonNull;

@@ -18,8 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.history.dao.HistoryDAO;
-import org.schabi.newpipe.history.model.HistoryEntry;
+import org.schabi.newpipe.database.history.dao.HistoryDAO;
+import org.schabi.newpipe.database.history.model.HistoryEntry;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
