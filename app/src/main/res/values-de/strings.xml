@@ -169,13 +169,13 @@
     <string name="popup_remember_size_pos_summary">Merke Position und Größe des Popups</string>
     <string name="player_gesture_controls_title">Gestensteuerung</string>
     <string name="player_gesture_controls_summary">Helligkeit und Lautstärke des Players mit Gesten steuern</string>
-    <string name="show_search_suggestions_title">Suchvorschläge</string>
-    <string name="show_search_suggestions_summary">Beim Suchen Vorschläge anzeigen</string>
+    <string name="show_search_suggestions_title">Durchsuche Vorschläge</string>
+    <string name="show_search_suggestions_summary">Zeige Vorschläge beim Suchen</string>
 
     <string name="settings_category_popup_title">Pop-up</string>
     <string name="filter">Filter</string>
     <string name="refresh">Aktualisieren</string>
-    <string name="clear">Löschen</string>
+    <string name="clear">Leeren</string>
     <string name="popup_resizing_indicator_title">Größenänderung</string>
     <string name="best_resolution">Beste Auflösung</string>
 
