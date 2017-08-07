@@ -52,8 +52,8 @@ public class SearchHistoryFragment extends HistoryFragment<SearchHistoryEntry> {
 
         public ViewHolder(View itemView) {
             super(itemView);
-            search = (TextView) itemView.findViewById(R.id.search);
-            time = (TextView) itemView.findViewById(R.id.time);
+            search = itemView.findViewById(R.id.search);
+            time = itemView.findViewById(R.id.time);
         }
     }
 

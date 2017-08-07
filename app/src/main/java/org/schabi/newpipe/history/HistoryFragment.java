@@ -113,7 +113,7 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_history, container, false);
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.history_view);
+        mRecyclerView = rootView.findViewById(R.id.history_view);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(layoutManager);

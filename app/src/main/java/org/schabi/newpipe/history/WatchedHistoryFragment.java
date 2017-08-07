@@ -102,11 +102,11 @@ public class WatchedHistoryFragment extends HistoryFragment<WatchHistoryEntry> {
 
         public ViewHolder(View itemView) {
             super(itemView);
-            thumbnailView = (ImageView) itemView.findViewById(R.id.itemThumbnailView);
-            date = (TextView) itemView.findViewById(R.id.itemAdditionalDetails);
-            streamTitle = (TextView) itemView.findViewById(R.id.itemVideoTitleView);
-            uploader = (TextView) itemView.findViewById(R.id.itemUploaderView);
-            duration = (TextView) itemView.findViewById(R.id.itemDurationView);
+            thumbnailView = itemView.findViewById(R.id.itemThumbnailView);
+            date = itemView.findViewById(R.id.itemAdditionalDetails);
+            streamTitle = itemView.findViewById(R.id.itemVideoTitleView);
+            uploader = itemView.findViewById(R.id.itemUploaderView);
+            duration = itemView.findViewById(R.id.itemDurationView);
         }
     }
 }
