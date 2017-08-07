@@ -188,4 +188,18 @@ abrir em modo popup</string>
     <string name="charset_letters_and_digits">Letras e dígitos</string>
     <string name="charset_most_special_characters">Caracteres especiais</string>
 
+    <string name="subscribe_button_title">Inscrever-se</string>
+    <string name="subscribed_button_title">Inscrito</string>
+    <string name="channel_unsubscribed">Inscrição ao canal cancelada</string>
+    <string name="subscription_change_failed">Não foi possível modificar inscrição</string>
+    <string name="subscription_update_failed">Não foi possível atualizar inscrição</string>
+
+    <string name="tab_main">Principal</string>
+    <string name="tab_subscriptions">Inscrições</string>
+
+    <string name="fragment_whats_new">Novidades</string>
+
+    <string name="resume_on_audio_focus_gain_title">Retomar reprodução ao ganhar foco</string>
+    <string name="resume_on_audio_focus_gain_summary">Continuar reproduzindo depois de interrupções (exemplo: ligações)</string>
+
     </resources>
