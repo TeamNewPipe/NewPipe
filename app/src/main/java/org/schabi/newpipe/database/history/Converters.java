@@ -1,4 +1,4 @@
-package org.schabi.newpipe.history;
+package org.schabi.newpipe.database.history;
 
 import android.arch.persistence.room.TypeConverter;
 
