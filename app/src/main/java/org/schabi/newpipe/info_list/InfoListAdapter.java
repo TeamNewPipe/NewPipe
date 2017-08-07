@@ -2,6 +2,7 @@ package org.schabi.newpipe.info_list;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
+import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +79,13 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+    public void addInfoItem(InfoItem data) {
+        if (data != null) {
+            infoItemList.add( data );
+            notifyDataSetChanged();
+        }
+    }
+
     public void clearStreamItemList() {
         if(infoItemList.isEmpty()) {
             return;
@@ -118,7 +127,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if(footer != null && position == infoItemList.size() && showFooter) {
             return 1;
         }
-        switch(infoItemList.get(position).infoType()) {
+        InfoItem item = infoItemList.get(position);
+        switch(item.infoType()) {
             case STREAM:
                 return 2;
             case CHANNEL:

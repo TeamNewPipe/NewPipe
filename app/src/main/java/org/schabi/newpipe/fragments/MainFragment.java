@@ -3,7 +3,11 @@ package org.schabi.newpipe.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -18,11 +22,13 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.NavigationHelper;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements TabLayout.OnTabSelectedListener {
     private final String TAG = "MainFragment@" + Integer.toHexString(hashCode());
     private static final boolean DEBUG = MainActivity.DEBUG;
 
     private AppCompatActivity activity;
+
+    private ViewPager viewPager;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
@@ -45,7 +51,19 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (DEBUG) Log.d(TAG, "onCreateView() called with: inflater = [" + inflater + "], container = [" + container + "], savedInstanceState = [" + savedInstanceState + "]");
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        View inflatedView = inflater.inflate(R.layout.fragment_main, container, false);
+
+        TabLayout tabLayout = (TabLayout) inflatedView.findViewById(R.id.main_tab_layout);
+        viewPager = (ViewPager) inflatedView.findViewById(R.id.pager);
+
+        /*  Nested fragment, use child fragment here to maintain backstack in view pager. */
+        PagerAdapter adapter = new PagerAdapter(getChildFragmentManager());
+        viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(adapter.getCount());
+
+        tabLayout.setupWithViewPager(viewPager);
+
+        return inflatedView;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -73,5 +91,48 @@ public class MainFragment extends Fragment {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        viewPager.setCurrentItem(tab.getPosition());
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {}
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {}
+
+    private class PagerAdapter extends FragmentPagerAdapter {
+
+        private int[] tabTitles = new int[]{
+                R.string.tab_main,
+                R.string.tab_subscriptions
+        };
+
+        PagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch ( position ) {
+                case 1:
+                    return new SubscriptionFragment();
+                default:
+                    return new BlankFragment();
+            }
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return getString(this.tabTitles[position]);
+        }
+
+        @Override
+        public int getCount() {
+            return this.tabTitles.length;
+        }
     }
 }

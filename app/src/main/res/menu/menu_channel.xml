@@ -7,6 +7,11 @@
         app:showAsAction="never"
         android:title="@string/open_in_browser" />
 
+    <item android:id="@+id/menu_item_rss"
+        app:showAsAction="ifRoom"
+        android:title="@string/rss_button_title"
+        android:icon="?attr/rss"/>
+
     <item android:id="@+id/menu_item_share"
         android:title="@string/share"
         app:showAsAction="ifRoom"

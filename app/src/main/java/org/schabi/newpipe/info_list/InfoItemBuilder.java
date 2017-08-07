@@ -231,13 +231,12 @@ public class InfoItemBuilder {
         holder.itemRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(onStreamInfoItemSelectedListener != null) {
+                if(onChannelInfoItemSelectedListener != null) {
                     onChannelInfoItemSelectedListener.selected(info.serviceId, info.getLink(), info.channelName);
                 }
             }
         });
     }
-
 
     public String shortViewCount(Long viewCount) {
         if (viewCount >= 1000000000) {
