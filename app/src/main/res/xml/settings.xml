@@ -64,6 +64,12 @@
             android:summary="@string/player_gesture_controls_summary"
             android:title="@string/player_gesture_controls_title"/>
 
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/resume_on_audio_focus_gain_key"
+            android:summary="@string/resume_on_audio_focus_gain_summary"
+            android:title="@string/resume_on_audio_focus_gain_title"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory

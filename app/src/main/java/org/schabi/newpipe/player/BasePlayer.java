@@ -47,6 +47,8 @@ import com.google.android.exoplayer2.util.Util;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
+import org.schabi.newpipe.R;
+
 import java.io.File;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -321,10 +323,21 @@ public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManage
         }
     }
 
+    private boolean isResumeAfterAudioFocusGain() {
+        if (this.sharedPreferences == null || this.context == null) return false;
+
+        return this.sharedPreferences.getBoolean(
+                this.context.getString(R.string.resume_on_audio_focus_gain_key),
+                false
+        );
+    }
+
     protected void onAudioFocusGain() {
         if (DEBUG) Log.d(TAG, "onAudioFocusGain() called");
         if (simpleExoPlayer != null) simpleExoPlayer.setVolume(DUCK_AUDIO_TO);
         animateAudio(DUCK_AUDIO_TO, 1f, DUCK_DURATION);
+
+        if (isResumeAfterAudioFocusGain()) simpleExoPlayer.setPlayWhenReady(true);
     }
 
     protected void onAudioFocusLoss() {

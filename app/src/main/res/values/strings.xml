@@ -71,6 +71,8 @@
     <string name="player_gesture_controls_summary">Use gestures to control the brightness and volume of the player</string>
     <string name="show_search_suggestions_title">Search suggestions</string>
     <string name="show_search_suggestions_summary">Show suggestions when searching</string>
+    <string name="resume_on_audio_focus_gain_title">Resume on focus gain</string>
+    <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phone calls)</string>
 
     <string name="download_dialog_title">Download</string>
 
