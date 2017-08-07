@@ -195,4 +195,10 @@
     <string name="title_licenses">Drittanbieter Lizenzen</string>
     <string name="view_on_github">Auf GitHub ansehen</string>
     <string name="contribution_title">Beitrag</string>
-</resources>
+<string name="settings_category_downloads_title">Download</string>
+    <string name="settings_file_charset_title">Erlaubt Zeichen im Dateinamen</string>
+    <string name="settings_file_replacement_character_summary">Ungültige Zeichen werden mit diesem Wert ersetzt</string>
+    <string name="settings_file_replacement_character_title">Ersetzungszeichen</string>
+
+    <string name="charset_letters_and_digits">Buchstaben und Zahlen</string>
+    </resources>
