@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.1'
 
     defaultConfig {
         applicationId "org.schabi.newpipe"
         minSdkVersion 15
-        targetSdkVersion 25
-        versionCode 36
-        versionName "0.9.9"
+        targetSdkVersion 26
+        versionCode 37
+        versionName "0.9.10"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -18,6 +18,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            multiDexEnabled true
+
+            debuggable true
+            applicationIdSuffix ".debug"
         }
     }
 
@@ -46,10 +52,10 @@ dependencies {
     testCompile 'org.mockito:mockito-core:1.10.19'
     testCompile 'org.json:json:20160810'
 
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:26.0.0'
+    compile 'com.android.support:support-v4:26.0.0'
+    compile 'com.android.support:design:26.0.0'
+    compile 'com.android.support:recyclerview-v7:26.0.0'
 
     compile 'com.google.code.gson:gson:2.7'
     compile 'org.jsoup:jsoup:1.8.3'
@@ -62,4 +68,16 @@ dependencies {
     compile 'com.github.nirhart:parallaxscroll:1.0'
     compile 'com.nononsenseapps:filepicker:3.0.0'
     compile 'com.google.android.exoplayer:exoplayer:r2.4.2'
+
+    debugCompile 'com.facebook.stetho:stetho:1.5.0'
+    debugCompile 'com.facebook.stetho:stetho-urlconnection:1.5.0'
+    debugCompile 'com.android.support:multidex:1.0.1'
+
+    compile "android.arch.persistence.room:runtime:1.0.0-alpha8"
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha8"
+
+    compile "io.reactivex.rxjava2:rxjava:2.1.2"
+    compile "io.reactivex.rxjava2:rxandroid:2.0.1"
+    compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    compile "android.arch.persistence.room:rxjava2:1.0.0-alpha8"
 }

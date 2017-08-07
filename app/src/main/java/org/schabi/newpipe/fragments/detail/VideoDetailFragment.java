@@ -23,6 +23,7 @@ import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -565,6 +566,7 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         relatedStreamExpandButton = ((ImageButton) rootView.findViewById(R.id.detail_related_streams_expand));
 
         actionBarHandler = new ActionBarHandler(activity);
+        videoDescriptionView.setAutoLinkMask(Linkify.WEB_URLS);
         videoDescriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
         infoItemBuilder = new InfoItemBuilder(activity);
@@ -1253,12 +1255,16 @@ public class VideoDetailFragment extends BaseFragment implements StreamExtractor
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
                 case BackgroundCallback.MESSAGE_DESCRIPTION:
-                    videoDescriptionView.setText((Spanned) msg.obj);
-                    videoDescriptionView.setVisibility(View.VISIBLE);
+                    if (videoDescriptionView != null) {
+                        videoDescriptionView.setText((Spanned) msg.obj);
+                        videoDescriptionView.setVisibility(View.VISIBLE);
+                    }
                     return true;
                 case BackgroundCallback.MESSAGE_UPLOADER_DATE:
-                    videoUploadDateView.setText((String) msg.obj);
-                    videoUploadDateView.setVisibility(View.VISIBLE);
+                    if (videoUploadDateView != null) {
+                        videoUploadDateView.setText((String) msg.obj);
+                        videoUploadDateView.setVisibility(View.VISIBLE);
+                    }
                     return true;
             }
             return false;

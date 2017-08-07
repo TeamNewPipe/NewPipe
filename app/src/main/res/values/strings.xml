@@ -23,6 +23,16 @@
     <string name="use_external_audio_player_title">Use external audio player</string>
     <string name="popup_mode_share_menu_title">NewPipe Popup mode</string>
     <string name="rss_button_title" translatable="false">RSS</string>
+    <string name="subscribe_button_title">Subscribe</string>
+    <string name="subscribed_button_title">Subscribed</string>
+    <string name="channel_unsubscribed">Channel unsubscribed</string>
+    <string name="subscription_change_failed">Unable to change subscription</string>
+    <string name="subscription_update_failed">Unable to update subscription</string>
+
+    <string name="tab_main">Main</string>
+    <string name="tab_subscriptions">Subscriptions</string>
+
+    <string name="fragment_whats_new">What\'s New</string>
 
     <string name="controls_background_title">Background</string>
     <string name="controls_popup_title">Popup</string>
@@ -65,6 +75,9 @@
     <string name="enable_search_history_summary">Store search queries locally</string>
     <string name="enable_watch_history_title">Watch history</string>
     <string name="enable_watch_history_summary">Store watch history</string>
+    <string name="resume_on_audio_focus_gain_title">Resume on focus gain</string>
+    <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phone calls)</string>
+
 
     <string name="download_dialog_title">Download</string>
 
@@ -194,6 +207,18 @@
 
     <!-- End of GigaGet's Strings -->
 
+    <!-- Downloads -->
+    <string name="settings_category_downloads" translatable="false">settings_category_downloads</string>
+    <string name="settings_category_downloads_title">Download</string>
+    <string name="settings_file_charset_title">Allowed characters in filenames</string>
+    <string name="settings_file_replacement_character_summary">Invalid characters are replaced with this value</string>
+    <string name="settings_file_replacement_character_title">Replacement character</string>
+
+    <string name="charset_letters_and_digits_value" translatable="false">[^\\w\\d]+</string>
+    <string name="charset_most_special_characters_value" translatable="false">[\\n\\r|\\?*&lt;":&gt;/']+</string>
+    <string name="charset_letters_and_digits">Letters and digits</string>
+    <string name="charset_most_special_characters">Most special characters</string>
+
     <!-- About -->
     <string name="title_activity_about">About NewPipe</string>
     <string name="action_settings">Settings</string>
@@ -205,7 +230,7 @@
     <string name="tab_about">About</string>
     <string name="tab_contributors">Contributors</string>
     <string name="tab_licenses">Licenses</string>
-    <string name="github_url">https://github.com/TeamNewPipe/NewPipe</string>
+    <string name="github_url" translatable="false">https://github.com/TeamNewPipe/NewPipe</string>
     <string name="app_description">A free lightweight Youtube frontend for Android.</string>
     <string name="app_license" translatable="false">NewPipe is Free Software: You can use, study share and improve it at your will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
     <string name="view_on_github">View on Github</string>

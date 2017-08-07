@@ -32,4 +32,14 @@
         android:visibility="gone"
         tools:visibility="visible" />
 
+    <include
+        android:id="@+id/empty_panel"
+        layout="@layout/empty_view_panel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="50dp"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
 </RelativeLayout>

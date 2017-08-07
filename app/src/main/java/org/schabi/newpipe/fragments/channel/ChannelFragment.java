@@ -20,12 +20,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.jakewharton.rxbinding2.view.RxView;
 
 import org.schabi.newpipe.ImageErrorLoadingListener;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.fragments.BaseFragment;
+import org.schabi.newpipe.fragments.SubscriptionService;
 import org.schabi.newpipe.fragments.search.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
@@ -36,15 +41,29 @@ import org.schabi.newpipe.workers.ChannelExtractorWorker;
 import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class ChannelFragment extends BaseFragment implements ChannelExtractorWorker.OnChannelInfoReceive {
-    private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
+private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
 
     private static final String INFO_LIST_KEY = "info_list_key";
     private static final String CHANNEL_INFO_KEY = "channel_info_key";
     private static final String PAGE_NUMBER_KEY = "page_number_key";
+
+    private static final int BUTTON_DEBOUNCE_INTERVAL = 100;
 
     private InfoListAdapter infoListAdapter;
 
@@ -53,8 +72,14 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
     private int serviceId = -1;
     private String channelName = "";
     private String channelUrl = "";
+    private String feedUrl = "";
     private int pageNumber = 0;
     private boolean hasNextPage = true;
+
+    private SubscriptionService subscriptionService;
+
+    private CompositeDisposable disposables;
+    private Disposable subscribeButtonMonitor;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -67,7 +92,7 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
     private ImageView headerAvatarView;
     private TextView headerTitleView;
     private TextView headerSubscribersTextView;
-    private Button headerRssButton;
+    private Button headerSubscribeButton;
 
     /*////////////////////////////////////////////////////////////////////////*/
 
@@ -127,7 +152,13 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
         headerAvatarView = null;
         headerTitleView = null;
         headerSubscribersTextView = null;
-        headerRssButton = null;
+        headerSubscribeButton = null;
+
+        if (disposables != null) disposables.dispose();
+        if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();
+        disposables = null;
+        subscribeButtonMonitor = null;
+        subscriptionService = null;
 
         super.onDestroyView();
     }
@@ -176,6 +207,7 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
             supportActionBar.setDisplayShowTitleEnabled(true);
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
+        menu.findItem(R.id.menu_item_rss).setVisible( !TextUtils.isEmpty(feedUrl) );
     }
 
     @Override
@@ -190,13 +222,21 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
                 startActivity(Intent.createChooser(intent, getString(R.string.choose_browser)));
                 return true;
             }
-            case R.id.menu_item_share:
+            case R.id.menu_item_rss: {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(currentChannelInfo.feed_url));
+                startActivity(intent);
+                return true;
+            }
+            case R.id.menu_item_share: {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_TEXT, channelUrl);
                 intent.setType("text/plain");
                 startActivity(Intent.createChooser(intent, getString(R.string.share_dialog_title)));
                 return true;
+            }
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -231,7 +271,10 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
         headerAvatarView = (ImageView) headerRootLayout.findViewById(R.id.channel_avatar_view);
         headerTitleView = (TextView) headerRootLayout.findViewById(R.id.channel_title_view);
         headerSubscribersTextView = (TextView) headerRootLayout.findViewById(R.id.channel_subscriber_view);
-        headerRssButton = (Button) headerRootLayout.findViewById(R.id.channel_rss_button);
+        headerSubscribeButton = (Button) headerRootLayout.findViewById(R.id.channel_subscribe_button);
+
+        disposables = new CompositeDisposable();
+        subscriptionService = SubscriptionService.getInstance( getContext() );
     }
 
     protected void initListeners() {
@@ -255,16 +298,8 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
                 }
             }
         });
-
-        headerRssButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (DEBUG) Log.d(TAG, "onClick() called with: view = [" + view + "] feed url > " + currentChannelInfo.feed_url);
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(currentChannelInfo.feed_url));
-                startActivity(i);
-            }
-        });
     }
+
 
     @Override
     protected void reloadContent() {
@@ -272,6 +307,133 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
         currentChannelInfo = null;
         infoListAdapter.clearStreamItemList();
         loadPage(0);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Channel Subscription
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private void monitorSubscription(final int serviceId,
+                                     final String channelUrl,
+                                     final ChannelInfo info) {
+        subscriptionService.subscriptionTable().findAll(serviceId, channelUrl)
+                .toObservable()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getSubscribeButtonMonitor(serviceId, channelUrl, info));
+    }
+
+    private Function<Object, Object> mapOnSubscribe(final SubscriptionEntity subscription) {
+        return new Function<Object, Object>() {
+            @Override
+            public Object apply(@NonNull Object o) throws Exception {
+                subscriptionService.subscriptionTable().insert( subscription );
+                return o;
+            }
+        };
+    }
+
+    private Function<Object, Object> mapOnUnsubscribe(final SubscriptionEntity subscription) {
+        return new Function<Object, Object>() {
+            @Override
+            public Object apply(@NonNull Object o) throws Exception {
+                subscriptionService.subscriptionTable().delete( subscription );
+                return o;
+            }
+        };
+    }
+
+    private Observer<List<SubscriptionEntity>> getSubscribeButtonMonitor(final int serviceId,
+                                                                         final String channelUrl,
+                                                                         final ChannelInfo info) {
+        return new Observer<List<SubscriptionEntity>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add( d );
+            }
+
+            @Override
+            public void onNext(List<SubscriptionEntity> subscriptionEntities) {
+                if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();
+
+                if (subscriptionEntities.isEmpty()) {
+                    if (DEBUG) Log.d(TAG, "No subscription to this channel!");
+                    SubscriptionEntity channel = new SubscriptionEntity();
+                    channel.setServiceId( serviceId );
+                    channel.setUrl( channelUrl );
+                    channel.setData(info.channel_name, info.avatar_url, "", info.subscriberCount);
+
+                    subscribeButtonMonitor = monitorSubscribeButton(headerSubscribeButton, mapOnSubscribe(channel));
+
+                    headerSubscribeButton.setText(R.string.subscribe_button_title);
+                } else {
+                    if (DEBUG) Log.d(TAG, "Found subscription to this channel!");
+                    final SubscriptionEntity subscription = subscriptionEntities.get(0);
+                    subscribeButtonMonitor = monitorSubscribeButton(headerSubscribeButton, mapOnUnsubscribe(subscription));
+
+                    headerSubscribeButton.setText(R.string.subscribed_button_title);
+                }
+
+                headerSubscribeButton.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                Log.e(TAG, "Status get failed", throwable);
+                headerSubscribeButton.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onComplete() {}
+        };
+    }
+
+    private Disposable monitorSubscribeButton(final Button subscribeButton,
+                                              final Function<Object, Object> action) {
+        final Consumer<Object> onNext = new Consumer<Object>() {
+            @Override
+            public void accept(@NonNull Object o) throws Exception {
+                if (DEBUG) Log.d(TAG, "Changed subscription status to this channel!");
+            }
+        };
+
+        final Consumer<Throwable> onError = new Consumer<Throwable>() {
+            @Override
+            public void accept(@NonNull Throwable throwable) throws Exception {
+                if (DEBUG) Log.e(TAG, "Subscription Fatal Error: ", throwable.getCause());
+                Toast.makeText(getContext(), R.string.subscription_change_failed, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        /* Emit clicks from main thread unto io thread */
+        return RxView.clicks(subscribeButton)
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(Schedulers.io())
+                .debounce(BUTTON_DEBOUNCE_INTERVAL, TimeUnit.MILLISECONDS) // Ignore rapid clicks
+                .map(action)
+                .subscribe(onNext, onError);
+    }
+
+    private Disposable updateSubscription(final int serviceId,
+                                          final String channelUrl,
+                                          final ChannelInfo info) {
+        final Action onComplete = new Action() {
+            @Override
+            public void run() throws Exception {
+                if (DEBUG) Log.d(TAG, "Updated subscription: " + channelUrl);
+            }
+        };
+
+        final Consumer<Throwable> onError = new Consumer<Throwable>() {
+            @Override
+            public void accept(@NonNull Throwable throwable) throws Exception {
+                Log.e(TAG, "Subscription Update Fatal Error: ", throwable);
+                Toast.makeText(getContext(), R.string.subscription_update_failed, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        return subscriptionService.updateChannelInfo(serviceId, channelUrl, info)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(onComplete, onError);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -297,7 +459,7 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
         imageLoader.cancelDisplayTask(headerChannelBanner);
         imageLoader.cancelDisplayTask(headerAvatarView);
 
-        headerRssButton.setVisibility(View.GONE);
+        headerSubscribeButton.setVisibility(View.GONE);
         headerSubscribersTextView.setVisibility(View.GONE);
 
         headerTitleView.setText(channelName != null ? channelName : "");
@@ -331,6 +493,9 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
         animateView(loadingProgressBar, false, 200);
 
         if (!onlyVideos) {
+            feedUrl = info.feed_url;
+            if (activity.getSupportActionBar() != null) activity.getSupportActionBar().invalidateOptionsMenu();
+
             headerRootLayout.setVisibility(View.VISIBLE);
             //animateView(loadingProgressBar, false, 200, null);
 
@@ -354,8 +519,10 @@ public class ChannelFragment extends BaseFragment implements ChannelExtractorWor
                 headerSubscribersTextView.setVisibility(View.VISIBLE);
             } else headerSubscribersTextView.setVisibility(View.GONE);
 
-            if (!TextUtils.isEmpty(info.feed_url)) headerRssButton.setVisibility(View.VISIBLE);
-            else headerRssButton.setVisibility(View.INVISIBLE);
+            if (disposables != null) disposables.clear();
+            if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();
+            disposables.add( updateSubscription(serviceId, channelUrl, info) );
+            monitorSubscription(serviceId, channelUrl, info);
 
             infoListAdapter.showFooter(true);
         }

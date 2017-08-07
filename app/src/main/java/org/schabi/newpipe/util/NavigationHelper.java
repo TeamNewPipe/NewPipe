@@ -18,6 +18,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
+import org.schabi.newpipe.fragments.FeedFragment;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.channel.ChannelFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -135,6 +136,14 @@ public class NavigationHelper {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.anim.custom_fade_in, R.anim.custom_fade_out, R.anim.custom_fade_in, R.anim.custom_fade_out)
                 .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, url, name))
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public static void openWhatsNewFragment(FragmentManager fragmentManager) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.custom_fade_in, R.anim.custom_fade_out, R.anim.custom_fade_in, R.anim.custom_fade_out)
+                .replace(R.id.fragment_holder, new FeedFragment())
                 .addToBackStack(null)
                 .commit();
     }

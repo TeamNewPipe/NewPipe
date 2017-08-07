@@ -3,6 +3,7 @@ package org.schabi.newpipe;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.stetho.Stetho;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
@@ -63,6 +64,8 @@ public class App extends Application {
                     ErrorActivity.ErrorInfo.make(UserAction.SEARCHED,"none",
                             "Could not initialize ACRA crash report", R.string.app_ui_crash));
         }
+
+        NewPipeDatabase.getInstance( getApplicationContext() );
 
         //init NewPipe
         NewPipe.init(Downloader.getInstance());

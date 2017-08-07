@@ -1,12 +1,12 @@
 package us.shandian.giga.ui.common;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import org.schabi.newpipe.R;
 
-public abstract class ToolbarActivity extends ActionBarActivity {
+public abstract class ToolbarActivity extends AppCompatActivity {
     protected Toolbar mToolbar;
 
     @Override
