@@ -205,4 +205,11 @@ membuka di mode popup</string>
     <string name="contribution_encouragement">Terlepas apakah Anda memiliki ide, terjemahan, perubahan desain, pembersihan kode, atau perubahan kode yang signifikan, segala bantuan akan selalu diterima. Semakin banyak akan semakin baik jadinya!</string>
     <string name="read_full_license">Baca lisensi</string>
     <string name="contribution_title">Kontribusi</string>
-</resources>
+<string name="subscribe_button_title">Berlangganan</string>
+    <string name="subscribed_button_title">Langganan</string>
+    <string name="fragment_whats_new">Apa Yang Baru</string>
+
+    <string name="resume_on_audio_focus_gain_title">Lanjutkan saat fokus</string>
+    <string name="resume_on_audio_focus_gain_summary">Lanjutkan pemutaran setelah interupsi (mis. panggilan telepon)</string>
+
+    </resources>
