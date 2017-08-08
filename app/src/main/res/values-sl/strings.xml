@@ -200,4 +200,23 @@ odpiranje v pojavnem načinu</string>
     <string name="app_license_title">Dovoljenje NewPipe</string>
     <string name="read_full_license">Preberi določila dovoljenja</string>
     <string name="app_description">Odprtokodni predvajalnik Youtube za Android.</string>
+    <string name="subscribe_button_title">Naroči</string>
+    <string name="subscribed_button_title">Naročeno</string>
+    <string name="channel_unsubscribed">Kanal ni naročen</string>
+    <string name="subscription_change_failed">Ni mogoče spremeniti naročnine</string>
+    <string name="subscription_update_failed">Ni mogoče posodobiti naročnine</string>
+
+    <string name="tab_main">Glavno</string>
+    <string name="tab_subscriptions">Naročnine</string>
+
+    <string name="fragment_whats_new">Kaj je novega</string>
+
+    <string name="settings_category_downloads_title">Prejmi</string>
+    <string name="settings_file_charset_title">Dovoljeni znaki v imenih datotek</string>
+    <string name="settings_file_replacement_character_summary">Neveljavni znaki so zamenjani z znakom</string>
+    <string name="settings_file_replacement_character_title">Znak za zamenjavo</string>
+
+    <string name="charset_letters_and_digits">Črke in številke</string>
+    <string name="charset_most_special_characters">Večina posebnih znakov</string>
+
     </resources>
