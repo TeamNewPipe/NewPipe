@@ -1,15 +1,8 @@
 package org.schabi.newpipe.database.history.dao;
 
 
-import android.support.annotation.NonNull;
+import org.schabi.newpipe.database.BasicDAO;
 
-public interface HistoryDAO<T> {
+public interface HistoryDAO<T> extends BasicDAO<T> {
     void clearHistory();
-
-    void addHistoryEntry(T historyEntry);
-
-    @NonNull
-    T[] loadAllHistoryEntries();
-
-    void removeHistoryEntry(T historyEntry);
 }

@@ -2,29 +2,25 @@ package org.schabi.newpipe.database.history.dao;
 
 
 import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
-import android.support.annotation.NonNull;
 
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 
+import java.util.List;
+
+import io.reactivex.Flowable;
+
 @Dao
 public interface SearchHistoryDAO extends HistoryDAO<SearchHistoryEntry> {
-    @Query("DELETE FROM search_history")
+    @Query("DELETE FROM " + SearchHistoryEntry.TABLE_NAME)
     @Override
     void clearHistory();
 
-    @Insert
+    @Query("SELECT * FROM " + SearchHistoryEntry.TABLE_NAME)
     @Override
-    void addHistoryEntry(SearchHistoryEntry historyEntries);
+    Flowable<List<SearchHistoryEntry>> findAll();
 
-    @NonNull
-    @Query("SELECT * FROM search_history")
     @Override
-    SearchHistoryEntry[] loadAllHistoryEntries();
-
-    @Delete
-    @Override
-    void removeHistoryEntry(SearchHistoryEntry entry);
+    @Query("SELECT * FROM " + SearchHistoryEntry.TABLE_NAME + " WHERE " + SearchHistoryEntry.SERVICE_ID + " = :serviceId")
+    Flowable<List<SearchHistoryEntry>> listByService(int serviceId);
 }

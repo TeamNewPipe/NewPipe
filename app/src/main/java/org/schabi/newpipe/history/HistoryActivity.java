@@ -1,6 +1,5 @@
 package org.schabi.newpipe.history;
 
-import android.content.Entity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,10 +19,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jakewharton.rxbinding2.view.RxView;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.SettingsActivity;
-import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -57,30 +63,40 @@ public class HistoryActivity extends AppCompatActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clearHistory();
-                Snackbar.make(view, R.string.history_cleared, Snackbar.LENGTH_LONG).show();
-            }
-        });
-    }
-
-    private void clearHistory() {
-        int currentItem = mViewPager.getCurrentItem();
-        HistoryFragment fragment = (HistoryFragment) mSectionsPagerAdapter.getFragment(currentItem);
-        if(fragment == null) {
-            Log.w(TAG, "Couldn't find current fragment");
-            return;
-        }
-        fragment.onClearHistory();
+        final FloatingActionButton fab = findViewById(R.id.fab);
+        RxView.clicks(fab)
+                .observeOn(Schedulers.io())
+                .flatMap(new Function<Object, Observable<HistoryFragment>>() {
+                    @Override
+                    public Observable<HistoryFragment> apply(Object o) {
+                        int currentItem = mViewPager.getCurrentItem();
+                        HistoryFragment fragment = (HistoryFragment) mSectionsPagerAdapter.getFragment(currentItem);
+                        if(fragment == null) {
+                            Log.w(TAG, "Couldn't find current fragment");
+                            return Observable.empty();
+                        } else {
+                            fragment.onClearHistory();
+                            return Observable.just(fragment);
+                        }
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<HistoryFragment>() {
+                    @Override
+                    public void accept(HistoryFragment historyFragment) {
+                        View view = historyFragment.getView();
+                        if(view != null) {
+                            Snackbar.make(view, R.string.history_cleared, Snackbar.LENGTH_LONG).show();
+                        }
+                        historyFragment.onHistoryCleared();
+                    }
+                });
     }
 
     @Override

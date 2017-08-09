@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.CallSuper;
+import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -20,6 +21,12 @@ import android.view.ViewGroup;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.history.dao.HistoryDAO;
 import org.schabi.newpipe.database.history.model.HistoryEntry;
+
+import java.util.List;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -36,7 +43,6 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
     private HistoryEntryAdapter<E, ? extends RecyclerView.ViewHolder> mHistoryAdapter;
     private View mEmptyHistoryView;
     private ItemTouchHelper.SimpleCallback mHistoryItemSwipeCallback;
-
 
     @StringRes
     abstract int getEnabledConfigKey();
@@ -64,13 +70,12 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-                if(mHistoryAdapter != null) {
+                if (mHistoryAdapter != null) {
                     E historyEntry = mHistoryAdapter.removeItemAt(viewHolder.getAdapterPosition());
-                    mHistoryDataSource.removeHistoryEntry(historyEntry);
+                    mHistoryDataSource.delete(historyEntry);
                 }
             }
         };
-
     }
 
     @NonNull
@@ -79,16 +84,58 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
     @Override
     public void onResume() {
         super.onResume();
-        onHistoryEntriesLoaded(mHistoryDataSource.loadAllHistoryEntries());
-
+        mHistoryDataSource.findAll()
+                .toObservable()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getHistoryListConsumer());
         boolean newEnabled = isHistoryEnabled();
-        if(newEnabled != mHistoryIsEnabled) {
+        if (newEnabled != mHistoryIsEnabled) {
             onHistoryIsEnabledChanged(newEnabled);
         }
     }
 
+    @NonNull
+    private Observer<List<E>> getHistoryListConsumer() {
+        return new Observer<List<E>>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(@NonNull List<E> historyEntries) {
+                if (!historyEntries.isEmpty()) {
+                    mHistoryAdapter.setEntries(historyEntries);
+                    animateView(mEmptyHistoryView, false, 200);
+                } else {
+                    mHistoryAdapter.clear();
+                    onEmptyHistory();
+                }
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                // TODO: error handling like in (see e.g. subscription fragment)
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
     private boolean isHistoryEnabled() {
         return mSharedPreferences.getBoolean(mHistoryIsEnabledKey, false);
+    }
+
+    /**
+     * Called when the history is cleared to update the views
+     */
+    @MainThread
+    public void onHistoryCleared() {
+        mHistoryAdapter.clear();
+        onEmptyHistory();
     }
 
     private void onEmptyHistory() {
@@ -96,17 +143,6 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
             animateView(mEmptyHistoryView, true, 200);
         }
     }
-
-    public void onHistoryEntriesLoaded(@NonNull E[] historyEntries) {
-        if (historyEntries.length > 0) {
-            mHistoryAdapter.setEntries(historyEntries);
-            animateView(mEmptyHistoryView, false, 200);
-        } else {
-            mHistoryAdapter.clear();
-            onEmptyHistory();
-        }
-    }
-
 
     @Nullable
     @CallSuper
@@ -152,8 +188,6 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
     @CallSuper
     public void onClearHistory() {
         mHistoryDataSource.clearHistory();
-        mHistoryAdapter.clear();
-        onEmptyHistory();
     }
 
     /**
@@ -167,7 +201,7 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
         if (historyIsEnabled) {
             animateView(mRecyclerView, true, 300);
             animateView(mDisabledView, false, 300);
-            if(mHistoryAdapter.isEmpty()) {
+            if (mHistoryAdapter.isEmpty()) {
                 animateView(mEmptyHistoryView, true, 300);
             }
         } else {

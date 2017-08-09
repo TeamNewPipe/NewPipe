@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +35,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import org.schabi.newpipe.database.AppDatabase;
+import org.schabi.newpipe.database.history.dao.SearchHistoryDAO;
+import org.schabi.newpipe.database.history.dao.WatchHistoryDAO;
+import org.schabi.newpipe.database.history.model.HistoryEntry;
+import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
+import org.schabi.newpipe.database.history.model.WatchHistoryEntry;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream_info.AudioStream;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
@@ -41,15 +48,15 @@ import org.schabi.newpipe.extractor.stream_info.VideoStream;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.search.SearchFragment;
 import org.schabi.newpipe.history.HistoryActivity;
-import org.schabi.newpipe.database.history.dao.SearchHistoryDAO;
-import org.schabi.newpipe.database.history.dao.WatchHistoryDAO;
-import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
-import org.schabi.newpipe.database.history.model.WatchHistoryEntry;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.Date;
+
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subjects.PublishSubject;
 
 public class MainActivity extends AppCompatActivity implements
         VideoDetailFragment.OnVideoPlayListener,
@@ -59,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements
     private WatchHistoryDAO watchHistoryDAO;
     private SearchHistoryDAO searchHistoryDAO;
     private SharedPreferences sharedPreferences;
+    private PublishSubject<HistoryEntry> historyEntrySubject;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity's LifeCycle
@@ -66,7 +74,8 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
+        if (DEBUG)
+            Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
         ThemeHelper.setTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -75,11 +84,31 @@ public class MainActivity extends AppCompatActivity implements
             initFragments();
         }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        watchHistoryDAO = HistoryDatabase.getInstance(this).watchHistoryDAO();
-        searchHistoryDAO = HistoryDatabase.getInstance(this).searchHistoryDAO();
+
+        AppDatabase database = NewPipeDatabase.getInstance(this);
+        watchHistoryDAO = database.watchHistoryDAO();
+        searchHistoryDAO = database.searchHistoryDAO();
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        historyEntrySubject = PublishSubject.create();
+        historyEntrySubject
+                .observeOn(Schedulers.io())
+                .subscribe(createHistoryEntryConsumer());
+    }
+
+    @NonNull
+    private Consumer<HistoryEntry> createHistoryEntryConsumer() {
+        return new Consumer<HistoryEntry>() {
+            @Override
+            public void accept(HistoryEntry historyEntry) throws Exception {
+                if (historyEntry instanceof SearchHistoryEntry) {
+                    searchHistoryDAO.insert((SearchHistoryEntry) historyEntry);
+                } else if(historyEntry instanceof WatchHistoryEntry) {
+                    watchHistoryDAO.insert((WatchHistoryEntry) historyEntry);
+                }
+            }
+        };
     }
 
     @Override
@@ -108,7 +137,8 @@ public class MainActivity extends AppCompatActivity implements
             // Return if launched from a launcher (e.g. Nova Launcher, Pixel Launcher ...)
             // to not destroy the already created backstack
             String action = intent.getAction();
-            if ((action != null && action.equals(Intent.ACTION_MAIN)) && intent.hasCategory(Intent.CATEGORY_LAUNCHER)) return;
+            if ((action != null && action.equals(Intent.ACTION_MAIN)) && intent.hasCategory(Intent.CATEGORY_LAUNCHER))
+                return;
         }
 
         super.onNewIntent(intent);
@@ -232,7 +262,7 @@ public class MainActivity extends AppCompatActivity implements
     private void addWatchHistoryEntry(StreamInfo streamInfo) {
         if (sharedPreferences.getBoolean(getString(R.string.enable_watch_history_key), true)) {
             WatchHistoryEntry entry = new WatchHistoryEntry(streamInfo);
-            watchHistoryDAO.addHistoryEntry(entry);
+            historyEntrySubject.onNext(entry);
         }
     }
 
@@ -251,7 +281,7 @@ public class MainActivity extends AppCompatActivity implements
         // Add search history entry
         if (sharedPreferences.getBoolean(getString(R.string.enable_search_history_key), true)) {
             SearchHistoryEntry searchHistoryEntry = new SearchHistoryEntry(new Date(), serviceId, query);
-            searchHistoryDAO.addHistoryEntry(searchHistoryEntry);
+            historyEntrySubject.onNext(searchHistoryEntry);
         }
     }
 }

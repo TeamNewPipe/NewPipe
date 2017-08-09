@@ -6,9 +6,10 @@ import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 
 import java.util.Date;
 
-@Entity(tableName = "watch_history")
+@Entity(tableName = WatchHistoryEntry.TABLE_NAME)
 public class WatchHistoryEntry extends HistoryEntry {
 
+    public static final String TABLE_NAME = "watch_history";
     private final String title;
     private final String url;
     private final String streamId;

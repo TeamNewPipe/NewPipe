@@ -2,30 +2,25 @@ package org.schabi.newpipe.database.history.dao;
 
 
 import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
-import android.support.annotation.NonNull;
 
 import org.schabi.newpipe.database.history.model.WatchHistoryEntry;
 
+import java.util.List;
+
+import io.reactivex.Flowable;
+
 @Dao
 public interface WatchHistoryDAO extends HistoryDAO<WatchHistoryEntry> {
-    @Query("DELETE FROM watch_history")
+    @Query("DELETE FROM " + WatchHistoryEntry.TABLE_NAME )
     @Override
     void clearHistory();
 
-    @Insert
+    @Query("SELECT * FROM " + WatchHistoryEntry.TABLE_NAME)
     @Override
-    void addHistoryEntry(WatchHistoryEntry watchHistoryEntry);
+    Flowable<List<WatchHistoryEntry>> findAll();
 
-    @Query("SELECT * FROM watch_history")
+    @Query("SELECT * FROM " + WatchHistoryEntry.TABLE_NAME + " WHERE " + WatchHistoryEntry.SERVICE_ID + " = :serviceId")
     @Override
-    @NonNull
-    WatchHistoryEntry[] loadAllHistoryEntries();
-
-
-    @Delete
-    @Override
-    void removeHistoryEntry(WatchHistoryEntry historyEntry);
+    Flowable<List<WatchHistoryEntry>> listByService(int serviceId);
 }

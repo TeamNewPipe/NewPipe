@@ -1,6 +1,7 @@
 package org.schabi.newpipe.history;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,8 +10,10 @@ import org.schabi.newpipe.database.history.model.HistoryEntry;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -33,9 +36,9 @@ public abstract class HistoryEntryAdapter<E extends HistoryEntry, VH extends Rec
         setHasStableIds(true);
     }
 
-    public void setEntries(E[] historyEntries) {
+    public void setEntries(@NonNull Collection<E> historyEntries) {
         mEntries.clear();
-        Collections.addAll(mEntries, historyEntries);
+        mEntries.addAll(historyEntries);
         notifyDataSetChanged();
     }
 

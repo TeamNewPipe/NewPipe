@@ -5,9 +5,10 @@ import android.arch.persistence.room.Entity;
 
 import java.util.Date;
 
-@Entity(tableName = "search_history")
+@Entity(tableName = SearchHistoryEntry.TABLE_NAME)
 public class SearchHistoryEntry extends HistoryEntry {
 
+    public static final String TABLE_NAME = "search_history";
     private final String search;
 
     public SearchHistoryEntry(Date creationDate, int serviceId, String search) {
