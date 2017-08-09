@@ -27,6 +27,9 @@ import java.util.List;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subjects.PublishSubject;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -43,6 +46,7 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
     private HistoryEntryAdapter<E, ? extends RecyclerView.ViewHolder> mHistoryAdapter;
     private View mEmptyHistoryView;
     private ItemTouchHelper.SimpleCallback mHistoryItemSwipeCallback;
+    private PublishSubject<E> mHistoryEntryDeleteSubject;
 
     @StringRes
     abstract int getEnabledConfigKey();
@@ -62,6 +66,16 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
 
         mHistoryDataSource = createHistoryDAO(getContext());
 
+        mHistoryEntryDeleteSubject = PublishSubject.create();
+        mHistoryEntryDeleteSubject
+                .observeOn(Schedulers.io())
+                .subscribe(new Consumer<E>() {
+                    @Override
+                    public void accept(E historyEntry) throws Exception {
+                        mHistoryDataSource.delete(historyEntry);
+                    }
+                });
+
         mHistoryItemSwipeCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
@@ -72,7 +86,7 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 if (mHistoryAdapter != null) {
                     E historyEntry = mHistoryAdapter.removeItemAt(viewHolder.getAdapterPosition());
-                    mHistoryDataSource.delete(historyEntry);
+                    mHistoryEntryDeleteSubject.onNext(historyEntry);
                 }
             }
         };
