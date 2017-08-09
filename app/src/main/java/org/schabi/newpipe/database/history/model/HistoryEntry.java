@@ -10,7 +10,9 @@ import java.util.Date;
 public class HistoryEntry {
 
     public static final String SERVICE_ID = "service_id";
+    public static final String CREATION_DATE = "creation_date";
 
+    @ColumnInfo(name = CREATION_DATE)
     private final Date creationDate;
 
     @ColumnInfo(name = SERVICE_ID)
