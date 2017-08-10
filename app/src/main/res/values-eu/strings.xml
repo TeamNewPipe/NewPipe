@@ -183,4 +183,26 @@
     <string name="contribution_encouragement">Ideiak, itzulpenak, diseinu aldaketak, kode garbiketak, kode aldaketa sakonak badituzu, laguntza beti da ongi etorria. Eginaz hobetzen da!</string>
     <string name="read_full_license">Irakurri lizentzia</string>
     <string name="contribution_title">Parte hartzea</string>
-</resources>
+<string name="subscribe_button_title">Harpidetu</string>
+    <string name="subscribed_button_title">Harpidetuta</string>
+    <string name="channel_unsubscribed">Kanaletik harpidetza kenduta</string>
+    <string name="subscription_change_failed">Ezin izan da harpidetza aldatu</string>
+    <string name="subscription_update_failed">Ezin izan da harpidetza eguneratu</string>
+
+    <string name="tab_main">Nagusia</string>
+    <string name="tab_subscriptions">Harpidetzak</string>
+
+    <string name="fragment_whats_new">Zer dago berri</string>
+
+    <string name="resume_on_audio_focus_gain_title">Jarraitu fokua irabaztean</string>
+    <string name="resume_on_audio_focus_gain_summary">Jarraitu etenaldiak eta gero (adib. telefono deiak)</string>
+
+    <string name="settings_category_downloads_title">Deskargatu</string>
+    <string name="settings_file_charset_title">Fitxategi-izenetan baimendutako karaktereak</string>
+    <string name="settings_file_replacement_character_summary">Karaktere baliogabeak balio honekin ordezkatzen dira</string>
+    <string name="settings_file_replacement_character_title">Ordezko karakterea</string>
+
+    <string name="charset_letters_and_digits">Hizkiak eta zenbakiak</string>
+    <string name="charset_most_special_characters">Karaktere berezi gehienak</string>
+
+    </resources>
