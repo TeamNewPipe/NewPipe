@@ -200,4 +200,26 @@ abrir en modo popup</string>
     <string name="contribution_encouragement">Si tiene ideas, traducción, cambios de diseño, limpieza de código o cambios de código realmente fuertes, la ayuda siempre es bienvenida. Cuanto más se hace, mejor se pone!</string>
     <string name="read_full_license">Leer licencia</string>
     <string name="contribution_title">Contribución</string>
-</resources>
+<string name="subscribe_button_title">Suscribirse</string>
+    <string name="subscribed_button_title">Suscrito</string>
+    <string name="channel_unsubscribed">Canal no suscrito</string>
+    <string name="subscription_change_failed">No se puede cambiar la suscripción</string>
+    <string name="subscription_update_failed">No se puede actualizar la suscripción</string>
+
+    <string name="tab_main">Principal</string>
+    <string name="tab_subscriptions">Suscripciones</string>
+
+    <string name="fragment_whats_new">Qué hay de nuevo</string>
+
+    <string name="resume_on_audio_focus_gain_title">Reanudar al enfocar</string>
+    <string name="resume_on_audio_focus_gain_summary">Continuar reproduciendo después de las interrupciones (ej. llamadas telefónicas)</string>
+
+    <string name="settings_category_downloads_title">Descargar</string>
+    <string name="settings_file_charset_title">Caracteres permitidos en los nombres de archivo</string>
+    <string name="settings_file_replacement_character_summary">Los caracteres no válidos se reemplazan por este valor</string>
+    <string name="settings_file_replacement_character_title">Carácter de reemplazo</string>
+
+    <string name="charset_letters_and_digits">Letras y dígitos</string>
+    <string name="charset_most_special_characters">La mayoría de caracteres especiales</string>
+
+    </resources>
