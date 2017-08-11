@@ -202,4 +202,5 @@ pour ouvrir en mode popup</string>
     <string name="app_license_title">Licence de NewPipe</string>
     <string name="read_full_license">Lire la licence</string>
     <string name="contribution_title">Contribution</string>
-</resources>
+<string name="charset_letters_and_digits">Lettres et chiffres</string>
+    </resources>
