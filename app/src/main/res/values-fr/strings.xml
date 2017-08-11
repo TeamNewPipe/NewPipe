@@ -189,4 +189,17 @@ pour ouvrir en mode popup</string>
     <string name="fragment_whats_new">Nouveautés</string>
 
     <string name="settings_category_downloads_title">Téléchargement</string>
-    </resources>
+    <string name="action_settings">Paramètres</string>
+    <string name="action_about">À propos</string>
+    <string name="title_licenses">Licences tierces</string>
+    <string name="error_unable_to_load_license">Impossible de charger la licence</string>
+    <string name="action_open_website">Ouvrir le site web</string>
+    <string name="tab_about">À propos</string>
+    <string name="tab_contributors">Contributeurs</string>
+    <string name="tab_licenses">Licences</string>
+    <string name="app_description">Une interface YouTube libre et légère pour Android.</string>
+    <string name="view_on_github">Voir sur GitHub</string>
+    <string name="app_license_title">Licence de NewPipe</string>
+    <string name="read_full_license">Lire la licence</string>
+    <string name="contribution_title">Contribution</string>
+</resources>
