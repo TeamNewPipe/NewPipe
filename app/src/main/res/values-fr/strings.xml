@@ -203,4 +203,16 @@ pour ouvrir en mode popup</string>
     <string name="read_full_license">Lire la licence</string>
     <string name="contribution_title">Contribution</string>
 <string name="charset_letters_and_digits">Lettres et chiffres</string>
+    <string name="title_activity_about">À propos de NewPipe</string>
+    <string name="copyright" formatted="true">© %1$s par %2$s sous %3$s</string>
+    <string name="contribution_encouragement">Que ce soit des idées, traductions, changements de design, nettoyage ou gros changements de code, l\'aide est toujours la bienvenue. Le plus il est aidé, le meilleur devient NewPipe !</string>
+    <string name="subscription_change_failed">Incapable de changer l\'abonnement</string>
+    <string name="subscription_update_failed">Incapable de mettre à jour l\'abonnement</string>
+
+    <string name="resume_on_audio_focus_gain_summary">Continuer la lecture après les interruptions (ex : appels)</string>
+
+    <string name="settings_file_charset_title">Caractères autorisés dans les noms de fichiers</string>
+    <string name="settings_file_replacement_character_summary">Les caractères invalides sont remplacés par cette valeur</string>
+    <string name="settings_file_replacement_character_title">Caractère de remplacement</string>
+
     </resources>
