@@ -186,4 +186,6 @@ pour ouvrir en mode popup</string>
     <string name="tab_main">Principal</string>
     <string name="tab_subscriptions">Abonnements</string>
 
+    <string name="fragment_whats_new">Nouveautés</string>
+
     </resources>
