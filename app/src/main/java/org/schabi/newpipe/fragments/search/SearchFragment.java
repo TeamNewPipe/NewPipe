@@ -3,6 +3,7 @@ package org.schabi.newpipe.fragments.search;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -85,12 +86,16 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
     private View searchClear;
 
     private RecyclerView resultRecyclerView;
+    private OnSearchListener onSearchListener;
 
     /*////////////////////////////////////////////////////////////////////////*/
 
     public static SearchFragment getInstance(int serviceId, String query) {
         SearchFragment searchFragment = new SearchFragment();
         searchFragment.setQuery(serviceId, query);
+        if(!TextUtils.isEmpty(query)) {
+            searchFragment.wasLoading.set(true);
+        }
         return searchFragment;
     }
 
@@ -120,13 +125,26 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
 
     @Override
     public void onViewCreated(View rootView, @Nullable Bundle savedInstanceState) {
+        final boolean wasLoadingPreserved = wasLoading.get();
         super.onViewCreated(rootView, savedInstanceState);
+        wasLoading.set(wasLoadingPreserved);
         if (DEBUG) Log.d(TAG, "onViewCreated() called with: rootView = [" + rootView + "], savedInstanceState = [" + savedInstanceState + "]");
 
         if (savedInstanceState != null && savedInstanceState.getBoolean(ERROR_KEY, false)) {
             search(searchQuery, 0, true);
         }
+    }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        onSearchListener = (OnSearchListener) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        onSearchListener = null;
     }
 
     @Override
@@ -179,10 +197,12 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
         outState.putString(QUERY_KEY, query);
         outState.putInt(Constants.KEY_SERVICE_ID, serviceId);
         outState.putInt(PAGE_NUMBER_KEY, pageNumber);
-        outState.putSerializable(INFO_LIST_KEY, ((ArrayList<InfoItem>) infoListAdapter.getItemsList()));
+        outState.putSerializable(INFO_LIST_KEY, infoListAdapter.getItemsList());
         outState.putBoolean(WAS_LOADING_KEY, curSearchWorker != null && curSearchWorker.isRunning());
 
-        if (errorPanel != null && errorPanel.getVisibility() == View.VISIBLE) outState.putBoolean(ERROR_KEY, true);
+        if (errorPanel != null && errorPanel.getVisibility() == View.VISIBLE) {
+            outState.putBoolean(ERROR_KEY, true);
+        }
         if (filterItemCheckedId != -1) outState.putInt(FILTER_CHECKED_ID_KEY, filterItemCheckedId);
     }
 
@@ -537,7 +557,11 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
         if (DEBUG) Log.d(TAG, "search() called with: query = [" + query + "], pageNumber = [" + pageNumber + "], clearList = [" + clearList + "]");
         isLoading.set(true);
         hideSoftKeyboard(searchEditText);
-
+        if(pageNumber == 0) {
+            if(onSearchListener != null) {
+                onSearchListener.onSearch(serviceId, query);
+            }
+        }
         searchQuery = query;
         this.pageNumber = pageNumber;
 
@@ -612,4 +636,7 @@ public class SearchFragment extends BaseFragment implements SuggestionWorker.OnS
         startActivityForResult(new Intent(getActivity(), ReCaptchaActivity.class), ReCaptchaActivity.RECAPTCHA_REQUEST);
     }
 
+    public interface OnSearchListener {
+        void onSearch(int serviceId, String query);
+    }
 }

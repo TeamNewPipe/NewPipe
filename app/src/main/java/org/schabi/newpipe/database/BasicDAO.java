@@ -9,7 +9,6 @@ import android.arch.persistence.room.Update;
 import java.util.Collection;
 import java.util.List;
 
-import io.reactivex.Completable;
 import io.reactivex.Flowable;
 
 @Dao
@@ -38,6 +37,8 @@ public interface BasicDAO<Entity> {
 
     @Delete
     int delete(final Collection<Entity> entities);
+
+    int deleteAll();
 
     /* Updates */
     @Update
