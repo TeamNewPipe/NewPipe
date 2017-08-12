@@ -188,7 +188,7 @@ private final String TAG = "ChannelFragment@" + Integer.toHexString(hashCode());
         outState.putString(Constants.KEY_TITLE, channelName);
         outState.putInt(Constants.KEY_SERVICE_ID, serviceId);
 
-        outState.putSerializable(INFO_LIST_KEY, ((ArrayList<InfoItem>) infoListAdapter.getItemsList()));
+        outState.putSerializable(INFO_LIST_KEY, infoListAdapter.getItemsList());
         outState.putSerializable(CHANNEL_INFO_KEY, currentChannelInfo);
         outState.putInt(PAGE_NUMBER_KEY, pageNumber);
     }

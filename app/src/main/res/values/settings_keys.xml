@@ -232,6 +232,8 @@
     </string-array>
     <string name="show_age_restricted_content" translatable="false">show_age_restricted_content</string>
     <string name="use_tor_key" translatable="false">use_tor</string>
+    <string name="enable_search_history_key" translatable="false">enable_search_history</string>
+    <string name="enable_watch_history_key" translatable="false">enable_watch_history</string>
 
     <string name="settings_file_charset_key" translatable="false">file_rename</string>
     <string name="settings_file_replacement_character_key" translatable="false">file_replacement_character</string>

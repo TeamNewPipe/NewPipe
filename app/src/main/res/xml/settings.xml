@@ -188,6 +188,17 @@
             android:summary="@string/show_search_suggestions_summary"
             android:title="@string/show_search_suggestions_title"/>
 
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="@string/enable_search_history_key"
+            android:title="@string/enable_search_history_title"
+            android:summary="@string/enable_search_history_summary"/>
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="@string/enable_watch_history_key"
+            android:title="@string/enable_watch_history_title"
+            android:summary="@string/enable_watch_history_summary"/>
         <!--
         <CheckBoxPreference
             android:key="@string/use_tor_key"
@@ -195,6 +206,5 @@
             android:summary="@string/use_tor_summary"
             android:defaultValue="false"/>
             -->
-
     </PreferenceCategory>
 </PreferenceScreen>
