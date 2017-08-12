@@ -15,13 +15,13 @@
     <string name="choose_browser">Отвори помоћу</string>
     <string name="screen_rotation">ротација</string>
     <string name="download_path_title">Одредиште преузимања за видео</string>
-    <string name="download_path_summary">Путања за упис преузетих видеа.</string>
+    <string name="download_path_summary">Путања за упис преузетих видеа</string>
     <string name="download_path_dialog_title">Унесите путању за преузимање видеа</string>
     <string name="default_resolution_title">Подразумевана резолуција</string>
     <string name="play_with_kodi_title">Пусти помоћу Кодија</string>
     <string name="kore_not_found">Апликација Кор (Kore) није нађена. Инсталирати Кор?</string>
     <string name="show_play_with_kodi_title">Прикажи „Пусти помоћу Кодија“</string>
-    <string name="show_play_with_kodi_summary">Приказ опције за пуштање видеа у Коди медија центру.</string>
+    <string name="show_play_with_kodi_summary">Приказ опције за пуштање видеа у Коди медија центру</string>
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Подразумевани формат звука</string>
     <string name="webm_description">WebM — слободни формат</string>
@@ -54,14 +54,14 @@
     <string name="network_error">Грешка мреже</string>
 
     <string name="download_path_audio_title">Одредиште преузимања за аудио</string>
-    <string name="download_path_audio_dialog_title">Унесите путању за преузимање аудио фајлова.</string>
+    <string name="download_path_audio_dialog_title">Унесите путању за преузимање аудио фајлова</string>
 
     <string name="download_path_audio_summary">Путања за упис преузетих аудио фајлова</string>
     <string name="info_dir_created">Направљен директоријум за преузимање „%1$s“</string>
     <string name="err_dir_create">Не могу да направим директоријум за преузимање„ %1$s“</string>
     <string name="general_error">Грешка</string>
     <string name="could_not_load_thumbnails">Не могох да учитам све сличице</string>
-    <string name="youtube_signature_decryption_error">Не могох да дешифрујем потпис видео урл-а.</string>
+    <string name="youtube_signature_decryption_error">Не могу да дешифрујем потпис видео урл-а.</string>
     <string name="parsing_error">Не могох да рашчланим веб-сајт.</string>
     <string name="content_not_available">Садржај није доступан.</string>
     <string name="blocked_by_gema">Блокирала ГЕМА.</string>
@@ -97,7 +97,7 @@
 
     <string name="main_bg_subtitle">Тапните на претрагу за почетак</string>
     <string name="autoplay_by_calling_app_title">Пусти по позиву друге апликације</string>
-    <string name="autoplay_by_calling_app_summary">Аутоматско пуштање видеа по позиву друге апликације.</string>
+    <string name="autoplay_by_calling_app_summary">Аутоматско пуштање видеа по позиву друге апликације</string>
     <string name="start">Почни</string>
     <string name="pause">Паузирај</string>
     <string name="view">Приказ</string>
@@ -163,7 +163,7 @@
     <string name="preferred_video_format_title">Пожељни формат видеа</string>
     <string name="default_popup_resolution_title">Резолуција искачућег прозора</string>
     <string name="show_higher_resolutions_title">Прикажи више резолуције</string>
-    <string name="show_higher_resolutions_summary">Само неки уређаји подржавају пуштање 2k/4k видеа</string>
+    <string name="show_higher_resolutions_summary">Само неки уређаји подржавају пуштање 2K/4K видеа</string>
     <string name="subscriber_plural">пријављених</string>
     <string name="filter">Филтер</string>
     <string name="refresh">Освежи</string>
@@ -184,4 +184,46 @@
     <string name="popup_resizing_indicator_title">Мењање величине</string>
 
     <string name="use_old_player_summary">Стара градња Медијафрејмворк плејера.</string>
-</resources>
+<string name="subscribed_button_title">Претплаћен</string>
+    <string name="subscribe_button_title">Претплати</string>
+    <string name="tab_main">Главно</string>
+    <string name="tab_subscriptions">Претплате</string>
+
+    <string name="fragment_whats_new">Шта је ново</string>
+
+    <string name="enable_search_history_title">Историјат претраге</string>
+    <string name="enable_search_history_summary">Уписуј појмове претраге локално</string>
+    <string name="enable_watch_history_title">Историјат гледања</string>
+    <string name="enable_watch_history_summary">Уписуј историјат гледања</string>
+    <string name="resume_on_audio_focus_gain_title">Настави по дохвату фокуса</string>
+    <string name="best_resolution">Најбоља резолуција</string>
+
+    <string name="settings_category_downloads_title">Преузми</string>
+    <string name="title_activity_about">О програму</string>
+    <string name="action_settings">Поставке</string>
+    <string name="action_about">О програму</string>
+    <string name="action_open_website">Отвори вебсајт</string>
+    <string name="tab_about">О програму</string>
+    <string name="tab_contributors">Доприносиоци</string>
+    <string name="tab_licenses">Лиценце</string>
+    <string name="app_description">Слободан и лаган Јутјуб клијент за Андроид.</string>
+    <string name="view_on_github">Погледај на Гитхабу</string>
+    <string name="read_full_license">Прочитај лиценцу</string>
+    <string name="contribution_title">Допринос</string>
+
+    <string name="title_activity_history">Историјат</string>
+    <string name="title_history_search">Тражено</string>
+    <string name="title_history_view">Гледано</string>
+    <string name="history_disabled">Историјат је искључен</string>
+    <string name="action_history">Историјат</string>
+    <string name="history_empty">Историјат је празан.</string>
+    <string name="history_cleared">Историјат очишћен</string>
+
+<string name="resume_on_audio_focus_gain_summary">Настави пуштање након прекида (нпр. позива)</string>
+
+
+    <string name="settings_file_charset_title">Дозвољени знакови у називима</string>
+    <string name="charset_letters_and_digits">Слова и бројке</string>
+    <string name="copyright" formatted="true">© %1$s од %2$s под %3$s</string>
+    <string name="error_unable_to_load_license">Не могу да учитам лиценцу</string>
+    </resources>
