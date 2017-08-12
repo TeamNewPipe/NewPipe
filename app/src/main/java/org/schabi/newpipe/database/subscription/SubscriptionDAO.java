@@ -20,6 +20,10 @@ public interface SubscriptionDAO extends BasicDAO<SubscriptionEntity> {
     Flowable<List<SubscriptionEntity>> findAll();
 
     @Override
+    @Query("DELETE FROM " + SUBSCRIPTION_TABLE)
+    int deleteAll();
+
+    @Override
     @Query("SELECT * FROM " + SUBSCRIPTION_TABLE + " WHERE " + SUBSCRIPTION_SERVICE_ID + " = :serviceId")
     Flowable<List<SubscriptionEntity>> listByService(int serviceId);
 

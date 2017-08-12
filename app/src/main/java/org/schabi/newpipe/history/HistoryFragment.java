@@ -201,7 +201,7 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
      */
     @CallSuper
     public void onClearHistory() {
-        mHistoryDataSource.clearHistory();
+        mHistoryDataSource.deleteAll();
     }
 
     /**

@@ -36,6 +36,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import org.schabi.newpipe.database.AppDatabase;
+import org.schabi.newpipe.database.history.dao.HistoryDAO;
 import org.schabi.newpipe.database.history.dao.SearchHistoryDAO;
 import org.schabi.newpipe.database.history.dao.WatchHistoryDAO;
 import org.schabi.newpipe.database.history.model.HistoryEntry;
@@ -102,10 +103,16 @@ public class MainActivity extends AppCompatActivity implements
         return new Consumer<HistoryEntry>() {
             @Override
             public void accept(HistoryEntry historyEntry) throws Exception {
-                if (historyEntry instanceof SearchHistoryEntry) {
-                    searchHistoryDAO.insert((SearchHistoryEntry) historyEntry);
-                } else if(historyEntry instanceof WatchHistoryEntry) {
-                    watchHistoryDAO.insert((WatchHistoryEntry) historyEntry);
+                //noinspection unchecked
+                HistoryDAO<HistoryEntry> historyDAO = (HistoryDAO<HistoryEntry>)
+                        (historyEntry instanceof SearchHistoryEntry ? searchHistoryDAO : watchHistoryDAO);
+
+                HistoryEntry latestEntry = historyDAO.getLatestEntry();
+                if (historyEntry.hasEqualValues(latestEntry)) {
+                    latestEntry.setCreationDate(historyEntry.getCreationDate());
+                    historyDAO.update(latestEntry);
+                } else {
+                    historyDAO.insert(historyEntry);
                 }
             }
         };

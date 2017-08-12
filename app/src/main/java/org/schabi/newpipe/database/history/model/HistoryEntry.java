@@ -2,22 +2,25 @@ package org.schabi.newpipe.database.history.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Date;
 
 @Entity
-public class HistoryEntry {
+public abstract class HistoryEntry {
 
+    public static final String ID = "id";
     public static final String SERVICE_ID = "service_id";
     public static final String CREATION_DATE = "creation_date";
 
     @ColumnInfo(name = CREATION_DATE)
-    private final Date creationDate;
+    private Date creationDate;
 
     @ColumnInfo(name = SERVICE_ID)
-    private final int serviceId;
+    private int serviceId;
 
+    @ColumnInfo(name = ID)
     @PrimaryKey(autoGenerate = true)
     private long id;
 
@@ -38,7 +41,20 @@ public class HistoryEntry {
         return creationDate;
     }
 
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
     public int getServiceId() {
         return serviceId;
+    }
+
+    public void setServiceId(int serviceId) {
+        this.serviceId = serviceId;
+    }
+
+    @Ignore
+    public boolean hasEqualValues(HistoryEntry otherEntry) {
+        return otherEntry != null && getServiceId() == otherEntry.getServiceId();
     }
 }

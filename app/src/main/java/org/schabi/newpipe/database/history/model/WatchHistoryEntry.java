@@ -1,6 +1,8 @@
 package org.schabi.newpipe.database.history.model;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 
@@ -10,12 +12,30 @@ import java.util.Date;
 public class WatchHistoryEntry extends HistoryEntry {
 
     public static final String TABLE_NAME = "watch_history";
-    private final String title;
-    private final String url;
-    private final String streamId;
-    private final String thumbnailURL;
-    private final String uploader;
-    private final int duration;
+    public static final String TITLE = "title";
+    public static final String URL = "url";
+    public static final String STREAM_ID = "stream_id";
+    public static final String THUMBNAIL_URL = "thumbnail_url";
+    public static final String UPLOADER = "uploader";
+    public static final String DURATION = "duration";
+
+    @ColumnInfo(name = TITLE)
+    private String title;
+
+    @ColumnInfo(name = URL)
+    private String url;
+
+    @ColumnInfo(name = STREAM_ID)
+    private String streamId;
+
+    @ColumnInfo(name = THUMBNAIL_URL)
+    private String thumbnailURL;
+
+    @ColumnInfo(name = UPLOADER)
+    private String uploader;
+
+    @ColumnInfo(name = DURATION)
+    private int duration;
 
     public WatchHistoryEntry(Date creationDate, int serviceId, String title, String url, String streamId, String thumbnailURL, String uploader, int duration) {
         super(creationDate, serviceId);
@@ -36,23 +56,54 @@ public class WatchHistoryEntry extends HistoryEntry {
         return url;
     }
 
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getStreamId() {
         return streamId;
     }
 
+    public void setStreamId(String streamId) {
+        this.streamId = streamId;
+    }
+
     public String getThumbnailURL() {
         return thumbnailURL;
+    }
+
+    public void setThumbnailURL(String thumbnailURL) {
+        this.thumbnailURL = thumbnailURL;
     }
 
     public String getUploader() {
         return uploader;
     }
 
+    public void setUploader(String uploader) {
+        this.uploader = uploader;
+    }
+
     public int getDuration() {
         return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    @Ignore
+    @Override
+    public boolean hasEqualValues(HistoryEntry otherEntry) {
+        return otherEntry instanceof WatchHistoryEntry && super.hasEqualValues(otherEntry)
+                && getUrl().equals(((WatchHistoryEntry) otherEntry).getUrl());
     }
 }
