@@ -201,4 +201,39 @@
     <string name="read_full_license">Leggi la licenza d\'uso</string>
     <string name="contribution_title">Contributi</string>
 <string name="title_activity_about">Informazioni su NewPipe</string>
+    <string name="subscribe_button_title">Iscriviti</string>
+    <string name="subscribed_button_title">Iscritto</string>
+    <string name="channel_unsubscribed">Disiscritto dal canale</string>
+    <string name="subscription_change_failed">Impossibile cambiare l\'iscrizione</string>
+    <string name="subscription_update_failed">Impossibile aggiornare l\'iscrizione</string>
+
+    <string name="tab_subscriptions">Iscrizioni</string>
+
+    <string name="fragment_whats_new">Nuovo</string>
+
+    <string name="enable_search_history_title">Cronologia ricerche</string>
+    <string name="enable_search_history_summary">Salva le ricerche localmente</string>
+    <string name="enable_watch_history_title">Cronologia visualizzazioni</string>
+    <string name="enable_watch_history_summary">Salva la cronologia delle ricerche</string>
+    <string name="resume_on_audio_focus_gain_title">Riprendi tornando in primo piano</string>
+    <string name="resume_on_audio_focus_gain_summary">Continua a riprodurre dopo le interruzioni (es. chiamate)</string>
+
+
+    <string name="settings_category_downloads_title">Scarica</string>
+    <string name="settings_file_charset_title">Caratteri ammessi nei nomi dei file</string>
+    <string name="settings_file_replacement_character_summary">I caratteri non validi vengono sostituiti con questo</string>
+    <string name="settings_file_replacement_character_title">Carattere sostitutivo</string>
+
+    <string name="charset_letters_and_digits">Lettere e cifre</string>
+    <string name="charset_most_special_characters">Caratteri speciali</string>
+
+    <string name="title_activity_history">Cronologia</string>
+    <string name="title_history_search">Ricerche</string>
+    <string name="title_history_view">Visualizzati</string>
+    <string name="history_disabled">La cronologia è disabilitata</string>
+    <string name="action_history">Cronologia</string>
+    <string name="history_empty">La cronologia è vuota.</string>
+    <string name="history_cleared">Cronologia cancellata</string>
+
+<string name="tab_main">Principale</string>
     </resources>
