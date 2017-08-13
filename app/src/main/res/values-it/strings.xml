@@ -196,9 +196,9 @@
     <string name="tab_licenses">Licenze</string>
     <string name="app_description">Un\'interfaccia leggera e gratuita per accedere a Youtube su Android.</string>
     <string name="view_on_github">Guarda su GitHub</string>
-    <string name="app_license_title">Licenza d\'uso di NewPipe</string>
+    <string name="app_license_title">Licenza di NewPipe</string>
     <string name="contribution_encouragement">Un aiuto è sempre il benvenuto: nuove idee, design o traduzioni, piccoli cambi o modifiche radicali del codice rendono l\'applicazione sempre migliore!</string>
-    <string name="read_full_license">Leggi la licenza d\'uso</string>
+    <string name="read_full_license">Leggere la licenza</string>
     <string name="contribution_title">Contributi</string>
 <string name="title_activity_about">Informazioni su NewPipe</string>
     <string name="subscribe_button_title">Iscriviti</string>
