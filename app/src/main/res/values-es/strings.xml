@@ -222,4 +222,16 @@ abrir en modo popup</string>
     <string name="charset_letters_and_digits">Letras y dígitos</string>
     <string name="charset_most_special_characters">La mayoría de caracteres especiales</string>
 
-    </resources>
+    <string name="enable_search_history_title">Historial de búsqueda</string>
+    <string name="enable_search_history_summary">Almacenar búsquedas localmente</string>
+    <string name="enable_watch_history_title">Ver historial</string>
+    <string name="enable_watch_history_summary">Almacenar historial de visualización</string>
+    <string name="title_activity_history">Historial</string>
+    <string name="title_history_search">Buscado</string>
+    <string name="title_history_view">Visualizado</string>
+    <string name="history_disabled">Historial desactivado</string>
+    <string name="action_history">Historial</string>
+    <string name="history_empty">El historial está vacío.</string>
+    <string name="history_cleared">Historial borrado</string>
+
+</resources>
