@@ -224,7 +224,7 @@ abrir en modo popup</string>
 
     <string name="enable_search_history_title">Historial de búsqueda</string>
     <string name="enable_search_history_summary">Almacenar búsquedas localmente</string>
-    <string name="enable_watch_history_title">Ver historial</string>
+    <string name="enable_watch_history_title">Historial de visualización</string>
     <string name="enable_watch_history_summary">Almacenar historial de visualización</string>
     <string name="title_activity_history">Historial</string>
     <string name="title_history_search">Buscado</string>
