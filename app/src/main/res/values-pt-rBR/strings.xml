@@ -206,4 +206,12 @@ abrir em modo popup</string>
     <string name="enable_search_history_summary">Armazenar histórico de pesquisa localmente</string>
     <string name="enable_watch_history_title">Histórico de Exibição</string>
     <string name="enable_watch_history_summary">Armazenar histórico de exibição</string>
-    </resources>
+    <string name="title_activity_history">Histórico</string>
+    <string name="title_history_search">Pesquisado</string>
+    <string name="title_history_view">Assistido</string>
+    <string name="history_disabled">Histórico está desabilitado</string>
+    <string name="action_history">Histórico</string>
+    <string name="history_empty">O histórico está vazio.</string>
+    <string name="history_cleared">Histórico limpo</string>
+
+</resources>
