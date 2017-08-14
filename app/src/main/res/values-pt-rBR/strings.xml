@@ -202,4 +202,8 @@ abrir em modo popup</string>
     <string name="resume_on_audio_focus_gain_title">Retomar reprodução ao ganhar foco</string>
     <string name="resume_on_audio_focus_gain_summary">Continuar reproduzindo depois de interrupções (exemplo: ligações)</string>
 
+    <string name="enable_search_history_title">Procurar no histórico</string>
+    <string name="enable_search_history_summary">Armazenar histórico de pesquisa localmente</string>
+    <string name="enable_watch_history_title">Histórico de Exibição</string>
+    <string name="enable_watch_history_summary">Armazenar histórico de exibição</string>
     </resources>
