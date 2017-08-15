@@ -208,4 +208,16 @@
 
     <string name="fragment_whats_new">Änderungen</string>
 
-    </resources>
+    <string name="enable_search_history_title">Suchverlauf</string>
+    <string name="enable_search_history_summary">Speichere den Suchverlauf lokal</string>
+    <string name="enable_watch_history_title">Wiedergabeverlauf</string>
+    <string name="enable_watch_history_summary">Speichere den Wiedergabeverlauf</string>
+    <string name="title_activity_history">Verlauf</string>
+    <string name="title_history_search">Gesucht</string>
+    <string name="title_history_view">Angesehen</string>
+    <string name="history_disabled">Verlauf ist deaktiviert</string>
+    <string name="action_history">Verlauf</string>
+    <string name="history_empty">Der Verlauf ist leer.</string>
+    <string name="history_cleared">Verlauf bereinigt</string>
+
+</resources>
