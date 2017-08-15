@@ -40,7 +40,10 @@ public class AboutActivity extends AppCompatActivity {
             new SoftwareComponent("CircleImageView", "2014 - 2017", "Henning Dodenhof", "https://github.com/hdodenhof/CircleImageView", StandardLicenses.APACHE2),
             new SoftwareComponent("ParalaxScrollView", "2014", "Nir Hartmann", "https://github.com/nirhart/ParallaxScroll", StandardLicenses.MIT),
             new SoftwareComponent("NoNonsense-FilePicker", "2016", "Jonas Kalderstam", "https://github.com/spacecowboy/NoNonsense-FilePicker", StandardLicenses.MPL2),
-            new SoftwareComponent("ExoPlayer", "2014-2017", "Google Inc", "https://github.com/google/ExoPlayer", StandardLicenses.APACHE2)
+            new SoftwareComponent("ExoPlayer", "2014-2017", "Google Inc", "https://github.com/google/ExoPlayer", StandardLicenses.APACHE2),
+            new SoftwareComponent("RxAndroid", "2015", "The RxAndroid authors", "https://github.com/ReactiveX/RxAndroid", StandardLicenses.APACHE2),
+            new SoftwareComponent("RxJava", "2016-present", "RxJava Contributors", "https://github.com/ReactiveX/RxJava", StandardLicenses.APACHE2),
+            new SoftwareComponent("RxBinding", "2015", "Jake Wharton", "https://github.com/JakeWharton/RxBinding", StandardLicenses.APACHE2)
     };
 
     /**
