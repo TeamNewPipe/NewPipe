@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="main_bg_subtitle">Dodirni pretragu da krenemo</string>
+<resources><string name="main_bg_subtitle">Dodirni pretragu za početak</string>
     <string name="view_count_text">%1$s pregleda</string>
     <string name="upload_date_text">Objavljeno %1$s</string>
     <string name="no_player_found">Svirač za stream nije pronađen. Želite li instalirati VLC?</string>
@@ -107,7 +107,7 @@
 
     <string name="general_error">Greška</string>
     <string name="network_error">Greška u mreži</string>
-    <string name="could_not_load_thumbnails">Nije moguće učitati ikone.</string>
+    <string name="could_not_load_thumbnails">Nije moguće učitati sve ikone</string>
     <string name="youtube_signature_decryption_error">Nije moguće dekriptirati URL potpis videa.</string>
     <string name="parsing_error">Nije moguće dohvatiti stranicu.</string>
     <string name="light_parsing_error">Nije moguće dohvatiti stranicu u potpunosti.</string>
@@ -161,7 +161,7 @@
     <string name="pause">Pauziraj</string>
     <string name="view">Pregled</string>
     <string name="delete">Obriši</string>
-    <string name="checksum">Checksum</string>
+    <string name="checksum">Kontrolna suma</string>
 
     <string name="add">Novi zadatak</string>
     <string name="finish">U redu</string>
@@ -174,7 +174,7 @@
     <string name="msg_url_malform">Krivi URL ili internet nije dostupan</string>
     <string name="msg_running">NewPipe preuzima</string>
     <string name="msg_running_detail">Dodirni za detalje</string>
-    <string name="msg_wait">Molimo pričekajte...</string>
+    <string name="msg_wait">Molimo pričekajte…</string>
     <string name="msg_copied">Kopirano u clipboard.</string>
     <string name="no_available_dir">Molimo odaberite dostupni direktorij za preuzimanje.</string>
     <string name="msg_popup_permission">Ova dozvola je potrebna za otvaranje skočnog prozora</string>
@@ -201,10 +201,10 @@
     <string name="tab_about">O</string>
     <string name="tab_contributors">Doprinositelji</string>
     <string name="tab_licenses">Licence</string>
-    <string name="app_description">Besplatni/slobodni lagani YouTube frontend za Android</string>
+    <string name="app_description">Besplatni, slobodni i lagani YouTube frontend za Android.</string>
     <string name="view_on_github">Pogledaj na GitHubu</string>
     <string name="app_license_title">Licenca za NewPipe</string>
-    <string name="contribution_encouragement">Ako imate ideja za prijevod, promjene u dizajnu, čišćenje koda ili neke veće promjene u kodu, pomoć je uvijek dobro došla. Što više radimo, to bolji postajemo.</string>
+    <string name="contribution_encouragement">Ako imate ideja za prijevod, promjene u dizajnu, čišćenje koda ili neke veće promjene u kodu, pomoć je uvijek dobro došla. Što više radimo, to bolji postajemo!</string>
     <string name="read_full_license">Pročitaj licencu</string>
     <string name="contribution_title">Doprinos</string>
 
