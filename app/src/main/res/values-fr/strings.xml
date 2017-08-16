@@ -159,7 +159,7 @@ pour ouvrir en mode popup</string>
     <string name="default_popup_resolution_title">Résolution de la lecture intégrée</string>
     <string name="show_higher_resolutions_title">Afficher des résolutions plus grandes</string>
     <string name="show_higher_resolutions_summary">Seulement certains périphériques supportent la lecture 2K/4K</string>
-    <string name="preferred_video_format_title">Format de vidéo préféré</string>
+    <string name="preferred_video_format_title">Format vidéo préféré</string>
     <string name="popup_remember_size_pos_title">Mémoriser la taille et la position du lecteur intégré</string>
     <string name="popup_remember_size_pos_summary">Mémoriser les derniers emplacements et la taille du lecteur intégré</string>
 
@@ -215,4 +215,15 @@ pour ouvrir en mode popup</string>
     <string name="settings_file_replacement_character_summary">Les caractères invalides sont remplacés par cette valeur</string>
     <string name="settings_file_replacement_character_title">Caractère de remplacement</string>
 
-    </resources>
+    <string name="enable_search_history_title">Historique de recherche</string>
+    <string name="enable_search_history_summary">Sauvegarder les recherches sur l\'appareil</string>
+    <string name="enable_watch_history_title">Voir l\'historique</string>
+    <string name="title_activity_history">Historique</string>
+    <string name="title_history_search">Recherché</string>
+    <string name="title_history_view">Vue</string>
+    <string name="history_disabled">L\'historique est désactivé</string>
+    <string name="action_history">Historique</string>
+    <string name="history_empty">L\'historique est vide.</string>
+    <string name="history_cleared">Historique supprimé</string>
+
+</resources>
