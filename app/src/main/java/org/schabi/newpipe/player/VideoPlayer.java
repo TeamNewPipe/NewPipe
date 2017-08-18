@@ -27,6 +27,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
@@ -52,7 +53,7 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
  * @author mauriciocolli
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.VideoListener, SeekBar.OnSeekBarChangeListener, View.OnClickListener, ExoPlayer.EventListener, PopupMenu.OnMenuItemClickListener, PopupMenu.OnDismissListener {
+public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.VideoListener, SeekBar.OnSeekBarChangeListener, View.OnClickListener, Player.EventListener, PopupMenu.OnMenuItemClickListener, PopupMenu.OnDismissListener {
     public static final boolean DEBUG = BasePlayer.DEBUG;
     public final String TAG;
 

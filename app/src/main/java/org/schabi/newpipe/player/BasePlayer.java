@@ -19,10 +19,12 @@ import android.view.View;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
+import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.PlaybackParameters;
+import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
@@ -62,7 +64,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author mauriciocolli
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManager.OnAudioFocusChangeListener {
+public abstract class BasePlayer implements Player.EventListener, AudioManager.OnAudioFocusChangeListener {
     public static final boolean DEBUG = false;
     public static final String TAG = "BasePlayer";
 
@@ -158,7 +160,8 @@ public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManage
         DefaultTrackSelector defaultTrackSelector = new DefaultTrackSelector(trackSelectionFactory);
         DefaultLoadControl loadControl = new DefaultLoadControl();
 
-        simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(context, defaultTrackSelector, loadControl);
+        final RenderersFactory renderFactory = new DefaultRenderersFactory(context);
+        simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(renderFactory, defaultTrackSelector, loadControl);
         simpleExoPlayer.addListener(this);
     }
 
@@ -220,7 +223,7 @@ public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManage
         isPrepared = false;
         mediaSource = buildMediaSource(url, format);
 
-        if (simpleExoPlayer.getPlaybackState() != ExoPlayer.STATE_IDLE) simpleExoPlayer.stop();
+        if (simpleExoPlayer.getPlaybackState() != Player.STATE_IDLE) simpleExoPlayer.stop();
         if (videoStartPos > 0) simpleExoPlayer.seekTo(videoStartPos);
         simpleExoPlayer.prepare(mediaSource);
         simpleExoPlayer.setPlayWhenReady(autoPlay);
@@ -477,13 +480,13 @@ public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManage
         }
 
         switch (playbackState) {
-            case ExoPlayer.STATE_IDLE: // 1
+            case Player.STATE_IDLE: // 1
                 isPrepared = false;
                 break;
-            case ExoPlayer.STATE_BUFFERING: // 2
+            case Player.STATE_BUFFERING: // 2
                 if (isPrepared && getCurrentState() != STATE_LOADING) changeState(STATE_BUFFERING);
                 break;
-            case ExoPlayer.STATE_READY: //3
+            case Player.STATE_READY: //3
                 if (!isPrepared) {
                     isPrepared = true;
                     onPrepared(playWhenReady);
@@ -492,7 +495,7 @@ public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManage
                 if (currentState == STATE_PAUSED_SEEK) break;
                 changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
                 break;
-            case ExoPlayer.STATE_ENDED: // 4
+            case Player.STATE_ENDED: // 4
                 changeState(STATE_COMPLETED);
                 isPrepared = false;
                 break;
@@ -569,7 +572,7 @@ public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManage
     }
 
     public boolean isPlaying() {
-        return simpleExoPlayer.getPlaybackState() == ExoPlayer.STATE_READY && simpleExoPlayer.getPlayWhenReady();
+        return simpleExoPlayer.getPlaybackState() == Player.STATE_READY && simpleExoPlayer.getPlayWhenReady();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -715,7 +718,7 @@ public abstract class BasePlayer implements ExoPlayer.EventListener, AudioManage
     }
 
     public boolean isCompleted() {
-        return simpleExoPlayer != null && simpleExoPlayer.getPlaybackState() == ExoPlayer.STATE_ENDED;
+        return simpleExoPlayer != null && simpleExoPlayer.getPlaybackState() == Player.STATE_ENDED;
     }
 
     public boolean isPrepared() {
