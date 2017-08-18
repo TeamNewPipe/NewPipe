@@ -123,16 +123,17 @@ public class App extends Application {
             return;
         }
 
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
         final String id = getString(R.string.notification_channel_id);
-        CharSequence name = getString(R.string.notification_channel_name);
-        String description = getString(R.string.notification_channel_description);
-        int importance = NotificationManager.IMPORTANCE_HIGH;
+        final CharSequence name = getString(R.string.notification_channel_name);
+        final String description = getString(R.string.notification_channel_description);
+
+        // Keep this below DEFAULT to avoid making noise on every notification update
+        final int importance = NotificationManager.IMPORTANCE_LOW;
 
         NotificationChannel mChannel = new NotificationChannel(id, name, importance);
         mChannel.setDescription(description);
 
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.createNotificationChannel(mChannel);
     }
 }
