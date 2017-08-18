@@ -422,6 +422,11 @@ public class MainVideoPlayer extends Activity {
         public ImageButton getPlayPauseButton() {
             return playPauseButton;
         }
+
+        @Override
+        public void onRepeatModeChanged(int i) {
+
+        }
     }
 
     private class MySimpleOnGestureListener extends GestureDetector.SimpleOnGestureListener implements View.OnTouchListener {

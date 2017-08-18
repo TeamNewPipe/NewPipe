@@ -343,6 +343,11 @@ public class BackgroundPlayer extends Service {
         }
 
         @Override
+        public void onRepeatModeChanged(int i) {
+
+        }
+
+        @Override
         public void destroy() {
             super.destroy();
             if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, null);

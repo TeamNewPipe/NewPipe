@@ -431,7 +431,7 @@ public class PopupVideoPlayer extends Service {
                 hideControls(100, 0);
             }
         }
-/*//////////////////////////////////////////////////////////////////////////
+        /*//////////////////////////////////////////////////////////////////////////
         // Broadcast Receiver
         //////////////////////////////////////////////////////////////////////////*/
 
@@ -510,6 +510,10 @@ public class PopupVideoPlayer extends Service {
         @SuppressWarnings("WeakerAccess")
         public TextView getResizingIndicator() {
             return resizingIndicator;
+        }
+
+        @Override
+        public void onRepeatModeChanged(int i) {
         }
     }
 
