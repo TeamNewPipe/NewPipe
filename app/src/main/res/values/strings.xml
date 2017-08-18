@@ -117,6 +117,10 @@
     <string name="popup_resizing_indicator_title">Resizing</string>
     <string name="best_resolution">Best resolution</string>
 
+    <string name="notification_channel_id" translatable="false">newpipe</string>
+    <string name="notification_channel_name">NewPipe Notification</string>
+    <string name="notification_channel_description">Notifications For NewPipe Background and Popup Players</string>
+
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="network_error">Network error</string>
