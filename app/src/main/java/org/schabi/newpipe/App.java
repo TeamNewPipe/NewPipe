@@ -1,7 +1,10 @@
 package org.schabi.newpipe;
 
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
+import android.os.Build;
 
 import com.facebook.stetho.Stetho;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -89,6 +92,8 @@ public class App extends Application {
         SettingsActivity.initSettings(this);
 
         ThemeHelper.setTheme(getApplicationContext());
+
+        initNotificationChannel();
     }
 
     /**
@@ -111,5 +116,24 @@ public class App extends Application {
 
     public static boolean isUsingTor() {
         return useTor;
+    }
+
+    public void initNotificationChannel() {
+        if (Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O) {
+            return;
+        }
+
+        final String id = getString(R.string.notification_channel_id);
+        final CharSequence name = getString(R.string.notification_channel_name);
+        final String description = getString(R.string.notification_channel_description);
+
+        // Keep this below DEFAULT to avoid making noise on every notification update
+        final int importance = NotificationManager.IMPORTANCE_LOW;
+
+        NotificationChannel mChannel = new NotificationChannel(id, name, importance);
+        mChannel.setDescription(description);
+
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.createNotificationChannel(mChannel);
     }
 }
