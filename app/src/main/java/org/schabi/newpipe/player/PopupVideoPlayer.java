@@ -168,7 +168,7 @@ public class PopupVideoPlayer extends Service {
         float defaultSize = getResources().getDimension(R.dimen.popup_default_width);
         popupWidth = popupRememberSizeAndPos ? sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize) : defaultSize;
 
-        final int layoutParamType = Build.VERSION.SDK_INT < 26 ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        final int layoutParamType = Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
 
         windowLayoutParams = new WindowManager.LayoutParams(
                 (int) popupWidth, (int) getMinimumVideoHeight(popupWidth),
