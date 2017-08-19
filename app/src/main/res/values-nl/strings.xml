@@ -41,7 +41,7 @@
     <string name="detail_dislikes_img_view_description">Duimpjes omlaag</string>
     <string name="download_path_audio_title">Downloadlocatie voor audio</string>
     <string name="download_path_audio_summary">Locatie om gedownloade muziek in op te slaan</string>
-    <string name="download_path_audio_dialog_title">Voer downloadlocatie in voor audiobestanden</string>
+    <string name="download_path_audio_dialog_title">Voer downloadlocatie voor audiobestanden in</string>
 
     <string name="theme_title">Thema</string>
     <string name="dark_theme_title">Donker</string>
@@ -205,5 +205,16 @@ te openen in pop-upmodus</string>
 
     <string name="charset_letters_and_digits">Letters en cijfers</string>
     <string name="charset_most_special_characters">Meeste speciale tekens</string>
+
+    <string name="subscribe_button_title">Abboneer</string>
+    <string name="subscribed_button_title">Geabboneerd</string>
+    <string name="channel_unsubscribed">Abbonement opgezegd</string>
+    <string name="subscription_change_failed">niet in staat abbonement te wijzigen</string>
+    <string name="subscription_update_failed">Niet in staat abbonement te vernieuwen</string>
+
+    <string name="tab_main">Start</string>
+    <string name="tab_subscriptions">Abbonementen</string>
+
+    <string name="fragment_whats_new">Nieuw</string>
 
     </resources>
