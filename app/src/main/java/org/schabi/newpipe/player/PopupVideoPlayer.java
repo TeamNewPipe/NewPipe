@@ -168,9 +168,11 @@ public class PopupVideoPlayer extends Service {
         float defaultSize = getResources().getDimension(R.dimen.popup_default_width);
         popupWidth = popupRememberSizeAndPos ? sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize) : defaultSize;
 
+        final int layoutParamType = Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+
         windowLayoutParams = new WindowManager.LayoutParams(
                 (int) popupWidth, (int) getMinimumVideoHeight(popupWidth),
-                WindowManager.LayoutParams.TYPE_PHONE,
+                layoutParamType,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT);
         windowLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
@@ -225,7 +227,7 @@ public class PopupVideoPlayer extends Service {
                 break;
         }
 
-        return new NotificationCompat.Builder(this)
+        return new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
                 .setOngoing(true)
                 .setSmallIcon(R.drawable.ic_play_arrow_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
@@ -429,7 +431,7 @@ public class PopupVideoPlayer extends Service {
                 hideControls(100, 0);
             }
         }
-/*//////////////////////////////////////////////////////////////////////////
+        /*//////////////////////////////////////////////////////////////////////////
         // Broadcast Receiver
         //////////////////////////////////////////////////////////////////////////*/
 
@@ -508,6 +510,10 @@ public class PopupVideoPlayer extends Service {
         @SuppressWarnings("WeakerAccess")
         public TextView getResizingIndicator() {
             return resizingIndicator;
+        }
+
+        @Override
+        public void onRepeatModeChanged(int i) {
         }
     }
 

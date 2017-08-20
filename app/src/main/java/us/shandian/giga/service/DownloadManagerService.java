@@ -98,7 +98,7 @@ public class DownloadManagerService extends Service {
 
         Drawable icon = ContextCompat.getDrawable(this, R.mipmap.ic_launcher);
 
-        Builder builder = new Builder(this)
+        Builder builder = new Builder(this, getString(R.string.notification_channel_id))
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(android.R.drawable.stat_sys_download)
                 .setLargeIcon(((BitmapDrawable) icon).getBitmap())
