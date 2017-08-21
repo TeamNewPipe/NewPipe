@@ -234,4 +234,7 @@ abrir en modo popup</string>
     <string name="history_empty">El historial está vacío.</string>
     <string name="history_cleared">Historial borrado</string>
 
-</resources>
+<string name="notification_channel_name">Notificación de NewPipe</string>
+    <string name="notification_channel_description">Notificaciones para NewPipe en segundo plano y reproductores Popup</string>
+
+    </resources>
