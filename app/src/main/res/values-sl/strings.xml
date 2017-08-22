@@ -219,4 +219,25 @@ odpiranje v pojavnem načinu</string>
     <string name="charset_letters_and_digits">Črke in številke</string>
     <string name="charset_most_special_characters">Večina posebnih znakov</string>
 
-    </resources>
+    <string name="enable_search_history_title">Preišči zgodovino</string>
+    <string name="enable_search_history_summary">Iskalne poizvedbe shranjuj krajevno</string>
+    <string name="enable_watch_history_title">Zgodovina predvajanja</string>
+    <string name="enable_watch_history_summary">Shrani zgodovino predvajanja</string>
+    <string name="resume_on_audio_focus_gain_title">Nadaljuj po prekinitvi</string>
+    <string name="resume_on_audio_focus_gain_summary">Nadaljuj s predvajanjem po prekinitvi (na primer zaradi telefonskega klica)</string>
+
+
+    <string name="notification_channel_name">Obvestila NewPipe</string>
+    <string name="notification_channel_description">Obvestila predvajalnika NewPipe</string>
+
+    <string name="contribution_title">Sodelovanje pri projektu</string>
+
+    <string name="title_activity_history">Zgodovina</string>
+    <string name="title_history_search">Preiskano</string>
+    <string name="title_history_view">Predvajano</string>
+    <string name="history_disabled">Shranjevanje zgodovine je onemogočeno</string>
+    <string name="action_history">Zgodovina</string>
+    <string name="history_empty">Zgodovina je prazna!</string>
+    <string name="history_cleared">Zgodovina je počiščena</string>
+
+</resources>
