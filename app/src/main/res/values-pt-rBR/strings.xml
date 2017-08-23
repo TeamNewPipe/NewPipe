@@ -214,4 +214,7 @@ abrir em modo popup</string>
     <string name="history_empty">O histórico está vazio.</string>
     <string name="history_cleared">Histórico limpo</string>
 
-</resources>
+<string name="notification_channel_name">Notificações do NewPipe</string>
+    <string name="notification_channel_description">Notificações em plano de fundo para o NewPipe e players em popup</string>
+
+    </resources>
