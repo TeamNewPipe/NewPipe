@@ -212,4 +212,13 @@ membuka di mode popup</string>
     <string name="resume_on_audio_focus_gain_title">Lanjutkan saat fokus</string>
     <string name="resume_on_audio_focus_gain_summary">Lanjutkan pemutaran setelah interupsi (mis. panggilan telepon)</string>
 
+    <string name="tab_main">Utama</string>
+    <string name="enable_search_history_title">Cari riwayat</string>
+    <string name="enable_search_history_summary">Simpan pencarian secara lokal</string>
+    <string name="enable_watch_history_title">Riwayat tontonan</string>
+    <string name="notification_channel_name">Notifikasi NewPipe</string>
+    <string name="title_activity_history">Riwayat</string>
+    <string name="history_disabled">Riwayat dinonaktifkan</string>
+    <string name="action_history">Riwayat</string>
+    <string name="history_empty">Riwayat kosong.</string>
     </resources>
