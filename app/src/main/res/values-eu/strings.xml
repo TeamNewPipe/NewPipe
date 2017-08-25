@@ -205,4 +205,9 @@
     <string name="charset_letters_and_digits">Hizkiak eta zenbakiak</string>
     <string name="charset_most_special_characters">Karaktere berezi gehienak</string>
 
+    <string name="enable_search_history_title">Bilaketa historiala</string>
+    <string name="enable_search_history_summary">Gorde bilaketak lokalki</string>
+    <string name="enable_watch_history_title">Ikusketa historiala</string>
+    <string name="enable_watch_history_summary">Gorde ikusketa historiala</string>
+    <string name="notification_channel_name">NewPipe jakinarazpena</string>
     </resources>
