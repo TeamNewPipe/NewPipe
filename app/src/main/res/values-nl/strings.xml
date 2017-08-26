@@ -217,4 +217,23 @@ te openen in pop-upmodus</string>
 
     <string name="fragment_whats_new">Nieuw</string>
 
-    </resources>
+    <string name="enable_search_history_title">Zoekgeschiedenis</string>
+    <string name="enable_search_history_summary">Sla zoekopdrachten lokaal op</string>
+    <string name="enable_watch_history_title">Kijkgeschiedenis</string>
+    <string name="enable_watch_history_summary">Sla kijkgeschiedenis op</string>
+    <string name="resume_on_audio_focus_gain_title">Hervat bij focus</string>
+    <string name="resume_on_audio_focus_gain_summary">Ga verder met afspelen na onderbrekingen (zoals telefoongesprekken)</string>
+
+
+    <string name="notification_channel_name">NewPipe Melding</string>
+    <string name="notification_channel_description">Meldingen Voor NewPipe Achtergrond- en Popupspelers</string>
+
+    <string name="title_activity_history">Geschiedenis</string>
+    <string name="title_history_search">Gezocht</string>
+    <string name="title_history_view">Gekeken</string>
+    <string name="history_disabled">Geschiedenis is uitgeschakeld</string>
+    <string name="action_history">Geschiedenis</string>
+    <string name="history_empty">De Geschiedenis is leeg.</string>
+    <string name="history_cleared">Geschiedenis gewist</string>
+
+</resources>
