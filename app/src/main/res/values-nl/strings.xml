@@ -207,13 +207,13 @@ te openen in pop-upmodus</string>
     <string name="charset_most_special_characters">Meeste speciale tekens</string>
 
     <string name="subscribe_button_title">Abonneer</string>
-    <string name="subscribed_button_title">geabonneerd</string>
-    <string name="channel_unsubscribed">Abbonement opgezegd</string>
-    <string name="subscription_change_failed">niet in staat abbonement te wijzigen</string>
+    <string name="subscribed_button_title">Geabonneerd</string>
+    <string name="channel_unsubscribed">Abonnement opgezegd</string>
+    <string name="subscription_change_failed">Niet in staat abonnement te wijzigen</string>
     <string name="subscription_update_failed">Niet in staat abbonement te vernieuwen</string>
 
     <string name="tab_main">Start</string>
-    <string name="tab_subscriptions">Abbonementen</string>
+    <string name="tab_subscriptions">Abonnementen</string>
 
     <string name="fragment_whats_new">Nieuw</string>
 
