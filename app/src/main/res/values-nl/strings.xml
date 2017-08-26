@@ -206,8 +206,8 @@ te openen in pop-upmodus</string>
     <string name="charset_letters_and_digits">Letters en cijfers</string>
     <string name="charset_most_special_characters">Meeste speciale tekens</string>
 
-    <string name="subscribe_button_title">Abboneer</string>
-    <string name="subscribed_button_title">Geabboneerd</string>
+    <string name="subscribe_button_title">Abonneer</string>
+    <string name="subscribed_button_title">geabonneerd</string>
     <string name="channel_unsubscribed">Abbonement opgezegd</string>
     <string name="subscription_change_failed">niet in staat abbonement te wijzigen</string>
     <string name="subscription_update_failed">Niet in staat abbonement te vernieuwen</string>
