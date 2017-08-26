@@ -240,4 +240,5 @@ odpiranje v pojavnem načinu</string>
     <string name="history_empty">Zgodovina je prazna!</string>
     <string name="history_cleared">Zgodovina je počiščena</string>
 
-</resources>
+<string name="contribution_encouragement">Če imate odlične zamisli, predloge za prevode in oblikovne spremembe, izboljšave kode ali obvladate programiranje in bi želeli sodelovati, vedite, da je pomoč vedno dobrodošla!</string>
+    </resources>
