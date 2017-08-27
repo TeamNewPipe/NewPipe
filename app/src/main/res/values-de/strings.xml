@@ -226,4 +226,7 @@
     <string name="resume_on_audio_focus_gain_summary">Nach Unterbrechungen (z.B. Telefonaten) Wiedergabe fortsetzen</string>
 
 
+    <string name="notification_channel_name">NewPipe Benachrichtigung</string>
+    <string name="notification_channel_description">Benachrichtigungen für NewPipe Hintergrund- und Popup-Spieler</string>
+
     </resources>
