@@ -30,9 +30,9 @@
     <string name="autoplay_by_calling_app_summary">Automatycznie odtwórz video kiedy NewPipe zostanie wywołany z innej aplikacji</string>
     <string name="default_resolution_title">Domyślna rozdzielczość</string>
     <string name="play_with_kodi_title">Odtwórz w Kodi</string>
-    <string name="kore_not_found">Aplikacja Kore nie znaleziona. Zainstalować Kore?</string>
+    <string name="kore_not_found">Aplikacja Kore nie została znaleziona. Zainstalować Kore?</string>
     <string name="show_play_with_kodi_title">Pokaż opcję \"Odtwórz z Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Wyświetl opcję odtwarzania video przez Kodi</string>
+    <string name="show_play_with_kodi_summary">Wyświetl opcję aby odtworzyć video przez Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Domyślny format audio</string>
     <string name="webm_description">WebM — darmowy format</string>
@@ -53,7 +53,7 @@
     <string name="play_btn_text">Odtwórz</string>
     <string name="content">Zawartość</string>
     <string name="show_age_restricted_content_title">Pokaż zawartość z ograniczeniem wieku</string>
-    <string name="video_is_age_restricted">Film jest ograniczony wiekowo. Aktywuj najpierw filmy ograniczone wiekowo w ustawieniach.</string>
+    <string name="video_is_age_restricted">Film jest ograniczony wiekowo. Aktywuj najpierw filmy z ograniczeniem wiekowym w ustawieniach.</string>
     <string name="duration_live">Na żywo</string>
     <string name="downloads">Pobrania</string>
     <string name="downloads_title">Pobrania</string>
@@ -63,8 +63,8 @@
     <string name="network_error">Błąd sieci</string>
     <string name="could_not_load_thumbnails">Nie można załadować wszystkich miniatur</string>
     <string name="youtube_signature_decryption_error">Nie można zdeszyfrować sygnatury URL filmu.</string>
-    <string name="parsing_error">Nie można zanalizować strony.</string>
-    <string name="light_parsing_error">Nie można całkowicie zanalizować strony.</string>
+    <string name="parsing_error">Nie można przetworzyć strony.</string>
+    <string name="light_parsing_error">Nie można całkowicie przetworzyć strony.</string>
     <string name="content_not_available">Zawartość niedostępna.</string>
     <string name="blocked_by_gema">Zablokowane przez GEMA.</string>
     <string name="could_not_setup_download_menu">Nie można ustawić menu pobierania.</string>
@@ -73,7 +73,7 @@
     <string name="sorry_string">Przepraszamy, to nie powinno mieć miejsca.</string>
     <string name="error_report_button_text">Zgłoś błąd przez email</string>
     <string name="error_snackbar_message">Przepraszamy, wystąpiły pewne błędy.</string>
-    <string name="error_snackbar_action">RAPORT</string>
+    <string name="error_snackbar_action">ZGŁOŚ</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Co się stało:</string>
     <string name="info_labels">Co:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:\\nGlob. Zakres IP:</string>
@@ -85,7 +85,7 @@
     <string name="detail_thumbnail_view_description">Miniatura filmu</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura zdjęcia uploadera</string>
     <string name="detail_likes_img_view_description">Polubienia</string>
-    <string name="detail_dislikes_img_view_description">Niepolubienia</string>
+    <string name="detail_dislikes_img_view_description">Łapki w dół</string>
     <string name="use_tor_title">Użyj Tor</string>
     <string name="report_error">Zgłoś błąd</string>
     <string name="user_report">Raport użytkownika</string>
@@ -96,7 +96,7 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Ponów</string>
-    <string name="storage_permission_denied">Pozwolenie dostępu do pamięci zostało zabronione</string>
+    <string name="storage_permission_denied">Nie uzyskano pozwolenia dostępu do pamięci</string>
 
     <string name="pause">Pauza</string>
     <string name="view">Widok</string>
@@ -123,25 +123,25 @@
     <string name="use_tor_summary">(Eksperymentalne) Wymuś pobieranie przez Tor dla zwiększonej prywatności (strumieniowanie video nie jest jeszcze wspierane).</string>
     <string name="start">Start</string>
     <string name="reCaptchaActivity">CAPTCHA</string>
-    <string name="reCaptcha_title">Rozwiąż ReCAPTCHA</string>
+    <string name="reCaptcha_title">Rozwiąż reCAPTCHA</string>
     <string name="recaptcha_request_toast">Prośba o ReCAPTCHA</string>
 
     <string name="use_external_video_player_summary">Niektóre rozdzielczości nie będą miały dźwięku jeśli ta opcja jest włączona</string>
     <string name="controls_background_title">W tle</string>
-    <string name="default_popup_resolution_title">Domyślna rozdzielczość okienka wyskakującego</string>
+    <string name="default_popup_resolution_title">Domyślna rozdzielczość dla trybu okienkowego</string>
     <string name="show_higher_resolutions_title">Pokaż wyższe rozdzielczości</string>
-    <string name="show_higher_resolutions_summary">Tylko niektóre urządzenia wspierają odtwarzanie video w 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Tylko niektóre urządzenia wspierają odtwarzanie video 2K/4K</string>
     <string name="preferred_video_format_title">Preferowany format video</string>
     <string name="black_theme_title">Czarny</string>
-    <string name="popup_remember_size_pos_title">Zapamiętaj rozdzielczość i pozycję okienka wyskakującego</string>
-    <string name="popup_remember_size_pos_summary">Zapamiętaj ostatni rozmiar i pozycję ustawioną dla okienka wyskakującego</string>
+    <string name="popup_remember_size_pos_title">Zapamiętaj rozmiar i pozycję trybu okienkowego</string>
+    <string name="popup_remember_size_pos_summary">Zapamiętaj ostatni rozmiar i pozycję ustawioną dla trybu okienkowego</string>
     <string name="player_gesture_controls_title">Sterowanie odtwarzaczem za pomocą gestów</string>
     <string name="player_gesture_controls_summary">Użyj gestów aby sterować jasnością i głośnością odtwarzacza</string>
     <string name="show_search_suggestions_title">Szukaj sugestii</string>
     <string name="show_search_suggestions_summary">Pokazuj sugestie podczas wyszukiwania</string>
 
-    <string name="settings_category_popup_title">Okienko wyskakujące</string>
-    <string name="popup_playing_toast">Odtwarzanie w wyskakującym okienku</string>
+    <string name="settings_category_popup_title">Tryb okienkowy</string>
+    <string name="popup_playing_toast">Odtwarzanie w trybie okienkowym</string>
     <string name="all">Wszystkie</string>
     <string name="channel">Kanał</string>
     <string name="yes">Tak</string>
@@ -150,11 +150,11 @@
     <string name="filter">Filtr</string>
     <string name="refresh">Odśwież</string>
     <string name="clear">Wyczyść</string>
-    <string name="popup_resizing_indicator_title">Zmienianie rozmiaru</string>
+    <string name="popup_resizing_indicator_title">Zmiana rozmiaru</string>
 
     <string name="use_old_player_title">Użyj starego odtwarzacza</string>
-    <string name="use_old_player_summary">Stary wbudowany w Mediaframework odtwarzacz.</string>
-    <string name="videos">filmy</string>
+    <string name="use_old_player_summary">Stary odtwarzacz wbudowany w Mediaframework.</string>
+    <string name="videos">video</string>
     <string name="subscriber">subskrybent</string>
     <string name="subscriber_plural">subskrybenci</string>
     <string name="subscribe">Subskrybuj</string>
@@ -166,9 +166,9 @@
     <string name="msg_popup_permission">To pozwolenie jest wymagany aby
 \notworzyć w trybie okienkowym</string>
 
-    <string name="open_in_popup_mode">Odtwórz w trybie wyskakującego okienka</string>
-    <string name="popup_mode_share_menu_title">NewPipe tryb wyskakującego okienka</string>
-    <string name="controls_popup_title">Wyskakujące okienko</string>
+    <string name="open_in_popup_mode">Odtwórz w trybie okienkowym</string>
+    <string name="popup_mode_share_menu_title">NewPipe w trybie okienkowym</string>
+    <string name="controls_popup_title">Tryb okienkowy</string>
 
 <string name="best_resolution">Najlepsza rozdzielczość</string>
 
@@ -193,4 +193,35 @@
     <string name="settings_file_replacement_character_title">Znak zamienny</string>
 
     <string name="copyright" formatted="true">© %1$s przez %2$s pod %3$s</string>
-    </resources>
+    <string name="subscribe_button_title">Subskrybuj</string>
+    <string name="subscribed_button_title">Subskrybujesz</string>
+    <string name="channel_unsubscribed">Anulowano subskrypcję kanału</string>
+    <string name="subscription_change_failed">Nie można zmienić subskrypcji</string>
+    <string name="subscription_update_failed">Nie można uaktualnić subskrypcji</string>
+
+    <string name="tab_main">Główna</string>
+    <string name="tab_subscriptions">Subskrypcje</string>
+
+    <string name="fragment_whats_new">Co nowego</string>
+
+    <string name="enable_search_history_title">Historia wyszukiwania</string>
+    <string name="enable_search_history_summary">Zapisuj historie wyszukiwania lokalnie</string>
+    <string name="enable_watch_history_title">Historia oglądania</string>
+    <string name="enable_watch_history_summary">Zapisuj historie oglądania</string>
+    <string name="resume_on_audio_focus_gain_title"></string>
+    <string name="resume_on_audio_focus_gain_summary">Kontynuuj odtwarzanie po przerwaniu (np. po rozmowie telefonicznej)</string>
+
+
+    <string name="notification_channel_name">Notyfikacja NewPipe</string>
+    <string name="notification_channel_description">Notyfikacje dla NewPipe w tle i odtwarzacza w okienku</string>
+
+    <string name="tab_contributors">Współautorzy</string>
+    <string name="title_activity_history">Historia</string>
+    <string name="title_history_search">Wyszukiwane</string>
+    <string name="title_history_view">Obejrzane</string>
+    <string name="history_disabled">Historia jest wyłączona</string>
+    <string name="action_history">Historia</string>
+    <string name="history_empty">Historia jest pusta.</string>
+    <string name="history_cleared">Historia została wyczyszczona</string>
+
+</resources>
