@@ -80,6 +80,11 @@ public class PlaylistFragment extends BaseFragment {
     private TextView headerTitleView;
 
     /*////////////////////////////////////////////////////////////////////////*/
+    // Reactors
+    //////////////////////////////////////////////////////////////////////////*/
+    private Disposable loadingReactor;
+
+    /*////////////////////////////////////////////////////////////////////////*/
 
     public PlaylistFragment() {
     }
@@ -153,8 +158,8 @@ public class PlaylistFragment extends BaseFragment {
     public void onStop() {
         if (DEBUG) Log.d(TAG, "onStop() called");
 
-        disposable.dispose();
-        disposable = null;
+        if (loadingReactor != null) loadingReactor.dispose();
+        loadingReactor = null;
 
         super.onStop();
     }
@@ -221,7 +226,7 @@ public class PlaylistFragment extends BaseFragment {
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
-        playlistStreams = (RecyclerView) rootView.findViewById(R.id.channel_streams_view);
+        playlistStreams = rootView.findViewById(R.id.channel_streams_view);
 
         playlistStreams.setLayoutManager(new LinearLayoutManager(activity));
         if (infoListAdapter == null) {
@@ -238,9 +243,9 @@ public class PlaylistFragment extends BaseFragment {
         infoListAdapter.setHeader(headerRootLayout);
         infoListAdapter.setFooter(activity.getLayoutInflater().inflate(R.layout.pignate_footer, playlistStreams, false));
 
-        headerBannerView = (ImageView) headerRootLayout.findViewById(R.id.playlist_banner_image);
-        headerAvatarView = (ImageView) headerRootLayout.findViewById(R.id.playlist_avatar_view);
-        headerTitleView = (TextView) headerRootLayout.findViewById(R.id.playlist_title_view);
+        headerBannerView = headerRootLayout.findViewById(R.id.playlist_banner_image);
+        headerAvatarView = headerRootLayout.findViewById(R.id.playlist_avatar_view);
+        headerTitleView = headerRootLayout.findViewById(R.id.playlist_title_view);
     }
 
     protected void initListeners() {
@@ -280,7 +285,71 @@ public class PlaylistFragment extends BaseFragment {
         return NewPipe.getService(serviceId);
     }
 
-    Disposable disposable;
+    private void loadAll() {
+        final Callable<PlayListInfo> task = new Callable<PlayListInfo>() {
+            @Override
+            public PlayListInfo call() throws Exception {
+                int pageCount = 0;
+
+                final PlayListExtractor extractor = getService(serviceId)
+                        .getPlayListExtractorInstance(playlistUrl, 0);
+
+                final PlayListInfo info = PlayListInfo.getInfo(extractor);
+
+                boolean hasNext = info.hasNextPage;
+                while(hasNext) {
+                    pageCount++;
+
+                    final PlayListExtractor moreExtractor = getService(serviceId)
+                            .getPlayListExtractorInstance(playlistUrl, pageCount);
+
+                    final PlayListInfo moreInfo = PlayListInfo.getInfo(moreExtractor);
+
+                    info.related_streams.addAll(moreInfo.related_streams);
+                    hasNext = moreInfo.hasNextPage;
+                }
+                return info;
+            }
+        };
+
+        Observable.fromCallable(task)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<PlayListInfo>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        if (loadingReactor == null || loadingReactor.isDisposed()) {
+                            loadingReactor = d;
+                            isLoading.set(true);
+                        } else {
+                            d.dispose();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(@NonNull PlayListInfo playListInfo) {
+                        if (DEBUG) Log.d(TAG, "onReceive() called with: info = [" + playListInfo + "]");
+                        if (playListInfo == null || isRemoving() || !isVisible()) return;
+
+                        handlePlayListInfo(playListInfo, false, true);
+                        isLoading.set(false);
+                        pageNumber++;
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        onRxError(e, "Observer failure");
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        if (loadingReactor != null) {
+                            loadingReactor.dispose();
+                            loadingReactor = null;
+                        }
+                    }
+                });
+    }
 
     private void loadMore(final boolean onlyVideos) {
         final Callable<PlayListInfo> task = new Callable<PlayListInfo>() {
@@ -300,8 +369,8 @@ public class PlaylistFragment extends BaseFragment {
                 .subscribe(new Observer<PlayListInfo>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
-                        if (disposable == null || disposable.isDisposed()) {
-                            disposable = d;
+                        if (loadingReactor == null || loadingReactor.isDisposed()) {
+                            loadingReactor = d;
                             isLoading.set(true);
                         } else {
                             d.dispose();
@@ -325,9 +394,9 @@ public class PlaylistFragment extends BaseFragment {
 
                     @Override
                     public void onComplete() {
-                        if (disposable != null) {
-                            disposable.dispose();
-                            disposable = null;
+                        if (loadingReactor != null) {
+                            loadingReactor.dispose();
+                            loadingReactor = null;
                         }
                     }
                 });

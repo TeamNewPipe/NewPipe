@@ -344,13 +344,15 @@ public class BackgroundPlayer extends Service {
 
         @Override
         public void onFastRewind() {
-            super.onFastRewind();
+//            super.onFastRewind();
+            simpleExoPlayer.seekTo(0, 0);
             triggerProgressUpdate();
         }
 
         @Override
         public void onFastForward() {
-            super.onFastForward();
+//            super.onFastForward();
+            simpleExoPlayer.seekTo(2, 0);
             triggerProgressUpdate();
         }
 

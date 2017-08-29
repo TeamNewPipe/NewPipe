@@ -47,7 +47,9 @@ import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
+import com.google.android.exoplayer2.source.DynamicConcatenatingMediaSource;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
+import com.google.android.exoplayer2.source.LoopingMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
@@ -248,7 +250,12 @@ public abstract class BasePlayer implements Player.EventListener, AudioManager.O
         changeState(STATE_LOADING);
 
         isPrepared = false;
-        mediaSource = buildMediaSource(url, format);
+
+        final MediaSource ms = buildMediaSource(url, format);
+        final DynamicConcatenatingMediaSource dcms = new DynamicConcatenatingMediaSource();
+        dcms.addMediaSource(ms);
+        mediaSource = dcms;
+        dcms.addMediaSource(new LoopingMediaSource(ms, 2));
 
         if (simpleExoPlayer.getPlaybackState() != Player.STATE_IDLE) simpleExoPlayer.stop();
         if (videoStartPos > 0) simpleExoPlayer.seekTo(videoStartPos);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -328,4 +328,12 @@
             tools:visibility="visible"/>
     </RelativeLayout>
 
-</FrameLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/video_playlist"
+        android:layout_width="480dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#64000000"
+        android:visibility="gone"/>
+
+</RelativeLayout>
