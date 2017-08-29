@@ -250,12 +250,7 @@ public abstract class BasePlayer implements Player.EventListener, AudioManager.O
         changeState(STATE_LOADING);
 
         isPrepared = false;
-
-        final MediaSource ms = buildMediaSource(url, format);
-        final DynamicConcatenatingMediaSource dcms = new DynamicConcatenatingMediaSource();
-        dcms.addMediaSource(ms);
-        mediaSource = dcms;
-        dcms.addMediaSource(new LoopingMediaSource(ms, 2));
+        mediaSource = buildMediaSource(url, format);
 
         if (simpleExoPlayer.getPlaybackState() != Player.STATE_IDLE) simpleExoPlayer.stop();
         if (videoStartPos > 0) simpleExoPlayer.seekTo(videoStartPos);

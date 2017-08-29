@@ -29,12 +29,12 @@ import org.schabi.newpipe.info_list.InfoItemHolder;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class PlaylistItemHolder extends RecyclerView.ViewHolder {
+public class PlayQueueItemHolder extends RecyclerView.ViewHolder {
 
     public final TextView itemVideoTitleView, itemDurationView;
     public final View itemRoot;
 
-    public PlaylistItemHolder(View v) {
+    public PlayQueueItemHolder(View v) {
         super(v);
         itemRoot = v.findViewById(R.id.itemRoot);
         itemVideoTitleView = (TextView) v.findViewById(R.id.itemVideoTitleView);

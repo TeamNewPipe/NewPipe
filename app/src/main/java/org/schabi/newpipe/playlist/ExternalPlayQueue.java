@@ -16,26 +16,61 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import io.reactivex.Maybe;
-import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class ExternalPlaylist extends Playlist {
+public class ExternalPlayQueue extends PlayQueue {
+
+    private final static int LOAD_PROXIMITY = 10;
+
+    private boolean isComplete;
 
     private AtomicInteger pageNumber;
 
     private StreamingService service;
 
-    public ExternalPlaylist(final PlayListInfoItem playlist) {
-        super();
-        service = getService(playlist.serviceId);
-        pageNumber = new AtomicInteger(0);
+    private PlayListInfoItem playlist;
 
-        load(playlist);
+    public ExternalPlayQueue(final PlayListInfoItem playlist) {
+        super();
+        this.service = getService(playlist.serviceId);
+        this.pageNumber = new AtomicInteger(0);
+        this.playlist = playlist;
+
+        fetch();
     }
 
-    private void load(final PlayListInfoItem playlist) {
+    @Override
+    public boolean isComplete() {
+        return isComplete;
+    }
+
+    @Override
+    public void load(int index, boolean loadNeighbors) {
+        if (index > streams.size() || streams.get(index) == null) return;
+
+        streams.get(index).load();
+
+        if (loadNeighbors) {
+            int leftBound = index - LOAD_BOUND >= 0 ? index - LOAD_BOUND : 0;
+            int rightBound = index + LOAD_BOUND < streams.size() ? index + LOAD_BOUND : streams.size() - 1;
+
+            for (int i = leftBound; i < rightBound; i++) {
+                final PlayQueueItem item = streams.get(i);
+                if (item != null) item.load();
+            }
+        }
+    }
+
+    @Override
+    public Maybe<StreamInfo> get(int index) {
+        if (index > streams.size() || streams.get(index) == null) return Maybe.empty();
+        return streams.get(index).getStream();
+    }
+
+
+    public synchronized void fetch() {
         final int page = pageNumber.getAndIncrement();
 
         final Callable<PlayListInfo> task = new Callable<PlayListInfo>() {
@@ -49,8 +84,10 @@ public class ExternalPlaylist extends Playlist {
         final Consumer<PlayListInfo> onSuccess = new Consumer<PlayListInfo>() {
             @Override
             public void accept(PlayListInfo playListInfo) throws Exception {
+                if (!playListInfo.hasNextPage) isComplete = true;
+
                 streams.addAll(extractPlaylistItems(playListInfo));
-                changeBroadcast.onNext(streams);
+                notifyChange();
             }
         };
 
@@ -61,31 +98,14 @@ public class ExternalPlaylist extends Playlist {
                 .subscribe(onSuccess);
     }
 
-    private List<PlaylistItem> extractPlaylistItems(final PlayListInfo info) {
-        List<PlaylistItem> result = new ArrayList<>();
+    private List<PlayQueueItem> extractPlaylistItems(final PlayListInfo info) {
+        List<PlayQueueItem> result = new ArrayList<>();
         for (final InfoItem stream : info.related_streams) {
             if (stream instanceof StreamInfoItem) {
-                result.add(new PlaylistItem((StreamInfoItem) stream));
+                result.add(new PlayQueueItem((StreamInfoItem) stream));
             }
         }
         return result;
-    }
-
-    @Override
-    boolean isComplete() {
-        return false;
-    }
-
-    @Override
-    void load(int index) {
-        while (streams.size() < index) {
-            pageNumber.incrementAndGet();
-        }
-    }
-
-    @Override
-    Observable<StreamInfo> get(int index) {
-        return null;
     }
 
     private StreamingService getService(final int serviceId) {
@@ -95,5 +115,4 @@ public class ExternalPlaylist extends Playlist {
             return null;
         }
     }
-
 }

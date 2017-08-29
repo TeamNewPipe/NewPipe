@@ -1,6 +1,5 @@
 package org.schabi.newpipe.playlist;
 
-import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.info_list.StreamInfoItemHolder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,11 +31,11 @@ import java.util.List;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class PlaylistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private static final String TAG = PlaylistAdapter.class.toString();
+public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private static final String TAG = PlayQueueAdapter.class.toString();
 
     private final PlaylistItemBuilder playlistItemBuilder;
-    private final List<PlaylistItem> playlistItems;
+    private final PlayQueue playQueue;
     private boolean showFooter = false;
     private View header = null;
     private View footer = null;
@@ -55,34 +53,60 @@ public class PlaylistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
-    public PlaylistAdapter(List<PlaylistItem> data) {
-        playlistItemBuilder = new PlaylistItemBuilder();
-        playlistItems = data;
+    public PlayQueueAdapter(PlayQueue playQueue) {
+        this.playlistItemBuilder = new PlaylistItemBuilder();
+        this.playQueue = playQueue;
     }
 
     public void setSelectedListener(PlaylistItemBuilder.OnSelectedListener listener) {
         playlistItemBuilder.setOnSelectedListener(listener);
     }
 
-    public void addInfoItemList(List<PlaylistItem> data) {
+    public void addItems(List<PlayQueueItem> data) {
         if(data != null) {
-            playlistItems.addAll(data);
-            notifyDataSetChanged();
+            playQueue.getStreams().addAll(data);
+            notifyPlaylistChange();
         }
     }
 
-    public void addInfoItem(PlaylistItem data) {
+    public void addItem(PlayQueueItem data) {
         if (data != null) {
-            playlistItems.add(data);
-            notifyDataSetChanged();
+            playQueue.getStreams().add(data);
+            notifyPlaylistChange();
         }
     }
 
-    public void clearStreamItemList() {
-        if(playlistItems.isEmpty()) {
+    public void removeItem(int index) {
+        if (index < playQueue.getStreams().size()) {
+            playQueue.getStreams().remove(index);
+            notifyPlaylistChange();
+        }
+    }
+
+    public void swapItems(int source, int target) {
+        final List<PlayQueueItem> items = playQueue.getStreams();
+        if (source < items.size() && target < items.size()) {
+            final PlayQueueItem sourceItem = items.get(source);
+            final PlayQueueItem targetItem = items.get(target);
+
+            items.set(target, sourceItem);
+            items.set(source, targetItem);
+
+            notifyPlaylistChange();
+        }
+    }
+
+    public void clear() {
+        if(playQueue.getStreams().isEmpty()) {
             return;
         }
-        playlistItems.clear();
+        playQueue.getStreams().clear();
+
+        notifyPlaylistChange();
+    }
+
+    private void notifyPlaylistChange() {
+        playQueue.notifyChange();
         notifyDataSetChanged();
     }
 
@@ -96,13 +120,13 @@ public class PlaylistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
-    public List<PlaylistItem> getItemsList() {
-        return playlistItems;
+    public List<PlayQueueItem> getItems() {
+        return playQueue.getStreams();
     }
 
     @Override
     public int getItemCount() {
-        int count = playlistItems.size();
+        int count = playQueue.getStreams().size();
         if(header != null) count++;
         if(footer != null && showFooter) count++;
         return count;
@@ -116,7 +140,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else if(header != null) {
             position--;
         }
-        if(footer != null && position == playlistItems.size() && showFooter) {
+        if(footer != null && position == playQueue.getStreams().size() && showFooter) {
             return 1;
         }
         return 2;
@@ -140,14 +164,14 @@ public class PlaylistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int i) {
-        if(holder instanceof PlaylistItemHolder) {
+        if(holder instanceof PlayQueueItemHolder) {
             if(header != null) {
                 i--;
             }
-            playlistItemBuilder.buildStreamInfoItem((PlaylistItemHolder) holder, playlistItems.get(i));
+            playlistItemBuilder.buildStreamInfoItem((PlayQueueItemHolder) holder, playQueue.getStreams().get(i));
         } else if(holder instanceof HFHolder && i == 0 && header != null) {
             ((HFHolder) holder).view = header;
-        } else if(holder instanceof HFHolder && i == playlistItems.size() && footer != null && showFooter) {
+        } else if(holder instanceof HFHolder && i == playQueue.getStreams().size() && footer != null && showFooter) {
             ((HFHolder) holder).view = footer;
         }
     }

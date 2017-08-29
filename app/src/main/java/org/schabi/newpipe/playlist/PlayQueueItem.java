@@ -17,7 +17,7 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class PlaylistItem implements Serializable {
+public class PlayQueueItem implements Serializable {
 
     private String title;
     private String url;
@@ -28,7 +28,7 @@ public class PlaylistItem implements Serializable {
     private Throwable error;
     private Maybe<StreamInfo> stream;
 
-    public PlaylistItem(final StreamInfoItem streamInfoItem) {
+    public PlayQueueItem(final StreamInfoItem streamInfoItem) {
         this.title = streamInfoItem.getTitle();
         this.url = streamInfoItem.getLink();
         this.serviceId = streamInfoItem.service_id;
