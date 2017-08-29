@@ -182,4 +182,59 @@ otvorenie okna na popredí</string>
     <string name="popup_resizing_indicator_title">Zmena veľkosti</string>
     <string name="best_resolution">Najlepšie rozlíšenie</string>
 
-    </resources>
+    <string name="subscribe_button_title">Odber</string>
+    <string name="subscribed_button_title">Odoberané</string>
+    <string name="channel_unsubscribed">Odber zrušený</string>
+    <string name="subscription_change_failed">Nemožno zmeniť odber</string>
+    <string name="subscription_update_failed">Nemožno aktualizovať odber</string>
+
+    <string name="tab_main">Hlavné</string>
+    <string name="tab_subscriptions">Odbery</string>
+
+    <string name="fragment_whats_new">Čo je nové</string>
+
+    <string name="enable_search_history_title">Hľadať v histórií</string>
+    <string name="enable_search_history_summary">Hľadané výrazy ukladať lokálne</string>
+    <string name="enable_watch_history_title">História pozretí</string>
+    <string name="enable_watch_history_summary">Ukladať históriu pozretí</string>
+    <string name="resume_on_audio_focus_gain_title">Pokračovať po prepnutí zobrazenia</string>
+    <string name="resume_on_audio_focus_gain_summary">Pokračovať po prerušeniach (napr. hlasový hovor)</string>
+
+
+    <string name="notification_channel_name">NewPipe notifikácie</string>
+    <string name="notification_channel_description">Notifikácie pre NewPipe na pozadí a v Okne navrchu</string>
+
+    <string name="settings_category_downloads_title">Preberanie</string>
+    <string name="settings_file_charset_title">Povolené znaky v názvoch súborov</string>
+    <string name="settings_file_replacement_character_summary">Neplatné znaky budú zmenené týmito znakmi</string>
+    <string name="settings_file_replacement_character_title">Náhradný znak</string>
+
+    <string name="charset_letters_and_digits">Písmená a čislice</string>
+    <string name="charset_most_special_characters">Väčšina špeciálnych znakov</string>
+
+    <string name="title_activity_about">O NewPipe</string>
+    <string name="action_settings">Nastavenia</string>
+    <string name="action_about">O</string>
+    <string name="title_licenses">Licencie tretích strán</string>
+    <string name="copyright" formatted="true">© %1$ od %2$s pod %3$</string>
+    <string name="error_unable_to_load_license">Nemožno nahrať licenciu</string>
+    <string name="action_open_website">Otvoriť webstránku</string>
+    <string name="tab_about">O</string>
+    <string name="tab_contributors">Prispievatelia</string>
+    <string name="tab_licenses">Licencie</string>
+    <string name="app_description">Ľahké a bezplatné rozhranie Youtube pre Android.</string>
+    <string name="view_on_github">Pozrieť na Githube</string>
+    <string name="app_license_title">Licencia NewPipe</string>
+    <string name="contribution_encouragement">Či už máte nápady, prekladáte, spravíte zmenu dizajnu, čistenie kódu alebo skutočné ťažké zmeny v kóde, pomoc je vždy vítaná. Čím viac, tým lepšie!</string>
+    <string name="read_full_license">Prečítať licencie</string>
+    <string name="contribution_title">Príspevok</string>
+
+    <string name="title_activity_history">História</string>
+    <string name="title_history_search">Vyhľadávané</string>
+    <string name="title_history_view">Pozreté</string>
+    <string name="history_disabled">História je zakázaná</string>
+    <string name="action_history">História</string>
+    <string name="history_empty">História je prázdna.</string>
+    <string name="history_cleared">História bola vyčistená</string>
+
+</resources>
