@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    compile project(':NewPipeExtractor')
+
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
         exclude module: 'support-annotations'
     }
