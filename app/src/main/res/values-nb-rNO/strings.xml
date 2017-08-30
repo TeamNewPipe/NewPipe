@@ -159,4 +159,55 @@
     <string name="recaptcha_request_toast">reCAPTCHA-oppgave forespurt</string>
 
     <string name="use_old_player_summary">Gammel utgave i Mediaframework-avspiller.</string>
-</resources>
+<string name="use_external_video_player_summary">Noen oppløsninger vil IKKE ha lyd når dette valget er påslått</string>
+    <string name="subscribe_button_title">Abonner</string>
+    <string name="subscribed_button_title">Abonnert</string>
+    <string name="channel_unsubscribed">Kanalabonnent oppsagt</string>
+    <string name="subscription_change_failed">Klarte ikke å endre abonnement</string>
+    <string name="subscription_update_failed">Klarte ikke å oppdatere abonnement</string>
+
+    <string name="tab_subscriptions">Abonnementer</string>
+
+    <string name="fragment_whats_new">Hva er nytt</string>
+
+    <string name="controls_background_title">Bakgrunn</string>
+    <string name="controls_popup_title">Oppsprett</string>
+
+    <string name="popup_remember_size_pos_title">Husk oppsprettsstørrelse og posisjon</string>
+    <string name="popup_remember_size_pos_summary">Husk siste størrelse og posisjon valgt for oppsprettsvinduet</string>
+    <string name="show_search_suggestions_title">Søkeforslag</string>
+    <string name="show_search_suggestions_summary">Vis søkeforslag ved søk</string>
+    <string name="enable_search_history_title">Søkehistorikk</string>
+    <string name="enable_search_history_summary">Lagre søkemønster lokalt</string>
+    <string name="enable_watch_history_title">Visningshistorikk</string>
+    <string name="enable_watch_history_summary">Lagre visningshistorikk</string>
+    <string name="settings_category_popup_title">Oppsprett</string>
+    <string name="filter">Filter</string>
+    <string name="refresh">Oppdater</string>
+    <string name="clear">Tøm</string>
+    <string name="popup_resizing_indicator_title">Endrer størrelse</string>
+    <string name="best_resolution">Beste oppløsning</string>
+
+    <string name="notification_channel_name">NewPipe-merknad</string>
+    <string name="notification_channel_description">Merknad for NewPipe-bakgrunn og oppsprettsspillere</string>
+
+    <string name="settings_category_downloads_title">Last ned</string>
+    <string name="settings_file_charset_title">Tillate tegn i filnavn</string>
+    <string name="settings_file_replacement_character_summary">Ugyldige tegn erstattes av denne verdien</string>
+    <string name="settings_file_replacement_character_title">Erstatningstegn</string>
+
+    <string name="charset_letters_and_digits">Bokstaver og tall</string>
+    <string name="charset_most_special_characters">De fleste spesialtegn</string>
+
+    <string name="title_activity_about">Om NewPipe</string>
+    <string name="action_settings">Innstillinger</string>
+    <string name="action_about">Om</string>
+    <string name="title_licenses">Tredjepartslisenser</string>
+    <string name="copyright" formatted="true">© %1$s av %2$s lisensiert %3$s</string>
+    <string name="error_unable_to_load_license">Kunne ikke laste lisens</string>
+    <string name="action_open_website">Åpne nettside</string>
+    <string name="tab_about">Om</string>
+    <string name="tab_contributors">Bidragsytere</string>
+    <string name="tab_licenses">Lisenser</string>
+    <string name="app_description">En fri lett, YouTube-grenseflate for Android.</string>
+    </resources>
