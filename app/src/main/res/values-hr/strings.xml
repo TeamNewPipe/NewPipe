@@ -216,4 +216,7 @@
     <string name="history_empty">Povijest prazna.</string>
     <string name="history_cleared">Povijest očišćena</string>
 
-</resources>
+<string name="notification_channel_name">NewPipe obavijest</string>
+    <string name="notification_channel_description">Obavijesti za NewPipe pozadinske i skočne playere</string>
+
+    </resources>
