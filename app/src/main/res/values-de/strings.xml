@@ -19,7 +19,7 @@
     <string name="download_path_dialog_title">Downloadverzeichnis für Videos eingeben</string>
     <string name="default_resolution_title">Standardauflösung</string>
     <string name="play_with_kodi_title">Mit Kodi abspielen</string>
-    <string name="kore_not_found">Kore App wurde nicht gefunden. Möchten sie Kore jetzt installieren?</string>
+    <string name="kore_not_found">Kore App wurde nicht gefunden. Möchten Sie Kore jetzt installieren?</string>
     <string name="show_play_with_kodi_title">Zeige \"Mit Kodi abspielen\" Option</string>
     <string name="show_play_with_kodi_summary">Zeigt eine Option an, über die man Videos mit dem Kodi Mediacenter abspielen kann</string>
     <string name="play_audio">Audio</string>
@@ -84,7 +84,7 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Wiederholen</string>
-    <string name="storage_permission_denied">Zugriff auf den Massenspeicher wurde verweigert</string>
+    <string name="storage_permission_denied">Zugriff auf den Speicher wurde verweigert</string>
     <string name="sorry_string">Entschuldigung. Dies hätte nicht passieren sollen.</string>
     <string name="error_snackbar_message">Entschuldigung. Es sind einige Fehler aufgetreten.</string>
     <string name="your_comment">Dein Kommentar (auf englisch):</string>
@@ -123,7 +123,7 @@
     <string name="pause">Pause</string>
     <string name="view">Ansehen</string>
     <string name="add">Neue Mission</string>
-    <string name="finish">Okay</string>
+    <string name="finish">OK</string>
     <string name="msg_server_unsupported">Server nicht unterstützt</string>
     <string name="could_not_load_image">Konnte Bild nicht laden.</string>
     <string name="app_ui_crash">App/UI abgestürzt.</string>
@@ -229,4 +229,5 @@
     <string name="notification_channel_name">NewPipe Benachrichtigung</string>
     <string name="notification_channel_description">Benachrichtigungen für NewPipe Hintergrund- und Popup-Spieler</string>
 
+    <string name="tab_main">Übersicht</string>
     </resources>
