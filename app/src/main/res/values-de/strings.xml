@@ -25,7 +25,7 @@
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Bevorzugtes Audioformat</string>
     <string name="webm_description">WebM — freies Format</string>
-    <string name="m4a_description">m4a — bessere Qualität</string>
+    <string name="m4a_description">M4A — bessere Qualität</string>
     <string name="download_dialog_title">Herunterladen</string>
     <string name="next_video_title">Nächstes Video</string>
     <string name="show_next_and_similar_title">Zeige nächstes und ähnliche Videos</string>
@@ -59,7 +59,7 @@
     <string name="err_dir_create">Kann Downloadverzeichnis nicht anlegen \'%1$s\'</string>
     <string name="info_dir_created">Downloadverzeichnis \'%1$s\' erstellt</string>
     <string name="general_error">Fehler</string>
-    <string name="could_not_load_thumbnails">Konnte nicht alle Vorschaubilder laden</string>
+    <string name="could_not_load_thumbnails">Konnte nicht alle Vorschaubilder laden.</string>
     <string name="youtube_signature_decryption_error">Konnte Video-URL-Signatur nicht entschlüsseln.</string>
     <string name="parsing_error">Konnte Webseite nicht parsen.</string>
     <string name="content_not_available">Inhalt nicht verfügbar.</string>
@@ -74,7 +74,7 @@
 
 
     <string name="light_parsing_error">Konnte Webseite nicht vollständig parsen.</string>
-    <string name="error_report_button_text">Fehler via Mail melden</string>
+    <string name="error_report_button_text">Fehler via E-Mail melden.</string>
     <string name="error_snackbar_action">MELDEN</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Dies ist passiert:</string>
@@ -125,8 +125,8 @@
     <string name="add">Neue Mission</string>
     <string name="finish">Okay</string>
     <string name="msg_server_unsupported">Server nicht unterstützt</string>
-    <string name="could_not_load_image">Konnte Bild nicht laden</string>
-    <string name="app_ui_crash">App/UI abgestürzt</string>
+    <string name="could_not_load_image">Konnte Bild nicht laden.</string>
+    <string name="app_ui_crash">App/UI abgestürzt.</string>
     <string name="msg_threads">Threads</string>
     <string name="msg_running">NewPipe lädt herunter</string>
     <string name="msg_running_detail">Für Details antippen</string>
