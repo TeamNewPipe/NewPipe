@@ -74,7 +74,7 @@
 
 
     <string name="light_parsing_error">Konnte Webseite nicht vollständig parsen.</string>
-    <string name="error_report_button_text">Fehler via E-Mail melden.</string>
+    <string name="error_report_button_text">Fehler via E-Mail melden</string>
     <string name="error_snackbar_action">MELDEN</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Dies ist passiert:</string>
