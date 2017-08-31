@@ -11,6 +11,9 @@ import org.schabi.newpipe.info_list.StreamInfoItemHolder;
 
 import java.util.List;
 
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+
 /**
  * Created by Christian Schabesberger on 01.08.16.
  *
@@ -34,11 +37,13 @@ import java.util.List;
 public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final String TAG = PlayQueueAdapter.class.toString();
 
-    private final PlaylistItemBuilder playlistItemBuilder;
+    private final PlayQueueItemBuilder playQueueItemBuilder;
     private final PlayQueue playQueue;
     private boolean showFooter = false;
     private View header = null;
     private View footer = null;
+
+    private Disposable playQueueReactor;
 
     public class HFHolder extends RecyclerView.ViewHolder {
         public HFHolder(View v) {
@@ -48,66 +53,57 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         public View view;
     }
 
-    public void showFooter(boolean show) {
+    public void showFooter(final boolean show) {
         showFooter = show;
         notifyDataSetChanged();
     }
 
-    public PlayQueueAdapter(PlayQueue playQueue) {
-        this.playlistItemBuilder = new PlaylistItemBuilder();
+    public PlayQueueAdapter(final PlayQueue playQueue) {
+        this.playQueueItemBuilder = new PlayQueueItemBuilder();
         this.playQueue = playQueue;
+
+        playQueueReactor = getReactor();
     }
 
-    public void setSelectedListener(PlaylistItemBuilder.OnSelectedListener listener) {
-        playlistItemBuilder.setOnSelectedListener(listener);
+    public void setSelectedListener(final PlayQueueItemBuilder.OnSelectedListener listener) {
+        playQueueItemBuilder.setOnSelectedListener(listener);
     }
 
-    public void addItems(List<PlayQueueItem> data) {
-        if(data != null) {
-            playQueue.getStreams().addAll(data);
-            notifyPlaylistChange();
-        }
+    public void add(final List<PlayQueueItem> data) {
+        playQueue.append(data);
     }
 
-    public void addItem(PlayQueueItem data) {
-        if (data != null) {
-            playQueue.getStreams().add(data);
-            notifyPlaylistChange();
-        }
+    public void add(final PlayQueueItem data) {
+        playQueue.append(data);
     }
 
-    public void removeItem(int index) {
-        if (index < playQueue.getStreams().size()) {
-            playQueue.getStreams().remove(index);
-            notifyPlaylistChange();
-        }
+    public void remove(final int index) {
+        playQueue.remove(index);
     }
 
-    public void swapItems(int source, int target) {
-        final List<PlayQueueItem> items = playQueue.getStreams();
-        if (source < items.size() && target < items.size()) {
-            final PlayQueueItem sourceItem = items.get(source);
-            final PlayQueueItem targetItem = items.get(target);
-
-            items.set(target, sourceItem);
-            items.set(source, targetItem);
-
-            notifyPlaylistChange();
-        }
+    public void swap(final int source, final int target) {
+        playQueue.swap(source, target);
     }
 
     public void clear() {
-        if(playQueue.getStreams().isEmpty()) {
-            return;
-        }
-        playQueue.getStreams().clear();
-
-        notifyPlaylistChange();
+        playQueue.clear();
     }
 
-    private void notifyPlaylistChange() {
-        playQueue.notifyChange();
-        notifyDataSetChanged();
+    private Disposable getReactor() {
+        final Consumer<PlayQueueEvent> onNext = new Consumer<PlayQueueEvent>() {
+            @Override
+            public void accept(PlayQueueEvent playQueueEvent) throws Exception {
+                notifyDataSetChanged();
+            }
+        };
+
+        return playQueue.getPlayQueueFlowable()
+                .toObservable()
+                .subscribe(onNext);
+    }
+
+    public void dispose() {
+        if (playQueueReactor != null) playQueueReactor.dispose();
     }
 
     public void setHeader(View header) {
@@ -155,7 +151,7 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 return new HFHolder(footer);
             case 2:
                 return new StreamInfoItemHolder(LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.playlist_stream_item, parent, false));
+                        .inflate(R.layout.play_queue_item, parent, false));
             default:
                 Log.e(TAG, "Trollolo");
                 return null;
@@ -168,7 +164,7 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             if(header != null) {
                 i--;
             }
-            playlistItemBuilder.buildStreamInfoItem((PlayQueueItemHolder) holder, playQueue.getStreams().get(i));
+            playQueueItemBuilder.buildStreamInfoItem((PlayQueueItemHolder) holder, playQueue.getStreams().get(i));
         } else if(holder instanceof HFHolder && i == 0 && header != null) {
             ((HFHolder) holder).view = header;
         } else if(holder instanceof HFHolder && i == playQueue.getStreams().size() && footer != null && showFooter) {

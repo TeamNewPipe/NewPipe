@@ -47,9 +47,7 @@ import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
-import com.google.android.exoplayer2.source.DynamicConcatenatingMediaSource;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
-import com.google.android.exoplayer2.source.LoopingMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
@@ -72,6 +70,7 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.playlist.PlayQueue;
 
 import java.io.File;
 import java.text.DecimalFormat;
@@ -86,9 +85,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author mauriciocolli
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public abstract class BasePlayer implements Player.EventListener, AudioManager.OnAudioFocusChangeListener {
+public abstract class BasePlayer implements Player.EventListener,
+        AudioManager.OnAudioFocusChangeListener, PlaybackManager.PlaybackListener {
     // TODO: Check api version for deprecated audio manager methods
-
     public static final boolean DEBUG = false;
     public static final String TAG = "BasePlayer";
 
@@ -116,6 +115,13 @@ public abstract class BasePlayer implements Player.EventListener, AudioManager.O
     protected String videoThumbnailUrl = "";
     protected long videoStartPos = -1;
     protected String uploaderName = "";
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Playlist
+    //////////////////////////////////////////////////////////////////////////*/
+
+    protected PlaybackManager playbackManager;
+    protected PlayQueue playQueue;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Player
@@ -540,6 +546,22 @@ public abstract class BasePlayer implements Player.EventListener, AudioManager.O
 
     @Override
     public void onPositionDiscontinuity() {
+        int newIndex = simpleExoPlayer.getCurrentWindowIndex();
+
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Playback Listener
+    //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void block() {
+        if (currentState != STATE_LOADING) changeState(STATE_LOADING);
+    }
+
+    @Override
+    public void unblock() {
+        if (currentState != STATE_PLAYING) changeState(STATE_PLAYING);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

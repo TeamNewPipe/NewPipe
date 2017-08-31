@@ -8,7 +8,6 @@ import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
 
-import java.io.Serializable;
 import java.util.concurrent.Callable;
 
 import io.reactivex.Maybe;
@@ -17,7 +16,7 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class PlayQueueItem implements Serializable {
+public class PlayQueueItem {
 
     private String title;
     private String url;

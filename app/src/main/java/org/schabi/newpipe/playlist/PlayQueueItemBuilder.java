@@ -10,9 +10,9 @@ import org.schabi.newpipe.R;
 import java.util.Locale;
 
 
-public class PlaylistItemBuilder {
+public class PlayQueueItemBuilder {
 
-    private static final String TAG = PlaylistItemBuilder.class.toString();
+    private static final String TAG = PlayQueueItemBuilder.class.toString();
 
     public interface OnSelectedListener {
         void selected(int serviceId, String url, String title);
@@ -20,7 +20,7 @@ public class PlaylistItemBuilder {
 
     private OnSelectedListener onStreamInfoItemSelectedListener;
 
-    public PlaylistItemBuilder() {}
+    public PlayQueueItemBuilder() {}
 
     public void setOnSelectedListener(OnSelectedListener listener) {
         this.onStreamInfoItemSelectedListener = listener;
@@ -28,7 +28,7 @@ public class PlaylistItemBuilder {
 
     public View buildView(ViewGroup parent, final PlayQueueItem item) {
         final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        final View itemView = inflater.inflate(R.layout.stream_item, parent, false);
+        final View itemView = inflater.inflate(R.layout.play_queue_item, parent, false);
         final PlayQueueItemHolder holder = new PlayQueueItemHolder(itemView);
 
         buildStreamInfoItem(holder, item);
