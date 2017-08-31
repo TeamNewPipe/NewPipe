@@ -124,21 +124,21 @@
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="network_error">Network error</string>
-    <string name="could_not_load_thumbnails">Could not load all thumbnails.</string>
-    <string name="youtube_signature_decryption_error">Could not decrypt video URL signature.</string>
-    <string name="parsing_error">Could not parse website.</string>
-    <string name="light_parsing_error">Could not parse website completely.</string>
-    <string name="content_not_available">Content not available.</string>
-    <string name="blocked_by_gema">Blocked by GEMA.</string>
-    <string name="could_not_setup_download_menu">Could not set up download menu.</string>
+    <string name="could_not_load_thumbnails">Could not load all thumbnails</string>
+    <string name="youtube_signature_decryption_error">Could not decrypt video URL signature</string>
+    <string name="parsing_error">Could not parse website</string>
+    <string name="light_parsing_error">Could not parse website completely</string>
+    <string name="content_not_available">Content not available</string>
+    <string name="blocked_by_gema">Blocked by GEMA</string>
+    <string name="could_not_setup_download_menu">Could not set up download menu</string>
     <string name="live_streams_not_supported">This is a LIVE STREAM, which is not yet supported.</string>
-    <string name="could_not_get_stream">Could not get any stream.</string>
-    <string name="could_not_load_image">Could not load image.</string>
-    <string name="app_ui_crash">App/UI crashed.</string>
+    <string name="could_not_get_stream">Could not get any stream</string>
+    <string name="could_not_load_image">Could not load image</string>
+    <string name="app_ui_crash">App/UI crashed</string>
     <!-- error activity -->
     <string name="sorry_string">Sorry, that should not have happened.</string>
     <string name="guru_meditation" translatable="false">Guru Meditation.</string>
-    <string name="error_report_button_text">Report error via e-mail.</string>
+    <string name="error_report_button_text">Report error via e-mail</string>
     <string name="error_snackbar_message">Sorry, some errors occurred.</string>
     <string name="error_snackbar_action">REPORT</string>
     <string name="what_device_headline">Info:</string>
@@ -167,7 +167,7 @@
     <string name="retry">Retry</string>
     <string name="storage_permission_denied">Storage access permission denied</string>
     <string name="use_old_player_title">Use old player</string>
-    <string name="use_old_player_summary">Old built-in Mediaframework player.</string>
+    <string name="use_old_player_summary">Old built-in Mediaframework playe</string>
     <string name="videos">videos</string>
     <string name="subscriber">subscriber</string>
     <string name="subscriber_plural">subscribers</string>
@@ -198,8 +198,8 @@
     <string name="msg_running">NewPipe Downloading</string>
     <string name="msg_running_detail">Tap for details</string>
     <string name="msg_wait">Please wait…</string>
-    <string name="msg_copied">Copied to clipboard.</string>
-    <string name="no_available_dir">Please select an available download folder.</string>
+    <string name="msg_copied">Copied to clipboard</string>
+    <string name="no_available_dir">Please select an available download folder</string>
     <string name="msg_popup_permission">This permission is needed to\nopen in popup mode</string>
 
     <!-- Checksum types -->
@@ -249,7 +249,7 @@
     <string name="title_history_view">Watched</string>
     <string name="history_disabled">History is disabled</string>
     <string name="action_history">History</string>
-    <string name="history_empty">The history is empty.</string>
+    <string name="history_empty">The history is empty</string>
     <string name="history_cleared">History cleared</string>
 
 </resources>
