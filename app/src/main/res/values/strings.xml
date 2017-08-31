@@ -167,7 +167,7 @@
     <string name="retry">Retry</string>
     <string name="storage_permission_denied">Storage access permission denied</string>
     <string name="use_old_player_title">Use old player</string>
-    <string name="use_old_player_summary">Old built-in Mediaframework playe</string>
+    <string name="use_old_player_summary">Old built-in Mediaframework player</string>
     <string name="videos">videos</string>
     <string name="subscriber">subscriber</string>
     <string name="subscriber_plural">subscribers</string>
