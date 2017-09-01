@@ -1,25 +1,25 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="audio">Áudio</string>
-    <string name="youtube_signature_decryption_error">Não foi possível decriptografar assinatura de URL do vídeo.</string>
+    <string name="youtube_signature_decryption_error">Não foi possível descriptografar assinatura de URL do vídeo</string>
     <string name="your_comment">Seu comentário (em inglês):</string>
     <string name="what_happened_headline">O que aconteceu:</string>
     <string name="what_device_headline">Informações:</string>
     <string name="webm_description">WebM — formato aberto</string>
     <string name="view_count_text">%1$s visualizações</string>
     <string name="view">Ver</string>
-    <string name="video_is_age_restricted">Vídeo com restrição de idade. Ative os vídeos com restrição de idade nas configurações.</string>
+    <string name="video_is_age_restricted">Vídeo com restrição de idade. Permissão para vídeos com essa restrição podem ser feitas no menu configurações.</string>
     <string name="video">Vídeo</string>
     <string name="autoplay_by_calling_app_summary">Reproduz o vídeo automaticamente quando o NewPipe for aberto a partir de outro app</string>
     <string name="autoplay_by_calling_app_title">Reproduzir automaticamente quando chamado a partir de outro aplicativo</string>
     <string name="black_theme_title">Preto</string>
-    <string name="blocked_by_gema">Bloqueado pelo GEMA.</string>
+    <string name="blocked_by_gema">Bloqueado pelo GEMA</string>
     <string name="cancel">Cancelar</string>
     <string name="checksum">Soma de Verificação</string>
     <string name="choose_browser">Escolher navegador</string>
     <string name="content">Conteúdo</string>
-    <string name="content_not_available">Conteúdo não disponível.</string>
-    <string name="could_not_get_stream">Não foi possível obter nenhuma stream.</string>
+    <string name="content_not_available">Conteúdo não disponível</string>
+    <string name="could_not_get_stream">Não foi possível obter nenhuma stream</string>
     <string name="could_not_load_image">Não foi possível carregar a imagem</string>
     <string name="could_not_load_thumbnails">Não foi possível carregar todas as miniaturas</string>
     <string name="dark_theme_title">Escuro</string>
@@ -36,13 +36,13 @@
     <string name="error_report_title">Relatório de erro</string>
     <string name="error_snackbar_action">RELATÓRIO</string>
     <string name="error_snackbar_message">Desculpe, ocorreram alguns erros.</string>
-    <string name="finish">Ok</string>
+    <string name="finish">OK</string>
     <string name="general_error">Erro</string>
     <string name="info_dir_created">Pasta de download criada \'%1$s\'</string>
     <string name="install">Instalar</string>
     <string name="light_theme_title">Claro</string>
     <string name="msg_error">Erro</string>
-    <string name="msg_copied">Copiado para a área de transferência.</string>
+    <string name="msg_copied">Copiado para a área de transferência</string>
     <string name="msg_name">Nome do arquivo</string>
     <string name="msg_running_detail">Toque para detalhes</string>
     <string name="msg_running">NewPipe baixando</string>
@@ -78,11 +78,11 @@
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="did_you_mean">Você quis dizer: %1$s ?</string>
-    <string name="m4a_description">m4a — melhor qualidade</string>
+    <string name="m4a_description">M4A — melhor qualidade</string>
     <string name="add">Nova missão</string>
     <string name="app_ui_crash">App/interface parou</string>
     <string name="background_player_playing_toast">Reproduzindo em segundo plano</string>
-    <string name="could_not_setup_download_menu">Não foi possível preparar o menu de download.</string>
+    <string name="could_not_setup_download_menu">Não foi possível preparar o menu de download</string>
     <string name="detail_thumbnail_view_description">Thumbnail do vídeo</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura do usuário que enviou o vídeo</string>
     <string name="download_path_audio_dialog_title">Informe o local para download de áudios</string>
@@ -91,17 +91,17 @@
     <string name="download_path_dialog_title">Informe o local para download de vídeos</string>
     <string name="download_path_summary">Local para salvar vídeos baixados</string>
     <string name="download_path_title">Local de download de vídeo</string>
-    <string name="kore_not_found">App Kore não instalado. Instalar?</string>
-    <string name="light_parsing_error">Não foi possível interpretar completamente o site.</string>
+    <string name="kore_not_found">Aplicativo Kore não instalado. Instalar?</string>
+    <string name="light_parsing_error">Não foi possível interpretar completamente o site</string>
     <string name="list_thumbnail_view_description">Miniatura do vídeo</string>
-    <string name="live_streams_not_supported">Transmissões ao vivo ainda não são suportadas.</string>
+    <string name="live_streams_not_supported">Isto é uma transmissão ao vivo, a qual ainda não é suportada.</string>
     <string name="main_bg_subtitle">Toque em busca para começar</string>
     <string name="msg_exists">Arquivo já existe</string>
     <string name="msg_threads">Threads</string>
     <string name="msg_url_malform">URL inválida ou internet indisponível</string>
-    <string name="no_available_dir">Selecione um diretório de download.</string>
+    <string name="no_available_dir">Selecione uma pasta para download</string>
     <string name="no_player_found">Nenhum player de stream encontrado. Deseja Instalar VLC?</string>
-    <string name="parsing_error">Não foi possível interpretar o site.</string>
+    <string name="parsing_error">Não foi possível interpretar o site</string>
     <string name="play_audio">Áudio</string>
     <string name="play_btn_text">Reproduzir</string>
     <string name="play_with_kodi_title">Reproduzir com Kodi</string>
@@ -128,7 +128,7 @@
     <string name="disabled">Desabilitado</string>
 
     <string name="use_old_player_title">Usar player antigo</string>
-    <string name="use_old_player_summary">Antigo player interno Mediaframework.</string>
+    <string name="use_old_player_summary">Antigo player interno Mediaframework</string>
     <string name="videos">vídeos</string>
     <string name="subscriber">inscrito</string>
     <string name="subscriber_plural">inscritos</string>
@@ -172,7 +172,7 @@ abrir em modo popup</string>
     <string name="tab_about">Sobre</string>
     <string name="tab_contributors">Contribuintes</string>
     <string name="tab_licenses">Licenças</string>
-    <string name="app_description">Um leve, simples e grátis aplicativo de Youtube para Android.</string>
+    <string name="app_description">Um leve, simples e grátis aplicativo de YouTube para Android.</string>
     <string name="view_on_github">Ver no GitHub</string>
     <string name="app_license_title">Licença do NewPipe</string>
     <string name="contribution_encouragement">Sempre que tiver ideias, traduções, mudanças do design, limpeza de código ou grandes alterações de código, a ajuda é bem vinda. Quanto mais for feito melhor o aplicativo fica!</string>
@@ -204,14 +204,14 @@ abrir em modo popup</string>
 
     <string name="enable_search_history_title">Histórico de pesquisas</string>
     <string name="enable_search_history_summary">Armazenar histórico de pesquisa localmente</string>
-    <string name="enable_watch_history_title">Histórico de Exibição</string>
-    <string name="enable_watch_history_summary">Armazenar histórico de exibição</string>
+    <string name="enable_watch_history_title">Histórico</string>
+    <string name="enable_watch_history_summary">Armazenar histórico de vídeos assistidos</string>
     <string name="title_activity_history">Histórico</string>
     <string name="title_history_search">Pesquisado</string>
     <string name="title_history_view">Assistido</string>
     <string name="history_disabled">Histórico está desabilitado</string>
     <string name="action_history">Histórico</string>
-    <string name="history_empty">O histórico está vazio.</string>
+    <string name="history_empty">O histórico está vazio</string>
     <string name="history_cleared">Histórico limpo</string>
 
 <string name="notification_channel_name">Notificações do NewPipe</string>
