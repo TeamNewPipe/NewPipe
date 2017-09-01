@@ -19,18 +19,18 @@
     <string name="download_path_dialog_title">Введите путь к папке для загрузки видео</string>
     <string name="default_resolution_title">Разрешение по умолчанию</string>
     <string name="play_with_kodi_title">Воспроизвести с помощью Kodi</string>
-    <string name="kore_not_found">Приложение Kore не найдено. Установить Kore?</string>
+    <string name="kore_not_found">Приложение Kore не найдено. Установить его?</string>
     <string name="show_play_with_kodi_title">Показывать опцию «Воспроизвести с помощью Kodi»</string>
     <string name="show_play_with_kodi_summary">Показать опцию воспроизведения видео через Kodi media center</string>
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Формат аудио по умолчанию</string>
     <string name="webm_description">WebM — свободный формат</string>
-    <string name="m4a_description">m4a — лучше качество</string>
+    <string name="m4a_description">M4A — лучше качество</string>
     <string name="download_dialog_title">Скачать</string>
     <string name="next_video_title">Следующее видео</string>
     <string name="url_not_supported_toast">URL не поддерживается</string>
     <string name="show_next_and_similar_title">Показывать следующее и предложенные видео</string>
-    <string name="search_language_title">Предпочитаемый язык контента</string>
+    <string name="search_language_title">Язык контента по умолчанию</string>
     <string name="settings_category_video_audio_title">Видео и Аудио</string>
     <string name="settings_category_appearance_title">Внешний вид</string>
     <string name="settings_category_other_title">Другое</string>
@@ -38,8 +38,8 @@
     <string name="list_thumbnail_view_description">Миниатюра видео-превью</string>
     <string name="detail_thumbnail_view_description">Миниатюра видео-превью</string>
     <string name="detail_uploader_thumbnail_view_description">Миниатюра аватара пользователя</string>
-    <string name="detail_dislikes_img_view_description">Дислайки</string>
-    <string name="detail_likes_img_view_description">Лайки</string>
+    <string name="detail_dislikes_img_view_description">Не понравилось</string>
+    <string name="detail_likes_img_view_description">Понравилось</string>
     <string name="use_external_video_player_title">Использовать внешний видеоплеер</string>
     <string name="use_external_audio_player_title">Использовать внешний аудиоплеер</string>
     <string name="background_player_playing_toast">Воспроизведение в фоновом режиме</string>
@@ -59,20 +59,20 @@
     <string name="msg_wait">Подождите…</string>
     <string name="msg_exists">Файл уже существует</string>
     <string name="msg_threads">Потоки</string>
-    <string name="finish">Окей</string>
+    <string name="finish">OK</string>
     <string name="start">Начать</string>
     <string name="pause">Пауза</string>
     <string name="delete">Удалить</string>
     <string name="checksum">Контрольная сумма</string>
 
-    <string name="msg_name">Название файла</string>
+    <string name="msg_name">Имя файла</string>
     <string name="msg_error">Ошибка</string>
     <string name="msg_server_unsupported">Сервер не поддерживается</string>
     <string name="msg_running">NewPipe скачивает</string>
     <string name="msg_url_malform">Неправильный URL или Интернет не доступен</string>
     <string name="msg_running_detail">Нажмите для деталей</string>
-    <string name="msg_copied">Скопировано в буфер обмена.</string>
-    <string name="no_available_dir">Выберите доступную папку для загрузки.</string>
+    <string name="msg_copied">Скопировано в буфер обмена</string>
+    <string name="no_available_dir">Выберите доступную папку для загрузки</string>
 
 
     <string name="show_age_restricted_content_title">Показывать контент с ограничением по возрасту</string>
@@ -82,18 +82,18 @@
     <string name="autoplay_by_calling_app_title">Автоматически воспроизводить при открытии из другого приложения</string>
     <string name="autoplay_by_calling_app_summary">Автоматически воспроизводить видео при вызове NewPipe из другого приложения</string>
     <string name="content">Контент</string>
-    <string name="video_is_age_restricted">Видео имеет возрастные ограничения. Сначала разрешите видео с возрастными ограничениями в настройках.</string>
+    <string name="video_is_age_restricted">Видео с возрастными ограничениями. Разрешить подобный контент можно в настройках.</string>
     <string name="duration_live">вживую</string>
     <string name="downloads">Загрузки</string>
     <string name="downloads_title">Загрузки</string>
     <string name="error_report_title">Отчёт об ошибке</string>
 
-    <string name="parsing_error">Не удалось разобрать веб-сайт.</string>
-    <string name="light_parsing_error">Не удалось полностью разобрать веб-сайт.</string>
-    <string name="content_not_available">Контент недоступен.</string>
-    <string name="blocked_by_gema">Заблокировано GEMA.</string>
-    <string name="could_not_setup_download_menu">Невозможно установить меню загрузки.</string>
-    <string name="live_streams_not_supported">Это прямая трансляция. Они пока не поддерживаются.</string>
+    <string name="parsing_error">Не удалось разобрать веб-сайт</string>
+    <string name="light_parsing_error">Не удалось полностью разобрать веб-сайт</string>
+    <string name="content_not_available">Контент недоступен</string>
+    <string name="blocked_by_gema">Заблокировано GEMA</string>
+    <string name="could_not_setup_download_menu">Не удалось создать меню загрузки</string>
+    <string name="live_streams_not_supported">Это прямая трансляция, они пока не поддерживаются.</string>
     <string name="could_not_load_image">Не удалось загрузить изображение</string>
     <string name="app_ui_crash">"Падение приложения/пользовательского интерфейса "</string>
     <string name="sorry_string">Простите, такое не должно было произойти.</string>
@@ -116,8 +116,8 @@
     <string name="retry">Повторить попытку</string>
     <string name="storage_permission_denied">В доступе к хранилищу было отказано</string>
     <string name="could_not_load_thumbnails">Не удалось загрузить все миниатюры</string>
-    <string name="youtube_signature_decryption_error">Не удалось расшифровать подпись URL у видео.</string>
-    <string name="could_not_get_stream">Не удалось найти ни один поток.</string>
+    <string name="youtube_signature_decryption_error">Не удалось расшифровать подпись URL у видео</string>
+    <string name="could_not_get_stream">Не удалось найти ни один поток</string>
 
     <string name="view">Воспроизвести</string>
 
@@ -126,7 +126,7 @@
     <string name="controls_popup_title">В окне</string>
 
     <string name="show_higher_resolutions_summary">Только некоторые устройства могут воспроизводить видео в 2K/4K</string>
-    <string name="preferred_video_format_title">Предпочитаемый формат видео</string>
+    <string name="preferred_video_format_title">Формат видео по умолчанию</string>
     <string name="black_theme_title">Чёрная</string>
     <string name="popup_remember_size_pos_title">Запоминать размер и положение всплывающего окна</string>
     <string name="player_gesture_controls_summary">Использовать жесты для изменения яркости и громкости</string>
@@ -168,7 +168,7 @@
     <string name="show_search_suggestions_title">Живой поиск</string>
 <string name="best_resolution">Лучшее разрешение</string>
 
-    <string name="use_old_player_summary">Старый встроенный плеер на Mediaframework.</string>
+    <string name="use_old_player_summary">Старый встроенный плеер на Mediaframework</string>
     <string name="reCaptcha_title">Запрос reCAPTCHA</string>
     <string name="recaptcha_request_toast">Запрошен ввод reCAPTCHA</string>
 
@@ -185,9 +185,45 @@
     <string name="tab_about">О приложении</string>
     <string name="tab_contributors">Участники</string>
     <string name="read_full_license">Прочитать лицензию</string>
-    <string name="app_description">Бесплатный лёгкий интерфейс Youtube для Android.</string>
-    <string name="view_on_github">Открыть на Github</string>
+    <string name="app_description">Бесплатный лёгкий интерфейс YouTube для Android.</string>
+    <string name="view_on_github">Открыть на GitHub</string>
     <string name="contribution_encouragement">Приветствуется всё — идеи, перевод, изменения дизайна, чистка кода или огромные изменения в коде. Чем больше сделано, тем лучше!</string>
-    <string name="copyright" formatted="true">© %1$s за авторством %2$s под %3$s</string>
+    <string name="copyright" formatted="true">© %1$s за авторством %2$s под лицензией %3$s</string>
     <string name="contribution_title">Помощь проекту</string>
+<string name="subscribe_button_title">Подписаться</string>
+    <string name="subscription_change_failed">Не удалось изменить подписку</string>
+    <string name="subscription_update_failed">Не удалось обновить подписку</string>
+
+    <string name="tab_main">Главная</string>
+    <string name="tab_subscriptions">Подписки</string>
+
+    <string name="fragment_whats_new">Что нового</string>
+
+    <string name="enable_search_history_title">История поиска</string>
+    <string name="enable_search_history_summary">Хранить поисковые запросы локально</string>
+    <string name="enable_watch_history_title">История</string>
+    <string name="enable_watch_history_summary">Запоминать просмотренные видео</string>
+    <string name="resume_on_audio_focus_gain_title">Возобновлять при возврате фокуса</string>
+    <string name="resume_on_audio_focus_gain_summary">Возобновлять воспроизведение после перерывов (например, телефонных звонков)</string>
+
+
+    <string name="notification_channel_name">Уведомление NewPipe</string>
+    <string name="notification_channel_description">Уведомления для NewPipe в фоне и во всплывающем окне</string>
+
+    <string name="settings_category_downloads_title">Загрузки</string>
+    <string name="settings_file_charset_title">Допустимые символы в именах файлов</string>
+    <string name="settings_file_replacement_character_summary">Недопустимые символы заменяются на этот</string>
+    <string name="settings_file_replacement_character_title">Символ для замены</string>
+
+    <string name="charset_letters_and_digits">Буквы и цифры</string>
+    <string name="charset_most_special_characters">Большинство специальных символов</string>
+
+    <string name="title_activity_history">История</string>
+    <string name="title_history_search">История поиска</string>
+    <string name="title_history_view">Просмотрено</string>
+    <string name="history_disabled">История отключена</string>
+    <string name="action_history">История</string>
+    <string name="history_empty">История пуста</string>
+    <string name="history_cleared">История очищена</string>
+
 </resources>
