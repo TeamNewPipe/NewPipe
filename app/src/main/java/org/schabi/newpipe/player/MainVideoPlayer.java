@@ -454,9 +454,15 @@ public class MainVideoPlayer extends Activity {
         @Override
         public boolean onDoubleTap(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
-            if (!playerImpl.isPlaying()) return false;
-            if (e.getX() > playerImpl.getRootView().getWidth() / 2) playerImpl.onFastForward();
-            else playerImpl.onFastRewind();
+            //if (!playerImpl.isPlaying()) return false;
+
+            if (e.getX() > playerImpl.getRootView().getWidth() / 2)
+                playerImpl.playQueue.setIndex(playerImpl.playQueue.getIndex() + 1);
+                //playerImpl.onFastForward();
+            else
+                playerImpl.playQueue.setIndex(playerImpl.playQueue.getIndex() - 1);
+                //playerImpl.onFastRewind();
+
             return true;
         }
 

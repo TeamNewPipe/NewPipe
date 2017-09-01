@@ -72,6 +72,7 @@ import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.playlist.PlayQueue;
+import org.schabi.newpipe.util.Utils;
 
 import java.io.File;
 import java.text.DecimalFormat;
@@ -257,7 +258,6 @@ public abstract class BasePlayer implements Player.EventListener,
         changeState(STATE_LOADING);
 
         isPrepared = false;
-        mediaSource = buildMediaSource(url, format);
 
         if (simpleExoPlayer.getPlaybackState() != Player.STATE_IDLE) simpleExoPlayer.stop();
         if (videoStartPos > 0) simpleExoPlayer.seekTo(videoStartPos);
@@ -548,7 +548,7 @@ public abstract class BasePlayer implements Player.EventListener,
     @Override
     public void onPositionDiscontinuity() {
         int newIndex = simpleExoPlayer.getCurrentWindowIndex();
-
+        playbackManager.refreshMedia(newIndex);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -567,12 +567,12 @@ public abstract class BasePlayer implements Player.EventListener,
 
     @Override
     public void sync(final StreamInfo info) {
-
+        videoTitle = info.title;
+        channelName = info.uploader;
     }
 
     @Override
     public MediaSource sourceOf(final StreamInfo info) {
-
         return null;
     }
 

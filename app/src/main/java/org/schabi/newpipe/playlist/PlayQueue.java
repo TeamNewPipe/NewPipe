@@ -25,8 +25,14 @@ public abstract class PlayQueue {
     private BehaviorSubject<PlayQueueEvent> changeBroadcast;
     private Flowable<PlayQueueEvent> playQueueFlowable;
 
-    PlayQueue(final int index) {
+    PlayQueue() {
+        this(0, Collections.<PlayQueueItem>emptyList());
+    }
+
+    PlayQueue(final int index, final List<PlayQueueItem> startWith) {
         streams = Collections.synchronizedList(new ArrayList<PlayQueueItem>());
+        streams.addAll(startWith);
+
         queueIndex = new AtomicInteger(index);
 
         changeBroadcast = BehaviorSubject.create();
@@ -36,9 +42,6 @@ public abstract class PlayQueue {
     // a queue is complete if it has loaded all items in an external playlist
     // single stream or local queues are always complete
     public abstract boolean isComplete();
-
-    // load in the background the item at index, may do nothing if the queue is incomplete
-    public abstract void load(int index);
 
     // load partial queue in the background, does nothing if the queue is complete
     public abstract void fetch();

@@ -1,5 +1,6 @@
 package org.schabi.newpipe.fragments.playlist;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,14 +31,19 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlayListExtractor;
 import org.schabi.newpipe.extractor.playlist.PlayListInfo;
+import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.fragments.BaseFragment;
 import org.schabi.newpipe.fragments.search.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.player.BasePlayer;
+import org.schabi.newpipe.player.MainVideoPlayer;
+import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.Utils;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -78,6 +85,7 @@ public class PlaylistFragment extends BaseFragment {
     private ImageView headerBannerView;
     private ImageView headerAvatarView;
     private TextView headerTitleView;
+    private Button headerPlayAllButton;
 
     /*////////////////////////////////////////////////////////////////////////*/
     // Reactors
@@ -93,6 +101,15 @@ public class PlaylistFragment extends BaseFragment {
         PlaylistFragment instance = new PlaylistFragment();
         instance.setPlaylist(serviceId, playlistUrl, title);
         return instance;
+    }
+
+    public void play(Context context, Class targetClazz) {
+        Intent mIntent = new Intent(context, targetClazz)
+                .putExtra("url", playlistUrl)
+                .putExtra("nextPage", 1)
+                .putExtra("index", 0)
+                .putExtra("stream", currentPlaylistInfo);
+        startActivity(mIntent);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -246,6 +263,9 @@ public class PlaylistFragment extends BaseFragment {
         headerBannerView = headerRootLayout.findViewById(R.id.playlist_banner_image);
         headerAvatarView = headerRootLayout.findViewById(R.id.playlist_avatar_view);
         headerTitleView = headerRootLayout.findViewById(R.id.playlist_title_view);
+
+        headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_play_all_button);
+        headerPlayAllButton.setVisibility(View.VISIBLE);
     }
 
     protected void initListeners() {
@@ -264,6 +284,13 @@ public class PlaylistFragment extends BaseFragment {
             @Override
             public void onScrolledDown(RecyclerView recyclerView) {
                 loadMore(true);
+            }
+        });
+
+        headerPlayAllButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                play(activity, MainVideoPlayer.class);
             }
         });
     }
@@ -434,7 +461,7 @@ public class PlaylistFragment extends BaseFragment {
     }
 
     private void handlePlayListInfo(PlayListInfo info, boolean onlyVideos, boolean addVideos) {
-        currentPlaylistInfo = info;
+        if (currentPlaylistInfo == null) currentPlaylistInfo = info;
 
         animateView(errorPanel, false, 300);
         animateView(playlistStreams, true, 200);
@@ -468,7 +495,10 @@ public class PlaylistFragment extends BaseFragment {
         if (!hasNextPage) infoListAdapter.showFooter(false);
 
         //if (!listRestored) {
-        if (addVideos) infoListAdapter.addInfoItemList(info.related_streams);
+        if (addVideos) {
+            infoListAdapter.addInfoItemList(info.related_streams);
+            currentPlaylistInfo.related_streams.addAll(info.related_streams);
+        }
         //}
     }
 

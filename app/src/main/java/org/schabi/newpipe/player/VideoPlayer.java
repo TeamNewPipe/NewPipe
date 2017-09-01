@@ -56,7 +56,11 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.playlist.PlayListInfo;
+import org.schabi.newpipe.playlist.ExternalPlayQueue;
 import org.schabi.newpipe.util.AnimationUtils;
+import org.schabi.newpipe.util.Utils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -198,7 +202,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     }
 
     @SuppressWarnings("unchecked")
-    public void handleIntent(Intent intent) {
+    public void handleIntent2(Intent intent) {
         super.handleIntent(intent);
         if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
         if (intent == null) return;
@@ -217,6 +221,38 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         play(true);
     }
 
+    @Override
+    public MediaSource sourceOf(final StreamInfo info) {
+        videoStreamsList = Utils.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
+        videoOnlyAudioStream = Utils.getHighestQualityAudio(info.audio_streams);
+
+        return buildMediaSource(getSelectedVideoStream().url, MediaFormat.getSuffixById(getSelectedVideoStream().format));
+    }
+
+    @Override
+    public void unblock() {
+        play(true);
+        super.unblock();
+    }
+
+    public void handleIntent(Intent intent) {
+        if (intent == null) return;
+
+        selectedIndexStream = 0;
+
+        String url = intent.getStringExtra("url");
+        int nextPage = intent.getIntExtra("nextPage", 0);
+        int index = intent.getIntExtra("index", 0);
+
+        PlayListInfo info;
+        Serializable serializable = intent.getSerializableExtra("stream");
+        if (serializable instanceof PlayListInfo) info = (PlayListInfo) serializable;
+        else return;
+
+        playQueue = new ExternalPlayQueue(url, info, nextPage, index);
+        playbackManager = new PlaybackManager(this, playQueue);
+        mediaSource = playbackManager.getMediaSource();
+    }
 
     public void play(boolean autoPlay) {
         playUrl(getSelectedVideoStream().url, MediaFormat.getSuffixById(getSelectedVideoStream().format), autoPlay);

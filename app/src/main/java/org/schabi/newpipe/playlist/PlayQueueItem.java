@@ -69,10 +69,6 @@ public class PlayQueueItem {
         return stream;
     }
 
-    public void load() {
-        stream.subscribe();
-    }
-
     @NonNull
     private Maybe<StreamInfo> getInfo() {
         final Callable<StreamInfo> task = new Callable<StreamInfo>() {
@@ -101,7 +97,6 @@ public class PlayQueueItem {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError(onError)
-                .onErrorComplete()
                 .doOnComplete(onComplete)
                 .cache();
     }

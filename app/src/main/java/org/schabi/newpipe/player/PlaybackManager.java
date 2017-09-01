@@ -15,9 +15,13 @@ import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Maybe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.schedulers.Schedulers;
 
 public class PlaybackManager {
+
+    private static final int WINDOW_SIZE = 5;
 
     private DynamicConcatenatingMediaSource mediaSource;
     private List<PlayQueueItem> queueSource;
@@ -58,8 +62,11 @@ public class PlaybackManager {
         load(0);
     }
 
-    public void changeSource(final int index) {
-
+    public void changeSource(final MediaSource newSource) {
+        listener.block();
+        this.mediaSource.removeMediaSource(0);
+        this.mediaSource.addMediaSource(0, newSource);
+        listener.unblock();
     }
 
     public void refreshMedia(final int newMediaIndex) {
@@ -71,7 +78,7 @@ public class PlaybackManager {
             queueSource.remove(0);
         } else {
             //something went wrong
-            init();
+            reload();
         }
     }
 
@@ -85,7 +92,8 @@ public class PlaybackManager {
     private Subscription loaderReactor;
 
     private void load() {
-        if (mediaSource.getSize() < 5 && queueSource.size() < 5) load(mediaSource.getSize());
+        if (mediaSource.getSize() < WINDOW_SIZE && queueSource.size() < WINDOW_SIZE)
+            load(mediaSource.getSize());
     }
 
     private void load(final int from) {
@@ -94,23 +102,33 @@ public class PlaybackManager {
         if (loaderReactor != null) loaderReactor.cancel();
 
         List<Maybe<StreamInfo>> maybes = new ArrayList<>();
-        for (int i = from; i < 5; i++) {
+        for (int i = from; i < WINDOW_SIZE; i++) {
             final int index = playQueue.getIndex() + i;
             final PlayQueueItem item = playQueue.get(index);
-            queueSource.set(i, item);
+
+            if (queueSource.size() > i) queueSource.set(i, item);
+            else queueSource.add(item);
+
             maybes.add(item.getStream());
         }
 
-        Maybe.concat(maybes).subscribe(new Subscriber<StreamInfo>() {
+        Maybe.concat(maybes).subscribe(getSubscriber());
+    }
+
+    private Subscriber<StreamInfo> getSubscriber() {
+        return new Subscriber<StreamInfo>() {
             @Override
             public void onSubscribe(Subscription s) {
+                if (loaderReactor != null) loaderReactor.cancel();
                 loaderReactor = s;
+                s.request(1);
             }
 
             @Override
             public void onNext(StreamInfo streamInfo) {
                 mediaSource.addMediaSource(listener.sourceOf(streamInfo));
-                onLoaded();
+                tryUnblock();
+                loaderReactor.request(1);
             }
 
             @Override
@@ -120,11 +138,13 @@ public class PlaybackManager {
 
             @Override
             public void onComplete() {
+                if (loaderReactor != null) loaderReactor.cancel();
+                loaderReactor = null;
             }
-        });
+        };
     }
 
-    private void onLoaded() {
+    private void tryUnblock() {
         if (mediaSource.getSize() > 0 && queueSource.size() > 0) listener.unblock();
     }
 
@@ -134,11 +154,15 @@ public class PlaybackManager {
     }
 
     private void clear(int from) {
-        listener.block();
         while (mediaSource.getSize() > from) {
             queueSource.remove(from);
             mediaSource.removeMediaSource(from);
         }
+    }
+
+    private void clear() {
+        listener.block();
+        clear(0);
         listener.unblock();
     }
 
@@ -153,7 +177,7 @@ public class PlaybackManager {
 
             @Override
             public void onNext(@NonNull PlayQueueEvent event) {
-                if (playQueue.getStreams().size() - playQueue.getIndex() < 10 && !playQueue.isComplete()) {
+                if (playQueue.getStreams().size() - playQueue.getIndex() < WINDOW_SIZE && !playQueue.isComplete()) {
                     listener.block();
                     playQueue.fetch();
                 }
@@ -177,14 +201,14 @@ public class PlaybackManager {
                         load(1);
                         break;
                     case CLEAR:
-                        clear(0);
+                        clear();
                         break;
                     case NEXT:
                     default:
                         break;
                 }
 
-                onLoaded();
+                tryUnblock();
                 if (playQueueReactor != null) playQueueReactor.request(1);
             }
 
@@ -195,12 +219,13 @@ public class PlaybackManager {
 
             @Override
             public void onComplete() {
-                // Never completes, only canceled
+                dispose();
             }
         };
     }
 
     public void dispose() {
         if (playQueueReactor != null) playQueueReactor.cancel();
+        playQueueReactor = null;
     }
 }

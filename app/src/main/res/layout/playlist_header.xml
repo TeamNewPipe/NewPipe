@@ -78,4 +78,19 @@
         tools:ignore="RtlHardcoded"
         tools:text="234 videos"/>
 
+    <Button
+        android:id="@+id/playlist_play_all_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/playlist_banner_image"
+        android:layout_gravity="center_vertical|right"
+        android:layout_marginRight="2dp"
+        android:text="Play All"
+        android:textSize="@dimen/channel_rss_title_size"
+        android:theme="@style/RedButton"
+        android:visibility="gone"
+        tools:ignore="RtlHardcoded"
+        tools:visibility="visible"/>
+
 </RelativeLayout>

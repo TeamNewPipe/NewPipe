@@ -34,23 +34,16 @@ public class ExternalPlayQueue extends PlayQueue {
                              final PlayListInfo info,
                              final int nextPage,
                              final int index) {
-        super(index);
+        super(index, extractPlaylistItems(info));
+
         this.service = getService(info.service_id);
         this.pageNumber = new AtomicInteger(nextPage);
         this.playlistUrl = playlistUrl;
-
-        getStreams().addAll(extractPlaylistItems(info));
     }
 
     @Override
     public boolean isComplete() {
         return isComplete;
-    }
-
-    @Override
-    public void load(int index) {
-        if (index > getStreams().size() || getStreams().get(index) == null) return;
-        getStreams().get(index).load();
     }
 
     @Override
@@ -93,7 +86,7 @@ public class ExternalPlayQueue extends PlayQueue {
         if (fetchReactor != null) fetchReactor.dispose();
     }
 
-    private List<PlayQueueItem> extractPlaylistItems(final PlayListInfo info) {
+    private static List<PlayQueueItem> extractPlaylistItems(final PlayListInfo info) {
         List<PlayQueueItem> result = new ArrayList<>();
         for (final InfoItem stream : info.related_streams) {
             if (stream instanceof StreamInfoItem) {
