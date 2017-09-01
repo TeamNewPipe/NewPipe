@@ -19,25 +19,25 @@
     <string name="download_path_dialog_title">Voer downloadlocatie in voor video\'s</string>
     <string name="default_resolution_title">Standaardresolutie</string>
     <string name="play_with_kodi_title">Afspelen met Kodi</string>
-    <string name="kore_not_found">Kore-app niet gevonden. Kore installeren?</string>
+    <string name="kore_not_found">Kore-app niet gevonden. Installeren?</string>
     <string name="show_play_with_kodi_title">Toon \"Afspelen met Kodi\"-optie</string>
     <string name="show_play_with_kodi_summary">Toont een optie om een video op een Kodi media center af te spelen</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Standaardaudioformaat</string>
     <string name="webm_description">WebM — vrij formaat</string>
-    <string name="m4a_description">m4a — betere kwaliteit</string>
+    <string name="m4a_description">M4A — betere kwaliteit</string>
     <string name="download_dialog_title">Downloaden</string>
     <string name="next_video_title">Volgende video</string>
     <string name="url_not_supported_toast">URL wordt niet ondersteund</string>
     <string name="show_next_and_similar_title">Toon volgende en vergelijkbare video\'s</string>
-    <string name="search_language_title">Voorkeurstaal voor inhoud</string>
+    <string name="search_language_title">Standaardtaal voor inhoud</string>
     <string name="use_external_video_player_title">Externe videospeler gebruiken</string>
     <string name="use_external_audio_player_title">Externe audiospeler gebruiken</string>
     <string name="settings_category_video_audio_title">Video &amp; audio</string>
 
     <string name="list_thumbnail_view_description">Videovoorbeeldminiatuur</string>
     <string name="detail_thumbnail_view_description">Videovoorbeeldminiatuur</string>
-    <string name="detail_uploader_thumbnail_view_description">Uploaderminiatuur</string>
+    <string name="detail_uploader_thumbnail_view_description">Avatarminiatuur van uploader</string>
     <string name="detail_dislikes_img_view_description">Duimpjes omlaag</string>
     <string name="download_path_audio_title">Downloadlocatie voor audio</string>
     <string name="download_path_audio_summary">Locatie om gedownloade muziek in op te slaan</string>
@@ -53,17 +53,17 @@
     <string name="play_btn_text">Afspelen</string>
     <string name="content">Inhoud</string>
     <string name="show_age_restricted_content_title">Toon inhoud met leeftijdsbeperking</string>
-    <string name="video_is_age_restricted">Video heeft leeftijdsbeperking. Schakel leeftijdsbeperkte video\'s eerst in in de instellingen.</string>
+    <string name="video_is_age_restricted">Video heeft leeftijdsbeperking. Leeftijdsbeperkte video\'s kunnen ingeschakeld worden in de instellingen.</string>
 
     <string name="general_error">Fout</string>
     <string name="network_error">Netwerkfout</string>
     <string name="could_not_load_thumbnails">Kon niet alle miniaturen laden</string>
-    <string name="youtube_signature_decryption_error">Kon video-URL-ondertekening niet ontsleutelen.</string>
-    <string name="parsing_error">Kon website niet verwerken.</string>
-    <string name="content_not_available">Inhoud niet beschikbaar.</string>
-    <string name="blocked_by_gema">Geblokkeerd door GEMA.</string>
-    <string name="could_not_setup_download_menu">Kon downloadmenu niet instellen.</string>
-    <string name="live_streams_not_supported">Dit is een LIVESTREAM. Deze worden nog niet ondersteund.</string>
+    <string name="youtube_signature_decryption_error">Kon video-URL-ondertekening niet ontsleutelen</string>
+    <string name="parsing_error">Kon website niet verwerken</string>
+    <string name="content_not_available">Inhoud niet beschikbaar</string>
+    <string name="blocked_by_gema">Geblokkeerd door GEMA</string>
+    <string name="could_not_setup_download_menu">Kon downloadmenu niet instellen</string>
+    <string name="live_streams_not_supported">Dit is een LIVESTREAM, deze worden nog niet ondersteund.</string>
 
 
     <string name="detail_likes_img_view_description">Duimpjes omhoog</string>
@@ -72,12 +72,12 @@
 
     <string name="err_dir_create">Kan downloadmap \'%1$s\' niet aanmaken</string>
     <string name="info_dir_created">Downloadmap \'%1$s\' aangemaakt</string>
-    <string name="light_parsing_error">Kon de website niet volledig inlezen.</string>
-    <string name="could_not_get_stream">Kon geen streams vinden.</string>
+    <string name="light_parsing_error">Kon de website niet volledig inlezen</string>
+    <string name="could_not_get_stream">Kon geen streams vinden</string>
     <string name="sorry_string">Sorry, dit zou niet mogen gebeuren.</string>
-    <string name="error_report_button_text">Meld fout via e-mail</string>
+    <string name="error_report_button_text">Fout melden via e-mail</string>
     <string name="error_snackbar_message">Sorry, er traden enkele fouten op.</string>
-    <string name="error_snackbar_action">MELD</string>
+    <string name="error_snackbar_action">MELDEN</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Wat is er gebeurd:</string>
     <string name="your_comment">Je opmerking (in het Engels):</string>
@@ -121,8 +121,8 @@
     <string name="msg_running">NewPipe is aan het downloaden</string>
     <string name="msg_running_detail">Tik voor meer informatie</string>
     <string name="msg_wait">Even geduld…</string>
-    <string name="msg_copied">Gekopieerd naar klembord.</string>
-    <string name="no_available_dir">Kies een beschikbare downloadmap.</string>
+    <string name="msg_copied">Gekopieerd naar klembord</string>
+    <string name="no_available_dir">Kies een beschikbare downloadmap</string>
 
 
     <string name="black_theme_title">Zwart</string>
@@ -152,8 +152,8 @@ te openen in pop-upmodus</string>
 
     <string name="popup_playing_toast">Speelt af in pop-upmodus</string>
     <string name="use_old_player_title">Gebruik oude speler</string>
-    <string name="use_old_player_summary">Verouderde ingebouwde Mediaframework-speler.</string>
-    <string name="preferred_video_format_title">Voorkeursvideoformaat</string>
+    <string name="use_old_player_summary">Verouderde ingebouwde Mediaframework-speler</string>
+    <string name="preferred_video_format_title">Standaardvideoformaat</string>
     <string name="disabled">Uitgeschakeld</string>
 
     <string name="subscriber_plural">abonnees</string>
@@ -168,7 +168,7 @@ te openen in pop-upmodus</string>
     <string name="clear">Wissen</string>
 
     <string name="popup_remember_size_pos_title">Onthou grootte en positie van pop-up</string>
-    <string name="popup_remember_size_pos_summary">Onthou de laatste grootte en positie van de pop-up</string>
+    <string name="popup_remember_size_pos_summary">Onthou laatste grootte en positie van pop-up</string>
 
     <string name="settings_category_popup_title">Pop-up</string>
     <string name="popup_resizing_indicator_title">Bezig met schalen</string>
@@ -185,7 +185,7 @@ te openen in pop-upmodus</string>
     <string name="action_settings">Instellingen</string>
     <string name="action_about">Over</string>
     <string name="title_licenses">Derdepartijlicenties</string>
-    <string name="copyright" formatted="true">© %1$s door %2$s onder %3$s</string>
+    <string name="copyright" formatted="true">© %1$s door %2$s, uitgebracht onder de %3$s</string>
     <string name="error_unable_to_load_license">Kon licentie niet laden</string>
     <string name="action_open_website">Website openen</string>
     <string name="tab_about">Over</string>
@@ -219,21 +219,21 @@ te openen in pop-upmodus</string>
 
     <string name="enable_search_history_title">Zoekgeschiedenis</string>
     <string name="enable_search_history_summary">Sla zoekopdrachten lokaal op</string>
-    <string name="enable_watch_history_title">Kijkgeschiedenis</string>
-    <string name="enable_watch_history_summary">Sla kijkgeschiedenis op</string>
+    <string name="enable_watch_history_title">Geschiedenis</string>
+    <string name="enable_watch_history_summary">Kijkgeschiedenis bijhouden</string>
     <string name="resume_on_audio_focus_gain_title">Hervat bij focus</string>
     <string name="resume_on_audio_focus_gain_summary">Ga verder met afspelen na onderbrekingen (zoals telefoongesprekken)</string>
 
 
-    <string name="notification_channel_name">NewPipe Melding</string>
-    <string name="notification_channel_description">Meldingen Voor NewPipe Achtergrond- en Popupspelers</string>
+    <string name="notification_channel_name">NewPipe-melding</string>
+    <string name="notification_channel_description">Meldingen voor NewPipe-achtergrond- en pop-upspelers</string>
 
     <string name="title_activity_history">Geschiedenis</string>
     <string name="title_history_search">Gezocht</string>
     <string name="title_history_view">Gekeken</string>
     <string name="history_disabled">Geschiedenis is uitgeschakeld</string>
     <string name="action_history">Geschiedenis</string>
-    <string name="history_empty">De Geschiedenis is leeg.</string>
+    <string name="history_empty">De geschiedenis is leeg</string>
     <string name="history_cleared">Geschiedenis gewist</string>
 
 </resources>
