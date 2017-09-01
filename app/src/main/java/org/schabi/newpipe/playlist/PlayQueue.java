@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,7 +14,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
-import io.reactivex.Maybe;
 import io.reactivex.subjects.BehaviorSubject;
 
 public abstract class PlayQueue {
@@ -94,8 +92,14 @@ public abstract class PlayQueue {
     }
 
     public void remove(final int index) {
-        if (index < streams.size()) {
-            streams.remove(index);
+        if (index >= streams.size()) return;
+        final boolean isCurrent = index == queueIndex.get();
+
+        streams.remove(index);
+
+        if (isCurrent) {
+            broadcast(PlayQueueEvent.REMOVE_CURRENT);
+        } else {
             broadcast(PlayQueueEvent.REMOVE);
         }
     }

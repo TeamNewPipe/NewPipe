@@ -31,9 +31,9 @@ public class PlaybackManager {
     interface PlaybackListener {
         void block();
         void unblock();
-        void sync();
 
-        MediaSource sourceOf(StreamInfo info);
+        void sync(final StreamInfo info);
+        MediaSource sourceOf(final StreamInfo info);
     }
 
     public PlaybackManager(@NonNull final PlaybackListener listener,
@@ -58,6 +58,10 @@ public class PlaybackManager {
         load(0);
     }
 
+    public void changeSource(final int index) {
+
+    }
+
     public void refreshMedia(final int newMediaIndex) {
         if (newMediaIndex == sourceIndex) return;
 
@@ -67,7 +71,7 @@ public class PlaybackManager {
             queueSource.remove(0);
         } else {
             //something went wrong
-            onInit();
+            init();
         }
     }
 
@@ -124,7 +128,7 @@ public class PlaybackManager {
         if (mediaSource.getSize() > 0 && queueSource.size() > 0) listener.unblock();
     }
 
-    private void onInit() {
+    private void init() {
         listener.block();
         load();
     }
@@ -156,7 +160,7 @@ public class PlaybackManager {
 
                 switch (event) {
                     case INIT:
-                        onInit();
+                        init();
                         break;
                     case APPEND:
                         load();

@@ -70,6 +70,7 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.playlist.PlayQueue;
 
 import java.io.File;
@@ -562,6 +563,17 @@ public abstract class BasePlayer implements Player.EventListener,
     @Override
     public void unblock() {
         if (currentState != STATE_PLAYING) changeState(STATE_PLAYING);
+    }
+
+    @Override
+    public void sync(final StreamInfo info) {
+
+    }
+
+    @Override
+    public MediaSource sourceOf(final StreamInfo info) {
+
+        return null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
