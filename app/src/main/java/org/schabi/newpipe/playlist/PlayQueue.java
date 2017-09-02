@@ -1,10 +1,21 @@
 package org.schabi.newpipe.playlist;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.playlist.events.AppendEvent;
+import org.schabi.newpipe.playlist.events.InitEvent;
+import org.schabi.newpipe.playlist.events.NextEvent;
+import org.schabi.newpipe.playlist.events.PlayQueueEvent;
+import org.schabi.newpipe.playlist.events.PlayQueueMessage;
+import org.schabi.newpipe.playlist.events.RemoveEvent;
+import org.schabi.newpipe.playlist.events.SelectEvent;
+import org.schabi.newpipe.playlist.events.SwapEvent;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,12 +29,14 @@ import io.reactivex.subjects.BehaviorSubject;
 
 public abstract class PlayQueue {
     private final String TAG = "PlayQueue@" + Integer.toHexString(hashCode());
+    public static final boolean DEBUG = true;
 
     private List<PlayQueueItem> streams;
     private AtomicInteger queueIndex;
 
-    private BehaviorSubject<PlayQueueEvent> changeBroadcast;
-    private Flowable<PlayQueueEvent> playQueueFlowable;
+    private BehaviorSubject<PlayQueueMessage> eventBus;
+    private Flowable<PlayQueueMessage> eventBroadcast;
+    private Subscription reportingReactor;
 
     PlayQueue() {
         this(0, Collections.<PlayQueueItem>emptyList());
@@ -35,8 +48,13 @@ public abstract class PlayQueue {
 
         queueIndex = new AtomicInteger(index);
 
-        changeBroadcast = BehaviorSubject.create();
-        playQueueFlowable = changeBroadcast.startWith(PlayQueueEvent.INIT).toFlowable(BackpressureStrategy.BUFFER);
+        eventBus = BehaviorSubject.create();
+        eventBroadcast = eventBus
+                .startWith(new InitEvent())
+                .replay(20)
+                .toFlowable(BackpressureStrategy.BUFFER);
+
+        if (DEBUG) eventBroadcast.subscribe(getSelfReporter());
     }
 
     // a queue is complete if it has loaded all items in an external playlist
@@ -50,7 +68,10 @@ public abstract class PlayQueue {
     // may return an empty of the queue is incomplete
     public abstract PlayQueueItem get(int index);
 
-    public abstract void dispose();
+    public void dispose() {
+        if (reportingReactor != null) reportingReactor.cancel();
+        reportingReactor = null;
+    }
 
     public int size() {
         return streams.size();
@@ -62,12 +83,12 @@ public abstract class PlayQueue {
     }
 
     @NonNull
-    public Flowable<PlayQueueEvent> getPlayQueueFlowable() {
-        return playQueueFlowable;
+    public Flowable<PlayQueueMessage> getEventBroadcast() {
+        return eventBroadcast;
     }
 
-    private void broadcast(final PlayQueueEvent event) {
-        changeBroadcast.onNext(event);
+    private void broadcast(final PlayQueueMessage event) {
+        eventBus.onNext(event);
     }
 
     public int getIndex() {
@@ -75,43 +96,30 @@ public abstract class PlayQueue {
     }
 
     public void setIndex(final int index) {
-        queueIndex.set(index);
-        broadcast(PlayQueueEvent.SELECT);
+        queueIndex.set(Math.max(0, index));
+        broadcast(new SelectEvent(index));
     }
 
     public void incrementIndex() {
-        queueIndex.incrementAndGet();
-        broadcast(PlayQueueEvent.NEXT);
+        final int index = queueIndex.incrementAndGet();
+        broadcast(new NextEvent(index));
     }
 
     protected void append(final PlayQueueItem item) {
         streams.add(item);
-        broadcast(PlayQueueEvent.APPEND);
+        broadcast(new AppendEvent(1));
     }
 
     protected void append(final Collection<PlayQueueItem> items) {
         streams.addAll(items);
-        broadcast(PlayQueueEvent.APPEND);
+        broadcast(new AppendEvent(items.size()));
     }
 
     public void remove(final int index) {
         if (index >= streams.size()) return;
-        final boolean isCurrent = index == queueIndex.get();
 
         streams.remove(index);
-
-        if (isCurrent) {
-            broadcast(PlayQueueEvent.REMOVE_CURRENT);
-        } else {
-            broadcast(PlayQueueEvent.REMOVE);
-        }
-    }
-
-    protected void clear() {
-        if (!streams.isEmpty()) {
-            streams.clear();
-            broadcast(PlayQueueEvent.CLEAR);
-        }
+        broadcast(new RemoveEvent(index));
     }
 
     protected void swap(final int source, final int target) {
@@ -131,7 +139,7 @@ public abstract class PlayQueue {
                 queueIndex.set(newIndex);
             }
 
-            broadcast(PlayQueueEvent.SWAP);
+            broadcast(new SwapEvent(source, target));
         }
     }
 
@@ -141,6 +149,33 @@ public abstract class PlayQueue {
         } catch (ExtractionException e) {
             return null;
         }
+    }
+
+    private Subscriber<PlayQueueMessage> getSelfReporter() {
+        return new Subscriber<PlayQueueMessage>() {
+            @Override
+            public void onSubscribe(Subscription s) {
+                if (reportingReactor != null) reportingReactor.cancel();
+                reportingReactor = s;
+                reportingReactor.request(1);
+            }
+
+            @Override
+            public void onNext(PlayQueueMessage event) {
+                Log.d(TAG, "Received broadcast: " + event.type().name() + ". Current index: " + getIndex() + ", play queue length: " + size() + ".");
+                reportingReactor.request(1);
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                Log.e(TAG, "Received broadcast error", t);
+            }
+
+            @Override
+            public void onComplete() {
+                Log.d(TAG, "Broadcast is shut down.");
+            }
+        };
     }
 }
 

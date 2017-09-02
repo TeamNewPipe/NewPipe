@@ -83,6 +83,7 @@ public class ExternalPlayQueue extends PlayQueue {
 
     @Override
     public void dispose() {
+        super.dispose();
         if (fetchReactor != null) fetchReactor.dispose();
     }
 

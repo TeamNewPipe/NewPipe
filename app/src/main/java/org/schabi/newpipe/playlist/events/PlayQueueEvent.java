@@ -1,4 +1,4 @@
-package org.schabi.newpipe.playlist;
+package org.schabi.newpipe.playlist.events;
 
 public enum PlayQueueEvent {
     INIT,
@@ -15,13 +15,7 @@ public enum PlayQueueEvent {
     // sent when a pending stream is removed from the play queue
     REMOVE,
 
-    // sent when the current stream is removed
-    REMOVE_CURRENT,
-
     // sent when two streams swap place in the play queue
-    SWAP,
-
-    // sent when streams is cleared
-    CLEAR
+    SWAP
 }
 

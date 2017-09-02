@@ -1,5 +1,7 @@
 package org.schabi.newpipe.player;
 
+import android.util.Log;
+
 import com.google.android.exoplayer2.source.DynamicConcatenatingMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 
@@ -7,24 +9,25 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.playlist.PlayQueue;
-import org.schabi.newpipe.playlist.PlayQueueEvent;
+import org.schabi.newpipe.playlist.events.PlayQueueEvent;
 import org.schabi.newpipe.playlist.PlayQueueItem;
+import org.schabi.newpipe.playlist.events.PlayQueueMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Maybe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.schedulers.Schedulers;
 
 public class PlaybackManager {
+    private final String TAG = "PlaybackManager@" + Integer.toHexString(hashCode());
 
-    private static final int WINDOW_SIZE = 5;
+    private static final int WINDOW_SIZE = 3;
 
     private DynamicConcatenatingMediaSource mediaSource;
-    private List<PlayQueueItem> queueSource;
+    private List<StreamInfo> syncInfos;
+
     private int sourceIndex;
 
     private PlaybackListener listener;
@@ -32,10 +35,13 @@ public class PlaybackManager {
 
     private Subscription playQueueReactor;
 
+    public boolean prepared = false;
+
     interface PlaybackListener {
         void block();
         void unblock();
 
+        void resync();
         void sync(final StreamInfo info);
         MediaSource sourceOf(final StreamInfo info);
     }
@@ -43,13 +49,13 @@ public class PlaybackManager {
     public PlaybackManager(@NonNull final PlaybackListener listener,
                            @NonNull final PlayQueue playQueue) {
         this.mediaSource = new DynamicConcatenatingMediaSource();
-        this.queueSource = Collections.synchronizedList(new ArrayList<PlayQueueItem>(10));
+        this.syncInfos = Collections.synchronizedList(new ArrayList<StreamInfo>());
         this.sourceIndex = 0;
 
         this.listener = listener;
         this.playQueue = playQueue;
 
-        playQueue.getPlayQueueFlowable().subscribe(getReactor());
+        playQueue.getEventBroadcast().subscribe(getReactor());
     }
 
     @NonNull
@@ -63,10 +69,8 @@ public class PlaybackManager {
     }
 
     public void changeSource(final MediaSource newSource) {
-        listener.block();
         this.mediaSource.removeMediaSource(0);
         this.mediaSource.addMediaSource(0, newSource);
-        listener.unblock();
     }
 
     public void refreshMedia(final int newMediaIndex) {
@@ -75,43 +79,42 @@ public class PlaybackManager {
         if (newMediaIndex == sourceIndex + 1) {
             playQueue.incrementIndex();
             mediaSource.removeMediaSource(0);
-            queueSource.remove(0);
+            syncInfos.remove(0);
         } else {
             //something went wrong
+            Log.e(TAG, "Refresh media failed, reloading.");
             reload();
         }
     }
 
     private void removeCurrent() {
-        listener.block();
         mediaSource.removeMediaSource(0);
-        queueSource.remove(0);
-        listener.unblock();
+        syncInfos.remove(0);
     }
 
     private Subscription loaderReactor;
 
     private void load() {
-        if (mediaSource.getSize() < WINDOW_SIZE && queueSource.size() < WINDOW_SIZE)
-            load(mediaSource.getSize());
+        if (mediaSource.getSize() < WINDOW_SIZE) load(mediaSource.getSize());
     }
 
     private void load(final int from) {
-        clear(from);
-
-        if (loaderReactor != null) loaderReactor.cancel();
+        // Fetch queue items
+        //todo fix out of bound
+        final int index = playQueue.getIndex();
 
         List<Maybe<StreamInfo>> maybes = new ArrayList<>();
         for (int i = from; i < WINDOW_SIZE; i++) {
-            final int index = playQueue.getIndex() + i;
-            final PlayQueueItem item = playQueue.get(index);
-
-            if (queueSource.size() > i) queueSource.set(i, item);
-            else queueSource.add(item);
+            final PlayQueueItem item = playQueue.get(index + i);
 
             maybes.add(item.getStream());
         }
 
+        // Stop loading and clear pending media sources
+        if (loaderReactor != null) loaderReactor.cancel();
+        clear(from);
+
+        // Start sequential loading of media sources
         Maybe.concat(maybes).subscribe(getSubscriber());
     }
 
@@ -127,13 +130,14 @@ public class PlaybackManager {
             @Override
             public void onNext(StreamInfo streamInfo) {
                 mediaSource.addMediaSource(listener.sourceOf(streamInfo));
+                syncInfos.add(streamInfo);
                 tryUnblock();
                 loaderReactor.request(1);
             }
 
             @Override
             public void onError(Throwable t) {
-                playQueue.remove(queueSource.size());
+                playQueue.remove(playQueue.getIndex());
             }
 
             @Override
@@ -145,7 +149,7 @@ public class PlaybackManager {
     }
 
     private void tryUnblock() {
-        if (mediaSource.getSize() > 0 && queueSource.size() > 0) listener.unblock();
+        if (mediaSource.getSize() > 0) listener.unblock();
     }
 
     private void init() {
@@ -155,19 +159,13 @@ public class PlaybackManager {
 
     private void clear(int from) {
         while (mediaSource.getSize() > from) {
-            queueSource.remove(from);
             mediaSource.removeMediaSource(from);
+            syncInfos.remove(from);
         }
     }
 
-    private void clear() {
-        listener.block();
-        clear(0);
-        listener.unblock();
-    }
-
-    private Subscriber<PlayQueueEvent> getReactor() {
-        return new Subscriber<PlayQueueEvent>() {
+    private Subscriber<PlayQueueMessage> getReactor() {
+        return new Subscriber<PlayQueueMessage>() {
             @Override
             public void onSubscribe(@NonNull Subscription d) {
                 if (playQueueReactor != null) playQueueReactor.cancel();
@@ -176,21 +174,17 @@ public class PlaybackManager {
             }
 
             @Override
-            public void onNext(@NonNull PlayQueueEvent event) {
+            public void onNext(@NonNull PlayQueueMessage event) {
                 if (playQueue.getStreams().size() - playQueue.getIndex() < WINDOW_SIZE && !playQueue.isComplete()) {
                     listener.block();
                     playQueue.fetch();
                 }
 
-                switch (event) {
+                switch (event.type()) {
                     case INIT:
                         init();
                         break;
                     case APPEND:
-                        load();
-                        break;
-                    case REMOVE_CURRENT:
-                        removeCurrent();
                         load();
                         break;
                     case SELECT:
@@ -200,15 +194,13 @@ public class PlaybackManager {
                     case SWAP:
                         load(1);
                         break;
-                    case CLEAR:
-                        clear();
-                        break;
                     case NEXT:
                     default:
                         break;
                 }
 
                 tryUnblock();
+                if (!syncInfos.isEmpty()) listener.sync(syncInfos.get(0));
                 if (playQueueReactor != null) playQueueReactor.request(1);
             }
 

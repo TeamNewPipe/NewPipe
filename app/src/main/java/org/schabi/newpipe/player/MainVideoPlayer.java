@@ -40,6 +40,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -225,6 +226,13 @@ public class MainVideoPlayer extends Activity {
             super.handleIntent(intent);
             titleTextView.setText(getVideoTitle());
             channelTextView.setText(getUploaderName());
+        }
+
+        @Override
+        public void sync(final StreamInfo info) {
+            super.sync(info);
+            titleTextView.setText(getVideoTitle());
+            channelTextView.setText(getChannelName());
         }
 
         @Override

@@ -461,7 +461,11 @@ public class PlaylistFragment extends BaseFragment {
     }
 
     private void handlePlayListInfo(PlayListInfo info, boolean onlyVideos, boolean addVideos) {
-        if (currentPlaylistInfo == null) currentPlaylistInfo = info;
+        if (currentPlaylistInfo == null) {
+            currentPlaylistInfo = info;
+        } else {
+            currentPlaylistInfo.related_streams.addAll(info.related_streams);
+        }
 
         animateView(errorPanel, false, 300);
         animateView(playlistStreams, true, 200);
@@ -494,12 +498,9 @@ public class PlaylistFragment extends BaseFragment {
         hasNextPage = info.hasNextPage;
         if (!hasNextPage) infoListAdapter.showFooter(false);
 
-        //if (!listRestored) {
         if (addVideos) {
             infoListAdapter.addInfoItemList(info.related_streams);
-            currentPlaylistInfo.related_streams.addAll(info.related_streams);
         }
-        //}
     }
 
     @Override

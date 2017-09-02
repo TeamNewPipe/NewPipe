@@ -230,9 +230,15 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     }
 
     @Override
+    public void block() {
+        if (currentState != STATE_BUFFERING) changeState(STATE_BUFFERING);
+        simpleExoPlayer.stop();
+    }
+
+    @Override
     public void unblock() {
-        play(true);
-        super.unblock();
+        if (currentState != STATE_PLAYING) changeState(STATE_PLAYING);
+        if (!isPlaying()) play(true);
     }
 
     public void handleIntent(Intent intent) {

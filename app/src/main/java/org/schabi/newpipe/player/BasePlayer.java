@@ -259,9 +259,10 @@ public abstract class BasePlayer implements Player.EventListener,
 
         isPrepared = false;
 
-        if (simpleExoPlayer.getPlaybackState() != Player.STATE_IDLE) simpleExoPlayer.stop();
+        if (simpleExoPlayer.getPlaybackState() != Player.STATE_IDLE) simpleExoPlayer.setPlayWhenReady(false);//simpleExoPlayer.stop();
         if (videoStartPos > 0) simpleExoPlayer.seekTo(videoStartPos);
-        simpleExoPlayer.prepare(mediaSource);
+        if (!playbackManager.prepared) simpleExoPlayer.prepare(mediaSource);
+        playbackManager.prepared = true;
         simpleExoPlayer.setPlayWhenReady(autoPlay);
     }
 
@@ -557,12 +558,18 @@ public abstract class BasePlayer implements Player.EventListener,
 
     @Override
     public void block() {
-        if (currentState != STATE_LOADING) changeState(STATE_LOADING);
+        if (currentState != STATE_BUFFERING) changeState(STATE_BUFFERING);
+        simpleExoPlayer.stop();
     }
 
     @Override
     public void unblock() {
         if (currentState != STATE_PLAYING) changeState(STATE_PLAYING);
+    }
+
+    @Override
+    public void resync() {
+        simpleExoPlayer.seekTo(0, 0L);
     }
 
     @Override

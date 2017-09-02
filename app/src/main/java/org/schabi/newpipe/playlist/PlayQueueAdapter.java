@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.info_list.StreamInfoItemHolder;
+import org.schabi.newpipe.playlist.events.PlayQueueEvent;
 
 import java.util.List;
 
@@ -85,10 +86,6 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         playQueue.swap(source, target);
     }
 
-    public void clear() {
-        playQueue.clear();
-    }
-
     private Disposable getReactor() {
         final Consumer<PlayQueueEvent> onNext = new Consumer<PlayQueueEvent>() {
             @Override
@@ -97,7 +94,7 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
         };
 
-        return playQueue.getPlayQueueFlowable()
+        return playQueue.getEventBroadcast()
                 .toObservable()
                 .subscribe(onNext);
     }
