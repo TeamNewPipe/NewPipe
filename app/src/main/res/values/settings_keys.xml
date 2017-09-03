@@ -1,24 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources translatable="false">
-    <!-- Categories -->
-    <string name="settings_category_video_audio" translatable="false">settings_category_video_audio</string>
-    <string name="settings_category_popup" translatable="false">settings_category_popup</string>
-    <string name="settings_category_appearance" translatable="false">settings_category_appearance</string>
-    <string name="settings_content_options" translatable="false">settings_content_options</string>
-    <string name="settings_category_other" translatable="false">settings_category_other</string>
     <!-- Key values -->
     <string name="download_path_key" translatable="false">download_path</string>
     <string name="download_path_audio_key" translatable="false">download_path_audio</string>
+
     <string name="use_external_video_player_key" translatable="false">use_external_video_player</string>
     <string name="use_external_audio_player_key" translatable="false">use_external_audio_player</string>
     <string name="autoplay_through_intent_key" translatable="false">autoplay_through_intent</string>
     <string name="use_old_player_key" translatable="false">use_oldplayer</string>
+
     <string name="player_gesture_controls_key" translatable="false">player_gesture_controls</string>
     <string name="resume_on_audio_focus_gain_key" translatable="false">resume_on_audio_focus_gain</string>
-    <string name="default_resolution_key" translatable="false">default_resolution_preference</string>
-    <string name="default_resolution_value" translatable="false">360p</string>
+    <string name="popup_remember_size_pos_key" translatable="false">popup_remember_size_pos_key</string>
 
-    <string-array name="resolution_list" translatable="false">
+    <string name="default_resolution_key" translatable="false">default_resolution</string>
+    <string name="default_resolution_value" translatable="false">360p</string>
+    <string name="show_higher_resolutions_key" translatable="false">show_higher_resolutions</string>
+    <string name="default_popup_resolution_key" translatable="false">default_popup_resolution</string>
+    <string name="default_popup_resolution_value" translatable="false">360p</string>
+    <string name="best_resolution_key" translatable="false">best_resolution</string>
+
+    <string-array name="resolution_list_values" translatable="false">
+        <item>@string/best_resolution_key</item>
+        <item>1080p60</item>
+        <item>1080p</item>
+        <item>720p60</item>
+        <item>720p</item>
+        <item>480p</item>
+        <item>360p</item>
+        <item>240p</item>
+        <item>144p</item>
+    </string-array>
+    <string-array name="resolution_list_description" translatable="false">
         <item>@string/best_resolution</item>
         <item>1080p60</item>
         <item>1080p</item>
@@ -30,46 +43,79 @@
         <item>144p</item>
     </string-array>
 
-    <string name="popup_remember_size_pos_key" translatable="false">popup_remember_size_pos_key</string>
-
-    <string name="default_popup_resolution_key" translatable="false">default_popup_resolution_key</string>
-    <string name="default_popup_resolution_value" translatable="false">360p</string>
-
-    <string name="show_higher_resolutions_key" translatable="false">show_higher_resolutions_key</string>
-
-    <string name="preferred_video_format_key" translatable="false">preferred_video_format</string>
-    <string name="preferred_video_format_default" translatable="false">MPEG-4</string>
-    <string-array name="video_format_list" translatable="false">
-        <item>WebM</item>
+    <string name="video_mp4_key" translatable="false">video_mp4</string>
+    <string name="video_webm_key" translatable="false">video_webm</string>
+    <string name="video_3gp_key" translatable="false">video_3gp</string>
+    <string name="default_video_format_key" translatable="false">default_video_format</string>
+    <string name="default_video_format_value" translatable="false">@string/video_mp4_key</string>
+    <string-array name="video_format_description_list" translatable="false">
         <item>MPEG-4</item>
+        <item>WebM</item>
         <item>3GPP</item>
     </string-array>
+    <string-array name="video_format_values_list" translatable="false">
+        <item>@string/video_mp4_key</item>
+        <item>@string/video_webm_key</item>
+        <item>@string/video_3gp_key</item>
+    </string-array>
 
-    <string name="show_search_suggestions_key" translatable="false">show_search_suggestions</string>
-    <string name="show_play_with_kodi_key" translatable="false">show_play_with_kodi</string>
+    <string name="default_audio_format_key" translatable="false">default_audio_format</string>
+    <string name="default_audio_format_value" translatable="false">@string/audio_m4a_key</string>
+    <string name="audio_m4a_key" translatable="false">audio_m4a</string>
+    <string name="audio_webm_key" translatable="false">audio_webm</string>
+    <string-array name="audio_format_description_list" translatable="false">
+        <item>@string/m4a_description</item>
+        <item>@string/webm_description</item>
+    </string-array>
+    <string-array name="audio_format_values_list" translatable="false">
+        <item>@string/audio_m4a_key</item>
+        <item>@string/audio_webm_key</item>
+    </string-array>
 
+    <!-- THEMES -->
     <string name="theme_key" translatable="false">theme</string>
-    <string name="default_theme_value" translatable="false">@string/dark_theme_title</string>
-    <string-array name="theme_list">
+    <string name="light_theme_key" translatable="false">light_theme</string>
+    <string name="dark_theme_key" translatable="false">dark_theme</string>
+    <string name="black_theme_key" translatable="false">black_theme</string>
+    <string name="default_theme_value" translatable="false">@string/dark_theme_key</string>
+    <string-array name="theme_values_list" translatable="false">
+        <item>@string/light_theme_key</item>
+        <item>@string/dark_theme_key</item>
+        <item>@string/black_theme_key</item>
+    </string-array>
+    <string-array name="theme_description_list" translatable="false">
         <item>@string/light_theme_title</item>
         <item>@string/dark_theme_title</item>
         <item>@string/black_theme_title</item>
     </string-array>
 
-    <string name="default_audio_format_key" translatable="false">default_audio_format</string>
-    <string name="default_audio_format_value" translatable="false">m4a</string>
-    <string-array name="audio_format_description_list">
-        <item>@string/webm_description</item>
-        <item>@string/m4a_description</item>
-    </string-array>
-    <string-array name="audio_format_list" translatable="false">
-        <item>webm</item>
-        <item>m4a</item>
-    </string-array>
-
+    <string name="show_search_suggestions_key" translatable="false">show_search_suggestions</string>
+    <string name="show_play_with_kodi_key" translatable="false">show_play_with_kodi</string>
     <string name="show_next_video_key" translatable="false">show_next_video</string>
     <string name="default_language_value">en</string>
     <string name="search_language_key" translatable="false">search_language</string>
+    <string name="show_age_restricted_content" translatable="false">show_age_restricted_content</string>
+    <string name="use_tor_key" translatable="false">use_tor</string>
+    <string name="enable_search_history_key" translatable="false">enable_search_history</string>
+    <string name="enable_watch_history_key" translatable="false">enable_watch_history</string>
+
+    <!-- FileName Downloads  -->
+    <string name="settings_file_charset_key" translatable="false">file_rename</string>
+    <string name="settings_file_replacement_character_key" translatable="false">file_replacement_character</string>
+    <string name="settings_file_replacement_character_default_value" translatable="false">_</string>
+
+    <string-array name="settings_filename_charset" translatable="false">
+        <item>@string/charset_letters_and_digits_value</item>
+        <item>@string/charset_most_special_characters_value</item>
+    </string-array>
+
+    <string-array name="settings_filename_charset_name" translatable="false">
+        <item>@string/charset_letters_and_digits</item>
+        <item>@string/charset_most_special_characters</item>
+    </string-array>
+
+    <string name="default_file_charset_value" translatable="false">@string/charset_most_special_characters_value</string>
+
     <!-- TODO: scrape these programmatically, then store in a local cache -->
     <!-- alternatively, load these from some local android data store -->
     <string-array name="language_codes" translatable="false">
@@ -230,26 +276,4 @@
         <item>日本語</item>
         <item>한국어</item>
     </string-array>
-    <string name="show_age_restricted_content" translatable="false">show_age_restricted_content</string>
-    <string name="use_tor_key" translatable="false">use_tor</string>
-    <string name="enable_search_history_key" translatable="false">enable_search_history</string>
-    <string name="enable_watch_history_key" translatable="false">enable_watch_history</string>
-
-    <string name="settings_file_charset_key" translatable="false">file_rename</string>
-    <string name="settings_file_replacement_character_key" translatable="false">file_replacement_character</string>
-    <string name="settings_file_replacement_character_default_value" translatable="false">_</string>
-
-    <string-array
-        translatable="false"
-        name="settings_filename_charset">
-        <item>@string/charset_letters_and_digits_value</item>
-        <item>@string/charset_most_special_characters_value</item>
-    </string-array>
-
-    <string-array name="settings_filename_charset_name">
-        <item>@string/charset_letters_and_digits</item>
-        <item>@string/charset_most_special_characters</item>
-    </string-array>
-    
-    <string name="default_file_charset_value" translatable="false">@string/charset_most_special_characters_value</string>
 </resources>

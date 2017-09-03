@@ -68,7 +68,7 @@ public abstract class MissionsFragment extends Fragment {
         getActivity().bindService(i, mConnection, Context.BIND_AUTO_CREATE);
 
         // Views
-        mList = (RecyclerView) v.findViewById(R.id.mission_recycler);
+        mList = v.findViewById(R.id.mission_recycler);
 
         // Init
         mGridManager = new GridLayoutManager(getActivity(), 2);

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="main_bg_subtitle">Nhấp tìm kiếm để bắt đầu</string>
     <string name="view_count_text">%1$s lượt xem</string>
-    <string name="upload_date_text">Đăng vào</string>
+    <string name="upload_date_text">Đăng vào %1$s</string>
     <string name="no_player_found">Không tìm thấy trình phát. Bạn có muốn cài đặt VLC?</string>
     <string name="install">Cài đặt</string>
     <string name="cancel">Hủy</string>
@@ -40,9 +40,9 @@
     <string name="show_play_with_kodi_summary">Hiển thị tùy chọn để phát video qua trung tâm media Kodi</string>
     <string name="play_audio">Âm thanh</string>
     <string name="default_audio_format_title">Định dạng âm thanh mặc định</string>
-    <string name="preferred_video_format_title">Định dạng video ưa thích</string>
-    <string name="webm_description">WebM -- Định dạng miễn phí</string>
-    <string name="m4a_description">M4a -- chất lượng tốt hơn</string>
+    <string name="default_video_format_title">Định dạng video ưa thích</string>
+    <string name="webm_description">WebM — Định dạng miễn phí</string>
+    <string name="m4a_description">M4a — chất lượng tốt hơn</string>
     <string name="controls_background_title">Nền</string>
     <string name="theme_title">Chủ đề</string>
     <string name="light_theme_title">Sáng</string>
@@ -117,8 +117,8 @@
     <string name="report_error">Báo lỗi</string>
     <string name="user_report">Báo cáo người dùng</string>
 
-    <string name="err_dir_create">Không thể tạo thư mục tải xuống \'% 1 $ s\'</string>
-    <string name="info_dir_created">Đã tạo thư mục tải xuống \'% 1 $ s\'</string>
+    <string name="err_dir_create">Không thể tạo thư mục tải xuống \'%1$s\'</string>
+    <string name="info_dir_created">Đã tạo thư mục tải xuống \'%1$s\'</string>
 
     <string name="video">Video</string>
     <string name="audio">Âm thanh</string>
@@ -126,11 +126,8 @@
     <string name="storage_permission_denied">Quyền truy cập vào bộ nhớ đã bị từ chối</string>
     <string name="use_old_player_title">Sử dụng trình phát cũ</string>
     <string name="use_old_player_summary">Máy nghe nhạc Mediaframework tích hợp sẵn.</string>
-    <string name="videos">Video</string>
-    <string name="subscriber">người đăng kí</string>
-    <string name="subscriber_plural">người đăng ký</string>
-    <string name="subscribe">Đăng ký</string>
-    <string name="views">lượt xem</string>
+
+
     <string name="short_thousand">ngàn</string>
     <string name="short_million">triệu</string>
     <string name="short_billion">tỉ</string>

@@ -135,10 +135,7 @@
     <string name="yes">Ano</string>
     <string name="later">Později</string>
 
-    <string name="videos">videa</string>
-    <string name="subscriber">odběratel</string>
-    <string name="subscribe">Odebírat</string>
-    <string name="views">zobrazení</string>
+
     <string name="short_thousand">k</string>
 
     <string name="open_in_popup_mode">Otevřít ve vyskakovacím okně</string>
@@ -150,7 +147,7 @@ otevření ve vyskakovacím okně</string>
 <string name="use_external_video_player_summary">Některé formáty rozlišení NEBUDOU obsahovat zvukovou stopu po zapnutí této funkce</string>
     <string name="show_higher_resolutions_title">Zobrazit vyšší rozlišení</string>
     <string name="show_higher_resolutions_summary">Pouze některá zařízení podporují přehrávání videí ve 2K/4K</string>
-    <string name="preferred_video_format_title">Preferovaný video formát</string>
+    <string name="default_video_format_title">Preferovaný video formát</string>
     <string name="popup_remember_size_pos_title">Zapamatovat si velikost a pozici vyskakovacího okna</string>
     <string name="popup_remember_size_pos_summary">Zapamatovat si poslední nastavení velikosti a pozice vyskakovacího okna</string>
     </resources>

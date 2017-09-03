@@ -8,7 +8,7 @@ import org.acra.sender.ReportSender;
 import org.acra.sender.ReportSenderException;
 import org.schabi.newpipe.R;
 
-/**
+/*
  * Created by Christian Schabesberger  on 13.09.16.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>

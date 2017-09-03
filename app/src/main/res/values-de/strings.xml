@@ -105,9 +105,7 @@
     <string name="checksum">Prüfsumme</string>
 
 
-    <string name="videos">Videos</string>
-    <string name="subscriber">Abonnent</string>
-    <string name="views">Aufrufe</string>
+
     <string name="short_thousand">Tsd.</string>
     <string name="short_million">Mio.</string>
     <string name="short_billion">Mrd.</string>
@@ -144,16 +142,15 @@
     <string name="all">Alle</string>
     <string name="channel">Kanal</string>
 
-    <string name="subscribe">Abonnieren</string>
     <string name="disabled">Deaktiviert</string>
 
     <string name="use_old_player_title">Benutze den alten Player</string>
     <string name="open_in_popup_mode">Im Popup-Modus öffnen</string>
-    <string name="preferred_video_format_title">Bevorzugtes Videoformat</string>
+    <string name="default_video_format_title">Bevorzugtes Videoformat</string>
     <string name="popup_playing_toast">Spiele im Popup-Modus ab</string>
     <string name="popup_mode_share_menu_title">NewPipe Popup-Modus</string>
 
-    <string name="subscriber_plural">Abonnenten</string>
+
     <string name="msg_popup_permission">Diese Berechtigung ist für das
 Öffnen im Popup-Modus erforderlich</string>
 

@@ -1,6 +1,5 @@
 package org.schabi.newpipe.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -9,7 +8,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,16 +16,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.schabi.newpipe.MainActivity;
+import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.fragments.subscription.SubscriptionFragment;
 import org.schabi.newpipe.util.NavigationHelper;
 
-public class MainFragment extends Fragment implements TabLayout.OnTabSelectedListener {
-    private final String TAG = "MainFragment@" + Integer.toHexString(hashCode());
-    private static final boolean DEBUG = MainActivity.DEBUG;
-
-    private AppCompatActivity activity;
-
+public class MainFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
     private ViewPager viewPager;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -35,26 +29,22 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (DEBUG) Log.d(TAG, "onAttach() called with: context = [" + context + "]");
-        activity = ((AppCompatActivity) context);
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
         setHasOptionsMenu(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (DEBUG) Log.d(TAG, "onCreateView() called with: inflater = [" + inflater + "], container = [" + container + "], savedInstanceState = [" + savedInstanceState + "]");
-        View inflatedView = inflater.inflate(R.layout.fragment_main, container, false);
+        return inflater.inflate(R.layout.fragment_main, container, false);
+    }
 
-        TabLayout tabLayout = (TabLayout) inflatedView.findViewById(R.id.main_tab_layout);
-        viewPager = (ViewPager) inflatedView.findViewById(R.id.pager);
+    @Override
+    protected void initViews(View rootView, Bundle savedInstanceState) {
+        super.initViews(rootView, savedInstanceState);
+
+        TabLayout tabLayout = rootView.findViewById(R.id.main_tab_layout);
+        viewPager = rootView.findViewById(R.id.pager);
 
         /*  Nested fragment, use child fragment here to maintain backstack in view pager. */
         PagerAdapter adapter = new PagerAdapter(getChildFragmentManager());
@@ -62,8 +52,6 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
         viewPager.setOffscreenPageLimit(adapter.getCount());
 
         tabLayout.setupWithViewPager(viewPager);
-
-        return inflatedView;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -93,16 +81,22 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
         return super.onOptionsItemSelected(item);
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Tabs
+    //////////////////////////////////////////////////////////////////////////*/
+
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         viewPager.setCurrentItem(tab.getPosition());
     }
 
     @Override
-    public void onTabUnselected(TabLayout.Tab tab) {}
+    public void onTabUnselected(TabLayout.Tab tab) {
+    }
 
     @Override
-    public void onTabReselected(TabLayout.Tab tab) {}
+    public void onTabReselected(TabLayout.Tab tab) {
+    }
 
     private class PagerAdapter extends FragmentPagerAdapter {
 
@@ -117,7 +111,7 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
 
         @Override
         public Fragment getItem(int position) {
-            switch ( position ) {
+            switch (position) {
                 case 1:
                     return new SubscriptionFragment();
                 default:

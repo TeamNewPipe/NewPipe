@@ -18,9 +18,8 @@
     <string name="finish">Այո</string>
     <string name="delete">Ջնջել</string>
     <string name="start">Սկսել</string>
-    <string name="subscribe">Բաժանորդագրվել</string>
-    <string name="subscriber_plural">Բաժանորդները</string>
-    <string name="subscriber">Բաժանորդ</string>
+
+
     <string name="detail_likes_img_view_description">Հավանում եմ</string>
     <string name="detail_dislikes_img_view_description">Չեմ հավանում</string>
     <string name="clear">Մաքրել</string>

@@ -53,7 +53,7 @@
     <string name="show_play_with_kodi_summary">Prikaži opciju za reproduciranje videa putem Kodija</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Zadani audio format</string>
-    <string name="preferred_video_format_title">Preferirani video format</string>
+    <string name="default_video_format_title">Preferirani video format</string>
     <string name="webm_description">WebM - slobodni format</string>
     <string name="m4a_description">m4a - bolja kvaliteta</string>
     <string name="theme_title">Tema</string>
@@ -140,7 +140,7 @@
     <string name="user_report">Korisničke prijave</string>
 
     <string name="err_dir_create">Nije moguće napraviti direktorij za preuzimanje \'%1$s\'</string>
-    <string name="info_dir_created">Napravljen direktorij za preuzimanje \'1$s\'</string>
+    <string name="info_dir_created">Napravljen direktorij za preuzimanje \'%1$s\'</string>
 
     <string name="video">Video</string>
     <string name="audio">Audio</string>
@@ -148,11 +148,8 @@
     <string name="storage_permission_denied">Dozvola za pisanje po memoriji je odbijena</string>
     <string name="use_old_player_title">Koristi stari player</string>
     <string name="use_old_player_summary">Stari ugrađeni Mediaframework player.</string>
-    <string name="videos">videi</string>
-    <string name="subscriber">pretplatnik</string>
-    <string name="subscriber_plural">pretplatnici</string>
-    <string name="subscribe">Pretplati se</string>
-    <string name="views">pregledi</string>
+
+
     <string name="short_thousand">tis</string>
     <string name="short_million">mil</string>
     <string name="short_billion">mlrd</string>

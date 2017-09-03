@@ -22,15 +22,15 @@ import android.widget.TextView;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.stream_info.AudioStream;
-import org.schabi.newpipe.extractor.stream_info.StreamInfo;
-import org.schabi.newpipe.extractor.stream_info.VideoStream;
+import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.detail.SpinnerToolbarAdapter;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.FilenameUtils;
+import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
-import org.schabi.newpipe.util.Utils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -107,19 +107,19 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        nameEditText = ((EditText) view.findViewById(R.id.file_name));
-        nameEditText.setText(FilenameUtils.createFilename(getContext(), currentInfo.title));
-        selectedAudioIndex = Utils.getPreferredAudioFormat(getContext(), currentInfo.audio_streams);
+        nameEditText = view.findViewById(R.id.file_name);
+        nameEditText.setText(FilenameUtils.createFilename(getContext(), currentInfo.name));
+        selectedAudioIndex = ListHelper.getDefaultAudioFormat(getContext(), currentInfo.audio_streams);
 
-        streamsSpinner = (Spinner) view.findViewById(R.id.quality_spinner);
+        streamsSpinner = view.findViewById(R.id.quality_spinner);
         streamsSpinner.setOnItemSelectedListener(this);
 
-        threadsCountTextView = (TextView) view.findViewById(R.id.threads_count);
-        threadsSeekBar = (SeekBar) view.findViewById(R.id.threads);
-        radioVideoAudioGroup = (RadioGroup) view.findViewById(R.id.video_audio_group);
+        threadsCountTextView = view.findViewById(R.id.threads_count);
+        threadsSeekBar = view.findViewById(R.id.threads);
+        radioVideoAudioGroup = view.findViewById(R.id.video_audio_group);
         radioVideoAudioGroup.setOnCheckedChangeListener(this);
 
-        initToolbar((Toolbar) view.findViewById(R.id.toolbar));
+        initToolbar(view.<Toolbar>findViewById(R.id.toolbar));
         checkDownloadOptions(view);
         setupVideoSpinner(sortedStreamVideosList, streamsSpinner);
 
@@ -135,12 +135,10 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
             @Override
             public void onStartTrackingTouch(SeekBar p1) {
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar p1) {
-
             }
         });
     }
@@ -185,7 +183,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         String[] items = new String[audioStreams.size()];
         for (int i = 0; i < audioStreams.size(); i++) {
             AudioStream audioStream = audioStreams.get(i);
-            items[i] = MediaFormat.getNameById(audioStream.format) + " " + audioStream.avgBitrate + "kbps";
+            items[i] = MediaFormat.getNameById(audioStream.format) + " " + audioStream.average_bitrate + "kbps";
         }
 
         ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, items);
@@ -241,8 +239,8 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     //////////////////////////////////////////////////////////////////////////*/
 
     protected void checkDownloadOptions(View view) {
-        RadioButton audioButton = (RadioButton) view.findViewById(R.id.audio_button);
-        RadioButton videoButton = (RadioButton) view.findViewById(R.id.video_button);
+        RadioButton audioButton = view.findViewById(R.id.audio_button);
+        RadioButton videoButton = view.findViewById(R.id.video_button);
 
         if (currentInfo.audio_streams == null || currentInfo.audio_streams.size() == 0) {
             audioButton.setVisibility(View.GONE);
@@ -258,7 +256,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         String url, location;
 
         String fileName = nameEditText.getText().toString().trim();
-        if (fileName.isEmpty()) fileName = FilenameUtils.createFilename(getContext(), currentInfo.title);
+        if (fileName.isEmpty()) fileName = FilenameUtils.createFilename(getContext(), currentInfo.name);
 
         boolean isAudio = radioVideoAudioGroup.getCheckedRadioButtonId() == R.id.audio_button;
         url = isAudio ? currentInfo.audio_streams.get(selectedAudioIndex).url : sortedStreamVideosList.get(selectedVideoIndex).url;

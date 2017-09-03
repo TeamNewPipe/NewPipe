@@ -1,22 +1,23 @@
 package org.schabi.newpipe.fragments.detail;
 
-import org.schabi.newpipe.extractor.stream_info.StreamInfo;
-
 import java.io.Serializable;
 
-
-@SuppressWarnings("WeakerAccess")
-public class StackItem implements Serializable {
+class StackItem implements Serializable {
+    private int serviceId;
     private String title, url;
-    private StreamInfo info;
 
-    public StackItem(String url, String title) {
-        this.title = title;
+    StackItem(int serviceId, String url, String title) {
+        this.serviceId = serviceId;
         this.url = url;
+        this.title = title;
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getServiceId() {
+        return serviceId;
     }
 
     public String getTitle() {
@@ -27,16 +28,8 @@ public class StackItem implements Serializable {
         return url;
     }
 
-    public void setInfo(StreamInfo info) {
-        this.info = info;
-    }
-
-    public StreamInfo getInfo() {
-        return info;
-    }
-
     @Override
     public String toString() {
-        return getUrl() + " > " + getTitle();
+        return getServiceId() + ":" + getUrl() + " > " + getTitle();
     }
 }

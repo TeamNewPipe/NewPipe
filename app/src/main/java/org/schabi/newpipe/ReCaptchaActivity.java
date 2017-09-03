@@ -16,7 +16,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-/**
+/*
  * Created by beneth <bmauduit@beneth.fr> on 06.12.16.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
@@ -49,7 +49,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
         // Set return to Cancel by default
         setResult(RESULT_CANCELED);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
@@ -59,7 +59,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
             actionBar.setDisplayShowTitleEnabled(true);
         }
 
-        WebView myWebView = (WebView) findViewById(R.id.reCaptchaWebView);
+        WebView myWebView = findViewById(R.id.reCaptchaWebView);
 
         // Enable Javascript
         WebSettings webSettings = myWebView.getSettings();

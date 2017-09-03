@@ -64,7 +64,7 @@
     <string name="default_popup_resolution_title">Laster-leihoaren lehenetsitako bereizmena</string>
     <string name="show_higher_resolutions_title">Erakutsi bereizmen altuagoak</string>
     <string name="show_higher_resolutions_summary">Gailu batzuk besterik ez dute onartzen 2K/4K bideoak erreproduzitzea</string>
-    <string name="preferred_video_format_title">Hobetsitako bideo-formatua</string>
+    <string name="default_video_format_title">Hobetsitako bideo-formatua</string>
     <string name="theme_title">Gaia</string>
     <string name="black_theme_title">Beltza</string>
     <string name="popup_remember_size_pos_title">Gogoratu laster-leihoaren tamaina eta posizioa</string>
@@ -131,11 +131,8 @@
     <string name="storage_permission_denied">Biltegia atzitzeko baimena ukatu da</string>
     <string name="use_old_player_title">Erabili erreproduzigailu zaharra</string>
     <string name="use_old_player_summary">Barne Media Framework erreproduzigailu zaharra.</string>
-    <string name="videos">bideoak</string>
-    <string name="subscriber">harpideduna</string>
-    <string name="subscriber_plural">hapidedunak</string>
-    <string name="subscribe">Harpidetu</string>
-    <string name="views">ikustaldiak</string>
+
+
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>

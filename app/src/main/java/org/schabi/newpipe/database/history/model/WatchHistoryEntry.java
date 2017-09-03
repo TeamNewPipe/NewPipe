@@ -4,7 +4,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 
-import org.schabi.newpipe.extractor.stream_info.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 
 import java.util.Date;
 
@@ -35,9 +35,9 @@ public class WatchHistoryEntry extends HistoryEntry {
     private String uploader;
 
     @ColumnInfo(name = DURATION)
-    private int duration;
+    private long duration;
 
-    public WatchHistoryEntry(Date creationDate, int serviceId, String title, String url, String streamId, String thumbnailURL, String uploader, int duration) {
+    public WatchHistoryEntry(Date creationDate, int serviceId, String title, String url, String streamId, String thumbnailURL, String uploader, long duration) {
         super(creationDate, serviceId);
         this.title = title;
         this.url = url;
@@ -48,8 +48,8 @@ public class WatchHistoryEntry extends HistoryEntry {
     }
 
     public WatchHistoryEntry(StreamInfo streamInfo) {
-        this(new Date(), streamInfo.service_id, streamInfo.title, streamInfo.webpage_url,
-                streamInfo.id, streamInfo.thumbnail_url, streamInfo.uploader, streamInfo.duration);
+        this(new Date(), streamInfo.service_id, streamInfo.name, streamInfo.url,
+                streamInfo.id, streamInfo.thumbnail_url, streamInfo.uploader_name, streamInfo.duration);
     }
 
     public String getUrl() {
@@ -92,7 +92,7 @@ public class WatchHistoryEntry extends HistoryEntry {
         this.uploader = uploader;
     }
 
-    public int getDuration() {
+    public long getDuration() {
         return duration;
     }
 

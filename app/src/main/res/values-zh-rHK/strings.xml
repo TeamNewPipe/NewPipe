@@ -125,7 +125,7 @@
     <string name="default_popup_resolution_title">預設畫中畫解像度</string>
     <string name="show_higher_resolutions_title">顯示更高解像度</string>
     <string name="show_higher_resolutions_summary">只有某些裝置能夠播放 2K 或 4K 影片</string>
-    <string name="preferred_video_format_title">預設影片檔案格式</string>
+    <string name="default_video_format_title">預設影片檔案格式</string>
     <string name="black_theme_title">純黑</string>
 
     <string name="popup_playing_toast">以畫中畫模式播放</string>
@@ -137,11 +137,8 @@
     <string name="app_ui_crash">應用程式或介面出現問題</string>
     <string name="info_labels">事件：\\n請求：\\n內容語言：\\n服務：\\nGMT 時間：\\nPackage：\\n版本：\\n作業系統版本：\\n全球 IP 域：</string>
     <string name="use_old_player_title">使用舊播放器</string>
-    <string name="videos">影片</string>
-    <string name="subscriber">個訂閱者</string>
-    <string name="subscriber_plural">個訂閱者</string>
-    <string name="subscribe">訂閱</string>
-    <string name="views">個觀看次數</string>
+
+
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
 

@@ -5,8 +5,8 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 
-import com.facebook.stetho.Stetho;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
@@ -20,12 +20,20 @@ import org.schabi.newpipe.report.AcraReportSenderFactory;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.SettingsActivity;
-import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.StateSaver;
 
-import info.guardianproject.netcipher.NetCipher;
-import info.guardianproject.netcipher.proxy.OrbotHelper;
+import java.io.IOException;
+import java.io.InterruptedIOException;
+import java.net.SocketException;
 
-/**
+import io.reactivex.annotations.NonNull;
+import io.reactivex.exceptions.CompositeException;
+import io.reactivex.exceptions.UndeliverableException;
+import io.reactivex.functions.Consumer;
+import io.reactivex.plugins.RxJavaPlugins;
+
+/*
  * Copyright (C) Hans-Christoph Steiner 2016 <hans@eds.org>
  * App.java is part of NewPipe.
  *
@@ -44,78 +52,83 @@ import info.guardianproject.netcipher.proxy.OrbotHelper;
  */
 
 public class App extends Application {
-    private static final String TAG = App.class.toString();
+    protected static final String TAG = App.class.toString();
 
-    private static boolean useTor;
+    @SuppressWarnings("unchecked")
+    private static final Class<? extends ReportSenderFactory>[] reportSenderFactoryClasses = new Class[]{AcraReportSenderFactory.class};
 
-    final Class<? extends ReportSenderFactory>[] reportSenderFactoryClasses
-            = new Class[]{AcraReportSenderFactory.class};
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+
+        initACRA();
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        // init crashreport
-        try {
-            final ACRAConfiguration acraConfig = new ConfigurationBuilder(this)
-                    .setReportSenderFactoryClasses(reportSenderFactoryClasses)
-                    .build();
-            ACRA.init(this, acraConfig);
-        } catch(ACRAConfigurationException ace) {
-            ace.printStackTrace();
-            ErrorActivity.reportError(this, ace, null, null,
-                    ErrorActivity.ErrorInfo.make(UserAction.SEARCHED,"none",
-                            "Could not initialize ACRA crash report", R.string.app_ui_crash));
-        }
+        // Initialize settings first because others inits can use its values
+        SettingsActivity.initSettings(this);
 
-        NewPipeDatabase.getInstance( getApplicationContext() );
-
-        //init NewPipe
         NewPipe.init(Downloader.getInstance());
+        NewPipeDatabase.init(this);
+        StateSaver.init(this);
+        initNotificationChannel();
 
         // Initialize image loader
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
         ImageLoader.getInstance().init(config);
 
-        /*
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if(prefs.getBoolean(getString(R.string.use_tor_key), false)) {
-            OrbotHelper.requestStartTor(this);
-            configureTor(true);
-        } else {
-            configureTor(false);
-        }*/
-        configureTor(false);
-
-        // DO NOT REMOVE THIS FUNCTION!!!
-        // Otherwise downloadPathPreference has invalid value.
-        SettingsActivity.initSettings(this);
-
-        ThemeHelper.setTheme(getApplicationContext());
-
-        initNotificationChannel();
+        configureRxJavaErrorHandler();
     }
 
-    /**
-     * Set the proxy settings based on whether Tor should be enabled or not.
-     */
-    public static void configureTor(boolean enabled) {
-        useTor = enabled;
-        if (useTor) {
-            NetCipher.useTor();
-        } else {
-            NetCipher.setProxy(null);
+    private void configureRxJavaErrorHandler() {
+        // https://github.com/ReactiveX/RxJava/wiki/What's-different-in-2.0#error-handling
+        RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
+            @Override
+            public void accept(@NonNull Throwable throwable) throws Exception {
+                Log.e(TAG, "RxJavaPlugins.ErrorHandler called with -> : throwable = [" + throwable.getClass().getName() + "]");
+
+                if (throwable instanceof UndeliverableException) {
+                    // As UndeliverableException is a wrapper, get the cause of it to get the "real" exception
+                    throwable = throwable.getCause();
+                }
+
+                if (throwable instanceof CompositeException) {
+                    for (Throwable element : ((CompositeException) throwable).getExceptions()) {
+                        if (checkThrowable(element)) return;
+                    }
+                }
+
+                if (checkThrowable(throwable)) return;
+
+                // Throw uncaught exception that will trigger the report system
+                Thread.currentThread().getUncaughtExceptionHandler()
+                        .uncaughtException(Thread.currentThread(), throwable);
+            }
+
+            private boolean checkThrowable(@NonNull Throwable throwable) {
+                // Don't crash the application over a simple network problem
+                return ExtractorHelper.hasAssignableCauseThrowable(throwable,
+                        IOException.class, SocketException.class, InterruptedException.class, InterruptedIOException.class);
+            }
+        });
+    }
+
+
+    private void initACRA() {
+        try {
+            final ACRAConfiguration acraConfig = new ConfigurationBuilder(this)
+                    .setReportSenderFactoryClasses(reportSenderFactoryClasses)
+                    .setBuildConfigClass(BuildConfig.class)
+                    .build();
+            ACRA.init(this, acraConfig);
+        } catch (ACRAConfigurationException ace) {
+            ace.printStackTrace();
+            ErrorActivity.reportError(this, ace, null, null, ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                    "Could not initialize ACRA crash report", R.string.app_ui_crash));
         }
-    }
-
-    public static void checkStartTor(Context context) {
-        if (useTor) {
-            OrbotHelper.requestStartTor(context);
-        }
-    }
-
-    public static boolean isUsingTor() {
-        return useTor;
     }
 
     public void initNotificationChannel() {

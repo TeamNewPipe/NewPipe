@@ -11,9 +11,7 @@ import org.schabi.newpipe.database.history.model.HistoryEntry;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -40,6 +38,10 @@ public abstract class HistoryEntryAdapter<E extends HistoryEntry, VH extends Rec
         mEntries.clear();
         mEntries.addAll(historyEntries);
         notifyDataSetChanged();
+    }
+
+    public Collection<E> getItems() {
+        return mEntries;
     }
 
     public void clear() {

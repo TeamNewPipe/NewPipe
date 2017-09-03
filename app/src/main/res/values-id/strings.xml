@@ -132,17 +132,14 @@
     <string name="all">Semua</string>
     <string name="channel">Saluran</string>
 
-    <string name="videos">video</string>
-    <string name="views">ditonton</string>
     <string name="short_thousand">R</string>
     <string name="short_million">J</string>
     <string name="short_billion">T</string>
 
-    <string name="subscriber">pelanggan</string>
+
     <string name="yes">Ya</string>
     <string name="later">Nanti</string>
 
-    <string name="subscribe">Langganan</string>
 
     <string name="open_in_popup_mode">Buka di mode popup</string>
     <string name="msg_popup_permission">Izin ini dibutuhkan untuk
@@ -155,8 +152,8 @@ membuka di mode popup</string>
     <string name="use_old_player_summary">Versi lama pemutar Mediaframework.</string>
     <string name="disabled">Dinonaktifkan</string>
 
-    <string name="preferred_video_format_title">Pilihan format video</string>
-    <string name="subscriber_plural">subscriber</string>
+    <string name="default_video_format_title">Pilihan format video</string>
+
     <string name="default_popup_resolution_title">Resolusi popup bawaan</string>
     <string name="show_higher_resolutions_title">Tampilkan resolusi yang lebih tinggi</string>
     <string name="show_higher_resolutions_summary">Hanya perangkat tertentu yang mendukung pemutaran video 2K/4K</string>

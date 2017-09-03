@@ -134,10 +134,6 @@
     <string name="yes">Sí</string>
     <string name="later">Después</string>
 
-    <string name="videos">videos</string>
-    <string name="subscriber">suscriptor</string>
-    <string name="subscribe">Suscribirse</string>
-    <string name="views">visualizaciones</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>
@@ -155,10 +151,9 @@ abrir en modo popup</string>
     <string name="popup_playing_toast">Reproduciendo en modo popup</string>
     <string name="use_old_player_title">Usar reproductor antiguo</string>
     <string name="use_old_player_summary">Versión antigua en reproductor Media Framework</string>
-    <string name="preferred_video_format_title">Formato de vídeo por defecto</string>
+    <string name="default_video_format_title">Formato de vídeo por defecto</string>
     <string name="disabled">Desactivado</string>
 
-    <string name="subscriber_plural">Suscriptores</string>
     <string name="show_higher_resolutions_title">Mostrar resoluciones más altas</string>
     <string name="show_higher_resolutions_summary">Solo algunos dispositivos soportan reproducción de vídeos en 2K/4K</string>
     <string name="default_popup_resolution_title">Resolución del popup por defecto</string>
@@ -193,7 +188,6 @@ abrir en modo popup</string>
     <string name="tab_about">Acerca de</string>
     <string name="tab_contributors">Colaboradores</string>
     <string name="tab_licenses">Licencias</string>
-    <string name="github_url">https://github.com/TeamNewPipe/NewPipe</string>
     <string name="app_description">Una gratuita y ligera interfaz de YouTube para Android.</string>
     <string name="view_on_github">Ver en GitHub</string>
     <string name="app_license_title">Licencia de NewPipe</string>

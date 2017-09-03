@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="general_preferences"
+    android:title="@string/settings_category_history_title">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/enable_watch_history_key"
+        android:summary="@string/enable_watch_history_summary"
+        android:title="@string/enable_watch_history_title"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/enable_search_history_key"
+        android:summary="@string/enable_search_history_summary"
+        android:title="@string/enable_search_history_title"/>
+
+</PreferenceScreen>

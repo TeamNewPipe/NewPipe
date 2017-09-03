@@ -87,12 +87,12 @@ public class LicenseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_licenses, container, false);
-        ViewGroup softwareComponentsView = (ViewGroup) rootView.findViewById(R.id.software_components);
+        ViewGroup softwareComponentsView = rootView.findViewById(R.id.software_components);
 
         for (final SoftwareComponent component : softwareComponents) {
             View componentView = inflater.inflate(R.layout.item_software_component, container, false);
-            TextView softwareName = (TextView) componentView.findViewById(R.id.name);
-            TextView copyright = (TextView) componentView.findViewById(R.id.copyright);
+            TextView softwareName = componentView.findViewById(R.id.name);
+            TextView copyright = componentView.findViewById(R.id.copyright);
             softwareName.setText(component.getName());
             copyright.setText(getContext().getString(R.string.copyright,
                     component.getYears(),

@@ -133,7 +133,7 @@
     <string name="default_popup_resolution_title">Forvalgt oppsprettsoppløsning</string>
     <string name="show_higher_resolutions_title">Vis høyere oppløsninger</string>
     <string name="show_higher_resolutions_summary">Det er bare noen enheter som støtter avspilling av 2k-/4k-videoer</string>
-    <string name="preferred_video_format_title">Forvalgt videoformat</string>
+    <string name="default_video_format_title">Forvalgt videoformat</string>
     <string name="black_theme_title">Svart</string>
 
     <string name="popup_playing_toast">Spiller av i oppsprettsmodus</string>
@@ -144,11 +144,8 @@
     <string name="disabled">Avskrudd</string>
 
     <string name="use_old_player_title">Bruk gammel avspiller</string>
-    <string name="videos">videoer</string>
-    <string name="subscriber">abonnent</string>
-    <string name="subscriber_plural">abonnenter</string>
-    <string name="subscribe">Abonner</string>
-    <string name="views">visninger</string>
+
+
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">Mrd.</string>

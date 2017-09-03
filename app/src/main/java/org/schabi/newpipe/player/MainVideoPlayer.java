@@ -1,3 +1,22 @@
+/*
+ * Copyright 2017 Mauricio Colli <mauriciocolli@outlook.com>
+ * MainVideoPlayer.java is part of NewPipe
+ *
+ * License: GPL-3.0+
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package org.schabi.newpipe.player;
 
 import android.app.Activity;
@@ -169,14 +188,14 @@ public class MainVideoPlayer extends Activity {
         @Override
         public void initViews(View rootView) {
             super.initViews(rootView);
-            this.titleTextView = (TextView) rootView.findViewById(R.id.titleTextView);
-            this.channelTextView = (TextView) rootView.findViewById(R.id.channelTextView);
-            this.volumeTextView = (TextView) rootView.findViewById(R.id.volumeTextView);
-            this.brightnessTextView = (TextView) rootView.findViewById(R.id.brightnessTextView);
-            this.repeatButton = (ImageButton) rootView.findViewById(R.id.repeatButton);
+            this.titleTextView = rootView.findViewById(R.id.titleTextView);
+            this.channelTextView = rootView.findViewById(R.id.channelTextView);
+            this.volumeTextView = rootView.findViewById(R.id.volumeTextView);
+            this.brightnessTextView = rootView.findViewById(R.id.brightnessTextView);
+            this.repeatButton = rootView.findViewById(R.id.repeatButton);
 
-            this.screenRotationButton = (ImageButton) rootView.findViewById(R.id.screenRotationButton);
-            this.playPauseButton = (ImageButton) rootView.findViewById(R.id.playPauseButton);
+            this.screenRotationButton = rootView.findViewById(R.id.screenRotationButton);
+            this.playPauseButton = rootView.findViewById(R.id.playPauseButton);
 
             // Due to a bug on lower API, lets set the alpha instead of using a drawable
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) repeatButton.setImageAlpha(77);
@@ -205,7 +224,7 @@ public class MainVideoPlayer extends Activity {
         public void handleIntent(Intent intent) {
             super.handleIntent(intent);
             titleTextView.setText(getVideoTitle());
-            channelTextView.setText(getChannelName());
+            channelTextView.setText(getUploaderName());
         }
 
         @Override

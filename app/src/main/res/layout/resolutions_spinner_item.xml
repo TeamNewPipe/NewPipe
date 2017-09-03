@@ -28,7 +28,7 @@
         android:gravity="left"
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="16sp"
+        android:textSize="14sp"
         tools:ignore="RtlHardcoded"
-        tools:text="MPEG-4 1080p60 very long res"/>
+        tools:text="MPEG-4 1080p60"/>
 </RelativeLayout>

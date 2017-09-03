@@ -45,8 +45,8 @@
     <string name="download_path_audio_summary">Path to store downloaded audio in</string>
     <string name="download_path_audio_dialog_title">Enter download path for audio files</string>
 
-    <string name="autoplay_by_calling_app_title">Autoplay when called from another app</string>
-    <string name="autoplay_by_calling_app_summary">Automatically play a video when NewPipe is called from another app</string>
+    <string name="autoplay_by_calling_app_title">Autoplay</string>
+    <string name="autoplay_by_calling_app_summary">Automatically plays a video when NewPipe is called from another app</string>
     <string name="default_resolution_title">Default resolution</string>
     <string name="default_popup_resolution_title">Default popup resolution</string>
     <string name="show_higher_resolutions_title">Show higher resolutions</string>
@@ -58,7 +58,7 @@
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Default audio format</string>
-    <string name="preferred_video_format_title">Default video format</string>
+    <string name="default_video_format_title">Default video format</string>
     <string name="webm_description">WebM — free format</string>
     <string name="m4a_description">M4A — better quality</string>
     <string name="theme_title">Theme</string>
@@ -77,21 +77,15 @@
     <string name="enable_watch_history_summary">Keep track of watched videos</string>
     <string name="resume_on_audio_focus_gain_title">Resume on focus gain</string>
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phone calls)</string>
-
-
     <string name="download_dialog_title">Download</string>
-
-    <string-array name="theme_description_list">
-        <item>@string/light_theme_title</item>
-        <item>@string/dark_theme_title</item>
-        <item>@string/black_theme_title</item>
-    </string-array>
-
     <string name="next_video_title">Next video</string>
     <string name="show_next_and_similar_title">Show next and similar videos</string>
     <string name="url_not_supported_toast">URL not supported</string>
     <string name="search_language_title">Default content language</string>
+    <string name="settings_category_player_title">Player</string>
+    <string name="settings_category_player_behavior_title">Behavior</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
+    <string name="settings_category_history_title">History</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="settings_category_appearance_title">Appearance</string>
     <string name="settings_category_other_title">Other</string>
@@ -108,6 +102,7 @@
     <string name="error_report_title">Error report</string>
     <string name="all">All</string>
     <string name="channel">Channel</string>
+    <string name="playlist">Playlist</string>
     <string name="yes">Yes</string>
     <string name="later">Later</string>
     <string name="disabled">Disabled</string>
@@ -116,6 +111,7 @@
     <string name="clear">Clear</string>
     <string name="popup_resizing_indicator_title">Resizing</string>
     <string name="best_resolution">Best resolution</string>
+    <string name="undo">Undo</string>
 
     <string name="notification_channel_id" translatable="false">newpipe</string>
     <string name="notification_channel_name">NewPipe Notification</string>
@@ -158,6 +154,9 @@
     <string name="use_tor_summary">(Experimental) Force download traffic through Tor for increased privacy (streaming videos not yet supported).</string>
     <string name="report_error">Report an Error</string>
     <string name="user_report">User report</string>
+    <string name="search_no_results">No results</string>
+    <string name="empty_view_no_videos">@string/no_videos</string>
+    <string name="empty_subscription_feed_subtitle">Nothing Here But Crickets</string>
 
     <string name="err_dir_create">Cannot create download directory \'%1$s\'</string>
     <string name="info_dir_created">Created download directory \'%1$s\'</string>
@@ -168,14 +167,34 @@
     <string name="storage_permission_denied">Storage access permission denied</string>
     <string name="use_old_player_title">Use old player</string>
     <string name="use_old_player_summary">Old built-in Mediaframework player</string>
-    <string name="videos">videos</string>
-    <string name="subscriber">subscriber</string>
-    <string name="subscriber_plural">subscribers</string>
-    <string name="subscribe">Subscribe</string>
-    <string name="views">views</string>
+
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
+
+    <string name="no_subscribers">No subscribers</string>
+    <plurals name="subscribers">
+        <!--Zero don't get selected (in some languages) as it is not a "special case" for android-->
+        <item quantity="zero">@string/no_subscribers</item>
+        <item quantity="one">%s subscriber</item>
+        <item quantity="other">%s subscribers</item>
+    </plurals>
+
+    <string name="no_views">No views</string>
+    <plurals name="views">
+        <!--Zero don't get selected (in some languages) as it is not a "special case" for android-->
+        <item quantity="zero">@string/no_views</item>
+        <item quantity="one">%s view</item>
+        <item quantity="other">%s views</item>
+    </plurals>
+
+    <string name="no_videos">No videos</string>
+    <plurals name="videos">
+        <!--Zero don't get selected (in some languages) as it is not a "special case" for android-->
+        <item quantity="zero">@string/empty_view_no_videos</item>
+        <item quantity="one">%s video</item>
+        <item quantity="other">%s videos</item>
+    </plurals>
 
     <!-- Missions -->
     <string name="start">Start</string>
@@ -204,7 +223,7 @@
 
     <!-- Checksum types -->
     <string name="md5" translatable="false">MD5</string>
-    <string name="sha1" translatable="false">SHA1</string>
+    <string name="sha1" translatable="false">SHA-1</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA Challenge</string>
     <string name="recaptcha_request_toast">reCAPTCHA Challenge requested</string>
@@ -212,7 +231,6 @@
     <!-- End of GigaGet's Strings -->
 
     <!-- Downloads -->
-    <string name="settings_category_downloads" translatable="false">settings_category_downloads</string>
     <string name="settings_category_downloads_title">Download</string>
     <string name="settings_file_charset_title">Allowed characters in filenames</string>
     <string name="settings_file_replacement_character_summary">Invalid characters are replaced with this value</string>
@@ -251,5 +269,5 @@
     <string name="action_history">History</string>
     <string name="history_empty">The history is empty</string>
     <string name="history_cleared">History cleared</string>
-
+    <string name="item_deleted">Item deleted</string>
 </resources>

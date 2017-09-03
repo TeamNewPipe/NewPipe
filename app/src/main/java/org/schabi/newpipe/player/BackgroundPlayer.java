@@ -1,6 +1,24 @@
+/*
+ * Copyright 2017 Mauricio Colli <mauriciocolli@outlook.com>
+ * BackgroundPlayer.java is part of NewPipe
+ *
+ * License: GPL-3.0+
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package org.schabi.newpipe.player;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -22,7 +40,7 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.stream_info.AudioStream;
+import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -65,7 +83,6 @@ public class BackgroundPlayer extends Service {
     private RemoteViews notRemoteView;
     private RemoteViews bigNotRemoteView;
     private final String setAlphaMethodName = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) ? "setImageAlpha" : "setAlpha";
-
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service's LifeCycle
@@ -159,7 +176,7 @@ public class BackgroundPlayer extends Service {
         //if (videoThumbnail != null) remoteViews.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
         ///else remoteViews.setImageViewResource(R.id.notificationCover, R.drawable.dummy_thumbnail);
         remoteViews.setTextViewText(R.id.notificationSongName, basePlayerImpl.getVideoTitle());
-        remoteViews.setTextViewText(R.id.notificationArtist, basePlayerImpl.getChannelName());
+        remoteViews.setTextViewText(R.id.notificationArtist, basePlayerImpl.getUploaderName());
 
         remoteViews.setOnClickPendingIntent(R.id.notificationPlayPause,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));

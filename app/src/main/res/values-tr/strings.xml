@@ -125,7 +125,7 @@
     <string name="default_popup_resolution_title">Öntanımlı açılır pencere çözünürlüğü</string>
     <string name="show_higher_resolutions_title">Daha yüksek çözünürlükleri göster</string>
     <string name="show_higher_resolutions_summary">Yalnızca bazı aygıtlar 2K/4K video oynatmayı destekler</string>
-    <string name="preferred_video_format_title">Yeğlenen video biçimi</string>
+    <string name="default_video_format_title">Yeğlenen video biçimi</string>
     <string name="black_theme_title">Siyah</string>
 
     <string name="popup_playing_toast">Açılır pencere kipinde oynatılıyor</string>
@@ -142,11 +142,8 @@
     <string name="list_thumbnail_view_description">Video ön izleme küçük resmi</string>
     <string name="use_old_player_title">Eski oynatıcıyı kullan</string>
     <string name="use_old_player_summary">Eski içe gömülü Mediaframework oynatıcısı.</string>
-    <string name="videos">videolar</string>
-    <string name="subscriber">abone</string>
-    <string name="subscriber_plural">abone</string>
-    <string name="subscribe">Abone ol</string>
-    <string name="views">görüntüleme</string>
+
+
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
@@ -189,7 +186,6 @@
     <string name="tab_about">Hakkında</string>
     <string name="tab_contributors">Katkıda bulunanlar</string>
     <string name="tab_licenses">Lisanslar</string>
-    <string name="github_url">https://github.com/TeamNewPipe/NewPipe</string>
     <string name="app_description">Android için hafif ücretsiz bir Youtube arayüzü.</string>
     <string name="view_on_github">Github\'da görüntüle</string>
     <string name="app_license_title">NewPipe\'ın Lisansı</string>

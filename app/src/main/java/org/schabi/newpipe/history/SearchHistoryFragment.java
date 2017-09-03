@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.history.dao.HistoryDAO;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -37,8 +36,8 @@ public class SearchHistoryFragment extends HistoryFragment<SearchHistoryEntry> {
 
     @NonNull
     @Override
-    protected HistoryDAO<SearchHistoryEntry> createHistoryDAO(Context context) {
-        return NewPipeDatabase.getInstance(context).searchHistoryDAO();
+    protected HistoryDAO<SearchHistoryEntry> createHistoryDAO() {
+        return NewPipeDatabase.getInstance().searchHistoryDAO();
     }
 
     @Override

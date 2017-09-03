@@ -131,7 +131,7 @@
     <string name="default_popup_resolution_title">Domyślna rozdzielczość dla trybu okienkowego</string>
     <string name="show_higher_resolutions_title">Pokaż wyższe rozdzielczości</string>
     <string name="show_higher_resolutions_summary">Tylko niektóre urządzenia wspierają odtwarzanie video 2K/4K</string>
-    <string name="preferred_video_format_title">Preferowany format video</string>
+    <string name="default_video_format_title">Preferowany format video</string>
     <string name="black_theme_title">Czarny</string>
     <string name="popup_remember_size_pos_title">Zapamiętaj rozmiar i pozycję trybu okienkowego</string>
     <string name="popup_remember_size_pos_summary">Zapamiętaj ostatni rozmiar i pozycję ustawioną dla trybu okienkowego</string>
@@ -154,11 +154,8 @@
 
     <string name="use_old_player_title">Użyj starego odtwarzacza</string>
     <string name="use_old_player_summary">Stary odtwarzacz wbudowany w Mediaframework.</string>
-    <string name="videos">video</string>
-    <string name="subscriber">subskrybent</string>
-    <string name="subscriber_plural">subskrybenci</string>
-    <string name="subscribe">Subskrybuj</string>
-    <string name="views">wyświetlenia</string>
+
+
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>

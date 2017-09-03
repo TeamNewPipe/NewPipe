@@ -40,7 +40,7 @@
     <string name="show_play_with_kodi_summary">Visa ett alternativ för att spela upp en video med mediacentret Kodi</string>
     <string name="play_audio">Ljud</string>
     <string name="default_audio_format_title">Standardformat för ljud</string>
-    <string name="preferred_video_format_title">Videoformat som föredras</string>
+    <string name="default_video_format_title">Videoformat som föredras</string>
     <string name="webm_description">WebM — fritt format</string>
     <string name="m4a_description">m4a — bättre kvalité</string>
     <string name="theme_title">Tema</string>

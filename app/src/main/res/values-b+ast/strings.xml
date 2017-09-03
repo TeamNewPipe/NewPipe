@@ -126,7 +126,7 @@
     <string name="open_in_popup_mode">Abrir en ventanu emerxente</string>
     <string name="popup_mode_share_menu_title">Mou de ventanu emerxente de NewPipe</string>
 
-    <string name="preferred_video_format_title">Formatu preferíu de videu</string>
+    <string name="default_video_format_title">Formatu preferíu de videu</string>
     <string name="black_theme_title">Prietu</string>
 
     <string name="popup_playing_toast">Reproduciendo en ventanu emerxente</string>
@@ -137,11 +137,8 @@
     <string name="disabled">Deshabilitóse</string>
 
     <string name="use_old_player_title">Usar reproductor vieyu</string>
-    <string name="videos">vídeos</string>
-    <string name="subscriber">soscriptor</string>
-    <string name="subscriber_plural">soscriptores</string>
-    <string name="subscribe">Soscribise</string>
-    <string name="views">visiones</string>
+
+
     <string name="short_thousand">M</string>
     <string name="short_million">Mill</string>
     <string name="short_billion">MMill</string>

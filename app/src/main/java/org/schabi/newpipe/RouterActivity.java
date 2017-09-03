@@ -1,8 +1,8 @@
 package org.schabi.newpipe;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import org.schabi.newpipe.util.NavigationHelper;
@@ -32,7 +32,7 @@ import java.util.HashSet;
  * This Acitivty is designed to route share/open intents to the specified service, and
  * to the part of the service which can handle the url.
  */
-public class RouterActivity extends Activity {
+public class RouterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +40,6 @@ public class RouterActivity extends Activity {
 
         String videoUrl = getUrl(getIntent());
         handleUrl(videoUrl);
-
-        finish();
     }
 
     protected void handleUrl(String url) {
@@ -50,6 +48,8 @@ public class RouterActivity extends Activity {
         } catch (Exception e) {
             Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG).show();
         }
+
+        finish();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
