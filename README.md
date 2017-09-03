@@ -1,7 +1,7 @@
 WARNING: PUTTING NEWPIPE OR ANY FORK OF IT INTO GOOGLE PLAYSTORE VIOLATES THEIR TERMS OF CONDITIONS.
 
 # NewPipe
-NewPipe: A free lightweight Youtube frontend for Android.  
+NewPipe: A free lightweight YouTube frontend for Android.  
 
 [![NewPipe](app/src/main/res/mipmap-xhdpi/ic_launcher.png)](https://newpipe.schabi.org)
 [![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/packages/org.schabi.newpipe/)
@@ -70,7 +70,7 @@ NewPipe does not use any Google framework libraries, or the YouTube API. It only
 Although NewPipe only supports YouTube at the moment, it's designed to support many more streaming services. The plan is, that NewPipe will get such support by the version 2.0.
 
 ## Contribution
-Whether you have ideas, translation, design changes, code cleaning, or real heavy code changes, help is always welcome.
+Whether you have ideas, translations, design changes, code cleaning, or real heavy code changes, help is always welcome.
 The more is done the better it gets!
 
 If you'd like to get involved, check our [contribution notes](.github/CONTRIBUTING.md).
