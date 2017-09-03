@@ -9,7 +9,6 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.playlist.PlayQueue;
-import org.schabi.newpipe.playlist.events.PlayQueueEvent;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.events.PlayQueueMessage;
 
@@ -55,7 +54,7 @@ public class PlaybackManager {
         this.listener = listener;
         this.playQueue = playQueue;
 
-        playQueue.getEventBroadcast().subscribe(getReactor());
+        playQueue.getBroadcastReceiver().subscribe(getReactor());
     }
 
     @NonNull
@@ -65,7 +64,9 @@ public class PlaybackManager {
 
     private void reload() {
         listener.block();
-        load(0);
+        mediaSource = new DynamicConcatenatingMediaSource();
+        syncInfos.clear();
+        load();
     }
 
     public void changeSource(final MediaSource newSource) {
@@ -85,11 +86,6 @@ public class PlaybackManager {
             Log.e(TAG, "Refresh media failed, reloading.");
             reload();
         }
-    }
-
-    private void removeCurrent() {
-        mediaSource.removeMediaSource(0);
-        syncInfos.remove(0);
     }
 
     private Subscription loaderReactor;
@@ -152,11 +148,6 @@ public class PlaybackManager {
         if (mediaSource.getSize() > 0) listener.unblock();
     }
 
-    private void init() {
-        listener.block();
-        load();
-    }
-
     private void clear(int from) {
         while (mediaSource.getSize() > from) {
             mediaSource.removeMediaSource(from);
@@ -181,14 +172,12 @@ public class PlaybackManager {
                 }
 
                 switch (event.type()) {
+                    case SELECT:
                     case INIT:
-                        init();
+                        reload();
                         break;
                     case APPEND:
                         load();
-                        break;
-                    case SELECT:
-                        reload();
                         break;
                     case REMOVE:
                     case SWAP:

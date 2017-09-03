@@ -229,10 +229,12 @@ public class MainVideoPlayer extends Activity {
         }
 
         @Override
-        public void sync(final StreamInfo info) {
-            super.sync(info);
+        public void sync(final int windowIndex, final long windowPos, final StreamInfo info) {
+            super.sync(windowIndex, windowPos, info);
             titleTextView.setText(getVideoTitle());
             channelTextView.setText(getChannelName());
+
+            playPauseButton.setImageResource(R.drawable.ic_pause_white);
         }
 
         @Override

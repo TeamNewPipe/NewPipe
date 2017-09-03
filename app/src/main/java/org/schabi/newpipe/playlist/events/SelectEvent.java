@@ -2,7 +2,7 @@ package org.schabi.newpipe.playlist.events;
 
 
 public class SelectEvent implements PlayQueueMessage {
-    private int newIndex;
+    final private int newIndex;
 
     @Override
     public PlayQueueEvent type() {

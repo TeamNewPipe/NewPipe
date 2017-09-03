@@ -2,7 +2,7 @@ package org.schabi.newpipe.playlist.events;
 
 
 public class AppendEvent implements PlayQueueMessage {
-    private int amount;
+    final private int amount;
 
     @Override
     public PlayQueueEvent type() {

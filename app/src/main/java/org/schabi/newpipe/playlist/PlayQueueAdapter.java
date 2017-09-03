@@ -8,12 +8,13 @@ import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.info_list.StreamInfoItemHolder;
-import org.schabi.newpipe.playlist.events.PlayQueueEvent;
+import org.schabi.newpipe.playlist.events.PlayQueueMessage;
 
 import java.util.List;
 
+import io.reactivex.Observer;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 
 /**
  * Created by Christian Schabesberger on 01.08.16.
@@ -63,7 +64,7 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         this.playQueueItemBuilder = new PlayQueueItemBuilder();
         this.playQueue = playQueue;
 
-        playQueueReactor = getReactor();
+        startReactor();
     }
 
     public void setSelectedListener(final PlayQueueItemBuilder.OnSelectedListener listener) {
@@ -86,21 +87,36 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         playQueue.swap(source, target);
     }
 
-    private Disposable getReactor() {
-        final Consumer<PlayQueueEvent> onNext = new Consumer<PlayQueueEvent>() {
+    private void startReactor() {
+        final Observer<PlayQueueMessage> observer = new Observer<PlayQueueMessage>() {
             @Override
-            public void accept(PlayQueueEvent playQueueEvent) throws Exception {
+            public void onSubscribe(@NonNull Disposable d) {
+                if (playQueueReactor != null) playQueueReactor.dispose();
+                playQueueReactor = d;
+            }
+
+            @Override
+            public void onNext(@NonNull PlayQueueMessage playQueueMessage) {
                 notifyDataSetChanged();
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {}
+
+            @Override
+            public void onComplete() {
+                dispose();
             }
         };
 
-        return playQueue.getEventBroadcast()
+        playQueue.getBroadcastReceiver()
                 .toObservable()
-                .subscribe(onNext);
+                .subscribe(observer);
     }
 
     public void dispose() {
         if (playQueueReactor != null) playQueueReactor.dispose();
+        playQueueReactor = null;
     }
 
     public void setHeader(View header) {

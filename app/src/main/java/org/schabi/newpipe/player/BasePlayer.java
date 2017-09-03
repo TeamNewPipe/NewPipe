@@ -72,7 +72,6 @@ import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.playlist.PlayQueue;
-import org.schabi.newpipe.util.Utils;
 
 import java.io.File;
 import java.text.DecimalFormat;
@@ -88,8 +87,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class BasePlayer implements Player.EventListener,
-        AudioManager.OnAudioFocusChangeListener, PlaybackManager.PlaybackListener {
+        AudioManager.OnAudioFocusChangeListener, MediaSourceManager.PlaybackListener {
     // TODO: Check api version for deprecated audio manager methods
+
     public static final boolean DEBUG = false;
     public static final String TAG = "BasePlayer";
 
@@ -122,7 +122,7 @@ public abstract class BasePlayer implements Player.EventListener,
     // Playlist
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected PlaybackManager playbackManager;
+    protected MediaSourceManager playbackManager;
     protected PlayQueue playQueue;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -259,10 +259,9 @@ public abstract class BasePlayer implements Player.EventListener,
 
         isPrepared = false;
 
-        if (simpleExoPlayer.getPlaybackState() != Player.STATE_IDLE) simpleExoPlayer.setPlayWhenReady(false);//simpleExoPlayer.stop();
+        if (simpleExoPlayer.getPlaybackState() != Player.STATE_IDLE) simpleExoPlayer.stop();
         if (videoStartPos > 0) simpleExoPlayer.seekTo(videoStartPos);
-        if (!playbackManager.prepared) simpleExoPlayer.prepare(mediaSource);
-        playbackManager.prepared = true;
+        simpleExoPlayer.prepare(mediaSource);
         simpleExoPlayer.setPlayWhenReady(autoPlay);
     }
 
@@ -549,33 +548,58 @@ public abstract class BasePlayer implements Player.EventListener,
     @Override
     public void onPositionDiscontinuity() {
         int newIndex = simpleExoPlayer.getCurrentWindowIndex();
-        playbackManager.refreshMedia(newIndex);
+        playbackManager.refresh(newIndex);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Playback Listener
     //////////////////////////////////////////////////////////////////////////*/
 
+    private int windowIndex;
+    private long windowPos;
+
     @Override
     public void block() {
-        if (currentState != STATE_BUFFERING) changeState(STATE_BUFFERING);
-        simpleExoPlayer.stop();
+        if (currentState != STATE_LOADING) return;
+
+        changeState(STATE_LOADING);
+        simpleExoPlayer.setPlayWhenReady(false);
+        windowIndex = simpleExoPlayer.getCurrentWindowIndex();
+        windowPos = Math.max(0, simpleExoPlayer.getContentPosition());
     }
 
     @Override
     public void unblock() {
-        if (currentState != STATE_PLAYING) changeState(STATE_PLAYING);
+        if (currentState == STATE_PLAYING) return;
+
+        if (playbackManager.getMediaSource().getSize() > 0) {
+            simpleExoPlayer.seekToDefaultPosition();
+            //simpleExoPlayer.seekTo(windowIndex, windowPos);
+            simpleExoPlayer.setPlayWhenReady(true);
+            changeState(STATE_PLAYING);
+        }
     }
 
     @Override
-    public void resync() {
-        simpleExoPlayer.seekTo(0, 0L);
-    }
-
-    @Override
-    public void sync(final StreamInfo info) {
+    public void sync(final int windowIndex, final long windowPos, final StreamInfo info) {
+        videoUrl = info.webpage_url;
+        videoThumbnailUrl = info.thumbnail_url;
         videoTitle = info.title;
         channelName = info.uploader;
+
+        if (simpleExoPlayer.getCurrentWindowIndex() != windowIndex) {
+            simpleExoPlayer.seekTo(windowIndex, windowPos);
+        } else {
+            simpleExoPlayer.seekTo(windowPos);
+        }
+    }
+
+    @Override
+    public void init() {
+        if (simpleExoPlayer.getPlaybackState() != Player.STATE_IDLE) simpleExoPlayer.stop();
+        simpleExoPlayer.prepare(playbackManager.getMediaSource());
+        simpleExoPlayer.setPlayWhenReady(false);
+        changeState(STATE_BUFFERING);
     }
 
     @Override

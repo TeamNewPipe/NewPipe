@@ -2,8 +2,8 @@ package org.schabi.newpipe.playlist.events;
 
 
 public class SwapEvent implements PlayQueueMessage {
-    private int from;
-    private int to;
+    final private int from;
+    final private int to;
 
     @Override
     public PlayQueueEvent type() {

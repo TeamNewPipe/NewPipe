@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream_info.StreamExtractor;
 import org.schabi.newpipe.extractor.stream_info.StreamInfo;
 import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
@@ -18,16 +20,16 @@ import io.reactivex.schedulers.Schedulers;
 
 public class PlayQueueItem {
 
-    private String title;
-    private String url;
-    private int serviceId;
-    private int duration;
+    final private String title;
+    final private String url;
+    final private int serviceId;
+    final private int duration;
 
     private boolean isDone;
     private Throwable error;
     private Maybe<StreamInfo> stream;
 
-    public PlayQueueItem(final StreamInfoItem streamInfoItem) {
+    PlayQueueItem(final StreamInfoItem streamInfoItem) {
         this.title = streamInfoItem.getTitle();
         this.url = streamInfoItem.getLink();
         this.serviceId = streamInfoItem.service_id;
@@ -71,10 +73,13 @@ public class PlayQueueItem {
 
     @NonNull
     private Maybe<StreamInfo> getInfo() {
+        final StreamingService service = getService(serviceId);
+        if (service == null) return Maybe.empty();
+
         final Callable<StreamInfo> task = new Callable<StreamInfo>() {
             @Override
             public StreamInfo call() throws Exception {
-                final StreamExtractor extractor = NewPipe.getService(serviceId).getExtractorInstance(url);
+                final StreamExtractor extractor = service.getExtractorInstance(url);
                 return StreamInfo.getVideoInfo(extractor);
             }
         };
@@ -99,5 +104,13 @@ public class PlayQueueItem {
                 .doOnError(onError)
                 .doOnComplete(onComplete)
                 .cache();
+    }
+
+    private StreamingService getService(final int serviceId) {
+        try {
+            return NewPipe.getService(serviceId);
+        } catch (ExtractionException e) {
+            return null;
+        }
     }
 }

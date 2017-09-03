@@ -221,26 +221,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         play(true);
     }
 
-    @Override
-    public MediaSource sourceOf(final StreamInfo info) {
-        videoStreamsList = Utils.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
-        videoOnlyAudioStream = Utils.getHighestQualityAudio(info.audio_streams);
-
-        return buildMediaSource(getSelectedVideoStream().url, MediaFormat.getSuffixById(getSelectedVideoStream().format));
-    }
-
-    @Override
-    public void block() {
-        if (currentState != STATE_BUFFERING) changeState(STATE_BUFFERING);
-        simpleExoPlayer.stop();
-    }
-
-    @Override
-    public void unblock() {
-        if (currentState != STATE_PLAYING) changeState(STATE_PLAYING);
-        if (!isPlaying()) play(true);
-    }
-
     public void handleIntent(Intent intent) {
         if (intent == null) return;
 
@@ -256,12 +236,41 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         else return;
 
         playQueue = new ExternalPlayQueue(url, info, nextPage, index);
-        playbackManager = new PlaybackManager(this, playQueue);
-        mediaSource = playbackManager.getMediaSource();
+        playbackManager = new MediaSourceManager(this, playQueue);
     }
 
     public void play(boolean autoPlay) {
         playUrl(getSelectedVideoStream().url, MediaFormat.getSuffixById(getSelectedVideoStream().format), autoPlay);
+    }
+
+    @Override
+    public void sync(final int windowIndex, final long windowPos, final StreamInfo info) {
+        super.sync(windowIndex, windowPos, info);
+
+        qualityPopupMenu.getMenu().removeGroup(qualityPopupMenuGroupId);
+        for (int i = 0; i < info.video_streams.size(); i++) {
+            VideoStream videoStream = info.video_streams.get(i);
+            qualityPopupMenu.getMenu().add(qualityPopupMenuGroupId, i, Menu.NONE, MediaFormat.getNameById(videoStream.format) + " " + videoStream.resolution);
+        }
+        qualityTextView.setText(info.video_streams.get(selectedIndexStream).resolution);
+        qualityPopupMenu.setOnMenuItemClickListener(this);
+        qualityPopupMenu.setOnDismissListener(this);
+
+        playbackSpeedPopupMenu.getMenu().removeGroup(playbackSpeedPopupMenuGroupId);
+        buildPlaybackSpeedMenu(playbackSpeedPopupMenu);
+    }
+
+    @Override
+    public MediaSource sourceOf(final StreamInfo info) {
+        final List<VideoStream> videos = Utils.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
+        final VideoStream video = videos.get(Utils.getDefaultResolution(context, videos));
+
+        final MediaSource mediaSource = super.buildMediaSource(video.url, MediaFormat.getSuffixById(video.format));
+        if (!video.isVideoOnly) return mediaSource;
+
+        final AudioStream audio = Utils.getHighestQualityAudio(info.audio_streams);
+        final Uri audioUri = Uri.parse(audio.url);
+        return new MergingMediaSource(mediaSource, new ExtractorMediaSource(audioUri, cacheDataSourceFactory, extractorsFactory, null, null));
     }
 
     @Override

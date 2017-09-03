@@ -463,7 +463,7 @@ public class PlaylistFragment extends BaseFragment {
     private void handlePlayListInfo(PlayListInfo info, boolean onlyVideos, boolean addVideos) {
         if (currentPlaylistInfo == null) {
             currentPlaylistInfo = info;
-        } else {
+        } else if (currentPlaylistInfo != info) {
             currentPlaylistInfo.related_streams.addAll(info.related_streams);
         }
 

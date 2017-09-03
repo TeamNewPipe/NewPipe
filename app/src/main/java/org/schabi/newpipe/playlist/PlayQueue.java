@@ -11,7 +11,6 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.playlist.events.AppendEvent;
 import org.schabi.newpipe.playlist.events.InitEvent;
 import org.schabi.newpipe.playlist.events.NextEvent;
-import org.schabi.newpipe.playlist.events.PlayQueueEvent;
 import org.schabi.newpipe.playlist.events.PlayQueueMessage;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
 import org.schabi.newpipe.playlist.events.SelectEvent;
@@ -31,11 +30,11 @@ public abstract class PlayQueue {
     private final String TAG = "PlayQueue@" + Integer.toHexString(hashCode());
     public static final boolean DEBUG = true;
 
-    private List<PlayQueueItem> streams;
-    private AtomicInteger queueIndex;
+    private final List<PlayQueueItem> streams;
+    private final AtomicInteger queueIndex;
 
-    private BehaviorSubject<PlayQueueMessage> eventBus;
-    private Flowable<PlayQueueMessage> eventBroadcast;
+    private final BehaviorSubject<PlayQueueMessage> eventBroadcast;
+    private final Flowable<PlayQueueMessage> broadcastReceiver;
     private Subscription reportingReactor;
 
     PlayQueue() {
@@ -48,13 +47,12 @@ public abstract class PlayQueue {
 
         queueIndex = new AtomicInteger(index);
 
-        eventBus = BehaviorSubject.create();
-        eventBroadcast = eventBus
+        eventBroadcast = BehaviorSubject.create();
+        broadcastReceiver = eventBroadcast
                 .startWith(new InitEvent())
-                .replay(20)
                 .toFlowable(BackpressureStrategy.BUFFER);
 
-        if (DEBUG) eventBroadcast.subscribe(getSelfReporter());
+        if (DEBUG) broadcastReceiver.subscribe(getSelfReporter());
     }
 
     // a queue is complete if it has loaded all items in an external playlist
@@ -69,8 +67,14 @@ public abstract class PlayQueue {
     public abstract PlayQueueItem get(int index);
 
     public void dispose() {
+        eventBroadcast.onComplete();
+
         if (reportingReactor != null) reportingReactor.cancel();
         reportingReactor = null;
+    }
+
+    public PlayQueueItem getCurrent() {
+        return streams.get(getIndex());
     }
 
     public int size() {
@@ -83,12 +87,18 @@ public abstract class PlayQueue {
     }
 
     @NonNull
-    public Flowable<PlayQueueMessage> getEventBroadcast() {
-        return eventBroadcast;
+    public Flowable<PlayQueueMessage> getBroadcastReceiver() {
+        return broadcastReceiver;
     }
 
     private void broadcast(final PlayQueueMessage event) {
-        eventBus.onNext(event);
+        eventBroadcast.onNext(event);
+    }
+
+    public int indexOf(final PlayQueueItem item) {
+        // reference equality, can't think of a better way to do this
+        // todo: better than this
+        return streams.indexOf(item);
     }
 
     public int getIndex() {
@@ -96,7 +106,7 @@ public abstract class PlayQueue {
     }
 
     public void setIndex(final int index) {
-        queueIndex.set(Math.max(0, index));
+        queueIndex.set(Math.min(Math.max(0, index), streams.size() - 1));
         broadcast(new SelectEvent(index));
     }
 
