@@ -35,6 +35,8 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.google.android.exoplayer2.Player;
+
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
@@ -192,15 +194,16 @@ public class BackgroundPlayer extends Service {
         remoteViews.setOnClickPendingIntent(R.id.notificationFForward,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_FAST_FORWARD), PendingIntent.FLAG_UPDATE_CURRENT));
 
-        switch (basePlayerImpl.getCurrentRepeatMode()) {
-            case REPEAT_DISABLED:
+        switch (basePlayerImpl.simpleExoPlayer.getRepeatMode()) {
+            case Player.REPEAT_MODE_OFF:
                 remoteViews.setInt(R.id.notificationRepeat, setAlphaMethodName, 77);
                 break;
-            case REPEAT_ONE:
+            case Player.REPEAT_MODE_ONE:
+                // todo change image
                 remoteViews.setInt(R.id.notificationRepeat, setAlphaMethodName, 255);
                 break;
-            case REPEAT_ALL:
-                // Waiting :)
+            case Player.REPEAT_MODE_ALL:
+                remoteViews.setInt(R.id.notificationRepeat, setAlphaMethodName, 255);
                 break;
         }
     }
@@ -319,14 +322,15 @@ public class BackgroundPlayer extends Service {
 
             int opacity = 255;
             switch (currentRepeatMode) {
-                case REPEAT_DISABLED:
+                case Player.REPEAT_MODE_OFF:
                     opacity = 77;
                     break;
-                case REPEAT_ONE:
-                    opacity = 255;
+                case Player.REPEAT_MODE_ONE:
+                    // todo change image
+                    opacity = 168;
                     break;
-                case REPEAT_ALL:
-                    // Waiting :)
+                case Player.REPEAT_MODE_ALL:
+                    opacity = 255;
                     break;
             }
             if (notRemoteView != null) notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, opacity);

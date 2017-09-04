@@ -39,6 +39,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.exoplayer2.Player;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.util.AnimationUtils;
@@ -229,8 +231,8 @@ public class MainVideoPlayer extends Activity {
         }
 
         @Override
-        public void sync(final int windowIndex, final long windowPos, final StreamInfo info) {
-            super.sync(windowIndex, windowPos, info);
+        public void sync(final int windowIndex, final StreamInfo info) {
+            super.sync(windowIndex, info);
             titleTextView.setText(getVideoTitle());
             channelTextView.setText(getUploaderName());
 
@@ -266,19 +268,22 @@ public class MainVideoPlayer extends Activity {
         public void onRepeatClicked() {
             super.onRepeatClicked();
             if (DEBUG) Log.d(TAG, "onRepeatClicked() called");
-            switch (getCurrentRepeatMode()) {
-                case REPEAT_DISABLED:
+            switch (simpleExoPlayer.getRepeatMode()) {
+                case Player.REPEAT_MODE_OFF:
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) repeatButton.setImageAlpha(77);
                     else repeatButton.setAlpha(77);
 
                     break;
-                case REPEAT_ONE:
+                case Player.REPEAT_MODE_ONE:
+                    // todo change image
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) repeatButton.setImageAlpha(168);
+                    else repeatButton.setAlpha(168);
+
+                    break;
+                case Player.REPEAT_MODE_ALL:
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) repeatButton.setImageAlpha(255);
                     else repeatButton.setAlpha(255);
 
-                    break;
-                case REPEAT_ALL:
-                    // Waiting :)
                     break;
             }
         }
@@ -387,18 +392,15 @@ public class MainVideoPlayer extends Activity {
 
         @Override
         public void onCompleted() {
-            if (getCurrentRepeatMode() == RepeatMode.REPEAT_ONE) {
-                playPauseButton.setImageResource(R.drawable.ic_pause_white);
-            } else {
-                showSystemUi();
-                animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 0, 0, new Runnable() {
-                    @Override
-                    public void run() {
-                        playPauseButton.setImageResource(R.drawable.ic_replay_white);
-                        animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, true, 300);
-                    }
-                });
-            }
+            showSystemUi();
+            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 0, 0, new Runnable() {
+                @Override
+                public void run() {
+                    playPauseButton.setImageResource(R.drawable.ic_replay_white);
+                    animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, true, 300);
+                }
+            });
+
             getRootView().setKeepScreenOn(false);
             super.onCompleted();
         }

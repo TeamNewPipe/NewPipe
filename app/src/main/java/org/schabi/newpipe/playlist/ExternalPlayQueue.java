@@ -3,6 +3,7 @@ package org.schabi.newpipe.playlist;
 import android.util.Log;
 
 import org.schabi.newpipe.extractor.InfoItem;
+import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -53,15 +54,15 @@ public class ExternalPlayQueue extends PlayQueue {
 
     @Override
     public void fetch() {
-       ExtractorHelper.getPlaylistInfo(this.serviceId, this.playlistUrl, false)
+       ExtractorHelper.getMorePlaylistItems(this.serviceId, this.playlistUrl)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .retry(RETRY_COUNT)
                 .subscribe(getPlaylistObserver());
     }
 
-    private SingleObserver<PlaylistInfo> getPlaylistObserver() {
-        return new SingleObserver<PlaylistInfo>() {
+    private SingleObserver<ListExtractor.NextItemsResult> getPlaylistObserver() {
+        return new SingleObserver<ListExtractor.NextItemsResult>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
                 if (isComplete || (fetchReactor != null && !fetchReactor.isDisposed())) {
@@ -72,11 +73,11 @@ public class ExternalPlayQueue extends PlayQueue {
             }
 
             @Override
-            public void onSuccess(@NonNull PlaylistInfo playlistInfo) {
-                if (!playlistInfo.has_more_streams) isComplete = true;
-                playlistUrl = playlistInfo.next_streams_url;
+            public void onSuccess(@NonNull ListExtractor.NextItemsResult result) {
+                if (!result.hasMoreStreams()) isComplete = true;
+                playlistUrl = result.nextItemsUrl;
 
-                append(extractPlaylistItems(playlistInfo.related_streams));
+                append(extractPlaylistItems(result.nextItemsList));
             }
 
             @Override

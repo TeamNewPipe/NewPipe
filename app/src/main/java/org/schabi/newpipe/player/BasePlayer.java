@@ -125,6 +125,9 @@ public abstract class BasePlayer implements Player.EventListener,
     protected MediaSourceManager playbackManager;
     protected PlayQueue playQueue;
 
+    private int windowIndex;
+    private long windowPos;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Player
     //////////////////////////////////////////////////////////////////////////*/
@@ -452,35 +455,36 @@ public abstract class BasePlayer implements Player.EventListener,
     public void onCompleted() {
         if (DEBUG) Log.d(TAG, "onCompleted() called");
         if (isProgressLoopRunning.get()) stopProgressLoop();
-
-        if (currentRepeatMode == RepeatMode.REPEAT_ONE) {
-            changeState(STATE_LOADING);
-            simpleExoPlayer.seekTo(0);
-        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Repeat
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected RepeatMode currentRepeatMode = RepeatMode.REPEAT_DISABLED;
+    protected int currentRepeatMode = Player.REPEAT_MODE_OFF;
 
-    public enum RepeatMode {
-        REPEAT_DISABLED,
-        REPEAT_ONE,
-        REPEAT_ALL
-    }
 
     public void onRepeatClicked() {
         if (DEBUG) Log.d(TAG, "onRepeatClicked() called");
         // TODO: implement repeat all when playlist is implemented
 
-        // Switch the modes between DISABLED and REPEAT_ONE, till playlist is implemented
-        setCurrentRepeatMode(getCurrentRepeatMode() == RepeatMode.REPEAT_DISABLED ?
-                RepeatMode.REPEAT_ONE :
-                RepeatMode.REPEAT_DISABLED);
+        final int mode;
 
-        if (DEBUG) Log.d(TAG, "onRepeatClicked() currentRepeatMode = " + getCurrentRepeatMode().name());
+        switch (simpleExoPlayer.getRepeatMode()) {
+            case Player.REPEAT_MODE_OFF:
+                mode = Player.REPEAT_MODE_ONE;
+                break;
+            case Player.REPEAT_MODE_ONE:
+                mode = Player.REPEAT_MODE_ALL;
+                break;
+            case Player.REPEAT_MODE_ALL:
+            default:
+                mode = Player.REPEAT_MODE_OFF;
+                break;
+        }
+        // Switch the modes between DISABLED and REPEAT_ONE, till playlist is implemented
+        simpleExoPlayer.setRepeatMode(mode);
+        if (DEBUG) Log.d(TAG, "onRepeatClicked() currentRepeatMode = " + simpleExoPlayer.getRepeatMode());
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -557,14 +561,9 @@ public abstract class BasePlayer implements Player.EventListener,
     // Playback Listener
     //////////////////////////////////////////////////////////////////////////*/
 
-    private int windowIndex;
-    private long windowPos;
-
     @Override
     public void block() {
         Log.d(TAG, "Blocking...");
-
-        if (currentState != STATE_PLAYING) return;
 
         simpleExoPlayer.stop();
         windowIndex = simpleExoPlayer.getCurrentWindowIndex();
@@ -577,8 +576,6 @@ public abstract class BasePlayer implements Player.EventListener,
     public void unblock() {
         Log.d(TAG, "Unblocking...");
 
-        if (currentState != STATE_BUFFERING) return;
-
         if (windowIndex != playbackManager.getCurrentSourceIndex()) {
             windowIndex = playbackManager.getCurrentSourceIndex();
             windowPos = 0;
@@ -587,11 +584,10 @@ public abstract class BasePlayer implements Player.EventListener,
         simpleExoPlayer.prepare(playbackManager.getMediaSource());
         simpleExoPlayer.seekTo(windowIndex, windowPos);
         simpleExoPlayer.setPlayWhenReady(true);
-        changeState(STATE_PLAYING);
     }
 
     @Override
-    public void sync(final int windowIndex, final long windowPos, final StreamInfo info) {
+    public void sync(final int windowIndex, final StreamInfo info) {
         Log.d(TAG, "Syncing...");
 
         videoUrl = info.url;
@@ -600,20 +596,8 @@ public abstract class BasePlayer implements Player.EventListener,
 
         if (simpleExoPlayer.getCurrentWindowIndex() != windowIndex) {
             Log.w(TAG, "Rewinding to correct window");
-            simpleExoPlayer.seekTo(windowIndex, windowPos);
-        } else {
-            simpleExoPlayer.seekTo(windowPos);
+            simpleExoPlayer.seekTo(windowIndex, 0L);
         }
-    }
-
-    @Override
-    public void init() {
-        Log.d(TAG, "Initializing...");
-
-        if (simpleExoPlayer.getPlaybackState() != Player.STATE_IDLE) simpleExoPlayer.stop();
-        simpleExoPlayer.prepare(playbackManager.getMediaSource());
-        simpleExoPlayer.seekToDefaultPosition();
-        simpleExoPlayer.setPlayWhenReady(true);
     }
 
     @Override
@@ -783,14 +767,6 @@ public abstract class BasePlayer implements Player.EventListener,
 
     public SharedPreferences getSharedPreferences() {
         return sharedPreferences;
-    }
-
-    public RepeatMode getCurrentRepeatMode() {
-        return currentRepeatMode;
-    }
-
-    public void setCurrentRepeatMode(RepeatMode mode) {
-        currentRepeatMode = mode;
     }
 
     public int getCurrentState() {

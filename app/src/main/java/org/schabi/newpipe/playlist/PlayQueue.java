@@ -87,6 +87,10 @@ public abstract class PlayQueue {
         return streams.size();
     }
 
+    public boolean isEmpty() {
+        return streams.isEmpty();
+    }
+
     @NonNull
     public List<PlayQueueItem> getStreams() {
         return Collections.unmodifiableList(streams);

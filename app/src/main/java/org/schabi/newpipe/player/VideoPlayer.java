@@ -204,7 +204,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
     @SuppressWarnings("unchecked")
     public void handleSingleStreamIntent(Intent intent) {
-        super.handleIntent(intent);
         if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
         if (intent == null) return;
 
@@ -224,6 +223,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
     @SuppressWarnings("unchecked")
     public void handleIntent(Intent intent) {
+        super.handleIntent(intent);
+
         if (intent == null) return;
 
         handleExternalPlaylistIntent(intent);
@@ -254,17 +255,15 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     }
 
     @Override
-    public void sync(final int windowIndex, final long windowPos, final StreamInfo info) {
-        super.sync(windowIndex, windowPos, info);
+    public void sync(final int windowIndex, final StreamInfo info) {
+        super.sync(windowIndex, info);
+
+        final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
+        videoStreamsList = new ArrayList<>(videos);
+        selectedIndexStream = ListHelper.getDefaultResolutionIndex(context, videos);
 
         qualityPopupMenu.getMenu().removeGroup(qualityPopupMenuGroupId);
-        for (int i = 0; i < info.video_streams.size(); i++) {
-            VideoStream videoStream = info.video_streams.get(i);
-            qualityPopupMenu.getMenu().add(qualityPopupMenuGroupId, i, Menu.NONE, MediaFormat.getNameById(videoStream.format) + " " + videoStream.resolution);
-        }
-        qualityTextView.setText(info.video_streams.get(selectedIndexStream).resolution);
-        qualityPopupMenu.setOnMenuItemClickListener(this);
-        qualityPopupMenu.setOnDismissListener(this);
+        buildQualityMenu(qualityPopupMenu);
 
         playbackSpeedPopupMenu.getMenu().removeGroup(playbackSpeedPopupMenuGroupId);
         buildPlaybackSpeedMenu(playbackSpeedPopupMenu);
@@ -409,11 +408,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
             playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
 
         animateView(surfaceForeground, true, 100);
-
-        if (currentRepeatMode == RepeatMode.REPEAT_ONE) {
-            changeState(STATE_LOADING);
-            simpleExoPlayer.seekTo(0);
-        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////

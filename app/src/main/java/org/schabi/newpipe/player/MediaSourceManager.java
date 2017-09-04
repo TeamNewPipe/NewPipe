@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player;
 
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.google.android.exoplayer2.source.DynamicConcatenatingMediaSource;
@@ -49,13 +50,6 @@ class MediaSourceManager {
 
     interface PlaybackListener {
         /*
-        * Called when the initial video has been loaded.
-        * Signals to the listener that the media source is prepared, and
-        * the player is ready to go.
-        * */
-        void init();
-
-        /*
         * Called when the stream at the current queue index is not ready yet.
         * Signals to the listener to block the player from playing anything.
         * */
@@ -73,7 +67,7 @@ class MediaSourceManager {
         * Signals to the listener to synchronize the player's window to the manager's
         * window.
         * */
-        void sync(final int windowIndex, final long windowPos, final StreamInfo info);
+        void sync(final int windowIndex, final StreamInfo info);
 
         /*
         * Requests the listener to resolve a stream info into a media source respective
@@ -132,7 +126,7 @@ class MediaSourceManager {
         playQueue.remove(index);
 
         resetSources();
-        init();
+        load();
     }
 
     void dispose() {
@@ -163,8 +157,7 @@ class MediaSourceManager {
                 // why no pattern matching in Java =(
                 switch (event.type()) {
                     case INIT:
-                        init();
-                        break;
+                        isBlocked = true;
                     case APPEND:
                         load();
                         break;
@@ -213,18 +206,22 @@ class MediaSourceManager {
         return getCurrentSourceIndex() != -1;
     }
 
-    private void tryBlock() {
+    private boolean tryBlock() {
         if (!isBlocked) {
             playbackListener.block();
             isBlocked = true;
+            return true;
         }
+        return false;
     }
 
-    private void tryUnblock() {
+    private boolean tryUnblock() {
         if (isPlayQueueReady() && isCurrentIndexLoaded() && isBlocked) {
             isBlocked = false;
             playbackListener.unblock();
+            return true;
         }
+        return false;
     }
 
     /*
@@ -246,7 +243,7 @@ class MediaSourceManager {
         final Consumer<StreamInfo> onSuccess = new Consumer<StreamInfo>() {
             @Override
             public void accept(StreamInfo streamInfo) throws Exception {
-                playbackListener.sync(getCurrentSourceIndex(), 0L, streamInfo);
+                playbackListener.sync(getCurrentSourceIndex(), streamInfo);
             }
         };
 
@@ -254,9 +251,12 @@ class MediaSourceManager {
     }
 
     private void load() {
+        // The current item has higher priority
         final int currentIndex = playQueue.getIndex();
-        load(playQueue.get(currentIndex));
+        final PlayQueueItem currentItem = playQueue.get(currentIndex);
+        if (currentItem != null) load(currentItem);
 
+        // The rest are just for seamless playback
         final int leftBound = Math.max(0, currentIndex - WINDOW_SIZE);
         final int rightBound = Math.min(playQueue.size(), currentIndex + WINDOW_SIZE);
         final List<PlayQueueItem> items = playQueue.getStreams().subList(leftBound, rightBound);
@@ -265,42 +265,9 @@ class MediaSourceManager {
         }
     }
 
-    private void init() {
-        final PlayQueueItem init = playQueue.getCurrent();
+    private void load(@Nullable final PlayQueueItem item) {
+        if (item == null) return;
 
-        init.getStream().subscribe(new SingleObserver<StreamInfo>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                if (disposables != null) {
-                    disposables.add(d);
-                } else {
-                    d.dispose();
-                }
-            }
-
-            @Override
-            public void onSuccess(@NonNull StreamInfo streamInfo) {
-                final MediaSource source = playbackListener.sourceOf(streamInfo);
-                insert(playQueue.indexOf(init), source);
-
-                if (getCurrentSourceIndex() != -1) {
-                    playbackListener.init();
-                    sync();
-                    load();
-                } else {
-                    init();
-                }
-            }
-
-            @Override
-            public void onError(@NonNull Throwable e) {
-                playQueue.remove(playQueue.indexOf(init));
-                init();
-            }
-        });
-    }
-
-    private void load(final PlayQueueItem item) {
         item.getStream().subscribe(new SingleObserver<StreamInfo>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
@@ -315,7 +282,7 @@ class MediaSourceManager {
             public void onSuccess(@NonNull StreamInfo streamInfo) {
                 final MediaSource source = playbackListener.sourceOf(streamInfo);
                 insert(playQueue.indexOf(item), source);
-                tryUnblock();
+                if (tryUnblock()) sync();
             }
 
             @Override

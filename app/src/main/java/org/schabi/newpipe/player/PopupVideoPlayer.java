@@ -49,6 +49,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.exoplayer2.Player;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
@@ -266,14 +267,14 @@ public class PopupVideoPlayer extends Service {
         notRemoteView.setOnClickPendingIntent(R.id.notificationRepeat,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_REPEAT), PendingIntent.FLAG_UPDATE_CURRENT));
 
-        switch (playerImpl.getCurrentRepeatMode()) {
-            case REPEAT_DISABLED:
+        switch (playerImpl.simpleExoPlayer.getRepeatMode()) {
+            case Player.REPEAT_MODE_OFF:
                 notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 77);
                 break;
-            case REPEAT_ONE:
+            case Player.REPEAT_MODE_ONE:
                 notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 255);
                 break;
-            case REPEAT_ALL:
+            case Player.REPEAT_MODE_ALL:
                 // Waiting :)
                 break;
         }
@@ -446,18 +447,19 @@ public class PopupVideoPlayer extends Service {
         @Override
         public void onRepeatClicked() {
             super.onRepeatClicked();
-            switch (getCurrentRepeatMode()) {
-                case REPEAT_DISABLED:
+            switch (simpleExoPlayer.getRepeatMode()) {
+                case Player.REPEAT_MODE_OFF:
                     // Drawable didn't work on low API :/
                     //notRemoteView.setImageViewResource(R.id.notificationRepeat, R.drawable.ic_repeat_disabled_white);
                     // Set the icon to 30% opacity - 255 (max) * .3
                     notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 77);
                     break;
-                case REPEAT_ONE:
-                    notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 255);
+                case Player.REPEAT_MODE_ONE:
+                    // todo change image
+                    notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 168);
                     break;
-                case REPEAT_ALL:
-                    // Waiting :)
+                case Player.REPEAT_MODE_ALL:
+                    notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 255);
                     break;
             }
             updateNotification(-1);
