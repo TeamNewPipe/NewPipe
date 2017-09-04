@@ -542,6 +542,8 @@ public abstract class BasePlayer implements Player.EventListener,
     @Override
     public void onPlayerError(ExoPlaybackException error) {
         if (DEBUG) Log.d(TAG, "onPlayerError() called with: error = [" + error + "]");
+        playbackManager.report(error);
+
         onError(error);
     }
 
@@ -598,10 +600,9 @@ public abstract class BasePlayer implements Player.EventListener,
         channelName = info.uploader;
 
         if (simpleExoPlayer.getCurrentWindowIndex() != windowIndex) {
-            Log.e(TAG, "Rewinding to correct window");
+            Log.w(TAG, "Rewinding to correct window");
             simpleExoPlayer.seekTo(windowIndex, windowPos);
         } else {
-            Log.d(TAG, "Correct window");
             simpleExoPlayer.seekTo(windowPos);
         }
     }

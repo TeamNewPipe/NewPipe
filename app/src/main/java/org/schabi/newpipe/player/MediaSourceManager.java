@@ -130,6 +130,19 @@ class MediaSourceManager {
         sync();
     }
 
+    void report(final Exception error) {
+        // ignore error checking for now, just remove the current index
+        if (error != null && !isBlocked) {
+            doBlock();
+        }
+
+        final int index = playQueue.getIndex();
+        remove(index);
+        playQueue.remove(index);
+        tryUnblock();
+        sync();
+    }
+
     void dispose() {
         if (loadingReactor != null) loadingReactor.cancel();
         if (playQueueReactor != null) playQueueReactor.cancel();
@@ -139,7 +152,6 @@ class MediaSourceManager {
         playQueueReactor = null;
         disposables = null;
     }
-
 
     /*//////////////////////////////////////////////////////////////////////////
     // Event Reactor
@@ -181,7 +193,7 @@ class MediaSourceManager {
                 }
 
                 if (!isPlayQueueReady() && !isBlocked) {
-                    playbackListener.block();
+                    doBlock();
                     playQueue.fetch();
                 }
                 if (playQueueReactor != null) playQueueReactor.request(1);
@@ -209,6 +221,11 @@ class MediaSourceManager {
         return getCurrentSourceIndex() != -1;
     }
 
+    private void doBlock() {
+        playbackListener.block();
+        isBlocked = true;
+    }
+
     private void tryUnblock() {
         if (isPlayQueueReady() && isCurrentIndexLoaded() && isBlocked) {
             isBlocked = false;
@@ -225,7 +242,7 @@ class MediaSourceManager {
         if (isCurrentIndexLoaded()) {
             sync();
         } else if (!isBlocked) {
-            playbackListener.block();
+            doBlock();
         }
 
         load();

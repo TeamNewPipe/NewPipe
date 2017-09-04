@@ -326,7 +326,7 @@ public class MainVideoPlayer extends Activity {
         public void onError(Exception exception) {
             exception.printStackTrace();
             Toast.makeText(context, "Failed to play this video", Toast.LENGTH_SHORT).show();
-            finish();
+            //finish();
         }
 
         /*//////////////////////////////////////////////////////////////////////////
