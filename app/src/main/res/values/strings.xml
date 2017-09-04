@@ -175,21 +175,18 @@
     <!--Zero don't get selected (in some languages) as it is not a "special case" for android-->
     <string name="no_subscribers">No subscribers</string>
     <plurals name="subscribers">
-        <item quantity="zero" translatable="false">@string/no_subscribers</item>
         <item quantity="one">%s subscriber</item>
         <item quantity="other">%s subscribers</item>
     </plurals>
 
     <string name="no_views">No views</string>
     <plurals name="views">
-        <item quantity="zero" translatable="false">@string/no_views</item>
         <item quantity="one">%s view</item>
         <item quantity="other">%s views</item>
     </plurals>
 
     <string name="no_videos">No videos</string>
     <plurals name="videos">
-        <item quantity="zero" translatable="false">@string/no_videos</item>
         <item quantity="one">%s video</item>
         <item quantity="other">%s videos</item>
     </plurals>
