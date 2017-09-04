@@ -53,14 +53,15 @@ import com.google.android.exoplayer2.source.MergingMediaSource;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.extractor.playlist.PlayListInfo;
 import org.schabi.newpipe.playlist.ExternalPlayQueue;
 import org.schabi.newpipe.util.AnimationUtils;
-import org.schabi.newpipe.util.Utils;
+import org.schabi.newpipe.util.ListHelper;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -201,42 +202,50 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         simpleExoPlayer.setVideoListener(this);
     }
 
-//    @SuppressWarnings("unchecked")
-//    public void handleIntent2(Intent intent) {
-//        super.handleIntent(intent);
-//        if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
-//        if (intent == null) return;
-//
-//        selectedIndexStream = intent.getIntExtra(INDEX_SEL_VIDEO_STREAM, -1);
-//
-//        Serializable serializable = intent.getSerializableExtra(VIDEO_STREAMS_LIST);
-//
-//        if (serializable instanceof ArrayList) videoStreamsList = (ArrayList<VideoStream>) serializable;
-//        if (serializable instanceof Vector) videoStreamsList = new ArrayList<>((List<VideoStream>) serializable);
-//
-//        Serializable audioStream = intent.getSerializableExtra(VIDEO_ONLY_AUDIO_STREAM);
-//        if (audioStream != null) videoOnlyAudioStream = (AudioStream) audioStream;
-//
-//        startedFromNewPipe = intent.getBooleanExtra(STARTED_FROM_NEWPIPE, true);
-//        play(true);
-//    }
+    @SuppressWarnings("unchecked")
+    public void handleSingleStreamIntent(Intent intent) {
+        super.handleIntent(intent);
+        if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
+        if (intent == null) return;
+
+        selectedIndexStream = intent.getIntExtra(INDEX_SEL_VIDEO_STREAM, -1);
+
+        Serializable serializable = intent.getSerializableExtra(VIDEO_STREAMS_LIST);
+
+        if (serializable instanceof ArrayList) videoStreamsList = (ArrayList<VideoStream>) serializable;
+        if (serializable instanceof Vector) videoStreamsList = new ArrayList<>((List<VideoStream>) serializable);
+
+        Serializable audioStream = intent.getSerializableExtra(VIDEO_ONLY_AUDIO_STREAM);
+        if (audioStream != null) videoOnlyAudioStream = (AudioStream) audioStream;
+
+        startedFromNewPipe = intent.getBooleanExtra(STARTED_FROM_NEWPIPE, true);
+        play(true);
+    }
 
     @SuppressWarnings("unchecked")
     public void handleIntent(Intent intent) {
         if (intent == null) return;
 
+        handleExternalPlaylistIntent(intent);
+    }
+
+    @SuppressWarnings("unchecked")
+    public void handleExternalPlaylistIntent(Intent intent) {
         selectedIndexStream = 0;
 
-        String url = intent.getStringExtra("url");
-        int nextPage = intent.getIntExtra("nextPage", 0);
-        int index = intent.getIntExtra("index", 0);
+        final int serviceId = intent.getIntExtra("serviceId", -1);
+        final int index = intent.getIntExtra("index", 0);
+        final Serializable serializable = intent.getSerializableExtra("streams");
+        final String nextPageUrl = intent.getStringExtra("nextPageUrl");
 
-        PlayListInfo info;
-        Serializable serializable = intent.getSerializableExtra("stream");
-        if (serializable instanceof PlayListInfo) info = (PlayListInfo) serializable;
-        else return;
+        List<InfoItem> info = new ArrayList<>();
+        if (serializable instanceof List) {
+            for (final Object o : (List) serializable) {
+                if (o instanceof InfoItem) info.add((StreamInfoItem) o);
+            }
+        }
 
-        playQueue = new ExternalPlayQueue(url, info, nextPage, index);
+        playQueue = new ExternalPlayQueue(serviceId, nextPageUrl, info, index);
         playbackManager = new MediaSourceManager(this, playQueue);
     }
 
@@ -263,13 +272,13 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
     @Override
     public MediaSource sourceOf(final StreamInfo info) {
-        final List<VideoStream> videos = Utils.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
-        final VideoStream video = videos.get(Utils.getDefaultResolution(context, videos));
+        final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
+        final VideoStream video = videos.get(ListHelper.getDefaultResolutionIndex(context, videos));
 
         final MediaSource mediaSource = super.buildMediaSource(video.url, MediaFormat.getSuffixById(video.format));
         if (!video.isVideoOnly) return mediaSource;
 
-        final AudioStream audio = Utils.getHighestQualityAudio(info.audio_streams);
+        final AudioStream audio = ListHelper.getHighestQualityAudio(info.audio_streams);
         final Uri audioUri = Uri.parse(audio.url);
         return new MergingMediaSource(mediaSource, new ExtractorMediaSource(audioUri, cacheDataSourceFactory, extractorsFactory, null, null));
     }

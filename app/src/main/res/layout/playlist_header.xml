@@ -9,6 +9,19 @@
     android:background="?attr/contrast_background_color"
     android:paddingBottom="6dp">
 
+    <Button
+        android:id="@+id/playlist_play_all_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center_vertical|right"
+        android:layout_marginRight="2dp"
+        android:text="@string/play_all"
+        android:textSize="@dimen/channel_rss_title_size"
+        android:theme="@style/RedButton"
+        tools:ignore="RtlHardcoded"
+        tools:visibility="visible"/>
+
     <TextView
         android:id="@+id/playlist_title_view"
         android:layout_width="match_parent"
@@ -16,6 +29,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="6dp"
+        android:layout_toLeftOf="@+id/playlist_play_all_button"
+        android:layout_toStartOf="@+id/playlist_play_all_button"
         android:ellipsize="end"
         android:maxLines="2"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -24,7 +39,7 @@
 
     <RelativeLayout
         android:id="@+id/uploader_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/playlist_detail_uploader_layout_height"
         android:layout_below="@+id/playlist_title_view"
         android:layout_marginLeft="4dp"
@@ -68,29 +83,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/uploader_layout"
-        android:layout_alignEnd="@+id/playlist_title_view"
-        android:layout_alignRight="@+id/playlist_title_view"
+        android:layout_alignEnd="@+id/playlist_play_all_button"
+        android:layout_alignRight="@+id/playlist_play_all_button"
         android:layout_alignTop="@+id/uploader_layout"
+        android:layout_marginRight="6dp"
         android:ellipsize="end"
         android:gravity="right|center_vertical"
         android:maxLines="1"
         android:textSize="@dimen/playlist_detail_subtext_size"
         tools:ignore="RtlHardcoded"
         tools:text="234 videos"/>
-
-    <Button
-        android:id="@+id/playlist_play_all_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/playlist_banner_image"
-        android:layout_gravity="center_vertical|right"
-        android:layout_marginRight="2dp"
-        android:text="Play All"
-        android:textSize="@dimen/channel_rss_title_size"
-        android:theme="@style/RedButton"
-        android:visibility="gone"
-        tools:ignore="RtlHardcoded"
-        tools:visibility="visible"/>
 
 </RelativeLayout>

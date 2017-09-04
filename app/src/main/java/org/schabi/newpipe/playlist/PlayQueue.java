@@ -108,11 +108,6 @@ public abstract class PlayQueue {
         broadcast(new SelectEvent(index));
     }
 
-    public void incrementIndex() {
-        final int index = queueIndex.incrementAndGet();
-        broadcast(new NextEvent(index));
-    }
-
     protected void append(final PlayQueueItem item) {
         streams.add(item);
         broadcast(new AppendEvent(1));
@@ -127,6 +122,8 @@ public abstract class PlayQueue {
         if (index >= streams.size()) return;
 
         streams.remove(index);
+        queueIndex.set(Math.max(0, queueIndex.get() - 1));
+
         broadcast(new RemoveEvent(index));
     }
 
@@ -148,14 +145,6 @@ public abstract class PlayQueue {
             }
 
             broadcast(new SwapEvent(source, target));
-        }
-    }
-
-    protected StreamingService getService(final int serviceId) {
-        try {
-            return NewPipe.getService(serviceId);
-        } catch (ExtractionException e) {
-            return null;
         }
     }
 

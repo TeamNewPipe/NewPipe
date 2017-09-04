@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.info_list.StreamInfoItemHolder;
 import org.schabi.newpipe.playlist.events.PlayQueueMessage;
 
 import java.util.List;
@@ -163,7 +162,7 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             case 1:
                 return new HFHolder(footer);
             case 2:
-                return new StreamInfoItemHolder(LayoutInflater.from(parent.getContext())
+                return new PlayQueueItemHolder(LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.play_queue_item, parent, false));
             default:
                 Log.e(TAG, "Trollolo");

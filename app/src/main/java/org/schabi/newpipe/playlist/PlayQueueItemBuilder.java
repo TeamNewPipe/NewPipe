@@ -57,17 +57,17 @@ public class PlayQueueItemBuilder {
     }
 
 
-    public static String getDurationString(int duration) {
+    public static String getDurationString(long duration) {
         if(duration < 0) {
             duration = 0;
         }
         String output;
-        int days = duration / (24 * 60 * 60); /* greater than a day */
+        long days = duration / (24 * 60 * 60); /* greater than a day */
         duration %= (24 * 60 * 60);
-        int hours = duration / (60 * 60); /* greater than an hour */
+        long hours = duration / (60 * 60); /* greater than an hour */
         duration %= (60 * 60);
-        int minutes = duration / 60;
-        int seconds = duration % 60;
+        long minutes = duration / 60;
+        long seconds = duration % 60;
 
         //handle days
         if (days > 0) {

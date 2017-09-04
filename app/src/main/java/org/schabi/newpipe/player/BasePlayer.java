@@ -70,7 +70,7 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.stream_info.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.playlist.PlayQueue;
 
 import java.io.File;
@@ -594,10 +594,9 @@ public abstract class BasePlayer implements Player.EventListener,
     public void sync(final int windowIndex, final long windowPos, final StreamInfo info) {
         Log.d(TAG, "Syncing...");
 
-        videoUrl = info.webpage_url;
+        videoUrl = info.url;
         videoThumbnailUrl = info.thumbnail_url;
-        videoTitle = info.title;
-        channelName = info.uploader;
+        videoTitle = info.name;
 
         if (simpleExoPlayer.getCurrentWindowIndex() != windowIndex) {
             Log.w(TAG, "Rewinding to correct window");
@@ -615,7 +614,6 @@ public abstract class BasePlayer implements Player.EventListener,
         simpleExoPlayer.prepare(playbackManager.getMediaSource());
         simpleExoPlayer.seekToDefaultPosition();
         simpleExoPlayer.setPlayWhenReady(true);
-        changeState(STATE_PLAYING);
     }
 
     @Override

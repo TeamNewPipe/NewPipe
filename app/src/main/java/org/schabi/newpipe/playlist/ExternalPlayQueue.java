@@ -1,22 +1,20 @@
 package org.schabi.newpipe.playlist;
 
+import android.util.Log;
+
 import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.playlist.PlayListExtractor;
-import org.schabi.newpipe.extractor.playlist.PlayListInfo;
-import org.schabi.newpipe.extractor.stream_info.StreamInfo;
-import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
+import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.util.ExtractorHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.atomic.AtomicInteger;
 
-import io.reactivex.Maybe;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class ExternalPlayQueue extends PlayQueue {
@@ -24,24 +22,21 @@ public class ExternalPlayQueue extends PlayQueue {
 
     private boolean isComplete;
 
-    private StreamingService service;
+    private int serviceId;
     private String playlistUrl;
 
-    private AtomicInteger pageNumber;
     private Disposable fetchReactor;
 
-    public ExternalPlayQueue(final String playlistUrl,
-                             final PlayListInfo info,
-                             final int currentPage,
+    public ExternalPlayQueue(final int serviceId,
+                             final String nextPageUrl,
+                             final List<InfoItem> streams,
                              final int index) {
-        super(index, extractPlaylistItems(info));
+        super(index, extractPlaylistItems(streams));
 
-        this.service = getService(info.service_id);
+        this.playlistUrl = nextPageUrl;
+        this.serviceId = serviceId;
 
-        this.isComplete = !info.hasNextPage;
-        this.pageNumber = new AtomicInteger(currentPage + 1);
-
-        this.playlistUrl = playlistUrl;
+        this.isComplete = nextPageUrl == null || nextPageUrl.isEmpty();
     }
 
     @Override
@@ -57,31 +52,39 @@ public class ExternalPlayQueue extends PlayQueue {
 
     @Override
     public void fetch() {
-        if (isComplete) return;
-        if (fetchReactor != null && !fetchReactor.isDisposed()) return;
-
-        final Callable<PlayListInfo> task = new Callable<PlayListInfo>() {
-            @Override
-            public PlayListInfo call() throws Exception {
-                PlayListExtractor extractor = service.getPlayListExtractorInstance(playlistUrl, pageNumber.get());
-                return PlayListInfo.getInfo(extractor);
-            }
-        };
-
-        final Consumer<PlayListInfo> onSuccess = new Consumer<PlayListInfo>() {
-            @Override
-            public void accept(PlayListInfo playListInfo) throws Exception {
-                if (!playListInfo.hasNextPage) isComplete = true;
-
-                append(extractPlaylistItems(playListInfo));
-                pageNumber.incrementAndGet();
-            }
-        };
-
-        fetchReactor = Maybe.fromCallable(task)
+       ExtractorHelper.getPlaylistInfo(this.serviceId, this.playlistUrl, false)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(onSuccess);
+                .retry(2)
+                .subscribe(getPlaylistObserver());
+    }
+
+    private SingleObserver<PlaylistInfo> getPlaylistObserver() {
+        return new SingleObserver<PlaylistInfo>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+                if (isComplete || (fetchReactor != null && !fetchReactor.isDisposed())) {
+                    d.dispose();
+                } else {
+                    fetchReactor = d;
+                }
+            }
+
+            @Override
+            public void onSuccess(@NonNull PlaylistInfo playlistInfo) {
+                if (!playlistInfo.has_more_streams) isComplete = true;
+                playlistUrl = playlistInfo.next_streams_url;
+
+                append(extractPlaylistItems(playlistInfo.related_streams));
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                Log.e(TAG, "Error fetching more playlist, marking playlist as complete.", e);
+                isComplete = true;
+                append(Collections.<PlayQueueItem>emptyList());
+            }
+        };
     }
 
     @Override
@@ -90,9 +93,9 @@ public class ExternalPlayQueue extends PlayQueue {
         if (fetchReactor != null) fetchReactor.dispose();
     }
 
-    private static List<PlayQueueItem> extractPlaylistItems(final PlayListInfo info) {
+    private static List<PlayQueueItem> extractPlaylistItems(final List<InfoItem> infos) {
         List<PlayQueueItem> result = new ArrayList<>();
-        for (final InfoItem stream : info.related_streams) {
+        for (final InfoItem stream : infos) {
             if (stream instanceof StreamInfoItem) {
                 result.add(new PlayQueueItem((StreamInfoItem) stream));
             }

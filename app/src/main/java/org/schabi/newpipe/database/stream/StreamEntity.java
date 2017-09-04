@@ -6,8 +6,8 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-import org.schabi.newpipe.extractor.AbstractStreamInfo;
-import org.schabi.newpipe.extractor.stream_info.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamType;
 
 import java.util.Date;
 
@@ -63,21 +63,20 @@ public class StreamEntity {
     private long uploadDate;
 
     @ColumnInfo(name = STREAM_DURATION)
-    private int duration;
+    private long duration;
 
     @Ignore
     public StreamInfoItem toStreamInfoItem() {
         StreamInfoItem item = new StreamInfoItem();
 
-        item.stream_type = AbstractStreamInfo.StreamType.valueOf( this.getType() );
+        item.stream_type = StreamType.valueOf( this.getType() );
 
         item.service_id = this.getServiceId();
-        item.id = this.getId();
-        item.webpage_url = this.getUrl();
-        item.title = this.getTitle();
+        item.url = this.getUrl();
+        item.name = this.getTitle();
         item.thumbnail_url = this.getThumbnailUrl();
         item.view_count = this.getViewCount();
-        item.uploader = this.getUploader();
+        item.uploader_name = this.getUploader();
 
         // TODO: temporary until upload date parsing is fleshed out
         item.upload_date = "Unknown";
@@ -97,12 +96,11 @@ public class StreamEntity {
         this.type = item.stream_type.name();
 
         this.serviceId = item.service_id;
-        this.id = item.id;
-        this.url = item.webpage_url;
-        this.title = item.title;
+        this.url = item.url;
+        this.title = item.name;
         this.thumbnailUrl = item.thumbnail_url;
         this.viewCount = item.view_count;
-        this.uploader = item.uploader;
+        this.uploader = item.uploader_name;
 
         // TODO: temporary until upload date parsing is fleshed out
         this.uploadDate = new Date().getTime();
@@ -113,8 +111,7 @@ public class StreamEntity {
     public boolean is(final StreamInfoItem item) {
         return this.type.equals( item.stream_type.name() ) &&
                 this.serviceId == item.service_id &&
-                this.id.equals( item.id ) &&
-                this.url.equals( item.webpage_url );
+                this.url.equals( item.url );
     }
 
     public long getUid() {
@@ -197,7 +194,7 @@ public class StreamEntity {
         this.uploadDate = uploadDate;
     }
 
-    public int getDuration() {
+    public long getDuration() {
         return duration;
     }
 

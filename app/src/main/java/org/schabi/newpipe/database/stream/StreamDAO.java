@@ -16,7 +16,7 @@ import static org.schabi.newpipe.database.stream.StreamEntity.STREAM_TABLE;
 public interface StreamDAO extends BasicDAO<StreamEntity> {
     @Override
     @Query("SELECT * FROM " + STREAM_TABLE)
-    Flowable<List<StreamEntity>> findAll();
+    Flowable<List<StreamEntity>> getAll();
 
     @Override
     @Query("SELECT * FROM " + STREAM_TABLE + " WHERE " + STREAM_SERVICE_ID + " = :serviceId")

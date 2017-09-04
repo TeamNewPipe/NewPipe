@@ -40,7 +40,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.stream_info.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -232,7 +232,7 @@ public class MainVideoPlayer extends Activity {
         public void sync(final int windowIndex, final long windowPos, final StreamInfo info) {
             super.sync(windowIndex, windowPos, info);
             titleTextView.setText(getVideoTitle());
-            channelTextView.setText(getChannelName());
+            channelTextView.setText(getUploaderName());
 
             playPauseButton.setImageResource(R.drawable.ic_pause_white);
         }

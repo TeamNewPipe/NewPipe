@@ -1,5 +1,6 @@
 package org.schabi.newpipe.fragments.list.playlist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,10 +20,14 @@ import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
+import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
+
+import java.util.List;
 
 import io.reactivex.Single;
 
@@ -39,6 +45,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     private TextView headerUploaderName;
     private ImageView headerUploaderAvatar;
     private TextView headerStreamCount;
+
+    private Button headerPlayAllButton;
 
     public static PlaylistFragment getInstance(int serviceId, String url, String name) {
         PlaylistFragment instance = new PlaylistFragment();
@@ -66,6 +74,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         headerUploaderName = headerRootLayout.findViewById(R.id.uploader_name);
         headerUploaderAvatar = headerRootLayout.findViewById(R.id.uploader_avatar_view);
         headerStreamCount = headerRootLayout.findViewById(R.id.playlist_stream_count);
+        headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_play_all_button);
 
         return headerRootLayout;
     }
@@ -137,6 +146,22 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         if (!result.errors.isEmpty()) {
             showSnackBarError(result.errors, UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(result.service_id), result.url, 0);
         }
+
+        headerPlayAllButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                play();
+            }
+        });
+    }
+
+    private void play() {
+        Intent mIntent = new Intent(activity, MainVideoPlayer.class)
+                .putExtra("serviceId", serviceId)
+                .putExtra("index", 0)
+                .putExtra("streams", infoListAdapter.getItemsList())
+                .putExtra("nextPageUrl", currentInfo.next_streams_url);
+        startActivity(mIntent);
     }
 
     @Override

@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.info_list.InfoItemHolder;
+import org.schabi.newpipe.info_list.holder.InfoItemHolder;
 
 /**
  * Created by Christian Schabesberger on 01.08.16.

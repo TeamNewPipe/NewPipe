@@ -7,7 +7,7 @@ import com.google.android.exoplayer2.source.MediaSource;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
-import org.schabi.newpipe.extractor.stream_info.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.events.PlayQueueMessage;
@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.MaybeObserver;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
@@ -31,14 +32,14 @@ class MediaSourceManager {
     // Effectively loads WINDOW_SIZE * 2 streams
     private static final int WINDOW_SIZE = 3;
 
-    private final DynamicConcatenatingMediaSource sources;
+    private final PlaybackListener playbackListener;
+    private final PlayQueue playQueue;
+
+    private DynamicConcatenatingMediaSource sources;
     // sourceToQueueIndex maps media source index to play queue index
     // Invariant 1: this list is sorted in ascending order
     // Invariant 2: this list contains no duplicates
-    private final List<Integer> sourceToQueueIndex;
-
-    private final PlaybackListener playbackListener;
-    private final PlayQueue playQueue;
+    private List<Integer> sourceToQueueIndex;
 
     private Subscription playQueueReactor;
     private Subscription loadingReactor;
@@ -83,13 +84,13 @@ class MediaSourceManager {
 
     MediaSourceManager(@NonNull final MediaSourceManager.PlaybackListener listener,
                        @NonNull final PlayQueue playQueue) {
-        this.sources = new DynamicConcatenatingMediaSource();
-        this.sourceToQueueIndex = Collections.synchronizedList(new ArrayList<Integer>());
-
         this.playbackListener = listener;
         this.playQueue = playQueue;
 
-        disposables = new CompositeDisposable();
+        this.disposables = new CompositeDisposable();
+
+        this.sources = new DynamicConcatenatingMediaSource();
+        this.sourceToQueueIndex = Collections.synchronizedList(new ArrayList<Integer>());
 
         playQueue.getBroadcastReceiver()
                 .observeOn(AndroidSchedulers.mainThread())
@@ -113,34 +114,25 @@ class MediaSourceManager {
     }
 
     /*
-    * Called when the player has seamlessly transitioned to another stream.
-    * Currently only expecting transitioning to the next stream and updates
-    * the play queue that a transition has occurred.
+    * Called when the player has transitioned to another stream.
     * */
     void refresh(final int newSourceIndex) {
-        if (newSourceIndex == getCurrentSourceIndex()) return;
-
-        if (newSourceIndex == getCurrentSourceIndex() + 1) {
-            playQueue.incrementIndex();
-        } else {
-            //something went wrong
-            Log.e(TAG, "Refresh media failed, reloading.");
+        if (sourceToQueueIndex.indexOf(newSourceIndex) != -1) {
+            playQueue.setIndex(sourceToQueueIndex.indexOf(newSourceIndex));
         }
-
-        sync();
     }
 
     void report(final Exception error) {
         // ignore error checking for now, just remove the current index
-        if (error != null && !isBlocked) {
-            doBlock();
+        if (error != null) {
+            tryBlock();
         }
 
         final int index = playQueue.getIndex();
-        remove(index);
         playQueue.remove(index);
-        tryUnblock();
-        sync();
+
+        resetSources();
+        init();
     }
 
     void dispose() {
@@ -192,8 +184,8 @@ class MediaSourceManager {
                         break;
                 }
 
-                if (!isPlayQueueReady() && !isBlocked) {
-                    doBlock();
+                if (!isPlayQueueReady()) {
+                    tryBlock();
                     playQueue.fetch();
                 }
                 if (playQueueReactor != null) playQueueReactor.request(1);
@@ -221,9 +213,11 @@ class MediaSourceManager {
         return getCurrentSourceIndex() != -1;
     }
 
-    private void doBlock() {
-        playbackListener.block();
-        isBlocked = true;
+    private void tryBlock() {
+        if (!isBlocked) {
+            playbackListener.block();
+            isBlocked = true;
+        }
     }
 
     private void tryUnblock() {
@@ -241,8 +235,8 @@ class MediaSourceManager {
     private void onSelect() {
         if (isCurrentIndexLoaded()) {
             sync();
-        } else if (!isBlocked) {
-            doBlock();
+        } else {
+            tryBlock();
         }
 
         load();
@@ -274,7 +268,7 @@ class MediaSourceManager {
     private void init() {
         final PlayQueueItem init = playQueue.getCurrent();
 
-        init.getStream().subscribe(new MaybeObserver<StreamInfo>() {
+        init.getStream().subscribe(new SingleObserver<StreamInfo>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
                 if (disposables != null) {
@@ -303,17 +297,11 @@ class MediaSourceManager {
                 playQueue.remove(playQueue.indexOf(init));
                 init();
             }
-
-            @Override
-            public void onComplete() {
-                playQueue.remove(playQueue.indexOf(init));
-                init();
-            }
         });
     }
 
     private void load(final PlayQueueItem item) {
-        item.getStream().subscribe(new MaybeObserver<StreamInfo>() {
+        item.getStream().subscribe(new SingleObserver<StreamInfo>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
                 if (disposables != null) {
@@ -335,13 +323,15 @@ class MediaSourceManager {
                 playQueue.remove(playQueue.indexOf(item));
                 load();
             }
-
-            @Override
-            public void onComplete() {
-                playQueue.remove(playQueue.indexOf(item));
-                load();
-            }
         });
+    }
+
+    private void resetSources() {
+        if (this.disposables != null) this.disposables.clear();
+        if (this.sources != null) this.sources.releaseSource();
+        if (this.sourceToQueueIndex != null) this.sourceToQueueIndex.clear();
+
+        this.sources = new DynamicConcatenatingMediaSource();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
