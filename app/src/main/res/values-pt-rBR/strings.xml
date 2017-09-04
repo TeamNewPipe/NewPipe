@@ -10,8 +10,8 @@
     <string name="view">Ver</string>
     <string name="video_is_age_restricted">Vídeo com restrição de idade. Permissão para vídeos com essa restrição podem ser feitas no menu configurações.</string>
     <string name="video">Vídeo</string>
-    <string name="autoplay_by_calling_app_summary">Reproduz o vídeo automaticamente quando o NewPipe for aberto a partir de outro app</string>
-    <string name="autoplay_by_calling_app_title">Reproduzir automaticamente quando chamado a partir de outro aplicativo</string>
+    <string name="autoplay_by_calling_app_summary">Reproduzir o vídeo automaticamente quando o NewPipe for aberto a partir de outro app</string>
+    <string name="autoplay_by_calling_app_title">Reproduzir automaticamente</string>
     <string name="black_theme_title">Preto</string>
     <string name="blocked_by_gema">Bloqueado pelo GEMA</string>
     <string name="cancel">Cancelar</string>
@@ -213,4 +213,29 @@ abrir em modo popup</string>
 <string name="notification_channel_name">Notificações do NewPipe</string>
     <string name="notification_channel_description">Notificações em plano de fundo para o NewPipe e players em popup</string>
 
-    </resources>
+    <string name="settings_category_player_behavior_title">Comportamento</string>
+    <string name="settings_category_history_title">História</string>
+    <string name="playlist">Playlist</string>
+    <string name="undo">Desfazer</string>
+
+    <string name="search_no_results">Nenhum resultado</string>
+    <string name="no_subscribers">Nenhum inscrito</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s inscrito</item>
+	<item quantity="other">%s inscritos</item>
+</plurals>
+
+    <string name="no_views">Nenhuma visualização</string>
+    <plurals name="views">
+	<item quantity="one">%s visualização</item>
+	<item quantity="other">%s visualizações</item>
+</plurals>
+
+    <string name="no_videos">Nenhum video</string>
+    <plurals name="videos">
+	<item quantity="one">%s video</item>
+	<item quantity="other">%s videos</item>
+</plurals>
+
+    <string name="item_deleted">Item excluído</string>
+</resources>
