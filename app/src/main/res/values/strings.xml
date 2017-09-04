@@ -155,7 +155,7 @@
     <string name="report_error">Report an Error</string>
     <string name="user_report">User report</string>
     <string name="search_no_results">No results</string>
-    <string name="empty_view_no_videos">@string/no_videos</string>
+    <string name="empty_view_no_videos" translatable="false">@string/no_videos</string>
     <string name="empty_subscription_feed_subtitle">Nothing Here But Crickets</string>
 
     <string name="err_dir_create">Cannot create download directory \'%1$s\'</string>
@@ -172,26 +172,24 @@
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
 
+    <!--Zero don't get selected (in some languages) as it is not a "special case" for android-->
     <string name="no_subscribers">No subscribers</string>
     <plurals name="subscribers">
-        <!--Zero don't get selected (in some languages) as it is not a "special case" for android-->
-        <item quantity="zero">@string/no_subscribers</item>
+        <item quantity="zero" translatable="false">@string/no_subscribers</item>
         <item quantity="one">%s subscriber</item>
         <item quantity="other">%s subscribers</item>
     </plurals>
 
     <string name="no_views">No views</string>
     <plurals name="views">
-        <!--Zero don't get selected (in some languages) as it is not a "special case" for android-->
-        <item quantity="zero">@string/no_views</item>
+        <item quantity="zero" translatable="false">@string/no_views</item>
         <item quantity="one">%s view</item>
         <item quantity="other">%s views</item>
     </plurals>
 
     <string name="no_videos">No videos</string>
     <plurals name="videos">
-        <!--Zero don't get selected (in some languages) as it is not a "special case" for android-->
-        <item quantity="zero">@string/empty_view_no_videos</item>
+        <item quantity="zero" translatable="false">@string/no_videos</item>
         <item quantity="one">%s video</item>
         <item quantity="other">%s videos</item>
     </plurals>
