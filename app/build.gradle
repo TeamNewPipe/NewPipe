@@ -44,27 +44,22 @@ dependencies {
         exclude module: 'support-annotations'
     }
 
-    compile "android.arch.persistence.room:runtime:1.0.0-alpha3"
-    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha3"
-
+    compile 'com.github.TeamNewPipe:NewPipeExtractor:97ad1a2'
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
-    testCompile 'org.json:json:20160810'
 
-    compile 'com.android.support:appcompat-v7:26.0.0'
-    compile 'com.android.support:support-v4:26.0.0'
-    compile 'com.android.support:design:26.0.0'
-    compile 'com.android.support:recyclerview-v7:26.0.0'
+    compile 'com.android.support:appcompat-v7:26.0.1'
+    compile 'com.android.support:support-v4:26.0.1'
+    compile 'com.android.support:design:26.0.1'
+    compile 'com.android.support:recyclerview-v7:26.0.1'
+    compile 'com.android.support:preference-v14:26.0.1'
 
     compile 'com.google.code.gson:gson:2.7'
-    compile 'org.jsoup:jsoup:1.8.3'
-    compile 'org.mozilla:rhino:1.7.7'
     compile 'ch.acra:acra:4.9.0'
-    compile 'info.guardianproject.netcipher:netcipher:1.2'
 
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    compile 'de.hdodenhof:circleimageview:2.0.0'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.nirhart:parallaxscroll:1.0'
     compile 'com.nononsenseapps:filepicker:3.0.0'
     compile 'com.google.android.exoplayer:exoplayer:r2.5.1'
@@ -73,11 +68,14 @@ dependencies {
     debugCompile 'com.facebook.stetho:stetho-urlconnection:1.5.0'
     debugCompile 'com.android.support:multidex:1.0.1'
 
-    compile "android.arch.persistence.room:runtime:1.0.0-alpha8"
-    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha8"
-
-    compile "io.reactivex.rxjava2:rxjava:2.1.2"
-    compile "io.reactivex.rxjava2:rxandroid:2.0.1"
+    compile 'io.reactivex.rxjava2:rxjava:2.1.2'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
-    compile "android.arch.persistence.room:rxjava2:1.0.0-alpha8"
+
+    compile 'android.arch.persistence.room:runtime:1.0.0-alpha8'
+    compile 'android.arch.persistence.room:rxjava2:1.0.0-alpha8'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.0.0-alpha8'
+
+    compile 'frankiesardo:icepick:3.2.0'
+    provided 'frankiesardo:icepick-processor:3.2.0'
 }

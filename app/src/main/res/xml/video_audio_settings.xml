@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:title="@string/settings_category_video_audio_title">
+
+    <ListPreference
+        android:defaultValue="@string/default_resolution_value"
+        android:entries="@array/resolution_list_description"
+        android:entryValues="@array/resolution_list_values"
+        android:key="@string/default_resolution_key"
+        android:summary="%s"
+        android:title="@string/default_resolution_title"/>
+
+    <ListPreference
+        android:defaultValue="@string/default_popup_resolution_value"
+        android:entries="@array/resolution_list_description"
+        android:entryValues="@array/resolution_list_values"
+        android:key="@string/default_popup_resolution_key"
+        android:summary="%s"
+        android:title="@string/default_popup_resolution_title"/>
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/show_higher_resolutions_key"
+        android:summary="@string/show_higher_resolutions_summary"
+        android:title="@string/show_higher_resolutions_title"/>
+
+    <ListPreference
+        android:defaultValue="@string/default_video_format_value"
+        android:entries="@array/video_format_description_list"
+        android:entryValues="@array/video_format_values_list"
+        android:key="@string/default_video_format_key"
+        android:summary="%s"
+        android:title="@string/default_video_format_title"/>
+
+    <ListPreference
+        android:defaultValue="@string/default_audio_format_value"
+        android:entries="@array/audio_format_description_list"
+        android:entryValues="@array/audio_format_values_list"
+        android:key="@string/default_audio_format_key"
+        android:summary="%s"
+        android:title="@string/default_audio_format_title"/>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/settings_category_player_title">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/use_external_video_player_key"
+            android:summary="@string/use_external_video_player_summary"
+            android:title="@string/use_external_video_player_title"/>
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/use_external_audio_player_key"
+            android:title="@string/use_external_audio_player_title"/>
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/use_old_player_key"
+            android:summary="@string/use_old_player_summary"
+            android:title="@string/use_old_player_title"/>
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/show_play_with_kodi_key"
+            android:summary="@string/show_play_with_kodi_summary"
+            android:title="@string/show_play_with_kodi_title"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/settings_category_player_behavior_title">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/autoplay_through_intent_key"
+            android:summary="@string/autoplay_by_calling_app_summary"
+            android:title="@string/autoplay_by_calling_app_title"/>
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/resume_on_audio_focus_gain_key"
+            android:summary="@string/resume_on_audio_focus_gain_summary"
+            android:title="@string/resume_on_audio_focus_gain_title"/>
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/player_gesture_controls_key"
+            android:summary="@string/player_gesture_controls_summary"
+            android:title="@string/player_gesture_controls_title"/>
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/popup_remember_size_pos_key"
+            android:summary="@string/popup_remember_size_pos_summary"
+            android:title="@string/popup_remember_size_pos_title"/>
+
+    </PreferenceCategory>
+</PreferenceScreen>

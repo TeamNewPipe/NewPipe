@@ -137,10 +137,7 @@
     <string name="yes">Ja</string>
     <string name="later">Later</string>
 
-    <string name="videos">video\'s</string>
-    <string name="subscriber">abonneren</string>
-    <string name="subscribe">Abonneren</string>
-    <string name="views">weergaven</string>
+
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
@@ -153,10 +150,10 @@ te openen in pop-upmodus</string>
     <string name="popup_playing_toast">Speelt af in pop-upmodus</string>
     <string name="use_old_player_title">Gebruik oude speler</string>
     <string name="use_old_player_summary">Verouderde ingebouwde Mediaframework-speler</string>
-    <string name="preferred_video_format_title">Standaardvideoformaat</string>
+    <string name="default_video_format_title">Standaardvideoformaat</string>
     <string name="disabled">Uitgeschakeld</string>
 
-    <string name="subscriber_plural">abonnees</string>
+
     <string name="default_popup_resolution_title">Standaardresolutie voor pop-up</string>
     <string name="show_higher_resolutions_title">Hogere resoluties weergeven</string>
     <string name="show_higher_resolutions_summary">Video\'s afspelen in 2K/4K wordt maar op sommige apparaten ondersteund</string>
@@ -191,7 +188,6 @@ te openen in pop-upmodus</string>
     <string name="tab_about">Over</string>
     <string name="tab_contributors">Bijdragers</string>
     <string name="tab_licenses">Licenties</string>
-    <string name="github_url">https://github.com/TeamNewPipe/NewPipe</string>
     <string name="app_description">Een vrije en lichte YouTube-cliënt voor Android.</string>
     <string name="view_on_github">Bekijken op GitHub</string>
     <string name="app_license_title">Licentie van NewPipe</string>

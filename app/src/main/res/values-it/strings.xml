@@ -137,9 +137,7 @@
     <string name="all">Tutto</string>
     <string name="channel">Canale</string>
 
-    <string name="videos">video</string>
-    <string name="subscriber">iscritto</string>
-    <string name="views">visualizzazioni</string>
+
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
@@ -149,7 +147,6 @@
     <string name="yes">Si</string>
     <string name="later">Più tardi</string>
 
-    <string name="subscribe">Iscriviti</string>
 
     <string name="open_in_popup_mode">Apri in modalità popup</string>
     <string name="popup_mode_share_menu_title">Modo popup NewPipe</string>
@@ -165,7 +162,7 @@
     <string name="default_popup_resolution_title">Risoluzione predefinita per il popup</string>
     <string name="show_higher_resolutions_title">Mostra risoluzioni più alte</string>
     <string name="show_higher_resolutions_summary">Solo alcuni dispositivi supportano la riproduzione di video in 2K e 4K.</string>
-    <string name="preferred_video_format_title">Formato video preferito</string>
+    <string name="default_video_format_title">Formato video preferito</string>
     <string name="popup_remember_size_pos_title">Ricorda grandezza e posizione del popup</string>
     <string name="popup_remember_size_pos_summary">Ricorda l\'ultima grandezza e l\'ultima posizione impostate per il popup.</string>
     <string name="player_gesture_controls_title">Controlli gestuali</string>
@@ -181,7 +178,7 @@
     <string name="best_resolution">Risoluzione migliore</string>
 
     <string name="use_old_player_summary">Precedente riproduttore integrato facente uso di Mediaframework.</string>
-    <string name="subscriber_plural">iscritti</string>
+
     <string name="msg_popup_permission">Questo permesso è necessario
 \nper la modalità popup</string>
 

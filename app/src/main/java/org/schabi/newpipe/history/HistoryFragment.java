@@ -1,16 +1,17 @@
 package org.schabi.newpipe.history;
 
 
-import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.annotation.CallSuper;
 import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -18,12 +19,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.history.dao.HistoryDAO;
 import org.schabi.newpipe.database.history.model.HistoryEntry;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
+import icepick.State;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -33,20 +39,27 @@ import io.reactivex.subjects.PublishSubject;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
+public abstract class HistoryFragment<E extends HistoryEntry> extends BaseFragment
         implements HistoryEntryAdapter.OnHistoryItemClickListener<E> {
 
+    private SharedPreferences mSharedPreferences;
+    private String mHistoryIsEnabledKey;
     private boolean mHistoryIsEnabled;
     private HistoryIsEnabledChangeListener mHistoryIsEnabledChangeListener;
-    private String mHistoryIsEnabledKey;
-    private SharedPreferences mSharedPreferences;
-    private RecyclerView mRecyclerView;
+
     private View mDisabledView;
-    private HistoryDAO<E> mHistoryDataSource;
-    private HistoryEntryAdapter<E, ? extends RecyclerView.ViewHolder> mHistoryAdapter;
     private View mEmptyHistoryView;
+
+    @State
+    Parcelable mRecyclerViewState;
+    private RecyclerView mRecyclerView;
+    private HistoryEntryAdapter<E, ? extends RecyclerView.ViewHolder> mHistoryAdapter;
     private ItemTouchHelper.SimpleCallback mHistoryItemSwipeCallback;
-    private PublishSubject<E> mHistoryEntryDeleteSubject;
+    private int allowedSwipeToDeleteDirections = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+
+    private HistoryDAO<E> mHistoryDataSource;
+    private PublishSubject<Collection<E>> mHistoryEntryDeleteSubject;
+    private PublishSubject<Collection<E>> mHistoryEntryInsertSubject;
 
     @StringRes
     abstract int getEnabledConfigKey();
@@ -64,19 +77,29 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
         // Register history enabled listener
         mSharedPreferences.registerOnSharedPreferenceChangeListener(mHistoryIsEnabledChangeListener);
 
-        mHistoryDataSource = createHistoryDAO(getContext());
+        mHistoryDataSource = createHistoryDAO();
 
         mHistoryEntryDeleteSubject = PublishSubject.create();
         mHistoryEntryDeleteSubject
                 .observeOn(Schedulers.io())
-                .subscribe(new Consumer<E>() {
+                .subscribe(new Consumer<Collection<E>>() {
                     @Override
-                    public void accept(E historyEntry) throws Exception {
-                        mHistoryDataSource.delete(historyEntry);
+                    public void accept(Collection<E> historyEntries) throws Exception {
+                        mHistoryDataSource.delete(historyEntries);
                     }
                 });
 
-        mHistoryItemSwipeCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        mHistoryEntryInsertSubject = PublishSubject.create();
+        mHistoryEntryInsertSubject
+                .observeOn(Schedulers.io())
+                .subscribe(new Consumer<Collection<E>>() {
+                    @Override
+                    public void accept(Collection<E> historyEntries) throws Exception {
+                        mHistoryDataSource.insertAll(historyEntries);
+                    }
+                });
+
+        mHistoryItemSwipeCallback = new ItemTouchHelper.SimpleCallback(0, allowedSwipeToDeleteDirections) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                 return false;
@@ -85,8 +108,20 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 if (mHistoryAdapter != null) {
-                    E historyEntry = mHistoryAdapter.removeItemAt(viewHolder.getAdapterPosition());
-                    mHistoryEntryDeleteSubject.onNext(historyEntry);
+                    final E historyEntry = mHistoryAdapter.removeItemAt(viewHolder.getAdapterPosition());
+                    mHistoryEntryDeleteSubject.onNext(Collections.singletonList(historyEntry));
+
+                    View view = getActivity().findViewById(R.id.main_content);
+                    if (view == null) view = mRecyclerView.getRootView();
+
+                    Snackbar.make(view, R.string.item_deleted, 5 * 1000)
+                            .setActionTextColor(Color.WHITE)
+                            .setAction(R.string.undo, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    mHistoryEntryInsertSubject.onNext(Collections.singletonList(historyEntry));
+                                }
+                            }).show();
                 }
             }
         };
@@ -98,7 +133,7 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
     @Override
     public void onResume() {
         super.onResume();
-        mHistoryDataSource.findAll()
+        mHistoryDataSource.getAll()
                 .toObservable()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getHistoryListConsumer());
@@ -121,9 +156,14 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
                 if (!historyEntries.isEmpty()) {
                     mHistoryAdapter.setEntries(historyEntries);
                     animateView(mEmptyHistoryView, false, 200);
+
+                    if (mRecyclerViewState != null) {
+                        mRecyclerView.getLayoutManager().onRestoreInstanceState(mRecyclerViewState);
+                        mRecyclerViewState = null;
+                    }
                 } else {
                     mHistoryAdapter.clear();
-                    onEmptyHistory();
+                    showEmptyHistory();
                 }
             }
 
@@ -148,11 +188,33 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
      */
     @MainThread
     public void onHistoryCleared() {
+        final Parcelable stateBeforeClear = mRecyclerView.getLayoutManager().onSaveInstanceState();
+        final Collection<E> itemsToDelete = new ArrayList<>(mHistoryAdapter.getItems());
+        mHistoryEntryDeleteSubject.onNext(itemsToDelete);
+
+        View view = getActivity().findViewById(R.id.main_content);
+        if (view == null) view = mRecyclerView.getRootView();
+
+        if (!itemsToDelete.isEmpty()) {
+            Snackbar.make(view, R.string.history_cleared, 5 * 1000)
+                    .setActionTextColor(Color.WHITE)
+                    .setAction(R.string.undo, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mRecyclerViewState = stateBeforeClear;
+                            mHistoryEntryInsertSubject.onNext(itemsToDelete);
+                        }
+                    }).show();
+        } else {
+            Snackbar.make(view, R.string.history_cleared, Snackbar.LENGTH_LONG).show();
+        }
+
         mHistoryAdapter.clear();
-        onEmptyHistory();
+        showEmptyHistory();
+
     }
 
-    private void onEmptyHistory() {
+    private void showEmptyHistory() {
         if (mHistoryIsEnabled) {
             animateView(mEmptyHistoryView, true, 200);
         }
@@ -196,12 +258,14 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
         mHistoryDataSource = null;
     }
 
-    /**
-     * Called when the history is cleared
-     */
-    @CallSuper
-    public void onClearHistory() {
-        mHistoryDataSource.deleteAll();
+    @Override
+    public void onPause() {
+        super.onPause();
+        mRecyclerViewState = mRecyclerView.getLayoutManager().onSaveInstanceState();
+    }
+
+    public void setAllowedSwipeToDeleteDirections(int allowedSwipeToDeleteDirections) {
+        this.allowedSwipeToDeleteDirections = allowedSwipeToDeleteDirections;
     }
 
     /**
@@ -228,11 +292,10 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends Fragment
     /**
      * Creates a new history DAO
      *
-     * @param context the fragments context
      * @return the history DAO
      */
     @NonNull
-    protected abstract HistoryDAO<E> createHistoryDAO(Context context);
+    protected abstract HistoryDAO<E> createHistoryDAO();
 
     private class HistoryIsEnabledChangeListener implements SharedPreferences.OnSharedPreferenceChangeListener {
         @Override

@@ -145,7 +145,7 @@
     <string name="default_popup_resolution_title">窗口模式默认分辨率</string>
     <string name="show_higher_resolutions_title">显示更高分辨率</string>
     <string name="show_higher_resolutions_summary">2K/4K 视频播放仅在某些设备上支持</string>
-    <string name="preferred_video_format_title">首选视频格式</string>
+    <string name="default_video_format_title">首选视频格式</string>
     <string name="black_theme_title">黑色系</string>
     <string name="popup_remember_size_pos_title">记住窗口模式大小和位置</string>
     <string name="popup_remember_size_pos_summary">记住上一次设置窗口模式的大小和位置</string>
@@ -179,11 +179,6 @@
 
     <string name="use_old_player_title">使用旧版播放器</string>
     <string name="use_old_player_summary">旧版本的内置媒体播放器。</string>
-    <string name="videos">个视频</string>
-    <string name="subscriber">位订阅者</string>
-    <string name="subscriber_plural">位订阅者</string>
-    <string name="subscribe">订阅</string>
-    <string name="views">次观看</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>

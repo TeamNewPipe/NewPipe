@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/channel_header_layout"
     android:layout_width="match_parent"
@@ -17,59 +18,52 @@
         android:src="@drawable/channel_banner"
         tools:ignore="ContentDescription"/>
 
-    <RelativeLayout
-        android:id="@+id/channel_avatar_layout"
-        android:layout_width="@dimen/channel_avatar_halo_size"
-        android:layout_height="@dimen/channel_avatar_halo_size"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/channel_avatar_view"
+        android:layout_width="@dimen/channel_avatar_size"
+        android:layout_height="@dimen/channel_avatar_size"
         android:layout_alignTop="@id/channel_banner_image"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="50dp"
-        tools:ignore="RtlHardcoded">
-
-        <ImageView
-            android:id="@+id/channel_avatar_halo"
-            android:layout_width="@dimen/channel_avatar_halo_size"
-            android:layout_height="@dimen/channel_avatar_halo_size"
-            android:layout_alignParentLeft="true"
-            android:src="@drawable/white_circle"
-            tools:ignore="ContentDescription"/>
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/channel_avatar_view"
-            android:layout_width="@dimen/channel_avatar_size"
-            android:layout_height="@dimen/channel_avatar_size"
-            android:layout_centerInParent="true"
-            android:src="@drawable/buddy"/>
-    </RelativeLayout>
+        android:src="@drawable/buddy"
+        app:civ_border_color="#ffffff"
+        app:civ_border_width="2dp"
+        tools:ignore="RtlHardcoded"/>
 
     <TextView
         android:id="@+id/channel_title_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/channel_banner_image"
         android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="6dp"
         android:layout_toLeftOf="@+id/channel_subscribe_button"
-        android:layout_toRightOf="@+id/channel_avatar_layout"
+        android:layout_toRightOf="@+id/channel_avatar_view"
+        android:ellipsize="end"
+        android:lines="1"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/video_item_detail_title_text_size"
         tools:ignore="RtlHardcoded"
-        tools:text="Testing Title"/>
+        tools:text="Lorem ipsum dolor"/>
 
     <TextView
         android:id="@+id/channel_subscriber_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/channel_title_view"
+        android:layout_alignRight="@+id/channel_title_view"
         android:layout_below="@+id/channel_title_view"
-        android:gravity="center"
+        android:ellipsize="end"
+        android:gravity="left|center"
+        android:lines="1"
         android:textSize="@dimen/channel_subscribers_text_size"
         android:visibility="gone"
         tools:ignore="RtlHardcoded"
         tools:text="123,141,411 subscribers"
         tools:visibility="visible"/>
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/channel_subscribe_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,5 +77,4 @@
         android:visibility="gone"
         tools:ignore="RtlHardcoded"
         tools:visibility="visible"/>
-
 </RelativeLayout>

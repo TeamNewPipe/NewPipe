@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/settings_category_downloads_title">
+
+    <Preference
+        android:dialogTitle="@string/download_path_dialog_title"
+        android:key="@string/download_path_key"
+        android:summary="@string/download_path_summary"
+        android:title="@string/download_path_title"/>
+
+    <Preference
+        android:dialogTitle="@string/download_path_audio_dialog_title"
+        android:key="@string/download_path_audio_key"
+        android:summary="@string/download_path_audio_summary"
+        android:title="@string/download_path_audio_title"/>
+
+    <ListPreference
+        android:defaultValue="@string/default_file_charset_value"
+        android:entries="@array/settings_filename_charset_name"
+        android:entryValues="@array/settings_filename_charset"
+        android:key="@string/settings_file_charset_key"
+        android:summary="%s"
+        android:title="@string/settings_file_charset_title"/>
+
+    <EditTextPreference
+        android:defaultValue="@string/settings_file_replacement_character_default_value"
+        android:key="@string/settings_file_replacement_character_key"
+        android:summary="@string/settings_file_replacement_character_summary"
+        android:title="@string/settings_file_replacement_character_title"/>
+
+</PreferenceScreen>

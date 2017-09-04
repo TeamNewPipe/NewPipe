@@ -1,3 +1,22 @@
+/*
+ * Copyright 2017 Mauricio Colli <mauriciocolli@outlook.com>
+ * VideoPlayer.java is part of NewPipe
+ *
+ * License: GPL-3.0+
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package org.schabi.newpipe.player;
 
 import android.animation.Animator;
@@ -26,7 +45,6 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
@@ -36,8 +54,8 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.stream_info.AudioStream;
-import org.schabi.newpipe.extractor.stream_info.VideoStream;
+import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.util.AnimationUtils;
 
 import java.io.Serializable;
@@ -74,7 +92,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     // Player
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static final int DEFAULT_CONTROLS_HIDE_TIME = 3000;  // 3 Seconds
+    public static final int DEFAULT_CONTROLS_HIDE_TIME = 2000;  // 2 Seconds
     private static final float[] PLAYBACK_SPEEDS = {0.5f, 0.75f, 1f, 1.25f, 1.5f, 1.75f, 2f};
 
     private boolean startedFromNewPipe = true;
@@ -133,26 +151,27 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
     public void initViews(View rootView) {
         this.rootView = rootView;
-        this.aspectRatioFrameLayout = (AspectRatioFrameLayout) rootView.findViewById(R.id.aspectRatioLayout);
-        this.surfaceView = (SurfaceView) rootView.findViewById(R.id.surfaceView);
+        this.aspectRatioFrameLayout = rootView.findViewById(R.id.aspectRatioLayout);
+        this.surfaceView = rootView.findViewById(R.id.surfaceView);
         this.surfaceForeground = rootView.findViewById(R.id.surfaceForeground);
         this.loadingPanel = rootView.findViewById(R.id.loading_panel);
-        this.endScreen = (ImageView) rootView.findViewById(R.id.endScreen);
-        this.controlAnimationView = (ImageView) rootView.findViewById(R.id.controlAnimationView);
+        this.endScreen = rootView.findViewById(R.id.endScreen);
+        this.controlAnimationView = rootView.findViewById(R.id.controlAnimationView);
         this.controlsRoot = rootView.findViewById(R.id.playbackControlRoot);
-        this.currentDisplaySeek = (TextView) rootView.findViewById(R.id.currentDisplaySeek);
-        this.playbackSeekBar = (SeekBar) rootView.findViewById(R.id.playbackSeekBar);
-        this.playbackCurrentTime = (TextView) rootView.findViewById(R.id.playbackCurrentTime);
-        this.playbackEndTime = (TextView) rootView.findViewById(R.id.playbackEndTime);
-        this.playbackSpeed = (TextView) rootView.findViewById(R.id.playbackSpeed);
+        this.currentDisplaySeek = rootView.findViewById(R.id.currentDisplaySeek);
+        this.playbackSeekBar = rootView.findViewById(R.id.playbackSeekBar);
+        this.playbackCurrentTime = rootView.findViewById(R.id.playbackCurrentTime);
+        this.playbackEndTime = rootView.findViewById(R.id.playbackEndTime);
+        this.playbackSpeed = rootView.findViewById(R.id.playbackSpeed);
         this.bottomControlsRoot = rootView.findViewById(R.id.bottomControls);
         this.topControlsRoot = rootView.findViewById(R.id.topControls);
-        this.qualityTextView = (TextView) rootView.findViewById(R.id.qualityTextView);
-        this.fullScreenButton = (ImageButton) rootView.findViewById(R.id.fullScreenButton);
+        this.qualityTextView = rootView.findViewById(R.id.qualityTextView);
+        this.fullScreenButton = rootView.findViewById(R.id.fullScreenButton);
 
         //this.aspectRatioFrameLayout.setAspectRatio(16.0f / 9.0f);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+            playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
         this.playbackSeekBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
 
         this.qualityPopupMenu = new PopupMenu(context, qualityTextView);
@@ -226,7 +245,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     @Override
     public MediaSource buildMediaSource(String url, String overrideExtension) {
         MediaSource mediaSource = super.buildMediaSource(url, overrideExtension);
-        if (!getSelectedVideoStream().isVideoOnly) return mediaSource;
+        if (!getSelectedVideoStream().isVideoOnly || videoOnlyAudioStream == null) return mediaSource;
 
         Uri audioUri = Uri.parse(videoOnlyAudioStream.url);
         return new MergingMediaSource(mediaSource, new ExtractorMediaSource(audioUri, cacheDataSourceFactory, extractorsFactory, null, null));
@@ -269,7 +288,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         playbackSeekBar.setProgress(0);
 
         // Bug on lower api, disabling and enabling the seekBar resets the thumb color -.-, so sets the color again
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+            playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
 
         animateView(endScreen, false, 0);
         loadingPanel.setBackgroundColor(Color.BLACK);
@@ -324,7 +344,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         playbackEndTime.setText(getTimeString(playbackSeekBar.getMax()));
         playbackCurrentTime.setText(playbackEndTime.getText());
         // Bug on lower api, disabling and enabling the seekBar resets the thumb color -.-, so sets the color again
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+            playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
 
         animateView(surfaceForeground, true, 100);
 
@@ -360,8 +381,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         if (DEBUG) Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");
 
         if (videoStartPos > 0) {
-            playbackSeekBar.setProgress(videoStartPos);
-            playbackCurrentTime.setText(getTimeString(videoStartPos));
+            playbackSeekBar.setProgress((int) videoStartPos);
+            playbackCurrentTime.setText(getTimeString((int) videoStartPos));
             videoStartPos = -1;
         }
 
@@ -444,11 +465,12 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
      */
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
-        if (DEBUG) Log.d(TAG, "onMenuItemClick() called with: menuItem = [" + menuItem + "], menuItem.getItemId = [" + menuItem.getItemId() + "]");
+        if (DEBUG)
+            Log.d(TAG, "onMenuItemClick() called with: menuItem = [" + menuItem + "], menuItem.getItemId = [" + menuItem.getItemId() + "]");
 
         if (qualityPopupMenuGroupId == menuItem.getGroupId()) {
             if (selectedIndexStream == menuItem.getItemId()) return true;
-            setVideoStartPos((int) simpleExoPlayer.getCurrentPosition());
+            setVideoStartPos(simpleExoPlayer.getCurrentPosition());
 
             selectedIndexStream = menuItem.getItemId();
             if (!(getCurrentState() == STATE_COMPLETED)) play(wasPlaying);

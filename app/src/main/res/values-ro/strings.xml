@@ -136,7 +136,7 @@ pentru a deschide în mod pop-up</string>
     <string name="default_popup_resolution_title">Rezoluție inițială pop-up</string>
     <string name="show_higher_resolutions_title">Arată rezoluție mai mare</string>
     <string name="show_higher_resolutions_summary">Doar anumite dispozitive suportă afișare video în mod 2K/4K</string>
-    <string name="preferred_video_format_title">Format video preferat</string>
+    <string name="default_video_format_title">Format video preferat</string>
     <string name="black_theme_title">Negru</string>
 
     <string name="popup_playing_toast">Redare în mod pop-up</string>
@@ -151,11 +151,8 @@ pentru a deschide în mod pop-up</string>
     <string name="info_labels">What:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:\\nGlob. IP clasa:</string>
     <string name="use_old_player_title">Folosește player vechi</string>
     <string name="use_old_player_summary">Versiune veche în Mediaframework player.</string>
-    <string name="videos">video-uri</string>
-    <string name="subscriber">abonat</string>
-    <string name="subscriber_plural">abonați</string>
-    <string name="subscribe">Abonare</string>
-    <string name="views">vizualizări</string>
+
+
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>

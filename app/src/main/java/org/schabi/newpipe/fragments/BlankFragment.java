@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
 
 public class BlankFragment extends BaseFragment {
@@ -13,10 +14,5 @@ public class BlankFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_blank, container, false);
-    }
-
-    @Override
-    protected void reloadContent() {
-
     }
 }

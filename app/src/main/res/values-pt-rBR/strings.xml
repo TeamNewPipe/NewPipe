@@ -119,7 +119,7 @@
     <string name="default_popup_resolution_title">Resolução padrão de popup</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções maiores</string>
     <string name="show_higher_resolutions_summary">Apenas alguns dispositivos suportam reprodução de vídeos em 2K/4K</string>
-    <string name="preferred_video_format_title">Formato de vídeo preferido</string>
+    <string name="default_video_format_title">Formato de vídeo preferido</string>
     <string name="popup_playing_toast">Reproduzindo em modo popup</string>
     <string name="all">Tudo</string>
     <string name="channel">Canal</string>
@@ -128,12 +128,8 @@
     <string name="disabled">Desabilitado</string>
 
     <string name="use_old_player_title">Usar player antigo</string>
-    <string name="use_old_player_summary">Antigo player interno Mediaframework</string>
-    <string name="videos">vídeos</string>
-    <string name="subscriber">inscrito</string>
-    <string name="subscriber_plural">inscritos</string>
-    <string name="subscribe">Inscrever-se</string>
-    <string name="views">visualizações</string>
+    <string name="use_old_player_summary">Antigo player interno Mediaframework.</string>
+
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>

@@ -12,12 +12,12 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.stream_info.VideoStream;
-import org.schabi.newpipe.util.Utils;
+import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.util.ListHelper;
 
 import java.util.List;
 
-/**
+/*
  * Created by Christian Schabesberger on 18.08.15.
  * <p>
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
@@ -68,7 +68,7 @@ class ActionBarHandler {
     public void setupStreamList(final List<VideoStream> videoStreams, Spinner toolbarSpinner) {
         if (activity == null) return;
 
-        selectedVideoStream = Utils.getDefaultResolution(activity, videoStreams);
+        selectedVideoStream = ListHelper.getDefaultResolutionIndex(activity, videoStreams);
 
         boolean isExternalPlayerEnabled = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(activity.getString(R.string.use_external_video_player_key), false);
         toolbarSpinner.setAdapter(new SpinnerToolbarAdapter(activity, videoStreams, isExternalPlayerEnabled));

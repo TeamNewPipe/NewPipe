@@ -1,3 +1,22 @@
+/*
+ * Copyright 2017 Mauricio Colli <mauriciocolli@outlook.com>
+ * BasePlayer.java is part of NewPipe
+ *
+ * License: GPL-3.0+
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package org.schabi.newpipe.player;
 
 import android.animation.Animator;
@@ -49,6 +68,7 @@ import com.google.android.exoplayer2.util.Util;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
+import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.R;
 
 import java.io.File;
@@ -65,6 +85,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class BasePlayer implements Player.EventListener, AudioManager.OnAudioFocusChangeListener {
+    // TODO: Check api version for deprecated audio manager methods
+
     public static final boolean DEBUG = false;
     public static final String TAG = "BasePlayer";
 
@@ -90,8 +112,8 @@ public abstract class BasePlayer implements Player.EventListener, AudioManager.O
     protected String videoUrl = "";
     protected String videoTitle = "";
     protected String videoThumbnailUrl = "";
-    protected int videoStartPos = -1;
-    protected String channelName = "";
+    protected long videoStartPos = -1;
+    protected String uploaderName = "";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Player
@@ -139,7 +161,7 @@ public abstract class BasePlayer implements Player.EventListener, AudioManager.O
 
     private void initExoPlayerCache() {
         if (cacheDataSourceFactory == null) {
-            DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(context, Util.getUserAgent(context, context.getPackageName()), bandwidthMeter);
+            DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(context, Downloader.USER_AGENT, bandwidthMeter);
             File cacheDir = new File(context.getExternalCacheDir(), CACHE_FOLDER_NAME);
             if (!cacheDir.exists()) {
                 //noinspection ResultOfMethodCallIgnored
@@ -183,8 +205,8 @@ public abstract class BasePlayer implements Player.EventListener, AudioManager.O
         videoUrl = intent.getStringExtra(VIDEO_URL);
         videoTitle = intent.getStringExtra(VIDEO_TITLE);
         videoThumbnailUrl = intent.getStringExtra(VIDEO_THUMBNAIL_URL);
-        videoStartPos = intent.getIntExtra(START_POSITION, -1);
-        channelName = intent.getStringExtra(CHANNEL_NAME);
+        videoStartPos = intent.getLongExtra(START_POSITION, -1L);
+        uploaderName = intent.getStringExtra(CHANNEL_NAME);
         setPlaybackSpeed(intent.getFloatExtra(PLAYBACK_SPEED, getPlaybackSpeed()));
 
         initThumbnail();
@@ -200,7 +222,8 @@ public abstract class BasePlayer implements Player.EventListener, AudioManager.O
             @Override
             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                 if (simpleExoPlayer == null) return;
-                if (DEBUG) Log.d(TAG, "onLoadingComplete() called with: imageUri = [" + imageUri + "], view = [" + view + "], loadedImage = [" + loadedImage + "]");
+                if (DEBUG)
+                    Log.d(TAG, "onLoadingComplete() called with: imageUri = [" + imageUri + "], view = [" + view + "], loadedImage = [" + loadedImage + "]");
                 videoThumbnail = loadedImage;
                 onThumbnailReceived(loadedImage);
             }
@@ -236,6 +259,10 @@ public abstract class BasePlayer implements Player.EventListener, AudioManager.O
             simpleExoPlayer.release();
         }
         if (progressLoop != null && isProgressLoopRunning.get()) stopProgressLoop();
+        if (audioManager != null) {
+            audioManager.abandonAudioFocus(this);
+            audioManager = null;
+        }
     }
 
     public void destroy() {
@@ -327,12 +354,8 @@ public abstract class BasePlayer implements Player.EventListener, AudioManager.O
     }
 
     private boolean isResumeAfterAudioFocusGain() {
-        if (this.sharedPreferences == null || this.context == null) return false;
-
-        return this.sharedPreferences.getBoolean(
-                this.context.getString(R.string.resume_on_audio_focus_gain_key),
-                false
-        );
+        return sharedPreferences != null && context != null
+                && sharedPreferences.getBoolean(context.getString(R.string.resume_on_audio_focus_gain_key), false);
     }
 
     protected void onAudioFocusGain() {
@@ -473,7 +496,8 @@ public abstract class BasePlayer implements Player.EventListener, AudioManager.O
 
     @Override
     public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-        if (DEBUG) Log.d(TAG, "onPlayerStateChanged() called with: playWhenReady = [" + playWhenReady + "], playbackState = [" + playbackState + "]");
+        if (DEBUG)
+            Log.d(TAG, "onPlayerStateChanged() called with: playWhenReady = [" + playWhenReady + "], playbackState = [" + playbackState + "]");
         if (getCurrentState() == STATE_PAUSED_SEEK) {
             if (DEBUG) Log.d(TAG, "onPlayerStateChanged() currently on PausedSeek");
             return;
@@ -516,7 +540,9 @@ public abstract class BasePlayer implements Player.EventListener, AudioManager.O
     // General Player
     //////////////////////////////////////////////////////////////////////////*/
 
-    public abstract void onError(Exception exception);
+    public void onError(Exception exception){
+        destroy();
+    }
 
     public void onPrepared(boolean playWhenReady) {
         if (DEBUG) Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");
@@ -565,7 +591,8 @@ public abstract class BasePlayer implements Player.EventListener, AudioManager.O
 
     public void seekBy(int milliSeconds) {
         if (DEBUG) Log.d(TAG, "seekBy() called with: milliSeconds = [" + milliSeconds + "]");
-        if (simpleExoPlayer == null || (isCompleted() && milliSeconds > 0) || ((milliSeconds < 0 && simpleExoPlayer.getCurrentPosition() == 0))) return;
+        if (simpleExoPlayer == null || (isCompleted() && milliSeconds > 0) || ((milliSeconds < 0 && simpleExoPlayer.getCurrentPosition() == 0)))
+            return;
         int progress = (int) (simpleExoPlayer.getCurrentPosition() + milliSeconds);
         if (progress < 0) progress = 0;
         simpleExoPlayer.seekTo(progress);
@@ -693,11 +720,11 @@ public abstract class BasePlayer implements Player.EventListener, AudioManager.O
         this.videoUrl = videoUrl;
     }
 
-    public int getVideoStartPos() {
+    public long getVideoStartPos() {
         return videoStartPos;
     }
 
-    public void setVideoStartPos(int videoStartPos) {
+    public void setVideoStartPos(long videoStartPos) {
         this.videoStartPos = videoStartPos;
     }
 
@@ -709,12 +736,12 @@ public abstract class BasePlayer implements Player.EventListener, AudioManager.O
         this.videoTitle = videoTitle;
     }
 
-    public String getChannelName() {
-        return channelName;
+    public String getUploaderName() {
+        return uploaderName;
     }
 
-    public void setChannelName(String channelName) {
-        this.channelName = channelName;
+    public void setUploaderName(String uploaderName) {
+        this.uploaderName = uploaderName;
     }
 
     public boolean isCompleted() {

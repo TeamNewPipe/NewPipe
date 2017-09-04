@@ -6,9 +6,8 @@ import android.support.annotation.NonNull;
 import org.acra.config.ACRAConfiguration;
 import org.acra.sender.ReportSender;
 import org.acra.sender.ReportSenderFactory;
-import org.schabi.newpipe.report.AcraReportSender;
 
-/**
+/*
  * Created by Christian Schabesberger  on 13.09.16.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/filter"
+        android:icon="?attr/filter"
+        android:title="@string/filter"
+        app:showAsAction="always">
+        <menu>
+            <group
+                android:id="@+id/search_filter_group"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_filter_all"
+                    android:checked="true"
+                    android:title="@string/all"/>
+                <item
+                    android:id="@+id/menu_filter_video"
+                    android:title="@string/video"/>
+                <item
+                    android:id="@+id/menu_filter_channel"
+                    android:title="@string/channel"/>
+                <item
+                    android:id="@+id/menu_filter_playlist"
+                    android:title="@string/playlist"/>
+            </group>
+        </menu>
+    </item>
+
+
+</menu>
