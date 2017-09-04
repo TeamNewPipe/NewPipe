@@ -550,7 +550,7 @@ public abstract class BasePlayer implements Player.EventListener,
     @Override
     public void onPositionDiscontinuity() {
         int newIndex = simpleExoPlayer.getCurrentWindowIndex();
-        playbackManager.refresh(newIndex);
+        if (playbackManager.getCurrentSourceIndex() != newIndex) playbackManager.refresh(newIndex);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

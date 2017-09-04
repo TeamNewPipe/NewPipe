@@ -45,7 +45,7 @@ public abstract class PlayQueue {
         streams = Collections.synchronizedList(new ArrayList<PlayQueueItem>());
         streams.addAll(startWith);
 
-        queueIndex = new AtomicInteger(97);
+        queueIndex = new AtomicInteger(index);
 
         eventBroadcast = BehaviorSubject.create();
         broadcastReceiver = eventBroadcast
@@ -54,6 +54,10 @@ public abstract class PlayQueue {
 
         if (DEBUG) broadcastReceiver.subscribe(getSelfReporter());
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Playlist actions
+    //////////////////////////////////////////////////////////////////////////*/
 
     // a queue is complete if it has loaded all items in an external playlist
     // single stream or local queues are always complete
@@ -70,6 +74,10 @@ public abstract class PlayQueue {
         if (reportingReactor != null) reportingReactor.cancel();
         reportingReactor = null;
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Readonly ops
+    //////////////////////////////////////////////////////////////////////////*/
 
     public PlayQueueItem getCurrent() {
         return streams.get(getIndex());
@@ -89,10 +97,6 @@ public abstract class PlayQueue {
         return broadcastReceiver;
     }
 
-    private void broadcast(final PlayQueueMessage event) {
-        eventBroadcast.onNext(event);
-    }
-
     public int indexOf(final PlayQueueItem item) {
         // reference equality, can't think of a better way to do this
         // todo: better than this
@@ -102,6 +106,10 @@ public abstract class PlayQueue {
     public int getIndex() {
         return queueIndex.get();
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Write ops
+    //////////////////////////////////////////////////////////////////////////*/
 
     public void setIndex(final int index) {
         queueIndex.set(Math.min(Math.max(0, index), streams.size() - 1));
@@ -122,7 +130,10 @@ public abstract class PlayQueue {
         if (index >= streams.size()) return;
 
         streams.remove(index);
-        queueIndex.set(Math.max(0, queueIndex.get() - 1));
+        // Nudge the index if it becomes larger than the queue size
+        if (queueIndex.get() > size()) {
+            queueIndex.set(size() - 1);
+        }
 
         broadcast(new RemoveEvent(index));
     }
@@ -146,6 +157,14 @@ public abstract class PlayQueue {
 
             broadcast(new SwapEvent(source, target));
         }
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Rx Broadcast
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private void broadcast(final PlayQueueMessage event) {
+        eventBroadcast.onNext(event);
     }
 
     private Subscriber<PlayQueueMessage> getSelfReporter() {

@@ -19,6 +19,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ExternalPlayQueue extends PlayQueue {
     private final String TAG = "ExternalPlayQueue@" + Integer.toHexString(hashCode());
+    private static final int RETRY_COUNT = 2;
 
     private boolean isComplete;
 
@@ -55,7 +56,7 @@ public class ExternalPlayQueue extends PlayQueue {
        ExtractorHelper.getPlaylistInfo(this.serviceId, this.playlistUrl, false)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .retry(2)
+                .retry(RETRY_COUNT)
                 .subscribe(getPlaylistObserver());
     }
 
