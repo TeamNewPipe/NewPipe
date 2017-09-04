@@ -32,12 +32,15 @@ public class ExternalPlayQueue extends PlayQueue {
 
     public ExternalPlayQueue(final String playlistUrl,
                              final PlayListInfo info,
-                             final int nextPage,
+                             final int currentPage,
                              final int index) {
         super(index, extractPlaylistItems(info));
 
         this.service = getService(info.service_id);
-        this.pageNumber = new AtomicInteger(nextPage);
+
+        this.isComplete = !info.hasNextPage;
+        this.pageNumber = new AtomicInteger(currentPage + 1);
+
         this.playlistUrl = playlistUrl;
     }
 
@@ -54,6 +57,7 @@ public class ExternalPlayQueue extends PlayQueue {
 
     @Override
     public void fetch() {
+        if (isComplete) return;
         if (fetchReactor != null && !fetchReactor.isDisposed()) return;
 
         final Callable<PlayListInfo> task = new Callable<PlayListInfo>() {
@@ -77,7 +81,6 @@ public class ExternalPlayQueue extends PlayQueue {
         fetchReactor = Maybe.fromCallable(task)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .onErrorComplete()
                 .subscribe(onSuccess);
     }
 

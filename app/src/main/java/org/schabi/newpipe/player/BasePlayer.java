@@ -560,46 +560,61 @@ public abstract class BasePlayer implements Player.EventListener,
 
     @Override
     public void block() {
-        if (currentState != STATE_LOADING) return;
+        Log.d(TAG, "Blocking...");
 
-        changeState(STATE_LOADING);
-        simpleExoPlayer.setPlayWhenReady(false);
+        if (currentState != STATE_PLAYING) return;
+
+        simpleExoPlayer.stop();
         windowIndex = simpleExoPlayer.getCurrentWindowIndex();
         windowPos = Math.max(0, simpleExoPlayer.getContentPosition());
+
+        changeState(STATE_BUFFERING);
     }
 
     @Override
     public void unblock() {
-        if (currentState == STATE_PLAYING) return;
+        Log.d(TAG, "Unblocking...");
 
-        if (playbackManager.getMediaSource().getSize() > 0) {
-            simpleExoPlayer.seekToDefaultPosition();
-            //simpleExoPlayer.seekTo(windowIndex, windowPos);
-            simpleExoPlayer.setPlayWhenReady(true);
-            changeState(STATE_PLAYING);
+        if (currentState != STATE_BUFFERING) return;
+
+        if (windowIndex != playbackManager.getCurrentSourceIndex()) {
+            windowIndex = playbackManager.getCurrentSourceIndex();
+            windowPos = 0;
         }
+
+        simpleExoPlayer.prepare(playbackManager.getMediaSource());
+        simpleExoPlayer.seekTo(windowIndex, windowPos);
+        simpleExoPlayer.setPlayWhenReady(true);
+        changeState(STATE_PLAYING);
     }
 
     @Override
     public void sync(final int windowIndex, final long windowPos, final StreamInfo info) {
+        Log.d(TAG, "Syncing...");
+
         videoUrl = info.webpage_url;
         videoThumbnailUrl = info.thumbnail_url;
         videoTitle = info.title;
         channelName = info.uploader;
 
         if (simpleExoPlayer.getCurrentWindowIndex() != windowIndex) {
+            Log.e(TAG, "Rewinding to correct window");
             simpleExoPlayer.seekTo(windowIndex, windowPos);
         } else {
+            Log.d(TAG, "Correct window");
             simpleExoPlayer.seekTo(windowPos);
         }
     }
 
     @Override
     public void init() {
+        Log.d(TAG, "Initializing...");
+
         if (simpleExoPlayer.getPlaybackState() != Player.STATE_IDLE) simpleExoPlayer.stop();
         simpleExoPlayer.prepare(playbackManager.getMediaSource());
-        simpleExoPlayer.setPlayWhenReady(false);
-        changeState(STATE_BUFFERING);
+        simpleExoPlayer.seekToDefaultPosition();
+        simpleExoPlayer.setPlayWhenReady(true);
+        changeState(STATE_PLAYING);
     }
 
     @Override

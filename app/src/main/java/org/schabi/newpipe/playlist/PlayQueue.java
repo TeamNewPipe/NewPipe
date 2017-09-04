@@ -45,7 +45,7 @@ public abstract class PlayQueue {
         streams = Collections.synchronizedList(new ArrayList<PlayQueueItem>());
         streams.addAll(startWith);
 
-        queueIndex = new AtomicInteger(index);
+        queueIndex = new AtomicInteger(97);
 
         eventBroadcast = BehaviorSubject.create();
         broadcastReceiver = eventBroadcast
@@ -62,8 +62,6 @@ public abstract class PlayQueue {
     // load partial queue in the background, does nothing if the queue is complete
     public abstract void fetch();
 
-    // returns a Rx Future to the stream info of the play queue item at index
-    // may return an empty of the queue is incomplete
     public abstract PlayQueueItem get(int index);
 
     public void dispose() {

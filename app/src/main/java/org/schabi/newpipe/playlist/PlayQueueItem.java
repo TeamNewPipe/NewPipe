@@ -103,6 +103,7 @@ public class PlayQueueItem {
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError(onError)
                 .doOnComplete(onComplete)
+                .retry(3)
                 .cache();
     }
 

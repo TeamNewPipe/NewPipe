@@ -201,26 +201,27 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         simpleExoPlayer.setVideoListener(this);
     }
 
+//    @SuppressWarnings("unchecked")
+//    public void handleIntent2(Intent intent) {
+//        super.handleIntent(intent);
+//        if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
+//        if (intent == null) return;
+//
+//        selectedIndexStream = intent.getIntExtra(INDEX_SEL_VIDEO_STREAM, -1);
+//
+//        Serializable serializable = intent.getSerializableExtra(VIDEO_STREAMS_LIST);
+//
+//        if (serializable instanceof ArrayList) videoStreamsList = (ArrayList<VideoStream>) serializable;
+//        if (serializable instanceof Vector) videoStreamsList = new ArrayList<>((List<VideoStream>) serializable);
+//
+//        Serializable audioStream = intent.getSerializableExtra(VIDEO_ONLY_AUDIO_STREAM);
+//        if (audioStream != null) videoOnlyAudioStream = (AudioStream) audioStream;
+//
+//        startedFromNewPipe = intent.getBooleanExtra(STARTED_FROM_NEWPIPE, true);
+//        play(true);
+//    }
+
     @SuppressWarnings("unchecked")
-    public void handleIntent2(Intent intent) {
-        super.handleIntent(intent);
-        if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
-        if (intent == null) return;
-
-        selectedIndexStream = intent.getIntExtra(INDEX_SEL_VIDEO_STREAM, -1);
-
-        Serializable serializable = intent.getSerializableExtra(VIDEO_STREAMS_LIST);
-
-        if (serializable instanceof ArrayList) videoStreamsList = (ArrayList<VideoStream>) serializable;
-        if (serializable instanceof Vector) videoStreamsList = new ArrayList<>((List<VideoStream>) serializable);
-
-        Serializable audioStream = intent.getSerializableExtra(VIDEO_ONLY_AUDIO_STREAM);
-        if (audioStream != null) videoOnlyAudioStream = (AudioStream) audioStream;
-
-        startedFromNewPipe = intent.getBooleanExtra(STARTED_FROM_NEWPIPE, true);
-        play(true);
-    }
-
     public void handleIntent(Intent intent) {
         if (intent == null) return;
 
@@ -454,6 +455,9 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
         if (!isPrepared) return;
 
+        if (duration != playbackSeekBar.getMax()) {
+            playbackEndTime.setText(getTimeString(duration));
+        }
         if (currentState != STATE_PAUSED) {
             if (currentState != STATE_PAUSED_SEEK) playbackSeekBar.setProgress(currentProgress);
             playbackCurrentTime.setText(getTimeString(currentProgress));

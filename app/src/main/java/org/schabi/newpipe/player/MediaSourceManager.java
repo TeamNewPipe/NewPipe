@@ -27,6 +27,8 @@ import io.reactivex.functions.Consumer;
 
 class MediaSourceManager {
     private final String TAG = "MediaSourceManager@" + Integer.toHexString(hashCode());
+    // One-side rolling window size for default loading
+    // Effectively loads WINDOW_SIZE * 2 streams
     private static final int WINDOW_SIZE = 3;
 
     private final DynamicConcatenatingMediaSource sources;
@@ -42,13 +44,40 @@ class MediaSourceManager {
     private Subscription loadingReactor;
     private CompositeDisposable disposables;
 
+    private boolean isBlocked;
+
     interface PlaybackListener {
+        /*
+        * Called when the initial video has been loaded.
+        * Signals to the listener that the media source is prepared, and
+        * the player is ready to go.
+        * */
         void init();
 
+        /*
+        * Called when the stream at the current queue index is not ready yet.
+        * Signals to the listener to block the player from playing anything.
+        * */
         void block();
+
+        /*
+        * Called when the stream at the current queue index is ready.
+        * Signals to the listener to resume the player.
+        * May be called at any time, even when the player is unblocked.
+        * */
         void unblock();
 
+        /*
+        * Called when the queue index is refreshed.
+        * Signals to the listener to synchronize the player's window to the manager's
+        * window.
+        * */
         void sync(final int windowIndex, final long windowPos, final StreamInfo info);
+
+        /*
+        * Requests the listener to resolve a stream info into a media source respective
+        * of the listener's implementation (background, popup or main video player),
+        * */
         MediaSource sourceOf(final StreamInfo info);
     }
 
@@ -67,6 +96,13 @@ class MediaSourceManager {
                 .subscribe(getReactor());
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Exposed Methods
+    //////////////////////////////////////////////////////////////////////////*/
+
+    /*
+    * Returns the media source index of the currently playing stream.
+    * */
     int getCurrentSourceIndex() {
         return sourceToQueueIndex.indexOf(playQueue.getIndex());
     }
@@ -76,6 +112,11 @@ class MediaSourceManager {
         return sources;
     }
 
+    /*
+    * Called when the player has seamlessly transitioned to another stream.
+    * Currently only expecting transitioning to the next stream and updates
+    * the play queue that a transition has occurred.
+    * */
     void refresh(final int newSourceIndex) {
         if (newSourceIndex == getCurrentSourceIndex()) return;
 
@@ -89,13 +130,105 @@ class MediaSourceManager {
         sync();
     }
 
-    private void select() {
-        if (getCurrentSourceIndex() != -1) {
-            sync();
-        } else {
-            playbackListener.block();
-            load();
+    void dispose() {
+        if (loadingReactor != null) loadingReactor.cancel();
+        if (playQueueReactor != null) playQueueReactor.cancel();
+        if (disposables != null) disposables.dispose();
+
+        loadingReactor = null;
+        playQueueReactor = null;
+        disposables = null;
+    }
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Event Reactor
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private Subscriber<PlayQueueMessage> getReactor() {
+        return new Subscriber<PlayQueueMessage>() {
+            @Override
+            public void onSubscribe(@NonNull Subscription d) {
+                if (playQueueReactor != null) playQueueReactor.cancel();
+                playQueueReactor = d;
+                playQueueReactor.request(1);
+            }
+
+            @Override
+            public void onNext(@NonNull PlayQueueMessage event) {
+                // why no pattern matching in Java =(
+                switch (event.type()) {
+                    case INIT:
+                        init();
+                        break;
+                    case APPEND:
+                        load();
+                        break;
+                    case SELECT:
+                        onSelect();
+                        break;
+                    case REMOVE:
+                        final RemoveEvent removeEvent = (RemoveEvent) event;
+                        remove(removeEvent.index());
+                        break;
+                    case SWAP:
+                        final SwapEvent swapEvent = (SwapEvent) event;
+                        swap(swapEvent.getFrom(), swapEvent.getTo());
+                        break;
+                    case NEXT:
+                    default:
+                        break;
+                }
+
+                if (!isPlayQueueReady() && !isBlocked) {
+                    playbackListener.block();
+                    playQueue.fetch();
+                }
+                if (playQueueReactor != null) playQueueReactor.request(1);
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {}
+
+            @Override
+            public void onComplete() {
+                dispose();
+            }
+        };
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Internal Helpers
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private boolean isPlayQueueReady() {
+        return playQueue.isComplete() || playQueue.size() - playQueue.getIndex() > WINDOW_SIZE;
+    }
+
+    private boolean isCurrentIndexLoaded() {
+        return getCurrentSourceIndex() != -1;
+    }
+
+    private void tryUnblock() {
+        if (isPlayQueueReady() && isCurrentIndexLoaded() && isBlocked) {
+            isBlocked = false;
+            playbackListener.unblock();
         }
+    }
+
+    /*
+    * Responds to a SELECT event.
+    * When a change occur, the manager prepares by loading more.
+    * If the current item has not been fully loaded,
+    * */
+    private void onSelect() {
+        if (isCurrentIndexLoaded()) {
+            sync();
+        } else if (!isBlocked) {
+            playbackListener.block();
+        }
+
+        load();
     }
 
     private void sync() {
@@ -121,6 +254,47 @@ class MediaSourceManager {
         }
     }
 
+    private void init() {
+        final PlayQueueItem init = playQueue.getCurrent();
+
+        init.getStream().subscribe(new MaybeObserver<StreamInfo>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+                if (disposables != null) {
+                    disposables.add(d);
+                } else {
+                    d.dispose();
+                }
+            }
+
+            @Override
+            public void onSuccess(@NonNull StreamInfo streamInfo) {
+                final MediaSource source = playbackListener.sourceOf(streamInfo);
+                insert(playQueue.indexOf(init), source);
+
+                if (getCurrentSourceIndex() != -1) {
+                    playbackListener.init();
+                    sync();
+                    load();
+                } else {
+                    init();
+                }
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                playQueue.remove(playQueue.indexOf(init));
+                init();
+            }
+
+            @Override
+            public void onComplete() {
+                playQueue.remove(playQueue.indexOf(init));
+                init();
+            }
+        });
+    }
+
     private void load(final PlayQueueItem item) {
         item.getStream().subscribe(new MaybeObserver<StreamInfo>() {
             @Override
@@ -136,19 +310,36 @@ class MediaSourceManager {
             public void onSuccess(@NonNull StreamInfo streamInfo) {
                 final MediaSource source = playbackListener.sourceOf(streamInfo);
                 insert(playQueue.indexOf(item), source);
-                if (getCurrentSourceIndex() != -1) playbackListener.unblock();
+                tryUnblock();
             }
 
             @Override
             public void onError(@NonNull Throwable e) {
                 playQueue.remove(playQueue.indexOf(item));
+                load();
             }
 
             @Override
             public void onComplete() {
                 playQueue.remove(playQueue.indexOf(item));
+                load();
             }
         });
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Media Source List Manipulation
+    //////////////////////////////////////////////////////////////////////////*/
+
+    public void replace(final int queueIndex, final MediaSource source) {
+        if (queueIndex < 0) return;
+
+        final int sourceIndex = sourceToQueueIndex.indexOf(queueIndex);
+        if (sourceIndex != -1) {
+            // Add the source after the one to remove, so the window will remain the same in the player
+            sources.addMediaSource(sourceIndex + 1, source);
+            sources.removeMediaSource(sourceIndex);
+        }
     }
 
     // Insert source into playlist with position in respect to the play queue
@@ -178,17 +369,6 @@ class MediaSourceManager {
         }
     }
 
-    public void replace(final int queueIndex, final MediaSource source) {
-        if (queueIndex < 0) return;
-
-        final int sourceIndex = sourceToQueueIndex.indexOf(queueIndex);
-        if (sourceIndex != -1) {
-            // Add the source after the one to remove, so the window will remain the same in the player
-            sources.addMediaSource(sourceIndex + 1, source);
-            sources.removeMediaSource(sourceIndex);
-        }
-    }
-
     private void swap(final int source, final int target) {
         final int sourceIndex = sourceToQueueIndex.indexOf(source);
         final int targetIndex = sourceToQueueIndex.indexOf(target);
@@ -200,70 +380,5 @@ class MediaSourceManager {
         } else if (targetIndex != -1) {
             remove(targetIndex);
         }
-    }
-
-    private Subscriber<PlayQueueMessage> getReactor() {
-        return new Subscriber<PlayQueueMessage>() {
-            @Override
-            public void onSubscribe(@NonNull Subscription d) {
-                if (playQueueReactor != null) playQueueReactor.cancel();
-                playQueueReactor = d;
-                playQueueReactor.request(1);
-            }
-
-            @Override
-            public void onNext(@NonNull PlayQueueMessage event) {
-                if (playQueue.size() - playQueue.getIndex() < WINDOW_SIZE && !playQueue.isComplete()) {
-                    playbackListener.block();
-                    playQueue.fetch();
-                }
-
-                // why no pattern matching in Java =(
-                switch (event.type()) {
-                    case INIT:
-                        playbackListener.init();
-                    case APPEND:
-                        load();
-                        break;
-                    case SELECT:
-                        select();
-                        break;
-
-                    case REMOVE:
-                        final RemoveEvent removeEvent = (RemoveEvent) event;
-                        remove(removeEvent.index());
-                        break;
-
-                    case SWAP:
-                        final SwapEvent swapEvent = (SwapEvent) event;
-                        swap(swapEvent.getFrom(), swapEvent.getTo());
-                        break;
-                    case NEXT:
-                        break;
-                    default:
-                        break;
-                }
-
-                if (playQueueReactor != null) playQueueReactor.request(1);
-            }
-
-            @Override
-            public void onError(@NonNull Throwable e) {}
-
-            @Override
-            public void onComplete() {
-                dispose();
-            }
-        };
-    }
-
-    void dispose() {
-        if (loadingReactor != null) loadingReactor.cancel();
-        if (playQueueReactor != null) playQueueReactor.cancel();
-        if (disposables != null) disposables.dispose();
-
-        loadingReactor = null;
-        playQueueReactor = null;
-        disposables = null;
     }
 }
