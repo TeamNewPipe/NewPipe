@@ -234,4 +234,38 @@ otvorenie okna na popredí</string>
     <string name="history_empty">História je prázdna.</string>
     <string name="history_cleared">História bola vyčistená</string>
 
+<string name="settings_category_player_title">Prehrávač</string>
+    <string name="settings_category_player_behavior_title">Správanie</string>
+    <string name="settings_category_history_title">História</string>
+    <string name="playlist">Zoznam</string>
+    <string name="undo">Vrátiť</string>
+
+    <string name="search_no_results">Žiadne výsledky</string>
+    <string name="empty_subscription_feed_subtitle">Ticho ako v hrobe</string>
+
+    <string name="no_subscribers">Žiadni účastníci</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s odberateľ</item>
+	<item quantity="few">%s odberatelia</item>
+	<item quantity="many">%s odberateľov</item>
+	<item quantity="other"></item>
+</plurals>
+
+    <string name="no_views">Žiadne zobrazenia</string>
+    <plurals name="views">
+	<item quantity="one">%s zobrazenie</item>
+	<item quantity="few">%s zobrazenia</item>
+	<item quantity="many">%s zobrazení</item>
+	<item quantity="other"></item>
+</plurals>
+
+    <string name="no_videos">Žiadne videá</string>
+    <plurals name="videos">
+	<item quantity="one">%s video</item>
+	<item quantity="few">%s videá</item>
+	<item quantity="many">%s videí</item>
+	<item quantity="other"></item>
+</plurals>
+
+    <string name="item_deleted">Položka bola odstránená</string>
 </resources>
