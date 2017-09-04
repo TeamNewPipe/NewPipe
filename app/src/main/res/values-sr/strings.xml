@@ -100,7 +100,7 @@
     <string name="autoplay_by_calling_app_summary">Аутоматско пуштање видеа по позиву друге апликације</string>
     <string name="start">Почни</string>
     <string name="pause">Паузирај</string>
-    <string name="view">Приказ</string>
+    <string name="view">Пусти</string>
     <string name="delete">Обриши</string>
     <string name="checksum">Хеш</string>
 
