@@ -73,7 +73,7 @@
     <string name="video_is_age_restricted">Vídeo restringido por edad. Permitir este tipo de material es posible desde Ajustes.</string>
 
     <string name="main_bg_subtitle">Toque buscar para empezar</string>
-    <string name="autoplay_by_calling_app_title">Autoreproducir al llamar desde otra app</string>
+    <string name="autoplay_by_calling_app_title">Autoreproducir</string>
     <string name="autoplay_by_calling_app_summary">Reproducir automáticamente un vídeo cuando NewPipe es llamado desde otra aplicación</string>
     <string name="duration_live">en vivo</string>
     <string name="downloads">Descargas</string>
@@ -182,7 +182,7 @@ abrir en modo popup</string>
     <string name="action_settings">Ajustes</string>
     <string name="action_about">Acerca de</string>
     <string name="title_licenses">Licencias de terceros</string>
-    <string name="copyright" formatted="true">© %1$s por %2$s, con licencia %3$s</string>
+    <string name="copyright" formatted="true">© %1$s por %2$s, bajo %3$s</string>
     <string name="error_unable_to_load_license">No se pudo cargar la licencia</string>
     <string name="action_open_website">Abrir sitio web</string>
     <string name="tab_about">Acerca de</string>
@@ -231,4 +231,32 @@ abrir en modo popup</string>
 <string name="notification_channel_name">Notificación de NewPipe</string>
     <string name="notification_channel_description">Notificaciones para NewPipe en segundo plano y reproductores popup</string>
 
-    </resources>
+    <string name="settings_category_player_title">Reproductor</string>
+    <string name="settings_category_player_behavior_title">Funcionamiento</string>
+    <string name="settings_category_history_title">Historial</string>
+    <string name="playlist">Lista de reproducción</string>
+    <string name="undo">Deshacer</string>
+
+    <string name="search_no_results">No hay resultados</string>
+    <string name="empty_subscription_feed_subtitle">Nada aquí, pero grillos</string>
+
+    <string name="no_subscribers">Sin suscriptores</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s suscriptor</item>
+	<item quantity="other">%s suscriptores</item>
+</plurals>
+
+    <string name="no_views">Sin reproducciones</string>
+    <plurals name="views">
+	<item quantity="one">%s reproducción</item>
+	<item quantity="other">%s reproducciones</item>
+</plurals>
+
+    <string name="no_videos">Sin vídeos</string>
+    <plurals name="videos">
+	<item quantity="one">%s vídeo</item>
+	<item quantity="other">%s vídeos</item>
+</plurals>
+
+    <string name="item_deleted">Elemento eliminado</string>
+</resources>
