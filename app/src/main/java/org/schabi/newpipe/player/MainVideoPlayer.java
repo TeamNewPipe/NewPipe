@@ -123,7 +123,8 @@ public class MainVideoPlayer extends Activity {
         if (activityPaused) {
             playerImpl.initPlayer();
             playerImpl.getPlayPauseButton().setImageResource(R.drawable.ic_play_arrow_white);
-            playerImpl.play(false);
+            playerImpl.playQueue.init();
+            //playerImpl.play(false);
             activityPaused = false;
         }
     }
@@ -230,19 +231,23 @@ public class MainVideoPlayer extends Activity {
             channelTextView.setText(getUploaderName());
         }
 
+        /*//////////////////////////////////////////////////////////////////////////
+        // Playback Listener
+        //////////////////////////////////////////////////////////////////////////*/
+
         @Override
-        public void sync(final int windowIndex, final StreamInfo info) {
-            super.sync(windowIndex, info);
+        public void shutdown() {
+            super.shutdown();
+            finish();
+        }
+
+        @Override
+        public void sync(final StreamInfo info, final int sortedStreamsIndex) {
+            super.sync(info, sortedStreamsIndex);
             titleTextView.setText(getVideoTitle());
             channelTextView.setText(getUploaderName());
 
             playPauseButton.setImageResource(R.drawable.ic_pause_white);
-        }
-
-        @Override
-        public void playUrl(String url, String format, boolean autoPlay) {
-            super.playUrl(url, format, autoPlay);
-            playPauseButton.setImageResource(autoPlay ? R.drawable.ic_pause_white : R.drawable.ic_play_arrow_white);
         }
 
         @Override
@@ -331,7 +336,6 @@ public class MainVideoPlayer extends Activity {
         public void onError(Exception exception) {
             exception.printStackTrace();
             Toast.makeText(context, "Failed to play this video", Toast.LENGTH_SHORT).show();
-            //finish();
         }
 
         /*//////////////////////////////////////////////////////////////////////////

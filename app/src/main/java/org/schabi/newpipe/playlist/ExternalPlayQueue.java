@@ -4,7 +4,6 @@ import android.util.Log;
 
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
-import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.util.ExtractorHelper;
 
@@ -18,8 +17,14 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class ExternalPlayQueue extends PlayQueue {
+public final class ExternalPlayQueue extends PlayQueue {
     private final String TAG = "ExternalPlayQueue@" + Integer.toHexString(hashCode());
+
+    public static final String SERVICE_ID = "service_id";
+    public static final String INDEX = "index";
+    public static final String STREAMS = "streams";
+    public static final String NEXT_PAGE_URL = "next_page_url";
+
     private static final int RETRY_COUNT = 2;
 
     private boolean isComplete;
@@ -27,7 +32,7 @@ public class ExternalPlayQueue extends PlayQueue {
     private int serviceId;
     private String playlistUrl;
 
-    private Disposable fetchReactor;
+    private transient Disposable fetchReactor;
 
     public ExternalPlayQueue(final int serviceId,
                              final String nextPageUrl,
@@ -44,12 +49,6 @@ public class ExternalPlayQueue extends PlayQueue {
     @Override
     public boolean isComplete() {
         return isComplete;
-    }
-
-    @Override
-    public PlayQueueItem get(int index) {
-        if (index > getStreams().size() || getStreams().get(index) == null) return null;
-        return getStreams().get(index);
     }
 
     @Override

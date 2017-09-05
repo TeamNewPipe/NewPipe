@@ -20,14 +20,11 @@ import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
-
-import java.util.List;
 
 import io.reactivex.Single;
 
@@ -141,7 +138,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         }
 
         imageLoader.displayImage(result.uploader_avatar_url, headerUploaderAvatar, DISPLAY_AVATAR_OPTIONS);
-        headerStreamCount.setText(result.stream_count + " videos");
+        headerStreamCount.setText(getResources().getQuantityString(R.plurals.videos, (int) result.stream_count));
 
         if (!result.errors.isEmpty()) {
             showSnackBarError(result.errors, UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(result.service_id), result.url, 0);
@@ -150,19 +147,15 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         headerPlayAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                play();
+                final Intent intent = NavigationHelper.getExternalPlaylistIntent(
+                        activity, MainVideoPlayer.class, currentInfo, infoListAdapter.getItemsList(), 0
+                );
+
+                startActivity(intent);
             }
         });
     }
 
-    private void play() {
-        Intent mIntent = new Intent(activity, MainVideoPlayer.class)
-                .putExtra("serviceId", serviceId)
-                .putExtra("index", 0)
-                .putExtra("streams", infoListAdapter.getItemsList())
-                .putExtra("nextPageUrl", currentInfo.next_streams_url);
-        startActivity(mIntent);
-    }
 
     @Override
     public void handleNextItems(ListExtractor.NextItemsResult result) {

@@ -1,7 +1,6 @@
 package org.schabi.newpipe.player;
 
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.google.android.exoplayer2.source.DynamicConcatenatingMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
@@ -19,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import io.reactivex.MaybeObserver;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
@@ -67,13 +65,15 @@ class MediaSourceManager {
         * Signals to the listener to synchronize the player's window to the manager's
         * window.
         * */
-        void sync(final int windowIndex, final StreamInfo info);
+        void sync(final StreamInfo info, final int sortedStreamsIndex);
 
         /*
         * Requests the listener to resolve a stream info into a media source respective
         * of the listener's implementation (background, popup or main video player),
         * */
-        MediaSource sourceOf(final StreamInfo info);
+        MediaSource sourceOf(final StreamInfo info, final int sortedStreamsIndex);
+
+        void shutdown();
     }
 
     MediaSourceManager(@NonNull final MediaSourceManager.PlaybackListener listener,
@@ -118,13 +118,24 @@ class MediaSourceManager {
 
     void report(final Exception error) {
         // ignore error checking for now, just remove the current index
-        if (error != null) {
-            tryBlock();
-        }
+        if (error == null || !tryBlock()) return;
 
         final int index = playQueue.getIndex();
         playQueue.remove(index);
 
+        resetSources();
+        load();
+    }
+
+    int queueIndexOf(final int sourceIndex) {
+        return sourceIndex < sourceToQueueIndex.size() ? sourceToQueueIndex.get(sourceIndex) : -1;
+    }
+
+    void updateCurrent(final int newSortedStreamsIndex) {
+        if (!tryBlock()) return;
+
+        PlayQueueItem item = playQueue.getCurrent();
+        item.setSortedQualityIndex(newSortedStreamsIndex);
         resetSources();
         load();
     }
@@ -180,7 +191,10 @@ class MediaSourceManager {
                 if (!isPlayQueueReady()) {
                     tryBlock();
                     playQueue.fetch();
+                } else if (playQueue.isEmpty()) {
+                    playbackListener.shutdown();
                 }
+
                 if (playQueueReactor != null) playQueueReactor.request(1);
             }
 
@@ -240,14 +254,16 @@ class MediaSourceManager {
     }
 
     private void sync() {
+        final PlayQueueItem currentItem = playQueue.getCurrent();
+
         final Consumer<StreamInfo> onSuccess = new Consumer<StreamInfo>() {
             @Override
             public void accept(StreamInfo streamInfo) throws Exception {
-                playbackListener.sync(getCurrentSourceIndex(), streamInfo);
+                playbackListener.sync(streamInfo, currentItem.getSortedQualityIndex());
             }
         };
 
-        playQueue.getCurrent().getStream().subscribe(onSuccess);
+        currentItem.getStream().subscribe(onSuccess);
     }
 
     private void load() {
@@ -280,7 +296,7 @@ class MediaSourceManager {
 
             @Override
             public void onSuccess(@NonNull StreamInfo streamInfo) {
-                final MediaSource source = playbackListener.sourceOf(streamInfo);
+                final MediaSource source = playbackListener.sourceOf(streamInfo, item.getSortedQualityIndex());
                 insert(playQueue.indexOf(item), source);
                 if (tryUnblock()) sync();
             }
@@ -305,13 +321,12 @@ class MediaSourceManager {
     // Media Source List Manipulation
     //////////////////////////////////////////////////////////////////////////*/
 
-    public void replace(final int queueIndex, final MediaSource source) {
+    private void reset(final int queueIndex) {
         if (queueIndex < 0) return;
 
         final int sourceIndex = sourceToQueueIndex.indexOf(queueIndex);
         if (sourceIndex != -1) {
-            // Add the source after the one to remove, so the window will remain the same in the player
-            sources.addMediaSource(sourceIndex + 1, source);
+            sourceToQueueIndex.remove(sourceIndex);
             sources.removeMediaSource(sourceIndex);
         }
     }

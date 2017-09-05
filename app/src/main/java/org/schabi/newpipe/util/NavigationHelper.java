@@ -13,10 +13,12 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.about.AboutActivity;
 import org.schabi.newpipe.download.DownloadActivity;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.MainFragment;
@@ -30,9 +32,12 @@ import org.schabi.newpipe.history.HistoryActivity;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.VideoPlayer;
+import org.schabi.newpipe.playlist.ExternalPlayQueue;
+import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.settings.SettingsActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NavigationHelper {
@@ -43,45 +48,59 @@ public class NavigationHelper {
     //////////////////////////////////////////////////////////////////////////*/
 
     public static Intent getOpenVideoPlayerIntent(Context context, Class targetClazz, StreamInfo info, int selectedStreamIndex) {
-        Intent mIntent = new Intent(context, targetClazz)
-                .putExtra(BasePlayer.VIDEO_TITLE, info.name)
-                .putExtra(BasePlayer.VIDEO_URL, info.url)
-                .putExtra(BasePlayer.VIDEO_THUMBNAIL_URL, info.thumbnail_url)
-                .putExtra(BasePlayer.CHANNEL_NAME, info.uploader_name)
-                .putExtra(VideoPlayer.INDEX_SEL_VIDEO_STREAM, selectedStreamIndex)
-                .putExtra(VideoPlayer.VIDEO_STREAMS_LIST, new ArrayList<>(ListHelper.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false)))
-                .putExtra(VideoPlayer.VIDEO_ONLY_AUDIO_STREAM, ListHelper.getHighestQualityAudio(info.audio_streams));
-        if (info.start_position > 0) mIntent.putExtra(BasePlayer.START_POSITION, info.start_position * 1000L);
-        return mIntent;
+        return new Intent(context, targetClazz)
+                .putExtra(BasePlayer.INTENT_TYPE, VideoPlayer.SINGLE_STREAM)
+                .putExtra(SinglePlayQueue.STREAM, info)
+                .putExtra(VideoPlayer.INDEX_SEL_VIDEO_STREAM, selectedStreamIndex);
+    }
+
+    public static Intent getExternalPlaylistIntent(Context context,
+                                                    Class targetClazz,
+                                                    PlaylistInfo info,
+                                                    ArrayList<InfoItem> streams,
+                                                    int index) {
+        return new Intent(context, targetClazz)
+                .putExtra(BasePlayer.INTENT_TYPE, VideoPlayer.EXTERNAL_PLAYLIST)
+                .putExtra(ExternalPlayQueue.SERVICE_ID, info.service_id)
+                .putExtra(ExternalPlayQueue.INDEX, index)
+                .putExtra(ExternalPlayQueue.STREAMS, streams)
+                .putExtra(ExternalPlayQueue.NEXT_PAGE_URL, info.next_streams_url);
     }
 
     public static Intent getOpenVideoPlayerIntent(Context context, Class targetClazz, VideoPlayer instance) {
         return new Intent(context, targetClazz)
-                .putExtra(BasePlayer.VIDEO_TITLE, instance.getVideoTitle())
-                .putExtra(BasePlayer.VIDEO_URL, instance.getVideoUrl())
-                .putExtra(BasePlayer.VIDEO_THUMBNAIL_URL, instance.getVideoThumbnailUrl())
-                .putExtra(BasePlayer.CHANNEL_NAME, instance.getUploaderName())
+                .putExtra(BasePlayer.INTENT_TYPE, VideoPlayer.PLAYER_INTENT)
+                .putExtra(VideoPlayer.PLAY_QUEUE, instance.getPlayQueue())
                 .putExtra(VideoPlayer.INDEX_SEL_VIDEO_STREAM, instance.getSelectedStreamIndex())
-                .putExtra(VideoPlayer.VIDEO_STREAMS_LIST, instance.getVideoStreamsList())
-                .putExtra(VideoPlayer.VIDEO_ONLY_AUDIO_STREAM, instance.getAudioStream())
+                .putExtra(VideoPlayer.RESTORE_QUEUE_INDEX, instance.getCurrentQueueIndex())
                 .putExtra(BasePlayer.START_POSITION, instance.getPlayer().getCurrentPosition())
                 .putExtra(BasePlayer.PLAYBACK_SPEED, instance.getPlaybackSpeed());
     }
 
     public static Intent getOpenBackgroundPlayerIntent(Context context, StreamInfo info) {
-        return getOpenBackgroundPlayerIntent(context, info, info.audio_streams.get(ListHelper.getDefaultAudioFormat(context, info.audio_streams)));
+        return new Intent(context, BackgroundPlayer.class)
+                .putExtra(BasePlayer.INTENT_TYPE, VideoPlayer.SINGLE_STREAM)
+                .putExtra(SinglePlayQueue.STREAM, info);
     }
 
     public static Intent getOpenBackgroundPlayerIntent(Context context, StreamInfo info, AudioStream audioStream) {
-        Intent mIntent = new Intent(context, BackgroundPlayer.class)
-                .putExtra(BasePlayer.VIDEO_TITLE, info.name)
-                .putExtra(BasePlayer.VIDEO_URL, info.url)
-                .putExtra(BasePlayer.VIDEO_THUMBNAIL_URL, info.thumbnail_url)
-                .putExtra(BasePlayer.CHANNEL_NAME, info.uploader_name)
-                .putExtra(BackgroundPlayer.AUDIO_STREAM, audioStream);
-        if (info.start_position > 0) mIntent.putExtra(BasePlayer.START_POSITION, info.start_position * 1000L);
-        return mIntent;
+        return getOpenBackgroundPlayerIntent(context, info);
     }
+
+//    public static Intent getOpenBackgroundPlayerIntent(Context context, StreamInfo info) {
+//        return getOpenBackgroundPlayerIntent(context, info, info.audio_streams.get(ListHelper.getDefaultAudioFormat(context, info.audio_streams)));
+//    }
+//
+//    public static Intent getOpenBackgroundPlayerIntent(Context context, StreamInfo info, AudioStream audioStream) {
+//        Intent mIntent = new Intent(context, BackgroundPlayer.class)
+//                .putExtra(BasePlayer.VIDEO_TITLE, info.name)
+//                .putExtra(BasePlayer.VIDEO_URL, info.url)
+//                .putExtra(BasePlayer.VIDEO_THUMBNAIL_URL, info.thumbnail_url)
+//                .putExtra(BasePlayer.CHANNEL_NAME, info.uploader_name)
+//                .putExtra(BackgroundPlayer.AUDIO_STREAM, audioStream);
+//        if (info.start_position > 0) mIntent.putExtra(BasePlayer.START_POSITION, info.start_position * 1000L);
+//        return mIntent;
+//    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Through FragmentManager

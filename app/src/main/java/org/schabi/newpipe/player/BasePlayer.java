@@ -70,13 +70,21 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.playlist.ExternalPlayQueue;
 import org.schabi.newpipe.playlist.PlayQueue;
+import org.schabi.newpipe.playlist.PlayQueueItem;
+import org.schabi.newpipe.playlist.SinglePlayQueue;
 
 import java.io.File;
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -90,7 +98,7 @@ public abstract class BasePlayer implements Player.EventListener,
         AudioManager.OnAudioFocusChangeListener, MediaSourceManager.PlaybackListener {
     // TODO: Check api version for deprecated audio manager methods
 
-    public static final boolean DEBUG = false;
+    public static final boolean DEBUG = true;
     public static final String TAG = "BasePlayer";
 
     protected Context context;
@@ -104,12 +112,20 @@ public abstract class BasePlayer implements Player.EventListener,
     // Intent
     //////////////////////////////////////////////////////////////////////////*/
 
+    public static final String INTENT_TYPE = "intent_type";
+    public static final String SINGLE_STREAM = "single";
+    public static final String EXTERNAL_PLAYLIST = "external";
+    public static final String INTERNAL_PLAYLIST = "internal";
+
     public static final String VIDEO_URL = "video_url";
     public static final String VIDEO_TITLE = "video_title";
     public static final String VIDEO_THUMBNAIL_URL = "video_thumbnail_url";
     public static final String START_POSITION = "start_position";
     public static final String CHANNEL_NAME = "channel_name";
     public static final String PLAYBACK_SPEED = "playback_speed";
+
+    public static final String RESTORE_QUEUE_INDEX = "restore_queue_index";
+    public static final String RESTORE_WINDOW_POS = "restore_window_pos";
 
     protected Bitmap videoThumbnail = null;
     protected String videoUrl = "";
@@ -125,8 +141,8 @@ public abstract class BasePlayer implements Player.EventListener,
     protected MediaSourceManager playbackManager;
     protected PlayQueue playQueue;
 
-    private int windowIndex;
-    private long windowPos;
+    protected int restoreQueueIndex;
+    protected long restoreWindowPos;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Player
@@ -219,15 +235,54 @@ public abstract class BasePlayer implements Player.EventListener,
         if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
         if (intent == null) return;
 
-        videoUrl = intent.getStringExtra(VIDEO_URL);
-        videoTitle = intent.getStringExtra(VIDEO_TITLE);
-        videoThumbnailUrl = intent.getStringExtra(VIDEO_THUMBNAIL_URL);
-        videoStartPos = intent.getLongExtra(START_POSITION, -1L);
-        uploaderName = intent.getStringExtra(CHANNEL_NAME);
+        restoreQueueIndex = intent.getIntExtra(RESTORE_QUEUE_INDEX, 0);
+        restoreWindowPos = intent.getLongExtra(START_POSITION, 0);
         setPlaybackSpeed(intent.getFloatExtra(PLAYBACK_SPEED, getPlaybackSpeed()));
 
+        switch (intent.getStringExtra(INTENT_TYPE)) {
+            case SINGLE_STREAM:
+                handleSinglePlaylistIntent(intent);
+                break;
+            case EXTERNAL_PLAYLIST:
+                handleExternalPlaylistIntent(intent);
+                break;
+            default:
+                break;
+        }
+
         initThumbnail();
-        //play(getSelectedVideoStream(), true);
+    }
+
+
+    @SuppressWarnings("unchecked")
+    public void handleExternalPlaylistIntent(Intent intent) {
+        final int serviceId = intent.getIntExtra(ExternalPlayQueue.SERVICE_ID, -1);
+        final int index = intent.getIntExtra(ExternalPlayQueue.INDEX, 0);
+        final Serializable serializable = intent.getSerializableExtra(ExternalPlayQueue.STREAMS);
+        final String nextPageUrl = intent.getStringExtra(ExternalPlayQueue.NEXT_PAGE_URL);
+
+        List<InfoItem> info = new ArrayList<>();
+        if (serializable instanceof List) {
+            for (final Object o : (List) serializable) {
+                if (o instanceof InfoItem) info.add((StreamInfoItem) o);
+            }
+        }
+
+        playQueue = new ExternalPlayQueue(serviceId, nextPageUrl, info, index);
+        playQueue.init();
+
+        playbackManager = new MediaSourceManager(this, playQueue);
+    }
+
+    @SuppressWarnings("unchecked")
+    public void handleSinglePlaylistIntent(Intent intent) {
+        final Serializable serializable = intent.getSerializableExtra(SinglePlayQueue.STREAM);
+        if (!(serializable instanceof StreamInfo)) return;
+
+        playQueue = new SinglePlayQueue((StreamInfo) serializable, PlayQueueItem.DEFAULT_QUALITY);
+        playQueue.init();
+
+        playbackManager = new MediaSourceManager(this, playQueue);
     }
 
     public void initThumbnail() {
@@ -245,27 +300,6 @@ public abstract class BasePlayer implements Player.EventListener,
                 onThumbnailReceived(loadedImage);
             }
         });
-    }
-
-    public void playUrl(String url, String format, boolean autoPlay) {
-        if (DEBUG) {
-            Log.d(TAG, "play() called with: url = [" + url + "], autoPlay = [" + autoPlay + "]");
-        }
-
-        if (url == null || simpleExoPlayer == null) {
-            RuntimeException runtimeException = new RuntimeException((url == null ? "Url " : "Player ") + " null");
-            onError(runtimeException);
-            throw runtimeException;
-        }
-
-        changeState(STATE_LOADING);
-
-        isPrepared = false;
-
-        if (simpleExoPlayer.getPlaybackState() != Player.STATE_IDLE) simpleExoPlayer.stop();
-        if (videoStartPos > 0) simpleExoPlayer.seekTo(videoStartPos);
-        simpleExoPlayer.prepare(mediaSource);
-        simpleExoPlayer.setPlayWhenReady(autoPlay);
     }
 
     public void destroyPlayer() {
@@ -466,7 +500,6 @@ public abstract class BasePlayer implements Player.EventListener,
 
     public void onRepeatClicked() {
         if (DEBUG) Log.d(TAG, "onRepeatClicked() called");
-        // TODO: implement repeat all when playlist is implemented
 
         final int mode;
 
@@ -482,7 +515,7 @@ public abstract class BasePlayer implements Player.EventListener,
                 mode = Player.REPEAT_MODE_OFF;
                 break;
         }
-        // Switch the modes between DISABLED and REPEAT_ONE, till playlist is implemented
+
         simpleExoPlayer.setRepeatMode(mode);
         if (DEBUG) Log.d(TAG, "onRepeatClicked() currentRepeatMode = " + simpleExoPlayer.getRepeatMode());
     }
@@ -566,8 +599,6 @@ public abstract class BasePlayer implements Player.EventListener,
         Log.d(TAG, "Blocking...");
 
         simpleExoPlayer.stop();
-        windowIndex = simpleExoPlayer.getCurrentWindowIndex();
-        windowPos = Math.max(0, simpleExoPlayer.getContentPosition());
 
         changeState(STATE_BUFFERING);
     }
@@ -576,42 +607,51 @@ public abstract class BasePlayer implements Player.EventListener,
     public void unblock() {
         Log.d(TAG, "Unblocking...");
 
-        if (windowIndex != playbackManager.getCurrentSourceIndex()) {
-            windowIndex = playbackManager.getCurrentSourceIndex();
-            windowPos = 0;
+        if (restoreQueueIndex != playQueue.getIndex()) {
+            restoreQueueIndex = playQueue.getIndex();
+            restoreWindowPos = 0;
         }
 
         simpleExoPlayer.prepare(playbackManager.getMediaSource());
-        simpleExoPlayer.seekTo(windowIndex, windowPos);
-        simpleExoPlayer.setPlayWhenReady(true);
+        simpleExoPlayer.seekTo(playbackManager.getCurrentSourceIndex(), restoreWindowPos);
+        simpleExoPlayer.setPlayWhenReady(false);
     }
 
     @Override
-    public void sync(final int windowIndex, final StreamInfo info) {
+    public void sync(final StreamInfo info, final int sortedStreamsIndex) {
         Log.d(TAG, "Syncing...");
 
         videoUrl = info.url;
         videoThumbnailUrl = info.thumbnail_url;
         videoTitle = info.name;
 
-        if (simpleExoPlayer.getCurrentWindowIndex() != windowIndex) {
+        if (simpleExoPlayer.getCurrentWindowIndex() != playbackManager.getCurrentSourceIndex()) {
             Log.w(TAG, "Rewinding to correct window");
-            simpleExoPlayer.seekTo(windowIndex, 0L);
+            simpleExoPlayer.seekTo(playbackManager.getCurrentSourceIndex(), 0L);
         }
+
+        simpleExoPlayer.setPlayWhenReady(true);
     }
 
     @Override
-    public MediaSource sourceOf(final StreamInfo info) {
+    public MediaSource sourceOf(final StreamInfo info, final int sortedStreamsIndex) {
         return null;
+    }
+
+    @Override
+    public void shutdown() {
+        Log.d(TAG, "Shutting down...");
+
+        playbackManager.dispose();
+        playQueue.dispose();
+        destroy();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // General Player
     //////////////////////////////////////////////////////////////////////////*/
 
-    public void onError(Exception exception){
-        destroy();
-    }
+    public abstract void onError(Exception exception);
 
     public void onPrepared(boolean playWhenReady) {
         if (DEBUG) Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");
@@ -839,5 +879,13 @@ public abstract class BasePlayer implements Player.EventListener,
 
     public void setPlaybackSpeed(float speed) {
         simpleExoPlayer.setPlaybackParameters(new PlaybackParameters(speed, 1f));
+    }
+
+    public int getCurrentQueueIndex() {
+        return playQueue != null ? playQueue.getIndex() : -1;
+    }
+
+    public PlayQueue getPlayQueue() {
+        return playQueue;
     }
 }

@@ -272,10 +272,11 @@ public class PopupVideoPlayer extends Service {
                 notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 77);
                 break;
             case Player.REPEAT_MODE_ONE:
-                notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 255);
+                //todo change image
+                notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 168);
                 break;
             case Player.REPEAT_MODE_ALL:
-                // Waiting :)
+                notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 255);
                 break;
         }
 
@@ -391,18 +392,6 @@ public class PopupVideoPlayer extends Service {
         }
 
         @Override
-        public void playUrl(String url, String format, boolean autoPlay) {
-            super.playUrl(url, format, autoPlay);
-
-            windowLayoutParams.width = (int) popupWidth;
-            windowLayoutParams.height = (int) getMinimumVideoHeight(popupWidth);
-            windowManager.updateViewLayout(getRootView(), windowLayoutParams);
-
-            notBuilder = createNotification();
-            startForeground(NOTIFICATION_ID, notBuilder.build());
-        }
-
-        @Override
         public void initViews(View rootView) {
             super.initViews(rootView);
             resizingIndicator = rootView.findViewById(R.id.resizing_indicator);
@@ -475,7 +464,6 @@ public class PopupVideoPlayer extends Service {
         public void onError(Exception exception) {
             exception.printStackTrace();
             Toast.makeText(context, "Failed to play this video", Toast.LENGTH_SHORT).show();
-            stopSelf();
         }
 
         @Override
@@ -484,6 +472,16 @@ public class PopupVideoPlayer extends Service {
             if (playerImpl.wasPlaying()) {
                 hideControls(100, 0);
             }
+        }
+
+        /*//////////////////////////////////////////////////////////////////////////
+        // Playback Listener
+        //////////////////////////////////////////////////////////////////////////*/
+
+        @Override
+        public void shutdown() {
+            super.shutdown();
+            stopSelf();
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -583,8 +581,14 @@ public class PopupVideoPlayer extends Service {
             if (DEBUG)
                 Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
             if (!playerImpl.isPlaying()) return false;
-            if (e.getX() > popupWidth / 2) playerImpl.onFastForward();
-            else playerImpl.onFastRewind();
+            if (e.getX() > popupWidth / 2) {
+                //playerImpl.onFastForward();
+                playerImpl.playQueue.setIndex(playerImpl.playQueue.getIndex() + 1);
+            } else {
+                //playerImpl.onFastRewind();
+                playerImpl.playQueue.setIndex(playerImpl.playQueue.getIndex() - 1);
+            }
+
             return true;
         }
 
@@ -766,7 +770,7 @@ public class PopupVideoPlayer extends Service {
             mainHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    playerImpl.play(true);
+                    playerImpl.playQueue.init();
                 }
             });
 

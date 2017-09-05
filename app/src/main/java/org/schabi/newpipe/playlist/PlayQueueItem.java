@@ -7,20 +7,35 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.util.ExtractorHelper;
 
+import java.io.Serializable;
+
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class PlayQueueItem {
+public class PlayQueueItem implements Serializable {
+
+    final public static int DEFAULT_QUALITY = -1;
 
     final private String title;
     final private String url;
     final private int serviceId;
     final private long duration;
 
+    // Externally mutable, not sure if this is a good idea here
+    private int sortedQualityIndex;
+
     private Throwable error;
-    private Single<StreamInfo> stream;
+
+    PlayQueueItem(final StreamInfo streamInfo, final int sortedQualityIndex) {
+        this.title = streamInfo.name;
+        this.url = streamInfo.url;
+        this.serviceId = streamInfo.service_id;
+        this.duration = streamInfo.duration;
+
+        this.sortedQualityIndex = sortedQualityIndex;
+    }
 
     PlayQueueItem(final StreamInfoItem streamInfoItem) {
         this.title = streamInfoItem.name;
@@ -28,8 +43,9 @@ public class PlayQueueItem {
         this.serviceId = streamInfoItem.service_id;
         this.duration = streamInfoItem.duration;
 
-        this.stream = getInfo();
+        this.sortedQualityIndex = DEFAULT_QUALITY;
     }
+
 
     @NonNull
     public String getTitle() {
@@ -49,6 +65,14 @@ public class PlayQueueItem {
         return duration;
     }
 
+    public int getSortedQualityIndex() {
+        return sortedQualityIndex;
+    }
+
+    public void setSortedQualityIndex(int sortedQualityIndex) {
+        this.sortedQualityIndex = sortedQualityIndex;
+    }
+
     @Nullable
     public Throwable getError() {
         return error;
@@ -56,11 +80,6 @@ public class PlayQueueItem {
 
     @NonNull
     public Single<StreamInfo> getStream() {
-        return stream;
-    }
-
-    @NonNull
-    private Single<StreamInfo> getInfo() {
         final Consumer<Throwable> onError = new Consumer<Throwable>() {
             @Override
             public void accept(Throwable throwable) throws Exception {

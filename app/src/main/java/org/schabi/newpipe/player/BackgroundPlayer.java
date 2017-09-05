@@ -268,9 +268,9 @@ public class BackgroundPlayer extends Service {
         @Override
         public void handleIntent(Intent intent) {
             super.handleIntent(intent);
-            Serializable serializable = intent.getSerializableExtra(BackgroundPlayer.AUDIO_STREAM);
-            if (serializable instanceof AudioStream) audioStream = (AudioStream) serializable;
-            playUrl(audioStream.url, MediaFormat.getSuffixById(audioStream.format), true);
+
+            notBuilder = createNotification();
+            startForeground(NOTIFICATION_ID, notBuilder.build());
 
             if (bigNotRemoteView != null) bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
             if (notRemoteView != null) notRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
@@ -292,14 +292,6 @@ public class BackgroundPlayer extends Service {
                 if (bigNotRemoteView != null) bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
                 updateNotification(-1);
             }
-        }
-
-        @Override
-        public void playUrl(String url, String format, boolean autoPlay) {
-            super.playUrl(url, format, autoPlay);
-
-            notBuilder = createNotification();
-            startForeground(NOTIFICATION_ID, notBuilder.build());
         }
 
         @Override
@@ -348,15 +340,13 @@ public class BackgroundPlayer extends Service {
 
         @Override
         public void onFastRewind() {
-//            super.onFastRewind();
-            simpleExoPlayer.seekTo(0, 0);
+            playQueue.setIndex(playQueue.getIndex() - 1);
             triggerProgressUpdate();
         }
 
         @Override
         public void onFastForward() {
-//            super.onFastForward();
-            simpleExoPlayer.seekTo(2, 0);
+            playQueue.setIndex(playQueue.getIndex() + 1);
             triggerProgressUpdate();
         }
 
@@ -380,6 +370,15 @@ public class BackgroundPlayer extends Service {
         @Override
         public void onError(Exception exception) {
             exception.printStackTrace();
+        }
+
+        /*//////////////////////////////////////////////////////////////////////////
+        // Playback Listener
+        //////////////////////////////////////////////////////////////////////////*/
+
+        @Override
+        public void shutdown() {
+            super.shutdown();
             stopSelf();
         }
 

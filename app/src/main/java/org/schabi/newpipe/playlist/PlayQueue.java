@@ -16,6 +16,7 @@ import org.schabi.newpipe.playlist.events.RemoveEvent;
 import org.schabi.newpipe.playlist.events.SelectEvent;
 import org.schabi.newpipe.playlist.events.SwapEvent;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -26,27 +27,33 @@ import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.subjects.BehaviorSubject;
 
-public abstract class PlayQueue {
+public abstract class PlayQueue implements Serializable {
     private final String TAG = "PlayQueue@" + Integer.toHexString(hashCode());
     public static final boolean DEBUG = true;
 
-    private final List<PlayQueueItem> streams;
+    private final ArrayList<PlayQueueItem> streams;
     private final AtomicInteger queueIndex;
 
-    private final BehaviorSubject<PlayQueueMessage> eventBroadcast;
-    private final Flowable<PlayQueueMessage> broadcastReceiver;
-    private Subscription reportingReactor;
+    private transient BehaviorSubject<PlayQueueMessage> eventBroadcast;
+    private transient Flowable<PlayQueueMessage> broadcastReceiver;
+    private transient Subscription reportingReactor;
 
     PlayQueue() {
         this(0, Collections.<PlayQueueItem>emptyList());
     }
 
     PlayQueue(final int index, final List<PlayQueueItem> startWith) {
-        streams = Collections.synchronizedList(new ArrayList<PlayQueueItem>());
+        streams = new ArrayList<>();
         streams.addAll(startWith);
 
         queueIndex = new AtomicInteger(index);
+    }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Playlist actions
+    //////////////////////////////////////////////////////////////////////////*/
+
+    public void init() {
         eventBroadcast = BehaviorSubject.create();
         broadcastReceiver = eventBroadcast
                 .startWith(new InitEvent())
@@ -55,9 +62,12 @@ public abstract class PlayQueue {
         if (DEBUG) broadcastReceiver.subscribe(getSelfReporter());
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Playlist actions
-    //////////////////////////////////////////////////////////////////////////*/
+    public void dispose() {
+        eventBroadcast.onComplete();
+
+        if (reportingReactor != null) reportingReactor.cancel();
+        reportingReactor = null;
+    }
 
     // a queue is complete if it has loaded all items in an external playlist
     // single stream or local queues are always complete
@@ -66,21 +76,27 @@ public abstract class PlayQueue {
     // load partial queue in the background, does nothing if the queue is complete
     public abstract void fetch();
 
-    public abstract PlayQueueItem get(int index);
-
-    public void dispose() {
-        eventBroadcast.onComplete();
-
-        if (reportingReactor != null) reportingReactor.cancel();
-        reportingReactor = null;
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Readonly ops
     //////////////////////////////////////////////////////////////////////////*/
 
+    public int getIndex() {
+        return queueIndex.get();
+    }
+
     public PlayQueueItem getCurrent() {
-        return streams.get(getIndex());
+        return get(getIndex());
+    }
+
+    public PlayQueueItem get(int index) {
+        if (index >= streams.size() || streams.get(index) == null) return null;
+        return streams.get(index);
+    }
+
+    public int indexOf(final PlayQueueItem item) {
+        // reference equality, can't think of a better way to do this
+        // todo: better than this
+        return streams.indexOf(item);
     }
 
     public int size() {
@@ -101,36 +117,26 @@ public abstract class PlayQueue {
         return broadcastReceiver;
     }
 
-    public int indexOf(final PlayQueueItem item) {
-        // reference equality, can't think of a better way to do this
-        // todo: better than this
-        return streams.indexOf(item);
-    }
-
-    public int getIndex() {
-        return queueIndex.get();
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Write ops
     //////////////////////////////////////////////////////////////////////////*/
 
-    public void setIndex(final int index) {
+    public synchronized void setIndex(final int index) {
         queueIndex.set(Math.min(Math.max(0, index), streams.size() - 1));
         broadcast(new SelectEvent(index));
     }
 
-    protected void append(final PlayQueueItem item) {
+    protected synchronized void append(final PlayQueueItem item) {
         streams.add(item);
         broadcast(new AppendEvent(1));
     }
 
-    protected void append(final Collection<PlayQueueItem> items) {
+    protected synchronized void append(final Collection<PlayQueueItem> items) {
         streams.addAll(items);
         broadcast(new AppendEvent(items.size()));
     }
 
-    public void remove(final int index) {
+    public synchronized void remove(final int index) {
         if (index >= streams.size()) return;
 
         streams.remove(index);
@@ -142,7 +148,7 @@ public abstract class PlayQueue {
         broadcast(new RemoveEvent(index));
     }
 
-    protected void swap(final int source, final int target) {
+    protected synchronized void swap(final int source, final int target) {
         final List<PlayQueueItem> items = streams;
         if (source < items.size() && target < items.size()) {
             // Swap two items
