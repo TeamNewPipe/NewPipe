@@ -28,6 +28,8 @@ public class PlayQueueItem implements Serializable {
 
     private Throwable error;
 
+    private transient Single<StreamInfo> stream;
+
     PlayQueueItem(final StreamInfo streamInfo, final int sortedQualityIndex) {
         this.title = streamInfo.name;
         this.url = streamInfo.url;
@@ -80,6 +82,11 @@ public class PlayQueueItem implements Serializable {
 
     @NonNull
     public Single<StreamInfo> getStream() {
+        return stream == null ? stream = getInfo() : stream;
+    }
+
+    @NonNull
+    private Single<StreamInfo> getInfo() {
         final Consumer<Throwable> onError = new Consumer<Throwable>() {
             @Override
             public void accept(Throwable throwable) throws Exception {
@@ -90,7 +97,6 @@ public class PlayQueueItem implements Serializable {
         return ExtractorHelper.getStreamInfo(this.serviceId, this.url, false)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .retry(3)
                 .doOnError(onError);
     }
 }

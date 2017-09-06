@@ -83,25 +83,6 @@ public class NavigationHelper {
                 .putExtra(SinglePlayQueue.STREAM, info);
     }
 
-    public static Intent getOpenBackgroundPlayerIntent(Context context, StreamInfo info, AudioStream audioStream) {
-        return getOpenBackgroundPlayerIntent(context, info);
-    }
-
-//    public static Intent getOpenBackgroundPlayerIntent(Context context, StreamInfo info) {
-//        return getOpenBackgroundPlayerIntent(context, info, info.audio_streams.get(ListHelper.getDefaultAudioFormat(context, info.audio_streams)));
-//    }
-//
-//    public static Intent getOpenBackgroundPlayerIntent(Context context, StreamInfo info, AudioStream audioStream) {
-//        Intent mIntent = new Intent(context, BackgroundPlayer.class)
-//                .putExtra(BasePlayer.VIDEO_TITLE, info.name)
-//                .putExtra(BasePlayer.VIDEO_URL, info.url)
-//                .putExtra(BasePlayer.VIDEO_THUMBNAIL_URL, info.thumbnail_url)
-//                .putExtra(BasePlayer.CHANNEL_NAME, info.uploader_name)
-//                .putExtra(BackgroundPlayer.AUDIO_STREAM, audioStream);
-//        if (info.start_position > 0) mIntent.putExtra(BasePlayer.START_POSITION, info.start_position * 1000L);
-//        return mIntent;
-//    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Through FragmentManager
     //////////////////////////////////////////////////////////////////////////*/

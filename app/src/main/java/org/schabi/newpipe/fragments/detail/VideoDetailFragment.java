@@ -724,7 +724,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
 
         if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 16) {
-            openNormalBackgroundPlayer(audioStream);
+            openNormalBackgroundPlayer();
         } else {
             openExternalBackgroundPlayer(audioStream);
         }
@@ -763,8 +763,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     }
 
 
-    private void openNormalBackgroundPlayer(AudioStream audioStream) {
-        activity.startService(NavigationHelper.getOpenBackgroundPlayerIntent(activity, currentInfo, audioStream));
+    private void openNormalBackgroundPlayer() {
+        activity.startService(NavigationHelper.getOpenBackgroundPlayerIntent(activity, currentInfo));
         Toast.makeText(activity, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
     }
 

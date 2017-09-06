@@ -35,6 +35,7 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -249,8 +250,6 @@ public abstract class BasePlayer implements Player.EventListener,
             default:
                 break;
         }
-
-        initThumbnail();
     }
 
 
@@ -586,8 +585,13 @@ public abstract class BasePlayer implements Player.EventListener,
 
     @Override
     public void onPositionDiscontinuity() {
+        // Refresh the playback if there is a transition to the next video
         int newIndex = simpleExoPlayer.getCurrentWindowIndex();
-        if (playbackManager.getCurrentSourceIndex() != newIndex) playbackManager.refresh(newIndex);
+        if (DEBUG) Log.d(TAG, "onPositionDiscontinuity() called with: index = [" + newIndex + "]");
+
+        if (newIndex == playbackManager.getCurrentSourceIndex() + 1) {
+            playbackManager.refresh(newIndex);
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -596,6 +600,7 @@ public abstract class BasePlayer implements Player.EventListener,
 
     @Override
     public void block() {
+        if (simpleExoPlayer == null) return;
         Log.d(TAG, "Blocking...");
 
         simpleExoPlayer.stop();
@@ -605,6 +610,7 @@ public abstract class BasePlayer implements Player.EventListener,
 
     @Override
     public void unblock() {
+        if (simpleExoPlayer == null) return;
         Log.d(TAG, "Unblocking...");
 
         if (restoreQueueIndex != playQueue.getIndex()) {
@@ -619,23 +625,26 @@ public abstract class BasePlayer implements Player.EventListener,
 
     @Override
     public void sync(final StreamInfo info, final int sortedStreamsIndex) {
+        if (simpleExoPlayer == null) return;
         Log.d(TAG, "Syncing...");
 
         videoUrl = info.url;
         videoThumbnailUrl = info.thumbnail_url;
         videoTitle = info.name;
 
+        initThumbnail();
+
         if (simpleExoPlayer.getCurrentWindowIndex() != playbackManager.getCurrentSourceIndex()) {
             Log.w(TAG, "Rewinding to correct window");
-            simpleExoPlayer.seekTo(playbackManager.getCurrentSourceIndex(), 0L);
+            if (simpleExoPlayer.getCurrentTimeline().getWindowCount() > playbackManager.getCurrentSourceIndex()) {
+                simpleExoPlayer.seekToDefaultPosition(playbackManager.getCurrentSourceIndex());
+            } else {
+                Toast.makeText(context, "Player out of sync", Toast.LENGTH_SHORT).show();
+                simpleExoPlayer.seekToDefaultPosition();
+            }
         }
 
         simpleExoPlayer.setPlayWhenReady(true);
-    }
-
-    @Override
-    public MediaSource sourceOf(final StreamInfo info, final int sortedStreamsIndex) {
-        return null;
     }
 
     @Override
@@ -887,5 +896,9 @@ public abstract class BasePlayer implements Player.EventListener,
 
     public PlayQueue getPlayQueue() {
         return playQueue;
+    }
+
+    public boolean isPlayerBuffering() {
+        return currentState == STATE_BUFFERING;
     }
 }

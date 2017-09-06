@@ -36,6 +36,7 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.source.MediaSource;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
@@ -43,10 +44,10 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.ThemeHelper;
-
-import java.io.Serializable;
 
 
 /**
@@ -64,9 +65,6 @@ public class BackgroundPlayer extends Service {
     public static final String ACTION_REPEAT = "org.schabi.newpipe.player.BackgroundPlayer.REPEAT";
     public static final String ACTION_FAST_REWIND = "org.schabi.newpipe.player.BackgroundPlayer.ACTION_FAST_REWIND";
     public static final String ACTION_FAST_FORWARD = "org.schabi.newpipe.player.BackgroundPlayer.ACTION_FAST_FORWARD";
-
-    public static final String AUDIO_STREAM = "video_only_audio_stream";
-    private AudioStream audioStream;
 
     private BasePlayerImpl basePlayerImpl;
     private PowerManager powerManager;
@@ -177,8 +175,8 @@ public class BackgroundPlayer extends Service {
     private void setupNotification(RemoteViews remoteViews) {
         //if (videoThumbnail != null) remoteViews.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
         ///else remoteViews.setImageViewResource(R.id.notificationCover, R.drawable.dummy_thumbnail);
-        remoteViews.setTextViewText(R.id.notificationSongName, basePlayerImpl.getVideoTitle());
-        remoteViews.setTextViewText(R.id.notificationArtist, basePlayerImpl.getUploaderName());
+//        remoteViews.setTextViewText(R.id.notificationSongName, basePlayerImpl.getVideoTitle());
+//        remoteViews.setTextViewText(R.id.notificationArtist, basePlayerImpl.getUploaderName());
 
         remoteViews.setOnClickPendingIntent(R.id.notificationPlayPause,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));
@@ -340,12 +338,16 @@ public class BackgroundPlayer extends Service {
 
         @Override
         public void onFastRewind() {
+            if (isPlayerBuffering()) return;
+
             playQueue.setIndex(playQueue.getIndex() - 1);
             triggerProgressUpdate();
         }
 
         @Override
         public void onFastForward() {
+            if (isPlayerBuffering()) return;
+
             playQueue.setIndex(playQueue.getIndex() + 1);
             triggerProgressUpdate();
         }
@@ -375,6 +377,26 @@ public class BackgroundPlayer extends Service {
         /*//////////////////////////////////////////////////////////////////////////
         // Playback Listener
         //////////////////////////////////////////////////////////////////////////*/
+
+        @Override
+        public void sync(final StreamInfo info, final int sortedStreamsIndex) {
+            super.sync(info, sortedStreamsIndex);
+
+            basePlayerImpl.setVideoTitle(info.name);
+            basePlayerImpl.setUploaderName(info.uploader_name);
+
+            notRemoteView.setTextViewText(R.id.notificationSongName, basePlayerImpl.getVideoTitle());
+            notRemoteView.setTextViewText(R.id.notificationArtist, basePlayerImpl.getUploaderName());
+            bigNotRemoteView.setTextViewText(R.id.notificationSongName, basePlayerImpl.getVideoTitle());
+            bigNotRemoteView.setTextViewText(R.id.notificationArtist, basePlayerImpl.getUploaderName());
+            updateNotification(-1);
+        }
+
+        @Override
+        public MediaSource sourceOf(final StreamInfo info, final int sortedStreamsIndex) {
+            final AudioStream audio = ListHelper.getHighestQualityAudio(info.audio_streams);
+            return buildMediaSource(audio.url, MediaFormat.getSuffixById(audio.format));
+        }
 
         @Override
         public void shutdown() {

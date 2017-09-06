@@ -274,20 +274,11 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
             video = videos.get(sortedStreamsIndex);
         }
 
-        final MediaSource mediaSource = super.buildMediaSource(video.url, MediaFormat.getSuffixById(video.format));
+        final MediaSource mediaSource = buildMediaSource(video.url, MediaFormat.getSuffixById(video.format));
         if (!video.isVideoOnly) return mediaSource;
 
         final AudioStream audio = ListHelper.getHighestQualityAudio(info.audio_streams);
         final Uri audioUri = Uri.parse(audio.url);
-        return new MergingMediaSource(mediaSource, new ExtractorMediaSource(audioUri, cacheDataSourceFactory, extractorsFactory, null, null));
-    }
-
-    @Override
-    public MediaSource buildMediaSource(String url, String overrideExtension) {
-        MediaSource mediaSource = super.buildMediaSource(url, overrideExtension);
-        if (!getSelectedVideoStream().isVideoOnly || videoOnlyAudioStream == null) return mediaSource;
-
-        Uri audioUri = Uri.parse(videoOnlyAudioStream.url);
         return new MergingMediaSource(mediaSource, new ExtractorMediaSource(audioUri, cacheDataSourceFactory, extractorsFactory, null, null));
     }
 
