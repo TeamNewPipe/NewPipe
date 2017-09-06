@@ -59,21 +59,21 @@
     <string name="err_dir_create">Kann Downloadverzeichnis nicht anlegen \'%1$s\'</string>
     <string name="info_dir_created">Downloadverzeichnis \'%1$s\' erstellt</string>
     <string name="general_error">Fehler</string>
-    <string name="could_not_load_thumbnails">Konnte nicht alle Vorschaubilder laden.</string>
-    <string name="youtube_signature_decryption_error">Konnte Video-URL-Signatur nicht entschlüsseln.</string>
-    <string name="parsing_error">Konnte Webseite nicht parsen.</string>
-    <string name="content_not_available">Inhalt nicht verfügbar.</string>
-    <string name="blocked_by_gema">Durch die GEMA gesperrt.</string>
+    <string name="could_not_load_thumbnails">Konnte nicht alle Vorschaubilder laden</string>
+    <string name="youtube_signature_decryption_error">Konnte Video-URL-Signatur nicht entschlüsseln</string>
+    <string name="parsing_error">Konnte Webseite nicht parsen</string>
+    <string name="content_not_available">Inhalt nicht verfügbar</string>
+    <string name="blocked_by_gema">Durch die GEMA gesperrt</string>
 
     <string name="content">Inhalt</string>
     <string name="show_age_restricted_content_title">Altersbeschränkte Inhalte anzeigen</string>
     <string name="video_is_age_restricted">Video ist altersbeschränkt. Schalten Sie erst altersbeschränkte Videos in den Einstellungen ein.</string>
 
-    <string name="could_not_setup_download_menu">Konnte Downloadmenü nicht einrichten.</string>
+    <string name="could_not_setup_download_menu">Konnte Downloadmenü nicht einrichten</string>
     <string name="live_streams_not_supported">Dies ist ein LIVESTREAM. Diese werden noch nicht unterstützt.</string>
 
 
-    <string name="light_parsing_error">Konnte Webseite nicht vollständig parsen.</string>
+    <string name="light_parsing_error">Konnte Webseite nicht vollständig parsen</string>
     <string name="error_report_button_text">Fehler via E-Mail melden</string>
     <string name="error_snackbar_action">MELDEN</string>
     <string name="what_device_headline">Info:</string>
@@ -88,9 +88,9 @@
     <string name="sorry_string">Entschuldigung. Dies hätte nicht passieren sollen.</string>
     <string name="error_snackbar_message">Entschuldigung. Es sind einige Fehler aufgetreten.</string>
     <string name="your_comment">Dein Kommentar (auf englisch):</string>
-    <string name="could_not_get_stream">Konnte keinen Stream holen.</string>
-    <string name="autoplay_by_calling_app_title">Bei Aufruf aus einer anderen App automatisch abspielen</string>
-    <string name="autoplay_by_calling_app_summary">Spielt ein Video automatisch ab, wenn NewPipe von einer anderen App aufgerufen wurde</string>
+    <string name="could_not_get_stream">Konnte keinen Stream holen</string>
+    <string name="autoplay_by_calling_app_title">Autoplay</string>
+    <string name="autoplay_by_calling_app_summary">Spiele ein Video automatisch ab, wenn NewPipe von einer anderen App aufgerufen wurde</string>
     <string name="report_error">Einen Fehler melden</string>
     <string name="user_report">Anwenderbericht</string>
 
@@ -114,8 +114,8 @@
     <string name="msg_error">Fehler</string>
     <string name="msg_exists">Datei existiert bereits</string>
     <string name="msg_wait">Bitte warten…</string>
-    <string name="msg_copied">In Zwischenablage kopiert.</string>
-    <string name="no_available_dir">Bitte wählen Sie ein verfügbares Downloadverzeichnis.</string>
+    <string name="msg_copied">In Zwischenablage kopiert</string>
+    <string name="no_available_dir">Bitte wählen Sie ein verfügbares Downloadverzeichnis</string>
 
     <string name="start">Starten</string>
     <string name="pause">Pause</string>
@@ -123,8 +123,8 @@
     <string name="add">Neue Mission</string>
     <string name="finish">OK</string>
     <string name="msg_server_unsupported">Server nicht unterstützt</string>
-    <string name="could_not_load_image">Konnte Bild nicht laden.</string>
-    <string name="app_ui_crash">App/UI abgestürzt.</string>
+    <string name="could_not_load_image">Konnte Bild nicht laden</string>
+    <string name="app_ui_crash">App/UI abgestürzt</string>
     <string name="msg_threads">Threads</string>
     <string name="msg_running">NewPipe lädt herunter</string>
     <string name="msg_running_detail">Für Details antippen</string>
@@ -154,7 +154,7 @@
     <string name="msg_popup_permission">Diese Berechtigung ist für das
 Öffnen im Popup-Modus erforderlich</string>
 
-    <string name="use_old_player_summary">Alter eingebauter Mediaframework-Player.</string>
+    <string name="use_old_player_summary">Alter eingebauter Mediaframework-Player</string>
     <string name="default_popup_resolution_title">Standardauflösung des Popups</string>
     <string name="show_higher_resolutions_title">Zeige höhere Auflösungen an</string>
     <string name="show_higher_resolutions_summary">Nur einige Geräte unterstützen das Abspielen von 2K-/4K-Videos</string>
@@ -214,7 +214,7 @@
     <string name="title_history_view">Angesehen</string>
     <string name="history_disabled">Verlauf ist deaktiviert</string>
     <string name="action_history">Verlauf</string>
-    <string name="history_empty">Der Verlauf ist leer.</string>
+    <string name="history_empty">Der Verlauf ist leer</string>
     <string name="history_cleared">Verlauf bereinigt</string>
 
 <string name="subscription_change_failed">Fehler beim Ändern des Abos</string>
@@ -227,4 +227,31 @@
     <string name="notification_channel_description">Benachrichtigungen für NewPipe Hintergrund- und Popup-Spieler</string>
 
     <string name="tab_main">Übersicht</string>
-    </resources>
+    <string name="settings_category_player_behavior_title">Verhalten</string>
+    <string name="settings_category_history_title">Verlauf</string>
+    <string name="playlist">Playlist</string>
+    <string name="undo">Rückgängig machen</string>
+
+    <string name="search_no_results">Keine Ergebnisse</string>
+    <string name="no_subscribers">Keine Abonnenten</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s Abonnent</item>
+	<item quantity="other">%s Abonnenten</item>
+</plurals>
+
+    <string name="no_views">Keine Aufrufe</string>
+    <plurals name="views">
+	<item quantity="one">%s Aufruf</item>
+	<item quantity="other">%s Aufrufe</item>
+</plurals>
+
+    <string name="no_videos">Keine Videos</string>
+    <plurals name="videos">
+	<item quantity="one">%s Video</item>
+	<item quantity="other">%s Videos</item>
+</plurals>
+
+    <string name="charset_most_special_characters">Die meisten Sonderzeichen</string>
+
+    <string name="item_deleted">Element gelöscht</string>
+</resources>
