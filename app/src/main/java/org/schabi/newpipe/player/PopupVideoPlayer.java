@@ -580,14 +580,14 @@ public class PopupVideoPlayer extends Service {
         public boolean onDoubleTap(MotionEvent e) {
             if (DEBUG)
                 Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
-            if (!playerImpl.isPlaying() || playerImpl.isPlayerBuffering()) return false;
+            if (!playerImpl.isPlaying() || !playerImpl.isPlayerReady()) return false;
 
             if (e.getX() > popupWidth / 2) {
                 //playerImpl.onFastForward();
-                playerImpl.playQueue.setIndex(playerImpl.playQueue.getIndex() + 1);
+                playerImpl.playQueue.offsetIndex(+1);
             } else {
                 //playerImpl.onFastRewind();
-                playerImpl.playQueue.setIndex(playerImpl.playQueue.getIndex() - 1);
+                playerImpl.playQueue.offsetIndex(-1);
             }
 
             return true;

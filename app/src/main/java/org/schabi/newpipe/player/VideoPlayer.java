@@ -57,6 +57,7 @@ import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.player.playback.PlaybackManager;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
@@ -66,7 +67,6 @@ import org.schabi.newpipe.util.ListHelper;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -226,7 +226,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         playQueue = new SinglePlayQueue((StreamInfo) serializable, sortedStreamsIndex);
         playQueue.init();
 
-        playbackManager = new MediaSourceManager(this, playQueue);
+        playbackManager = new PlaybackManager(this, playQueue);
     }
 
     @SuppressWarnings("unchecked")
@@ -239,7 +239,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         playQueue = (PlayQueue) serializable;
         playQueue.init();
 
-        playbackManager = new MediaSourceManager(this, playQueue);
+        playbackManager = new PlaybackManager(this, playQueue);
     }
 
     @Override

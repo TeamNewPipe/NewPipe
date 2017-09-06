@@ -74,6 +74,8 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.player.playback.PlaybackManager;
+import org.schabi.newpipe.player.playback.PlaybackListener;
 import org.schabi.newpipe.playlist.ExternalPlayQueue;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
@@ -96,10 +98,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class BasePlayer implements Player.EventListener,
-        AudioManager.OnAudioFocusChangeListener, MediaSourceManager.PlaybackListener {
+        AudioManager.OnAudioFocusChangeListener, PlaybackListener {
     // TODO: Check api version for deprecated audio manager methods
 
-    public static final boolean DEBUG = true;
+    public static final boolean DEBUG = false;
     public static final String TAG = "BasePlayer";
 
     protected Context context;
@@ -139,7 +141,7 @@ public abstract class BasePlayer implements Player.EventListener,
     // Playlist
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected MediaSourceManager playbackManager;
+    protected PlaybackManager playbackManager;
     protected PlayQueue playQueue;
 
     protected int restoreQueueIndex;
@@ -270,7 +272,7 @@ public abstract class BasePlayer implements Player.EventListener,
         playQueue = new ExternalPlayQueue(serviceId, nextPageUrl, info, index);
         playQueue.init();
 
-        playbackManager = new MediaSourceManager(this, playQueue);
+        playbackManager = new PlaybackManager(this, playQueue);
     }
 
     @SuppressWarnings("unchecked")
@@ -281,7 +283,7 @@ public abstract class BasePlayer implements Player.EventListener,
         playQueue = new SinglePlayQueue((StreamInfo) serializable, PlayQueueItem.DEFAULT_QUALITY);
         playQueue.init();
 
-        playbackManager = new MediaSourceManager(this, playQueue);
+        playbackManager = new PlaybackManager(this, playQueue);
     }
 
     public void initThumbnail() {
@@ -494,9 +496,6 @@ public abstract class BasePlayer implements Player.EventListener,
     // Repeat
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected int currentRepeatMode = Player.REPEAT_MODE_OFF;
-
-
     public void onRepeatClicked() {
         if (DEBUG) Log.d(TAG, "onRepeatClicked() called");
 
@@ -569,6 +568,10 @@ public abstract class BasePlayer implements Player.EventListener,
                 changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
                 break;
             case Player.STATE_ENDED: // 4
+                if (playQueue.getIndex() < playQueue.size() - 1) {
+                    playQueue.offsetIndex(+1);
+                    break;
+                }
                 changeState(STATE_COMPLETED);
                 isPrepared = false;
                 break;
@@ -589,9 +592,7 @@ public abstract class BasePlayer implements Player.EventListener,
         int newIndex = simpleExoPlayer.getCurrentWindowIndex();
         if (DEBUG) Log.d(TAG, "onPositionDiscontinuity() called with: index = [" + newIndex + "]");
 
-        if (newIndex == playbackManager.getCurrentSourceIndex() + 1) {
-            playbackManager.refresh(newIndex);
-        }
+        playbackManager.refresh(newIndex);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -601,7 +602,7 @@ public abstract class BasePlayer implements Player.EventListener,
     @Override
     public void block() {
         if (simpleExoPlayer == null) return;
-        Log.d(TAG, "Blocking...");
+        if (DEBUG) Log.d(TAG, "Blocking...");
 
         simpleExoPlayer.stop();
 
@@ -611,7 +612,7 @@ public abstract class BasePlayer implements Player.EventListener,
     @Override
     public void unblock() {
         if (simpleExoPlayer == null) return;
-        Log.d(TAG, "Unblocking...");
+        if (DEBUG) Log.d(TAG, "Unblocking...");
 
         if (restoreQueueIndex != playQueue.getIndex()) {
             restoreQueueIndex = playQueue.getIndex();
@@ -626,7 +627,7 @@ public abstract class BasePlayer implements Player.EventListener,
     @Override
     public void sync(final StreamInfo info, final int sortedStreamsIndex) {
         if (simpleExoPlayer == null) return;
-        Log.d(TAG, "Syncing...");
+        if (DEBUG) Log.d(TAG, "Syncing...");
 
         videoUrl = info.url;
         videoThumbnailUrl = info.thumbnail_url;
@@ -635,11 +636,11 @@ public abstract class BasePlayer implements Player.EventListener,
         initThumbnail();
 
         if (simpleExoPlayer.getCurrentWindowIndex() != playbackManager.getCurrentSourceIndex()) {
-            Log.w(TAG, "Rewinding to correct window");
+            if (DEBUG) Log.w(TAG, "Rewinding to correct window");
             if (simpleExoPlayer.getCurrentTimeline().getWindowCount() > playbackManager.getCurrentSourceIndex()) {
                 simpleExoPlayer.seekToDefaultPosition(playbackManager.getCurrentSourceIndex());
             } else {
-                Toast.makeText(context, "Player out of sync", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Play Queue out of sync", Toast.LENGTH_SHORT).show();
                 simpleExoPlayer.seekToDefaultPosition();
             }
         }
@@ -649,7 +650,7 @@ public abstract class BasePlayer implements Player.EventListener,
 
     @Override
     public void shutdown() {
-        Log.d(TAG, "Shutting down...");
+        if (DEBUG) Log.d(TAG, "Shutting down...");
 
         playbackManager.dispose();
         playQueue.dispose();
@@ -898,7 +899,7 @@ public abstract class BasePlayer implements Player.EventListener,
         return playQueue;
     }
 
-    public boolean isPlayerBuffering() {
-        return currentState == STATE_BUFFERING;
+    public boolean isPlayerReady() {
+        return currentState == STATE_PLAYING || currentState == STATE_COMPLETED || currentState == STATE_PAUSED;
     }
 }

@@ -1,4 +1,4 @@
-package org.schabi.newpipe.player;
+package org.schabi.newpipe.player.playback;
 
 import android.support.annotation.Nullable;
 
@@ -25,11 +25,11 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
-class MediaSourceManager {
-    private final String TAG = "MediaSourceManager@" + Integer.toHexString(hashCode());
+public class PlaybackManager {
+    private final String TAG = "PlaybackManager@" + Integer.toHexString(hashCode());
     // One-side rolling window size for default loading
     // Effectively loads WINDOW_SIZE * 2 streams
-    private static final int WINDOW_SIZE = 3;
+    private static final int WINDOW_SIZE = 2;
 
     private final PlaybackListener playbackListener;
     private final PlayQueue playQueue;
@@ -41,43 +41,13 @@ class MediaSourceManager {
     private List<Integer> sourceToQueueIndex;
 
     private Subscription playQueueReactor;
-    private Subscription loadingReactor;
+    private Disposable syncReactor;
     private CompositeDisposable disposables;
 
     private boolean isBlocked;
 
-    interface PlaybackListener {
-        /*
-        * Called when the stream at the current queue index is not ready yet.
-        * Signals to the listener to block the player from playing anything.
-        * */
-        void block();
-
-        /*
-        * Called when the stream at the current queue index is ready.
-        * Signals to the listener to resume the player.
-        * May be called at any time, even when the player is unblocked.
-        * */
-        void unblock();
-
-        /*
-        * Called when the queue index is refreshed.
-        * Signals to the listener to synchronize the player's window to the manager's
-        * window.
-        * */
-        void sync(final StreamInfo info, final int sortedStreamsIndex);
-
-        /*
-        * Requests the listener to resolve a stream info into a media source respective
-        * of the listener's implementation (background, popup or main video player),
-        * */
-        MediaSource sourceOf(final StreamInfo info, final int sortedStreamsIndex);
-
-        void shutdown();
-    }
-
-    MediaSourceManager(@NonNull final MediaSourceManager.PlaybackListener listener,
-                       @NonNull final PlayQueue playQueue) {
+    public PlaybackManager(@NonNull final PlaybackListener listener,
+                           @NonNull final PlayQueue playQueue) {
         this.playbackListener = listener;
         this.playQueue = playQueue;
 
@@ -98,25 +68,28 @@ class MediaSourceManager {
     /*
     * Returns the media source index of the currently playing stream.
     * */
-    int getCurrentSourceIndex() {
+    public int getCurrentSourceIndex() {
         return sourceToQueueIndex.indexOf(playQueue.getIndex());
     }
 
     @NonNull
-    DynamicConcatenatingMediaSource getMediaSource() {
+    public DynamicConcatenatingMediaSource getMediaSource() {
         return sources;
     }
 
     /*
     * Called when the player has transitioned to another stream.
     * */
-    void refresh(final int newSourceIndex) {
-        if (sourceToQueueIndex.indexOf(newSourceIndex) != -1) {
-            playQueue.setIndex(sourceToQueueIndex.indexOf(newSourceIndex));
+    public void refresh(final int newSourceIndex) {
+        if (sourceToQueueIndex.indexOf(newSourceIndex) != -1 && newSourceIndex == getCurrentSourceIndex() + 1) {
+            playQueue.offsetIndex(+1);
+
+            // free up some memory
+            if (sourceToQueueIndex.size() > 1) remove(sourceToQueueIndex.get(0));
         }
     }
 
-    void report(final Exception error) {
+    public void report(final Exception error) {
         // ignore error checking for now, just remove the current index
         if (error == null || !tryBlock()) return;
 
@@ -127,27 +100,28 @@ class MediaSourceManager {
         load();
     }
 
-    int queueIndexOf(final int sourceIndex) {
-        return sourceIndex < sourceToQueueIndex.size() ? sourceToQueueIndex.get(sourceIndex) : -1;
-    }
-
-    void updateCurrent(final int newSortedStreamsIndex) {
+    public void updateCurrent(final int newSortedStreamsIndex) {
         if (!tryBlock()) return;
 
         PlayQueueItem item = playQueue.getCurrent();
         item.setSortedQualityIndex(newSortedStreamsIndex);
+
         resetSources();
         load();
     }
 
-    void dispose() {
-        if (loadingReactor != null) loadingReactor.cancel();
+    public void dispose() {
         if (playQueueReactor != null) playQueueReactor.cancel();
         if (disposables != null) disposables.dispose();
+        if (syncReactor != null) syncReactor.dispose();
+        if (sources != null) sources.releaseSource();
+        if (sourceToQueueIndex != null) sourceToQueueIndex.clear();
 
-        loadingReactor = null;
         playQueueReactor = null;
         disposables = null;
+        syncReactor = null;
+        sources = null;
+        sourceToQueueIndex = null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -182,8 +156,8 @@ class MediaSourceManager {
                     case SWAP:
                         final SwapEvent swapEvent = (SwapEvent) event;
                         swap(swapEvent.getFrom(), swapEvent.getTo());
+                        load();
                         break;
-                    case NEXT:
                     default:
                         break;
                 }
@@ -240,14 +214,18 @@ class MediaSourceManager {
 
     /*
     * Responds to a SELECT event.
-    * When a change occur, the manager prepares by loading more.
-    * If the current item has not been fully loaded,
+    * If the selected item is already loaded, then we simply synchronize and
+    * start loading some more items.
+    *
+    * If the current item has not been fully loaded, then the player will be
+    * blocked. The sources will be reset and reloaded, to conserve memory.
     * */
     private void onSelect() {
-        if (isCurrentIndexLoaded()) {
+        if (isCurrentIndexLoaded() && !isBlocked) {
             sync();
         } else {
             tryBlock();
+            resetSources();
         }
 
         load();
@@ -256,14 +234,14 @@ class MediaSourceManager {
     private void sync() {
         final PlayQueueItem currentItem = playQueue.getCurrent();
 
-        final Consumer<StreamInfo> onSuccess = new Consumer<StreamInfo>() {
+        final Consumer<StreamInfo> syncPlayback = new Consumer<StreamInfo>() {
             @Override
             public void accept(StreamInfo streamInfo) throws Exception {
                 playbackListener.sync(streamInfo, currentItem.getSortedQualityIndex());
             }
         };
 
-        currentItem.getStream().subscribe(onSuccess);
+        currentItem.getStream().subscribe(syncPlayback);
     }
 
     private void load() {
@@ -287,11 +265,13 @@ class MediaSourceManager {
         item.getStream().subscribe(new SingleObserver<StreamInfo>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
-                if (disposables != null) {
-                    disposables.add(d);
-                } else {
+                if (disposables == null) {
                     d.dispose();
+                    return;
                 }
+
+                if (disposables.size() > 8) disposables.clear();
+                disposables.add(d);
             }
 
             @Override
@@ -320,16 +300,6 @@ class MediaSourceManager {
     /*//////////////////////////////////////////////////////////////////////////
     // Media Source List Manipulation
     //////////////////////////////////////////////////////////////////////////*/
-
-    private void reset(final int queueIndex) {
-        if (queueIndex < 0) return;
-
-        final int sourceIndex = sourceToQueueIndex.indexOf(queueIndex);
-        if (sourceIndex != -1) {
-            sourceToQueueIndex.remove(sourceIndex);
-            sources.removeMediaSource(sourceIndex);
-        }
-    }
 
     // Insert source into playlist with position in respect to the play queue
     // If the play queue index already exists, then the insert is ignored

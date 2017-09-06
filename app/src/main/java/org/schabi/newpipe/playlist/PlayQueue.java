@@ -5,12 +5,8 @@ import android.util.Log;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
-import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.playlist.events.AppendEvent;
 import org.schabi.newpipe.playlist.events.InitEvent;
-import org.schabi.newpipe.playlist.events.NextEvent;
 import org.schabi.newpipe.playlist.events.PlayQueueMessage;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
 import org.schabi.newpipe.playlist.events.SelectEvent;
@@ -21,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import io.reactivex.BackpressureStrategy;
@@ -29,12 +26,15 @@ import io.reactivex.subjects.BehaviorSubject;
 
 public abstract class PlayQueue implements Serializable {
     private final String TAG = "PlayQueue@" + Integer.toHexString(hashCode());
-    public static final boolean DEBUG = true;
+    private final int INDEX_CHANGE_DEBOUNCE = 350;
+
+    public static final boolean DEBUG = false;
 
     private final ArrayList<PlayQueueItem> streams;
     private final AtomicInteger queueIndex;
 
-    private transient BehaviorSubject<PlayQueueMessage> eventBroadcast;
+    private transient BehaviorSubject<PlayQueueMessage> streamsEventBroadcast;
+    private transient BehaviorSubject<PlayQueueMessage> indexEventBroadcast;
     private transient Flowable<PlayQueueMessage> broadcastReceiver;
     private transient Subscription reportingReactor;
 
@@ -54,16 +54,19 @@ public abstract class PlayQueue implements Serializable {
     //////////////////////////////////////////////////////////////////////////*/
 
     public void init() {
-        eventBroadcast = BehaviorSubject.create();
-        broadcastReceiver = eventBroadcast
-                .startWith(new InitEvent())
-                .toFlowable(BackpressureStrategy.BUFFER);
+        streamsEventBroadcast = BehaviorSubject.create();
+        indexEventBroadcast = BehaviorSubject.create();
+
+        broadcastReceiver = Flowable.merge(
+                streamsEventBroadcast.toFlowable(BackpressureStrategy.BUFFER),
+                indexEventBroadcast.toFlowable(BackpressureStrategy.BUFFER).debounce(INDEX_CHANGE_DEBOUNCE, TimeUnit.MILLISECONDS)
+        ).startWith(new InitEvent());
 
         if (DEBUG) broadcastReceiver.subscribe(getSelfReporter());
     }
 
     public void dispose() {
-        eventBroadcast.onComplete();
+        streamsEventBroadcast.onComplete();
 
         if (reportingReactor != null) reportingReactor.cancel();
         reportingReactor = null;
@@ -121,9 +124,15 @@ public abstract class PlayQueue implements Serializable {
     // Write ops
     //////////////////////////////////////////////////////////////////////////*/
 
-    public synchronized void setIndex(final int index) {
+    private synchronized void setIndex(final int index) {
+        if (index < 0 || index >= streams.size()) return;
+
         queueIndex.set(Math.min(Math.max(0, index), streams.size() - 1));
-        broadcast(new SelectEvent(index));
+        indexEventBroadcast.onNext(new SelectEvent(index));
+    }
+
+    public synchronized void offsetIndex(final int offset) {
+        setIndex(getIndex() + offset);
     }
 
     protected synchronized void append(final PlayQueueItem item) {
@@ -137,7 +146,9 @@ public abstract class PlayQueue implements Serializable {
     }
 
     public synchronized void remove(final int index) {
-        if (index >= streams.size()) return;
+        if (index >= streams.size() || index < 0) return;
+
+        final boolean isCurrent = index == getIndex();
 
         streams.remove(index);
         // Nudge the index if it becomes larger than the queue size
@@ -145,10 +156,12 @@ public abstract class PlayQueue implements Serializable {
             queueIndex.set(size() - 1);
         }
 
-        broadcast(new RemoveEvent(index));
+        broadcast(new RemoveEvent(index, isCurrent));
     }
 
     protected synchronized void swap(final int source, final int target) {
+        if (source < 0 || target < 0) return;
+
         final List<PlayQueueItem> items = streams;
         if (source < items.size() && target < items.size()) {
             // Swap two items
@@ -174,7 +187,7 @@ public abstract class PlayQueue implements Serializable {
     //////////////////////////////////////////////////////////////////////////*/
 
     private void broadcast(final PlayQueueMessage event) {
-        eventBroadcast.onNext(event);
+        streamsEventBroadcast.onNext(event);
     }
 
     private Subscriber<PlayQueueMessage> getSelfReporter() {

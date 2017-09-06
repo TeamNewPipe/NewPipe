@@ -311,7 +311,7 @@ public class BackgroundPlayer extends Service {
             super.onRepeatClicked();
 
             int opacity = 255;
-            switch (currentRepeatMode) {
+            switch (simpleExoPlayer.getRepeatMode()) {
                 case Player.REPEAT_MODE_OFF:
                     opacity = 77;
                     break;
@@ -338,17 +338,17 @@ public class BackgroundPlayer extends Service {
 
         @Override
         public void onFastRewind() {
-            if (isPlayerBuffering()) return;
+            if (!isPlayerReady()) return;
 
-            playQueue.setIndex(playQueue.getIndex() - 1);
+            playQueue.offsetIndex(-1);
             triggerProgressUpdate();
         }
 
         @Override
         public void onFastForward() {
-            if (isPlayerBuffering()) return;
+            if (!isPlayerReady()) return;
 
-            playQueue.setIndex(playQueue.getIndex() + 1);
+            playQueue.offsetIndex(+1);
             triggerProgressUpdate();
         }
 
