@@ -1,16 +1,16 @@
 package org.schabi.newpipe.playlist.events;
 
 
-public class SwapEvent implements PlayQueueMessage {
+public class MoveEvent implements PlayQueueMessage {
     final private int from;
     final private int to;
 
     @Override
     public PlayQueueEvent type() {
-        return PlayQueueEvent.SWAP;
+        return PlayQueueEvent.MOVE;
     }
 
-    public SwapEvent(final int from, final int to) {
+    public MoveEvent(final int from, final int to) {
         this.from = from;
         this.to = to;
     }

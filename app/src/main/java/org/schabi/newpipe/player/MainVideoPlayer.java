@@ -217,7 +217,7 @@ public class MainVideoPlayer extends Activity {
             MySimpleOnGestureListener listener = new MySimpleOnGestureListener();
             gestureDetector = new GestureDetector(context, listener);
             gestureDetector.setIsLongpressEnabled(false);
-            playerImpl.getRootView().setOnTouchListener(listener);
+            getRootView().setOnTouchListener(listener);
 
             repeatButton.setOnClickListener(this);
             playPauseButton.setOnClickListener(this);
@@ -252,8 +252,10 @@ public class MainVideoPlayer extends Activity {
 
         @Override
         public void onFullScreenButtonClicked() {
+            super.onFullScreenButtonClicked();
+
             if (DEBUG) Log.d(TAG, "onFullScreenButtonClicked() called");
-            if (playerImpl.getPlayer() == null) return;
+            if (simpleExoPlayer == null) return;
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
                     && !PermissionHelper.checkSystemAlertWindowPermission(MainVideoPlayer.this)) {
@@ -261,11 +263,11 @@ public class MainVideoPlayer extends Activity {
                 return;
             }
 
-            context.startService(NavigationHelper.getOpenVideoPlayerIntent(context, PopupVideoPlayer.class, playerImpl));
-            if (playerImpl != null) playerImpl.destroyPlayer();
+            context.startService(NavigationHelper.getOpenVideoPlayerIntent(context, PopupVideoPlayer.class, this));
+            destroyPlayer();
 
             ((View) getControlAnimationView().getParent()).setVisibility(View.GONE);
-            MainVideoPlayer.this.finish();
+            finish();
         }
 
         @Override
@@ -302,10 +304,10 @@ public class MainVideoPlayer extends Activity {
 
             if (getCurrentState() != STATE_COMPLETED) {
                 getControlsVisibilityHandler().removeCallbacksAndMessages(null);
-                animateView(playerImpl.getControlsRoot(), true, 300, 0, new Runnable() {
+                animateView(getControlsRoot(), true, 300, 0, new Runnable() {
                     @Override
                     public void run() {
-                        if (getCurrentState() == STATE_PLAYING && !playerImpl.isSomePopupMenuVisible()) {
+                        if (getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible()) {
                             hideControls(300, DEFAULT_CONTROLS_HIDE_TIME);
                         }
                     }
@@ -321,7 +323,7 @@ public class MainVideoPlayer extends Activity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             super.onStopTrackingTouch(seekBar);
-            if (playerImpl.wasPlaying()) {
+            if (wasPlaying()) {
                 hideControls(100, 0);
             }
         }
@@ -456,11 +458,6 @@ public class MainVideoPlayer extends Activity {
 
         public ImageButton getPlayPauseButton() {
             return playPauseButton;
-        }
-
-        @Override
-        public void onRepeatModeChanged(int i) {
-
         }
     }
 

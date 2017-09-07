@@ -10,7 +10,7 @@ import org.schabi.newpipe.playlist.events.InitEvent;
 import org.schabi.newpipe.playlist.events.PlayQueueMessage;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
 import org.schabi.newpipe.playlist.events.SelectEvent;
-import org.schabi.newpipe.playlist.events.SwapEvent;
+import org.schabi.newpipe.playlist.events.MoveEvent;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public abstract class PlayQueue implements Serializable {
     private final String TAG = "PlayQueue@" + Integer.toHexString(hashCode());
     private final int INDEX_CHANGE_DEBOUNCE = 350;
 
-    public static final boolean DEBUG = false;
+    public static final boolean DEBUG = true;
 
     private final ArrayList<PlayQueueItem> streams;
     private final AtomicInteger queueIndex;
@@ -178,7 +178,7 @@ public abstract class PlayQueue implements Serializable {
                 queueIndex.set(newIndex);
             }
 
-            broadcast(new SwapEvent(source, target));
+            broadcast(new MoveEvent(source, target));
         }
     }
 

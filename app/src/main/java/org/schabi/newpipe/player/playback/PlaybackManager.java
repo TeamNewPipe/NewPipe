@@ -12,7 +12,7 @@ import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.events.PlayQueueMessage;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
-import org.schabi.newpipe.playlist.events.SwapEvent;
+import org.schabi.newpipe.playlist.events.MoveEvent;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -91,7 +91,9 @@ public class PlaybackManager {
 
     public void report(final Exception error) {
         // ignore error checking for now, just remove the current index
-        if (error == null || !tryBlock()) return;
+        if (error == null) return;
+
+        tryBlock();
 
         final int index = playQueue.getIndex();
         playQueue.remove(index);
@@ -101,10 +103,17 @@ public class PlaybackManager {
     }
 
     public void updateCurrent(final int newSortedStreamsIndex) {
-        if (!tryBlock()) return;
+        tryBlock();
 
         PlayQueueItem item = playQueue.getCurrent();
         item.setSortedQualityIndex(newSortedStreamsIndex);
+
+        resetSources();
+        load();
+    }
+
+    public void reset() {
+        tryBlock();
 
         resetSources();
         load();
@@ -143,8 +152,8 @@ public class PlaybackManager {
                 switch (event.type()) {
                     case INIT:
                         isBlocked = true;
+                        break;
                     case APPEND:
-                        load();
                         break;
                     case SELECT:
                         onSelect();
@@ -153,10 +162,9 @@ public class PlaybackManager {
                         final RemoveEvent removeEvent = (RemoveEvent) event;
                         remove(removeEvent.index());
                         break;
-                    case SWAP:
-                        final SwapEvent swapEvent = (SwapEvent) event;
-                        swap(swapEvent.getFrom(), swapEvent.getTo());
-                        load();
+                    case MOVE:
+                        final MoveEvent moveEvent = (MoveEvent) event;
+                        move(moveEvent.getFrom(), moveEvent.getTo());
                         break;
                     default:
                         break;
@@ -167,6 +175,8 @@ public class PlaybackManager {
                     playQueue.fetch();
                 } else if (playQueue.isEmpty()) {
                     playbackListener.shutdown();
+                } else {
+                    load(); // All event warrants a load
                 }
 
                 if (playQueueReactor != null) playQueueReactor.request(1);
@@ -176,9 +186,7 @@ public class PlaybackManager {
             public void onError(@NonNull Throwable e) {}
 
             @Override
-            public void onComplete() {
-                dispose();
-            }
+            public void onComplete() {}
         };
     }
 
@@ -214,21 +222,26 @@ public class PlaybackManager {
 
     /*
     * Responds to a SELECT event.
-    * If the selected item is already loaded, then we simply synchronize and
+    *
+    * If the player is being blocked, then nothing should happen.
+    *
+    * Otherwise:
+    *
+    * When the selected item is already loaded, then we simply synchronize and
     * start loading some more items.
     *
-    * If the current item has not been fully loaded, then the player will be
+    * When the current item has not been fully loaded, then the player will be
     * blocked. The sources will be reset and reloaded, to conserve memory.
     * */
     private void onSelect() {
-        if (isCurrentIndexLoaded() && !isBlocked) {
+        if (isBlocked) return;
+
+        if (isCurrentIndexLoaded()) {
             sync();
         } else {
             tryBlock();
             resetSources();
         }
-
-        load();
     }
 
     private void sync() {
@@ -249,6 +262,7 @@ public class PlaybackManager {
         final int currentIndex = playQueue.getIndex();
         final PlayQueueItem currentItem = playQueue.get(currentIndex);
         if (currentItem != null) load(currentItem);
+        else return;
 
         // The rest are just for seamless playback
         final int leftBound = Math.max(0, currentIndex - WINDOW_SIZE);
@@ -270,7 +284,6 @@ public class PlaybackManager {
                     return;
                 }
 
-                if (disposables.size() > 8) disposables.clear();
                 disposables.add(d);
             }
 
@@ -328,7 +341,7 @@ public class PlaybackManager {
         }
     }
 
-    private void swap(final int source, final int target) {
+    private void move(final int source, final int target) {
         final int sourceIndex = sourceToQueueIndex.indexOf(source);
         final int targetIndex = sourceToQueueIndex.indexOf(target);
 

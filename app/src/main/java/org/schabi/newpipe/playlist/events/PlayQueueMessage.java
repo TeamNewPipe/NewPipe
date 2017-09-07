@@ -1,5 +1,7 @@
 package org.schabi.newpipe.playlist.events;
 
-public interface PlayQueueMessage {
+import java.io.Serializable;
+
+public interface PlayQueueMessage extends Serializable {
     PlayQueueEvent type();
 }

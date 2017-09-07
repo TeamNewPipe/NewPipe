@@ -146,7 +146,7 @@ public class BackgroundPlayer extends Service {
     private void onScreenOnOff(boolean on) {
         if (DEBUG) Log.d(TAG, "onScreenOnOff() called with: on = [" + on + "]");
         if (on) {
-            if (basePlayerImpl.isPlaying() && !basePlayerImpl.isProgressLoopRunning.get()) basePlayerImpl.startProgressLoop();
+            if (basePlayerImpl.isPlaying() && !basePlayerImpl.isProgressLoopRunning()) basePlayerImpl.startProgressLoop();
         } else basePlayerImpl.stopProgressLoop();
 
     }
@@ -212,7 +212,7 @@ public class BackgroundPlayer extends Service {
      *
      * @param drawableId if != -1, sets the drawable with that id on the play/pause button
      */
-    private void updateNotification(int drawableId) {
+    private synchronized void updateNotification(int drawableId) {
         if (DEBUG) Log.d(TAG, "updateNotification() called with: drawableId = [" + drawableId + "]");
         if (notBuilder == null) return;
         if (drawableId != -1) {
@@ -275,19 +275,27 @@ public class BackgroundPlayer extends Service {
         }
 
         @Override
-        public void initThumbnail() {
+        public void initThumbnail(final String url) {
             if (notRemoteView != null) notRemoteView.setImageViewResource(R.id.notificationCover, R.drawable.dummy_thumbnail);
             if (bigNotRemoteView != null) bigNotRemoteView.setImageViewResource(R.id.notificationCover, R.drawable.dummy_thumbnail);
             updateNotification(-1);
-            super.initThumbnail();
+            super.initThumbnail(url);
         }
 
         @Override
         public void onThumbnailReceived(Bitmap thumbnail) {
             super.onThumbnailReceived(thumbnail);
+
             if (thumbnail != null) {
-                if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
-                if (bigNotRemoteView != null) bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
+                videoThumbnail = thumbnail;
+
+                // rebuild notification here since remote view does not release bitmaps, causing memory leaks
+                // remove this line to see for yourself
+                notBuilder = createNotification();
+
+                if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
+                if (bigNotRemoteView != null) bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
+
                 updateNotification(-1);
             }
         }
@@ -303,7 +311,7 @@ public class BackgroundPlayer extends Service {
                 FAST_FORWARD_REWIND_AMOUNT = 10000;
             }
             PROGRESS_LOOP_INTERVAL = 1000;
-            basePlayerImpl.getPlayer().setVolume(1f);
+            simpleExoPlayer.setVolume(1f);
         }
 
         @Override
@@ -382,13 +390,13 @@ public class BackgroundPlayer extends Service {
         public void sync(final StreamInfo info, final int sortedStreamsIndex) {
             super.sync(info, sortedStreamsIndex);
 
-            basePlayerImpl.setVideoTitle(info.name);
-            basePlayerImpl.setUploaderName(info.uploader_name);
+            setVideoTitle(info.name);
+            setUploaderName(info.uploader_name);
 
-            notRemoteView.setTextViewText(R.id.notificationSongName, basePlayerImpl.getVideoTitle());
-            notRemoteView.setTextViewText(R.id.notificationArtist, basePlayerImpl.getUploaderName());
-            bigNotRemoteView.setTextViewText(R.id.notificationSongName, basePlayerImpl.getVideoTitle());
-            bigNotRemoteView.setTextViewText(R.id.notificationArtist, basePlayerImpl.getUploaderName());
+            notRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());
+            notRemoteView.setTextViewText(R.id.notificationArtist, getUploaderName());
+            bigNotRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());
+            bigNotRemoteView.setTextViewText(R.id.notificationArtist, getUploaderName());
             updateNotification(-1);
         }
 
@@ -436,7 +444,7 @@ public class BackgroundPlayer extends Service {
                     onVideoPlayPause();
                     break;
                 case ACTION_OPEN_DETAIL:
-                    onOpenDetail(BackgroundPlayer.this, basePlayerImpl.getVideoUrl(), basePlayerImpl.getVideoTitle());
+                    onOpenDetail(BackgroundPlayer.this, getVideoUrl(), getVideoTitle());
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();
@@ -483,7 +491,7 @@ public class BackgroundPlayer extends Service {
             super.onPaused();
 
             updateNotification(R.drawable.ic_play_arrow_white);
-            if (isProgressLoopRunning.get()) stopProgressLoop();
+            if (isProgressLoopRunning()) stopProgressLoop();
 
             releaseWifiAndCpu();
         }

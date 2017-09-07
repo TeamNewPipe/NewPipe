@@ -30,12 +30,9 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.net.Uri;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -67,15 +64,14 @@ import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvicto
 import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 import com.google.android.exoplayer2.util.Util;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.player.playback.PlaybackManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
+import org.schabi.newpipe.player.playback.PlaybackManager;
 import org.schabi.newpipe.playlist.ExternalPlayQueue;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
@@ -89,7 +85,19 @@ import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.disposables.SerialDisposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Predicate;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Base for the players, joining the common properties
@@ -101,7 +109,7 @@ public abstract class BasePlayer implements Player.EventListener,
         AudioManager.OnAudioFocusChangeListener, PlaybackListener {
     // TODO: Check api version for deprecated audio manager methods
 
-    public static final boolean DEBUG = false;
+    public static final boolean DEBUG = true;
     public static final String TAG = "BasePlayer";
 
     protected Context context;
@@ -134,7 +142,6 @@ public abstract class BasePlayer implements Player.EventListener,
     protected String videoUrl = "";
     protected String videoTitle = "";
     protected String videoThumbnailUrl = "";
-    protected long videoStartPos = -1;
     protected String uploaderName = "";
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -144,8 +151,8 @@ public abstract class BasePlayer implements Player.EventListener,
     protected PlaybackManager playbackManager;
     protected PlayQueue playQueue;
 
-    protected int restoreQueueIndex;
-    protected long restoreWindowPos;
+    protected int queueStartPos = 0;
+    protected long videoStartPos = -1;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Player
@@ -157,21 +164,19 @@ public abstract class BasePlayer implements Player.EventListener,
     protected SimpleExoPlayer simpleExoPlayer;
     protected boolean isPrepared = false;
 
-    protected MediaSource mediaSource;
     protected CacheDataSourceFactory cacheDataSourceFactory;
     protected final DefaultExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
     protected final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
 
     protected int PROGRESS_LOOP_INTERVAL = 100;
-    protected AtomicBoolean isProgressLoopRunning = new AtomicBoolean();
-    protected Handler progressLoop;
-    protected Runnable progressUpdate;
+    protected Disposable progressUpdateReactor;
+
+    protected SerialDisposable thumbnailReactor;
 
     //////////////////////////////////////////////////////////////////////////*/
 
     public BasePlayer(Context context) {
         this.context = context;
-        this.progressLoop = new Handler();
         this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         this.audioManager = ((AudioManager) context.getSystemService(Context.AUDIO_SERVICE));
 
@@ -184,6 +189,8 @@ public abstract class BasePlayer implements Player.EventListener,
         this.intentFilter = new IntentFilter();
         setupBroadcastReceiver(intentFilter);
         context.registerReceiver(broadcastReceiver, intentFilter);
+
+        this.thumbnailReactor = new SerialDisposable();
     }
 
     public void setup() {
@@ -223,23 +230,31 @@ public abstract class BasePlayer implements Player.EventListener,
         simpleExoPlayer.addListener(this);
     }
 
-    public void initListeners() {
-        progressUpdate = new Runnable() {
-            @Override
-            public void run() {
-                //if(DEBUG) Log.d(TAG, "progressUpdate run() called");
-                onUpdateProgress((int) simpleExoPlayer.getCurrentPosition(), (int) simpleExoPlayer.getDuration(), simpleExoPlayer.getBufferedPercentage());
-                if (isProgressLoopRunning.get()) progressLoop.postDelayed(this, PROGRESS_LOOP_INTERVAL);
-            }
-        };
+    public void initListeners() {}
+
+    protected Disposable getProgressReactor() {
+        return Observable.interval(PROGRESS_LOOP_INTERVAL, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .filter(new Predicate<Long>() {
+                    @Override
+                    public boolean test(@NonNull Long aLong) throws Exception {
+                        return isProgressLoopRunning();
+                    }
+                })
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) throws Exception {
+                        triggerProgressUpdate();
+                    }
+                });
     }
 
     public void handleIntent(Intent intent) {
         if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
         if (intent == null) return;
 
-        restoreQueueIndex = intent.getIntExtra(RESTORE_QUEUE_INDEX, 0);
-        restoreWindowPos = intent.getLongExtra(START_POSITION, 0);
+        queueStartPos = intent.getIntExtra(RESTORE_QUEUE_INDEX, 0);
+        videoStartPos = intent.getLongExtra(START_POSITION, 0);
         setPlaybackSpeed(intent.getFloatExtra(PLAYBACK_SPEED, getPlaybackSpeed()));
 
         switch (intent.getStringExtra(INTENT_TYPE)) {
@@ -253,7 +268,6 @@ public abstract class BasePlayer implements Player.EventListener,
                 break;
         }
     }
-
 
     @SuppressWarnings("unchecked")
     public void handleExternalPlaylistIntent(Intent intent) {
@@ -286,21 +300,37 @@ public abstract class BasePlayer implements Player.EventListener,
         playbackManager = new PlaybackManager(this, playQueue);
     }
 
-    public void initThumbnail() {
-        if (DEBUG) Log.d(TAG, "initThumbnail() called");
-        videoThumbnail = null;
-        if (videoThumbnailUrl == null || videoThumbnailUrl.isEmpty()) return;
-        ImageLoader.getInstance().resume();
-        ImageLoader.getInstance().loadImage(videoThumbnailUrl, new SimpleImageLoadingListener() {
+    public void initThumbnail(final String url) {
+        final Callable<Bitmap> bitmapCallable = new Callable<Bitmap>() {
             @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                if (simpleExoPlayer == null) return;
-                if (DEBUG)
-                    Log.d(TAG, "onLoadingComplete() called with: imageUri = [" + imageUri + "], view = [" + view + "], loadedImage = [" + loadedImage + "]");
-                videoThumbnail = loadedImage;
-                onThumbnailReceived(loadedImage);
+            public Bitmap call() throws Exception {
+                return ImageLoader.getInstance().loadImageSync(url);
             }
-        });
+        };
+
+        Single.fromCallable(bitmapCallable)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<Bitmap>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        thumbnailReactor.set(d);
+                    }
+
+                    @Override
+                    public void onSuccess(@NonNull Bitmap bitmap) {
+                        onThumbnailReceived(bitmap);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.e(TAG, "Thumbnail Fetch Failed.", e);
+                    }
+                });
+    }
+
+    public void onThumbnailReceived(Bitmap thumbnail) {
+        if (DEBUG) Log.d(TAG, "onThumbnailReceived() called with: thumbnail = [" + thumbnail + "]");
     }
 
     public void destroyPlayer() {
@@ -309,7 +339,7 @@ public abstract class BasePlayer implements Player.EventListener,
             simpleExoPlayer.stop();
             simpleExoPlayer.release();
         }
-        if (progressLoop != null && isProgressLoopRunning.get()) stopProgressLoop();
+        if (isProgressLoopRunning()) stopProgressLoop();
         if (audioManager != null) {
             audioManager.abandonAudioFocus(this);
             audioManager = null;
@@ -320,7 +350,11 @@ public abstract class BasePlayer implements Player.EventListener,
         if (DEBUG) Log.d(TAG, "destroy() called");
         destroyPlayer();
         unregisterBroadcastReceiver();
+
+        thumbnailReactor.dispose();
+        thumbnailReactor = null;
         videoThumbnail = null;
+
         simpleExoPlayer = null;
     }
 
@@ -469,19 +503,19 @@ public abstract class BasePlayer implements Player.EventListener,
 
     public void onLoading() {
         if (DEBUG) Log.d(TAG, "onLoading() called");
-        if (!isProgressLoopRunning.get()) startProgressLoop();
+        if (!isProgressLoopRunning()) startProgressLoop();
     }
 
     public void onPlaying() {
         if (DEBUG) Log.d(TAG, "onPlaying() called");
-        if (!isProgressLoopRunning.get()) startProgressLoop();
+        if (!isProgressLoopRunning()) startProgressLoop();
     }
 
     public void onBuffering() {
     }
 
     public void onPaused() {
-        if (isProgressLoopRunning.get()) stopProgressLoop();
+        if (isProgressLoopRunning()) stopProgressLoop();
     }
 
     public void onPausedSeek() {
@@ -489,7 +523,7 @@ public abstract class BasePlayer implements Player.EventListener,
 
     public void onCompleted() {
         if (DEBUG) Log.d(TAG, "onCompleted() called");
-        if (isProgressLoopRunning.get()) stopProgressLoop();
+        if (isProgressLoopRunning()) stopProgressLoop();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -524,22 +558,25 @@ public abstract class BasePlayer implements Player.EventListener,
 
     @Override
     public void onTimelineChanged(Timeline timeline, Object manifest) {
+        if (DEBUG) Log.d(TAG, "onTimelineChanged(), timeline size = " + timeline.getWindowCount());
     }
 
     @Override
     public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
+        Log.w(TAG, "onTracksChanged() called, unsupported operation. Is this expected?");
     }
 
     @Override
     public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+        if (DEBUG) Log.d(TAG, "playbackParameters(), speed: " + playbackParameters.speed + ", pitch: " + playbackParameters.pitch);
     }
 
     @Override
     public void onLoadingChanged(boolean isLoading) {
         if (DEBUG) Log.d(TAG, "onLoadingChanged() called with: isLoading = [" + isLoading + "]");
 
-        if (!isLoading && getCurrentState() == STATE_PAUSED && isProgressLoopRunning.get()) stopProgressLoop();
-        else if (isLoading && !isProgressLoopRunning.get()) startProgressLoop();
+        if (!isLoading && getCurrentState() == STATE_PAUSED && isProgressLoopRunning()) stopProgressLoop();
+        else if (isLoading && !isProgressLoopRunning()) startProgressLoop();
     }
 
     @Override
@@ -595,6 +632,11 @@ public abstract class BasePlayer implements Player.EventListener,
         playbackManager.refresh(newIndex);
     }
 
+    @Override
+    public void onRepeatModeChanged(int i) {
+        if (DEBUG) Log.d(TAG, "onRepeatModeChanged() called with: mode = [" + i + "]");
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Playback Listener
     //////////////////////////////////////////////////////////////////////////*/
@@ -614,13 +656,13 @@ public abstract class BasePlayer implements Player.EventListener,
         if (simpleExoPlayer == null) return;
         if (DEBUG) Log.d(TAG, "Unblocking...");
 
-        if (restoreQueueIndex != playQueue.getIndex()) {
-            restoreQueueIndex = playQueue.getIndex();
-            restoreWindowPos = 0;
+        if (queueStartPos != playQueue.getIndex()) {
+            queueStartPos = playQueue.getIndex();
+            videoStartPos = 0;
         }
 
         simpleExoPlayer.prepare(playbackManager.getMediaSource());
-        simpleExoPlayer.seekTo(playbackManager.getCurrentSourceIndex(), restoreWindowPos);
+        simpleExoPlayer.seekTo(playbackManager.getCurrentSourceIndex(), videoStartPos);
         simpleExoPlayer.setPlayWhenReady(false);
     }
 
@@ -633,15 +675,16 @@ public abstract class BasePlayer implements Player.EventListener,
         videoThumbnailUrl = info.thumbnail_url;
         videoTitle = info.name;
 
-        initThumbnail();
+        initThumbnail(videoThumbnailUrl);
 
         if (simpleExoPlayer.getCurrentWindowIndex() != playbackManager.getCurrentSourceIndex()) {
             if (DEBUG) Log.w(TAG, "Rewinding to correct window");
             if (simpleExoPlayer.getCurrentTimeline().getWindowCount() > playbackManager.getCurrentSourceIndex()) {
                 simpleExoPlayer.seekToDefaultPosition(playbackManager.getCurrentSourceIndex());
             } else {
-                Toast.makeText(context, "Play Queue out of sync", Toast.LENGTH_SHORT).show();
-                simpleExoPlayer.seekToDefaultPosition();
+                if (DEBUG) Log.w(TAG, "Play Queue out of sync");
+                playbackManager.reset();
+                return;
             }
         }
 
@@ -674,24 +717,10 @@ public abstract class BasePlayer implements Player.EventListener,
     public void onVideoPlayPause() {
         if (DEBUG) Log.d(TAG, "onVideoPlayPause() called");
 
-        if (currentState == STATE_COMPLETED) {
-            onVideoPlayPauseRepeat();
-            return;
-        }
-
         if (!isPlaying()) audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
         else audioManager.abandonAudioFocus(this);
 
         simpleExoPlayer.setPlayWhenReady(!isPlaying());
-    }
-
-    public void onVideoPlayPauseRepeat() {
-        if (DEBUG) Log.d(TAG, "onVideoPlayPauseRepeat() called");
-        changeState(STATE_LOADING);
-        setVideoStartPos(0);
-        simpleExoPlayer.seekTo(0);
-        simpleExoPlayer.setPlayWhenReady(true);
-        audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
     }
 
     public void onFastRewind() {
@@ -702,10 +731,6 @@ public abstract class BasePlayer implements Player.EventListener,
     public void onFastForward() {
         if (DEBUG) Log.d(TAG, "onFastForward() called");
         seekBy(FAST_FORWARD_REWIND_AMOUNT);
-    }
-
-    public void onThumbnailReceived(Bitmap thumbnail) {
-        if (DEBUG) Log.d(TAG, "onThumbnailReceived() called with: thumbnail = [" + thumbnail + "]");
     }
 
     public void seekBy(int milliSeconds) {
@@ -746,14 +771,13 @@ public abstract class BasePlayer implements Player.EventListener,
     }
 
     protected void startProgressLoop() {
-        progressLoop.removeCallbacksAndMessages(null);
-        isProgressLoopRunning.set(true);
-        progressLoop.post(progressUpdate);
+        if (progressUpdateReactor != null) progressUpdateReactor.dispose();
+        progressUpdateReactor = getProgressReactor();
     }
 
     protected void stopProgressLoop() {
-        isProgressLoopRunning.set(false);
-        progressLoop.removeCallbacksAndMessages(null);
+        if (progressUpdateReactor != null) progressUpdateReactor.dispose();
+        progressUpdateReactor = null;
     }
 
     protected void tryDeleteCacheFiles(Context context) {
@@ -901,5 +925,9 @@ public abstract class BasePlayer implements Player.EventListener,
 
     public boolean isPlayerReady() {
         return currentState == STATE_PLAYING || currentState == STATE_COMPLETED || currentState == STATE_PAUSED;
+    }
+
+    public boolean isProgressLoopRunning() {
+        return progressUpdateReactor != null && !progressUpdateReactor.isDisposed();
     }
 }

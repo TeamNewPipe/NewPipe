@@ -309,7 +309,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     public void onLoading() {
         if (DEBUG) Log.d(TAG, "onLoading() called");
 
-        if (!isProgressLoopRunning.get()) startProgressLoop();
+        if (!isProgressLoopRunning()) startProgressLoop();
 
         controlsVisibilityHandler.removeCallbacksAndMessages(null);
         animateView(controlsRoot, false, 300);
@@ -331,7 +331,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     @Override
     public void onPlaying() {
         if (DEBUG) Log.d(TAG, "onPlaying() called");
-        if (!isProgressLoopRunning.get()) startProgressLoop();
+        if (!isProgressLoopRunning()) startProgressLoop();
         showAndAnimateControl(-1, true);
         loadingPanel.setVisibility(View.GONE);
         showControlsThenHide();
@@ -362,7 +362,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     public void onCompleted() {
         if (DEBUG) Log.d(TAG, "onCompleted() called");
 
-        if (isProgressLoopRunning.get()) stopProgressLoop();
+        if (isProgressLoopRunning()) stopProgressLoop();
 
         showControls(500);
         animateView(endScreen, true, 800);
@@ -446,21 +446,14 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     }
 
     @Override
-    public void onVideoPlayPauseRepeat() {
-        if (DEBUG) Log.d(TAG, "onVideoPlayPauseRepeat() called");
-        if (qualityChanged) {
-            setVideoStartPos(0);
-            //play(true);
-        } else super.onVideoPlayPauseRepeat();
-    }
-
-    @Override
     public void onThumbnailReceived(Bitmap thumbnail) {
         super.onThumbnailReceived(thumbnail);
         if (thumbnail != null) endScreen.setImageBitmap(thumbnail);
     }
 
-    protected abstract void onFullScreenButtonClicked();
+    protected void onFullScreenButtonClicked() {
+        if (!isPlayerReady()) return;
+    }
 
     @Override
     public void onFastRewind() {
@@ -501,8 +494,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         if (qualityPopupMenuGroupId == menuItem.getGroupId()) {
             if (selectedIndexStream == menuItem.getItemId()) return true;
 
-            restoreQueueIndex = playQueue.getIndex();
-            restoreWindowPos = simpleExoPlayer.getCurrentPosition();
+            queueStartPos = playQueue.getIndex();
+            videoStartPos = simpleExoPlayer.getCurrentPosition();
             playbackManager.updateCurrent(menuItem.getItemId());
 
             qualityTextView.setText(menuItem.getTitle());
@@ -580,7 +573,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         animateView(currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, false, 200);
 
         if (getCurrentState() == STATE_PAUSED_SEEK) changeState(STATE_BUFFERING);
-        if (!isProgressLoopRunning.get()) startProgressLoop();
+        if (!isProgressLoopRunning()) startProgressLoop();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
