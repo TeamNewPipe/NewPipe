@@ -19,13 +19,13 @@
     <string name="download_path_dialog_title">Inserisci il percorso per i download</string>
     <string name="default_resolution_title">Risoluzione predefinita</string>
     <string name="play_with_kodi_title">Riproduci con Kodi</string>
-    <string name="kore_not_found">L\'applicazione Kore non è stata trovata. Kore è necessario per riprodurre video con Kodi media center. Vorresti installarlo?</string>
+    <string name="kore_not_found">L\'applicazione Kore non è stata trovata. Vorresti installarla?</string>
     <string name="show_play_with_kodi_title">Mostra l\'opzione \"Riproduci con Kodi\"</string>
     <string name="show_play_with_kodi_summary">Mostra l\'opzione per riprodurre i video tramite Kodi.</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato audio predefinito</string>
     <string name="webm_description">WebM — formato libero</string>
-    <string name="m4a_description">m4a — qualità migliore</string>
+    <string name="m4a_description">M4A — qualità migliore</string>
     <string name="download_dialog_title">Scarica</string>
     <string name="next_video_title">Prossimo video</string>
     <string name="show_next_and_similar_title">Mostra video a seguire e video simili</string>
@@ -59,14 +59,14 @@
     <string name="general_error">Errore</string>
     <string name="network_error">Errore di rete</string>
     <string name="could_not_load_thumbnails">Impossibile caricare tutte le miniature</string>
-    <string name="youtube_signature_decryption_error">Impossibile decriptare la firma dell\'URL del video.</string>
-    <string name="content_not_available">Contenuto non disponibile.</string>
-    <string name="blocked_by_gema">Bloccato dalla GEMA.</string>
+    <string name="youtube_signature_decryption_error">Impossibile decriptare la firma dell\'URL del video</string>
+    <string name="content_not_available">Contenuto non disponibile</string>
+    <string name="blocked_by_gema">Bloccato dalla GEMA</string>
     <string name="use_tor_title">Usa Tor</string>
     <string name="use_tor_summary">(Sperimentale) Forza il traffico in download tramite Tor per una maggiore privacy (lo streaming dei video non è ancora supportato).</string>
 
-    <string name="parsing_error">Impossibile analizzare il sito web.</string>
-    <string name="could_not_setup_download_menu">Impossibile impostare il menù di download.</string>
+    <string name="parsing_error">Impossibile analizzare il sito web</string>
+    <string name="could_not_setup_download_menu">Impossibile impostare il menù di download</string>
 
 
     <string name="live_streams_not_supported">Questo è uno stream dal vivo. Gli stream dal vivo non sono ancora supportati.</string>
@@ -78,13 +78,13 @@
 
     <string name="main_bg_subtitle">Tocca \"cerca\" per iniziare</string>
     <string name="autoplay_by_calling_app_title">Inizia automaticamente la riproduzione se NewPipe viene aperto da un\'altra app</string>
-    <string name="autoplay_by_calling_app_summary">Riproduci i video automaticamente quando NewPipe viene aperto da un\'altra app.</string>
+    <string name="autoplay_by_calling_app_summary">Riproduci i video automaticamente quando NewPipe viene aperto da un\'altra app</string>
     <string name="duration_live">in diretta</string>
 
-    <string name="light_parsing_error">Impossibile eseguire il parsing completo del sito.</string>
-    <string name="could_not_get_stream">Non è stato ottenuto alcuno stream.</string>
+    <string name="light_parsing_error">Impossibile eseguire il parsing completo del sito</string>
+    <string name="could_not_get_stream">Non è stato ottenuto alcuno stream</string>
     <string name="sorry_string">Ci dispiace, non sarebbe dovuto succedere.</string>
-    <string name="error_report_button_text">Segnala l\'errore via mail</string>
+    <string name="error_report_button_text">Segnala l\'errore via e-mail</string>
     <string name="error_snackbar_message">Ci dispiace, c\'è stato qualche errore.</string>
     <string name="error_snackbar_action">SEGNALA</string>
     <string name="what_device_headline">Info:</string>
@@ -122,8 +122,8 @@
     <string name="msg_running">Download di NewPipe</string>
     <string name="msg_running_detail">Tocca per maggiori dettagli</string>
     <string name="msg_wait">Attendi…</string>
-    <string name="msg_copied">Copiato negli appunti.</string>
-    <string name="no_available_dir">Seleziona una cartella disponibile in cui salvare i download.</string>
+    <string name="msg_copied">Copiato negli appunti</string>
+    <string name="no_available_dir">Seleziona una cartella disponibile in cui salvare i download</string>
 
     <string name="could_not_load_image">Impossibile caricare l\'immagine</string>
     <string name="app_ui_crash">L\'app/UI è andata in crash</string>
@@ -149,7 +149,7 @@
 
 
     <string name="open_in_popup_mode">Apri in modalità popup</string>
-    <string name="popup_mode_share_menu_title">Modo popup NewPipe</string>
+    <string name="popup_mode_share_menu_title">NewPipe Modo popup</string>
 
     <string name="popup_playing_toast">Riproduzione in modalità popup</string>
     <string name="disabled">Disattivato</string>
@@ -164,7 +164,7 @@
     <string name="show_higher_resolutions_summary">Solo alcuni dispositivi supportano la riproduzione di video in 2K e 4K.</string>
     <string name="default_video_format_title">Formato video preferito</string>
     <string name="popup_remember_size_pos_title">Ricorda grandezza e posizione del popup</string>
-    <string name="popup_remember_size_pos_summary">Ricorda l\'ultima grandezza e l\'ultima posizione impostate per il popup.</string>
+    <string name="popup_remember_size_pos_summary">Ricorda l\'ultima grandezza e posizione del popup</string>
     <string name="player_gesture_controls_title">Controlli gestuali</string>
     <string name="player_gesture_controls_summary">Usa i gesti per controllare luminosità e volume.</string>
     <string name="show_search_suggestions_title">Suggerimenti di ricerca</string>
@@ -177,7 +177,7 @@
     <string name="popup_resizing_indicator_title">Ridimensionamento</string>
     <string name="best_resolution">Risoluzione migliore</string>
 
-    <string name="use_old_player_summary">Precedente riproduttore integrato facente uso di Mediaframework.</string>
+    <string name="use_old_player_summary">Precedente riproduttore integrato facente uso di Mediaframework</string>
 
     <string name="msg_popup_permission">Questo permesso è necessario
 \nper la modalità popup</string>
@@ -191,8 +191,8 @@
     <string name="tab_about">Informazioni</string>
     <string name="tab_contributors">Contributori</string>
     <string name="tab_licenses">Licenze</string>
-    <string name="app_description">Un\'interfaccia leggera e gratuita per accedere a Youtube su Android.</string>
-    <string name="view_on_github">Guarda su GitHub</string>
+    <string name="app_description">Un\'interfaccia leggera e gratuita per accedere a YouTube su Android.</string>
+    <string name="view_on_github">Mostra su GitHub</string>
     <string name="app_license_title">Licenza di NewPipe</string>
     <string name="contribution_encouragement">Un aiuto è sempre il benvenuto: nuove idee, design o traduzioni, piccoli cambi o modifiche radicali del codice rendono l\'applicazione sempre migliore!</string>
     <string name="read_full_license">Leggi la licenza</string>
@@ -210,8 +210,8 @@
 
     <string name="enable_search_history_title">Cronologia ricerche</string>
     <string name="enable_search_history_summary">Salva le ricerche localmente</string>
-    <string name="enable_watch_history_title">Cronologia visualizzazioni</string>
-    <string name="enable_watch_history_summary">Salva la cronologia delle ricerche</string>
+    <string name="enable_watch_history_title">Cronologia</string>
+    <string name="enable_watch_history_summary">Salva la cronologia dei video guardati</string>
     <string name="resume_on_audio_focus_gain_title">Riprendi tornando in primo piano</string>
     <string name="resume_on_audio_focus_gain_summary">Continua a riprodurre dopo le interruzioni (es. chiamate)</string>
 
@@ -229,8 +229,37 @@
     <string name="title_history_view">Visualizzati</string>
     <string name="history_disabled">La cronologia è disabilitata</string>
     <string name="action_history">Cronologia</string>
-    <string name="history_empty">La cronologia è vuota.</string>
+    <string name="history_empty">La cronologia è vuota</string>
     <string name="history_cleared">Cronologia cancellata</string>
 
 <string name="tab_main">Principale</string>
-    </resources>
+    <string name="settings_category_player_title">Player</string>
+    <string name="settings_category_player_behavior_title">Comportamento</string>
+    <string name="settings_category_history_title">Cronologia</string>
+    <string name="playlist">Playlist</string>
+    <string name="undo">Annulla</string>
+
+    <string name="notification_channel_name">Notifiche NewPipe</string>
+    <string name="notification_channel_description">Notifiche per NewPipe in background e Popup Player</string>
+
+    <string name="search_no_results">Nessun risultato</string>
+    <string name="no_subscribers">Nessun iscritto</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s iscritto</item>
+	<item quantity="other">%s iscritti</item>
+</plurals>
+
+    <string name="no_views">Nessuna visualizzazione</string>
+    <plurals name="views">
+	<item quantity="one">%s visualizzazione</item>
+	<item quantity="other">%s visualizzazioni</item>
+</plurals>
+
+    <string name="no_videos">Nessun video</string>
+    <plurals name="videos">
+	<item quantity="one">%s video</item>
+	<item quantity="other">%s video</item>
+</plurals>
+
+    <string name="item_deleted">Elemento eliminato</string>
+</resources>
