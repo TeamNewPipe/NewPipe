@@ -83,9 +83,6 @@ public class PlaybackManager {
     public void refresh(final int newSourceIndex) {
         if (sourceToQueueIndex.indexOf(newSourceIndex) != -1 && newSourceIndex == getCurrentSourceIndex() + 1) {
             playQueue.offsetIndex(+1);
-
-            // free up some memory
-            if (sourceToQueueIndex.size() > 1) remove(sourceToQueueIndex.get(0));
         }
     }
 
@@ -163,9 +160,7 @@ public class PlaybackManager {
                         remove(removeEvent.index());
                         break;
                     case MOVE:
-                        final MoveEvent moveEvent = (MoveEvent) event;
-                        move(moveEvent.getFrom(), moveEvent.getTo());
-                        break;
+                        throw new UnsupportedOperationException("Move not yet supported");
                     default:
                         break;
                 }
@@ -338,19 +333,6 @@ public class PlaybackManager {
             for (int i = sourceIndex; i < sourceToQueueIndex.size(); i++) {
                 sourceToQueueIndex.set(i, sourceToQueueIndex.get(i) - 1);
             }
-        }
-    }
-
-    private void move(final int source, final int target) {
-        final int sourceIndex = sourceToQueueIndex.indexOf(source);
-        final int targetIndex = sourceToQueueIndex.indexOf(target);
-
-        if (sourceIndex != -1 && targetIndex != -1) {
-            sources.moveMediaSource(sourceIndex, targetIndex);
-        } else if (sourceIndex != -1) {
-            remove(sourceIndex);
-        } else if (targetIndex != -1) {
-            remove(targetIndex);
         }
     }
 }

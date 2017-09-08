@@ -33,6 +33,7 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -64,6 +65,7 @@ import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvicto
 import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 import com.google.android.exoplayer2.util.Util;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.R;
@@ -85,19 +87,15 @@ import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import io.reactivex.Single;
-import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.disposables.SerialDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * Base for the players, joining the common properties
@@ -138,7 +136,6 @@ public abstract class BasePlayer implements Player.EventListener,
     public static final String RESTORE_QUEUE_INDEX = "restore_queue_index";
     public static final String RESTORE_WINDOW_POS = "restore_window_pos";
 
-    protected Bitmap videoThumbnail = null;
     protected String videoUrl = "";
     protected String videoTitle = "";
     protected String videoThumbnailUrl = "";
@@ -168,10 +165,8 @@ public abstract class BasePlayer implements Player.EventListener,
     protected final DefaultExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
     protected final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
 
-    protected int PROGRESS_LOOP_INTERVAL = 100;
+    protected int PROGRESS_LOOP_INTERVAL = 500;
     protected Disposable progressUpdateReactor;
-
-    protected SerialDisposable thumbnailReactor;
 
     //////////////////////////////////////////////////////////////////////////*/
 
@@ -189,8 +184,6 @@ public abstract class BasePlayer implements Player.EventListener,
         this.intentFilter = new IntentFilter();
         setupBroadcastReceiver(intentFilter);
         context.registerReceiver(broadcastReceiver, intentFilter);
-
-        this.thumbnailReactor = new SerialDisposable();
     }
 
     public void setup() {
@@ -301,33 +294,19 @@ public abstract class BasePlayer implements Player.EventListener,
     }
 
     public void initThumbnail(final String url) {
-        final Callable<Bitmap> bitmapCallable = new Callable<Bitmap>() {
+        if (DEBUG) Log.d(TAG, "initThumbnail() called");
+        if (url == null || url.isEmpty()) return;
+        ImageLoader.getInstance().resume();
+        ImageLoader.getInstance().loadImage(url, new SimpleImageLoadingListener() {
             @Override
-            public Bitmap call() throws Exception {
-                return ImageLoader.getInstance().loadImageSync(url);
+            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                if (simpleExoPlayer == null) return;
+                if (DEBUG) Log.d(TAG, "onLoadingComplete() called with: imageUri = [" + imageUri + "], view = [" + view + "], loadedImage = [" + loadedImage + "]");
+                onThumbnailReceived(loadedImage);
             }
-        };
-
-        Single.fromCallable(bitmapCallable)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<Bitmap>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-                        thumbnailReactor.set(d);
-                    }
-
-                    @Override
-                    public void onSuccess(@NonNull Bitmap bitmap) {
-                        onThumbnailReceived(bitmap);
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        Log.e(TAG, "Thumbnail Fetch Failed.", e);
-                    }
-                });
+        });
     }
+
 
     public void onThumbnailReceived(Bitmap thumbnail) {
         if (DEBUG) Log.d(TAG, "onThumbnailReceived() called with: thumbnail = [" + thumbnail + "]");
@@ -350,10 +329,6 @@ public abstract class BasePlayer implements Player.EventListener,
         if (DEBUG) Log.d(TAG, "destroy() called");
         destroyPlayer();
         unregisterBroadcastReceiver();
-
-        thumbnailReactor.dispose();
-        thumbnailReactor = null;
-        videoThumbnail = null;
 
         simpleExoPlayer = null;
     }
@@ -889,14 +864,6 @@ public abstract class BasePlayer implements Player.EventListener,
 
     public void setPrepared(boolean prepared) {
         isPrepared = prepared;
-    }
-
-    public Bitmap getVideoThumbnail() {
-        return videoThumbnail;
-    }
-
-    public void setVideoThumbnail(Bitmap videoThumbnail) {
-        this.videoThumbnail = videoThumbnail;
     }
 
     public String getVideoThumbnailUrl() {

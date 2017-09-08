@@ -173,11 +173,6 @@ public class BackgroundPlayer extends Service {
     }
 
     private void setupNotification(RemoteViews remoteViews) {
-        //if (videoThumbnail != null) remoteViews.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
-        ///else remoteViews.setImageViewResource(R.id.notificationCover, R.drawable.dummy_thumbnail);
-//        remoteViews.setTextViewText(R.id.notificationSongName, basePlayerImpl.getVideoTitle());
-//        remoteViews.setTextViewText(R.id.notificationArtist, basePlayerImpl.getUploaderName());
-
         remoteViews.setOnClickPendingIntent(R.id.notificationPlayPause,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));
         remoteViews.setOnClickPendingIntent(R.id.notificationStop,
@@ -213,7 +208,7 @@ public class BackgroundPlayer extends Service {
      * @param drawableId if != -1, sets the drawable with that id on the play/pause button
      */
     private synchronized void updateNotification(int drawableId) {
-        if (DEBUG) Log.d(TAG, "updateNotification() called with: drawableId = [" + drawableId + "]");
+        //if (DEBUG) Log.d(TAG, "updateNotification() called with: drawableId = [" + drawableId + "]");
         if (notBuilder == null) return;
         if (drawableId != -1) {
             if (notRemoteView != null) notRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
@@ -287,14 +282,11 @@ public class BackgroundPlayer extends Service {
             super.onThumbnailReceived(thumbnail);
 
             if (thumbnail != null) {
-                videoThumbnail = thumbnail;
-
                 // rebuild notification here since remote view does not release bitmaps, causing memory leaks
-                // remove this line to see for yourself
                 notBuilder = createNotification();
 
-                if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
-                if (bigNotRemoteView != null) bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, videoThumbnail);
+                if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
+                if (bigNotRemoteView != null) bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
 
                 updateNotification(-1);
             }
