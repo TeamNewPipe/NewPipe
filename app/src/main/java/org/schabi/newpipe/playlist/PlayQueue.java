@@ -124,7 +124,7 @@ public abstract class PlayQueue implements Serializable {
     // Write ops
     //////////////////////////////////////////////////////////////////////////*/
 
-    private synchronized void setIndex(final int index) {
+    public synchronized void setIndex(final int index) {
         if (index < 0 || index >= streams.size()) return;
 
         queueIndex.set(Math.min(Math.max(0, index), streams.size() - 1));

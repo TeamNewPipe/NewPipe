@@ -695,6 +695,7 @@ public abstract class BasePlayer implements Player.EventListener,
         if (!isPlaying()) audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
         else audioManager.abandonAudioFocus(this);
 
+        if (getCurrentState() == STATE_COMPLETED) playQueue.setIndex(0);
         simpleExoPlayer.setPlayWhenReady(!isPlaying());
     }
 
