@@ -128,7 +128,7 @@
     <string name="disabled">Desabilitado</string>
 
     <string name="use_old_player_title">Usar player antigo</string>
-    <string name="use_old_player_summary">Antigo player interno Mediaframework.</string>
+    <string name="use_old_player_summary">Antigo player interno Mediaframework</string>
 
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
@@ -238,4 +238,7 @@ abrir em modo popup</string>
 </plurals>
 
     <string name="item_deleted">Item excluído</string>
-</resources>
+<string name="settings_category_player_title">Player</string>
+    <string name="empty_subscription_feed_subtitle">Não há nada aqui</string>
+
+    </resources>
