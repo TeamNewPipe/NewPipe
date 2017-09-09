@@ -26,7 +26,6 @@ import io.reactivex.subjects.BehaviorSubject;
 
 public abstract class PlayQueue implements Serializable {
     private final String TAG = "PlayQueue@" + Integer.toHexString(hashCode());
-    private final int INDEX_CHANGE_DEBOUNCE = 350;
 
     public static final boolean DEBUG = true;
 
@@ -59,7 +58,7 @@ public abstract class PlayQueue implements Serializable {
 
         broadcastReceiver = Flowable.merge(
                 streamsEventBroadcast.toFlowable(BackpressureStrategy.BUFFER),
-                indexEventBroadcast.toFlowable(BackpressureStrategy.BUFFER).debounce(INDEX_CHANGE_DEBOUNCE, TimeUnit.MILLISECONDS)
+                indexEventBroadcast.toFlowable(BackpressureStrategy.BUFFER)
         ).startWith(new InitEvent());
 
         if (DEBUG) broadcastReceiver.subscribe(getSelfReporter());

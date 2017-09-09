@@ -534,6 +534,17 @@ public abstract class BasePlayer implements Player.EventListener,
     @Override
     public void onTimelineChanged(Timeline timeline, Object manifest) {
         if (DEBUG) Log.d(TAG, "onTimelineChanged(), timeline size = " + timeline.getWindowCount());
+
+        if (simpleExoPlayer.getCurrentWindowIndex() != playbackManager.getCurrentSourceIndex()) {
+            if (timeline.getWindowCount() > playbackManager.getCurrentSourceIndex()) {
+                if (DEBUG) Log.d(TAG, "Rewinding to correct window");
+                simpleExoPlayer.seekToDefaultPosition(playbackManager.getCurrentSourceIndex());
+            }
+        }
+
+        if (!simpleExoPlayer.isCurrentWindowDynamic() && simpleExoPlayer.isCurrentWindowSeekable()) {
+            simpleExoPlayer.setPlayWhenReady(true);
+        }
     }
 
     @Override
@@ -638,7 +649,6 @@ public abstract class BasePlayer implements Player.EventListener,
 
         simpleExoPlayer.prepare(playbackManager.getMediaSource());
         simpleExoPlayer.seekTo(playbackManager.getCurrentSourceIndex(), videoStartPos);
-        simpleExoPlayer.setPlayWhenReady(false);
     }
 
     @Override
@@ -650,20 +660,9 @@ public abstract class BasePlayer implements Player.EventListener,
         videoThumbnailUrl = info.thumbnail_url;
         videoTitle = info.name;
 
+        onTimelineChanged(simpleExoPlayer.getCurrentTimeline(), null);
+
         initThumbnail(videoThumbnailUrl);
-
-        if (simpleExoPlayer.getCurrentWindowIndex() != playbackManager.getCurrentSourceIndex()) {
-            if (DEBUG) Log.w(TAG, "Rewinding to correct window");
-            if (simpleExoPlayer.getCurrentTimeline().getWindowCount() > playbackManager.getCurrentSourceIndex()) {
-                simpleExoPlayer.seekToDefaultPosition(playbackManager.getCurrentSourceIndex());
-            } else {
-                if (DEBUG) Log.w(TAG, "Play Queue out of sync");
-                playbackManager.reset();
-                return;
-            }
-        }
-
-        simpleExoPlayer.setPlayWhenReady(true);
     }
 
     @Override

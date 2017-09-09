@@ -109,13 +109,6 @@ public class PlaybackManager {
         load();
     }
 
-    public void reset() {
-        tryBlock();
-
-        resetSources();
-        load();
-    }
-
     public void dispose() {
         if (playQueueReactor != null) playQueueReactor.cancel();
         if (disposables != null) disposables.dispose();
