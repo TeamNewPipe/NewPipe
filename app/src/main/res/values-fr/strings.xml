@@ -25,7 +25,7 @@
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio par défaut</string>
     <string name="webm_description">WebM — format libre</string>
-    <string name="m4a_description">m4a — meilleure qualité</string>
+    <string name="m4a_description">M4A — meilleure qualité</string>
     <string name="download_dialog_title">Télécharger</string>
     <string name="next_video_title">Vidéo suivante</string>
     <string name="show_next_and_similar_title">Afficher les vidéos suivantes et similaires</string>
@@ -60,9 +60,9 @@
     <string name="err_dir_create">Impossible de créer le répertoire de téléchargement « %1$s »</string>
     <string name="info_dir_created">Répertoire de téléchargement « %1$s » créé</string>
     <string name="general_error">Erreur</string>
-    <string name="parsing_error">Impossible d\'analyser le site web.</string>
-    <string name="content_not_available">Contenu non disponible.</string>
-    <string name="blocked_by_gema">Bloqué par GEMA.</string>
+    <string name="parsing_error">Impossible d\'analyser le site web</string>
+    <string name="content_not_available">Contenu non disponible</string>
+    <string name="blocked_by_gema">Bloqué par GEMA</string>
 
     <string name="error_snackbar_message">Désolé, des erreurs se sont produites.</string>
     <string name="content">Contenu</string>
@@ -70,8 +70,8 @@
     <string name="duration_live">En direct</string>
 
     <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
-    <string name="youtube_signature_decryption_error">Erreur lors du décryptage du lien.</string>
-    <string name="light_parsing_error">Impossible d\'analyser le site complètement.</string>
+    <string name="youtube_signature_decryption_error">Erreur lors du décryptage du lien</string>
+    <string name="light_parsing_error">Impossible d\'analyser le site complètement</string>
     <string name="live_streams_not_supported">Il s\'agit d\'un direct. Non supporté pour le moment.</string>
     <string name="sorry_string">Désolé, une erreur inattendue s\'est produite.</string>
     <string name="autoplay_by_calling_app_summary">Lire automatiquement la vidéo lorsque NewPipe est appelée par une autre application</string>
@@ -93,8 +93,8 @@
     <string name="user_report">Rapport utilisateur</string>
 
     <string name="error_snackbar_action">SIGNALER</string>
-    <string name="could_not_setup_download_menu">Impossible de mettre en place le menu de téléchargement.</string>
-    <string name="could_not_get_stream">Impossible d\'obtenir un flux.</string>
+    <string name="could_not_setup_download_menu">Impossible de mettre en place le menu de téléchargement</string>
+    <string name="could_not_get_stream">Impossible d\'obtenir un flux</string>
     <string name="downloads">Téléchargements</string>
     <string name="downloads_title">Téléchargements</string>
     <string name="error_report_title">Rapport d\'erreur</string>
@@ -223,4 +223,6 @@ pour ouvrir en mode popup</string>
     <string name="history_cleared">Historique supprimé</string>
 
 <string name="notification_channel_name">Notification NewPipe</string>
+    <string name="undo">Annuler</string>
+
     </resources>
