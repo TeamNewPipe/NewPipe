@@ -25,6 +25,9 @@ android {
             debuggable true
             applicationIdSuffix ".debug"
         }
+        beta {
+            applicationIdSuffix ".beta"
+        }
     }
 
     lintOptions {
