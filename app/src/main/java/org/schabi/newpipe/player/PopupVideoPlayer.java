@@ -119,7 +119,10 @@ public class PopupVideoPlayer extends Service {
     private float minimumWidth, minimumHeight;
     private float maximumWidth, maximumHeight;
 
+    private final String setAlphaMethodName = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) ? "setImageAlpha" : "setAlpha";
     private NotificationManager notificationManager;
+    private NotificationCompat.Builder notBuilder;
+    private RemoteViews notRemoteView;
 
     private VideoPlayerImpl playerImpl;
     private Disposable currentWorker;
@@ -242,6 +245,58 @@ public class PopupVideoPlayer extends Service {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
+    // Notification
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private NotificationCompat.Builder createNotification() {
+        notRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_popup_notification);
+
+        notRemoteView.setTextViewText(R.id.notificationSongName, playerImpl.getVideoTitle());
+        notRemoteView.setTextViewText(R.id.notificationArtist, playerImpl.getUploaderName());
+
+        notRemoteView.setOnClickPendingIntent(R.id.notificationPlayPause,
+                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));
+        notRemoteView.setOnClickPendingIntent(R.id.notificationStop,
+                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_CLOSE), PendingIntent.FLAG_UPDATE_CURRENT));
+        notRemoteView.setOnClickPendingIntent(R.id.notificationContent,
+                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_OPEN_DETAIL), PendingIntent.FLAG_UPDATE_CURRENT));
+        notRemoteView.setOnClickPendingIntent(R.id.notificationRepeat,
+                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_REPEAT), PendingIntent.FLAG_UPDATE_CURRENT));
+
+        switch (playerImpl.simpleExoPlayer.getRepeatMode()) {
+            case Player.REPEAT_MODE_OFF:
+                notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 77);
+                break;
+            case Player.REPEAT_MODE_ONE:
+                //todo change image
+                notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 168);
+                break;
+            case Player.REPEAT_MODE_ALL:
+                notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 255);
+                break;
+        }
+
+        return new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
+                .setOngoing(true)
+                .setSmallIcon(R.drawable.ic_play_arrow_white)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setContent(notRemoteView);
+    }
+
+    /**
+     * Updates the notification, and the play/pause button in it.
+     * Used for changes on the remoteView
+     *
+     * @param drawableId if != -1, sets the drawable with that id on the play/pause button
+     */
+    private void updateNotification(int drawableId) {
+        if (DEBUG) Log.d(TAG, "updateNotification() called with: drawableId = [" + drawableId + "]");
+        if (notBuilder == null || notRemoteView == null) return;
+        if (drawableId != -1) notRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
+        notificationManager.notify(NOTIFICATION_ID, notBuilder.build());
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
     // Misc
     //////////////////////////////////////////////////////////////////////////*/
 
@@ -341,11 +396,20 @@ public class PopupVideoPlayer extends Service {
         @Override
         public void destroy() {
             super.destroy();
+            if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, null);
         }
 
         @Override
         public void onThumbnailReceived(Bitmap thumbnail) {
             super.onThumbnailReceived(thumbnail);
+            if (thumbnail != null) {
+                // rebuild notification here since remote view does not release bitmaps, causing memory leaks
+                notBuilder = createNotification();
+
+                if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
+
+                updateNotification(-1);
+            }
         }
 
         @Override
@@ -369,6 +433,27 @@ public class PopupVideoPlayer extends Service {
             context.startActivity(intent);
             destroyPlayer();
             stopSelf();
+        }
+
+        @Override
+        public void onRepeatClicked() {
+            super.onRepeatClicked();
+            switch (simpleExoPlayer.getRepeatMode()) {
+                case Player.REPEAT_MODE_OFF:
+                    // Drawable didn't work on low API :/
+                    //notRemoteView.setImageViewResource(R.id.notificationRepeat, R.drawable.ic_repeat_disabled_white);
+                    // Set the icon to 30% opacity - 255 (max) * .3
+                    notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 77);
+                    break;
+                case Player.REPEAT_MODE_ONE:
+                    // todo change image
+                    notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 168);
+                    break;
+                case Player.REPEAT_MODE_ALL:
+                    notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 255);
+                    break;
+            }
+            updateNotification(-1);
         }
 
         @Override
@@ -441,32 +526,38 @@ public class PopupVideoPlayer extends Service {
         @Override
         public void onLoading() {
             super.onLoading();
+            updateNotification(R.drawable.ic_play_arrow_white);
         }
 
         @Override
         public void onPlaying() {
             super.onPlaying();
+            updateNotification(R.drawable.ic_pause_white);
         }
 
         @Override
         public void onBuffering() {
             super.onBuffering();
+            updateNotification(R.drawable.ic_play_arrow_white);
         }
 
         @Override
         public void onPaused() {
             super.onPaused();
+            updateNotification(R.drawable.ic_play_arrow_white);
             showAndAnimateControl(R.drawable.ic_play_arrow_white, false);
         }
 
         @Override
         public void onPausedSeek() {
             super.onPausedSeek();
+            updateNotification(R.drawable.ic_play_arrow_white);
         }
 
         @Override
         public void onCompleted() {
             super.onCompleted();
+            updateNotification(R.drawable.ic_replay_white);
             showAndAnimateControl(R.drawable.ic_replay_white, false);
         }
 
