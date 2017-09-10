@@ -26,16 +26,16 @@
     <string name="default_audio_format_title">Privzet zapis zvoka</string>
     <string name="play_audio">Zvok</string>
     <string name="webm_description">WebM — prost zapis</string>
-    <string name="m4a_description">m4a — višja kakovost posnetkov</string>
+    <string name="m4a_description">M4A — višja kakovost posnetkov</string>
     <string name="download_dialog_title">Prejem</string>
     <string name="next_video_title">Naslednji video</string>
     <string name="show_next_and_similar_title">Pokaži naslednji video in podobne posnetke</string>
     <string name="url_not_supported_toast">Zapis naslova URL ni podprt.</string>
-    <string name="search_language_title">Prednostni jezik vsebine</string>
+    <string name="search_language_title">Privzeti jezik vsebine</string>
     <string name="settings_category_video_audio_title">Video in Zvok</string>
     <string name="list_thumbnail_view_description">Sličica predogleda videa</string>
     <string name="detail_thumbnail_view_description">Sličica predogleda videa</string>
-    <string name="detail_uploader_thumbnail_view_description">Sličica pošiljalnika</string>
+    <string name="detail_uploader_thumbnail_view_description">Sličica objavitelja</string>
     <string name="show_play_with_kodi_summary">Pokaži možnost predvajanja videa preko predstavnega središča Kodi</string>
 
     <string name="detail_likes_img_view_description">Všeč mi je</string>
@@ -61,7 +61,7 @@
     <string name="info_dir_created">Ustvarjena je mapa za prejem \'%1$s\'</string>
     <string name="general_error">Napaka</string>
     <string name="could_not_load_thumbnails">Vseh sličic videov ni mogoče naložiti</string>
-    <string name="youtube_signature_decryption_error">Ni mogoče odšifrirati podpisa naslova URL videa.</string>
+    <string name="youtube_signature_decryption_error">Ni mogoče odšifrirati podpisa naslova URL videa</string>
     <string name="parsing_error">Ni mogoče razčleniti spletišča.</string>
     <string name="content_not_available">Vsebina ni na voljo.</string>
     <string name="blocked_by_gema">Blokirano zaradi pripomb GEMA.</string>
@@ -69,17 +69,17 @@
     <string name="could_not_setup_download_menu">Ni mogoče nastaviti menija za prejem datotek.</string>
 
 
-    <string name="live_streams_not_supported">To je pretok v živo. Ta vrsta še ni podprta.</string>
+    <string name="live_streams_not_supported">Posnetek je pretok v živo. Ta vrsta prenosa še ni podprta.</string>
 
 
     <string name="content">Vsebina</string>
     <string name="show_age_restricted_content_title">Pokaži starostno omejeno vsebino</string>
-    <string name="video_is_age_restricted">Za posnetek je določena starostna omejitev ogleda. Pred ogledom je treba ustrezno nastaviti omejitve med nastavitvami.</string>
+    <string name="video_is_age_restricted">Starostna omejitev ogleda. Pred ogledom tovrstnih posnetkov, je treba ustrezno nastaviti omejitve.</string>
 
     <string name="light_parsing_error">Ni mogoče dokončno razčleniti spletišča.</string>
-    <string name="could_not_get_stream">Ni mogoče prejeti pretoka.</string>
+    <string name="could_not_get_stream">Ni mogoče pridobiti pretoka.</string>
     <string name="sorry_string">Do te napake naj ne bi prišlo.</string>
-    <string name="error_report_button_text">Pošlji poročilo preko elektronske pošte</string>
+    <string name="error_report_button_text">Pošlji poročilo napake prek elektronske pošte</string>
     <string name="error_snackbar_message">Prišlo je do napak.</string>
     <string name="error_snackbar_action">POROČILO</string>
     <string name="what_device_headline">Podrobnosti:</string>
@@ -92,8 +92,8 @@
     <string name="retry">Poskusi znova</string>
     <string name="your_comment">Opomba (v angleščini):</string>
     <string name="storage_permission_denied">Dovoljenje za dostop do shrambe je zavrnjeno</string>
-    <string name="autoplay_by_calling_app_title">Samodejno predvajaj vsebino, poslano iz drugega programa</string>
-    <string name="autoplay_by_calling_app_summary">Samodejno predvajaj vsebino, če je NewPipe klican iz drugega programa</string>
+    <string name="autoplay_by_calling_app_title">Samodejno predvajanje</string>
+    <string name="autoplay_by_calling_app_summary">Samodejno predvaja vsebino, če je NewPipe klican iz drugega programa</string>
     <string name="report_error">Pošlji poročilo o napaki</string>
     <string name="user_report">Poročilo uporabnika</string>
 
@@ -156,7 +156,7 @@ odpiranje v pojavnem načinu</string>
     <string name="disabled">Onemogočeno</string>
 
     <string name="use_old_player_title">Uporabi star predvajalnik</string>
-    <string name="use_old_player_summary">Zastarela različica v predvajalniku Mediaframework</string>
+    <string name="use_old_player_summary">Zastarela različica predvajalnika Mediaframework</string>
     <string name="default_video_format_title">Prednostni zapis video datoteke</string>
     <string name="default_popup_resolution_title">Privzeta ločljivost pojavnega okna</string>
     <string name="show_higher_resolutions_title">Pokaži večje ločljivosti</string>
@@ -218,8 +218,8 @@ odpiranje v pojavnem načinu</string>
 
     <string name="enable_search_history_title">Preišči zgodovino</string>
     <string name="enable_search_history_summary">Iskalne poizvedbe shranjuj krajevno</string>
-    <string name="enable_watch_history_title">Zgodovina predvajanja</string>
-    <string name="enable_watch_history_summary">Shrani zgodovino predvajanja</string>
+    <string name="enable_watch_history_title">Zgodovina</string>
+    <string name="enable_watch_history_summary">Sledi zgodovini predvajanih posnetkov</string>
     <string name="resume_on_audio_focus_gain_title">Nadaljuj po prekinitvi</string>
     <string name="resume_on_audio_focus_gain_summary">Nadaljuj s predvajanjem po prekinitvi (na primer zaradi telefonskega klica)</string>
 
@@ -238,4 +238,38 @@ odpiranje v pojavnem načinu</string>
     <string name="history_cleared">Zgodovina je počiščena</string>
 
 <string name="contribution_encouragement">Če imate odlične zamisli, predloge za prevode in oblikovne spremembe, izboljšave kode ali obvladate programiranje in bi želeli sodelovati, vedite, da je pomoč vedno dobrodošla!</string>
-    </resources>
+    <string name="settings_category_player_title">Predvajalnik</string>
+    <string name="settings_category_player_behavior_title">Obnašanje</string>
+    <string name="settings_category_history_title">Zgodovina</string>
+    <string name="playlist">Seznam predvajanja</string>
+    <string name="undo">Razveljavi</string>
+
+    <string name="search_no_results">Ni rezultatov iskanja</string>
+    <string name="empty_subscription_feed_subtitle">Tu ni ničesar!</string>
+
+    <string name="no_subscribers">Ni naročnikov</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s naročnik</item>
+	<item quantity="two">%s naročnika</item>
+	<item quantity="few">%s naročniki</item>
+	<item quantity="other">%s naročnikov</item>
+</plurals>
+
+    <string name="no_views">Ni še zabeleženih ogledov</string>
+    <plurals name="views">
+	<item quantity="one">%s ogled</item>
+	<item quantity="two">%s ogleda</item>
+	<item quantity="few">%s ogledi</item>
+	<item quantity="other">%s ogledov</item>
+</plurals>
+
+    <string name="no_videos">Ni posnetkov</string>
+    <plurals name="videos">
+	<item quantity="one">%s video posnetek</item>
+	<item quantity="two">%s video posnetka</item>
+	<item quantity="few">%s video posnetkov</item>
+	<item quantity="other">%s posnetkov</item>
+</plurals>
+
+    <string name="item_deleted">Predmet je izbrisan</string>
+</resources>
