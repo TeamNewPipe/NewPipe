@@ -201,7 +201,7 @@ pour ouvrir en mode popup</string>
 <string name="charset_letters_and_digits">Lettres et chiffres</string>
     <string name="title_activity_about">À propos de NewPipe</string>
     <string name="copyright" formatted="true">© %1$s par %2$s sous %3$s</string>
-    <string name="contribution_encouragement">Que ce soit des idées, traductions, changements de design, nettoyage ou gros changements de code, l\'aide est toujours la bienvenue. Le plus il est aidé, le meilleur devient NewPipe !</string>
+    <string name="contribution_encouragement">Que ce soit pour des idées, traductions, changements de design, nettoyage ou gros changements de code, l\'aide est toujours la bienvenue. Plus on contribue, meilleur il devient !</string>
     <string name="subscription_change_failed">Incapable de changer l\'abonnement</string>
     <string name="subscription_update_failed">Incapable de mettre à jour l\'abonnement</string>
 
@@ -219,7 +219,7 @@ pour ouvrir en mode popup</string>
     <string name="title_history_view">Vue</string>
     <string name="history_disabled">L\'historique est désactivé</string>
     <string name="action_history">Historique</string>
-    <string name="history_empty">L\'historique est vide.</string>
+    <string name="history_empty">L\'historique est vide</string>
     <string name="history_cleared">Historique supprimé</string>
 
 <string name="notification_channel_name">Notification NewPipe</string>
@@ -254,6 +254,7 @@ pour ouvrir en mode popup</string>
 	<item quantity="other">%s vidéos</item>
 </plurals>
 
-    <string name="charset_most_special_characters">Charactères les plus spéciaux</string>
+    <string name="charset_most_special_characters">Caractères spéciaux</string>
 
-    </resources>
+    <string name="item_deleted">Objet effacé</string>
+</resources>
