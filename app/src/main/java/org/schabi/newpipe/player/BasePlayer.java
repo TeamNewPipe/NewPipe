@@ -660,7 +660,6 @@ public abstract class BasePlayer implements Player.EventListener,
         if (DEBUG) Log.d(TAG, "Unblocking...");
 
         simpleExoPlayer.prepare(playbackManager.getMediaSource(), true, true);
-        isPrepared = true;
     }
 
     @Override
