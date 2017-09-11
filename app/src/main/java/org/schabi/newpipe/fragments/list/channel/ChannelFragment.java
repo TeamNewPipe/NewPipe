@@ -302,7 +302,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
     @Override
     protected Single<ListExtractor.NextItemsResult> loadMoreItemsLogic() {
-        return ExtractorHelper.getMoreChannelItems(serviceId, currentNextItemsUrl);
+        return ExtractorHelper.getMoreChannelItems(serviceId, url, currentNextItemsUrl);
     }
 
     @Override
