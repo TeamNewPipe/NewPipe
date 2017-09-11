@@ -43,6 +43,17 @@
         <item>144p</item>
     </string-array>
 
+    <string-array name="service_list_description" translatable="false">
+        <item>YouTube</item>
+        <item>SoundCloud</item>
+    </string-array>
+    <string-array name="service_list_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string name="service_key" translatable="false">service</string>
+    <string name="default_service_value" translatable="false">0</string>
+
     <string name="video_mp4_key" translatable="false">video_mp4</string>
     <string name="video_webm_key" translatable="false">video_webm</string>
     <string name="video_3gp_key" translatable="false">video_3gp</string>

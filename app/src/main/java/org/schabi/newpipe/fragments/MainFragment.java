@@ -1,6 +1,7 @@
 package org.schabi.newpipe.fragments;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -75,7 +76,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_search:
-                NavigationHelper.openSearchFragment(getFragmentManager(), 0, "");
+                NavigationHelper.openSearchFragment(getFragmentManager(), Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("service", "0")), "");
                 return true;
         }
         return super.onOptionsItemSelected(item);

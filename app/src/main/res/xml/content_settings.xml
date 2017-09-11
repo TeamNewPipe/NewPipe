@@ -4,6 +4,14 @@
     android:title="@string/content">
 
     <ListPreference
+        android:defaultValue="@string/default_service_value"
+        android:entries="@array/service_list_description"
+        android:entryValues="@array/service_list_values"
+        android:key="@string/service_key"
+        android:summary="%s"
+        android:title="@string/service_title"/>
+
+    <ListPreference
         android:defaultValue="@string/default_language_value"
         android:entries="@array/language_names"
         android:entryValues="@array/language_codes"
