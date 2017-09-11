@@ -32,7 +32,6 @@ import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 
 import java.io.InterruptedIOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Callable;
 
@@ -98,11 +97,11 @@ public final class ExtractorHelper {
         }));
     }
 
-    public static Single<NextItemsResult> getMoreChannelItems(final int serviceId, final String nextStreamsUrl) {
+    public static Single<NextItemsResult> getMoreChannelItems(final int serviceId, final String url, final String nextStreamsUrl) {
         return Single.fromCallable(new Callable<NextItemsResult>() {
             @Override
             public NextItemsResult call() throws Exception {
-                return ChannelInfo.getMoreItems(NewPipe.getService(serviceId), nextStreamsUrl);
+                return ChannelInfo.getMoreItems(NewPipe.getService(serviceId), url, nextStreamsUrl);
             }
         });
     }
@@ -116,11 +115,11 @@ public final class ExtractorHelper {
         }));
     }
 
-    public static Single<NextItemsResult> getMorePlaylistItems(final int serviceId, final String nextStreamsUrl) {
+    public static Single<NextItemsResult> getMorePlaylistItems(final int serviceId, final String url, final String nextStreamsUrl) {
         return Single.fromCallable(new Callable<NextItemsResult>() {
             @Override
             public NextItemsResult call() throws Exception {
-                return PlaylistInfo.getMoreItems(NewPipe.getService(serviceId), nextStreamsUrl);
+                return PlaylistInfo.getMoreItems(NewPipe.getService(serviceId), url, nextStreamsUrl);
             }
         });
     }

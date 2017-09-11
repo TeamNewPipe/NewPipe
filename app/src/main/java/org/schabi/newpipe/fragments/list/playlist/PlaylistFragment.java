@@ -90,7 +90,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     @Override
     protected Single<ListExtractor.NextItemsResult> loadMoreItemsLogic() {
-        return ExtractorHelper.getMorePlaylistItems(serviceId, currentNextItemsUrl);
+        return ExtractorHelper.getMorePlaylistItems(serviceId, url, currentNextItemsUrl);
     }
 
     @Override
