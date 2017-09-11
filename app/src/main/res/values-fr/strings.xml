@@ -9,7 +9,7 @@
     <string name="download_path_dialog_title">Entrer le chemin de téléchargement des vidéos</string>
     <string name="download_path_summary">Chemin de stockage des vidéos téléchargées</string>
     <string name="install">Installer</string>
-    <string name="kore_not_found">L’application Kore est introuvable. Installer Kore ?</string>
+    <string name="kore_not_found">L’application Kore est introuvable. L\'installer ?</string>
     <string name="no_player_found">Aucun lecteur de flux réseau trouvé. Installer VLC ?</string>
     <string name="open_in_browser">Ouvrir dans le navigateur</string>
     <string name="play_with_kodi_title">Lire avec Kodi</string>
@@ -72,7 +72,7 @@
     <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
     <string name="youtube_signature_decryption_error">Erreur lors du décryptage du lien</string>
     <string name="light_parsing_error">Impossible d\'analyser le site complètement</string>
-    <string name="live_streams_not_supported">Il s\'agit d\'un direct. Non supporté pour le moment.</string>
+    <string name="live_streams_not_supported">Il s\'agit d\'un direct, non supporté pour le moment.</string>
     <string name="sorry_string">Désolé, une erreur inattendue s\'est produite.</string>
     <string name="autoplay_by_calling_app_summary">Lire automatiquement la vidéo lorsque NewPipe est appelée par une autre application</string>
     <string name="error_report_button_text">Signaler l\'erreur par e-mail</string>
@@ -88,8 +88,8 @@
     <string name="retry">Réessayer</string>
     <string name="storage_permission_denied">Autorisation d\'accès au stockage refusée</string>
     <string name="main_bg_subtitle">Faites une recherche pour commencer</string>
-    <string name="autoplay_by_calling_app_title">Lecture automatique lors de l\'ouverture depuis une autre application</string>
-    <string name="video_is_age_restricted">Cette vidéo est soumise à une restriction d\'âge. Autoriser le contenu restreint par âge dans les paramètres avant de continuer.</string>
+    <string name="autoplay_by_calling_app_title">Lecture automatique</string>
+    <string name="video_is_age_restricted">Vidéo soumise à une restriction d\'âge. Il est possible d\'autoriser ce type de contenu depuis les paramètres.</string>
     <string name="user_report">Rapport utilisateur</string>
 
     <string name="error_snackbar_action">SIGNALER</string>
@@ -117,8 +117,8 @@
     <string name="msg_running">Téléchargement NewPipe</string>
     <string name="msg_running_detail">Toucher pour plus de détails</string>
     <string name="msg_wait">Veuillez patienter…</string>
-    <string name="msg_copied">Copié dans le presse-papier.</string>
-    <string name="no_available_dir">Sélectionner un répertoire de téléchargement disponible.</string>
+    <string name="msg_copied">Copié dans le presse-papier</string>
+    <string name="no_available_dir">Sélectionner un dossier de téléchargement disponible</string>
 
     <string name="could_not_load_image">L’image ne peut pas être chargée</string>
     <string name="app_ui_crash">L’appli/l’interface utilisateur a crashé</string>
@@ -134,7 +134,7 @@
     <string name="recaptcha_request_toast">Test reCAPTCHA demandé</string>
 
     <string name="open_in_popup_mode">Ouvrir dans une fenêtre popup</string>
-    <string name="popup_mode_share_menu_title">Mode Popup de Newpipe</string>
+    <string name="popup_mode_share_menu_title">Mode popup de NewPipe</string>
 
     <string name="popup_playing_toast">Lecture en mode popup</string>
     <string name="yes">Oui</string>
@@ -143,7 +143,7 @@
 
     <string name="info_labels">Quoi :\\nRequête :\\nLang. du contenu:\\nService :\\nHeure GMT :\\nPaquage :\\nVersion :\\nVersion de l\'OS:\\nGamme globale d\'IPs :</string>
     <string name="use_old_player_title">Utiliser l\'ancien lecteur</string>
-    <string name="use_old_player_summary">Ancienne version du lecteur Mediaframework.</string>
+    <string name="use_old_player_summary">Ancienne version du lecteur Mediaframework</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
 
@@ -213,7 +213,7 @@ pour ouvrir en mode popup</string>
 
     <string name="enable_search_history_title">Historique de recherche</string>
     <string name="enable_search_history_summary">Sauvegarder les recherches sur l\'appareil</string>
-    <string name="enable_watch_history_title">Voir l\'historique</string>
+    <string name="enable_watch_history_title">Historique</string>
     <string name="title_activity_history">Historique</string>
     <string name="title_history_search">Recherché</string>
     <string name="title_history_view">Vue</string>
@@ -224,5 +224,34 @@ pour ouvrir en mode popup</string>
 
 <string name="notification_channel_name">Notification NewPipe</string>
     <string name="undo">Annuler</string>
+
+    <string name="enable_watch_history_summary">Conserver les vidéos vues</string>
+    <string name="resume_on_audio_focus_gain_title">Reprendre si au premier plan</string>
+    <string name="settings_category_player_title">Lecteur</string>
+    <string name="settings_category_player_behavior_title">Comportement</string>
+    <string name="settings_category_history_title">Historique</string>
+    <string name="playlist">Liste de lecture</string>
+    <string name="notification_channel_description">Notifications pour les lecteurs Background et Popup de NewPipe</string>
+
+    <string name="search_no_results">Aucun résultat</string>
+    <string name="empty_subscription_feed_subtitle">Rien ici à part des grillons</string>
+
+    <string name="no_subscribers">Aucun abonné</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s abonné</item>
+	<item quantity="other">%s abonnés</item>
+</plurals>
+
+    <string name="no_views">Aucun visionnage</string>
+    <plurals name="views">
+	<item quantity="one">%s visionnage</item>
+	<item quantity="other">%s visionnages</item>
+</plurals>
+
+    <string name="no_videos">Aucune vidéo</string>
+    <plurals name="videos">
+	<item quantity="one">%s vidéo</item>
+	<item quantity="other">%s vidéos</item>
+</plurals>
 
     </resources>
