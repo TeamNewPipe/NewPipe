@@ -382,9 +382,6 @@ public class BackgroundPlayer extends Service {
         public void sync(final StreamInfo info, final int sortedStreamsIndex) {
             super.sync(info, sortedStreamsIndex);
 
-            setVideoTitle(info.name);
-            setUploaderName(info.uploader_name);
-
             notRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());
             notRemoteView.setTextViewText(R.id.notificationArtist, getUploaderName());
             bigNotRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());

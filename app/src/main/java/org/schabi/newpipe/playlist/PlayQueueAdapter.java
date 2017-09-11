@@ -82,10 +82,6 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         playQueue.remove(index);
     }
 
-    public void swap(final int source, final int target) {
-        playQueue.swap(source, target);
-    }
-
     private void startReactor() {
         final Observer<PlayQueueMessage> observer = new Observer<PlayQueueMessage>() {
             @Override

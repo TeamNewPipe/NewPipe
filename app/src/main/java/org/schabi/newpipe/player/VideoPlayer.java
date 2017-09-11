@@ -234,8 +234,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         final Serializable serializable = intent.getSerializableExtra(PLAY_QUEUE);
         if (!(serializable instanceof PlayQueue)) return;
 
-        selectedIndexStream = intent.getIntExtra(INDEX_SEL_VIDEO_STREAM, -1);
-
         playQueue = (PlayQueue) serializable;
         playQueue.init();
 
@@ -406,12 +404,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     public void onPrepared(boolean playWhenReady) {
         if (DEBUG) Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");
 
-        if (videoStartPos > 0) {
-            playbackSeekBar.setProgress((int) videoStartPos);
-            playbackCurrentTime.setText(getTimeString((int) videoStartPos));
-            videoStartPos = -1;
-        }
-
         playbackSeekBar.setMax((int) simpleExoPlayer.getDuration());
         playbackEndTime.setText(getTimeString((int) simpleExoPlayer.getDuration()));
         playbackSpeed.setText(formatSpeed(getPlaybackSpeed()));
@@ -453,6 +445,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
     protected void onFullScreenButtonClicked() {
         if (!isPlayerReady()) return;
+
+        changeState(STATE_BUFFERING);
     }
 
     @Override
@@ -492,11 +486,11 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
             Log.d(TAG, "onMenuItemClick() called with: menuItem = [" + menuItem + "], menuItem.getItemId = [" + menuItem.getItemId() + "]");
 
         if (qualityPopupMenuGroupId == menuItem.getGroupId()) {
-            if (selectedIndexStream == menuItem.getItemId()) return true;
+            if (selectedIndexStream == menuItem.getItemId() || getRecovery()) return true;
 
-            queueStartPos = playQueue.getIndex();
-            videoStartPos = simpleExoPlayer.getCurrentPosition();
-            playbackManager.updateCurrent(menuItem.getItemId());
+            final int index = playQueue.getIndex();
+            setRecovery(index, simpleExoPlayer.getCurrentPosition());
+            playQueue.updateIndex(index, menuItem.getItemId());
 
             qualityTextView.setText(menuItem.getTitle());
             return true;

@@ -10,14 +10,13 @@ import org.schabi.newpipe.playlist.events.InitEvent;
 import org.schabi.newpipe.playlist.events.PlayQueueMessage;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
 import org.schabi.newpipe.playlist.events.SelectEvent;
-import org.schabi.newpipe.playlist.events.MoveEvent;
+import org.schabi.newpipe.playlist.events.UpdateEvent;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import io.reactivex.BackpressureStrategy;
@@ -96,7 +95,7 @@ public abstract class PlayQueue implements Serializable {
     }
 
     public int indexOf(final PlayQueueItem item) {
-        // reference equality, can't think of a better way to do this
+        // referential equality, can't think of a better way to do this
         // todo: better than this
         return streams.indexOf(item);
     }
@@ -134,6 +133,13 @@ public abstract class PlayQueue implements Serializable {
         setIndex(getIndex() + offset);
     }
 
+    public synchronized void updateIndex(final int index, final int selectedQuality) {
+        if (index < 0 || index >= streams.size()) return;
+
+        get(index).setSortedQualityIndex(selectedQuality);
+        broadcast(new UpdateEvent(index));
+    }
+
     protected synchronized void append(final PlayQueueItem item) {
         streams.add(item);
         broadcast(new AppendEvent(1));
@@ -156,29 +162,6 @@ public abstract class PlayQueue implements Serializable {
         }
 
         broadcast(new RemoveEvent(index, isCurrent));
-    }
-
-    protected synchronized void swap(final int source, final int target) {
-        if (source < 0 || target < 0) return;
-
-        final List<PlayQueueItem> items = streams;
-        if (source < items.size() && target < items.size()) {
-            // Swap two items
-            final PlayQueueItem sourceItem = items.get(source);
-            final PlayQueueItem targetItem = items.get(target);
-
-            items.set(target, sourceItem);
-            items.set(source, targetItem);
-
-            // If the current playing index is one of the swapped indices, change that as well
-            final int index = queueIndex.get();
-            if (index == source || index == target) {
-                final int newIndex = index == source ? target : source;
-                queueIndex.set(newIndex);
-            }
-
-            broadcast(new MoveEvent(source, target));
-        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////

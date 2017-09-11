@@ -111,7 +111,10 @@ public class MainVideoPlayer extends Activity {
         if (DEBUG) Log.d(TAG, "onStop() called");
         activityPaused = true;
         if (playerImpl.getPlayer() != null) {
-            playerImpl.setVideoStartPos((int) playerImpl.getPlayer().getCurrentPosition());
+            playerImpl.setRecovery(
+                    playerImpl.getCurrentQueueIndex(),
+                    (int) playerImpl.getPlayer().getCurrentPosition()
+            );
             playerImpl.destroyPlayer();
         }
     }
@@ -224,13 +227,6 @@ public class MainVideoPlayer extends Activity {
             screenRotationButton.setOnClickListener(this);
         }
 
-        @Override
-        public void handleIntent(Intent intent) {
-            super.handleIntent(intent);
-            titleTextView.setText(getVideoTitle());
-            channelTextView.setText(getUploaderName());
-        }
-
         /*//////////////////////////////////////////////////////////////////////////
         // Playback Listener
         //////////////////////////////////////////////////////////////////////////*/
@@ -263,7 +259,8 @@ public class MainVideoPlayer extends Activity {
                 return;
             }
 
-            context.startService(NavigationHelper.getOpenVideoPlayerIntent(context, PopupVideoPlayer.class, this));
+            final Intent intent = NavigationHelper.getOpenVideoPlayerIntent(context, PopupVideoPlayer.class, this);
+            context.startService(intent);
             destroyPlayer();
 
             ((View) getControlAnimationView().getParent()).setVisibility(View.GONE);

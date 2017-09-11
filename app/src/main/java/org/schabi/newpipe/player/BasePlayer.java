@@ -93,7 +93,6 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.disposables.SerialDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
 
@@ -136,11 +135,6 @@ public abstract class BasePlayer implements Player.EventListener,
     public static final String RESTORE_QUEUE_INDEX = "restore_queue_index";
     public static final String RESTORE_WINDOW_POS = "restore_window_pos";
 
-    protected String videoUrl = "";
-    protected String videoTitle = "";
-    protected String videoThumbnailUrl = "";
-    protected String uploaderName = "";
-
     /*//////////////////////////////////////////////////////////////////////////
     // Playlist
     //////////////////////////////////////////////////////////////////////////*/
@@ -148,8 +142,11 @@ public abstract class BasePlayer implements Player.EventListener,
     protected PlaybackManager playbackManager;
     protected PlayQueue playQueue;
 
-    protected int queueStartPos = 0;
-    protected long videoStartPos = -1;
+    private boolean isRecovery = false;
+    private int queuePos = 0;
+    private long videoPos = -1;
+
+    protected StreamInfo currentInfo;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Player
@@ -246,8 +243,10 @@ public abstract class BasePlayer implements Player.EventListener,
         if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
         if (intent == null) return;
 
-        queueStartPos = intent.getIntExtra(RESTORE_QUEUE_INDEX, 0);
-        videoStartPos = intent.getLongExtra(START_POSITION, 0);
+        setRecovery(
+                intent.getIntExtra(RESTORE_QUEUE_INDEX, 0),
+                intent.getLongExtra(START_POSITION, 0)
+        );
         setPlaybackSpeed(intent.getFloatExtra(PLAYBACK_SPEED, getPlaybackSpeed()));
 
         switch (intent.getStringExtra(INTENT_TYPE)) {
@@ -535,21 +534,37 @@ public abstract class BasePlayer implements Player.EventListener,
     public void onTimelineChanged(Timeline timeline, Object manifest) {
         if (DEBUG) Log.d(TAG, "onTimelineChanged(), timeline size = " + timeline.getWindowCount());
 
-        if (simpleExoPlayer.getCurrentWindowIndex() != playbackManager.getCurrentSourceIndex()) {
-            if (timeline.getWindowCount() > playbackManager.getCurrentSourceIndex()) {
-                if (DEBUG) Log.d(TAG, "Rewinding to correct window");
-                simpleExoPlayer.seekToDefaultPosition(playbackManager.getCurrentSourceIndex());
-            }
+        final int currentSourceIndex = playbackManager.getCurrentSourceIndex();
+
+        // Check timeline has window
+        if (simpleExoPlayer.getCurrentTimeline().getWindowCount() <= currentSourceIndex) return;
+
+        // Check if window is ready
+        Timeline.Window window = new Timeline.Window();
+        simpleExoPlayer.getCurrentTimeline().getWindow(currentSourceIndex, window);
+        if (window.isDynamic) return;
+
+        // Check if already playing correct window
+        final boolean isCurrentWindowCorrect = simpleExoPlayer.getCurrentWindowIndex() == currentSourceIndex;
+        if (isCurrentWindowCorrect && getCurrentState() == STATE_PLAYING) return;
+
+        // Check if recovering on correct item
+        if (isRecovery && queuePos == playQueue.getIndex() && isCurrentWindowCorrect) {
+            if (DEBUG) Log.d(TAG, "Rewinding to recovery window: " + currentSourceIndex + " at: " + getTimeString((int)videoPos));
+            simpleExoPlayer.seekTo(currentSourceIndex, videoPos);
+            isRecovery = false;
+        } else if (!isCurrentWindowCorrect) { // Or if on wrong window
+            final long startPos = currentInfo != null ? currentInfo.start_position : 0;
+            if (DEBUG) Log.d(TAG, "Rewinding to correct window: " + currentSourceIndex + " at: " + getTimeString((int)startPos));
+            simpleExoPlayer.seekTo(currentSourceIndex, startPos);
         }
 
-        if (!simpleExoPlayer.isCurrentWindowDynamic() && simpleExoPlayer.isCurrentWindowSeekable()) {
-            simpleExoPlayer.setPlayWhenReady(true);
-        }
+        // Good to go...
+        simpleExoPlayer.setPlayWhenReady(true);
     }
 
     @Override
     public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
-        Log.w(TAG, "onTracksChanged() called, unsupported operation. Is this expected?");
     }
 
     @Override
@@ -604,8 +619,7 @@ public abstract class BasePlayer implements Player.EventListener,
     @Override
     public void onPlayerError(ExoPlaybackException error) {
         if (DEBUG) Log.d(TAG, "onPlayerError() called with: error = [" + error + "]");
-        playbackManager.report(error);
-
+        playQueue.remove(playQueue.getIndex());
         onError(error);
     }
 
@@ -615,7 +629,9 @@ public abstract class BasePlayer implements Player.EventListener,
         int newIndex = simpleExoPlayer.getCurrentWindowIndex();
         if (DEBUG) Log.d(TAG, "onPositionDiscontinuity() called with: index = [" + newIndex + "]");
 
-        playbackManager.refresh(newIndex);
+        if (newIndex == playbackManager.getCurrentSourceIndex() + 1) {
+            playQueue.offsetIndex(+1);
+        }
     }
 
     @Override
@@ -633,6 +649,7 @@ public abstract class BasePlayer implements Player.EventListener,
         if (DEBUG) Log.d(TAG, "Blocking...");
 
         simpleExoPlayer.stop();
+        isPrepared = false;
 
         changeState(STATE_BUFFERING);
     }
@@ -642,13 +659,8 @@ public abstract class BasePlayer implements Player.EventListener,
         if (simpleExoPlayer == null) return;
         if (DEBUG) Log.d(TAG, "Unblocking...");
 
-        if (queueStartPos != playQueue.getIndex()) {
-            queueStartPos = playQueue.getIndex();
-            videoStartPos = 0;
-        }
-
-        simpleExoPlayer.prepare(playbackManager.getMediaSource());
-        simpleExoPlayer.seekTo(playbackManager.getCurrentSourceIndex(), videoStartPos);
+        simpleExoPlayer.prepare(playbackManager.getMediaSource(), true, true);
+        isPrepared = true;
     }
 
     @Override
@@ -656,13 +668,10 @@ public abstract class BasePlayer implements Player.EventListener,
         if (simpleExoPlayer == null) return;
         if (DEBUG) Log.d(TAG, "Syncing...");
 
-        videoUrl = info.url;
-        videoThumbnailUrl = info.thumbnail_url;
-        videoTitle = info.name;
-
+        currentInfo = info;
         onTimelineChanged(simpleExoPlayer.getCurrentTimeline(), null);
 
-        initThumbnail(videoThumbnailUrl);
+        initThumbnail(info.thumbnail_url);
     }
 
     @Override
@@ -774,7 +783,11 @@ public abstract class BasePlayer implements Player.EventListener,
     }
 
     public void triggerProgressUpdate() {
-        onUpdateProgress((int) simpleExoPlayer.getCurrentPosition(), (int) simpleExoPlayer.getDuration(), simpleExoPlayer.getBufferedPercentage());
+        onUpdateProgress(
+                (int) simpleExoPlayer.getCurrentPosition(),
+                (int) simpleExoPlayer.getDuration(),
+                simpleExoPlayer.getBufferedPercentage()
+        );
     }
 
     public void animateAudio(final float from, final float to, int duration) {
@@ -823,35 +836,19 @@ public abstract class BasePlayer implements Player.EventListener,
     }
 
     public String getVideoUrl() {
-        return videoUrl;
+        return currentInfo.url;
     }
 
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl;
-    }
-
-    public long getVideoStartPos() {
-        return videoStartPos;
-    }
-
-    public void setVideoStartPos(long videoStartPos) {
-        this.videoStartPos = videoStartPos;
+    public long getVideoPos() {
+        return videoPos;
     }
 
     public String getVideoTitle() {
-        return videoTitle;
-    }
-
-    public void setVideoTitle(String videoTitle) {
-        this.videoTitle = videoTitle;
+        return currentInfo.name;
     }
 
     public String getUploaderName() {
-        return uploaderName;
-    }
-
-    public void setUploaderName(String uploaderName) {
-        this.uploaderName = uploaderName;
+        return currentInfo.uploader_name;
     }
 
     public boolean isCompleted() {
@@ -864,14 +861,6 @@ public abstract class BasePlayer implements Player.EventListener,
 
     public void setPrepared(boolean prepared) {
         isPrepared = prepared;
-    }
-
-    public String getVideoThumbnailUrl() {
-        return videoThumbnailUrl;
-    }
-
-    public void setVideoThumbnailUrl(String videoThumbnailUrl) {
-        this.videoThumbnailUrl = videoThumbnailUrl;
     }
 
     public float getPlaybackSpeed() {
@@ -896,5 +885,16 @@ public abstract class BasePlayer implements Player.EventListener,
 
     public boolean isProgressLoopRunning() {
         return progressUpdateReactor != null && !progressUpdateReactor.isDisposed();
+    }
+
+    public boolean getRecovery() {
+        return isRecovery;
+    }
+
+    public void setRecovery(final int queuePos, final long windowPos) {
+        if (DEBUG) Log.d(TAG, "Setting recovery, queue: " + queuePos + ", pos: " + windowPos);
+        this.isRecovery = true;
+        this.queuePos = queuePos;
+        this.videoPos = windowPos;
     }
 }

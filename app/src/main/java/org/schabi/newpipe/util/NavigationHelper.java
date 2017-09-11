@@ -71,7 +71,6 @@ public class NavigationHelper {
         return new Intent(context, targetClazz)
                 .putExtra(BasePlayer.INTENT_TYPE, VideoPlayer.PLAYER_INTENT)
                 .putExtra(VideoPlayer.PLAY_QUEUE, instance.getPlayQueue())
-                .putExtra(VideoPlayer.INDEX_SEL_VIDEO_STREAM, instance.getSelectedStreamIndex())
                 .putExtra(VideoPlayer.RESTORE_QUEUE_INDEX, instance.getCurrentQueueIndex())
                 .putExtra(BasePlayer.START_POSITION, instance.getPlayer().getCurrentPosition())
                 .putExtra(BasePlayer.PLAYBACK_SPEED, instance.getPlaybackSpeed());

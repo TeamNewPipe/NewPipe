@@ -12,7 +12,6 @@ import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.events.PlayQueueMessage;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
-import org.schabi.newpipe.playlist.events.MoveEvent;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,7 +28,7 @@ public class PlaybackManager {
     private final String TAG = "PlaybackManager@" + Integer.toHexString(hashCode());
     // One-side rolling window size for default loading
     // Effectively loads WINDOW_SIZE * 2 streams
-    private static final int WINDOW_SIZE = 2;
+    private static final int WINDOW_SIZE = 3;
 
     private final PlaybackListener playbackListener;
     private final PlayQueue playQueue;
@@ -77,37 +76,6 @@ public class PlaybackManager {
         return sources;
     }
 
-    /*
-    * Called when the player has transitioned to another stream.
-    * */
-    public void refresh(final int newSourceIndex) {
-        if (sourceToQueueIndex.indexOf(newSourceIndex) != -1 && newSourceIndex == getCurrentSourceIndex() + 1) {
-            playQueue.offsetIndex(+1);
-        }
-    }
-
-    public void report(final Exception error) {
-        // ignore error checking for now, just remove the current index
-        if (error == null) return;
-
-        tryBlock();
-
-        final int index = playQueue.getIndex();
-        playQueue.remove(index);
-
-        resetSources();
-        load();
-    }
-
-    public void updateCurrent(final int newSortedStreamsIndex) {
-        tryBlock();
-
-        PlayQueueItem item = playQueue.getCurrent();
-        item.setSortedQualityIndex(newSortedStreamsIndex);
-
-        resetSources();
-        load();
-    }
 
     public void dispose() {
         if (playQueueReactor != null) playQueueReactor.cancel();
@@ -146,14 +114,19 @@ public class PlaybackManager {
                     case APPEND:
                         break;
                     case SELECT:
-                        onSelect();
+                        if (isBlocked) break;
+                        if (isCurrentIndexLoaded()) sync(); else tryBlock();
                         break;
                     case REMOVE:
                         final RemoveEvent removeEvent = (RemoveEvent) event;
+                        if (removeEvent.isCurrent()) tryBlock();
                         remove(removeEvent.index());
                         break;
-                    case MOVE:
-                        throw new UnsupportedOperationException("Move not yet supported");
+                    case UPDATE:
+                    case SHUFFLE:
+                        tryBlock();
+                        resetSources();
+                        break;
                     default:
                         break;
                 }
@@ -206,30 +179,6 @@ public class PlaybackManager {
             return true;
         }
         return false;
-    }
-
-    /*
-    * Responds to a SELECT event.
-    *
-    * If the player is being blocked, then nothing should happen.
-    *
-    * Otherwise:
-    *
-    * When the selected item is already loaded, then we simply synchronize and
-    * start loading some more items.
-    *
-    * When the current item has not been fully loaded, then the player will be
-    * blocked. The sources will be reset and reloaded, to conserve memory.
-    * */
-    private void onSelect() {
-        if (isBlocked) return;
-
-        if (isCurrentIndexLoaded()) {
-            sync();
-        } else {
-            tryBlock();
-            resetSources();
-        }
     }
 
     private void sync() {
@@ -319,13 +268,14 @@ public class PlaybackManager {
         if (queueIndex < 0) return;
 
         final int sourceIndex = sourceToQueueIndex.indexOf(queueIndex);
-        if (sourceIndex != -1) {
-            sourceToQueueIndex.remove(sourceIndex);
-            sources.removeMediaSource(sourceIndex);
-            // Will be slow on really large arrays, fast enough for typical use case
-            for (int i = sourceIndex; i < sourceToQueueIndex.size(); i++) {
-                sourceToQueueIndex.set(i, sourceToQueueIndex.get(i) - 1);
-            }
+        if (sourceIndex == -1) return;
+
+        sourceToQueueIndex.remove(sourceIndex);
+        sources.removeMediaSource(sourceIndex);
+
+        // Will be slow on really large arrays, fast enough for typical use case
+        for (int i = sourceIndex; i < sourceToQueueIndex.size(); i++) {
+            sourceToQueueIndex.set(i, sourceToQueueIndex.get(i) - 1);
         }
     }
 }
