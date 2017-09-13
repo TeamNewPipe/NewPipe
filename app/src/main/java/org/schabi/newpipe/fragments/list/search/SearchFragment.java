@@ -48,6 +48,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 
 import icepick.State;
 import io.reactivex.Notification;
@@ -511,8 +512,24 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
         // no-op
     }
 
+    private boolean isYoutubeLink(String query) {
+        Pattern pattern = Pattern.compile(
+                "^https?://((\\bwww\\b|m)\\.)?((\\byoutube.com/watch\\b\\?v=)|\\byoutu.be/\\b).*$");
+        return pattern.matcher(query).matches();
+    }
+
     private void search(final String query) {
         if (DEBUG) Log.d(TAG, "search() called with: query = [" + query + "]");
+
+        if (isYoutubeLink(query)) {
+            try {
+                NavigationHelper.openByLink(getContext(), query);
+                return;
+            } catch (Exception e) {
+                // TODO: what to do here?
+                Log.w(TAG, e);
+            }
+        }
 
         hideSoftKeyboard(searchEditText);
         this.searchQuery = query;
