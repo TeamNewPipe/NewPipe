@@ -14,7 +14,9 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.about.AboutActivity;
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.MainFragment;
@@ -251,6 +253,10 @@ public class NavigationHelper {
 
     private static Intent getIntentByLink(Context context, String url) throws Exception {
         StreamingService service = NewPipe.getServiceByUrl(url);
+
+        if (service != ServiceList.YouTube.getService()) {
+            throw new ExtractionException("Service not supported at the moment");
+        }
 
         int serviceId = service.getServiceId();
         StreamingService.LinkType linkType = service.getLinkTypeByUrl(url);
