@@ -228,13 +228,17 @@ public class NavigationHelper {
     // Link handling
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static void openByLink(Context context, String url) throws Exception {
-        Intent intentByLink = getIntentByLink(context, url);
-        if (intentByLink == null)
-            throw new NullPointerException("getIntentByLink(context = [" + context + "], url = [" + url + "]) returned null");
+    public static boolean openByLink(Context context, String url) {
+        Intent intentByLink;
+        try {
+            intentByLink = getIntentByLink(context, url);
+        } catch (Exception e) {
+            return false;
+        }
         intentByLink.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intentByLink.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intentByLink);
+        return true;
     }
 
     private static Intent getOpenIntent(Context context, String url, int serviceId, StreamingService.LinkType type) {

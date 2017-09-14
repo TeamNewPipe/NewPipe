@@ -512,38 +512,25 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
         // no-op
     }
 
-    private boolean isYoutubeLink(String query) {
-        Pattern pattern = Pattern.compile(
-                "^https?://((\\bwww\\b|m)\\.)?((\\byoutube.com/watch\\b\\?v=)|\\byoutu.be/\\b).*$");
-        return pattern.matcher(query).matches();
-    }
-
     private void search(final String query) {
         if (DEBUG) Log.d(TAG, "search() called with: query = [" + query + "]");
 
-        if (isYoutubeLink(query)) {
-            try {
-                NavigationHelper.openByLink(getContext(), query);
-                return;
-            } catch (Exception e) {
-                // TODO: what to do here?
-                Log.w(TAG, e);
+        boolean openedAsUrl = NavigationHelper.openByLink(getContext(), query);
+        if (!openedAsUrl) {
+            hideSoftKeyboard(searchEditText);
+            this.searchQuery = query;
+            this.currentPage = 0;
+            infoListAdapter.clearStreamItemList();
+
+            if (activity instanceof HistoryListener) {
+                ((HistoryListener) activity).onSearch(serviceId, query);
             }
+
+            final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+            final String searchLanguageKey = getContext().getString(R.string.search_language_key);
+            searchLanguage = sharedPreferences.getString(searchLanguageKey, getContext().getString(R.string.default_language_value));
+            startLoading(false);
         }
-
-        hideSoftKeyboard(searchEditText);
-        this.searchQuery = query;
-        this.currentPage = 0;
-        infoListAdapter.clearStreamItemList();
-
-        if (activity instanceof HistoryListener) {
-            ((HistoryListener) activity).onSearch(serviceId, query);
-        }
-
-        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        final String searchLanguageKey = getContext().getString(R.string.search_language_key);
-        searchLanguage = sharedPreferences.getString(searchLanguageKey, getContext().getString(R.string.default_language_value));
-        startLoading(false);
     }
 
     @Override

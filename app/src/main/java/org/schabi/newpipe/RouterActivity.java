@@ -43,9 +43,8 @@ public class RouterActivity extends AppCompatActivity {
     }
 
     protected void handleUrl(String url) {
-        try {
-            NavigationHelper.openByLink(this, url);
-        } catch (Exception e) {
+        boolean success = NavigationHelper.openByLink(this, url);
+        if (!success) {
             Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG).show();
         }
 
