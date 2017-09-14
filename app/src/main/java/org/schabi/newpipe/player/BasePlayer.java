@@ -543,23 +543,21 @@ public abstract class BasePlayer implements Player.EventListener,
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // ExoPlayer Listener
+    // Timeline
     //////////////////////////////////////////////////////////////////////////*/
 
-    @Override
-    public void onTimelineChanged(Timeline timeline, Object manifest) {
-        if (DEBUG) Log.d(TAG, "onTimelineChanged(), timeline size = " + timeline.getWindowCount());
-
+    private void refreshTimeline() {
         final int currentSourceIndex = playbackManager.getCurrentSourceIndex();
 
-        // Sanity check
+        // Sanity checks
         if (currentSourceIndex < 0) return;
 
         // Check if already playing correct window
         final boolean isCurrentWindowCorrect = simpleExoPlayer.getCurrentWindowIndex() == currentSourceIndex;
         if (isCurrentWindowCorrect && getCurrentState() == STATE_PLAYING) return;
 
-        // Check timeline has window
+        // Check timeline is up-to-date and has window
+        if (playbackManager.size() != simpleExoPlayer.getCurrentTimeline().getWindowCount()) return;
         if (simpleExoPlayer.getCurrentTimeline().getWindowCount() <= currentSourceIndex) return;
 
         // Check if window is ready
@@ -574,7 +572,7 @@ public abstract class BasePlayer implements Player.EventListener,
             simpleExoPlayer.seekTo(currentSourceIndex, startPos);
         }
 
-        // Check if recovering on correct item
+        // Check if recovering
         if (isRecovery && queuePos == playQueue.getIndex() && isCurrentWindowCorrect) {
             if (DEBUG) Log.d(TAG, "Rewinding to recovery window: " + currentSourceIndex + " at: " + getTimeString((int)videoPos));
             simpleExoPlayer.seekTo(videoPos);
@@ -583,6 +581,17 @@ public abstract class BasePlayer implements Player.EventListener,
 
         // Good to go...
         simpleExoPlayer.setPlayWhenReady(wasPlaying);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // ExoPlayer Listener
+    //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void onTimelineChanged(Timeline timeline, Object manifest) {
+        if (DEBUG) Log.d(TAG, "onTimelineChanged(), timeline size = " + timeline.getWindowCount());
+
+        refreshTimeline();
     }
 
     @Override
@@ -699,7 +708,7 @@ public abstract class BasePlayer implements Player.EventListener,
         if (DEBUG) Log.d(TAG, "Syncing...");
 
         currentInfo = info;
-        onTimelineChanged(simpleExoPlayer.getCurrentTimeline(), null);
+        refreshTimeline();
 
         initThumbnail(info.thumbnail_url);
     }

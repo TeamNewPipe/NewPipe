@@ -12,6 +12,7 @@ import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.events.PlayQueueMessage;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
+import org.schabi.newpipe.playlist.events.UpdateEvent;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -71,6 +72,9 @@ public class PlaybackManager {
         return sourceToQueueIndex.indexOf(playQueue.getIndex());
     }
 
+    public int size() {
+        return sourceToQueueIndex.size();
+    }
 
     public void dispose() {
         if (playQueueReactor != null) playQueueReactor.cancel();
@@ -116,9 +120,13 @@ public class PlaybackManager {
                     case REMOVE:
                         final RemoveEvent removeEvent = (RemoveEvent) event;
                         if (removeEvent.isCurrent()) tryBlock();
-                        remove(removeEvent.index());
+                        remove(removeEvent.index(), true);
                         break;
                     case UPDATE:
+                        final UpdateEvent updateEvent = (UpdateEvent) event;
+                        tryBlock();
+                        remove(updateEvent.index(), false);
+                        break;
                     case SHUFFLE:
                         tryBlock();
                         resetSources();
@@ -261,7 +269,7 @@ public class PlaybackManager {
         }
     }
 
-    private void remove(final int queueIndex) {
+    private void remove(final int queueIndex, final boolean cascade) {
         if (queueIndex < 0) return;
 
         final int sourceIndex = sourceToQueueIndex.indexOf(queueIndex);
@@ -270,9 +278,11 @@ public class PlaybackManager {
         sourceToQueueIndex.remove(sourceIndex);
         sources.removeMediaSource(sourceIndex);
 
-        // Will be slow on really large arrays, fast enough for typical use case
-        for (int i = sourceIndex; i < sourceToQueueIndex.size(); i++) {
-            sourceToQueueIndex.set(i, sourceToQueueIndex.get(i) - 1);
+        if (cascade) {
+            // Will be slow on really large arrays, fast enough for typical use case
+            for (int i = sourceIndex; i < sourceToQueueIndex.size(); i++) {
+                sourceToQueueIndex.set(i, sourceToQueueIndex.get(i) - 1);
+            }
         }
     }
 }

@@ -21,6 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.subjects.BehaviorSubject;
 
 public abstract class PlayQueue implements Serializable {
@@ -58,7 +59,7 @@ public abstract class PlayQueue implements Serializable {
         broadcastReceiver = Flowable.merge(
                 streamsEventBroadcast.toFlowable(BackpressureStrategy.BUFFER),
                 indexEventBroadcast.toFlowable(BackpressureStrategy.BUFFER)
-        ).startWith(new InitEvent());
+        ).observeOn(AndroidSchedulers.mainThread()).startWith(new InitEvent());
 
         if (DEBUG) broadcastReceiver.subscribe(getSelfReporter());
     }
