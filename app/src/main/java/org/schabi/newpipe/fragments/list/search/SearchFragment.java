@@ -29,8 +29,13 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
+import com.google.common.collect.Lists;
+
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
+import org.schabi.newpipe.database.history.dao.SearchHistoryDAO;
+import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -99,6 +104,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     private Disposable suggestionWorkerDisposable;
 
     private SuggestionListAdapter suggestionListAdapter;
+    private SearchHistoryDAO searchHistoryDAO;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -135,6 +141,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     public void onAttach(Context context) {
         super.onAttach(context);
         suggestionListAdapter = new SuggestionListAdapter(activity);
+        searchHistoryDAO = NewPipeDatabase.getInstance().searchHistoryDAO();
     }
 
     @Override
@@ -355,7 +362,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     searchEditText.setText("", false);
                 } else searchEditText.setText("");
-                suggestionListAdapter.updateAdapter(new ArrayList<String>());
+                suggestionListAdapter.clearAdapter();
                 showSoftKeyboard(searchEditText);
             }
         });
@@ -469,12 +476,18 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
                 boolean lengthCheck = s.length() >= THRESHOLD_SUGGESTION;
                 // Clear the suggestions adapter if the length check fails
                 if (!lengthCheck && !suggestionListAdapter.isEmpty()) {
-                    suggestionListAdapter.updateAdapter(new ArrayList<String>());
+                    suggestionListAdapter.clearAdapter();
                 }
                 // Only pass through if suggestions is enabled and the query length is equal or greater than THRESHOLD_SUGGESTION
                 return showSuggestions && lengthCheck;
             }
         };
+
+        // TODO: this isn't working correctly
+        if (searchQuery.length() < THRESHOLD_SUGGESTION) {
+            List<SearchHistoryEntry> historyItems = searchHistoryDAO.getItemsForQuery(searchQuery + "%", 10).blockingFirst();
+            suggestionListAdapter.updateAdapter(historyItems, new ArrayList<String>());
+        }
 
         suggestionWorkerDisposable = suggestionPublisher
                 .debounce(SUGGESTIONS_DEBOUNCE, TimeUnit.MILLISECONDS)
@@ -492,7 +505,8 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
                     @Override
                     public void accept(@io.reactivex.annotations.NonNull Notification<List<String>> listNotification) throws Exception {
                         if (listNotification.isOnNext()) {
-                            handleSuggestions(listNotification.getValue());
+                            List<SearchHistoryEntry> historyItems = searchHistoryDAO.getItemsForQuery(searchQuery + "%", 2).blockingFirst();
+                            suggestionListAdapter.updateAdapter(historyItems, listNotification.getValue());
                             if (errorPanelRoot.getVisibility() == View.VISIBLE) {
                                 hideLoading();
                             }
@@ -618,11 +632,6 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     /*//////////////////////////////////////////////////////////////////////////
     // Suggestion Results
     //////////////////////////////////////////////////////////////////////////*/
-
-    public void handleSuggestions(@NonNull List<String> suggestions) {
-        if (DEBUG) Log.d(TAG, "handleSuggestions() called with: suggestions = [" + suggestions + "]");
-        suggestionListAdapter.updateAdapter(suggestions);
-    }
 
     public void onSuggestionError(Throwable exception) {
         if (DEBUG) Log.d(TAG, "onSuggestionError() called with: exception = [" + exception + "]");
