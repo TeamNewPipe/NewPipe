@@ -1062,6 +1062,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (info.video_streams.isEmpty() && info.video_only_streams.isEmpty()) {
             detailControlsBackground.setVisibility(View.GONE);
             detailControlsPopup.setVisibility(View.GONE);
+            spinnerToolbar.setVisibility(View.GONE);
             thumbnailPlayButton.setImageResource(R.drawable.ic_headset_white_24dp);
         }
 
