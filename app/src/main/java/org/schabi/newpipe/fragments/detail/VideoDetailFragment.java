@@ -329,7 +329,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 }
                 break;
             case R.id.detail_thumbnail_root_layout:
-                openVideoPlayer();
+                if (currentInfo.video_streams.isEmpty() && currentInfo.video_only_streams.isEmpty()) {
+                    openBackgroundPlayer();
+                } else {
+                    openVideoPlayer();
+                }
                 break;
             case R.id.detail_title_root_layout:
                 toggleTitleAndDescription();
@@ -1053,6 +1057,12 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         if (!info.errors.isEmpty()) {
             showSnackBarError(info.errors, UserAction.REQUESTED_STREAM, NewPipe.getNameOfService(info.service_id), info.url, 0);
+        }
+
+        if (info.video_streams.isEmpty() && info.video_only_streams.isEmpty()) {
+            detailControlsBackground.setVisibility(View.GONE);
+            detailControlsPopup.setVisibility(View.GONE);
+            thumbnailPlayButton.setImageResource(R.drawable.ic_headset_white_24dp);
         }
 
         if (autoPlayEnabled) {

@@ -250,7 +250,7 @@
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp"
                             android:text="@string/controls_background_title"
-                            android:textSize="12sp"/>
+                            android:textSize="12sp" />
                     </RelativeLayout>
 
                     <!--UPLOADER-->
