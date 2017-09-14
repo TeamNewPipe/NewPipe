@@ -71,11 +71,6 @@ public class PlaybackManager {
         return sourceToQueueIndex.indexOf(playQueue.getIndex());
     }
 
-    @NonNull
-    public DynamicConcatenatingMediaSource getMediaSource() {
-        return sources;
-    }
-
 
     public void dispose() {
         if (playQueueReactor != null) playQueueReactor.cancel();
@@ -109,7 +104,8 @@ public class PlaybackManager {
                 // why no pattern matching in Java =(
                 switch (event.type()) {
                     case INIT:
-                        isBlocked = true;
+                        tryBlock();
+                        resetSources();
                         break;
                     case APPEND:
                         break;
@@ -245,6 +241,7 @@ public class PlaybackManager {
         if (this.sourceToQueueIndex != null) this.sourceToQueueIndex.clear();
 
         this.sources = new DynamicConcatenatingMediaSource();
+        playbackListener.prepare(this.sources);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

@@ -517,8 +517,8 @@ public class PopupVideoPlayer extends Service {
         //////////////////////////////////////////////////////////////////////////*/
 
         @Override
-        public void onLoading() {
-            super.onLoading();
+        public void onBlocked() {
+            super.onBlocked();
             updateNotification(R.drawable.ic_play_arrow_white);
         }
 

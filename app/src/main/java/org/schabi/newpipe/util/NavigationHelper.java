@@ -72,7 +72,7 @@ public class NavigationHelper {
                 .putExtra(BasePlayer.INTENT_TYPE, VideoPlayer.PLAYER_INTENT)
                 .putExtra(VideoPlayer.PLAY_QUEUE, instance.getPlayQueue())
                 .putExtra(VideoPlayer.RESTORE_QUEUE_INDEX, instance.getCurrentQueueIndex())
-                .putExtra(BasePlayer.START_POSITION, instance.getPlayer().getCurrentPosition())
+                .putExtra(BasePlayer.START_POSITION, instance.getPlayerCurrentPosition())
                 .putExtra(BasePlayer.PLAYBACK_SPEED, instance.getPlaybackSpeed());
     }
 

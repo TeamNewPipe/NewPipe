@@ -136,7 +136,7 @@ public abstract class BasePlayer implements Player.EventListener,
     public static final String RESTORE_WINDOW_POS = "restore_window_pos";
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Playlist
+    // Playback
     //////////////////////////////////////////////////////////////////////////*/
 
     protected PlaybackManager playbackManager;
@@ -157,6 +157,7 @@ public abstract class BasePlayer implements Player.EventListener,
 
     protected SimpleExoPlayer simpleExoPlayer;
     protected boolean isPrepared = false;
+    protected boolean wasPlaying = false;
 
     protected CacheDataSourceFactory cacheDataSourceFactory;
     protected final DefaultExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
@@ -218,6 +219,7 @@ public abstract class BasePlayer implements Player.EventListener,
         final RenderersFactory renderFactory = new DefaultRenderersFactory(context);
         simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(renderFactory, defaultTrackSelector, loadControl);
         simpleExoPlayer.addListener(this);
+        simpleExoPlayer.setPlayWhenReady(true);
     }
 
     public void initListeners() {}
@@ -275,10 +277,8 @@ public abstract class BasePlayer implements Player.EventListener,
             }
         }
 
-        playQueue = new ExternalPlayQueue(serviceId, nextPageUrl, info, index);
-        playQueue.init();
-
-        playbackManager = new PlaybackManager(this, playQueue);
+        final PlayQueue queue = new ExternalPlayQueue(serviceId, nextPageUrl, info, index);
+        initPlayback(this, queue);
     }
 
     @SuppressWarnings("unchecked")
@@ -286,9 +286,16 @@ public abstract class BasePlayer implements Player.EventListener,
         final Serializable serializable = intent.getSerializableExtra(SinglePlayQueue.STREAM);
         if (!(serializable instanceof StreamInfo)) return;
 
-        playQueue = new SinglePlayQueue((StreamInfo) serializable, PlayQueueItem.DEFAULT_QUALITY);
-        playQueue.init();
+        final PlayQueue queue = new SinglePlayQueue((StreamInfo) serializable, PlayQueueItem.DEFAULT_QUALITY);
+        initPlayback(this, queue);
+    }
 
+    protected void initPlayback(@NonNull final PlaybackListener listener, @NonNull final PlayQueue queue) {
+        if (playQueue != null) playQueue.dispose();
+        if (playbackManager != null) playbackManager.dispose();
+
+        playQueue = queue;
+        playQueue.init();
         playbackManager = new PlaybackManager(this, playQueue);
     }
 
@@ -321,6 +328,14 @@ public abstract class BasePlayer implements Player.EventListener,
         if (audioManager != null) {
             audioManager.abandonAudioFocus(this);
             audioManager = null;
+        }
+        if (playQueue != null) {
+            playQueue.dispose();
+            playQueue = null;
+        }
+        if (playbackManager != null) {
+            playbackManager.dispose();
+            playbackManager = null;
         }
     }
 
@@ -440,7 +455,7 @@ public abstract class BasePlayer implements Player.EventListener,
     // States Implementation
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static final int STATE_LOADING = 123;
+    public static final int STATE_BLOCKED = 123;
     public static final int STATE_PLAYING = 124;
     public static final int STATE_BUFFERING = 125;
     public static final int STATE_PAUSED = 126;
@@ -454,8 +469,8 @@ public abstract class BasePlayer implements Player.EventListener,
         if (DEBUG) Log.d(TAG, "changeState() called with: state = [" + state + "]");
         currentState = state;
         switch (state) {
-            case STATE_LOADING:
-                onLoading();
+            case STATE_BLOCKED:
+                onBlocked();
                 break;
             case STATE_PLAYING:
                 onPlaying();
@@ -475,8 +490,8 @@ public abstract class BasePlayer implements Player.EventListener,
         }
     }
 
-    public void onLoading() {
-        if (DEBUG) Log.d(TAG, "onLoading() called");
+    public void onBlocked() {
+        if (DEBUG) Log.d(TAG, "onBlocked() called");
         if (!isProgressLoopRunning()) startProgressLoop();
     }
 
@@ -497,6 +512,7 @@ public abstract class BasePlayer implements Player.EventListener,
 
     public void onCompleted() {
         if (DEBUG) Log.d(TAG, "onCompleted() called");
+        if (playQueue.getIndex() < playQueue.size() - 1) playQueue.offsetIndex(+1);
         if (isProgressLoopRunning()) stopProgressLoop();
     }
 
@@ -536,6 +552,13 @@ public abstract class BasePlayer implements Player.EventListener,
 
         final int currentSourceIndex = playbackManager.getCurrentSourceIndex();
 
+        // Sanity check
+        if (currentSourceIndex < 0) return;
+
+        // Check if already playing correct window
+        final boolean isCurrentWindowCorrect = simpleExoPlayer.getCurrentWindowIndex() == currentSourceIndex;
+        if (isCurrentWindowCorrect && getCurrentState() == STATE_PLAYING) return;
+
         // Check timeline has window
         if (simpleExoPlayer.getCurrentTimeline().getWindowCount() <= currentSourceIndex) return;
 
@@ -544,23 +567,22 @@ public abstract class BasePlayer implements Player.EventListener,
         simpleExoPlayer.getCurrentTimeline().getWindow(currentSourceIndex, window);
         if (window.isDynamic) return;
 
-        // Check if already playing correct window
-        final boolean isCurrentWindowCorrect = simpleExoPlayer.getCurrentWindowIndex() == currentSourceIndex;
-        if (isCurrentWindowCorrect && getCurrentState() == STATE_PLAYING) return;
-
-        // Check if recovering on correct item
-        if (isRecovery && queuePos == playQueue.getIndex() && isCurrentWindowCorrect) {
-            if (DEBUG) Log.d(TAG, "Rewinding to recovery window: " + currentSourceIndex + " at: " + getTimeString((int)videoPos));
-            simpleExoPlayer.seekTo(currentSourceIndex, videoPos);
-            isRecovery = false;
-        } else if (!isCurrentWindowCorrect) { // Or if on wrong window
+        // Check if on wrong window
+        if (!isCurrentWindowCorrect) {
             final long startPos = currentInfo != null ? currentInfo.start_position : 0;
             if (DEBUG) Log.d(TAG, "Rewinding to correct window: " + currentSourceIndex + " at: " + getTimeString((int)startPos));
             simpleExoPlayer.seekTo(currentSourceIndex, startPos);
         }
 
+        // Check if recovering on correct item
+        if (isRecovery && queuePos == playQueue.getIndex() && isCurrentWindowCorrect) {
+            if (DEBUG) Log.d(TAG, "Rewinding to recovery window: " + currentSourceIndex + " at: " + getTimeString((int)videoPos));
+            simpleExoPlayer.seekTo(videoPos);
+            isRecovery = false;
+        }
+
         // Good to go...
-        simpleExoPlayer.setPlayWhenReady(true);
+        simpleExoPlayer.setPlayWhenReady(wasPlaying);
     }
 
     @Override
@@ -584,8 +606,8 @@ public abstract class BasePlayer implements Player.EventListener,
     public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
         if (DEBUG)
             Log.d(TAG, "onPlayerStateChanged() called with: playWhenReady = [" + playWhenReady + "], playbackState = [" + playbackState + "]");
-        if (getCurrentState() == STATE_PAUSED_SEEK) {
-            if (DEBUG) Log.d(TAG, "onPlayerStateChanged() currently on PausedSeek");
+        if (getCurrentState() == STATE_PAUSED_SEEK || getCurrentState() == STATE_BLOCKED) {
+            if (DEBUG) Log.d(TAG, "onPlayerStateChanged() is currently blocked");
             return;
         }
 
@@ -594,7 +616,7 @@ public abstract class BasePlayer implements Player.EventListener,
                 isPrepared = false;
                 break;
             case Player.STATE_BUFFERING: // 2
-                if (isPrepared && getCurrentState() != STATE_LOADING) changeState(STATE_BUFFERING);
+                if (isPrepared) changeState(STATE_BUFFERING);
                 break;
             case Player.STATE_READY: //3
                 if (!isPrepared) {
@@ -606,12 +628,10 @@ public abstract class BasePlayer implements Player.EventListener,
                 changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
                 break;
             case Player.STATE_ENDED: // 4
-                if (playQueue.getIndex() < playQueue.size() - 1) {
-                    playQueue.offsetIndex(+1);
-                    break;
+                if (isPrepared) {
+                    changeState(STATE_COMPLETED);
+                    isPrepared = false;
                 }
-                changeState(STATE_COMPLETED);
-                isPrepared = false;
                 break;
         }
     }
@@ -648,10 +668,21 @@ public abstract class BasePlayer implements Player.EventListener,
         if (simpleExoPlayer == null) return;
         if (DEBUG) Log.d(TAG, "Blocking...");
 
+        changeState(STATE_BLOCKED);
+
+        wasPlaying = simpleExoPlayer.getPlayWhenReady();
+        simpleExoPlayer.setPlayWhenReady(false);
+    }
+
+    @Override
+    public void prepare(final MediaSource mediaSource) {
+        if (simpleExoPlayer == null) return;
+        if (DEBUG) Log.d(TAG, "Preparing...");
+
         simpleExoPlayer.stop();
         isPrepared = false;
 
-        changeState(STATE_BUFFERING);
+        simpleExoPlayer.prepare(mediaSource);
     }
 
     @Override
@@ -659,7 +690,7 @@ public abstract class BasePlayer implements Player.EventListener,
         if (simpleExoPlayer == null) return;
         if (DEBUG) Log.d(TAG, "Unblocking...");
 
-        simpleExoPlayer.prepare(playbackManager.getMediaSource(), true, true);
+        if (getCurrentState() == STATE_BLOCKED) changeState(STATE_BUFFERING);
     }
 
     @Override
@@ -872,6 +903,10 @@ public abstract class BasePlayer implements Player.EventListener,
 
     public int getCurrentQueueIndex() {
         return playQueue != null ? playQueue.getIndex() : -1;
+    }
+
+    public long getPlayerCurrentPosition() {
+        return simpleExoPlayer != null ? simpleExoPlayer.getCurrentPosition() : 0L;
     }
 
     public PlayQueue getPlayQueue() {

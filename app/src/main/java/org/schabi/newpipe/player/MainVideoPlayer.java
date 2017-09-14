@@ -342,8 +342,8 @@ public class MainVideoPlayer extends Activity {
         //////////////////////////////////////////////////////////////////////////*/
 
         @Override
-        public void onLoading() {
-            super.onLoading();
+        public void onBlocked() {
+            super.onBlocked();
             playPauseButton.setImageResource(R.drawable.ic_pause_white);
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 100);
             getRootView().setKeepScreenOn(true);

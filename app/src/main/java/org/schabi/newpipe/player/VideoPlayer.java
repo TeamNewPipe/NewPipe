@@ -104,7 +104,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     private static final float[] PLAYBACK_SPEEDS = {0.5f, 0.75f, 1f, 1.25f, 1.5f, 1.75f, 2f};
 
     private boolean startedFromNewPipe = true;
-    private boolean wasPlaying = false;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -223,10 +222,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
         final int sortedStreamsIndex = intent.getIntExtra(INDEX_SEL_VIDEO_STREAM, -1);
 
-        playQueue = new SinglePlayQueue((StreamInfo) serializable, sortedStreamsIndex);
-        playQueue.init();
-
-        playbackManager = new PlaybackManager(this, playQueue);
+        final PlayQueue queue = new SinglePlayQueue((StreamInfo) serializable, sortedStreamsIndex);
+        initPlayback(this, queue);
     }
 
     @SuppressWarnings("unchecked")
@@ -234,10 +231,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         final Serializable serializable = intent.getSerializableExtra(PLAY_QUEUE);
         if (!(serializable instanceof PlayQueue)) return;
 
-        playQueue = (PlayQueue) serializable;
-        playQueue.init();
-
-        playbackManager = new PlaybackManager(this, playQueue);
+        final PlayQueue queue = (PlayQueue) serializable;
+        initPlayback(this, queue);
     }
 
     @Override
@@ -304,7 +299,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onLoading() {
+    public void onBlocked() {
         if (DEBUG) Log.d(TAG, "onLoading() called");
 
         if (!isProgressLoopRunning()) startProgressLoop();
@@ -446,7 +441,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     protected void onFullScreenButtonClicked() {
         if (!isPlayerReady()) return;
 
-        changeState(STATE_BUFFERING);
+        changeState(STATE_BLOCKED);
     }
 
     @Override
@@ -523,7 +518,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
         VideoStream videoStream = getSelectedVideoStream();
         qualityTextView.setText(MediaFormat.getNameById(videoStream.format) + " " + videoStream.resolution);
-        wasPlaying = isPlaying();
+        wasPlaying = simpleExoPlayer.getPlayWhenReady();
     }
 
     private void onPlaybackSpeedClicked() {
@@ -549,7 +544,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         if (DEBUG) Log.d(TAG, "onStartTrackingTouch() called with: seekBar = [" + seekBar + "]");
         if (getCurrentState() != STATE_PAUSED_SEEK) changeState(STATE_PAUSED_SEEK);
 
-        wasPlaying = isPlaying();
+        wasPlaying = simpleExoPlayer.getPlayWhenReady();
         if (isPlaying()) simpleExoPlayer.setPlayWhenReady(false);
 
         showControls(0);

@@ -458,8 +458,8 @@ public class BackgroundPlayer extends Service {
         //////////////////////////////////////////////////////////////////////////*/
 
         @Override
-        public void onLoading() {
-            super.onLoading();
+        public void onBlocked() {
+            super.onBlocked();
 
             setControlsOpacity(77);
             updateNotification(-1);
