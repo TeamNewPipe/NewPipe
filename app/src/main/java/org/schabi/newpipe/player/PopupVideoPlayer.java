@@ -87,7 +87,7 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
  *
  * @author mauriciocolli
  */
-public class PopupVideoPlayer extends Service {
+public final class PopupVideoPlayer extends Service {
     private static final String TAG = ".PopupVideoPlayer";
     private static final boolean DEBUG = BasePlayer.DEBUG;
     private static final int SHUTDOWN_FLING_VELOCITY = 10000;

@@ -300,17 +300,12 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
     @Override
     public void onBlocked() {
-        if (DEBUG) Log.d(TAG, "onLoading() called");
-
-        if (!isProgressLoopRunning()) startProgressLoop();
+        super.onBlocked();
 
         controlsVisibilityHandler.removeCallbacksAndMessages(null);
         animateView(controlsRoot, false, 300);
 
-        showAndAnimateControl(-1, true);
-        playbackSeekBar.setEnabled(true);
-        playbackSeekBar.setProgress(0);
-
+        playbackSeekBar.setEnabled(false);
         // Bug on lower api, disabling and enabling the seekBar resets the thumb color -.-, so sets the color again
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
             playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
@@ -323,12 +318,19 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
     @Override
     public void onPlaying() {
-        if (DEBUG) Log.d(TAG, "onPlaying() called");
-        if (!isProgressLoopRunning()) startProgressLoop();
+        super.onPlaying();
+
         showAndAnimateControl(-1, true);
+
+        playbackSeekBar.setEnabled(true);
+        // Bug on lower api, disabling and enabling the seekBar resets the thumb color -.-, so sets the color again
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+            playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+
         loadingPanel.setVisibility(View.GONE);
         showControlsThenHide();
         animateView(currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, false, 200);
+        animateView(endScreen, false, 0);
     }
 
     @Override
@@ -353,23 +355,12 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
     @Override
     public void onCompleted() {
-        if (DEBUG) Log.d(TAG, "onCompleted() called");
-
-        if (isProgressLoopRunning()) stopProgressLoop();
+        super.onCompleted();
 
         showControls(500);
         animateView(endScreen, true, 800);
         animateView(currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, false, 200);
         loadingPanel.setVisibility(View.GONE);
-
-        playbackSeekBar.setMax((int) simpleExoPlayer.getDuration());
-        playbackSeekBar.setProgress(playbackSeekBar.getMax());
-        playbackSeekBar.setEnabled(false);
-        playbackEndTime.setText(getTimeString(playbackSeekBar.getMax()));
-        playbackCurrentTime.setText(playbackEndTime.getText());
-        // Bug on lower api, disabling and enabling the seekBar resets the thumb color -.-, so sets the color again
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-            playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
 
         animateView(surfaceForeground, true, 100);
     }

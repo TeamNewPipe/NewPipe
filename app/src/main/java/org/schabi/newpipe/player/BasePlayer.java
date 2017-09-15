@@ -171,7 +171,6 @@ public abstract class BasePlayer implements Player.EventListener,
     public BasePlayer(Context context) {
         this.context = context;
         this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        this.audioManager = ((AudioManager) context.getSystemService(Context.AUDIO_SERVICE));
 
         this.broadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -329,6 +328,12 @@ public abstract class BasePlayer implements Player.EventListener,
             audioManager.abandonAudioFocus(this);
             audioManager = null;
         }
+    }
+
+    public void destroy() {
+        if (DEBUG) Log.d(TAG, "destroy() called");
+        destroyPlayer();
+
         if (playQueue != null) {
             playQueue.dispose();
             playQueue = null;
@@ -337,11 +342,7 @@ public abstract class BasePlayer implements Player.EventListener,
             playbackManager.dispose();
             playbackManager = null;
         }
-    }
 
-    public void destroy() {
-        if (DEBUG) Log.d(TAG, "destroy() called");
-        destroyPlayer();
         unregisterBroadcastReceiver();
 
         simpleExoPlayer = null;
@@ -557,7 +558,7 @@ public abstract class BasePlayer implements Player.EventListener,
         if (isCurrentWindowCorrect && getCurrentState() == STATE_PLAYING) return;
 
         // Check timeline is up-to-date and has window
-        if (playbackManager.size() != simpleExoPlayer.getCurrentTimeline().getWindowCount()) return;
+        if (playbackManager.expectedTimelineSize() != simpleExoPlayer.getCurrentTimeline().getWindowCount()) return;
         if (simpleExoPlayer.getCurrentTimeline().getWindowCount() <= currentSourceIndex) return;
 
         // Check if window is ready
@@ -637,7 +638,8 @@ public abstract class BasePlayer implements Player.EventListener,
                 changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
                 break;
             case Player.STATE_ENDED: // 4
-                if (isPrepared) {
+                // Ensure the current window is loaded
+                if (simpleExoPlayer.isCurrentWindowSeekable()) {
                     changeState(STATE_COMPLETED);
                     isPrepared = false;
                 }
@@ -742,7 +744,10 @@ public abstract class BasePlayer implements Player.EventListener,
         if (!isPlaying()) audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
         else audioManager.abandonAudioFocus(this);
 
-        if (getCurrentState() == STATE_COMPLETED) playQueue.setIndex(0);
+        if (getCurrentState() == STATE_COMPLETED) {
+            if (playQueue.getIndex() == 0) simpleExoPlayer.seekToDefaultPosition();
+            else playQueue.setIndex(0);
+        }
         simpleExoPlayer.setPlayWhenReady(!isPlaying());
     }
 

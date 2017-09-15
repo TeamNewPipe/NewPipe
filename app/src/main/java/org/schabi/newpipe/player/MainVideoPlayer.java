@@ -20,7 +20,6 @@
 package org.schabi.newpipe.player;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -55,11 +54,10 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
  *
  * @author mauriciocolli
  */
-public class MainVideoPlayer extends Activity {
+public final class MainVideoPlayer extends Activity {
     private static final String TAG = ".MainVideoPlayer";
     private static final boolean DEBUG = BasePlayer.DEBUG;
 
-    private AudioManager audioManager;
     private GestureDetector gestureDetector;
 
     private boolean activityPaused;
@@ -76,7 +74,6 @@ public class MainVideoPlayer extends Activity {
         ThemeHelper.setTheme(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) getWindow().setStatusBarColor(Color.BLACK);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         if (getIntent() == null) {
             Toast.makeText(this, R.string.general_error, Toast.LENGTH_SHORT).show();
@@ -111,6 +108,7 @@ public class MainVideoPlayer extends Activity {
         if (DEBUG) Log.d(TAG, "onStop() called");
         activityPaused = true;
         if (playerImpl.getPlayer() != null) {
+            playerImpl.wasPlaying = playerImpl.getPlayer().getPlayWhenReady();
             playerImpl.setRecovery(
                     playerImpl.getCurrentQueueIndex(),
                     (int) playerImpl.getPlayer().getCurrentPosition()
@@ -126,8 +124,10 @@ public class MainVideoPlayer extends Activity {
         if (activityPaused) {
             playerImpl.initPlayer();
             playerImpl.getPlayPauseButton().setImageResource(R.drawable.ic_play_arrow_white);
-            playerImpl.playQueue.init();
-            //playerImpl.play(false);
+
+            playerImpl.getPlayer().setPlayWhenReady(playerImpl.wasPlaying);
+            playerImpl.initPlayback(playerImpl, playerImpl.playQueue);
+
             activityPaused = false;
         }
     }
@@ -495,7 +495,7 @@ public class MainVideoPlayer extends Activity {
         private final float stepsBrightness = 15, stepBrightness = (1f / stepsBrightness), minBrightness = .01f;
         private float currentBrightness = .5f;
 
-        private int currentVolume, maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        private int currentVolume, maxVolume = playerImpl.audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         private final float stepsVolume = 15, stepVolume = (float) Math.ceil(maxVolume / stepsVolume), minVolume = 0;
 
         private final String brightnessUnicode = new String(Character.toChars(0x2600));
@@ -530,10 +530,10 @@ public class MainVideoPlayer extends Activity {
 
             if (e1.getX() > playerImpl.getRootView().getWidth() / 2) {
                 double floor = Math.floor(up ? stepVolume : -stepVolume);
-                currentVolume = (int) (audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) + floor);
+                currentVolume = (int) (playerImpl.audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) + floor);
                 if (currentVolume >= maxVolume) currentVolume = maxVolume;
                 if (currentVolume <= minVolume) currentVolume = (int) minVolume;
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);
+                playerImpl.audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);
 
                 if (DEBUG) Log.d(TAG, "onScroll().volumeControl, currentVolume = " + currentVolume);
                 playerImpl.getVolumeTextView().setText(volumeUnicode + " " + Math.round((((float) currentVolume) / maxVolume) * 100) + "%");

@@ -55,7 +55,7 @@ import org.schabi.newpipe.util.ThemeHelper;
  *
  * @author mauriciocolli
  */
-public class BackgroundPlayer extends Service {
+public final class BackgroundPlayer extends Service {
     private static final String TAG = "BackgroundPlayer";
     private static final boolean DEBUG = BasePlayer.DEBUG;
 

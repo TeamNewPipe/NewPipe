@@ -45,6 +45,7 @@ public class PlaybackManager {
     private CompositeDisposable disposables;
 
     private boolean isBlocked;
+    private boolean hasReset;
 
     public PlaybackManager(@NonNull final PlaybackListener listener,
                            @NonNull final PlayQueue playQueue) {
@@ -72,8 +73,8 @@ public class PlaybackManager {
         return sourceToQueueIndex.indexOf(playQueue.getIndex());
     }
 
-    public int size() {
-        return sourceToQueueIndex.size();
+    public int expectedTimelineSize() {
+        return sources.getSize();
     }
 
     public void dispose() {
@@ -178,6 +179,11 @@ public class PlaybackManager {
 
     private boolean tryUnblock() {
         if (isPlayQueueReady() && isCurrentIndexLoaded() && isBlocked) {
+            if (hasReset) {
+                playbackListener.prepare(sources);
+                hasReset = false;
+            }
+
             isBlocked = false;
             playbackListener.unblock();
             return true;
@@ -249,7 +255,7 @@ public class PlaybackManager {
         if (this.sourceToQueueIndex != null) this.sourceToQueueIndex.clear();
 
         this.sources = new DynamicConcatenatingMediaSource();
-        playbackListener.prepare(this.sources);
+        this.hasReset = true;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
