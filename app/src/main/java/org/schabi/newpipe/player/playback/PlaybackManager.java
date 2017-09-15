@@ -120,14 +120,11 @@ public class PlaybackManager {
                         break;
                     case REMOVE:
                         final RemoveEvent removeEvent = (RemoveEvent) event;
-                        if (removeEvent.isCurrent()) tryBlock();
-                        remove(removeEvent.index(), true);
-                        break;
+                        if (!removeEvent.isCurrent()) {
+                            remove(removeEvent.index());
+                            break;
+                        }
                     case UPDATE:
-                        final UpdateEvent updateEvent = (UpdateEvent) event;
-                        tryBlock();
-                        remove(updateEvent.index(), false);
-                        break;
                     case SHUFFLE:
                         tryBlock();
                         resetSources();
@@ -275,7 +272,7 @@ public class PlaybackManager {
         }
     }
 
-    private void remove(final int queueIndex, final boolean cascade) {
+    private void remove(final int queueIndex) {
         if (queueIndex < 0) return;
 
         final int sourceIndex = sourceToQueueIndex.indexOf(queueIndex);
@@ -284,11 +281,9 @@ public class PlaybackManager {
         sourceToQueueIndex.remove(sourceIndex);
         sources.removeMediaSource(sourceIndex);
 
-        if (cascade) {
-            // Will be slow on really large arrays, fast enough for typical use case
-            for (int i = sourceIndex; i < sourceToQueueIndex.size(); i++) {
-                sourceToQueueIndex.set(i, sourceToQueueIndex.get(i) - 1);
-            }
+        // Will be slow on really large arrays, fast enough for typical use case
+        for (int i = sourceIndex; i < sourceToQueueIndex.size(); i++) {
+            sourceToQueueIndex.set(i, sourceToQueueIndex.get(i) - 1);
         }
     }
 }

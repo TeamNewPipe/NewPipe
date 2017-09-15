@@ -23,6 +23,7 @@ public final class ExternalPlayQueue extends PlayQueue {
     public static final String SERVICE_ID = "service_id";
     public static final String INDEX = "index";
     public static final String STREAMS = "streams";
+    public static final String URL = "url";
     public static final String NEXT_PAGE_URL = "next_page_url";
 
     private static final int RETRY_COUNT = 2;
@@ -30,17 +31,20 @@ public final class ExternalPlayQueue extends PlayQueue {
     private boolean isComplete;
 
     private int serviceId;
-    private String playlistUrl;
+    private String baseUrl;
+    private String nextUrl;
 
     private transient Disposable fetchReactor;
 
     public ExternalPlayQueue(final int serviceId,
+                             final String url,
                              final String nextPageUrl,
                              final List<InfoItem> streams,
                              final int index) {
         super(index, extractPlaylistItems(streams));
 
-        this.playlistUrl = nextPageUrl;
+        this.baseUrl = url;
+        this.nextUrl = nextPageUrl;
         this.serviceId = serviceId;
 
         this.isComplete = nextPageUrl == null || nextPageUrl.isEmpty();
@@ -53,7 +57,7 @@ public final class ExternalPlayQueue extends PlayQueue {
 
     @Override
     public void fetch() {
-       ExtractorHelper.getMorePlaylistItems(this.serviceId, this.playlistUrl)
+       ExtractorHelper.getMorePlaylistItems(this.serviceId, this.baseUrl, this.nextUrl)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .retry(RETRY_COUNT)
@@ -74,7 +78,7 @@ public final class ExternalPlayQueue extends PlayQueue {
             @Override
             public void onSuccess(@NonNull ListExtractor.NextItemsResult result) {
                 if (!result.hasMoreStreams()) isComplete = true;
-                playlistUrl = result.nextItemsUrl;
+                nextUrl = result.nextItemsUrl;
 
                 append(extractPlaylistItems(result.nextItemsList));
             }

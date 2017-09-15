@@ -64,6 +64,7 @@ public class NavigationHelper {
                 .putExtra(ExternalPlayQueue.SERVICE_ID, info.service_id)
                 .putExtra(ExternalPlayQueue.INDEX, index)
                 .putExtra(ExternalPlayQueue.STREAMS, streams)
+                .putExtra(ExternalPlayQueue.URL, info.url)
                 .putExtra(ExternalPlayQueue.NEXT_PAGE_URL, info.next_streams_url);
     }
 

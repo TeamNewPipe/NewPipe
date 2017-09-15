@@ -267,6 +267,7 @@ public abstract class BasePlayer implements Player.EventListener,
         final int serviceId = intent.getIntExtra(ExternalPlayQueue.SERVICE_ID, -1);
         final int index = intent.getIntExtra(ExternalPlayQueue.INDEX, 0);
         final Serializable serializable = intent.getSerializableExtra(ExternalPlayQueue.STREAMS);
+        final String url = intent.getStringExtra(ExternalPlayQueue.URL);
         final String nextPageUrl = intent.getStringExtra(ExternalPlayQueue.NEXT_PAGE_URL);
 
         List<InfoItem> info = new ArrayList<>();
@@ -276,7 +277,7 @@ public abstract class BasePlayer implements Player.EventListener,
             }
         }
 
-        final PlayQueue queue = new ExternalPlayQueue(serviceId, nextPageUrl, info, index);
+        final PlayQueue queue = new ExternalPlayQueue(serviceId, url, nextPageUrl, info, index);
         initPlayback(this, queue);
     }
 
