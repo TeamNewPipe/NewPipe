@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources translatable="false">
+    <!-- Key values -->
+
+
+
+
+
+
+
+    <!-- THEMES -->
+
+    <string name="default_language_value">es</string>
+
+    <!-- FileName Downloads  -->
+
+
+
+
+    <!-- TODO: scrape these programmatically, then store in a local cache -->
+    <!-- alternatively, load these from some local android data store -->
+</resources>
