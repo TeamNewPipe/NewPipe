@@ -234,7 +234,7 @@ public class NavigationHelper {
         Intent intentByLink;
         try {
             intentByLink = getIntentByLink(context, url);
-        } catch (Exception e) {
+        } catch (ExtractionException e) {
             return false;
         }
         intentByLink.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -251,9 +251,11 @@ public class NavigationHelper {
         return mIntent;
     }
 
-    private static Intent getIntentByLink(Context context, String url) throws Exception {
-        StreamingService service = NewPipe.getServiceByUrl(url);
+    public static Intent getIntentByLink(Context context, String url) throws ExtractionException {
+        return getIntentByLink(context, NewPipe.getServiceByUrl(url), url);
+    }
 
+    public static Intent getIntentByLink(Context context, StreamingService service, String url) throws ExtractionException {
         if (service != ServiceList.YouTube.getService()) {
             throw new ExtractionException("Service not supported at the moment");
         }
@@ -262,7 +264,7 @@ public class NavigationHelper {
         StreamingService.LinkType linkType = service.getLinkTypeByUrl(url);
 
         if (linkType == StreamingService.LinkType.NONE) {
-            throw new Exception("Url not known to service. service=" + serviceId + " url=" + url);
+            throw new ExtractionException("Url not known to service. service=" + serviceId + " url=" + url);
         }
 
         url = getCleanUrl(service, url, linkType);
@@ -278,7 +280,7 @@ public class NavigationHelper {
         return rIntent;
     }
 
-    private static String getCleanUrl(StreamingService service, String dirtyUrl, StreamingService.LinkType linkType) throws Exception {
+    private static String getCleanUrl(StreamingService service, String dirtyUrl, StreamingService.LinkType linkType) throws ExtractionException {
         switch (linkType) {
             case STREAM:
                 return service.getStreamUrlIdHandler().cleanUrl(dirtyUrl);
