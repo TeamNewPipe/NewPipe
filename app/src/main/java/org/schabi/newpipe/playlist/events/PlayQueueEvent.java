@@ -19,6 +19,6 @@ public enum PlayQueueEvent {
     UPDATE,
 
     // send when queue is shuffled
-    SHUFFLE
+    REORDER
 }
 

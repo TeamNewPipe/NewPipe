@@ -9,6 +9,7 @@ import org.schabi.newpipe.playlist.events.AppendEvent;
 import org.schabi.newpipe.playlist.events.InitEvent;
 import org.schabi.newpipe.playlist.events.PlayQueueMessage;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
+import org.schabi.newpipe.playlist.events.ReorderEvent;
 import org.schabi.newpipe.playlist.events.SelectEvent;
 import org.schabi.newpipe.playlist.events.UpdateEvent;
 
@@ -29,7 +30,8 @@ public abstract class PlayQueue implements Serializable {
 
     public static final boolean DEBUG = true;
 
-    private final ArrayList<PlayQueueItem> streams;
+    private ArrayList<PlayQueueItem> backup;
+    private ArrayList<PlayQueueItem> streams;
     private final AtomicInteger queueIndex;
 
     private transient BehaviorSubject<PlayQueueMessage> streamsEventBroadcast;
@@ -163,6 +165,25 @@ public abstract class PlayQueue implements Serializable {
         }
 
         broadcast(new RemoveEvent(index, isCurrent));
+    }
+
+    public synchronized void shuffle() {
+        backup = new ArrayList<>(streams);
+        final PlayQueueItem current = getCurrent();
+        Collections.shuffle(streams);
+        queueIndex.set(streams.indexOf(current));
+
+        broadcast(new ReorderEvent(true));
+    }
+
+    public synchronized void unshuffle() {
+        if (backup == null) return;
+        final PlayQueueItem current = getCurrent();
+        streams.clear();
+        streams = backup;
+        queueIndex.set(streams.indexOf(current));
+
+        broadcast(new ReorderEvent(false));
     }
 
     /*//////////////////////////////////////////////////////////////////////////

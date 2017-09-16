@@ -125,7 +125,7 @@ public class PlaybackManager {
                             break;
                         }
                     case UPDATE:
-                    case SHUFFLE:
+                    case REORDER:
                         tryBlock();
                         resetSources();
                         break;

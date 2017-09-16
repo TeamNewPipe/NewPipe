@@ -560,7 +560,6 @@ public abstract class BasePlayer implements Player.EventListener,
 
         // Check timeline is up-to-date and has window
         if (playbackManager.expectedTimelineSize() != simpleExoPlayer.getCurrentTimeline().getWindowCount()) return;
-        if (simpleExoPlayer.getCurrentTimeline().getWindowCount() <= currentSourceIndex) return;
 
         // Check if window is ready
         Timeline.Window window = new Timeline.Window();
@@ -617,7 +616,7 @@ public abstract class BasePlayer implements Player.EventListener,
     public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
         if (DEBUG)
             Log.d(TAG, "onPlayerStateChanged() called with: playWhenReady = [" + playWhenReady + "], playbackState = [" + playbackState + "]");
-        if (getCurrentState() == STATE_PAUSED_SEEK || getCurrentState() == STATE_BLOCKED) {
+        if (getCurrentState() == STATE_PAUSED_SEEK) {
             if (DEBUG) Log.d(TAG, "onPlayerStateChanged() is currently blocked");
             return;
         }
@@ -639,8 +638,10 @@ public abstract class BasePlayer implements Player.EventListener,
                 changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
                 break;
             case Player.STATE_ENDED: // 4
-                // Ensure the current window is loaded
-                if (simpleExoPlayer.isCurrentWindowSeekable()) {
+                // Ensure the current window has actually ended
+                // since single windows that are still loading may produce an ended state
+                if (simpleExoPlayer.isCurrentWindowSeekable() &&
+                        simpleExoPlayer.getCurrentPosition() >= simpleExoPlayer.getDuration()) {
                     changeState(STATE_COMPLETED);
                     isPrepared = false;
                 }
@@ -680,6 +681,7 @@ public abstract class BasePlayer implements Player.EventListener,
         if (simpleExoPlayer == null) return;
         if (DEBUG) Log.d(TAG, "Blocking...");
 
+        simpleExoPlayer.removeListener(this);
         changeState(STATE_BLOCKED);
 
         wasPlaying = simpleExoPlayer.getPlayWhenReady();
@@ -703,6 +705,7 @@ public abstract class BasePlayer implements Player.EventListener,
         if (DEBUG) Log.d(TAG, "Unblocking...");
 
         if (getCurrentState() == STATE_BLOCKED) changeState(STATE_BUFFERING);
+        simpleExoPlayer.addListener(this);
     }
 
     @Override
