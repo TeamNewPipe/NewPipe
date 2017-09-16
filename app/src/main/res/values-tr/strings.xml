@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="main_bg_subtitle">Başlamak için aramaya dokunun</string>
-    <string name="view_count_text">%1$s izlenme</string>
+    <string name="view_count_text">%1$s görüntüleme</string>
     <string name="upload_date_text">Yayımlanma: %1$s</string>
-    <string name="no_player_found">Yayın oynatıcı bulunamadı. VLC\'yi kurmak ister misiniz?</string>
+    <string name="no_player_found">Akış oynatıcı bulunamadı. VLC\'yi kurmak ister misiniz?</string>
     <string name="install">Kur</string>
     <string name="cancel">İptal</string>
     <string name="open_in_browser">Tarayıcıda aç</string>
@@ -12,7 +12,7 @@
     <string name="search">Ara</string>
     <string name="settings">Ayarlar</string>
     <string name="did_you_mean">Bunu mu demek istediniz: %1$s ?</string>
-    <string name="share_dialog_title">Bununla paylaş</string>
+    <string name="share_dialog_title">Şununla paylaş</string>
     <string name="choose_browser">Tarayıcı seç</string>
     <string name="screen_rotation">döndürme</string>
     <string name="use_external_video_player_title">Harici video oynatıcı kullan</string>
@@ -29,14 +29,14 @@
     <string name="autoplay_by_calling_app_title">Kendiliğinden oynat</string>
     <string name="autoplay_by_calling_app_summary">NewPipe başka bir uygulamadan çağırıldığında videoyu kendiliğinden oynatır</string>
     <string name="default_resolution_title">Öntanımlı çözünürlük</string>
-    <string name="play_with_kodi_title">Kodi ile çal</string>
+    <string name="play_with_kodi_title">Kodi ile oynat</string>
     <string name="kore_not_found">Kore uygulaması bulunamadı. Kur?</string>
     <string name="show_play_with_kodi_title">\"Kodi ile Oynat\" seçeneğini göster</string>
-    <string name="show_play_with_kodi_summary">Kodi medya merkezi aracılığıyla video oynatmak için bir seçenek görüntüler</string>
+    <string name="show_play_with_kodi_summary">Kodi ortam merkezi aracılığıyla video oynatmak için bir seçenek görüntüler</string>
     <string name="default_audio_format_title">Öntanımlı ses biçimi</string>
-    <string name="webm_description">WebM - özgür biçim</string>
+    <string name="webm_description">WebM — özgür biçim</string>
     <string name="m4a_description">M4A — daha iyi nitelik</string>
-    <string name="theme_title">Tema</string>
+    <string name="theme_title">Gövde</string>
     <string name="dark_theme_title">Koyu</string>
     <string name="light_theme_title">Açık</string>
 
@@ -49,7 +49,7 @@
     <string name="settings_category_video_audio_title">Video ve Ses</string>
     <string name="settings_category_appearance_title">Görünüm</string>
     <string name="settings_category_other_title">Diğer</string>
-    <string name="background_player_playing_toast">Arka planda çalıyor</string>
+    <string name="background_player_playing_toast">Arka planda oynatıyor</string>
     <string name="play_btn_text">Oynat</string>
     <string name="content">İçerik</string>
     <string name="show_age_restricted_content_title">Yaş sınırlı içeriği göster</string>
@@ -162,7 +162,7 @@
     <string name="refresh">Yenile</string>
     <string name="clear">Temizle</string>
 
-    <string name="popup_remember_size_pos_title">Açılır pencere boyutunu ve yerini hatırla</string>
+    <string name="popup_remember_size_pos_title">Açılır pencere boyutunu ve yerini anımsa</string>
     <string name="popup_remember_size_pos_summary">Açılır pencerenin ayarlandığı son boyutu ve yeri anımsa</string>
 
     <string name="settings_category_popup_title">Açılır Pencere</string>
@@ -170,7 +170,7 @@
 
     <string name="use_external_video_player_summary">Bu seçenek etkinken bazı çözünürlüklerin sesi olmayacak</string>
     <string name="player_gesture_controls_summary">Oynatıcının parlaklığını ve sesini yönetmek için el hareketlerini kullan</string>
-    <string name="player_gesture_controls_title">Oynatıcı el hareketi kontrolleri</string>
+    <string name="player_gesture_controls_title">Oynatıcı el hareketi denetimleri</string>
     <string name="show_search_suggestions_title">Arama önerileri</string>
     <string name="show_search_suggestions_summary">Ararken önerileri göster</string>
 
