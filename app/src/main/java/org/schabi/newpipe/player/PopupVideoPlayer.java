@@ -575,10 +575,10 @@ public final class PopupVideoPlayer extends Service {
 
             if (e.getX() > popupWidth / 2) {
                 //playerImpl.onFastForward();
-                playerImpl.playQueue.offsetIndex(+1);
+                playerImpl.onPlayNext();
             } else {
                 //playerImpl.onFastRewind();
-                playerImpl.playQueue.offsetIndex(-1);
+                playerImpl.onPlayPrevious();
             }
 
             return true;

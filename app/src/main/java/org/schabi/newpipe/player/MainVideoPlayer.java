@@ -468,10 +468,10 @@ public final class MainVideoPlayer extends Activity {
             if (!playerImpl.isPlayerReady()) return false;
 
             if (e.getX() > playerImpl.getRootView().getWidth() / 2)
-                playerImpl.playQueue.offsetIndex(+1);
+                playerImpl.onPlayNext();
                 //playerImpl.onFastForward();
             else
-                playerImpl.playQueue.offsetIndex(-1);
+                playerImpl.onPlayPrevious();
                 //playerImpl.onFastRewind();
 
             return true;

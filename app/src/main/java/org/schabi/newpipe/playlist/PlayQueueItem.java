@@ -37,6 +37,8 @@ public class PlayQueueItem implements Serializable {
         this.duration = streamInfo.duration;
 
         this.sortedQualityIndex = sortedQualityIndex;
+
+        this.stream = Single.just(streamInfo);
     }
 
     PlayQueueItem(final StreamInfoItem streamInfoItem) {

@@ -153,6 +153,7 @@ public abstract class BasePlayer implements Player.EventListener,
     //////////////////////////////////////////////////////////////////////////*/
 
     public int FAST_FORWARD_REWIND_AMOUNT = 10000; // 10 Seconds
+    public int PLAY_PREV_ACTIVATION_LIMIT = 5000; // 5 seconds
     public static final String CACHE_FOLDER_NAME = "exoplayer";
 
     protected SimpleExoPlayer simpleExoPlayer;
@@ -659,11 +660,15 @@ public abstract class BasePlayer implements Player.EventListener,
     @Override
     public void onPositionDiscontinuity() {
         // Refresh the playback if there is a transition to the next video
-        int newIndex = simpleExoPlayer.getCurrentWindowIndex();
-        if (DEBUG) Log.d(TAG, "onPositionDiscontinuity() called with: index = [" + newIndex + "]");
+        final int newWindowIndex = simpleExoPlayer.getCurrentWindowIndex();
+        final int newQueueIndex = playbackManager.getQueueIndexOf(newWindowIndex);
+        if (DEBUG) Log.d(TAG, "onPositionDiscontinuity() called with: " +
+                "window index = [" + newWindowIndex + "], queue index = [" + newQueueIndex + "]");
 
-        if (newIndex == playbackManager.getCurrentSourceIndex() + 1) {
+        if (newQueueIndex == -1) {
             playQueue.offsetIndex(+1);
+        } else {
+            playQueue.setIndex(newQueueIndex);
         }
     }
 
@@ -763,6 +768,24 @@ public abstract class BasePlayer implements Player.EventListener,
     public void onFastForward() {
         if (DEBUG) Log.d(TAG, "onFastForward() called");
         seekBy(FAST_FORWARD_REWIND_AMOUNT);
+    }
+
+    public void onPlayPrevious() {
+        if (simpleExoPlayer == null || playQueue == null || currentInfo == null) return;
+        if (DEBUG) Log.d(TAG, "onPlayPrevious() called");
+
+        if (simpleExoPlayer.getCurrentPosition() <= PLAY_PREV_ACTIVATION_LIMIT) {
+            playQueue.offsetIndex(-1);
+        } else {
+            simpleExoPlayer.seekTo(currentInfo.start_position);
+        }
+    }
+
+    public void onPlayNext() {
+        if (playQueue == null) return;
+        if (DEBUG) Log.d(TAG, "onPlayNext() called");
+
+        playQueue.offsetIndex(+1);
     }
 
     public void seekBy(int milliSeconds) {

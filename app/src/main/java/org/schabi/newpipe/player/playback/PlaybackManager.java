@@ -28,7 +28,8 @@ import io.reactivex.functions.Consumer;
 public class PlaybackManager {
     private final String TAG = "PlaybackManager@" + Integer.toHexString(hashCode());
     // One-side rolling window size for default loading
-    // Effectively loads WINDOW_SIZE * 2 streams
+    // Effectively loads WINDOW_SIZE * 2 + 1 streams, should be at least 1
+    // todo: inject this parameter, allow user settings perhaps
     private static final int WINDOW_SIZE = 3;
 
     private final PlaybackListener playbackListener;
@@ -71,6 +72,11 @@ public class PlaybackManager {
     * */
     public int getCurrentSourceIndex() {
         return sourceToQueueIndex.indexOf(playQueue.getIndex());
+    }
+
+    public int getQueueIndexOf(final int sourceIndex) {
+        if (sourceIndex < 0 || sourceIndex >= sourceToQueueIndex.size()) return -1;
+        return sourceToQueueIndex.get(sourceIndex);
     }
 
     public int expectedTimelineSize() {
@@ -210,11 +216,14 @@ public class PlaybackManager {
 
         // The rest are just for seamless playback
         final int leftBound = Math.max(0, currentIndex - WINDOW_SIZE);
-        final int rightBound = Math.min(playQueue.size(), currentIndex + WINDOW_SIZE);
-        final List<PlayQueueItem> items = playQueue.getStreams().subList(leftBound, rightBound);
-        for (final PlayQueueItem item: items) {
-            load(item);
-        }
+        final int rightLimit = currentIndex + WINDOW_SIZE + 1;
+        final int rightBound = Math.min(playQueue.size(), rightLimit);
+        final List<PlayQueueItem> items = new ArrayList<>(playQueue.getStreams().subList(leftBound, rightBound));
+
+        final int excess = rightLimit - playQueue.size();
+        if (excess >= 0) items.addAll(playQueue.getStreams().subList(0, excess));
+
+        for (final PlayQueueItem item: items) load(item);
     }
 
     private void load(@Nullable final PlayQueueItem item) {
@@ -234,7 +243,9 @@ public class PlaybackManager {
             @Override
             public void onSuccess(@NonNull StreamInfo streamInfo) {
                 final MediaSource source = playbackListener.sourceOf(streamInfo, item.getSortedQualityIndex());
-                insert(playQueue.indexOf(item), source);
+                final int itemIndex = playQueue.indexOf(item);
+                // replace all except the currently playing
+                insert(itemIndex, source, false);
                 if (tryUnblock()) sync();
             }
 
@@ -261,7 +272,7 @@ public class PlaybackManager {
 
     // Insert source into playlist with position in respect to the play queue
     // If the play queue index already exists, then the insert is ignored
-    private void insert(final int queueIndex, final MediaSource source) {
+    private void insert(final int queueIndex, final MediaSource source, final boolean replace) {
         if (queueIndex < 0) return;
 
         int pos = Collections.binarySearch(sourceToQueueIndex, queueIndex);
@@ -269,6 +280,9 @@ public class PlaybackManager {
             final int sourceIndex = -pos-1;
             sourceToQueueIndex.add(sourceIndex, queueIndex);
             sources.addMediaSource(sourceIndex, source);
+        } else if (replace) {
+            sources.addMediaSource(pos + 1, source);
+            sources.removeMediaSource(pos);
         }
     }
 

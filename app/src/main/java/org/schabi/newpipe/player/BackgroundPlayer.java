@@ -340,7 +340,7 @@ public final class BackgroundPlayer extends Service {
         public void onFastRewind() {
             if (!isPlayerReady()) return;
 
-            playQueue.offsetIndex(-1);
+            onPlayPrevious();
             triggerProgressUpdate();
         }
 
@@ -348,7 +348,7 @@ public final class BackgroundPlayer extends Service {
         public void onFastForward() {
             if (!isPlayerReady()) return;
 
-            playQueue.offsetIndex(+1);
+            onPlayNext();
             triggerProgressUpdate();
         }
 
