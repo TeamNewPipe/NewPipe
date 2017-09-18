@@ -3,11 +3,12 @@ package org.schabi.newpipe.fragments.list.search;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.ResourceCursorAdapter;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 
 import java.util.List;
@@ -44,7 +45,7 @@ public class SuggestionListAdapter extends ResourceCursorAdapter {
 
 
     public SuggestionListAdapter(Context context) {
-        super(context, android.R.layout.simple_list_item_1, null, 0);
+        super(context, R.layout.item_search_suggestion, null, 0);
     }
 
     @Override
@@ -52,12 +53,12 @@ public class SuggestionListAdapter extends ResourceCursorAdapter {
         ViewHolder viewHolder = new ViewHolder(view);
         viewHolder.suggestionTitle.setText(cursor.getString(INDEX_TITLE));
         boolean isHistoryItem = Boolean.valueOf(cursor.getString(INDEX_IS_HISTORY_ITEM));
-        int color = isHistoryItem ? android.R.color.holo_blue_dark : android.R.color.secondary_text_light;
-        viewHolder.suggestionTitle.setTextColor(ContextCompat.getColor(context, color));
+        viewHolder.historyIcon.setVisibility(isHistoryItem ? View.VISIBLE : View.INVISIBLE);
+
     }
 
     public void clearAdapter() {
-        //changeCursor(new MatrixCursor(columns, 0));
+        changeCursor(new MatrixCursor(columns, 0));
     }
 
     /**
@@ -67,7 +68,10 @@ public class SuggestionListAdapter extends ResourceCursorAdapter {
     public void updateAdapter(List<SearchHistoryEntry> historyItems, List<String> suggestions) {
         MatrixCursor cursor = new MatrixCursor(columns, historyItems.size() + suggestions.size());
         for (int i = 0; i < historyItems.size(); i++) {
-            insertRow(i, cursor, historyItems.get(i).getSearch(), true);
+            String item = historyItems.get(i).getSearch();
+            insertRow(i, cursor, item, true);
+            // Remove duplicate items.
+            suggestions.remove(item);
         }
         for (int i = 0; i < suggestions.size(); i++) {
             insertRow(historyItems.size() + i, cursor, suggestions.get(i), false);
@@ -99,8 +103,10 @@ public class SuggestionListAdapter extends ResourceCursorAdapter {
 
     private class ViewHolder {
         private final TextView suggestionTitle;
+        private final ImageView historyIcon;
         private ViewHolder(View view) {
             this.suggestionTitle = view.findViewById(android.R.id.text1);
+            this.historyIcon = view.findViewById(R.id.history_icon);
         }
     }
 }

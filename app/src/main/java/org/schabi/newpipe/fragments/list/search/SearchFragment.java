@@ -412,6 +412,12 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
             public void afterTextChanged(Editable s) {
                 String newText = searchEditText.getText().toString();
                 if (!TextUtils.isEmpty(newText)) suggestionPublisher.onNext(newText);
+                searchQuery = newText;
+                // TODO: this is still not working
+                if (searchQuery.length() < THRESHOLD_SUGGESTION) {
+                    List<SearchHistoryEntry> historyItems = searchHistoryDAO.getItemsForQuery(searchQuery, 10).blockingFirst();
+                    suggestionListAdapter.updateAdapter(historyItems, new ArrayList<String>());
+                }
             }
         };
         searchEditText.addTextChangedListener(textWatcher);
@@ -483,12 +489,6 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
             }
         };
 
-        // TODO: this isn't working correctly
-        if (searchQuery.length() < THRESHOLD_SUGGESTION) {
-            List<SearchHistoryEntry> historyItems = searchHistoryDAO.getItemsForQuery(searchQuery + "%", 10).blockingFirst();
-            suggestionListAdapter.updateAdapter(historyItems, new ArrayList<String>());
-        }
-
         suggestionWorkerDisposable = suggestionPublisher
                 .debounce(SUGGESTIONS_DEBOUNCE, TimeUnit.MILLISECONDS)
                 .startWith(!TextUtils.isEmpty(searchQuery) ? searchQuery : "")
@@ -505,7 +505,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
                     @Override
                     public void accept(@io.reactivex.annotations.NonNull Notification<List<String>> listNotification) throws Exception {
                         if (listNotification.isOnNext()) {
-                            List<SearchHistoryEntry> historyItems = searchHistoryDAO.getItemsForQuery(searchQuery + "%", 2).blockingFirst();
+                            List<SearchHistoryEntry> historyItems = searchHistoryDAO.getItemsForQuery(searchQuery, 2).blockingFirst();
                             suggestionListAdapter.updateAdapter(historyItems, listNotification.getValue());
                             if (errorPanelRoot.getVisibility() == View.VISIBLE) {
                                 hideLoading();
