@@ -54,7 +54,6 @@ public class SuggestionListAdapter extends ResourceCursorAdapter {
         viewHolder.suggestionTitle.setText(cursor.getString(INDEX_TITLE));
         boolean isHistoryItem = Boolean.valueOf(cursor.getString(INDEX_IS_HISTORY_ITEM));
         viewHolder.historyIcon.setVisibility(isHistoryItem ? View.VISIBLE : View.INVISIBLE);
-
     }
 
     public void clearAdapter() {

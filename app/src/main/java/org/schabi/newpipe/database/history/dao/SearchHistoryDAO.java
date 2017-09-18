@@ -36,7 +36,6 @@ public interface SearchHistoryDAO extends HistoryDAO<SearchHistoryEntry> {
     @Override
     Flowable<List<SearchHistoryEntry>> listByService(int serviceId);
 
-    // TODO: should be LIKE :query% but that throws more errors
     @Query("SELECT * FROM " + TABLE_NAME + " WHERE " + SEARCH + " LIKE :query || '%'" + ORDER_BY_CREATION_DATE + " LIMIT :limit")
     Flowable<List<SearchHistoryEntry>> getItemsForQuery(String query, int limit);
 }

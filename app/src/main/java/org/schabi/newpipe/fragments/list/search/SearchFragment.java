@@ -30,9 +30,6 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
-import com.google.common.base.Optional;
-import com.google.common.collect.Lists;
-
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
@@ -57,11 +54,8 @@ import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 
 import icepick.State;
-import io.reactivex.Maybe;
-import io.reactivex.MaybeSource;
 import io.reactivex.Notification;
 import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.BiFunction;
@@ -480,10 +474,6 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
             @Override
             public boolean test(@io.reactivex.annotations.NonNull String s) throws Exception {
                 boolean lengthCheck = s.length() >= THRESHOLD_SUGGESTION;
-                // Clear the suggestions adapter if the length check fails
-                if (!lengthCheck && !suggestionListAdapter.isEmpty()) {
-                    suggestionListAdapter.clearAdapter();
-                }
                 // Only pass through if suggestions is enabled and the query length is equal or greater than THRESHOLD_SUGGESTION
                 return showSuggestions && lengthCheck;
             }
@@ -492,49 +482,35 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
         suggestionWorkerDisposable = suggestionPublisher
                 .debounce(SUGGESTIONS_DEBOUNCE, TimeUnit.MILLISECONDS)
                 .startWith(!TextUtils.isEmpty(searchQuery) ? searchQuery : "")
-                .switchMap(new Function<String, Observable<Notification<List<String>>>>() {
+                .switchMap(new Function<String, Observable<Notification<Pair<List<String>, List<SearchHistoryEntry>>>>>() {
                     @Override
-                    public Observable<Notification<List<String>>> apply(@io.reactivex.annotations.NonNull String query) throws Exception {
-                        Log.d("xxx", "switchMap");
-                        /*
-                        return Observable.just(query)
-                                .filter(checkEnabledAndLength)
-                                .flatMap(new Function<String, Observable<Notification<List<String>>>>() {
-                                    @Override
-                                    public Observable<Notification<List<String>>> apply(@io.reactivex.annotations.NonNull String s) throws Exception {
-                                        return ExtractorHelper.suggestionsFor(serviceId, s, searchLanguage).toObservable().materialize();
-                                    }
-                                });
-                                */
-                        //return (checkEnabledAndLength.test(query))
-                        //        ? ExtractorHelper.suggestionsFor(serviceId, query, searchLanguage).toObservable().materialize()
-                        //        : Observable.just(Notification.<List<String>>createOnComplete());
-                        return Observable.<List<String>>just(new ArrayList<String>()).materialize();
-                    }
-                })
-                // TODO: proper query
-                .zipWith(searchHistoryDAO.getItemsForQuery(searchQuery, 10).toObservable(), new BiFunction<Notification<List<String>>, List<SearchHistoryEntry>, Pair<Notification<List<String>>, List<SearchHistoryEntry>>>() {
-                    @Override
-                    public Pair<Notification<List<String>>, List<SearchHistoryEntry>> apply(@io.reactivex.annotations.NonNull Notification<List<String>> listNotification, @io.reactivex.annotations.NonNull List<SearchHistoryEntry> searchHistoryEntries) throws Exception {
-                        Log.d("xxx", "zipWith");
-                        return new Pair<>(listNotification, searchHistoryEntries);
+                    public Observable<Notification<Pair<List<String>, List<SearchHistoryEntry>>>> apply(@io.reactivex.annotations.NonNull String query) throws Exception {
+                        Observable<List<String>> suggestions = (checkEnabledAndLength.test(query))
+                                ? ExtractorHelper.suggestionsFor(serviceId, query, searchLanguage).toObservable()
+                                : Observable.<List<String>>just(new ArrayList<String>());
+                        Observable<List<SearchHistoryEntry>> historyItems = searchHistoryDAO.getItemsForQuery(query, 10).toObservable();
+                        return Observable.combineLatest(suggestions, historyItems, new BiFunction<List<String>, List<SearchHistoryEntry>, Pair<List<String>, List<SearchHistoryEntry>>>() {
+                            @Override
+                            public Pair<List<String>, List<SearchHistoryEntry>> apply(@io.reactivex.annotations.NonNull List<String> suggestions, @io.reactivex.annotations.NonNull List<SearchHistoryEntry> searchHistoryEntries) throws Exception {
+                                return new Pair<>(suggestions, searchHistoryEntries);
+                            }
+                        }).materialize();
                     }
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Pair<Notification<List<String>>, List<SearchHistoryEntry>>>() {
+                .subscribe(new Consumer<Notification<Pair<List<String>, List<SearchHistoryEntry>>>>() {
                     @Override
-                    public void accept(Pair<Notification<List<String>>, List<SearchHistoryEntry>> pair) throws Exception {
-                        Log.d("xxx", "subscribe");
-                        Notification<List<String>> listNotification = pair.first;
-                        List<SearchHistoryEntry> historyItems = pair.second;
-                        if (listNotification.isOnNext()) {
-                            suggestionListAdapter.updateAdapter(historyItems, listNotification.getValue());
+                    public void accept(Notification<Pair<List<String>, List<SearchHistoryEntry>>> notification) throws Exception {
+                        if (notification.isOnNext()) {
+                            List<String> suggestions = notification.getValue().first;
+                            List<SearchHistoryEntry> historyItems = notification.getValue().second;
+                            suggestionListAdapter.updateAdapter(historyItems, suggestions);
                             if (errorPanelRoot.getVisibility() == View.VISIBLE) {
                                 hideLoading();
                             }
-                        } else if (listNotification.isOnError()) {
-                            Throwable error = listNotification.getError();
+                        } else if (notification.isOnError()) {
+                            Throwable error = notification.getError();
                             if (!ExtractorHelper.isInterruptedCaused(error)) {
                                 onSuggestionError(error);
                             }
