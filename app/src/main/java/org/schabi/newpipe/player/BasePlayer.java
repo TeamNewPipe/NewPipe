@@ -440,12 +440,16 @@ public abstract class BasePlayer implements Player.EventListener,
         if (simpleExoPlayer != null) simpleExoPlayer.setVolume(DUCK_AUDIO_TO);
         animateAudio(DUCK_AUDIO_TO, 1f, DUCK_DURATION);
 
-        if (isResumeAfterAudioFocusGain()) simpleExoPlayer.setPlayWhenReady(true);
+        if (isResumeAfterAudioFocusGain()) {
+            simpleExoPlayer.setPlayWhenReady(true);
+            wasPlaying = true;
+        }
     }
 
     protected void onAudioFocusLoss() {
         if (DEBUG) Log.d(TAG, "onAudioFocusLoss() called");
         simpleExoPlayer.setPlayWhenReady(false);
+        wasPlaying = false;
     }
 
     protected void onAudioFocusLossCanDuck() {
@@ -758,6 +762,7 @@ public abstract class BasePlayer implements Player.EventListener,
             else playQueue.setIndex(0);
         }
         simpleExoPlayer.setPlayWhenReady(!isPlaying());
+        wasPlaying = simpleExoPlayer.getPlayWhenReady();
     }
 
     public void onFastRewind() {
@@ -774,10 +779,12 @@ public abstract class BasePlayer implements Player.EventListener,
         if (simpleExoPlayer == null || playQueue == null || currentInfo == null) return;
         if (DEBUG) Log.d(TAG, "onPlayPrevious() called");
 
-        if (simpleExoPlayer.getCurrentPosition() <= PLAY_PREV_ACTIVATION_LIMIT) {
-            playQueue.offsetIndex(-1);
-        } else {
+        /* If current playback has run for PLAY_PREV_ACTIVATION_LIMIT milliseconds, restart current track.
+        * Also restart the track if the current track is the first in a queue.*/
+        if (simpleExoPlayer.getCurrentPosition() > PLAY_PREV_ACTIVATION_LIMIT || playQueue.getIndex() == 0) {
             simpleExoPlayer.seekTo(currentInfo.start_position);
+        } else {
+            playQueue.offsetIndex(-1);
         }
     }
 

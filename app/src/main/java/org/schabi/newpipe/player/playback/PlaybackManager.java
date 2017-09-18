@@ -211,17 +211,17 @@ public class PlaybackManager {
         // The current item has higher priority
         final int currentIndex = playQueue.getIndex();
         final PlayQueueItem currentItem = playQueue.get(currentIndex);
-        if (currentItem != null) load(currentItem);
-        else return;
+        if (currentItem == null) return;
+        load(currentItem);
+
+        // Load boundaries to ensure correct looping
+        if (sourceToQueueIndex.indexOf(0) == -1) load(playQueue.get(0));
+        if (sourceToQueueIndex.indexOf(playQueue.size() - 1) == -1) load(playQueue.get(playQueue.size() - 1));
 
         // The rest are just for seamless playback
         final int leftBound = Math.max(0, currentIndex - WINDOW_SIZE);
-        final int rightLimit = currentIndex + WINDOW_SIZE + 1;
-        final int rightBound = Math.min(playQueue.size(), rightLimit);
+        final int rightBound = Math.min(playQueue.size(), currentIndex + WINDOW_SIZE + 1);
         final List<PlayQueueItem> items = new ArrayList<>(playQueue.getStreams().subList(leftBound, rightBound));
-
-        final int excess = rightLimit - playQueue.size();
-        if (excess >= 0) items.addAll(playQueue.getStreams().subList(0, excess));
 
         for (final PlayQueueItem item: items) load(item);
     }
@@ -245,7 +245,7 @@ public class PlaybackManager {
                 final MediaSource source = playbackListener.sourceOf(streamInfo, item.getSortedQualityIndex());
                 final int itemIndex = playQueue.indexOf(item);
                 // replace all except the currently playing
-                insert(itemIndex, source, false);
+                insert(itemIndex, source, itemIndex != playQueue.getIndex());
                 if (tryUnblock()) sync();
             }
 
