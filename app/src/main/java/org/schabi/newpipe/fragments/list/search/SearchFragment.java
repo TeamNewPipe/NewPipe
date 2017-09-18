@@ -15,6 +15,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,6 +30,7 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 
 import org.schabi.newpipe.NewPipeDatabase;
@@ -55,10 +57,14 @@ import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 
 import icepick.State;
+import io.reactivex.Maybe;
+import io.reactivex.MaybeSource;
 import io.reactivex.Notification;
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
@@ -396,7 +402,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
                 submitQuery(s);
             }
         });
-        searchEditText.setThreshold(THRESHOLD_SUGGESTION);
+        searchEditText.setThreshold(0);
 
         if (textWatcher != null) searchEditText.removeTextChangedListener(textWatcher);
         textWatcher = new TextWatcher() {
@@ -412,12 +418,6 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
             public void afterTextChanged(Editable s) {
                 String newText = searchEditText.getText().toString();
                 if (!TextUtils.isEmpty(newText)) suggestionPublisher.onNext(newText);
-                searchQuery = newText;
-                // TODO: this is still not working
-                if (searchQuery.length() < THRESHOLD_SUGGESTION) {
-                    List<SearchHistoryEntry> historyItems = searchHistoryDAO.getItemsForQuery(searchQuery, 10).blockingFirst();
-                    suggestionListAdapter.updateAdapter(historyItems, new ArrayList<String>());
-                }
             }
         };
         searchEditText.addTextChangedListener(textWatcher);
@@ -492,20 +492,43 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
         suggestionWorkerDisposable = suggestionPublisher
                 .debounce(SUGGESTIONS_DEBOUNCE, TimeUnit.MILLISECONDS)
                 .startWith(!TextUtils.isEmpty(searchQuery) ? searchQuery : "")
-                .filter(checkEnabledAndLength)
                 .switchMap(new Function<String, Observable<Notification<List<String>>>>() {
                     @Override
                     public Observable<Notification<List<String>>> apply(@io.reactivex.annotations.NonNull String query) throws Exception {
-                        return ExtractorHelper.suggestionsFor(serviceId, query, searchLanguage).toObservable().materialize();
+                        Log.d("xxx", "switchMap");
+                        /*
+                        return Observable.just(query)
+                                .filter(checkEnabledAndLength)
+                                .flatMap(new Function<String, Observable<Notification<List<String>>>>() {
+                                    @Override
+                                    public Observable<Notification<List<String>>> apply(@io.reactivex.annotations.NonNull String s) throws Exception {
+                                        return ExtractorHelper.suggestionsFor(serviceId, s, searchLanguage).toObservable().materialize();
+                                    }
+                                });
+                                */
+                        //return (checkEnabledAndLength.test(query))
+                        //        ? ExtractorHelper.suggestionsFor(serviceId, query, searchLanguage).toObservable().materialize()
+                        //        : Observable.just(Notification.<List<String>>createOnComplete());
+                        return Observable.<List<String>>just(new ArrayList<String>()).materialize();
+                    }
+                })
+                // TODO: proper query
+                .zipWith(searchHistoryDAO.getItemsForQuery(searchQuery, 10).toObservable(), new BiFunction<Notification<List<String>>, List<SearchHistoryEntry>, Pair<Notification<List<String>>, List<SearchHistoryEntry>>>() {
+                    @Override
+                    public Pair<Notification<List<String>>, List<SearchHistoryEntry>> apply(@io.reactivex.annotations.NonNull Notification<List<String>> listNotification, @io.reactivex.annotations.NonNull List<SearchHistoryEntry> searchHistoryEntries) throws Exception {
+                        Log.d("xxx", "zipWith");
+                        return new Pair<>(listNotification, searchHistoryEntries);
                     }
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Notification<List<String>>>() {
+                .subscribe(new Consumer<Pair<Notification<List<String>>, List<SearchHistoryEntry>>>() {
                     @Override
-                    public void accept(@io.reactivex.annotations.NonNull Notification<List<String>> listNotification) throws Exception {
+                    public void accept(Pair<Notification<List<String>>, List<SearchHistoryEntry>> pair) throws Exception {
+                        Log.d("xxx", "subscribe");
+                        Notification<List<String>> listNotification = pair.first;
+                        List<SearchHistoryEntry> historyItems = pair.second;
                         if (listNotification.isOnNext()) {
-                            List<SearchHistoryEntry> historyItems = searchHistoryDAO.getItemsForQuery(searchQuery, 2).blockingFirst();
                             suggestionListAdapter.updateAdapter(historyItems, listNotification.getValue());
                             if (errorPanelRoot.getVisibility() == View.VISIBLE) {
                                 hideLoading();
