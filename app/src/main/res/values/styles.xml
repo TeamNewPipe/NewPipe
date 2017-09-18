@@ -109,23 +109,47 @@
         <item name="background">@color/video_overlay_color</item>
     </style>
 
-    <!-- You can also inherit from NNF_BaseTheme.Light -->
-    <style name="FilePickerTheme" parent="NNF_BaseTheme.Light">
-        <!-- Set these to match your theme -->
+    <style name="FilePickerThemeLight" parent="NNF_BaseTheme.Light">
         <item name="colorPrimary">@color/light_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
         <item name="colorAccent">@color/light_youtube_accent_color</item>
+        <item name="android:background">@color/light_background_color</item>
+        <item name="nnf_separator_color">@color/light_separator_color</item>
 
-        <!-- Need to set this also to style create folder dialog -->
-        <item name="alertDialogTheme">@style/FilePickerAlertDialogTheme</item>
-
-        <!-- If you want to set a specific toolbar theme, do it here -->
-        <!-- <item name="nnf_toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item> -->
+        <item name="alertDialogTheme">@style/FilePickerAlertDialogThemeLight</item>
+        <item name="nnf_toolbarTheme">@style/FilePickerToolbarLight</item>
     </style>
 
-    <style name="FilePickerAlertDialogTheme" parent="Theme.AppCompat.Dialog.Alert">
+    <style name="FilePickerAlertDialogThemeLight" parent="Theme.AppCompat.Dialog.Alert">
         <item name="colorPrimary">@color/light_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
         <item name="colorAccent">@color/light_youtube_accent_color</item>
     </style>
+
+    <style name="FilePickerToolbarLight" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:background">@color/light_youtube_primary_color</item>
+    </style>
+
+    <style name="FilePickerThemeDark" parent="FilePickerThemeLight">
+        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_youtube_dark_color</item>
+        <item name="colorAccent">@color/dark_youtube_accent_color</item>
+        <item name="android:background">@color/dark_background_color</item>
+        <item name="android:textColorPrimary">@color/dark_youtube_accent_color</item>
+        <item name="nnf_separator_color">@color/black_separator_color</item>
+
+        <item name="alertDialogTheme">@style/FilePickerAlertDialogThemeDark</item>
+        <item name="nnf_toolbarTheme">@style/FilePickerToolbarDark</item>
+    </style>
+
+    <style name="FilePickerAlertDialogThemeDark" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_youtube_dark_color</item>
+        <item name="colorAccent">@color/dark_youtube_accent_color</item>
+    </style>
+
+    <style name="FilePickerToolbarDark" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:background">@color/dark_youtube_primary_color</item>
+    </style>
+
 </resources>

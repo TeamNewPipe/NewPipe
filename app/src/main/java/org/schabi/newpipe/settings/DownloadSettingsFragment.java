@@ -7,9 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.preference.Preference;
 import android.util.Log;
 
-import com.nononsenseapps.filepicker.FilePickerActivity;
-
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.FilePickerActivityHelper;
 
 public class DownloadSettingsFragment extends BasePreferenceFragment {
     private static final int REQUEST_DOWNLOAD_PATH = 0x1235;
@@ -48,10 +47,10 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         }
 
         if (preference.getKey().equals(DOWNLOAD_PATH_PREFERENCE) || preference.getKey().equals(DOWNLOAD_PATH_AUDIO_PREFERENCE)) {
-            Intent i = new Intent(getActivity(), FilePickerActivity.class)
-                    .putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
-                    .putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
-                    .putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR);
+            Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
+                    .putExtra(FilePickerActivityHelper.EXTRA_MODE, FilePickerActivityHelper.MODE_DIR);
             if (preference.getKey().equals(DOWNLOAD_PATH_PREFERENCE)) {
                 startActivityForResult(i, REQUEST_DOWNLOAD_PATH);
             } else if (preference.getKey().equals(DOWNLOAD_PATH_AUDIO_PREFERENCE)) {
