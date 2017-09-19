@@ -10,9 +10,6 @@ android:
     # The SDK version used to compile NewPipe
     - android-26
 
-    # Additional components
-    - extra-android-m2repository
-
 script: ./gradlew -Dorg.gradle.jvmargs=-Xmx1536m assembleDebug lintDebug testDebugUnitTest
 
 licenses:
