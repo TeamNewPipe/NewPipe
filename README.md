@@ -17,15 +17,16 @@ WARNING: PUTTING NEWPIPE OR ANY FORK OF IT INTO GOOGLE PLAYSTORE VIOLATES THEIR 
 
 ## Screenshots
 
-[<img src="screenshots/screenshot_1.png" width=160>](screenshots/screenshot_1.png)
-[<img src="screenshots/screenshot_2.png" width=160>](screenshots/screenshot_2.png)
-[<img src="screenshots/screenshot_3.png" width=160>](screenshots/screenshot_3.png)
-[<img src="screenshots/screenshot_4.png" width=160>](screenshots/screenshot_4.png)
-[<img src="screenshots/screenshot_5.png" width=160>](screenshots/screenshot_5.png)
-[<img src="screenshots/screenshot_6.png" width=160>](screenshots/screenshot_6.png)
-[<img src="screenshots/screenshot_7.png" width=160>](screenshots/screenshot_7.png)
-[<img src="screenshots/screenshot_8.png" width=160>](screenshots/screenshot_8.png)
-[<img src="screenshots/screenshot_9.png" width=160>](screenshots/screenshot_9.png)
+[<img src="screenshots/shot_1.png" width=160>](screenshots/shot_1.png)
+[<img src="screenshots/shot_2.png" width=160>](screenshots/shot_2.png)
+[<img src="screenshots/shot_3.png" width=160>](screenshots/shot_3.png)
+[<img src="screenshots/shot_4.png" width=160>](screenshots/shot_4.png)
+[<img src="screenshots/shot_5.png" width=160>](screenshots/shot_5.png)
+[<img src="screenshots/shot_6.png" width=160>](screenshots/shot_6.png)
+[<img src="screenshots/shot_7.png" width=160>](screenshots/shot_7.png)
+[<img src="screenshots/shot_8.png" width=160>](screenshots/shot_8.png)
+[<img src="screenshots/shot_9.png" width=160>](screenshots/shot_9.png)
+[<img src="screenshots/shot_10.png" width=160>](screenshots/shot_10.png)
 
 ## Description
 
@@ -50,14 +51,16 @@ NewPipe does not use any Google framework libraries, or the YouTube API. It only
 * Watch videos from a channel
 * Orbot/Tor support (not yet directly)
 * 1080p/2k/4k support
+* View history
+* Subscribe to channels
+* Search history
+* Search/Watch Playlists
 
 ### Coming Features
 
+* Multiservice support (eg. SoundCloud)
 * Bookmarks
-* View history
-* Search history
-* Subscribe to channels
-* Search/Watch Playlists
+* Watch as queues Playlists
 * Queuing videos
 * Subtitles support
 * livestream support
