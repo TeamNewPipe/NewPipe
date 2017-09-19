@@ -58,7 +58,7 @@ NewPipe does not use any Google framework libraries, or the YouTube API. It only
 
 ### Coming Features
 
-* Multiservice support (eg. Soundcloud)
+* Multiservice support (eg. SoundCloud)
 * Bookmarks
 * Watch as queues Playlists
 * Queuing videos
