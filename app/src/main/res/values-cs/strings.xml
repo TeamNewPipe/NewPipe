@@ -17,23 +17,23 @@
     <string name="use_external_audio_player_title">Použít externí audio přehrávač</string>
 
     <string name="download_path_audio_summary">Cesta, kam se uloží stažené audio</string>
-    <string name="download_path_audio_dialog_title">Zadejte umístění pro stažené audio soubory.</string>
+    <string name="download_path_audio_dialog_title">Zadejte umístění pro stažené audio soubory</string>
 
     <string name="download_path_audio_title">Umístění pro stažené audio</string>
     <string name="default_resolution_title">Výchozí rozlišení</string>
     <string name="play_with_kodi_title">Přehrát pomocí Kodi</string>
-    <string name="kore_not_found">Aplikace Kore nenalezena. Nainstalovat Kore?</string>
+    <string name="kore_not_found">Aplikace Kore nenalezena. Chcete ji nainstalovat?</string>
     <string name="view_count_text">%1$s zhlédnutí</string>
     <string name="download_path_title">Umístění pro stažené video</string>
-    <string name="download_path_summary">Cesta, kam se uloží stažené video.</string>
+    <string name="download_path_summary">Cesta, kam se uloží stažené video</string>
     <string name="download_path_dialog_title">Zadejte umístění pro stažená videa</string>
 
     <string name="show_play_with_kodi_title">Zobrazit možnost \"Přehrát pomocí Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Zobrazit možnost přehrání videa pomocí multimediálního centra Kodi.</string>
+    <string name="show_play_with_kodi_summary">Zobrazit možnost přehrání videa pomocí multimediálního centra Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Výchozí audio formát</string>
     <string name="webm_description">WebM — svobodný formát</string>
-    <string name="m4a_description">m4a — lepší kvalita</string>
+    <string name="m4a_description">M4A — lepší kvalita</string>
     <string name="theme_title">Téma</string>
     <string name="dark_theme_title">Tmavé</string>
     <string name="light_theme_title">Světlé</string>
@@ -66,8 +66,8 @@
 
     <string name="err_dir_create">Nebylo možné vytvořit složku pro stažené soubory \'%1$s\'</string>
     <string name="info_dir_created">Vytvořena složka pro stažené soubory \'%1$s\'</string>
-    <string name="autoplay_by_calling_app_title">Automaticky přehrávat při otevření z jiné aplikace</string>
-    <string name="autoplay_by_calling_app_summary">Automaticky přehrát video, když je NewPipe otevřen z jiné aplikace.</string>
+    <string name="autoplay_by_calling_app_title">Automaticky přehrávat</string>
+    <string name="autoplay_by_calling_app_summary">Automaticky přehrát video, když je NewPipe otevřen z jiné aplikace</string>
     <string name="content">Obsah</string>
     <string name="show_age_restricted_content_title">Zobrazovat věkově omezený obsah</string>
     <string name="video_is_age_restricted">Toto video je věkově omezeno. Povolte věkově omezená videa v nastavení.</string>
@@ -150,4 +150,78 @@ otevření ve vyskakovacím okně</string>
     <string name="default_video_format_title">Preferovaný video formát</string>
     <string name="popup_remember_size_pos_title">Zapamatovat si velikost a pozici vyskakovacího okna</string>
     <string name="popup_remember_size_pos_summary">Zapamatovat si poslední nastavení velikosti a pozice vyskakovacího okna</string>
+    <string name="popup_mode_share_menu_title">Režim NewPipe vyskakovacího okna</string>
+    <string name="subscribe_button_title">Odebírat</string>
+    <string name="subscribed_button_title">Odebírané</string>
+    <string name="channel_unsubscribed">Odběr zrušen</string>
+    <string name="subscription_change_failed">Nelze změnit odběr</string>
+    <string name="subscription_update_failed">Nelze aktualizovat odběr</string>
+
+    <string name="tab_main">Hlavní</string>
+    <string name="tab_subscriptions">Odběry</string>
+
+    <string name="fragment_whats_new">Co je nové</string>
+
+    <string name="controls_background_title">V pozadí</string>
+    <string name="controls_popup_title">V okně</string>
+
+    <string name="default_popup_resolution_title">Výchozí rozlišení v okně</string>
+    <string name="player_gesture_controls_title">Nastavení gest přehrávače</string>
+    <string name="player_gesture_controls_summary">Používat gesta pro kontrolu jasu a hlasitosti přehrávače</string>
+    <string name="show_search_suggestions_title">Vyhledat návrhy</string>
+    <string name="show_search_suggestions_summary">Ukazovat návrhy při vyhledávání</string>
+    <string name="enable_search_history_title">Historie prohlížení</string>
+    <string name="enable_search_history_summary">Ukládat hledané výrazy lokálně</string>
+    <string name="enable_watch_history_title">Historie</string>
+    <string name="enable_watch_history_summary">Evidovat sledovaná videa</string>
+    <string name="resume_on_audio_focus_gain_title">Přehrávat po přechodu do popředí</string>
+    <string name="resume_on_audio_focus_gain_summary">Pokračovat v přehrávání po přerušení (např. hovor)</string>
+    <string name="settings_category_player_title">Přehrávač</string>
+    <string name="settings_category_player_behavior_title">Chování</string>
+    <string name="settings_category_history_title">Historie</string>
+    <string name="settings_category_popup_title">V okně</string>
+    <string name="popup_playing_toast">Přehrávání v okně</string>
+    <string name="playlist">Playlist</string>
+    <string name="disabled">Vypnuto</string>
+    <string name="filter">Filtr</string>
+    <string name="refresh">Obnovit</string>
+    <string name="clear">Vyčistit</string>
+    <string name="popup_resizing_indicator_title">Změna velikosti</string>
+    <string name="best_resolution">Nejlepší rozlošení</string>
+    <string name="undo">Vrátit</string>
+
+    <string name="notification_channel_name">NewPipe notifikace</string>
+    <string name="notification_channel_description">Notifikace pro NewPipe v pozadí a v okně</string>
+
+    <string name="search_no_results">Žádné výsledky</string>
+    <string name="empty_subscription_feed_subtitle">Je tu sranda jak v márnici</string>
+
+    <string name="use_old_player_summary">Starý zabudovaný Mediaframework přehrávač</string>
+
+    <string name="short_billion">B</string>
+
+    <string name="no_subscribers">Žádní odběratelé</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s odběratel</item>
+	<item quantity="few">%s odběratelů</item>
+	<item quantity="many">%s odběratelé</item>
+	<item quantity="other"></item>
+</plurals>
+
+    <string name="no_views">Žádná shlédnutí</string>
+    <plurals name="views">
+	<item quantity="one">%s shlédnutí</item>
+	<item quantity="few">%s shlédnutí</item>
+	<item quantity="many">%s shlédnutí</item>
+	<item quantity="other"></item>
+</plurals>
+
+    <string name="no_videos">Žádná videa</string>
+    <plurals name="videos">
+	<item quantity="one">%s video</item>
+	<item quantity="few">%s videí</item>
+	<item quantity="many">%s videa</item>
+	<item quantity="other"></item>
+</plurals>
+
     </resources>
