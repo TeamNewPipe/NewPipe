@@ -51,7 +51,7 @@
     <string-array name="video_format_description_list" translatable="false">
         <item>MPEG-4</item>
         <item>WebM</item>
-        <item>3GPP</item>
+        <item>3GP</item>
     </string-array>
     <string-array name="video_format_values_list" translatable="false">
         <item>@string/video_mp4_key</item>
