@@ -8,6 +8,7 @@ import com.google.android.exoplayer2.source.MediaSource;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.player.mediasource.DeferredMediaSource;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.events.PlayQueueMessage;
@@ -25,12 +26,12 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
-public class PlaybackManager {
-    private final String TAG = "PlaybackManager@" + Integer.toHexString(hashCode());
+public class MediaSourceManager implements DeferredMediaSource.Callback {
+    private final String TAG = "MediaSourceManager@" + Integer.toHexString(hashCode());
     // One-side rolling window size for default loading
-    // Effectively loads WINDOW_SIZE * 2 + 1 streams, should be at least 1
+    // Effectively loads WINDOW_SIZE * 2 + 1 streams, should be at least 1 to ensure gapless playback
     // todo: inject this parameter, allow user settings perhaps
-    private static final int WINDOW_SIZE = 3;
+    private static final int WINDOW_SIZE = 1;
 
     private final PlaybackListener playbackListener;
     private final PlayQueue playQueue;
@@ -46,10 +47,9 @@ public class PlaybackManager {
     private CompositeDisposable disposables;
 
     private boolean isBlocked;
-    private boolean hasReset;
 
-    public PlaybackManager(@NonNull final PlaybackListener listener,
-                           @NonNull final PlayQueue playQueue) {
+    public MediaSourceManager(@NonNull final PlaybackListener listener,
+                              @NonNull final PlayQueue playQueue) {
         this.playbackListener = listener;
         this.playQueue = playQueue;
 
@@ -114,22 +114,27 @@ public class PlaybackManager {
             public void onNext(@NonNull PlayQueueMessage event) {
                 // why no pattern matching in Java =(
                 switch (event.type()) {
-                    case INIT:
-                        tryBlock();
-                        resetSources();
-                        break;
                     case APPEND:
                         break;
                     case SELECT:
                         if (isBlocked) break;
-                        if (isCurrentIndexLoaded()) sync(); else tryBlock();
+                        if (isCurrentIndexLoaded()) {
+                            sync();
+                        } else {
+                            tryBlock();
+                            resetSources();
+                        }
                         break;
                     case REMOVE:
                         final RemoveEvent removeEvent = (RemoveEvent) event;
                         if (!removeEvent.isCurrent()) {
                             remove(removeEvent.index());
-                            break;
+                        } else {
+                            tryBlock();
+                            resetSources();
                         }
+                        break;
+                    case INIT:
                     case UPDATE:
                     case REORDER:
                         tryBlock();
@@ -182,13 +187,8 @@ public class PlaybackManager {
 
     private boolean tryUnblock() {
         if (isPlayQueueReady() && isCurrentIndexLoaded() && isBlocked) {
-            if (hasReset) {
-                playbackListener.prepare(sources);
-                hasReset = false;
-            }
-
             isBlocked = false;
-            playbackListener.unblock();
+            playbackListener.unblock(sources);
             return true;
         }
         return false;
@@ -208,53 +208,10 @@ public class PlaybackManager {
     }
 
     private void load() {
-        // The current item has higher priority
-        final int currentIndex = playQueue.getIndex();
-        final PlayQueueItem currentItem = playQueue.get(currentIndex);
-        if (currentItem == null) return;
-        load(currentItem);
-
-        // Load boundaries to ensure correct looping
-        if (sourceToQueueIndex.indexOf(0) == -1) load(playQueue.get(0));
-        if (sourceToQueueIndex.indexOf(playQueue.size() - 1) == -1) load(playQueue.get(playQueue.size() - 1));
-
-        // The rest are just for seamless playback
-        final int leftBound = Math.max(0, currentIndex - WINDOW_SIZE);
-        final int rightBound = Math.min(playQueue.size(), currentIndex + WINDOW_SIZE + 1);
-        final List<PlayQueueItem> items = new ArrayList<>(playQueue.getStreams().subList(leftBound, rightBound));
-
-        for (final PlayQueueItem item: items) load(item);
-    }
-
-    private void load(@Nullable final PlayQueueItem item) {
-        if (item == null) return;
-
-        item.getStream().subscribe(new SingleObserver<StreamInfo>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                if (disposables == null) {
-                    d.dispose();
-                    return;
-                }
-
-                disposables.add(d);
-            }
-
-            @Override
-            public void onSuccess(@NonNull StreamInfo streamInfo) {
-                final MediaSource source = playbackListener.sourceOf(streamInfo, item.getSortedQualityIndex());
-                final int itemIndex = playQueue.indexOf(item);
-                // replace all except the currently playing
-                insert(itemIndex, source, itemIndex != playQueue.getIndex());
-                if (tryUnblock()) sync();
-            }
-
-            @Override
-            public void onError(@NonNull Throwable e) {
-                playQueue.remove(playQueue.indexOf(item));
-                load();
-            }
-        });
+        for (final PlayQueueItem item : playQueue.getStreams()) {
+            insert(playQueue.indexOf(item), new DeferredMediaSource(item, this));
+            if (tryUnblock()) sync();
+        }
     }
 
     private void resetSources() {
@@ -263,7 +220,6 @@ public class PlaybackManager {
         if (this.sourceToQueueIndex != null) this.sourceToQueueIndex.clear();
 
         this.sources = new DynamicConcatenatingMediaSource();
-        this.hasReset = true;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -272,7 +228,7 @@ public class PlaybackManager {
 
     // Insert source into playlist with position in respect to the play queue
     // If the play queue index already exists, then the insert is ignored
-    private void insert(final int queueIndex, final MediaSource source, final boolean replace) {
+    private void insert(final int queueIndex, final MediaSource source) {
         if (queueIndex < 0) return;
 
         int pos = Collections.binarySearch(sourceToQueueIndex, queueIndex);
@@ -280,9 +236,6 @@ public class PlaybackManager {
             final int sourceIndex = -pos-1;
             sourceToQueueIndex.add(sourceIndex, queueIndex);
             sources.addMediaSource(sourceIndex, source);
-        } else if (replace) {
-            sources.addMediaSource(pos + 1, source);
-            sources.removeMediaSource(pos);
         }
     }
 
@@ -299,5 +252,10 @@ public class PlaybackManager {
         for (int i = sourceIndex; i < sourceToQueueIndex.size(); i++) {
             sourceToQueueIndex.set(i, sourceToQueueIndex.get(i) - 1);
         }
+    }
+
+    @Override
+    public MediaSource sourceOf(StreamInfo info) {
+        return playbackListener.sourceOf(info);
     }
 }

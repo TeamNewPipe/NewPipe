@@ -37,6 +37,7 @@ import android.widget.RemoteViews;
 
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.MergingMediaSource;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
@@ -48,6 +49,9 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -390,9 +394,14 @@ public final class BackgroundPlayer extends Service {
         }
 
         @Override
-        public MediaSource sourceOf(final StreamInfo info, final int sortedStreamsIndex) {
-            final AudioStream audio = ListHelper.getHighestQualityAudio(info.audio_streams);
-            return buildMediaSource(audio.url, MediaFormat.getSuffixById(audio.format));
+        public MediaSource sourceOf(final StreamInfo info) {
+            List<MediaSource> sources = new ArrayList<>();
+            for (final AudioStream audio : info.audio_streams) {
+                final MediaSource audioSource = buildMediaSource(audio.url, MediaFormat.getSuffixById(audio.format));
+                sources.add(audioSource);
+            }
+
+            return new MergingMediaSource(sources.toArray(new MediaSource[sources.size()]));
         }
 
         @Override

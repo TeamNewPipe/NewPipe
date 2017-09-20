@@ -57,7 +57,6 @@ import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
-import org.schabi.newpipe.player.playback.PlaybackManager;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
@@ -104,6 +103,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     private static final float[] PLAYBACK_SPEEDS = {0.5f, 0.75f, 1f, 1.25f, 1.5f, 1.75f, 2f};
 
     private boolean startedFromNewPipe = true;
+    protected boolean wasPlaying = false;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -255,24 +255,21 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         buildPlaybackSpeedMenu(playbackSpeedPopupMenu);
     }
 
-    @Override
-    public MediaSource sourceOf(final StreamInfo info, final int sortedStreamsIndex) {
+    public MediaSource sourceOf(final StreamInfo info) {
         final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
+        List<MediaSource> sources = new ArrayList<>();
 
-        final VideoStream video;
-        if (sortedStreamsIndex == PlayQueueItem.DEFAULT_QUALITY) {
-            final int index = ListHelper.getDefaultResolutionIndex(context, videos);
-            video = videos.get(index);
-        } else {
-            video = videos.get(sortedStreamsIndex);
+        for (final VideoStream video : videos) {
+            final MediaSource mediaSource = buildMediaSource(video.url, MediaFormat.getSuffixById(video.format));
+            sources.add(mediaSource);
         }
-
-        final MediaSource mediaSource = buildMediaSource(video.url, MediaFormat.getSuffixById(video.format));
-        if (!video.isVideoOnly) return mediaSource;
 
         final AudioStream audio = ListHelper.getHighestQualityAudio(info.audio_streams);
         final Uri audioUri = Uri.parse(audio.url);
-        return new MergingMediaSource(mediaSource, new ExtractorMediaSource(audioUri, cacheDataSourceFactory, extractorsFactory, null, null));
+        final MediaSource audioSource = new ExtractorMediaSource(audioUri, cacheDataSourceFactory, extractorsFactory, null, null);
+        sources.add(audioSource);
+
+        return new MergingMediaSource(sources.toArray(new MediaSource[sources.size()]));
     }
 
     public void buildQualityMenu(PopupMenu popupMenu) {

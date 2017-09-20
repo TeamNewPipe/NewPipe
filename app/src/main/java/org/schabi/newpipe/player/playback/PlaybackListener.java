@@ -4,6 +4,8 @@ import com.google.android.exoplayer2.source.MediaSource;
 
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 
+import java.util.List;
+
 public interface PlaybackListener {
     /*
     * Called when the stream at the current queue index is not ready yet.
@@ -13,23 +15,13 @@ public interface PlaybackListener {
     * */
     void block();
 
-
-    /*
-    * Called when the media source is rebuilt.
-    * Signals to the listener to prepare the media source again.
-    * The provided media source is always non-empty.
-    *
-    * May be called only after blocking and before unblocking.
-    * */
-    void prepare(final MediaSource mediaSource);
-
     /*
     * Called when the stream at the current queue index is ready.
     * Signals to the listener to resume the player.
     *
     * May be called only when the player is blocked.
     * */
-    void unblock();
+    void unblock(final MediaSource mediaSource);
 
     /*
     * Called when the queue index is refreshed.
@@ -46,7 +38,7 @@ public interface PlaybackListener {
     *
     * May be called at any time.
     * */
-    MediaSource sourceOf(final StreamInfo info, final int sortedStreamsIndex);
+    MediaSource sourceOf(final StreamInfo info);
 
     /*
     * Called when the play queue can no longer to played or used.

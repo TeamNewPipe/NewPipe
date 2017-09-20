@@ -72,8 +72,8 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
-import org.schabi.newpipe.player.playback.PlaybackManager;
 import org.schabi.newpipe.playlist.ExternalPlayQueue;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
@@ -139,7 +139,7 @@ public abstract class BasePlayer implements Player.EventListener,
     // Playback
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected PlaybackManager playbackManager;
+    protected MediaSourceManager playbackManager;
     protected PlayQueue playQueue;
 
     private boolean isRecovery = false;
@@ -158,7 +158,6 @@ public abstract class BasePlayer implements Player.EventListener,
 
     protected SimpleExoPlayer simpleExoPlayer;
     protected boolean isPrepared = false;
-    protected boolean wasPlaying = false;
 
     protected CacheDataSourceFactory cacheDataSourceFactory;
     protected final DefaultExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
@@ -297,7 +296,7 @@ public abstract class BasePlayer implements Player.EventListener,
 
         playQueue = queue;
         playQueue.init();
-        playbackManager = new PlaybackManager(this, playQueue);
+        playbackManager = new MediaSourceManager(this, playQueue);
     }
 
     public void initThumbnail(final String url) {
@@ -442,14 +441,12 @@ public abstract class BasePlayer implements Player.EventListener,
 
         if (isResumeAfterAudioFocusGain()) {
             simpleExoPlayer.setPlayWhenReady(true);
-            wasPlaying = true;
         }
     }
 
     protected void onAudioFocusLoss() {
         if (DEBUG) Log.d(TAG, "onAudioFocusLoss() called");
         simpleExoPlayer.setPlayWhenReady(false);
-        wasPlaying = false;
     }
 
     protected void onAudioFocusLossCanDuck() {
@@ -586,7 +583,7 @@ public abstract class BasePlayer implements Player.EventListener,
         }
 
         // Good to go...
-        simpleExoPlayer.setPlayWhenReady(wasPlaying);
+        simpleExoPlayer.setPlayWhenReady(true);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -669,11 +666,10 @@ public abstract class BasePlayer implements Player.EventListener,
         if (DEBUG) Log.d(TAG, "onPositionDiscontinuity() called with: " +
                 "window index = [" + newWindowIndex + "], queue index = [" + newQueueIndex + "]");
 
-        if (newQueueIndex == -1) {
-            playQueue.offsetIndex(+1);
-        } else {
-            playQueue.setIndex(newQueueIndex);
-        }
+        // If the user selects a new track, then the discontinuity occurs after the index is changed.
+        // Therefore, the only source that causes a discrepancy would be autoplay,
+        // which can only offset the current track by +1.
+        if (newQueueIndex != playQueue.getIndex()) playQueue.offsetIndex(+1);
     }
 
     @Override
@@ -690,31 +686,20 @@ public abstract class BasePlayer implements Player.EventListener,
         if (simpleExoPlayer == null) return;
         if (DEBUG) Log.d(TAG, "Blocking...");
 
-        simpleExoPlayer.removeListener(this);
-        changeState(STATE_BLOCKED);
-
-        wasPlaying = simpleExoPlayer.getPlayWhenReady();
-        simpleExoPlayer.setPlayWhenReady(false);
-    }
-
-    @Override
-    public void prepare(final MediaSource mediaSource) {
-        if (simpleExoPlayer == null) return;
-        if (DEBUG) Log.d(TAG, "Preparing...");
-
         simpleExoPlayer.stop();
         isPrepared = false;
 
-        simpleExoPlayer.prepare(mediaSource);
+        changeState(STATE_BLOCKED);
     }
 
     @Override
-    public void unblock() {
+    public void unblock(final MediaSource mediaSource) {
         if (simpleExoPlayer == null) return;
         if (DEBUG) Log.d(TAG, "Unblocking...");
 
         if (getCurrentState() == STATE_BLOCKED) changeState(STATE_BUFFERING);
-        simpleExoPlayer.addListener(this);
+
+        simpleExoPlayer.prepare(mediaSource);
     }
 
     @Override
@@ -762,7 +747,6 @@ public abstract class BasePlayer implements Player.EventListener,
             else playQueue.setIndex(0);
         }
         simpleExoPlayer.setPlayWhenReady(!isPlaying());
-        wasPlaying = simpleExoPlayer.getPlayWhenReady();
     }
 
     public void onFastRewind() {
