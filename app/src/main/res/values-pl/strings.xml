@@ -26,7 +26,7 @@
     <string name="download_path_audio_summary">Ścieżka zapisu pobranych audio</string>
     <string name="download_path_audio_dialog_title">Podaj ścieżkę zapisu audio</string>
 
-    <string name="autoplay_by_calling_app_title">Autoodtwarzanie po wezwaniu z innej aplikacji</string>
+    <string name="autoplay_by_calling_app_title">Autoodtwarzanie</string>
     <string name="autoplay_by_calling_app_summary">Automatycznie odtwórz video kiedy NewPipe zostanie wywołany z innej aplikacji</string>
     <string name="default_resolution_title">Domyślna rozdzielczość</string>
     <string name="play_with_kodi_title">Odtwórz w Kodi</string>
@@ -205,7 +205,7 @@
     <string name="enable_search_history_summary">Zapisuj historie wyszukiwania lokalnie</string>
     <string name="enable_watch_history_title">Historia oglądania</string>
     <string name="enable_watch_history_summary">Zapisuj historie oglądania</string>
-    <string name="resume_on_audio_focus_gain_title"></string>
+    <string name="resume_on_audio_focus_gain_title"/>
     <string name="resume_on_audio_focus_gain_summary">Kontynuuj odtwarzanie po przerwaniu (np. po rozmowie telefonicznej)</string>
 
 
@@ -221,4 +221,12 @@
     <string name="history_empty">Historia jest pusta.</string>
     <string name="history_cleared">Historia została wyczyszczona</string>
 
-</resources>
+<string name="settings_category_player_title">Odtwarzacz</string>
+    <string name="settings_category_player_behavior_title">Zachowanie</string>
+    <string name="settings_category_history_title">Historia</string>
+    <string name="playlist">Playlista</string>
+    <string name="undo">Cofnij</string>
+
+    <string name="search_no_results">Brak wyników</string>
+    <string name="no_views">Brak wyświetleń</string>
+    </resources>
