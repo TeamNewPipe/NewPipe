@@ -188,7 +188,7 @@
     <string name="action_about">À propos</string>
     <string name="title_licenses">Licences tierces</string>
     <string name="error_unable_to_load_license">Impossible de charger la licence</string>
-    <string name="action_open_website">Ouvrir le site web</string>
+    <string name="action_open_website">Ouvrir le site</string>
     <string name="tab_about">À propos</string>
     <string name="tab_contributors">Contributeurs</string>
     <string name="tab_licenses">Licences</string>
