@@ -5,7 +5,7 @@
     <string name="no_player_found">Không tìm thấy trình phát. Bạn có muốn cài đặt VLC?</string>
     <string name="install">Cài đặt</string>
     <string name="cancel">Hủy</string>
-    <string name="open_in_browser">Mở trong teinhf duyệt</string>
+    <string name="open_in_browser">Mở trong trình duyệt</string>
     <string name="open_in_popup_mode">Mở trong chế độ popup</string>
     <string name="share">Chia sẻ</string>
     <string name="download">Tải về</string>
@@ -179,4 +179,8 @@
     <string name="search_language_title">Ngôn ngữ nội dung ưu tiên</string>
     <string name="settings_category_video_audio_title">Video &amp; Âm thanh</string>
     <string name="settings_category_popup_title">Bật lên</string>
+    <string name="enable_watch_history_title">Lịch sử</string>
+    <string name="settings_category_history_title">Lịch sử</string>
+    <string name="playlist">Danh sách</string>
+    <string name="search_no_results">Không tìm thấy</string>
     </resources>
