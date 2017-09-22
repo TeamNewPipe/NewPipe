@@ -8,17 +8,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.view.ContextMenu;
-import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.webkit.WebView;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.ThemeHelper;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -58,7 +56,26 @@ public class LicenseFragment extends Fragment {
         alert.setTitle(license.getName());
 
         WebView wv = new WebView(context);
-        wv.loadUrl(license.getContentUri().toString());
+        String licenseContent = "";
+        String webViewData;
+        try {
+            BufferedReader in = new BufferedReader(new InputStreamReader(context.getAssets().open(license.getFilename()), "UTF-8"));
+            String str;
+            while ((str = in.readLine()) != null) {
+                licenseContent += str;
+            }
+            in.close();
+
+            // split the HTML file and insert the stylesheet into the HEAD of the file
+            String[] insert = licenseContent.split("</head>");
+            webViewData = insert[0] + "<style type=\"text/css\">"
+                    + getLicenseStylesheet(context) + "</style></head>"
+                    + insert[1];
+        } catch (Exception e) {
+            throw new NullPointerException("could not get license file:" + getLicenseStylesheet(context));
+        }
+        wv.loadData(webViewData, "text/html", "utf-8");
+
         alert.setView(wv);
         alert.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
@@ -67,6 +84,32 @@ public class LicenseFragment extends Fragment {
             }
         });
         alert.show();
+    }
+
+    public static String getLicenseStylesheet(Context context) {
+        return "body{padding:12px 15px;margin:0;background:#"
+        + getHexRGBColor(context,(ThemeHelper.isLightThemeSelected(context))
+                ? R.color.light_license_background_color
+                : R.color.dark_license_background_color)
+        + ";color:#"
+        + getHexRGBColor(context,(ThemeHelper.isLightThemeSelected(context))
+                ? R.color.light_license_text_color
+                : R.color.dark_license_text_color) + ";}"
+        + "a[href]{color:#"
+        + getHexRGBColor(context,(ThemeHelper.isLightThemeSelected(context))
+                ? R.color.light_youtube_primary_color
+                : R.color.dark_youtube_primary_color) + ";}"
+        + "pre{white-space: pre-wrap;}";
+    }
+
+    /**
+     * Cast R.color to a hexadecimal color value
+     * @param context the context to use
+     * @param color the color number from R.color
+     * @return a six characters long String with hexadecimal RGB values
+     */
+    public static String getHexRGBColor(Context context, int color) {
+        return context.getResources().getString(color).substring(3);
     }
 
     @Override
