@@ -95,7 +95,7 @@
     <string name="light_parsing_error">Não foi possível interpretar completamente o site</string>
     <string name="list_thumbnail_view_description">Miniatura do vídeo</string>
     <string name="live_streams_not_supported">Isto é uma transmissão ao vivo, a qual ainda não é suportada.</string>
-    <string name="main_bg_subtitle">Toque em busca para começar</string>
+    <string name="main_bg_subtitle">Toque em pesquisar para começar</string>
     <string name="msg_exists">Arquivo já existe</string>
     <string name="msg_threads">Threads</string>
     <string name="msg_url_malform">URL inválida ou internet indisponível</string>
@@ -233,8 +233,8 @@ abrir em modo popup</string>
 
     <string name="no_videos">Nenhum video</string>
     <plurals name="videos">
-	<item quantity="one">%s video</item>
-	<item quantity="other">%s videos</item>
+	<item quantity="one">%s vídeo</item>
+	<item quantity="other">%s vídeos</item>
 </plurals>
 
     <string name="item_deleted">Item excluído</string>
