@@ -26,6 +26,9 @@ android {
             debuggable true
             applicationIdSuffix ".debug"
         }
+        beta {
+            applicationIdSuffix ".beta"
+        }
     }
 
     lintOptions {
@@ -44,7 +47,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
         exclude module: 'support-annotations'
     }
-
+    
     compile 'com.github.TeamNewPipe:NewPipeExtractor:7fffef5'
 
     testCompile 'junit:junit:4.12'
@@ -62,7 +65,7 @@ dependencies {
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.nirhart:parallaxscroll:1.0'
-    compile 'com.nononsenseapps:filepicker:3.0.0'
+    compile 'com.nononsenseapps:filepicker:3.0.1'
     compile 'com.google.android.exoplayer:exoplayer:r2.5.1'
 
     debugCompile 'com.facebook.stetho:stetho:1.5.0'

@@ -34,6 +34,7 @@ import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.search.SearchEngine;
 import org.schabi.newpipe.extractor.search.SearchResult;
@@ -47,12 +48,14 @@ import org.schabi.newpipe.util.StateSaver;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
+import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 import icepick.State;
 import io.reactivex.Notification;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
@@ -97,6 +100,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     private PublishSubject<String> suggestionPublisher = PublishSubject.create();
     private Disposable searchDisposable;
     private Disposable suggestionWorkerDisposable;
+    private CompositeDisposable disposables = new CompositeDisposable();
 
     private SuggestionListAdapter suggestionListAdapter;
 
@@ -149,6 +153,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
 
         if (searchDisposable != null) searchDisposable.dispose();
         if (suggestionWorkerDisposable != null) suggestionWorkerDisposable.dispose();
+        if (disposables != null) disposables.clear();
         hideSoftKeyboard(searchEditText);
     }
 
@@ -192,6 +197,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
 
         if (searchDisposable != null) searchDisposable.dispose();
         if (suggestionWorkerDisposable != null) suggestionWorkerDisposable.dispose();
+        if (disposables != null) disposables.clear();
     }
 
     @Override
@@ -514,6 +520,38 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     private void search(final String query) {
         if (DEBUG) Log.d(TAG, "search() called with: query = [" + query + "]");
 
+        try {
+            final StreamingService service = NewPipe.getServiceByUrl(query);
+            if (service != null) {
+                showLoading();
+                disposables.add(Observable
+                        .fromCallable(new Callable<Intent>() {
+                            @Override
+                            public Intent call() throws Exception {
+                                return NavigationHelper.getIntentByLink(activity, service, query);
+                            }
+                        })
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Consumer<Intent>() {
+                            @Override
+                            public void accept(Intent intent) throws Exception {
+                                getFragmentManager().popBackStackImmediate();
+                                activity.startActivity(intent);
+                            }
+                        }, new Consumer<Throwable>() {
+                            @Override
+                            public void accept(Throwable throwable) throws Exception {
+                                showError(getString(R.string.url_not_supported_toast), false);
+                                hideLoading();
+                            }
+                        }));
+                return;
+            }
+        } catch (Exception e) {
+            // Exception occurred, it's not a url
+        }
+
         hideSoftKeyboard(searchEditText);
         this.searchQuery = query;
         this.currentPage = 0;
@@ -532,6 +570,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     @Override
     public void startLoading(boolean forceLoad) {
         super.startLoading(forceLoad);
+        if (disposables != null) disposables.clear();
         if (searchDisposable != null) searchDisposable.dispose();
         searchDisposable = ExtractorHelper.searchFor(serviceId, searchQuery, currentPage, searchLanguage, filter)
                 .subscribeOn(Schedulers.io())

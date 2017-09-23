@@ -14,7 +14,9 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.about.AboutActivity;
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.MainFragment;
@@ -228,13 +230,17 @@ public class NavigationHelper {
     // Link handling
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static void openByLink(Context context, String url) throws Exception {
-        Intent intentByLink = getIntentByLink(context, url);
-        if (intentByLink == null)
-            throw new NullPointerException("getIntentByLink(context = [" + context + "], url = [" + url + "]) returned null");
+    public static boolean openByLink(Context context, String url) {
+        Intent intentByLink;
+        try {
+            intentByLink = getIntentByLink(context, url);
+        } catch (ExtractionException e) {
+            return false;
+        }
         intentByLink.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intentByLink.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intentByLink);
+        return true;
     }
 
     private static Intent getOpenIntent(Context context, String url, int serviceId, StreamingService.LinkType type) {
@@ -245,14 +251,20 @@ public class NavigationHelper {
         return mIntent;
     }
 
-    private static Intent getIntentByLink(Context context, String url) throws Exception {
-        StreamingService service = NewPipe.getServiceByUrl(url);
+    public static Intent getIntentByLink(Context context, String url) throws ExtractionException {
+        return getIntentByLink(context, NewPipe.getServiceByUrl(url), url);
+    }
+
+    public static Intent getIntentByLink(Context context, StreamingService service, String url) throws ExtractionException {
+        if (service != ServiceList.YouTube.getService()) {
+            throw new ExtractionException("Service not supported at the moment");
+        }
 
         int serviceId = service.getServiceId();
         StreamingService.LinkType linkType = service.getLinkTypeByUrl(url);
 
         if (linkType == StreamingService.LinkType.NONE) {
-            throw new Exception("Url not known to service. service=" + serviceId + " url=" + url);
+            throw new ExtractionException("Url not known to service. service=" + serviceId + " url=" + url);
         }
 
         url = getCleanUrl(service, url, linkType);
@@ -268,7 +280,7 @@ public class NavigationHelper {
         return rIntent;
     }
 
-    private static String getCleanUrl(StreamingService service, String dirtyUrl, StreamingService.LinkType linkType) throws Exception {
+    private static String getCleanUrl(StreamingService service, String dirtyUrl, StreamingService.LinkType linkType) throws ExtractionException {
         switch (linkType) {
             case STREAM:
                 return service.getStreamUrlIdHandler().cleanUrl(dirtyUrl);
