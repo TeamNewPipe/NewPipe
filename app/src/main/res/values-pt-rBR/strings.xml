@@ -7,7 +7,7 @@
     <string name="what_device_headline">Informações:</string>
     <string name="webm_description">WebM — formato aberto</string>
     <string name="view_count_text">%1$s visualizações</string>
-    <string name="view">Ver</string>
+    <string name="view">Reproduzir</string>
     <string name="video_is_age_restricted">Vídeo com restrição de idade. Permissão para vídeos com essa restrição podem ser feitas no menu configurações.</string>
     <string name="video">Vídeo</string>
     <string name="autoplay_by_calling_app_summary">Reproduzir o vídeo automaticamente quando o NewPipe for aberto a partir de outro app</string>
