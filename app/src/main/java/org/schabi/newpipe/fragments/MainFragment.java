@@ -18,11 +18,16 @@ import android.view.ViewGroup;
 
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.fragments.list.kisok.KioskFragment;
 import org.schabi.newpipe.fragments.subscription.SubscriptionFragment;
 import org.schabi.newpipe.util.NavigationHelper;
 
 public class MainFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
     private ViewPager viewPager;
+    private boolean showBlankTab = false;
+
+    //todo: FIX THIS URGENTLY
+    public int currentServiceId = 0; //for youtube
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
@@ -115,7 +120,17 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 case 1:
                     return new SubscriptionFragment();
                 default:
-                    return new BlankFragment();
+                    if(showBlankTab) {
+                        return new BlankFragment();
+                    } else {
+                        try {
+                            return KioskFragment.getInstance(currentServiceId);
+                        } catch (Exception e) {
+                            //todo: replace this with propper error reporting
+                            e.printStackTrace();
+                            return new BlankFragment();
+                        }
+                    }
             }
         }
 
