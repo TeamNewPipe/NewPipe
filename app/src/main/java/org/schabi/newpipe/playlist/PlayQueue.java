@@ -15,6 +15,7 @@ import org.schabi.newpipe.playlist.events.UpdateEvent;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -147,9 +148,9 @@ public abstract class PlayQueue implements Serializable {
         broadcast(new UpdateEvent(index));
     }
 
-    protected synchronized void append(final PlayQueueItem item) {
-        streams.add(item);
-        broadcast(new AppendEvent(1));
+    protected synchronized void append(final PlayQueueItem... items) {
+        streams.addAll(Arrays.asList(items));
+        broadcast(new AppendEvent(items.length));
     }
 
     protected synchronized void append(final Collection<PlayQueueItem> items) {

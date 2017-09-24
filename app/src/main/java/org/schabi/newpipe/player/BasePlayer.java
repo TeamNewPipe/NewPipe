@@ -551,6 +551,8 @@ public abstract class BasePlayer implements Player.EventListener,
     //////////////////////////////////////////////////////////////////////////*/
 
     private void refreshTimeline() {
+        playbackManager.load();
+
         final int currentSourceIndex = playbackManager.getCurrentSourceIndex();
 
         // Sanity checks
@@ -558,15 +560,6 @@ public abstract class BasePlayer implements Player.EventListener,
 
         // Check if already playing correct window
         final boolean isCurrentWindowCorrect = simpleExoPlayer.getCurrentWindowIndex() == currentSourceIndex;
-        if (isCurrentWindowCorrect && getCurrentState() == STATE_PLAYING) return;
-
-        // Check timeline is up-to-date and has window
-        if (playbackManager.expectedTimelineSize() != simpleExoPlayer.getCurrentTimeline().getWindowCount()) return;
-
-        // Check if window is ready
-        Timeline.Window window = new Timeline.Window();
-        simpleExoPlayer.getCurrentTimeline().getWindow(currentSourceIndex, window);
-        if (window.isDynamic) return;
 
         // Check if on wrong window
         if (!isCurrentWindowCorrect) {
@@ -576,14 +569,16 @@ public abstract class BasePlayer implements Player.EventListener,
         }
 
         // Check if recovering
-        if (isRecovery && queuePos == playQueue.getIndex() && isCurrentWindowCorrect) {
-            if (DEBUG) Log.d(TAG, "Rewinding to recovery window: " + currentSourceIndex + " at: " + getTimeString((int)videoPos));
-            simpleExoPlayer.seekTo(videoPos);
+        if (isCurrentWindowCorrect && isRecovery && queuePos == playQueue.getIndex()) {
+            // todo: figure out exactly why this is the case
+            /* Rounding time to nearest second as certain media cannot guarantee a sub-second seek
+             will complete and the player might get stuck in buffering state forever */
+            final long roundedPos = (videoPos / 1000) * 1000;
+
+            if (DEBUG) Log.d(TAG, "Rewinding to recovery window: " + currentSourceIndex + " at: " + getTimeString((int)roundedPos));
+            simpleExoPlayer.seekTo(roundedPos);
             isRecovery = false;
         }
-
-        // Good to go...
-        simpleExoPlayer.setPlayWhenReady(true);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -628,7 +623,9 @@ public abstract class BasePlayer implements Player.EventListener,
                 isPrepared = false;
                 break;
             case Player.STATE_BUFFERING: // 2
-                if (isPrepared) changeState(STATE_BUFFERING);
+                if (isPrepared) {
+                    changeState(STATE_BUFFERING);
+                }
                 break;
             case Player.STATE_READY: //3
                 if (!isPrepared) {
