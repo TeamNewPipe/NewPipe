@@ -15,9 +15,6 @@ public enum PlayQueueEvent {
     // sent when two streams swap place in the play queue
     MOVE,
 
-    // sent when a stream is updated
-    UPDATE,
-
     // send when queue is shuffled
     REORDER
 }

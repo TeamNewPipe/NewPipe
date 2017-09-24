@@ -29,9 +29,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
@@ -53,8 +53,8 @@ import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
 import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.source.TrackGroupArray;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.FixedTrackSelection;
-import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
@@ -106,10 +106,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     private static final float[] PLAYBACK_SPEEDS = {0.5f, 0.75f, 1f, 1.25f, 1.5f, 1.75f, 2f};
 
     private static final TrackSelection.Factory FIXED_FACTORY = new FixedTrackSelection.Factory();
-    private int videoRendererIndex;
-    private TrackGroupArray videoTrackGroups;
     private List<TrackGroupInfo> trackGroupInfos;
-    private MappingTrackSelector.SelectionOverride override;
 
     private boolean startedFromNewPipe = true;
     protected boolean wasPlaying = false;
@@ -247,11 +244,13 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     }
 
     @Override
-    public void sync(final StreamInfo info, final int sortedStreamsIndex) {
-        super.sync(info, sortedStreamsIndex);
+    public void sync(@Nullable final StreamInfo info) {
+        super.sync(info);
 
-        final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
-        selectedIndexStream = videos.get(ListHelper.getDefaultResolutionIndex(context, videos));
+        if (info != null) {
+            final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
+            selectedIndexStream = videos.get(ListHelper.getDefaultResolutionIndex(context, videos));
+        }
 
         playbackSpeedPopupMenu.getMenu().removeGroup(playbackSpeedPopupMenuGroupId);
         buildPlaybackSpeedMenu(playbackSpeedPopupMenu);
@@ -369,23 +368,29 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
         super.onTracksChanged(trackGroups, trackSelections);
 
+        if (trackSelector.getCurrentMappedTrackInfo() == null) {
+            qualityTextView.setVisibility(View.GONE);
+            return;
+        } else {
+            qualityTextView.setVisibility(View.VISIBLE);
+        }
+
+        int videoRendererIndex = -1;
         for (int t = 0; t < simpleExoPlayer.getRendererCount(); t++) {
             if (simpleExoPlayer.getRendererType(t) == C.TRACK_TYPE_VIDEO) {
                 videoRendererIndex = t;
             }
         }
 
-        videoTrackGroups = trackSelector.getCurrentMappedTrackInfo().getTrackGroups(videoRendererIndex);
-        override = trackSelector.getSelectionOverride(videoRendererIndex, videoTrackGroups);
-
+        final TrackGroupArray videoTrackGroups = trackSelector.getCurrentMappedTrackInfo().getTrackGroups(videoRendererIndex);
         final Format format = trackSelections.get(videoRendererIndex).getSelectedFormat();
-        final String resolution = Math.min(format.width, format.height) + "p";
-        qualityTextView.setText(resolution);
+
+        qualityTextView.setText(resolutionStringOf(format));
         qualityPopupMenu.getMenu().removeGroup(qualityPopupMenuGroupId);
-        buildQualityMenu(qualityPopupMenu);
+        buildQualityMenu(qualityPopupMenu, videoTrackGroups);
     }
 
-    private void buildQualityMenu(PopupMenu popupMenu) {
+    private void buildQualityMenu(PopupMenu popupMenu, TrackGroupArray videoTrackGroups) {
         trackGroupInfos = new ArrayList<>();
         int acc = 0;
         for (int groupIndex = 0; groupIndex < videoTrackGroups.length; groupIndex++) {
@@ -396,8 +401,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
                 final MediaFormat mediaFormat = MediaFormat.getFromMimeType(format.sampleMimeType);
                 final String mediaName = mediaFormat == null ? format.sampleMimeType : mediaFormat.name;
 
-                final String resolution = Math.min(format.width, format.height) + "p";
-
+                final String resolution = resolutionStringOf(format);
                 popupMenu.getMenu().add(qualityPopupMenuGroupId, acc, Menu.NONE, mediaName + " " + resolution);
                 trackGroupInfos.add(new TrackGroupInfo(trackIndex, groupIndex, format));
                 acc++;
@@ -513,10 +517,10 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         if (qualityPopupMenuGroupId == menuItem.getGroupId()) {
             final int itemId = menuItem.getItemId();
             final TrackGroupInfo info = trackGroupInfos.get(itemId);
-            qualityTextView.setText(menuItem.getTitle());
 
-            override = new MappingTrackSelector.SelectionOverride(FIXED_FACTORY, info.group, info.track);
-            trackSelector.setSelectionOverride(videoRendererIndex, videoTrackGroups, override);
+            final DefaultTrackSelector.Parameters parameters = new DefaultTrackSelector.Parameters()
+                    .withMaxVideoSize(info.format.width, Integer.MAX_VALUE);
+            trackSelector.setParameters(parameters);
 
             return true;
         } else if (playbackSpeedPopupMenuGroupId == menuItem.getGroupId()) {
@@ -537,7 +541,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     public void onDismiss(PopupMenu menu) {
         if (DEBUG) Log.d(TAG, "onDismiss() called with: menu = [" + menu + "]");
         isSomePopupMenuVisible = false;
-        qualityTextView.setText(getSelectedVideoStream().resolution);
     }
 
     public void onQualitySelectorClicked() {
@@ -596,6 +599,11 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
+
+    public String resolutionStringOf(final Format format) {
+        final String frameRate = format.frameRate > 0 ? String.valueOf((int) format.frameRate) : "";
+        return Math.min(format.width, format.height) + "p" + frameRate;
+    }
 
     public boolean isControlsVisible() {
         return controlsRoot != null && controlsRoot.getVisibility() == View.VISIBLE;

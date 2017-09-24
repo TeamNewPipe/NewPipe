@@ -31,6 +31,7 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.support.annotation.IntRange;
+import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -383,8 +384,8 @@ public final class BackgroundPlayer extends Service {
         //////////////////////////////////////////////////////////////////////////*/
 
         @Override
-        public void sync(final StreamInfo info, final int sortedStreamsIndex) {
-            super.sync(info, sortedStreamsIndex);
+        public void sync(@Nullable final StreamInfo info) {
+            super.sync(info);
 
             notRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());
             notRemoteView.setTextViewText(R.id.notificationArtist, getUploaderName());

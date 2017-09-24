@@ -238,8 +238,8 @@ public final class MainVideoPlayer extends Activity {
         }
 
         @Override
-        public void sync(final StreamInfo info, final int sortedStreamsIndex) {
-            super.sync(info, sortedStreamsIndex);
+        public void sync(@Nullable final StreamInfo info) {
+            super.sync(info);
             titleTextView.setText(getVideoTitle());
             channelTextView.setText(getUploaderName());
 

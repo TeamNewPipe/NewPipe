@@ -1,5 +1,7 @@
 package org.schabi.newpipe.player.playback;
 
+import android.support.annotation.Nullable;
+
 import com.google.android.exoplayer2.source.MediaSource;
 
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -28,9 +30,10 @@ public interface PlaybackListener {
     * Signals to the listener to synchronize the player's window to the manager's
     * window.
     *
-    * May be called only when playback is unblocked.
+    * May be null.
+    * May be called only after playback is unblocked.
     * */
-    void sync(final StreamInfo info, final int sortedStreamsIndex);
+    void sync(@Nullable final StreamInfo info);
 
     /*
     * Requests the listener to resolve a stream info into a media source

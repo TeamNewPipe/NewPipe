@@ -11,7 +11,6 @@ import org.schabi.newpipe.playlist.events.PlayQueueMessage;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
 import org.schabi.newpipe.playlist.events.ReorderEvent;
 import org.schabi.newpipe.playlist.events.SelectEvent;
-import org.schabi.newpipe.playlist.events.UpdateEvent;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -68,9 +67,14 @@ public abstract class PlayQueue implements Serializable {
     }
 
     public void dispose() {
-        streamsEventBroadcast.onComplete();
+        if (backup != null) backup.clear();
+        if (streams != null) streams.clear();
 
+        if (streamsEventBroadcast != null) streamsEventBroadcast.onComplete();
+        if (indexEventBroadcast != null) indexEventBroadcast.onComplete();
         if (reportingReactor != null) reportingReactor.cancel();
+
+        broadcastReceiver = null;
         reportingReactor = null;
     }
 
@@ -139,13 +143,6 @@ public abstract class PlayQueue implements Serializable {
 
     public synchronized void offsetIndex(final int offset) {
         setIndex(getIndex() + offset);
-    }
-
-    public synchronized void updateIndex(final int index, final int selectedQuality) {
-        if (index < 0 || index >= streams.size()) return;
-
-        get(index).setSortedQualityIndex(selectedQuality);
-        broadcast(new UpdateEvent(index));
     }
 
     protected synchronized void append(final PlayQueueItem... items) {

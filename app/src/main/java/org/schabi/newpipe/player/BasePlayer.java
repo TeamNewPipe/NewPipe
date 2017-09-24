@@ -32,6 +32,7 @@ import android.media.AudioManager;
 import android.media.audiofx.AudioEffect;
 import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -298,6 +299,9 @@ public abstract class BasePlayer implements Player.EventListener,
     }
 
     protected void initPlayback(@NonNull final PlaybackListener listener, @NonNull final PlayQueue queue) {
+        destroyPlayer();
+        initPlayer();
+
         if (playQueue != null) playQueue.dispose();
         if (playbackManager != null) playbackManager.dispose();
 
@@ -736,13 +740,15 @@ public abstract class BasePlayer implements Player.EventListener,
     }
 
     @Override
-    public void sync(final StreamInfo info, final int sortedStreamsIndex) {
+    public void sync(@Nullable final StreamInfo info) {
         if (simpleExoPlayer == null) return;
         if (DEBUG) Log.d(TAG, "Syncing...");
 
-        currentInfo = info;
         refreshTimeline();
 
+        if (info == null) return;
+
+        currentInfo = info;
         initThumbnail(info.thumbnail_url);
     }
 

@@ -29,10 +29,10 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     // One-side rolling window size for default loading
     // Effectively loads WINDOW_SIZE * 2 + 1 streams, should be at least 1 to ensure gapless playback
     // todo: inject this parameter, allow user settings perhaps
-    private static final int WINDOW_SIZE = 1;
+    private static final int WINDOW_SIZE = 2;
 
-    private final PlaybackListener playbackListener;
-    private final PlayQueue playQueue;
+    private PlaybackListener playbackListener;
+    private PlayQueue playQueue;
 
     private DynamicConcatenatingMediaSource sources;
     // sourceToQueueIndex maps media source index to play queue index
@@ -74,10 +74,6 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         return sourceToQueueIndex.get(sourceIndex);
     }
 
-    public int expectedTimelineSize() {
-        return sources.getSize();
-    }
-
     public void dispose() {
         if (playQueueReactor != null) playQueueReactor.cancel();
         if (syncReactor != null) syncReactor.dispose();
@@ -88,6 +84,8 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         syncReactor = null;
         sources = null;
         sourceToQueueIndex = null;
+        playbackListener = null;
+        playQueue = null;
     }
 
     public void load() {
@@ -141,12 +139,10 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
                             break;
                         }
                     case INIT:
-                    case UPDATE:
                     case REORDER:
                         tryBlock();
                         resetSources();
                         populateSources();
-                        if (tryUnblock()) sync();
                         break;
                     default:
                         break;
@@ -208,7 +204,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         final Consumer<StreamInfo> syncPlayback = new Consumer<StreamInfo>() {
             @Override
             public void accept(StreamInfo streamInfo) throws Exception {
-                playbackListener.sync(streamInfo, currentItem.getSortedQualityIndex());
+                playbackListener.sync(streamInfo);
             }
         };
 
@@ -216,6 +212,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
             @Override
             public void accept(Throwable throwable) throws Exception {
                 Log.e(TAG, "Sync error:", throwable);
+                playbackListener.sync(null);
             }
         };
 
@@ -230,6 +227,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
 
         final DeferredMediaSource mediaSource = (DeferredMediaSource) sources.getMediaSource(playQueue.indexOf(item));
         if (mediaSource.state() == DeferredMediaSource.STATE_PREPARED) mediaSource.load();
+        if (tryUnblock()) sync();
     }
 
     private void resetSources() {
