@@ -29,6 +29,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
+import android.media.audiofx.AudioEffect;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -40,11 +41,14 @@ import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayerFactory;
+import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
+import com.google.android.exoplayer2.audio.AudioRendererEventListener;
+import com.google.android.exoplayer2.decoder.DecoderCounters;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
@@ -103,7 +107,7 @@ import io.reactivex.functions.Predicate;
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class BasePlayer implements Player.EventListener,
-        AudioManager.OnAudioFocusChangeListener, PlaybackListener {
+        AudioManager.OnAudioFocusChangeListener, PlaybackListener, AudioRendererEventListener {
     // TODO: Check api version for deprecated audio manager methods
 
     public static final boolean DEBUG = true;
@@ -159,6 +163,7 @@ public abstract class BasePlayer implements Player.EventListener,
     protected SimpleExoPlayer simpleExoPlayer;
     protected boolean isPrepared = false;
 
+    protected DefaultTrackSelector trackSelector;
     protected CacheDataSourceFactory cacheDataSourceFactory;
     protected final DefaultExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
     protected final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
@@ -212,11 +217,13 @@ public abstract class BasePlayer implements Player.EventListener,
         }
 
         AdaptiveTrackSelection.Factory trackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
-        DefaultTrackSelector defaultTrackSelector = new DefaultTrackSelector(trackSelectionFactory);
+        trackSelector = new DefaultTrackSelector(trackSelectionFactory);
+
         DefaultLoadControl loadControl = new DefaultLoadControl();
 
         final RenderersFactory renderFactory = new DefaultRenderersFactory(context);
-        simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(renderFactory, defaultTrackSelector, loadControl);
+        simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(renderFactory, trackSelector, loadControl);
+        simpleExoPlayer.setAudioDebugListener(this);
         simpleExoPlayer.addListener(this);
         simpleExoPlayer.setPlayWhenReady(true);
     }
@@ -346,6 +353,7 @@ public abstract class BasePlayer implements Player.EventListener,
 
         unregisterBroadcastReceiver();
 
+        trackSelector = null;
         simpleExoPlayer = null;
     }
 
@@ -454,6 +462,33 @@ public abstract class BasePlayer implements Player.EventListener,
         // Set the volume to 1/10 on ducking
         animateAudio(simpleExoPlayer.getVolume(), DUCK_AUDIO_TO, DUCK_DURATION);
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Audio Processing
+    //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void onAudioEnabled(DecoderCounters decoderCounters) {}
+
+    @Override
+    public void onAudioSessionId(int i) {
+        final Intent intent = new Intent(AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION);
+        intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, i);
+        intent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, context.getPackageName());
+        context.sendBroadcast(intent);
+    }
+
+    @Override
+    public void onAudioDecoderInitialized(String s, long l, long l1) {}
+
+    @Override
+    public void onAudioInputFormatChanged(Format format) {}
+
+    @Override
+    public void onAudioTrackUnderrun(int i, long l, long l1) {}
+
+    @Override
+    public void onAudioDisabled(DecoderCounters decoderCounters) {}
 
     /*//////////////////////////////////////////////////////////////////////////
     // States Implementation
@@ -594,6 +629,7 @@ public abstract class BasePlayer implements Player.EventListener,
 
     @Override
     public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
+        if (DEBUG) Log.d(TAG, "onTracksChanged(), track group size = " + trackGroups.length);
     }
 
     @Override

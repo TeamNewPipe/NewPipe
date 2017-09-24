@@ -395,13 +395,8 @@ public final class BackgroundPlayer extends Service {
 
         @Override
         public MediaSource sourceOf(final StreamInfo info) {
-            List<MediaSource> sources = new ArrayList<>();
-            for (final AudioStream audio : info.audio_streams) {
-                final MediaSource audioSource = buildMediaSource(audio.url, MediaFormat.getSuffixById(audio.format));
-                sources.add(audioSource);
-            }
-
-            return new MergingMediaSource(sources.toArray(new MediaSource[sources.size()]));
+            final AudioStream audio = ListHelper.getHighestQualityAudio(info.audio_streams);
+            return buildMediaSource(audio.url, MediaFormat.getSuffixById(audio.format));
         }
 
         @Override

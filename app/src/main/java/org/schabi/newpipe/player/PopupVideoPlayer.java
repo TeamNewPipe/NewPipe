@@ -418,7 +418,7 @@ public final class PopupVideoPlayer extends Service {
             } else {
                 intent = new Intent(PopupVideoPlayer.this, PlayVideoActivity.class)
                         .putExtra(PlayVideoActivity.VIDEO_TITLE, getVideoTitle())
-                        .putExtra(PlayVideoActivity.STREAM_URL, getSelectedStreamUri().toString())
+                        .putExtra(PlayVideoActivity.STREAM_URL, getSelectedVideoStream().url)
                         .putExtra(PlayVideoActivity.VIDEO_URL, getVideoUrl())
                         .putExtra(PlayVideoActivity.START_POSITION, Math.round(getPlayer().getCurrentPosition() / 1000f));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
