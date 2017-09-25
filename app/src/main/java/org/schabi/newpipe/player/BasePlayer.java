@@ -910,20 +910,20 @@ public abstract class BasePlayer implements Player.EventListener,
         return currentState;
     }
 
-    public String getVideoUrl() {
-        return currentInfo.url;
-    }
-
     public long getVideoPos() {
         return videoPos;
     }
 
+    public String getVideoUrl() {
+        return currentInfo == null ? null : currentInfo.url;
+    }
+
     public String getVideoTitle() {
-        return currentInfo.name;
+        return currentInfo == null ? null : currentInfo.name;
     }
 
     public String getUploaderName() {
-        return currentInfo.uploader_name;
+        return currentInfo == null ? null : currentInfo.uploader_name;
     }
 
     public boolean isCompleted() {
