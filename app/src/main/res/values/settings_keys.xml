@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources translatable="false">
+    <!-- Service -->
+    <string name="current_service_key" translatable="false">current_service</string>
+
     <!-- Key values -->
     <string name="download_path_key" translatable="false">download_path</string>
     <string name="download_path_audio_key" translatable="false">download_path_audio</string>

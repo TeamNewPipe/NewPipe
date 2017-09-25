@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,14 +21,15 @@ import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.subscription.SubscriptionFragment;
+import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
 
 public class MainFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
     private ViewPager viewPager;
     private boolean showBlankTab = false;
 
-    //todo: FIX THIS URGENTLY
-    public int currentServiceId = 0; //for youtube
+    public int currentServiceId = -1;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
@@ -41,6 +43,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        currentServiceId = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(getActivity())
+                .getString(getString(R.string.current_service_key), "0"));
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
@@ -126,8 +130,11 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                         try {
                             return KioskFragment.getInstance(currentServiceId);
                         } catch (Exception e) {
-                            //todo: replace this with propper error reporting
-                            e.printStackTrace();
+                            ErrorActivity.reportError(activity, e,
+                                    activity.getClass(),
+                                    null,
+                                    ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
+                                            "none", "", R.string.app_ui_crash));
                             return new BlankFragment();
                         }
                     }
