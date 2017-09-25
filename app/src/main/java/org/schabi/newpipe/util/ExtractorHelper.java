@@ -134,7 +134,7 @@ public final class ExtractorHelper {
         }));
     }
 
-    public static Single<NextItemsResult> getMoreKisokItems(final int serviceId, final String url, final String nextStreamsUrl) {
+    public static Single<NextItemsResult> getMoreKioskItems(final int serviceId, final String url, final String nextStreamsUrl) {
         return Single.fromCallable(new Callable<NextItemsResult>() {
             @Override
             public NextItemsResult call() throws Exception {

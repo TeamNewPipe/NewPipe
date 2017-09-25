@@ -1,11 +1,13 @@
-package org.schabi.newpipe.fragments.list.kisok;
+package org.schabi.newpipe.fragments.list.kiosk;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -17,10 +19,9 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
-import org.schabi.newpipe.extractor.kiosk.KioskList;
-import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
-import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
+import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -63,12 +64,12 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
             throws ExtractionException {
         KioskFragment instance = new KioskFragment();
         StreamingService service = NewPipe.getService(serviceId);
-        String defaultKioskType = service.getKioskList().getDefaultKioskType();
+        String defaultKioskId = service.getKioskList().getDefaultKioskId();
         UrlIdHandler defaultKioskTypeUrlIdHandler = service.getKioskList()
-                .getUrlIdHandlerByType(defaultKioskType);
+                .getUrlIdHandlerByType(defaultKioskId);
         instance.setInitialData(serviceId,
-                defaultKioskTypeUrlIdHandler.getUrl(defaultKioskType),
-                defaultKioskType);
+                defaultKioskTypeUrlIdHandler.getUrl(defaultKioskId),
+                defaultKioskId);
         return instance;
     }
 
@@ -82,6 +83,20 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
+    // Menu
+    //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        ActionBar supportActionBar = activity.getSupportActionBar();
+        if (supportActionBar != null) {
+            supportActionBar.setDisplayShowTitleEnabled(false);
+            supportActionBar.setDisplayHomeAsUpEnabled(false);
+        }
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
     // Init
     //////////////////////////////////////////////////////////////////////////*/
 
@@ -90,6 +105,21 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         headerTitleView = headerRootLayout.findViewById(R.id.kiosk_title_view);
 
         return headerRootLayout;
+    }
+
+    @Override
+    public void initListeners() {
+        // We have to override this because the default implementation of this function calls
+        // openVideoDetailFragment on getFragmentManager() but what we want here is
+        // getParentFragment().getFragmentManager()
+        infoListAdapter.setOnStreamSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<StreamInfoItem>() {
+            @Override
+            public void selected(StreamInfoItem selectedItem) {
+                onItemSelected(selectedItem);
+                NavigationHelper.openVideoDetailFragment(getParentFragment().getFragmentManager(),
+                        selectedItem.service_id, selectedItem.url, selectedItem.name);
+            }
+        });
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -107,7 +137,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
 
     @Override
     public Single<ListExtractor.NextItemsResult> loadMoreItemsLogic() {
-        return ExtractorHelper.getMoreKisokItems(serviceId, url, currentNextItemsUrl);
+        return ExtractorHelper.getMoreKioskItems(serviceId, url, currentNextItemsUrl);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -126,7 +156,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         super.handleResult(result);
 
         animateView(headerRootLayout, true, 100);
-        headerTitleView.setText(result.type);
+        headerTitleView.setText("★★ " +result.name+ " ★★");
 
         if (!result.errors.isEmpty()) {
             showSnackBarError(result.errors,

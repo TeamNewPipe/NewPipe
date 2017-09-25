@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.fragments.list.kisok.KioskFragment;
+import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.subscription.SubscriptionFragment;
 import org.schabi.newpipe.util.NavigationHelper;
 
