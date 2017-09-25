@@ -21,7 +21,7 @@ import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.disposables.SerialDisposable;
 import io.reactivex.functions.Consumer;
 
 public class MediaSourceManager implements DeferredMediaSource.Callback {
@@ -41,7 +41,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     private List<Integer> sourceToQueueIndex;
 
     private Subscription playQueueReactor;
-    private Disposable syncReactor;
+    private SerialDisposable syncReactor;
 
     private boolean isBlocked;
 
@@ -49,6 +49,8 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
                               @NonNull final PlayQueue playQueue) {
         this.playbackListener = listener;
         this.playQueue = playQueue;
+
+        this.syncReactor = new SerialDisposable();
 
         this.sources = new DynamicConcatenatingMediaSource();
         this.sourceToQueueIndex = Collections.synchronizedList(new ArrayList<Integer>());
@@ -216,7 +218,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
             }
         };
 
-        currentItem.getStream().subscribe(syncPlayback, onError);
+        syncReactor.set(currentItem.getStream().subscribe(syncPlayback, onError));
     }
 
     private void load(@Nullable final PlayQueueItem item) {

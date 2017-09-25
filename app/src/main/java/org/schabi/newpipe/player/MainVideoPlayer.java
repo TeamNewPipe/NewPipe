@@ -39,6 +39,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -62,6 +63,8 @@ public final class MainVideoPlayer extends Activity {
 
     private boolean activityPaused;
     private VideoPlayerImpl playerImpl;
+
+    private DefaultTrackSelector.Parameters parameters;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity LifeCycle
@@ -107,6 +110,11 @@ public final class MainVideoPlayer extends Activity {
         super.onStop();
         if (DEBUG) Log.d(TAG, "onStop() called");
         activityPaused = true;
+
+        if (playerImpl.trackSelector != null) {
+            parameters = playerImpl.trackSelector.getParameters();
+        }
+
         if (playerImpl.getPlayer() != null) {
             playerImpl.wasPlaying = playerImpl.getPlayer().getPlayWhenReady();
             playerImpl.setRecovery(
@@ -127,6 +135,10 @@ public final class MainVideoPlayer extends Activity {
 
             playerImpl.getPlayer().setPlayWhenReady(playerImpl.wasPlaying);
             playerImpl.initPlayback(playerImpl, playerImpl.playQueue);
+
+            if (playerImpl.trackSelector != null && parameters != null) {
+                playerImpl.trackSelector.setParameters(parameters);
+            }
 
             activityPaused = false;
         }
@@ -259,7 +271,15 @@ public final class MainVideoPlayer extends Activity {
                 return;
             }
 
-            final Intent intent = NavigationHelper.getOpenVideoPlayerIntent(context, PopupVideoPlayer.class, this);
+            final Intent intent = NavigationHelper.getPlayerIntent(
+                    context,
+                    PopupVideoPlayer.class,
+                    this.getPlayQueue(),
+                    this.getCurrentResolutionTarget(),
+                    this.getCurrentQueueIndex(),
+                    this.getPlayerCurrentPosition(),
+                    this.getPlaybackSpeed()
+            );
             context.startService(intent);
             destroyPlayer();
 

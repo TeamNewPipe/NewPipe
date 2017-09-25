@@ -137,6 +137,7 @@ public abstract class BasePlayer implements Player.EventListener,
     public static final String CHANNEL_NAME = "channel_name";
     public static final String PLAYBACK_SPEED = "playback_speed";
 
+    public static final String PLAY_QUEUE = "play_queue";
     public static final String RESTORE_QUEUE_INDEX = "restore_queue_index";
     public static final String RESTORE_WINDOW_POS = "restore_window_pos";
 
@@ -252,59 +253,32 @@ public abstract class BasePlayer implements Player.EventListener,
         if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
         if (intent == null) return;
 
-        setRecovery(
-                intent.getIntExtra(RESTORE_QUEUE_INDEX, 0),
-                intent.getLongExtra(START_POSITION, 0)
-        );
+        // Resolve play queue
+        if (!intent.hasExtra(PLAY_QUEUE)) return;
+        final Serializable playQueueCandidate = intent.getSerializableExtra(PLAY_QUEUE);
+        if (!(playQueueCandidate instanceof PlayQueue)) return;
+        final PlayQueue queue = (PlayQueue) playQueueCandidate;
+
+        // Resolve playback details
+        if (intent.hasExtra(RESTORE_QUEUE_INDEX) && intent.hasExtra(START_POSITION)) {
+            setRecovery(
+                    intent.getIntExtra(RESTORE_QUEUE_INDEX, 0),
+                    intent.getLongExtra(START_POSITION, 0)
+            );
+        }
         setPlaybackSpeed(intent.getFloatExtra(PLAYBACK_SPEED, getPlaybackSpeed()));
 
-        switch (intent.getStringExtra(INTENT_TYPE)) {
-            case SINGLE_STREAM:
-                handleSinglePlaylistIntent(intent);
-                break;
-            case EXTERNAL_PLAYLIST:
-                handleExternalPlaylistIntent(intent);
-                break;
-            default:
-                break;
-        }
-    }
+        // Re-initialization
+        destroyPlayer();
+        if (playQueue != null) playQueue.dispose();
+        if (playbackManager != null) playbackManager.dispose();
+        initPlayer();
 
-    @SuppressWarnings("unchecked")
-    public void handleExternalPlaylistIntent(Intent intent) {
-        final int serviceId = intent.getIntExtra(ExternalPlayQueue.SERVICE_ID, -1);
-        final int index = intent.getIntExtra(ExternalPlayQueue.INDEX, 0);
-        final Serializable serializable = intent.getSerializableExtra(ExternalPlayQueue.STREAMS);
-        final String url = intent.getStringExtra(ExternalPlayQueue.URL);
-        final String nextPageUrl = intent.getStringExtra(ExternalPlayQueue.NEXT_PAGE_URL);
-
-        List<InfoItem> info = new ArrayList<>();
-        if (serializable instanceof List) {
-            for (final Object o : (List) serializable) {
-                if (o instanceof InfoItem) info.add((StreamInfoItem) o);
-            }
-        }
-
-        final PlayQueue queue = new ExternalPlayQueue(serviceId, url, nextPageUrl, info, index);
-        initPlayback(this, queue);
-    }
-
-    @SuppressWarnings("unchecked")
-    public void handleSinglePlaylistIntent(Intent intent) {
-        final Serializable serializable = intent.getSerializableExtra(SinglePlayQueue.STREAM);
-        if (!(serializable instanceof StreamInfo)) return;
-
-        final PlayQueue queue = new SinglePlayQueue((StreamInfo) serializable, PlayQueueItem.DEFAULT_QUALITY);
+        // Good to go...
         initPlayback(this, queue);
     }
 
     protected void initPlayback(@NonNull final PlaybackListener listener, @NonNull final PlayQueue queue) {
-        destroyPlayer();
-        initPlayer();
-
-        if (playQueue != null) playQueue.dispose();
-        if (playbackManager != null) playbackManager.dispose();
-
         playQueue = queue;
         playQueue.init();
         playbackManager = new MediaSourceManager(this, playQueue);
@@ -974,6 +948,10 @@ public abstract class BasePlayer implements Player.EventListener,
 
     public int getCurrentQueueIndex() {
         return playQueue != null ? playQueue.getIndex() : -1;
+    }
+
+    public int getCurrentResolutionTarget() {
+        return trackSelector != null ? trackSelector.getParameters().maxVideoHeight : Integer.MAX_VALUE;
     }
 
     public long getPlayerCurrentPosition() {

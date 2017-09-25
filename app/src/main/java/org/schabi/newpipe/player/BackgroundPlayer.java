@@ -335,9 +335,18 @@ public final class BackgroundPlayer extends Service {
 
         @Override
         public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
-            if (bigNotRemoteView != null) bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
-            if (notRemoteView != null) notRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
-            if (bigNotRemoteView != null) bigNotRemoteView.setTextViewText(R.id.notificationTime, getTimeString(currentProgress) + " / " + getTimeString(duration));
+            if (bigNotRemoteView != null) {
+                bigNotRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());
+                bigNotRemoteView.setTextViewText(R.id.notificationArtist, getUploaderName());
+                bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
+                bigNotRemoteView.setTextViewText(R.id.notificationTime, getTimeString(currentProgress) + " / " + getTimeString(duration));
+            }
+            if (notRemoteView != null) {
+                notRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());
+                notRemoteView.setTextViewText(R.id.notificationArtist, getUploaderName());
+                notRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
+            }
+
             updateNotification(-1);
         }
 
@@ -396,7 +405,8 @@ public final class BackgroundPlayer extends Service {
 
         @Override
         public MediaSource sourceOf(final StreamInfo info) {
-            final AudioStream audio = ListHelper.getHighestQualityAudio(info.audio_streams);
+            final int index = ListHelper.getDefaultAudioFormat(context, info.audio_streams);
+            final AudioStream audio = info.audio_streams.get(index);
             return buildMediaSource(audio.url, MediaFormat.getSuffixById(audio.format));
         }
 

@@ -16,27 +16,20 @@ import io.reactivex.schedulers.Schedulers;
 
 public class PlayQueueItem implements Serializable {
 
-    final public static int DEFAULT_QUALITY = -1;
-
     final private String title;
     final private String url;
     final private int serviceId;
     final private long duration;
 
-    // Externally mutable, not sure if this is a good idea here
-    private int sortedQualityIndex;
-
     private Throwable error;
 
     private transient Single<StreamInfo> stream;
 
-    PlayQueueItem(final StreamInfo streamInfo, final int sortedQualityIndex) {
+    PlayQueueItem(final StreamInfo streamInfo) {
         this.title = streamInfo.name;
         this.url = streamInfo.url;
         this.serviceId = streamInfo.service_id;
         this.duration = streamInfo.duration;
-
-        this.sortedQualityIndex = sortedQualityIndex;
 
         this.stream = Single.just(streamInfo);
     }
@@ -46,10 +39,7 @@ public class PlayQueueItem implements Serializable {
         this.url = streamInfoItem.url;
         this.serviceId = streamInfoItem.service_id;
         this.duration = streamInfoItem.duration;
-
-        this.sortedQualityIndex = DEFAULT_QUALITY;
     }
-
 
     @NonNull
     public String getTitle() {
@@ -67,14 +57,6 @@ public class PlayQueueItem implements Serializable {
 
     public long getDuration() {
         return duration;
-    }
-
-    public int getSortedQualityIndex() {
-        return sortedQualityIndex;
-    }
-
-    public void setSortedQualityIndex(int sortedQualityIndex) {
-        this.sortedQualityIndex = sortedQualityIndex;
     }
 
     @Nullable

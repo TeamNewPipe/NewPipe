@@ -93,8 +93,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     public static final String INDEX_SEL_VIDEO_STREAM = "index_selected_video_stream";
     public static final String STARTED_FROM_NEWPIPE = "started_from_newpipe";
 
-    public static final String PLAY_QUEUE = "play_queue";
     public static final String PLAYER_INTENT = "player_intent";
+    public static final String MAX_RESOLUTION = "max_resolution";
 
     private VideoStream selectedIndexStream;
 
@@ -212,36 +212,22 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         trackSelector.setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context));
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public void handleIntent(Intent intent) {
         super.handleIntent(intent);
-
         if (intent == null) return;
 
-        if (intent.getStringExtra(INTENT_TYPE).equals(PLAYER_INTENT)) {
-            handlePlayerIntent(intent);
-        }
+        final int resolutionTarget = intent.getIntExtra(MAX_RESOLUTION, Integer.MAX_VALUE);
+        trackSelector.setParameters(
+                // Assume video is horizontal
+                new DefaultTrackSelector.Parameters().withMaxVideoSize(Integer.MAX_VALUE, resolutionTarget)
+        );
     }
 
-    @SuppressWarnings("unchecked")
-    public void handleSinglePlaylistIntent(Intent intent) {
-        final Serializable serializable = intent.getSerializableExtra(SinglePlayQueue.STREAM);
-        if (!(serializable instanceof StreamInfo)) return;
-
-        final int sortedStreamsIndex = intent.getIntExtra(INDEX_SEL_VIDEO_STREAM, -1);
-
-        final PlayQueue queue = new SinglePlayQueue((StreamInfo) serializable, sortedStreamsIndex);
-        initPlayback(this, queue);
-    }
-
-    @SuppressWarnings("unchecked")
-    public void handlePlayerIntent(Intent intent) {
-        final Serializable serializable = intent.getSerializableExtra(PLAY_QUEUE);
-        if (!(serializable instanceof PlayQueue)) return;
-
-        final PlayQueue queue = (PlayQueue) serializable;
-        initPlayback(this, queue);
-    }
+    /*//////////////////////////////////////////////////////////////////////////
+    // Playback Listener
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void sync(@Nullable final StreamInfo info) {
@@ -518,8 +504,14 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
             final int itemId = menuItem.getItemId();
             final TrackGroupInfo info = trackGroupInfos.get(itemId);
 
-            final DefaultTrackSelector.Parameters parameters = new DefaultTrackSelector.Parameters()
-                    .withMaxVideoSize(info.format.width, Integer.MAX_VALUE);
+            DefaultTrackSelector.Parameters parameters;
+            if (info.format.width > info.format.height) {
+                // Check if video horizontal
+                parameters = new DefaultTrackSelector.Parameters().withMaxVideoSize(Integer.MAX_VALUE, info.format.height);
+            } else {
+                // Or if vertical
+                parameters = new DefaultTrackSelector.Parameters().withMaxVideoSize(info.format.width, Integer.MAX_VALUE);
+            }
             trackSelector.setParameters(parameters);
 
             return true;

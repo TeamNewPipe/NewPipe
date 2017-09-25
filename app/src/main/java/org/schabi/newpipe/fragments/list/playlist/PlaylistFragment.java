@@ -24,6 +24,8 @@ import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
+import org.schabi.newpipe.playlist.ExternalPlayQueue;
+import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -172,9 +174,14 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     }
 
     private Intent buildPlaylistIntent(final Class targetClazz) {
-        return NavigationHelper.getExternalPlaylistIntent(
-                activity, targetClazz, currentInfo, infoListAdapter.getItemsList(), 0
+        final PlayQueue playQueue = new ExternalPlayQueue(
+                currentInfo.service_id,
+                currentInfo.url,
+                currentInfo.next_streams_url,
+                infoListAdapter.getItemsList(),
+                0
         );
+        return NavigationHelper.getPlayerIntent(activity, targetClazz, playQueue);
     }
 
     @Override

@@ -412,7 +412,15 @@ public final class PopupVideoPlayer extends Service {
             if (DEBUG) Log.d(TAG, "onFullScreenButtonClicked() called");
             Intent intent;
             if (!getSharedPreferences().getBoolean(getResources().getString(R.string.use_old_player_key), false)) {
-                intent = NavigationHelper.getOpenVideoPlayerIntent(context, MainVideoPlayer.class, this);
+                intent = NavigationHelper.getPlayerIntent(
+                        context,
+                        MainVideoPlayer.class,
+                        this.getPlayQueue(),
+                        this.getCurrentResolutionTarget(),
+                        this.getCurrentQueueIndex(),
+                        this.getPlayerCurrentPosition(),
+                        this.getPlaybackSpeed()
+                );
                 if (!isStartedFromNewPipe()) intent.putExtra(VideoPlayer.STARTED_FROM_NEWPIPE, false);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             } else {
@@ -741,7 +749,7 @@ public final class PopupVideoPlayer extends Service {
             mainHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    playerImpl.playQueue = new SinglePlayQueue(info, PlayQueueItem.DEFAULT_QUALITY);
+                    playerImpl.playQueue = new SinglePlayQueue(info);
                     playerImpl.playQueue.init();
                     playerImpl.playbackManager = new MediaSourceManager(playerImpl, playerImpl.playQueue);
                 }

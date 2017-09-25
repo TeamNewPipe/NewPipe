@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.text.TextUtils;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -33,11 +34,14 @@ import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.playlist.ExternalPlayQueue;
+import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.settings.SettingsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.text.TextUtils.split;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NavigationHelper {
@@ -46,41 +50,32 @@ public class NavigationHelper {
     /*//////////////////////////////////////////////////////////////////////////
     // Players
     //////////////////////////////////////////////////////////////////////////*/
-
-    public static Intent getOpenVideoPlayerIntent(Context context, Class targetClazz, StreamInfo info, int selectedStreamIndex) {
+    public static Intent getPlayerIntent(final Context context,
+                                         final Class targetClazz,
+                                         final PlayQueue playQueue) {
         return new Intent(context, targetClazz)
-                .putExtra(BasePlayer.INTENT_TYPE, VideoPlayer.SINGLE_STREAM)
-                .putExtra(SinglePlayQueue.STREAM, info)
-                .putExtra(VideoPlayer.INDEX_SEL_VIDEO_STREAM, selectedStreamIndex);
+                .putExtra(VideoPlayer.PLAY_QUEUE, playQueue);
     }
 
-    public static Intent getExternalPlaylistIntent(Context context,
-                                                    Class targetClazz,
-                                                    PlaylistInfo info,
-                                                    ArrayList<InfoItem> streams,
-                                                    int index) {
-        return new Intent(context, targetClazz)
-                .putExtra(BasePlayer.INTENT_TYPE, VideoPlayer.EXTERNAL_PLAYLIST)
-                .putExtra(ExternalPlayQueue.SERVICE_ID, info.service_id)
-                .putExtra(ExternalPlayQueue.INDEX, index)
-                .putExtra(ExternalPlayQueue.STREAMS, streams)
-                .putExtra(ExternalPlayQueue.URL, info.url)
-                .putExtra(ExternalPlayQueue.NEXT_PAGE_URL, info.next_streams_url);
+    public static Intent getPlayerIntent(final Context context,
+                                         final Class targetClazz,
+                                         final PlayQueue playQueue,
+                                         final int maxResolution) {
+        return getPlayerIntent(context, targetClazz, playQueue)
+                .putExtra(VideoPlayer.MAX_RESOLUTION, maxResolution);
     }
 
-    public static Intent getOpenVideoPlayerIntent(Context context, Class targetClazz, VideoPlayer instance) {
-        return new Intent(context, targetClazz)
-                .putExtra(BasePlayer.INTENT_TYPE, VideoPlayer.PLAYER_INTENT)
-                .putExtra(VideoPlayer.PLAY_QUEUE, instance.getPlayQueue())
-                .putExtra(VideoPlayer.RESTORE_QUEUE_INDEX, instance.getCurrentQueueIndex())
-                .putExtra(BasePlayer.START_POSITION, instance.getPlayerCurrentPosition())
-                .putExtra(BasePlayer.PLAYBACK_SPEED, instance.getPlaybackSpeed());
-    }
-
-    public static Intent getOpenBackgroundPlayerIntent(Context context, StreamInfo info) {
-        return new Intent(context, BackgroundPlayer.class)
-                .putExtra(BasePlayer.INTENT_TYPE, VideoPlayer.SINGLE_STREAM)
-                .putExtra(SinglePlayQueue.STREAM, info);
+    public static Intent getPlayerIntent(final Context context,
+                                         final Class targetClazz,
+                                         final PlayQueue playQueue,
+                                         final int maxResolution,
+                                         final int restoringIndex,
+                                         final long startPosition,
+                                         final float playbackSpeed) {
+        return getPlayerIntent(context, targetClazz, playQueue, maxResolution)
+                .putExtra(VideoPlayer.RESTORE_QUEUE_INDEX, restoringIndex)
+                .putExtra(BasePlayer.START_POSITION, startPosition)
+                .putExtra(BasePlayer.PLAYBACK_SPEED, playbackSpeed);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

@@ -60,9 +60,12 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.history.HistoryListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
+import org.schabi.newpipe.playlist.PlayQueue;
+import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
@@ -730,6 +733,15 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
     }
 
+    private static int resolutionOf(final String resolution) {
+        final String[] candidates = TextUtils.split(resolution, "p");
+        if (candidates.length > 0 && TextUtils.isDigitsOnly(candidates[0])) {
+            return Integer.parseInt(candidates[0]);
+        } else {
+            return Integer.MAX_VALUE;
+        }
+    }
+
     private void openPopupPlayer() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !PermissionHelper.checkSystemAlertWindowPermission(activity)) {
             Toast toast = Toast.makeText(activity, R.string.msg_popup_permission, Toast.LENGTH_LONG);
@@ -744,8 +756,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
 
         Toast.makeText(activity, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
-        Intent mIntent = NavigationHelper.getOpenVideoPlayerIntent(activity, PopupVideoPlayer.class, currentInfo, actionBarHandler.getSelectedVideoStream());
-        activity.startService(mIntent);
+
+        final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
+        final VideoStream candidate = sortedStreamVideosList.get(actionBarHandler.getSelectedVideoStream());
+        final Intent intent = NavigationHelper.getPlayerIntent(activity, PopupVideoPlayer.class, playQueue, resolutionOf(candidate.resolution));
+        activity.startService(intent);
     }
 
     private void openVideoPlayer() {
@@ -764,7 +779,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
 
     private void openNormalBackgroundPlayer() {
-        activity.startService(NavigationHelper.getOpenBackgroundPlayerIntent(activity, currentInfo));
+        final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
+        activity.startService(NavigationHelper.getPlayerIntent(activity, BackgroundPlayer.class, playQueue));
         Toast.makeText(activity, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
     }
 
@@ -808,7 +824,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 || (Build.VERSION.SDK_INT < 16);
         if (!useOldPlayer) {
             // ExoPlayer
-            mIntent = NavigationHelper.getOpenVideoPlayerIntent(activity, MainVideoPlayer.class, currentInfo, actionBarHandler.getSelectedVideoStream());
+            final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
+            final VideoStream candidate = sortedStreamVideosList.get(actionBarHandler.getSelectedVideoStream());
+            mIntent = NavigationHelper.getPlayerIntent(activity, MainVideoPlayer.class, playQueue, resolutionOf(candidate.resolution));
         } else {
             // Internal Player
             mIntent = new Intent(activity, PlayVideoActivity.class)

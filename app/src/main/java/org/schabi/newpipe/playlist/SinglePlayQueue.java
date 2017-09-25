@@ -7,8 +7,8 @@ import java.util.Collections;
 public final class SinglePlayQueue extends PlayQueue {
     public static final String STREAM = "stream";
 
-    public SinglePlayQueue(final StreamInfo info, final int selectedQualityIndex) {
-        super(0, Collections.singletonList(new PlayQueueItem(info, selectedQualityIndex)));
+    public SinglePlayQueue(final StreamInfo info) {
+        super(0, Collections.singletonList(new PlayQueueItem(info)));
     }
 
     @Override
