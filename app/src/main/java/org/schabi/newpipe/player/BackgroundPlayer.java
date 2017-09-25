@@ -336,14 +336,18 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
             if (bigNotRemoteView != null) {
-                bigNotRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());
-                bigNotRemoteView.setTextViewText(R.id.notificationArtist, getUploaderName());
+                if (currentInfo != null) {
+                    bigNotRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());
+                    bigNotRemoteView.setTextViewText(R.id.notificationArtist, getUploaderName());
+                }
                 bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
                 bigNotRemoteView.setTextViewText(R.id.notificationTime, getTimeString(currentProgress) + " / " + getTimeString(duration));
             }
             if (notRemoteView != null) {
-                notRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());
-                notRemoteView.setTextViewText(R.id.notificationArtist, getUploaderName());
+                if (currentInfo != null) {
+                    notRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());
+                    notRemoteView.setTextViewText(R.id.notificationArtist, getUploaderName());
+                }
                 notRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
             }
 
