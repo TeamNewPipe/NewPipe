@@ -194,7 +194,7 @@
     <!-- Missions -->
     <string name="start">Start</string>
     <string name="pause">Pause</string>
-    <string name="view">View</string>
+    <string name="view">Play</string>
     <string name="delete">Delete</string>
     <string name="checksum">Checksum</string>
 
