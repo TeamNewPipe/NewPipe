@@ -52,7 +52,6 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
 
-
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -90,7 +89,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         ActionBar supportActionBar = activity.getSupportActionBar();
-        if (supportActionBar != null) {
+        if (supportActionBar != null && useAsFrontPage) {
             supportActionBar.setDisplayShowTitleEnabled(false);
             supportActionBar.setDisplayHomeAsUpEnabled(false);
         }
@@ -105,21 +104,6 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         headerTitleView = headerRootLayout.findViewById(R.id.kiosk_title_view);
 
         return headerRootLayout;
-    }
-
-    @Override
-    public void initListeners() {
-        // We have to override this because the default implementation of this function calls
-        // openVideoDetailFragment on getFragmentManager() but what we want here is
-        // getParentFragment().getFragmentManager()
-        infoListAdapter.setOnStreamSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<StreamInfoItem>() {
-            @Override
-            public void selected(StreamInfoItem selectedItem) {
-                onItemSelected(selectedItem);
-                NavigationHelper.openVideoDetailFragment(getParentFragment().getFragmentManager(),
-                        selectedItem.service_id, selectedItem.url, selectedItem.name);
-            }
-        });
     }
 
     /*//////////////////////////////////////////////////////////////////////////

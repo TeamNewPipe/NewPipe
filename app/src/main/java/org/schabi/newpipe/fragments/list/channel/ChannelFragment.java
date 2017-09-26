@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -118,15 +119,21 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "], inflater = [" + inflater + "]");
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_channel, menu);
+        ActionBar supportActionBar = activity.getSupportActionBar();
+        if(useAsFrontPage) {
+            supportActionBar.setDisplayHomeAsUpEnabled(false);
+            supportActionBar.setDisplayShowTitleEnabled(false);
+        } else {
+            inflater.inflate(R.menu.menu_channel, menu);
 
-        menuRssButton = menu.findItem(R.id.menu_item_rss);
-        if (currentInfo != null) {
-            menuRssButton.setVisible(!TextUtils.isEmpty(currentInfo.feed_url));
+            if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "], inflater = [" + inflater + "]");
+            menuRssButton = menu.findItem(R.id.menu_item_rss);
+            if (currentInfo != null) {
+                menuRssButton.setVisible(!TextUtils.isEmpty(currentInfo.feed_url));
+            }
+
         }
-
     }
 
     @Override

@@ -1,5 +1,6 @@
 package org.schabi.newpipe.fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -19,6 +20,8 @@ import android.view.ViewGroup;
 
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
+import org.schabi.newpipe.fragments.list.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.subscription.SubscriptionFragment;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -153,15 +156,26 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             if(set_main_page.equals(getString(R.string.blank_page_key))) {
                 return new BlankFragment();
             } else if(set_main_page.equals(getString(R.string.kiosk_page_key))) {
-                return KioskFragment.getInstance(currentServiceId);
+                KioskFragment fragment = KioskFragment.getInstance(currentServiceId);
+                fragment.useAsFrontPage(true);
+                return fragment;
             } else if(set_main_page.equals(getString(R.string.feed_page_key))) {
-                return new BlankFragment();
+                FeedFragment fragment = new FeedFragment();
+                fragment.useAsFrontPage(true);
+                return fragment;
             } else if(set_main_page.equals(getString(R.string.channel_page_key))) {
-                return new BlankFragment();
+                SharedPreferences preferences =
+                        PreferenceManager.getDefaultSharedPreferences(getActivity());
+                int serviceId = preferences.getInt(getString(R.string.main_page_selected_service), 0);
+                String url = preferences.getString(getString(R.string.main_page_selected_channel_url),
+                        "https://www.youtube.com/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ");
+                String name = preferences.getString(getString(R.string.main_page_selected_channel_name), "Music");
+                ChannelFragment fragment = ChannelFragment.getInstance(serviceId, url, name);
+                fragment.useAsFrontPage(true);
+                return fragment;
             } else {
                 return new BlankFragment();
             }
-
 
         } catch (Exception e) {
             ErrorActivity.reportError(activity, e,

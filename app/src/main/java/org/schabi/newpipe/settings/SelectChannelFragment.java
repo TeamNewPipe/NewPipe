@@ -66,7 +66,6 @@ public class SelectChannelFragment extends DialogFragment {
         onSelectedLisener = listener;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.select_channel_fragment, container, false);

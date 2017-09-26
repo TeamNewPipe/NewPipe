@@ -6,6 +6,7 @@ import android.support.v7.preference.Preference;
 import android.util.Log;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.Constants;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
     @Override
@@ -35,6 +36,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                                     //change summery
                                     Preference pref = findPreference(getString(R.string.main_page_content_key));
                                     pref.setSummary(name);
+
 
                                 }
                             });
