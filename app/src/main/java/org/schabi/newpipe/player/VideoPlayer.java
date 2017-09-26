@@ -55,6 +55,7 @@ import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.FixedTrackSelection;
+import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
@@ -96,8 +97,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     public static final String PLAYER_INTENT = "player_intent";
     public static final String MAX_RESOLUTION = "max_resolution";
 
-    private VideoStream selectedIndexStream;
-
+    private ArrayList<VideoStream> availableStreams;
+    private int   selectedStreamIndex;
     /*//////////////////////////////////////////////////////////////////////////
     // Player
     //////////////////////////////////////////////////////////////////////////*/
@@ -107,6 +108,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
     private static final TrackSelection.Factory FIXED_FACTORY = new FixedTrackSelection.Factory();
     private List<TrackGroupInfo> trackGroupInfos;
+    private int videoRendererIndex = -1;
+    private TrackGroupArray videoTrackGroups;
 
     private boolean startedFromNewPipe = true;
     protected boolean wasPlaying = false;
@@ -235,7 +238,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
         if (info != null) {
             final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
-            selectedIndexStream = videos.get(ListHelper.getDefaultResolutionIndex(context, videos));
+            availableStreams = new ArrayList<>(videos);
+            selectedStreamIndex = ListHelper.getDefaultResolutionIndex(context, videos);
         }
 
         playbackSpeedPopupMenu.getMenu().removeGroup(playbackSpeedPopupMenuGroupId);
@@ -341,11 +345,15 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     private class TrackGroupInfo {
         final int track;
         final int group;
+        final String label;
+        final String resolution;
         final Format format;
 
-        TrackGroupInfo(final int track, final int group, final Format format) {
+        TrackGroupInfo(final int track, final int group, final String label, final String resolution, final Format format) {
             this.track = track;
             this.group = group;
+            this.label = label;
+            this.resolution = resolution;
             this.format = format;
         }
     }
@@ -361,35 +369,47 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
             qualityTextView.setVisibility(View.VISIBLE);
         }
 
-        int videoRendererIndex = -1;
         for (int t = 0; t < simpleExoPlayer.getRendererCount(); t++) {
             if (simpleExoPlayer.getRendererType(t) == C.TRACK_TYPE_VIDEO) {
                 videoRendererIndex = t;
             }
         }
+        videoTrackGroups = trackSelector.getCurrentMappedTrackInfo().getTrackGroups(videoRendererIndex);
+        final TrackGroup selectedTrackGroup = trackSelections.get(videoRendererIndex).getTrackGroup();
 
-        final TrackGroupArray videoTrackGroups = trackSelector.getCurrentMappedTrackInfo().getTrackGroups(videoRendererIndex);
-        final Format format = trackSelections.get(videoRendererIndex).getSelectedFormat();
-
-        qualityTextView.setText(resolutionStringOf(format));
         qualityPopupMenu.getMenu().removeGroup(qualityPopupMenuGroupId);
-        buildQualityMenu(qualityPopupMenu, videoTrackGroups);
+        buildQualityMenu(qualityPopupMenu, videoTrackGroups, selectedTrackGroup);
     }
 
-    private void buildQualityMenu(PopupMenu popupMenu, TrackGroupArray videoTrackGroups) {
+    private void buildQualityMenu(PopupMenu popupMenu, TrackGroupArray videoTrackGroups, TrackGroup selectedTrackGroup) {
         trackGroupInfos = new ArrayList<>();
         int acc = 0;
+
+        // Each group represent a source in sorted order of how the media source was built
         for (int groupIndex = 0; groupIndex < videoTrackGroups.length; groupIndex++) {
             final TrackGroup group = videoTrackGroups.get(groupIndex);
+            final VideoStream stream = availableStreams.get(groupIndex);
 
+            // For each source, there may be one or multiple tracks depending on the source type
             for (int trackIndex = 0; trackIndex < group.length; trackIndex++) {
                 final Format format = group.getFormat(trackIndex);
-                final MediaFormat mediaFormat = MediaFormat.getFromMimeType(format.sampleMimeType);
-                final String mediaName = mediaFormat == null ? format.sampleMimeType : mediaFormat.name;
+                final boolean isSetCurrent = selectedTrackGroup.indexOf(format) != -1;
 
-                final String resolution = resolutionStringOf(format);
-                popupMenu.getMenu().add(qualityPopupMenuGroupId, acc, Menu.NONE, mediaName + " " + resolution);
-                trackGroupInfos.add(new TrackGroupInfo(trackIndex, groupIndex, format));
+                // If the source is extracted (e.g. mp4), then we use the resolution contained in the stream
+                if (group.length == 1 && videoTrackGroups.length == availableStreams.size()) {
+                    popupMenu.getMenu().add(qualityPopupMenuGroupId, acc, Menu.NONE, MediaFormat.getNameById(stream.format) + " " + stream.resolution + " (" + format.width + "x" + format.height + ")");
+                    if (isSetCurrent) qualityTextView.setText(stream.resolution);
+                } else {
+                    // Otherwise, we have a DASH source, which contains multiple formats and
+                    // thus have no inherent quality format
+                    final MediaFormat mediaFormat = MediaFormat.getFromMimeType(format.sampleMimeType);
+                    final String mediaName = mediaFormat == null ? format.sampleMimeType : mediaFormat.name;
+
+                    final String resolution = resolutionStringOf(format);
+                    popupMenu.getMenu().add(qualityPopupMenuGroupId, acc, Menu.NONE, mediaName + " " + resolution);
+                    if (isSetCurrent) qualityTextView.setText(resolution);
+                }
+                trackGroupInfos.add(new TrackGroupInfo(trackIndex, groupIndex, MediaFormat.getNameById(stream.format), stream.resolution, format));
                 acc++;
             }
         }
@@ -504,6 +524,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
             final int itemId = menuItem.getItemId();
             final TrackGroupInfo info = trackGroupInfos.get(itemId);
 
+            // Set selected quality as player lifecycle persistent parameters
             DefaultTrackSelector.Parameters parameters;
             if (info.format.width > info.format.height) {
                 // Check if video horizontal
@@ -513,6 +534,10 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
                 parameters = new DefaultTrackSelector.Parameters().withMaxVideoSize(info.format.width, Integer.MAX_VALUE);
             }
             trackSelector.setParameters(parameters);
+
+            // Override the selection with the selected quality in case of different frame rate
+            final MappingTrackSelector.SelectionOverride override = new MappingTrackSelector.SelectionOverride(FIXED_FACTORY, info.group, info.track);
+            trackSelector.setSelectionOverride(videoRendererIndex, videoTrackGroups, override);
 
             return true;
         } else if (playbackSpeedPopupMenuGroupId == menuItem.getGroupId()) {
@@ -708,7 +733,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     }
 
     public VideoStream getSelectedVideoStream() {
-        return selectedIndexStream;
+        return availableStreams.get(selectedStreamIndex);
     }
 
     public boolean isStartedFromNewPipe() {
