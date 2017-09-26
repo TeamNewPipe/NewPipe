@@ -256,4 +256,5 @@
 	<item quantity="other"></item>
 </plurals>
 
-    </resources>
+    <string name="item_deleted"></string>
+</resources>
