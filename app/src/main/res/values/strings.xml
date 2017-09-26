@@ -265,4 +265,15 @@
     <string name="history_empty">The history is empty</string>
     <string name="history_cleared">History cleared</string>
     <string name="item_deleted">Item deleted</string>
+
+    <!-- Content -->
+    <string name="main_page_content">Content of main page</string>
+    <string-array name="main_page_content_names">
+        <item>Blank Page</item>
+        <item>Trending Page</item>
+        <item>Feed Page</item>
+        <item>Channel Page</item>
+    </string-array>
+    <string name="select_a_channel">Select a channel</string>
+    <string name="no_channel_subscribed_yet">No channel subscribed yet</string>
 </resources>

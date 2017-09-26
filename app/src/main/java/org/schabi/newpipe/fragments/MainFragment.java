@@ -25,6 +25,8 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
 
+import java.util.concurrent.ExecutionException;
+
 public class MainFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
     private ViewPager viewPager;
     private boolean showBlankTab = false;
@@ -124,20 +126,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 case 1:
                     return new SubscriptionFragment();
                 default:
-                    if(showBlankTab) {
-                        return new BlankFragment();
-                    } else {
-                        try {
-                            return KioskFragment.getInstance(currentServiceId);
-                        } catch (Exception e) {
-                            ErrorActivity.reportError(activity, e,
-                                    activity.getClass(),
-                                    null,
-                                    ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
-                                            "none", "", R.string.app_ui_crash));
-                            return new BlankFragment();
-                        }
-                    }
+                    return getMainPageFramgent();
             }
         }
 
@@ -149,6 +138,38 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         @Override
         public int getCount() {
             return this.tabTitles.length;
+        }
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Main page content
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private Fragment getMainPageFramgent() {
+        try {
+            final String set_main_page = PreferenceManager.getDefaultSharedPreferences(getActivity())
+                    .getString(getString(R.string.main_page_content_key),
+                            getString(R.string.main_page_selectd_kiosk_id));
+            if(set_main_page.equals(getString(R.string.blank_page_key))) {
+                return new BlankFragment();
+            } else if(set_main_page.equals(getString(R.string.kiosk_page_key))) {
+                return KioskFragment.getInstance(currentServiceId);
+            } else if(set_main_page.equals(getString(R.string.feed_page_key))) {
+                return new BlankFragment();
+            } else if(set_main_page.equals(getString(R.string.channel_page_key))) {
+                return new BlankFragment();
+            } else {
+                return new BlankFragment();
+            }
+
+
+        } catch (Exception e) {
+            ErrorActivity.reportError(activity, e,
+                    activity.getClass(),
+                    null,
+                    ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
+                            "none", "", R.string.app_ui_crash));
+            return new BlankFragment();
         }
     }
 }
