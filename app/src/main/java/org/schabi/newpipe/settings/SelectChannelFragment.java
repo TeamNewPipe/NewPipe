@@ -13,6 +13,9 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.fragments.subscription.SubscriptionService;
@@ -50,6 +53,7 @@ import io.reactivex.schedulers.Schedulers;
 public class SelectChannelFragment extends DialogFragment {
     private SelectChannelAdapter channelAdapter;
     private SubscriptionService subscriptionService;
+    private ImageLoader imageLoader = ImageLoader.getInstance();
 
     private ProgressBar progressBar;
     private TextView emptyView;
@@ -57,14 +61,30 @@ public class SelectChannelFragment extends DialogFragment {
 
     private List<SubscriptionEntity> subscriptions = new Vector<>();
 
-    public interface OnSelectedLisener {
-        public void onChannelSelected(String url, String name, int service);
-    }
+    /*//////////////////////////////////////////////////////////////////////////
+    // Interfaces
+    //////////////////////////////////////////////////////////////////////////*/
 
-    OnSelectedLisener onSelectedLisener;
+    public interface OnSelectedLisener {
+        void onChannelSelected(String url, String name, int service);
+    }
+    OnSelectedLisener onSelectedLisener = null;
     public void setOnSelectedLisener(OnSelectedLisener listener) {
         onSelectedLisener = listener;
     }
+
+    public interface OnCancelListener {
+        void onCancel();
+    }
+    OnCancelListener onCancelListener = null;
+    public void setOnCancelListener(OnCancelListener listener) {
+        onCancelListener = listener;
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Init
+    //////////////////////////////////////////////////////////////////////////*/
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -90,6 +110,31 @@ public class SelectChannelFragment extends DialogFragment {
         return v;
     }
 
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Handle actions
+    //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void onCancel(final DialogInterface dialogInterface) {
+        super.onCancel(dialogInterface);
+        if(onCancelListener != null) {
+            onCancelListener.onCancel();
+        }
+    }
+
+    private void clickedItem(int position) {
+        if(onSelectedLisener != null) {
+            SubscriptionEntity entry = subscriptions.get(position);
+            onSelectedLisener.onChannelSelected(entry.getUrl(), entry.getName(), entry.getServiceId());
+        }
+        dismiss();
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Item handling
+    //////////////////////////////////////////////////////////////////////////*/
+
     private void displayChannels(List<SubscriptionEntity> subscriptions) {
         this.subscriptions = subscriptions;
         progressBar.setVisibility(View.GONE);
@@ -99,14 +144,6 @@ public class SelectChannelFragment extends DialogFragment {
         }
         recyclerView.setVisibility(View.VISIBLE);
 
-    }
-
-    private void clickedItem(int position) {
-        if(onSelectedLisener != null) {
-            SubscriptionEntity entry = subscriptions.get(position);
-            onSelectedLisener.onChannelSelected(entry.getUrl(), entry.getName(), entry.getServiceId());
-        }
-        dismiss();
     }
 
     private Observer<List<SubscriptionEntity>> getSubscriptionObserver() {
@@ -151,6 +188,7 @@ public class SelectChannelFragment extends DialogFragment {
                     clickedItem(position);
                 }
             });
+            imageLoader.displayImage(entry.getAvatarUrl(), holder.thumbnailView, DISPLAY_IMAGE_OPTIONS);
         }
 
         @Override
@@ -171,6 +209,10 @@ public class SelectChannelFragment extends DialogFragment {
         }
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Error
+    //////////////////////////////////////////////////////////////////////////*/
+
     protected boolean onError(Throwable e) {
         final Activity activity = getActivity();
         ErrorActivity.reportError(activity, e,
@@ -180,4 +222,17 @@ public class SelectChannelFragment extends DialogFragment {
                         "none", "", R.string.app_ui_crash));
         return true;
     }
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // ImageLoaderOptions
+    //////////////////////////////////////////////////////////////////////////*/
+
+    /**
+     * Base display options
+     */
+    public static final DisplayImageOptions DISPLAY_IMAGE_OPTIONS =
+            new DisplayImageOptions.Builder()
+                    .cacheInMemory(true)
+                    .build();
 }

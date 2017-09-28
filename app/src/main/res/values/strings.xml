@@ -268,11 +268,15 @@
 
     <!-- Content -->
     <string name="main_page_content">Content of main page</string>
+    <string name="blank_page_summary">Blank Page</string>
+    <string name="kiosk_page_summary">Kiosk Page</string>
+    <string name="feed_page_summary">Feed Page</string>
+    <string name="channel_page_summary">Channel Page</string>
     <string-array name="main_page_content_names">
-        <item>Blank Page</item>
-        <item>Trending Page</item>
-        <item>Feed Page</item>
-        <item>Channel Page</item>
+        <item>@string/blank_page_summary</item>
+        <item>@string/kiosk_page_summary</item>
+        <item>@string/feed_page_summary</item>
+        <item>@string/channel_page_summary</item>
     </string-array>
     <string name="select_a_channel">Select a channel</string>
     <string name="no_channel_subscribed_yet">No channel subscribed yet</string>
