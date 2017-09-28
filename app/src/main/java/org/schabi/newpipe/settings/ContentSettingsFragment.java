@@ -94,6 +94,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             return R.string.kiosk_page_summary;
         } else if(key.equals(getString(R.string.feed_page_key))) {
             return R.string.feed_page_summary;
+        } else if(key.equals(getString(R.string.subscription_page_key))) {
+            return R.string.subscription_page_summary;
         } else if(key.equals(getString(R.string.channel_page_key))) {
             return R.string.channel_page_summary;
         }

@@ -105,12 +105,14 @@
     <string name="main_page_content_key" translatable="false">main_page_content</string>
     <string name="blank_page_key" translatable="false">blank_page</string>
     <string name="feed_page_key" translatable="false">feed_page</string>
+    <string name="subscription_page_key" translatable="false">subscription_page_key</string>
     <string name="kiosk_page_key" translatable="false">kiosk_page</string>
     <string name="channel_page_key" translatable="false">channel_page</string>
     <string-array name="main_page_content_pages" translatable="false">
         <item>@string/blank_page_key</item>
         <item>@string/kiosk_page_key</item>
         <item>@string/feed_page_key</item>
+        <item>@string/subscription_page_key</item>
         <item>@string/channel_page_key</item>
     </string-array>
     <string name="main_page_selected_service" translatable="false">main_page_selected_service</string>

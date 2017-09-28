@@ -126,10 +126,18 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         @Override
         public Fragment getItem(int position) {
             switch (position) {
+                case 0:
+                    if(PreferenceManager.getDefaultSharedPreferences(getActivity())
+                            .getString(getString(R.string.main_page_content_key), getString(R.string.blank_page_key))
+                            .equals(getString(R.string.subscription_page_key))) {
+                        return new SubscriptionFragment();
+                    } else {
+                        return getMainPageFramgent();
+                    }
                 case 1:
                     return new SubscriptionFragment();
                 default:
-                    return getMainPageFramgent();
+                    return new BlankFragment();
             }
         }
 
@@ -140,7 +148,13 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         @Override
         public int getCount() {
-            return this.tabTitles.length;
+            if(PreferenceManager.getDefaultSharedPreferences(getActivity())
+                    .getString(getString(R.string.main_page_content_key), getString(R.string.blank_page_key))
+                    .equals(getString(R.string.subscription_page_key))) {
+                return 1;
+            } else {
+                return 2;
+            }
         }
     }
 
@@ -186,4 +200,10 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             return new BlankFragment();
         }
     }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Main page content
+    //////////////////////////////////////////////////////////////////////////*/
+
+
 }

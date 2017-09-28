@@ -89,7 +89,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_channel, container, false);
+        View v = inflater.inflate(R.layout.fragment_channel, container, false);
+        return v;
     }
 
     @Override
@@ -110,6 +111,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         headerTitleView = headerRootLayout.findViewById(R.id.channel_title_view);
         headerSubscribersTextView = headerRootLayout.findViewById(R.id.channel_subscriber_view);
         headerSubscribeButton = headerRootLayout.findViewById(R.id.channel_subscribe_button);
+
         return headerRootLayout;
     }
 
@@ -123,7 +125,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         ActionBar supportActionBar = activity.getSupportActionBar();
         if(useAsFrontPage) {
             supportActionBar.setDisplayHomeAsUpEnabled(false);
-            supportActionBar.setDisplayShowTitleEnabled(false);
+            //supportActionBar.setDisplayShowTitleEnabled(false);
         } else {
             inflater.inflate(R.menu.menu_channel, menu);
 

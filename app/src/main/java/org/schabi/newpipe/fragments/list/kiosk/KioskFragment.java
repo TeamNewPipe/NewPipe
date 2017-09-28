@@ -24,6 +24,7 @@ import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import io.reactivex.Single;
@@ -90,7 +91,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         super.onCreateOptionsMenu(menu, inflater);
         ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null && useAsFrontPage) {
-            supportActionBar.setDisplayShowTitleEnabled(false);
+            //supportActionBar.setDisplayShowTitleEnabled(false);
             supportActionBar.setDisplayHomeAsUpEnabled(false);
         }
     }
@@ -140,7 +141,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         super.handleResult(result);
 
         animateView(headerRootLayout, true, 100);
-        headerTitleView.setText("★★ " +result.name+ " ★★");
+        headerTitleView.setText("★★ " + KioskTranslator.getTranslatedKioskName(result.id, getActivity())+ " ★★");
 
         if (!result.errors.isEmpty()) {
             showSnackBarError(result.errors,
