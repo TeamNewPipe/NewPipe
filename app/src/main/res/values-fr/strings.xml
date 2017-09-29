@@ -18,7 +18,7 @@
     <string name="settings">Paramètres</string>
     <string name="share">Partager</string>
     <string name="share_dialog_title">Partager avec</string>
-    <string name="show_play_with_kodi_summary">Afficher une option pour lire la vidéo via la médiathèque Kodi</string>
+    <string name="show_play_with_kodi_summary">Afficher une option pour lire la vidéo via Kodi</string>
     <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
     <string name="upload_date_text">Ajoutée le %1$s</string>
     <string name="view_count_text">%1$s vues</string>
