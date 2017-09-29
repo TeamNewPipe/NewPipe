@@ -25,6 +25,16 @@ import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.subjects.BehaviorSubject;
 
+/**
+ * PlayQueue is responsible for keeping track of a list of streams and the index of
+ * the stream that should be currently playing.
+ *
+ * This class contains basic manipulation of a playlist while also functions as a
+ * message bus, providing all listeners with new updates to the play queue.
+ *
+ * This class can be serialized for passing intents, but in order to start the
+ * message bus, it must be initialized.
+ * */
 public abstract class PlayQueue implements Serializable {
     private final String TAG = "PlayQueue@" + Integer.toHexString(hashCode());
 
@@ -54,6 +64,11 @@ public abstract class PlayQueue implements Serializable {
     // Playlist actions
     //////////////////////////////////////////////////////////////////////////*/
 
+    /**
+     * Initializes the play queue message buses.
+     *
+     * Also starts a self reporter for logging if debug mode is enabled.
+     * */
     public void init() {
         streamsEventBroadcast = BehaviorSubject.create();
         indexEventBroadcast = BehaviorSubject.create();
@@ -66,6 +81,9 @@ public abstract class PlayQueue implements Serializable {
         if (DEBUG) broadcastReceiver.subscribe(getSelfReporter());
     }
 
+    /**
+     * Dispose this play queue by stopping all message buses and clearing the playlist.
+     * */
     public void dispose() {
         if (backup != null) backup.clear();
         if (streams != null) streams.clear();
@@ -78,49 +96,82 @@ public abstract class PlayQueue implements Serializable {
         reportingReactor = null;
     }
 
-    // a queue is complete if it has loaded all items in an external playlist
-    // single stream or local queues are always complete
+    /**
+     * Checks if the queue is complete.
+     *
+     * A queue is complete if it has loaded all items in an external playlist
+     * single stream or local queues are always complete.
+     * */
     public abstract boolean isComplete();
 
-    // load partial queue in the background, does nothing if the queue is complete
+    /**
+     * Load partial queue in the background, does nothing if the queue is complete.
+     * */
     public abstract void fetch();
 
     /*//////////////////////////////////////////////////////////////////////////
     // Readonly ops
     //////////////////////////////////////////////////////////////////////////*/
 
+    /**
+     * Returns the current index that should be played.
+     * */
     public int getIndex() {
         return queueIndex.get();
     }
 
+    /**
+     * Returns the current item that should be played.
+     * */
     public PlayQueueItem getCurrent() {
         return get(getIndex());
     }
 
+    /**
+     * Returns the item at the given index.
+     * May throw {@link IndexOutOfBoundsException}.
+     * */
     public PlayQueueItem get(int index) {
         if (index >= streams.size() || streams.get(index) == null) return null;
         return streams.get(index);
     }
 
+    /**
+     * Returns the index of the given item using referential equality.
+     * May be null despite play queue contains identical item.
+     * */
     public int indexOf(final PlayQueueItem item) {
         // referential equality, can't think of a better way to do this
         // todo: better than this
         return streams.indexOf(item);
     }
 
+    /**
+     * Returns the current size of play queue.
+     * */
     public int size() {
         return streams.size();
     }
 
+    /**
+     * Checks if the play queue is empty.
+     * */
     public boolean isEmpty() {
         return streams.isEmpty();
     }
 
+    /**
+     * Returns an immutable view of the play queue.
+     * */
     @NonNull
     public List<PlayQueueItem> getStreams() {
         return Collections.unmodifiableList(streams);
     }
 
+    /**
+     * Returns the play queue's update broadcast.
+     * May be null if the play queue message bus is not initialized.
+     * */
     @NonNull
     public Flowable<PlayQueueMessage> getBroadcastReceiver() {
         return broadcastReceiver;
@@ -130,6 +181,13 @@ public abstract class PlayQueue implements Serializable {
     // Write ops
     //////////////////////////////////////////////////////////////////////////*/
 
+    /**
+     * Changes the current playing index to a new index.
+     *
+     * This method is guarded using in a circular manner for index exceeding the play queue size.
+     *
+     * Will emit a {@link SelectEvent} if the index is not the current playing index.
+     * */
     public synchronized void setIndex(final int index) {
         if (index == getIndex()) return;
 
@@ -141,34 +199,65 @@ public abstract class PlayQueue implements Serializable {
         indexEventBroadcast.onNext(new SelectEvent(newIndex));
     }
 
+    /**
+     * Changes the current playing index by an offset amount.
+     *
+     * Will emit a {@link SelectEvent} if offset is non-zero.
+     * */
     public synchronized void offsetIndex(final int offset) {
         setIndex(getIndex() + offset);
     }
 
+    /**
+     * Appends the given {@link PlayQueueItem}s to the current play queue.
+     *
+     * Will emit a {@link AppendEvent} on any given context.
+     * */
     protected synchronized void append(final PlayQueueItem... items) {
         streams.addAll(Arrays.asList(items));
         broadcast(new AppendEvent(items.length));
     }
 
+    /**
+     * Appends the given {@link PlayQueueItem}s to the current play queue.
+     *
+     * Will emit a {@link AppendEvent} on any given context.
+     * */
     protected synchronized void append(final Collection<PlayQueueItem> items) {
         streams.addAll(items);
         broadcast(new AppendEvent(items.size()));
     }
 
+    /**
+     * Removes the item at the given index from the play queue.
+     *
+     * The current playing index will decrement if greater than or equal to the index being removed.
+     *
+     * Will emit a {@link RemoveEvent} if the index is within the play queue index range.
+     *
+     * */
     public synchronized void remove(final int index) {
         if (index >= streams.size() || index < 0) return;
 
         final boolean isCurrent = index == getIndex();
 
-        streams.remove(index);
-        // Nudge the index if it becomes larger than the queue size
-        if (queueIndex.get() > size()) {
-            queueIndex.set(size() - 1);
+        if (queueIndex.get() >= index) {
+            queueIndex.decrementAndGet();
         }
+        streams.remove(index);
 
         broadcast(new RemoveEvent(index, isCurrent));
     }
 
+    /**
+     * Shuffles the current play queue.
+     *
+     * This method first backs up the existing play queue and item being played.
+     * Then a newly shuffled play queue will be generated along with the index of
+     * the previously playing item.
+     *
+     * Will emit a {@link ReorderEvent} in any context.
+     * */
     public synchronized void shuffle() {
         backup = new ArrayList<>(streams);
         final PlayQueueItem current = getCurrent();
@@ -178,6 +267,13 @@ public abstract class PlayQueue implements Serializable {
         broadcast(new ReorderEvent(true));
     }
 
+    /**
+     * Unshuffles the current play queue if a backup play queue exists.
+     *
+     * This method undoes shuffling and index will be set to the previously playing item.
+     *
+     * Will emit a {@link ReorderEvent} if a backup exists.
+     * */
     public synchronized void unshuffle() {
         if (backup == null) return;
         final PlayQueueItem current = getCurrent();
@@ -218,7 +314,7 @@ public abstract class PlayQueue implements Serializable {
 
             @Override
             public void onComplete() {
-                Log.d(TAG, "Broadcast is shut down.");
+                Log.d(TAG, "Broadcast is shutting down.");
             }
         };
     }

@@ -20,12 +20,6 @@ import io.reactivex.schedulers.Schedulers;
 public final class ExternalPlayQueue extends PlayQueue {
     private final String TAG = "ExternalPlayQueue@" + Integer.toHexString(hashCode());
 
-    public static final String SERVICE_ID = "service_id";
-    public static final String INDEX = "index";
-    public static final String STREAMS = "streams";
-    public static final String URL = "url";
-    public static final String NEXT_PAGE_URL = "next_page_url";
-
     private static final int RETRY_COUNT = 2;
 
     private boolean isComplete;
@@ -87,7 +81,7 @@ public final class ExternalPlayQueue extends PlayQueue {
             public void onError(@NonNull Throwable e) {
                 Log.e(TAG, "Error fetching more playlist, marking playlist as complete.", e);
                 isComplete = true;
-                append(Collections.<PlayQueueItem>emptyList());
+                append(); // Notify change
             }
         };
     }

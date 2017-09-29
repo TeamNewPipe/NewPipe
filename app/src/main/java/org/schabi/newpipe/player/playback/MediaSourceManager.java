@@ -61,21 +61,36 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
+    // DeferredMediaSource listener
+    //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public MediaSource sourceOf(StreamInfo info) {
+        return playbackListener.sourceOf(info);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
     // Exposed Methods
     //////////////////////////////////////////////////////////////////////////*/
 
-    /*
-    * Returns the media source index of the currently playing stream.
-    * */
+    /**
+     * Returns the media source index of the currently playing stream.
+     * */
     public int getCurrentSourceIndex() {
         return sourceToQueueIndex.indexOf(playQueue.getIndex());
     }
 
+    /**
+     * Returns the play queue index of a given media source playlist index.
+     * */
     public int getQueueIndexOf(final int sourceIndex) {
         if (sourceIndex < 0 || sourceIndex >= sourceToQueueIndex.size()) return -1;
         return sourceToQueueIndex.get(sourceIndex);
     }
 
+    /**
+     * Dispose the manager and releases all message buses and loaders.
+     * */
     public void dispose() {
         if (playQueueReactor != null) playQueueReactor.cancel();
         if (syncReactor != null) syncReactor.dispose();
@@ -90,6 +105,9 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         playQueue = null;
     }
 
+    /**
+     * Loads the current playing stream and the streams within its WINDOW_SIZE bound.
+     * */
     public void load() {
         // The current item has higher priority
         final int currentIndex = playQueue.getIndex();
@@ -140,6 +158,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
                             remove(removeEvent.index());
                             break;
                         }
+                        // Reset the sources if the index to remove is the current playing index
                     case INIT:
                     case REORDER:
                         tryBlock();
@@ -249,8 +268,12 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     // Media Source List Manipulation
     //////////////////////////////////////////////////////////////////////////*/
 
-    // Insert source into playlist with position in respect to the play queue
-    // If the play queue index already exists, then the insert is ignored
+    /**
+     * Inserts a source into {@link DynamicConcatenatingMediaSource} with position
+     * in respect to the play queue.
+     *
+     * If the play queue index already exists, then the insert is ignored.
+     * */
     private void insert(final int queueIndex, final DeferredMediaSource source) {
         if (queueIndex < 0) return;
 
@@ -262,6 +285,11 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         }
     }
 
+    /**
+     * Removes a source from {@link DynamicConcatenatingMediaSource} with the given play queue index.
+     *
+     * If the play queue index does not exist, the removal is ignored.
+     * */
     private void remove(final int queueIndex) {
         if (queueIndex < 0) return;
 
@@ -275,10 +303,5 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         for (int i = sourceIndex; i < sourceToQueueIndex.size(); i++) {
             sourceToQueueIndex.set(i, sourceToQueueIndex.get(i) - 1);
         }
-    }
-
-    @Override
-    public MediaSource sourceOf(StreamInfo info) {
-        return playbackListener.sourceOf(info);
     }
 }

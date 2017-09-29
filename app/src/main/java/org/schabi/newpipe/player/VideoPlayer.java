@@ -65,6 +65,7 @@ import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.playlist.PlayQueue;
+import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
@@ -395,20 +396,25 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
                 final Format format = group.getFormat(trackIndex);
                 final boolean isSetCurrent = selectedTrackGroup.indexOf(format) != -1;
 
-                // If the source is extracted (e.g. mp4), then we use the resolution contained in the stream
                 if (group.length == 1 && videoTrackGroups.length == availableStreams.size()) {
-                    popupMenu.getMenu().add(qualityPopupMenuGroupId, acc, Menu.NONE, MediaFormat.getNameById(stream.format) + " " + stream.resolution + " (" + format.width + "x" + format.height + ")");
+                    // If the source is non-adaptive (extractor source), then we use the resolution contained in the stream
                     if (isSetCurrent) qualityTextView.setText(stream.resolution);
+
+                    final String menuItem = MediaFormat.getNameById(stream.format) + " " +
+                            stream.resolution + " (" + format.width + "x" + format.height + ")";
+                    popupMenu.getMenu().add(qualityPopupMenuGroupId, acc, Menu.NONE, menuItem);
                 } else {
-                    // Otherwise, we have a DASH source, which contains multiple formats and
+                    // Otherwise, we have an adaptive source, which contains multiple formats and
                     // thus have no inherent quality format
+                    if (isSetCurrent) qualityTextView.setText(resolutionStringOf(format));
+
                     final MediaFormat mediaFormat = MediaFormat.getFromMimeType(format.sampleMimeType);
                     final String mediaName = mediaFormat == null ? format.sampleMimeType : mediaFormat.name;
 
-                    final String resolution = resolutionStringOf(format);
-                    popupMenu.getMenu().add(qualityPopupMenuGroupId, acc, Menu.NONE, mediaName + " " + resolution);
-                    if (isSetCurrent) qualityTextView.setText(resolution);
+                    final String menuItem = mediaName + " " + format.width + "x" + format.height;
+                    popupMenu.getMenu().add(qualityPopupMenuGroupId, acc, Menu.NONE, menuItem);
                 }
+
                 trackGroupInfos.add(new TrackGroupInfo(trackIndex, groupIndex, MediaFormat.getNameById(stream.format), stream.resolution, format));
                 acc++;
             }

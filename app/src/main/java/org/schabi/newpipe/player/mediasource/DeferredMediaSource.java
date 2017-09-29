@@ -19,6 +19,15 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * DeferredMediaSource is specifically designed to allow external control over when
+ * the source metadata are loaded while being compatible with ExoPlayer's playlists.
+ *
+ * This media source follows the structure of how NewPipeExtractor's
+ * {@link org.schabi.newpipe.extractor.stream.StreamInfoItem} is converted into
+ * {@link org.schabi.newpipe.extractor.stream.StreamInfo}. Once conversion is complete,
+ * this media source behaves identically as any other native media sources.
+ * */
 public final class DeferredMediaSource implements MediaSource {
     private final String TAG = "DeferredMediaSource@" + Integer.toHexString(hashCode());
 
@@ -30,6 +39,9 @@ public final class DeferredMediaSource implements MediaSource {
     public final static int STATE_DISPOSED = 3;
 
     public interface Callback {
+        /**
+         * Player-specific MediaSource resolution from given StreamInfo.
+         * */
         MediaSource sourceOf(final StreamInfo info);
     }
 
@@ -51,6 +63,9 @@ public final class DeferredMediaSource implements MediaSource {
         this.state = STATE_INIT;
     }
 
+    /**
+     * Parameters are kept in the class for delayed preparation.
+     * */
     @Override
     public void prepareSource(ExoPlayer exoPlayer, boolean isTopLevelSource, Listener listener) {
         this.exoPlayer = exoPlayer;
@@ -62,6 +77,17 @@ public final class DeferredMediaSource implements MediaSource {
         return state;
     }
 
+    /**
+     * Externally controlled loading. This method fully prepares the source to be used
+     * like any other native MediaSource.
+     *
+     * Ideally, this should be called after this source has entered PREPARED state and
+     * called once only.
+     *
+     * If loading fails here, an error will be propagated out and result in a
+     * {@link com.google.android.exoplayer2.ExoPlaybackException}, which is delegated
+     * out to the player.
+     * */
     public synchronized void load() {
         if (state != STATE_PREPARED || stream == null || loader != null) return;
         Log.d(TAG, "Loading: [" + stream.getTitle() + "] with url: " + stream.getUrl());
