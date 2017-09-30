@@ -11,6 +11,7 @@ import io.reactivex.Flowable;
 
 import static org.schabi.newpipe.database.history.model.SearchHistoryEntry.CREATION_DATE;
 import static org.schabi.newpipe.database.history.model.SearchHistoryEntry.ID;
+import static org.schabi.newpipe.database.history.model.SearchHistoryEntry.SEARCH;
 import static org.schabi.newpipe.database.history.model.SearchHistoryEntry.SERVICE_ID;
 import static org.schabi.newpipe.database.history.model.SearchHistoryEntry.TABLE_NAME;
 
@@ -34,4 +35,7 @@ public interface SearchHistoryDAO extends HistoryDAO<SearchHistoryEntry> {
     @Query("SELECT * FROM " + TABLE_NAME + " WHERE " + SERVICE_ID + " = :serviceId" + ORDER_BY_CREATION_DATE)
     @Override
     Flowable<List<SearchHistoryEntry>> listByService(int serviceId);
+
+    @Query("SELECT * FROM " + TABLE_NAME + " WHERE " + SEARCH + " LIKE :query || '%'" + ORDER_BY_CREATION_DATE + " LIMIT :limit")
+    Flowable<List<SearchHistoryEntry>> getItemsForQuery(String query, int limit);
 }

@@ -15,6 +15,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,8 +30,11 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
+import org.schabi.newpipe.database.history.dao.SearchHistoryDAO;
+import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -57,6 +61,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
@@ -103,6 +108,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     private CompositeDisposable disposables = new CompositeDisposable();
 
     private SuggestionListAdapter suggestionListAdapter;
+    private SearchHistoryDAO searchHistoryDAO;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -139,6 +145,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     public void onAttach(Context context) {
         super.onAttach(context);
         suggestionListAdapter = new SuggestionListAdapter(activity);
+        searchHistoryDAO = NewPipeDatabase.getInstance().searchHistoryDAO();
     }
 
     @Override
@@ -361,7 +368,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     searchEditText.setText("", false);
                 } else searchEditText.setText("");
-                suggestionListAdapter.updateAdapter(new ArrayList<String>());
+                suggestionListAdapter.clearAdapter();
                 showSoftKeyboard(searchEditText);
             }
         });
@@ -395,7 +402,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
                 submitQuery(s);
             }
         });
-        searchEditText.setThreshold(THRESHOLD_SUGGESTION);
+        searchEditText.setThreshold(0);
 
         if (textWatcher != null) searchEditText.removeTextChangedListener(textWatcher);
         textWatcher = new TextWatcher() {
@@ -473,10 +480,6 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
             @Override
             public boolean test(@io.reactivex.annotations.NonNull String s) throws Exception {
                 boolean lengthCheck = s.length() >= THRESHOLD_SUGGESTION;
-                // Clear the suggestions adapter if the length check fails
-                if (!lengthCheck && !suggestionListAdapter.isEmpty()) {
-                    suggestionListAdapter.updateAdapter(new ArrayList<String>());
-                }
                 // Only pass through if suggestions is enabled and the query length is equal or greater than THRESHOLD_SUGGESTION
                 return showSuggestions && lengthCheck;
             }
@@ -485,25 +488,35 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
         suggestionWorkerDisposable = suggestionPublisher
                 .debounce(SUGGESTIONS_DEBOUNCE, TimeUnit.MILLISECONDS)
                 .startWith(!TextUtils.isEmpty(searchQuery) ? searchQuery : "")
-                .filter(checkEnabledAndLength)
-                .switchMap(new Function<String, Observable<Notification<List<String>>>>() {
+                .switchMap(new Function<String, Observable<Notification<Pair<List<String>, List<SearchHistoryEntry>>>>>() {
                     @Override
-                    public Observable<Notification<List<String>>> apply(@io.reactivex.annotations.NonNull String query) throws Exception {
-                        return ExtractorHelper.suggestionsFor(serviceId, query, searchLanguage).toObservable().materialize();
+                    public Observable<Notification<Pair<List<String>, List<SearchHistoryEntry>>>> apply(@io.reactivex.annotations.NonNull String query) throws Exception {
+                        Observable<List<String>> suggestions = (checkEnabledAndLength.test(query))
+                                ? ExtractorHelper.suggestionsFor(serviceId, query, searchLanguage).toObservable()
+                                : Observable.<List<String>>just(new ArrayList<String>());
+                        Observable<List<SearchHistoryEntry>> historyItems = searchHistoryDAO.getItemsForQuery(query, 10).toObservable();
+                        return Observable.combineLatest(suggestions, historyItems, new BiFunction<List<String>, List<SearchHistoryEntry>, Pair<List<String>, List<SearchHistoryEntry>>>() {
+                            @Override
+                            public Pair<List<String>, List<SearchHistoryEntry>> apply(@io.reactivex.annotations.NonNull List<String> suggestions, @io.reactivex.annotations.NonNull List<SearchHistoryEntry> searchHistoryEntries) throws Exception {
+                                return new Pair<>(suggestions, searchHistoryEntries);
+                            }
+                        }).materialize();
                     }
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Notification<List<String>>>() {
+                .subscribe(new Consumer<Notification<Pair<List<String>, List<SearchHistoryEntry>>>>() {
                     @Override
-                    public void accept(@io.reactivex.annotations.NonNull Notification<List<String>> listNotification) throws Exception {
-                        if (listNotification.isOnNext()) {
-                            handleSuggestions(listNotification.getValue());
+                    public void accept(Notification<Pair<List<String>, List<SearchHistoryEntry>>> notification) throws Exception {
+                        if (notification.isOnNext()) {
+                            List<String> suggestions = notification.getValue().first;
+                            List<SearchHistoryEntry> historyItems = notification.getValue().second;
+                            suggestionListAdapter.updateAdapter(historyItems, suggestions);
                             if (errorPanelRoot.getVisibility() == View.VISIBLE) {
                                 hideLoading();
                             }
-                        } else if (listNotification.isOnError()) {
-                            Throwable error = listNotification.getError();
+                        } else if (notification.isOnError()) {
+                            Throwable error = notification.getError();
                             if (!ExtractorHelper.isInterruptedCaused(error)) {
                                 onSuggestionError(error);
                             }
@@ -657,11 +670,6 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     /*//////////////////////////////////////////////////////////////////////////
     // Suggestion Results
     //////////////////////////////////////////////////////////////////////////*/
-
-    public void handleSuggestions(@NonNull List<String> suggestions) {
-        if (DEBUG) Log.d(TAG, "handleSuggestions() called with: suggestions = [" + suggestions + "]");
-        suggestionListAdapter.updateAdapter(suggestions);
-    }
 
     public void onSuggestionError(Throwable exception) {
         if (DEBUG) Log.d(TAG, "onSuggestionError() called with: exception = [" + exception + "]");

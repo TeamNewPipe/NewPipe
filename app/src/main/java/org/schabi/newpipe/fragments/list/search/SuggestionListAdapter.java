@@ -5,7 +5,11 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.support.v4.widget.ResourceCursorAdapter;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 
 import java.util.List;
 
@@ -34,36 +38,52 @@ import java.util.List;
  */
 public class SuggestionListAdapter extends ResourceCursorAdapter {
 
-    private static final String[] columns = new String[]{"_id", "title"};
+    private static final String[] columns = new String[]{"_id", "title", "is_history_item"};
     private static final int INDEX_ID = 0;
     private static final int INDEX_TITLE = 1;
+    private static final int INDEX_IS_HISTORY_ITEM = 2;
 
 
     public SuggestionListAdapter(Context context) {
-        super(context, android.R.layout.simple_list_item_1, null, 0);
+        super(context, R.layout.item_search_suggestion, null, 0);
     }
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         ViewHolder viewHolder = new ViewHolder(view);
         viewHolder.suggestionTitle.setText(cursor.getString(INDEX_TITLE));
+        boolean isHistoryItem = Boolean.valueOf(cursor.getString(INDEX_IS_HISTORY_ITEM));
+        viewHolder.historyIcon.setVisibility(isHistoryItem ? View.VISIBLE : View.INVISIBLE);
+    }
+
+    public void clearAdapter() {
+        changeCursor(new MatrixCursor(columns, 0));
     }
 
     /**
      * Update the suggestion list
      * @param suggestions the list of suggestions
      */
-    public void updateAdapter(List<String> suggestions) {
-        MatrixCursor cursor = new MatrixCursor(columns, suggestions.size());
-        int i = 0;
-        for (String suggestion : suggestions) {
-            String[] columnValues = new String[columns.length];
-            columnValues[INDEX_TITLE] = suggestion;
-            columnValues[INDEX_ID] = Integer.toString(i);
-            cursor.addRow(columnValues);
-            i++;
+    public void updateAdapter(List<SearchHistoryEntry> historyItems, List<String> suggestions) {
+        MatrixCursor cursor = new MatrixCursor(columns, historyItems.size() + suggestions.size());
+        for (int i = 0; i < historyItems.size(); i++) {
+            String item = historyItems.get(i).getSearch();
+            insertRow(i, cursor, item, true);
+            // Remove duplicate items.
+            suggestions.remove(item);
+        }
+        for (int i = 0; i < suggestions.size(); i++) {
+            insertRow(historyItems.size() + i, cursor, suggestions.get(i), false);
         }
         changeCursor(cursor);
+    }
+
+    private void insertRow(int index, MatrixCursor cursor, String suggestion, boolean isHistoryItem) {
+        String[] columnValues = new String[columns.length];
+        columnValues[INDEX_TITLE] = suggestion;
+        columnValues[INDEX_ID] = Integer.toString(index);
+        columnValues[INDEX_IS_HISTORY_ITEM] = Boolean.toString(isHistoryItem);
+        cursor.addRow(columnValues);
     }
 
     /**
@@ -82,8 +102,10 @@ public class SuggestionListAdapter extends ResourceCursorAdapter {
 
     private class ViewHolder {
         private final TextView suggestionTitle;
+        private final ImageView historyIcon;
         private ViewHolder(View view) {
             this.suggestionTitle = view.findViewById(android.R.id.text1);
+            this.historyIcon = view.findViewById(R.id.history_icon);
         }
     }
 }
