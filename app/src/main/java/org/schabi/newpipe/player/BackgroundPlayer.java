@@ -83,6 +83,8 @@ public final class BackgroundPlayer extends Service {
     //////////////////////////////////////////////////////////////////////////*/
     private static final int NOTIFICATION_ID = 123789;
 
+    private boolean shouldUpdateNotification;
+
     private NotificationManager notificationManager;
     private NotificationCompat.Builder notBuilder;
     private RemoteViews notRemoteView;
@@ -150,15 +152,26 @@ public final class BackgroundPlayer extends Service {
 
     private void onScreenOnOff(boolean on) {
         if (DEBUG) Log.d(TAG, "onScreenOnOff() called with: on = [" + on + "]");
-        if (on) {
-            if (basePlayerImpl.isPlaying() && !basePlayerImpl.isProgressLoopRunning()) basePlayerImpl.startProgressLoop();
-        } else basePlayerImpl.stopProgressLoop();
+        shouldUpdateNotification = on;
 
+        if (on) {
+            if (basePlayerImpl.isPlaying() && !basePlayerImpl.isProgressLoopRunning()) {
+                basePlayerImpl.startProgressLoop();
+            }
+        } else {
+            basePlayerImpl.stopProgressLoop();
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Notification
     //////////////////////////////////////////////////////////////////////////*/
+
+    private void resetNotification() {
+        if (shouldUpdateNotification) {
+            notBuilder = createNotification();
+        }
+    }
 
     private NotificationCompat.Builder createNotification() {
         notRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
@@ -214,7 +227,7 @@ public final class BackgroundPlayer extends Service {
      */
     private synchronized void updateNotification(int drawableId) {
         //if (DEBUG) Log.d(TAG, "updateNotification() called with: drawableId = [" + drawableId + "]");
-        if (notBuilder == null) return;
+        if (notBuilder == null || !shouldUpdateNotification) return;
         if (drawableId != -1) {
             if (notRemoteView != null) notRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
             if (bigNotRemoteView != null) bigNotRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
@@ -267,6 +280,7 @@ public final class BackgroundPlayer extends Service {
         public void handleIntent(Intent intent) {
             super.handleIntent(intent);
 
+            shouldUpdateNotification = true;
             notBuilder = createNotification();
             startForeground(NOTIFICATION_ID, notBuilder.build());
 
@@ -276,6 +290,7 @@ public final class BackgroundPlayer extends Service {
 
         @Override
         public void initThumbnail(final String url) {
+            resetNotification();
             if (notRemoteView != null) notRemoteView.setImageViewResource(R.id.notificationCover, R.drawable.dummy_thumbnail);
             if (bigNotRemoteView != null) bigNotRemoteView.setImageViewResource(R.id.notificationCover, R.drawable.dummy_thumbnail);
             updateNotification(-1);
@@ -288,7 +303,7 @@ public final class BackgroundPlayer extends Service {
 
             if (thumbnail != null) {
                 // rebuild notification here since remote view does not release bitmaps, causing memory leaks
-                notBuilder = createNotification();
+                resetNotification();
 
                 if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
                 if (bigNotRemoteView != null) bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
@@ -335,6 +350,7 @@ public final class BackgroundPlayer extends Service {
 
         @Override
         public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
+            resetNotification();
             if (bigNotRemoteView != null) {
                 if (currentInfo != null) {
                     bigNotRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());
@@ -400,6 +416,7 @@ public final class BackgroundPlayer extends Service {
         public void sync(@Nullable final StreamInfo info) {
             super.sync(info);
 
+            resetNotification();
             notRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());
             notRemoteView.setTextViewText(R.id.notificationArtist, getUploaderName());
             bigNotRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());

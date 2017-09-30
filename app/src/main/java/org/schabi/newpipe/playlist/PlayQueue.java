@@ -231,7 +231,8 @@ public abstract class PlayQueue implements Serializable {
     /**
      * Removes the item at the given index from the play queue.
      *
-     * The current playing index will decrement if greater than or equal to the index being removed.
+     * The current playing index will decrement if it is greater than the index being removed.
+     * On cases where the current playing index exceeds the playlist range, it is set to 0.
      *
      * Will emit a {@link RemoveEvent} if the index is within the play queue index range.
      *
@@ -239,10 +240,13 @@ public abstract class PlayQueue implements Serializable {
     public synchronized void remove(final int index) {
         if (index >= streams.size() || index < 0) return;
 
+        final int currentIndex = queueIndex.get();
         final boolean isCurrent = index == getIndex();
 
-        if (queueIndex.get() >= index) {
+        if (currentIndex > index) {
             queueIndex.decrementAndGet();
+        } else if (currentIndex >= size()) {
+            queueIndex.set(0);
         }
         streams.remove(index);
 
