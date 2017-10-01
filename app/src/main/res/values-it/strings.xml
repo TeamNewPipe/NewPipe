@@ -69,12 +69,12 @@
     <string name="could_not_setup_download_menu">Impossibile impostare il menù di download</string>
 
 
-    <string name="live_streams_not_supported">Questo è uno stream dal vivo. Gli stream dal vivo non sono ancora supportati.</string>
+    <string name="live_streams_not_supported">Questo è uno stream in diretta. Gli stream in diretta non sono ancora supportati.</string>
 
 
     <string name="content">Contenuti</string>
     <string name="show_age_restricted_content_title">Mostra contenuti vincolati all\'età</string>
-    <string name="video_is_age_restricted">Questo video è riservato ad un pubblico maturo. Per accedervi, abilita \"Mostra video vincolati all\'età\" nelle impostazioni.</string>
+    <string name="video_is_age_restricted">Questo video è riservato ad un pubblico maggiorenne. Per accedervi, abilita \"Mostra video vincolati all\'età\" nelle impostazioni.</string>
 
     <string name="main_bg_subtitle">Tocca \"cerca\" per iniziare</string>
     <string name="autoplay_by_calling_app_title">Inizia automaticamente la riproduzione se NewPipe viene aperto da un\'altra app</string>
@@ -99,14 +99,14 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Riprova</string>
-    <string name="storage_permission_denied">È stato negato il permesso di accedere all\'archiviazione di massa</string>
+    <string name="storage_permission_denied">È stato negato il permesso di accesso all\'archiviazione di massa</string>
     <string name="downloads">Download</string>
     <string name="downloads_title">Download</string>
     <string name="error_report_title">Segnalazione errori</string>
 
     <string name="start">Inizia</string>
     <string name="pause">Pausa</string>
-    <string name="view">Visualizza</string>
+    <string name="view">Riproduci</string>
     <string name="delete">Elimina</string>
     <string name="checksum">Checksum</string>
 
@@ -262,4 +262,6 @@
 </plurals>
 
     <string name="item_deleted">Elemento eliminato</string>
-</resources>
+<string name="empty_subscription_feed_subtitle">Nulla da mostrare</string>
+
+    </resources>
