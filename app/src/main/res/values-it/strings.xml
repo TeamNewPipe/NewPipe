@@ -206,7 +206,7 @@
 
     <string name="tab_subscriptions">Iscrizioni</string>
 
-    <string name="fragment_whats_new">Nuovo</string>
+    <string name="fragment_whats_new">Novità</string>
 
     <string name="enable_search_history_title">Cronologia ricerche</string>
     <string name="enable_search_history_summary">Salva le ricerche localmente</string>
