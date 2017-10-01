@@ -264,4 +264,5 @@
     <string name="item_deleted">Elemento eliminato</string>
 <string name="empty_subscription_feed_subtitle">Nulla da mostrare</string>
 
-    </resources>
+    <string name="delete_item_search_history">Vuoi eliminare questo oggetto dalla cronologia?</string>
+</resources>
