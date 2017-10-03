@@ -74,7 +74,7 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         playQueue.append(data);
     }
 
-    public void add(final PlayQueueItem data) {
+    public void add(final PlayQueueItem... data) {
         playQueue.append(data);
     }
 
@@ -136,7 +136,6 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return count;
     }
 
-    // don't ask why we have to do that this way... it's android accept it -.-
     @Override
     public int getItemViewType(int position) {
         if(header != null && position == 0) {
@@ -167,15 +166,17 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int i) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof PlayQueueItemHolder) {
-            if(header != null) {
-                i--;
-            }
-            playQueueItemBuilder.buildStreamInfoItem((PlayQueueItemHolder) holder, playQueue.getStreams().get(i));
-        } else if(holder instanceof HFHolder && i == 0 && header != null) {
+            // Ensure header does not interfere with list building
+            if (header != null) position--;
+            // Build the list item
+            playQueueItemBuilder.buildStreamInfoItem((PlayQueueItemHolder) holder, playQueue.getStreams().get(position));
+            // Check if the current item should be selected/highlighted
+            holder.itemView.setSelected(playQueue.getIndex() == position);
+        } else if(holder instanceof HFHolder && position == 0 && header != null) {
             ((HFHolder) holder).view = header;
-        } else if(holder instanceof HFHolder && i == playQueue.getStreams().size() && footer != null && showFooter) {
+        } else if(holder instanceof HFHolder && position == playQueue.getStreams().size() && footer != null && showFooter) {
             ((HFHolder) holder).view = footer;
         }
     }

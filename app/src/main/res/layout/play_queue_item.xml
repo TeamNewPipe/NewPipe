@@ -7,6 +7,7 @@
     android:layout_height="48dp"
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
+    android:focusable="true"
     android:padding="6dp">
 
     <ImageView
@@ -54,6 +55,7 @@
         android:maxLines="1"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/video_item_search_title_text_size"
+        android:textColor="?attr/selector_color"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum"/>
 
     <TextView
@@ -66,5 +68,6 @@
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_upload_date_text_size"
-        tools:text="Uploader • 2 years ago • 10M views"/>
+        android:textColor="?attr/selector_color"
+        tools:text="Uploader"/>
 </RelativeLayout>

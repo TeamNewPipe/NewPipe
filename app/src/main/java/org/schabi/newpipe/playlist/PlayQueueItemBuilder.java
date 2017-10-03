@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.schabi.newpipe.R;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
-import java.util.Locale;
+import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.Localization;
 
 
 public class PlayQueueItemBuilder {
@@ -15,68 +17,44 @@ public class PlayQueueItemBuilder {
     private static final String TAG = PlayQueueItemBuilder.class.toString();
 
     public interface OnSelectedListener {
-        void selected(int serviceId, String url, String title);
+        void selected(PlayQueueItem item);
     }
 
-    private OnSelectedListener onStreamInfoItemSelectedListener;
+    private OnSelectedListener onItemClickListener;
 
     public PlayQueueItemBuilder() {}
 
     public void setOnSelectedListener(OnSelectedListener listener) {
-        this.onStreamInfoItemSelectedListener = listener;
+        this.onItemClickListener = listener;
     }
-
-    public View buildView(ViewGroup parent, final PlayQueueItem item) {
-        final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        final View itemView = inflater.inflate(R.layout.play_queue_item, parent, false);
-        final PlayQueueItemHolder holder = new PlayQueueItemHolder(itemView);
-
-        buildStreamInfoItem(holder, item);
-
-        return itemView;
-    }
-
 
     public void buildStreamInfoItem(PlayQueueItemHolder holder, final PlayQueueItem item) {
         if (!TextUtils.isEmpty(item.getTitle())) holder.itemVideoTitleView.setText(item.getTitle());
+        if (!TextUtils.isEmpty(item.getUploader())) holder.itemAdditionalDetailsView.setText(item.getUploader());
 
         if (item.getDuration() > 0) {
-            holder.itemDurationView.setText(getDurationString(item.getDuration()));
+            holder.itemDurationView.setText(Localization.getDurationString(item.getDuration()));
         } else {
             holder.itemDurationView.setVisibility(View.GONE);
         }
 
+        ImageLoader.getInstance().displayImage(item.getThumbnailUrl(), holder.itemThumbnailView, IMAGE_OPTIONS);
+
         holder.itemRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(onStreamInfoItemSelectedListener != null) {
-                    onStreamInfoItemSelectedListener.selected(item.getServiceId(), item.getUrl(), item.getTitle());
+                if (onItemClickListener != null) {
+                    onItemClickListener.selected(item);
                 }
             }
         });
     }
 
-
-    public static String getDurationString(long duration) {
-        if(duration < 0) {
-            duration = 0;
-        }
-        String output;
-        long days = duration / (24 * 60 * 60); /* greater than a day */
-        duration %= (24 * 60 * 60);
-        long hours = duration / (60 * 60); /* greater than an hour */
-        duration %= (60 * 60);
-        long minutes = duration / 60;
-        long seconds = duration % 60;
-
-        //handle days
-        if (days > 0) {
-            output = String.format(Locale.US, "%d:%02d:%02d:%02d", days, hours, minutes, seconds);
-        } else if(hours > 0) {
-            output = String.format(Locale.US, "%d:%02d:%02d", hours, minutes, seconds);
-        } else {
-            output = String.format(Locale.US, "%d:%02d", minutes, seconds);
-        }
-        return output;
-    }
+    private static final DisplayImageOptions IMAGE_OPTIONS =
+            new DisplayImageOptions.Builder()
+                    .cacheInMemory(true)
+                    .showImageOnFail(R.drawable.dummy_thumbnail)
+                    .showImageForEmptyUri(R.drawable.dummy_thumbnail)
+                    .showImageOnLoading(R.drawable.dummy_thumbnail)
+                    .build();
 }

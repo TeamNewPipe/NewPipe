@@ -26,6 +26,7 @@
         <item name="language">@drawable/ic_language_black_24dp</item>
         <item name="history">@drawable/ic_history_black_24dp</item>
 
+        <item name="selector_color">@color/light_selector</item>
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
         <item name="toolbar_shadow_drawable">@drawable/toolbar_shadow_light</item>
@@ -60,6 +61,7 @@
         <item name="language">@drawable/ic_language_white_24dp</item>
         <item name="history">@drawable/ic_history_white_24dp</item>
 
+        <item name="selector_color">@color/dark_selector</item>
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>
         <item name="toolbar_shadow_drawable">@drawable/toolbar_shadow_dark</item>

@@ -27,6 +27,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.net.wifi.WifiManager;
+import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
@@ -36,9 +37,9 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.MergingMediaSource;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
@@ -50,9 +51,6 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.ThemeHelper;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -79,12 +77,29 @@ public final class BackgroundPlayer extends Service {
     private WifiManager.WifiLock wifiLock;
 
     /*//////////////////////////////////////////////////////////////////////////
+    // Service-Activity Binder
+    //////////////////////////////////////////////////////////////////////////*/
+
+    public interface PlayerEventListener {
+        void onPlaybackUpdate(int state, int repeatMode, PlaybackParameters parameters);
+        void onProgressUpdate(int currentProgress, int duration, int bufferPercent);
+        void onMetadataUpdate(StreamInfo info);
+        void onServiceStopped();
+    }
+
+    private PlayerEventListener activityListener;
+    private IBinder mBinder;
+
+    class LocalBinder extends Binder {
+        BasePlayerImpl getBackgroundPlayerInstance() {
+            return BackgroundPlayer.this.basePlayerImpl;
+        }
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
     // Notification
     //////////////////////////////////////////////////////////////////////////*/
     private static final int NOTIFICATION_ID = 123789;
-
-    private boolean shouldUpdateNotification;
-
     private NotificationManager notificationManager;
     private NotificationCompat.Builder notBuilder;
     private RemoteViews notRemoteView;
@@ -105,6 +120,8 @@ public final class BackgroundPlayer extends Service {
         ThemeHelper.setTheme(this);
         basePlayerImpl = new BasePlayerImpl(this);
         basePlayerImpl.setup();
+
+        mBinder = new LocalBinder();
     }
 
     @Override
@@ -124,12 +141,18 @@ public final class BackgroundPlayer extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return mBinder;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Actions
     //////////////////////////////////////////////////////////////////////////*/
+
+    public void openControl(final Context context) {
+        final Intent intent = new Intent(context, BackgroundPlayerActivity.class);
+        context.startActivity(intent);
+        context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+    }
 
     public void onOpenDetail(Context context, String videoUrl, String videoTitle) {
         if (DEBUG) Log.d(TAG, "onOpenDetail() called with: context = [" + context + "], videoUrl = [" + videoUrl + "]");
@@ -144,7 +167,11 @@ public final class BackgroundPlayer extends Service {
     }
 
     private void onClose() {
-        if (basePlayerImpl != null) basePlayerImpl.destroyPlayer();
+        if (basePlayerImpl != null) {
+            basePlayerImpl.stopActivityBinding();
+            basePlayerImpl.destroyPlayer();
+        }
+
         stopForeground(true);
         releaseWifiAndCpu();
         stopSelf();
@@ -152,8 +179,6 @@ public final class BackgroundPlayer extends Service {
 
     private void onScreenOnOff(boolean on) {
         if (DEBUG) Log.d(TAG, "onScreenOnOff() called with: on = [" + on + "]");
-        shouldUpdateNotification = on;
-
         if (on) {
             if (basePlayerImpl.isPlaying() && !basePlayerImpl.isProgressLoopRunning()) {
                 basePlayerImpl.startProgressLoop();
@@ -168,9 +193,7 @@ public final class BackgroundPlayer extends Service {
     //////////////////////////////////////////////////////////////////////////*/
 
     private void resetNotification() {
-        if (shouldUpdateNotification) {
-            notBuilder = createNotification();
-        }
+        notBuilder = createNotification();
     }
 
     private NotificationCompat.Builder createNotification() {
@@ -211,7 +234,7 @@ public final class BackgroundPlayer extends Service {
                 break;
             case Player.REPEAT_MODE_ONE:
                 // todo change image
-                remoteViews.setInt(R.id.notificationRepeat, setAlphaMethodName, 255);
+                remoteViews.setInt(R.id.notificationRepeat, setAlphaMethodName, 168);
                 break;
             case Player.REPEAT_MODE_ALL:
                 remoteViews.setInt(R.id.notificationRepeat, setAlphaMethodName, 255);
@@ -227,7 +250,7 @@ public final class BackgroundPlayer extends Service {
      */
     private synchronized void updateNotification(int drawableId) {
         //if (DEBUG) Log.d(TAG, "updateNotification() called with: drawableId = [" + drawableId + "]");
-        if (notBuilder == null || !shouldUpdateNotification) return;
+        if (notBuilder == null) return;
         if (drawableId != -1) {
             if (notRemoteView != null) notRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
             if (bigNotRemoteView != null) bigNotRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
@@ -270,7 +293,7 @@ public final class BackgroundPlayer extends Service {
 
     //////////////////////////////////////////////////////////////////////////
 
-    private class BasePlayerImpl extends BasePlayer {
+    protected class BasePlayerImpl extends BasePlayer {
 
         BasePlayerImpl(Context context) {
             super(context);
@@ -280,8 +303,7 @@ public final class BackgroundPlayer extends Service {
         public void handleIntent(Intent intent) {
             super.handleIntent(intent);
 
-            shouldUpdateNotification = true;
-            notBuilder = createNotification();
+            resetNotification();
             startForeground(NOTIFICATION_ID, notBuilder.build());
 
             if (bigNotRemoteView != null) bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
@@ -329,23 +351,6 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void onRepeatClicked() {
             super.onRepeatClicked();
-
-            int opacity = 255;
-            switch (simpleExoPlayer.getRepeatMode()) {
-                case Player.REPEAT_MODE_OFF:
-                    opacity = 77;
-                    break;
-                case Player.REPEAT_MODE_ONE:
-                    // todo change image
-                    opacity = 168;
-                    break;
-                case Player.REPEAT_MODE_ALL:
-                    opacity = 255;
-                    break;
-            }
-            if (notRemoteView != null) notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, opacity);
-            if (bigNotRemoteView != null) bigNotRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, opacity);
-            updateNotification(-1);
         }
 
         @Override
@@ -368,6 +373,7 @@ public final class BackgroundPlayer extends Service {
             }
 
             updateNotification(-1);
+            updateProgress(currentProgress, duration, bufferPercent);
         }
 
         @Override
@@ -387,16 +393,6 @@ public final class BackgroundPlayer extends Service {
         }
 
         @Override
-        public void onLoadingChanged(boolean isLoading) {
-            // Disable default behavior
-        }
-
-        @Override
-        public void onRepeatModeChanged(int i) {
-
-        }
-
-        @Override
         public void destroy() {
             super.destroy();
             if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, null);
@@ -406,6 +402,42 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void onError(Exception exception) {
             exception.printStackTrace();
+        }
+
+        /*//////////////////////////////////////////////////////////////////////////
+        // ExoPlayer Listener
+        //////////////////////////////////////////////////////////////////////////*/
+
+        @Override
+        public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+            super.onPlaybackParametersChanged(playbackParameters);
+            updatePlayback();
+        }
+
+        @Override
+        public void onLoadingChanged(boolean isLoading) {
+            // Disable default behavior
+        }
+
+        @Override
+        public void onRepeatModeChanged(int i) {
+            int opacity = 255;
+            switch (simpleExoPlayer.getRepeatMode()) {
+                case Player.REPEAT_MODE_OFF:
+                    opacity = 77;
+                    break;
+                case Player.REPEAT_MODE_ONE:
+                    // todo change image
+                    opacity = 168;
+                    break;
+                case Player.REPEAT_MODE_ALL:
+                    opacity = 255;
+                    break;
+            }
+            if (notRemoteView != null) notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, opacity);
+            if (bigNotRemoteView != null) bigNotRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, opacity);
+            updateNotification(-1);
+            updatePlayback();
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -422,11 +454,14 @@ public final class BackgroundPlayer extends Service {
             bigNotRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());
             bigNotRemoteView.setTextViewText(R.id.notificationArtist, getUploaderName());
             updateNotification(-1);
+            updateMetadata();
         }
 
         @Override
         public MediaSource sourceOf(final StreamInfo info) {
             final int index = ListHelper.getDefaultAudioFormat(context, info.audio_streams);
+            if (index < 0) return null;
+
             final AudioStream audio = info.audio_streams.get(index);
             return buildMediaSource(audio.url, MediaFormat.getSuffixById(audio.format));
         }
@@ -435,6 +470,43 @@ public final class BackgroundPlayer extends Service {
         public void shutdown() {
             super.shutdown();
             stopSelf();
+            stopActivityBinding();
+        }
+
+        /*//////////////////////////////////////////////////////////////////////////
+        // Activity Event Listener
+        //////////////////////////////////////////////////////////////////////////*/
+
+        public void setActivityListener(PlayerEventListener listener) {
+            activityListener = listener;
+            updateMetadata();
+            updatePlayback();
+            triggerProgressUpdate();
+        }
+
+        private void updateMetadata() {
+            if (activityListener != null && currentInfo != null) {
+                activityListener.onMetadataUpdate(currentInfo);
+            }
+        }
+
+        private void updatePlayback() {
+            if (activityListener != null) {
+                activityListener.onPlaybackUpdate(currentState, simpleExoPlayer.getRepeatMode(), simpleExoPlayer.getPlaybackParameters());
+            }
+        }
+
+        private void updateProgress(int currentProgress, int duration, int bufferPercent) {
+            if (activityListener != null) {
+                activityListener.onProgressUpdate(currentProgress, duration, bufferPercent);
+            }
+        }
+
+        private void stopActivityBinding() {
+            if (activityListener != null) {
+                activityListener.onServiceStopped();
+                activityListener = null;
+            }
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -469,7 +541,7 @@ public final class BackgroundPlayer extends Service {
                     onVideoPlayPause();
                     break;
                 case ACTION_OPEN_DETAIL:
-                    onOpenDetail(BackgroundPlayer.this, getVideoUrl(), getVideoTitle());
+                    openControl(BackgroundPlayer.this);
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();
@@ -492,6 +564,12 @@ public final class BackgroundPlayer extends Service {
         /*//////////////////////////////////////////////////////////////////////////
         // States
         //////////////////////////////////////////////////////////////////////////*/
+
+        @Override
+        public void changeState(int state) {
+            super.changeState(state);
+            updatePlayback();
+        }
 
         @Override
         public void onBlocked() {

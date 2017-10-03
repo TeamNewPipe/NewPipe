@@ -27,7 +27,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.audiofx.AudioEffect;
@@ -35,7 +34,6 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 
@@ -72,28 +70,21 @@ import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvicto
 import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 import com.google.android.exoplayer2.util.Util;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.ImageSize;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
-import org.schabi.newpipe.playlist.ExternalPlayQueue;
 import org.schabi.newpipe.playlist.PlayQueue;
-import org.schabi.newpipe.playlist.PlayQueueItem;
-import org.schabi.newpipe.playlist.SinglePlayQueue;
+import org.schabi.newpipe.playlist.PlayQueueAdapter;
 
 import java.io.File;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.Formatter;
-import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -123,6 +114,8 @@ public abstract class BasePlayer implements Player.EventListener,
 
     protected BroadcastReceiver broadcastReceiver;
     protected IntentFilter intentFilter;
+
+    protected PlayQueueAdapter playQueueAdapter;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Intent
@@ -285,6 +278,9 @@ public abstract class BasePlayer implements Player.EventListener,
         playQueue = queue;
         playQueue.init();
         playbackManager = new MediaSourceManager(this, playQueue);
+
+        if (playQueueAdapter != null) playQueueAdapter.dispose();
+        playQueueAdapter = new PlayQueueAdapter(playQueue);
     }
 
     public void initThumbnail(final String url) {
@@ -816,6 +812,7 @@ public abstract class BasePlayer implements Player.EventListener,
     private final Formatter formatter = new Formatter(stringBuilder, Locale.getDefault());
     private final NumberFormat speedFormatter = new DecimalFormat("0.##x");
 
+    // todo: merge this into Localization
     public String getTimeString(int milliSeconds) {
         long seconds = (milliSeconds % 60000L) / 1000L;
         long minutes = (milliSeconds % 3600000L) / 60000L;

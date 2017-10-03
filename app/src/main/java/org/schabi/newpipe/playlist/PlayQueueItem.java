@@ -20,6 +20,8 @@ public class PlayQueueItem implements Serializable {
     final private String url;
     final private int serviceId;
     final private long duration;
+    final private String thumbnailUrl;
+    final private String uploader;
 
     private Throwable error;
 
@@ -30,6 +32,8 @@ public class PlayQueueItem implements Serializable {
         this.url = streamInfo.url;
         this.serviceId = streamInfo.service_id;
         this.duration = streamInfo.duration;
+        this.thumbnailUrl = streamInfo.thumbnail_url;
+        this.uploader = streamInfo.uploader_name;
 
         this.stream = Single.just(streamInfo);
     }
@@ -39,6 +43,8 @@ public class PlayQueueItem implements Serializable {
         this.url = streamInfoItem.url;
         this.serviceId = streamInfoItem.service_id;
         this.duration = streamInfoItem.duration;
+        this.thumbnailUrl = streamInfoItem.thumbnail_url;
+        this.uploader = streamInfoItem.uploader_name;
     }
 
     @NonNull
@@ -57,6 +63,14 @@ public class PlayQueueItem implements Serializable {
 
     public long getDuration() {
         return duration;
+    }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
+
+    public String getUploader() {
+        return uploader;
     }
 
     @Nullable

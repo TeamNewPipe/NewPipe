@@ -13,7 +13,6 @@ import org.schabi.newpipe.playlist.PlayQueueItem;
 
 import java.io.IOException;
 
-import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -86,7 +85,7 @@ public final class DeferredMediaSource implements MediaSource {
      *
      * If loading fails here, an error will be propagated out and result in a
      * {@link com.google.android.exoplayer2.ExoPlaybackException}, which is delegated
-     * out to the player.
+     * to the player.
      * */
     public synchronized void load() {
         if (state != STATE_PREPARED || stream == null || loader != null) return;
@@ -95,15 +94,23 @@ public final class DeferredMediaSource implements MediaSource {
         final Consumer<StreamInfo> onSuccess = new Consumer<StreamInfo>() {
             @Override
             public void accept(StreamInfo streamInfo) throws Exception {
-                if (exoPlayer == null && listener == null) {
-                    error = new Throwable("Stream info loading failed. URL: " + stream.getUrl());
-                } else {
-                    Log.d(TAG, " Loaded: [" + stream.getTitle() + "] with url: " + stream.getUrl());
+                Log.d(TAG, " Loaded: [" + stream.getTitle() + "] with url: " + stream.getUrl());
+                state = STATE_LOADED;
 
-                    mediaSource = callback.sourceOf(streamInfo);
-                    mediaSource.prepareSource(exoPlayer, false, listener);
-                    state = STATE_LOADED;
+                if (exoPlayer == null || listener == null || streamInfo == null) {
+                    error = new Throwable("Stream info loading failed. URL: " + stream.getUrl());
+                    return;
                 }
+
+                mediaSource = callback.sourceOf(streamInfo);
+                if (mediaSource == null) {
+                    error = new Throwable("Unable to resolve source from stream info. URL: " + stream.getUrl() +
+                            ", audio count: " + streamInfo.audio_streams.size() +
+                            ", video count: " + streamInfo.video_only_streams.size() + streamInfo.video_streams.size());
+                    return;
+                }
+
+                mediaSource.prepareSource(exoPlayer, false, listener);
             }
         };
 

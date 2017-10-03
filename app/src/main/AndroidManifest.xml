@@ -38,6 +38,11 @@
             android:name=".player.BackgroundPlayer"
             android:exported="false"/>
 
+        <activity
+            android:name=".player.BackgroundPlayerActivity"
+            android:launchMode="singleTop"
+            android:label="@string/title_activity_background_player"/>
+
         <service
             android:name=".player.PopupVideoPlayer"
             android:exported="false"/>

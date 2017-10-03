@@ -64,13 +64,9 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
-import org.schabi.newpipe.playlist.PlayQueue;
-import org.schabi.newpipe.playlist.PlayQueueItem;
-import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,6 +107,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     private List<TrackGroupInfo> trackGroupInfos;
     private int videoRendererIndex = -1;
     private TrackGroupArray videoTrackGroups;
+    private TrackGroup selectedVideoTrackGroup;
 
     private boolean startedFromNewPipe = true;
     protected boolean wasPlaying = false;
@@ -211,7 +208,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     public void initPlayer() {
         super.initPlayer();
         simpleExoPlayer.setVideoSurfaceView(surfaceView);
-        simpleExoPlayer.setVideoListener(this);
+        simpleExoPlayer.addVideoListener(this);
 
         trackSelector.setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context));
     }
@@ -230,6 +227,79 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     }
 
     /*//////////////////////////////////////////////////////////////////////////
+    // UI Builders
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private final class TrackGroupInfo {
+        final int track;
+        final int group;
+        final Format format;
+
+        TrackGroupInfo(final int track, final int group, final Format format) {
+            this.track = track;
+            this.group = group;
+            this.format = format;
+        }
+    }
+
+    private void buildQualityMenu() {
+        if (qualityPopupMenu == null || videoTrackGroups == null || selectedVideoTrackGroup == null || videoTrackGroups.length != availableStreams.size()) return;
+
+        qualityPopupMenu.getMenu().removeGroup(qualityPopupMenuGroupId);
+        trackGroupInfos = new ArrayList<>();
+        int acc = 0;
+
+        // Each group represent a source in sorted order of how the media source was built
+        for (int groupIndex = 0; groupIndex < videoTrackGroups.length; groupIndex++) {
+            final TrackGroup group = videoTrackGroups.get(groupIndex);
+            final VideoStream stream = availableStreams.get(groupIndex);
+
+            // For each source, there may be one or multiple tracks depending on the source type
+            for (int trackIndex = 0; trackIndex < group.length; trackIndex++) {
+                final Format format = group.getFormat(trackIndex);
+                final boolean isSetCurrent = selectedVideoTrackGroup.indexOf(format) != -1;
+
+                if (group.length == 1 && videoTrackGroups.length == availableStreams.size()) {
+                    // If the source is non-adaptive (extractor source), then we use the resolution contained in the stream
+                    if (isSetCurrent) qualityTextView.setText(stream.resolution);
+
+                    final String menuItem = MediaFormat.getNameById(stream.format) + " " +
+                            stream.resolution + " (" + format.width + "x" + format.height + ")";
+                    qualityPopupMenu.getMenu().add(qualityPopupMenuGroupId, acc, Menu.NONE, menuItem);
+                } else {
+                    // Otherwise, we have an adaptive source, which contains multiple formats and
+                    // thus have no inherent quality format
+                    if (isSetCurrent) qualityTextView.setText(resolutionStringOf(format));
+
+                    final MediaFormat mediaFormat = MediaFormat.getFromMimeType(format.sampleMimeType);
+                    final String mediaName = mediaFormat == null ? format.sampleMimeType : mediaFormat.name;
+
+                    final String menuItem = mediaName + " " + format.width + "x" + format.height;
+                    qualityPopupMenu.getMenu().add(qualityPopupMenuGroupId, acc, Menu.NONE, menuItem);
+                }
+
+                trackGroupInfos.add(new TrackGroupInfo(trackIndex, groupIndex, format));
+                acc++;
+            }
+        }
+
+        qualityPopupMenu.setOnMenuItemClickListener(this);
+        qualityPopupMenu.setOnDismissListener(this);
+    }
+
+    private void buildPlaybackSpeedMenu() {
+        if (playbackSpeedPopupMenu == null) return;
+
+        playbackSpeedPopupMenu.getMenu().removeGroup(playbackSpeedPopupMenuGroupId);
+        for (int i = 0; i < PLAYBACK_SPEEDS.length; i++) {
+            playbackSpeedPopupMenu.getMenu().add(playbackSpeedPopupMenuGroupId, i, Menu.NONE, formatSpeed(PLAYBACK_SPEEDS[i]));
+        }
+        playbackSpeed.setText(formatSpeed(getPlaybackSpeed()));
+        playbackSpeedPopupMenu.setOnMenuItemClickListener(this);
+        playbackSpeedPopupMenu.setOnDismissListener(this);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
     // Playback Listener
     //////////////////////////////////////////////////////////////////////////*/
 
@@ -243,8 +313,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
             selectedStreamIndex = ListHelper.getDefaultResolutionIndex(context, videos);
         }
 
-        playbackSpeedPopupMenu.getMenu().removeGroup(playbackSpeedPopupMenuGroupId);
-        buildPlaybackSpeedMenu(playbackSpeedPopupMenu);
+        buildPlaybackSpeedMenu();
+        buildQualityMenu();
     }
 
     public MediaSource sourceOf(final StreamInfo info) {
@@ -257,15 +327,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         }
 
         return new MergingMediaSource(sources.toArray(new MediaSource[sources.size()]));
-    }
-
-    private void buildPlaybackSpeedMenu(PopupMenu popupMenu) {
-        for (int i = 0; i < PLAYBACK_SPEEDS.length; i++) {
-            popupMenu.getMenu().add(playbackSpeedPopupMenuGroupId, i, Menu.NONE, formatSpeed(PLAYBACK_SPEEDS[i]));
-        }
-        playbackSpeed.setText(formatSpeed(getPlaybackSpeed()));
-        popupMenu.setOnMenuItemClickListener(this);
-        popupMenu.setOnDismissListener(this);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -343,22 +404,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     // ExoPlayer Video Listener
     //////////////////////////////////////////////////////////////////////////*/
 
-    private class TrackGroupInfo {
-        final int track;
-        final int group;
-        final String label;
-        final String resolution;
-        final Format format;
-
-        TrackGroupInfo(final int track, final int group, final String label, final String resolution, final Format format) {
-            this.track = track;
-            this.group = group;
-            this.label = label;
-            this.resolution = resolution;
-            this.format = format;
-        }
-    }
-
     @Override
     public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
         super.onTracksChanged(trackGroups, trackSelections);
@@ -376,52 +421,9 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
             }
         }
         videoTrackGroups = trackSelector.getCurrentMappedTrackInfo().getTrackGroups(videoRendererIndex);
-        final TrackGroup selectedTrackGroup = trackSelections.get(videoRendererIndex).getTrackGroup();
+        selectedVideoTrackGroup = trackSelections.get(videoRendererIndex).getTrackGroup();
 
-        qualityPopupMenu.getMenu().removeGroup(qualityPopupMenuGroupId);
-        buildQualityMenu(qualityPopupMenu, videoTrackGroups, selectedTrackGroup);
-    }
-
-    private void buildQualityMenu(PopupMenu popupMenu, TrackGroupArray videoTrackGroups, TrackGroup selectedTrackGroup) {
-        trackGroupInfos = new ArrayList<>();
-        int acc = 0;
-
-        // Each group represent a source in sorted order of how the media source was built
-        for (int groupIndex = 0; groupIndex < videoTrackGroups.length; groupIndex++) {
-            final TrackGroup group = videoTrackGroups.get(groupIndex);
-            final VideoStream stream = availableStreams.get(groupIndex);
-
-            // For each source, there may be one or multiple tracks depending on the source type
-            for (int trackIndex = 0; trackIndex < group.length; trackIndex++) {
-                final Format format = group.getFormat(trackIndex);
-                final boolean isSetCurrent = selectedTrackGroup.indexOf(format) != -1;
-
-                if (group.length == 1 && videoTrackGroups.length == availableStreams.size()) {
-                    // If the source is non-adaptive (extractor source), then we use the resolution contained in the stream
-                    if (isSetCurrent) qualityTextView.setText(stream.resolution);
-
-                    final String menuItem = MediaFormat.getNameById(stream.format) + " " +
-                            stream.resolution + " (" + format.width + "x" + format.height + ")";
-                    popupMenu.getMenu().add(qualityPopupMenuGroupId, acc, Menu.NONE, menuItem);
-                } else {
-                    // Otherwise, we have an adaptive source, which contains multiple formats and
-                    // thus have no inherent quality format
-                    if (isSetCurrent) qualityTextView.setText(resolutionStringOf(format));
-
-                    final MediaFormat mediaFormat = MediaFormat.getFromMimeType(format.sampleMimeType);
-                    final String mediaName = mediaFormat == null ? format.sampleMimeType : mediaFormat.name;
-
-                    final String menuItem = mediaName + " " + format.width + "x" + format.height;
-                    popupMenu.getMenu().add(qualityPopupMenuGroupId, acc, Menu.NONE, menuItem);
-                }
-
-                trackGroupInfos.add(new TrackGroupInfo(trackIndex, groupIndex, MediaFormat.getNameById(stream.format), stream.resolution, format));
-                acc++;
-            }
-        }
-
-        popupMenu.setOnMenuItemClickListener(this);
-        popupMenu.setOnDismissListener(this);
+        buildQualityMenu();
     }
 
     @Override

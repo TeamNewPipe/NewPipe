@@ -22,6 +22,7 @@
     <!-- Can't refer to colors directly into drawable's xml-->
     <attr name="toolbar_shadow_drawable" format="reference"/>
 
+    <attr name="selector_color" format="color"/>
     <attr name="separator_color" format="color"/>
     <attr name="contrast_background_color" format="color"/>
 </resources>
