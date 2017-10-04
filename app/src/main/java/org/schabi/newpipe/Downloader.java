@@ -12,7 +12,6 @@ import java.io.InterruptedIOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -135,11 +134,8 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
             }
 
             in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            for (Map.Entry<String, List<String>> entry : con.getHeaderFields().entrySet()) {
-                System.err.println(entry.getKey() + ": " + entry.getValue());
-            }
-            String inputLine;
 
+            String inputLine;
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
             }

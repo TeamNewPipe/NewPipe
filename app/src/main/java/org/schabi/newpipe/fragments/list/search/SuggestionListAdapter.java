@@ -1,89 +1,108 @@
 package org.schabi.newpipe.fragments.list.search;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.database.MatrixCursor;
-import android.support.v4.widget.ResourceCursorAdapter;
+import android.content.res.TypedArray;
+import android.support.annotation.AttrRes;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.schabi.newpipe.R;
+
+import java.util.ArrayList;
 import java.util.List;
 
-/*
- * Created by Christian Schabesberger on 02.08.16.
- *
- * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
- * SuggestionListAdapter.java is part of NewPipe.
- *
- * NewPipe is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * NewPipe is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
- */
+public class SuggestionListAdapter extends RecyclerView.Adapter<SuggestionListAdapter.SuggestionItemHolder> {
+    private final ArrayList<SuggestionItem> items = new ArrayList<>();
+    private final Context context;
+    private OnSuggestionItemSelected listener;
 
-/**
- * {@link ResourceCursorAdapter} to display suggestions.
- */
-public class SuggestionListAdapter extends ResourceCursorAdapter {
-
-    private static final String[] columns = new String[]{"_id", "title"};
-    private static final int INDEX_ID = 0;
-    private static final int INDEX_TITLE = 1;
-
+    public interface OnSuggestionItemSelected {
+        void onSuggestionItemSelected(SuggestionItem item);
+        void onSuggestionItemLongClick(SuggestionItem item);
+    }
 
     public SuggestionListAdapter(Context context) {
-        super(context, android.R.layout.simple_list_item_1, null, 0);
+        this.context = context;
+    }
+
+    public void setItems(List<SuggestionItem> items) {
+        this.items.clear();
+        this.items.addAll(items);
+        notifyDataSetChanged();
+    }
+
+    public void setListener(OnSuggestionItemSelected listener) {
+        this.listener = listener;
     }
 
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
-        ViewHolder viewHolder = new ViewHolder(view);
-        viewHolder.suggestionTitle.setText(cursor.getString(INDEX_TITLE));
+    public SuggestionItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new SuggestionItemHolder(LayoutInflater.from(context).inflate(R.layout.item_search_suggestion, parent, false));
     }
 
-    /**
-     * Update the suggestion list
-     * @param suggestions the list of suggestions
-     */
-    public void updateAdapter(List<String> suggestions) {
-        MatrixCursor cursor = new MatrixCursor(columns, suggestions.size());
-        int i = 0;
-        for (String suggestion : suggestions) {
-            String[] columnValues = new String[columns.length];
-            columnValues[INDEX_TITLE] = suggestion;
-            columnValues[INDEX_ID] = Integer.toString(i);
-            cursor.addRow(columnValues);
-            i++;
+    @Override
+    public void onBindViewHolder(SuggestionItemHolder holder, int position) {
+        final SuggestionItem currentItem = getItem(position);
+        holder.updateFrom(currentItem);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) listener.onSuggestionItemSelected(currentItem);
+            }
+        });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (listener != null) listener.onSuggestionItemLongClick(currentItem);
+                return true;
+            }
+        });
+    }
+
+    private SuggestionItem getItem(int position) {
+        return items.get(position);
+    }
+
+    @Override
+    public int getItemCount() {
+        return items.size();
+    }
+
+    public boolean isEmpty() {
+        return getItemCount() == 0;
+    }
+
+    public static class SuggestionItemHolder extends RecyclerView.ViewHolder {
+        private final TextView itemSuggestionQuery;
+        private final ImageView suggestionIcon;
+
+        // Cache some ids, as they can potentially be constantly updated/recycled
+        private final int historyResId;
+        private final int searchResId;
+
+        private SuggestionItemHolder(View rootView) {
+            super(rootView);
+            suggestionIcon = rootView.findViewById(R.id.item_suggestion_icon);
+            itemSuggestionQuery = rootView.findViewById(R.id.item_suggestion_query);
+
+            historyResId = resolveResourceIdFromAttr(rootView.getContext(), R.attr.history);
+            searchResId = resolveResourceIdFromAttr(rootView.getContext(), R.attr.search);
         }
-        changeCursor(cursor);
-    }
 
-    /**
-     * Get the suggestion for a position
-     * @param position the position of the suggestion
-     * @return the suggestion
-     */
-    public String getSuggestion(int position) {
-        return ((Cursor) getItem(position)).getString(INDEX_TITLE);
-    }
+        private void updateFrom(SuggestionItem item) {
+            suggestionIcon.setImageResource(item.fromHistory ? historyResId : searchResId);
+            itemSuggestionQuery.setText(item.query);
+        }
 
-    @Override
-    public CharSequence convertToString(Cursor cursor) {
-        return cursor.getString(INDEX_TITLE);
-    }
-
-    private class ViewHolder {
-        private final TextView suggestionTitle;
-        private ViewHolder(View view) {
-            this.suggestionTitle = view.findViewById(android.R.id.text1);
+        private static int resolveResourceIdFromAttr(Context context, @AttrRes int attr) {
+            TypedArray a = context.getTheme().obtainStyledAttributes(new int[]{attr});
+            int attributeResourceId = a.getResourceId(0, 0);
+            a.recycle();
+            return attributeResourceId;
         }
     }
 }
