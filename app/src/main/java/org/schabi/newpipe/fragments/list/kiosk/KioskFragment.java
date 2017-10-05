@@ -62,14 +62,20 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
 
     public static KioskFragment getInstance(int serviceId)
             throws ExtractionException {
+        return getInstance(serviceId, NewPipe.getService(serviceId)
+                .getKioskList()
+                .getDefaultKioskId());
+    }
+
+    public static KioskFragment getInstance(int serviceId, String kioskId)
+            throws ExtractionException {
         KioskFragment instance = new KioskFragment();
         StreamingService service = NewPipe.getService(serviceId);
-        String defaultKioskId = service.getKioskList().getDefaultKioskId();
-        UrlIdHandler defaultKioskTypeUrlIdHandler = service.getKioskList()
-                .getUrlIdHandlerByType(defaultKioskId);
+        UrlIdHandler kioskTypeUrlIdHandler = service.getKioskList()
+                .getUrlIdHandlerByType(kioskId);
         instance.setInitialData(serviceId,
-                defaultKioskTypeUrlIdHandler.getUrl(defaultKioskId),
-                defaultKioskId);
+                kioskTypeUrlIdHandler.getUrl(kioskId),
+                kioskId);
         return instance;
     }
 

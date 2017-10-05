@@ -23,6 +23,7 @@ import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
 import org.schabi.newpipe.fragments.list.feed.FeedFragment;
+import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.history.HistoryActivity;
@@ -159,6 +160,15 @@ public class NavigationHelper {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
                 .replace(R.id.fragment_holder, new FeedFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public static void openKioskFragment(FragmentManager fragmentManager, int serviceId, String kioskId)
+        throws ExtractionException {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+                .replace(R.id.fragment_holder, KioskFragment.getInstance(serviceId, kioskId))
                 .addToBackStack(null)
                 .commit();
     }

@@ -15,17 +15,22 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.kiosk.KioskList;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
 import org.schabi.newpipe.fragments.list.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.subscription.SubscriptionFragment;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.concurrent.ExecutionException;
@@ -35,6 +40,12 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     private boolean showBlankTab = false;
 
     public int currentServiceId = -1;
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Konst
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private static final int KIOSK_MENU_OFFSETT = 2000;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
@@ -77,6 +88,16 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         super.onCreateOptionsMenu(menu, inflater);
         if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "], inflater = [" + inflater + "]");
         inflater.inflate(R.menu.main_fragment_menu, menu);
+        SubMenu kioskMenu = menu.addSubMenu(getString(R.string.kiosk));
+        try {
+            createKioskMenu(kioskMenu, inflater);
+        } catch (Exception e) {
+            ErrorActivity.reportError(activity, e,
+                    activity.getClass(),
+                    null,
+                    ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
+                            "none", "", R.string.app_ui_crash));
+        }
 
         ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
@@ -202,8 +223,33 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Main page content
+    // Select Kiosk
     //////////////////////////////////////////////////////////////////////////*/
 
-
+    private void createKioskMenu(Menu menu, MenuInflater menuInflater)
+            throws Exception {
+        StreamingService service = NewPipe.getService(currentServiceId);
+        KioskList kl = service.getKioskList();
+        int i = 0;
+        for(final String ks : kl.getAvailableKisoks()) {
+            menu.add(0, KIOSK_MENU_OFFSETT + i, Menu.NONE,
+                    KioskTranslator.getTranslatedKioskName(ks, getContext()))
+                    .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem menuItem) {
+                            try {
+                                NavigationHelper.openKioskFragment(getFragmentManager(), currentServiceId, ks);
+                            } catch (Exception e) {
+                                ErrorActivity.reportError(activity, e,
+                                        activity.getClass(),
+                                        null,
+                                        ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
+                                                "none", "", R.string.app_ui_crash));
+                            }
+                            return true;
+                        }
+                    });
+            i++;
+        }
+    }
 }
