@@ -51,6 +51,25 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/suggestions_panel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/windowBackground"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:visibility="gone"
+        tools:background="@android:color/transparent"
+        tools:visibility="visible">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/suggestions_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/item_search_suggestion"/>
+    </LinearLayout>
+
     <!--ERROR PANEL-->
     <include
         android:id="@+id/error_panel"
