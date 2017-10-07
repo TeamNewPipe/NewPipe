@@ -258,4 +258,5 @@
     <string name="settings_category_player_title">Player</string>
     <string name="empty_subscription_feed_subtitle">Nichts hier außer Grillen</string>
 
-    </resources>
+    <string name="delete_item_search_history">Möchten Sie dieses Element aus dem Suchverlauf löschen?</string>
+</resources>
