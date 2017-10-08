@@ -259,4 +259,5 @@ abrir en modo popup</string>
 </plurals>
 
     <string name="item_deleted">Elemento eliminado</string>
+<string name="delete_item_search_history">¿Desea eliminar este elemento del historial de búsqueda?</string>
 </resources>

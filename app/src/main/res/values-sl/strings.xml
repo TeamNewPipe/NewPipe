@@ -272,4 +272,5 @@ odpiranje v pojavnem načinu</string>
 </plurals>
 
     <string name="item_deleted">Predmet je izbrisan</string>
+<string name="delete_item_search_history">Ali želite izbrisati predmet iz zgodovine iskanja?</string>
 </resources>

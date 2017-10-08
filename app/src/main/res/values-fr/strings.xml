@@ -256,4 +256,5 @@
     <string name="charset_most_special_characters">Caractères spéciaux</string>
 
     <string name="item_deleted">Objet effacé</string>
+<string name="delete_item_search_history">Voulez-vous supprimer cet élément de l\'historique de recherche ?</string>
 </resources>
