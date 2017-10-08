@@ -9,4 +9,6 @@ public class Constants {
     public static final String KEY_QUERY = "key_query";
 
     public static final String KEY_THEME_CHANGE = "key_theme_change";
+
+    public static final int NO_SERVICE_ID = -1;
 }

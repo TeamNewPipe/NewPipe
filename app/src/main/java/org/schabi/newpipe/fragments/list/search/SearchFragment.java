@@ -41,6 +41,7 @@ import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.history.HistoryListener;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.StateSaver;
@@ -86,7 +87,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     private SearchEngine.Filter filter = SearchEngine.Filter.ANY;
 
     @State
-    protected int serviceId = -1;
+    protected int serviceId = Constants.NO_SERVICE_ID;
     @State
     protected String searchQuery = "";
     @State
