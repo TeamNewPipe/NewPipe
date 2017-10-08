@@ -30,27 +30,37 @@ import io.reactivex.schedulers.Schedulers;
 public final class DeferredMediaSource implements MediaSource {
     private final String TAG = "DeferredMediaSource@" + Integer.toHexString(hashCode());
 
-    private int state = -1;
-
+    /**
+     * This state indicates the {@link DeferredMediaSource} has just been initialized or reset.
+     * The source must be prepared and loaded again before playback.
+     * */
     public final static int STATE_INIT = 0;
+    /**
+     * This state indicates the {@link DeferredMediaSource} has been prepared and is ready to load.
+     * */
     public final static int STATE_PREPARED = 1;
+    /**
+     * This state indicates the {@link DeferredMediaSource} has been loaded without errors and
+     * is ready for playback.
+     * */
     public final static int STATE_LOADED = 2;
-    public final static int STATE_DISPOSED = 3;
 
     public interface Callback {
         /**
-         * Player-specific MediaSource resolution from given StreamInfo.
+         * Player-specific {@link com.google.android.exoplayer2.source.MediaSource} resolution
+         * from a given StreamInfo.
          * */
         MediaSource sourceOf(final StreamInfo info);
     }
 
     private PlayQueueItem stream;
     private Callback callback;
+    private int state;
 
     private MediaSource mediaSource;
 
+    /* Custom internal objects */
     private Disposable loader;
-
     private ExoPlayer exoPlayer;
     private Listener listener;
     private Throwable error;
@@ -63,6 +73,17 @@ public final class DeferredMediaSource implements MediaSource {
     }
 
     /**
+     * Returns the current state of the {@link DeferredMediaSource}.
+     *
+     * @see DeferredMediaSource#STATE_INIT
+     * @see DeferredMediaSource#STATE_PREPARED
+     * @see DeferredMediaSource#STATE_LOADED
+     * */
+    public int state() {
+        return state;
+    }
+
+    /**
      * Parameters are kept in the class for delayed preparation.
      * */
     @Override
@@ -72,54 +93,37 @@ public final class DeferredMediaSource implements MediaSource {
         this.state = STATE_PREPARED;
     }
 
-    public int state() {
-        return state;
-    }
-
     /**
      * Externally controlled loading. This method fully prepares the source to be used
-     * like any other native MediaSource.
+     * like any other native {@link com.google.android.exoplayer2.source.MediaSource}.
      *
      * Ideally, this should be called after this source has entered PREPARED state and
      * called once only.
      *
-     * If loading fails here, an error will be propagated out and result in a
-     * {@link com.google.android.exoplayer2.ExoPlaybackException}, which is delegated
+     * If loading fails here, an error will be propagated out and result in an
+     * {@link com.google.android.exoplayer2.ExoPlaybackException ExoPlaybackException}, which is delegated
      * to the player.
      * */
     public synchronized void load() {
-        if (state != STATE_PREPARED || stream == null || loader != null) return;
+        if (stream == null) {
+            Log.e(TAG, "Stream Info missing, media source loading terminated.");
+            return;
+        }
+        if (state != STATE_PREPARED || loader != null) return;
+
         Log.d(TAG, "Loading: [" + stream.getTitle() + "] with url: " + stream.getUrl());
 
         final Consumer<StreamInfo> onSuccess = new Consumer<StreamInfo>() {
             @Override
             public void accept(StreamInfo streamInfo) throws Exception {
-                Log.d(TAG, " Loaded: [" + stream.getTitle() + "] with url: " + stream.getUrl());
-                state = STATE_LOADED;
-
-                if (exoPlayer == null || listener == null || streamInfo == null) {
-                    error = new Throwable("Stream info loading failed. URL: " + stream.getUrl());
-                    return;
-                }
-
-                mediaSource = callback.sourceOf(streamInfo);
-                if (mediaSource == null) {
-                    error = new Throwable("Unable to resolve source from stream info. URL: " + stream.getUrl() +
-                            ", audio count: " + streamInfo.audio_streams.size() +
-                            ", video count: " + streamInfo.video_only_streams.size() + streamInfo.video_streams.size());
-                    return;
-                }
-
-                mediaSource.prepareSource(exoPlayer, false, listener);
+                onStreamInfoReceived(streamInfo);
             }
         };
 
         final Consumer<Throwable> onError = new Consumer<Throwable>() {
             @Override
             public void accept(Throwable throwable) throws Exception {
-                Log.e(TAG, "Loading error:", throwable);
-                error = throwable;
-                state = STATE_LOADED;
+            onStreamInfoError(throwable);
             }
         };
 
@@ -129,6 +133,38 @@ public final class DeferredMediaSource implements MediaSource {
                 .subscribe(onSuccess, onError);
     }
 
+    private void onStreamInfoReceived(final StreamInfo streamInfo) {
+        Log.d(TAG, " Loaded: [" + stream.getTitle() + "] with url: " + stream.getUrl());
+        state = STATE_LOADED;
+
+        if (exoPlayer == null || listener == null || streamInfo == null) {
+            error = new Throwable("Stream info loading failed. URL: " + stream.getUrl());
+            return;
+        }
+
+        mediaSource = callback.sourceOf(streamInfo);
+        if (mediaSource == null) {
+            error = new Throwable("Unable to resolve source from stream info. URL: " + stream.getUrl() +
+                    ", audio count: " + streamInfo.audio_streams.size() +
+                    ", video count: " + streamInfo.video_only_streams.size() + streamInfo.video_streams.size());
+            return;
+        }
+
+        mediaSource.prepareSource(exoPlayer, false, listener);
+    }
+
+    private void onStreamInfoError(final Throwable throwable) {
+        Log.e(TAG, "Loading error:", throwable);
+        error = throwable;
+        state = STATE_LOADED;
+    }
+
+    /**
+     * Delegate all errors to the player after {@link #load() load} is complete.
+     *
+     * Specifically, this method is called after an exception has occurred during loading or
+     * {@link com.google.android.exoplayer2.source.MediaSource#prepareSource(ExoPlayer, boolean, Listener) prepareSource}.
+     * */
     @Override
     public void maybeThrowSourceInfoRefreshError() throws IOException {
         if (error != null) {
@@ -145,19 +181,27 @@ public final class DeferredMediaSource implements MediaSource {
         return mediaSource.createPeriod(mediaPeriodId, allocator);
     }
 
+    /**
+     * Releases the media period (buffers).
+     *
+     * This may be called after {@link #releaseSource releaseSource}.
+     * */
     @Override
     public void releasePeriod(MediaPeriod mediaPeriod) {
-        if (mediaSource == null) {
-            Log.e(TAG, "releasePeriod() called when media source is null, memory leak may have occurred.");
-        } else {
-            mediaSource.releasePeriod(mediaPeriod);
-        }
+        mediaSource.releasePeriod(mediaPeriod);
     }
 
+    /**
+     * Cleans up all internal custom objects creating during loading.
+     *
+     * This method is called when the parent {@link com.google.android.exoplayer2.source.MediaSource}
+     * is released or when the player is stopped.
+     *
+     * This method should not release or set null the resources passed in through the constructor.
+     * This method should not set null the internal {@link com.google.android.exoplayer2.source.MediaSource}.
+     * */
     @Override
     public void releaseSource() {
-        state = STATE_DISPOSED;
-
         if (mediaSource != null) {
             mediaSource.releaseSource();
         }
@@ -166,9 +210,11 @@ public final class DeferredMediaSource implements MediaSource {
         }
 
         /* Do not set mediaSource as null here as it may be called through releasePeriod */
-        stream = null;
-        callback = null;
+        loader = null;
         exoPlayer = null;
         listener = null;
+        error = null;
+
+        state = STATE_INIT;
     }
 }

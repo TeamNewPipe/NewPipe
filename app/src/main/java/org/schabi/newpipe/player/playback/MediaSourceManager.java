@@ -107,11 +107,13 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
 
     /**
      * Loads the current playing stream and the streams within its WINDOW_SIZE bound.
+     *
+     * Unblocks the player once the item at the current index is loaded.
      * */
     public void load() {
         // The current item has higher priority
         final int currentIndex = playQueue.getIndex();
-        final PlayQueueItem currentItem = playQueue.get(currentIndex);
+        final PlayQueueItem currentItem = playQueue.getItem(currentIndex);
         if (currentItem == null) return;
         load(currentItem);
 
@@ -121,10 +123,22 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         final int rightBound = Math.min(playQueue.size(), rightLimit);
         final List<PlayQueueItem> items = new ArrayList<>(playQueue.getStreams().subList(leftBound, rightBound));
 
+        // Do a round robin
         final int excess = rightLimit - playQueue.size();
         if (excess >= 0) items.addAll(playQueue.getStreams().subList(0, Math.min(playQueue.size(), excess)));
 
         for (final PlayQueueItem item: items) load(item);
+    }
+
+    /**
+     * Blocks the player and repopulate the sources.
+     *
+     * Does not ensure the player is unblocked and should be done explicitly through {@link #load() load}.
+     * */
+    public void reset() {
+        tryBlock();
+        resetSources();
+        populateSources();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -141,44 +155,8 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
             }
 
             @Override
-            public void onNext(@NonNull PlayQueueMessage event) {
-                // why no pattern matching in Java =(
-                switch (event.type()) {
-                    case APPEND:
-                        populateSources();
-                        break;
-                    case SELECT:
-                        if (isCurrentIndexLoaded()) {
-                            sync();
-                        }
-                        break;
-                    case REMOVE:
-                        final RemoveEvent removeEvent = (RemoveEvent) event;
-                        if (!removeEvent.isCurrent()) {
-                            remove(removeEvent.index());
-                            break;
-                        }
-                        // Reset the sources if the index to remove is the current playing index
-                    case INIT:
-                    case REORDER:
-                        tryBlock();
-                        resetSources();
-                        populateSources();
-                        break;
-                    default:
-                        break;
-                }
-
-                if (!isPlayQueueReady()) {
-                    tryBlock();
-                    playQueue.fetch();
-                } else if (playQueue.isEmpty()) {
-                    playbackListener.shutdown();
-                } else {
-                    load(); // All event warrants a load
-                }
-
-                if (playQueueReactor != null) playQueueReactor.request(1);
+            public void onNext(@NonNull PlayQueueMessage playQueueMessage) {
+                onPlayQueueChanged(playQueueMessage);
             }
 
             @Override
@@ -187,6 +165,45 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
             @Override
             public void onComplete() {}
         };
+    }
+
+    private void onPlayQueueChanged(final PlayQueueMessage event) {
+        // why no pattern matching in Java =(
+        switch (event.type()) {
+            case APPEND:
+                populateSources();
+                break;
+            case SELECT:
+                if (isCurrentIndexLoaded()) {
+                    sync();
+                } else {
+                    reset();
+                }
+                break;
+            case REMOVE:
+                final RemoveEvent removeEvent = (RemoveEvent) event;
+                remove(removeEvent.index());
+                break;
+            case INIT:
+            case REORDER:
+                reset();
+                break;
+            case ERROR:
+            case MOVE:
+            default:
+                break;
+        }
+
+        if (!isPlayQueueReady()) {
+            tryBlock();
+            playQueue.fetch();
+        } else if (playQueue.isEmpty()) {
+            playbackListener.shutdown();
+        } else {
+            load(); // All event warrants a load
+        }
+
+        if (playQueueReactor != null) playQueueReactor.request(1);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -220,7 +237,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     }
 
     private void sync() {
-        final PlayQueueItem currentItem = playQueue.getCurrent();
+        final PlayQueueItem currentItem = playQueue.getItem();
 
         final Consumer<StreamInfo> syncPlayback = new Consumer<StreamInfo>() {
             @Override

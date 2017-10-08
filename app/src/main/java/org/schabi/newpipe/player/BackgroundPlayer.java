@@ -36,6 +36,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
@@ -402,6 +403,7 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void onError(Exception exception) {
             exception.printStackTrace();
+            Toast.makeText(context, "Failed to play this audio", Toast.LENGTH_SHORT).show();
         }
 
         /*//////////////////////////////////////////////////////////////////////////

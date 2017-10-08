@@ -33,12 +33,12 @@ public class BackgroundPlayerActivity extends AppCompatActivity
 
     private static final String TAG = "BGPlayerActivity";
 
-    private boolean isServiceBound;
+    private boolean serviceBound;
     private ServiceConnection serviceConnection;
 
     private BackgroundPlayer.BasePlayerImpl player;
 
-    private boolean isSeeking;
+    private boolean seeking;
 
     ////////////////////////////////////////////////////////////////////////////
     // Views
@@ -104,9 +104,9 @@ public class BackgroundPlayerActivity extends AppCompatActivity
     @Override
     protected void onStop() {
         super.onStop();
-        if(isServiceBound) {
+        if(serviceBound) {
             unbindService(serviceConnection);
-            isServiceBound = false;
+            serviceBound = false;
         }
     }
 
@@ -119,7 +119,7 @@ public class BackgroundPlayerActivity extends AppCompatActivity
             @Override
             public void onServiceDisconnected(ComponentName name) {
                 Log.d(TAG, "Background player service is disconnected");
-                isServiceBound = false;
+                serviceBound = false;
                 player = null;
                 finish();
             }
@@ -132,7 +132,7 @@ public class BackgroundPlayerActivity extends AppCompatActivity
                 if (player == null) {
                     finish();
                 } else {
-                    isServiceBound = true;
+                    serviceBound = true;
                     buildComponents();
 
                     player.setActivityListener(BackgroundPlayerActivity.this);
@@ -220,13 +220,13 @@ public class BackgroundPlayerActivity extends AppCompatActivity
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        isSeeking = true;
+        seeking = true;
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         player.simpleExoPlayer.seekTo(seekBar.getProgress());
-        isSeeking = false;
+        seeking = false;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -284,7 +284,7 @@ public class BackgroundPlayerActivity extends AppCompatActivity
         progressEndTime.setText(Localization.getDurationString(duration / 1000));
 
         // Set current time if not seeking
-        if (!isSeeking) {
+        if (!seeking) {
             progressSeekBar.setProgress(currentProgress);
             progressCurrentTime.setText(Localization.getDurationString(currentProgress / 1000));
         }

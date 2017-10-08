@@ -1,15 +1,15 @@
 package org.schabi.newpipe.playlist.events;
 
 
-public class RemoveEvent implements PlayQueueMessage {
+public class ErrorEvent implements PlayQueueMessage {
     final private int index;
 
     @Override
     public PlayQueueEvent type() {
-        return PlayQueueEvent.REMOVE;
+        return PlayQueueEvent.ERROR;
     }
 
-    public RemoveEvent(final int index) {
+    public ErrorEvent(final int index) {
         this.index = index;
     }
 

@@ -664,8 +664,22 @@ public abstract class BasePlayer implements Player.EventListener,
     @Override
     public void onPlayerError(ExoPlaybackException error) {
         if (DEBUG) Log.d(TAG, "onPlayerError() called with: error = [" + error + "]");
-        playQueue.remove(playQueue.getIndex());
-        onError(error);
+
+        // If the current window is seekable, then the error is produced by transitioning into
+        // bad window, therefore we simply increment the current index.
+        // This is done because ExoPlayer reports the exception before window is
+        // transitioned due to seamless playback.
+        if (!simpleExoPlayer.isCurrentWindowSeekable()) {
+            playQueue.error();
+            onError(error);
+        } else {
+            playQueue.offsetIndex(+1);
+        }
+
+        // Player error causes ExoPlayer to go back to IDLE state, which requires resetting
+        // preparing a new media source.
+        playbackManager.reset();
+        playbackManager.load();
     }
 
     @Override

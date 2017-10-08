@@ -7,7 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.playlist.events.AppendEvent;
+import org.schabi.newpipe.playlist.events.ErrorEvent;
 import org.schabi.newpipe.playlist.events.PlayQueueMessage;
+import org.schabi.newpipe.playlist.events.RemoveEvent;
+import org.schabi.newpipe.playlist.events.SelectEvent;
 
 import java.util.List;
 
@@ -38,10 +42,12 @@ import io.reactivex.disposables.Disposable;
 public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final String TAG = PlayQueueAdapter.class.toString();
 
+    private static final int ITEM_VIEW_TYPE_ID = 0;
+    private static final int FOOTER_VIEW_TYPE_ID = 1;
+
     private final PlayQueueItemBuilder playQueueItemBuilder;
     private final PlayQueue playQueue;
     private boolean showFooter = false;
-    private View header = null;
     private View footer = null;
 
     private Disposable playQueueReactor;
@@ -52,11 +58,6 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             view = v;
         }
         public View view;
-    }
-
-    public void showFooter(final boolean show) {
-        showFooter = show;
-        notifyDataSetChanged();
     }
 
     public PlayQueueAdapter(final PlayQueue playQueue) {
@@ -92,7 +93,7 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
             @Override
             public void onNext(@NonNull PlayQueueMessage playQueueMessage) {
-                notifyDataSetChanged();
+                onPlayQueueChanged(playQueueMessage);
             }
 
             @Override
@@ -109,19 +110,46 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 .subscribe(observer);
     }
 
+    private void onPlayQueueChanged(final PlayQueueMessage message) {
+        switch (message.type()) {
+            case SELECT:
+                final SelectEvent selectEvent = (SelectEvent) message;
+                notifyItemChanged(selectEvent.getOldIndex());
+                notifyItemChanged(selectEvent.getNewIndex());
+                break;
+            case APPEND:
+                final AppendEvent appendEvent = (AppendEvent) message;
+                notifyItemRangeInserted(playQueue.size(), appendEvent.getAmount());
+                break;
+            case ERROR:
+                final ErrorEvent errorEvent = (ErrorEvent) message;
+                notifyItemRangeRemoved(errorEvent.index(), 1);
+                notifyItemChanged(errorEvent.index());
+                break;
+            case REMOVE:
+                final RemoveEvent removeEvent = (RemoveEvent) message;
+                notifyItemRangeRemoved(removeEvent.index(), 1);
+                notifyItemChanged(removeEvent.index());
+                break;
+            default:
+                notifyDataSetChanged();
+                break;
+        }
+    }
+
     public void dispose() {
         if (playQueueReactor != null) playQueueReactor.dispose();
         playQueueReactor = null;
     }
 
-    public void setHeader(View header) {
-        this.header = header;
-        notifyDataSetChanged();
-    }
-
     public void setFooter(View footer) {
         this.footer = footer;
-        notifyDataSetChanged();
+        notifyItemChanged(playQueue.size());
+    }
+
+    public void showFooter(final boolean show) {
+        showFooter = show;
+        notifyItemChanged(playQueue.size());
     }
 
     public List<PlayQueueItem> getItems() {
@@ -131,36 +159,28 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public int getItemCount() {
         int count = playQueue.getStreams().size();
-        if(header != null) count++;
         if(footer != null && showFooter) count++;
         return count;
     }
 
     @Override
     public int getItemViewType(int position) {
-        if(header != null && position == 0) {
-            return 0;
-        } else if(header != null) {
-            position--;
-        }
         if(footer != null && position == playQueue.getStreams().size() && showFooter) {
-            return 1;
+            return FOOTER_VIEW_TYPE_ID;
         }
-        return 2;
+
+        return ITEM_VIEW_TYPE_ID;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int type) {
         switch(type) {
-            case 0:
-                return new HFHolder(header);
-            case 1:
+            case FOOTER_VIEW_TYPE_ID:
                 return new HFHolder(footer);
-            case 2:
-                return new PlayQueueItemHolder(LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.play_queue_item, parent, false));
+            case ITEM_VIEW_TYPE_ID:
+                return new PlayQueueItemHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.play_queue_item, parent, false));
             default:
-                Log.e(TAG, "Trollolo");
+                Log.e(TAG, "Attempting to create view holder with undefined type: " + type);
                 return null;
         }
     }
@@ -168,14 +188,10 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof PlayQueueItemHolder) {
-            // Ensure header does not interfere with list building
-            if (header != null) position--;
             // Build the list item
             playQueueItemBuilder.buildStreamInfoItem((PlayQueueItemHolder) holder, playQueue.getStreams().get(position));
             // Check if the current item should be selected/highlighted
             holder.itemView.setSelected(playQueue.getIndex() == position);
-        } else if(holder instanceof HFHolder && position == 0 && header != null) {
-            ((HFHolder) holder).view = header;
         } else if(holder instanceof HFHolder && position == playQueue.getStreams().size() && footer != null && showFooter) {
             ((HFHolder) holder).view = footer;
         }

@@ -15,7 +15,10 @@ public enum PlayQueueEvent {
     // sent when two streams swap place in the play queue
     MOVE,
 
-    // send when queue is shuffled
-    REORDER
+    // sent when queue is shuffled
+    REORDER,
+
+    // sent when the item at index has caused an exception
+    ERROR
 }
 

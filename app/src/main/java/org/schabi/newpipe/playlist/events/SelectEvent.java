@@ -2,6 +2,7 @@ package org.schabi.newpipe.playlist.events;
 
 
 public class SelectEvent implements PlayQueueMessage {
+    final private int oldIndex;
     final private int newIndex;
 
     @Override
@@ -9,11 +10,16 @@ public class SelectEvent implements PlayQueueMessage {
         return PlayQueueEvent.SELECT;
     }
 
-    public SelectEvent(final int newIndex) {
+    public SelectEvent(final int oldIndex, final int newIndex) {
+        this.oldIndex = oldIndex;
         this.newIndex = newIndex;
     }
 
-    public int index() {
+    public int getOldIndex() {
+        return oldIndex;
+    }
+
+    public int getNewIndex() {
         return newIndex;
     }
 }
