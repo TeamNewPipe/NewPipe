@@ -352,9 +352,16 @@ public final class MainVideoPlayer extends Activity {
         }
 
         @Override
-        public void onError(Exception exception) {
+        public void onRecoverableError(Exception exception) {
             exception.printStackTrace();
             Toast.makeText(context, "Failed to play this video", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onUnrecoverableError(Exception exception) {
+            exception.printStackTrace();
+            Toast.makeText(context, "Unexpected error occurred", Toast.LENGTH_SHORT).show();
+            shutdown();
         }
 
         /*//////////////////////////////////////////////////////////////////////////

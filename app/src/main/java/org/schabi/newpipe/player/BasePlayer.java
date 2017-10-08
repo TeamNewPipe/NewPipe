@@ -661,25 +661,48 @@ public abstract class BasePlayer implements Player.EventListener,
         }
     }
 
+    /**
+     * Processes the exceptions produced by {@link com.google.android.exoplayer2.ExoPlayer ExoPlayer}.
+     * There are multiple types of errors: <br><br>
+     *
+     * {@link ExoPlaybackException#TYPE_SOURCE TYPE_SOURCE}: <br><br>
+     * If the current {@link com.google.android.exoplayer2.Timeline.Window window} has
+     * duration and position greater than 0, then we know the current window is working correctly
+     * and the error is produced by transitioning into a bad window, therefore we simply increment
+     * the current index. Otherwise, we report an error to the play queue.
+     *
+     * This is done because ExoPlayer reports the source exceptions before window is
+     * transitioned on seamless playback.
+     *
+     * Because player error causes ExoPlayer to go back to {@link Player#STATE_IDLE STATE_IDLE},
+     * we reset and prepare the media source again to resume playback.<br><br>
+     *
+     * {@link ExoPlaybackException#TYPE_RENDERER TYPE_RENDERER} and
+     * {@link ExoPlaybackException#TYPE_UNEXPECTED TYPE_UNEXPECTED}: <br><br>
+     * If renderer failed or unexpected exceptions occurred, treat the error as unrecoverable.
+     *
+     * @see Player.EventListener#onPlayerError(ExoPlaybackException)
+     *  */
     @Override
     public void onPlayerError(ExoPlaybackException error) {
         if (DEBUG) Log.d(TAG, "onPlayerError() called with: error = [" + error + "]");
 
-        // If the current window is seekable, then the error is produced by transitioning into
-        // bad window, therefore we simply increment the current index.
-        // This is done because ExoPlayer reports the exception before window is
-        // transitioned due to seamless playback.
-        if (!simpleExoPlayer.isCurrentWindowSeekable()) {
-            playQueue.error();
-            onError(error);
-        } else {
-            playQueue.offsetIndex(+1);
-        }
+        switch (error.type) {
+            case ExoPlaybackException.TYPE_SOURCE:
+                if (simpleExoPlayer.getDuration() < 0 || simpleExoPlayer.getCurrentPosition() < 0) {
+                    playQueue.error();
+                    onRecoverableError(error);
+                } else {
+                    playQueue.offsetIndex(+1);
+                }
 
-        // Player error causes ExoPlayer to go back to IDLE state, which requires resetting
-        // preparing a new media source.
-        playbackManager.reset();
-        playbackManager.load();
+                playbackManager.reset();
+                playbackManager.load();
+                break;
+            default:
+                onUnrecoverableError(error);
+                break;
+        }
     }
 
     @Override
@@ -752,7 +775,9 @@ public abstract class BasePlayer implements Player.EventListener,
     // General Player
     //////////////////////////////////////////////////////////////////////////*/
 
-    public abstract void onError(Exception exception);
+    public abstract void onRecoverableError(Exception exception);
+
+    public abstract void onUnrecoverableError(Exception exception);
 
     public void onPrepared(boolean playWhenReady) {
         if (DEBUG) Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");

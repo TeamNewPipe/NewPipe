@@ -401,9 +401,16 @@ public final class BackgroundPlayer extends Service {
         }
 
         @Override
-        public void onError(Exception exception) {
+        public void onRecoverableError(Exception exception) {
             exception.printStackTrace();
             Toast.makeText(context, "Failed to play this audio", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onUnrecoverableError(Exception exception) {
+            exception.printStackTrace();
+            Toast.makeText(context, "Unexpected error occurred", Toast.LENGTH_SHORT).show();
+            shutdown();
         }
 
         /*//////////////////////////////////////////////////////////////////////////

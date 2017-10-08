@@ -16,6 +16,7 @@ import java.io.IOException;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -113,44 +114,60 @@ public final class DeferredMediaSource implements MediaSource {
 
         Log.d(TAG, "Loading: [" + stream.getTitle() + "] with url: " + stream.getUrl());
 
-        final Consumer<StreamInfo> onSuccess = new Consumer<StreamInfo>() {
+        final Function<StreamInfo, MediaSource> onReceive = new Function<StreamInfo, MediaSource>() {
             @Override
-            public void accept(StreamInfo streamInfo) throws Exception {
-                onStreamInfoReceived(streamInfo);
+            public MediaSource apply(StreamInfo streamInfo) throws Exception {
+                return onStreamInfoReceived(streamInfo);
+            }
+        };
+
+        final Consumer<MediaSource> onSuccess = new Consumer<MediaSource>() {
+            @Override
+            public void accept(MediaSource mediaSource) throws Exception {
+                onMediaSourceReceived(mediaSource);
             }
         };
 
         final Consumer<Throwable> onError = new Consumer<Throwable>() {
             @Override
             public void accept(Throwable throwable) throws Exception {
-            onStreamInfoError(throwable);
+                onStreamInfoError(throwable);
             }
         };
 
         loader = stream.getStream()
-                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .map(onReceive)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(onSuccess, onError);
     }
 
-    private void onStreamInfoReceived(final StreamInfo streamInfo) {
+    private MediaSource onStreamInfoReceived(final StreamInfo streamInfo) throws Exception {
+        if (callback == null) {
+            throw new Exception("No available callback for resolving stream info.");
+        }
+
+        final MediaSource mediaSource = callback.sourceOf(streamInfo);
+
+        if (mediaSource == null) {
+            throw new Exception("Unable to resolve source from stream info. URL: " + stream.getUrl() +
+                    ", audio count: " + streamInfo.audio_streams.size() +
+                    ", video count: " + streamInfo.video_only_streams.size() + streamInfo.video_streams.size());
+        }
+
+        return mediaSource;
+    }
+
+    private void onMediaSourceReceived(final MediaSource mediaSource) throws Exception {
+        if (exoPlayer == null || listener == null || mediaSource == null) {
+            throw new Exception("MediaSource loading failed. URL: " + stream.getUrl());
+        }
+
         Log.d(TAG, " Loaded: [" + stream.getTitle() + "] with url: " + stream.getUrl());
         state = STATE_LOADED;
 
-        if (exoPlayer == null || listener == null || streamInfo == null) {
-            error = new Throwable("Stream info loading failed. URL: " + stream.getUrl());
-            return;
-        }
-
-        mediaSource = callback.sourceOf(streamInfo);
-        if (mediaSource == null) {
-            error = new Throwable("Unable to resolve source from stream info. URL: " + stream.getUrl() +
-                    ", audio count: " + streamInfo.audio_streams.size() +
-                    ", video count: " + streamInfo.video_only_streams.size() + streamInfo.video_streams.size());
-            return;
-        }
-
-        mediaSource.prepareSource(exoPlayer, false, listener);
+        this.mediaSource = mediaSource;
+        this.mediaSource.prepareSource(exoPlayer, false, listener);
     }
 
     private void onStreamInfoError(final Throwable throwable) {
