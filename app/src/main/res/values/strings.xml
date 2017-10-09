@@ -282,6 +282,7 @@
     </string-array>
     <string name="select_a_channel">Select a channel</string>
     <string name="no_channel_subscribed_yet">No channel subscribed yet</string>
+    <string name="select_a_kiosk">Select a kiosk</string>
 
     <!-- Kiosk Names -->
     <string name="kiosk">Kisok</string>
