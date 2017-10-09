@@ -36,7 +36,7 @@ import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.Parser;
+import org.schabi.newpipe.extractor.utils.Parser;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.PrintWriter;
@@ -47,7 +47,7 @@ import java.util.List;
 import java.util.TimeZone;
 import java.util.Vector;
 
-/**
+/*
  * Created by Christian Schabesberger on 24.10.15.
  *
  * Copyright (C) Christian Schabesberger 2016 <chris.schabesberger@mailbox.org>
@@ -95,37 +95,34 @@ public class ErrorActivity extends AppCompatActivity {
 
     public static void reportError(final Context context, final List<Throwable> el,
                                    final Class returnActivity, View rootView, final ErrorInfo errorInfo) {
-
         if (rootView != null) {
-            Snackbar.make(rootView, R.string.error_snackbar_message, Snackbar.LENGTH_LONG)
+            Snackbar.make(rootView, R.string.error_snackbar_message, 15 * 1000)
                     .setActionTextColor(Color.YELLOW)
                     .setAction(R.string.error_snackbar_action, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
-                            ac.returnActivity = returnActivity;
-                            Intent intent = new Intent(context, ErrorActivity.class);
-                            intent.putExtra(ERROR_INFO, errorInfo);
-                            intent.putExtra(ERROR_LIST, elToSl(el));
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            context.startActivity(intent);
+                            startErrorActivity(returnActivity, context, errorInfo, el);
                         }
                     }).show();
         } else {
-            ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
-            ac.returnActivity = returnActivity;
-            Intent intent = new Intent(context, ErrorActivity.class);
-            intent.putExtra(ERROR_INFO, errorInfo);
-            intent.putExtra(ERROR_LIST, elToSl(el));
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
+            startErrorActivity(returnActivity, context, errorInfo, el);
         }
+    }
+
+    private static void startErrorActivity(Class returnActivity, Context context, ErrorInfo errorInfo, List<Throwable> el) {
+        ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
+        ac.returnActivity = returnActivity;
+        Intent intent = new Intent(context, ErrorActivity.class);
+        intent.putExtra(ERROR_INFO, errorInfo);
+        intent.putExtra(ERROR_LIST, elToSl(el));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 
     public static void reportError(final Context context, final Throwable e,
                                    final Class returnActivity, View rootView, final ErrorInfo errorInfo) {
         List<Throwable> el = null;
-        if(e != null) {
+        if (e != null) {
             el = new Vector<>();
             el.add(e);
         }
@@ -137,7 +134,7 @@ public class ErrorActivity extends AppCompatActivity {
                                    final Class returnActivity, final View rootView, final ErrorInfo errorInfo) {
 
         List<Throwable> el = null;
-        if(e != null) {
+        if (e != null) {
             el = new Vector<>();
             el.add(e);
         }
@@ -158,12 +155,12 @@ public class ErrorActivity extends AppCompatActivity {
     public static void reportError(final Context context, final CrashReportData report, final ErrorInfo errorInfo) {
         // get key first (don't ask about this solution)
         ReportField key = null;
-        for(ReportField k : report.keySet()) {
-            if(k.toString().equals("STACK_TRACE")) {
+        for (ReportField k : report.keySet()) {
+            if (k.toString().equals("STACK_TRACE")) {
                 key = k;
             }
         }
-        String[] el = new String[] { report.get(key) };
+        String[] el = new String[]{report.get(key)};
 
         Intent intent = new Intent(context, ErrorActivity.class);
         intent.putExtra(ERROR_INFO, errorInfo);
@@ -196,7 +193,7 @@ public class ErrorActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
@@ -206,11 +203,11 @@ public class ErrorActivity extends AppCompatActivity {
             actionBar.setDisplayShowTitleEnabled(true);
         }
 
-        reportButton = (Button) findViewById(R.id.errorReportButton);
-        userCommentBox = (EditText) findViewById(R.id.errorCommentBox);
-        errorView = (TextView) findViewById(R.id.errorView);
-        infoView = (TextView) findViewById(R.id.errorInfosView);
-        errorMessageView = (TextView) findViewById(R.id.errorMessageView);
+        reportButton = findViewById(R.id.errorReportButton);
+        userCommentBox = findViewById(R.id.errorCommentBox);
+        errorView = findViewById(R.id.errorView);
+        infoView = findViewById(R.id.errorInfosView);
+        errorMessageView = findViewById(R.id.errorMessageView);
 
         ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
         returnActivity = ac.returnActivity;
@@ -240,7 +237,7 @@ public class ErrorActivity extends AppCompatActivity {
 
         // normal bugreport
         buildInfo(errorInfo);
-        if(errorInfo.message != 0) {
+        if (errorInfo.message != 0) {
             errorMessageView.setText(errorInfo.message);
         } else {
             errorMessageView.setVisibility(View.GONE);
@@ -250,7 +247,7 @@ public class ErrorActivity extends AppCompatActivity {
         errorView.setText(formErrorText(errorList));
 
         //print stack trace once again for debugging:
-        for(String e : errorList) {
+        for (String e : errorList) {
             Log.e(TAG, e);
         }
     }
@@ -283,7 +280,7 @@ public class ErrorActivity extends AppCompatActivity {
 
     private String formErrorText(String[] el) {
         String text = "";
-        if(el != null) {
+        if (el != null) {
             for (String e : el) {
                 text += "-------------------------------------\n"
                         + e;
@@ -295,13 +292,14 @@ public class ErrorActivity extends AppCompatActivity {
 
     /**
      * Get the checked activity.
+     *
      * @param returnActivity the activity to return to
      * @return the casted return activity or null
      */
     @Nullable
     static Class<? extends Activity> getReturnActivity(Class<?> returnActivity) {
         Class<? extends Activity> checkedReturnActivity = null;
-        if (returnActivity != null){
+        if (returnActivity != null) {
             if (Activity.class.isAssignableFrom(returnActivity)) {
                 checkedReturnActivity = returnActivity.asSubclass(Activity.class);
             } else {
@@ -323,8 +321,8 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private void buildInfo(ErrorInfo info) {
-        TextView infoLabelView = (TextView) findViewById(R.id.errorInfoLabelsView);
-        TextView infoView = (TextView) findViewById(R.id.errorInfosView);
+        TextView infoLabelView = findViewById(R.id.errorInfoLabelsView);
+        TextView infoView = findViewById(R.id.errorInfosView);
         String text = "";
 
         infoLabelView.setText(getString(R.string.info_labels).replace("\\n", "\n"));
@@ -356,7 +354,7 @@ public class ErrorActivity extends AppCompatActivity {
                     .put("ip_range", globIpRange);
 
             JSONArray exceptionArray = new JSONArray();
-            if(errorList != null) {
+            if (errorList != null) {
                 for (String e : errorList) {
                     exceptionArray.put(e);
                 }
@@ -375,7 +373,7 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private String getUserActionString(UserAction userAction) {
-        if(userAction == null) {
+        if (userAction == null) {
             return "Your description is in another castle.";
         } else {
             return userAction.getMessage();
@@ -397,7 +395,7 @@ public class ErrorActivity extends AppCompatActivity {
 
     private void addGuruMeditaion() {
         //just an easter egg
-        TextView sorryView = (TextView) findViewById(R.id.errorSorryView);
+        TextView sorryView = findViewById(R.id.errorSorryView);
         String text = sorryView.getText().toString();
         text += "\n" + getString(R.string.guru_meditation);
         sorryView.setText(text);
@@ -467,6 +465,7 @@ public class ErrorActivity extends AppCompatActivity {
 
     private class IpRangeRequester implements Runnable {
         Handler h = new Handler();
+
         public void run() {
             String ipRange = "none";
             try {
@@ -475,7 +474,7 @@ public class ErrorActivity extends AppCompatActivity {
 
                 ipRange = Parser.matchGroup1("([0-9]*\\.[0-9]*\\.)[0-9]*\\.[0-9]*", ip)
                         + "0.0";
-            } catch(Throwable e) {
+            } catch (Throwable e) {
                 Log.w(TAG, "Error while error: could not get iprange", e);
             } finally {
                 h.post(new IpRangeReturnRunnable(ipRange));
@@ -485,12 +484,14 @@ public class ErrorActivity extends AppCompatActivity {
 
     private class IpRangeReturnRunnable implements Runnable {
         String ipRange;
+
         public IpRangeReturnRunnable(String ipRange) {
             this.ipRange = ipRange;
         }
+
         public void run() {
             globIpRange = ipRange;
-            if(infoView != null) {
+            if (infoView != null) {
                 String text = infoView.getText().toString();
                 text += "\n" + globIpRange;
                 infoView.setText(text);

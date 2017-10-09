@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="?attr/colorPrimary">
+    android:background="?attr/colorPrimary"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <View
         android:id="@+id/dropdown_anchor"
@@ -24,10 +26,11 @@
         android:drawablePadding="8dp"
         android:dropDownAnchor="@+id/dropdown_anchor"
         android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:hint="@string/search"
         android:imeOptions="actionSearch|flagNoFullscreen"
         android:inputType="textFilter|textNoSuggestions"
         android:maxLines="1"
-        tools:hint="Search..."
         tools:ignore="RtlHardcoded"/>
 
     <FrameLayout

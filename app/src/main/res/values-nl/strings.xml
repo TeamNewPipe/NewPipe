@@ -88,8 +88,8 @@
     <string name="audio">Geluid</string>
     <string name="retry">Opnieuw proberen</string>
     <string name="main_bg_subtitle">Tik op zoeken om te beginnen</string>
-    <string name="autoplay_by_calling_app_title">Automatisch afspelen wanneer geopend vanuit een andere app</string>
-    <string name="autoplay_by_calling_app_summary">Speel video\'s automatisch af wanneer NewPipe vanuit een andere app geopend wordt</string>
+    <string name="autoplay_by_calling_app_title">Automatisch afspelen</string>
+    <string name="autoplay_by_calling_app_summary">Speelt video\'s automatisch af wanneer NewPipe vanuit een andere app geopend wordt</string>
     <string name="duration_live">live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
@@ -137,10 +137,7 @@
     <string name="yes">Ja</string>
     <string name="later">Later</string>
 
-    <string name="videos">video\'s</string>
-    <string name="subscriber">abonneren</string>
-    <string name="subscribe">Abonneren</string>
-    <string name="views">weergaven</string>
+
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
@@ -153,10 +150,10 @@ te openen in pop-upmodus</string>
     <string name="popup_playing_toast">Speelt af in pop-upmodus</string>
     <string name="use_old_player_title">Gebruik oude speler</string>
     <string name="use_old_player_summary">Verouderde ingebouwde Mediaframework-speler</string>
-    <string name="preferred_video_format_title">Standaardvideoformaat</string>
+    <string name="default_video_format_title">Standaardvideoformaat</string>
     <string name="disabled">Uitgeschakeld</string>
 
-    <string name="subscriber_plural">abonnees</string>
+
     <string name="default_popup_resolution_title">Standaardresolutie voor pop-up</string>
     <string name="show_higher_resolutions_title">Hogere resoluties weergeven</string>
     <string name="show_higher_resolutions_summary">Video\'s afspelen in 2K/4K wordt maar op sommige apparaten ondersteund</string>
@@ -191,7 +188,6 @@ te openen in pop-upmodus</string>
     <string name="tab_about">Over</string>
     <string name="tab_contributors">Bijdragers</string>
     <string name="tab_licenses">Licenties</string>
-    <string name="github_url">https://github.com/TeamNewPipe/NewPipe</string>
     <string name="app_description">Een vrije en lichte YouTube-cliënt voor Android.</string>
     <string name="view_on_github">Bekijken op GitHub</string>
     <string name="app_license_title">Licentie van NewPipe</string>
@@ -236,4 +232,32 @@ te openen in pop-upmodus</string>
     <string name="history_empty">De geschiedenis is leeg</string>
     <string name="history_cleared">Geschiedenis gewist</string>
 
+<string name="settings_category_player_title">Speler</string>
+    <string name="settings_category_player_behavior_title">Gedrag</string>
+    <string name="settings_category_history_title">Geschiedenis</string>
+    <string name="playlist">Afspeellijst</string>
+    <string name="undo">Ongedaan maken</string>
+
+    <string name="search_no_results">Geen resultaten</string>
+    <string name="empty_subscription_feed_subtitle">Niets te zien</string>
+
+    <string name="no_subscribers">Geen abonnees</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s abonnee</item>
+	<item quantity="other">%s abonnees</item>
+</plurals>
+
+    <string name="no_views">Geen weergaven</string>
+    <plurals name="views">
+	<item quantity="one">%s weergave</item>
+	<item quantity="other">%s weergaven</item>
+</plurals>
+
+    <string name="no_videos">Geen video\'s</string>
+    <plurals name="videos">
+	<item quantity="one">%s video</item>
+	<item quantity="other">%s video\'s</item>
+</plurals>
+
+    <string name="item_deleted">Item verwijderd</string>
 </resources>

@@ -15,3 +15,13 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-dontobfuscate
+-keep class org.mozilla.javascript.** { *; }
+
+-keep class org.mozilla.classfile.ClassFileWriter
+-keep class com.google.android.exoplayer2.** { *; }
+
+-dontwarn org.mozilla.javascript.tools.**
+-dontwarn android.arch.util.paging.CountedDataSource
+-dontwarn android.arch.persistence.room.paging.LimitOffsetDataSource

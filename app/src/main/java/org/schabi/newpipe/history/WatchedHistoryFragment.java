@@ -19,9 +19,10 @@ import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.history.dao.HistoryDAO;
 import org.schabi.newpipe.database.history.model.WatchHistoryEntry;
+import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
+import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 
-import static org.schabi.newpipe.info_list.InfoItemBuilder.getDurationString;
 
 public class WatchedHistoryFragment extends HistoryFragment<WatchHistoryEntry> {
 
@@ -50,8 +51,8 @@ public class WatchedHistoryFragment extends HistoryFragment<WatchHistoryEntry> {
 
     @NonNull
     @Override
-    protected HistoryDAO<WatchHistoryEntry> createHistoryDAO(Context context) {
-        return NewPipeDatabase.getInstance(context).watchHistoryDAO();
+    protected HistoryDAO<WatchHistoryEntry> createHistoryDAO() {
+        return NewPipeDatabase.getInstance().watchHistoryDAO();
     }
 
     @Override
@@ -71,7 +72,7 @@ public class WatchedHistoryFragment extends HistoryFragment<WatchHistoryEntry> {
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            View itemView = inflater.inflate(R.layout.stream_item, parent, false);
+            View itemView = inflater.inflate(R.layout.list_stream_item, parent, false);
             return new ViewHolder(itemView);
         }
 
@@ -87,9 +88,9 @@ public class WatchedHistoryFragment extends HistoryFragment<WatchHistoryEntry> {
             holder.date.setText(getFormattedDate(entry.getCreationDate()));
             holder.streamTitle.setText(entry.getTitle());
             holder.uploader.setText(entry.getUploader());
-            holder.duration.setText(getDurationString(entry.getDuration()));
+            holder.duration.setText(Localization.getDurationString(entry.getDuration()));
             ImageLoader.getInstance()
-                    .displayImage(entry.getThumbnailURL(), holder.thumbnailView);
+                    .displayImage(entry.getThumbnailURL(), holder.thumbnailView, StreamInfoItemHolder.DISPLAY_THUMBNAIL_OPTIONS);
         }
     }
 

@@ -2,16 +2,20 @@ package org.schabi.newpipe.settings;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.ThemeHelper;
 
 
-/**
+/*
  * Created by Christian Schabesberger on 31.08.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>
@@ -31,7 +35,7 @@ import org.schabi.newpipe.util.ThemeHelper;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity implements BasePreferenceFragment.OnPreferenceStartFragmentCallback {
 
     public static void initSettings(Context context) {
         NewPipeSettings.initSettings(context);
@@ -43,21 +47,25 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceBundle);
         setContentView(R.layout.settings_layout);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        if (savedInstanceBundle == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_holder, new MainSettingsFragment())
+                    .commit();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(R.string.settings);
             actionBar.setDisplayShowTitleEnabled(true);
         }
 
-        if (savedInstanceBundle == null) {
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_holder, new SettingsFragment())
-                    .commit();
-        }
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -66,6 +74,17 @@ public class SettingsActivity extends AppCompatActivity {
         if (id == android.R.id.home) {
             finish();
         }
+        return true;
+    }
+
+    @Override
+    public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller, Preference preference) {
+        Fragment fragment = Fragment.instantiate(this, preference.getFragment(), preference.getExtras());
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+                .replace(R.id.fragment_holder, fragment)
+                .addToBackStack(null)
+                .commit();
         return true;
     }
 }

@@ -3,9 +3,6 @@ package org.schabi.newpipe.about;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.text.TextUtils;
-
-import java.net.URLEncoder;
 
 /**
  * A software license

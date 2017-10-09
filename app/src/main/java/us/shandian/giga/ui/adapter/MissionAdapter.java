@@ -305,12 +305,12 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
         public ViewHolder(View v) {
             super(v);
 
-            status = (TextView) v.findViewById(R.id.item_status);
-            icon = (ImageView) v.findViewById(R.id.item_icon);
-            name = (TextView) v.findViewById(R.id.item_name);
-            size = (TextView) v.findViewById(R.id.item_size);
+            status = v.findViewById(R.id.item_status);
+            icon = v.findViewById(R.id.item_icon);
+            name = v.findViewById(R.id.item_name);
+            size = v.findViewById(R.id.item_size);
             bkg = v.findViewById(R.id.item_bkg);
-            menu = (ImageView) v.findViewById(R.id.item_more);
+            menu = v.findViewById(R.id.item_more);
         }
     }
 

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="view_count_text">%1$s visualizaciones</string>
-    <string name="upload_date_text">Publicado en %1$s</string>
+    <string name="upload_date_text">Publicado el %1$s</string>
     <string name="no_player_found">No se encontró ningún reproductor de vídeo. ¿Desea instalar VLC?</string>
     <string name="install">Instalar</string>
     <string name="cancel">Cancelar</string>
@@ -12,7 +12,7 @@
     <string name="settings">Ajustes</string>
     <string name="did_you_mean">¿Quiso decir: %1$s?</string>
     <string name="share_dialog_title">Compartir con</string>
-    <string name="choose_browser">Seleccionar navegador</string>
+    <string name="choose_browser">Elegir navegador</string>
     <string name="screen_rotation">rotación</string>
     <string name="download_path_title">Ruta de descarga de vídeo</string>
     <string name="download_path_summary">Ruta para almacenar los vídeos descargados</string>
@@ -73,7 +73,7 @@
     <string name="video_is_age_restricted">Vídeo restringido por edad. Permitir este tipo de material es posible desde Ajustes.</string>
 
     <string name="main_bg_subtitle">Toque buscar para empezar</string>
-    <string name="autoplay_by_calling_app_title">Autoreproducir al llamar desde otra app</string>
+    <string name="autoplay_by_calling_app_title">Autoreproducir</string>
     <string name="autoplay_by_calling_app_summary">Reproducir automáticamente un vídeo cuando NewPipe es llamado desde otra aplicación</string>
     <string name="duration_live">en vivo</string>
     <string name="downloads">Descargas</string>
@@ -134,10 +134,6 @@
     <string name="yes">Sí</string>
     <string name="later">Después</string>
 
-    <string name="videos">videos</string>
-    <string name="subscriber">suscriptor</string>
-    <string name="subscribe">Suscribirse</string>
-    <string name="views">visualizaciones</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>
@@ -155,10 +151,9 @@ abrir en modo popup</string>
     <string name="popup_playing_toast">Reproduciendo en modo popup</string>
     <string name="use_old_player_title">Usar reproductor antiguo</string>
     <string name="use_old_player_summary">Versión antigua en reproductor Media Framework</string>
-    <string name="preferred_video_format_title">Formato de vídeo por defecto</string>
+    <string name="default_video_format_title">Formato de vídeo por defecto</string>
     <string name="disabled">Desactivado</string>
 
-    <string name="subscriber_plural">Suscriptores</string>
     <string name="show_higher_resolutions_title">Mostrar resoluciones más altas</string>
     <string name="show_higher_resolutions_summary">Solo algunos dispositivos soportan reproducción de vídeos en 2K/4K</string>
     <string name="default_popup_resolution_title">Resolución del popup por defecto</string>
@@ -175,7 +170,7 @@ abrir en modo popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Redimensionando</string>
 
-    <string name="use_external_video_player_summary">Algunas resoluciones podrían no tener audio cuando esta opción está activada</string>
+    <string name="use_external_video_player_summary">Algunas resoluciones podrían NO tener audio cuando esta opción está activada</string>
     <string name="player_gesture_controls_title">Controles de gestos del reproductor</string>
     <string name="player_gesture_controls_summary">Usar gestos para controlar el brillo y volumen del reproductor</string>
     <string name="show_search_suggestions_title">Sugerencias de búsqueda</string>
@@ -187,13 +182,12 @@ abrir en modo popup</string>
     <string name="action_settings">Ajustes</string>
     <string name="action_about">Acerca de</string>
     <string name="title_licenses">Licencias de terceros</string>
-    <string name="copyright" formatted="true">© %1$s por %2$s, con licencia %3$s</string>
+    <string name="copyright" formatted="true">© %1$s por %2$s, bajo %3$s</string>
     <string name="error_unable_to_load_license">No se pudo cargar la licencia</string>
     <string name="action_open_website">Abrir sitio web</string>
     <string name="tab_about">Acerca de</string>
     <string name="tab_contributors">Colaboradores</string>
     <string name="tab_licenses">Licencias</string>
-    <string name="github_url">https://github.com/TeamNewPipe/NewPipe</string>
     <string name="app_description">Una gratuita y ligera interfaz de YouTube para Android.</string>
     <string name="view_on_github">Ver en GitHub</string>
     <string name="app_license_title">Licencia de NewPipe</string>
@@ -237,4 +231,32 @@ abrir en modo popup</string>
 <string name="notification_channel_name">Notificación de NewPipe</string>
     <string name="notification_channel_description">Notificaciones para NewPipe en segundo plano y reproductores popup</string>
 
-    </resources>
+    <string name="settings_category_player_title">Reproductor</string>
+    <string name="settings_category_player_behavior_title">Funcionamiento</string>
+    <string name="settings_category_history_title">Historial</string>
+    <string name="playlist">Lista de reproducción</string>
+    <string name="undo">Deshacer</string>
+
+    <string name="search_no_results">No hay resultados</string>
+    <string name="empty_subscription_feed_subtitle">Nada más que grillos</string>
+
+    <string name="no_subscribers">Sin suscriptores</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s suscriptor</item>
+	<item quantity="other">%s suscriptores</item>
+</plurals>
+
+    <string name="no_views">Sin reproducciones</string>
+    <plurals name="views">
+	<item quantity="one">%s reproducción</item>
+	<item quantity="other">%s reproducciones</item>
+</plurals>
+
+    <string name="no_videos">Sin vídeos</string>
+    <plurals name="videos">
+	<item quantity="one">%s vídeo</item>
+	<item quantity="other">%s vídeos</item>
+</plurals>
+
+    <string name="item_deleted">Elemento eliminado</string>
+</resources>

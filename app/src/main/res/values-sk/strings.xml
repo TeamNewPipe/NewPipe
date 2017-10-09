@@ -133,9 +133,7 @@
     <string name="all">Všetko</string>
     <string name="channel">Kanály</string>
 
-    <string name="videos">videá</string>
-    <string name="subscriber">odberateľ</string>
-    <string name="views">videní</string>
+
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
@@ -145,7 +143,6 @@
     <string name="yes">Áno</string>
     <string name="later">Neskôr</string>
 
-    <string name="subscribe">Odoberať</string>
 
     <string name="open_in_popup_mode">Spustiť v okne</string>
     <string name="msg_popup_permission">Tieto práva vyžaduje
@@ -153,13 +150,13 @@ otvorenie okna na popredí</string>
 
     <string name="popup_mode_share_menu_title">NewPipe v okne</string>
 
-    <string name="preferred_video_format_title">Preferovaný fromát videa</string>
+    <string name="default_video_format_title">Preferovaný fromát videa</string>
     <string name="popup_playing_toast">Prehrávanie v okne</string>
     <string name="disabled">Vypnuté</string>
 
     <string name="use_old_player_title">Použiť starší prehrávač</string>
     <string name="use_old_player_summary">Pôvodná zostava v Mediaframework.</string>
-    <string name="subscriber_plural">odberatelia</string>
+
     <string name="default_popup_resolution_title">Predvolená veľkosť okna</string>
     <string name="show_higher_resolutions_title">Zobraziť vyššie rozlíšenie</string>
     <string name="show_higher_resolutions_summary">Len niektoré zariadenia podporujú videá 2K/4K</string>
@@ -216,7 +213,7 @@ otvorenie okna na popredí</string>
     <string name="action_settings">Nastavenia</string>
     <string name="action_about">O</string>
     <string name="title_licenses">Licencie tretích strán</string>
-    <string name="copyright" formatted="true">© %1$ od %2$s pod %3$</string>
+    <string name="copyright" formatted="true">© %1$s od %2$s pod %3$s</string>
     <string name="error_unable_to_load_license">Nemožno nahrať licenciu</string>
     <string name="action_open_website">Otvoriť webstránku</string>
     <string name="tab_about">O</string>
@@ -237,4 +234,38 @@ otvorenie okna na popredí</string>
     <string name="history_empty">História je prázdna.</string>
     <string name="history_cleared">História bola vyčistená</string>
 
+<string name="settings_category_player_title">Prehrávač</string>
+    <string name="settings_category_player_behavior_title">Správanie</string>
+    <string name="settings_category_history_title">História</string>
+    <string name="playlist">Zoznam</string>
+    <string name="undo">Vrátiť</string>
+
+    <string name="search_no_results">Žiadne výsledky</string>
+    <string name="empty_subscription_feed_subtitle">Ticho ako v hrobe</string>
+
+    <string name="no_subscribers">Žiadni účastníci</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s odberateľ</item>
+	<item quantity="few">%s odberatelia</item>
+	<item quantity="many">%s odberateľov</item>
+	<item quantity="other"></item>
+</plurals>
+
+    <string name="no_views">Žiadne zobrazenia</string>
+    <plurals name="views">
+	<item quantity="one">%s zobrazenie</item>
+	<item quantity="few">%s zobrazenia</item>
+	<item quantity="many">%s zobrazení</item>
+	<item quantity="other"></item>
+</plurals>
+
+    <string name="no_videos">Žiadne videá</string>
+    <plurals name="videos">
+	<item quantity="one">%s video</item>
+	<item quantity="few">%s videá</item>
+	<item quantity="many">%s videí</item>
+	<item quantity="other"></item>
+</plurals>
+
+    <string name="item_deleted">Položka bola odstránená</string>
 </resources>

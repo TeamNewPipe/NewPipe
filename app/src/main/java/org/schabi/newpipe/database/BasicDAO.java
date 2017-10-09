@@ -27,7 +27,7 @@ public interface BasicDAO<Entity> {
     long upsert(final Entity entity);
 
     /* Searches */
-    Flowable<List<Entity>> findAll();
+    Flowable<List<Entity>> getAll();
 
     Flowable<List<Entity>> listByService(int serviceId);
 

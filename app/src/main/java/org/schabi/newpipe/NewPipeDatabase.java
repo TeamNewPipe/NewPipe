@@ -8,27 +8,24 @@ import org.schabi.newpipe.database.AppDatabase;
 
 import static org.schabi.newpipe.database.AppDatabase.DATABASE_NAME;
 
-public class NewPipeDatabase {
+public final class NewPipeDatabase {
 
-    private static AppDatabase sInstance;
+    private static AppDatabase databaseInstance;
 
-    // For Singleton instantiation
-    private static final Object LOCK = new Object();
+    private NewPipeDatabase() {
+        //no instance
+    }
+
+    public static void init(Context context) {
+        databaseInstance = Room.databaseBuilder(context.getApplicationContext(),
+                AppDatabase.class, DATABASE_NAME
+        ).build();
+    }
 
     @NonNull
-    public synchronized static AppDatabase getInstance(Context context) {
-        if (sInstance == null) {
-            synchronized (LOCK) {
-                if (sInstance == null) {
+    public static AppDatabase getInstance() {
+        if (databaseInstance == null) throw new RuntimeException("Database not initialized");
 
-                    sInstance = Room.databaseBuilder(
-                            context.getApplicationContext(),
-                            AppDatabase.class,
-                            DATABASE_NAME
-                    ).build();
-                }
-            }
-        }
-        return sInstance;
+        return databaseInstance;
     }
 }

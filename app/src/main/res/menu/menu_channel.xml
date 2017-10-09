@@ -1,19 +1,25 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="org.schabi.newpipe.fragments.channel.ChannelFragment">
+    tools:context=".fragments.list.impl.ChannelFragment">
 
-    <item android:id="@+id/menu_item_openInBrowser"
-        app:showAsAction="never"
-        android:title="@string/open_in_browser" />
+    <item
+        android:id="@+id/menu_item_openInBrowser"
+        android:title="@string/open_in_browser"
+        app:showAsAction="never"/>
 
-    <item android:id="@+id/menu_item_rss"
-        app:showAsAction="ifRoom"
+    <item
+        android:id="@+id/menu_item_rss"
+        android:icon="?attr/rss"
         android:title="@string/rss_button_title"
-        android:icon="?attr/rss"/>
-
-    <item android:id="@+id/menu_item_share"
-        android:title="@string/share"
+        android:visible="false"
         app:showAsAction="ifRoom"
-        android:icon="?attr/share"/>
+        tools:visible="true"/>
+
+    <item
+        android:id="@+id/menu_item_share"
+        android:icon="?attr/share"
+        android:title="@string/share"
+        app:showAsAction="ifRoom"/>
 </menu>

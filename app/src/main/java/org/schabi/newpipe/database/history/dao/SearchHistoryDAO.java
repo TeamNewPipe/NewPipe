@@ -29,7 +29,7 @@ public interface SearchHistoryDAO extends HistoryDAO<SearchHistoryEntry> {
 
     @Query("SELECT * FROM " + TABLE_NAME + ORDER_BY_CREATION_DATE)
     @Override
-    Flowable<List<SearchHistoryEntry>> findAll();
+    Flowable<List<SearchHistoryEntry>> getAll();
 
     @Query("SELECT * FROM " + TABLE_NAME + " WHERE " + SERVICE_ID + " = :serviceId" + ORDER_BY_CREATION_DATE)
     @Override

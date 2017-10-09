@@ -17,7 +17,7 @@ import static org.schabi.newpipe.database.subscription.SubscriptionEntity.SUBSCR
 public interface SubscriptionDAO extends BasicDAO<SubscriptionEntity> {
     @Override
     @Query("SELECT * FROM " + SUBSCRIPTION_TABLE)
-    Flowable<List<SubscriptionEntity>> findAll();
+    Flowable<List<SubscriptionEntity>> getAll();
 
     @Override
     @Query("DELETE FROM " + SUBSCRIPTION_TABLE)
@@ -30,5 +30,5 @@ public interface SubscriptionDAO extends BasicDAO<SubscriptionEntity> {
     @Query("SELECT * FROM " + SUBSCRIPTION_TABLE + " WHERE " +
             SUBSCRIPTION_URL + " LIKE :url AND " +
             SUBSCRIPTION_SERVICE_ID + " = :serviceId")
-    Flowable<List<SubscriptionEntity>> findAll(int serviceId, String url);
+    Flowable<List<SubscriptionEntity>> getSubscription(int serviceId, String url);
 }

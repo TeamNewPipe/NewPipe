@@ -133,10 +133,7 @@
     <string name="yes">Sim</string>
     <string name="later">Depois</string>
 
-    <string name="videos">vídeos</string>
-    <string name="subscriber">subscritor</string>
-    <string name="subscribe">Subscrever</string>
-    <string name="views">visualizações</string>
+
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>
@@ -153,10 +150,10 @@ o modo “popup“</string>
     <string name="popup_playing_toast">Reproduzir em modo de popup</string>
     <string name="use_old_player_title">Usar reprodutor antigo</string>
     <string name="use_old_player_summary">Versão antiga no reprodutor Mediaframework.</string>
-    <string name="preferred_video_format_title">Formato de vídeo preferido</string>
+    <string name="default_video_format_title">Formato de vídeo preferido</string>
     <string name="disabled">Desativado</string>
 
-    <string name="subscriber_plural">subscritores</string>
+
     <string name="default_popup_resolution_title">Resolução padrão do popup</string>
     <string name="show_higher_resolutions_title">Mostrar resoluções mais altas</string>
     <string name="show_higher_resolutions_summary">Apenas alguns dispositivos possuem suporte a vídeos 2K/4K</string>
@@ -169,7 +166,7 @@ o modo “popup“</string>
     <string name="clear">Limpar</string>
     <string name="controls_background_title">Em segundo plano</string>
     <string name="use_external_video_player_summary">Algumas resoluções NÃO terão áudio quando esta opção estiver ativada</string>
-    <string name="popup_remember_size_pos_summary">Lembrar ultimo tamanho e posição do popup</string>
+    <string name="popup_remember_size_pos_summary">Lembrar último tamanho e posição do popup</string>
 
     <string name="popup_resizing_indicator_title">Redimensionar</string>
 <string name="player_gesture_controls_title">Controlos de gesto do reprodutor</string>

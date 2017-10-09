@@ -1,19 +1,16 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="org.schabi.newpipe.history.HistoryFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/history_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_search_history" />
+        tools:listitem="@layout/item_search_history"/>
 
     <TextView
         android:id="@+id/history_empty"
@@ -23,11 +20,11 @@
         android:text="@string/history_empty"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:visibility="gone"
-        tools:visibility="visible" />
+        tools:visibility="visible"/>
 
     <include
         android:id="@+id/history_disabled_view"
         layout="@layout/history_disabled_view"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
 </FrameLayout>

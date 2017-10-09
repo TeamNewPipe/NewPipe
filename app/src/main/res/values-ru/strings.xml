@@ -79,7 +79,7 @@
     <string name="general_error">Ошибка</string>
     <string name="your_comment">Ваш комментарий (на английском):</string>
     <string name="err_dir_create">Невозможно создать папку для загрузки \'%1$s\'</string>
-    <string name="autoplay_by_calling_app_title">Автоматически воспроизводить при открытии из другого приложения</string>
+    <string name="autoplay_by_calling_app_title">Воспроизводить автоматически</string>
     <string name="autoplay_by_calling_app_summary">Автоматически воспроизводить видео при вызове NewPipe из другого приложения</string>
     <string name="content">Контент</string>
     <string name="video_is_age_restricted">Видео с возрастными ограничениями. Разрешить подобный контент можно в настройках.</string>
@@ -126,7 +126,7 @@
     <string name="controls_popup_title">В окне</string>
 
     <string name="show_higher_resolutions_summary">Только некоторые устройства могут воспроизводить видео в 2K/4K</string>
-    <string name="preferred_video_format_title">Формат видео по умолчанию</string>
+    <string name="default_video_format_title">Предпочитаемый формат видео</string>
     <string name="black_theme_title">Чёрная</string>
     <string name="popup_remember_size_pos_title">Запоминать размер и положение всплывающего окна</string>
     <string name="player_gesture_controls_summary">Использовать жесты для изменения яркости и громкости</string>
@@ -140,13 +140,10 @@
     <string name="player_gesture_controls_title">Жесты</string>
     <string name="all">Всё</string>
     <string name="filter">Фильтр</string>
-    <string name="videos">видео</string>
-    <string name="subscriber">подписчик</string>
-    <string name="subscriber_plural">подписчиков</string>
-    <string name="views">просмотров</string>
+
+
     <string name="add">Новая миссия</string>
     <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:\\nГлобальный диапазон IP:</string>
-    <string name="subscribe">Подписаться</string>
     <string name="msg_popup_permission">Это разрешение нужно,
 \nчтобы показывать всплывающее окно</string>
 
@@ -226,4 +223,37 @@
     <string name="history_empty">История пуста</string>
     <string name="history_cleared">История очищена</string>
 
-</resources>
+<string name="settings_category_player_title">Плеер</string>
+    <string name="settings_category_player_behavior_title">Поведение</string>
+    <string name="settings_category_history_title">История</string>
+    <string name="playlist">Плейлист</string>
+    <string name="undo">Отменить</string>
+
+    <string name="search_no_results">Нет результатов</string>
+    <string name="empty_subscription_feed_subtitle">Тут только сверчки</string>
+
+    <string name="no_subscribers">Нет подписчиков</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s подписчик</item>
+	<item quantity="few">%s подписчика</item>
+	<item quantity="many">%s подписчиков</item>
+	<item quantity="other"></item>
+</plurals>
+
+    <string name="no_views">Нет просмотров</string>
+    <plurals name="views">
+	<item quantity="one">%s просмотр</item>
+	<item quantity="few">%s просмотра</item>
+	<item quantity="many">%s просмотров</item>
+	<item quantity="other"></item>
+</plurals>
+
+    <string name="no_videos">Нет видео</string>
+    <plurals name="videos">
+	<item quantity="one">%s видео</item>
+	<item quantity="few">%s видео</item>
+	<item quantity="many">%s видео</item>
+	<item quantity="other"></item>
+</plurals>
+
+    </resources>

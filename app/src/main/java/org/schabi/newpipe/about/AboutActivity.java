@@ -36,7 +36,6 @@ public class AboutActivity extends AppCompatActivity {
             new SoftwareComponent("Rhino", "2015", "Mozilla", "https://www.mozilla.org/rhino/", StandardLicenses.MPL2),
             new SoftwareComponent("ACRA", "2013", "Kevin Gaudin", "http://www.acra.ch", StandardLicenses.APACHE2),
             new SoftwareComponent("Universal Image Loader", "2011 - 2015", "Sergey Tarasevich", "https://github.com/nostra13/Android-Universal-Image-Loader", StandardLicenses.APACHE2),
-            new SoftwareComponent("Netcipher", "2015", "The Guardian Project", "https://guardianproject.info/code/netcipher/", StandardLicenses.APACHE2),
             new SoftwareComponent("CircleImageView", "2014 - 2017", "Henning Dodenhof", "https://github.com/hdodenhof/CircleImageView", StandardLicenses.APACHE2),
             new SoftwareComponent("ParalaxScrollView", "2014", "Nir Hartmann", "https://github.com/nirhart/ParallaxScroll", StandardLicenses.MIT),
             new SoftwareComponent("NoNonsense-FilePicker", "2016", "Jonas Kalderstam", "https://github.com/spacecowboy/NoNonsense-FilePicker", StandardLicenses.MPL2),
@@ -68,7 +67,7 @@ public class AboutActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_about);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
@@ -76,10 +75,10 @@ public class AboutActivity extends AppCompatActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
     }
 
@@ -130,7 +129,7 @@ public class AboutActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_about, container, false);
-            TextView version = (TextView) rootView.findViewById(R.id.app_version);
+            TextView version = rootView.findViewById(R.id.app_version);
             version.setText(BuildConfig.VERSION_NAME);
 
             View githubLink = rootView.findViewById(R.id.github_link);

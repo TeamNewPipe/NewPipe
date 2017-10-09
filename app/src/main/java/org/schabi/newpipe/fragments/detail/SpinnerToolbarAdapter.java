@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.stream_info.VideoStream;
+import org.schabi.newpipe.extractor.stream.VideoStream;
 
 import java.util.List;
 
@@ -57,8 +57,8 @@ public class SpinnerToolbarAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.resolutions_spinner_item, parent, false);
         }
 
-        ImageView woSoundIcon = (ImageView) convertView.findViewById(R.id.wo_sound_icon);
-        TextView text = (TextView) convertView.findViewById(android.R.id.text1);
+        ImageView woSoundIcon = convertView.findViewById(R.id.wo_sound_icon);
+        TextView text = convertView.findViewById(android.R.id.text1);
         VideoStream item = (VideoStream) getItem(position);
         text.setText(MediaFormat.getNameById(item.format) + " " + item.resolution);
 

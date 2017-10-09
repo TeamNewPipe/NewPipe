@@ -67,7 +67,7 @@
     <string name="default_popup_resolution_title">懸浮視窗預設解析度</string>
     <string name="show_higher_resolutions_title">顯示更高的解析度</string>
     <string name="show_higher_resolutions_summary">僅部分裝置支援播放 2K/4K 解析度的影片</string>
-    <string name="preferred_video_format_title">預設影片格式</string>
+    <string name="default_video_format_title">預設影片格式</string>
     <string name="black_theme_title">黑色系</string>
     <string name="popup_remember_size_pos_title">記住懸浮視窗的大小與位置</string>
     <string name="popup_remember_size_pos_summary">記住上一次的懸浮視窗大小與位置</string>
@@ -127,11 +127,8 @@
     <string name="storage_permission_denied">無法存取儲存空間</string>
     <string name="use_old_player_title">使用舊的播放器</string>
     <string name="use_old_player_summary">舊型內建媒體播放器。</string>
-    <string name="videos">影片</string>
-    <string name="subscriber">訂閱者</string>
-    <string name="subscriber_plural">訂閱者</string>
-    <string name="subscribe">訂閱</string>
-    <string name="views">觀看次數</string>
+
+
     <string name="short_thousand">千</string>
     <string name="short_million">百萬</string>
     <string name="short_billion">十億</string>

@@ -2,22 +2,18 @@ package org.schabi.newpipe.history;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.jakewharton.rxbinding2.view.RxView;
 
@@ -25,11 +21,8 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.ThemeHelper;
 
-import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -72,30 +65,17 @@ public class HistoryActivity extends AppCompatActivity {
 
         final FloatingActionButton fab = findViewById(R.id.fab);
         RxView.clicks(fab)
-                .observeOn(Schedulers.io())
-                .flatMap(new Function<Object, Observable<HistoryFragment>>() {
-                    @Override
-                    public Observable<HistoryFragment> apply(Object o) {
-                        int currentItem = mViewPager.getCurrentItem();
-                        HistoryFragment fragment = (HistoryFragment) mSectionsPagerAdapter.getFragment(currentItem);
-                        if(fragment == null) {
-                            Log.w(TAG, "Couldn't find current fragment");
-                            return Observable.empty();
-                        } else {
-                            fragment.onClearHistory();
-                            return Observable.just(fragment);
-                        }
-                    }
-                })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<HistoryFragment>() {
+                .subscribe(new Consumer<Object>() {
                     @Override
-                    public void accept(HistoryFragment historyFragment) {
-                        View view = historyFragment.getView();
-                        if(view != null) {
-                            Snackbar.make(view, R.string.history_cleared, Snackbar.LENGTH_LONG).show();
+                    public void accept(Object o) {
+                        int currentItem = mViewPager.getCurrentItem();
+                        HistoryFragment fragment = (HistoryFragment) mSectionsPagerAdapter.instantiateItem(mViewPager, currentItem);
+                        if(fragment != null) {
+                            fragment.onHistoryCleared();
+                        } else {
+                            Log.w(TAG, "Couldn't find current fragment");
                         }
-                        historyFragment.onHistoryCleared();
                     }
                 });
     }
@@ -125,14 +105,11 @@ public class HistoryActivity extends AppCompatActivity {
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-        private SparseArray<Fragment> fragments = new SparseArray<>();
+    public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
-
 
         @Override
         public Fragment getItem(int position) {
@@ -147,19 +124,7 @@ public class HistoryActivity extends AppCompatActivity {
                 default:
                     throw new IllegalArgumentException("position: " + position);
             }
-            fragments.put(position, fragment);
             return fragment;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            super.destroyItem(container, position, object);
-            fragments.remove(position);
-        }
-
-        @Nullable
-        public Fragment getFragment(int position) {
-            return fragments.get(position);
         }
 
         @Override
