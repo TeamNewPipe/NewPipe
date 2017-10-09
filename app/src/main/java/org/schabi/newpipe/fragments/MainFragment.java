@@ -185,13 +185,17 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
     private Fragment getMainPageFramgent() {
         try {
-            final String set_main_page = PreferenceManager.getDefaultSharedPreferences(getActivity())
-                    .getString(getString(R.string.main_page_content_key),
+            SharedPreferences preferences =
+                    PreferenceManager.getDefaultSharedPreferences(getActivity());
+            final String set_main_page = preferences.getString(getString(R.string.main_page_content_key),
                             getString(R.string.main_page_selectd_kiosk_id));
             if(set_main_page.equals(getString(R.string.blank_page_key))) {
                 return new BlankFragment();
             } else if(set_main_page.equals(getString(R.string.kiosk_page_key))) {
-                KioskFragment fragment = KioskFragment.getInstance(currentServiceId);
+                int serviceId = preferences.getInt(getString(R.string.main_page_selected_service), 0);
+                String kioskId = preferences.getString(getString(R.string.main_page_selectd_kiosk_id), "Trending");
+                KioskFragment fragment = KioskFragment.getInstance(serviceId, kioskId
+                );
                 fragment.useAsFrontPage(true);
                 return fragment;
             } else if(set_main_page.equals(getString(R.string.feed_page_key))) {
@@ -199,8 +203,6 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 fragment.useAsFrontPage(true);
                 return fragment;
             } else if(set_main_page.equals(getString(R.string.channel_page_key))) {
-                SharedPreferences preferences =
-                        PreferenceManager.getDefaultSharedPreferences(getActivity());
                 int serviceId = preferences.getInt(getString(R.string.main_page_selected_service), 0);
                 String url = preferences.getString(getString(R.string.main_page_selected_channel_url),
                         "https://www.youtube.com/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ");

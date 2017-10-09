@@ -117,25 +117,31 @@ public class SelectKioskFragment extends DialogFragment {
             int serviceId;
             String kioskId;
             String kioskName;
-        };
+        }
 
         private List<Entry> kioskList = new Vector<>();
 
         public SelectKioskAdapter()
                 throws Exception {
+
             for(StreamingService service : NewPipe.getServices()) {
                 for(String kioskId : service.getKioskList().getAvailableKisoks()) {
+                    String name = service.getServiceInfo().name;
+                    name += "/";
+                    name += KioskTranslator.getTranslatedKioskName(kioskId, getContext());
                     kioskList.add(new Entry(
                             ServiceIconMapper.getIconResource(service.getServiceId()),
                             service.getServiceId(),
                             kioskId,
-                            KioskTranslator.getTranslatedKioskName(kioskId, getContext())));
+                            name));
                 }
             }
         }
 
         public int getItemCount() {
-            return kioskList.size();
+            //todo: uncommend this line on multyservice support
+            //return kioskList.size();
+            return 1;
         }
 
         public SelectKioskItemHolder onCreateViewHolder(ViewGroup parent, int type) {
