@@ -97,7 +97,7 @@
 
     <string name="start">Başlat</string>
     <string name="pause">Duraklat</string>
-    <string name="view">Görünüm</string>
+    <string name="view">Oynat</string>
     <string name="delete">Sil</string>
     <string name="checksum">Sağlama</string>
 
@@ -255,4 +255,5 @@
     <string name="history_empty">Geçmiş boş</string>
     <string name="history_cleared">Geçmiş temizlendi</string>
     <string name="item_deleted">Öge silindi</string>
+<string name="delete_item_search_history">Bu içeriği arama geçmişinden silmek istiyor musunuz?</string>
 </resources>

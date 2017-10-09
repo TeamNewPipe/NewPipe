@@ -119,7 +119,7 @@
 
     <string name="start">Starten</string>
     <string name="pause">Pause</string>
-    <string name="view">Ansehen</string>
+    <string name="view">Abspielen</string>
     <string name="add">Neue Mission</string>
     <string name="finish">OK</string>
     <string name="msg_server_unsupported">Server nicht unterstützt</string>
@@ -254,4 +254,9 @@
     <string name="charset_most_special_characters">Die meisten Sonderzeichen</string>
 
     <string name="item_deleted">Element gelöscht</string>
+<string name="resume_on_audio_focus_gain_title">Fortsetzen bei erneutem Fokussieren</string>
+    <string name="settings_category_player_title">Player</string>
+    <string name="empty_subscription_feed_subtitle">Nichts hier außer Grillen</string>
+
+    <string name="delete_item_search_history">Möchten Sie dieses Element aus dem Suchverlauf löschen?</string>
 </resources>

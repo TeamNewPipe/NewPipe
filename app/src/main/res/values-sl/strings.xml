@@ -102,7 +102,7 @@
     <string name="main_bg_subtitle">Začnite z iskanjem</string>
     <string name="start">Začni</string>
     <string name="pause">Premor</string>
-    <string name="view">Poglej</string>
+    <string name="view">Predvajaj</string>
     <string name="delete">Izbriši</string>
     <string name="checksum">Nadzorna vsota</string>
 
@@ -272,4 +272,5 @@ odpiranje v pojavnem načinu</string>
 </plurals>
 
     <string name="item_deleted">Predmet je izbrisan</string>
+<string name="delete_item_search_history">Ali želite izbrisati predmet iz zgodovine iskanja?</string>
 </resources>

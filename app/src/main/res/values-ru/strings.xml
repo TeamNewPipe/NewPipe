@@ -79,7 +79,7 @@
     <string name="general_error">Ошибка</string>
     <string name="your_comment">Ваш комментарий (на английском):</string>
     <string name="err_dir_create">Невозможно создать папку для загрузки \'%1$s\'</string>
-    <string name="autoplay_by_calling_app_title">Автоматически воспроизводить при открытии из другого приложения</string>
+    <string name="autoplay_by_calling_app_title">Воспроизводить автоматически</string>
     <string name="autoplay_by_calling_app_summary">Автоматически воспроизводить видео при вызове NewPipe из другого приложения</string>
     <string name="content">Контент</string>
     <string name="video_is_age_restricted">Видео с возрастными ограничениями. Разрешить подобный контент можно в настройках.</string>
@@ -96,10 +96,10 @@
     <string name="live_streams_not_supported">Это прямая трансляция, они пока не поддерживаются.</string>
     <string name="could_not_load_image">Не удалось загрузить изображение</string>
     <string name="app_ui_crash">"Падение приложения/пользовательского интерфейса "</string>
-    <string name="sorry_string">Простите, такое не должно было произойти.</string>
+    <string name="sorry_string">Простите, это не должно было произойти.</string>
     <string name="error_report_button_text">Отправить отчёт об ошибке по электронной почте</string>
     <string name="error_snackbar_message">Простите, произошли ошибки.</string>
-    <string name="error_snackbar_action">ОТЧЕТ</string>
+    <string name="error_snackbar_action">ОТЧЁТ</string>
     <string name="what_device_headline">Информация:</string>
     <string name="what_happened_headline">Что произошло:</string>
     <string name="error_details_headline">Детали:</string>
@@ -223,4 +223,38 @@
     <string name="history_empty">История пуста</string>
     <string name="history_cleared">История очищена</string>
 
+<string name="settings_category_player_title">Плеер</string>
+    <string name="settings_category_player_behavior_title">Поведение</string>
+    <string name="settings_category_history_title">История</string>
+    <string name="playlist">Плейлист</string>
+    <string name="undo">Отменить</string>
+
+    <string name="search_no_results">Нет результатов</string>
+    <string name="empty_subscription_feed_subtitle">Тут только сверчки</string>
+
+    <string name="no_subscribers">Нет подписчиков</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s подписчик</item>
+	<item quantity="few">%s подписчика</item>
+	<item quantity="many">%s подписчиков</item>
+	<item quantity="other"/>
+</plurals>
+
+    <string name="no_views">Нет просмотров</string>
+    <plurals name="views">
+	<item quantity="one">%s просмотр</item>
+	<item quantity="few">%s просмотра</item>
+	<item quantity="many">%s просмотров</item>
+	<item quantity="other"/>
+</plurals>
+
+    <string name="no_videos">Нет видео</string>
+    <plurals name="videos">
+	<item quantity="one">%s видео</item>
+	<item quantity="few">%s видео</item>
+	<item quantity="many">%s видео</item>
+	<item quantity="other"/>
+</plurals>
+
+    <string name="item_deleted">Элемент удалён</string>
 </resources>

@@ -18,7 +18,7 @@
     <string name="settings">Paramètres</string>
     <string name="share">Partager</string>
     <string name="share_dialog_title">Partager avec</string>
-    <string name="show_play_with_kodi_summary">Afficher une option pour lire la vidéo via la médiathèque Kodi</string>
+    <string name="show_play_with_kodi_summary">Afficher une option pour lire la vidéo via Kodi</string>
     <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
     <string name="upload_date_text">Ajoutée le %1$s</string>
     <string name="view_count_text">%1$s vues</string>
@@ -188,7 +188,7 @@
     <string name="action_about">À propos</string>
     <string name="title_licenses">Licences tierces</string>
     <string name="error_unable_to_load_license">Impossible de charger la licence</string>
-    <string name="action_open_website">Ouvrir le site web</string>
+    <string name="action_open_website">Ouvrir le site</string>
     <string name="tab_about">À propos</string>
     <string name="tab_contributors">Contributeurs</string>
     <string name="tab_licenses">Licences</string>
@@ -256,4 +256,5 @@
     <string name="charset_most_special_characters">Caractères spéciaux</string>
 
     <string name="item_deleted">Objet effacé</string>
+<string name="delete_item_search_history">Voulez-vous supprimer cet élément de l\'historique de recherche ?</string>
 </resources>

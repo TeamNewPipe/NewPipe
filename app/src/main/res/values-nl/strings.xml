@@ -104,7 +104,7 @@
     <string name="storage_permission_denied">Toegang tot opslag geweigerd</string>
     <string name="start">Begin</string>
     <string name="pause">Pauzeren</string>
-    <string name="view">Bekijken</string>
+    <string name="view">Afspelen</string>
     <string name="delete">Verwijderen</string>
     <string name="checksum">Controlesom</string>
 
@@ -260,4 +260,5 @@ te openen in pop-upmodus</string>
 </plurals>
 
     <string name="item_deleted">Item verwijderd</string>
+<string name="delete_item_search_history">Wil je dit item uit je geschiedenis verwijderen?</string>
 </resources>
