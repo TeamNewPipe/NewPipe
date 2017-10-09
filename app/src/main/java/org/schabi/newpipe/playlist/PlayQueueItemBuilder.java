@@ -1,9 +1,8 @@
 package org.schabi.newpipe.playlist;
 
 import android.text.TextUtils;
-import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -17,7 +16,9 @@ public class PlayQueueItemBuilder {
     private static final String TAG = PlayQueueItemBuilder.class.toString();
 
     public interface OnSelectedListener {
-        void selected(PlayQueueItem item);
+        void selected(PlayQueueItem item, View view);
+        void held(PlayQueueItem item, View view);
+        void onStartDrag(PlayQueueItemHolder viewHolder);
     }
 
     private OnSelectedListener onItemClickListener;
@@ -28,7 +29,7 @@ public class PlayQueueItemBuilder {
         this.onItemClickListener = listener;
     }
 
-    public void buildStreamInfoItem(PlayQueueItemHolder holder, final PlayQueueItem item) {
+    public void buildStreamInfoItem(final PlayQueueItemHolder holder, final PlayQueueItem item) {
         if (!TextUtils.isEmpty(item.getTitle())) holder.itemVideoTitleView.setText(item.getTitle());
         if (!TextUtils.isEmpty(item.getUploader())) holder.itemAdditionalDetailsView.setText(item.getUploader());
 
@@ -44,10 +45,37 @@ public class PlayQueueItemBuilder {
             @Override
             public void onClick(View view) {
                 if (onItemClickListener != null) {
-                    onItemClickListener.selected(item);
+                    onItemClickListener.selected(item, view);
                 }
             }
         });
+
+        holder.itemRoot.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.held(item, view);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        holder.itemThumbnailView.setOnTouchListener(getOnTouchListener(holder));
+        holder.itemHandle.setOnTouchListener(getOnTouchListener(holder));
+    }
+
+    private View.OnTouchListener getOnTouchListener(final PlayQueueItemHolder holder) {
+        return new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                view.performClick();
+                if (motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN) {
+                    onItemClickListener.onStartDrag(holder);
+                }
+                return false;
+            }
+        };
     }
 
     private static final DisplayImageOptions IMAGE_OPTIONS =

@@ -23,6 +23,16 @@
         android:src="@drawable/dummy_thumbnail"
         tools:ignore="RtlHardcoded"/>
 
+    <ImageView
+        android:id="@+id/itemHandle"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_alignParentRight="true"
+        android:scaleType="center"
+        android:src="?attr/filter"
+        tools:ignore="ContentDescription,RtlHardcoded"/>
+
     <TextView
         android:id="@+id/itemDurationView"
         android:layout_width="wrap_content"
@@ -50,13 +60,15 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/itemThumbnailView"
         android:layout_toEndOf="@id/itemThumbnailView"
+        android:layout_toLeftOf="@id/itemHandle"
+        android:layout_toStartOf="@id/itemHandle"
         android:ellipsize="end"
         android:lines="1"
         android:maxLines="1"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/video_item_search_title_text_size"
         android:textColor="?attr/selector_color"
-        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum"/>
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. "/>
 
     <TextView
         android:id="@+id/itemAdditionalDetails"
@@ -65,9 +77,12 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@id/itemThumbnailView"
         android:layout_toEndOf="@id/itemThumbnailView"
+        android:layout_toLeftOf="@id/itemHandle"
+        android:layout_toStartOf="@id/itemHandle"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_upload_date_text_size"
         android:textColor="?attr/selector_color"
         tools:text="Uploader"/>
+
 </RelativeLayout>

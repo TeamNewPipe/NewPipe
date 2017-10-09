@@ -12,6 +12,8 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.mediasource.DeferredMediaSource;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
+import org.schabi.newpipe.playlist.events.ErrorEvent;
+import org.schabi.newpipe.playlist.events.MoveEvent;
 import org.schabi.newpipe.playlist.events.PlayQueueMessage;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
 
@@ -29,16 +31,12 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     // One-side rolling window size for default loading
     // Effectively loads WINDOW_SIZE * 2 + 1 streams, should be at least 1 to ensure gapless playback
     // todo: inject this parameter, allow user settings perhaps
-    private static final int WINDOW_SIZE = 2;
+    private static final int WINDOW_SIZE = 1;
 
     private PlaybackListener playbackListener;
     private PlayQueue playQueue;
 
     private DynamicConcatenatingMediaSource sources;
-    // sourceToQueueIndex maps media source index to play queue index
-    // Invariant 1: this list is sorted in ascending order
-    // Invariant 2: this list contains no duplicates
-    private List<Integer> sourceToQueueIndex;
 
     private Subscription playQueueReactor;
     private SerialDisposable syncReactor;
@@ -53,7 +51,6 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         this.syncReactor = new SerialDisposable();
 
         this.sources = new DynamicConcatenatingMediaSource();
-        this.sourceToQueueIndex = Collections.synchronizedList(new ArrayList<Integer>());
 
         playQueue.getBroadcastReceiver()
                 .observeOn(AndroidSchedulers.mainThread())
@@ -72,22 +69,6 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     /*//////////////////////////////////////////////////////////////////////////
     // Exposed Methods
     //////////////////////////////////////////////////////////////////////////*/
-
-    /**
-     * Returns the media source index of the currently playing stream.
-     * */
-    public int getCurrentSourceIndex() {
-        return sourceToQueueIndex.indexOf(playQueue.getIndex());
-    }
-
-    /**
-     * Returns the play queue index of a given media source playlist index.
-     * */
-    public int getQueueIndexOf(final int sourceIndex) {
-        if (sourceIndex < 0 || sourceIndex >= sourceToQueueIndex.size()) return -1;
-        return sourceToQueueIndex.get(sourceIndex);
-    }
-
     /**
      * Dispose the manager and releases all message buses and loaders.
      * */
@@ -95,12 +76,10 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         if (playQueueReactor != null) playQueueReactor.cancel();
         if (syncReactor != null) syncReactor.dispose();
         if (sources != null) sources.releaseSource();
-        if (sourceToQueueIndex != null) sourceToQueueIndex.clear();
 
         playQueueReactor = null;
         syncReactor = null;
         sources = null;
-        sourceToQueueIndex = null;
         playbackListener = null;
         playQueue = null;
     }
@@ -174,11 +153,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
                 populateSources();
                 break;
             case SELECT:
-                if (isCurrentIndexLoaded()) {
-                    sync();
-                } else {
-                    reset();
-                }
+                sync();
                 break;
             case REMOVE:
                 final RemoveEvent removeEvent = (RemoveEvent) event;
@@ -188,8 +163,11 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
             case REORDER:
                 reset();
                 break;
-            case ERROR:
             case MOVE:
+                final MoveEvent moveEvent = (MoveEvent) event;
+                move(moveEvent.getFromIndex(), moveEvent.getToIndex());
+                break;
+            case ERROR:
             default:
                 break;
         }
@@ -214,10 +192,6 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         return playQueue.isComplete() || playQueue.size() - playQueue.getIndex() > WINDOW_SIZE;
     }
 
-    private boolean isCurrentIndexLoaded() {
-        return getCurrentSourceIndex() != -1;
-    }
-
     private boolean tryBlock() {
         if (!isBlocked) {
             playbackListener.block();
@@ -228,7 +202,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     }
 
     private boolean tryUnblock() {
-        if (isPlayQueueReady() && isCurrentIndexLoaded() && isBlocked) {
+        if (isPlayQueueReady() && isBlocked) {
             isBlocked = false;
             playbackListener.unblock(sources);
             return true;
@@ -270,7 +244,6 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
 
     private void resetSources() {
         if (this.sources != null) this.sources.releaseSource();
-        if (this.sourceToQueueIndex != null) this.sourceToQueueIndex.clear();
 
         this.sources = new DynamicConcatenatingMediaSource();
     }
@@ -294,12 +267,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     private void insert(final int queueIndex, final DeferredMediaSource source) {
         if (queueIndex < 0) return;
 
-        int pos = Collections.binarySearch(sourceToQueueIndex, queueIndex);
-        if (pos < 0) {
-            final int sourceIndex = -pos-1;
-            sourceToQueueIndex.add(sourceIndex, queueIndex);
-            sources.addMediaSource(sourceIndex, source);
-        }
+        sources.addMediaSource(queueIndex, source);
     }
 
     /**
@@ -310,15 +278,13 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     private void remove(final int queueIndex) {
         if (queueIndex < 0) return;
 
-        final int sourceIndex = sourceToQueueIndex.indexOf(queueIndex);
-        if (sourceIndex == -1) return;
+        sources.removeMediaSource(queueIndex);
+    }
 
-        sourceToQueueIndex.remove(sourceIndex);
-        sources.removeMediaSource(sourceIndex);
+    private void move(final int source, final int target) {
+        if (source < 0 || target < 0) return;
+        if (source >= sources.getSize() || target >= sources.getSize()) return;
 
-        // Will be slow on really large arrays, fast enough for typical use case
-        for (int i = sourceIndex; i < sourceToQueueIndex.size(); i++) {
-            sourceToQueueIndex.set(i, sourceToQueueIndex.get(i) - 1);
-        }
+        sources.moveMediaSource(source, target);
     }
 }

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.playlist.events.AppendEvent;
 import org.schabi.newpipe.playlist.events.ErrorEvent;
+import org.schabi.newpipe.playlist.events.MoveEvent;
 import org.schabi.newpipe.playlist.events.PlayQueueMessage;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
 import org.schabi.newpipe.playlist.events.SelectEvent;
@@ -131,6 +132,12 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 notifyItemRangeRemoved(removeEvent.index(), 1);
                 notifyItemChanged(removeEvent.index());
                 break;
+            case MOVE:
+                final MoveEvent moveEvent = (MoveEvent) message;
+                notifyItemMoved(moveEvent.getFromIndex(), moveEvent.getToIndex());
+                break;
+            case INIT:
+            case REORDER:
             default:
                 notifyDataSetChanged();
                 break;

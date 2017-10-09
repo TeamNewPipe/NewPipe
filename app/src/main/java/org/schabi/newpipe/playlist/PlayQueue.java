@@ -8,6 +8,7 @@ import org.reactivestreams.Subscription;
 import org.schabi.newpipe.playlist.events.AppendEvent;
 import org.schabi.newpipe.playlist.events.ErrorEvent;
 import org.schabi.newpipe.playlist.events.InitEvent;
+import org.schabi.newpipe.playlist.events.MoveEvent;
 import org.schabi.newpipe.playlist.events.PlayQueueMessage;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
 import org.schabi.newpipe.playlist.events.ReorderEvent;
@@ -270,6 +271,23 @@ public abstract class PlayQueue implements Serializable {
         }
 
         streams.remove(index);
+    }
+
+    public synchronized void move(final int source, final int target) {
+        if (source < 0 || target < 0) return;
+        if (source >= streams.size() || target >= streams.size()) return;
+
+        final int current = getIndex();
+        if (source == current) {
+            queueIndex.set(target);
+        } else if (source < current && target >= current) {
+            queueIndex.decrementAndGet();
+        } else if (source > current && target <= current) {
+            queueIndex.incrementAndGet();
+        }
+
+        streams.add(target, streams.remove(source));
+        broadcast(new MoveEvent(source, target));
     }
 
     /**

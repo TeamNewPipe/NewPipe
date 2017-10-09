@@ -1,6 +1,7 @@
 package org.schabi.newpipe.player;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Build;
@@ -10,21 +11,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
+import org.schabi.newpipe.playlist.PlayQueueItemHolder;
 import org.schabi.newpipe.settings.SettingsActivity;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -44,9 +52,14 @@ public class BackgroundPlayerActivity extends AppCompatActivity
     // Views
     ////////////////////////////////////////////////////////////////////////////
 
+    private static final int RECYCLER_ITEM_POPUP_MENU_GROUP_ID = 47;
+    private static final int PLAYBACK_SPEED_POPUP_MENU_GROUP_ID  = 61;
+    private static final int PLAYBACK_PITCH_POPUP_MENU_GROUP_ID = 97;
+
     private View rootView;
 
     private RecyclerView itemsList;
+    private ItemTouchHelper itemTouchHelper;
 
     private TextView metadataTitle;
     private TextView metadataArtist;
@@ -157,14 +170,12 @@ public class BackgroundPlayerActivity extends AppCompatActivity
         itemsList.setLayoutManager(new LinearLayoutManager(this));
         itemsList.setAdapter(player.playQueueAdapter);
         itemsList.setClickable(true);
+        itemsList.setLongClickable(true);
 
-        player.playQueueAdapter.setSelectedListener(new PlayQueueItemBuilder.OnSelectedListener() {
-            @Override
-            public void selected(PlayQueueItem item) {
-                final int index = player.playQueue.indexOf(item);
-                if (index != -1) player.playQueue.setIndex(index);
-            }
-        });
+        itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
+        itemTouchHelper.attachToRecyclerView(itemsList);
+
+        player.playQueueAdapter.setSelectedListener(getOnSelectedListener());
     }
 
     private void buildMetadata() {
@@ -190,6 +201,101 @@ public class BackgroundPlayerActivity extends AppCompatActivity
         backwardButton.setOnClickListener(this);
         playPauseButton.setOnClickListener(this);
         forwardButton.setOnClickListener(this);
+    }
+
+    private void buildItemPopupMenu(final PlayQueueItem item, final View view) {
+        final PopupMenu menu = new PopupMenu(this, view);
+        final MenuItem remove = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 0, Menu.NONE, "Remove");
+        remove.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                final int index = player.playQueue.indexOf(item);
+                if (index != -1) player.playQueue.remove(index);
+                return true;
+            }
+        });
+
+        final MenuItem detail = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 1, Menu.NONE, "Detail");
+        detail.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                onOpenDetail(BackgroundPlayerActivity.this, item.getUrl(), item.getTitle());
+                return true;
+            }
+        });
+
+        menu.show();
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Component Helpers
+    ////////////////////////////////////////////////////////////////////////////
+
+    private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
+        return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source, RecyclerView.ViewHolder target) {
+                if (source.getItemViewType() != target.getItemViewType()) {
+                    return false;
+                }
+
+                final int sourceIndex = source.getLayoutPosition();
+                final int targetIndex = target.getLayoutPosition();
+                player.playQueue.move(sourceIndex, targetIndex);
+                return true;
+            }
+
+            @Override
+            public boolean isLongPressDragEnabled() {
+                return false;
+            }
+
+            @Override
+            public boolean isItemViewSwipeEnabled() {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {}
+        };
+    }
+
+    private PlayQueueItemBuilder.OnSelectedListener getOnSelectedListener() {
+        return new PlayQueueItemBuilder.OnSelectedListener() {
+            @Override
+            public void selected(PlayQueueItem item, View view) {
+                final int index = player.playQueue.indexOf(item);
+                if (index == -1) return;
+
+                if (player.playQueue.getIndex() == index) {
+                    player.onRestart();
+                } else {
+                    player.playQueue.setIndex(index);
+                }
+            }
+
+            @Override
+            public void held(PlayQueueItem item, View view) {
+                final int index = player.playQueue.indexOf(item);
+                if (index != -1) buildItemPopupMenu(item, view);
+            }
+
+            @Override
+            public void onStartDrag(PlayQueueItemHolder viewHolder) {
+                if (itemTouchHelper != null) itemTouchHelper.startDrag(viewHolder);
+            }
+        };
+    }
+
+    private void onOpenDetail(Context context, String videoUrl, String videoTitle) {
+        Intent i = new Intent(context, MainActivity.class);
+        i.putExtra(Constants.KEY_SERVICE_ID, 0);
+        i.putExtra(Constants.KEY_URL, videoUrl);
+        i.putExtra(Constants.KEY_TITLE, videoTitle);
+        i.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(i);
+        context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
     }
 
     ////////////////////////////////////////////////////////////////////////////

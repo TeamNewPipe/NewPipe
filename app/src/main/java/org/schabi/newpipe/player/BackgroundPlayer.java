@@ -155,18 +155,6 @@ public final class BackgroundPlayer extends Service {
         context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
     }
 
-    public void onOpenDetail(Context context, String videoUrl, String videoTitle) {
-        if (DEBUG) Log.d(TAG, "onOpenDetail() called with: context = [" + context + "], videoUrl = [" + videoUrl + "]");
-        Intent i = new Intent(context, MainActivity.class);
-        i.putExtra(Constants.KEY_SERVICE_ID, 0);
-        i.putExtra(Constants.KEY_URL, videoUrl);
-        i.putExtra(Constants.KEY_TITLE, videoTitle);
-        i.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(i);
-        context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
-    }
-
     private void onClose() {
         if (basePlayerImpl != null) {
             basePlayerImpl.stopActivityBinding();

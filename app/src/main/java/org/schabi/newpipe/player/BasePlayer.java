@@ -559,26 +559,17 @@ public abstract class BasePlayer implements Player.EventListener,
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Timeline
+    // ExoPlayer Listener
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void refreshTimeline() {
-        playbackManager.load();
+    @Override
+    public void onTimelineChanged(Timeline timeline, Object manifest) {
+        if (DEBUG) Log.d(TAG, "onTimelineChanged(), timeline size = " + timeline.getWindowCount());
 
-        final int currentSourceIndex = playbackManager.getCurrentSourceIndex();
-
-        // Sanity checks
-        if (currentSourceIndex < 0) return;
+        final int currentSourceIndex = playQueue.getIndex();
 
         // Check if already playing correct window
         final boolean isCurrentWindowCorrect = simpleExoPlayer.getCurrentWindowIndex() == currentSourceIndex;
-
-        // Check if on wrong window
-        if (!isCurrentWindowCorrect) {
-            final long startPos = currentInfo != null ? currentInfo.start_position : 0;
-            if (DEBUG) Log.d(TAG, "Rewinding to correct window: " + currentSourceIndex + " at: " + getTimeString((int)startPos));
-            simpleExoPlayer.seekTo(currentSourceIndex, startPos);
-        }
 
         // Check if recovering
         if (isCurrentWindowCorrect && isRecovery && queuePos == playQueue.getIndex()) {
@@ -591,17 +582,10 @@ public abstract class BasePlayer implements Player.EventListener,
             simpleExoPlayer.seekTo(roundedPos);
             isRecovery = false;
         }
-    }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // ExoPlayer Listener
-    //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void onTimelineChanged(Timeline timeline, Object manifest) {
-        if (DEBUG) Log.d(TAG, "onTimelineChanged(), timeline size = " + timeline.getWindowCount());
-
-        refreshTimeline();
+        if (playbackManager != null) {
+            playbackManager.load();
+        }
     }
 
     @Override
@@ -709,14 +693,12 @@ public abstract class BasePlayer implements Player.EventListener,
     public void onPositionDiscontinuity() {
         // Refresh the playback if there is a transition to the next video
         final int newWindowIndex = simpleExoPlayer.getCurrentWindowIndex();
-        final int newQueueIndex = playbackManager.getQueueIndexOf(newWindowIndex);
-        if (DEBUG) Log.d(TAG, "onPositionDiscontinuity() called with: " +
-                "window index = [" + newWindowIndex + "], queue index = [" + newQueueIndex + "]");
+        if (DEBUG) Log.d(TAG, "onPositionDiscontinuity() called with window index = [" + newWindowIndex + "]");
 
         // If the user selects a new track, then the discontinuity occurs after the index is changed.
         // Therefore, the only source that causes a discrepancy would be autoplay,
         // which can only offset the current track by +1.
-        if (newQueueIndex != playQueue.getIndex()) playQueue.offsetIndex(+1);
+        if (newWindowIndex != playQueue.getIndex()) playQueue.offsetIndex(+1);
     }
 
     @Override
@@ -751,12 +733,16 @@ public abstract class BasePlayer implements Player.EventListener,
 
     @Override
     public void sync(@Nullable final StreamInfo info) {
-        if (simpleExoPlayer == null) return;
+        if (info == null || simpleExoPlayer == null) return;
         if (DEBUG) Log.d(TAG, "Syncing...");
 
-        refreshTimeline();
-
-        if (info == null) return;
+        // Check if on wrong window
+        final int currentSourceIndex = playQueue.getIndex();
+        if (!(simpleExoPlayer.getCurrentWindowIndex() == currentSourceIndex)) {
+            final long startPos = currentInfo != null ? currentInfo.start_position : 0;
+            if (DEBUG) Log.d(TAG, "Rewinding to correct window: " + currentSourceIndex + " at: " + getTimeString((int)startPos));
+            simpleExoPlayer.seekTo(currentSourceIndex, startPos);
+        }
 
         currentInfo = info;
         initThumbnail(info.thumbnail_url);
@@ -828,6 +814,13 @@ public abstract class BasePlayer implements Player.EventListener,
         if (DEBUG) Log.d(TAG, "onPlayNext() called");
 
         playQueue.offsetIndex(+1);
+    }
+
+    public void onRestart() {
+        if (playQueue == null) return;
+        if (DEBUG) Log.d(TAG, "onRestart() called");
+
+        simpleExoPlayer.seekToDefaultPosition();
     }
 
     public void seekBy(int milliSeconds) {
