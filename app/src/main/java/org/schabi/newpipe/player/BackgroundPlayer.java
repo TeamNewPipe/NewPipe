@@ -32,6 +32,7 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.support.annotation.IntRange;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -49,6 +50,7 @@ import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -346,7 +348,7 @@ public final class BackgroundPlayer extends Service {
         public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
             resetNotification();
             if (bigNotRemoteView != null) {
-                if (currentInfo != null) {
+                if (currentItem != null) {
                     bigNotRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());
                     bigNotRemoteView.setTextViewText(R.id.notificationArtist, getUploaderName());
                 }
@@ -354,7 +356,7 @@ public final class BackgroundPlayer extends Service {
                 bigNotRemoteView.setTextViewText(R.id.notificationTime, getTimeString(currentProgress) + " / " + getTimeString(duration));
             }
             if (notRemoteView != null) {
-                if (currentInfo != null) {
+                if (currentItem != null) {
                     notRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());
                     notRemoteView.setTextViewText(R.id.notificationArtist, getUploaderName());
                 }
@@ -442,8 +444,8 @@ public final class BackgroundPlayer extends Service {
         //////////////////////////////////////////////////////////////////////////*/
 
         @Override
-        public void sync(@Nullable final StreamInfo info) {
-            super.sync(info);
+        public void sync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info) {
+            super.sync(item, info);
 
             resetNotification();
             notRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());

@@ -31,6 +31,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -64,6 +65,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
 
@@ -304,8 +306,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void sync(@Nullable final StreamInfo info) {
-        super.sync(info);
+    public void sync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info) {
+        super.sync(item, info);
 
         if (info != null) {
             final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);

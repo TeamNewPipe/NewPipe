@@ -79,6 +79,7 @@ import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueAdapter;
+import org.schabi.newpipe.playlist.PlayQueueItem;
 
 import java.io.File;
 import java.io.Serializable;
@@ -149,6 +150,7 @@ public abstract class BasePlayer implements Player.EventListener,
     private long videoPos = -1;
 
     protected StreamInfo currentInfo;
+    protected PlayQueueItem currentItem;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Player
@@ -729,23 +731,27 @@ public abstract class BasePlayer implements Player.EventListener,
         if (getCurrentState() == STATE_BLOCKED) changeState(STATE_BUFFERING);
 
         simpleExoPlayer.prepare(mediaSource);
+        simpleExoPlayer.seekToDefaultPosition();
     }
 
     @Override
-    public void sync(@Nullable final StreamInfo info) {
-        if (info == null || simpleExoPlayer == null) return;
+    public void sync(@android.support.annotation.NonNull final PlayQueueItem item,
+                     @Nullable final StreamInfo info) {
+        if (simpleExoPlayer == null) return;
         if (DEBUG) Log.d(TAG, "Syncing...");
+
+        currentItem = item;
+        currentInfo = info;
 
         // Check if on wrong window
         final int currentSourceIndex = playQueue.getIndex();
-        if (!(simpleExoPlayer.getCurrentWindowIndex() == currentSourceIndex)) {
-            final long startPos = currentInfo != null ? currentInfo.start_position : 0;
+        if (simpleExoPlayer.getCurrentWindowIndex() != currentSourceIndex) {
+            final long startPos = info != null ? info.start_position : 0;
             if (DEBUG) Log.d(TAG, "Rewinding to correct window: " + currentSourceIndex + " at: " + getTimeString((int)startPos));
             simpleExoPlayer.seekTo(currentSourceIndex, startPos);
         }
 
-        currentInfo = info;
-        initThumbnail(info.thumbnail_url);
+        initThumbnail(info == null ? item.getThumbnailUrl() : info.thumbnail_url);
     }
 
     @Override
@@ -797,13 +803,14 @@ public abstract class BasePlayer implements Player.EventListener,
     }
 
     public void onPlayPrevious() {
-        if (simpleExoPlayer == null || playQueue == null || currentInfo == null) return;
+        if (simpleExoPlayer == null || playQueue == null) return;
         if (DEBUG) Log.d(TAG, "onPlayPrevious() called");
 
         /* If current playback has run for PLAY_PREV_ACTIVATION_LIMIT milliseconds, restart current track.
         * Also restart the track if the current track is the first in a queue.*/
         if (simpleExoPlayer.getCurrentPosition() > PLAY_PREV_ACTIVATION_LIMIT || playQueue.getIndex() == 0) {
-            simpleExoPlayer.seekTo(currentInfo.start_position);
+            final long startPos = currentInfo == null ? 0 : currentInfo.start_position;
+            simpleExoPlayer.seekTo(startPos);
         } else {
             playQueue.offsetIndex(-1);
         }
@@ -947,15 +954,15 @@ public abstract class BasePlayer implements Player.EventListener,
     }
 
     public String getVideoUrl() {
-        return currentInfo == null ? null : currentInfo.url;
+        return currentItem == null ? null : currentItem.getUrl();
     }
 
     public String getVideoTitle() {
-        return currentInfo == null ? null : currentInfo.name;
+        return currentItem == null ? null : currentItem.getTitle();
     }
 
     public String getUploaderName() {
-        return currentInfo == null ? null : currentInfo.uploader_name;
+        return currentItem == null ? null : currentItem.getUploader();
     }
 
     public boolean isCompleted() {

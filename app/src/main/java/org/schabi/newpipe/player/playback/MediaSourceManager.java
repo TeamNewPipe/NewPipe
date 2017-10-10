@@ -29,7 +29,7 @@ import io.reactivex.functions.Consumer;
 public class MediaSourceManager implements DeferredMediaSource.Callback {
     private final String TAG = "MediaSourceManager@" + Integer.toHexString(hashCode());
     // One-side rolling window size for default loading
-    // Effectively loads WINDOW_SIZE * 2 + 1 streams, should be at least 1 to ensure gapless playback
+    // Effectively loads WINDOW_SIZE * 2 + 1 streams, must be greater than 0
     // todo: inject this parameter, allow user settings perhaps
     private static final int WINDOW_SIZE = 1;
 
@@ -116,7 +116,6 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
      * */
     public void reset() {
         tryBlock();
-        resetSources();
         populateSources();
     }
 
@@ -149,6 +148,10 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     private void onPlayQueueChanged(final PlayQueueMessage event) {
         // why no pattern matching in Java =(
         switch (event.type()) {
+            case INIT:
+            case REORDER:
+                reset();
+                break;
             case APPEND:
                 populateSources();
                 break;
@@ -158,10 +161,6 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
             case REMOVE:
                 final RemoveEvent removeEvent = (RemoveEvent) event;
                 remove(removeEvent.index());
-                break;
-            case INIT:
-            case REORDER:
-                reset();
                 break;
             case MOVE:
                 final MoveEvent moveEvent = (MoveEvent) event;
@@ -195,6 +194,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     private boolean tryBlock() {
         if (!isBlocked) {
             playbackListener.block();
+            resetSources();
             isBlocked = true;
             return true;
         }
@@ -202,7 +202,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     }
 
     private boolean tryUnblock() {
-        if (isPlayQueueReady() && isBlocked) {
+        if (isPlayQueueReady() && isBlocked && sources != null) {
             isBlocked = false;
             playbackListener.unblock(sources);
             return true;
@@ -216,7 +216,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         final Consumer<StreamInfo> syncPlayback = new Consumer<StreamInfo>() {
             @Override
             public void accept(StreamInfo streamInfo) throws Exception {
-                playbackListener.sync(streamInfo);
+                playbackListener.sync(currentItem, streamInfo);
             }
         };
 
@@ -224,7 +224,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
             @Override
             public void accept(Throwable throwable) throws Exception {
                 Log.e(TAG, "Sync error:", throwable);
-                playbackListener.sync(null);
+                playbackListener.sync(currentItem,null);
             }
         };
 
@@ -244,11 +244,12 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
 
     private void resetSources() {
         if (this.sources != null) this.sources.releaseSource();
-
         this.sources = new DynamicConcatenatingMediaSource();
     }
 
     private void populateSources() {
+        if (sources == null) return;
+
         for (final PlayQueueItem item : playQueue.getStreams()) {
             insert(playQueue.indexOf(item), new DeferredMediaSource(item, this));
         }

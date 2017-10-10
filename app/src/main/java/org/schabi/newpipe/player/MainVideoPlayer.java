@@ -26,6 +26,7 @@ import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -43,6 +44,7 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -250,8 +252,8 @@ public final class MainVideoPlayer extends Activity {
         }
 
         @Override
-        public void sync(@Nullable final StreamInfo info) {
-            super.sync(info);
+        public void sync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info) {
+            super.sync(item, info);
             titleTextView.setText(getVideoTitle());
             channelTextView.setText(getUploaderName());
 
