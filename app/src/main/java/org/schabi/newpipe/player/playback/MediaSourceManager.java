@@ -12,13 +12,11 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.mediasource.DeferredMediaSource;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
-import org.schabi.newpipe.playlist.events.ErrorEvent;
 import org.schabi.newpipe.playlist.events.MoveEvent;
 import org.schabi.newpipe.playlist.events.PlayQueueMessage;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -29,10 +27,8 @@ import io.reactivex.functions.Consumer;
 public class MediaSourceManager implements DeferredMediaSource.Callback {
     private final String TAG = "MediaSourceManager@" + Integer.toHexString(hashCode());
     // One-side rolling window size for default loading
-    // Effectively loads WINDOW_SIZE * 2 + 1 streams, must be greater than 0
-    // todo: inject this parameter, allow user settings perhaps
-    private static final int WINDOW_SIZE = 1;
-
+    // Effectively loads windowSize * 2 + 1 streams, must be greater than 0
+    private final int windowSize;
     private PlaybackListener playbackListener;
     private PlayQueue playQueue;
 
@@ -45,8 +41,15 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
 
     public MediaSourceManager(@NonNull final PlaybackListener listener,
                               @NonNull final PlayQueue playQueue) {
+        this(listener, playQueue, 1);
+    }
+
+    public MediaSourceManager(@NonNull final PlaybackListener listener,
+                              @NonNull final PlayQueue playQueue,
+                              final int windowSize) {
         this.playbackListener = listener;
         this.playQueue = playQueue;
+        this.windowSize = windowSize;
 
         this.syncReactor = new SerialDisposable();
 
@@ -85,7 +88,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     }
 
     /**
-     * Loads the current playing stream and the streams within its WINDOW_SIZE bound.
+     * Loads the current playing stream and the streams within its windowSize bound.
      *
      * Unblocks the player once the item at the current index is loaded.
      * */
@@ -97,8 +100,8 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         load(currentItem);
 
         // The rest are just for seamless playback
-        final int leftBound = Math.max(0, currentIndex - WINDOW_SIZE);
-        final int rightLimit = currentIndex + WINDOW_SIZE + 1;
+        final int leftBound = Math.max(0, currentIndex - windowSize);
+        final int rightLimit = currentIndex + windowSize + 1;
         final int rightBound = Math.min(playQueue.size(), rightLimit);
         final List<PlayQueueItem> items = new ArrayList<>(playQueue.getStreams().subList(leftBound, rightBound));
 
@@ -117,6 +120,10 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     public void reset() {
         tryBlock();
         populateSources();
+    }
+
+    public int getWindowSize() {
+        return windowSize;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -188,7 +195,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     //////////////////////////////////////////////////////////////////////////*/
 
     private boolean isPlayQueueReady() {
-        return playQueue.isComplete() || playQueue.size() - playQueue.getIndex() > WINDOW_SIZE;
+        return playQueue.isComplete() || playQueue.size() - playQueue.getIndex() > windowSize;
     }
 
     private boolean tryBlock() {

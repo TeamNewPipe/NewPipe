@@ -72,18 +72,6 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         playQueueItemBuilder.setOnSelectedListener(listener);
     }
 
-    public void add(final List<PlayQueueItem> data) {
-        playQueue.append(data);
-    }
-
-    public void add(final PlayQueueItem... data) {
-        playQueue.append(data);
-    }
-
-    public void remove(final int index) {
-        playQueue.remove(index);
-    }
-
     private void startReactor() {
         final Observer<PlayQueueMessage> observer = new Observer<PlayQueueMessage>() {
             @Override

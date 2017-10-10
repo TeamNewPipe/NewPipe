@@ -84,7 +84,7 @@ public final class BackgroundPlayer extends Service {
     //////////////////////////////////////////////////////////////////////////*/
 
     public interface PlayerEventListener {
-        void onPlaybackUpdate(int state, int repeatMode, PlaybackParameters parameters);
+        void onPlaybackUpdate(int state, int repeatMode, boolean shuffled, PlaybackParameters parameters);
         void onProgressUpdate(int currentProgress, int duration, int bufferPercent);
         void onMetadataUpdate(StreamInfo info);
         void onServiceStopped();
@@ -340,8 +340,9 @@ public final class BackgroundPlayer extends Service {
         }
 
         @Override
-        public void onRepeatClicked() {
-            super.onRepeatClicked();
+        public void onShuffleClicked() {
+            super.onShuffleClicked();
+            updatePlayback();
         }
 
         @Override
@@ -491,7 +492,7 @@ public final class BackgroundPlayer extends Service {
 
         private void updatePlayback() {
             if (activityListener != null) {
-                activityListener.onPlaybackUpdate(currentState, simpleExoPlayer.getRepeatMode(), simpleExoPlayer.getPlaybackParameters());
+                activityListener.onPlaybackUpdate(currentState, simpleExoPlayer.getRepeatMode(), playQueue.isShuffled(), simpleExoPlayer.getPlaybackParameters());
             }
         }
 

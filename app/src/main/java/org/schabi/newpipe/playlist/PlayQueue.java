@@ -222,6 +222,8 @@ public abstract class PlayQueue implements Serializable {
      * */
     public synchronized void append(final PlayQueueItem... items) {
         streams.addAll(Arrays.asList(items));
+        if (backup != null) backup.addAll(Arrays.asList(items));
+
         broadcast(new AppendEvent(items.length));
     }
 
@@ -232,6 +234,8 @@ public abstract class PlayQueue implements Serializable {
      * */
     public synchronized void append(final Collection<PlayQueueItem> items) {
         streams.addAll(items);
+        if (backup != null) backup.addAll(items);
+
         broadcast(new AppendEvent(items.size()));
     }
 
@@ -271,6 +275,10 @@ public abstract class PlayQueue implements Serializable {
         }
 
         streams.remove(index);
+        if (backup != null) {
+            final int backupIndex = backup.indexOf(getItem(index));
+            backup.remove(backupIndex);
+        }
     }
 
     public synchronized void move(final int source, final int target) {
@@ -300,7 +308,9 @@ public abstract class PlayQueue implements Serializable {
      * Will emit a {@link ReorderEvent} in any context.
      * */
     public synchronized void shuffle() {
-        backup = new ArrayList<>(streams);
+        if (backup == null) {
+            backup = new ArrayList<>(streams);
+        }
         final PlayQueueItem current = getItem();
         Collections.shuffle(streams);
         queueIndex.set(streams.indexOf(current));

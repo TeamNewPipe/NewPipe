@@ -72,6 +72,7 @@ public class BackgroundPlayerActivity extends AppCompatActivity
     private ImageButton backwardButton;
     private ImageButton playPauseButton;
     private ImageButton forwardButton;
+    private ImageButton shuffleButton;
 
     ////////////////////////////////////////////////////////////////////////////
     // Activity Lifecycle
@@ -196,11 +197,13 @@ public class BackgroundPlayerActivity extends AppCompatActivity
         backwardButton = rootView.findViewById(R.id.control_backward);
         playPauseButton = rootView.findViewById(R.id.control_play_pause);
         forwardButton = rootView.findViewById(R.id.control_forward);
+        shuffleButton = rootView.findViewById(R.id.control_shuffle);
 
         repeatButton.setOnClickListener(this);
         backwardButton.setOnClickListener(this);
         playPauseButton.setOnClickListener(this);
         forwardButton.setOnClickListener(this);
+        shuffleButton.setOnClickListener(this);
     }
 
     private void buildItemPopupMenu(final PlayQueueItem item, final View view) {
@@ -298,6 +301,10 @@ public class BackgroundPlayerActivity extends AppCompatActivity
         context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
     }
 
+    private void scrollToSelected() {
+        itemsList.smoothScrollToPosition(player.playQueue.getIndex());
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Component On-Click Listener
     ////////////////////////////////////////////////////////////////////////////
@@ -308,10 +315,14 @@ public class BackgroundPlayerActivity extends AppCompatActivity
             player.onRepeatClicked();
         } else if (view.getId() == backwardButton.getId()) {
             player.onPlayPrevious();
+            scrollToSelected();
         } else if (view.getId() == playPauseButton.getId()) {
             player.onVideoPlayPause();
+            scrollToSelected();
         } else if (view.getId() == forwardButton.getId()) {
             player.onPlayNext();
+        } else if (view.getId() == shuffleButton.getId()) {
+            player.onShuffleClicked();
         }
     }
 
@@ -340,7 +351,7 @@ public class BackgroundPlayerActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void onPlaybackUpdate(int state, int repeatMode, PlaybackParameters parameters) {
+    public void onPlaybackUpdate(int state, int repeatMode, boolean shuffled, PlaybackParameters parameters) {
         switch (state) {
             case BasePlayer.STATE_PAUSED:
                 playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
@@ -355,29 +366,41 @@ public class BackgroundPlayerActivity extends AppCompatActivity
                 break;
         }
 
-        int alpha = 255;
+        int repeatAlpha = 255;
         switch (repeatMode) {
             case Player.REPEAT_MODE_OFF:
-                alpha = 77;
+                repeatAlpha = 77;
                 break;
             case Player.REPEAT_MODE_ONE:
                 // todo change image
-                alpha = 168;
+                repeatAlpha = 168;
                 break;
             case Player.REPEAT_MODE_ALL:
-                alpha = 255;
+                repeatAlpha = 255;
                 break;
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            repeatButton.setImageAlpha(alpha);
+            repeatButton.setImageAlpha(repeatAlpha);
         } else {
-            repeatButton.setAlpha(alpha);
+            repeatButton.setAlpha(repeatAlpha);
+        }
+
+        int shuffleAlpha = 255;
+        if (!shuffled) {
+            shuffleAlpha = 77;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            shuffleButton.setImageAlpha(shuffleAlpha);
+        } else {
+            shuffleButton.setAlpha(shuffleAlpha);
         }
 
         if (parameters != null) {
             final float speed = parameters.speed;
             final float pitch = parameters.pitch;
         }
+
+        scrollToSelected();
     }
 
     @Override
@@ -401,6 +424,7 @@ public class BackgroundPlayerActivity extends AppCompatActivity
         if (info != null) {
             metadataTitle.setText(info.name);
             metadataArtist.setText(info.uploader_name);
+            scrollToSelected();
         }
     }
 

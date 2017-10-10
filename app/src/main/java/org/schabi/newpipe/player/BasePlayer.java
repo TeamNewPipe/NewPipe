@@ -535,7 +535,7 @@ public abstract class BasePlayer implements Player.EventListener,
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Repeat
+    // Repeat and shuffle
     //////////////////////////////////////////////////////////////////////////*/
 
     public void onRepeatClicked() {
@@ -558,6 +558,18 @@ public abstract class BasePlayer implements Player.EventListener,
 
         simpleExoPlayer.setRepeatMode(mode);
         if (DEBUG) Log.d(TAG, "onRepeatClicked() currentRepeatMode = " + simpleExoPlayer.getRepeatMode());
+    }
+
+    public void onShuffleClicked() {
+        if (DEBUG) Log.d(TAG, "onShuffleClicked() called");
+
+        if (playQueue == null) return;
+
+        if (playQueue.isShuffled()) {
+            playQueue.unshuffle();
+        } else {
+            playQueue.shuffle();
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
