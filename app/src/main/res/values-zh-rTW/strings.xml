@@ -27,7 +27,7 @@
     <string name="show_play_with_kodi_title">顯示「用 Kodi 播放」的選項</string>
     <string name="default_audio_format_title">預設音訊格式</string>
     <string name="webm_description">WebM — 開放格式</string>
-    <string name="m4a_description">m4a — 更佳畫質</string>
+    <string name="m4a_description">M4A — 更佳畫質</string>
     <string name="theme_title">主題</string>
     <string name="dark_theme_title">暗色系</string>
     <string name="light_theme_title">明亮色系</string>
@@ -36,7 +36,7 @@
     <string name="next_video_title">下一部影片</string>
     <string name="show_next_and_similar_title">顯示下一部和相關的影片</string>
     <string name="url_not_supported_toast">不支援此網址</string>
-    <string name="search_language_title">內容語言</string>
+    <string name="search_language_title">預設內容語言</string>
     <string name="settings_category_video_audio_title">影片和音訊</string>
     <string name="settings_category_appearance_title">外觀</string>
     <string name="settings_category_other_title">其他</string>
@@ -62,7 +62,7 @@
     <string name="use_external_video_player_summary">勾選後，部分解析度可能不會有音訊</string>
     <string name="popup_mode_share_menu_title">NewPipe 懸浮視窗模式</string>
     <string name="controls_background_title">背景</string>
-    <string name="autoplay_by_calling_app_title">從其他應用程式開啟時自動播放</string>
+    <string name="autoplay_by_calling_app_title">自動播放</string>
     <string name="autoplay_by_calling_app_summary">當 NewPipe 被其他應用程式呼叫時自動播放影片</string>
     <string name="default_popup_resolution_title">懸浮視窗預設解析度</string>
     <string name="show_higher_resolutions_title">顯示更高的解析度</string>
@@ -97,14 +97,14 @@
     <string name="popup_resizing_indicator_title">重新設定大小</string>
     <string name="general_error">錯誤</string>
     <string name="could_not_load_thumbnails">無法載入所有縮圖</string>
-    <string name="youtube_signature_decryption_error">無法解析影片 URL 簽名。</string>
-    <string name="parsing_error">無法解析網站。</string>
-    <string name="light_parsing_error">無法完全解析網站。</string>
-    <string name="content_not_available">內容無法使用。</string>
-    <string name="blocked_by_gema">已被 GEMA 阻擋。</string>
-    <string name="could_not_setup_download_menu">無法設定下載選單。</string>
+    <string name="youtube_signature_decryption_error">無法解析影片 URL 簽章</string>
+    <string name="parsing_error">無法解析網站</string>
+    <string name="light_parsing_error">無法完全解析網站</string>
+    <string name="content_not_available">內容無法使用</string>
+    <string name="blocked_by_gema">已被 GEMA 阻擋</string>
+    <string name="could_not_setup_download_menu">無法設定下載選單</string>
     <string name="live_streams_not_supported">尚未支援現場直播。</string>
-    <string name="could_not_get_stream">無法取得串流。</string>
+    <string name="could_not_get_stream">無法取得串流</string>
     <string name="could_not_load_image">無法載入圖片</string>
     <string name="app_ui_crash">應用程式或 UI 已停止運作</string>
     <string name="sorry_string">抱歉，這不應該發生的。</string>
@@ -126,7 +126,7 @@
     <string name="retry">重試</string>
     <string name="storage_permission_denied">無法存取儲存空間</string>
     <string name="use_old_player_title">使用舊的播放器</string>
-    <string name="use_old_player_summary">舊型內建媒體播放器。</string>
+    <string name="use_old_player_summary">舊型內建媒體播放器</string>
 
 
     <string name="short_thousand">千</string>
@@ -135,7 +135,7 @@
 
     <string name="start">開始</string>
     <string name="pause">暫停</string>
-    <string name="view">檢視</string>
+    <string name="view">播放</string>
     <string name="delete">刪除</string>
     <string name="checksum">檢查碼</string>
 
@@ -151,8 +151,8 @@
     <string name="msg_running">NewPipe 下載中</string>
     <string name="msg_running_detail">輕觸顯示詳細資訊</string>
     <string name="msg_wait">請稍候…</string>
-    <string name="msg_copied">已複製至剪貼簿。</string>
-    <string name="no_available_dir">請選擇下載資料夾。</string>
+    <string name="msg_copied">已複製至剪貼簿</string>
+    <string name="no_available_dir">請選擇下載資料夾</string>
     <string name="msg_popup_permission">使用懸浮視窗模式需要此權限</string>
 
     <string name="reCaptchaActivity">reCAPTCHA 驗證</string>
@@ -162,4 +162,82 @@
     <string name="controls_popup_title">懸浮視窗</string>
 
     <string name="duration_live">現場直播</string>
-    </resources>
+    <string name="subscribe_button_title">訂閱</string>
+    <string name="subscribed_button_title">已訂閱</string>
+    <string name="channel_unsubscribed">已取消訂閱頻道</string>
+    <string name="subscription_change_failed">無法切換訂閱</string>
+    <string name="subscription_update_failed">無法更新訂閱</string>
+
+    <string name="tab_main">主選單</string>
+    <string name="tab_subscriptions">訂閱項目</string>
+
+    <string name="fragment_whats_new">有什麼新鮮事</string>
+
+    <string name="enable_search_history_title">搜尋紀錄</string>
+    <string name="enable_search_history_summary">在本機儲存搜尋紀錄</string>
+    <string name="enable_watch_history_title">歷史紀錄</string>
+    <string name="enable_watch_history_summary">記錄觀看過的影片</string>
+    <string name="resume_on_audio_focus_gain_title">在取得視窗焦點時繼續播放</string>
+    <string name="resume_on_audio_focus_gain_summary">在干擾結束後繼續播放（例如有來電）</string>
+    <string name="settings_category_player_title">播放器</string>
+    <string name="settings_category_player_behavior_title">行為</string>
+    <string name="settings_category_history_title">歷史紀錄</string>
+    <string name="playlist">播放清單</string>
+    <string name="undo">復原</string>
+
+    <string name="notification_channel_name">NewPipe 通知</string>
+    <string name="notification_channel_description">NewPipe 背景播放與懸浮模式播放器的通知</string>
+
+    <string name="search_no_results">沒有結果</string>
+    <string name="empty_subscription_feed_subtitle">空空如也</string>
+
+    <string name="no_subscribers">無訂閱者</string>
+    <plurals name="subscribers">
+	<item quantity="other">%s 位訂閱者</item>
+</plurals>
+
+    <string name="no_views">無觀看次數</string>
+    <plurals name="views">
+	<item quantity="other">%s 次觀看</item>
+</plurals>
+
+    <string name="no_videos">沒有影片</string>
+    <plurals name="videos">
+	<item quantity="other">%s 部影片</item>
+</plurals>
+
+    <string name="settings_category_downloads_title">下載</string>
+    <string name="settings_file_charset_title">檔案名稱中允許的字元</string>
+    <string name="settings_file_replacement_character_summary">不符合設定的字元將會被替換為此字串</string>
+    <string name="settings_file_replacement_character_title">替換為</string>
+
+    <string name="charset_letters_and_digits">字母與數字</string>
+    <string name="charset_most_special_characters">大部分的特殊字元</string>
+
+    <string name="title_activity_about">關於 NewPipe</string>
+    <string name="action_settings">設定</string>
+    <string name="action_about">關於</string>
+    <string name="title_licenses">第三方授權</string>
+    <string name="copyright" formatted="true">© %1$s 由 %2$s 使用 %3$s 授權條款發佈</string>
+    <string name="error_unable_to_load_license">無法載入授權條款</string>
+    <string name="action_open_website">開啟網站</string>
+    <string name="tab_about">關於</string>
+    <string name="tab_contributors">貢獻者</string>
+    <string name="tab_licenses">授權條款</string>
+    <string name="app_description">一款在 Android 上免費輕巧的 YouTube 前端。</string>
+    <string name="view_on_github">在 GitHub 上檢視</string>
+    <string name="app_license_title">NewPipe 使用的授權條款</string>
+    <string name="contribution_encouragement">不管你有什麼點子，翻譯、設計、程式碼整理，或者程式碼撰寫，我們永遠歡迎你來幫忙。完成的越多，NewPipe 也會更好！</string>
+    <string name="read_full_license">閱讀授權條款</string>
+    <string name="contribution_title">貢獻</string>
+
+    <string name="title_activity_history">歷史紀錄</string>
+    <string name="title_history_search">已搜尋</string>
+    <string name="title_history_view">已觀看</string>
+    <string name="history_disabled">歷史紀錄已被停用</string>
+    <string name="action_history">歷史紀錄</string>
+    <string name="history_empty">沒有歷史紀錄</string>
+    <string name="history_cleared">已清除歷史紀錄</string>
+    <string name="item_deleted">項目已刪除</string>
+    <string name="delete_item_search_history">確定要刪除此項搜尋紀錄嗎？</string>
+</resources>
