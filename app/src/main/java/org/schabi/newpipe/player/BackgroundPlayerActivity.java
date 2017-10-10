@@ -53,7 +53,7 @@ public class BackgroundPlayerActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     private static final int RECYCLER_ITEM_POPUP_MENU_GROUP_ID = 47;
-    private static final int PLAYBACK_SPEED_POPUP_MENU_GROUP_ID  = 61;
+    private static final int PLAYBACK_SPEED_POPUP_MENU_GROUP_ID = 61;
     private static final int PLAYBACK_PITCH_POPUP_MENU_GROUP_ID = 97;
 
     private View rootView;
@@ -92,8 +92,10 @@ public class BackgroundPlayerActivity extends AppCompatActivity
 
         final Toolbar toolbar = rootView.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.title_activity_background_player);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(R.string.title_activity_background_player);
+        }
 
         serviceConnection = backgroundPlayerConnection();
     }
@@ -101,9 +103,7 @@ public class BackgroundPlayerActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-        final Intent mIntent = new Intent(this, BackgroundPlayer.class);
-        final boolean success = bindService(mIntent, serviceConnection, BIND_AUTO_CREATE);
-        if (!success) unbindService(serviceConnection);
+        bind();
     }
 
     @Override
@@ -123,24 +123,36 @@ public class BackgroundPlayerActivity extends AppCompatActivity
     @Override
     protected void onStop() {
         super.onStop();
-        if(serviceBound) {
-            unbindService(serviceConnection);
-            serviceBound = false;
-        }
+        unbind();
     }
 
     ////////////////////////////////////////////////////////////////////////////
     // Service Connection
     ////////////////////////////////////////////////////////////////////////////
 
+    private void bind() {
+        final Intent mIntent = new Intent(this, BackgroundPlayer.class);
+        final boolean success = bindService(mIntent, serviceConnection, BIND_AUTO_CREATE);
+        if (!success) {
+            unbindService(serviceConnection);
+        }
+        serviceBound = success;
+    }
+
+    private void unbind() {
+        if(serviceBound) {
+            unbindService(serviceConnection);
+            serviceBound = false;
+            player = null;
+            finish();
+        }
+    }
+
     private ServiceConnection backgroundPlayerConnection() {
         return new ServiceConnection() {
             @Override
             public void onServiceDisconnected(ComponentName name) {
                 Log.d(TAG, "Background player service is disconnected");
-                serviceBound = false;
-                player = null;
-                finish();
             }
 
             @Override
@@ -149,12 +161,9 @@ public class BackgroundPlayerActivity extends AppCompatActivity
                 final BackgroundPlayer.LocalBinder mLocalBinder = (BackgroundPlayer.LocalBinder) service;
                 player = mLocalBinder.getBackgroundPlayerInstance();
                 if (player == null) {
-                    finish();
+                    unbind();
                 } else {
-                    serviceBound = true;
                     buildComponents();
-
-                    player.setActivityListener(BackgroundPlayerActivity.this);
                 }
             }
         };
@@ -169,6 +178,7 @@ public class BackgroundPlayerActivity extends AppCompatActivity
         buildMetadata();
         buildSeekBar();
         buildControls();
+        buildListeners();
     }
 
     private void buildQueue() {
@@ -220,6 +230,10 @@ public class BackgroundPlayerActivity extends AppCompatActivity
         buildPlaybackPitchMenu();
     }
 
+    private void buildListeners() {
+        player.setActivityListener(this);
+    }
+
     private void buildPlaybackSpeedMenu() {
         if (playbackSpeedPopupMenu == null) return;
 
@@ -241,11 +255,11 @@ public class BackgroundPlayerActivity extends AppCompatActivity
     private void buildPlaybackPitchMenu() {
         if (playbackPitchPopupMenu == null) return;
 
-        playbackPitchPopupMenu.getMenu().removeGroup(PLAYBACK_SPEED_POPUP_MENU_GROUP_ID);
+        playbackPitchPopupMenu.getMenu().removeGroup(PLAYBACK_PITCH_POPUP_MENU_GROUP_ID);
         for (int i = 0; i < BasePlayer.PLAYBACK_PITCHES.length; i++) {
             final float playbackPitch = BasePlayer.PLAYBACK_PITCHES[i];
             final String formattedPitch = player.formatPitch(playbackPitch);
-            final MenuItem item = playbackPitchPopupMenu.getMenu().add(PLAYBACK_SPEED_POPUP_MENU_GROUP_ID, i, Menu.NONE, formattedPitch);
+            final MenuItem item = playbackPitchPopupMenu.getMenu().add(PLAYBACK_PITCH_POPUP_MENU_GROUP_ID, i, Menu.NONE, formattedPitch);
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
@@ -488,6 +502,6 @@ public class BackgroundPlayerActivity extends AppCompatActivity
 
     @Override
     public void onServiceStopped() {
-        finish();
+        unbind();
     }
 }

@@ -469,8 +469,8 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void shutdown() {
             super.shutdown();
-            stopSelf();
             stopActivityBinding();
+            stopSelf();
         }
 
         /*//////////////////////////////////////////////////////////////////////////

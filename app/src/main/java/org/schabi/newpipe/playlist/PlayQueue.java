@@ -274,11 +274,11 @@ public abstract class PlayQueue implements Serializable {
             queueIndex.set(0);
         }
 
-        streams.remove(index);
         if (backup != null) {
             final int backupIndex = backup.indexOf(getItem(index));
             backup.remove(backupIndex);
         }
+        streams.remove(index);
     }
 
     public synchronized void move(final int source, final int target) {
@@ -303,7 +303,8 @@ public abstract class PlayQueue implements Serializable {
      *
      * This method first backs up the existing play queue and item being played.
      * Then a newly shuffled play queue will be generated along with the index of
-     * the previously playing item.
+     * the previously playing item if it is found in the shuffled play queue. If
+     * not found, the current index will reset to 0.
      *
      * Will emit a {@link ReorderEvent} in any context.
      * */
@@ -313,7 +314,13 @@ public abstract class PlayQueue implements Serializable {
         }
         final PlayQueueItem current = getItem();
         Collections.shuffle(streams);
-        queueIndex.set(streams.indexOf(current));
+
+        final int newIndex = streams.indexOf(current);
+        if (newIndex != -1) {
+            queueIndex.set(newIndex);
+        } else {
+            queueIndex.set(0);
+        }
 
         broadcast(new ReorderEvent());
     }
@@ -321,17 +328,25 @@ public abstract class PlayQueue implements Serializable {
     /**
      * Unshuffles the current play queue if a backup play queue exists.
      *
-     * This method undoes shuffling and index will be set to the previously playing item.
+     * This method undoes shuffling and index will be set to the previously playing item if found,
+     * otherwise, the index will reset to 0.
      *
      * Will emit a {@link ReorderEvent} if a backup exists.
      * */
     public synchronized void unshuffle() {
         if (backup == null) return;
         final PlayQueueItem current = getItem();
+
         streams.clear();
         streams = backup;
         backup = null;
-        queueIndex.set(streams.indexOf(current));
+
+        final int newIndex = streams.indexOf(current);
+        if (newIndex != -1) {
+            queueIndex.set(newIndex);
+        } else {
+            queueIndex.set(0);
+        }
 
         broadcast(new ReorderEvent());
     }
