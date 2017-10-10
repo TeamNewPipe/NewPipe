@@ -142,6 +142,9 @@ public abstract class BasePlayer implements Player.EventListener,
     // Playback
     //////////////////////////////////////////////////////////////////////////*/
 
+    protected static final float[] PLAYBACK_SPEEDS = {0.5f, 0.75f, 1f, 1.25f, 1.5f, 1.75f, 2f};
+    protected static final float[] PLAYBACK_PITCHES = {0.8f, 0.9f, 0.95f, 1f, 1.05f, 1.1f, 1.2f};
+
     protected MediaSourceManager playbackManager;
     protected PlayQueue playQueue;
 
@@ -862,6 +865,7 @@ public abstract class BasePlayer implements Player.EventListener,
     private final StringBuilder stringBuilder = new StringBuilder();
     private final Formatter formatter = new Formatter(stringBuilder, Locale.getDefault());
     private final NumberFormat speedFormatter = new DecimalFormat("0.##x");
+    private final NumberFormat pitchFormatter = new DecimalFormat("##.##%");
 
     // todo: merge this into Localization
     public String getTimeString(int milliSeconds) {
@@ -878,6 +882,10 @@ public abstract class BasePlayer implements Player.EventListener,
 
     protected String formatSpeed(float speed) {
         return speedFormatter.format(speed);
+    }
+
+    protected String formatPitch(float pitch) {
+        return pitchFormatter.format(pitch);
     }
 
     protected void startProgressLoop() {
@@ -990,11 +998,28 @@ public abstract class BasePlayer implements Player.EventListener,
     }
 
     public float getPlaybackSpeed() {
-        return simpleExoPlayer.getPlaybackParameters().speed;
+        return getPlaybackParameters().speed;
+    }
+
+    public float getPlaybackPitch() {
+        return getPlaybackParameters().pitch;
     }
 
     public void setPlaybackSpeed(float speed) {
-        simpleExoPlayer.setPlaybackParameters(new PlaybackParameters(speed, 1f));
+        setPlaybackParameters(speed, getPlaybackPitch());
+    }
+
+    public void setPlaybackPitch(float pitch) {
+        setPlaybackParameters(getPlaybackSpeed(), pitch);
+    }
+
+    public PlaybackParameters getPlaybackParameters() {
+        final PlaybackParameters parameters = simpleExoPlayer.getPlaybackParameters();
+        return parameters == null ? new PlaybackParameters(1f, 1f) : parameters;
+    }
+
+    public void setPlaybackParameters(float speed, float pitch) {
+        simpleExoPlayer.setPlaybackParameters(new PlaybackParameters(speed, pitch));
     }
 
     public int getCurrentQueueIndex() {

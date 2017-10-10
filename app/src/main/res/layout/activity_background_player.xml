@@ -122,6 +122,21 @@
         android:background="@drawable/player_controls_bg"
         tools:ignore="RtlHardcoded">
 
+        <TextView
+            android:id="@+id/control_playback_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/control_repeat"
+            android:gravity="center"
+            android:minWidth="50dp"
+            android:text="1x"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,RtlHardcoded"/>
+
         <ImageButton
             android:id="@+id/control_repeat"
             android:layout_width="25dp"
@@ -196,6 +211,21 @@
             android:scaleType="fitXY"
             android:src="@drawable/ic_palette_white_24dp"
             tools:ignore="ContentDescription"/>
+
+        <TextView
+            android:id="@+id/control_playback_pitch"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/control_shuffle"
+            android:gravity="center"
+            android:minWidth="50dp"
+            android:text="100%"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,RtlHardcoded"/>
     </RelativeLayout>
 
 </RelativeLayout>

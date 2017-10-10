@@ -74,6 +74,11 @@ public class BackgroundPlayerActivity extends AppCompatActivity
     private ImageButton forwardButton;
     private ImageButton shuffleButton;
 
+    private TextView playbackSpeedButton;
+    private PopupMenu playbackSpeedPopupMenu;
+    private TextView playbackPitchButton;
+    private PopupMenu playbackPitchPopupMenu;
+
     ////////////////////////////////////////////////////////////////////////////
     // Activity Lifecycle
     ////////////////////////////////////////////////////////////////////////////
@@ -198,12 +203,57 @@ public class BackgroundPlayerActivity extends AppCompatActivity
         playPauseButton = rootView.findViewById(R.id.control_play_pause);
         forwardButton = rootView.findViewById(R.id.control_forward);
         shuffleButton = rootView.findViewById(R.id.control_shuffle);
+        playbackSpeedButton = rootView.findViewById(R.id.control_playback_speed);
+        playbackPitchButton = rootView.findViewById(R.id.control_playback_pitch);
 
         repeatButton.setOnClickListener(this);
         backwardButton.setOnClickListener(this);
         playPauseButton.setOnClickListener(this);
         forwardButton.setOnClickListener(this);
         shuffleButton.setOnClickListener(this);
+        playbackSpeedButton.setOnClickListener(this);
+        playbackPitchButton.setOnClickListener(this);
+
+        playbackSpeedPopupMenu = new PopupMenu(this, playbackSpeedButton);
+        playbackPitchPopupMenu = new PopupMenu(this, playbackPitchButton);
+        buildPlaybackSpeedMenu();
+        buildPlaybackPitchMenu();
+    }
+
+    private void buildPlaybackSpeedMenu() {
+        if (playbackSpeedPopupMenu == null) return;
+
+        playbackSpeedPopupMenu.getMenu().removeGroup(PLAYBACK_SPEED_POPUP_MENU_GROUP_ID);
+        for (int i = 0; i < BasePlayer.PLAYBACK_SPEEDS.length; i++) {
+            final float playbackSpeed = BasePlayer.PLAYBACK_SPEEDS[i];
+            final String formattedSpeed = player.formatSpeed(playbackSpeed);
+            final MenuItem item = playbackSpeedPopupMenu.getMenu().add(PLAYBACK_SPEED_POPUP_MENU_GROUP_ID, i, Menu.NONE, formattedSpeed);
+            item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    player.setPlaybackSpeed(playbackSpeed);
+                    return true;
+                }
+            });
+        }
+    }
+
+    private void buildPlaybackPitchMenu() {
+        if (playbackPitchPopupMenu == null) return;
+
+        playbackPitchPopupMenu.getMenu().removeGroup(PLAYBACK_SPEED_POPUP_MENU_GROUP_ID);
+        for (int i = 0; i < BasePlayer.PLAYBACK_PITCHES.length; i++) {
+            final float playbackPitch = BasePlayer.PLAYBACK_PITCHES[i];
+            final String formattedPitch = player.formatPitch(playbackPitch);
+            final MenuItem item = playbackPitchPopupMenu.getMenu().add(PLAYBACK_SPEED_POPUP_MENU_GROUP_ID, i, Menu.NONE, formattedPitch);
+            item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    player.setPlaybackPitch(playbackPitch);
+                    return true;
+                }
+            });
+        }
     }
 
     private void buildItemPopupMenu(final PlayQueueItem item, final View view) {
@@ -313,16 +363,26 @@ public class BackgroundPlayerActivity extends AppCompatActivity
     public void onClick(View view) {
         if (view.getId() == repeatButton.getId()) {
             player.onRepeatClicked();
+
         } else if (view.getId() == backwardButton.getId()) {
             player.onPlayPrevious();
             scrollToSelected();
+
         } else if (view.getId() == playPauseButton.getId()) {
             player.onVideoPlayPause();
             scrollToSelected();
+
         } else if (view.getId() == forwardButton.getId()) {
             player.onPlayNext();
+
         } else if (view.getId() == shuffleButton.getId()) {
             player.onShuffleClicked();
+
+        } else if (view.getId() == playbackSpeedButton.getId()) {
+            playbackSpeedPopupMenu.show();
+
+        } else if (view.getId() == playbackPitchButton.getId()) {
+            playbackPitchPopupMenu.show();
         }
     }
 
@@ -379,25 +439,23 @@ public class BackgroundPlayerActivity extends AppCompatActivity
                 repeatAlpha = 255;
                 break;
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            repeatButton.setImageAlpha(repeatAlpha);
-        } else {
-            repeatButton.setAlpha(repeatAlpha);
-        }
 
         int shuffleAlpha = 255;
         if (!shuffled) {
             shuffleAlpha = 77;
         }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            repeatButton.setImageAlpha(repeatAlpha);
             shuffleButton.setImageAlpha(shuffleAlpha);
         } else {
+            repeatButton.setAlpha(repeatAlpha);
             shuffleButton.setAlpha(shuffleAlpha);
         }
 
         if (parameters != null) {
-            final float speed = parameters.speed;
-            final float pitch = parameters.pitch;
+            playbackSpeedButton.setText(player.formatSpeed(parameters.speed));
+            playbackPitchButton.setText(player.formatPitch(parameters.pitch));
         }
 
         scrollToSelected();
