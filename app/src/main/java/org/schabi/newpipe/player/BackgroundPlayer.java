@@ -484,6 +484,12 @@ public final class BackgroundPlayer extends Service {
             triggerProgressUpdate();
         }
 
+        public void removeActivityListener(PlayerEventListener listener) {
+            if (activityListener == listener) {
+                activityListener = null;
+            }
+        }
+
         private void updateMetadata() {
             if (activityListener != null && currentInfo != null) {
                 activityListener.onMetadataUpdate(currentInfo);
@@ -491,7 +497,7 @@ public final class BackgroundPlayer extends Service {
         }
 
         private void updatePlayback() {
-            if (activityListener != null) {
+            if (activityListener != null && simpleExoPlayer != null && playQueue != null) {
                 activityListener.onPlaybackUpdate(currentState, simpleExoPlayer.getRepeatMode(), playQueue.isShuffled(), simpleExoPlayer.getPlaybackParameters());
             }
         }

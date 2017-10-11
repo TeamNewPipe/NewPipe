@@ -98,11 +98,6 @@ public class BackgroundPlayerActivity extends AppCompatActivity
         }
 
         serviceConnection = backgroundPlayerConnection();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         bind();
     }
 
@@ -121,8 +116,8 @@ public class BackgroundPlayerActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
         unbind();
     }
 
@@ -143,6 +138,7 @@ public class BackgroundPlayerActivity extends AppCompatActivity
         if(serviceBound) {
             unbindService(serviceConnection);
             serviceBound = false;
+            stopPlayerListener();
             player = null;
             finish();
         }
@@ -164,6 +160,7 @@ public class BackgroundPlayerActivity extends AppCompatActivity
                     unbind();
                 } else {
                     buildComponents();
+                    startPlayerListener();
                 }
             }
         };
@@ -178,7 +175,6 @@ public class BackgroundPlayerActivity extends AppCompatActivity
         buildMetadata();
         buildSeekBar();
         buildControls();
-        buildListeners();
     }
 
     private void buildQueue() {
@@ -228,10 +224,6 @@ public class BackgroundPlayerActivity extends AppCompatActivity
         playbackPitchPopupMenu = new PopupMenu(this, playbackPitchButton);
         buildPlaybackSpeedMenu();
         buildPlaybackPitchMenu();
-    }
-
-    private void buildListeners() {
-        player.setActivityListener(this);
     }
 
     private void buildPlaybackSpeedMenu() {
@@ -423,6 +415,18 @@ public class BackgroundPlayerActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
     // Binding Service Listener
     ////////////////////////////////////////////////////////////////////////////
+
+    private void startPlayerListener() {
+        if (player != null) {
+            player.setActivityListener(this);
+        }
+    }
+
+    private void stopPlayerListener() {
+        if (player != null) {
+            player.removeActivityListener(this);
+        }
+    }
 
     @Override
     public void onPlaybackUpdate(int state, int repeatMode, boolean shuffled, PlaybackParameters parameters) {
