@@ -48,7 +48,7 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with OpenHitboxStreams.  If not, see <http://www.gnu.org/licenses/>.
+ * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
@@ -147,7 +147,10 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         super.handleResult(result);
 
         animateView(headerRootLayout, true, 100);
-        headerTitleView.setText("★★ " + KioskTranslator.getTranslatedKioskName(result.id, getActivity())+ " ★★");
+        String title = KioskTranslator.getTranslatedKioskName(result.id, getActivity());
+        headerTitleView.setText("★★ " + title + " ★★");
+        ActionBar supportActionBar = activity.getSupportActionBar();
+        supportActionBar.setTitle(title);
 
         if (!result.errors.isEmpty()) {
             showSnackBarError(result.errors,
