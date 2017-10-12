@@ -18,6 +18,7 @@
     <attr name="palette" format="reference"/>
     <attr name="language" format="reference"/>
     <attr name="history" format="reference"/>
+    <attr name="reorder" format="reference"/>
 
     <!-- Can't refer to colors directly into drawable's xml-->
     <attr name="toolbar_shadow_drawable" format="reference"/>

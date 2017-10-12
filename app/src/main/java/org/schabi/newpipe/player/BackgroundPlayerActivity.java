@@ -1,12 +1,12 @@
 package org.schabi.newpipe.player;
 
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,16 +24,13 @@ import android.widget.TextView;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 
-import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
 import org.schabi.newpipe.playlist.PlayQueueItemHolder;
-import org.schabi.newpipe.settings.SettingsActivity;
-import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 public class BackgroundPlayerActivity extends AppCompatActivity
@@ -102,14 +99,25 @@ public class BackgroundPlayerActivity extends AppCompatActivity
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_play_queue, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
                 return true;
+            case R.id.action_history:
+                NavigationHelper.openHistory(this);
+                return true;
             case R.id.action_settings:
-                Intent intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
+                NavigationHelper.openSettings(this);
+                return true;
+            case R.id.action_system_audio:
+                startActivity(new Intent(Settings.ACTION_SOUND_SETTINGS));
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -264,7 +272,7 @@ public class BackgroundPlayerActivity extends AppCompatActivity
 
     private void buildItemPopupMenu(final PlayQueueItem item, final View view) {
         final PopupMenu menu = new PopupMenu(this, view);
-        final MenuItem remove = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 0, Menu.NONE, "Remove");
+        final MenuItem remove = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 0, Menu.NONE, R.string.play_queue_remove);
         remove.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
@@ -274,11 +282,11 @@ public class BackgroundPlayerActivity extends AppCompatActivity
             }
         });
 
-        final MenuItem detail = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 1, Menu.NONE, "Detail");
+        final MenuItem detail = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 1, Menu.NONE, R.string.play_queue_stream_detail);
         detail.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                onOpenDetail(BackgroundPlayerActivity.this, item.getUrl(), item.getTitle());
+                onOpenDetail(item.getServiceId(), item.getUrl(), item.getTitle());
                 return true;
             }
         });
@@ -346,15 +354,8 @@ public class BackgroundPlayerActivity extends AppCompatActivity
         };
     }
 
-    private void onOpenDetail(Context context, String videoUrl, String videoTitle) {
-        Intent i = new Intent(context, MainActivity.class);
-        i.putExtra(Constants.KEY_SERVICE_ID, 0);
-        i.putExtra(Constants.KEY_URL, videoUrl);
-        i.putExtra(Constants.KEY_TITLE, videoTitle);
-        i.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(i);
-        context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+    private void onOpenDetail(int serviceId, String videoUrl, String videoTitle) {
+        NavigationHelper.openVideoDetail(this, serviceId, videoUrl, videoTitle);
     }
 
     private void scrollToSelected() {

@@ -29,8 +29,10 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
         android:scaleType="center"
-        android:src="?attr/filter"
+        android:src="?attr/reorder"
         tools:ignore="ContentDescription,RtlHardcoded"/>
 
     <TextView

@@ -293,6 +293,10 @@
     <string name="new_and_hot">New &amp; hot</string>
     <string name="service_kiosk_string" translatable="false">%1$s/%2$s</string>
 
-    <!-- Player -->
+    <!-- Play Queue -->
     <string name="title_activity_background_player">Background Player</string>
+    <string name="play_queue_remove">Remove</string>
+    <string name="play_queue_stream_detail">Details</string>
+    <string name="play_queue_audio_settings">Audio Settings</string>
+
 </resources>

@@ -139,7 +139,10 @@ public final class BackgroundPlayer extends Service {
         if (DEBUG) Log.d(TAG, "destroy() called");
         releaseWifiAndCpu();
         stopForeground(true);
+
         if (basePlayerImpl != null) basePlayerImpl.destroy();
+        basePlayerImpl = null;
+        mBinder = null;
     }
 
     @Override

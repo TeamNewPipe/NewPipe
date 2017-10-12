@@ -209,7 +209,7 @@
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_palette_white_24dp"
+            android:src="@drawable/ic_shuffle_white_24dp"
             tools:ignore="ContentDescription"/>
 
         <TextView
