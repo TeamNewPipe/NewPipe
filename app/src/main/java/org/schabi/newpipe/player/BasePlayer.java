@@ -178,6 +178,10 @@ public abstract class BasePlayer implements Player.EventListener, AudioManager.O
         if (DEBUG) Log.d(TAG, "initPlayer() called with: context = [" + context + "]");
         initExoPlayerCache();
 
+        if (audioManager == null) {
+            this.audioManager = ((AudioManager) context.getSystemService(Context.AUDIO_SERVICE));
+        }
+
         AdaptiveTrackSelection.Factory trackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
         DefaultTrackSelector defaultTrackSelector = new DefaultTrackSelector(trackSelectionFactory);
         DefaultLoadControl loadControl = new DefaultLoadControl();
