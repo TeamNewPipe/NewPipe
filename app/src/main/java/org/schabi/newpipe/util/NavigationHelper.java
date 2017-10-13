@@ -94,7 +94,7 @@ public class NavigationHelper {
         if (!popped) openMainFragment(fragmentManager);
     }
 
-    private static void openMainFragment(FragmentManager fragmentManager) {
+    public static void openMainFragment(FragmentManager fragmentManager) {
         InfoCache.getInstance().trimCache();
 
         fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);

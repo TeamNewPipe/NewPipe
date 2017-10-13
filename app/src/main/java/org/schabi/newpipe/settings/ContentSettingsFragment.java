@@ -11,6 +11,7 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.KioskTranslator;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
@@ -87,6 +88,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                         } else {
                             mainPageContentPref.setSummary(getMainPageSummeryByKey(newValue));
                         }
+
+                        defaultPreferences.edit().putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, true).apply();
 
                         return true;
                     }

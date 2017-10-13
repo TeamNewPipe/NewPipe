@@ -30,6 +30,7 @@ import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.subscription.SubscriptionFragment;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.NavigationHelper;
 
