@@ -273,7 +273,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
      * If the play queue index already exists, then the insert is ignored.
      * */
     private void insert(final int queueIndex, final DeferredMediaSource source) {
-        if (queueIndex < 0) return;
+        if (queueIndex < 0 || queueIndex < sources.getSize()) return;
 
         sources.addMediaSource(queueIndex, source);
     }
