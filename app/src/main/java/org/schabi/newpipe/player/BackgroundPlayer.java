@@ -48,6 +48,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -79,13 +80,6 @@ public final class BackgroundPlayer extends Service {
     /*//////////////////////////////////////////////////////////////////////////
     // Service-Activity Binder
     //////////////////////////////////////////////////////////////////////////*/
-
-    public interface PlayerEventListener {
-        void onPlaybackUpdate(int state, int repeatMode, boolean shuffled, PlaybackParameters parameters);
-        void onProgressUpdate(int currentProgress, int duration, int bufferPercent);
-        void onMetadataUpdate(StreamInfo info);
-        void onServiceStopped();
-    }
 
     private PlayerEventListener activityListener;
     private IBinder mBinder;
@@ -149,7 +143,9 @@ public final class BackgroundPlayer extends Service {
 
     public void openControl(final Context context) {
         final Intent intent = new Intent(context, BackgroundPlayerActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
         context.startActivity(intent);
         context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
     }

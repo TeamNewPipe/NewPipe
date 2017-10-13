@@ -30,11 +30,13 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
+import android.os.Binder;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -49,6 +51,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 
 import org.schabi.newpipe.BuildConfig;
@@ -56,14 +59,15 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
+import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
@@ -121,6 +125,19 @@ public final class PopupVideoPlayer extends Service {
     private Disposable currentWorker;
 
     /*//////////////////////////////////////////////////////////////////////////
+    // Service-Activity Binder
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private PlayerEventListener activityListener;
+    private IBinder mBinder;
+
+    class LocalBinder extends Binder {
+        VideoPlayerImpl getPopupPlayerInstance() {
+            return PopupVideoPlayer.this.playerImpl;
+        }
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
     // Service LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
 
@@ -131,6 +148,8 @@ public final class PopupVideoPlayer extends Service {
 
         playerImpl = new VideoPlayerImpl();
         ThemeHelper.setTheme(this);
+
+        mBinder = new LocalBinder();
     }
 
     @Override
@@ -191,7 +210,7 @@ public final class PopupVideoPlayer extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return mBinder;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -284,19 +303,16 @@ public final class PopupVideoPlayer extends Service {
 
     public void onVideoClose() {
         if (DEBUG) Log.d(TAG, "onVideoClose() called");
+        playerImpl.stopActivityBinding();
         stopSelf();
     }
 
-    public void onOpenDetail(Context context, String videoUrl, String videoTitle) {
-        if (DEBUG) Log.d(TAG, "onOpenDetail() called with: context = [" + context + "], videoUrl = [" + videoUrl + "]");
-        Intent i = new Intent(context, MainActivity.class);
-        i.putExtra(Constants.KEY_SERVICE_ID, 0);
-        i.putExtra(Constants.KEY_URL, videoUrl);
-        i.putExtra(Constants.KEY_TITLE, videoTitle);
-        i.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        context.startActivity(i);
+    public void openControl(final Context context) {
+        final Intent intent = new Intent(context, PopupVideoPlayerActivity.class);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+        context.startActivity(intent);
         context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
     }
 
@@ -376,7 +392,7 @@ public final class PopupVideoPlayer extends Service {
 
     ///////////////////////////////////////////////////////////////////////////
 
-    private class VideoPlayerImpl extends VideoPlayer {
+    protected class VideoPlayerImpl extends VideoPlayer {
         private TextView resizingIndicator;
 
         VideoPlayerImpl() {
@@ -465,6 +481,61 @@ public final class PopupVideoPlayer extends Service {
                 hideControls(100, 0);
             }
         }
+
+        @Override
+        public void onShuffleClicked() {
+            super.onShuffleClicked();
+            updatePlayback();
+        }
+
+        @Override
+        public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
+            super.onUpdateProgress(currentProgress, duration, bufferPercent);
+            updateProgress(currentProgress, duration, bufferPercent);
+        }
+
+        /*//////////////////////////////////////////////////////////////////////////
+        // Activity Event Listener
+        //////////////////////////////////////////////////////////////////////////*/
+
+        public void setActivityListener(PlayerEventListener listener) {
+            activityListener = listener;
+            updateMetadata();
+            updatePlayback();
+            triggerProgressUpdate();
+        }
+
+        public void removeActivityListener(PlayerEventListener listener) {
+            if (activityListener == listener) {
+                activityListener = null;
+            }
+        }
+
+        private void updateMetadata() {
+            if (activityListener != null && currentInfo != null) {
+                activityListener.onMetadataUpdate(currentInfo);
+            }
+        }
+
+        private void updatePlayback() {
+            if (activityListener != null && simpleExoPlayer != null && playQueue != null) {
+                activityListener.onPlaybackUpdate(currentState, simpleExoPlayer.getRepeatMode(), playQueue.isShuffled(), simpleExoPlayer.getPlaybackParameters());
+            }
+        }
+
+        private void updateProgress(int currentProgress, int duration, int bufferPercent) {
+            if (activityListener != null) {
+                activityListener.onProgressUpdate(currentProgress, duration, bufferPercent);
+            }
+        }
+
+        private void stopActivityBinding() {
+            if (activityListener != null) {
+                activityListener.onServiceStopped();
+                activityListener = null;
+            }
+        }
+
         /*//////////////////////////////////////////////////////////////////////////
         // ExoPlayer Video Listener
         //////////////////////////////////////////////////////////////////////////*/
@@ -474,6 +545,13 @@ public final class PopupVideoPlayer extends Service {
             super.onRepeatModeChanged(i);
             setRepeatModeRemote(notRemoteView, i);
             updateNotification(-1);
+            updatePlayback();
+        }
+
+        @Override
+        public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+            super.onPlaybackParametersChanged(playbackParameters);
+            updatePlayback();
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -481,8 +559,15 @@ public final class PopupVideoPlayer extends Service {
         //////////////////////////////////////////////////////////////////////////*/
 
         @Override
+        public void sync(@NonNull PlayQueueItem item, @Nullable StreamInfo info) {
+            super.sync(item, info);
+            updateMetadata();
+        }
+
+        @Override
         public void shutdown() {
             super.shutdown();
+            stopActivityBinding();
             stopSelf();
         }
 
@@ -512,16 +597,23 @@ public final class PopupVideoPlayer extends Service {
                     onVideoPlayPause();
                     break;
                 case ACTION_OPEN_DETAIL:
-                    onOpenDetail(PopupVideoPlayer.this, getVideoUrl(), getVideoTitle());
+                    openControl(PopupVideoPlayer.this);
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();
                     break;
             }
         }
+
         /*//////////////////////////////////////////////////////////////////////////
         // States
         //////////////////////////////////////////////////////////////////////////*/
+
+        @Override
+        public void changeState(int state) {
+            super.changeState(state);
+            updatePlayback();
+        }
 
         @Override
         public void onBlocked() {

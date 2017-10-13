@@ -40,8 +40,13 @@
 
         <activity
             android:name=".player.BackgroundPlayerActivity"
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
             android:label="@string/title_activity_background_player"/>
+
+        <activity
+            android:name=".player.PopupVideoPlayerActivity"
+            android:launchMode="singleTask"
+            android:label="@string/title_activity_popup_player"/>
 
         <service
             android:name=".player.PopupVideoPlayer"

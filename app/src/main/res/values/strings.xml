@@ -295,6 +295,7 @@
 
     <!-- Play Queue -->
     <string name="title_activity_background_player">Background Player</string>
+    <string name="title_activity_popup_player">Popup Player</string>
     <string name="play_queue_remove">Remove</string>
     <string name="play_queue_stream_detail">Details</string>
     <string name="play_queue_audio_settings">Audio Settings</string>
