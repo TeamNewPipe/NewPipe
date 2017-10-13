@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -70,6 +71,7 @@ public class BackgroundPlayerActivity extends AppCompatActivity
     private ImageButton playPauseButton;
     private ImageButton forwardButton;
     private ImageButton shuffleButton;
+    private ProgressBar progressBar;
 
     private TextView playbackSpeedButton;
     private PopupMenu playbackSpeedPopupMenu;
@@ -164,7 +166,7 @@ public class BackgroundPlayerActivity extends AppCompatActivity
                 Log.d(TAG, "Background player service is connected");
                 final BackgroundPlayer.LocalBinder mLocalBinder = (BackgroundPlayer.LocalBinder) service;
                 player = mLocalBinder.getBackgroundPlayerInstance();
-                if (player == null) {
+                if (player == null || player.playQueue == null || player.playQueueAdapter == null || player.simpleExoPlayer == null) {
                     unbind();
                 } else {
                     buildComponents();
@@ -219,6 +221,7 @@ public class BackgroundPlayerActivity extends AppCompatActivity
         shuffleButton = rootView.findViewById(R.id.control_shuffle);
         playbackSpeedButton = rootView.findViewById(R.id.control_playback_speed);
         playbackPitchButton = rootView.findViewById(R.id.control_playback_pitch);
+        progressBar = rootView.findViewById(R.id.control_progress_bar);
 
         repeatButton.setOnClickListener(this);
         backwardButton.setOnClickListener(this);
@@ -431,52 +434,9 @@ public class BackgroundPlayerActivity extends AppCompatActivity
 
     @Override
     public void onPlaybackUpdate(int state, int repeatMode, boolean shuffled, PlaybackParameters parameters) {
-        switch (state) {
-            case BasePlayer.STATE_PAUSED:
-                playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
-                break;
-            case BasePlayer.STATE_PLAYING:
-                playPauseButton.setImageResource(R.drawable.ic_pause_white);
-                break;
-            case BasePlayer.STATE_COMPLETED:
-                playPauseButton.setImageResource(R.drawable.ic_replay_white);
-                break;
-            default:
-                break;
-        }
-
-        int repeatAlpha = 255;
-        switch (repeatMode) {
-            case Player.REPEAT_MODE_OFF:
-                repeatAlpha = 77;
-                break;
-            case Player.REPEAT_MODE_ONE:
-                // todo change image
-                repeatAlpha = 168;
-                break;
-            case Player.REPEAT_MODE_ALL:
-                repeatAlpha = 255;
-                break;
-        }
-
-        int shuffleAlpha = 255;
-        if (!shuffled) {
-            shuffleAlpha = 77;
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            repeatButton.setImageAlpha(repeatAlpha);
-            shuffleButton.setImageAlpha(shuffleAlpha);
-        } else {
-            repeatButton.setAlpha(repeatAlpha);
-            shuffleButton.setAlpha(shuffleAlpha);
-        }
-
-        if (parameters != null) {
-            playbackSpeedButton.setText(player.formatSpeed(parameters.speed));
-            playbackPitchButton.setText(player.formatPitch(parameters.pitch));
-        }
-
+        onStateChanged(state);
+        onPlayModeChanged(repeatMode, shuffled);
+        onPlaybackParameterChanged(parameters);
         scrollToSelected();
     }
 
@@ -508,5 +468,68 @@ public class BackgroundPlayerActivity extends AppCompatActivity
     @Override
     public void onServiceStopped() {
         unbind();
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Binding Service Helper
+    ////////////////////////////////////////////////////////////////////////////
+
+    private void onStateChanged(final int state) {
+        switch (state) {
+            case BasePlayer.STATE_PAUSED:
+                playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
+                break;
+            case BasePlayer.STATE_PLAYING:
+                playPauseButton.setImageResource(R.drawable.ic_pause_white);
+                break;
+            case BasePlayer.STATE_COMPLETED:
+                playPauseButton.setImageResource(R.drawable.ic_replay_white);
+                break;
+            default:
+                break;
+        }
+
+        switch (state) {
+            case BasePlayer.STATE_PAUSED:
+            case BasePlayer.STATE_PLAYING:
+            case BasePlayer.STATE_COMPLETED:
+                playPauseButton.setClickable(true);
+                playPauseButton.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
+                break;
+            default:
+                playPauseButton.setClickable(false);
+                playPauseButton.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
+                break;
+        }
+    }
+
+    private void onPlayModeChanged(final int repeatMode, final boolean shuffled) {
+        switch (repeatMode) {
+            case Player.REPEAT_MODE_OFF:
+                repeatButton.setImageResource(R.drawable.exo_controls_repeat_off);
+                break;
+            case Player.REPEAT_MODE_ONE:
+                repeatButton.setImageResource(R.drawable.exo_controls_repeat_one);
+                break;
+            case Player.REPEAT_MODE_ALL:
+                repeatButton.setImageResource(R.drawable.exo_controls_repeat_all);
+                break;
+        }
+
+        final int shuffleAlpha = shuffled ? 255 : 77;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            shuffleButton.setImageAlpha(shuffleAlpha);
+        } else {
+            shuffleButton.setAlpha(shuffleAlpha);
+        }
+    }
+
+    private void onPlaybackParameterChanged(final PlaybackParameters parameters) {
+        if (parameters != null) {
+            playbackSpeedButton.setText(player.formatSpeed(parameters.speed));
+            playbackPitchButton.setText(player.formatPitch(parameters.pitch));
+        }
     }
 }

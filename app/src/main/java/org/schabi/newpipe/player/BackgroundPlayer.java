@@ -44,14 +44,11 @@ import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.source.MediaSource;
 
 import org.schabi.newpipe.BuildConfig;
-import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.playlist.PlayQueueItem;
-import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -108,6 +105,7 @@ public final class BackgroundPlayer extends Service {
     private RemoteViews notRemoteView;
     private RemoteViews bigNotRemoteView;
     private final String setAlphaMethodName = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) ? "setImageAlpha" : "setAlpha";
+    private final String setImageResourceMethodName = "setImageResource";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service's LifeCycle
@@ -137,12 +135,7 @@ public final class BackgroundPlayer extends Service {
     @Override
     public void onDestroy() {
         if (DEBUG) Log.d(TAG, "destroy() called");
-        releaseWifiAndCpu();
-        stopForeground(true);
-
-        if (basePlayerImpl != null) basePlayerImpl.destroy();
-        basePlayerImpl = null;
-        mBinder = null;
+        onClose();
     }
 
     @Override
@@ -156,18 +149,22 @@ public final class BackgroundPlayer extends Service {
 
     public void openControl(final Context context) {
         final Intent intent = new Intent(context, BackgroundPlayerActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
         context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
     }
 
     private void onClose() {
-        if (basePlayerImpl != null) {
-            basePlayerImpl.stopActivityBinding();
-            basePlayerImpl.destroyPlayer();
-        }
-
         stopForeground(true);
         releaseWifiAndCpu();
+
+        if (basePlayerImpl != null) {
+            basePlayerImpl.stopActivityBinding();
+            basePlayerImpl.destroy();
+        }
+
+        basePlayerImpl = null;
+        mBinder = null;
         stopSelf();
     }
 
@@ -222,18 +219,7 @@ public final class BackgroundPlayer extends Service {
         remoteViews.setOnClickPendingIntent(R.id.notificationFForward,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_FAST_FORWARD), PendingIntent.FLAG_UPDATE_CURRENT));
 
-        switch (basePlayerImpl.simpleExoPlayer.getRepeatMode()) {
-            case Player.REPEAT_MODE_OFF:
-                remoteViews.setInt(R.id.notificationRepeat, setAlphaMethodName, 77);
-                break;
-            case Player.REPEAT_MODE_ONE:
-                // todo change image
-                remoteViews.setInt(R.id.notificationRepeat, setAlphaMethodName, 168);
-                break;
-            case Player.REPEAT_MODE_ALL:
-                remoteViews.setInt(R.id.notificationRepeat, setAlphaMethodName, 255);
-                break;
-        }
+        setRepeatModeIcon(remoteViews, basePlayerImpl.simpleExoPlayer.getRepeatMode());
     }
 
     /**
@@ -285,6 +271,19 @@ public final class BackgroundPlayer extends Service {
         wifiLock = null;
     }
 
+    private void setRepeatModeIcon(final RemoteViews remoteViews, final int repeatMode) {
+        switch (repeatMode) {
+            case Player.REPEAT_MODE_OFF:
+                remoteViews.setInt(R.id.notificationRepeat, setImageResourceMethodName, R.drawable.exo_controls_repeat_off);
+                break;
+            case Player.REPEAT_MODE_ONE:
+                remoteViews.setInt(R.id.notificationRepeat, setImageResourceMethodName, R.drawable.exo_controls_repeat_one);
+                break;
+            case Player.REPEAT_MODE_ALL:
+                remoteViews.setInt(R.id.notificationRepeat, setImageResourceMethodName, R.drawable.exo_controls_repeat_all);
+                break;
+        }
+    }
     //////////////////////////////////////////////////////////////////////////
 
     protected class BasePlayerImpl extends BasePlayer {
@@ -424,21 +423,8 @@ public final class BackgroundPlayer extends Service {
 
         @Override
         public void onRepeatModeChanged(int i) {
-            int opacity = 255;
-            switch (simpleExoPlayer.getRepeatMode()) {
-                case Player.REPEAT_MODE_OFF:
-                    opacity = 77;
-                    break;
-                case Player.REPEAT_MODE_ONE:
-                    // todo change image
-                    opacity = 168;
-                    break;
-                case Player.REPEAT_MODE_ALL:
-                    opacity = 255;
-                    break;
-            }
-            if (notRemoteView != null) notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, opacity);
-            if (bigNotRemoteView != null) bigNotRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, opacity);
+            setRepeatModeIcon(notRemoteView, i);
+            setRepeatModeIcon(bigNotRemoteView, i);
             updateNotification(-1);
             updatePlayback();
         }

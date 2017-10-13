@@ -183,6 +183,23 @@
             android:src="@drawable/ic_pause_white"
             tools:ignore="ContentDescription"/>
 
+        <ProgressBar
+            android:id="@+id/control_progress_bar"
+            style="?android:attr/progressBarStyleLargeInverse"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#00000000"
+            android:padding="2dp"
+            android:clickable="false"
+            android:scaleType="fitCenter"
+            android:indeterminate="true"
+            android:visibility="invisible"/>
+
         <ImageButton
             android:id="@+id/control_forward"
             android:layout_width="40dp"

@@ -155,7 +155,7 @@
                     android:clickable="true"
                     android:padding="5dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ic_repeat_white"
+                    android:src="@drawable/exo_controls_repeat_off"
                     tools:ignore="ContentDescription,RtlHardcoded"/>
 
                 <ImageButton

@@ -60,6 +60,14 @@ public class NavigationHelper {
     public static Intent getPlayerIntent(final Context context,
                                          final Class targetClazz,
                                          final PlayQueue playQueue,
+                                         final boolean isAppending) {
+        return getPlayerIntent(context, targetClazz, playQueue)
+                .putExtra(BasePlayer.APPEND_ONLY, isAppending);
+    }
+
+    public static Intent getPlayerIntent(final Context context,
+                                         final Class targetClazz,
+                                         final PlayQueue playQueue,
                                          final int maxResolution) {
         return getPlayerIntent(context, targetClazz, playQueue)
                 .putExtra(VideoPlayer.MAX_RESOLUTION, maxResolution);

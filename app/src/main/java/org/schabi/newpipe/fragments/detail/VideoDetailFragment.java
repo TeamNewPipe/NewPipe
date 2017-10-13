@@ -92,7 +92,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implements BackPressable, SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener {
+public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implements BackPressable, SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener, View.OnLongClickListener {
     public static final String AUTO_PLAY = "auto_play";
 
     // Amount of videos to show on start
@@ -320,10 +320,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         switch (v.getId()) {
             case R.id.detail_controls_background:
-                openBackgroundPlayer();
+                openBackgroundPlayer(false);
                 break;
             case R.id.detail_controls_popup:
-                openPopupPlayer();
+                openPopupPlayer(false);
                 break;
             case R.id.detail_uploader_root_layout:
                 if (currentInfo.uploader_url == null || currentInfo.uploader_url.isEmpty()) {
@@ -342,6 +342,22 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 toggleExpandRelatedVideos(currentInfo);
                 break;
         }
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        if (isLoading.get() || currentInfo == null) return false;
+
+        switch (v.getId()) {
+            case R.id.detail_controls_background:
+                openBackgroundPlayer(true);
+                break;
+            case R.id.detail_controls_popup:
+                openPopupPlayer(true);
+                break;
+        }
+
+        return true;
     }
 
     private void toggleTitleAndDescription() {
@@ -448,6 +464,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         detailControlsBackground.setOnClickListener(this);
         detailControlsPopup.setOnClickListener(this);
         relatedStreamExpandButton.setOnClickListener(this);
+
+        detailControlsBackground.setLongClickable(true);
+        detailControlsPopup.setLongClickable(true);
+        detailControlsBackground.setOnLongClickListener(this);
+        detailControlsPopup.setOnLongClickListener(this);
     }
 
     private void initThumbnailViews(StreamInfo info) {
@@ -716,7 +737,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     // Play Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void openBackgroundPlayer() {
+    private void openBackgroundPlayer(final boolean append) {
         AudioStream audioStream = currentInfo.audio_streams.get(ListHelper.getDefaultAudioFormat(activity, currentInfo.audio_streams));
 
         if (activity instanceof HistoryListener) {
@@ -727,7 +748,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
 
         if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 16) {
-            openNormalBackgroundPlayer();
+            openNormalBackgroundPlayer(append);
         } else {
             openExternalBackgroundPlayer(audioStream);
         }
@@ -742,7 +763,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
     }
 
-    private void openPopupPlayer() {
+    private void openPopupPlayer(final boolean append) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !PermissionHelper.checkSystemAlertWindowPermission(activity)) {
             Toast toast = Toast.makeText(activity, R.string.msg_popup_permission, Toast.LENGTH_LONG);
             TextView messageView = toast.getView().findViewById(android.R.id.message);
@@ -759,7 +780,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
         final VideoStream candidate = sortedStreamVideosList.get(actionBarHandler.getSelectedVideoStream());
-        final Intent intent = NavigationHelper.getPlayerIntent(activity, PopupVideoPlayer.class, playQueue, resolutionOf(candidate.resolution));
+
+        final Intent intent;
+        if (append) {
+            intent = NavigationHelper.getPlayerIntent(activity, PopupVideoPlayer.class, playQueue, true);
+        } else {
+            intent = NavigationHelper.getPlayerIntent(activity, PopupVideoPlayer.class, playQueue, resolutionOf(candidate.resolution));
+        }
         activity.startService(intent);
     }
 
@@ -778,9 +805,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     }
 
 
-    private void openNormalBackgroundPlayer() {
+    private void openNormalBackgroundPlayer(final boolean append) {
         final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
-        activity.startService(NavigationHelper.getPlayerIntent(activity, BackgroundPlayer.class, playQueue));
+        activity.startService(NavigationHelper.getPlayerIntent(activity, BackgroundPlayer.class, playQueue, append));
         Toast.makeText(activity, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
     }
 

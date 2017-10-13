@@ -111,7 +111,8 @@ public final class PopupVideoPlayer extends Service {
     private float minimumWidth, minimumHeight;
     private float maximumWidth, maximumHeight;
 
-    private final String setAlphaMethodName = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) ? "setImageAlpha" : "setAlpha";
+    private final String setImageResourceMethodName = "setImageResource";
+
     private NotificationManager notificationManager;
     private NotificationCompat.Builder notBuilder;
     private RemoteViews notRemoteView;
@@ -255,18 +256,7 @@ public final class PopupVideoPlayer extends Service {
         notRemoteView.setOnClickPendingIntent(R.id.notificationRepeat,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_REPEAT), PendingIntent.FLAG_UPDATE_CURRENT));
 
-        switch (playerImpl.simpleExoPlayer.getRepeatMode()) {
-            case Player.REPEAT_MODE_OFF:
-                notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 77);
-                break;
-            case Player.REPEAT_MODE_ONE:
-                //todo change image
-                notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 168);
-                break;
-            case Player.REPEAT_MODE_ALL:
-                notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 255);
-                break;
-        }
+        setRepeatModeRemote(notRemoteView, playerImpl.simpleExoPlayer.getRepeatMode());
 
         return new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
                 .setOngoing(true)
@@ -370,6 +360,20 @@ public final class PopupVideoPlayer extends Service {
         windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
     }
 
+    protected void setRepeatModeRemote(final RemoteViews remoteViews, final int repeatMode) {
+        switch (repeatMode) {
+            case Player.REPEAT_MODE_OFF:
+                remoteViews.setInt(R.id.notificationRepeat, setImageResourceMethodName, R.drawable.exo_controls_repeat_off);
+                break;
+            case Player.REPEAT_MODE_ONE:
+                remoteViews.setInt(R.id.notificationRepeat, setImageResourceMethodName, R.drawable.exo_controls_repeat_one);
+                break;
+            case Player.REPEAT_MODE_ALL:
+                remoteViews.setInt(R.id.notificationRepeat, setImageResourceMethodName, R.drawable.exo_controls_repeat_all);
+                break;
+        }
+    }
+
     ///////////////////////////////////////////////////////////////////////////
 
     private class VideoPlayerImpl extends VideoPlayer {
@@ -436,27 +440,6 @@ public final class PopupVideoPlayer extends Service {
         }
 
         @Override
-        public void onRepeatClicked() {
-            super.onRepeatClicked();
-            switch (simpleExoPlayer.getRepeatMode()) {
-                case Player.REPEAT_MODE_OFF:
-                    // Drawable didn't work on low API :/
-                    //notRemoteView.setImageViewResource(R.id.notificationRepeat, R.drawable.ic_repeat_disabled_white);
-                    // Set the icon to 30% opacity - 255 (max) * .3
-                    notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 77);
-                    break;
-                case Player.REPEAT_MODE_ONE:
-                    // todo change image
-                    notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 168);
-                    break;
-                case Player.REPEAT_MODE_ALL:
-                    notRemoteView.setInt(R.id.notificationRepeat, setAlphaMethodName, 255);
-                    break;
-            }
-            updateNotification(-1);
-        }
-
-        @Override
         public void onDismiss(PopupMenu menu) {
             super.onDismiss(menu);
             if (isPlaying()) hideControls(500, 0);
@@ -481,6 +464,16 @@ public final class PopupVideoPlayer extends Service {
             if (wasPlaying()) {
                 hideControls(100, 0);
             }
+        }
+        /*//////////////////////////////////////////////////////////////////////////
+        // ExoPlayer Video Listener
+        //////////////////////////////////////////////////////////////////////////*/
+
+        @Override
+        public void onRepeatModeChanged(int i) {
+            super.onRepeatModeChanged(i);
+            setRepeatModeRemote(notRemoteView, i);
+            updateNotification(-1);
         }
 
         /*//////////////////////////////////////////////////////////////////////////

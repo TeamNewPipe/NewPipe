@@ -189,6 +189,20 @@ public final class MainVideoPlayer extends Activity {
                 : ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
     }
 
+    protected void setRepeatModeButton(final ImageButton imageButton, final int repeatMode) {
+        switch (repeatMode) {
+            case Player.REPEAT_MODE_OFF:
+                imageButton.setImageResource(R.drawable.exo_controls_repeat_off);
+                break;
+            case Player.REPEAT_MODE_ONE:
+                imageButton.setImageResource(R.drawable.exo_controls_repeat_one);
+                break;
+            case Player.REPEAT_MODE_ALL:
+                imageButton.setImageResource(R.drawable.exo_controls_repeat_all);
+                break;
+        }
+    }
+
     ///////////////////////////////////////////////////////////////////////////
 
     @SuppressWarnings({"unused", "WeakerAccess"})
@@ -218,12 +232,6 @@ public final class MainVideoPlayer extends Activity {
             this.screenRotationButton = rootView.findViewById(R.id.screenRotationButton);
             this.playPauseButton = rootView.findViewById(R.id.playPauseButton);
 
-            // Due to a bug on lower API, lets set the alpha instead of using a drawable
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) repeatButton.setImageAlpha(77);
-            else { //noinspection deprecation
-                repeatButton.setAlpha(77);
-            }
-
             getRootView().setKeepScreenOn(true);
         }
 
@@ -239,6 +247,16 @@ public final class MainVideoPlayer extends Activity {
             repeatButton.setOnClickListener(this);
             playPauseButton.setOnClickListener(this);
             screenRotationButton.setOnClickListener(this);
+        }
+
+        /*//////////////////////////////////////////////////////////////////////////
+        // ExoPlayer Video Listener
+        //////////////////////////////////////////////////////////////////////////*/
+
+        @Override
+        public void onRepeatModeChanged(int i) {
+            super.onRepeatModeChanged(i);
+            setRepeatModeButton(repeatButton, simpleExoPlayer.getRepeatMode());
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -287,31 +305,6 @@ public final class MainVideoPlayer extends Activity {
 
             ((View) getControlAnimationView().getParent()).setVisibility(View.GONE);
             finish();
-        }
-
-        @Override
-        @SuppressWarnings("deprecation")
-        public void onRepeatClicked() {
-            super.onRepeatClicked();
-            if (DEBUG) Log.d(TAG, "onRepeatClicked() called");
-            switch (simpleExoPlayer.getRepeatMode()) {
-                case Player.REPEAT_MODE_OFF:
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) repeatButton.setImageAlpha(77);
-                    else repeatButton.setAlpha(77);
-
-                    break;
-                case Player.REPEAT_MODE_ONE:
-                    // todo change image
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) repeatButton.setImageAlpha(168);
-                    else repeatButton.setAlpha(168);
-
-                    break;
-                case Player.REPEAT_MODE_ALL:
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) repeatButton.setImageAlpha(255);
-                    else repeatButton.setAlpha(255);
-
-                    break;
-            }
         }
 
         @Override
@@ -509,7 +502,7 @@ public final class MainVideoPlayer extends Activity {
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onSingleTapConfirmed() called with: e = [" + e + "]");
-            if (playerImpl.getCurrentState() != BasePlayer.STATE_PLAYING) return true;
+            if (playerImpl.getCurrentState() == BasePlayer.STATE_BLOCKED) return true;
 
             if (playerImpl.isControlsVisible()) playerImpl.hideControls(150, 0);
             else {

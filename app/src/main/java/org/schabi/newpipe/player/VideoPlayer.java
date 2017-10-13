@@ -211,7 +211,9 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         simpleExoPlayer.setVideoSurfaceView(surfaceView);
         simpleExoPlayer.addVideoListener(this);
 
-        trackSelector.setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context));
+        if (Build.VERSION.SDK_INT >= 21) {
+            trackSelector.setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context));
+        }
     }
 
     @Override
@@ -286,6 +288,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
         qualityPopupMenu.setOnMenuItemClickListener(this);
         qualityPopupMenu.setOnDismissListener(this);
+        qualityTextView.setVisibility(View.VISIBLE);
     }
 
     private void buildPlaybackSpeedMenu() {
@@ -409,12 +412,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
         super.onTracksChanged(trackGroups, trackSelections);
 
-        if (trackSelector.getCurrentMappedTrackInfo() == null) {
-            qualityTextView.setVisibility(View.GONE);
-            return;
-        } else {
-            qualityTextView.setVisibility(View.VISIBLE);
-        }
+        if (trackSelector.getCurrentMappedTrackInfo() == null) return;
+        qualityTextView.setVisibility(View.GONE);
 
         for (int t = 0; t < simpleExoPlayer.getRendererCount(); t++) {
             if (simpleExoPlayer.getRendererType(t) == C.TRACK_TYPE_VIDEO) {
@@ -422,9 +421,11 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
             }
         }
         videoTrackGroups = trackSelector.getCurrentMappedTrackInfo().getTrackGroups(videoRendererIndex);
-        selectedVideoTrackGroup = trackSelections.get(videoRendererIndex).getTrackGroup();
-
-        buildQualityMenu();
+        final TrackSelection trackSelection = trackSelections.get(videoRendererIndex);
+        if (trackSelection != null) {
+            selectedVideoTrackGroup = trackSelection.getTrackGroup();
+            buildQualityMenu();
+        }
     }
 
     @Override

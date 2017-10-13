@@ -137,6 +137,7 @@ public abstract class BasePlayer implements Player.EventListener,
     public static final String PLAY_QUEUE = "play_queue";
     public static final String RESTORE_QUEUE_INDEX = "restore_queue_index";
     public static final String RESTORE_WINDOW_POS = "restore_window_pos";
+    public static final String APPEND_ONLY = "append_only";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Playback
@@ -260,6 +261,12 @@ public abstract class BasePlayer implements Player.EventListener,
         if (!(playQueueCandidate instanceof PlayQueue)) return;
         final PlayQueue queue = (PlayQueue) playQueueCandidate;
 
+        // Resolve append intents
+        if (intent.getBooleanExtra(APPEND_ONLY, false) && playQueue != null) {
+            playQueue.append(queue.getStreams());
+            return;
+        }
+
         // Resolve playback details
         if (intent.hasExtra(RESTORE_QUEUE_INDEX) && intent.hasExtra(START_POSITION)) {
             setRecovery(
@@ -310,6 +317,7 @@ public abstract class BasePlayer implements Player.EventListener,
     public void destroyPlayer() {
         if (DEBUG) Log.d(TAG, "destroyPlayer() called");
         if (simpleExoPlayer != null) {
+            simpleExoPlayer.removeListener(this);
             simpleExoPlayer.stop();
             simpleExoPlayer.release();
         }
