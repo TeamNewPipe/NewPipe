@@ -103,17 +103,6 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Init
-    //////////////////////////////////////////////////////////////////////////*/
-
-    protected View getListHeader() {
-        headerRootLayout = activity.getLayoutInflater().inflate(R.layout.kiosk_header, itemsList, false);
-        headerTitleView = headerRootLayout.findViewById(R.id.kiosk_title_view);
-
-        return headerRootLayout;
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
     // Load and handle
     //////////////////////////////////////////////////////////////////////////*/
 
@@ -138,7 +127,6 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     @Override
     public void showLoading() {
         super.showLoading();
-        animateView(headerRootLayout, false, 200);
         animateView(itemsList, false, 100);
     }
 
@@ -146,9 +134,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     public void handleResult(@NonNull final KioskInfo result) {
         super.handleResult(result);
 
-        animateView(headerRootLayout, true, 100);
         String title = KioskTranslator.getTranslatedKioskName(result.id, getActivity());
-        headerTitleView.setText("★★ " + title + " ★★");
         ActionBar supportActionBar = activity.getSupportActionBar();
         supportActionBar.setTitle(title);
 
