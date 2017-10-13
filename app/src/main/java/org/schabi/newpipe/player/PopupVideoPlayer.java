@@ -68,6 +68,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
+import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -852,9 +853,7 @@ public final class PopupVideoPlayer extends Service {
             mainHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    playerImpl.playQueue = new SinglePlayQueue(info);
-                    playerImpl.playQueue.init();
-                    playerImpl.playbackManager = new MediaSourceManager(playerImpl, playerImpl.playQueue);
+                    playerImpl.initPlayback(playerImpl, new SinglePlayQueue(info));
                 }
             });
         }
