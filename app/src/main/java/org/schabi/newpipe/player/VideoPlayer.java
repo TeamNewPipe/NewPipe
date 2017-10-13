@@ -222,12 +222,14 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         super.handleIntent(intent);
         if (intent == null) return;
 
-        final int resolutionTarget = intent.getIntExtra(MAX_RESOLUTION, Integer.MAX_VALUE);
+        final int resolutionTarget = intent.getIntExtra(MAX_RESOLUTION, getPreferredResolution());
         trackSelector.setParameters(
                 // Assume video is horizontal
                 new DefaultTrackSelector.Parameters().withMaxVideoSize(Integer.MAX_VALUE, resolutionTarget)
         );
     }
+
+    public abstract int getPreferredResolution();
 
     /*//////////////////////////////////////////////////////////////////////////
     // UI Builders
@@ -246,7 +248,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     }
 
     private void buildQualityMenu() {
-        if (qualityPopupMenu == null || videoTrackGroups == null || selectedVideoTrackGroup == null || videoTrackGroups.length != availableStreams.size()) return;
+        if (qualityPopupMenu == null || videoTrackGroups == null || selectedVideoTrackGroup == null
+                || availableStreams == null || videoTrackGroups.length != availableStreams.size()) return;
 
         qualityPopupMenu.getMenu().removeGroup(qualityPopupMenuGroupId);
         trackGroupInfos = new ArrayList<>();

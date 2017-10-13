@@ -53,6 +53,7 @@ import android.widget.Toast;
 
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
@@ -73,6 +74,7 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -406,6 +408,15 @@ public final class PopupVideoPlayer extends Service {
         }
 
         @Override
+        public int getPreferredResolution() {
+            if (sharedPreferences == null || context == null) return Integer.MAX_VALUE;
+            return Localization.resolutionOf(sharedPreferences.getString(
+                    context.getString(R.string.default_popup_resolution_key),
+                    context.getString(R.string.default_popup_resolution_value)
+            ));
+        }
+
+        @Override
         public void destroy() {
             super.destroy();
             if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, null);
@@ -451,6 +462,7 @@ public final class PopupVideoPlayer extends Service {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             }
             context.startActivity(intent);
+            playerImpl.stopActivityBinding();
             destroyPlayer();
             stopSelf();
         }

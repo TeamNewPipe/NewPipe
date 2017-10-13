@@ -754,15 +754,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
     }
 
-    private static int resolutionOf(final String resolution) {
-        final String[] candidates = TextUtils.split(resolution, "p");
-        if (candidates.length > 0 && TextUtils.isDigitsOnly(candidates[0])) {
-            return Integer.parseInt(candidates[0]);
-        } else {
-            return Integer.MAX_VALUE;
-        }
-    }
-
     private void openPopupPlayer(final boolean append) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !PermissionHelper.checkSystemAlertWindowPermission(activity)) {
             Toast toast = Toast.makeText(activity, R.string.msg_popup_permission, Toast.LENGTH_LONG);
@@ -785,7 +776,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (append) {
             intent = NavigationHelper.getPlayerIntent(activity, PopupVideoPlayer.class, playQueue, true);
         } else {
-            intent = NavigationHelper.getPlayerIntent(activity, PopupVideoPlayer.class, playQueue, resolutionOf(candidate.resolution));
+            intent = NavigationHelper.getPlayerIntent(activity, PopupVideoPlayer.class, playQueue, Localization.resolutionOf(candidate.resolution));
         }
         activity.startService(intent);
     }
@@ -853,7 +844,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             // ExoPlayer
             final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
             final VideoStream candidate = sortedStreamVideosList.get(actionBarHandler.getSelectedVideoStream());
-            mIntent = NavigationHelper.getPlayerIntent(activity, MainVideoPlayer.class, playQueue, resolutionOf(candidate.resolution));
+            mIntent = NavigationHelper.getPlayerIntent(activity, MainVideoPlayer.class, playQueue, Localization.resolutionOf(candidate.resolution));
         } else {
             // Internal Player
             mIntent = new Intent(activity, PlayVideoActivity.class)

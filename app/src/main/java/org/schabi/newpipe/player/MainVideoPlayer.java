@@ -28,6 +28,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -35,6 +38,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +49,10 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.playlist.PlayQueueItem;
+import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
+import org.schabi.newpipe.playlist.PlayQueueItemHolder;
 import org.schabi.newpipe.util.AnimationUtils;
+import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -159,6 +166,7 @@ public final class MainVideoPlayer extends Activity {
 
     private void showSystemUi() {
         if (DEBUG) Log.d(TAG, "showSystemUi() called");
+        if (playerImpl != null && playerImpl.queueVisible) return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             getWindow().getDecorView().setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -212,9 +220,17 @@ public final class MainVideoPlayer extends Activity {
         private TextView volumeTextView;
         private TextView brightnessTextView;
         private ImageButton repeatButton;
+        private ImageButton queueButton;
 
         private ImageButton screenRotationButton;
         private ImageButton playPauseButton;
+
+        private RelativeLayout queueLayout;
+        private ImageButton itemsListCloseButton;
+        private RecyclerView itemsList;
+        private ItemTouchHelper itemTouchHelper;
+
+        private boolean queueVisible;
 
         VideoPlayerImpl() {
             super("VideoPlayerImpl" + MainVideoPlayer.TAG, MainVideoPlayer.this);
@@ -228,6 +244,7 @@ public final class MainVideoPlayer extends Activity {
             this.volumeTextView = rootView.findViewById(R.id.volumeTextView);
             this.brightnessTextView = rootView.findViewById(R.id.brightnessTextView);
             this.repeatButton = rootView.findViewById(R.id.repeatButton);
+            this.queueButton = rootView.findViewById(R.id.queueButton);
 
             this.screenRotationButton = rootView.findViewById(R.id.screenRotationButton);
             this.playPauseButton = rootView.findViewById(R.id.playPauseButton);
@@ -244,9 +261,20 @@ public final class MainVideoPlayer extends Activity {
             gestureDetector.setIsLongpressEnabled(false);
             getRootView().setOnTouchListener(listener);
 
+            queueButton.setOnClickListener(this);
             repeatButton.setOnClickListener(this);
             playPauseButton.setOnClickListener(this);
             screenRotationButton.setOnClickListener(this);
+        }
+
+        @Override
+        public int getPreferredResolution() {
+            if (sharedPreferences == null || context == null) return Integer.MAX_VALUE;
+
+            return Localization.resolutionOf(sharedPreferences.getString(
+                    context.getString(R.string.default_resolution_key),
+                    context.getString(R.string.default_resolution_value)
+            ));
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -310,9 +338,19 @@ public final class MainVideoPlayer extends Activity {
         @Override
         public void onClick(View v) {
             super.onClick(v);
-            if (v.getId() == repeatButton.getId()) onRepeatClicked();
-            else if (v.getId() == playPauseButton.getId()) onVideoPlayPause();
-            else if (v.getId() == screenRotationButton.getId()) onScreenRotationClicked();
+            if (v.getId() == repeatButton.getId()) {
+                onRepeatClicked();
+
+            } else if (v.getId() == playPauseButton.getId()) {
+                onVideoPlayPause();
+
+            } else if (v.getId() == screenRotationButton.getId()) {
+                onScreenRotationClicked();
+
+            } else if (v.getId() == queueButton.getId()) {
+                onQueueClicked();
+                return;
+            }
 
             if (getCurrentState() != STATE_COMPLETED) {
                 getControlsVisibilityHandler().removeCallbacksAndMessages(null);
@@ -325,6 +363,19 @@ public final class MainVideoPlayer extends Activity {
                     }
                 });
             }
+        }
+
+        private void onQueueClicked() {
+            queueVisible = true;
+            buildQueue();
+            hideSystemUi();
+            getControlsRoot().setVisibility(View.INVISIBLE);
+            queueLayout.setVisibility(View.VISIBLE);
+        }
+
+        private void onQueueClosed() {
+            queueLayout.setVisibility(View.GONE);
+            queueVisible = false;
         }
 
         private void onScreenRotationClicked() {
@@ -435,6 +486,20 @@ public final class MainVideoPlayer extends Activity {
         //////////////////////////////////////////////////////////////////////////*/
 
         @Override
+        public void showControlsThenHide() {
+            if (queueVisible) return;
+
+            super.showControlsThenHide();
+        }
+
+        @Override
+        public void showControls(long duration) {
+            if (queueVisible) return;
+
+            super.showControls(duration);
+        }
+
+        @Override
         public void hideControls(final long duration, long delay) {
             if (DEBUG) Log.d(TAG, "hideControls() called with: delay = [" + delay + "]");
             getControlsVisibilityHandler().removeCallbacksAndMessages(null);
@@ -449,6 +514,85 @@ public final class MainVideoPlayer extends Activity {
                     });
                 }
             }, delay);
+        }
+
+        private void buildQueue() {
+            queueLayout = findViewById(R.id.play_queue_control);
+
+            itemsListCloseButton = findViewById(R.id.play_queue_close_area);
+
+            itemsList = findViewById(R.id.play_queue);
+            itemsList.setAdapter(playQueueAdapter);
+            itemsList.setClickable(true);
+            itemsList.setLongClickable(true);
+
+            itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
+            itemTouchHelper.attachToRecyclerView(itemsList);
+
+            playQueueAdapter.setSelectedListener(getOnSelectedListener());
+
+            itemsListCloseButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onQueueClosed();
+                }
+            });
+        }
+
+        private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
+            return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
+                @Override
+                public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source, RecyclerView.ViewHolder target) {
+                    if (source.getItemViewType() != target.getItemViewType()) {
+                        return false;
+                    }
+
+                    final int sourceIndex = source.getLayoutPosition();
+                    final int targetIndex = target.getLayoutPosition();
+                    playQueue.move(sourceIndex, targetIndex);
+                    return true;
+                }
+
+                @Override
+                public boolean isLongPressDragEnabled() {
+                    return false;
+                }
+
+                @Override
+                public boolean isItemViewSwipeEnabled() {
+                    return false;
+                }
+
+                @Override
+                public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {}
+            };
+        }
+
+        private PlayQueueItemBuilder.OnSelectedListener getOnSelectedListener() {
+            return new PlayQueueItemBuilder.OnSelectedListener() {
+                @Override
+                public void selected(PlayQueueItem item, View view) {
+                    final int index = playQueue.indexOf(item);
+                    if (index == -1) return;
+
+                    if (playQueue.getIndex() == index) {
+                        onRestart();
+                    } else {
+                        playQueue.setIndex(index);
+                    }
+                }
+
+                @Override
+                public void held(PlayQueueItem item, View view) {
+                    final int index = playQueue.indexOf(item);
+                    if (index != -1) playQueue.remove(index);
+                }
+
+                @Override
+                public void onStartDrag(PlayQueueItemHolder viewHolder) {
+                    if (itemTouchHelper != null) itemTouchHelper.startDrag(viewHolder);
+                }
+            };
         }
 
         ///////////////////////////////////////////////////////////////////////////

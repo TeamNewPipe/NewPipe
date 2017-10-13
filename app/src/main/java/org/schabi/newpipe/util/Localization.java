@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.support.annotation.PluralsRes;
 import android.support.annotation.StringRes;
+import android.text.TextUtils;
 
 import org.schabi.newpipe.R;
 
@@ -150,5 +151,14 @@ public class Localization {
             output = String.format(Locale.US, "%d:%02d", minutes, seconds);
         }
         return output;
+    }
+
+    public static int resolutionOf(final String resolution) {
+        final String[] candidates = TextUtils.split(resolution, "p");
+        if (candidates.length > 0 && TextUtils.isDigitsOnly(candidates[0])) {
+            return Integer.parseInt(candidates[0]);
+        } else {
+            return Integer.MAX_VALUE;
+        }
     }
 }

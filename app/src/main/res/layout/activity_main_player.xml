@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/black"
     android:gravity="center">
 
@@ -40,6 +41,33 @@
         tools:background="@android:color/white"
         tools:ignore="ContentDescription"
         tools:visibility="visible"/>
+
+    <RelativeLayout
+        android:id="@+id/play_queue_control"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#64000000"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ImageButton
+            android:id="@+id/play_queue_close_area"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="?android:selectableItemBackground"
+            android:src="@drawable/ic_close_white_24dp"
+            tools:ignore="ContentDescription"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/play_queue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/play_queue_close_area"
+            android:scrollbars="vertical"
+            app:layoutManager="LinearLayoutManager"
+            tools:listitem="@layout/play_queue_item"/>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/playbackControlRoot"
@@ -139,6 +167,7 @@
                     android:layout_toLeftOf="@+id/repeatButton"
                     android:background="#00ffffff"
                     android:clickable="true"
+                    android:focusable="true"
                     android:padding="8dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_screen_rotation_white"
@@ -150,12 +179,28 @@
                     android:layout_height="35dp"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
-                    android:layout_toLeftOf="@+id/fullScreenButton"
+                    android:layout_toLeftOf="@+id/queueButton"
                     android:background="#00ffffff"
                     android:clickable="true"
+                    android:focusable="true"
                     android:padding="5dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/exo_controls_repeat_off"
+                    tools:ignore="ContentDescription,RtlHardcoded"/>
+
+                <ImageButton
+                    android:id="@+id/queueButton"
+                    android:layout_width="30dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_toLeftOf="@+id/fullScreenButton"
+                    android:background="#00ffffff"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/list"
                     tools:ignore="ContentDescription,RtlHardcoded"/>
 
                 <ImageButton
@@ -166,6 +211,7 @@
                     android:layout_marginLeft="4dp"
                     android:background="#00ffffff"
                     android:clickable="true"
+                    android:focusable="true"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_fullscreen_exit_white"
                     tools:ignore="ContentDescription,RtlHardcoded"/>
