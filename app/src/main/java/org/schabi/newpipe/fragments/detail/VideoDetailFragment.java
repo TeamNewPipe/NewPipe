@@ -28,6 +28,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -144,6 +145,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     private TextView detailControlsBackground;
     private TextView detailControlsPopup;
+    private TextView appendControlsDetail;
 
     private LinearLayout videoDescriptionRootLayout;
     private TextView videoUploadDateView;
@@ -419,6 +421,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         detailControlsBackground = rootView.findViewById(R.id.detail_controls_background);
         detailControlsPopup = rootView.findViewById(R.id.detail_controls_popup);
+        appendControlsDetail = rootView.findViewById(R.id.touch_append_detail);
 
         videoDescriptionRootLayout = rootView.findViewById(R.id.detail_description_root_layout);
         videoUploadDateView = rootView.findViewById(R.id.detail_upload_date_view);
@@ -469,6 +472,22 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         detailControlsPopup.setLongClickable(true);
         detailControlsBackground.setOnLongClickListener(this);
         detailControlsPopup.setOnLongClickListener(this);
+        detailControlsBackground.setOnTouchListener(getOnControlsTouchListener());
+        detailControlsPopup.setOnTouchListener(getOnControlsTouchListener());
+    }
+
+    private View.OnTouchListener getOnControlsTouchListener() {
+        return new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    appendControlsDetail.setVisibility(View.VISIBLE);
+                } else {
+                    appendControlsDetail.setVisibility(View.GONE);
+                }
+                return false;
+            }
+        };
     }
 
     private void initThumbnailViews(StreamInfo info) {

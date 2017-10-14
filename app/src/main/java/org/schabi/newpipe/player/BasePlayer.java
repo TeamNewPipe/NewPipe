@@ -251,6 +251,8 @@ public abstract class BasePlayer implements Player.EventListener,
                 });
     }
 
+    protected abstract void postProcess(@NonNull final Intent intent);
+
     public void handleIntent(Intent intent) {
         if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
         if (intent == null) return;
@@ -284,6 +286,7 @@ public abstract class BasePlayer implements Player.EventListener,
 
         // Good to go...
         initPlayback(this, queue);
+        postProcess(intent);
     }
 
     protected void initPlayback(@NonNull final PlaybackListener listener, @NonNull final PlayQueue queue) {

@@ -217,11 +217,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public void handleIntent(Intent intent) {
-        super.handleIntent(intent);
-        if (intent == null) return;
-
+    protected void postProcess(@NonNull final Intent intent) {
         final int resolutionTarget = intent.getIntExtra(MAX_RESOLUTION, getPreferredResolution());
         trackSelector.setParameters(
                 // Assume video is horizontal

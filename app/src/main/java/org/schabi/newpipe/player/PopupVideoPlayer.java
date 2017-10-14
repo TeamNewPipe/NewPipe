@@ -411,10 +411,7 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public int getPreferredResolution() {
             if (sharedPreferences == null || context == null) return Integer.MAX_VALUE;
-            return Localization.resolutionOf(sharedPreferences.getString(
-                    context.getString(R.string.default_popup_resolution_key),
-                    context.getString(R.string.default_popup_resolution_value)
-            ));
+            return Localization.resolutionOf(sharedPreferences.getString(context.getString(R.string.default_popup_resolution_key), context.getString(R.string.default_popup_resolution_value)));
         }
 
         @Override

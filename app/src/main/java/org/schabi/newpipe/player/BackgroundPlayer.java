@@ -289,9 +289,7 @@ public final class BackgroundPlayer extends Service {
         }
 
         @Override
-        public void handleIntent(Intent intent) {
-            super.handleIntent(intent);
-
+        protected void postProcess(@NonNull final Intent intent) {
             resetNotification();
             startForeground(NOTIFICATION_ID, notBuilder.build());
 
