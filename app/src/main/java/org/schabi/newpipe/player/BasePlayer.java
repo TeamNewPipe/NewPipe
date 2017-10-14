@@ -809,9 +809,13 @@ public abstract class BasePlayer implements Player.EventListener,
         else audioManager.abandonAudioFocus(this);
 
         if (getCurrentState() == STATE_COMPLETED) {
-            if (playQueue.getIndex() == 0) simpleExoPlayer.seekToDefaultPosition();
-            else playQueue.setIndex(0);
+            if (playQueue.getIndex() == 0) {
+                simpleExoPlayer.seekToDefaultPosition();
+            } else {
+                playQueue.setIndex(0);
+            }
         }
+
         simpleExoPlayer.setPlayWhenReady(!isPlaying());
     }
 
@@ -846,11 +850,19 @@ public abstract class BasePlayer implements Player.EventListener,
         playQueue.offsetIndex(+1);
     }
 
-    public void onRestart() {
-        if (playQueue == null) return;
-        if (DEBUG) Log.d(TAG, "onRestart() called");
+    public void onSelected(final PlayQueueItem item) {
+        final int index = playQueue.indexOf(item);
+        if (index == -1) return;
 
-        simpleExoPlayer.seekToDefaultPosition();
+        if (playQueue.getIndex() == index) {
+            simpleExoPlayer.seekToDefaultPosition();
+        } else {
+            playQueue.setIndex(index);
+        }
+
+        if (!isPlaying()) {
+            onVideoPlayPause();
+        }
     }
 
     public void seekBy(int milliSeconds) {
@@ -873,7 +885,7 @@ public abstract class BasePlayer implements Player.EventListener,
     private final StringBuilder stringBuilder = new StringBuilder();
     private final Formatter formatter = new Formatter(stringBuilder, Locale.getDefault());
     private final NumberFormat speedFormatter = new DecimalFormat("0.##x");
-    private final NumberFormat pitchFormatter = new DecimalFormat("##.##%");
+    private final NumberFormat pitchFormatter = new DecimalFormat("##%");
 
     // todo: merge this into Localization
     public String getTimeString(int milliSeconds) {

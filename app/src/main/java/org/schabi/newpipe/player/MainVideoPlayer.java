@@ -572,14 +572,7 @@ public final class MainVideoPlayer extends Activity {
             return new PlayQueueItemBuilder.OnSelectedListener() {
                 @Override
                 public void selected(PlayQueueItem item, View view) {
-                    final int index = playQueue.indexOf(item);
-                    if (index == -1) return;
-
-                    if (playQueue.getIndex() == index) {
-                        onRestart();
-                    } else {
-                        playQueue.setIndex(index);
-                    }
+                    onSelected(item);
                 }
 
                 @Override

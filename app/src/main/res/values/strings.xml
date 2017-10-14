@@ -91,6 +91,8 @@
     <string name="settings_category_other_title">Other</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
+    <string name="background_player_append">Queued on background player</string>
+    <string name="popup_playing_append">Queued on popup player</string>
     <string name="c3s_url" translatable="false">https://www.c3s.cc/</string>
     <string name="play_btn_text">Play</string>
     <string name="content">Content</string>

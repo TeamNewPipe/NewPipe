@@ -25,7 +25,7 @@
         <item name="palette">@drawable/ic_palette_black_24dp</item>
         <item name="language">@drawable/ic_language_black_24dp</item>
         <item name="history">@drawable/ic_history_black_24dp</item>
-        <item name="reorder">@drawable/ic_reorder_black_24dp</item>
+        <item name="drag_handle">@drawable/ic_drag_handle_black_24dp</item>
 
         <item name="selector_color">@color/light_selector</item>
         <item name="separator_color">@color/light_separator_color</item>
@@ -61,7 +61,7 @@
         <item name="palette">@drawable/ic_palette_white_24dp</item>
         <item name="language">@drawable/ic_language_white_24dp</item>
         <item name="history">@drawable/ic_history_white_24dp</item>
-        <item name="reorder">@drawable/ic_reorder_white_24dp</item>
+        <item name="drag_handle">@drawable/ic_drag_handle_white_24dp</item>
 
         <item name="selector_color">@color/dark_selector</item>
         <item name="separator_color">@color/dark_separator_color</item>

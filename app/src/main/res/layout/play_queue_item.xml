@@ -32,7 +32,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="5dp"
         android:scaleType="center"
-        android:src="?attr/reorder"
+        android:src="?attr/drag_handle"
         tools:ignore="ContentDescription,RtlHardcoded"/>
 
     <TextView

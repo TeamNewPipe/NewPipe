@@ -767,15 +767,15 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             ((HistoryListener) activity).onVideoPlayed(currentInfo, getSelectedVideoStream());
         }
 
-        Toast.makeText(activity, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
-
         final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
         final VideoStream candidate = sortedStreamVideosList.get(actionBarHandler.getSelectedVideoStream());
 
         final Intent intent;
         if (append) {
+            Toast.makeText(activity, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
             intent = NavigationHelper.getPlayerIntent(activity, PopupVideoPlayer.class, playQueue, true);
         } else {
+            Toast.makeText(activity, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
             intent = NavigationHelper.getPlayerIntent(activity, PopupVideoPlayer.class, playQueue, Localization.resolutionOf(candidate.resolution));
         }
         activity.startService(intent);
@@ -799,7 +799,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private void openNormalBackgroundPlayer(final boolean append) {
         final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
         activity.startService(NavigationHelper.getPlayerIntent(activity, BackgroundPlayer.class, playQueue, append));
-        Toast.makeText(activity, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
+        if (append) {
+            Toast.makeText(activity, R.string.background_player_append, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(activity, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void openExternalBackgroundPlayer(AudioStream audioStream) {

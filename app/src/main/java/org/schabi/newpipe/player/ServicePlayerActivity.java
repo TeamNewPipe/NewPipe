@@ -347,14 +347,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         return new PlayQueueItemBuilder.OnSelectedListener() {
             @Override
             public void selected(PlayQueueItem item, View view) {
-                final int index = player.playQueue.indexOf(item);
-                if (index == -1) return;
-
-                if (player.playQueue.getIndex() == index) {
-                    player.onRestart();
-                } else {
-                    player.playQueue.setIndex(index);
-                }
+                player.onSelected(item);
             }
 
             @Override
