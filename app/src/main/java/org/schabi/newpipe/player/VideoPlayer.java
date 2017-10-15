@@ -63,6 +63,7 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
+import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.playlist.PlayQueueItem;
@@ -106,7 +107,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
     private static final TrackSelection.Factory FIXED_FACTORY = new FixedTrackSelection.Factory();
     private List<TrackGroupInfo> trackGroupInfos;
-    private int videoRendererIndex = -1;
     private TrackGroupArray videoTrackGroups;
     private TrackGroup selectedVideoTrackGroup;
 
@@ -414,11 +414,9 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         if (trackSelector.getCurrentMappedTrackInfo() == null) return;
         qualityTextView.setVisibility(View.GONE);
 
-        for (int t = 0; t < simpleExoPlayer.getRendererCount(); t++) {
-            if (simpleExoPlayer.getRendererType(t) == C.TRACK_TYPE_VIDEO) {
-                videoRendererIndex = t;
-            }
-        }
+        final int videoRendererIndex = getVideoRendererIndex();
+        if (videoRendererIndex == -1) return;
+
         videoTrackGroups = trackSelector.getCurrentMappedTrackInfo().getTrackGroups(videoRendererIndex);
         final TrackSelection trackSelection = trackSelections.get(videoRendererIndex);
         if (trackSelection != null) {
@@ -544,9 +542,12 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
             }
             trackSelector.setParameters(parameters);
 
-            // Override the selection with the selected quality in case of different frame rate
-            final MappingTrackSelector.SelectionOverride override = new MappingTrackSelector.SelectionOverride(FIXED_FACTORY, info.group, info.track);
-            trackSelector.setSelectionOverride(videoRendererIndex, videoTrackGroups, override);
+            final int videoRendererIndex = getVideoRendererIndex();
+            if (videoRendererIndex != -1) {
+                // Override the selection with the selected quality in case of different frame rate
+                final MappingTrackSelector.SelectionOverride override = new MappingTrackSelector.SelectionOverride(FIXED_FACTORY, info.group, info.track);
+                trackSelector.setSelectionOverride(videoRendererIndex, videoTrackGroups, override);
+            }
 
             return true;
         } else if (playbackSpeedPopupMenuGroupId == menuItem.getGroupId()) {
@@ -625,6 +626,18 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
+
+    public int getVideoRendererIndex() {
+        if (simpleExoPlayer == null) return -1;
+
+        for (int t = 0; t < simpleExoPlayer.getRendererCount(); t++) {
+            if (simpleExoPlayer.getRendererType(t) == C.TRACK_TYPE_VIDEO) {
+                return t;
+            }
+        }
+
+        return -1;
+    }
 
     public String resolutionStringOf(final Format format) {
         final String frameRate = format.frameRate > 0 ? String.valueOf((int) format.frameRate) : "";

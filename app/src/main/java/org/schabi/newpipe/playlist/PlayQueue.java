@@ -194,8 +194,6 @@ public abstract class PlayQueue implements Serializable {
      * Will emit a {@link SelectEvent} if the index is not the current playing index.
      * */
     public synchronized void setIndex(final int index) {
-        if (index == getIndex()) return;
-
         final int oldIndex = getIndex();
 
         int newIndex = index;

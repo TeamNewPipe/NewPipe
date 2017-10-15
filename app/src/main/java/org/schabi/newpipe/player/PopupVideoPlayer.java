@@ -53,7 +53,6 @@ import android.widget.Toast;
 
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
@@ -67,8 +66,6 @@ import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
-import org.schabi.newpipe.player.playback.MediaSourceManager;
-import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -593,6 +590,9 @@ public final class PopupVideoPlayer extends Service {
             intentFilter.addAction(ACTION_PLAY_PAUSE);
             intentFilter.addAction(ACTION_OPEN_DETAIL);
             intentFilter.addAction(ACTION_REPEAT);
+
+            intentFilter.addAction(Intent.ACTION_SCREEN_ON);
+            intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
         }
 
         @Override
@@ -611,6 +611,12 @@ public final class PopupVideoPlayer extends Service {
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();
+                    break;
+                case Intent.ACTION_SCREEN_ON:
+                    enableVideoRenderer(true);
+                    break;
+                case Intent.ACTION_SCREEN_OFF:
+                    enableVideoRenderer(false);
                     break;
             }
         }
@@ -663,6 +669,20 @@ public final class PopupVideoPlayer extends Service {
             showAndAnimateControl(R.drawable.ic_replay_white, false);
         }
 
+        /*//////////////////////////////////////////////////////////////////////////
+        // Utils
+        //////////////////////////////////////////////////////////////////////////*/
+
+        public void enableVideoRenderer(final boolean enable) {
+            final int videoRendererIndex = getVideoRendererIndex();
+            if (trackSelector != null && videoRendererIndex != -1) {
+                trackSelector.setRendererDisabled(videoRendererIndex, !enable);
+            }
+        }
+
+        /*//////////////////////////////////////////////////////////////////////////
+        // Getters
+        //////////////////////////////////////////////////////////////////////////*/
 
         @SuppressWarnings("WeakerAccess")
         public TextView getResizingIndicator() {
