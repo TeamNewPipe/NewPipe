@@ -255,4 +255,5 @@ o modo “popup“</string>
     <string name="history_empty">O histórico está vazio</string>
     <string name="history_cleared">Histórico eliminado</string>
     <string name="item_deleted">Objeto eliminado</string>
+<string name="delete_item_search_history">Deseja apagar este item do histórico de pesquisa?</string>
 </resources>
