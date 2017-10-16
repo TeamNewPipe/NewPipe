@@ -65,6 +65,7 @@ import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.InfoCache;
 import org.schabi.newpipe.util.ListHelper;
@@ -110,7 +111,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private boolean wasRelatedStreamsExpanded = false;
 
     @State
-    protected int serviceId = -1;
+    protected int serviceId = Constants.NO_SERVICE_ID;
     @State
     protected String name;
     @State

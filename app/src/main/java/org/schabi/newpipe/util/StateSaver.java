@@ -21,6 +21,7 @@ package org.schabi.newpipe.util;
 
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -29,6 +30,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
 
 import java.io.File;
@@ -110,6 +112,7 @@ public class StateSaver {
     /**
      * Try to restore the state from memory and disk, using the {@link StateSaver.WriteRead#readFrom(Queue)} from the writeRead.
      */
+    @Nullable
     private static SavedState tryToRestore(@NonNull SavedState savedState, @NonNull WriteRead writeRead) {
         if (MainActivity.DEBUG) {
             Log.d(TAG, "tryToRestore() called with: savedState = [" + savedState + "], writeRead = [" + writeRead + "]");
@@ -117,7 +120,7 @@ public class StateSaver {
 
         FileInputStream fileInputStream = null;
         try {
-            Queue<Object> savedObjects = stateObjectsHolder.remove(savedState.prefixFileSaved);
+            Queue<Object> savedObjects = stateObjectsHolder.remove(savedState.getPrefixFileSaved());
             if (savedObjects != null) {
                 writeRead.readFrom(savedObjects);
                 if (MainActivity.DEBUG) {
@@ -126,8 +129,13 @@ public class StateSaver {
                 return savedState;
             }
 
-            File file = new File(savedState.pathFileSaved);
-            if (!file.exists()) return null;
+            File file = new File(savedState.getPathFileSaved());
+            if (!file.exists()) {
+                if(MainActivity.DEBUG) {
+                    Log.d(TAG, "Cache file doesn't exist: " + file.getAbsolutePath());
+                }
+                return null;
+            }
 
             fileInputStream = new FileInputStream(file);
             ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
@@ -139,7 +147,7 @@ public class StateSaver {
 
             return savedState;
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "Failed to restore state", e);
         } finally {
             if (fileInputStream != null) {
                 try {
@@ -154,10 +162,17 @@ public class StateSaver {
     /**
      * @see #tryToSave(boolean, String, String, WriteRead)
      */
+    @Nullable
     public static SavedState tryToSave(boolean isChangingConfig, @Nullable SavedState savedState, Bundle outState, WriteRead writeRead) {
-        String currentSavedPrefix = savedState == null || TextUtils.isEmpty(savedState.prefixFileSaved)
-                ? System.nanoTime() - writeRead.hashCode() + ""
-                : savedState.prefixFileSaved;
+        @NonNull
+        String currentSavedPrefix;
+        if (savedState == null || TextUtils.isEmpty(savedState.getPrefixFileSaved())) {
+            // Generate unique prefix
+            currentSavedPrefix = System.nanoTime() - writeRead.hashCode() + "";
+        } else {
+            // Reuse prefix
+            currentSavedPrefix = savedState.getPrefixFileSaved();
+        }
 
         savedState = tryToSave(isChangingConfig, currentSavedPrefix, writeRead.generateSuffix(), writeRead);
         if (savedState != null) {
@@ -173,22 +188,33 @@ public class StateSaver {
      * to the file with the name of prefixFileName + suffixFileName, in a cache folder got from the {@link #init(Context)}.
      * <p>
      * It checks if the file already exists and if it does, just return the path, so a good way to save is:
-     * <li> A fixed prefix for the file
-     * <li> A changing suffix
+     * <ul>
+     * <li> A fixed prefix for the file</li>
+     * <li> A changing suffix</li>
+     * </ul>
+     *
+     * @param isChangingConfig
+     * @param prefixFileName
+     * @param suffixFileName
+     * @param writeRead
      */
+    @Nullable
     private static SavedState tryToSave(boolean isChangingConfig, final String prefixFileName, String suffixFileName, WriteRead writeRead) {
         if (MainActivity.DEBUG) {
             Log.d(TAG, "tryToSave() called with: isChangingConfig = [" + isChangingConfig + "], prefixFileName = [" + prefixFileName + "], suffixFileName = [" + suffixFileName + "], writeRead = [" + writeRead + "]");
         }
 
-        Queue<Object> savedObjects = new LinkedList<>();
+        LinkedList<Object> savedObjects = new LinkedList<>();
         writeRead.writeTo(savedObjects);
 
         if (isChangingConfig) {
             if (savedObjects.size() > 0) {
                 stateObjectsHolder.put(prefixFileName, savedObjects);
                 return new SavedState(prefixFileName, "");
-            } else return null;
+            } else {
+                if(MainActivity.DEBUG) Log.d(TAG, "Nothing to save");
+                return null;
+            }
         }
 
         FileOutputStream fileOutputStream = null;
@@ -197,8 +223,12 @@ public class StateSaver {
             if (!cacheDir.exists()) throw new RuntimeException("Cache dir does not exist > " + cacheDirPath);
             cacheDir = new File(cacheDir, CACHE_DIR_NAME);
             if (!cacheDir.exists()) {
-                boolean mkdirResult = cacheDir.mkdir();
-                if (!mkdirResult) return null;
+                if(!cacheDir.mkdir()) {
+                    if(BuildConfig.DEBUG) {
+                        Log.e(TAG, "Failed to create cache directory " + cacheDir.getAbsolutePath());
+                    }
+                    return null;
+                }
             }
 
             if (TextUtils.isEmpty(suffixFileName)) suffixFileName = ".cache";
@@ -214,7 +244,9 @@ public class StateSaver {
                         return name.contains(prefixFileName);
                     }
                 });
-                for (File file1 : files) file1.delete();
+                for (File fileToDelete : files) {
+                    fileToDelete.delete();
+                }
             }
 
             fileOutputStream = new FileOutputStream(file);
@@ -223,7 +255,7 @@ public class StateSaver {
 
             return new SavedState(prefixFileName, file.getAbsolutePath());
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "Failed to save state", e);
         } finally {
             if (fileOutputStream != null) {
                 try {
@@ -241,11 +273,11 @@ public class StateSaver {
     public static void onDestroy(SavedState savedState) {
         if (MainActivity.DEBUG) Log.d(TAG, "onDestroy() called with: savedState = [" + savedState + "]");
 
-        if (savedState != null && !TextUtils.isEmpty(savedState.pathFileSaved)) {
-            stateObjectsHolder.remove(savedState.prefixFileSaved);
+        if (savedState != null && !TextUtils.isEmpty(savedState.getPathFileSaved())) {
+            stateObjectsHolder.remove(savedState.getPrefixFileSaved());
             try {
                 //noinspection ResultOfMethodCallIgnored
-                new File(savedState.pathFileSaved).delete();
+                new File(savedState.getPathFileSaved()).delete();
             } catch (Exception ignored) {
             }
         }
@@ -271,9 +303,12 @@ public class StateSaver {
     // Inner
     //////////////////////////////////////////////////////////////////////////*/
 
+    /**
+     * Information about the saved state on the disk
+     */
     public static class SavedState implements Parcelable {
-        public String prefixFileSaved;
-        public String pathFileSaved;
+        private final String prefixFileSaved;
+        private final String pathFileSaved;
 
         public SavedState(String prefixFileSaved, String pathFileSaved) {
             this.prefixFileSaved = prefixFileSaved;
@@ -287,7 +322,7 @@ public class StateSaver {
 
         @Override
         public String toString() {
-            return prefixFileSaved + " > " + pathFileSaved;
+            return getPrefixFileSaved() + " > " + getPathFileSaved();
         }
 
         @Override
@@ -313,6 +348,22 @@ public class StateSaver {
                 return new SavedState[size];
             }
         };
+
+        /**
+         * Get the prefix of the saved file
+         * @return the file prefix
+         */
+        public String getPrefixFileSaved() {
+            return prefixFileSaved;
+        }
+
+        /**
+         * Get the path to the saved file
+         * @return the path to the saved file
+         */
+        public String getPathFileSaved() {
+            return pathFileSaved;
+        }
     }
 
 
