@@ -257,4 +257,5 @@
 </plurals>
 
     <string name="item_deleted">Элемент удалён</string>
+<string name="delete_item_search_history">Удалить этот элемент из истории поиска?</string>
 </resources>
