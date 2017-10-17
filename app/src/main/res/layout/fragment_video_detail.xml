@@ -64,7 +64,7 @@
                     android:paddingTop="10dp"
                     android:layout_gravity="center"
                     android:textColor="@android:color/white"
-                    android:textSize="26sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:text="@string/hold_to_append"
                     android:visibility="gone"

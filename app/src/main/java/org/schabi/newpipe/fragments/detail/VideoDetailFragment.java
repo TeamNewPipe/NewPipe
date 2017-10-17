@@ -480,6 +480,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         return new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (!PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.show_hold_to_append_key), true)) return false;
+
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     appendControlsDetail.setVisibility(View.VISIBLE);
                 } else {
