@@ -253,4 +253,5 @@
     <string name="history_empty">Historikken er tom</string>
     <string name="history_cleared">Historikk tømt</string>
     <string name="item_deleted">Element slettet</string>
+<string name="delete_item_search_history">Ønsker du å slette dette elementet fra søkehistorikken?</string>
 </resources>

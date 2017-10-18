@@ -1,4 +1,4 @@
-package us.shandian.giga.get.get;
+package us.shandian.giga.get;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -151,6 +151,36 @@ public class DownloadManagerImplTest {
     public void getMission() throws Exception {
         assertSame(missions.get(0), downloadManager.getMission(0));
         assertSame(missions.get(1), downloadManager.getMission(1));
+    }
+
+    @Test
+    public void sortByTimestamp() throws Exception {
+        ArrayList<DownloadMission> downloadMissions = new ArrayList<>();
+        DownloadMission mission = new DownloadMission();
+        mission.timestamp = 0;
+
+        DownloadMission mission1 = new DownloadMission();
+        mission1.timestamp = Integer.MAX_VALUE + 1L;
+
+        DownloadMission mission2 = new DownloadMission();
+        mission2.timestamp = 2L * Integer.MAX_VALUE ;
+
+        DownloadMission mission3 = new DownloadMission();
+        mission3.timestamp = 2L * Integer.MAX_VALUE + 5L;
+
+
+        downloadMissions.add(mission3);
+        downloadMissions.add(mission1);
+        downloadMissions.add(mission2);
+        downloadMissions.add(mission);
+
+
+        DownloadManagerImpl.sortByTimestamp(downloadMissions);
+
+        assertEquals(mission, downloadMissions.get(0));
+        assertEquals(mission1, downloadMissions.get(1));
+        assertEquals(mission2, downloadMissions.get(2));
+        assertEquals(mission3, downloadMissions.get(3));
     }
 
 }

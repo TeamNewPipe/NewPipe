@@ -25,3 +25,13 @@
 -dontwarn org.mozilla.javascript.tools.**
 -dontwarn android.arch.util.paging.CountedDataSource
 -dontwarn android.arch.persistence.room.paging.LimitOffsetDataSource
+
+
+# Rules for icepick. Copy paste from https://github.com/frankiesardo/icepick
+-dontwarn icepick.**
+-keep class icepick.** { *; }
+-keep class **$$Icepick { *; }
+-keepclasseswithmembernames class * {
+    @icepick.* <fields>;
+}
+-keepnames class * { @icepick.State *;}

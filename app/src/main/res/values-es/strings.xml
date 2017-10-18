@@ -72,7 +72,7 @@
     <string name="show_age_restricted_content_title">Mostrar contenido restringido por edad</string>
     <string name="video_is_age_restricted">Vídeo restringido por edad. Permitir este tipo de material es posible desde Ajustes.</string>
 
-    <string name="main_bg_subtitle">Toque buscar para empezar</string>
+    <string name="main_bg_subtitle">Toque en buscar para empezar</string>
     <string name="autoplay_by_calling_app_title">Autoreproducir</string>
     <string name="autoplay_by_calling_app_summary">Reproducir automáticamente un vídeo cuando NewPipe es llamado desde otra aplicación</string>
     <string name="duration_live">en vivo</string>
@@ -259,4 +259,5 @@ abrir en modo popup</string>
 </plurals>
 
     <string name="item_deleted">Elemento eliminado</string>
+<string name="delete_item_search_history">¿Desea eliminar este elemento del historial de búsqueda?</string>
 </resources>

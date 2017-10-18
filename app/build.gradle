@@ -8,8 +8,8 @@ android {
         applicationId "org.schabi.newpipe"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 38
-        versionName "0.10.0"
+        versionCode 39
+        versionName "0.10.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -25,6 +25,9 @@ android {
 
             debuggable true
             applicationIdSuffix ".debug"
+        }
+        beta {
+            applicationIdSuffix ".beta"
         }
     }
 
@@ -45,7 +48,7 @@ dependencies {
         exclude module: 'support-annotations'
     }
 
-    compile 'com.github.TeamNewPipe:NewPipeExtractor:7ae274b'
+    compile 'com.github.TeamNewPipe:NewPipeExtractor:1df3f67'
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
@@ -62,7 +65,7 @@ dependencies {
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.nirhart:parallaxscroll:1.0'
-    compile 'com.nononsenseapps:filepicker:3.0.0'
+    compile 'com.nononsenseapps:filepicker:3.0.1'
     compile 'com.google.android.exoplayer:exoplayer:r2.5.1'
 
     debugCompile 'com.facebook.stetho:stetho:1.5.0'

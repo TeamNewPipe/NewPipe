@@ -7,6 +7,7 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
+import org.schabi.newpipe.util.Constants;
 
 import static org.schabi.newpipe.database.subscription.SubscriptionEntity.SUBSCRIPTION_SERVICE_ID;
 import static org.schabi.newpipe.database.subscription.SubscriptionEntity.SUBSCRIPTION_TABLE;
@@ -28,7 +29,7 @@ public class SubscriptionEntity {
     private long uid = 0;
 
     @ColumnInfo(name = SUBSCRIPTION_SERVICE_ID)
-    private int serviceId = -1;
+    private int serviceId = Constants.NO_SERVICE_ID;
 
     @ColumnInfo(name = SUBSCRIPTION_URL)
     private String url;

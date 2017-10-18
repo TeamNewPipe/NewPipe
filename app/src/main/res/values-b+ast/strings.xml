@@ -2,7 +2,7 @@
 <resources>
     <string name="main_bg_subtitle">Calca na gueta pa entamar</string>
     <string name="view_count_text">%1$s visiones</string>
-    <string name="upload_date_text">Espublizáu\'l %1$s</string>
+    <string name="upload_date_text">Espublizóse\'l %1$s</string>
     <string name="no_player_found">Nun s\'alcontró un reproductor de fluxos. ¿Quies instalar VLC?</string>
     <string name="install">Instalar</string>
     <string name="cancel">Encaboxar</string>
@@ -14,15 +14,15 @@
     <string name="did_you_mean">¿Quixesti dicir %1$s?</string>
     <string name="share_dialog_title">Compartir con</string>
     <string name="choose_browser">Escoyer restolador</string>
-    <string name="screen_rotation">rotación</string>
-    <string name="use_external_video_player_title">Usar reproductor de videu esternu</string>
-    <string name="use_external_audio_player_title">Usar reproductor d\'audiu esternu</string>
+    <string name="screen_rotation">voltéu</string>
+    <string name="use_external_video_player_title">Usar reproductor esternu de videu</string>
+    <string name="use_external_audio_player_title">Usar reproductor esternu d\'audiu</string>
 
     <string name="download_path_title">Camín de descarga de vídeos</string>
-    <string name="download_path_summary">Camín nel qu\'atroxar los vídeos baxaos.</string>
+    <string name="download_path_summary">Camín nel qu\'atroxar los vídeos baxaos</string>
     <string name="download_path_dialog_title">Introducir camín de descarga pa vídeos</string>
 
-    <string name="download_path_audio_title">Camín de descarga d\'audiu</string>
+    <string name="download_path_audio_title">Camín de descarga p\'audios</string>
     <string name="download_path_audio_summary">Camín nel qu\'atroxar los audios baxaos.</string>
     <string name="download_path_audio_dialog_title">Introducir camín de descarga pa ficheros d\'audiu</string>
 
@@ -30,11 +30,11 @@
     <string name="play_with_kodi_title">Reproducir con Kodi</string>
     <string name="kore_not_found">Nun s\'alcontró Kore. ¿Instalalu?</string>
     <string name="show_play_with_kodi_title">Amosar opción «Reproducir con Kodi»</string>
-    <string name="show_play_with_kodi_summary">Amuesa una opción pa reproducir un videu per Kodi.</string>
+    <string name="show_play_with_kodi_summary">Amuesa una opción pa reproducir un videu per Kodi</string>
     <string name="play_audio">Audiu</string>
-    <string name="default_audio_format_title">Formatu d\'audiu por defeutu</string>
+    <string name="default_audio_format_title">Formatu por defeutu d\'audiu</string>
     <string name="webm_description">WebM — formatu llibre</string>
-    <string name="m4a_description">m4a — calidá meyor</string>
+    <string name="m4a_description">M4A — calidá meyor</string>
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Escuru</string>
     <string name="light_theme_title">Claru</string>
@@ -43,15 +43,15 @@
     <string name="next_video_title">Videu siguiente</string>
     <string name="show_next_and_similar_title">Amosar vídeos siguientes y asemeyaos</string>
     <string name="url_not_supported_toast">URL non sofitada</string>
-    <string name="search_language_title">Llingua de conteníu preferíu</string>
+    <string name="search_language_title">Llingua por defeutu del conteníu</string>
     <string name="settings_category_video_audio_title">Videu y audiu</string>
     <string name="settings_category_appearance_title">Aspeutu</string>
     <string name="settings_category_other_title">Otru</string>
     <string name="background_player_playing_toast">Reproduciendo de fondu</string>
     <string name="play_btn_text">Reproducir</string>
     <string name="content">Conteníu</string>
-    <string name="show_age_restricted_content_title">Amosar conteníu restrinxíu pola edá</string>
-    <string name="video_is_age_restricted">El videu ta restrinxíu pola edá. Deshabilita esto diendo primero a axustes.</string>
+    <string name="show_age_restricted_content_title">Amosar conteníu torgáu pola edá</string>
+    <string name="video_is_age_restricted">El videu ta torgáu pola edá. Desactiva esto diendo primero a axustes.</string>
     <string name="duration_live">en direuto</string>
     <string name="downloads">Descargues</string>
     <string name="downloads_title">Descargues</string>
@@ -60,16 +60,16 @@
     <string name="general_error">Fallu</string>
     <string name="network_error">Fallu de rede</string>
     <string name="could_not_load_thumbnails">Nun pudieron cargase toles miniatures</string>
-    <string name="youtube_signature_decryption_error">Nun pudo descargase la robla de la url del videu.</string>
-    <string name="parsing_error">Nun pudo analizase\'l sitiu web.</string>
-    <string name="light_parsing_error">Nun pudo analizase dafechu\'l sitiu web.</string>
-    <string name="content_not_available">Conteníu non disponible.</string>
-    <string name="blocked_by_gema">Bloquiáu por GEMA.</string>
-    <string name="could_not_setup_download_menu">Nun pudo configurase\'l menú de descarga.</string>
-    <string name="live_streams_not_supported">Esto ye una tresmisión de direuto pero entá nun ta sofitao.</string>
-    <string name="could_not_get_stream">Nun pudo consiguise tresmisión dala.</string>
+    <string name="youtube_signature_decryption_error">Nun pudo descifrase la robla de la URL</string>
+    <string name="parsing_error">Nun pudo analizase\'l sitiu web</string>
+    <string name="light_parsing_error">Nun pudo analizase dafechu\'l sitiu web</string>
+    <string name="content_not_available">Conteníu non disponible</string>
+    <string name="blocked_by_gema">Bloquiáu por GEMA</string>
+    <string name="could_not_setup_download_menu">Nun pudo configurase\'l menú de descarga</string>
+    <string name="live_streams_not_supported">Esto ye una tresmisión de direuto qu\'entá nun se sofita.</string>
+    <string name="could_not_get_stream">Nun pudo consiguise tresmisión dala</string>
     <string name="sorry_string">Perdón, eso nun debió asoceder.</string>
-    <string name="error_report_button_text">Fallu d\'informe per corréu</string>
+    <string name="error_report_button_text">Informar per corréu del fallu</string>
     <string name="error_snackbar_message">Perdón, asocedieron dellos fallos.</string>
     <string name="error_snackbar_action">INFORMAR</string>
     <string name="what_device_headline">Información:</string>
@@ -78,11 +78,11 @@
     <string name="error_details_headline">Detalles:</string>
 
 
-    <string name="list_thumbnail_view_description">Miniatura de previsualización de videu</string>
-    <string name="detail_thumbnail_view_description">Miniatura de previsualización de videu</string>
+    <string name="list_thumbnail_view_description">Miniatura de previsualización del videu</string>
+    <string name="detail_thumbnail_view_description">Miniatura de previsualización del videu</string>
     <string name="detail_likes_img_view_description">Préstames</string>
     <string name="use_tor_title">Usar Tor</string>
-    <string name="use_tor_summary">(Esperimental) Forcia\'l tráficu de descargues pente Tor pa más privacidá (la tresmisión de vídeos entá nun ta sofitao).</string>
+    <string name="use_tor_summary">(Esperimental) Forcia\'l tráficu de descargues pente Tor pa más privacidá (la tresmisión de vídeos entá nun se sofita).</string>
     <string name="report_error">Informa d\'un fallu</string>
     <string name="user_report">Informe d\'usuariu</string>
 
@@ -92,11 +92,11 @@
     <string name="video">Videu</string>
     <string name="audio">Audiu</string>
     <string name="retry">Retentar</string>
-    <string name="storage_permission_denied">Ñegóse l\'accesu al almacenamientu</string>
+    <string name="storage_permission_denied">Ñegóse\'l permisu d\'accesu al almacenamientu</string>
 
     <string name="start">Aniciar</string>
     <string name="pause">Posar</string>
-    <string name="view">Ver</string>
+    <string name="view">Reproducir</string>
     <string name="delete">Desaniciar</string>
     <string name="checksum">Suma de comprobación</string>
 
@@ -110,23 +110,23 @@
     <string name="msg_url_malform">URL malformada o internet non disponible</string>
     <string name="msg_running_detail">Calca pa detallles</string>
     <string name="msg_wait">Espera, por favor…</string>
-    <string name="msg_copied">Copióse al cartafueyu.</string>
-    <string name="no_available_dir">Esbilla un direutoriu de descarga disponible, por favor.</string>
+    <string name="msg_copied">Copióse al cartafueyu</string>
+    <string name="no_available_dir">Esbilla una carpeta disponible de descarga, por favor</string>
 
-    <string name="autoplay_by_calling_app_summary">Auto-reproduz un videu al llamar a NewPipe dende otra aplicación.</string>
-    <string name="autoplay_by_calling_app_title">Auto-reproducir al llamar dende otra aplicación</string>
-    <string name="detail_uploader_thumbnail_view_description">Miniatura del xubidor</string>
+    <string name="autoplay_by_calling_app_summary">Auto-reproduz un videu al llamar a NewPipe dende otra aplicación</string>
+    <string name="autoplay_by_calling_app_title">Auto-reproducción</string>
+    <string name="detail_uploader_thumbnail_view_description">Miniatura del avatar del xubidor</string>
     <string name="detail_dislikes_img_view_description">Despréstames</string>
 
 
     <string name="msg_running">NewPipe baxando</string>
     <string name="could_not_load_image">Nun pudo cargase la imaxe</string>
     <string name="app_ui_crash">Cascó l\'aplicación/IU</string>
-    <string name="info_labels"/>
+    <string name="info_labels">Lo qu\'asocedió:\\nSolicitú:\\nLlingua del conteníu:\\nServiciu:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del SO:\\nRangu global d\'IP:</string>
     <string name="open_in_popup_mode">Abrir en ventanu emerxente</string>
     <string name="popup_mode_share_menu_title">Mou de ventanu emerxente de NewPipe</string>
 
-    <string name="default_video_format_title">Formatu preferíu de videu</string>
+    <string name="default_video_format_title">Formatu por defeutu de videu</string>
     <string name="black_theme_title">Prietu</string>
 
     <string name="popup_playing_toast">Reproduciendo en ventanu emerxente</string>
@@ -134,7 +134,7 @@
     <string name="channel">Canal</string>
     <string name="yes">Sí</string>
     <string name="later">Más sero</string>
-    <string name="disabled">Deshabilitóse</string>
+    <string name="disabled">Desactivóse</string>
 
     <string name="use_old_player_title">Usar reproductor vieyu</string>
 
@@ -142,26 +142,26 @@
     <string name="short_thousand">M</string>
     <string name="short_million">Mill</string>
     <string name="short_billion">MMill</string>
-    <string name="msg_popup_permission">Precísase esti permisu pa
-abrir en ventanu emerxente</string>
+    <string name="msg_popup_permission">Precísase esti permisu p\'abrir
+\nen ventanu emerxente</string>
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">Prueba reCAPTCHA</string>
-    <string name="recaptcha_request_toast">Prueba reCAPTCHA solicitada</string>
+    <string name="recaptcha_request_toast">Solicitóse la prueba reCAPTCHA</string>
 
     <string name="controls_background_title">Fondu</string>
     <string name="controls_popup_title">Ventanu emerxente</string>
 
-    <string name="default_popup_resolution_title">Resolución por defeutu de ventanu emerxente</string>
+    <string name="default_popup_resolution_title">Resolución por defeutu del ventanu emerxente</string>
     <string name="show_higher_resolutions_title">Amosar resoluciones más altes</string>
-    <string name="show_higher_resolutions_summary">Namái dellos preseos sofiten vídeos en 2k/4k</string>
+    <string name="show_higher_resolutions_summary">Namái dellos preseos sofiten vídeos en 2K/4K</string>
     <string name="filter">Peñera</string>
     <string name="refresh">Refrescar</string>
     <string name="clear">Llimpiar</string>
 
-    <string name="use_external_video_player_summary">Delles resoluciones NUN tendrán audiu al habilitar esta opción</string>
-    <string name="popup_remember_size_pos_title">Tamañu y posición del ventanu emerxente</string>
-    <string name="popup_remember_size_pos_summary">Recuerda la cabera posición y resolución afitada nel ventanu emerxente</string>
+    <string name="use_external_video_player_summary">Delles resoluciones NUN tendrán audiu al activar esta opción</string>
+    <string name="popup_remember_size_pos_title">Recuerdar tamañu y posición del ventanu emerxente</string>
+    <string name="popup_remember_size_pos_summary">Recuerda la cabera posición y resolución afitaes nel ventanu emerxente</string>
     <string name="player_gesture_controls_title">Controles per xestos del reproductor</string>
     <string name="player_gesture_controls_summary">Usa xestos pa controlar el brilléu y volume del reproductor</string>
     <string name="show_search_suggestions_title">Suxerencies de gueta</string>
@@ -170,5 +170,87 @@ abrir en ventanu emerxente</string>
     <string name="settings_category_popup_title">Ventanu emerxente</string>
     <string name="popup_resizing_indicator_title">Redimensionáu</string>
 
-    <string name="use_old_player_summary">Compilación vieya del reproductor Mediaframework.</string>
+    <string name="use_old_player_summary">Reproductor vieyu integráu de Mediaframework</string>
+<string name="subscribe_button_title">Soscribise</string>
+    <string name="subscribed_button_title">Soscribiéstite</string>
+    <string name="channel_unsubscribed">Desoscribiéstite de la canal</string>
+    <string name="subscription_change_failed">Nun pue camudase la resolución</string>
+    <string name="subscription_update_failed">Nun pue anovase la soscripción</string>
+
+    <string name="tab_main">Principal</string>
+    <string name="tab_subscriptions">Soscripciones</string>
+
+    <string name="fragment_whats_new">Qué hai nuevo</string>
+
+    <string name="enable_search_history_title">Historial de gueta</string>
+    <string name="enable_search_history_summary">Atroxa de mou llocal les solicitúes de gueta</string>
+    <string name="enable_watch_history_title">Historial</string>
+    <string name="enable_watch_history_summary">Fai un siguimientu de los vídeos vistos</string>
+    <string name="resume_on_audio_focus_gain_title">Siguir al ganar el focu</string>
+    <string name="resume_on_audio_focus_gain_summary">Sigue reproduciendo tres les interrupciones (por exemplu, llamaes de teléfonu)</string>
+    <string name="settings_category_player_title">Reproductor</string>
+    <string name="settings_category_player_behavior_title">Comportamientu</string>
+    <string name="settings_category_history_title">Historial</string>
+    <string name="playlist">Llistáu de reproducción</string>
+    <string name="best_resolution">La meyor resolución</string>
+    <string name="undo">Desfacer</string>
+
+    <string name="notification_channel_name">Avisu de NewPipe</string>
+    <string name="notification_channel_description">Avisos pa los reproductores de fondu y en ventanu emerxente de NewPipe</string>
+
+    <string name="search_no_results">Ensin resultaos</string>
+    <string name="empty_subscription_feed_subtitle">Equí nun hai más que grillos</string>
+
+    <string name="no_subscribers">Ensin soscriptores</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s soscriptor</item>
+	<item quantity="other">%s soscriptores</item>
+</plurals>
+
+    <string name="no_views">Ensin visionaos</string>
+    <plurals name="views">
+	<item quantity="one">%s visionáu</item>
+	<item quantity="other">%s visionaos</item>
+</plurals>
+
+    <string name="no_videos">Nun hai vídeos</string>
+    <plurals name="videos">
+	<item quantity="one">%s videu</item>
+	<item quantity="other">%s vídeos</item>
+</plurals>
+
+    <string name="settings_category_downloads_title">Descargues</string>
+    <string name="settings_file_charset_title">Caráuteres permitíos nos nomes de ficheros</string>
+    <string name="settings_file_replacement_character_summary">Los caráuteres non válidos tróquense por esti valor</string>
+    <string name="settings_file_replacement_character_title">Troquéu de caráuteres</string>
+
+    <string name="charset_letters_and_digits">Lletres y díxitos</string>
+    <string name="charset_most_special_characters">La mayoría de caráuteres especiales</string>
+
+    <string name="title_activity_about">Tocante a NewPipe</string>
+    <string name="action_settings">Axustes</string>
+    <string name="action_about">Tocante a</string>
+    <string name="title_licenses">Llicencies de terceros</string>
+    <string name="copyright" formatted="true">© %1$s por %2$s so la %3$s</string>
+    <string name="error_unable_to_load_license">Nun pudo cargase la llicencia</string>
+    <string name="action_open_website">Abrir sitiu web</string>
+    <string name="tab_about">Tocante a</string>
+    <string name="tab_contributors">Collaboradores</string>
+    <string name="tab_licenses">Llicencies</string>
+    <string name="app_description">Un frontal llixeru de YouTube p\'Android.</string>
+    <string name="view_on_github">Ver en GitHub</string>
+    <string name="app_license_title">Llicencia de NewPipe</string>
+    <string name="contribution_encouragement">Si tienes idees, quies traducir, facer cambeos, llimpiar el códigu u otres coses, l\'ayuda siempres s\'agradez. ¡Cuánto más se faiga, más s\'ameyora!</string>
+    <string name="read_full_license">Lleer llicencia</string>
+    <string name="contribution_title">Collaboración</string>
+
+    <string name="title_activity_history">Historial</string>
+    <string name="title_history_search">Guetao</string>
+    <string name="title_history_view">Visto</string>
+    <string name="history_disabled">L\'historial ta desactiváu</string>
+    <string name="action_history">Historial</string>
+    <string name="history_empty">L\'historial ta baleru</string>
+    <string name="history_cleared">Llimpióse l\'historial</string>
+    <string name="item_deleted">Desanicióse l\'elementu</string>
+    <string name="delete_item_search_history">¿Quies desaniciar esti elementu del historial de gueta?</string>
 </resources>
