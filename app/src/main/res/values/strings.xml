@@ -266,4 +266,11 @@
     <string name="history_cleared">History cleared</string>
     <string name="item_deleted">Item deleted</string>
     <string name="delete_item_search_history">Do you want to delete this item from search history?</string>
+    <string name="import_subscriptions">Import subscriptions</string>
+    <string name="title_activity_import">Import subscriptions</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="import_subscriptions_description">Select an OPML file containing the subscriptions you want to import.</string>
+    <string name="select_file">Seleft file</string>
 </resources>
