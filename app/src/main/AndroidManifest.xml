@@ -62,6 +62,10 @@
             android:label="@string/title_activity_import"/>
 
         <activity
+            android:name=".export_subscriptions.ExportActivity"
+            android:label="@string/title_activity_export"/>
+
+        <activity
             android:name=".history.HistoryActivity"
             android:label="@string/title_activity_history"/>
 

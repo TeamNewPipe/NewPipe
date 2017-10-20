@@ -28,4 +28,9 @@
         android:orderInCategory="1001"
         android:title="@string/import_subscriptions" />
 
+    <item
+        android:id="@+id/action_export_subscriptions"
+        android:orderInCategory="1002"
+        android:title="@string/export_subscriptions" />
+
 </menu>

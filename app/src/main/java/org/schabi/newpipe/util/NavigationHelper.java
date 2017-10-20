@@ -13,6 +13,7 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.about.AboutActivity;
 import org.schabi.newpipe.download.DownloadActivity;
+import org.schabi.newpipe.export_subscriptions.ExportActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -233,6 +234,15 @@ public class NavigationHelper {
             return false;
         }
         Intent intent = new Intent(activity, ImportActivity.class);
+        activity.startActivity(intent);
+        return true;
+    }
+
+    public static boolean openExport(Activity activity) {
+        if (!PermissionHelper.checkStoragePermissions(activity)) {
+            return false;
+        }
+        Intent intent = new Intent(activity, ExportActivity.class);
         activity.startActivity(intent);
         return true;
     }

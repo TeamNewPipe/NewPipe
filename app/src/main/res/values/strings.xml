@@ -273,4 +273,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="import_subscriptions_description">Select an OPML file to import</string>
     <string name="select_file">Select file</string>
+    <string name="export_subscriptions_description">Select a file to export your subscriptions</string>
+    <string name="export_subscriptions">Export subscriptions</string>
+    <string name="title_activity_export">Export subscriptions</string>
 </resources>
