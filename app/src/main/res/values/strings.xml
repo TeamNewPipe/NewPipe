@@ -271,6 +271,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="import_subscriptions_description">Select an OPML file containing the subscriptions you want to import.</string>
-    <string name="select_file">Seleft file</string>
+    <string name="import_subscriptions_description">Select an OPML file to import</string>
+    <string name="select_file">Select file</string>
 </resources>

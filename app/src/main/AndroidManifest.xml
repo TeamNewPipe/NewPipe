@@ -58,6 +58,10 @@
             android:label="@string/title_activity_about"/>
 
         <activity
+            android:name=".import_subscriptions.ImportActivity"
+            android:label="@string/title_activity_import"/>
+
+        <activity
             android:name=".history.HistoryActivity"
             android:label="@string/title_activity_history"/>
 

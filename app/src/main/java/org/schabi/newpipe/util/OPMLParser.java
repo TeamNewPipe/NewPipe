@@ -2,18 +2,14 @@ package org.schabi.newpipe.util;
 
 
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
 import android.util.Xml;
 
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
