@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="org.schabi.newpipe.export_subscriptions.ExportActivity">
+    tools:context="org.schabi.newpipe.manage_subscriptions.ManageActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -26,8 +26,8 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <fragment android:name="org.schabi.newpipe.export_subscriptions.ExportActivity$ExportFragment"
-        android:id="@+id/export_fragment"
+    <fragment android:name="org.schabi.newpipe.manage_subscriptions.ManageActivity$ManageFragment"
+        android:id="@+id/manage_fragment"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

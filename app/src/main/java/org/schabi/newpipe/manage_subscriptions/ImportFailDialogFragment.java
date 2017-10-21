@@ -1,4 +1,4 @@
-package org.schabi.newpipe.import_subscriptions;
+package org.schabi.newpipe.manage_subscriptions;
 
 import android.app.Dialog;
 import android.content.DialogInterface;

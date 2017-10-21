@@ -24,13 +24,8 @@
         android:title="@string/action_about" />
 
     <item
-        android:id="@+id/action_import_subscriptions"
-        android:orderInCategory="1001"
-        android:title="@string/import_subscriptions" />
-
-    <item
-        android:id="@+id/action_export_subscriptions"
-        android:orderInCategory="1002"
-        android:title="@string/export_subscriptions" />
+        android:id="@+id/action_manage_subscriptions"
+        android:orderInCategory="1003"
+        android:title="@string/manage_subscriptions" />
 
 </menu>

@@ -2,18 +2,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.schabi.newpipe.export_subscriptions.ExportActivity$ExportFragment">
+    tools:context="org.schabi.newpipe.manage_subscriptions.ManageActivity$ManageFragment">
 
 
-    <TextView
-        android:id="@+id/import_description"
+    <Button
+        android:id="@+id/button_import"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button_export"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="48dp"
-        android:text="@string/export_subscriptions_description"
-        android:textSize="16sp" />
+        android:layout_alignLeft="@+id/button_export"
+        android:layout_alignStart="@+id/button_export"
+        android:layout_marginBottom="27dp"
+        android:text="@string/import_subscriptions"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="16sp"
+        android:theme="@style/RedButton" />
 
     <Button
         android:id="@+id/button_export"
@@ -22,7 +27,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="230dp"
-        android:text="@string/select_file"
+        android:text="@string/export_subscriptions"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"

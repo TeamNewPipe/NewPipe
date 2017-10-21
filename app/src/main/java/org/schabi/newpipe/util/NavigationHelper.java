@@ -13,7 +13,6 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.about.AboutActivity;
 import org.schabi.newpipe.download.DownloadActivity;
-import org.schabi.newpipe.export_subscriptions.ExportActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -27,12 +26,11 @@ import org.schabi.newpipe.fragments.list.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.history.HistoryActivity;
-import org.schabi.newpipe.import_subscriptions.ImportActivity;
+import org.schabi.newpipe.manage_subscriptions.ManageActivity;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.settings.SettingsActivity;
-import org.schabi.newpipe.import_subscriptions.ImportActivity;
 
 import java.util.ArrayList;
 
@@ -229,20 +227,11 @@ public class NavigationHelper {
         return true;
     }
 
-    public static boolean openImport(Activity activity) {
+    public static boolean openManage(Activity activity) {
         if (!PermissionHelper.checkStoragePermissions(activity)) {
             return false;
         }
-        Intent intent = new Intent(activity, ImportActivity.class);
-        activity.startActivity(intent);
-        return true;
-    }
-
-    public static boolean openExport(Activity activity) {
-        if (!PermissionHelper.checkStoragePermissions(activity)) {
-            return false;
-        }
-        Intent intent = new Intent(activity, ExportActivity.class);
+        Intent intent = new Intent(activity, ManageActivity.class);
         activity.startActivity(intent);
         return true;
     }

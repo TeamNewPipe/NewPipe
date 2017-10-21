@@ -201,10 +201,8 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
             case R.id.action_history:
                 NavigationHelper.openHistory(this);
                 return true;
-            case R.id.action_import_subscriptions:
-                return NavigationHelper.openImport(this);
-            case R.id.action_export_subscriptions:
-                return NavigationHelper.openExport(this);
+            case R.id.action_manage_subscriptions:
+                return NavigationHelper.openManage(this);
             default:
                 return super.onOptionsItemSelected(item);
         }
