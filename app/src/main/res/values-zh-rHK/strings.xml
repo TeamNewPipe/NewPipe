@@ -23,7 +23,7 @@
     <string name="play_audio">聲音</string>
     <string name="default_audio_format_title">預設聲音檔案格式</string>
     <string name="webm_description">WebM — 開放格式</string>
-    <string name="m4a_description">m4a — 更佳畫質</string>
+    <string name="m4a_description">M4A — 更佳畫質</string>
     <string name="theme_title">主題</string>
     <string name="dark_theme_title">黑暗</string>
     <string name="light_theme_title">明亮</string>
@@ -32,7 +32,7 @@
     <string name="next_video_title">下一部影片</string>
     <string name="show_next_and_similar_title">顯示下一部及相關的影片</string>
     <string name="url_not_supported_toast">不支援此網址</string>
-    <string name="search_language_title">喜好的內容語言</string>
+    <string name="search_language_title">預設內容語言</string>
     <string name="settings_category_video_audio_title">影片及聲音</string>
     <string name="settings_category_appearance_title">外觀</string>
     <string name="settings_category_other_title">其他</string>
@@ -59,7 +59,7 @@
     <string name="info_dir_created">已建立下載路徑「%1$s」</string>
     <string name="blocked_by_gema">內容被 GEMA 封鎖。</string>
     <string name="main_bg_subtitle">按一下搜尋按鈕以開始操作</string>
-    <string name="autoplay_by_calling_app_title">其他應用程式要求播放時，自動遵從指令</string>
+    <string name="autoplay_by_calling_app_title">自動撥放</string>
     <string name="autoplay_by_calling_app_summary">當其他應用程式要求播放影片時，NewPipe 將會自動播放</string>
     <string name="content">內容</string>
     <string name="show_age_restricted_content_title">顯示已設年齡限制的影片</string>
