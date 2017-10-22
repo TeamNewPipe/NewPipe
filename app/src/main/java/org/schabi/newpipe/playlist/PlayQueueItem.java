@@ -15,6 +15,8 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class PlayQueueItem implements Serializable {
+    final public static int DEFAULT_QUALITY = Integer.MIN_VALUE;
+    final public static long RECOVERY_UNSET = Long.MIN_VALUE;
 
     final private String title;
     final private String url;
@@ -23,28 +25,32 @@ public class PlayQueueItem implements Serializable {
     final private String thumbnailUrl;
     final private String uploader;
 
+    private int qualityIndex;
+    private long recoveryPosition;
     private Throwable error;
 
     private transient Single<StreamInfo> stream;
 
-    PlayQueueItem(final StreamInfo streamInfo) {
-        this.title = streamInfo.name;
-        this.url = streamInfo.url;
-        this.serviceId = streamInfo.service_id;
-        this.duration = streamInfo.duration;
-        this.thumbnailUrl = streamInfo.thumbnail_url;
-        this.uploader = streamInfo.uploader_name;
-
-        this.stream = Single.just(streamInfo);
+    PlayQueueItem(@NonNull final StreamInfo info) {
+        this(info.name, info.url, info.service_id, info.duration, info.thumbnail_url, info.uploader_name);
+        this.stream = Single.just(info);
     }
 
-    PlayQueueItem(final StreamInfoItem streamInfoItem) {
-        this.title = streamInfoItem.name;
-        this.url = streamInfoItem.url;
-        this.serviceId = streamInfoItem.service_id;
-        this.duration = streamInfoItem.duration;
-        this.thumbnailUrl = streamInfoItem.thumbnail_url;
-        this.uploader = streamInfoItem.uploader_name;
+    PlayQueueItem(@NonNull final StreamInfoItem item) {
+        this(item.name, item.url, item.service_id, item.duration, item.thumbnail_url, item.uploader_name);
+    }
+
+    private PlayQueueItem(final String name, final String url, final int serviceId,
+                          final long duration, final String thumbnailUrl, final String uploader) {
+        this.title = name;
+        this.url = url;
+        this.serviceId = serviceId;
+        this.duration = duration;
+        this.thumbnailUrl = thumbnailUrl;
+        this.uploader = uploader;
+
+        resetQualityIndex();
+        resetRecoveryPosition();
     }
 
     @NonNull
@@ -96,5 +102,33 @@ public class PlayQueueItem implements Serializable {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError(onError);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Item States
+    ////////////////////////////////////////////////////////////////////////////
+
+    public int getQualityIndex() {
+        return qualityIndex;
+    }
+
+    public long getRecoveryPosition() {
+        return recoveryPosition;
+    }
+
+    public void setQualityIndex(int qualityIndex) {
+        this.qualityIndex = qualityIndex;
+    }
+
+    public void setRecoveryPosition(long recoveryPosition) {
+        this.recoveryPosition = recoveryPosition;
+    }
+
+    public void resetQualityIndex() {
+        this.qualityIndex = DEFAULT_QUALITY;
+    }
+
+    public void resetRecoveryPosition() {
+        this.recoveryPosition = RECOVERY_UNSET;
     }
 }

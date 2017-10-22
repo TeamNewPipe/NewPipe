@@ -382,11 +382,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
         } else if (view.getId() == backwardButton.getId()) {
             player.onPlayPrevious();
-            scrollToSelected();
 
         } else if (view.getId() == playPauseButton.getId()) {
             player.onVideoPlayPause();
-            scrollToSelected();
 
         } else if (view.getId() == forwardButton.getId()) {
             player.onPlayNext();

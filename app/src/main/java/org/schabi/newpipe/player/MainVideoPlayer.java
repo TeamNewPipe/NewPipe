@@ -126,10 +126,7 @@ public final class MainVideoPlayer extends Activity {
 
         if (playerImpl.getPlayer() != null) {
             playerImpl.wasPlaying = playerImpl.getPlayer().getPlayWhenReady();
-            playerImpl.setRecovery(
-                    playerImpl.getCurrentQueueIndex(),
-                    (int) playerImpl.getPlayer().getCurrentPosition()
-            );
+            playerImpl.setRecovery();
             playerImpl.destroyPlayer();
         }
     }
@@ -224,6 +221,8 @@ public final class MainVideoPlayer extends Activity {
 
         private ImageButton screenRotationButton;
         private ImageButton playPauseButton;
+        private ImageButton playPreviousButton;
+        private ImageButton playNextButton;
 
         private RelativeLayout queueLayout;
         private ImageButton itemsListCloseButton;
@@ -248,6 +247,8 @@ public final class MainVideoPlayer extends Activity {
 
             this.screenRotationButton = rootView.findViewById(R.id.screenRotationButton);
             this.playPauseButton = rootView.findViewById(R.id.playPauseButton);
+            this.playPreviousButton = rootView.findViewById(R.id.playPreviousButton);
+            this.playNextButton = rootView.findViewById(R.id.playNextButton);
 
             getRootView().setKeepScreenOn(true);
         }
@@ -264,6 +265,8 @@ public final class MainVideoPlayer extends Activity {
             queueButton.setOnClickListener(this);
             repeatButton.setOnClickListener(this);
             playPauseButton.setOnClickListener(this);
+            playPreviousButton.setOnClickListener(this);
+            playNextButton.setOnClickListener(this);
             screenRotationButton.setOnClickListener(this);
         }
 
@@ -315,13 +318,12 @@ public final class MainVideoPlayer extends Activity {
                 return;
             }
 
+            setRecovery();
             final Intent intent = NavigationHelper.getPlayerIntent(
                     context,
                     PopupVideoPlayer.class,
                     this.getPlayQueue(),
                     this.getCurrentResolutionTarget(),
-                    this.getCurrentQueueIndex(),
-                    this.getPlayerCurrentPosition(),
                     this.getPlaybackSpeed()
             );
             context.startService(intent);
@@ -339,6 +341,12 @@ public final class MainVideoPlayer extends Activity {
 
             } else if (v.getId() == playPauseButton.getId()) {
                 onVideoPlayPause();
+
+            } else if (v.getId() == playPreviousButton.getId()) {
+                onPlayPrevious();
+
+            } else if (v.getId() == playNextButton.getId()) {
+                onPlayNext();
 
             } else if (v.getId() == screenRotationButton.getId()) {
                 onScreenRotationClicked();
@@ -367,6 +375,7 @@ public final class MainVideoPlayer extends Activity {
             hideSystemUi();
             getControlsRoot().setVisibility(View.INVISIBLE);
             queueLayout.setVisibility(View.VISIBLE);
+            itemsList.smoothScrollToPosition(playQueue.getIndex());
         }
 
         private void onQueueClosed() {
@@ -410,18 +419,24 @@ public final class MainVideoPlayer extends Activity {
         // States
         //////////////////////////////////////////////////////////////////////////*/
 
+        private void animatePlayButtons(final boolean show, final int duration) {
+            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
+            animateView(playPreviousButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
+            animateView(playNextButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
+        }
+
         @Override
         public void onBlocked() {
             super.onBlocked();
             playPauseButton.setImageResource(R.drawable.ic_pause_white);
-            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 100);
+            animatePlayButtons(false, 100);
             getRootView().setKeepScreenOn(true);
         }
 
         @Override
         public void onBuffering() {
             super.onBuffering();
-            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 100);
+            animatePlayButtons(false, 100);
             getRootView().setKeepScreenOn(true);
         }
 
@@ -432,7 +447,7 @@ public final class MainVideoPlayer extends Activity {
                 @Override
                 public void run() {
                     playPauseButton.setImageResource(R.drawable.ic_pause_white);
-                    animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, true, 200);
+                    animatePlayButtons(true, 200);
                 }
             });
             showSystemUi();
@@ -446,7 +461,7 @@ public final class MainVideoPlayer extends Activity {
                 @Override
                 public void run() {
                     playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
-                    animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, true, 200);
+                    animatePlayButtons(true, 200);
                 }
             });
 
@@ -457,7 +472,7 @@ public final class MainVideoPlayer extends Activity {
         @Override
         public void onPausedSeek() {
             super.onPausedSeek();
-            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 100);
+            animatePlayButtons(false, 100);
             getRootView().setKeepScreenOn(true);
         }
 
@@ -469,7 +484,7 @@ public final class MainVideoPlayer extends Activity {
                 @Override
                 public void run() {
                     playPauseButton.setImageResource(R.drawable.ic_replay_white);
-                    animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, true, 300);
+                    animatePlayButtons(true, 300);
                 }
             });
 
@@ -619,15 +634,12 @@ public final class MainVideoPlayer extends Activity {
         @Override
         public boolean onDoubleTap(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
-            //if (!playerImpl.isPlaying()) return false;
-            if (!playerImpl.isPlayerReady()) return false;
+            if (!playerImpl.isPlaying()) return false;
 
             if (e.getX() > playerImpl.getRootView().getWidth() / 2)
-                playerImpl.onPlayNext();
-                //playerImpl.onFastForward();
+                playerImpl.onFastForward();
             else
-                playerImpl.onPlayPrevious();
-                //playerImpl.onFastRewind();
+                playerImpl.onFastRewind();
 
             return true;
         }

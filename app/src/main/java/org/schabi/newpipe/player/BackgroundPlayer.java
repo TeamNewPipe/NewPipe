@@ -93,6 +93,7 @@ public final class BackgroundPlayer extends Service {
     /*//////////////////////////////////////////////////////////////////////////
     // Notification
     //////////////////////////////////////////////////////////////////////////*/
+
     private static final int NOTIFICATION_ID = 123789;
     private NotificationManager notificationManager;
     private NotificationCompat.Builder notBuilder;
@@ -100,6 +101,8 @@ public final class BackgroundPlayer extends Service {
     private RemoteViews bigNotRemoteView;
     private final String setAlphaMethodName = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) ? "setImageAlpha" : "setAlpha";
     private final String setImageResourceMethodName = "setImageResource";
+
+    private boolean shouldUpdateOnProgress;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service's LifeCycle
@@ -117,6 +120,7 @@ public final class BackgroundPlayer extends Service {
         basePlayerImpl.setup();
 
         mBinder = new LocalBinder();
+        shouldUpdateOnProgress = true;
     }
 
     @Override
@@ -166,12 +170,9 @@ public final class BackgroundPlayer extends Service {
 
     private void onScreenOnOff(boolean on) {
         if (DEBUG) Log.d(TAG, "onScreenOnOff() called with: on = [" + on + "]");
+        shouldUpdateOnProgress = on;
         if (on) {
-            if (basePlayerImpl.isPlaying() && !basePlayerImpl.isProgressLoopRunning()) {
-                basePlayerImpl.startProgressLoop();
-            }
-        } else {
-            basePlayerImpl.stopProgressLoop();
+            basePlayerImpl.triggerProgressUpdate();
         }
     }
 
@@ -324,14 +325,6 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void onPrepared(boolean playWhenReady) {
             super.onPrepared(playWhenReady);
-            if (simpleExoPlayer.getDuration() < 15000) {
-                FAST_FORWARD_REWIND_AMOUNT = 2000;
-            } else if (simpleExoPlayer.getDuration() > 60 * 60 * 1000) {
-                FAST_FORWARD_REWIND_AMOUNT = 60000;
-            } else {
-                FAST_FORWARD_REWIND_AMOUNT = 10000;
-            }
-            PROGRESS_LOOP_INTERVAL = 1000;
             simpleExoPlayer.setVolume(1f);
         }
 
@@ -343,6 +336,10 @@ public final class BackgroundPlayer extends Service {
 
         @Override
         public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
+            updateProgress(currentProgress, duration, bufferPercent);
+
+            if (!shouldUpdateOnProgress) return;
+
             resetNotification();
             if (bigNotRemoteView != null) {
                 if (currentItem != null) {
@@ -361,7 +358,6 @@ public final class BackgroundPlayer extends Service {
             }
 
             updateNotification(-1);
-            updateProgress(currentProgress, duration, bufferPercent);
         }
 
         @Override

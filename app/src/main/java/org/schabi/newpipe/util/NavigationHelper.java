@@ -77,12 +77,8 @@ public class NavigationHelper {
                                          final Class targetClazz,
                                          final PlayQueue playQueue,
                                          final int maxResolution,
-                                         final int restoringIndex,
-                                         final long startPosition,
                                          final float playbackSpeed) {
         return getPlayerIntent(context, targetClazz, playQueue, maxResolution)
-                .putExtra(VideoPlayer.RESTORE_QUEUE_INDEX, restoringIndex)
-                .putExtra(BasePlayer.START_POSITION, startPosition)
                 .putExtra(BasePlayer.PLAYBACK_SPEED, playbackSpeed);
     }
 

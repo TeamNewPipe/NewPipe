@@ -435,6 +435,8 @@ public final class PopupVideoPlayer extends Service {
             super.onFullScreenButtonClicked();
 
             if (DEBUG) Log.d(TAG, "onFullScreenButtonClicked() called");
+
+            playerImpl.setRecovery();
             Intent intent;
             if (!getSharedPreferences().getBoolean(getResources().getString(R.string.use_old_player_key), false)) {
                 intent = NavigationHelper.getPlayerIntent(
@@ -442,8 +444,6 @@ public final class PopupVideoPlayer extends Service {
                         MainVideoPlayer.class,
                         this.getPlayQueue(),
                         this.getCurrentResolutionTarget(),
-                        this.getCurrentQueueIndex(),
-                        this.getPlayerCurrentPosition(),
                         this.getPlaybackSpeed()
                 );
                 if (!isStartedFromNewPipe()) intent.putExtra(VideoPlayer.STARTED_FROM_NEWPIPE, false);
@@ -703,11 +703,9 @@ public final class PopupVideoPlayer extends Service {
             if (!playerImpl.isPlaying() || !playerImpl.isPlayerReady()) return false;
 
             if (e.getX() > popupWidth / 2) {
-                //playerImpl.onFastForward();
-                playerImpl.onPlayNext();
+                playerImpl.onFastForward();
             } else {
-                //playerImpl.onFastRewind();
-                playerImpl.onPlayPrevious();
+                playerImpl.onFastRewind();
             }
 
             return true;

@@ -122,21 +122,8 @@ public abstract class BasePlayer implements Player.EventListener,
     // Intent
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static final String INTENT_TYPE = "intent_type";
-    public static final String SINGLE_STREAM = "single";
-    public static final String EXTERNAL_PLAYLIST = "external";
-    public static final String INTERNAL_PLAYLIST = "internal";
-
-    public static final String VIDEO_URL = "video_url";
-    public static final String VIDEO_TITLE = "video_title";
-    public static final String VIDEO_THUMBNAIL_URL = "video_thumbnail_url";
-    public static final String START_POSITION = "start_position";
-    public static final String CHANNEL_NAME = "channel_name";
     public static final String PLAYBACK_SPEED = "playback_speed";
-
     public static final String PLAY_QUEUE = "play_queue";
-    public static final String RESTORE_QUEUE_INDEX = "restore_queue_index";
-    public static final String RESTORE_WINDOW_POS = "restore_window_pos";
     public static final String APPEND_ONLY = "append_only";
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -149,10 +136,6 @@ public abstract class BasePlayer implements Player.EventListener,
     protected MediaSourceManager playbackManager;
     protected PlayQueue playQueue;
 
-    private boolean isRecovery = false;
-    private int queuePos = 0;
-    private long videoPos = -1;
-
     protected StreamInfo currentInfo;
     protected PlayQueueItem currentItem;
 
@@ -160,9 +143,10 @@ public abstract class BasePlayer implements Player.EventListener,
     // Player
     //////////////////////////////////////////////////////////////////////////*/
 
-    public int FAST_FORWARD_REWIND_AMOUNT = 10000; // 10 Seconds
-    public int PLAY_PREV_ACTIVATION_LIMIT = 5000; // 5 seconds
-    public static final String CACHE_FOLDER_NAME = "exoplayer";
+    protected final static int FAST_FORWARD_REWIND_AMOUNT = 10000; // 10 Seconds
+    protected final static int PLAY_PREV_ACTIVATION_LIMIT = 5000; // 5 seconds
+    protected final static int PROGRESS_LOOP_INTERVAL = 500;
+    protected final static String CACHE_FOLDER_NAME = "exoplayer";
 
     protected SimpleExoPlayer simpleExoPlayer;
     protected boolean isPrepared = false;
@@ -172,7 +156,6 @@ public abstract class BasePlayer implements Player.EventListener,
     protected final DefaultExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
     protected final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
 
-    protected int PROGRESS_LOOP_INTERVAL = 500;
     protected Disposable progressUpdateReactor;
 
     //////////////////////////////////////////////////////////////////////////*/
@@ -269,13 +252,6 @@ public abstract class BasePlayer implements Player.EventListener,
             return;
         }
 
-        // Resolve playback details
-        if (intent.hasExtra(RESTORE_QUEUE_INDEX) && intent.hasExtra(START_POSITION)) {
-            setRecovery(
-                    intent.getIntExtra(RESTORE_QUEUE_INDEX, 0),
-                    intent.getLongExtra(START_POSITION, 0)
-            );
-        }
         setPlaybackSpeed(intent.getFloatExtra(PLAYBACK_SPEED, getPlaybackSpeed()));
 
         // Re-initialization
@@ -579,6 +555,7 @@ public abstract class BasePlayer implements Player.EventListener,
 
         if (playQueue == null) return;
 
+        setRecovery();
         if (playQueue.isShuffled()) {
             playQueue.unshuffle();
         } else {
@@ -590,26 +567,31 @@ public abstract class BasePlayer implements Player.EventListener,
     // ExoPlayer Listener
     //////////////////////////////////////////////////////////////////////////*/
 
-    @Override
-    public void onTimelineChanged(Timeline timeline, Object manifest) {
-        if (DEBUG) Log.d(TAG, "onTimelineChanged(), timeline size = " + timeline.getWindowCount());
-
+    private void recover() {
         final int currentSourceIndex = playQueue.getIndex();
+        final PlayQueueItem currentSourceItem = playQueue.getItem();
 
         // Check if already playing correct window
         final boolean isCurrentWindowCorrect = simpleExoPlayer.getCurrentWindowIndex() == currentSourceIndex;
 
         // Check if recovering
-        if (isCurrentWindowCorrect && isRecovery && queuePos == playQueue.getIndex()) {
+        if (isCurrentWindowCorrect && currentSourceItem != null &&
+                currentSourceItem.getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
+
             // todo: figure out exactly why this is the case
             /* Rounding time to nearest second as certain media cannot guarantee a sub-second seek
              will complete and the player might get stuck in buffering state forever */
-            final long roundedPos = (videoPos / 1000) * 1000;
+            final long roundedPos = (currentSourceItem.getRecoveryPosition() / 1000) * 1000;
 
             if (DEBUG) Log.d(TAG, "Rewinding to recovery window: " + currentSourceIndex + " at: " + getTimeString((int)roundedPos));
-            simpleExoPlayer.seekTo(roundedPos);
-            isRecovery = false;
+            simpleExoPlayer.seekTo(currentSourceItem.getRecoveryPosition());
+            currentSourceItem.resetRecoveryPosition();
         }
+    }
+
+    @Override
+    public void onTimelineChanged(Timeline timeline, Object manifest) {
+        if (DEBUG) Log.d(TAG, "onTimelineChanged(), timeline size = " + timeline.getWindowCount());
 
         if (playbackManager != null) {
             playbackManager.load();
@@ -653,6 +635,8 @@ public abstract class BasePlayer implements Player.EventListener,
                 }
                 break;
             case Player.STATE_READY: //3
+                recover();
+
                 if (!isPrepared) {
                     isPrepared = true;
                     onPrepared(playWhenReady);
@@ -664,8 +648,7 @@ public abstract class BasePlayer implements Player.EventListener,
             case Player.STATE_ENDED: // 4
                 // Ensure the current window has actually ended
                 // since single windows that are still loading may produce an ended state
-                if (simpleExoPlayer.isCurrentWindowSeekable() &&
-                        simpleExoPlayer.getCurrentPosition() >= simpleExoPlayer.getDuration()) {
+                if (simpleExoPlayer.getDuration() > 0 && simpleExoPlayer.getCurrentPosition() >= simpleExoPlayer.getDuration()) {
                     changeState(STATE_COMPLETED);
                     isPrepared = false;
                 }
@@ -812,11 +795,8 @@ public abstract class BasePlayer implements Player.EventListener,
         else audioManager.abandonAudioFocus(this);
 
         if (getCurrentState() == STATE_COMPLETED) {
-            if (playQueue.getIndex() == 0) {
-                simpleExoPlayer.seekToDefaultPosition();
-            } else {
-                playQueue.setIndex(0);
-            }
+            playQueue.setIndex(0);
+            simpleExoPlayer.seekToDefaultPosition();
         }
 
         simpleExoPlayer.setPlayWhenReady(!isPlaying());
@@ -877,10 +857,6 @@ public abstract class BasePlayer implements Player.EventListener,
         simpleExoPlayer.seekTo(progress);
     }
 
-    public boolean isPlaying() {
-        return simpleExoPlayer.getPlaybackState() == Player.STATE_READY && simpleExoPlayer.getPlayWhenReady();
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
@@ -919,24 +895,6 @@ public abstract class BasePlayer implements Player.EventListener,
     protected void stopProgressLoop() {
         if (progressUpdateReactor != null) progressUpdateReactor.dispose();
         progressUpdateReactor = null;
-    }
-
-    protected void tryDeleteCacheFiles(Context context) {
-        File cacheDir = new File(context.getExternalCacheDir(), CACHE_FOLDER_NAME);
-
-        if (cacheDir.exists()) {
-            try {
-                if (cacheDir.isDirectory()) {
-                    for (File file : cacheDir.listFiles()) {
-                        try {
-                            if (DEBUG) Log.d(TAG, "tryDeleteCacheFiles: " + file.getAbsolutePath() + " deleted = " + file.delete());
-                        } catch (Exception ignored) {
-                        }
-                    }
-                }
-            } catch (Exception ignored) {
-            }
-        }
     }
 
     public void triggerProgressUpdate() {
@@ -992,10 +950,6 @@ public abstract class BasePlayer implements Player.EventListener,
         return currentState;
     }
 
-    public long getVideoPos() {
-        return videoPos;
-    }
-
     public String getVideoUrl() {
         return currentItem == null ? null : currentItem.getUrl();
     }
@@ -1012,12 +966,8 @@ public abstract class BasePlayer implements Player.EventListener,
         return simpleExoPlayer != null && simpleExoPlayer.getPlaybackState() == Player.STATE_ENDED;
     }
 
-    public boolean isPrepared() {
-        return isPrepared;
-    }
-
-    public void setPrepared(boolean prepared) {
-        isPrepared = prepared;
+    public boolean isPlaying() {
+        return simpleExoPlayer.getPlaybackState() == Player.STATE_READY && simpleExoPlayer.getPlayWhenReady();
     }
 
     public float getPlaybackSpeed() {
@@ -1045,16 +995,8 @@ public abstract class BasePlayer implements Player.EventListener,
         simpleExoPlayer.setPlaybackParameters(new PlaybackParameters(speed, pitch));
     }
 
-    public int getCurrentQueueIndex() {
-        return playQueue != null ? playQueue.getIndex() : -1;
-    }
-
     public int getCurrentResolutionTarget() {
         return trackSelector != null ? trackSelector.getParameters().maxVideoHeight : Integer.MAX_VALUE;
-    }
-
-    public long getPlayerCurrentPosition() {
-        return simpleExoPlayer != null ? simpleExoPlayer.getCurrentPosition() : 0L;
     }
 
     public PlayQueue getPlayQueue() {
@@ -1069,14 +1011,19 @@ public abstract class BasePlayer implements Player.EventListener,
         return progressUpdateReactor != null && !progressUpdateReactor.isDisposed();
     }
 
-    public boolean getRecovery() {
-        return isRecovery;
+    public void setRecovery() {
+        if (playQueue == null || simpleExoPlayer == null) return;
+
+        final int queuePos = playQueue.getIndex();
+        final long windowPos = simpleExoPlayer.getCurrentPosition();
+
+        setRecovery(queuePos, windowPos);
     }
 
     public void setRecovery(final int queuePos, final long windowPos) {
+        if (playQueue.size() <= queuePos) return;
+
         if (DEBUG) Log.d(TAG, "Setting recovery, queue: " + queuePos + ", pos: " + windowPos);
-        this.isRecovery = true;
-        this.queuePos = queuePos;
-        this.videoPos = windowPos;
+        playQueue.getItem(queuePos).setRecoveryPosition(windowPos);
     }
 }

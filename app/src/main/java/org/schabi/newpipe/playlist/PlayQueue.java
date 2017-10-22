@@ -50,10 +50,6 @@ public abstract class PlayQueue implements Serializable {
     private transient Flowable<PlayQueueMessage> broadcastReceiver;
     private transient Subscription reportingReactor;
 
-    PlayQueue() {
-        this(0, Collections.<PlayQueueItem>emptyList());
-    }
-
     PlayQueue(final int index, final List<PlayQueueItem> startWith) {
         streams = new ArrayList<>();
         streams.addAll(startWith);
@@ -81,12 +77,9 @@ public abstract class PlayQueue implements Serializable {
     }
 
     /**
-     * Dispose this play queue by stopping all message buses and clearing the playlist.
+     * Dispose the play queue by stopping all message buses.
      * */
     public void dispose() {
-        if (backup != null) backup.clear();
-        if (streams != null) streams.clear();
-
         if (eventBroadcast != null) eventBroadcast.onComplete();
         if (reportingReactor != null) reportingReactor.cancel();
 
@@ -265,11 +258,12 @@ public abstract class PlayQueue implements Serializable {
 
     private synchronized void removeInternal(final int index) {
         final int currentIndex = queueIndex.get();
+        final int size = size();
 
         if (currentIndex > index) {
             queueIndex.decrementAndGet();
-        } else if (currentIndex >= size()) {
-            queueIndex.set(0);
+        } else if (currentIndex >= size) {
+            queueIndex.set(currentIndex % (size - 1));
         }
 
         if (backup != null) {
@@ -300,9 +294,8 @@ public abstract class PlayQueue implements Serializable {
      * Shuffles the current play queue.
      *
      * This method first backs up the existing play queue and item being played.
-     * Then a newly shuffled play queue will be generated along with the index of
-     * the previously playing item if it is found in the shuffled play queue. If
-     * not found, the current index will reset to 0.
+     * Then a newly shuffled play queue will be generated along with currently
+     * playing item placed at the beginning of the queue.
      *
      * Will emit a {@link ReorderEvent} in any context.
      * */
@@ -315,10 +308,9 @@ public abstract class PlayQueue implements Serializable {
 
         final int newIndex = streams.indexOf(current);
         if (newIndex != -1) {
-            queueIndex.set(newIndex);
-        } else {
-            queueIndex.set(0);
+            streams.add(0, streams.remove(newIndex));
         }
+        queueIndex.set(0);
 
         broadcast(new ReorderEvent());
     }

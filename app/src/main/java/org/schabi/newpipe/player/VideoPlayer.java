@@ -89,16 +89,12 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     // Intent
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static final String VIDEO_STREAMS_LIST = "video_streams_list";
-    public static final String VIDEO_ONLY_AUDIO_STREAM = "video_only_audio_stream";
-    public static final String INDEX_SEL_VIDEO_STREAM = "index_selected_video_stream";
     public static final String STARTED_FROM_NEWPIPE = "started_from_newpipe";
-
-    public static final String PLAYER_INTENT = "player_intent";
     public static final String MAX_RESOLUTION = "max_resolution";
 
     private ArrayList<VideoStream> availableStreams;
-    private int   selectedStreamIndex;
+    private int selectedStreamIndex;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Player
     //////////////////////////////////////////////////////////////////////////*/

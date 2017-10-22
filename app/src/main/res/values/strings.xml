@@ -303,5 +303,5 @@
     <string name="play_queue_remove">Remove</string>
     <string name="play_queue_stream_detail">Details</string>
     <string name="play_queue_audio_settings">Audio Settings</string>
-    <string name="hold_to_append">Hold To Append</string>
+    <string name="hold_to_append">Hold To Enqueue</string>
 </resources>

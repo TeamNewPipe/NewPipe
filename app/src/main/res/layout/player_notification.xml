@@ -12,6 +12,7 @@
         android:layout_height="64dp"
         android:background="@color/background_notification_color"
         android:clickable="true"
+        android:focusable="true"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -58,6 +59,7 @@
             android:layout_height="match_parent"
             android:background="#00000000"
             android:clickable="true"
+            android:focusable="true"
             android:padding="5dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_repeat_white"
@@ -69,9 +71,10 @@
             android:layout_height="match_parent"
             android:background="#00000000"
             android:clickable="true"
+            android:focusable="true"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_action_av_fast_rewind"
+            android:src="@drawable/exo_controls_previous"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -80,6 +83,7 @@
             android:layout_height="match_parent"
             android:background="#00000000"
             android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/ic_pause_white"
             tools:ignore="ContentDescription"/>
 
@@ -89,9 +93,10 @@
             android:layout_height="match_parent"
             android:background="#00000000"
             android:clickable="true"
+            android:focusable="true"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_action_av_fast_forward"
+            android:src="@drawable/exo_controls_next"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -101,6 +106,7 @@
             android:layout_marginLeft="5dp"
             android:background="#00000000"
             android:clickable="true"
+            android:focusable="true"
             android:padding="5dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_close_white_24dp"

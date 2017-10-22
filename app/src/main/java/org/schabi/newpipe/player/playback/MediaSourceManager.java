@@ -153,6 +153,10 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     }
 
     private void onPlayQueueChanged(final PlayQueueMessage event) {
+        if (playQueue.isEmpty()) {
+            playbackListener.shutdown();
+        }
+
         // why no pattern matching in Java =(
         switch (event.type()) {
             case INIT:
@@ -168,6 +172,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
             case REMOVE:
                 final RemoveEvent removeEvent = (RemoveEvent) event;
                 remove(removeEvent.index());
+                sync();
                 break;
             case MOVE:
                 final MoveEvent moveEvent = (MoveEvent) event;
@@ -181,8 +186,6 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         if (!isPlayQueueReady()) {
             tryBlock();
             playQueue.fetch();
-        } else if (playQueue.isEmpty()) {
-            playbackListener.shutdown();
         } else {
             load(); // All event warrants a load
         }
@@ -219,6 +222,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
 
     private void sync() {
         final PlayQueueItem currentItem = playQueue.getItem();
+        if (currentItem == null) return;
 
         final Consumer<StreamInfo> syncPlayback = new Consumer<StreamInfo>() {
             @Override

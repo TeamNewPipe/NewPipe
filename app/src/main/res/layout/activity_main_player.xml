@@ -275,6 +275,34 @@
             android:src="@drawable/ic_pause_white"
             tools:ignore="ContentDescription"/>
 
+        <ImageButton
+            android:id="@+id/playPreviousButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@id/playPauseButton"
+            android:layout_toStartOf="@id/playPauseButton"
+            android:background="#00000000"
+            android:scaleType="fitXY"
+            android:src="@drawable/exo_controls_previous"
+            tools:ignore="ContentDescription"/>
+
+        <ImageButton
+            android:id="@+id/playNextButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@id/playPauseButton"
+            android:layout_toEndOf="@id/playPauseButton"
+            android:background="#00000000"
+            android:scaleType="fitXY"
+            android:src="@drawable/exo_controls_next"
+            tools:ignore="ContentDescription"/>
+
     </RelativeLayout>
 
 
