@@ -286,7 +286,7 @@
     <string name="select_a_kiosk">Select a kiosk</string>
 
     <!-- Kiosk Names -->
-    <string name="kiosk">Kisok</string>
+    <string name="kiosk">Kiosk</string>
     <string name="trending">Trending</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">New &amp; hot</string>

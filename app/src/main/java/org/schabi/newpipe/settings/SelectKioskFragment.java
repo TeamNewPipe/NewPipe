@@ -125,7 +125,7 @@ public class SelectKioskFragment extends DialogFragment {
                 throws Exception {
 
             for(StreamingService service : NewPipe.getServices()) {
-                for(String kioskId : service.getKioskList().getAvailableKisoks()) {
+                for(String kioskId : service.getKioskList().getAvailableKiosks()) {
                     String name = service.getServiceInfo().name;
                     name += "/";
                     name += KioskTranslator.getTranslatedKioskName(kioskId, getContext());

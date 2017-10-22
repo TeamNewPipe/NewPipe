@@ -234,7 +234,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         StreamingService service = NewPipe.getService(currentServiceId);
         KioskList kl = service.getKioskList();
         int i = 0;
-        for(final String ks : kl.getAvailableKisoks()) {
+        for(final String ks : kl.getAvailableKiosks()) {
             menu.add(0, KIOSK_MENU_OFFSETT + i, Menu.NONE,
                     KioskTranslator.getTranslatedKioskName(ks, getContext()))
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
