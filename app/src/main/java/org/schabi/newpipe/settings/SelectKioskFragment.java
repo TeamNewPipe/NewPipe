@@ -131,7 +131,7 @@ public class SelectKioskFragment extends DialogFragment {
                             KioskTranslator.getTranslatedKioskName(kioskId, getContext()));
                     kioskList.add(new Entry(
                             //ServiceIconMapper.getIconResource(service.getServiceId()),
-                            0,
+                            ServiceIconMapper.getIconResource(-1),
                             service.getServiceId(),
                             kioskId,
                             name));
