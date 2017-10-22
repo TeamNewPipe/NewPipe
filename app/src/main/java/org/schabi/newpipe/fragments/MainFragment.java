@@ -40,6 +40,12 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     private ViewPager viewPager;
     private boolean showBlankTab = false;
 
+    private static final int FALLBACK_SERVICE_ID = 0; // Youtbe
+    private static final String FALLBACK_CHANNEL_URL =
+            "https://www.youtube.com/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ";
+    private static final String FALLBACK_CHANNEL_NAME = "Music";
+    private static final String FALLBACK_KIOSK_ID = "Trending";
+
     public int currentServiceId = -1;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -193,8 +199,10 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             if(setMainPage.equals(getString(R.string.blank_page_key))) {
                 return new BlankFragment();
             } else if(setMainPage.equals(getString(R.string.kiosk_page_key))) {
-                int serviceId = preferences.getInt(getString(R.string.main_page_selected_service), 0);
-                String kioskId = preferences.getString(getString(R.string.main_page_selectd_kiosk_id), "Trending");
+                int serviceId = preferences.getInt(getString(R.string.main_page_selected_service),
+                        FALLBACK_SERVICE_ID);
+                String kioskId = preferences.getString(getString(R.string.main_page_selectd_kiosk_id),
+                        FALLBACK_KIOSK_ID);
                 KioskFragment fragment = KioskFragment.getInstance(serviceId, kioskId
                 );
                 fragment.useAsFrontPage(true);
@@ -204,10 +212,12 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 fragment.useAsFrontPage(true);
                 return fragment;
             } else if(setMainPage.equals(getString(R.string.channel_page_key))) {
-                int serviceId = preferences.getInt(getString(R.string.main_page_selected_service), 0);
+                int serviceId = preferences.getInt(getString(R.string.main_page_selected_service),
+                        FALLBACK_SERVICE_ID);
                 String url = preferences.getString(getString(R.string.main_page_selected_channel_url),
-                        "https://www.youtube.com/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ");
-                String name = preferences.getString(getString(R.string.main_page_selected_channel_name), "Music");
+                        FALLBACK_CHANNEL_URL);
+                String name = preferences.getString(getString(R.string.main_page_selected_channel_name),
+                        FALLBACK_CHANNEL_NAME);
                 ChannelFragment fragment = ChannelFragment.getInstance(serviceId, url, name);
                 fragment.useAsFrontPage(true);
                 return fragment;
