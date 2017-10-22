@@ -61,7 +61,7 @@
     <string name="general_error">Erro</string>
     <string name="could_not_load_thumbnails">Incapaz de carregar todas as miniaturas</string>
     <string name="youtube_signature_decryption_error">Incapaz de decodificar a assinatura do vídeo</string>
-    <string name="parsing_error">Incapaz de processar o sítio da web</string>
+    <string name="parsing_error">Incapaz de processar o site</string>
     <string name="content_not_available">Conteúdo não disponível</string>
     <string name="blocked_by_gema">Bloqueado pela GEMA</string>
 
@@ -69,7 +69,7 @@
     <string name="show_age_restricted_content_title">Restringir conteúdo por idade</string>
     <string name="video_is_age_restricted">Vídeo com restrição de idade. É possível permitir este material através das Definições.</string>
 
-    <string name="light_parsing_error">Não foi possível processar o sítio da web</string>
+    <string name="light_parsing_error">Não foi possível processar totalmente o site</string>
     <string name="could_not_setup_download_menu">Não foi possível configurar o menu de transferências</string>
     <string name="live_streams_not_supported">Esta é uma EMISSÃO EM DIRETO, as quais ainda não são suportadas.</string>
     <string name="could_not_get_stream">Não foi possível obter a emissão</string>
@@ -116,7 +116,7 @@
     <string name="msg_running_detail">Toque para detalhes</string>
     <string name="msg_wait">Por favor aguarde…</string>
     <string name="msg_copied">Copiado para a área de transferência</string>
-    <string name="no_available_dir">Por favor selecione um diretório disponível para download</string>
+    <string name="no_available_dir">Por favor selecione a pasta para as descargas</string>
 
     <string name="finish">OK</string>
     <string name="msg_threads">Processos</string>
@@ -207,16 +207,16 @@ o modo “popup“</string>
     <string name="enable_search_history_summary">Armazenar termos de pesquisa localmente</string>
     <string name="enable_watch_history_title">Histórico</string>
     <string name="enable_watch_history_summary">Armazenar histórico de vídeos assistidos</string>
-    <string name="resume_on_audio_focus_gain_title">Retomar reprodução ao ganhar foco</string>
+    <string name="resume_on_audio_focus_gain_title">Retomar ao ganhar foco</string>
     <string name="resume_on_audio_focus_gain_summary">Continuar reprodução após interrupções (ex. chamadas)</string>
-    <string name="settings_category_player_title">Reprodutor de vídeo</string>
+    <string name="settings_category_player_title">Reprodutor</string>
     <string name="settings_category_player_behavior_title">Comportamento</string>
     <string name="settings_category_history_title">Histórico</string>
     <string name="playlist">Lista de Reprodução</string>
     <string name="undo">Desfazer</string>
 
     <string name="notification_channel_name">Notificação do NewPipe</string>
-    <string name="notification_channel_description">Notificações do NewPipe em Segundo Plano e Reprodutores de Vídeo em Popup</string>
+    <string name="notification_channel_description">Notificações do NewPipe e para reprodutores pop-up</string>
 
     <string name="search_no_results">Sem resultados</string>
     <string name="empty_subscription_feed_subtitle">Aqui não há nada para ver</string>
@@ -242,17 +242,18 @@ o modo “popup“</string>
     <string name="settings_category_downloads_title">Download</string>
     <string name="settings_file_charset_title">Caracteres permitidos em nomes de ficheiros</string>
     <string name="settings_file_replacement_character_summary">Caracteres inválidos são substituídos por este valor</string>
-    <string name="settings_file_replacement_character_title">Caracter de substituição</string>
+    <string name="settings_file_replacement_character_title">Carácter de substituição</string>
 
     <string name="charset_letters_and_digits">Letras e dígitos</string>
-    <string name="charset_most_special_characters">Caracteres mais especiais</string>
+    <string name="charset_most_special_characters">Caracteres especiais</string>
 
     <string name="title_activity_history">Histórico</string>
-    <string name="title_history_search">Procurados</string>
-    <string name="title_history_view">Visualizado</string>
+    <string name="title_history_search">Pesquisado</string>
+    <string name="title_history_view">Visto</string>
     <string name="history_disabled">Histórico está desativado</string>
     <string name="action_history">Histórico</string>
     <string name="history_empty">O histórico está vazio</string>
     <string name="history_cleared">Histórico eliminado</string>
-    <string name="item_deleted">Objeto eliminado</string>
+    <string name="item_deleted">Item apagado</string>
+<string name="delete_item_search_history">Deseja apagar este item do histórico de pesquisa?</string>
 </resources>

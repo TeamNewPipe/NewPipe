@@ -51,7 +51,14 @@ public final class ExtractorHelper {
         //no instance
     }
 
+    private static void checkServiceId(int serviceId) {
+        if(serviceId == Constants.NO_SERVICE_ID) {
+            throw new IllegalArgumentException("serviceId is NO_SERVICE_ID");
+        }
+    }
+
     public static Single<SearchResult> searchFor(final int serviceId, final String query, final int pageNumber, final String searchLanguage, final SearchEngine.Filter filter) {
+        checkServiceId(serviceId);
         return Single.fromCallable(new Callable<SearchResult>() {
             @Override
             public SearchResult call() throws Exception {
@@ -62,6 +69,7 @@ public final class ExtractorHelper {
     }
 
     public static Single<NextItemsResult> getMoreSearchItems(final int serviceId, final String query, final int nextPageNumber, final String searchLanguage, final SearchEngine.Filter filter) {
+        checkServiceId(serviceId);
         return searchFor(serviceId, query, nextPageNumber, searchLanguage, filter)
                 .map(new Function<SearchResult, NextItemsResult>() {
                     @Override
@@ -72,6 +80,7 @@ public final class ExtractorHelper {
     }
 
     public static Single<List<String>> suggestionsFor(final int serviceId, final String query, final String searchLanguage) {
+        checkServiceId(serviceId);
         return Single.fromCallable(new Callable<List<String>>() {
             @Override
             public List<String> call() throws Exception {
@@ -81,6 +90,7 @@ public final class ExtractorHelper {
     }
 
     public static Single<StreamInfo> getStreamInfo(final int serviceId, final String url, boolean forceLoad) {
+        checkServiceId(serviceId);
         return checkCache(forceLoad, serviceId, url, Single.fromCallable(new Callable<StreamInfo>() {
             @Override
             public StreamInfo call() throws Exception {
@@ -90,6 +100,7 @@ public final class ExtractorHelper {
     }
 
     public static Single<ChannelInfo> getChannelInfo(final int serviceId, final String url, boolean forceLoad) {
+        checkServiceId(serviceId);
         return checkCache(forceLoad, serviceId, url, Single.fromCallable(new Callable<ChannelInfo>() {
             @Override
             public ChannelInfo call() throws Exception {
@@ -99,6 +110,7 @@ public final class ExtractorHelper {
     }
 
     public static Single<NextItemsResult> getMoreChannelItems(final int serviceId, final String url, final String nextStreamsUrl) {
+        checkServiceId(serviceId);
         return Single.fromCallable(new Callable<NextItemsResult>() {
             @Override
             public NextItemsResult call() throws Exception {
@@ -108,6 +120,7 @@ public final class ExtractorHelper {
     }
 
     public static Single<PlaylistInfo> getPlaylistInfo(final int serviceId, final String url, boolean forceLoad) {
+        checkServiceId(serviceId);
         return checkCache(forceLoad, serviceId, url, Single.fromCallable(new Callable<PlaylistInfo>() {
             @Override
             public PlaylistInfo call() throws Exception {
@@ -117,6 +130,7 @@ public final class ExtractorHelper {
     }
 
     public static Single<NextItemsResult> getMorePlaylistItems(final int serviceId, final String url, final String nextStreamsUrl) {
+        checkServiceId(serviceId);
         return Single.fromCallable(new Callable<NextItemsResult>() {
             @Override
             public NextItemsResult call() throws Exception {
@@ -152,6 +166,7 @@ public final class ExtractorHelper {
      * and put the results in the cache.
      */
     private static <I extends Info> Single<I> checkCache(boolean forceLoad, int serviceId, String url, Single<I> loadFromNetwork) {
+        checkServiceId(serviceId);
         loadFromNetwork = loadFromNetwork.doOnSuccess(new Consumer<I>() {
             @Override
             public void accept(@NonNull I i) throws Exception {
@@ -176,6 +191,7 @@ public final class ExtractorHelper {
      * Default implementation uses the {@link InfoCache} to get cached results
      */
     public static <I extends Info> Maybe<I> loadFromCache(final int serviceId, final String url) {
+        checkServiceId(serviceId);
         return Maybe.defer(new Callable<MaybeSource<? extends I>>() {
             @Override
             public MaybeSource<? extends I> call() throws Exception {
