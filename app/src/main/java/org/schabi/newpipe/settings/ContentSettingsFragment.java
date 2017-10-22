@@ -40,16 +40,19 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                                             .putInt(getString(R.string.main_page_selected_service), service_id).apply();
                                     defaultPreferences.edit()
                                             .putString(getString(R.string.main_page_selectd_kiosk_id), kioskId).apply();
-                                    String summary = "";
+                                    String serviceName = "";
                                     try {
-                                        summary += NewPipe.getService(service_id).getServiceInfo().name;
+                                        serviceName = NewPipe.getService(service_id).getServiceInfo().name;
                                     } catch (ExtractionException e) {
                                         onError(e);
                                     }
-                                    summary += "/";
-                                    summary += KioskTranslator.getTranslatedKioskName(kioskId, getContext());
+                                    String kioskName = KioskTranslator.getTranslatedKioskName(kioskId,
+                                            getContext());
 
-
+                                    String summary =
+                                            String.format(getString(R.string.service_kosk_string),
+                                                    serviceName,
+                                                    kioskName);
 
                                     mainPageContentPref.setSummary(summary);
                                 }
@@ -112,13 +115,17 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 StreamingService service = NewPipe.getService(
                         defaultPreferences.getInt(
                                 getString(R.string.main_page_selected_service), 0));
-                String summary = "";
-                summary += service.getServiceInfo().name;
-                summary += "/";
-                summary += KioskTranslator.getTranslatedKioskName(
+
+                String kioskName = KioskTranslator.getTranslatedKioskName(
                                 defaultPreferences.getString(
                                         getString(R.string.main_page_selectd_kiosk_id), "Trending"),
                         getContext());
+
+                String summary =
+                        String.format(getString(R.string.service_kosk_string),
+                                service.getServiceInfo().name,
+                                kioskName);
+
                 mainPagePref.setSummary(summary);
             } catch (Exception e) {
                 onError(e);
