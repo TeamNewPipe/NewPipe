@@ -126,11 +126,12 @@ public class SelectKioskFragment extends DialogFragment {
 
             for(StreamingService service : NewPipe.getServices()) {
                 for(String kioskId : service.getKioskList().getAvailableKiosks()) {
-                    String name = service.getServiceInfo().name;
-                    name += "/";
-                    name += KioskTranslator.getTranslatedKioskName(kioskId, getContext());
+                    String name = String.format(getString(R.string.service_kosk_string),
+                            service.getServiceInfo().name,
+                            KioskTranslator.getTranslatedKioskName(kioskId, getContext()));
                     kioskList.add(new Entry(
-                            ServiceIconMapper.getIconResource(service.getServiceId()),
+                            //ServiceIconMapper.getIconResource(service.getServiceId()),
+                            0,
                             service.getServiceId(),
                             kioskId,
                             name));
