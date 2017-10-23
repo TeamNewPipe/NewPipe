@@ -64,6 +64,7 @@ import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.playlist.PlayQueueItem;
@@ -72,11 +73,12 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
-import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.IOException;
+import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -494,6 +496,11 @@ public final class PopupVideoPlayer extends Service {
         public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
             super.onUpdateProgress(currentProgress, duration, bufferPercent);
             updateProgress(currentProgress, duration, bufferPercent);
+        }
+
+        @Override
+        protected int getDefaultResolutionIndex(final List<VideoStream> sortedVideos) {
+            return ListHelper.getPopupDefaultResolutionIndex(context, sortedVideos);
         }
 
         /*//////////////////////////////////////////////////////////////////////////

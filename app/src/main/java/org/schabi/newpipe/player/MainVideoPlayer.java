@@ -47,13 +47,17 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
 import org.schabi.newpipe.playlist.PlayQueueItemHolder;
 import org.schabi.newpipe.util.AnimationUtils;
+import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+
+import java.util.List;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -316,6 +320,10 @@ public final class MainVideoPlayer extends Activity {
             updatePlaybackButtons();
         }
 
+        /*//////////////////////////////////////////////////////////////////////////
+        // Player Overrides
+        //////////////////////////////////////////////////////////////////////////*/
+
         @Override
         public void onFullScreenButtonClicked() {
             super.onFullScreenButtonClicked();
@@ -432,6 +440,11 @@ public final class MainVideoPlayer extends Activity {
             exception.printStackTrace();
             Toast.makeText(context, "Unexpected error occurred", Toast.LENGTH_SHORT).show();
             shutdown();
+        }
+
+        @Override
+        protected int getDefaultResolutionIndex(final List<VideoStream> sortedVideos) {
+            return ListHelper.getDefaultResolutionIndex(context, sortedVideos);
         }
 
         /*//////////////////////////////////////////////////////////////////////////

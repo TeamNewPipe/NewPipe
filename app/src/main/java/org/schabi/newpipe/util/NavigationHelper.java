@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.text.TextUtils;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -14,14 +13,10 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.about.AboutActivity;
 import org.schabi.newpipe.download.DownloadActivity;
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
-import org.schabi.newpipe.extractor.stream.AudioStream;
-import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
@@ -30,18 +25,10 @@ import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.history.HistoryActivity;
-import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.VideoPlayer;
-import org.schabi.newpipe.playlist.ExternalPlayQueue;
 import org.schabi.newpipe.playlist.PlayQueue;
-import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.settings.SettingsActivity;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static android.text.TextUtils.split;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NavigationHelper {

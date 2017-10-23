@@ -230,6 +230,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     // Playback Listener
     //////////////////////////////////////////////////////////////////////////*/
 
+    protected abstract int getDefaultResolutionIndex(final List<VideoStream> sortedVideos);
+
     @Override
     public void sync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info) {
         super.sync(item, info);
@@ -241,7 +243,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
             availableStreams = new ArrayList<>(videos);
             final int qualityIndex = item.getQualityIndex();
             if (qualityIndex == PlayQueueItem.DEFAULT_QUALITY) {
-                selectedStreamIndex = ListHelper.getDefaultResolutionIndex(context, videos);
+                selectedStreamIndex = getDefaultResolutionIndex(videos);
             } else {
                 selectedStreamIndex = qualityIndex;
             }
@@ -260,7 +262,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
         final VideoStream video;
         if (sortedStreamsIndex == PlayQueueItem.DEFAULT_QUALITY) {
-            final int index = ListHelper.getDefaultResolutionIndex(context, videos);
+            final int index = getDefaultResolutionIndex(videos);
             video = videos.get(index);
         } else {
             video = videos.get(sortedStreamsIndex);
