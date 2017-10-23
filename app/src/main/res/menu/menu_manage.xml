@@ -13,9 +13,4 @@
         android:title="@string/settings"
         app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/action_import_subscriptions"
-        android:orderInCategory="1001"
-        android:title="@string/import_subscriptions" />
-
 </menu>

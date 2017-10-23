@@ -26,6 +26,7 @@ import org.schabi.newpipe.fragments.list.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.history.HistoryActivity;
+import org.schabi.newpipe.manage_subscriptions.ManageActivity;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.VideoPlayer;
@@ -222,6 +223,15 @@ public class NavigationHelper {
             return false;
         }
         Intent intent = new Intent(activity, DownloadActivity.class);
+        activity.startActivity(intent);
+        return true;
+    }
+
+    public static boolean openManage(Activity activity) {
+        if (!PermissionHelper.checkStoragePermissions(activity)) {
+            return false;
+        }
+        Intent intent = new Intent(activity, ManageActivity.class);
         activity.startActivity(intent);
         return true;
     }

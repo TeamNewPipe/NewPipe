@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/action_show_downloads"
@@ -17,9 +18,14 @@
           android:title="@string/settings"
           app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/action_about"
+        android:orderInCategory="1000"
+        android:title="@string/action_about" />
 
-    <item android:id="@+id/action_about"
-            android:orderInCategory="1000"
-            android:title="@string/action_about" />
+    <item
+        android:id="@+id/action_manage_subscriptions"
+        android:orderInCategory="1003"
+        android:title="@string/manage_subscriptions" />
 
 </menu>
