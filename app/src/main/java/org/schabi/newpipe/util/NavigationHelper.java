@@ -60,26 +60,20 @@ public class NavigationHelper {
     public static Intent getPlayerIntent(final Context context,
                                          final Class targetClazz,
                                          final PlayQueue playQueue,
-                                         final boolean isAppending) {
+                                         final int repeatMode,
+                                         final float playbackSpeed,
+                                         final float playbackPitch) {
         return getPlayerIntent(context, targetClazz, playQueue)
-                .putExtra(BasePlayer.APPEND_ONLY, isAppending);
+                .putExtra(BasePlayer.REPEAT_MODE, repeatMode)
+                .putExtra(BasePlayer.PLAYBACK_SPEED, playbackSpeed)
+                .putExtra(BasePlayer.PLAYBACK_PITCH, playbackPitch);
     }
 
-    public static Intent getPlayerIntent(final Context context,
-                                         final Class targetClazz,
-                                         final PlayQueue playQueue,
-                                         final int maxResolution) {
+    public static Intent getPlayerEnqueueIntent(final Context context,
+                                                final Class targetClazz,
+                                                final PlayQueue playQueue) {
         return getPlayerIntent(context, targetClazz, playQueue)
-                .putExtra(VideoPlayer.MAX_RESOLUTION, maxResolution);
-    }
-
-    public static Intent getPlayerIntent(final Context context,
-                                         final Class targetClazz,
-                                         final PlayQueue playQueue,
-                                         final int maxResolution,
-                                         final float playbackSpeed) {
-        return getPlayerIntent(context, targetClazz, playQueue, maxResolution)
-                .putExtra(BasePlayer.PLAYBACK_SPEED, playbackSpeed);
+                .putExtra(BasePlayer.APPEND_ONLY, true);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

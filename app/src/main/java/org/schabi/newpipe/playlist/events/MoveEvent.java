@@ -1,12 +1,12 @@
 package org.schabi.newpipe.playlist.events;
 
-public class MoveEvent implements PlayQueueMessage {
+public class MoveEvent implements PlayQueueEvent {
     final private int fromIndex;
     final private int toIndex;
 
     @Override
-    public PlayQueueEvent type() {
-        return PlayQueueEvent.MOVE;
+    public PlayQueueEventType type() {
+        return PlayQueueEventType.MOVE;
     }
 
     public MoveEvent(final int oldIndex, final int newIndex) {

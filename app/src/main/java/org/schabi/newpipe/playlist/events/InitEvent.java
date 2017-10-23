@@ -1,8 +1,8 @@
 package org.schabi.newpipe.playlist.events;
 
-public class InitEvent implements PlayQueueMessage {
+public class InitEvent implements PlayQueueEvent {
     @Override
-    public PlayQueueEvent type() {
-        return PlayQueueEvent.INIT;
+    public PlayQueueEventType type() {
+        return PlayQueueEventType.INIT;
     }
 }

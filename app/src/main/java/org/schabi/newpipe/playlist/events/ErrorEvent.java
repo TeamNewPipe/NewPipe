@@ -1,12 +1,12 @@
 package org.schabi.newpipe.playlist.events;
 
 
-public class ErrorEvent implements PlayQueueMessage {
+public class ErrorEvent implements PlayQueueEvent {
     final private int index;
 
     @Override
-    public PlayQueueEvent type() {
-        return PlayQueueEvent.ERROR;
+    public PlayQueueEventType type() {
+        return PlayQueueEventType.ERROR;
     }
 
     public ErrorEvent(final int index) {

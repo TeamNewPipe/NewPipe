@@ -36,6 +36,11 @@ public class PlayQueueItem implements Serializable {
         this.stream = Single.just(info);
     }
 
+    PlayQueueItem(@NonNull final StreamInfo info, final int qualityIndex) {
+        this(info);
+        this.qualityIndex = qualityIndex;
+    }
+
     PlayQueueItem(@NonNull final StreamInfoItem item) {
         this(item.name, item.url, item.service_id, item.duration, item.thumbnail_url, item.uploader_name);
     }
@@ -49,8 +54,8 @@ public class PlayQueueItem implements Serializable {
         this.thumbnailUrl = thumbnailUrl;
         this.uploader = uploader;
 
-        resetQualityIndex();
-        resetRecoveryPosition();
+        this.qualityIndex = DEFAULT_QUALITY;
+        this.recoveryPosition = RECOVERY_UNSET;
     }
 
     @NonNull
@@ -71,12 +76,22 @@ public class PlayQueueItem implements Serializable {
         return duration;
     }
 
+    @NonNull
     public String getThumbnailUrl() {
         return thumbnailUrl;
     }
 
+    @NonNull
     public String getUploader() {
         return uploader;
+    }
+
+    public int getQualityIndex() {
+        return qualityIndex;
+    }
+
+    public long getRecoveryPosition() {
+        return recoveryPosition;
     }
 
     @Nullable
@@ -105,30 +120,14 @@ public class PlayQueueItem implements Serializable {
     }
 
     ////////////////////////////////////////////////////////////////////////////
-    // Item States
+    // Item States, keep external access out
     ////////////////////////////////////////////////////////////////////////////
 
-    public int getQualityIndex() {
-        return qualityIndex;
-    }
-
-    public long getRecoveryPosition() {
-        return recoveryPosition;
-    }
-
-    public void setQualityIndex(int qualityIndex) {
+    /*package-private*/ void setQualityIndex(final int qualityIndex) {
         this.qualityIndex = qualityIndex;
     }
 
-    public void setRecoveryPosition(long recoveryPosition) {
+    /*package-private*/ void setRecoveryPosition(final long recoveryPosition) {
         this.recoveryPosition = recoveryPosition;
-    }
-
-    public void resetQualityIndex() {
-        this.qualityIndex = DEFAULT_QUALITY;
-    }
-
-    public void resetRecoveryPosition() {
-        this.recoveryPosition = RECOVERY_UNSET;
     }
 }

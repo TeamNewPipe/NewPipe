@@ -28,7 +28,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
@@ -52,7 +51,6 @@ import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
 import org.schabi.newpipe.playlist.PlayQueueItemHolder;
 import org.schabi.newpipe.util.AnimationUtils;
-import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -208,6 +206,15 @@ public final class MainVideoPlayer extends Activity {
         }
     }
 
+    protected void setShuffleButton(final ImageButton shuffleButton, final boolean shuffled) {
+        final int shuffleAlpha = shuffled ? 255 : 77;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            shuffleButton.setImageAlpha(shuffleAlpha);
+        } else {
+            shuffleButton.setAlpha(shuffleAlpha);
+        }
+    }
+
     ///////////////////////////////////////////////////////////////////////////
 
     @SuppressWarnings({"unused", "WeakerAccess"})
@@ -216,8 +223,9 @@ public final class MainVideoPlayer extends Activity {
         private TextView channelTextView;
         private TextView volumeTextView;
         private TextView brightnessTextView;
-        private ImageButton repeatButton;
         private ImageButton queueButton;
+        private ImageButton repeatButton;
+        private ImageButton shuffleButton;
 
         private ImageButton screenRotationButton;
         private ImageButton playPauseButton;
@@ -242,8 +250,9 @@ public final class MainVideoPlayer extends Activity {
             this.channelTextView = rootView.findViewById(R.id.channelTextView);
             this.volumeTextView = rootView.findViewById(R.id.volumeTextView);
             this.brightnessTextView = rootView.findViewById(R.id.brightnessTextView);
-            this.repeatButton = rootView.findViewById(R.id.repeatButton);
             this.queueButton = rootView.findViewById(R.id.queueButton);
+            this.repeatButton = rootView.findViewById(R.id.repeatButton);
+            this.shuffleButton = rootView.findViewById(R.id.shuffleButton);
 
             this.screenRotationButton = rootView.findViewById(R.id.screenRotationButton);
             this.playPauseButton = rootView.findViewById(R.id.playPauseButton);
@@ -264,16 +273,12 @@ public final class MainVideoPlayer extends Activity {
 
             queueButton.setOnClickListener(this);
             repeatButton.setOnClickListener(this);
+            shuffleButton.setOnClickListener(this);
+
             playPauseButton.setOnClickListener(this);
             playPreviousButton.setOnClickListener(this);
             playNextButton.setOnClickListener(this);
             screenRotationButton.setOnClickListener(this);
-        }
-
-        @Override
-        public int getPreferredResolution() {
-            if (sharedPreferences == null || context == null) return Integer.MAX_VALUE;
-            return Localization.resolutionOf(sharedPreferences.getString(context.getString(R.string.default_resolution_key), context.getString(R.string.default_resolution_value)));
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -283,7 +288,7 @@ public final class MainVideoPlayer extends Activity {
         @Override
         public void onRepeatModeChanged(int i) {
             super.onRepeatModeChanged(i);
-            setRepeatModeButton(repeatButton, simpleExoPlayer.getRepeatMode());
+            updatePlaybackButtons();
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -306,6 +311,12 @@ public final class MainVideoPlayer extends Activity {
         }
 
         @Override
+        public void onShuffleClicked() {
+            super.onShuffleClicked();
+            updatePlaybackButtons();
+        }
+
+        @Override
         public void onFullScreenButtonClicked() {
             super.onFullScreenButtonClicked();
 
@@ -323,8 +334,9 @@ public final class MainVideoPlayer extends Activity {
                     context,
                     PopupVideoPlayer.class,
                     this.getPlayQueue(),
-                    this.getCurrentResolutionTarget(),
-                    this.getPlaybackSpeed()
+                    this.simpleExoPlayer.getRepeatMode(),
+                    this.getPlaybackSpeed(),
+                    this.getPlaybackPitch()
             );
             context.startService(intent);
             destroyPlayer();
@@ -336,10 +348,7 @@ public final class MainVideoPlayer extends Activity {
         @Override
         public void onClick(View v) {
             super.onClick(v);
-            if (v.getId() == repeatButton.getId()) {
-                onRepeatClicked();
-
-            } else if (v.getId() == playPauseButton.getId()) {
+            if (v.getId() == playPauseButton.getId()) {
                 onVideoPlayPause();
 
             } else if (v.getId() == playPreviousButton.getId()) {
@@ -353,6 +362,12 @@ public final class MainVideoPlayer extends Activity {
 
             } else if (v.getId() == queueButton.getId()) {
                 onQueueClicked();
+                return;
+            } else if (v.getId() == repeatButton.getId()) {
+                onRepeatClicked();
+                return;
+            } else if (v.getId() == shuffleButton.getId()) {
+                onShuffleClicked();
                 return;
             }
 
@@ -371,10 +386,14 @@ public final class MainVideoPlayer extends Activity {
 
         private void onQueueClicked() {
             queueVisible = true;
-            buildQueue();
             hideSystemUi();
+
+            buildQueue();
+            updatePlaybackButtons();
+
             getControlsRoot().setVisibility(View.INVISIBLE);
             queueLayout.setVisibility(View.VISIBLE);
+
             itemsList.smoothScrollToPosition(playQueue.getIndex());
         }
 
@@ -527,12 +546,20 @@ public final class MainVideoPlayer extends Activity {
             }, delay);
         }
 
+        private void updatePlaybackButtons() {
+            if (repeatButton == null || shuffleButton == null ||
+                    simpleExoPlayer == null || playQueue == null) return;
+
+            setRepeatModeButton(repeatButton, simpleExoPlayer.getRepeatMode());
+            setShuffleButton(shuffleButton, playQueue.isShuffled());
+        }
+
         private void buildQueue() {
-            queueLayout = findViewById(R.id.play_queue_control);
+            queueLayout = findViewById(R.id.playQueuePanel);
 
-            itemsListCloseButton = findViewById(R.id.play_queue_close_area);
+            itemsListCloseButton = findViewById(R.id.playQueueClose);
 
-            itemsList = findViewById(R.id.play_queue);
+            itemsList = findViewById(R.id.playQueue);
             itemsList.setAdapter(playQueueAdapter);
             itemsList.setClickable(true);
             itemsList.setLongClickable(true);

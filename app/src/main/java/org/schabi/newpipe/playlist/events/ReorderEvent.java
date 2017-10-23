@@ -1,9 +1,9 @@
 package org.schabi.newpipe.playlist.events;
 
-public class ReorderEvent implements PlayQueueMessage {
+public class ReorderEvent implements PlayQueueEvent {
     @Override
-    public PlayQueueEvent type() {
-        return PlayQueueEvent.REORDER;
+    public PlayQueueEventType type() {
+        return PlayQueueEventType.REORDER;
     }
 
     public ReorderEvent() {

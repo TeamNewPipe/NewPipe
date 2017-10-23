@@ -290,7 +290,9 @@ public final class BackgroundPlayer extends Service {
         }
 
         @Override
-        protected void postProcess(@NonNull final Intent intent) {
+        public void handleIntent(final Intent intent) {
+            super.handleIntent(intent);
+
             resetNotification();
             startForeground(NOTIFICATION_ID, notBuilder.build());
 
@@ -437,7 +439,7 @@ public final class BackgroundPlayer extends Service {
         }
 
         @Override
-        public MediaSource sourceOf(final StreamInfo info) {
+        public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
             final int index = ListHelper.getDefaultAudioFormat(context, info.audio_streams);
             if (index < 0) return null;
 

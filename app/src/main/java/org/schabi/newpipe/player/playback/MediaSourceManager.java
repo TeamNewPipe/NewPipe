@@ -13,7 +13,7 @@ import org.schabi.newpipe.player.mediasource.DeferredMediaSource;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.events.MoveEvent;
-import org.schabi.newpipe.playlist.events.PlayQueueMessage;
+import org.schabi.newpipe.playlist.events.PlayQueueEvent;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
 
 import java.util.ArrayList;
@@ -65,8 +65,8 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public MediaSource sourceOf(StreamInfo info) {
-        return playbackListener.sourceOf(info);
+    public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
+        return playbackListener.sourceOf(item, info);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -83,8 +83,6 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         playQueueReactor = null;
         syncReactor = null;
         sources = null;
-        playbackListener = null;
-        playQueue = null;
     }
 
     /**
@@ -130,8 +128,8 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     // Event Reactor
     //////////////////////////////////////////////////////////////////////////*/
 
-    private Subscriber<PlayQueueMessage> getReactor() {
-        return new Subscriber<PlayQueueMessage>() {
+    private Subscriber<PlayQueueEvent> getReactor() {
+        return new Subscriber<PlayQueueEvent>() {
             @Override
             public void onSubscribe(@NonNull Subscription d) {
                 if (playQueueReactor != null) playQueueReactor.cancel();
@@ -140,7 +138,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
             }
 
             @Override
-            public void onNext(@NonNull PlayQueueMessage playQueueMessage) {
+            public void onNext(@NonNull PlayQueueEvent playQueueMessage) {
                 onPlayQueueChanged(playQueueMessage);
             }
 
@@ -152,7 +150,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         };
     }
 
-    private void onPlayQueueChanged(final PlayQueueMessage event) {
+    private void onPlayQueueChanged(final PlayQueueEvent event) {
         if (playQueue.isEmpty()) {
             playbackListener.shutdown();
         }
@@ -160,6 +158,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         // why no pattern matching in Java =(
         switch (event.type()) {
             case INIT:
+            case QUALITY:
             case REORDER:
                 reset();
                 break;
@@ -179,6 +178,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
                 move(moveEvent.getFromIndex(), moveEvent.getToIndex());
                 break;
             case ERROR:
+            case RECOVERY:
             default:
                 break;
         }

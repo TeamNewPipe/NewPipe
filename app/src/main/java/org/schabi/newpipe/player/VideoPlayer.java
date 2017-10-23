@@ -25,7 +25,6 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -47,18 +46,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
-import com.google.android.exoplayer2.source.TrackGroup;
-import com.google.android.exoplayer2.source.TrackGroupArray;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.FixedTrackSelection;
-import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
-import com.google.android.exoplayer2.trackselection.TrackSelection;
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 
 import org.schabi.newpipe.R;
@@ -90,7 +81,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     //////////////////////////////////////////////////////////////////////////*/
 
     public static final String STARTED_FROM_NEWPIPE = "started_from_newpipe";
-    public static final String MAX_RESOLUTION = "max_resolution";
 
     private ArrayList<VideoStream> availableStreams;
     private int selectedStreamIndex;
@@ -100,11 +90,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     //////////////////////////////////////////////////////////////////////////*/
 
     public static final int DEFAULT_CONTROLS_HIDE_TIME = 2000;  // 2 Seconds
-
-    private static final TrackSelection.Factory FIXED_FACTORY = new FixedTrackSelection.Factory();
-    private List<TrackGroupInfo> trackGroupInfos;
-    private TrackGroupArray videoTrackGroups;
-    private TrackGroup selectedVideoTrackGroup;
 
     private boolean startedFromNewPipe = true;
     protected boolean wasPlaying = false;
@@ -130,7 +115,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     private SeekBar playbackSeekBar;
     private TextView playbackCurrentTime;
     private TextView playbackEndTime;
-    private TextView playbackSpeed;
+    private TextView playbackSpeedTextView;
 
     private View topControlsRoot;
     private TextView qualityTextView;
@@ -173,7 +158,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         this.playbackSeekBar = rootView.findViewById(R.id.playbackSeekBar);
         this.playbackCurrentTime = rootView.findViewById(R.id.playbackCurrentTime);
         this.playbackEndTime = rootView.findViewById(R.id.playbackEndTime);
-        this.playbackSpeed = rootView.findViewById(R.id.playbackSpeed);
+        this.playbackSpeedTextView = rootView.findViewById(R.id.playbackSpeed);
         this.bottomControlsRoot = rootView.findViewById(R.id.bottomControls);
         this.topControlsRoot = rootView.findViewById(R.id.topControls);
         this.qualityTextView = rootView.findViewById(R.id.qualityTextView);
@@ -186,7 +171,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         this.playbackSeekBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
 
         this.qualityPopupMenu = new PopupMenu(context, qualityTextView);
-        this.playbackSpeedPopupMenu = new PopupMenu(context, playbackSpeed);
+        this.playbackSpeedPopupMenu = new PopupMenu(context, playbackSpeedTextView);
 
         ((ProgressBar) this.loadingPanel.findViewById(R.id.progressBarLoadingPanel)).getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
 
@@ -196,7 +181,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     public void initListeners() {
         super.initListeners();
         playbackSeekBar.setOnSeekBarChangeListener(this);
-        playbackSpeed.setOnClickListener(this);
+        playbackSpeedTextView.setOnClickListener(this);
         fullScreenButton.setOnClickListener(this);
         qualityTextView.setOnClickListener(this);
     }
@@ -212,78 +197,21 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         }
     }
 
-    @Override
-    protected void postProcess(@NonNull final Intent intent) {
-        final int resolutionTarget = intent.getIntExtra(MAX_RESOLUTION, getPreferredResolution());
-        trackSelector.setParameters(
-                // Assume video is horizontal
-                new DefaultTrackSelector.Parameters().withMaxVideoSize(Integer.MAX_VALUE, resolutionTarget)
-        );
-    }
-
-    public abstract int getPreferredResolution();
-
     /*//////////////////////////////////////////////////////////////////////////
     // UI Builders
     //////////////////////////////////////////////////////////////////////////*/
 
-    private final class TrackGroupInfo {
-        final int track;
-        final int group;
-        final Format format;
-
-        TrackGroupInfo(final int track, final int group, final Format format) {
-            this.track = track;
-            this.group = group;
-            this.format = format;
-        }
-    }
-
-    private void buildQualityMenu() {
-        if (qualityPopupMenu == null || videoTrackGroups == null || selectedVideoTrackGroup == null
-                || availableStreams == null || videoTrackGroups.length != availableStreams.size()) return;
+    public void buildQualityMenu() {
+        if (qualityPopupMenu == null) return;
 
         qualityPopupMenu.getMenu().removeGroup(qualityPopupMenuGroupId);
-        trackGroupInfos = new ArrayList<>();
-        int acc = 0;
-
-        // Each group represent a source in sorted order of how the media source was built
-        for (int groupIndex = 0; groupIndex < videoTrackGroups.length; groupIndex++) {
-            final TrackGroup group = videoTrackGroups.get(groupIndex);
-            final VideoStream stream = availableStreams.get(groupIndex);
-
-            // For each source, there may be one or multiple tracks depending on the source type
-            for (int trackIndex = 0; trackIndex < group.length; trackIndex++) {
-                final Format format = group.getFormat(trackIndex);
-                final boolean isSetCurrent = selectedVideoTrackGroup.indexOf(format) != -1;
-
-                if (group.length == 1 && videoTrackGroups.length == availableStreams.size()) {
-                    // If the source is non-adaptive (extractor source), then we use the resolution contained in the stream
-                    if (isSetCurrent) qualityTextView.setText(stream.resolution);
-
-                    final String menuItem = MediaFormat.getNameById(stream.format) + " " +
-                            stream.resolution + " (" + format.width + "x" + format.height + ")";
-                    qualityPopupMenu.getMenu().add(qualityPopupMenuGroupId, acc, Menu.NONE, menuItem);
-                } else {
-                    // Otherwise, we have an adaptive source, which contains multiple formats and
-                    // thus have no inherent quality format
-                    if (isSetCurrent) qualityTextView.setText(resolutionStringOf(format));
-
-                    final MediaFormat mediaFormat = MediaFormat.getFromMimeType(format.sampleMimeType);
-                    final String mediaName = mediaFormat == null ? format.sampleMimeType : mediaFormat.name;
-
-                    final String menuItem = mediaName + " " + format.width + "x" + format.height;
-                    qualityPopupMenu.getMenu().add(qualityPopupMenuGroupId, acc, Menu.NONE, menuItem);
-                }
-
-                trackGroupInfos.add(new TrackGroupInfo(trackIndex, groupIndex, format));
-                acc++;
-            }
+        for (int i = 0; i < availableStreams.size(); i++) {
+            VideoStream videoStream = availableStreams.get(i);
+            qualityPopupMenu.getMenu().add(qualityPopupMenuGroupId, i, Menu.NONE, MediaFormat.getNameById(videoStream.format) + " " + videoStream.resolution);
         }
-
+        qualityTextView.setText(getSelectedVideoStream().resolution);
         qualityPopupMenu.setOnMenuItemClickListener(this);
         qualityPopupMenu.setOnDismissListener(this);
-        qualityTextView.setVisibility(View.VISIBLE);
     }
 
     private void buildPlaybackSpeedMenu() {
@@ -293,7 +221,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         for (int i = 0; i < PLAYBACK_SPEEDS.length; i++) {
             playbackSpeedPopupMenu.getMenu().add(playbackSpeedPopupMenuGroupId, i, Menu.NONE, formatSpeed(PLAYBACK_SPEEDS[i]));
         }
-        playbackSpeed.setText(formatSpeed(getPlaybackSpeed()));
+        playbackSpeedTextView.setText(formatSpeed(getPlaybackSpeed()));
         playbackSpeedPopupMenu.setOnMenuItemClickListener(this);
         playbackSpeedPopupMenu.setOnDismissListener(this);
     }
@@ -305,27 +233,46 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     @Override
     public void sync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info) {
         super.sync(item, info);
+        qualityTextView.setVisibility(View.GONE);
+        playbackSpeedTextView.setVisibility(View.GONE);
 
         if (info != null) {
             final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
             availableStreams = new ArrayList<>(videos);
-            selectedStreamIndex = ListHelper.getDefaultResolutionIndex(context, videos);
-        }
+            final int qualityIndex = item.getQualityIndex();
+            if (qualityIndex == PlayQueueItem.DEFAULT_QUALITY) {
+                selectedStreamIndex = ListHelper.getDefaultResolutionIndex(context, videos);
+            } else {
+                selectedStreamIndex = qualityIndex;
+            }
 
-        buildPlaybackSpeedMenu();
-        buildQualityMenu();
+            buildQualityMenu();
+            buildPlaybackSpeedMenu();
+            qualityTextView.setVisibility(View.VISIBLE);
+            playbackSpeedTextView.setVisibility(View.VISIBLE);
+        }
     }
 
-    public MediaSource sourceOf(final StreamInfo info) {
+    public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
         final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
-        List<MediaSource> sources = new ArrayList<>();
+        final int sortedStreamsIndex = item.getQualityIndex();
+        if (videos.isEmpty() || sortedStreamsIndex >= videos.size()) return null;
 
-        for (final VideoStream video : videos) {
-            final MediaSource mediaSource = buildMediaSource(video.url, MediaFormat.getSuffixById(video.format));
-            sources.add(mediaSource);
+        final VideoStream video;
+        if (sortedStreamsIndex == PlayQueueItem.DEFAULT_QUALITY) {
+            final int index = ListHelper.getDefaultResolutionIndex(context, videos);
+            video = videos.get(index);
+        } else {
+            video = videos.get(sortedStreamsIndex);
         }
 
-        return new MergingMediaSource(sources.toArray(new MediaSource[sources.size()]));
+        final MediaSource streamSource = buildMediaSource(video.url, MediaFormat.getSuffixById(video.format));
+        final AudioStream audio = ListHelper.getHighestQualityAudio(info.audio_streams);
+        if (!video.isVideoOnly || audio == null) return streamSource;
+
+        // Merge with audio stream in case if video does not contain audio
+        final MediaSource audioSource = buildMediaSource(audio.url, MediaFormat.getSuffixById(audio.format));
+        return new MergingMediaSource(streamSource, audioSource);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -404,24 +351,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
-        super.onTracksChanged(trackGroups, trackSelections);
-
-        if (trackSelector.getCurrentMappedTrackInfo() == null) return;
-        qualityTextView.setVisibility(View.GONE);
-
-        final int videoRendererIndex = getVideoRendererIndex();
-        if (videoRendererIndex == -1) return;
-
-        videoTrackGroups = trackSelector.getCurrentMappedTrackInfo().getTrackGroups(videoRendererIndex);
-        final TrackSelection trackSelection = trackSelections.get(videoRendererIndex);
-        if (trackSelection != null) {
-            selectedVideoTrackGroup = trackSelection.getTrackGroup();
-            buildQualityMenu();
-        }
-    }
-
-    @Override
     public void onVideoSizeChanged(int width, int height, int unappliedRotationDegrees, float pixelWidthHeightRatio) {
         if (DEBUG) {
             Log.d(TAG, "onVideoSizeChanged() called with: width / height = [" + width + " / " + height + " = " + (((float) width) / height) + "], unappliedRotationDegrees = [" + unappliedRotationDegrees + "], pixelWidthHeightRatio = [" + pixelWidthHeightRatio + "]");
@@ -444,7 +373,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
         playbackSeekBar.setMax((int) simpleExoPlayer.getDuration());
         playbackEndTime.setText(getTimeString((int) simpleExoPlayer.getDuration()));
-        playbackSpeed.setText(formatSpeed(getPlaybackSpeed()));
+        playbackSpeedTextView.setText(formatSpeed(getPlaybackSpeed()));
 
         super.onPrepared(playWhenReady);
     }
@@ -510,7 +439,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
             onFullScreenButtonClicked();
         } else if (v.getId() == qualityTextView.getId()) {
             onQualitySelectorClicked();
-        } else if (v.getId() == playbackSpeed.getId()) {
+        } else if (v.getId() == playbackSpeedTextView.getId()) {
             onPlaybackSpeedClicked();
         }
     }
@@ -524,34 +453,19 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
             Log.d(TAG, "onMenuItemClick() called with: menuItem = [" + menuItem + "], menuItem.getItemId = [" + menuItem.getItemId() + "]");
 
         if (qualityPopupMenuGroupId == menuItem.getGroupId()) {
-            final int itemId = menuItem.getItemId();
-            final TrackGroupInfo info = trackGroupInfos.get(itemId);
+            if (selectedStreamIndex == menuItem.getItemId()) return true;
 
-            // Set selected quality as player lifecycle persistent parameters
-            DefaultTrackSelector.Parameters parameters;
-            if (info.format.width > info.format.height) {
-                // Check if video horizontal
-                parameters = new DefaultTrackSelector.Parameters().withMaxVideoSize(Integer.MAX_VALUE, info.format.height);
-            } else {
-                // Or if vertical
-                parameters = new DefaultTrackSelector.Parameters().withMaxVideoSize(info.format.width, Integer.MAX_VALUE);
-            }
-            trackSelector.setParameters(parameters);
+            setRecovery();
+            playQueue.setQuality(playQueue.getIndex(), menuItem.getItemId());
 
-            final int videoRendererIndex = getVideoRendererIndex();
-            if (videoRendererIndex != -1) {
-                // Override the selection with the selected quality in case of different frame rate
-                final MappingTrackSelector.SelectionOverride override = new MappingTrackSelector.SelectionOverride(FIXED_FACTORY, info.group, info.track);
-                trackSelector.setSelectionOverride(videoRendererIndex, videoTrackGroups, override);
-            }
-
+            qualityTextView.setText(menuItem.getTitle());
             return true;
         } else if (playbackSpeedPopupMenuGroupId == menuItem.getGroupId()) {
             int speedIndex = menuItem.getItemId();
             float speed = PLAYBACK_SPEEDS[speedIndex];
 
             setPlaybackSpeed(speed);
-            playbackSpeed.setText(formatSpeed(speed));
+            playbackSpeedTextView.setText(formatSpeed(speed));
         }
 
         return false;
@@ -564,6 +478,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     public void onDismiss(PopupMenu menu) {
         if (DEBUG) Log.d(TAG, "onDismiss() called with: menu = [" + menu + "]");
         isSomePopupMenuVisible = false;
+        qualityTextView.setText(getSelectedVideoStream().resolution);
     }
 
     public void onQualitySelectorClicked() {
@@ -572,6 +487,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         isSomePopupMenuVisible = true;
         showControls(300);
 
+        VideoStream videoStream = getSelectedVideoStream();
+        qualityTextView.setText(MediaFormat.getNameById(videoStream.format) + " " + videoStream.resolution);
         wasPlaying = simpleExoPlayer.getPlayWhenReady();
     }
 
@@ -633,11 +550,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         }
 
         return -1;
-    }
-
-    public String resolutionStringOf(final Format format) {
-        final String frameRate = format.frameRate > 0 ? String.valueOf((int) format.frameRate) : "";
-        return Math.min(format.width, format.height) + "p" + frameRate;
     }
 
     public boolean isControlsVisible() {
@@ -744,10 +656,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
     public boolean wasPlaying() {
         return wasPlaying;
-    }
-
-    public int getQualityPopupMenuGroupId() {
-        return qualityPopupMenuGroupId;
     }
 
     public VideoStream getSelectedVideoStream() {

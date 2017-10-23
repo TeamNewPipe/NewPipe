@@ -152,13 +152,4 @@ public class Localization {
         }
         return output;
     }
-
-    public static int resolutionOf(final String resolution) {
-        final String[] candidates = TextUtils.split(resolution, "p");
-        if (candidates.length > 0 && TextUtils.isDigitsOnly(candidates[0])) {
-            return Integer.parseInt(candidates[0]);
-        } else {
-            return Integer.MAX_VALUE;
-        }
-    }
 }

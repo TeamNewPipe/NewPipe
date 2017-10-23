@@ -9,6 +9,10 @@ public final class SinglePlayQueue extends PlayQueue {
         super(0, Collections.singletonList(new PlayQueueItem(info)));
     }
 
+    public SinglePlayQueue(final StreamInfo info, final int qualityIndex) {
+        super(0, Collections.singletonList(new PlayQueueItem(info, qualityIndex)));
+    }
+
     @Override
     public boolean isComplete() {
         return true;

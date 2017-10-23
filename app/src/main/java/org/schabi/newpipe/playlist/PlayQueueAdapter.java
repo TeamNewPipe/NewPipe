@@ -10,7 +10,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.playlist.events.AppendEvent;
 import org.schabi.newpipe.playlist.events.ErrorEvent;
 import org.schabi.newpipe.playlist.events.MoveEvent;
-import org.schabi.newpipe.playlist.events.PlayQueueMessage;
+import org.schabi.newpipe.playlist.events.PlayQueueEvent;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
 import org.schabi.newpipe.playlist.events.SelectEvent;
 
@@ -73,7 +73,7 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     private void startReactor() {
-        final Observer<PlayQueueMessage> observer = new Observer<PlayQueueMessage>() {
+        final Observer<PlayQueueEvent> observer = new Observer<PlayQueueEvent>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
                 if (playQueueReactor != null) playQueueReactor.dispose();
@@ -81,7 +81,7 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
 
             @Override
-            public void onNext(@NonNull PlayQueueMessage playQueueMessage) {
+            public void onNext(@NonNull PlayQueueEvent playQueueMessage) {
                 onPlayQueueChanged(playQueueMessage);
             }
 
@@ -99,8 +99,12 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 .subscribe(observer);
     }
 
-    private void onPlayQueueChanged(final PlayQueueMessage message) {
+    private void onPlayQueueChanged(final PlayQueueEvent message) {
         switch (message.type()) {
+            case RECOVERY:
+            case QUALITY:
+                // Do nothing.
+                break;
             case SELECT:
                 final SelectEvent selectEvent = (SelectEvent) message;
                 notifyItemChanged(selectEvent.getOldIndex());

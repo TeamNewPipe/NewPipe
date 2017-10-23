@@ -116,6 +116,11 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_play_queue, menu);
         return true;
@@ -164,7 +169,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             serviceBound = false;
             stopPlayerListener();
             player = null;
-            finish();
         }
     }
 
@@ -181,6 +185,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 player = playerFrom(service);
                 if (player == null || player.playQueue == null || player.playQueueAdapter == null || player.simpleExoPlayer == null) {
                     unbind();
+                    finish();
                 } else {
                     buildComponents();
                     startPlayerListener();
@@ -460,6 +465,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     @Override
     public void onServiceStopped() {
         unbind();
+        finish();
     }
 
     ////////////////////////////////////////////////////////////////////////////

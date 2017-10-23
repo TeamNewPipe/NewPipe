@@ -122,6 +122,8 @@ public abstract class BasePlayer implements Player.EventListener,
     // Intent
     //////////////////////////////////////////////////////////////////////////*/
 
+    public static final String REPEAT_MODE = "repeat_mode";
+    public static final String PLAYBACK_PITCH = "playback_pitch";
     public static final String PLAYBACK_SPEED = "playback_speed";
     public static final String PLAY_QUEUE = "play_queue";
     public static final String APPEND_ONLY = "append_only";
@@ -234,8 +236,6 @@ public abstract class BasePlayer implements Player.EventListener,
                 });
     }
 
-    protected abstract void postProcess(@NonNull final Intent intent);
-
     public void handleIntent(Intent intent) {
         if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
         if (intent == null) return;
@@ -253,6 +253,7 @@ public abstract class BasePlayer implements Player.EventListener,
         }
 
         setPlaybackSpeed(intent.getFloatExtra(PLAYBACK_SPEED, getPlaybackSpeed()));
+        setPlaybackPitch(intent.getFloatExtra(PLAYBACK_PITCH, getPlaybackPitch()));
 
         // Re-initialization
         destroyPlayer();
@@ -262,7 +263,6 @@ public abstract class BasePlayer implements Player.EventListener,
 
         // Good to go...
         initPlayback(this, queue);
-        postProcess(intent);
     }
 
     protected void initPlayback(@NonNull final PlaybackListener listener, @NonNull final PlayQueue queue) {
@@ -287,7 +287,6 @@ public abstract class BasePlayer implements Player.EventListener,
             }
         });
     }
-
 
     public void onThumbnailReceived(Bitmap thumbnail) {
         if (DEBUG) Log.d(TAG, "onThumbnailReceived() called with: thumbnail = [" + thumbnail + "]");
@@ -470,7 +469,6 @@ public abstract class BasePlayer implements Player.EventListener,
     public static final int STATE_PAUSED_SEEK = 127;
     public static final int STATE_COMPLETED = 128;
 
-
     protected int currentState = -1;
 
     public void changeState(int state) {
@@ -577,15 +575,13 @@ public abstract class BasePlayer implements Player.EventListener,
         // Check if recovering
         if (isCurrentWindowCorrect && currentSourceItem != null &&
                 currentSourceItem.getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
+            /* Recovering with sub-second position may cause a long buffer delay in ExoPlayer,
+             * rounding this position to the nearest second will help alleviate this.*/
+            final long position = currentSourceItem.getRecoveryPosition();
 
-            // todo: figure out exactly why this is the case
-            /* Rounding time to nearest second as certain media cannot guarantee a sub-second seek
-             will complete and the player might get stuck in buffering state forever */
-            final long roundedPos = (currentSourceItem.getRecoveryPosition() / 1000) * 1000;
-
-            if (DEBUG) Log.d(TAG, "Rewinding to recovery window: " + currentSourceIndex + " at: " + getTimeString((int)roundedPos));
+            if (DEBUG) Log.d(TAG, "Rewinding to recovery window: " + currentSourceIndex + " at: " + getTimeString((int)position));
             simpleExoPlayer.seekTo(currentSourceItem.getRecoveryPosition());
-            currentSourceItem.resetRecoveryPosition();
+            playQueue.unsetRecovery(currentSourceIndex);
         }
     }
 
@@ -995,10 +991,6 @@ public abstract class BasePlayer implements Player.EventListener,
         simpleExoPlayer.setPlaybackParameters(new PlaybackParameters(speed, pitch));
     }
 
-    public int getCurrentResolutionTarget() {
-        return trackSelector != null ? trackSelector.getParameters().maxVideoHeight : Integer.MAX_VALUE;
-    }
-
     public PlayQueue getPlayQueue() {
         return playQueue;
     }
@@ -1024,6 +1016,6 @@ public abstract class BasePlayer implements Player.EventListener,
         if (playQueue.size() <= queuePos) return;
 
         if (DEBUG) Log.d(TAG, "Setting recovery, queue: " + queuePos + ", pos: " + windowPos);
-        playQueue.getItem(queuePos).setRecoveryPosition(windowPos);
+        playQueue.setRecovery(queuePos, windowPos);
     }
 }

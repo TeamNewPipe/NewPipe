@@ -163,7 +163,7 @@
             android:focusable="true"
             android:padding="2dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_action_av_fast_rewind"
+            android:src="@drawable/exo_controls_previous"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -212,7 +212,7 @@
             android:focusable="true"
             android:padding="2dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_action_av_fast_forward"
+            android:src="@drawable/exo_controls_next"
             tools:ignore="ContentDescription"/>
 
         <ImageButton

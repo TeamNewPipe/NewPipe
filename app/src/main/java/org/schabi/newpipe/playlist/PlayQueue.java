@@ -9,10 +9,12 @@ import org.schabi.newpipe.playlist.events.AppendEvent;
 import org.schabi.newpipe.playlist.events.ErrorEvent;
 import org.schabi.newpipe.playlist.events.InitEvent;
 import org.schabi.newpipe.playlist.events.MoveEvent;
-import org.schabi.newpipe.playlist.events.PlayQueueMessage;
+import org.schabi.newpipe.playlist.events.PlayQueueEvent;
+import org.schabi.newpipe.playlist.events.RecoveryEvent;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
 import org.schabi.newpipe.playlist.events.ReorderEvent;
 import org.schabi.newpipe.playlist.events.SelectEvent;
+import org.schabi.newpipe.playlist.events.QualityEvent;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -46,8 +48,8 @@ public abstract class PlayQueue implements Serializable {
     private ArrayList<PlayQueueItem> streams;
     private final AtomicInteger queueIndex;
 
-    private transient BehaviorSubject<PlayQueueMessage> eventBroadcast;
-    private transient Flowable<PlayQueueMessage> broadcastReceiver;
+    private transient BehaviorSubject<PlayQueueEvent> eventBroadcast;
+    private transient Flowable<PlayQueueEvent> broadcastReceiver;
     private transient Subscription reportingReactor;
 
     PlayQueue(final int index, final List<PlayQueueItem> startWith) {
@@ -171,7 +173,7 @@ public abstract class PlayQueue implements Serializable {
      * May be null if the play queue message bus is not initialized.
      * */
     @NonNull
-    public Flowable<PlayQueueMessage> getBroadcastReceiver() {
+    public Flowable<PlayQueueEvent> getBroadcastReceiver() {
         return broadcastReceiver;
     }
 
@@ -273,6 +275,15 @@ public abstract class PlayQueue implements Serializable {
         streams.remove(index);
     }
 
+    /**
+     * Moves a queue item at the source index to the target index.
+     *
+     * If the item being moved is the currently playing, then the current playing index is set
+     * to that of the target.
+     * If the moved item is not the currently playing and moves to an index <b>AFTER</b> the
+     * current playing index, then the current playing index is decremented.
+     * Vice versa if the an item after the currently playing is moved <b>BEFORE</b>.
+     * */
     public synchronized void move(final int source, final int target) {
         if (source < 0 || target < 0) return;
         if (source >= streams.size() || target >= streams.size()) return;
@@ -288,6 +299,42 @@ public abstract class PlayQueue implements Serializable {
 
         streams.add(target, streams.remove(source));
         broadcast(new MoveEvent(source, target));
+    }
+
+    /**
+     * Updates the quality index at the given item index.
+     *
+     * Broadcasts an update event, signalling to all recipients that they should reset.
+     * */
+    public synchronized void setQuality(final int queueIndex, final int qualityIndex) {
+        if (queueIndex < 0 || queueIndex >= streams.size()) return;
+
+        final PlayQueueItem item = streams.get(queueIndex);
+        final int oldQualityIndex = item.getQualityIndex();
+
+        item.setQualityIndex(qualityIndex);
+        broadcast(new QualityEvent(queueIndex, oldQualityIndex, qualityIndex));
+    }
+
+    /**
+     * Sets the recovery record of the item at the index.
+     *
+     * Broadcasts a recovery event.
+     * */
+    public synchronized void setRecovery(final int index, final long position) {
+        if (index < 0 || index >= streams.size()) return;
+
+        streams.get(index).setRecoveryPosition(position);
+        broadcast(new RecoveryEvent(index, position));
+    }
+
+    /**
+     * Revoke the recovery record of the item at the index.
+     *
+     * Broadcasts a recovery event.
+     * */
+    public synchronized void unsetRecovery(final int index) {
+        setRecovery(index, PlayQueueItem.RECOVERY_UNSET);
     }
 
     /**
@@ -345,14 +392,14 @@ public abstract class PlayQueue implements Serializable {
     // Rx Broadcast
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void broadcast(final PlayQueueMessage event) {
+    private void broadcast(final PlayQueueEvent event) {
         if (eventBroadcast != null) {
             eventBroadcast.onNext(event);
         }
     }
 
-    private Subscriber<PlayQueueMessage> getSelfReporter() {
-        return new Subscriber<PlayQueueMessage>() {
+    private Subscriber<PlayQueueEvent> getSelfReporter() {
+        return new Subscriber<PlayQueueEvent>() {
             @Override
             public void onSubscribe(Subscription s) {
                 if (reportingReactor != null) reportingReactor.cancel();
@@ -361,7 +408,7 @@ public abstract class PlayQueue implements Serializable {
             }
 
             @Override
-            public void onNext(PlayQueueMessage event) {
+            public void onNext(PlayQueueEvent event) {
                 Log.d(TAG, "Received broadcast: " + event.type().name() + ". Current index: " + getIndex() + ", play queue length: " + size() + ".");
                 reportingReactor.request(1);
             }

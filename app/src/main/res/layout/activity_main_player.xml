@@ -43,26 +43,72 @@
         tools:visibility="visible"/>
 
     <RelativeLayout
-        android:id="@+id/play_queue_control"
+        android:id="@+id/playQueuePanel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#64000000"
         android:visibility="gone"
         tools:visibility="visible">
 
-        <ImageButton
-            android:id="@+id/play_queue_close_area"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="?android:selectableItemBackground"
-            android:src="@drawable/ic_close_white_24dp"
-            tools:ignore="ContentDescription"/>
+            android:id="@+id/playQueueControl">
+
+            <ImageButton
+                android:id="@+id/playQueueClose"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="40dp"
+                android:layout_marginEnd="40dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_close_white_24dp"
+                android:background="?android:selectableItemBackground"
+                tools:ignore="ContentDescription"/>
+
+            <ImageButton
+                android:id="@+id/repeatButton"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="40dp"
+                android:layout_marginStart="40dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/exo_controls_repeat_off"
+                android:background="?android:selectableItemBackground"
+                tools:ignore="ContentDescription,RtlHardcoded"/>
+
+            <ImageButton
+                android:id="@+id/shuffleButton"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/repeatButton"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_shuffle_white_24dp"
+                android:background="?android:selectableItemBackground"
+                tools:ignore="ContentDescription,RtlHardcoded"/>
+        </RelativeLayout>
+
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/play_queue"
+            android:id="@+id/playQueue"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/play_queue_close_area"
+            android:layout_below="@id/playQueueControl"
             android:scrollbars="vertical"
             app:layoutManager="LinearLayoutManager"
             tools:listitem="@layout/play_queue_item"/>
@@ -164,28 +210,13 @@
                     android:layout_height="35dp"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
-                    android:layout_toLeftOf="@+id/repeatButton"
+                    android:layout_toLeftOf="@+id/queueButton"
                     android:background="#00ffffff"
                     android:clickable="true"
                     android:focusable="true"
                     android:padding="8dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_screen_rotation_white"
-                    tools:ignore="ContentDescription,RtlHardcoded"/>
-
-                <ImageButton
-                    android:id="@+id/repeatButton"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                    android:layout_toLeftOf="@+id/queueButton"
-                    android:background="#00ffffff"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:padding="5dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/exo_controls_repeat_off"
                     tools:ignore="ContentDescription,RtlHardcoded"/>
 
                 <ImageButton
@@ -402,13 +433,5 @@
             tools:text="1:06:29"
             tools:visibility="visible"/>
     </RelativeLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/video_playlist"
-        android:layout_width="480dp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="#64000000"
-        android:visibility="gone"/>
 
 </RelativeLayout>

@@ -51,7 +51,7 @@ public final class DeferredMediaSource implements MediaSource {
          * Player-specific {@link com.google.android.exoplayer2.source.MediaSource} resolution
          * from a given StreamInfo.
          * */
-        MediaSource sourceOf(final StreamInfo info);
+        MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info);
     }
 
     private PlayQueueItem stream;
@@ -102,8 +102,8 @@ public final class DeferredMediaSource implements MediaSource {
      * called once only.
      *
      * If loading fails here, an error will be propagated out and result in an
-     * {@link com.google.android.exoplayer2.ExoPlaybackException ExoPlaybackException}, which is delegated
-     * to the player.
+     * {@link com.google.android.exoplayer2.ExoPlaybackException ExoPlaybackException},
+     * which is delegated to the player.
      * */
     public synchronized void load() {
         if (stream == null) {
@@ -117,7 +117,7 @@ public final class DeferredMediaSource implements MediaSource {
         final Function<StreamInfo, MediaSource> onReceive = new Function<StreamInfo, MediaSource>() {
             @Override
             public MediaSource apply(StreamInfo streamInfo) throws Exception {
-                return onStreamInfoReceived(streamInfo);
+                return onStreamInfoReceived(stream, streamInfo);
             }
         };
 
@@ -142,17 +142,18 @@ public final class DeferredMediaSource implements MediaSource {
                 .subscribe(onSuccess, onError);
     }
 
-    private MediaSource onStreamInfoReceived(final StreamInfo streamInfo) throws Exception {
+    private MediaSource onStreamInfoReceived(@NonNull final PlayQueueItem item,
+                                             @NonNull final StreamInfo info) throws Exception {
         if (callback == null) {
             throw new Exception("No available callback for resolving stream info.");
         }
 
-        final MediaSource mediaSource = callback.sourceOf(streamInfo);
+        final MediaSource mediaSource = callback.sourceOf(item, info);
 
         if (mediaSource == null) {
             throw new Exception("Unable to resolve source from stream info. URL: " + stream.getUrl() +
-                    ", audio count: " + streamInfo.audio_streams.size() +
-                    ", video count: " + streamInfo.video_only_streams.size() + streamInfo.video_streams.size());
+                    ", audio count: " + info.audio_streams.size() +
+                    ", video count: " + info.video_only_streams.size() + info.video_streams.size());
         }
 
         return mediaSource;

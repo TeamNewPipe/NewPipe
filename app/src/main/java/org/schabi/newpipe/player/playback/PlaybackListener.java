@@ -43,7 +43,7 @@ public interface PlaybackListener {
      *
      * May be called at any time.
      * */
-    MediaSource sourceOf(final StreamInfo info);
+    MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info);
 
     /**
      * Called when the play queue can no longer to played or used.
