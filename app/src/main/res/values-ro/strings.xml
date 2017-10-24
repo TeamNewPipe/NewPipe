@@ -27,7 +27,7 @@
 
     <string name="default_resolution_title">Rezoluție implicită</string>
     <string name="play_with_kodi_title">Redați folosind Kodi</string>
-    <string name="kore_not_found">Aplicația Kore nu a fost găsită. Instalați Kore?</string>
+    <string name="kore_not_found">Aplicația Kore nu a fost găsită. Doriți să o instalați?</string>
     <string name="show_play_with_kodi_title">Arată opțiunea \"Redați folosind Kodi\"</string>
     <string name="show_play_with_kodi_summary">Arătați o opțiune de redare a videoclipurilor via centrului media Kodi</string>
     <string name="play_audio">Audio</string>
@@ -60,13 +60,13 @@
     <string name="parsing_error">Nu s-a putut analiza website-ul</string>
     <string name="content_not_available">Conținut indisponibil</string>
     <string name="blocked_by_gema">Blocat de către GEMA</string>
-    <string name="could_not_setup_download_menu">Nu s-a putut seta meniul de descărcare.</string>
-    <string name="live_streams_not_supported">Acesta este un LIVE STREAM. Acestea nu sunt încă suportate.</string>
+    <string name="could_not_setup_download_menu">Imposibil de inițializat meniul pentru descărcări</string>
+    <string name="live_streams_not_supported">Acesta este un LIVE STREAM, care încă nu este suportat.</string>
 
 
     <string name="list_thumbnail_view_description">Thumbnail de previzualizare al videoclipului</string>
     <string name="detail_thumbnail_view_description">Thumbnail de previzualizare al videoclipului</string>
-    <string name="detail_uploader_thumbnail_view_description">Thumbnail-ul pentru userpicul persoanei care a încărcat videoclipul</string>
+    <string name="detail_uploader_thumbnail_view_description">Thumbnail-ul autorului</string>
     <string name="detail_likes_img_view_description">Au apreciat</string>
     <string name="detail_dislikes_img_view_description">Nu au apreciat</string>
     <string name="use_tor_title">Folosiți Tor</string>
@@ -103,15 +103,15 @@
 
     <string name="start">Start</string>
     <string name="pause">Pauză</string>
-    <string name="view">Vezi</string>
+    <string name="view">Redă</string>
     <string name="delete">Șterge</string>
     <string name="checksum">Suma de control</string>
 
     <string name="add">Misiune nouă</string>
-    <string name="finish">Ok</string>
+    <string name="finish">OK</string>
 
 
-    <string name="msg_name">Nume fișier</string>
+    <string name="msg_name">Numele fișierului</string>
     <string name="msg_threads">Thread-uri</string>
     <string name="msg_error">Eroare</string>
     <string name="msg_server_unsupported">Server nesuportat</string>
@@ -120,8 +120,8 @@
     <string name="msg_running">NewPipe Descarcă</string>
     <string name="msg_running_detail">Apasă pentru detalii</string>
     <string name="msg_wait">Vă rugăm așteptați…</string>
-    <string name="msg_copied">Copiat în clipboard.</string>
-    <string name="no_available_dir">Vă rugăm selectați un director de descărcare disponibil.</string>
+    <string name="msg_copied">Copiat în clipboard</string>
+    <string name="no_available_dir">Vă rugăm alegeți un folder pentru descărcări</string>
 
     <string name="open_in_popup_mode">Deschide in mod pop-up</string>
     <string name="msg_popup_permission">Aceasta permisiune este necesara
@@ -131,7 +131,7 @@ pentru a deschide în mod pop-up</string>
     <string name="reCaptcha_title">reCAPTCHA noua</string>
     <string name="recaptcha_request_toast">reCAPTCHA noua ceruta</string>
 
-    <string name="popup_mode_share_menu_title">NewPipe mod Pop-up</string>
+    <string name="popup_mode_share_menu_title">NewPipe mod pop-up</string>
 
     <string name="default_popup_resolution_title">Rezoluție inițială pop-up</string>
     <string name="show_higher_resolutions_title">Arată rezoluție mai mare</string>
@@ -150,12 +150,12 @@ pentru a deschide în mod pop-up</string>
     <string name="app_ui_crash">App/UI eroare</string>
     <string name="info_labels">What:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:\\nGlob. IP clasa:</string>
     <string name="use_old_player_title">Folosește player vechi</string>
-    <string name="use_old_player_summary">Versiune veche în Mediaframework player.</string>
+    <string name="use_old_player_summary">Player Mediaframework implicit</string>
 
 
     <string name="short_thousand">K</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_million">mil.</string>
+    <string name="short_billion">mld.</string>
 
 <string name="use_external_video_player_summary">Anumite rezoluții NU vor avea sunet atunci când această opțiune este activată</string>
     <string name="controls_background_title">Fundal</string>
@@ -204,4 +204,59 @@ pentru a deschide în mod pop-up</string>
     <string name="search_no_results">Fără rezultate</string>
     <string name="empty_subscription_feed_subtitle">Nimic Aici Doar Greieri</string>
 
-    </resources>
+    <string name="no_subscribers">Niciun abonat</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s abonat</item>
+	<item quantity="few">%s abonați</item>
+	<item quantity="other">%s abonați</item>
+</plurals>
+
+    <string name="no_views">Nicio vizionare</string>
+    <plurals name="views">
+	<item quantity="one">%s vizionare</item>
+	<item quantity="few">%s vizionări</item>
+	<item quantity="other">%s vizionări</item>
+</plurals>
+
+    <string name="no_videos">Niciun videoclip</string>
+    <plurals name="videos">
+	<item quantity="one">%s videoclip</item>
+	<item quantity="few">%s videoclipuri</item>
+	<item quantity="other">%s videoclipuri</item>
+</plurals>
+
+    <string name="settings_category_downloads_title">Descarcă</string>
+    <string name="settings_file_charset_title">Caractere permise în numele fișierelor</string>
+    <string name="settings_file_replacement_character_summary">Caracterele invalide sunt înlocuite cu această valoare</string>
+    <string name="settings_file_replacement_character_title">Caracter înlocuitor</string>
+
+    <string name="charset_letters_and_digits">Litere și cifre</string>
+    <string name="charset_most_special_characters">Caracterele cele mai speciale</string>
+
+    <string name="title_activity_about">Despre NewPipe</string>
+    <string name="action_settings">Setări</string>
+    <string name="action_about">Despre</string>
+    <string name="title_licenses">Licențe terță-parte</string>
+    <string name="copyright" formatted="true">© %1$s de %2$s sub %3$s</string>
+    <string name="error_unable_to_load_license">Nu s-a putut încărca licența</string>
+    <string name="action_open_website">Accesează site-ul</string>
+    <string name="tab_about">Despre</string>
+    <string name="tab_contributors">Contributori</string>
+    <string name="tab_licenses">Licențe</string>
+    <string name="app_description">Un player Youtube lightweight gratuit, pentru Android.</string>
+    <string name="view_on_github">Vedeți pe GitHub</string>
+    <string name="app_license_title">Licența NewPipe</string>
+    <string name="contribution_encouragement">Dacă aveți idei, doriți să traduceți, să schimbați design-ul, să curățați codul sau să schimbați codul, ajutorul este mereu bine primit. Cu cât mai mult, cu atât mai bine!</string>
+    <string name="read_full_license">Citiți licența</string>
+    <string name="contribution_title">Contribuție</string>
+
+    <string name="title_activity_history">Istoric</string>
+    <string name="title_history_search">Căutat</string>
+    <string name="title_history_view">Vizionat</string>
+    <string name="history_disabled">Istoricul este dezactivat</string>
+    <string name="action_history">Istoric</string>
+    <string name="history_empty">Istoricul este gol</string>
+    <string name="history_cleared">Istoric curățat</string>
+    <string name="item_deleted">Element șters</string>
+    <string name="delete_item_search_history">Doriți să ștergeți acest element din istoricul de căutare?</string>
+</resources>
