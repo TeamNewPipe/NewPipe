@@ -259,4 +259,19 @@ pentru a deschide în mod pop-up</string>
     <string name="history_cleared">Istoric curățat</string>
     <string name="item_deleted">Element șters</string>
     <string name="delete_item_search_history">Doriți să ștergeți acest element din istoricul de căutare?</string>
+<string name="main_page_content">Conținutul paginii principale</string>
+    <string name="blank_page_summary">Pagină Goală</string>
+    <string name="kiosk_page_summary">Pagină Chioșc</string>
+    <string name="subscription_page_summary">Pagină Abonări</string>
+    <string name="feed_page_summary">Pagină Feed</string>
+    <string name="channel_page_summary">Pagină Canale</string>
+    <string name="select_a_channel">Alegeți un canal</string>
+    <string name="no_channel_subscribed_yet">Nu v-ați abonat la niciun canal deocamdată</string>
+    <string name="select_a_kiosk">Alegeți un chioșc</string>
+
+    <string name="kiosk">Chioșc</string>
+    <string name="trending">Trenduri</string>
+    <string name="top_50">Top 50</string>
+    <string name="new_and_hot">Tendințe</string>
+    <string name="service_kosk_string">%1$s/%2$s</string>
 </resources>
