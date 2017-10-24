@@ -119,6 +119,12 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
             });
         }
 
+        if(sharedPreferences.getBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false)) {
+            if (DEBUG) Log.d(TAG, "main page has changed, recreating main fragment...");
+            sharedPreferences.edit().putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false).apply();
+            NavigationHelper.openMainActivity(this);
+        }
+
     }
 
     @Override

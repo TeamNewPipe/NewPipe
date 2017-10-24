@@ -135,7 +135,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
             @Override
             public void selected(StreamInfoItem selectedItem) {
                 onItemSelected(selectedItem);
-                NavigationHelper.openVideoDetailFragment(getFragmentManager(), selectedItem.service_id, selectedItem.url, selectedItem.name);
+                NavigationHelper.openVideoDetailFragment(
+                        useAsFrontPage?getParentFragment().getFragmentManager():getFragmentManager(),
+                        selectedItem.service_id, selectedItem.url, selectedItem.name);
             }
         });
 
@@ -143,7 +145,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
             @Override
             public void selected(ChannelInfoItem selectedItem) {
                 onItemSelected(selectedItem);
-                NavigationHelper.openChannelFragment(getFragmentManager(), selectedItem.service_id, selectedItem.url, selectedItem.name);
+                NavigationHelper.openChannelFragment(
+                        useAsFrontPage?getParentFragment().getFragmentManager():getFragmentManager(),
+                        selectedItem.service_id, selectedItem.url, selectedItem.name);
             }
         });
 
@@ -151,7 +155,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
             @Override
             public void selected(PlaylistInfoItem selectedItem) {
                 onItemSelected(selectedItem);
-                NavigationHelper.openPlaylistFragment(getFragmentManager(), selectedItem.service_id, selectedItem.url, selectedItem.name);
+                NavigationHelper.openPlaylistFragment(
+                        useAsFrontPage?getParentFragment().getFragmentManager():getFragmentManager(),
+                        selectedItem.service_id, selectedItem.url, selectedItem.name);
             }
         });
 

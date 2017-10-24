@@ -26,6 +26,7 @@ import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.ListExtractor.NextItemsResult;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
+import org.schabi.newpipe.extractor.kiosk.KioskInfo;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.search.SearchEngine;
 import org.schabi.newpipe.extractor.search.SearchResult;
@@ -134,6 +135,24 @@ public final class ExtractorHelper {
             @Override
             public NextItemsResult call() throws Exception {
                 return PlaylistInfo.getMoreItems(NewPipe.getService(serviceId), url, nextStreamsUrl);
+            }
+        });
+    }
+
+    public static Single<KioskInfo> getKioskInfo(final int serviceId, final String url, final String contentCountry, boolean forceLoad) {
+        return checkCache(forceLoad, serviceId, url, Single.fromCallable(new Callable<KioskInfo>() {
+            @Override
+            public KioskInfo call() throws Exception {
+                return KioskInfo.getInfo(NewPipe.getService(serviceId), url, contentCountry);
+            }
+        }));
+    }
+
+    public static Single<NextItemsResult> getMoreKioskItems(final int serviceId, final String url, final String nextStreamsUrl) {
+        return Single.fromCallable(new Callable<NextItemsResult>() {
+            @Override
+            public NextItemsResult call() throws Exception {
+                return KioskInfo.getMoreItems(NewPipe.getService(serviceId), url, nextStreamsUrl);
             }
         });
     }
