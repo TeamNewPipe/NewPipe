@@ -85,7 +85,7 @@
     <string name="could_not_get_stream">Nu s-a putut prelua niciun stream</string>
     <string name="sorry_string">Scuze, asta n-ar fi trebui să se întâmple.</string>
     <string name="error_report_button_text">Raportează eroarea prin e-mail</string>
-    <string name="error_snackbar_message">Scuze, câteva erori au apărut.</string>
+    <string name="error_snackbar_message">Ne scuzați, au apărut câteva erori.</string>
     <string name="error_snackbar_action">RAPORTAȚI</string>
     <string name="what_device_headline">Informații:</string>
     <string name="what_happened_headline">Ce s-a întâmplat:</string>
