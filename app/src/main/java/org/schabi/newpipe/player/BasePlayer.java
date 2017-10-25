@@ -36,6 +36,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -125,6 +126,7 @@ public abstract class BasePlayer implements Player.EventListener,
     public static final String REPEAT_MODE = "repeat_mode";
     public static final String PLAYBACK_PITCH = "playback_pitch";
     public static final String PLAYBACK_SPEED = "playback_speed";
+    public static final String PLAYBACK_QUALITY = "playback_quality";
     public static final String PLAY_QUEUE = "play_queue";
     public static final String APPEND_ONLY = "append_only";
 
@@ -141,6 +143,7 @@ public abstract class BasePlayer implements Player.EventListener,
     protected StreamInfo currentInfo;
     protected PlayQueueItem currentItem;
 
+    protected Toast errorToast;
     /*//////////////////////////////////////////////////////////////////////////
     // Player
     //////////////////////////////////////////////////////////////////////////*/
@@ -659,8 +662,8 @@ public abstract class BasePlayer implements Player.EventListener,
      * {@link ExoPlaybackException#TYPE_SOURCE TYPE_SOURCE}: <br><br>
      * If the current {@link com.google.android.exoplayer2.Timeline.Window window} has
      * duration and position greater than 0, then we know the current window is working correctly
-     * and the error is produced by transitioning into a bad window, therefore we simply increment
-     * the current index. Otherwise, we report an error to the play queue.
+     * and the error is produced by transitioning into a bad window, therefore we report an error
+     * to the play queue based on if the current error can be skipped.
      *
      * This is done because ExoPlayer reports the source exceptions before window is
      * transitioned on seamless playback.
@@ -668,27 +671,33 @@ public abstract class BasePlayer implements Player.EventListener,
      * Because player error causes ExoPlayer to go back to {@link Player#STATE_IDLE STATE_IDLE},
      * we reset and prepare the media source again to resume playback.<br><br>
      *
-     * {@link ExoPlaybackException#TYPE_RENDERER TYPE_RENDERER} and
      * {@link ExoPlaybackException#TYPE_UNEXPECTED TYPE_UNEXPECTED}: <br><br>
-     * If renderer failed or unexpected exceptions occurred, treat the error as unrecoverable.
+     * If a runtime error occurred, then we can try to recover it by restarting the playback
+     * after setting the timestamp recovery.
+     *
+     * {@link ExoPlaybackException#TYPE_RENDERER TYPE_RENDERER}: <br><br>
+     * If the renderer failed, treat the error as unrecoverable.
      *
      * @see Player.EventListener#onPlayerError(ExoPlaybackException)
      *  */
     @Override
     public void onPlayerError(ExoPlaybackException error) {
         if (DEBUG) Log.d(TAG, "onPlayerError() called with: error = [" + error + "]");
+        if (errorToast != null) {
+            errorToast.cancel();
+            errorToast = null;
+        }
 
         switch (error.type) {
             case ExoPlaybackException.TYPE_SOURCE:
-                if (simpleExoPlayer.getDuration() < 0 || simpleExoPlayer.getCurrentPosition() < 0) {
-                    playQueue.error();
-                    onRecoverableError(error);
-                } else {
-                    playQueue.offsetIndex(+1);
-                }
-
-                playbackManager.reset();
-                playbackManager.load();
+                final boolean skippable = simpleExoPlayer.getDuration() >= 0 && simpleExoPlayer.getCurrentPosition() >= 0;
+                playQueue.error(skippable);
+                onRecoverableError(error);
+                break;
+            case ExoPlaybackException.TYPE_UNEXPECTED:
+                onRecoverableError(error);
+                setRecovery();
+                reload();
                 break;
             default:
                 onUnrecoverableError(error);
@@ -881,6 +890,13 @@ public abstract class BasePlayer implements Player.EventListener,
 
     protected String formatPitch(float pitch) {
         return pitchFormatter.format(pitch);
+    }
+
+    protected void reload() {
+        if (playbackManager != null) {
+            playbackManager.reset();
+            playbackManager.load();
+        }
     }
 
     protected void startProgressLoop() {

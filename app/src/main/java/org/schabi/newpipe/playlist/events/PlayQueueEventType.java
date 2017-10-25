@@ -18,9 +18,6 @@ public enum PlayQueueEventType {
     // sent when queue is shuffled
     REORDER,
 
-    // sent when quality index is set on a stream
-    QUALITY,
-
     // sent when recovery record is set on a stream
     RECOVERY,
 

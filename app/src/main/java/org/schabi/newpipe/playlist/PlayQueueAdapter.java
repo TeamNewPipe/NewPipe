@@ -102,7 +102,6 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private void onPlayQueueChanged(final PlayQueueEvent message) {
         switch (message.type()) {
             case RECOVERY:
-            case QUALITY:
                 // Do nothing.
                 break;
             case SELECT:
@@ -116,12 +115,14 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 break;
             case ERROR:
                 final ErrorEvent errorEvent = (ErrorEvent) message;
-                notifyItemRangeRemoved(errorEvent.index(), 1);
+                if (!errorEvent.isSkippable()) {
+                    notifyItemRemoved(errorEvent.index());
+                }
                 notifyItemChanged(errorEvent.index());
                 break;
             case REMOVE:
                 final RemoveEvent removeEvent = (RemoveEvent) message;
-                notifyItemRangeRemoved(removeEvent.index(), 1);
+                notifyItemRemoved(removeEvent.index());
                 notifyItemChanged(removeEvent.index());
                 break;
             case MOVE:

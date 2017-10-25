@@ -788,14 +788,14 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             ((HistoryListener) activity).onVideoPlayed(currentInfo, getSelectedVideoStream());
         }
 
-        final PlayQueue playQueue = new SinglePlayQueue(currentInfo, actionBarHandler.getSelectedVideoStream());
+        final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
         final Intent intent;
         if (append) {
             Toast.makeText(activity, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
             intent = NavigationHelper.getPlayerEnqueueIntent(activity, PopupVideoPlayer.class, playQueue);
         } else {
             Toast.makeText(activity, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
-            intent = NavigationHelper.getPlayerIntent(activity, PopupVideoPlayer.class, playQueue);
+            intent = NavigationHelper.getPlayerIntent(activity, PopupVideoPlayer.class, playQueue, getSelectedVideoStream().resolution);
         }
         activity.startService(intent);
     }
@@ -866,8 +866,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 || (Build.VERSION.SDK_INT < 16);
         if (!useOldPlayer) {
             // ExoPlayer
-            final PlayQueue playQueue = new SinglePlayQueue(currentInfo, actionBarHandler.getSelectedVideoStream());
-            mIntent = NavigationHelper.getPlayerIntent(activity, MainVideoPlayer.class, playQueue);
+            final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
+            mIntent = NavigationHelper.getPlayerIntent(activity, MainVideoPlayer.class, playQueue, getSelectedVideoStream().resolution);
         } else {
             // Internal Player
             mIntent = new Intent(activity, PlayVideoActivity.class)

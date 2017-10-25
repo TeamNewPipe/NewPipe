@@ -136,6 +136,10 @@
     <string name="could_not_get_stream">Could not get any stream</string>
     <string name="could_not_load_image">Could not load image</string>
     <string name="app_ui_crash">App/UI crashed</string>
+    <string name="player_video_failure">Failed to play this video</string>
+    <string name="player_audio_failure">Failed to play this audio</string>
+    <string name="player_unexpected_failure">Unexpected player error occurred</string>
+
     <!-- error activity -->
     <string name="sorry_string">Sorry, that should not have happened.</string>
     <string name="guru_meditation" translatable="false">Guru Meditation.</string>

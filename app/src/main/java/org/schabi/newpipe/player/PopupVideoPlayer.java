@@ -441,7 +441,8 @@ public final class PopupVideoPlayer extends Service {
                         this.getPlayQueue(),
                         this.simpleExoPlayer.getRepeatMode(),
                         this.getPlaybackSpeed(),
-                        this.getPlaybackPitch()
+                        this.getPlaybackPitch(),
+                        this.getPlaybackQuality()
                 );
                 if (!isStartedFromNewPipe()) intent.putExtra(VideoPlayer.STARTED_FROM_NEWPIPE, false);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -468,13 +469,23 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onRecoverableError(Exception exception) {
             exception.printStackTrace();
-            Toast.makeText(context, "Failed to play this video", Toast.LENGTH_SHORT).show();
+
+            if (errorToast == null) {
+                errorToast = Toast.makeText(context, R.string.player_video_failure, Toast.LENGTH_SHORT);
+                errorToast.show();
+            }
         }
 
         @Override
         public void onUnrecoverableError(Exception exception) {
             exception.printStackTrace();
-            Toast.makeText(context, "Unexpected error occurred", Toast.LENGTH_SHORT).show();
+
+            if (errorToast != null) {
+                errorToast.cancel();
+            }
+            errorToast = Toast.makeText(context, R.string.player_unexpected_failure, Toast.LENGTH_SHORT);
+            errorToast.show();
+
             shutdown();
         }
 
@@ -501,6 +512,12 @@ public final class PopupVideoPlayer extends Service {
         @Override
         protected int getDefaultResolutionIndex(final List<VideoStream> sortedVideos) {
             return ListHelper.getPopupDefaultResolutionIndex(context, sortedVideos);
+        }
+
+        @Override
+        protected int getOverrideResolutionIndex(final List<VideoStream> sortedVideos,
+                                                 final String playbackQuality) {
+            return ListHelper.getPopupDefaultResolutionIndex(context, sortedVideos, playbackQuality);
         }
 
         /*//////////////////////////////////////////////////////////////////////////

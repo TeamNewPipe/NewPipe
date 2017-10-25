@@ -14,7 +14,6 @@ import org.schabi.newpipe.playlist.events.RecoveryEvent;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
 import org.schabi.newpipe.playlist.events.ReorderEvent;
 import org.schabi.newpipe.playlist.events.SelectEvent;
-import org.schabi.newpipe.playlist.events.QualityEvent;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -247,15 +246,22 @@ public abstract class PlayQueue implements Serializable {
     }
 
     /**
-     * Report an exception for the item at the current index in order to remove it.
+     * Report an exception for the item at the current index in order and the course of action:
+     * if the error can be skipped or the current item should be removed.
      *
      * This is done as a separate event as the underlying manager may have
      * different implementation regarding exceptions.
      * */
-    public synchronized void error() {
+    public synchronized void error(final boolean skippable) {
         final int index = getIndex();
-        removeInternal(index);
-        broadcast(new ErrorEvent(index));
+
+        if (skippable) {
+            queueIndex.incrementAndGet();
+        } else {
+            removeInternal(index);
+        }
+
+        broadcast(new ErrorEvent(index, skippable));
     }
 
     private synchronized void removeInternal(final int index) {
@@ -299,21 +305,6 @@ public abstract class PlayQueue implements Serializable {
 
         streams.add(target, streams.remove(source));
         broadcast(new MoveEvent(source, target));
-    }
-
-    /**
-     * Updates the quality index at the given item index.
-     *
-     * Broadcasts an update event, signalling to all recipients that they should reset.
-     * */
-    public synchronized void setQuality(final int queueIndex, final int qualityIndex) {
-        if (queueIndex < 0 || queueIndex >= streams.size()) return;
-
-        final PlayQueueItem item = streams.get(queueIndex);
-        final int oldQualityIndex = item.getQualityIndex();
-
-        item.setQualityIndex(qualityIndex);
-        broadcast(new QualityEvent(queueIndex, oldQualityIndex, qualityIndex));
     }
 
     /**

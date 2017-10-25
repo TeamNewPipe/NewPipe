@@ -158,8 +158,8 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         // why no pattern matching in Java =(
         switch (event.type()) {
             case INIT:
-            case QUALITY:
             case REORDER:
+            case ERROR:
                 reset();
                 break;
             case APPEND:
@@ -177,7 +177,6 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
                 final MoveEvent moveEvent = (MoveEvent) event;
                 move(moveEvent.getFromIndex(), moveEvent.getToIndex());
                 break;
-            case ERROR:
             case RECOVERY:
             default:
                 break;

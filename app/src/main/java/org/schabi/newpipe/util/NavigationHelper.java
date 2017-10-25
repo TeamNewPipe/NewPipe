@@ -39,21 +39,19 @@ public class NavigationHelper {
     //////////////////////////////////////////////////////////////////////////*/
     public static Intent getPlayerIntent(final Context context,
                                          final Class targetClazz,
-                                         final PlayQueue playQueue) {
-        return new Intent(context, targetClazz)
+                                         final PlayQueue playQueue,
+                                         final String quality) {
+        Intent intent = new Intent(context, targetClazz)
                 .putExtra(VideoPlayer.PLAY_QUEUE, playQueue);
+        if (quality != null) intent.putExtra(VideoPlayer.PLAYBACK_QUALITY, quality);
+
+        return intent;
     }
 
     public static Intent getPlayerIntent(final Context context,
                                          final Class targetClazz,
-                                         final PlayQueue playQueue,
-                                         final int repeatMode,
-                                         final float playbackSpeed,
-                                         final float playbackPitch) {
-        return getPlayerIntent(context, targetClazz, playQueue)
-                .putExtra(BasePlayer.REPEAT_MODE, repeatMode)
-                .putExtra(BasePlayer.PLAYBACK_SPEED, playbackSpeed)
-                .putExtra(BasePlayer.PLAYBACK_PITCH, playbackPitch);
+                                         final PlayQueue playQueue) {
+        return getPlayerIntent(context, targetClazz, playQueue, null);
     }
 
     public static Intent getPlayerEnqueueIntent(final Context context,
@@ -61,6 +59,19 @@ public class NavigationHelper {
                                                 final PlayQueue playQueue) {
         return getPlayerIntent(context, targetClazz, playQueue)
                 .putExtra(BasePlayer.APPEND_ONLY, true);
+    }
+
+    public static Intent getPlayerIntent(final Context context,
+                                         final Class targetClazz,
+                                         final PlayQueue playQueue,
+                                         final int repeatMode,
+                                         final float playbackSpeed,
+                                         final float playbackPitch,
+                                         final String playbackQuality) {
+        return getPlayerIntent(context, targetClazz, playQueue, playbackQuality)
+                .putExtra(BasePlayer.REPEAT_MODE, repeatMode)
+                .putExtra(BasePlayer.PLAYBACK_SPEED, playbackSpeed)
+                .putExtra(BasePlayer.PLAYBACK_PITCH, playbackPitch);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

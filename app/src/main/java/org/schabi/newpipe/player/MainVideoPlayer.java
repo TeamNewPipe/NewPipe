@@ -344,7 +344,8 @@ public final class MainVideoPlayer extends Activity {
                     this.getPlayQueue(),
                     this.simpleExoPlayer.getRepeatMode(),
                     this.getPlaybackSpeed(),
-                    this.getPlaybackPitch()
+                    this.getPlaybackPitch(),
+                    this.getPlaybackQuality()
             );
             context.startService(intent);
             destroyPlayer();
@@ -432,19 +433,35 @@ public final class MainVideoPlayer extends Activity {
         @Override
         public void onRecoverableError(Exception exception) {
             exception.printStackTrace();
-            Toast.makeText(context, "Failed to play this video", Toast.LENGTH_SHORT).show();
+
+            if (errorToast == null) {
+                errorToast = Toast.makeText(context, R.string.player_video_failure, Toast.LENGTH_SHORT);
+                errorToast.show();
+            }
         }
 
         @Override
         public void onUnrecoverableError(Exception exception) {
             exception.printStackTrace();
-            Toast.makeText(context, "Unexpected error occurred", Toast.LENGTH_SHORT).show();
+
+            if (errorToast != null) {
+                errorToast.cancel();
+            }
+            errorToast = Toast.makeText(context, R.string.player_unexpected_failure, Toast.LENGTH_SHORT);
+            errorToast.show();
+
             shutdown();
         }
 
         @Override
         protected int getDefaultResolutionIndex(final List<VideoStream> sortedVideos) {
             return ListHelper.getDefaultResolutionIndex(context, sortedVideos);
+        }
+
+        @Override
+        protected int getOverrideResolutionIndex(final List<VideoStream> sortedVideos,
+                                                 final String playbackQuality) {
+            return ListHelper.getDefaultResolutionIndex(context, sortedVideos, playbackQuality);
         }
 
         /*//////////////////////////////////////////////////////////////////////////

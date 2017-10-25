@@ -15,7 +15,6 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class PlayQueueItem implements Serializable {
-    final public static int DEFAULT_QUALITY = Integer.MIN_VALUE;
     final public static long RECOVERY_UNSET = Long.MIN_VALUE;
 
     final private String title;
@@ -25,7 +24,6 @@ public class PlayQueueItem implements Serializable {
     final private String thumbnailUrl;
     final private String uploader;
 
-    private int qualityIndex;
     private long recoveryPosition;
     private Throwable error;
 
@@ -34,11 +32,6 @@ public class PlayQueueItem implements Serializable {
     PlayQueueItem(@NonNull final StreamInfo info) {
         this(info.name, info.url, info.service_id, info.duration, info.thumbnail_url, info.uploader_name);
         this.stream = Single.just(info);
-    }
-
-    PlayQueueItem(@NonNull final StreamInfo info, final int qualityIndex) {
-        this(info);
-        this.qualityIndex = qualityIndex;
     }
 
     PlayQueueItem(@NonNull final StreamInfoItem item) {
@@ -54,7 +47,6 @@ public class PlayQueueItem implements Serializable {
         this.thumbnailUrl = thumbnailUrl;
         this.uploader = uploader;
 
-        this.qualityIndex = DEFAULT_QUALITY;
         this.recoveryPosition = RECOVERY_UNSET;
     }
 
@@ -84,10 +76,6 @@ public class PlayQueueItem implements Serializable {
     @NonNull
     public String getUploader() {
         return uploader;
-    }
-
-    public int getQualityIndex() {
-        return qualityIndex;
     }
 
     public long getRecoveryPosition() {
@@ -122,10 +110,6 @@ public class PlayQueueItem implements Serializable {
     ////////////////////////////////////////////////////////////////////////////
     // Item States, keep external access out
     ////////////////////////////////////////////////////////////////////////////
-
-    /*package-private*/ void setQualityIndex(final int qualityIndex) {
-        this.qualityIndex = qualityIndex;
-    }
 
     /*package-private*/ void setRecoveryPosition(final long recoveryPosition) {
         this.recoveryPosition = recoveryPosition;
