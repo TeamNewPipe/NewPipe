@@ -259,4 +259,8 @@
     <string name="empty_subscription_feed_subtitle">Nichts hier außer Grillen</string>
 
     <string name="delete_item_search_history">Möchten Sie dieses Element aus dem Suchverlauf löschen?</string>
-</resources>
+<string name="blank_page_summary">Leere Seite</string>
+    <string name="select_a_channel">Wähle einen Kanal aus</string>
+    <string name="no_channel_subscribed_yet">Noch kein Kanal abonniert</string>
+    <string name="trending">Trends</string>
+    </resources>
