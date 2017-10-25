@@ -258,4 +258,17 @@
 
     <string name="item_deleted">Элемент удалён</string>
 <string name="delete_item_search_history">Удалить этот элемент из истории поиска?</string>
-</resources>
+<string name="main_page_content">Контент главной страницы</string>
+    <string name="blank_page_summary">Пустая страница</string>
+    <string name="kiosk_page_summary">Страница киоска</string>
+    <string name="subscription_page_summary">Страница подписки</string>
+    <string name="feed_page_summary">Страница ленты</string>
+    <string name="channel_page_summary">Страница канала</string>
+    <string name="select_a_channel">Выберите канал</string>
+    <string name="select_a_kiosk">Выберите киоск</string>
+
+    <string name="kiosk">Киоск</string>
+    <string name="trending">В тренде</string>
+    <string name="top_50">Топ 50</string>
+    <string name="new_and_hot">Новое и горячее</string>
+    </resources>
