@@ -216,7 +216,7 @@ public final class BackgroundPlayer extends Service {
         remoteViews.setOnClickPendingIntent(R.id.notificationFForward,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_FAST_FORWARD), PendingIntent.FLAG_UPDATE_CURRENT));
 
-        setRepeatModeIcon(remoteViews, basePlayerImpl.simpleExoPlayer.getRepeatMode());
+        setRepeatModeIcon(remoteViews, basePlayerImpl.getRepeatMode());
     }
 
     /**
@@ -489,7 +489,7 @@ public final class BackgroundPlayer extends Service {
 
         private void updatePlayback() {
             if (activityListener != null && simpleExoPlayer != null && playQueue != null) {
-                activityListener.onPlaybackUpdate(currentState, simpleExoPlayer.getRepeatMode(), playQueue.isShuffled(), simpleExoPlayer.getPlaybackParameters());
+                activityListener.onPlaybackUpdate(currentState, getRepeatMode(), playQueue.isShuffled(), getPlaybackParameters());
             }
         }
 

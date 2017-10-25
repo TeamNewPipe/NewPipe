@@ -277,7 +277,7 @@ public final class PopupVideoPlayer extends Service {
         notRemoteView.setOnClickPendingIntent(R.id.notificationRepeat,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_REPEAT), PendingIntent.FLAG_UPDATE_CURRENT));
 
-        setRepeatModeRemote(notRemoteView, playerImpl.simpleExoPlayer.getRepeatMode());
+        setRepeatModeRemote(notRemoteView, playerImpl.getRepeatMode());
 
         return new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
                 .setOngoing(true)
@@ -379,6 +379,8 @@ public final class PopupVideoPlayer extends Service {
     }
 
     protected void setRepeatModeRemote(final RemoteViews remoteViews, final int repeatMode) {
+        if (remoteViews == null) return;
+
         switch (repeatMode) {
             case Player.REPEAT_MODE_OFF:
                 remoteViews.setInt(R.id.notificationRepeat, setImageResourceMethodName, R.drawable.exo_controls_repeat_off);
@@ -439,7 +441,7 @@ public final class PopupVideoPlayer extends Service {
                         context,
                         MainVideoPlayer.class,
                         this.getPlayQueue(),
-                        this.simpleExoPlayer.getRepeatMode(),
+                        this.getRepeatMode(),
                         this.getPlaybackSpeed(),
                         this.getPlaybackPitch(),
                         this.getPlaybackQuality()
@@ -545,7 +547,7 @@ public final class PopupVideoPlayer extends Service {
 
         private void updatePlayback() {
             if (activityListener != null && simpleExoPlayer != null && playQueue != null) {
-                activityListener.onPlaybackUpdate(currentState, simpleExoPlayer.getRepeatMode(), playQueue.isShuffled(), simpleExoPlayer.getPlaybackParameters());
+                activityListener.onPlaybackUpdate(currentState, getRepeatMode(), playQueue.isShuffled(), simpleExoPlayer.getPlaybackParameters());
             }
         }
 

@@ -342,7 +342,7 @@ public final class MainVideoPlayer extends Activity {
                     context,
                     PopupVideoPlayer.class,
                     this.getPlayQueue(),
-                    this.simpleExoPlayer.getRepeatMode(),
+                    this.getRepeatMode(),
                     this.getPlaybackSpeed(),
                     this.getPlaybackPitch(),
                     this.getPlaybackQuality()
@@ -580,7 +580,7 @@ public final class MainVideoPlayer extends Activity {
             if (repeatButton == null || shuffleButton == null ||
                     simpleExoPlayer == null || playQueue == null) return;
 
-            setRepeatModeButton(repeatButton, simpleExoPlayer.getRepeatMode());
+            setRepeatModeButton(repeatButton, getRepeatMode());
             setShuffleButton(shuffleButton, playQueue.isShuffled());
         }
 

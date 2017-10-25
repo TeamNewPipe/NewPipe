@@ -255,14 +255,17 @@ public abstract class BasePlayer implements Player.EventListener,
             return;
         }
 
-        setPlaybackSpeed(intent.getFloatExtra(PLAYBACK_SPEED, getPlaybackSpeed()));
-        setPlaybackPitch(intent.getFloatExtra(PLAYBACK_PITCH, getPlaybackPitch()));
+        final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
+        final float playbackSpeed = intent.getFloatExtra(PLAYBACK_SPEED, getPlaybackSpeed());
+        final float playbackPitch = intent.getFloatExtra(PLAYBACK_PITCH, getPlaybackPitch());
 
         // Re-initialization
         destroyPlayer();
         if (playQueue != null) playQueue.dispose();
         if (playbackManager != null) playbackManager.dispose();
         initPlayer();
+        setRepeatMode(repeatMode);
+        setPlaybackParameters(playbackSpeed, playbackPitch);
 
         // Good to go...
         initPlayback(this, queue);
@@ -534,7 +537,7 @@ public abstract class BasePlayer implements Player.EventListener,
 
         final int mode;
 
-        switch (simpleExoPlayer.getRepeatMode()) {
+        switch (getRepeatMode()) {
             case Player.REPEAT_MODE_OFF:
                 mode = Player.REPEAT_MODE_ONE;
                 break;
@@ -547,8 +550,8 @@ public abstract class BasePlayer implements Player.EventListener,
                 break;
         }
 
-        simpleExoPlayer.setRepeatMode(mode);
-        if (DEBUG) Log.d(TAG, "onRepeatClicked() currentRepeatMode = " + simpleExoPlayer.getRepeatMode());
+        setRepeatMode(mode);
+        if (DEBUG) Log.d(TAG, "onRepeatClicked() currentRepeatMode = " + getRepeatMode());
     }
 
     public void onShuffleClicked() {
@@ -980,6 +983,14 @@ public abstract class BasePlayer implements Player.EventListener,
 
     public boolean isPlaying() {
         return simpleExoPlayer.getPlaybackState() == Player.STATE_READY && simpleExoPlayer.getPlayWhenReady();
+    }
+
+    public int getRepeatMode() {
+        return simpleExoPlayer.getRepeatMode();
+    }
+
+    public void setRepeatMode(final int repeatMode) {
+        simpleExoPlayer.setRepeatMode(repeatMode);
     }
 
     public float getPlaybackSpeed() {
