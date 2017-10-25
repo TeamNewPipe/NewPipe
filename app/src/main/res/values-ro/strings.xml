@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <string name="view_count_text">%1$s (de) vizionări</string>
+    <string name="view_count_text">%1$s vizionări</string>
     <string name="upload_date_text">Încărcat pe %1$s</string>
-    <string name="no_player_found">Nici un player pentru stream-uri găsit. Instalați VLC?</string>
+    <string name="no_player_found">Niciun player pentru stream-uri găsit. Instalați VLC?</string>
     <string name="install">Instalare</string>
     <string name="cancel">Anulare</string>
     <string name="open_in_browser">Deschidere în browser</string>
@@ -17,13 +17,13 @@
     <string name="use_external_video_player_title">Folosește un player video extern</string>
     <string name="use_external_audio_player_title">Folosește un player audio extern</string>
 
-    <string name="download_path_title">Locul în care se vor descărca videoclipurile</string>
-    <string name="download_path_summary">Locul în care se vor stoca videoclipurile descărcate</string>
-    <string name="download_path_dialog_title">Introduceți locul în care se vor descărca videoclipurile</string>
+    <string name="download_path_title">Locația videoclipurilor descărcate</string>
+    <string name="download_path_summary">Locul în care se vor descărca videoclipurile</string>
+    <string name="download_path_dialog_title">Introduceți locația în care se vor descărca videoclipurile</string>
 
-    <string name="download_path_audio_title">Calea de descărcare a sunetelor</string>
-    <string name="download_path_audio_summary">Locul în care se vor stoca fișierele audio descărcate</string>
-    <string name="download_path_audio_dialog_title">Introduceți calea de descărcare pentru fișierele audio</string>
+    <string name="download_path_audio_title">Locația audio-ului descărcat</string>
+    <string name="download_path_audio_summary">Locul în care se va descărca audio-ul</string>
+    <string name="download_path_audio_dialog_title">Introduceți locația în care se va descărca audio-ul</string>
 
     <string name="default_resolution_title">Rezoluție implicită</string>
     <string name="play_with_kodi_title">Redați folosind Kodi</string>
@@ -75,7 +75,7 @@
     <string name="err_dir_create">Nu s-a putut crea directorul de descărcare \'%1$s\'</string>
     <string name="main_bg_subtitle">Apăsați căutare pentru a începe</string>
     <string name="autoplay_by_calling_app_title">Redă automat</string>
-    <string name="autoplay_by_calling_app_summary">Redă automat un video când NewPipe este chemat de altă aplicație</string>
+    <string name="autoplay_by_calling_app_summary">Redă automat un videoclip atunci când NewPipe este deschis din altă aplicație</string>
     <string name="duration_live">în direct</string>
     <string name="downloads">Descărcări</string>
     <string name="downloads_title">Descărcări</string>
@@ -123,7 +123,7 @@
     <string name="msg_copied">Copiat în clipboard</string>
     <string name="no_available_dir">Vă rugăm alegeți un folder pentru descărcări</string>
 
-    <string name="open_in_popup_mode">Deschide in mod pop-up</string>
+    <string name="open_in_popup_mode">Deschide in modul popup</string>
     <string name="msg_popup_permission">Aceasta permisiune este necesara
 pentru a deschide în mod pop-up</string>
 
@@ -134,8 +134,8 @@ pentru a deschide în mod pop-up</string>
     <string name="popup_mode_share_menu_title">NewPipe mod pop-up</string>
 
     <string name="default_popup_resolution_title">Rezoluție inițială pop-up</string>
-    <string name="show_higher_resolutions_title">Arată rezoluție mai mare</string>
-    <string name="show_higher_resolutions_summary">Doar anumite dispozitive suportă afișare video în mod 2K/4K</string>
+    <string name="show_higher_resolutions_title">Afișează rezoluții mai mari</string>
+    <string name="show_higher_resolutions_summary">Doar anumite dispozitive suportă redarea videoclipurilor 2K/4K</string>
     <string name="default_video_format_title">Format video preferat</string>
     <string name="black_theme_title">Negru</string>
 
@@ -173,18 +173,18 @@ pentru a deschide în mod pop-up</string>
     <string name="refresh">Reîmprospătare</string>
     <string name="clear">Șterge</string>
     <string name="popup_resizing_indicator_title">Redimensionare</string>
-    <string name="best_resolution">Cea mai bună rezoluție</string>
+    <string name="best_resolution">Rezoluția optimă</string>
 
     <string name="subscribe_button_title">Abonează-te</string>
     <string name="subscribed_button_title">Abonat</string>
     <string name="channel_unsubscribed">Canal dezabonat</string>
-    <string name="subscription_change_failed">Nu s-a putut modifica abonarea</string>
-    <string name="subscription_update_failed">Nu s-a putut actualiza abonarea</string>
+    <string name="subscription_change_failed">Nu s-a putut modifica abonamentul</string>
+    <string name="subscription_update_failed">Nu s-a putut actualiza abonamentul</string>
 
     <string name="tab_main">Principal</string>
-    <string name="tab_subscriptions">Abonări</string>
+    <string name="tab_subscriptions">Abonamente</string>
 
-    <string name="fragment_whats_new">Ce e nou</string>
+    <string name="fragment_whats_new">Ce este nou</string>
 
     <string name="enable_search_history_title">Istoric de căutare</string>
     <string name="enable_search_history_summary">Stochează local căutările</string>
@@ -202,7 +202,7 @@ pentru a deschide în mod pop-up</string>
     <string name="notification_channel_description">Notificări pentru NewPipe Background și Popup Players</string>
 
     <string name="search_no_results">Fără rezultate</string>
-    <string name="empty_subscription_feed_subtitle">Nimic Aici Doar Greieri</string>
+    <string name="empty_subscription_feed_subtitle">Nimic aici în afară de sunetul greierilor</string>
 
     <string name="no_subscribers">Niciun abonat</string>
     <plurals name="subscribers">
