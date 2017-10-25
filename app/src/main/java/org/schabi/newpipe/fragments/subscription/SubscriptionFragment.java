@@ -63,6 +63,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         activity.getSupportActionBar().setDisplayShowTitleEnabled(true);
+        activity.getSupportActionBar().setDisplayShowTitleEnabled(true);
         activity.setTitle(R.string.tab_subscriptions);
         return inflater.inflate(R.layout.fragment_subscription, container, false);
     }
