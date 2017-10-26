@@ -30,7 +30,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
-import android.os.Binder;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
@@ -133,12 +132,6 @@ public final class PopupVideoPlayer extends Service {
     private PlayerEventListener activityListener;
     private IBinder mBinder;
 
-    class LocalBinder extends Binder {
-        VideoPlayerImpl getPopupPlayerInstance() {
-            return PopupVideoPlayer.this.playerImpl;
-        }
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Service LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -148,21 +141,20 @@ public final class PopupVideoPlayer extends Service {
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
 
-        playerImpl = new VideoPlayerImpl();
+        playerImpl = new VideoPlayerImpl(getApplicationContext());
         ThemeHelper.setTheme(this);
 
-        mBinder = new LocalBinder();
+        mBinder = new PlayerServiceBinder(playerImpl);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public int onStartCommand(final Intent intent, int flags, int startId) {
         if (DEBUG)
             Log.d(TAG, "onStartCommand() called with: intent = [" + intent + "], flags = [" + flags + "], startId = [" + startId + "]");
         if (playerImpl.getPlayer() == null) initPopup();
         if (!playerImpl.isPlaying()) playerImpl.getPlayer().setPlayWhenReady(true);
 
-        if (intent.getStringExtra(Constants.KEY_URL) != null) {
+        if (intent != null && intent.getStringExtra(Constants.KEY_URL) != null) {
             final int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
             final String url = intent.getStringExtra(Constants.KEY_URL);
 
@@ -200,14 +192,7 @@ public final class PopupVideoPlayer extends Service {
     @Override
     public void onDestroy() {
         if (DEBUG) Log.d(TAG, "onDestroy() called");
-        stopForeground(true);
-        if (playerImpl != null) {
-            playerImpl.destroy();
-            if (playerImpl.getRootView() != null) windowManager.removeView(playerImpl.getRootView());
-        }
-        if (notificationManager != null) notificationManager.cancel(NOTIFICATION_ID);
-        if (currentWorker != null) currentWorker.dispose();
-        savePositionAndSize();
+        onClose();
     }
 
     @Override
@@ -251,7 +236,6 @@ public final class PopupVideoPlayer extends Service {
 
         MySimpleOnGestureListener listener = new MySimpleOnGestureListener();
         gestureDetector = new GestureDetector(this, listener);
-        //gestureDetector.setIsLongpressEnabled(false);
         rootView.setOnTouchListener(listener);
         playerImpl.getLoadingPanel().setMinimumWidth(windowLayoutParams.width);
         playerImpl.getLoadingPanel().setMinimumHeight(windowLayoutParams.height);
@@ -261,6 +245,10 @@ public final class PopupVideoPlayer extends Service {
     /*//////////////////////////////////////////////////////////////////////////
     // Notification
     //////////////////////////////////////////////////////////////////////////*/
+
+    private void resetNotification() {
+        notBuilder = createNotification();
+    }
 
     private NotificationCompat.Builder createNotification() {
         notRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_popup_notification);
@@ -303,9 +291,23 @@ public final class PopupVideoPlayer extends Service {
     // Misc
     //////////////////////////////////////////////////////////////////////////*/
 
-    public void onVideoClose() {
-        if (DEBUG) Log.d(TAG, "onVideoClose() called");
-        playerImpl.stopActivityBinding();
+    public void onClose() {
+        if (DEBUG) Log.d(TAG, "onClose() called");
+
+        if (playerImpl != null) {
+            if (playerImpl.getRootView() != null) {
+                windowManager.removeView(playerImpl.getRootView());
+                playerImpl.setRootView(null);
+            }
+            playerImpl.stopActivityBinding();
+            playerImpl.destroy();
+        }
+        if (notificationManager != null) notificationManager.cancel(NOTIFICATION_ID);
+        if (currentWorker != null) currentWorker.dispose();
+        mBinder = null;
+        playerImpl = null;
+
+        stopForeground(true);
         stopSelf();
     }
 
@@ -399,8 +401,16 @@ public final class PopupVideoPlayer extends Service {
     protected class VideoPlayerImpl extends VideoPlayer {
         private TextView resizingIndicator;
 
-        VideoPlayerImpl() {
-            super("VideoPlayerImpl" + PopupVideoPlayer.TAG, PopupVideoPlayer.this);
+        @Override
+        public void handleIntent(Intent intent) {
+            super.handleIntent(intent);
+
+            resetNotification();
+            startForeground(NOTIFICATION_ID, notBuilder.build());
+        }
+
+        VideoPlayerImpl(final Context context) {
+            super("VideoPlayerImpl" + PopupVideoPlayer.TAG, context);
         }
 
         @Override
@@ -411,8 +421,8 @@ public final class PopupVideoPlayer extends Service {
 
         @Override
         public void destroy() {
-            super.destroy();
             if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, null);
+            super.destroy();
         }
 
         @Override
@@ -426,6 +436,7 @@ public final class PopupVideoPlayer extends Service {
 
                 updateNotification(-1);
             }
+            clearThumbnailCache();
         }
 
         @Override
@@ -434,7 +445,7 @@ public final class PopupVideoPlayer extends Service {
 
             if (DEBUG) Log.d(TAG, "onFullScreenButtonClicked() called");
 
-            playerImpl.setRecovery();
+            setRecovery();
             Intent intent;
             if (!getSharedPreferences().getBoolean(getResources().getString(R.string.use_old_player_key), false)) {
                 intent = NavigationHelper.getPlayerIntent(
@@ -457,9 +468,7 @@ public final class PopupVideoPlayer extends Service {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             }
             context.startActivity(intent);
-            playerImpl.stopActivityBinding();
-            destroyPlayer();
-            stopSelf();
+            onClose();
         }
 
         @Override
@@ -595,8 +604,7 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void shutdown() {
             super.shutdown();
-            stopActivityBinding();
-            stopSelf();
+            onClose();
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -619,16 +627,17 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onBroadcastReceived(Intent intent) {
             super.onBroadcastReceived(intent);
+            if (intent == null || intent.getAction() == null) return;
             if (DEBUG) Log.d(TAG, "onBroadcastReceived() called with: intent = [" + intent + "]");
             switch (intent.getAction()) {
                 case ACTION_CLOSE:
-                    onVideoClose();
+                    onClose();
                     break;
                 case ACTION_PLAY_PAUSE:
                     onVideoPlayPause();
                     break;
                 case ACTION_OPEN_DETAIL:
-                    openControl(PopupVideoPlayer.this);
+                    openControl(getApplicationContext());
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();
@@ -800,7 +809,7 @@ public final class PopupVideoPlayer extends Service {
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             if (Math.abs(velocityX) > SHUTDOWN_FLING_VELOCITY) {
                 if (DEBUG) Log.d(TAG, "Popup close fling velocity= " + velocityX);
-                onVideoClose();
+                onClose();
                 return true;
             }
             return false;

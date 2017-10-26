@@ -139,7 +139,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
 
             @Override
             public void onNext(@NonNull PlayQueueEvent playQueueMessage) {
-                onPlayQueueChanged(playQueueMessage);
+                if (playQueueReactor != null) onPlayQueueChanged(playQueueMessage);
             }
 
             @Override
@@ -153,6 +153,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     private void onPlayQueueChanged(final PlayQueueEvent event) {
         if (playQueue.isEmpty()) {
             playbackListener.shutdown();
+            return;
         }
 
         // why no pattern matching in Java =(
@@ -170,7 +171,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
                 break;
             case REMOVE:
                 final RemoveEvent removeEvent = (RemoveEvent) event;
-                remove(removeEvent.index());
+                remove(removeEvent.getRemoveIndex());
                 sync();
                 break;
             case MOVE:

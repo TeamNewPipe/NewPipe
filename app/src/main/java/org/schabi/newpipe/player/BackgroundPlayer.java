@@ -27,7 +27,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.net.wifi.WifiManager;
-import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
@@ -84,12 +83,6 @@ public final class BackgroundPlayer extends Service {
     private PlayerEventListener activityListener;
     private IBinder mBinder;
 
-    class LocalBinder extends Binder {
-        BasePlayerImpl getBackgroundPlayerInstance() {
-            return BackgroundPlayer.this.basePlayerImpl;
-        }
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Notification
     //////////////////////////////////////////////////////////////////////////*/
@@ -116,10 +109,10 @@ public final class BackgroundPlayer extends Service {
         wifiManager = ((WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE));
 
         ThemeHelper.setTheme(this);
-        basePlayerImpl = new BasePlayerImpl(this);
+        basePlayerImpl = new BasePlayerImpl(getApplicationContext());
         basePlayerImpl.setup();
 
-        mBinder = new LocalBinder();
+        mBinder = new PlayerServiceBinder(basePlayerImpl);
         shouldUpdateOnProgress = true;
     }
 
@@ -155,16 +148,19 @@ public final class BackgroundPlayer extends Service {
     }
 
     private void onClose() {
-        stopForeground(true);
+        if (DEBUG) Log.d(TAG, "onClose() called");
+
         releaseWifiAndCpu();
 
         if (basePlayerImpl != null) {
             basePlayerImpl.stopActivityBinding();
             basePlayerImpl.destroy();
         }
-
-        basePlayerImpl = null;
+        if (notificationManager != null) notificationManager.cancel(NOTIFICATION_ID);
         mBinder = null;
+        basePlayerImpl = null;
+
+        stopForeground(true);
         stopSelf();
     }
 
@@ -322,6 +318,7 @@ public final class BackgroundPlayer extends Service {
 
                 updateNotification(-1);
             }
+            clearThumbnailCache();
         }
 
         @Override
@@ -460,8 +457,7 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void shutdown() {
             super.shutdown();
-            stopActivityBinding();
-            stopSelf();
+            onClose();
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -538,7 +534,7 @@ public final class BackgroundPlayer extends Service {
                     onVideoPlayPause();
                     break;
                 case ACTION_OPEN_DETAIL:
-                    openControl(BackgroundPlayer.this);
+                    openControl(getApplicationContext());
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();

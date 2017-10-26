@@ -91,8 +91,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     public abstract void stopPlayerListener();
 
-    public abstract BasePlayer playerFrom(final IBinder binder);
-
     ////////////////////////////////////////////////////////////////////////////
     // Activity Lifecycle
     ////////////////////////////////////////////////////////////////////////////
@@ -182,7 +180,11 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
                 Log.d(getTag(), "Player service is connected");
-                player = playerFrom(service);
+
+                if (service instanceof PlayerServiceBinder) {
+                    player = ((PlayerServiceBinder) service).getPlayerInstance();
+                }
+
                 if (player == null || player.playQueue == null || player.playQueueAdapter == null || player.simpleExoPlayer == null) {
                     unbind();
                     finish();

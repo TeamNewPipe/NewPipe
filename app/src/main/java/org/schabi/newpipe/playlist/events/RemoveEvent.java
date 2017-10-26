@@ -2,18 +2,24 @@ package org.schabi.newpipe.playlist.events;
 
 
 public class RemoveEvent implements PlayQueueEvent {
-    final private int index;
+    final private int removeIndex;
+    final private int queueIndex;
 
     @Override
     public PlayQueueEventType type() {
         return PlayQueueEventType.REMOVE;
     }
 
-    public RemoveEvent(final int index) {
-        this.index = index;
+    public RemoveEvent(final int removeIndex, final int queueIndex) {
+        this.removeIndex = removeIndex;
+        this.queueIndex = queueIndex;
     }
 
-    public int index() {
-        return index;
+    public int getQueueIndex() {
+        return queueIndex;
+    }
+
+    public int getRemoveIndex() {
+        return removeIndex;
     }
 }

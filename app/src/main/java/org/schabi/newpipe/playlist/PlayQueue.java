@@ -18,7 +18,6 @@ import org.schabi.newpipe.playlist.events.SelectEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -210,25 +209,30 @@ public abstract class PlayQueue implements Serializable {
     /**
      * Appends the given {@link PlayQueueItem}s to the current play queue.
      *
-     * Will emit a {@link AppendEvent} on any given context.
+     * @see #append(List items)
      * */
     public synchronized void append(final PlayQueueItem... items) {
-        streams.addAll(Arrays.asList(items));
-        if (backup != null) backup.addAll(Arrays.asList(items));
-
-        broadcast(new AppendEvent(items.length));
+        append(Arrays.asList(items));
     }
 
     /**
      * Appends the given {@link PlayQueueItem}s to the current play queue.
      *
+     * If the play queue is shuffled, then append the items to the backup queue as is and
+     * append the shuffle items to the play queue.
+     *
      * Will emit a {@link AppendEvent} on any given context.
      * */
-    public synchronized void append(final Collection<PlayQueueItem> items) {
-        streams.addAll(items);
-        if (backup != null) backup.addAll(items);
+    public synchronized void append(final List<PlayQueueItem> items) {
+        List<PlayQueueItem> itemList = new ArrayList<>(items);
 
-        broadcast(new AppendEvent(items.size()));
+        if (isShuffled()) {
+            backup.addAll(itemList);
+            Collections.shuffle(itemList);
+        }
+        streams.addAll(itemList);
+
+        broadcast(new AppendEvent(itemList.size()));
     }
 
     /**
@@ -242,7 +246,7 @@ public abstract class PlayQueue implements Serializable {
     public synchronized void remove(final int index) {
         if (index >= streams.size() || index < 0) return;
         removeInternal(index);
-        broadcast(new RemoveEvent(index));
+        broadcast(new RemoveEvent(index, getIndex()));
     }
 
     /**
@@ -261,24 +265,28 @@ public abstract class PlayQueue implements Serializable {
             removeInternal(index);
         }
 
-        broadcast(new ErrorEvent(index, skippable));
+        broadcast(new ErrorEvent(index, getIndex(), skippable));
     }
 
-    private synchronized void removeInternal(final int index) {
+    private synchronized void removeInternal(final int removeIndex) {
         final int currentIndex = queueIndex.get();
         final int size = size();
 
-        if (currentIndex > index) {
+        if (currentIndex > removeIndex) {
             queueIndex.decrementAndGet();
+
         } else if (currentIndex >= size) {
             queueIndex.set(currentIndex % (size - 1));
+
+        } else if (currentIndex == removeIndex && currentIndex == size - 1){
+            queueIndex.set(removeIndex - 1);
         }
 
         if (backup != null) {
-            final int backupIndex = backup.indexOf(getItem(index));
+            final int backupIndex = backup.indexOf(getItem(removeIndex));
             backup.remove(backupIndex);
         }
-        streams.remove(index);
+        streams.remove(removeIndex);
     }
 
     /**

@@ -1,7 +1,6 @@
 package org.schabi.newpipe.player;
 
 import android.content.Intent;
-import android.os.IBinder;
 
 import org.schabi.newpipe.R;
 
@@ -17,12 +16,6 @@ public final class PopupVideoPlayerActivity extends ServicePlayerActivity {
     @Override
     public String getSupportActionTitle() {
         return getResources().getString(R.string.title_activity_popup_player);
-    }
-
-    @Override
-    public BasePlayer playerFrom(IBinder binder) {
-        final PopupVideoPlayer.LocalBinder mLocalBinder = (PopupVideoPlayer.LocalBinder) binder;
-        return mLocalBinder.getPopupPlayerInstance();
     }
 
     @Override

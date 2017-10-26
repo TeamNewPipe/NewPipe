@@ -20,8 +20,10 @@
 package org.schabi.newpipe.player;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Build;
@@ -44,6 +46,7 @@ import android.widget.Toast;
 
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -97,7 +100,7 @@ public final class MainVideoPlayer extends Activity {
 
         showSystemUi();
         setContentView(R.layout.activity_main_player);
-        playerImpl = new VideoPlayerImpl();
+        playerImpl = new VideoPlayerImpl(getApplicationContext());
         playerImpl.setup(findViewById(android.R.id.content));
         playerImpl.handleIntent(getIntent());
     }
@@ -243,8 +246,8 @@ public final class MainVideoPlayer extends Activity {
 
         private boolean queueVisible;
 
-        VideoPlayerImpl() {
-            super("VideoPlayerImpl" + MainVideoPlayer.TAG, MainVideoPlayer.this);
+        VideoPlayerImpl(final Context context) {
+            super("VideoPlayerImpl" + MainVideoPlayer.TAG, context);
         }
 
         @Override
@@ -283,6 +286,12 @@ public final class MainVideoPlayer extends Activity {
             playPreviousButton.setOnClickListener(this);
             playNextButton.setOnClickListener(this);
             screenRotationButton.setOnClickListener(this);
+        }
+
+        @Override
+        public void onThumbnailReceived(Bitmap thumbnail) {
+            super.onThumbnailReceived(thumbnail);
+            clearThumbnailCache();
         }
 
         /*//////////////////////////////////////////////////////////////////////////

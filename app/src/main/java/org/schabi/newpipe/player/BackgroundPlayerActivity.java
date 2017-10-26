@@ -1,7 +1,6 @@
 package org.schabi.newpipe.player;
 
 import android.content.Intent;
-import android.os.IBinder;
 
 import org.schabi.newpipe.R;
 
@@ -17,12 +16,6 @@ public final class BackgroundPlayerActivity extends ServicePlayerActivity {
     @Override
     public String getSupportActionTitle() {
         return getResources().getString(R.string.title_activity_background_player);
-    }
-
-    @Override
-    public BasePlayer playerFrom(IBinder binder) {
-        final BackgroundPlayer.LocalBinder mLocalBinder = (BackgroundPlayer.LocalBinder) binder;
-        return mLocalBinder.getBackgroundPlayerInstance();
     }
 
     @Override

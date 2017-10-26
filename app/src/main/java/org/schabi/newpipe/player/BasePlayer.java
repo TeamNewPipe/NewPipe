@@ -315,6 +315,8 @@ public abstract class BasePlayer implements Player.EventListener,
     public void destroy() {
         if (DEBUG) Log.d(TAG, "destroy() called");
         destroyPlayer();
+        clearThumbnailCache();
+        unregisterBroadcastReceiver();
 
         if (playQueue != null) {
             playQueue.dispose();
@@ -324,8 +326,6 @@ public abstract class BasePlayer implements Player.EventListener,
             playbackManager.dispose();
             playbackManager = null;
         }
-
-        unregisterBroadcastReceiver();
 
         trackSelector = null;
         simpleExoPlayer = null;
@@ -900,6 +900,10 @@ public abstract class BasePlayer implements Player.EventListener,
             playbackManager.reset();
             playbackManager.load();
         }
+    }
+
+    protected void clearThumbnailCache() {
+        ImageLoader.getInstance().clearMemoryCache();
     }
 
     protected void startProgressLoop() {

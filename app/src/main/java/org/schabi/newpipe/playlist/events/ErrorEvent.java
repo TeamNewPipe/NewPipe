@@ -2,7 +2,8 @@ package org.schabi.newpipe.playlist.events;
 
 
 public class ErrorEvent implements PlayQueueEvent {
-    final private int index;
+    final private int errorIndex;
+    final private int queueIndex;
     final private boolean skippable;
 
     @Override
@@ -10,13 +11,18 @@ public class ErrorEvent implements PlayQueueEvent {
         return PlayQueueEventType.ERROR;
     }
 
-    public ErrorEvent(final int index, final boolean skippable) {
-        this.index = index;
+    public ErrorEvent(final int errorIndex, final int queueIndex, final boolean skippable) {
+        this.errorIndex = errorIndex;
+        this.queueIndex = queueIndex;
         this.skippable = skippable;
     }
 
-    public int index() {
-        return index;
+    public int getErrorIndex() {
+        return errorIndex;
+    }
+
+    public int getQueueIndex() {
+        return queueIndex;
     }
 
     public boolean isSkippable() {

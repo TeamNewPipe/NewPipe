@@ -82,7 +82,7 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
             @Override
             public void onNext(@NonNull PlayQueueEvent playQueueMessage) {
-                onPlayQueueChanged(playQueueMessage);
+                if (playQueueReactor != null) onPlayQueueChanged(playQueueMessage);
             }
 
             @Override
@@ -116,14 +116,15 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             case ERROR:
                 final ErrorEvent errorEvent = (ErrorEvent) message;
                 if (!errorEvent.isSkippable()) {
-                    notifyItemRemoved(errorEvent.index());
+                    notifyItemRemoved(errorEvent.getErrorIndex());
                 }
-                notifyItemChanged(errorEvent.index());
+                notifyItemChanged(errorEvent.getErrorIndex());
+                notifyItemChanged(errorEvent.getQueueIndex());
                 break;
             case REMOVE:
                 final RemoveEvent removeEvent = (RemoveEvent) message;
-                notifyItemRemoved(removeEvent.index());
-                notifyItemChanged(removeEvent.index());
+                notifyItemRemoved(removeEvent.getRemoveIndex());
+                notifyItemChanged(removeEvent.getQueueIndex());
                 break;
             case MOVE:
                 final MoveEvent moveEvent = (MoveEvent) message;
