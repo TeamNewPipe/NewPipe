@@ -33,6 +33,7 @@ import org.schabi.newpipe.fragments.subscription.SubscriptionService;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.Localization;
 
 import java.util.List;
@@ -125,7 +126,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         ActionBar supportActionBar = activity.getSupportActionBar();
         if(useAsFrontPage) {
             supportActionBar.setDisplayHomeAsUpEnabled(false);
-            //supportActionBar.setDisplayShowTitleEnabled(false);
         } else {
             inflater.inflate(R.menu.menu_channel, menu);
 

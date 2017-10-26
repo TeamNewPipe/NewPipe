@@ -181,7 +181,6 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setDisplayShowTitleEnabled(false);
             actionBar.setDisplayHomeAsUpEnabled(false);
         }
         return true;

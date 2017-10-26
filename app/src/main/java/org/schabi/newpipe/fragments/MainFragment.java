@@ -117,7 +117,6 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
-            supportActionBar.setDisplayShowTitleEnabled(false);
             supportActionBar.setDisplayHomeAsUpEnabled(false);
         }
     }
