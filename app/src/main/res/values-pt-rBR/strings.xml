@@ -242,4 +242,19 @@ abrir em modo popup</string>
     <string name="empty_subscription_feed_subtitle">Não há nada aqui</string>
 
     <string name="delete_item_search_history">Deseja apagar este item do seu histórico de busca?</string>
+<string name="main_page_content">Conteúdo</string>
+    <string name="blank_page_summary">Página em Branco</string>
+    <string name="kiosk_page_summary">Página de Quiosque</string>
+    <string name="subscription_page_summary">Página de Inscrição</string>
+    <string name="feed_page_summary">Página de Atualizações</string>
+    <string name="channel_page_summary">Página de Canais</string>
+    <string name="select_a_channel">Selecione um canal</string>
+    <string name="no_channel_subscribed_yet">Nenhuma inscrição ainda</string>
+    <string name="select_a_kiosk">Selecione um quiosque</string>
+
+    <string name="kiosk">Quiosque</string>
+    <string name="trending">Em Alta</string>
+    <string name="top_50">Top 50</string>
+    <string name="new_and_hot">Novos e tendências</string>
+    <string name="service_kosk_string">%1$s/%2$s</string>
 </resources>
