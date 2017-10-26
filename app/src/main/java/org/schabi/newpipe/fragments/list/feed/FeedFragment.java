@@ -121,7 +121,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         }
 
         if(useAsFrontPage) {
-            supportActionBar.setDisplayHomeAsUpEnabled(false);
+            supportActionBar.setDisplayShowTitleEnabled(true);
             //supportActionBar.setDisplayShowTitleEnabled(false);
         }
     }

@@ -84,6 +84,15 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         viewPager.setOffscreenPageLimit(adapter.getCount());
 
         tabLayout.setupWithViewPager(viewPager);
+
+       if(PreferenceManager.getDefaultSharedPreferences(getActivity())
+                .getString(getString(R.string.main_page_content_key), getString(R.string.blank_page_key))
+                .equals(getString(R.string.subscription_page_key))) {
+           tabLayout.getTabAt(0).setIcon(R.drawable.ic_channel_white_24dp);
+       } else {
+           tabLayout.getTabAt(0).setIcon(R.drawable.ic_whatshot_white_24dp);
+           tabLayout.getTabAt(1).setIcon(R.drawable.ic_channel_white_24dp);
+       }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -108,7 +117,6 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
-            supportActionBar.setDisplayShowTitleEnabled(false);
             supportActionBar.setDisplayHomeAsUpEnabled(false);
         }
     }
@@ -171,7 +179,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return getString(this.tabTitles[position]);
+            //return getString(this.tabTitles[position]);
+            return "";
         }
 
         @Override

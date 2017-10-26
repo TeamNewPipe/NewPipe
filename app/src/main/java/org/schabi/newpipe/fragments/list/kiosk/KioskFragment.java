@@ -53,6 +53,9 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
 
+    private String kioskId = "";
+
+
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -76,12 +79,25 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         instance.setInitialData(serviceId,
                 kioskTypeUrlIdHandler.getUrl(kioskId),
                 kioskId);
+        instance.kioskId = kioskId;
         return instance;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(useAsFrontPage && isVisibleToUser) {
+            try {
+                activity.getSupportActionBar().setTitle(KioskTranslator.getTranslatedKioskName(kioskId, getActivity()));
+            } catch (Exception e) {
+                onError(e);
+            }
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -97,7 +113,6 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         super.onCreateOptionsMenu(menu, inflater);
         ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null && useAsFrontPage) {
-            //supportActionBar.setDisplayShowTitleEnabled(false);
             supportActionBar.setDisplayHomeAsUpEnabled(false);
         }
     }
