@@ -26,6 +26,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
@@ -81,6 +82,20 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     /*//////////////////////////////////////////////////////////////////////////
     // LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(activity != null
+                && useAsFrontPage
+                && isVisibleToUser) {
+            try {
+                activity.getSupportActionBar().setTitle(currentInfo.name);
+            } catch (Exception e) {
+                onError(e);
+            }
+        }
+    }
 
     @Override
     public void onAttach(Context context) {
