@@ -50,7 +50,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                                             getContext());
 
                                     String summary =
-                                            String.format(getString(R.string.service_kosk_string),
+                                            String.format(getString(R.string.service_kiosk_string),
                                                     serviceName,
                                                     kioskName);
 
@@ -122,7 +122,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                         getContext());
 
                 String summary =
-                        String.format(getString(R.string.service_kosk_string),
+                        String.format(getString(R.string.service_kiosk_string),
                                 service.getServiceInfo().name,
                                 kioskName);
 
