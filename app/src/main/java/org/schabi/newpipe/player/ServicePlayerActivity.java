@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
@@ -34,6 +35,9 @@ import org.schabi.newpipe.playlist.PlayQueueItemHolder;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+
+import static org.schabi.newpipe.player.refactor.PlayerHelper.formatPitch;
+import static org.schabi.newpipe.player.refactor.PlayerHelper.formatSpeed;
 
 public abstract class ServicePlayerActivity extends AppCompatActivity
         implements PlayerEventListener, SeekBar.OnSeekBarChangeListener, View.OnClickListener {
@@ -58,12 +62,14 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private RecyclerView itemsList;
     private ItemTouchHelper itemTouchHelper;
 
+    private LinearLayout metadata;
     private TextView metadataTitle;
     private TextView metadataArtist;
 
     private SeekBar progressSeekBar;
     private TextView progressCurrentTime;
     private TextView progressEndTime;
+    private TextView seekDisplay;
 
     private ImageButton repeatButton;
     private ImageButton backwardButton;
@@ -111,11 +117,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
         serviceConnection = getServiceConnection();
         bind();
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -185,7 +186,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                     player = ((PlayerServiceBinder) service).getPlayerInstance();
                 }
 
-                if (player == null || player.playQueue == null || player.playQueueAdapter == null || player.simpleExoPlayer == null) {
+                if (player == null || player.getPlayQueue() == null ||
+                        player.getPlayQueueAdapter() == null || player.getPlayer() == null) {
                     unbind();
                     finish();
                 } else {
@@ -210,25 +212,29 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private void buildQueue() {
         itemsList = findViewById(R.id.play_queue);
         itemsList.setLayoutManager(new LinearLayoutManager(this));
-        itemsList.setAdapter(player.playQueueAdapter);
+        itemsList.setAdapter(player.getPlayQueueAdapter());
         itemsList.setClickable(true);
         itemsList.setLongClickable(true);
 
         itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(itemsList);
 
-        player.playQueueAdapter.setSelectedListener(getOnSelectedListener());
+        player.getPlayQueueAdapter().setSelectedListener(getOnSelectedListener());
     }
 
     private void buildMetadata() {
+        metadata = rootView.findViewById(R.id.metadata);
         metadataTitle = rootView.findViewById(R.id.song_name);
         metadataArtist = rootView.findViewById(R.id.artist_name);
+
+        metadata.setOnClickListener(this);
     }
 
     private void buildSeekBar() {
         progressCurrentTime = rootView.findViewById(R.id.current_time);
         progressSeekBar = rootView.findViewById(R.id.seek_bar);
         progressEndTime = rootView.findViewById(R.id.end_time);
+        seekDisplay = rootView.findViewById(R.id.seek_display);
 
         progressSeekBar.setOnSeekBarChangeListener(this);
     }
@@ -263,7 +269,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         playbackSpeedPopupMenu.getMenu().removeGroup(PLAYBACK_SPEED_POPUP_MENU_GROUP_ID);
         for (int i = 0; i < BasePlayer.PLAYBACK_SPEEDS.length; i++) {
             final float playbackSpeed = BasePlayer.PLAYBACK_SPEEDS[i];
-            final String formattedSpeed = player.formatSpeed(playbackSpeed);
+            final String formattedSpeed = formatSpeed(playbackSpeed);
             final MenuItem item = playbackSpeedPopupMenu.getMenu().add(PLAYBACK_SPEED_POPUP_MENU_GROUP_ID, i, Menu.NONE, formattedSpeed);
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
@@ -281,7 +287,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         playbackPitchPopupMenu.getMenu().removeGroup(PLAYBACK_PITCH_POPUP_MENU_GROUP_ID);
         for (int i = 0; i < BasePlayer.PLAYBACK_PITCHES.length; i++) {
             final float playbackPitch = BasePlayer.PLAYBACK_PITCHES[i];
-            final String formattedPitch = player.formatPitch(playbackPitch);
+            final String formattedPitch = formatPitch(playbackPitch);
             final MenuItem item = playbackPitchPopupMenu.getMenu().add(PLAYBACK_PITCH_POPUP_MENU_GROUP_ID, i, Menu.NONE, formattedPitch);
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
@@ -299,8 +305,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         remove.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                final int index = player.playQueue.indexOf(item);
-                if (index != -1) player.playQueue.remove(index);
+                final int index = player.getPlayQueue().indexOf(item);
+                if (index != -1) player.getPlayQueue().remove(index);
                 return true;
             }
         });
@@ -331,7 +337,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
                 final int sourceIndex = source.getLayoutPosition();
                 final int targetIndex = target.getLayoutPosition();
-                player.playQueue.move(sourceIndex, targetIndex);
+                player.getPlayQueue().move(sourceIndex, targetIndex);
                 return true;
             }
 
@@ -359,7 +365,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
             @Override
             public void held(PlayQueueItem item, View view) {
-                final int index = player.playQueue.indexOf(item);
+                final int index = player.getPlayQueue().indexOf(item);
                 if (index != -1) buildItemPopupMenu(item, view);
             }
 
@@ -375,7 +381,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     private void scrollToSelected() {
-        itemsList.smoothScrollToPosition(player.playQueue.getIndex());
+        itemsList.smoothScrollToPosition(player.getPlayQueue().getIndex());
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -404,6 +410,10 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
         } else if (view.getId() == playbackPitchButton.getId()) {
             playbackPitchPopupMenu.show();
+
+        } else if (view.getId() == metadata.getId()) {
+            scrollToSelected();
+
         }
     }
 
@@ -413,17 +423,23 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        if (fromUser) progressCurrentTime.setText(Localization.getDurationString(progress / 1000));
+        if (fromUser) {
+            final String seekTime = Localization.getDurationString(progress / 1000);
+            progressCurrentTime.setText(seekTime);
+            seekDisplay.setText(seekTime);
+        }
     }
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
         seeking = true;
+        seekDisplay.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         player.simpleExoPlayer.seekTo(seekBar.getProgress());
+        seekDisplay.setVisibility(View.GONE);
         seeking = false;
     }
 
@@ -528,8 +544,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     private void onPlaybackParameterChanged(final PlaybackParameters parameters) {
         if (parameters != null) {
-            playbackSpeedButton.setText(player.formatSpeed(parameters.speed));
-            playbackPitchButton.setText(player.formatPitch(parameters.pitch));
+            playbackSpeedButton.setText(formatSpeed(parameters.speed));
+            playbackPitchButton.setText(formatPitch(parameters.pitch));
         }
     }
 }

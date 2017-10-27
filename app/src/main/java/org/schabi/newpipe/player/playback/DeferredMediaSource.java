@@ -1,4 +1,4 @@
-package org.schabi.newpipe.player.mediasource;
+package org.schabi.newpipe.player.playback;
 
 import android.support.annotation.NonNull;
 import android.util.Log;

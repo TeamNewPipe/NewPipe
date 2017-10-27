@@ -46,11 +46,11 @@ import android.widget.Toast;
 
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.player.refactor.PlayerHelper;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
 import org.schabi.newpipe.playlist.PlayQueueItemHolder;
@@ -100,7 +100,7 @@ public final class MainVideoPlayer extends Activity {
 
         showSystemUi();
         setContentView(R.layout.activity_main_player);
-        playerImpl = new VideoPlayerImpl(getApplicationContext());
+        playerImpl = new VideoPlayerImpl(this);
         playerImpl.setup(findViewById(android.R.id.content));
         playerImpl.handleIntent(getIntent());
     }
@@ -723,12 +723,12 @@ public final class MainVideoPlayer extends Activity {
             return true;
         }
 
-        private final boolean isGestureControlsEnabled = playerImpl.getSharedPreferences().getBoolean(getString(R.string.player_gesture_controls_key), true);
+        private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
 
         private final float stepsBrightness = 15, stepBrightness = (1f / stepsBrightness), minBrightness = .01f;
         private float currentBrightness = .5f;
 
-        private int currentVolume, maxVolume = playerImpl.audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        private int currentVolume, maxVolume = playerImpl.getAudioReactor().getMaxVolume();
         private final float stepsVolume = 15, stepVolume = (float) Math.ceil(maxVolume / stepsVolume), minVolume = 0;
 
         private final String brightnessUnicode = new String(Character.toChars(0x2600));
@@ -742,7 +742,7 @@ public final class MainVideoPlayer extends Activity {
         // TODO: Improve video gesture controls
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            if (!isGestureControlsEnabled) return false;
+            if (!isPlayerGestureEnabled) return false;
 
             //noinspection PointlessBooleanExpression
             if (DEBUG && false) Log.d(TAG, "MainVideoPlayer.onScroll = " +
@@ -763,13 +763,14 @@ public final class MainVideoPlayer extends Activity {
 
             if (e1.getX() > playerImpl.getRootView().getWidth() / 2) {
                 double floor = Math.floor(up ? stepVolume : -stepVolume);
-                currentVolume = (int) (playerImpl.audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) + floor);
+                currentVolume = (int) (playerImpl.getAudioReactor().getMaxVolume() + floor);
                 if (currentVolume >= maxVolume) currentVolume = maxVolume;
                 if (currentVolume <= minVolume) currentVolume = (int) minVolume;
-                playerImpl.audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);
+                playerImpl.getAudioReactor().setMaxVolume(currentVolume);
 
                 if (DEBUG) Log.d(TAG, "onScroll().volumeControl, currentVolume = " + currentVolume);
-                playerImpl.getVolumeTextView().setText(volumeUnicode + " " + Math.round((((float) currentVolume) / maxVolume) * 100) + "%");
+                final String volumeText = volumeUnicode + " " + Math.round((((float) currentVolume) / maxVolume) * 100) + "%";
+                playerImpl.getVolumeTextView().setText(volumeText);
 
                 if (playerImpl.getVolumeTextView().getVisibility() != View.VISIBLE) animateView(playerImpl.getVolumeTextView(), true, 200);
                 if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) playerImpl.getBrightnessTextView().setVisibility(View.GONE);
@@ -784,7 +785,8 @@ public final class MainVideoPlayer extends Activity {
                 if (DEBUG) Log.d(TAG, "onScroll().brightnessControl, currentBrightness = " + currentBrightness);
                 int brightnessNormalized = Math.round(currentBrightness * 100);
 
-                playerImpl.getBrightnessTextView().setText(brightnessUnicode + " " + (brightnessNormalized == 1 ? 0 : brightnessNormalized) + "%");
+                final String brightnessText = brightnessUnicode + " " + (brightnessNormalized == 1 ? 0 : brightnessNormalized) + "%";
+                playerImpl.getBrightnessTextView().setText(brightnessText);
 
                 if (playerImpl.getBrightnessTextView().getVisibility() != View.VISIBLE) animateView(playerImpl.getBrightnessTextView(), true, 200);
                 if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) playerImpl.getVolumeTextView().setVisibility(View.GONE);

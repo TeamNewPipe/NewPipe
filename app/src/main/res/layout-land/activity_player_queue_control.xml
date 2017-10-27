@@ -55,6 +55,9 @@
             android:layout_above="@+id/playback_controls_top"
             android:orientation="vertical"
             android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
             tools:ignore="RtlHardcoded,RtlSymmetry">
 
             <TextView
@@ -63,10 +66,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:maxLines="3"
+                android:maxLines="4"
                 android:textColor="?attr/colorAccent"
                 android:textSize="14sp"
-                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta." />
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta."
+                />
 
             <TextView
                 android:id="@+id/artist_name"
@@ -74,10 +78,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:maxLines="3"
+                android:maxLines="2"
                 android:textSize="12sp"
                 tools:text="Duis posuere arcu condimentum lobortis mattis." />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/seek_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="#c0000000"
+            android:paddingBottom="5dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="5dp"
+            android:layout_above="@+id/playback_controls_top"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded"
+            tools:text="1:06:29"
+            tools:visibility="visible"/>
 
         <RelativeLayout
             android:id="@+id/playback_controls_top"
@@ -95,12 +118,12 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_toLeftOf="@+id/control_play_pause"
-                android:background="#00000000"
                 android:clickable="true"
                 android:focusable="true"
                 android:padding="2dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/exo_controls_previous"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 tools:ignore="ContentDescription"/>
 
             <ImageButton
@@ -112,7 +135,7 @@
                 android:layout_centerInParent="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:background="#00000000"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:padding="2dp"
                 android:clickable="true"
                 android:focusable="true"
@@ -144,7 +167,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="5dp"
                 android:layout_toRightOf="@+id/control_play_pause"
-                android:background="#00000000"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
                 android:padding="2dp"
@@ -175,6 +198,7 @@
                 android:text="1x"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
+                android:background="?attr/selectableItemBackground"
                 tools:ignore="HardcodedText,RtlHardcoded"/>
 
             <ImageButton
@@ -184,7 +208,7 @@
                 android:layout_toLeftOf="@+id/anchor"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
-                android:background="#00000000"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitXY"
@@ -203,7 +227,7 @@
                 android:layout_toRightOf="@+id/anchor"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="5dp"
-                android:background="#00000000"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitXY"
@@ -223,6 +247,7 @@
                 android:text="100%"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
+                android:background="?attr/selectableItemBackground"
                 tools:ignore="HardcodedText,RtlHardcoded"/>
         </RelativeLayout>
     </RelativeLayout>
@@ -248,7 +273,6 @@
             android:textColor="?attr/colorAccent"
             tools:ignore="HardcodedText"
             tools:text="1:06:29"/>
-
 
         <android.support.v7.widget.AppCompatSeekBar
             android:id="@+id/seek_bar"

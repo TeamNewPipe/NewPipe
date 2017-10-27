@@ -29,7 +29,6 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
-import android.media.audiofx.AudioEffect;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -39,18 +38,15 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayerFactory;
-import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.LoadControl;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
-import com.google.android.exoplayer2.audio.AudioRendererEventListener;
-import com.google.android.exoplayer2.decoder.DecoderCounters;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
@@ -63,31 +59,23 @@ import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
+import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.upstream.cache.CacheDataSource;
-import com.google.android.exoplayer2.upstream.cache.CacheDataSourceFactory;
-import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor;
-import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 import com.google.android.exoplayer2.util.Util;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
-import org.schabi.newpipe.Downloader;
-import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
+import org.schabi.newpipe.player.refactor.AudioReactor;
+import org.schabi.newpipe.player.refactor.CacheFactory;
+import org.schabi.newpipe.player.refactor.LoadController;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueAdapter;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 
-import java.io.File;
 import java.io.Serializable;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Formatter;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -97,22 +85,21 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
 
+import static org.schabi.newpipe.player.refactor.PlayerHelper.getTimeString;
+
 /**
  * Base for the players, joining the common properties
  *
  * @author mauriciocolli
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public abstract class BasePlayer implements Player.EventListener,
-        AudioManager.OnAudioFocusChangeListener, PlaybackListener, AudioRendererEventListener {
-    // TODO: Check api version for deprecated audio manager methods
+public abstract class BasePlayer implements Player.EventListener, PlaybackListener {
 
     public static final boolean DEBUG = true;
     public static final String TAG = "BasePlayer";
 
     protected Context context;
     protected SharedPreferences sharedPreferences;
-    protected AudioManager audioManager;
 
     protected BroadcastReceiver broadcastReceiver;
     protected IntentFilter intentFilter;
@@ -144,6 +131,7 @@ public abstract class BasePlayer implements Player.EventListener,
     protected PlayQueueItem currentItem;
 
     protected Toast errorToast;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Player
     //////////////////////////////////////////////////////////////////////////*/
@@ -151,15 +139,15 @@ public abstract class BasePlayer implements Player.EventListener,
     protected final static int FAST_FORWARD_REWIND_AMOUNT = 10000; // 10 Seconds
     protected final static int PLAY_PREV_ACTIVATION_LIMIT = 5000; // 5 seconds
     protected final static int PROGRESS_LOOP_INTERVAL = 500;
-    protected final static String CACHE_FOLDER_NAME = "exoplayer";
 
     protected SimpleExoPlayer simpleExoPlayer;
+    protected AudioReactor audioReactor;
+
     protected boolean isPrepared = false;
 
     protected DefaultTrackSelector trackSelector;
-    protected CacheDataSourceFactory cacheDataSourceFactory;
-    protected final DefaultExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
-    protected final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
+    protected DataSource.Factory cacheDataSourceFactory;
+    protected DefaultExtractorsFactory extractorsFactory;
 
     protected Disposable progressUpdateReactor;
 
@@ -185,37 +173,21 @@ public abstract class BasePlayer implements Player.EventListener,
         initListeners();
     }
 
-    private void initExoPlayerCache() {
-        if (cacheDataSourceFactory == null) {
-            DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(context, Downloader.USER_AGENT, bandwidthMeter);
-            File cacheDir = new File(context.getExternalCacheDir(), CACHE_FOLDER_NAME);
-            if (!cacheDir.exists()) {
-                //noinspection ResultOfMethodCallIgnored
-                cacheDir.mkdir();
-            }
-
-            if (DEBUG) Log.d(TAG, "initExoPlayerCache: cacheDir = " + cacheDir.getAbsolutePath());
-            SimpleCache simpleCache = new SimpleCache(cacheDir, new LeastRecentlyUsedCacheEvictor(64 * 1024 * 1024L));
-            cacheDataSourceFactory = new CacheDataSourceFactory(simpleCache, dataSourceFactory, CacheDataSource.FLAG_BLOCK_ON_CACHE, 512 * 1024);
-        }
-    }
-
     public void initPlayer() {
         if (DEBUG) Log.d(TAG, "initPlayer() called with: context = [" + context + "]");
-        initExoPlayerCache();
 
-        if (audioManager == null) {
-            this.audioManager = ((AudioManager) context.getSystemService(Context.AUDIO_SERVICE));
-        }
-
-        AdaptiveTrackSelection.Factory trackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
-        trackSelector = new DefaultTrackSelector(trackSelectionFactory);
-
-        DefaultLoadControl loadControl = new DefaultLoadControl();
-
+        final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
+        final AdaptiveTrackSelection.Factory trackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
+        final LoadControl loadControl = new LoadController(context);
         final RenderersFactory renderFactory = new DefaultRenderersFactory(context);
+
+        trackSelector = new DefaultTrackSelector(trackSelectionFactory);
+        extractorsFactory = new DefaultExtractorsFactory();
+        cacheDataSourceFactory = new CacheFactory(context);
+
         simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(renderFactory, trackSelector, loadControl);
-        simpleExoPlayer.setAudioDebugListener(this);
+        audioReactor = new AudioReactor(context, simpleExoPlayer);
+
         simpleExoPlayer.addListener(this);
         simpleExoPlayer.setPlayWhenReady(true);
     }
@@ -306,10 +278,7 @@ public abstract class BasePlayer implements Player.EventListener,
             simpleExoPlayer.release();
         }
         if (isProgressLoopRunning()) stopProgressLoop();
-        if (audioManager != null) {
-            audioManager.abandonAudioFocus(this);
-            audioManager = null;
-        }
+        if (audioReactor != null) audioReactor.abandonAudioFocus();
     }
 
     public void destroy() {
@@ -318,14 +287,8 @@ public abstract class BasePlayer implements Player.EventListener,
         clearThumbnailCache();
         unregisterBroadcastReceiver();
 
-        if (playQueue != null) {
-            playQueue.dispose();
-            playQueue = null;
-        }
-        if (playbackManager != null) {
-            playbackManager.dispose();
-            playbackManager = null;
-        }
+        if (playQueue != null) playQueue.dispose();
+        if (playbackManager != null) playbackManager.dispose();
 
         trackSelector = null;
         simpleExoPlayer = null;
@@ -372,6 +335,7 @@ public abstract class BasePlayer implements Player.EventListener,
     }
 
     public void onBroadcastReceived(Intent intent) {
+        if (intent == null || intent.getAction() == null) return;
         switch (intent.getAction()) {
             case AudioManager.ACTION_AUDIO_BECOMING_NOISY:
                 if (isPlaying()) simpleExoPlayer.setPlayWhenReady(false);
@@ -385,84 +349,6 @@ public abstract class BasePlayer implements Player.EventListener,
             broadcastReceiver = null;
         }
     }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // AudioFocus
-    //////////////////////////////////////////////////////////////////////////*/
-
-    private static final int DUCK_DURATION = 1500;
-    private static final float DUCK_AUDIO_TO = .2f;
-
-    @Override
-    public void onAudioFocusChange(int focusChange) {
-        if (DEBUG) Log.d(TAG, "onAudioFocusChange() called with: focusChange = [" + focusChange + "]");
-        if (simpleExoPlayer == null) return;
-        switch (focusChange) {
-            case AudioManager.AUDIOFOCUS_GAIN:
-                onAudioFocusGain();
-                break;
-            case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
-                onAudioFocusLossCanDuck();
-                break;
-            case AudioManager.AUDIOFOCUS_LOSS:
-            case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
-                onAudioFocusLoss();
-                break;
-        }
-    }
-
-    private boolean isResumeAfterAudioFocusGain() {
-        return sharedPreferences != null && context != null
-                && sharedPreferences.getBoolean(context.getString(R.string.resume_on_audio_focus_gain_key), false);
-    }
-
-    protected void onAudioFocusGain() {
-        if (DEBUG) Log.d(TAG, "onAudioFocusGain() called");
-        if (simpleExoPlayer != null) simpleExoPlayer.setVolume(DUCK_AUDIO_TO);
-        animateAudio(DUCK_AUDIO_TO, 1f, DUCK_DURATION);
-
-        if (isResumeAfterAudioFocusGain()) {
-            simpleExoPlayer.setPlayWhenReady(true);
-        }
-    }
-
-    protected void onAudioFocusLoss() {
-        if (DEBUG) Log.d(TAG, "onAudioFocusLoss() called");
-        simpleExoPlayer.setPlayWhenReady(false);
-    }
-
-    protected void onAudioFocusLossCanDuck() {
-        if (DEBUG) Log.d(TAG, "onAudioFocusLossCanDuck() called");
-        // Set the volume to 1/10 on ducking
-        animateAudio(simpleExoPlayer.getVolume(), DUCK_AUDIO_TO, DUCK_DURATION);
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Audio Processing
-    //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void onAudioEnabled(DecoderCounters decoderCounters) {}
-
-    @Override
-    public void onAudioSessionId(int i) {
-        final Intent intent = new Intent(AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION);
-        intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, i);
-        intent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, context.getPackageName());
-        context.sendBroadcast(intent);
-    }
-
-    @Override
-    public void onAudioDecoderInitialized(String s, long l, long l1) {}
-
-    @Override
-    public void onAudioInputFormatChanged(Format format) {}
-
-    @Override
-    public void onAudioTrackUnderrun(int i, long l, long l1) {}
-
-    @Override
-    public void onAudioDisabled(DecoderCounters decoderCounters) {}
 
     /*//////////////////////////////////////////////////////////////////////////
     // States Implementation
@@ -790,7 +676,7 @@ public abstract class BasePlayer implements Player.EventListener,
 
     public void onPrepared(boolean playWhenReady) {
         if (DEBUG) Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");
-        if (playWhenReady) audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+        if (playWhenReady) audioReactor.requestAudioFocus();
         changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
     }
 
@@ -799,8 +685,11 @@ public abstract class BasePlayer implements Player.EventListener,
     public void onVideoPlayPause() {
         if (DEBUG) Log.d(TAG, "onVideoPlayPause() called");
 
-        if (!isPlaying()) audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
-        else audioManager.abandonAudioFocus(this);
+        if (!isPlaying()) {
+            audioReactor.requestAudioFocus();
+        } else {
+            audioReactor.abandonAudioFocus();
+        }
 
         if (getCurrentState() == STATE_COMPLETED) {
             playQueue.setIndex(0);
@@ -868,32 +757,6 @@ public abstract class BasePlayer implements Player.EventListener,
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
-
-    private final StringBuilder stringBuilder = new StringBuilder();
-    private final Formatter formatter = new Formatter(stringBuilder, Locale.getDefault());
-    private final NumberFormat speedFormatter = new DecimalFormat("0.##x");
-    private final NumberFormat pitchFormatter = new DecimalFormat("##%");
-
-    // todo: merge this into Localization
-    public String getTimeString(int milliSeconds) {
-        long seconds = (milliSeconds % 60000L) / 1000L;
-        long minutes = (milliSeconds % 3600000L) / 60000L;
-        long hours = (milliSeconds % 86400000L) / 3600000L;
-        long days = (milliSeconds % (86400000L * 7L)) / 86400000L;
-
-        stringBuilder.setLength(0);
-        return days > 0 ? formatter.format("%d:%02d:%02d:%02d", days, hours, minutes, seconds).toString()
-                : hours > 0 ? formatter.format("%d:%02d:%02d", hours, minutes, seconds).toString()
-                : formatter.format("%02d:%02d", minutes, seconds).toString();
-    }
-
-    protected String formatSpeed(float speed) {
-        return speedFormatter.format(speed);
-    }
-
-    protected String formatPitch(float pitch) {
-        return pitchFormatter.format(pitch);
-    }
 
     protected void reload() {
         if (playbackManager != null) {
@@ -965,6 +828,10 @@ public abstract class BasePlayer implements Player.EventListener,
         return sharedPreferences;
     }
 
+    public AudioReactor getAudioReactor() {
+        return audioReactor;
+    }
+
     public int getCurrentState() {
         return currentState;
     }
@@ -1024,6 +891,10 @@ public abstract class BasePlayer implements Player.EventListener,
 
     public PlayQueue getPlayQueue() {
         return playQueue;
+    }
+
+    public PlayQueueAdapter getPlayQueueAdapter() {
+        return playQueueAdapter;
     }
 
     public boolean isPlayerReady() {

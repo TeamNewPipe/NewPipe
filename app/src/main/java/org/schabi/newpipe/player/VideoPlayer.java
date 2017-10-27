@@ -49,7 +49,6 @@ import android.widget.TextView;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
@@ -66,6 +65,8 @@ import org.schabi.newpipe.util.ListHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.schabi.newpipe.player.refactor.PlayerHelper.formatSpeed;
+import static org.schabi.newpipe.player.refactor.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 /**

@@ -66,6 +66,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
+import org.schabi.newpipe.player.refactor.LockManager;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -84,6 +85,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
+import static org.schabi.newpipe.player.refactor.PlayerHelper.isUsingOldPlayer;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 /**
@@ -99,7 +101,7 @@ public final class PopupVideoPlayer extends Service {
     private static final int NOTIFICATION_ID = 40028922;
     public static final String ACTION_CLOSE = "org.schabi.newpipe.player.PopupVideoPlayer.CLOSE";
     public static final String ACTION_PLAY_PAUSE = "org.schabi.newpipe.player.PopupVideoPlayer.PLAY_PAUSE";
-    public static final String ACTION_OPEN_DETAIL = "org.schabi.newpipe.player.PopupVideoPlayer.OPEN_DETAIL";
+    public static final String ACTION_OPEN_CONTROLS = "org.schabi.newpipe.player.PopupVideoPlayer.OPEN_CONTROLS";
     public static final String ACTION_REPEAT = "org.schabi.newpipe.player.PopupVideoPlayer.REPEAT";
 
     private static final String POPUP_SAVED_WIDTH = "popup_saved_width";
@@ -116,15 +118,13 @@ public final class PopupVideoPlayer extends Service {
     private float minimumWidth, minimumHeight;
     private float maximumWidth, maximumHeight;
 
-    private final String setImageResourceMethodName = "setImageResource";
-
     private NotificationManager notificationManager;
     private NotificationCompat.Builder notBuilder;
     private RemoteViews notRemoteView;
 
     private VideoPlayerImpl playerImpl;
     private Disposable currentWorker;
-
+    private LockManager lockManager;
     /*//////////////////////////////////////////////////////////////////////////
     // Service-Activity Binder
     //////////////////////////////////////////////////////////////////////////*/
@@ -141,7 +141,8 @@ public final class PopupVideoPlayer extends Service {
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
 
-        playerImpl = new VideoPlayerImpl(getApplicationContext());
+        lockManager = new LockManager(this);
+        playerImpl = new VideoPlayerImpl(this);
         ThemeHelper.setTheme(this);
 
         mBinder = new PlayerServiceBinder(playerImpl);
@@ -261,7 +262,7 @@ public final class PopupVideoPlayer extends Service {
         notRemoteView.setOnClickPendingIntent(R.id.notificationStop,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_CLOSE), PendingIntent.FLAG_UPDATE_CURRENT));
         notRemoteView.setOnClickPendingIntent(R.id.notificationContent,
-                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_OPEN_DETAIL), PendingIntent.FLAG_UPDATE_CURRENT));
+                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_OPEN_CONTROLS), PendingIntent.FLAG_UPDATE_CURRENT));
         notRemoteView.setOnClickPendingIntent(R.id.notificationRepeat,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_REPEAT), PendingIntent.FLAG_UPDATE_CURRENT));
 
@@ -302,6 +303,7 @@ public final class PopupVideoPlayer extends Service {
             playerImpl.stopActivityBinding();
             playerImpl.destroy();
         }
+        if (lockManager != null) lockManager.releaseWifiAndCpu();
         if (notificationManager != null) notificationManager.cancel(NOTIFICATION_ID);
         if (currentWorker != null) currentWorker.dispose();
         mBinder = null;
@@ -381,17 +383,19 @@ public final class PopupVideoPlayer extends Service {
     }
 
     protected void setRepeatModeRemote(final RemoteViews remoteViews, final int repeatMode) {
+        final String methodName = "setImageResource";
+
         if (remoteViews == null) return;
 
         switch (repeatMode) {
             case Player.REPEAT_MODE_OFF:
-                remoteViews.setInt(R.id.notificationRepeat, setImageResourceMethodName, R.drawable.exo_controls_repeat_off);
+                remoteViews.setInt(R.id.notificationRepeat, methodName, R.drawable.exo_controls_repeat_off);
                 break;
             case Player.REPEAT_MODE_ONE:
-                remoteViews.setInt(R.id.notificationRepeat, setImageResourceMethodName, R.drawable.exo_controls_repeat_one);
+                remoteViews.setInt(R.id.notificationRepeat, methodName, R.drawable.exo_controls_repeat_one);
                 break;
             case Player.REPEAT_MODE_ALL:
-                remoteViews.setInt(R.id.notificationRepeat, setImageResourceMethodName, R.drawable.exo_controls_repeat_all);
+                remoteViews.setInt(R.id.notificationRepeat, methodName, R.drawable.exo_controls_repeat_all);
                 break;
         }
     }
@@ -447,7 +451,7 @@ public final class PopupVideoPlayer extends Service {
 
             setRecovery();
             Intent intent;
-            if (!getSharedPreferences().getBoolean(getResources().getString(R.string.use_old_player_key), false)) {
+            if (!isUsingOldPlayer(getApplicationContext())) {
                 intent = NavigationHelper.getPlayerIntent(
                         context,
                         MainVideoPlayer.class,
@@ -516,8 +520,8 @@ public final class PopupVideoPlayer extends Service {
 
         @Override
         public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
-            super.onUpdateProgress(currentProgress, duration, bufferPercent);
             updateProgress(currentProgress, duration, bufferPercent);
+            super.onUpdateProgress(currentProgress, duration, bufferPercent);
         }
 
         @Override
@@ -535,14 +539,14 @@ public final class PopupVideoPlayer extends Service {
         // Activity Event Listener
         //////////////////////////////////////////////////////////////////////////*/
 
-        public void setActivityListener(PlayerEventListener listener) {
+        /*package-private*/ void setActivityListener(PlayerEventListener listener) {
             activityListener = listener;
             updateMetadata();
             updatePlayback();
             triggerProgressUpdate();
         }
 
-        public void removeActivityListener(PlayerEventListener listener) {
+        /*package-private*/ void removeActivityListener(PlayerEventListener listener) {
             if (activityListener == listener) {
                 activityListener = null;
             }
@@ -617,7 +621,7 @@ public final class PopupVideoPlayer extends Service {
             if (DEBUG) Log.d(TAG, "setupBroadcastReceiver() called with: intentFilter = [" + intentFilter + "]");
             intentFilter.addAction(ACTION_CLOSE);
             intentFilter.addAction(ACTION_PLAY_PAUSE);
-            intentFilter.addAction(ACTION_OPEN_DETAIL);
+            intentFilter.addAction(ACTION_OPEN_CONTROLS);
             intentFilter.addAction(ACTION_REPEAT);
 
             intentFilter.addAction(Intent.ACTION_SCREEN_ON);
@@ -636,7 +640,7 @@ public final class PopupVideoPlayer extends Service {
                 case ACTION_PLAY_PAUSE:
                     onVideoPlayPause();
                     break;
-                case ACTION_OPEN_DETAIL:
+                case ACTION_OPEN_CONTROLS:
                     openControl(getApplicationContext());
                     break;
                 case ACTION_REPEAT:
@@ -671,6 +675,7 @@ public final class PopupVideoPlayer extends Service {
         public void onPlaying() {
             super.onPlaying();
             updateNotification(R.drawable.ic_pause_white);
+            lockManager.acquireWifiAndCpu();
         }
 
         @Override
@@ -684,6 +689,7 @@ public final class PopupVideoPlayer extends Service {
             super.onPaused();
             updateNotification(R.drawable.ic_play_arrow_white);
             showAndAnimateControl(R.drawable.ic_play_arrow_white, false);
+            lockManager.releaseWifiAndCpu();
         }
 
         @Override
@@ -697,13 +703,14 @@ public final class PopupVideoPlayer extends Service {
             super.onCompleted();
             updateNotification(R.drawable.ic_replay_white);
             showAndAnimateControl(R.drawable.ic_replay_white, false);
+            lockManager.releaseWifiAndCpu();
         }
 
         /*//////////////////////////////////////////////////////////////////////////
         // Utils
         //////////////////////////////////////////////////////////////////////////*/
 
-        public void enableVideoRenderer(final boolean enable) {
+        /*package-private*/ void enableVideoRenderer(final boolean enable) {
             final int videoRendererIndex = getVideoRendererIndex();
             if (trackSelector != null && videoRendererIndex != -1) {
                 trackSelector.setRendererDisabled(videoRendererIndex, !enable);
@@ -894,7 +901,7 @@ public final class PopupVideoPlayer extends Service {
             this.serviceId = serviceId;
         }
 
-        public void onReceive(final StreamInfo info) {
+        /*package-private*/ void onReceive(final StreamInfo info) {
             mainHandler.post(new Runnable() {
                 @Override
                 public void run() {
@@ -929,7 +936,7 @@ public final class PopupVideoPlayer extends Service {
             stopSelf();
         }
 
-        public void onReCaptchaException() {
+        /*package-private*/ void onReCaptchaException() {
             Toast.makeText(context, R.string.recaptcha_request_toast, Toast.LENGTH_LONG).show();
             // Starting ReCaptcha Challenge Activity
             Intent intent = new Intent(context, ReCaptchaActivity.class);

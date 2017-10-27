@@ -31,42 +31,70 @@
         android:id="@+id/play_queue"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/appbar"
-        android:layout_above="@+id/metadata"
+        android:layout_below="@id/appbar"
+        android:layout_above="@id/center"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/play_queue_item"/>
 
-    <LinearLayout
-        android:id="@+id/metadata"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/progress_bar"
-        android:orientation="vertical"
-        android:padding="8dp"
-        tools:ignore="RtlHardcoded,RtlSymmetry">
+        android:id="@+id/center"
+        android:layout_above="@+id/progress_bar">
+
+        <LinearLayout
+            android:id="@+id/metadata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+            <TextView
+                android:id="@+id/song_name"
+                style="@android:style/TextAppearance.StatusBar.EventContent.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:textSize="14sp"
+                android:textColor="?attr/colorAccent"
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta."
+                />
+
+            <TextView
+                android:id="@+id/artist_name"
+                style="@android:style/TextAppearance.StatusBar.EventContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="12sp"
+                tools:text="Duis posuere arcu condimentum lobortis mattis."/>
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/song_name"
-            style="@android:style/TextAppearance.StatusBar.EventContent.Title"
-            android:layout_width="match_parent"
+            android:id="@+id/seek_display"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textSize="14sp"
-            android:textColor="?attr/colorAccent"
-            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta."/>
-
-        <TextView
-            android:id="@+id/artist_name"
-            style="@android:style/TextAppearance.StatusBar.EventContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textSize="12sp"
-            tools:text="Duis posuere arcu condimentum lobortis mattis."/>
-    </LinearLayout>
+            android:layout_centerInParent="true"
+            android:background="#c0000000"
+            android:paddingBottom="5dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="5dp"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded"
+            tools:text="1:06:29"
+            tools:visibility="visible"/>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/progress_bar"
@@ -135,6 +163,7 @@
             android:text="1x"
             android:textColor="@android:color/white"
             android:textStyle="bold"
+            android:background="?attr/selectableItemBackground"
             tools:ignore="HardcodedText,RtlHardcoded"/>
 
         <ImageButton
@@ -144,7 +173,7 @@
             android:layout_toLeftOf="@+id/control_backward"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
-            android:background="#00000000"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitXY"
@@ -158,7 +187,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:layout_toLeftOf="@+id/control_play_pause"
-            android:background="#00000000"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
             android:padding="2dp"
@@ -175,7 +204,7 @@
             android:layout_centerInParent="true"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="#00000000"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="2dp"
             android:clickable="true"
             android:focusable="true"
@@ -207,7 +236,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
             android:layout_toRightOf="@+id/control_play_pause"
-            android:background="#00000000"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
             android:padding="2dp"
@@ -222,7 +251,7 @@
             android:layout_toRightOf="@+id/control_forward"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
-            android:background="#00000000"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitXY"
@@ -242,6 +271,7 @@
             android:text="100%"
             android:textColor="@android:color/white"
             android:textStyle="bold"
+            android:background="?attr/selectableItemBackground"
             tools:ignore="HardcodedText,RtlHardcoded"/>
     </RelativeLayout>
 

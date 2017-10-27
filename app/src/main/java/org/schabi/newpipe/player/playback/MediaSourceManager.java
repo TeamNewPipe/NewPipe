@@ -9,7 +9,6 @@ import com.google.android.exoplayer2.source.MediaSource;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.player.mediasource.DeferredMediaSource;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.events.MoveEvent;
@@ -29,8 +28,8 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     // One-side rolling window size for default loading
     // Effectively loads windowSize * 2 + 1 streams, must be greater than 0
     private final int windowSize;
-    private PlaybackListener playbackListener;
-    private PlayQueue playQueue;
+    private final PlaybackListener playbackListener;
+    private final PlayQueue playQueue;
 
     private DynamicConcatenatingMediaSource sources;
 
