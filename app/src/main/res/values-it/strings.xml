@@ -149,7 +149,7 @@
 
 
     <string name="open_in_popup_mode">Apri in modalità popup</string>
-    <string name="popup_mode_share_menu_title">NewPipe in modalità popup</string>
+    <string name="popup_mode_share_menu_title">NewPipe modalità a comparsa</string>
 
     <string name="popup_playing_toast">Riproduzione in modalità popup</string>
     <string name="disabled">Disattivato</string>
@@ -240,7 +240,7 @@
     <string name="undo">Annulla</string>
 
     <string name="notification_channel_name">Notifiche NewPipe</string>
-    <string name="notification_channel_description">Notifiche per NewPipe in background e Popup Player</string>
+    <string name="notification_channel_description">Notifiche per NewPipe in background e per il lettore a comparsa</string>
 
     <string name="search_no_results">Nessun risultato</string>
     <string name="no_subscribers">Nessun iscritto</string>
@@ -257,8 +257,8 @@
 
     <string name="no_videos">Nessun video</string>
     <plurals name="videos">
-	<item quantity="one">%s video</item>
-	<item quantity="other">%s video</item>
+	<item quantity="one">%s filmato</item>
+	<item quantity="other">%s filmati</item>
 </plurals>
 
     <string name="item_deleted">Elemento eliminato</string>
