@@ -23,7 +23,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Build;
@@ -50,7 +49,7 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
-import org.schabi.newpipe.player.refactor.PlayerHelper;
+import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
 import org.schabi.newpipe.playlist.PlayQueueItemHolder;
@@ -288,12 +287,6 @@ public final class MainVideoPlayer extends Activity {
             screenRotationButton.setOnClickListener(this);
         }
 
-        @Override
-        public void onThumbnailReceived(Bitmap thumbnail) {
-            super.onThumbnailReceived(thumbnail);
-            clearThumbnailCache();
-        }
-
         /*//////////////////////////////////////////////////////////////////////////
         // ExoPlayer Video Listener
         //////////////////////////////////////////////////////////////////////////*/
@@ -437,29 +430,6 @@ public final class MainVideoPlayer extends Activity {
         public void onDismiss(PopupMenu menu) {
             super.onDismiss(menu);
             if (isPlaying()) hideControls(300, 0);
-        }
-
-        @Override
-        public void onRecoverableError(Exception exception) {
-            exception.printStackTrace();
-
-            if (errorToast == null) {
-                errorToast = Toast.makeText(context, R.string.player_video_failure, Toast.LENGTH_SHORT);
-                errorToast.show();
-            }
-        }
-
-        @Override
-        public void onUnrecoverableError(Exception exception) {
-            exception.printStackTrace();
-
-            if (errorToast != null) {
-                errorToast.cancel();
-            }
-            errorToast = Toast.makeText(context, R.string.player_unexpected_failure, Toast.LENGTH_SHORT);
-            errorToast.show();
-
-            shutdown();
         }
 
         @Override
@@ -763,11 +733,12 @@ public final class MainVideoPlayer extends Activity {
 
             if (e1.getX() > playerImpl.getRootView().getWidth() / 2) {
                 double floor = Math.floor(up ? stepVolume : -stepVolume);
-                currentVolume = (int) (playerImpl.getAudioReactor().getMaxVolume() + floor);
+                currentVolume = (int) (playerImpl.getAudioReactor().getVolume() + floor);
                 if (currentVolume >= maxVolume) currentVolume = maxVolume;
                 if (currentVolume <= minVolume) currentVolume = (int) minVolume;
-                playerImpl.getAudioReactor().setMaxVolume(currentVolume);
+                playerImpl.getAudioReactor().setVolume(currentVolume);
 
+                currentVolume = playerImpl.getAudioReactor().getVolume();
                 if (DEBUG) Log.d(TAG, "onScroll().volumeControl, currentVolume = " + currentVolume);
                 final String volumeText = volumeUnicode + " " + Math.round((((float) currentVolume) / maxVolume) * 100) + "%";
                 playerImpl.getVolumeTextView().setText(volumeText);

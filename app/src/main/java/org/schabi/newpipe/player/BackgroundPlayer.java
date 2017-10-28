@@ -34,7 +34,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
@@ -46,12 +45,12 @@ import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.event.PlayerEventListener;
-import org.schabi.newpipe.player.refactor.LockManager;
+import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
-import static org.schabi.newpipe.player.refactor.PlayerHelper.getTimeString;
+import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 
 
 /**
@@ -163,9 +162,7 @@ public final class BackgroundPlayer extends Service {
     private void onScreenOnOff(boolean on) {
         if (DEBUG) Log.d(TAG, "onScreenOnOff() called with: on = [" + on + "]");
         shouldUpdateOnProgress = on;
-        if (on) {
-            basePlayerImpl.triggerProgressUpdate();
-        }
+        basePlayerImpl.triggerProgressUpdate();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -207,9 +204,9 @@ public final class BackgroundPlayer extends Service {
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_REPEAT), PendingIntent.FLAG_UPDATE_CURRENT));
 
         remoteViews.setOnClickPendingIntent(R.id.notificationFRewind,
-                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_NEXT), PendingIntent.FLAG_UPDATE_CURRENT));
-        remoteViews.setOnClickPendingIntent(R.id.notificationFForward,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PREVIOUS), PendingIntent.FLAG_UPDATE_CURRENT));
+        remoteViews.setOnClickPendingIntent(R.id.notificationFForward,
+                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_NEXT), PendingIntent.FLAG_UPDATE_CURRENT));
 
         setRepeatModeIcon(remoteViews, basePlayerImpl.getRepeatMode());
     }
@@ -299,7 +296,6 @@ public final class BackgroundPlayer extends Service {
 
                 updateNotification(-1);
             }
-            clearThumbnailCache();
         }
 
         @Override
@@ -317,7 +313,9 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
             updateProgress(currentProgress, duration, bufferPercent);
+
             if (!shouldUpdateOnProgress) return;
+            resetNotification();
             if (bigNotRemoteView != null) {
                 bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
                 bigNotRemoteView.setTextViewText(R.id.notificationTime, getTimeString(currentProgress) + " / " + getTimeString(duration));
@@ -325,7 +323,6 @@ public final class BackgroundPlayer extends Service {
             if (notRemoteView != null) {
                 notRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
             }
-
             updateNotification(-1);
         }
 
@@ -348,29 +345,6 @@ public final class BackgroundPlayer extends Service {
             if (bigNotRemoteView != null) bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, null);
         }
 
-        @Override
-        public void onRecoverableError(Exception exception) {
-            exception.printStackTrace();
-
-            if (errorToast == null) {
-                errorToast = Toast.makeText(context, R.string.player_audio_failure, Toast.LENGTH_SHORT);
-                errorToast.show();
-            }
-        }
-
-        @Override
-        public void onUnrecoverableError(Exception exception) {
-            exception.printStackTrace();
-
-            if (errorToast != null) {
-                errorToast.cancel();
-            }
-            errorToast = Toast.makeText(context, R.string.player_unexpected_failure, Toast.LENGTH_SHORT);
-            errorToast.show();
-
-            shutdown();
-        }
-
         /*//////////////////////////////////////////////////////////////////////////
         // ExoPlayer Listener
         //////////////////////////////////////////////////////////////////////////*/
@@ -388,6 +362,7 @@ public final class BackgroundPlayer extends Service {
 
         @Override
         public void onRepeatModeChanged(int i) {
+            resetNotification();
             setRepeatModeIcon(notRemoteView, i);
             setRepeatModeIcon(bigNotRemoteView, i);
             updateNotification(-1);

@@ -1,5 +1,6 @@
 package org.schabi.newpipe.playlist;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -61,8 +62,8 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         public View view;
     }
 
-    public PlayQueueAdapter(final PlayQueue playQueue) {
-        this.playQueueItemBuilder = new PlayQueueItemBuilder();
+    public PlayQueueAdapter(final Context context, final PlayQueue playQueue) {
+        this.playQueueItemBuilder = new PlayQueueItemBuilder(context);
         this.playQueue = playQueue;
 
         startReactor();
@@ -94,9 +95,7 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
         };
 
-        playQueue.getBroadcastReceiver()
-                .toObservable()
-                .subscribe(observer);
+        playQueue.getBroadcastReceiver().toObservable().subscribe(observer);
     }
 
     private void onPlayQueueChanged(final PlayQueueEvent message) {

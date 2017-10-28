@@ -65,12 +65,13 @@ import com.google.android.exoplayer2.util.Util;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
-import org.schabi.newpipe.player.refactor.AudioReactor;
-import org.schabi.newpipe.player.refactor.CacheFactory;
-import org.schabi.newpipe.player.refactor.LoadController;
+import org.schabi.newpipe.player.helper.AudioReactor;
+import org.schabi.newpipe.player.helper.CacheFactory;
+import org.schabi.newpipe.player.helper.LoadController;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueAdapter;
 import org.schabi.newpipe.playlist.PlayQueueItem;
@@ -85,7 +86,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
 
-import static org.schabi.newpipe.player.refactor.PlayerHelper.getTimeString;
+import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 
 /**
  * Base for the players, joining the common properties
@@ -194,7 +195,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
 
     public void initListeners() {}
 
-    protected Disposable getProgressReactor() {
+    private Disposable getProgressReactor() {
         return Observable.interval(PROGRESS_LOOP_INTERVAL, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .filter(new Predicate<Long>() {
@@ -249,7 +250,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         playbackManager = new MediaSourceManager(this, playQueue);
 
         if (playQueueAdapter != null) playQueueAdapter.dispose();
-        playQueueAdapter = new PlayQueueAdapter(playQueue);
+        playQueueAdapter = new PlayQueueAdapter(context, playQueue);
     }
 
     public void initThumbnail(final String url) {
@@ -536,7 +537,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
             case Player.STATE_ENDED: // 4
                 // Ensure the current window has actually ended
                 // since single windows that are still loading may produce an ended state
-                if (simpleExoPlayer.getDuration() > 0 && simpleExoPlayer.getCurrentPosition() >= simpleExoPlayer.getDuration()) {
+                if (isCurrentWindowValid() && simpleExoPlayer.getCurrentPosition() >= simpleExoPlayer.getDuration()) {
                     changeState(STATE_COMPLETED);
                     isPrepared = false;
                 }
@@ -549,10 +550,9 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
      * There are multiple types of errors: <br><br>
      *
      * {@link ExoPlaybackException#TYPE_SOURCE TYPE_SOURCE}: <br><br>
-     * If the current {@link com.google.android.exoplayer2.Timeline.Window window} has
-     * duration and position greater than 0, then we know the current window is working correctly
-     * and the error is produced by transitioning into a bad window, therefore we report an error
-     * to the play queue based on if the current error can be skipped.
+     * If the current {@link com.google.android.exoplayer2.Timeline.Window window} is valid,
+     * then we know the error is produced by transitioning into a bad window, therefore we report
+     * an error to the play queue based on if the current error can be skipped.
      *
      * This is done because ExoPlayer reports the source exceptions before window is
      * transitioned on seamless playback.
@@ -579,9 +579,8 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
 
         switch (error.type) {
             case ExoPlaybackException.TYPE_SOURCE:
-                final boolean skippable = simpleExoPlayer.getDuration() >= 0 && simpleExoPlayer.getCurrentPosition() >= 0;
-                playQueue.error(skippable);
-                onRecoverableError(error);
+                playQueue.error(isCurrentWindowValid());
+                onStreamError(error);
                 break;
             case ExoPlaybackException.TYPE_UNEXPECTED:
                 onRecoverableError(error);
@@ -670,9 +669,35 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     // General Player
     //////////////////////////////////////////////////////////////////////////*/
 
-    public abstract void onRecoverableError(Exception exception);
+    public void onStreamError(Exception exception) {
+        exception.printStackTrace();
 
-    public abstract void onUnrecoverableError(Exception exception);
+        if (errorToast == null) {
+            errorToast = Toast.makeText(context, R.string.player_stream_failure, Toast.LENGTH_SHORT);
+            errorToast.show();
+        }
+    }
+
+    public void onRecoverableError(Exception exception) {
+        exception.printStackTrace();
+
+        if (errorToast == null) {
+            errorToast = Toast.makeText(context, R.string.player_recoverable_failure, Toast.LENGTH_SHORT);
+            errorToast.show();
+        }
+    }
+
+    public void onUnrecoverableError(Exception exception) {
+        exception.printStackTrace();
+
+        if (errorToast != null) {
+            errorToast.cancel();
+        }
+        errorToast = Toast.makeText(context, R.string.player_unrecoverable_failure, Toast.LENGTH_SHORT);
+        errorToast.show();
+
+        shutdown();
+    }
 
     public void onPrepared(boolean playWhenReady) {
         if (DEBUG) Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");
@@ -752,6 +777,11 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         int progress = (int) (simpleExoPlayer.getCurrentPosition() + milliSeconds);
         if (progress < 0) progress = 0;
         simpleExoPlayer.seekTo(progress);
+    }
+
+    public boolean isCurrentWindowValid() {
+        return simpleExoPlayer != null && simpleExoPlayer.getDuration() >= 0
+                && simpleExoPlayer.getCurrentPosition() >= 0;
     }
 
     /*//////////////////////////////////////////////////////////////////////////

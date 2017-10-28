@@ -1,4 +1,4 @@
-package org.schabi.newpipe.player.refactor;
+package org.schabi.newpipe.player.helper;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -17,7 +17,6 @@ import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.audio.AudioRendererEventListener;
 import com.google.android.exoplayer2.decoder.DecoderCounters;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
 public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, AudioRendererEventListener {
 
     private static final String TAG = "AudioFocusReactor";
@@ -32,25 +31,22 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
     private final Context context;
     private final AudioManager audioManager;
 
-    private AudioFocusRequest request;
-
-    private final boolean isResumeAfterAudioFocusGain;
+    private final AudioFocusRequest request;
 
     public AudioReactor(@NonNull final Context context, @NonNull final SimpleExoPlayer player) {
         this.player = player;
         this.context = context;
-
         this.audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-        this.isResumeAfterAudioFocusGain = PlayerHelper.isResumeAfterAudioFocusGain(context);
-
         player.setAudioDebugListener(this);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (shouldBuildFocusRequest()) {
             request = new AudioFocusRequest.Builder(FOCUS_GAIN_TYPE)
                     .setAcceptsDelayedFocusGain(true)
                     .setWillPauseWhenDucked(true)
                     .setOnAudioFocusChangeListener(this)
                     .build();
+        } else {
+            request = null;
         }
     }
 
@@ -59,7 +55,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
     //////////////////////////////////////////////////////////////////////////*/
 
     public void requestAudioFocus() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (shouldBuildFocusRequest()) {
             audioManager.requestAudioFocus(request);
         } else {
             audioManager.requestAudioFocus(this, STREAM_TYPE, FOCUS_GAIN_TYPE);
@@ -67,19 +63,27 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
     }
 
     public void abandonAudioFocus() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (shouldBuildFocusRequest()) {
             audioManager.abandonAudioFocusRequest(request);
         } else {
             audioManager.abandonAudioFocus(this);
         }
     }
 
+    public int getVolume() {
+        return audioManager.getStreamVolume(STREAM_TYPE);
+    }
+
     public int getMaxVolume() {
         return audioManager.getStreamMaxVolume(STREAM_TYPE);
     }
 
-    public void setMaxVolume(final int volume) {
+    public void setVolume(final int volume) {
         audioManager.setStreamVolume(STREAM_TYPE, volume, 0);
+    }
+
+    private boolean shouldBuildFocusRequest() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -108,7 +112,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
         player.setVolume(DUCK_AUDIO_TO);
         animateAudio(DUCK_AUDIO_TO, 1f, DUCK_DURATION);
 
-        if (isResumeAfterAudioFocusGain) {
+        if (PlayerHelper.isResumeAfterAudioFocusGain(context)) {
             player.setPlayWhenReady(true);
         }
     }
@@ -159,6 +163,8 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
 
     @Override
     public void onAudioSessionId(int i) {
+        if (!PlayerHelper.isUsingDSP(context)) return;
+
         final Intent intent = new Intent(AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION);
         intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, i);
         intent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, context.getPackageName());

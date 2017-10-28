@@ -66,7 +66,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
-import org.schabi.newpipe.player.refactor.LockManager;
+import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -85,7 +85,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-import static org.schabi.newpipe.player.refactor.PlayerHelper.isUsingOldPlayer;
+import static org.schabi.newpipe.player.helper.PlayerHelper.isUsingOldPlayer;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 /**
@@ -366,7 +366,7 @@ public final class PopupVideoPlayer extends Service {
     }
 
     private void updatePopupSize(int width, int height) {
-        //if (DEBUG) Log.d(TAG, "updatePopupSize() called with: width = [" + width + "], height = [" + height + "]");
+        if (DEBUG) Log.d(TAG, "updatePopupSize() called with: width = [" + width + "], height = [" + height + "]");
 
         width = (int) (width > maximumWidth ? maximumWidth : width < minimumWidth ? minimumWidth : width);
 
@@ -440,7 +440,6 @@ public final class PopupVideoPlayer extends Service {
 
                 updateNotification(-1);
             }
-            clearThumbnailCache();
         }
 
         @Override
@@ -479,29 +478,6 @@ public final class PopupVideoPlayer extends Service {
         public void onDismiss(PopupMenu menu) {
             super.onDismiss(menu);
             if (isPlaying()) hideControls(500, 0);
-        }
-
-        @Override
-        public void onRecoverableError(Exception exception) {
-            exception.printStackTrace();
-
-            if (errorToast == null) {
-                errorToast = Toast.makeText(context, R.string.player_video_failure, Toast.LENGTH_SHORT);
-                errorToast.show();
-            }
-        }
-
-        @Override
-        public void onUnrecoverableError(Exception exception) {
-            exception.printStackTrace();
-
-            if (errorToast != null) {
-                errorToast.cancel();
-            }
-            errorToast = Toast.makeText(context, R.string.player_unexpected_failure, Toast.LENGTH_SHORT);
-            errorToast.show();
-
-            shutdown();
         }
 
         @Override
@@ -737,7 +713,7 @@ public final class PopupVideoPlayer extends Service {
         public boolean onDoubleTap(MotionEvent e) {
             if (DEBUG)
                 Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
-            if (!playerImpl.isPlaying() || !playerImpl.isPlayerReady()) return false;
+            if (playerImpl == null || !playerImpl.isPlaying() || !playerImpl.isPlayerReady()) return false;
 
             if (e.getX() > popupWidth / 2) {
                 playerImpl.onFastForward();
@@ -751,7 +727,7 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onSingleTapConfirmed() called with: e = [" + e + "]");
-            if (playerImpl.getPlayer() == null) return false;
+            if (playerImpl == null || playerImpl.getPlayer() == null) return false;
             playerImpl.onVideoPlayPause();
             return true;
         }
@@ -776,7 +752,7 @@ public final class PopupVideoPlayer extends Service {
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            if (isResizing) return super.onScroll(e1, e2, distanceX, distanceY);
+            if (isResizing || playerImpl == null) return super.onScroll(e1, e2, distanceX, distanceY);
 
             if (playerImpl.getCurrentState() != BasePlayer.STATE_BUFFERING
                     && (!isMoving || playerImpl.getControlsRoot().getAlpha() != 1f)) playerImpl.showControls(0);
@@ -807,6 +783,7 @@ public final class PopupVideoPlayer extends Service {
 
         private void onScrollEnd() {
             if (DEBUG) Log.d(TAG, "onScrollEnd() called");
+            if (playerImpl == null) return;
             if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == BasePlayer.STATE_PLAYING) {
                 playerImpl.hideControls(300, VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME);
             }
@@ -814,6 +791,7 @@ public final class PopupVideoPlayer extends Service {
 
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            if (playerImpl == null) return false;
             if (Math.abs(velocityX) > SHUTDOWN_FLING_VELOCITY) {
                 if (DEBUG) Log.d(TAG, "Popup close fling velocity= " + velocityX);
                 onClose();
@@ -825,6 +803,7 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             gestureDetector.onTouchEvent(event);
+            if (playerImpl == null) return false;
             if (event.getPointerCount() == 2 && !isResizing) {
                 if (DEBUG) Log.d(TAG, "onTouch() 2 finger pointer detected, enabling resizing.");
                 playerImpl.showAndAnimateControl(-1, true);

@@ -12,8 +12,8 @@
 
     <ImageView
         android:id="@+id/itemThumbnailView"
-        android:layout_width="62dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/play_queue_thumbnail_width"
+        android:layout_height="@dimen/play_queue_thumbnail_height"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"

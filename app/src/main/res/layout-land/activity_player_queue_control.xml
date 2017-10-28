@@ -40,13 +40,13 @@
         tools:listitem="@layout/play_queue_item"/>
 
     <RelativeLayout
+        android:id="@+id/control_pane"
         android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_above="@id/progress_bar"
-        android:layout_below="@id/appbar"
-        android:id="@+id/control_pane">
+        android:layout_below="@id/appbar">
 
         <LinearLayout
             android:id="@+id/metadata"
@@ -114,14 +114,14 @@
             <ImageButton
                 android:id="@+id/control_backward"
                 android:layout_width="40dp"
-                android:layout_height="match_parent"
+                android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_toLeftOf="@+id/control_play_pause"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="2dp"
                 android:scaleType="fitCenter"
+                android:tint="?attr/colorAccent"
                 android:src="@drawable/exo_controls_previous"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 tools:ignore="ContentDescription"/>
@@ -129,17 +129,17 @@
             <ImageButton
                 android:id="@+id/control_play_pause"
                 android:layout_width="50dp"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:layout_centerInParent="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="2dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitCenter"
+                android:tint="?attr/colorAccent"
                 android:src="@drawable/ic_pause_white"
                 tools:ignore="ContentDescription"/>
 
@@ -147,13 +147,14 @@
                 android:id="@+id/control_progress_bar"
                 style="?android:attr/progressBarStyleLargeInverse"
                 android:layout_width="50dp"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:layout_centerInParent="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:background="#00000000"
+                android:tint="?attr/colorAccent"
                 android:padding="2dp"
                 android:clickable="false"
                 android:scaleType="fitCenter"
@@ -163,15 +164,15 @@
             <ImageButton
                 android:id="@+id/control_forward"
                 android:layout_width="40dp"
-                android:layout_height="match_parent"
+                android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="5dp"
                 android:layout_toRightOf="@+id/control_play_pause"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="2dp"
                 android:scaleType="fitCenter"
+                android:tint="?attr/colorAccent"
                 android:src="@drawable/exo_controls_next"
                 tools:ignore="ContentDescription"/>
         </RelativeLayout>
@@ -189,22 +190,22 @@
                 android:id="@+id/control_playback_speed"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/control_repeat"
                 android:gravity="center"
                 android:minWidth="50dp"
                 android:text="1x"
-                android:textColor="@android:color/white"
+                android:textColor="?attr/colorAccent"
                 android:textStyle="bold"
                 android:background="?attr/selectableItemBackground"
                 tools:ignore="HardcodedText,RtlHardcoded"/>
 
             <ImageButton
                 android:id="@+id/control_repeat"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_toLeftOf="@+id/anchor"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
@@ -212,6 +213,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitXY"
+                android:tint="?attr/colorAccent"
                 android:src="@drawable/ic_repeat_white"
                 tools:ignore="ContentDescription"/>
 
@@ -222,8 +224,8 @@
 
             <ImageButton
                 android:id="@+id/control_shuffle"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_toRightOf="@+id/anchor"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="5dp"
@@ -231,6 +233,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitXY"
+                android:tint="?attr/colorAccent"
                 android:src="@drawable/ic_shuffle_white_24dp"
                 tools:ignore="ContentDescription"/>
 
@@ -238,14 +241,14 @@
                 android:id="@+id/control_playback_pitch"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/control_shuffle"
                 android:gravity="center"
                 android:minWidth="50dp"
                 android:text="100%"
-                android:textColor="@android:color/white"
+                android:textColor="?attr/colorAccent"
                 android:textStyle="bold"
                 android:background="?attr/selectableItemBackground"
                 tools:ignore="HardcodedText,RtlHardcoded"/>

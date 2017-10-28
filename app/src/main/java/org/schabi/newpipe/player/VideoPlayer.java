@@ -65,8 +65,8 @@ import org.schabi.newpipe.util.ListHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.schabi.newpipe.player.refactor.PlayerHelper.formatSpeed;
-import static org.schabi.newpipe.player.refactor.PlayerHelper.getTimeString;
+import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
+import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 /**

@@ -36,8 +36,8 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
-import static org.schabi.newpipe.player.refactor.PlayerHelper.formatPitch;
-import static org.schabi.newpipe.player.refactor.PlayerHelper.formatSpeed;
+import static org.schabi.newpipe.player.helper.PlayerHelper.formatPitch;
+import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 
 public abstract class ServicePlayerActivity extends AppCompatActivity
         implements PlayerEventListener, SeekBar.OnSeekBarChangeListener, View.OnClickListener {
@@ -48,7 +48,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     protected BasePlayer player;
 
     private boolean seeking;
-
+    private boolean redraw;
     ////////////////////////////////////////////////////////////////////////////
     // Views
     ////////////////////////////////////////////////////////////////////////////
@@ -120,6 +120,15 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if (redraw) {
+            recreate();
+            redraw = false;
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_play_queue, menu);
         return true;
@@ -136,6 +145,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 return true;
             case R.id.action_settings:
                 NavigationHelper.openSettings(this);
+                redraw = true;
                 return true;
             case R.id.action_system_audio:
                 startActivity(new Intent(Settings.ACTION_SOUND_SETTINGS));
@@ -228,6 +238,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         metadataArtist = rootView.findViewById(R.id.artist_name);
 
         metadata.setOnClickListener(this);
+        metadataTitle.setSelected(true);
+        metadataArtist.setSelected(true);
     }
 
     private void buildSeekBar() {
@@ -452,7 +464,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         onStateChanged(state);
         onPlayModeChanged(repeatMode, shuffled);
         onPlaybackParameterChanged(parameters);
-        scrollToSelected();
     }
 
     @Override

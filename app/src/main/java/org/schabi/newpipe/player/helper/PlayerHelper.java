@@ -1,4 +1,4 @@
-package org.schabi.newpipe.player.refactor;
+package org.schabi.newpipe.player.helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -80,6 +80,9 @@ public class PlayerHelper {
         return 5000L;
     }
 
+    public static boolean isUsingDSP(@NonNull final Context context) {
+        return true;
+    }
     ////////////////////////////////////////////////////////////////////////////
     // Private helpers
     ////////////////////////////////////////////////////////////////////////////
