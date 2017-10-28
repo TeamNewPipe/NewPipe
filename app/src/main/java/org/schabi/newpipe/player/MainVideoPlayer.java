@@ -144,7 +144,7 @@ public final class MainVideoPlayer extends Activity {
             playerImpl.getPlayPauseButton().setImageResource(R.drawable.ic_play_arrow_white);
 
             playerImpl.getPlayer().setPlayWhenReady(playerImpl.wasPlaying);
-            playerImpl.initPlayback(playerImpl, playerImpl.playQueue);
+            playerImpl.initPlayback(playerImpl.playQueue);
 
             if (playerImpl.trackSelector != null && parameters != null) {
                 playerImpl.trackSelector.setParameters(parameters);
@@ -265,6 +265,9 @@ public final class MainVideoPlayer extends Activity {
             this.playPreviousButton = rootView.findViewById(R.id.playPreviousButton);
             this.playNextButton = rootView.findViewById(R.id.playNextButton);
 
+            titleTextView.setSelected(true);
+            channelTextView.setSelected(true);
+
             getRootView().setKeepScreenOn(true);
         }
 
@@ -350,9 +353,9 @@ public final class MainVideoPlayer extends Activity {
                     this.getPlaybackQuality()
             );
             context.startService(intent);
-            destroyPlayer();
 
             ((View) getControlAnimationView().getParent()).setVisibility(View.GONE);
+            destroy();
             finish();
         }
 

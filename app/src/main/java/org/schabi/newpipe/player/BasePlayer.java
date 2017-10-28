@@ -19,18 +19,13 @@
 
 package org.schabi.newpipe.player;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ValueAnimator;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -67,11 +62,11 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.player.playback.MediaSourceManager;
-import org.schabi.newpipe.player.playback.PlaybackListener;
 import org.schabi.newpipe.player.helper.AudioReactor;
 import org.schabi.newpipe.player.helper.CacheFactory;
 import org.schabi.newpipe.player.helper.LoadController;
+import org.schabi.newpipe.player.playback.MediaSourceManager;
+import org.schabi.newpipe.player.playback.PlaybackListener;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueAdapter;
 import org.schabi.newpipe.playlist.PlayQueueItem;
@@ -93,14 +88,13 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
  *
  * @author mauriciocolli
  */
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess"})
 public abstract class BasePlayer implements Player.EventListener, PlaybackListener {
 
     public static final boolean DEBUG = true;
     public static final String TAG = "BasePlayer";
 
     protected Context context;
-    protected SharedPreferences sharedPreferences;
 
     protected BroadcastReceiver broadcastReceiver;
     protected IntentFilter intentFilter;
@@ -156,7 +150,6 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
 
     public BasePlayer(Context context) {
         this.context = context;
-        this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         this.broadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -234,17 +227,15 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
 
         // Re-initialization
         destroyPlayer();
-        if (playQueue != null) playQueue.dispose();
-        if (playbackManager != null) playbackManager.dispose();
         initPlayer();
         setRepeatMode(repeatMode);
         setPlaybackParameters(playbackSpeed, playbackPitch);
 
         // Good to go...
-        initPlayback(this, queue);
+        initPlayback(queue);
     }
 
-    protected void initPlayback(@NonNull final PlaybackListener listener, @NonNull final PlayQueue queue) {
+    protected void initPlayback(@NonNull final PlayQueue queue) {
         playQueue = queue;
         playQueue.init();
         playbackManager = new MediaSourceManager(this, playQueue);
@@ -279,6 +270,8 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
             simpleExoPlayer.release();
         }
         if (isProgressLoopRunning()) stopProgressLoop();
+        if (playQueue != null) playQueue.dispose();
+        if (playbackManager != null) playbackManager.dispose();
         if (audioReactor != null) audioReactor.abandonAudioFocus();
     }
 
@@ -287,9 +280,6 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         destroyPlayer();
         clearThumbnailCache();
         unregisterBroadcastReceiver();
-
-        if (playQueue != null) playQueue.dispose();
-        if (playbackManager != null) playbackManager.dispose();
 
         trackSelector = null;
         simpleExoPlayer = null;
@@ -602,7 +592,10 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         // If the user selects a new track, then the discontinuity occurs after the index is changed.
         // Therefore, the only source that causes a discrepancy would be autoplay,
         // which can only offset the current track by +1.
-        if (newWindowIndex != playQueue.getIndex()) playQueue.offsetIndex(+1);
+        if (newWindowIndex != playQueue.getIndex() && playbackManager != null) {
+            playQueue.offsetIndex(+1);
+            playbackManager.load();
+        }
     }
 
     @Override
@@ -659,9 +652,6 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     @Override
     public void shutdown() {
         if (DEBUG) Log.d(TAG, "Shutting down...");
-
-        playbackManager.dispose();
-        playQueue.dispose();
         destroy();
     }
 
@@ -817,45 +807,12 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         );
     }
 
-    public void animateAudio(final float from, final float to, int duration) {
-        ValueAnimator valueAnimator = new ValueAnimator();
-        valueAnimator.setFloatValues(from, to);
-        valueAnimator.setDuration(duration);
-        valueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-                if (simpleExoPlayer != null) simpleExoPlayer.setVolume(from);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-                if (simpleExoPlayer != null) simpleExoPlayer.setVolume(to);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                if (simpleExoPlayer != null) simpleExoPlayer.setVolume(to);
-            }
-        });
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                if (simpleExoPlayer != null) simpleExoPlayer.setVolume(((float) animation.getAnimatedValue()));
-            }
-        });
-        valueAnimator.start();
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Getters and Setters
     //////////////////////////////////////////////////////////////////////////*/
 
     public SimpleExoPlayer getPlayer() {
         return simpleExoPlayer;
-    }
-
-    public SharedPreferences getSharedPreferences() {
-        return sharedPreferences;
     }
 
     public AudioReactor getAudioReactor() {

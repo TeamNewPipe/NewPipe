@@ -884,7 +884,7 @@ public final class PopupVideoPlayer extends Service {
             mainHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    playerImpl.initPlayback(playerImpl, new SinglePlayQueue(info));
+                    playerImpl.initPlayback(new SinglePlayQueue(info));
                 }
             });
         }

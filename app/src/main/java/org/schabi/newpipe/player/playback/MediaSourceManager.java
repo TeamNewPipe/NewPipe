@@ -17,19 +17,32 @@ import org.schabi.newpipe.playlist.events.RemoveEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.disposables.SerialDisposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.subjects.PublishSubject;
 
-public class MediaSourceManager implements DeferredMediaSource.Callback {
+public class MediaSourceManager {
     private final String TAG = "MediaSourceManager@" + Integer.toHexString(hashCode());
     // One-side rolling window size for default loading
     // Effectively loads windowSize * 2 + 1 streams, must be greater than 0
     private final int windowSize;
     private final PlaybackListener playbackListener;
     private final PlayQueue playQueue;
+
+    // Process only the last load order when receiving a stream of load orders (lessens IO)
+    // The lower it is, the faster the error processing during loading
+    // The higher it is, the less loading occurs during rapid timeline changes
+    // Not recommended to go below 50ms or above 500ms
+    private final long loadDebounceMillis;
+    private final PublishSubject<Long> loadSignal;
+    private final Disposable debouncedLoader;
+
+    private final DeferredMediaSource.Callback sourceBuilder;
 
     private DynamicConcatenatingMediaSource sources;
 
@@ -40,17 +53,27 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
 
     public MediaSourceManager(@NonNull final PlaybackListener listener,
                               @NonNull final PlayQueue playQueue) {
-        this(listener, playQueue, 1);
+        this(listener, playQueue, 1, 200L);
     }
 
-    public MediaSourceManager(@NonNull final PlaybackListener listener,
-                              @NonNull final PlayQueue playQueue,
-                              final int windowSize) {
+    private MediaSourceManager(@NonNull final PlaybackListener listener,
+                               @NonNull final PlayQueue playQueue,
+                               final int windowSize,
+                               final long loadDebounceMillis) {
+        if (windowSize <= 0) {
+            throw new UnsupportedOperationException("MediaSourceManager window size must be greater than 0");
+        }
+
         this.playbackListener = listener;
         this.playQueue = playQueue;
         this.windowSize = windowSize;
+        this.loadDebounceMillis = loadDebounceMillis;
 
         this.syncReactor = new SerialDisposable();
+        this.loadSignal = PublishSubject.create();
+        this.debouncedLoader = getDebouncedLoader();
+
+        this.sourceBuilder = getSourceBuilder();
 
         this.sources = new DynamicConcatenatingMediaSource();
 
@@ -63,9 +86,13 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
     // DeferredMediaSource listener
     //////////////////////////////////////////////////////////////////////////*/
 
-    @Override
-    public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
-        return playbackListener.sourceOf(item, info);
+    private DeferredMediaSource.Callback getSourceBuilder() {
+        return new DeferredMediaSource.Callback() {
+            @Override
+            public MediaSource sourceOf(PlayQueueItem item, StreamInfo info) {
+                return playbackListener.sourceOf(item, info);
+            }
+        };
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -75,6 +102,8 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
      * Dispose the manager and releases all message buses and loaders.
      * */
     public void dispose() {
+        if (loadSignal != null) loadSignal.onComplete();
+        if (debouncedLoader != null) debouncedLoader.dispose();
         if (playQueueReactor != null) playQueueReactor.cancel();
         if (syncReactor != null) syncReactor.dispose();
         if (sources != null) sources.releaseSource();
@@ -90,23 +119,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
      * Unblocks the player once the item at the current index is loaded.
      * */
     public void load() {
-        // The current item has higher priority
-        final int currentIndex = playQueue.getIndex();
-        final PlayQueueItem currentItem = playQueue.getItem(currentIndex);
-        if (currentItem == null) return;
-        load(currentItem);
-
-        // The rest are just for seamless playback
-        final int leftBound = Math.max(0, currentIndex - windowSize);
-        final int rightLimit = currentIndex + windowSize + 1;
-        final int rightBound = Math.min(playQueue.size(), rightLimit);
-        final List<PlayQueueItem> items = new ArrayList<>(playQueue.getStreams().subList(leftBound, rightBound));
-
-        // Do a round robin
-        final int excess = rightLimit - playQueue.size();
-        if (excess >= 0) items.addAll(playQueue.getStreams().subList(0, Math.min(playQueue.size(), excess)));
-
-        for (final PlayQueueItem item: items) load(item);
+        loadSignal.onNext(System.currentTimeMillis());
     }
 
     /**
@@ -241,7 +254,27 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         syncReactor.set(currentItem.getStream().subscribe(syncPlayback, onError));
     }
 
-    private void load(@Nullable final PlayQueueItem item) {
+    private void loadInternal() {
+        // The current item has higher priority
+        final int currentIndex = playQueue.getIndex();
+        final PlayQueueItem currentItem = playQueue.getItem(currentIndex);
+        if (currentItem == null) return;
+        loadItem(currentItem);
+
+        // The rest are just for seamless playback
+        final int leftBound = Math.max(0, currentIndex - windowSize);
+        final int rightLimit = currentIndex + windowSize + 1;
+        final int rightBound = Math.min(playQueue.size(), rightLimit);
+        final List<PlayQueueItem> items = new ArrayList<>(playQueue.getStreams().subList(leftBound, rightBound));
+
+        // Do a round robin
+        final int excess = rightLimit - playQueue.size();
+        if (excess >= 0) items.addAll(playQueue.getStreams().subList(0, Math.min(playQueue.size(), excess)));
+
+        for (final PlayQueueItem item: items) loadItem(item);
+    }
+
+    private void loadItem(@Nullable final PlayQueueItem item) {
         if (item == null) return;
 
         final int index = playQueue.indexOf(item);
@@ -261,10 +294,21 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
         if (sources == null) return;
 
         for (final PlayQueueItem item : playQueue.getStreams()) {
-            insert(playQueue.indexOf(item), new DeferredMediaSource(item, this));
+            insert(playQueue.indexOf(item), new DeferredMediaSource(item, sourceBuilder));
         }
     }
 
+    private Disposable getDebouncedLoader() {
+        return loadSignal
+                .debounce(loadDebounceMillis, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Long>() {
+            @Override
+            public void accept(Long timestamp) throws Exception {
+                loadInternal();
+            }
+        });
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // Media Source List Manipulation
     //////////////////////////////////////////////////////////////////////////*/
@@ -287,7 +331,7 @@ public class MediaSourceManager implements DeferredMediaSource.Callback {
      * If the play queue index does not exist, the removal is ignored.
      * */
     private void remove(final int queueIndex) {
-        if (queueIndex < 0) return;
+        if (queueIndex < 0 || queueIndex > sources.getSize()) return;
 
         sources.removeMediaSource(queueIndex);
     }

@@ -475,7 +475,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
             if (selectedStreamIndex == menuItemIndex ||
                     availableStreams == null || availableStreams.size() <= menuItemIndex) return true;
 
-            final String oldResolution = getPlaybackQuality();
             final String newResolution = availableStreams.get(menuItemIndex).resolution;
             setRecovery();
             setPlaybackQuality(newResolution);
