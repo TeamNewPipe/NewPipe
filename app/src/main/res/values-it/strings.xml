@@ -265,4 +265,19 @@
 <string name="empty_subscription_feed_subtitle">Nulla da mostrare</string>
 
     <string name="delete_item_search_history">Vuoi eliminare questo elemento dalla cronologia?</string>
+<string name="main_page_content">Contenuto della pagina principale</string>
+    <string name="blank_page_summary">Pagina vuota</string>
+    <string name="kiosk_page_summary">Edicola</string>
+    <string name="subscription_page_summary">Pagina iscrizione</string>
+    <string name="feed_page_summary">Pagina del feed</string>
+    <string name="channel_page_summary">Pagina del canale</string>
+    <string name="select_a_channel">Seleziona un canale</string>
+    <string name="no_channel_subscribed_yet">Non ancora iscritto a nessun canale</string>
+    <string name="select_a_kiosk">Seleziona un\'edicola</string>
+
+    <string name="kiosk">Edicola</string>
+    <string name="trending">In tendenza</string>
+    <string name="top_50">Primi 50</string>
+    <string name="new_and_hot">Nuovi e caldi</string>
+    <string name="service_kosk_string">%1$s/%2$s</string>
 </resources>
