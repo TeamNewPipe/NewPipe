@@ -570,15 +570,16 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         switch (error.type) {
             case ExoPlaybackException.TYPE_SOURCE:
                 playQueue.error(isCurrentWindowValid());
-                onStreamError(error);
+                showStreamError(error);
                 break;
             case ExoPlaybackException.TYPE_UNEXPECTED:
-                onRecoverableError(error);
+                showRecoverableError(error);
                 setRecovery();
                 reload();
                 break;
             default:
-                onUnrecoverableError(error);
+                showUnrecoverableError(error);
+                shutdown();
                 break;
         }
     }
@@ -659,7 +660,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     // General Player
     //////////////////////////////////////////////////////////////////////////*/
 
-    public void onStreamError(Exception exception) {
+    public void showStreamError(Exception exception) {
         exception.printStackTrace();
 
         if (errorToast == null) {
@@ -668,7 +669,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         }
     }
 
-    public void onRecoverableError(Exception exception) {
+    public void showRecoverableError(Exception exception) {
         exception.printStackTrace();
 
         if (errorToast == null) {
@@ -677,7 +678,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         }
     }
 
-    public void onUnrecoverableError(Exception exception) {
+    public void showUnrecoverableError(Exception exception) {
         exception.printStackTrace();
 
         if (errorToast != null) {
@@ -685,8 +686,6 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         }
         errorToast = Toast.makeText(context, R.string.player_unrecoverable_failure, Toast.LENGTH_SHORT);
         errorToast.show();
-
-        shutdown();
     }
 
     public void onPrepared(boolean playWhenReady) {

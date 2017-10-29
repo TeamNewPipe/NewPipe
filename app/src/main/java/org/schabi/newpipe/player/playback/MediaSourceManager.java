@@ -34,10 +34,9 @@ public class MediaSourceManager {
     private final PlaybackListener playbackListener;
     private final PlayQueue playQueue;
 
-    // Process only the last load order when receiving a stream of load orders (lessens IO)
-    // The lower it is, the faster the error processing during loading
-    // The higher it is, the less loading occurs during rapid timeline changes
-    // Not recommended to go below 50ms or above 500ms
+    // Process only the last load order when receiving a stream of load orders (lessens I/O)
+    // The higher it is, the less loading occurs during rapid noncritical timeline changes
+    // Not recommended to go below 100ms
     private final long loadDebounceMillis;
     private final PublishSubject<Long> loadSignal;
     private final Disposable debouncedLoader;
@@ -53,7 +52,7 @@ public class MediaSourceManager {
 
     public MediaSourceManager(@NonNull final PlaybackListener listener,
                               @NonNull final PlayQueue playQueue) {
-        this(listener, playQueue, 1, 200L);
+        this(listener, playQueue, 1, 1000L);
     }
 
     private MediaSourceManager(@NonNull final PlaybackListener listener,
@@ -131,11 +130,6 @@ public class MediaSourceManager {
         tryBlock();
         populateSources();
     }
-
-    public int getWindowSize() {
-        return windowSize;
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Event Reactor
     //////////////////////////////////////////////////////////////////////////*/
@@ -195,13 +189,26 @@ public class MediaSourceManager {
                 break;
         }
 
+        switch (event.type()) {
+            case INIT:
+            case REORDER:
+            case ERROR:
+            case APPEND:
+                loadInternal(); // low frequency, critical events
+                break;
+            case REMOVE:
+            case SELECT:
+            case MOVE:
+            case RECOVERY:
+            default:
+                load(); // high frequency or noncritical events
+                break;
+        }
+
         if (!isPlayQueueReady()) {
             tryBlock();
             playQueue.fetch();
-        } else {
-            load(); // All event warrants a load
         }
-
         if (playQueueReactor != null) playQueueReactor.request(1);
     }
 
@@ -320,6 +327,7 @@ public class MediaSourceManager {
      * If the play queue index already exists, then the insert is ignored.
      * */
     private void insert(final int queueIndex, final DeferredMediaSource source) {
+        if (sources == null) return;
         if (queueIndex < 0 || queueIndex < sources.getSize()) return;
 
         sources.addMediaSource(queueIndex, source);
@@ -331,12 +339,14 @@ public class MediaSourceManager {
      * If the play queue index does not exist, the removal is ignored.
      * */
     private void remove(final int queueIndex) {
+        if (sources == null) return;
         if (queueIndex < 0 || queueIndex > sources.getSize()) return;
 
         sources.removeMediaSource(queueIndex);
     }
 
     private void move(final int source, final int target) {
+        if (sources == null) return;
         if (source < 0 || target < 0) return;
         if (source >= sources.getSize() || target >= sources.getSize()) return;
 

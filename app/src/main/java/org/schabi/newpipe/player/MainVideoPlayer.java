@@ -44,7 +44,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -76,8 +75,6 @@ public final class MainVideoPlayer extends Activity {
 
     private boolean activityPaused;
     private VideoPlayerImpl playerImpl;
-
-    private DefaultTrackSelector.Parameters parameters;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity LifeCycle
@@ -124,10 +121,6 @@ public final class MainVideoPlayer extends Activity {
         if (DEBUG) Log.d(TAG, "onStop() called");
         activityPaused = true;
 
-        if (playerImpl.trackSelector != null) {
-            parameters = playerImpl.trackSelector.getParameters();
-        }
-
         if (playerImpl.getPlayer() != null) {
             playerImpl.wasPlaying = playerImpl.getPlayer().getPlayWhenReady();
             playerImpl.setRecovery();
@@ -145,10 +138,6 @@ public final class MainVideoPlayer extends Activity {
 
             playerImpl.getPlayer().setPlayWhenReady(playerImpl.wasPlaying);
             playerImpl.initPlayback(playerImpl.playQueue);
-
-            if (playerImpl.trackSelector != null && parameters != null) {
-                playerImpl.trackSelector.setParameters(parameters);
-            }
 
             activityPaused = false;
         }
@@ -675,10 +664,11 @@ public final class MainVideoPlayer extends Activity {
             if (DEBUG) Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
             if (!playerImpl.isPlaying()) return false;
 
-            if (e.getX() > playerImpl.getRootView().getWidth() / 2)
+            if (e.getX() > playerImpl.getRootView().getWidth() / 2) {
                 playerImpl.onFastForward();
-            else
+            } else {
                 playerImpl.onFastRewind();
+            }
 
             return true;
         }

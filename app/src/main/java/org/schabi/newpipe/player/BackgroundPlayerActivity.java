@@ -6,7 +6,7 @@ import org.schabi.newpipe.R;
 
 public final class BackgroundPlayerActivity extends ServicePlayerActivity {
 
-    private static final String TAG = "BGPlayerActivity";
+    private static final String TAG = "BackgroundPlayerActivity";
 
     @Override
     public String getTag() {
