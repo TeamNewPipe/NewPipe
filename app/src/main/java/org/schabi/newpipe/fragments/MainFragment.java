@@ -33,6 +33,7 @@ import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.concurrent.ExecutionException;
 
@@ -84,6 +85,28 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         viewPager.setOffscreenPageLimit(adapter.getCount());
 
         tabLayout.setupWithViewPager(viewPager);
+
+        if(ThemeHelper.isLightThemeSelected(getActivity())) {
+            tabLayout.setBackgroundColor(getResources().getColor(R.color.light_youtube_primary_color));
+        }
+
+       if(PreferenceManager.getDefaultSharedPreferences(getActivity())
+                .getString(getString(R.string.main_page_content_key), getString(R.string.blank_page_key))
+                .equals(getString(R.string.subscription_page_key))) {
+           if(ThemeHelper.isLightThemeSelected(getActivity())) {
+               tabLayout.getTabAt(0).setIcon(R.drawable.ic_channel_black_24dp);
+           } else{
+               tabLayout.getTabAt(0).setIcon(R.drawable.ic_channel_white_24dp);
+           }
+       } else {
+           if(ThemeHelper.isLightThemeSelected(getActivity())) {
+               tabLayout.getTabAt(0).setIcon(R.drawable.ic_whatshot_black_24dp);
+               tabLayout.getTabAt(1).setIcon(R.drawable.ic_channel_black_24dp);
+           } else {
+               tabLayout.getTabAt(0).setIcon(R.drawable.ic_whatshot_white_24dp);
+               tabLayout.getTabAt(1).setIcon(R.drawable.ic_channel_white_24dp);
+           }
+       }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -108,7 +131,6 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
-            supportActionBar.setDisplayShowTitleEnabled(false);
             supportActionBar.setDisplayHomeAsUpEnabled(false);
         }
     }
@@ -171,7 +193,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return getString(this.tabTitles[position]);
+            //return getString(this.tabTitles[position]);
+            return "";
         }
 
         @Override

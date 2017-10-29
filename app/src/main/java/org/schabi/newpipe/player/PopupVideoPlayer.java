@@ -92,6 +92,7 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
 public class PopupVideoPlayer extends Service {
     private static final String TAG = ".PopupVideoPlayer";
     private static final boolean DEBUG = BasePlayer.DEBUG;
+    private static final int SHUTDOWN_FLING_VELOCITY = 10000;
 
     private static final int NOTIFICATION_ID = 40028922;
     public static final String ACTION_CLOSE = "org.schabi.newpipe.player.PopupVideoPlayer.CLOSE";
@@ -303,7 +304,6 @@ public class PopupVideoPlayer extends Service {
 
     public void onVideoClose() {
         if (DEBUG) Log.d(TAG, "onVideoClose() called");
-        savePositionAndSize();
         stopSelf();
     }
 
@@ -574,9 +574,7 @@ public class PopupVideoPlayer extends Service {
         private int initialPopupX, initialPopupY;
         private boolean isMoving;
 
-        private int onDownPopupWidth = 0;
         private boolean isResizing;
-        private boolean isResizingRightSide;
 
         @Override
         public boolean onDoubleTap(MotionEvent e) {
@@ -603,27 +601,20 @@ public class PopupVideoPlayer extends Service {
             initialPopupY = windowLayoutParams.y;
             popupWidth = windowLayoutParams.width;
             popupHeight = windowLayoutParams.height;
-            onDownPopupWidth = windowLayoutParams.width;
-            return false;
+            return super.onDown(e);
         }
 
         @Override
         public void onLongPress(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onLongPress() called with: e = [" + e + "]");
-            playerImpl.showAndAnimateControl(-1, true);
-            playerImpl.getLoadingPanel().setVisibility(View.GONE);
-
-            playerImpl.hideControls(0, 0);
-            animateView(playerImpl.getCurrentDisplaySeek(), false, 0, 0);
-            animateView(playerImpl.getResizingIndicator(), true, 200, 0);
-
-            isResizing = true;
-            isResizingRightSide = e.getRawX() > windowLayoutParams.x + (windowLayoutParams.width / 2f);
+            updateScreenSize();
+            checkPositionBounds();
+            updatePopupSize((int) screenWidth, -1);
         }
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            if (isResizing) return false;
+            if (isResizing) return super.onScroll(e1, e2, distanceX, distanceY);
 
             if (playerImpl.getCurrentState() != BasePlayer.STATE_BUFFERING
                     && (!isMoving || playerImpl.getControlsRoot().getAlpha() != 1f)) playerImpl.showControls(0);
@@ -660,18 +651,32 @@ public class PopupVideoPlayer extends Service {
         }
 
         @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            if (Math.abs(velocityX) > SHUTDOWN_FLING_VELOCITY) {
+                if (DEBUG) Log.d(TAG, "Popup close fling velocity= " + velocityX);
+                onVideoClose();
+                return true;
+            }
+            return false;
+        }
+
+        @Override
         public boolean onTouch(View v, MotionEvent event) {
             gestureDetector.onTouchEvent(event);
-            if (event.getAction() == MotionEvent.ACTION_MOVE && isResizing && !isMoving) {
-                //if (DEBUG) Log.d(TAG, "onTouch() ACTION_MOVE > v = [" + v + "],  e1.getRaw = [" + event.getRawX() + ", " + event.getRawY() + "]");
-                int width;
-                if (isResizingRightSide) width = (int) event.getRawX() - windowLayoutParams.x;
-                else {
-                    width = (int) (windowLayoutParams.width + (windowLayoutParams.x - event.getRawX()));
-                    if (width > minimumWidth) windowLayoutParams.x = initialPopupX - (width - onDownPopupWidth);
-                }
-                if (width <= maximumWidth && width >= minimumWidth) updatePopupSize(width, -1);
-                return true;
+            if (event.getPointerCount() == 2 && !isResizing) {
+                if (DEBUG) Log.d(TAG, "onTouch() 2 finger pointer detected, enabling resizing.");
+                playerImpl.showAndAnimateControl(-1, true);
+                playerImpl.getLoadingPanel().setVisibility(View.GONE);
+
+                playerImpl.hideControls(0, 0);
+                animateView(playerImpl.getCurrentDisplaySeek(), false, 0, 0);
+                animateView(playerImpl.getResizingIndicator(), true, 200, 0);
+                isResizing = true;
+            }
+
+            if (event.getAction() == MotionEvent.ACTION_MOVE && !isMoving && isResizing) {
+                if (DEBUG) Log.d(TAG, "onTouch() ACTION_MOVE > v = [" + v + "],  e1.getRaw = [" + event.getRawX() + ", " + event.getRawY() + "]");
+                return handleMultiDrag(event);
             }
 
             if (event.getAction() == MotionEvent.ACTION_UP) {
@@ -692,6 +697,29 @@ public class PopupVideoPlayer extends Service {
             return true;
         }
 
+        private boolean handleMultiDrag(final MotionEvent event) {
+            if (event.getPointerCount() != 2) return false;
+
+            final float firstPointerX = event.getX(0);
+            final float secondPointerX = event.getX(1);
+
+            final float diff = Math.abs(firstPointerX - secondPointerX);
+            if (firstPointerX > secondPointerX) {
+                // second pointer is the anchor (the leftmost pointer)
+                windowLayoutParams.x = (int) (event.getRawX() - diff);
+            } else {
+                // first pointer is the anchor
+                windowLayoutParams.x = (int) event.getRawX();
+            }
+
+            checkPositionBounds();
+            updateScreenSize();
+
+            final int width = (int) Math.min(screenWidth, diff);
+            updatePopupSize(width, -1);
+
+            return true;
+        }
     }
 
     /**

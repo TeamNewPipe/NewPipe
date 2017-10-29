@@ -26,6 +26,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
@@ -33,6 +34,7 @@ import org.schabi.newpipe.fragments.subscription.SubscriptionService;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.Localization;
 
 import java.util.List;
@@ -82,6 +84,20 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(activity != null
+                && useAsFrontPage
+                && isVisibleToUser) {
+            try {
+                activity.getSupportActionBar().setTitle(currentInfo.name);
+            } catch (Exception e) {
+                onError(e);
+            }
+        }
+    }
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         subscriptionService = SubscriptionService.getInstance();
@@ -125,7 +141,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         ActionBar supportActionBar = activity.getSupportActionBar();
         if(useAsFrontPage) {
             supportActionBar.setDisplayHomeAsUpEnabled(false);
-            //supportActionBar.setDisplayShowTitleEnabled(false);
         } else {
             inflater.inflate(R.menu.menu_channel, menu);
 
