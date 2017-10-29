@@ -236,4 +236,21 @@
     <string name="delete_item_search_history">Haluatko poistaa tämän hakuhistoriasta?</string>
 <string name="resume_on_audio_focus_gain_title">Jatka toistoa</string>
     <string name="what_device_headline">Info:</string>
-    </resources>
+    <string name="info_labels">Mikä:\\nPyyntö:\\nSisällön kieli:\\nPalvelu:\\nGMT Aika:\\nPaketti:\\nVersio:\\nOS versio:\\nGlob. IP väli:</string>
+    <string name="copyright" formatted="true">© %1$s %2$s %3$s alla</string>
+    <string name="main_page_content">Pääsivun sisältö</string>
+    <string name="blank_page_summary">Tyhjä sivu</string>
+    <string name="kiosk_page_summary">Kioski sivu</string>
+    <string name="subscription_page_summary">Tilaukset sivu</string>
+    <string name="feed_page_summary">Syötteet sivu</string>
+    <string name="channel_page_summary">Kanavat sivu</string>
+    <string name="select_a_channel">Valitse kanava</string>
+    <string name="no_channel_subscribed_yet">Ei yhtään tilattua kanavaa vielä</string>
+    <string name="select_a_kiosk">Valitse kioski</string>
+
+    <string name="kiosk">Kioski</string>
+    <string name="trending">Nousussa</string>
+    <string name="top_50">Top 50</string>
+    <string name="new_and_hot">Uudet &amp; kuumat</string>
+    <string name="service_kosk_string">%1$s/%2$s</string>
+</resources>
