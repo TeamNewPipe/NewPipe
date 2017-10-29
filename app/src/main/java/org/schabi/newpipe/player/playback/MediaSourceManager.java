@@ -29,7 +29,7 @@ import io.reactivex.subjects.PublishSubject;
 public class MediaSourceManager {
     private final String TAG = "MediaSourceManager@" + Integer.toHexString(hashCode());
     // One-side rolling window size for default loading
-    // Effectively loads windowSize * 2 + 1 streams, must be greater than 0
+    // Effectively loads windowSize * 2 + 1 streams per call to load, must be greater than 0
     private final int windowSize;
     private final PlaybackListener playbackListener;
     private final PlayQueue playQueue;
@@ -38,7 +38,7 @@ public class MediaSourceManager {
     // The higher it is, the less loading occurs during rapid noncritical timeline changes
     // Not recommended to go below 100ms
     private final long loadDebounceMillis;
-    private final PublishSubject<Long> loadSignal;
+    private final PublishSubject<Long> debouncedLoadSignal;
     private final Disposable debouncedLoader;
 
     private final DeferredMediaSource.Callback sourceBuilder;
@@ -69,7 +69,7 @@ public class MediaSourceManager {
         this.loadDebounceMillis = loadDebounceMillis;
 
         this.syncReactor = new SerialDisposable();
-        this.loadSignal = PublishSubject.create();
+        this.debouncedLoadSignal = PublishSubject.create();
         this.debouncedLoader = getDebouncedLoader();
 
         this.sourceBuilder = getSourceBuilder();
@@ -101,7 +101,7 @@ public class MediaSourceManager {
      * Dispose the manager and releases all message buses and loaders.
      * */
     public void dispose() {
-        if (loadSignal != null) loadSignal.onComplete();
+        if (debouncedLoadSignal != null) debouncedLoadSignal.onComplete();
         if (debouncedLoader != null) debouncedLoader.dispose();
         if (playQueueReactor != null) playQueueReactor.cancel();
         if (syncReactor != null) syncReactor.dispose();
@@ -118,7 +118,7 @@ public class MediaSourceManager {
      * Unblocks the player once the item at the current index is loaded.
      * */
     public void load() {
-        loadSignal.onNext(System.currentTimeMillis());
+        loadDebounced();
     }
 
     /**
@@ -195,14 +195,14 @@ public class MediaSourceManager {
             case REORDER:
             case ERROR:
             case APPEND:
-                loadInternal(); // low frequency, critical events
+                loadImmediate(); // low frequency, critical events
                 break;
             case REMOVE:
             case SELECT:
             case MOVE:
             case RECOVERY:
             default:
-                load(); // high frequency or noncritical events
+                loadDebounced(); // high frequency or noncritical events
                 break;
         }
 
@@ -262,7 +262,11 @@ public class MediaSourceManager {
         syncReactor.set(currentItem.getStream().subscribe(syncPlayback, onError));
     }
 
-    private void loadInternal() {
+    private void loadDebounced() {
+        debouncedLoadSignal.onNext(System.currentTimeMillis());
+    }
+
+    private void loadImmediate() {
         // The current item has higher priority
         final int currentIndex = playQueue.getIndex();
         final PlayQueueItem currentItem = playQueue.getItem(currentIndex);
@@ -307,13 +311,13 @@ public class MediaSourceManager {
     }
 
     private Disposable getDebouncedLoader() {
-        return loadSignal
+        return debouncedLoadSignal
                 .debounce(loadDebounceMillis, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Long>() {
             @Override
             public void accept(Long timestamp) throws Exception {
-                loadInternal();
+                loadImmediate();
             }
         });
     }

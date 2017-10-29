@@ -272,17 +272,18 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     }
 
     @Override
+    @Nullable
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
         final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
 
-        final VideoStream video;
+        final int index;
         if (playbackQuality == null) {
-            final int index = getDefaultResolutionIndex(videos);
-            video = videos.get(index);
+            index = getDefaultResolutionIndex(videos);
         } else {
-            final int index = getOverrideResolutionIndex(videos, getPlaybackQuality());
-            video = videos.get(index);
+            index = getOverrideResolutionIndex(videos, getPlaybackQuality());
         }
+        if (index < 0 || index >= videos.size()) return null;
+        final VideoStream video = videos.get(index);
 
         final MediaSource streamSource = buildMediaSource(video.url, MediaFormat.getSuffixById(video.format));
         final AudioStream audio = ListHelper.getHighestQualityAudio(info.audio_streams);

@@ -43,6 +43,7 @@ public interface PlaybackListener {
      *
      * May be called at any time.
      * */
+    @Nullable
     MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info);
 
     /**
