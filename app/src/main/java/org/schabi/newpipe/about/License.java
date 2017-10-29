@@ -50,6 +50,10 @@ public class License implements Parcelable {
     public String getAbbreviation() {
         return abbreviation;
     }
+    
+    public String getFilename() {
+        return filename;
+    }
 
     @Override
     public int describeContents() {
