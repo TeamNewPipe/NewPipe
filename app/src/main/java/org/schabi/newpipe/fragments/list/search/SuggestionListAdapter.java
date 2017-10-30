@@ -19,6 +19,7 @@ public class SuggestionListAdapter extends RecyclerView.Adapter<SuggestionListAd
     private final ArrayList<SuggestionItem> items = new ArrayList<>();
     private final Context context;
     private OnSuggestionItemSelected listener;
+    private boolean showSugestinHistory = true;
 
     public interface OnSuggestionItemSelected {
         void onSuggestionItemSelected(SuggestionItem item);
@@ -31,12 +32,25 @@ public class SuggestionListAdapter extends RecyclerView.Adapter<SuggestionListAd
 
     public void setItems(List<SuggestionItem> items) {
         this.items.clear();
-        this.items.addAll(items);
+        if (showSugestinHistory) {
+            this.items.addAll(items);
+        } else {
+            // remove history items if history is disabled
+            for (SuggestionItem item : items) {
+                if (!item.fromHistory) {
+                    this.items.add(item);
+                }
+            }
+        }
         notifyDataSetChanged();
     }
 
     public void setListener(OnSuggestionItemSelected listener) {
         this.listener = listener;
+    }
+
+    public void setShowSugestinHistory(boolean v) {
+        showSugestinHistory = v;
     }
 
     @Override

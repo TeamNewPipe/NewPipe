@@ -113,6 +113,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     private int currentNextPage = 0;
     private String searchLanguage;
     private boolean isSuggestionsEnabled = true;
+    private boolean isSearchHistoryEnabled = true;
 
     private PublishSubject<String> suggestionPublisher = PublishSubject.create();
     private Disposable searchDisposable;
@@ -160,7 +161,12 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
         suggestionListAdapter = new SuggestionListAdapter(activity);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
+        isSearchHistoryEnabled = preferences.getBoolean(getString(R.string.enable_search_history_key), true);
+        suggestionListAdapter.setShowSugestinHistory(isSearchHistoryEnabled);
+        
         searchHistoryDAO = NewPipeDatabase.getInstance().searchHistoryDAO();
     }
 
