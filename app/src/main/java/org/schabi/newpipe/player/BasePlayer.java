@@ -706,8 +706,11 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         }
 
         if (getCurrentState() == STATE_COMPLETED) {
-            playQueue.setIndex(0);
-            simpleExoPlayer.seekToDefaultPosition();
+            if (playQueue.getIndex() == 0) {
+                simpleExoPlayer.seekToDefaultPosition();
+            } else {
+                playQueue.setIndex(0);
+            }
         }
 
         simpleExoPlayer.setPlayWhenReady(!isPlaying());

@@ -191,8 +191,8 @@ public final class BackgroundPlayer extends Service {
     }
 
     private void setupNotification(RemoteViews remoteViews) {
-        bigNotRemoteView.setTextViewText(R.id.notificationSongName, basePlayerImpl.getVideoTitle());
-        bigNotRemoteView.setTextViewText(R.id.notificationArtist, basePlayerImpl.getVideoTitle());
+        remoteViews.setTextViewText(R.id.notificationSongName, basePlayerImpl.getVideoTitle());
+        remoteViews.setTextViewText(R.id.notificationArtist, basePlayerImpl.getUploaderName());
 
         remoteViews.setOnClickPendingIntent(R.id.notificationPlayPause,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));
@@ -268,10 +268,9 @@ public final class BackgroundPlayer extends Service {
             super.handleIntent(intent);
 
             resetNotification();
-            startForeground(NOTIFICATION_ID, notBuilder.build());
-
             if (bigNotRemoteView != null) bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
             if (notRemoteView != null) notRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
+            startForeground(NOTIFICATION_ID, notBuilder.build());
         }
 
         @Override
@@ -363,8 +362,6 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void onRepeatModeChanged(int i) {
             resetNotification();
-            setRepeatModeIcon(notRemoteView, i);
-            setRepeatModeIcon(bigNotRemoteView, i);
             updateNotification(-1);
             updatePlayback();
         }
@@ -378,10 +375,6 @@ public final class BackgroundPlayer extends Service {
             super.sync(item, info);
 
             resetNotification();
-            notRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());
-            notRemoteView.setTextViewText(R.id.notificationArtist, getUploaderName());
-            bigNotRemoteView.setTextViewText(R.id.notificationSongName, getVideoTitle());
-            bigNotRemoteView.setTextViewText(R.id.notificationArtist, getUploaderName());
             updateNotification(-1);
             updateMetadata();
         }
@@ -539,6 +532,8 @@ public final class BackgroundPlayer extends Service {
             super.onCompleted();
 
             setControlsOpacity(255);
+
+            resetNotification();
             if (bigNotRemoteView != null) bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 100, false);
             if (notRemoteView != null) notRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 100, false);
             updateNotification(R.drawable.ic_replay_white);
