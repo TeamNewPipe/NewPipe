@@ -9,6 +9,7 @@
 <a href="https://travis-ci.org/TeamNewPipe/NewPipe" alt="Build Status"><img src="https://travis-ci.org/TeamNewPipe/NewPipe.svg" /></a>
 <a href="https://hosted.weblate.org/engage/NewPipe/" alt="Translation Status"><img src="https://hosted.weblate.org/widgets/NewPipe/-/svg-badge.svg" /></a>
 <a href="http://webchat.freenode.net/?channels=%23newpipe" alt="IRC channel: #newpipe"><img src="https://img.shields.io/badge/IRC%20chat-%23newpipe-brightgreen.svg" /></a>
+<a href="https://www.bountysource.com/teams/newpipe" alt="Bountysource bounties"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f"/></a>
 </p>
 <hr />
 <p align="center"><a href="#screenshots">Screenshots</a> &bull; <a href="#description">Description</a> &bull; <a href="#features">Features</a> &bull; <a href="#contribution">Contribution</a> &bull; <a href="#donate">Donate</a> &bull; <a href="#license">License</a></p>
