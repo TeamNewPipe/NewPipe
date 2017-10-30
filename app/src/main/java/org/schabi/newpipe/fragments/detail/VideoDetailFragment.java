@@ -560,7 +560,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             @Override
             public void onActionSelected(int selectedStreamId) {
                 try {
-                    NavigationHelper.startKore(activity, Uri.parse(info.url.replace("https", "http")));
+                    NavigationHelper.playWithKore(activity, Uri.parse(info.url.replace("https", "http")));
+                    if(activity instanceof HistoryListener) {
+                        ((HistoryListener) activity).onVideoPlayed(info, null);
+                    }
                 } catch (Exception e) {
                     if(DEBUG) Log.i(TAG, "Failed to start kore", e);
                     showInstallKoreDialog(activity);

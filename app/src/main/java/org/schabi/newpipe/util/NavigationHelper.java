@@ -342,10 +342,16 @@ public class NavigationHelper {
 
     /**
      * Start Kore app to show a video on Kodi
+     *
+     * For a list of supported urls see the
+     * <a href="https://github.com/xbmc/Kore/blob/master/app/src/main/AndroidManifest.xml">
+     *     Kore source code
+     * </a>.
+     *
      * @param context the context to use
-     * @param videoURL the url to the video stream
+     * @param videoURL the url to the video
      */
-    public static void startKore(Context context, Uri videoURL) {
+    public static void playWithKore(Context context, Uri videoURL) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setPackage(context.getString(R.string.kore_package));
         intent.setData(videoURL);

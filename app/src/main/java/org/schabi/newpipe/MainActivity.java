@@ -27,6 +27,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -309,7 +310,7 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
     }
 
     @Override
-    public void onVideoPlayed(StreamInfo streamInfo, VideoStream videoStream) {
+    public void onVideoPlayed(StreamInfo streamInfo, @Nullable VideoStream videoStream) {
         addWatchHistoryEntry(streamInfo);
     }
 
