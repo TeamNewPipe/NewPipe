@@ -241,6 +241,7 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends BaseFragme
         if (mHistoryIsEnabled) {
             mRecyclerView.setVisibility(View.VISIBLE);
         } else {
+            mRecyclerView.setVisibility(View.GONE);
             mDisabledView.setVisibility(View.VISIBLE);
         }
 
