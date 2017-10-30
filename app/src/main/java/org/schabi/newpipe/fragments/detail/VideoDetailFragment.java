@@ -1,6 +1,7 @@
 package org.schabi.newpipe.fragments.detail;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -94,7 +95,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     // Amount of videos to show on start
     private static final int INITIAL_RELATED_VIDEOS = 8;
-    private static final String KORE_PACKET = "org.xbmc.kore";
 
     private ActionBarHandler actionBarHandler;
     private ArrayList<VideoStream> sortedStreamVideosList;
@@ -513,6 +513,24 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         return (!isLoading.get() && actionBarHandler.onItemSelected(item)) || super.onOptionsItemSelected(item);
     }
 
+    private static void showInstallKoreDialog(final Context context) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(R.string.kore_not_found)
+                .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        NavigationHelper.installKore(context);
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        builder.create().show();
+    }
+
     private void setupActionBarHandler(final StreamInfo info) {
         if (DEBUG) Log.d(TAG, "setupActionBarHandler() called with: info = [" + info + "]");
         sortedStreamVideosList = new ArrayList<>(ListHelper.getSortedStreamVideosList(activity, info.video_streams, info.video_only_streams, false));
@@ -542,30 +560,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             @Override
             public void onActionSelected(int selectedStreamId) {
                 try {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setPackage(KORE_PACKET);
-                    intent.setData(Uri.parse(info.url.replace("https", "http")));
-                    activity.startActivity(intent);
+                    NavigationHelper.startKore(activity, Uri.parse(info.url.replace("https", "http")));
                 } catch (Exception e) {
-                    e.printStackTrace();
-                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                    builder.setMessage(R.string.kore_not_found)
-                            .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent = new Intent();
-                                    intent.setAction(Intent.ACTION_VIEW);
-                                    intent.setData(Uri.parse(activity.getString(R.string.fdroid_kore_url)));
-                                    activity.startActivity(intent);
-                                }
-                            })
-                            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            });
-                    builder.create().show();
+                    if(DEBUG) Log.i(TAG, "Failed to start kore", e);
+                    showInstallKoreDialog(activity);
                 }
             }
         });

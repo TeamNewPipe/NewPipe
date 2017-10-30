@@ -1,11 +1,14 @@
 package org.schabi.newpipe.util;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -302,5 +305,50 @@ public class NavigationHelper {
                 break;
         }
         return null;
+    }
+
+
+    private static Uri openMarketUrl(String packageName) {
+        return Uri.parse("market://details")
+                .buildUpon()
+                .appendQueryParameter("id", packageName)
+                .build();
+    }
+
+    private static Uri getGooglePlayUrl(String packageName) {
+        return Uri.parse("https://play.google.com/store/apps/details")
+                .buildUpon()
+                .appendQueryParameter("id", packageName)
+                .build();
+    }
+
+    private static void installApp(Context context, String packageName) {
+        try {
+            // Try market:// scheme
+            context.startActivity(new Intent(Intent.ACTION_VIEW, openMarketUrl(packageName)));
+        } catch (ActivityNotFoundException e) {
+            // Fall back to google play URL (don't worry F-Droid can handle it :)
+            context.startActivity(new Intent(Intent.ACTION_VIEW, getGooglePlayUrl(packageName)));
+        }
+    }
+
+    /**
+     * Start an activity to install Kore
+     * @param context the context
+     */
+    public static void installKore(Context context) {
+        installApp(context, context.getString(R.string.kore_package));
+    }
+
+    /**
+     * Start Kore app to show a video on Kodi
+     * @param context the context to use
+     * @param videoURL the url to the video stream
+     */
+    public static void startKore(Context context, Uri videoURL) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setPackage(context.getString(R.string.kore_package));
+        intent.setData(videoURL);
+        context.startActivity(intent);
     }
 }
