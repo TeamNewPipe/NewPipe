@@ -52,7 +52,7 @@ public class MediaSourceManager {
 
     public MediaSourceManager(@NonNull final PlaybackListener listener,
                               @NonNull final PlayQueue playQueue) {
-        this(listener, playQueue, 1, 1000L);
+        this(listener, playQueue, 1, 400L);
     }
 
     private MediaSourceManager(@NonNull final PlaybackListener listener,
@@ -162,7 +162,7 @@ public class MediaSourceManager {
             return;
         }
 
-        // why no pattern matching in Java =(
+        // Event specific action
         switch (event.type()) {
             case INIT:
             case REORDER:
@@ -172,31 +172,28 @@ public class MediaSourceManager {
             case APPEND:
                 populateSources();
                 break;
-            case SELECT:
-                sync();
-                break;
             case REMOVE:
                 final RemoveEvent removeEvent = (RemoveEvent) event;
                 remove(removeEvent.getRemoveIndex());
-                // Sync only when the currently playing is removed
-                if (removeEvent.getQueueIndex() == removeEvent.getRemoveIndex()) sync();
                 break;
             case MOVE:
                 final MoveEvent moveEvent = (MoveEvent) event;
                 move(moveEvent.getFromIndex(), moveEvent.getToIndex());
                 break;
+            case SELECT:
             case RECOVERY:
             default:
                 break;
         }
 
+        // Loading and Syncing
         switch (event.type()) {
             case INIT:
             case REORDER:
             case ERROR:
-            case APPEND:
                 loadImmediate(); // low frequency, critical events
                 break;
+            case APPEND:
             case REMOVE:
             case SELECT:
             case MOVE:
@@ -294,7 +291,9 @@ public class MediaSourceManager {
 
         final DeferredMediaSource mediaSource = (DeferredMediaSource) sources.getMediaSource(playQueue.indexOf(item));
         if (mediaSource.state() == DeferredMediaSource.STATE_PREPARED) mediaSource.load();
-        if (tryUnblock()) sync();
+
+        tryUnblock();
+        if (!isBlocked) sync();
     }
 
     private void resetSources() {
