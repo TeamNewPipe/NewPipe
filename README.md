@@ -56,13 +56,13 @@ NewPipe does not use any Google framework libraries, or the YouTube API. It only
 * Subscribe to channels
 * Search history
 * Search/Watch Playlists
+* Watch as queues Playlists
+* Queuing videos
 
 ### Coming Features
 
 * Multiservice support (eg. SoundCloud)
 * Bookmarks
-* Watch as queues Playlists
-* Queuing videos
 * Subtitles support
 * livestream support
 * ... and many more
