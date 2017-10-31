@@ -36,6 +36,7 @@ import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -157,10 +158,20 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_rss: {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(currentInfo.feed_url));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentInfo.feed_url));
                 startActivity(intent);
+                return true;
+            }
+            case R.id.menu_item_openInBrowser: {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentInfo.url));
+                startActivity(intent);
+                return true;
+            }
+            case R.id.menu_item_share: {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, currentInfo.url);
+                startActivity(Intent.createChooser(intent, getString(R.string.share_dialog_title)));
                 return true;
             }
             default:
