@@ -19,11 +19,13 @@
     <attr name="language" format="reference"/>
     <attr name="history" format="reference"/>
     <attr name="drag_handle" format="reference"/>
+    <attr name="selected" format="reference"/>
 
     <!-- Can't refer to colors directly into drawable's xml-->
     <attr name="toolbar_shadow_drawable" format="reference"/>
+    <attr name="selector_drawable" format="reference"/>
 
-    <attr name="selector_color" format="color"/>
     <attr name="separator_color" format="color"/>
+    <attr name="queue_background_color" format="color"/>
     <attr name="contrast_background_color" format="color"/>
 </resources>

@@ -178,7 +178,8 @@ public class MediaSourceManager {
             case REMOVE:
                 final RemoveEvent removeEvent = (RemoveEvent) event;
                 remove(removeEvent.getRemoveIndex());
-                sync();
+                // Sync only when the currently playing is removed
+                if (removeEvent.getQueueIndex() == removeEvent.getRemoveIndex()) sync();
                 break;
             case MOVE:
                 final MoveEvent moveEvent = (MoveEvent) event;

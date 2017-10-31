@@ -32,7 +32,7 @@ import org.schabi.newpipe.info_list.holder.InfoItemHolder;
 public class PlayQueueItemHolder extends RecyclerView.ViewHolder {
 
     public final TextView itemVideoTitleView, itemDurationView, itemAdditionalDetailsView;
-    public final ImageView itemThumbnailView, itemHandle;
+    public final ImageView itemSelected, itemThumbnailView, itemHandle;
 
     public final View itemRoot;
 
@@ -42,6 +42,7 @@ public class PlayQueueItemHolder extends RecyclerView.ViewHolder {
         itemVideoTitleView = v.findViewById(R.id.itemVideoTitleView);
         itemDurationView = v.findViewById(R.id.itemDurationView);
         itemAdditionalDetailsView = v.findViewById(R.id.itemAdditionalDetails);
+        itemSelected = v.findViewById(R.id.itemSelected);
         itemThumbnailView = v.findViewById(R.id.itemThumbnailView);
         itemHandle = v.findViewById(R.id.itemHandle);
     }

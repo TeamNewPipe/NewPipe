@@ -188,10 +188,15 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof PlayQueueItemHolder) {
+            final PlayQueueItemHolder itemHolder = (PlayQueueItemHolder) holder;
+
             // Build the list item
-            playQueueItemBuilder.buildStreamInfoItem((PlayQueueItemHolder) holder, playQueue.getStreams().get(position));
+            playQueueItemBuilder.buildStreamInfoItem(itemHolder, playQueue.getStreams().get(position));
+
             // Check if the current item should be selected/highlighted
-            holder.itemView.setSelected(playQueue.getIndex() == position);
+            final boolean isSelected = playQueue.getIndex() == position;
+            itemHolder.itemSelected.setVisibility(isSelected ? View.VISIBLE : View.INVISIBLE);
+            itemHolder.itemView.setSelected(isSelected);
         } else if(holder instanceof HFHolder && position == playQueue.getStreams().size() && footer != null && showFooter) {
             ((HFHolder) holder).view = footer;
         }

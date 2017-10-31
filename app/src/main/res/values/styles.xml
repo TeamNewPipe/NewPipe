@@ -26,11 +26,13 @@
         <item name="language">@drawable/ic_language_black_24dp</item>
         <item name="history">@drawable/ic_history_black_24dp</item>
         <item name="drag_handle">@drawable/ic_drag_handle_black_24dp</item>
+        <item name="selected">@drawable/ic_fiber_manual_record_black_24dp</item>
 
-        <item name="selector_color">@color/light_selector</item>
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
+        <item name="queue_background_color">@color/light_queue_background_color</item>
         <item name="toolbar_shadow_drawable">@drawable/toolbar_shadow_light</item>
+        <item name="selector_drawable">@drawable/light_selector</item>
         <item name="colorControlHighlight">@color/light_ripple_color</item>
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
@@ -62,11 +64,13 @@
         <item name="language">@drawable/ic_language_white_24dp</item>
         <item name="history">@drawable/ic_history_white_24dp</item>
         <item name="drag_handle">@drawable/ic_drag_handle_white_24dp</item>
+        <item name="selected">@drawable/ic_fiber_manual_record_white_24dp</item>
 
-        <item name="selector_color">@color/dark_selector</item>
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>
+        <item name="queue_background_color">@color/dark_queue_background_color</item>
         <item name="toolbar_shadow_drawable">@drawable/toolbar_shadow_dark</item>
+        <item name="selector_drawable">@drawable/dark_selector</item>
         <item name="colorControlHighlight">@color/dark_ripple_color</item>
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>

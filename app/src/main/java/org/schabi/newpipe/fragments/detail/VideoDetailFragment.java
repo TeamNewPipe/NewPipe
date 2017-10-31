@@ -483,9 +483,12 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 if (!PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.show_hold_to_append_key), true)) return false;
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    appendControlsDetail.setVisibility(View.VISIBLE);
-                } else {
-                    appendControlsDetail.setVisibility(View.GONE);
+                    animateView(appendControlsDetail, true, 250, 0, new Runnable() {
+                        @Override
+                        public void run() {
+                            animateView(appendControlsDetail, false, 1500, 1000);
+                        }
+                    });
                 }
                 return false;
             }

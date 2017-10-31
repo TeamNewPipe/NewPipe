@@ -46,8 +46,8 @@
         android:id="@+id/playQueuePanel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#64000000"
         android:visibility="gone"
+        android:background="?attr/queue_background_color"
         tools:visibility="visible">
 
         <RelativeLayout
@@ -68,6 +68,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitXY"
+                android:tint="?attr/colorAccent"
                 android:src="@drawable/ic_close_white_24dp"
                 android:background="?android:selectableItemBackground"
                 tools:ignore="ContentDescription"/>
@@ -85,6 +86,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitXY"
+                android:tint="?attr/colorAccent"
                 android:src="@drawable/exo_controls_repeat_off"
                 android:background="?android:selectableItemBackground"
                 tools:ignore="ContentDescription,RtlHardcoded"/>
@@ -99,6 +101,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitXY"
+                android:tint="?attr/colorAccent"
                 android:src="@drawable/ic_shuffle_white_24dp"
                 android:background="?android:selectableItemBackground"
                 tools:ignore="ContentDescription,RtlHardcoded"/>
