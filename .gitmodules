@@ -1,3 +1,0 @@
-[submodule "app/src/main/java/org/schabi/newpipe/extractor"]
-	path = app/src/main/java/org/schabi/newpipe/extractor
-	url = https://github.com/TeamNewPipe/NewPipeExtractor.git

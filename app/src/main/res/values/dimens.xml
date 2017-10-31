@@ -67,6 +67,10 @@
     <dimen name="playlist_detail_uploader_image_size">24dp</dimen>
     <dimen name="playlist_detail_uploader_layout_height">28dp</dimen>
 
+    <!-- Play Queue View Dimensions -->
+    <dimen name="play_queue_thumbnail_width">62dp</dimen>
+    <dimen name="play_queue_thumbnail_height">40dp</dimen>
+
     <!-- Kiosk view Dimensions-->
     <dimen name="kiosk_title_text_size">30sp</dimen>
 </resources>

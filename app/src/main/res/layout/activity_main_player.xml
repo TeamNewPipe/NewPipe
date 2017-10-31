@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/black"
     android:gravity="center">
 
@@ -11,6 +12,7 @@
         android:id="@+id/aspectRatioLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_centerInParent="true"
         android:layout_gravity="center">
 
         <SurfaceView
@@ -39,6 +41,83 @@
         tools:background="@android:color/white"
         tools:ignore="ContentDescription"
         tools:visibility="visible"/>
+
+    <RelativeLayout
+        android:id="@+id/playQueuePanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="?attr/queue_background_color"
+        tools:visibility="visible">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/playQueueControl">
+
+            <ImageButton
+                android:id="@+id/playQueueClose"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="40dp"
+                android:layout_marginEnd="40dp"
+                android:padding="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="fitXY"
+                android:tint="?attr/colorAccent"
+                android:src="@drawable/ic_close_white_24dp"
+                android:background="?android:selectableItemBackground"
+                tools:ignore="ContentDescription"/>
+
+            <ImageButton
+                android:id="@+id/repeatButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="40dp"
+                android:layout_marginStart="40dp"
+                android:padding="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="fitXY"
+                android:tint="?attr/colorAccent"
+                android:src="@drawable/exo_controls_repeat_off"
+                android:background="?android:selectableItemBackground"
+                tools:ignore="ContentDescription,RtlHardcoded"/>
+
+            <ImageButton
+                android:id="@+id/shuffleButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/repeatButton"
+                android:padding="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="fitXY"
+                android:tint="?attr/colorAccent"
+                android:src="@drawable/ic_shuffle_white_24dp"
+                android:background="?android:selectableItemBackground"
+                tools:ignore="ContentDescription,RtlHardcoded"/>
+        </RelativeLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/playQueue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/playQueueControl"
+            android:scrollbars="vertical"
+            app:layoutManager="LinearLayoutManager"
+            tools:listitem="@layout/play_queue_item"/>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/playbackControlRoot"
@@ -82,11 +161,16 @@
                         android:id="@+id/titleTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:fadingEdge="horizontal"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
                         android:textColor="@android:color/white"
                         android:textSize="15sp"
                         android:textStyle="bold"
+                        android:clickable="true"
+                        android:focusable="true"
                         tools:ignore="RtlHardcoded"
                         tools:text="The Video Title LONG very LONG"/>
 
@@ -94,10 +178,15 @@
                         android:id="@+id/channelTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:maxLines="1"
+                        android:ellipsize="marquee"
+                        android:fadingEdge="horizontal"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
                         android:textColor="@android:color/white"
                         android:textSize="12sp"
+                        android:clickable="true"
+                        android:focusable="true"
                         tools:text="The Video Artist  LONG very LONG very Long"/>
                 </LinearLayout>
 
@@ -135,26 +224,28 @@
                     android:layout_height="35dp"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
-                    android:layout_toLeftOf="@+id/repeatButton"
+                    android:layout_toLeftOf="@+id/queueButton"
                     android:background="#00ffffff"
                     android:clickable="true"
+                    android:focusable="true"
                     android:padding="8dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_screen_rotation_white"
                     tools:ignore="ContentDescription,RtlHardcoded"/>
 
                 <ImageButton
-                    android:id="@+id/repeatButton"
-                    android:layout_width="35dp"
+                    android:id="@+id/queueButton"
+                    android:layout_width="30dp"
                     android:layout_height="35dp"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
                     android:layout_toLeftOf="@+id/fullScreenButton"
                     android:background="#00ffffff"
                     android:clickable="true"
+                    android:focusable="true"
                     android:padding="5dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ic_repeat_white"
+                    android:src="@drawable/list"
                     tools:ignore="ContentDescription,RtlHardcoded"/>
 
                 <ImageButton
@@ -165,6 +256,7 @@
                     android:layout_marginLeft="4dp"
                     android:background="#00ffffff"
                     android:clickable="true"
+                    android:focusable="true"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_fullscreen_exit_white"
                     tools:ignore="ContentDescription,RtlHardcoded"/>
@@ -223,9 +315,43 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerInParent="true"
-            android:background="#00000000"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="fitXY"
             android:src="@drawable/ic_pause_white"
+            tools:ignore="ContentDescription"/>
+
+        <ImageButton
+            android:id="@+id/playPreviousButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@id/playPauseButton"
+            android:layout_toStartOf="@id/playPauseButton"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitXY"
+            android:src="@drawable/exo_controls_previous"
+            tools:ignore="ContentDescription"/>
+
+        <ImageButton
+            android:id="@+id/playNextButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@id/playPauseButton"
+            android:layout_toEndOf="@id/playPauseButton"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitXY"
+            android:src="@drawable/exo_controls_next"
             tools:ignore="ContentDescription"/>
 
     </RelativeLayout>
@@ -328,4 +454,4 @@
             tools:visibility="visible"/>
     </RelativeLayout>
 
-</FrameLayout>
+</RelativeLayout>

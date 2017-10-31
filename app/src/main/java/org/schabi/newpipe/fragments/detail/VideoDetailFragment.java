@@ -1,6 +1,7 @@
 package org.schabi.newpipe.fragments.detail;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,6 +29,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -60,9 +62,12 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.history.HistoryListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
+import org.schabi.newpipe.playlist.PlayQueue;
+import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
@@ -89,12 +94,11 @@ import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implements BackPressable, SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener {
+public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implements BackPressable, SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener, View.OnLongClickListener {
     public static final String AUTO_PLAY = "auto_play";
 
     // Amount of videos to show on start
     private static final int INITIAL_RELATED_VIDEOS = 8;
-    private static final String KORE_PACKET = "org.xbmc.kore";
 
     private ActionBarHandler actionBarHandler;
     private ArrayList<VideoStream> sortedStreamVideosList;
@@ -141,6 +145,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     private TextView detailControlsBackground;
     private TextView detailControlsPopup;
+    private TextView appendControlsDetail;
 
     private LinearLayout videoDescriptionRootLayout;
     private TextView videoUploadDateView;
@@ -317,10 +322,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         switch (v.getId()) {
             case R.id.detail_controls_background:
-                openBackgroundPlayer();
+                openBackgroundPlayer(false);
                 break;
             case R.id.detail_controls_popup:
-                openPopupPlayer();
+                openPopupPlayer(false);
                 break;
             case R.id.detail_uploader_root_layout:
                 if (currentInfo.uploader_url == null || currentInfo.uploader_url.isEmpty()) {
@@ -339,6 +344,22 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 toggleExpandRelatedVideos(currentInfo);
                 break;
         }
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        if (isLoading.get() || currentInfo == null) return false;
+
+        switch (v.getId()) {
+            case R.id.detail_controls_background:
+                openBackgroundPlayer(true);
+                break;
+            case R.id.detail_controls_popup:
+                openPopupPlayer(true);
+                break;
+        }
+
+        return true;
     }
 
     private void toggleTitleAndDescription() {
@@ -400,6 +421,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         detailControlsBackground = rootView.findViewById(R.id.detail_controls_background);
         detailControlsPopup = rootView.findViewById(R.id.detail_controls_popup);
+        appendControlsDetail = rootView.findViewById(R.id.touch_append_detail);
 
         videoDescriptionRootLayout = rootView.findViewById(R.id.detail_description_root_layout);
         videoUploadDateView = rootView.findViewById(R.id.detail_upload_date_view);
@@ -445,6 +467,32 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         detailControlsBackground.setOnClickListener(this);
         detailControlsPopup.setOnClickListener(this);
         relatedStreamExpandButton.setOnClickListener(this);
+
+        detailControlsBackground.setLongClickable(true);
+        detailControlsPopup.setLongClickable(true);
+        detailControlsBackground.setOnLongClickListener(this);
+        detailControlsPopup.setOnLongClickListener(this);
+        detailControlsBackground.setOnTouchListener(getOnControlsTouchListener());
+        detailControlsPopup.setOnTouchListener(getOnControlsTouchListener());
+    }
+
+    private View.OnTouchListener getOnControlsTouchListener() {
+        return new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (!PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.show_hold_to_append_key), true)) return false;
+
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    animateView(appendControlsDetail, true, 250, 0, new Runnable() {
+                        @Override
+                        public void run() {
+                            animateView(appendControlsDetail, false, 1500, 1000);
+                        }
+                    });
+                }
+                return false;
+            }
+        };
     }
 
     private void initThumbnailViews(StreamInfo info) {
@@ -513,6 +561,24 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         return (!isLoading.get() && actionBarHandler.onItemSelected(item)) || super.onOptionsItemSelected(item);
     }
 
+    private static void showInstallKoreDialog(final Context context) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(R.string.kore_not_found)
+                .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        NavigationHelper.installKore(context);
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        builder.create().show();
+    }
+
     private void setupActionBarHandler(final StreamInfo info) {
         if (DEBUG) Log.d(TAG, "setupActionBarHandler() called with: info = [" + info + "]");
         sortedStreamVideosList = new ArrayList<>(ListHelper.getSortedStreamVideosList(activity, info.video_streams, info.video_only_streams, false));
@@ -542,30 +608,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             @Override
             public void onActionSelected(int selectedStreamId) {
                 try {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setPackage(KORE_PACKET);
-                    intent.setData(Uri.parse(info.url.replace("https", "http")));
-                    activity.startActivity(intent);
+                    NavigationHelper.playWithKore(activity, Uri.parse(info.url.replace("https", "http")));
+                    if(activity instanceof HistoryListener) {
+                        ((HistoryListener) activity).onVideoPlayed(info, null);
+                    }
                 } catch (Exception e) {
-                    e.printStackTrace();
-                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                    builder.setMessage(R.string.kore_not_found)
-                            .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent = new Intent();
-                                    intent.setAction(Intent.ACTION_VIEW);
-                                    intent.setData(Uri.parse(activity.getString(R.string.fdroid_kore_url)));
-                                    activity.startActivity(intent);
-                                }
-                            })
-                            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            });
-                    builder.create().show();
+                    if(DEBUG) Log.i(TAG, "Failed to start kore", e);
+                    showInstallKoreDialog(activity);
                 }
             }
         });
@@ -713,7 +762,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     // Play Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void openBackgroundPlayer() {
+    private void openBackgroundPlayer(final boolean append) {
         AudioStream audioStream = currentInfo.audio_streams.get(ListHelper.getDefaultAudioFormat(activity, currentInfo.audio_streams));
 
         if (activity instanceof HistoryListener) {
@@ -724,13 +773,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
 
         if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 16) {
-            openNormalBackgroundPlayer(audioStream);
+            openNormalBackgroundPlayer(append);
         } else {
             openExternalBackgroundPlayer(audioStream);
         }
     }
 
-    private void openPopupPlayer() {
+    private void openPopupPlayer(final boolean append) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !PermissionHelper.checkSystemAlertWindowPermission(activity)) {
             Toast toast = Toast.makeText(activity, R.string.msg_popup_permission, Toast.LENGTH_LONG);
             TextView messageView = toast.getView().findViewById(android.R.id.message);
@@ -743,9 +792,16 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             ((HistoryListener) activity).onVideoPlayed(currentInfo, getSelectedVideoStream());
         }
 
-        Toast.makeText(activity, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
-        Intent mIntent = NavigationHelper.getOpenVideoPlayerIntent(activity, PopupVideoPlayer.class, currentInfo, actionBarHandler.getSelectedVideoStream());
-        activity.startService(mIntent);
+        final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
+        final Intent intent;
+        if (append) {
+            Toast.makeText(activity, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
+            intent = NavigationHelper.getPlayerEnqueueIntent(activity, PopupVideoPlayer.class, playQueue);
+        } else {
+            Toast.makeText(activity, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
+            intent = NavigationHelper.getPlayerIntent(activity, PopupVideoPlayer.class, playQueue, getSelectedVideoStream().resolution);
+        }
+        activity.startService(intent);
     }
 
     private void openVideoPlayer() {
@@ -763,9 +819,15 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     }
 
 
-    private void openNormalBackgroundPlayer(AudioStream audioStream) {
-        activity.startService(NavigationHelper.getOpenBackgroundPlayerIntent(activity, currentInfo, audioStream));
-        Toast.makeText(activity, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
+    private void openNormalBackgroundPlayer(final boolean append) {
+        final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
+        if (append) {
+            activity.startService(NavigationHelper.getPlayerEnqueueIntent(activity, BackgroundPlayer.class, playQueue));
+            Toast.makeText(activity, R.string.background_player_append, Toast.LENGTH_SHORT).show();
+        } else {
+            activity.startService(NavigationHelper.getPlayerIntent(activity, BackgroundPlayer.class, playQueue));
+            Toast.makeText(activity, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void openExternalBackgroundPlayer(AudioStream audioStream) {
@@ -808,7 +870,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 || (Build.VERSION.SDK_INT < 16);
         if (!useOldPlayer) {
             // ExoPlayer
-            mIntent = NavigationHelper.getOpenVideoPlayerIntent(activity, MainVideoPlayer.class, currentInfo, actionBarHandler.getSelectedVideoStream());
+            final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
+            mIntent = NavigationHelper.getPlayerIntent(activity, MainVideoPlayer.class, playQueue, getSelectedVideoStream().resolution);
         } else {
             // Internal Player
             mIntent = new Intent(activity, PlayVideoActivity.class)
