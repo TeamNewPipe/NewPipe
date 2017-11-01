@@ -286,6 +286,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
+                    if (player == null) return false;
+
                     player.setPlaybackSpeed(playbackSpeed);
                     return true;
                 }
@@ -304,6 +306,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
+                    if (player == null) return false;
+
                     player.setPlaybackPitch(playbackPitch);
                     return true;
                 }
@@ -317,6 +321,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         remove.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
+                if (player == null) return false;
+
                 final int index = player.getPlayQueue().indexOf(item);
                 if (index != -1) player.getPlayQueue().remove(index);
                 return true;
@@ -349,7 +355,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
                 final int sourceIndex = source.getLayoutPosition();
                 final int targetIndex = target.getLayoutPosition();
-                player.getPlayQueue().move(sourceIndex, targetIndex);
+                if (player != null) player.getPlayQueue().move(sourceIndex, targetIndex);
                 return true;
             }
 
@@ -372,11 +378,13 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         return new PlayQueueItemBuilder.OnSelectedListener() {
             @Override
             public void selected(PlayQueueItem item, View view) {
-                player.onSelected(item);
+                if (player != null) player.onSelected(item);
             }
 
             @Override
             public void held(PlayQueueItem item, View view) {
+                if (player == null) return;
+
                 final int index = player.getPlayQueue().indexOf(item);
                 if (index != -1) buildItemPopupMenu(item, view);
             }
@@ -403,19 +411,19 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
         if (view.getId() == repeatButton.getId()) {
-            player.onRepeatClicked();
+            if (player != null) player.onRepeatClicked();
 
         } else if (view.getId() == backwardButton.getId()) {
-            player.onPlayPrevious();
+            if (player != null) player.onPlayPrevious();
 
         } else if (view.getId() == playPauseButton.getId()) {
-            player.onVideoPlayPause();
+            if (player != null) player.onVideoPlayPause();
 
         } else if (view.getId() == forwardButton.getId()) {
-            player.onPlayNext();
+            if (player != null) player.onPlayNext();
 
         } else if (view.getId() == shuffleButton.getId()) {
-            player.onShuffleClicked();
+            if (player != null) player.onShuffleClicked();
 
         } else if (view.getId() == playbackSpeedButton.getId()) {
             playbackSpeedPopupMenu.show();
@@ -450,7 +458,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        player.simpleExoPlayer.seekTo(seekBar.getProgress());
+        if (player != null) player.simpleExoPlayer.seekTo(seekBar.getProgress());
         seekDisplay.setVisibility(View.GONE);
         seeking = false;
     }

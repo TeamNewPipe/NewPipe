@@ -122,6 +122,8 @@
     <string name="notification_channel_name">NewPipe Notification</string>
     <string name="notification_channel_description">Notifications for NewPipe Background and Popup Players</string>
 
+    <string name="unknown_content">[Unknown]</string>
+
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="network_error">Network error</string>
