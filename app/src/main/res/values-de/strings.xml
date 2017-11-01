@@ -280,4 +280,8 @@
     <string name="player_unrecoverable_failure">Es ist ein unumgänglicher Fehler im Video-Spieler aufgetreten</string>
     <string name="player_recoverable_failure">Player-Fehler gelöst</string>
 
+    <string name="kiosk_page_summary">Kiosk-Seite</string>
+    <string name="select_a_kiosk">Kiosk auswählen</string>
+
+    <string name="kiosk">Kiosk</string>
     </resources>
