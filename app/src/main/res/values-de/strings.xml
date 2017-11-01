@@ -276,4 +276,5 @@
     <string name="title_activity_background_player">Hintergrund-Player</string>
     <string name="title_activity_popup_player">Popup-Player</string>
     <string name="play_queue_stream_detail">Details</string>
+    <string name="top_50">Top 50</string>
     </resources>
