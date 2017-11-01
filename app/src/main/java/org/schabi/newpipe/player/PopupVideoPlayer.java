@@ -314,8 +314,8 @@ public final class PopupVideoPlayer extends Service {
     }
 
     public void openControl(final Context context) {
-        final Intent intent = new Intent(context, PopupVideoPlayerActivity.class);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+        Intent intent = new Intent(context, PopupVideoPlayerActivity.class);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
         context.startActivity(intent);
