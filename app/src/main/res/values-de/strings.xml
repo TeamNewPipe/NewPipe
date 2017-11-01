@@ -268,4 +268,12 @@
 
     <string name="play_queue_remove">Entfernen</string>
     <string name="play_queue_audio_settings">Audio Einstellungen</string>
+    <string name="player_stream_failure">Abspielen des Streams fehlgeschlagen</string>
+    <string name="main_page_content">Inhalt der Hauptseite</string>
+    <string name="subscription_page_summary">Abonnement-Seite</string>
+    <string name="feed_page_summary">Feed-Seite</string>
+    <string name="channel_page_summary">Kanal-Seite</string>
+    <string name="title_activity_background_player">Hintergrund-Player</string>
+    <string name="title_activity_popup_player">Popup-Player</string>
+    <string name="play_queue_stream_detail">Details</string>
     </resources>
