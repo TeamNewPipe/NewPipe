@@ -203,7 +203,7 @@
     <string name="channel_unsubscribed">Abo beenden</string>
     <string name="tab_subscriptions">Abos</string>
 
-    <string name="fragment_whats_new">Änderungen</string>
+    <string name="fragment_whats_new">Neuigkeiten</string>
 
     <string name="enable_search_history_title">Suchverlauf</string>
     <string name="enable_search_history_summary">Speichere den Suchverlauf lokal</string>
