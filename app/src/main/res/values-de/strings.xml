@@ -278,4 +278,6 @@
     <string name="play_queue_stream_detail">Details</string>
     <string name="top_50">Top 50</string>
     <string name="player_unrecoverable_failure">Es ist ein unumgänglicher Fehler im Video-Spieler aufgetreten</string>
+    <string name="player_recoverable_failure">Player-Fehler gelöst</string>
+
     </resources>
