@@ -26,7 +26,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
@@ -34,9 +33,7 @@ import org.schabi.newpipe.fragments.subscription.SubscriptionService;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
-import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.Localization;
-import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -106,8 +103,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_channel, container, false);
-        return v;
+        return inflater.inflate(R.layout.fragment_channel, container, false);
     }
 
     @Override
@@ -154,29 +150,43 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         }
     }
 
+    private void openRssFeed() {
+        final ChannelInfo info = currentInfo;
+        if(info != null) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(info.feed_url));
+            startActivity(intent);
+        }
+    }
+
+    private void openChannelUriInBrowser() {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(intent);
+    }
+
+    private void shareChannelUri() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, url);
+        startActivity(Intent.createChooser(intent, getString(R.string.share_dialog_title)));
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_item_rss: {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentInfo.feed_url));
-                startActivity(intent);
-                return true;
-            }
-            case R.id.menu_item_openInBrowser: {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentInfo.url));
-                startActivity(intent);
-                return true;
-            }
+            case R.id.menu_item_rss:
+                openRssFeed();
+                break;
+            case R.id.menu_item_openInBrowser:
+                openChannelUriInBrowser();
+                break;
             case R.id.menu_item_share: {
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, currentInfo.url);
-                startActivity(Intent.createChooser(intent, getString(R.string.share_dialog_title)));
-                return true;
+                shareChannelUri();
+                break;
             }
             default:
                 return super.onOptionsItemSelected(item);
         }
+        return true;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
