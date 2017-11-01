@@ -263,4 +263,9 @@
     <string name="select_a_channel">Wähle einen Kanal aus</string>
     <string name="no_channel_subscribed_yet">Noch kein Kanal abonniert</string>
     <string name="trending">Trends</string>
+    <string name="popup_playing_append">"Angereiht an  Popup Player"</string>
+    <string name="play_all">Alles abspielen</string>
+
+    <string name="play_queue_remove">Entfernen</string>
+    <string name="play_queue_audio_settings">Audio Einstellungen</string>
     </resources>
