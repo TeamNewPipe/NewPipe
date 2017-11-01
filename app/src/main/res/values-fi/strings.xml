@@ -253,4 +253,19 @@
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Uudet &amp; kuumat</string>
     <string name="service_kosk_string">%1$s/%2$s</string>
+<string name="show_hold_to_append_summary">Näytä vihje kun taustasoitto tai popup painiketta on painettu</string>
+    <string name="background_player_append">Lisätty taustasoittojonoon</string>
+    <string name="popup_playing_append">Lisätty popup-jonoon</string>
+    <string name="play_all">Toista kaikki</string>
+
+    <string name="player_stream_failure">Suoratoisto epäonnistui</string>
+    <string name="player_unrecoverable_failure">Palautuskelvoton soittimen virhe</string>
+    <string name="player_recoverable_failure">Palaudutaan soittimen virheestä</string>
+
+    <string name="title_activity_background_player">Taustasoittosoitin</string>
+    <string name="title_activity_popup_player">Popup-soitin</string>
+    <string name="play_queue_remove">Poista</string>
+    <string name="play_queue_stream_detail">Yksityiskohdat</string>
+    <string name="play_queue_audio_settings">Audioasetukset</string>
+    <string name="hold_to_append">Pidä pohjassa lisätäksesi jonoon</string>
 </resources>
