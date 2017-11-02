@@ -280,4 +280,20 @@
     <string name="top_50">Primi 50</string>
     <string name="new_and_hot">Nuovi e caldi</string>
     <string name="service_kosk_string">%1$s/%2$s</string>
+<string name="show_hold_to_append_title">Mostra il suggerimento di tenere premuto per appendere</string>
+    <string name="show_hold_to_append_summary">Mostra un suggerimento quando il pulsante in sottofondo o a comparsa viene premuto nella pagina dei dettagli di un video</string>
+    <string name="background_player_append">In coda al riproduttore in sottofondo</string>
+    <string name="popup_playing_append">In coda al riproduttore a comparsa</string>
+    <string name="play_all">Riproduci tutto</string>
+
+    <string name="player_stream_failure">Impossibile riprodurre questo flusso</string>
+    <string name="player_unrecoverable_failure">Si è verificato un errore irrecuperabile al riproduttore</string>
+    <string name="player_recoverable_failure">Recupero dall\'errore del riproduttore</string>
+
+    <string name="title_activity_background_player">Riproduttore di sottofondo</string>
+    <string name="title_activity_popup_player">Riproduttore a comparsa</string>
+    <string name="play_queue_remove">Rimuovi</string>
+    <string name="play_queue_stream_detail">Dettagli</string>
+    <string name="play_queue_audio_settings">Impostazioni audio</string>
+    <string name="hold_to_append">Tieni premuto per accodare</string>
 </resources>

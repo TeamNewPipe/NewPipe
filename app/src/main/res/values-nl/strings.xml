@@ -261,4 +261,5 @@ te openen in pop-upmodus</string>
 
     <string name="item_deleted">Item verwijderd</string>
 <string name="delete_item_search_history">Wil je dit item uit je geschiedenis verwijderen?</string>
-</resources>
+<string name="show_hold_to_append_title">Laat vasthouden om te toevoegen zien</string>
+    </resources>
