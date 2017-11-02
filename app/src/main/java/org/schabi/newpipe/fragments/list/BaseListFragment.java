@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.PopupMenu;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -139,6 +140,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                         useAsFrontPage?getParentFragment().getFragmentManager():getFragmentManager(),
                         selectedItem.service_id, selectedItem.url, selectedItem.name);
             }
+
+            @Override
+            public void dropdownClicked(StreamInfoItem selectedItem, PopupMenu menu) {}
         });
 
         infoListAdapter.setOnChannelSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<ChannelInfoItem>() {
@@ -149,6 +153,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                         useAsFrontPage?getParentFragment().getFragmentManager():getFragmentManager(),
                         selectedItem.service_id, selectedItem.url, selectedItem.name);
             }
+
+            @Override
+            public void dropdownClicked(ChannelInfoItem selectedItem, PopupMenu menu) {}
         });
 
         infoListAdapter.setOnPlaylistSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<PlaylistInfoItem>() {
@@ -159,6 +166,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                         useAsFrontPage?getParentFragment().getFragmentManager():getFragmentManager(),
                         selectedItem.service_id, selectedItem.url, selectedItem.name);
             }
+
+            @Override
+            public void dropdownClicked(PlaylistInfoItem selectedItem, PopupMenu menu) {}
         });
 
         itemsList.clearOnScrollListeners();

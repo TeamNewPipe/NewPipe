@@ -160,7 +160,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         headerPlayAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(buildPlaylistIntent(MainVideoPlayer.class));
+                NavigationHelper.playOnMainPlayer(activity, getPlayQueue());
             }
         });
         headerPopupButton.setOnClickListener(new View.OnClickListener() {
@@ -173,26 +173,25 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                     toast.show();
                     return;
                 }
-                activity.startService(buildPlaylistIntent(PopupVideoPlayer.class));
+                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue());
             }
         });
         headerBackgroundButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.startService(buildPlaylistIntent(BackgroundPlayer.class));
+                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue());
             }
         });
     }
 
-    private Intent buildPlaylistIntent(final Class targetClazz) {
-        final PlayQueue playQueue = new ExternalPlayQueue(
+    private PlayQueue getPlayQueue() {
+        return new ExternalPlayQueue(
                 currentInfo.service_id,
                 currentInfo.url,
                 currentInfo.next_streams_url,
                 infoListAdapter.getItemsList(),
                 0
         );
-        return NavigationHelper.getPlayerIntent(activity, targetClazz, playQueue);
     }
 
     @Override

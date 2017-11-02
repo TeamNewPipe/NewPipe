@@ -48,6 +48,7 @@ import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.util.ListHelper;
+import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
@@ -130,16 +131,6 @@ public final class BackgroundPlayer extends Service {
     /*//////////////////////////////////////////////////////////////////////////
     // Actions
     //////////////////////////////////////////////////////////////////////////*/
-
-    public void openControl(final Context context) {
-        Intent intent = new Intent(context, BackgroundPlayerActivity.class);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        }
-        context.startActivity(intent);
-        context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
-    }
-
     private void onClose() {
         if (DEBUG) Log.d(TAG, "onClose() called");
 
@@ -470,7 +461,7 @@ public final class BackgroundPlayer extends Service {
                     onVideoPlayPause();
                     break;
                 case ACTION_OPEN_CONTROLS:
-                    openControl(getApplicationContext());
+                    NavigationHelper.openBackgroundPlayerControl(getApplicationContext());
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();

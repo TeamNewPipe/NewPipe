@@ -36,6 +36,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -459,6 +460,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             public void selected(StreamInfoItem selectedItem) {
                 selectAndLoadVideo(selectedItem.service_id, selectedItem.url, selectedItem.name);
             }
+
+            @Override
+            public void dropdownClicked(StreamInfoItem selectedItem, PopupMenu menu) {}
         });
 
         videoTitleRoot.setOnClickListener(this);
@@ -792,16 +796,12 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             ((HistoryListener) activity).onVideoPlayed(currentInfo, getSelectedVideoStream());
         }
 
-        final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
-        final Intent intent;
+        final PlayQueue itemQueue = new SinglePlayQueue(currentInfo);
         if (append) {
-            Toast.makeText(activity, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
-            intent = NavigationHelper.getPlayerEnqueueIntent(activity, PopupVideoPlayer.class, playQueue);
+            NavigationHelper.enqueueOnPopupPlayer(activity, itemQueue);
         } else {
-            Toast.makeText(activity, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
-            intent = NavigationHelper.getPlayerIntent(activity, PopupVideoPlayer.class, playQueue, getSelectedVideoStream().resolution);
+            NavigationHelper.playOnPopupPlayer(activity, itemQueue);
         }
-        activity.startService(intent);
     }
 
     private void openVideoPlayer() {
@@ -820,13 +820,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
 
     private void openNormalBackgroundPlayer(final boolean append) {
-        final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
+        final PlayQueue itemQueue = new SinglePlayQueue(currentInfo);
         if (append) {
-            activity.startService(NavigationHelper.getPlayerEnqueueIntent(activity, BackgroundPlayer.class, playQueue));
-            Toast.makeText(activity, R.string.background_player_append, Toast.LENGTH_SHORT).show();
+            NavigationHelper.enqueueOnBackgroundPlayer(activity, itemQueue);
         } else {
-            activity.startService(NavigationHelper.getPlayerIntent(activity, BackgroundPlayer.class, playQueue));
-            Toast.makeText(activity, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
+            NavigationHelper.playOnBackgroundPlayer(activity, itemQueue);
         }
     }
 
@@ -865,22 +863,20 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     }
 
     private void openNormalPlayer(VideoStream selectedVideoStream) {
-        Intent mIntent;
         boolean useOldPlayer = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.use_old_player_key), false)
                 || (Build.VERSION.SDK_INT < 16);
         if (!useOldPlayer) {
             // ExoPlayer
-            final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
-            mIntent = NavigationHelper.getPlayerIntent(activity, MainVideoPlayer.class, playQueue, getSelectedVideoStream().resolution);
+            NavigationHelper.playOnMainPlayer(activity, new SinglePlayQueue(currentInfo));
         } else {
             // Internal Player
-            mIntent = new Intent(activity, PlayVideoActivity.class)
+            final Intent mIntent = new Intent(activity, PlayVideoActivity.class)
                     .putExtra(PlayVideoActivity.VIDEO_TITLE, currentInfo.name)
                     .putExtra(PlayVideoActivity.STREAM_URL, selectedVideoStream.url)
                     .putExtra(PlayVideoActivity.VIDEO_URL, currentInfo.url)
                     .putExtra(PlayVideoActivity.START_POSITION, currentInfo.start_position);
+            startActivity(mIntent);
         }
-        startActivity(mIntent);
     }
 
     private void openExternalVideoPlayer(VideoStream selectedVideoStream) {

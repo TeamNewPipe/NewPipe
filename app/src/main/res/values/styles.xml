@@ -27,6 +27,7 @@
         <item name="history">@drawable/ic_history_black_24dp</item>
         <item name="drag_handle">@drawable/ic_drag_handle_black_24dp</item>
         <item name="selected">@drawable/ic_fiber_manual_record_black_24dp</item>
+        <item name="more_vertical">@drawable/ic_more_vert_black_24dp</item>
 
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
@@ -65,6 +66,7 @@
         <item name="history">@drawable/ic_history_white_24dp</item>
         <item name="drag_handle">@drawable/ic_drag_handle_white_24dp</item>
         <item name="selected">@drawable/ic_fiber_manual_record_white_24dp</item>
+        <item name="more_vertical">@drawable/ic_more_vert_white_24dp</item>
 
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>

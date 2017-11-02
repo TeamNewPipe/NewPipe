@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
@@ -134,6 +135,9 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
                 NavigationHelper.openChannelFragment(getParentFragment().getFragmentManager(), selectedItem.service_id, selectedItem.url, selectedItem.name);
 
             }
+
+            @Override
+            public void dropdownClicked(ChannelInfoItem selectedItem, PopupMenu menu) {}
         });
 
         headerRootLayout.setOnClickListener(new View.OnClickListener() {

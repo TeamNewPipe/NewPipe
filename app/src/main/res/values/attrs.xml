@@ -20,6 +20,7 @@
     <attr name="history" format="reference"/>
     <attr name="drag_handle" format="reference"/>
     <attr name="selected" format="reference"/>
+    <attr name="more_vertical" format="reference"/>
 
     <!-- Can't refer to colors directly into drawable's xml-->
     <attr name="toolbar_shadow_drawable" format="reference"/>

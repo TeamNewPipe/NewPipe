@@ -318,15 +318,6 @@ public final class PopupVideoPlayer extends Service {
         stopSelf();
     }
 
-    public void openControl(final Context context) {
-        Intent intent = new Intent(context, PopupVideoPlayerActivity.class);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        }
-        context.startActivity(intent);
-        context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
@@ -622,7 +613,7 @@ public final class PopupVideoPlayer extends Service {
                     onVideoPlayPause();
                     break;
                 case ACTION_OPEN_CONTROLS:
-                    openControl(getApplicationContext());
+                    NavigationHelper.openPopupPlayerControl(getApplicationContext());
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();

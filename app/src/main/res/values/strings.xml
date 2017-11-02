@@ -310,4 +310,6 @@
     <string name="play_queue_stream_detail">Details</string>
     <string name="play_queue_audio_settings">Audio Settings</string>
     <string name="hold_to_append">Hold To Enqueue</string>
+    <string name="enqueue_on_background">Enqueue on Background</string>
+    <string name="enqueue_on_popup">Enqueue on Popup</string>
 </resources>
