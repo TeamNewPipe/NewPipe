@@ -133,7 +133,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
             }
         });
         
-        final MenuItem mainPlay = actionMenu.getMenu().add(R.string.play_all);
+        final MenuItem mainPlay = actionMenu.getMenu().add(R.string.play_btn_text);
         mainPlay.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {

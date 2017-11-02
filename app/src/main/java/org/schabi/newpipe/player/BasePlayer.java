@@ -646,7 +646,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         if (currentSourceIndex != playQueue.getIndex()) {
             Log.e(TAG, "Play Queue may be desynchronized: item index=[" + currentSourceIndex +
                     "], queue index=[" + playQueue.getIndex() + "]");
-        } else if (simpleExoPlayer.getCurrentWindowIndex() != currentSourceIndex) {
+        } else if (simpleExoPlayer.getCurrentWindowIndex() != currentSourceIndex || !isPlaying()) {
             final long startPos = info != null ? info.start_position : 0;
             if (DEBUG) Log.d(TAG, "Rewinding to correct window: " + currentSourceIndex + " at: " + getTimeString((int)startPos));
             simpleExoPlayer.seekTo(currentSourceIndex, startPos);
@@ -760,10 +760,6 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
             simpleExoPlayer.seekToDefaultPosition();
         } else {
             playQueue.setIndex(index);
-        }
-
-        if (!isPlaying()) {
-            onVideoPlayPause();
         }
     }
 

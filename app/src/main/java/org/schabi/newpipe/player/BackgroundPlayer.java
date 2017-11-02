@@ -69,6 +69,10 @@ public final class BackgroundPlayer extends Service {
     public static final String ACTION_REPEAT = "org.schabi.newpipe.player.BackgroundPlayer.REPEAT";
     public static final String ACTION_PLAY_NEXT = "org.schabi.newpipe.player.BackgroundPlayer.ACTION_PLAY_NEXT";
     public static final String ACTION_PLAY_PREVIOUS = "org.schabi.newpipe.player.BackgroundPlayer.ACTION_PLAY_PREVIOUS";
+    public static final String ACTION_FAST_REWIND = "org.schabi.newpipe.player.BackgroundPlayer.ACTION_FAST_REWIND";
+    public static final String ACTION_FAST_FORWARD = "org.schabi.newpipe.player.BackgroundPlayer.ACTION_FAST_FORWARD";
+
+    public static final String SET_IMAGE_RESOURCE_METHOD = "setImageResource";
 
     private BasePlayerImpl basePlayerImpl;
     private LockManager lockManager;
@@ -182,6 +186,8 @@ public final class BackgroundPlayer extends Service {
     }
 
     private void setupNotification(RemoteViews remoteViews) {
+        if (basePlayerImpl == null) return;
+
         remoteViews.setTextViewText(R.id.notificationSongName, basePlayerImpl.getVideoTitle());
         remoteViews.setTextViewText(R.id.notificationArtist, basePlayerImpl.getUploaderName());
 
@@ -194,10 +200,21 @@ public final class BackgroundPlayer extends Service {
         remoteViews.setOnClickPendingIntent(R.id.notificationRepeat,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_REPEAT), PendingIntent.FLAG_UPDATE_CURRENT));
 
-        remoteViews.setOnClickPendingIntent(R.id.notificationFRewind,
-                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PREVIOUS), PendingIntent.FLAG_UPDATE_CURRENT));
-        remoteViews.setOnClickPendingIntent(R.id.notificationFForward,
-                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_NEXT), PendingIntent.FLAG_UPDATE_CURRENT));
+        if (basePlayerImpl.playQueue != null && basePlayerImpl.playQueue.size() > 1) {
+            remoteViews.setInt(R.id.notificationFRewind, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_previous);
+            remoteViews.setInt(R.id.notificationFForward, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_next);
+            remoteViews.setOnClickPendingIntent(R.id.notificationFRewind,
+                    PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PREVIOUS), PendingIntent.FLAG_UPDATE_CURRENT));
+            remoteViews.setOnClickPendingIntent(R.id.notificationFForward,
+                    PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_NEXT), PendingIntent.FLAG_UPDATE_CURRENT));
+        } else {
+            remoteViews.setInt(R.id.notificationFRewind, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_rewind);
+            remoteViews.setInt(R.id.notificationFForward, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_fastforward);
+            remoteViews.setOnClickPendingIntent(R.id.notificationFRewind,
+                    PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_FAST_REWIND), PendingIntent.FLAG_UPDATE_CURRENT));
+            remoteViews.setOnClickPendingIntent(R.id.notificationFForward,
+                    PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_FAST_FORWARD), PendingIntent.FLAG_UPDATE_CURRENT));
+        }
 
         setRepeatModeIcon(remoteViews, basePlayerImpl.getRepeatMode());
     }
@@ -232,17 +249,15 @@ public final class BackgroundPlayer extends Service {
     //////////////////////////////////////////////////////////////////////////*/
 
     private void setRepeatModeIcon(final RemoteViews remoteViews, final int repeatMode) {
-        final String methodName = "setImageResource";
-
         switch (repeatMode) {
             case Player.REPEAT_MODE_OFF:
-                remoteViews.setInt(R.id.notificationRepeat, methodName, R.drawable.exo_controls_repeat_off);
+                remoteViews.setInt(R.id.notificationRepeat, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_repeat_off);
                 break;
             case Player.REPEAT_MODE_ONE:
-                remoteViews.setInt(R.id.notificationRepeat, methodName, R.drawable.exo_controls_repeat_one);
+                remoteViews.setInt(R.id.notificationRepeat, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_repeat_one);
                 break;
             case Player.REPEAT_MODE_ALL:
-                remoteViews.setInt(R.id.notificationRepeat, methodName, R.drawable.exo_controls_repeat_all);
+                remoteViews.setInt(R.id.notificationRepeat, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_repeat_all);
                 break;
         }
     }
@@ -441,6 +456,8 @@ public final class BackgroundPlayer extends Service {
             intentFilter.addAction(ACTION_REPEAT);
             intentFilter.addAction(ACTION_PLAY_PREVIOUS);
             intentFilter.addAction(ACTION_PLAY_NEXT);
+            intentFilter.addAction(ACTION_FAST_REWIND);
+            intentFilter.addAction(ACTION_FAST_FORWARD);
 
             intentFilter.addAction(Intent.ACTION_SCREEN_ON);
             intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
@@ -471,6 +488,12 @@ public final class BackgroundPlayer extends Service {
                     break;
                 case ACTION_PLAY_PREVIOUS:
                     onPlayPrevious();
+                    break;
+                case ACTION_FAST_FORWARD:
+                    onFastForward();
+                    break;
+                case ACTION_FAST_REWIND:
+                    onFastRewind();
                     break;
                 case Intent.ACTION_SCREEN_ON:
                     onScreenOnOff(true);

@@ -66,6 +66,7 @@ import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
+import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
@@ -800,7 +801,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (append) {
             NavigationHelper.enqueueOnPopupPlayer(activity, itemQueue);
         } else {
-            NavigationHelper.playOnPopupPlayer(activity, itemQueue);
+            Toast.makeText(activity, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
+            final Intent intent = NavigationHelper.getPlayerIntent(
+                    activity, PopupVideoPlayer.class, itemQueue, getSelectedVideoStream().resolution
+            );
+            activity.startService(intent);
         }
     }
 
@@ -863,20 +868,21 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     }
 
     private void openNormalPlayer(VideoStream selectedVideoStream) {
-        boolean useOldPlayer = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.use_old_player_key), false)
-                || (Build.VERSION.SDK_INT < 16);
+        Intent mIntent;
+        boolean useOldPlayer = PlayerHelper.isUsingOldPlayer(activity) || (Build.VERSION.SDK_INT < 16);
         if (!useOldPlayer) {
             // ExoPlayer
-            NavigationHelper.playOnMainPlayer(activity, new SinglePlayQueue(currentInfo));
+            final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
+            mIntent = NavigationHelper.getPlayerIntent(activity, MainVideoPlayer.class, playQueue, getSelectedVideoStream().resolution);
         } else {
             // Internal Player
-            final Intent mIntent = new Intent(activity, PlayVideoActivity.class)
+            mIntent = new Intent(activity, PlayVideoActivity.class)
                     .putExtra(PlayVideoActivity.VIDEO_TITLE, currentInfo.name)
                     .putExtra(PlayVideoActivity.STREAM_URL, selectedVideoStream.url)
                     .putExtra(PlayVideoActivity.VIDEO_URL, currentInfo.url)
                     .putExtra(PlayVideoActivity.START_POSITION, currentInfo.start_position);
-            startActivity(mIntent);
         }
+        startActivity(mIntent);
     }
 
     private void openExternalVideoPlayer(VideoStream selectedVideoStream) {
