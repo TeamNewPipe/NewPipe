@@ -156,7 +156,7 @@
 
     <string name="start">Počni</string>
     <string name="pause">Pauziraj</string>
-    <string name="view">Pregled</string>
+    <string name="view">Reproduciraj</string>
     <string name="delete">Izbriši</string>
     <string name="checksum">Kontrolna suma</string>
 
@@ -248,4 +248,11 @@
 </plurals>
 
     <string name="item_deleted">Stavka je izbrisana</string>
-</resources>
+<string name="background_player_append">U redu čekanja za reprod. u pozadini</string>
+    <string name="play_all">Reproduciraj sve</string>
+
+    <string name="player_stream_failure">Nije moguće reproducirati ovaj stream</string>
+    <string name="player_unrecoverable_failure">Dogodila se neoporavljiva pogreška reproduktora</string>
+    <string name="player_recoverable_failure">Oporavljanje od pogreške reproduktora</string>
+
+    </resources>
