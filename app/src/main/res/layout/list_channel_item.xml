@@ -7,7 +7,9 @@
     android:layout_height="@dimen/video_item_search_height"
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
-    android:padding="@dimen/video_item_search_padding">
+    android:focusable="true"
+    android:paddingTop="@dimen/video_item_search_padding"
+    android:paddingBottom="@dimen/video_item_search_padding">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/itemThumbnailView"
@@ -16,10 +18,26 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/video_item_search_image_right_margin"
         android:layout_marginRight="@dimen/video_item_search_image_right_margin"
         android:contentDescription="@string/list_thumbnail_view_description"
         android:src="@drawable/buddy"
         tools:ignore="RtlHardcoded"/>
+
+    <ImageButton
+        android:id="@+id/itemActionDropdown"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/video_item_search_thumbnail_image_height"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/video_item_search_image_right_margin"
+        android:layout_marginStart="@dimen/video_item_search_image_right_margin"
+        android:background="?attr/selectableItemBackground"
+        android:src="?attr/more_vertical"
+        android:visibility="gone"
+        tools:ignore="ContentDescription"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/itemTitleView"
@@ -27,12 +45,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="@dimen/video_item_search_image_right_margin"
+        android:layout_toLeftOf="@id/itemActionDropdown"
+        android:layout_toStartOf="@id/itemActionDropdown"
         android:layout_toRightOf="@+id/itemThumbnailView"
+        android:layout_toEndOf="@+id/itemThumbnailView"
         android:ellipsize="end"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/video_item_search_title_text_size"
-        tools:text="Channel Title, Lorem ipsum"/>
+        tools:text="Channel Title, Lorem ipsum" />
 
     <TextView
         android:id="@+id/itemChannelDescriptionView"
@@ -40,19 +61,25 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/itemAdditionalDetails"
         android:layout_marginBottom="@dimen/channel_item_description_to_details_margin"
+        android:layout_toLeftOf="@id/itemActionDropdown"
+        android:layout_toStartOf="@id/itemActionDropdown"
         android:layout_toRightOf="@+id/itemThumbnailView"
+        android:layout_toEndOf="@+id/itemThumbnailView"
         android:ellipsize="end"
         android:lines="2"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_uploader_text_size"
-        tools:text="Channel description, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blandit"/>
+        tools:text="Channel description, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blandit" />
 
     <TextView
         android:id="@+id/itemAdditionalDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/itemActionDropdown"
+        android:layout_toStartOf="@id/itemActionDropdown"
         android:layout_toRightOf="@+id/itemThumbnailView"
+        android:layout_toEndOf="@+id/itemThumbnailView"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_upload_date_text_size"

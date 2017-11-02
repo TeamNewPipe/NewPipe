@@ -1,6 +1,5 @@
 package org.schabi.newpipe.fragments.list.playlist;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,10 +23,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
-import org.schabi.newpipe.player.BackgroundPlayer;
-import org.schabi.newpipe.player.MainVideoPlayer;
-import org.schabi.newpipe.player.PopupVideoPlayer;
-import org.schabi.newpipe.playlist.ExternalPlayQueue;
+import org.schabi.newpipe.playlist.PlaylistPlayQueue;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -185,7 +181,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     }
 
     private PlayQueue getPlayQueue() {
-        return new ExternalPlayQueue(
+        return new PlaylistPlayQueue(
                 currentInfo.service_id,
                 currentInfo.url,
                 currentInfo.next_streams_url,

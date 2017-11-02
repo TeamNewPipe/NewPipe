@@ -157,7 +157,7 @@ public class MediaSourceManager {
     }
 
     private void onPlayQueueChanged(final PlayQueueEvent event) {
-        if (playQueue.isEmpty()) {
+        if (playQueue.isEmpty() && playQueue.isComplete()) {
             playbackListener.shutdown();
             return;
         }

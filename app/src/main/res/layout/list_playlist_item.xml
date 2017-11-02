@@ -7,7 +7,9 @@
     android:layout_height="@dimen/video_item_search_height"
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
-    android:padding="@dimen/video_item_search_padding">
+    android:focusable="true"
+    android:paddingTop="@dimen/video_item_search_padding"
+    android:paddingBottom="@dimen/video_item_search_padding">
 
     <ImageView
         android:id="@+id/itemThumbnailView"
@@ -16,17 +18,35 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/video_item_search_image_right_margin"
         android:layout_marginRight="@dimen/video_item_search_image_right_margin"
         android:contentDescription="@string/list_thumbnail_view_description"
         android:scaleType="fitEnd"
         android:src="@drawable/dummy_thumbnail_playlist"
         tools:ignore="RtlHardcoded"/>
 
+    <ImageButton
+        android:id="@+id/itemActionDropdown"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="@dimen/video_item_search_image_right_margin"
+        android:layout_marginStart="@dimen/video_item_search_image_right_margin"
+        android:background="?attr/selectableItemBackground"
+        android:src="?attr/more_vertical"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:ignore="ContentDescription"/>
+
     <TextView
         android:id="@+id/itemStreamCountView"
         android:layout_width="@dimen/playlist_item_thumbnail_stream_count_width"
         android:layout_height="match_parent"
         android:layout_alignBottom="@id/itemThumbnailView"
+        android:layout_toLeftOf="@id/itemActionDropdown"
+        android:layout_toStartOf="@id/itemActionDropdown"
         android:layout_alignRight="@id/itemThumbnailView"
         android:layout_alignTop="@id/itemThumbnailView"
         android:background="@color/playlist_stream_count_background_color"
@@ -46,6 +66,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@id/itemActionDropdown"
+        android:layout_toStartOf="@id/itemActionDropdown"
         android:layout_toRightOf="@+id/itemThumbnailView"
         android:ellipsize="end"
         android:maxLines="2"
@@ -59,6 +81,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/itemTitleView"
+        android:layout_toLeftOf="@id/itemActionDropdown"
+        android:layout_toStartOf="@id/itemActionDropdown"
         android:layout_toRightOf="@+id/itemThumbnailView"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"

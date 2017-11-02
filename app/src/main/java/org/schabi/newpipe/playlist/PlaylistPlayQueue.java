@@ -4,6 +4,8 @@ import android.util.Log;
 
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
+import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
+import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.util.ExtractorHelper;
 
@@ -17,9 +19,10 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public final class ExternalPlayQueue extends PlayQueue {
-    private final String TAG = "ExternalPlayQueue@" + Integer.toHexString(hashCode());
+public final class PlaylistPlayQueue extends PlayQueue {
+    private final String TAG = "PlaylistPlayQueue@" + Integer.toHexString(hashCode());
 
+    private boolean isInitial;
     private boolean isComplete;
 
     private int serviceId;
@@ -28,7 +31,11 @@ public final class ExternalPlayQueue extends PlayQueue {
 
     private transient Disposable fetchReactor;
 
-    public ExternalPlayQueue(final int serviceId,
+    public PlaylistPlayQueue(final PlaylistInfoItem item) {
+        this(item.service_id, item.url, item.url, Collections.<InfoItem>emptyList(), 0);
+    }
+
+    public PlaylistPlayQueue(final int serviceId,
                              final String url,
                              final String nextPageUrl,
                              final List<InfoItem> streams,
@@ -39,7 +46,8 @@ public final class ExternalPlayQueue extends PlayQueue {
         this.nextUrl = nextPageUrl;
         this.serviceId = serviceId;
 
-        this.isComplete = nextPageUrl == null || nextPageUrl.isEmpty();
+        this.isInitial = streams.isEmpty();
+        this.isComplete = !isInitial && (nextPageUrl == null || nextPageUrl.isEmpty());
     }
 
     @Override
@@ -49,13 +57,51 @@ public final class ExternalPlayQueue extends PlayQueue {
 
     @Override
     public void fetch() {
-       ExtractorHelper.getMorePlaylistItems(this.serviceId, this.baseUrl, this.nextUrl)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getPlaylistObserver());
+        if (isInitial) {
+            ExtractorHelper.getPlaylistInfo(this.serviceId, this.baseUrl, false)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(getInitialPlaylistObserver());
+        } else {
+            ExtractorHelper.getMorePlaylistItems(this.serviceId, this.baseUrl, this.nextUrl)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(getPlaylistNextItemsObserver());
+        }
     }
 
-    private SingleObserver<ListExtractor.NextItemsResult> getPlaylistObserver() {
+    private SingleObserver<PlaylistInfo> getInitialPlaylistObserver() {
+        return new SingleObserver<PlaylistInfo>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+                if (isComplete || (fetchReactor != null && !fetchReactor.isDisposed())) {
+                    d.dispose();
+                } else {
+                    fetchReactor = d;
+                }
+            }
+
+            @Override
+            public void onSuccess(@NonNull PlaylistInfo result) {
+                if (!result.has_more_streams) isComplete = true;
+                nextUrl = result.next_streams_url;
+
+                append(extractPlaylistItems(result.related_streams));
+
+                fetchReactor.dispose();
+                fetchReactor = null;
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                Log.e(TAG, "Error fetching more playlist, marking playlist as complete.", e);
+                isComplete = true;
+                append(); // Notify change
+            }
+        };
+    }
+
+    private SingleObserver<ListExtractor.NextItemsResult> getPlaylistNextItemsObserver() {
         return new SingleObserver<ListExtractor.NextItemsResult>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {

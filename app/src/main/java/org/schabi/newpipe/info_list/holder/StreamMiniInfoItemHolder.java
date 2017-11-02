@@ -2,7 +2,6 @@ package org.schabi.newpipe.info_list.holder;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
@@ -19,9 +17,6 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
-import org.schabi.newpipe.player.BackgroundPlayer;
-import org.schabi.newpipe.player.PopupVideoPlayer;
-import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -91,11 +86,13 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
             case AUDIO_LIVE_STREAM:
             case NONE:
             default:
+                disableActionDropdown();
                 break;
         }
     }
 
     private void enableActionDropdown(final StreamInfoItem item) {
+        itemActionDropdown.setClickable(true);
         itemActionDropdown.setVisibility(View.VISIBLE);
         itemActionDropdown.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,10 +106,34 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         });
     }
 
+    private void disableActionDropdown() {
+        itemActionDropdown.setVisibility(View.GONE);
+        itemActionDropdown.setClickable(false);
+        itemActionDropdown.setOnClickListener(null);
+    }
+
     private PopupMenu getStreamDropdown(final Context context, final View anchor, final StreamInfoItem infoItem) {
         PopupMenu actionMenu = new PopupMenu(context, anchor);
 
-        final MenuItem mainPlay = actionMenu.getMenu().add(R.string.play_btn_text);
+        final MenuItem backgroundEnqueue = actionMenu.getMenu().add(R.string.enqueue_on_background);
+        backgroundEnqueue.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(infoItem));
+                return true;
+            }
+        });
+
+        final MenuItem popupEnqueue = actionMenu.getMenu().add(R.string.enqueue_on_popup);
+        popupEnqueue.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(infoItem));
+                return true;
+            }
+        });
+        
+        final MenuItem mainPlay = actionMenu.getMenu().add(R.string.play_all);
         mainPlay.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
@@ -135,24 +156,6 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 NavigationHelper.playOnBackgroundPlayer(context, new SinglePlayQueue(infoItem));
-                return true;
-            }
-        });
-
-        final MenuItem backgroundEnqueue = actionMenu.getMenu().add(R.string.enqueue_on_background);
-        backgroundEnqueue.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(infoItem));
-                return true;
-            }
-        });
-
-        final MenuItem popupEnqueue = actionMenu.getMenu().add(R.string.enqueue_on_popup);
-        popupEnqueue.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(infoItem));
                 return true;
             }
         });
