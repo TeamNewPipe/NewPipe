@@ -31,13 +31,13 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="@dimen/video_item_search_image_right_margin"
-        android:layout_marginStart="@dimen/video_item_search_image_right_margin"
+        android:paddingLeft="@dimen/video_item_search_padding"
+        android:paddingStart="@dimen/video_item_search_padding"
         android:background="?attr/selectableItemBackground"
         android:src="?attr/more_vertical"
         android:visibility="gone"
-        tools:ignore="ContentDescription"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        tools:ignore="ContentDescription,RtlSymmetry"/>
 
     <TextView
         android:id="@+id/itemTitleView"
