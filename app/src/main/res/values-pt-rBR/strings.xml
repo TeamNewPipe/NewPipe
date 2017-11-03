@@ -256,7 +256,6 @@ abrir em modo popup</string>
     <string name="trending">Em Alta</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Novos e tendências</string>
-    <string name="service_kosk_string">%1$s/%2$s</string>
 <string name="show_hold_to_append_title">Mostrar dica para Mantenha pressionado para colocar na fila</string>
     <string name="show_hold_to_append_summary">Mostrar dica quando o botão de plano de fundo ou de popup for pressionado na página de detalhes do vídeo</string>
     <string name="background_player_append">Adicionado a fila do reprodutor em plano de fundo</string>
