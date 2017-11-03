@@ -257,7 +257,6 @@
 
     <string name="item_deleted">Objet effacé</string>
 <string name="delete_item_search_history">Voulez-vous supprimer cet élément de l\'historique de recherche ?</string>
-<string name="service_kosk_string">%1$s/%2$s</string>
 <string name="main_page_content">Contentu</string>
     <string name="blank_page_summary">Page vide</string>
     <string name="subscription_page_summary">Page de souscription</string>
