@@ -268,4 +268,5 @@
     <string name="play_queue_stream_detail">Yksityiskohdat</string>
     <string name="play_queue_audio_settings">Audioasetukset</string>
     <string name="hold_to_append">Pidä pohjassa lisätäksesi jonoon</string>
-</resources>
+<string name="show_hold_to_append_title">Näytä vihje soittolistalle</string>
+    </resources>
