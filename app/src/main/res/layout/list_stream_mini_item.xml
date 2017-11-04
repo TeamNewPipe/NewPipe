@@ -8,8 +8,7 @@
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    android:paddingTop="@dimen/video_item_search_padding"
-    android:paddingBottom="@dimen/video_item_search_padding">
+    android:padding="@dimen/video_item_search_padding">
 
     <ImageView
         android:id="@+id/itemThumbnailView"
@@ -18,7 +17,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="@dimen/video_item_search_padding"
         android:layout_marginRight="@dimen/video_item_search_image_right_margin"
         android:contentDescription="@string/list_thumbnail_view_description"
         android:scaleType="centerCrop"
@@ -44,47 +42,30 @@
         tools:ignore="RtlHardcoded"
         tools:text="1:09:10"/>
 
-    <ImageButton
-        android:id="@+id/itemActionDropdown"
-        android:layout_width="wrap_content"
-        android:layout_height="55dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:paddingLeft="@dimen/video_item_search_padding"
-        android:paddingStart="@dimen/video_item_search_padding"
-        android:background="?attr/selectableItemBackground"
-        android:src="?attr/more_vertical"
-        android:visibility="gone"
-        tools:visibility="visible"
-        tools:ignore="ContentDescription,RtlSymmetry"/>
 
     <TextView
         android:id="@+id/itemVideoTitleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@id/itemActionDropdown"
-        android:layout_toStartOf="@id/itemActionDropdown"
         android:layout_toRightOf="@+id/itemThumbnailView"
         android:layout_toEndOf="@+id/itemThumbnailView"
         android:ellipsize="end"
         android:maxLines="2"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/video_item_search_title_text_size"
-        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum"/>
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum"
+         />
 
     <TextView
         android:id="@+id/itemUploaderView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/itemVideoTitleView"
-        android:layout_toLeftOf="@id/itemActionDropdown"
-        android:layout_toStartOf="@id/itemActionDropdown"
         android:layout_toRightOf="@+id/itemThumbnailView"
         android:layout_toEndOf="@+id/itemThumbnailView"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_uploader_text_size"
-        tools:text="Uploader"/>
+        tools:text="Uploader" />
 </RelativeLayout>

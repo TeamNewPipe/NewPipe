@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.PopupMenu;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -45,7 +44,6 @@ public class InfoItemBuilder {
 
     public interface OnInfoItemSelectedListener<T extends InfoItem> {
         void selected(T selectedItem);
-        void dropdownClicked(T selectedItem, PopupMenu menu);
     }
 
     private final Context context;

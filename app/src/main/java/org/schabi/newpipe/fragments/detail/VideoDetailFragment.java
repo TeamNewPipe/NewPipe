@@ -460,9 +460,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             public void selected(StreamInfoItem selectedItem) {
                 selectAndLoadVideo(selectedItem.service_id, selectedItem.url, selectedItem.name);
             }
-
-            @Override
-            public void dropdownClicked(StreamInfoItem selectedItem, PopupMenu menu) {}
         });
 
         videoTitleRoot.setOnClickListener(this);
