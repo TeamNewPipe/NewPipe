@@ -16,10 +16,10 @@ public final class ChannelPlayQueue extends AbstractInfoPlayQueue<ChannelInfo, C
     }
 
     public ChannelPlayQueue(final int serviceId,
-                             final String url,
-                             final String nextPageUrl,
-                             final List<InfoItem> streams,
-                             final int index) {
+                            final String url,
+                            final String nextPageUrl,
+                            final List<InfoItem> streams,
+                            final int index) {
         super(serviceId, url, nextPageUrl, streams, index);
     }
 

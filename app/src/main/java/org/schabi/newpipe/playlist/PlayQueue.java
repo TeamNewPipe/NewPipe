@@ -123,7 +123,7 @@ public abstract class PlayQueue implements Serializable {
      * May throw {@link IndexOutOfBoundsException}.
      * */
     public PlayQueueItem getItem(int index) {
-        if (index >= streams.size() || streams.get(index) == null) return null;
+        if (index < 0 || index >= streams.size() || streams.get(index) == null) return null;
         return streams.get(index);
     }
 

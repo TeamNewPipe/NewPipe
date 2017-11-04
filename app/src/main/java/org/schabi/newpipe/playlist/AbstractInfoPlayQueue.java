@@ -26,7 +26,7 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
     transient Disposable fetchReactor;
 
     AbstractInfoPlayQueue(final U item) {
-        this(item.service_id, item.url, item.url, Collections.<InfoItem>emptyList(), 0);
+        this(item.service_id, item.url, null, Collections.<InfoItem>emptyList(), 0);
     }
 
     AbstractInfoPlayQueue(final int serviceId,
@@ -55,7 +55,7 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
         return new SingleObserver<T>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
-                if (isComplete || (fetchReactor != null && !fetchReactor.isDisposed())) {
+                if (isComplete || !isInitial || (fetchReactor != null && !fetchReactor.isDisposed())) {
                     d.dispose();
                 } else {
                     fetchReactor = d;
@@ -64,6 +64,7 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
 
             @Override
             public void onSuccess(@NonNull T result) {
+                isInitial = false;
                 if (!result.has_more_streams) isComplete = true;
                 nextUrl = result.next_streams_url;
 
@@ -86,7 +87,7 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
         return new SingleObserver<ListExtractor.NextItemsResult>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
-                if (isComplete || (fetchReactor != null && !fetchReactor.isDisposed())) {
+                if (isComplete || isInitial || (fetchReactor != null && !fetchReactor.isDisposed())) {
                     d.dispose();
                 } else {
                     fetchReactor = d;

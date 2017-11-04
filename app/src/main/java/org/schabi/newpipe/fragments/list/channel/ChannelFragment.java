@@ -3,6 +3,7 @@ package org.schabi.newpipe.fragments.list.channel;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jakewharton.rxbinding2.view.RxView;
 
@@ -30,10 +33,14 @@ import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.fragments.subscription.SubscriptionService;
+import org.schabi.newpipe.playlist.ChannelPlayQueue;
+import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.PermissionHelper;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -68,6 +75,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     private TextView headerTitleView;
     private TextView headerSubscribersTextView;
     private Button headerSubscribeButton;
+
+    private Button headerPlayAllButton;
+    private Button headerPopupButton;
+    private Button headerBackgroundButton;
 
     private MenuItem menuRssButton;
 
@@ -124,6 +135,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         headerTitleView = headerRootLayout.findViewById(R.id.channel_title_view);
         headerSubscribersTextView = headerRootLayout.findViewById(R.id.channel_subscriber_view);
         headerSubscribeButton = headerRootLayout.findViewById(R.id.channel_subscribe_button);
+
+        headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_play_all_button);
+        headerPopupButton = headerRootLayout.findViewById(R.id.playlist_play_popup_button);
+        headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_play_bg_button);
 
         return headerRootLayout;
     }
@@ -391,6 +406,42 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();
         updateSubscription(result);
         monitorSubscription(result);
+
+        headerPlayAllButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavigationHelper.playOnMainPlayer(activity, getPlayQueue());
+            }
+        });
+        headerPopupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !PermissionHelper.checkSystemAlertWindowPermission(activity)) {
+                    Toast toast = Toast.makeText(activity, R.string.msg_popup_permission, Toast.LENGTH_LONG);
+                    TextView messageView = toast.getView().findViewById(android.R.id.message);
+                    if (messageView != null) messageView.setGravity(Gravity.CENTER);
+                    toast.show();
+                    return;
+                }
+                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue());
+            }
+        });
+        headerBackgroundButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue());
+            }
+        });
+    }
+
+    private PlayQueue getPlayQueue() {
+        return new ChannelPlayQueue(
+                currentInfo.service_id,
+                currentInfo.url,
+                currentInfo.next_streams_url,
+                infoListAdapter.getItemsList(),
+                0
+        );
     }
 
     @Override
