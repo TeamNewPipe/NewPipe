@@ -362,6 +362,7 @@ public final class PopupVideoPlayer extends Service {
     }
 
     private void updatePopupSize(int width, int height) {
+        if (playerImpl == null) return;
         if (DEBUG) Log.d(TAG, "updatePopupSize() called with: width = [" + width + "], height = [" + height + "]");
 
         width = (int) (width > maximumWidth ? maximumWidth : width < minimumWidth ? minimumWidth : width);
