@@ -30,10 +30,10 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
     }
 
     AbstractInfoPlayQueue(final int serviceId,
-                                 final String url,
-                                 final String nextPageUrl,
-                                 final List<InfoItem> streams,
-                                 final int index) {
+                          final String url,
+                          final String nextPageUrl,
+                          final List<InfoItem> streams,
+                          final int index) {
         super(index, extractListItems(streams));
 
         this.baseUrl = url;

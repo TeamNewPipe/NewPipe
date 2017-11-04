@@ -28,6 +28,7 @@ import com.google.android.exoplayer2.Player;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
@@ -56,6 +57,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private static final int RECYCLER_ITEM_POPUP_MENU_GROUP_ID = 47;
     private static final int PLAYBACK_SPEED_POPUP_MENU_GROUP_ID = 61;
     private static final int PLAYBACK_PITCH_POPUP_MENU_GROUP_ID = 97;
+
+    private static final int SMOOTH_SCROLL_MAXIMUM_DISTANCE = 80;
 
     private View rootView;
 
@@ -225,6 +228,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         itemsList.setAdapter(player.getPlayQueueAdapter());
         itemsList.setClickable(true);
         itemsList.setLongClickable(true);
+        itemsList.clearOnScrollListeners();
+        itemsList.addOnScrollListener(getQueueScrollListener());
 
         itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(itemsList);
@@ -345,6 +350,19 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     // Component Helpers
     ////////////////////////////////////////////////////////////////////////////
 
+    private OnScrollBelowItemsListener getQueueScrollListener() {
+        return new OnScrollBelowItemsListener() {
+            @Override
+            public void onScrolledDown(RecyclerView recyclerView) {
+                if (player != null && player.getPlayQueue() != null && !player.getPlayQueue().isComplete()) {
+                    player.getPlayQueue().fetch();
+                } else if (itemsList != null) {
+                    itemsList.clearOnScrollListeners();
+                }
+            }
+        };
+    }
+
     private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
         return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
             @Override
@@ -401,7 +419,23 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     private void scrollToSelected() {
-        itemsList.smoothScrollToPosition(player.getPlayQueue().getIndex());
+        if (player == null) return;
+
+        final int currentPlayingIndex = player.getPlayQueue().getIndex();
+        final int currentVisibleIndex;
+        if (itemsList.getLayoutManager() instanceof LinearLayoutManager) {
+            final LinearLayoutManager layout = ((LinearLayoutManager) itemsList.getLayoutManager());
+            currentVisibleIndex = layout.findFirstVisibleItemPosition();
+        } else {
+            currentVisibleIndex = 0;
+        }
+
+        final int distance = Math.abs(currentPlayingIndex - currentVisibleIndex);
+        if (distance < SMOOTH_SCROLL_MAXIMUM_DISTANCE) {
+            itemsList.smoothScrollToPosition(currentPlayingIndex);
+        } else {
+            itemsList.scrollToPosition(currentPlayingIndex);
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////

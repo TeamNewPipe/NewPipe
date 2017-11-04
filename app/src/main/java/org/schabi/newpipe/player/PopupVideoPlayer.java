@@ -573,6 +573,7 @@ public final class PopupVideoPlayer extends Service {
 
         @Override
         public void sync(@NonNull PlayQueueItem item, @Nullable StreamInfo info) {
+            if (currentItem == item && currentInfo == info) return;
             super.sync(item, info);
             updateMetadata();
         }

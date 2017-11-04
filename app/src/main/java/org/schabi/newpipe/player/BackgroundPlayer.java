@@ -378,6 +378,7 @@ public final class BackgroundPlayer extends Service {
 
         @Override
         public void sync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info) {
+            if (currentItem == item && currentInfo == info) return;
             super.sync(item, info);
 
             resetNotification();
