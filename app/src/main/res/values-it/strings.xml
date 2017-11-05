@@ -279,7 +279,6 @@
     <string name="trending">In tendenza</string>
     <string name="top_50">Primi 50</string>
     <string name="new_and_hot">Nuovi e caldi</string>
-    <string name="service_kosk_string">%1$s/%2$s</string>
 <string name="show_hold_to_append_title">Mostra il suggerimento di tenere premuto per appendere</string>
     <string name="show_hold_to_append_summary">Mostra un suggerimento quando il pulsante in sottofondo o a comparsa viene premuto nella pagina dei dettagli di un video</string>
     <string name="background_player_append">In coda al riproduttore in sottofondo</string>
