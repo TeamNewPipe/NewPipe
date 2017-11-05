@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources translatable="false">
+    <!-- Service -->
+    <string name="current_service_key" translatable="false">current_service</string>
+
     <!-- Key values -->
     <string name="download_path_key" translatable="false">download_path</string>
     <string name="download_path_audio_key" translatable="false">download_path_audio</string>
@@ -89,15 +92,34 @@
         <item>@string/black_theme_title</item>
     </string-array>
 
+    <!-- Content & History -->
     <string name="show_search_suggestions_key" translatable="false">show_search_suggestions</string>
     <string name="show_play_with_kodi_key" translatable="false">show_play_with_kodi</string>
     <string name="show_next_video_key" translatable="false">show_next_video</string>
+    <string name="show_hold_to_append_key" translatable="false">show_hold_to_append</string>
     <string name="default_language_value">en</string>
     <string name="search_language_key" translatable="false">search_language</string>
     <string name="show_age_restricted_content" translatable="false">show_age_restricted_content</string>
     <string name="use_tor_key" translatable="false">use_tor</string>
     <string name="enable_search_history_key" translatable="false">enable_search_history</string>
     <string name="enable_watch_history_key" translatable="false">enable_watch_history</string>
+    <string name="main_page_content_key" translatable="false">main_page_content</string>
+    <string name="blank_page_key" translatable="false">blank_page</string>
+    <string name="feed_page_key" translatable="false">feed_page</string>
+    <string name="subscription_page_key" translatable="false">subscription_page_key</string>
+    <string name="kiosk_page_key" translatable="false">kiosk_page</string>
+    <string name="channel_page_key" translatable="false">channel_page</string>
+    <string-array name="main_page_content_pages" translatable="false">
+        <item>@string/blank_page_key</item>
+        <item>@string/kiosk_page_key</item>
+        <item>@string/feed_page_key</item>
+        <item>@string/subscription_page_key</item>
+        <item>@string/channel_page_key</item>
+    </string-array>
+    <string name="main_page_selected_service" translatable="false">main_page_selected_service</string>
+    <string name="main_page_selected_channel_name" translatable="false">main_page_selected_channel_name</string>
+    <string name="main_page_selected_channel_url" translatable="false">main_page_selected_channel_url</string>
+    <string name="main_page_selectd_kiosk_id" translatable="false">main_page_selectd_kiosk_id</string>
 
     <!-- FileName Downloads  -->
     <string name="settings_file_charset_key" translatable="false">file_rename</string>

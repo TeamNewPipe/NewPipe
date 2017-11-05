@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -81,6 +82,20 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(activity != null
+                && useAsFrontPage
+                && isVisibleToUser) {
+            try {
+                activity.getSupportActionBar().setTitle(currentInfo.name);
+            } catch (Exception e) {
+                onError(e);
+            }
+        }
+    }
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         subscriptionService = SubscriptionService.getInstance();
@@ -109,6 +124,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         headerTitleView = headerRootLayout.findViewById(R.id.channel_title_view);
         headerSubscribersTextView = headerRootLayout.findViewById(R.id.channel_subscriber_view);
         headerSubscribeButton = headerRootLayout.findViewById(R.id.channel_subscribe_button);
+
         return headerRootLayout;
     }
 
@@ -118,30 +134,59 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "], inflater = [" + inflater + "]");
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_channel, menu);
+        ActionBar supportActionBar = activity.getSupportActionBar();
+        if(useAsFrontPage) {
+            supportActionBar.setDisplayHomeAsUpEnabled(false);
+        } else {
+            inflater.inflate(R.menu.menu_channel, menu);
 
-        menuRssButton = menu.findItem(R.id.menu_item_rss);
-        if (currentInfo != null) {
-            menuRssButton.setVisible(!TextUtils.isEmpty(currentInfo.feed_url));
+            if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "], inflater = [" + inflater + "]");
+            menuRssButton = menu.findItem(R.id.menu_item_rss);
+            if (currentInfo != null) {
+                menuRssButton.setVisible(!TextUtils.isEmpty(currentInfo.feed_url));
+            }
+
         }
+    }
 
+    private void openRssFeed() {
+        final ChannelInfo info = currentInfo;
+        if(info != null) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(info.feed_url));
+            startActivity(intent);
+        }
+    }
+
+    private void openChannelUriInBrowser() {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(intent);
+    }
+
+    private void shareChannelUri() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, url);
+        startActivity(Intent.createChooser(intent, getString(R.string.share_dialog_title)));
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_item_rss: {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(currentInfo.feed_url));
-                startActivity(intent);
-                return true;
+            case R.id.menu_item_rss:
+                openRssFeed();
+                break;
+            case R.id.menu_item_openInBrowser:
+                openChannelUriInBrowser();
+                break;
+            case R.id.menu_item_share: {
+                shareChannelUri();
+                break;
             }
             default:
                 return super.onOptionsItemSelected(item);
         }
+        return true;
     }
 
     /*//////////////////////////////////////////////////////////////////////////

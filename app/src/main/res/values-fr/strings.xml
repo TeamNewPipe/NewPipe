@@ -257,4 +257,25 @@
 
     <string name="item_deleted">Objet effacé</string>
 <string name="delete_item_search_history">Voulez-vous supprimer cet élément de l\'historique de recherche ?</string>
-</resources>
+<string name="main_page_content">Contentu</string>
+    <string name="blank_page_summary">Page vide</string>
+    <string name="subscription_page_summary">Page de souscription</string>
+    <string name="feed_page_summary">Page de Flux</string>
+    <string name="channel_page_summary">Page de la chaîne</string>
+    <string name="select_a_channel">Sélectionnez une chaîne</string>
+    <string name="trending">Populaires</string>
+    <string name="top_50">Top 50</string>
+    <string name="new_and_hot">Nouveau &amp; populaire</string>
+<string name="background_player_append">Mettre en file d\'attente du lecteur en arrière plan</string>
+    <string name="popup_playing_append">Mettre en fil d\'attente du lecteur flottant</string>
+    <string name="play_all">Lire tout</string>
+
+    <string name="player_stream_failure">Échec de la lecture de cette vidéo</string>
+    <string name="player_unrecoverable_failure">Une erreur irrécupérable du lecteur s\'est produite</string>
+    <string name="no_channel_subscribed_yet">Encore aucune chaîne souscrite</string>
+    <string name="title_activity_background_player">Lecteur en arrière plan</string>
+    <string name="title_activity_popup_player">Lecteur flottant</string>
+    <string name="play_queue_remove">Retirer</string>
+    <string name="play_queue_stream_detail">Détails</string>
+    <string name="play_queue_audio_settings">Réglages audio</string>
+    </resources>

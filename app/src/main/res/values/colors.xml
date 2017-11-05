@@ -10,6 +10,9 @@
     <color name="light_ripple_color">#48868686</color>
     <color name="light_contrast_background_color">#1fa6a6a6</color>
     <color name="light_shadow_start_color">#5a000000</color>
+    <color name="light_license_background_color">#ffffff</color>
+    <color name="light_license_text_color">#212121</color>
+    <color name="light_queue_background_color">#c8ffffff</color>
 
     <!-- Dark Theme -->
     <color name="dark_background_color">#222222</color>
@@ -20,6 +23,9 @@
     <color name="dark_ripple_color">#48ffffff</color>
     <color name="dark_contrast_background_color">#1f717171</color>
     <color name="dark_shadow_start_color">#82000000</color>
+    <color name="dark_license_background_color">#424242</color>
+    <color name="dark_license_text_color">#ffffff</color>
+    <color name="dark_queue_background_color">#af000000</color>
 
     <!-- Black Theme -->
     <color name="black_background_color">#000</color>
@@ -37,8 +43,11 @@
 
     <color name="subscribe_background_color">#e53935</color>
     <color name="subscribe_text_color">#fff</color>
-    <color name="subscribed_background_color">#d6d6d6</color>d
-    <color name="subscribed_text_color">#717171</color>d
+    <color name="subscribed_background_color">#d6d6d6</color>
+    <color name="subscribed_text_color">#717171</color>
+
+    <color name="transparent_background_color">#00000000</color>
+    <color name="selected_background_color">#96717171</color>
 
     <!-- GigaGet theme -->
     <color name="bluegray">#607D8B</color>

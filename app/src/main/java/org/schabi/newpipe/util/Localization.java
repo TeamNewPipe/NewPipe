@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.support.annotation.PluralsRes;
 import android.support.annotation.StringRes;
+import android.text.TextUtils;
 
 import org.schabi.newpipe.R;
 

@@ -1,9 +1,12 @@
 package org.schabi.newpipe.history;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +20,17 @@ import org.schabi.newpipe.util.NavigationHelper;
 
 public class SearchHistoryFragment extends HistoryFragment<SearchHistoryEntry> {
 
+    private static int allowedSwipeToDeleteDirections = ItemTouchHelper.RIGHT;
+
     @NonNull
     public static SearchHistoryFragment newInstance() {
         return new SearchHistoryFragment();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        historyItemSwipeCallback(allowedSwipeToDeleteDirections);
     }
 
     @NonNull

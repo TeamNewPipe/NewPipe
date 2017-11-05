@@ -19,6 +19,8 @@ import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.KioskTranslator;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.ArrayList;
@@ -52,6 +54,17 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     // Fragment LifeCycle
     ///////////////////////////////////////////////////////////////////////////
 
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser && activity != null) {
+            activity.getSupportActionBar()
+                    .setTitle(R.string.tab_subscriptions);
+        }
+    }
+
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -62,6 +75,11 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        activity.getSupportActionBar().setDisplayShowTitleEnabled(true);
+        activity.setTitle(R.string.tab_subscriptions);
+        if(useAsFrontPage) {
+            activity.getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        }
         return inflater.inflate(R.layout.fragment_subscription, container, false);
     }
 

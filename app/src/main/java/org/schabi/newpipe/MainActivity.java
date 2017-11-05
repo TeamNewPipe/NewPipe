@@ -27,6 +27,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -119,6 +120,12 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
             });
         }
 
+        if(sharedPreferences.getBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false)) {
+            if (DEBUG) Log.d(TAG, "main page has changed, recreating main fragment...");
+            sharedPreferences.edit().putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false).apply();
+            NavigationHelper.openMainActivity(this);
+        }
+
     }
 
     @Override
@@ -175,7 +182,6 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setDisplayShowTitleEnabled(false);
             actionBar.setDisplayHomeAsUpEnabled(false);
         }
         return true;
@@ -304,7 +310,7 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
     }
 
     @Override
-    public void onVideoPlayed(StreamInfo streamInfo, VideoStream videoStream) {
+    public void onVideoPlayed(StreamInfo streamInfo, @Nullable VideoStream videoStream) {
         addWatchHistoryEntry(streamInfo);
     }
 

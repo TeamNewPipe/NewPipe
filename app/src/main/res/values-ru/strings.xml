@@ -185,7 +185,7 @@
     <string name="app_description">Бесплатный лёгкий интерфейс YouTube для Android.</string>
     <string name="view_on_github">Открыть на GitHub</string>
     <string name="contribution_encouragement">Приветствуется всё — идеи, перевод, изменения дизайна, чистка кода или огромные изменения в коде. Чем больше сделано, тем лучше!</string>
-    <string name="copyright" formatted="true">© %1$s за авторством %2$s под лицензией %3$s</string>
+    <string name="copyright" formatted="true">© %1$s %2$s под лицензией %3$s</string>
     <string name="contribution_title">Помощь проекту</string>
 <string name="subscribe_button_title">Подписаться</string>
     <string name="subscription_change_failed">Не удалось изменить подписку</string>
@@ -258,4 +258,24 @@
 
     <string name="item_deleted">Элемент удалён</string>
 <string name="delete_item_search_history">Удалить этот элемент из истории поиска?</string>
-</resources>
+<string name="main_page_content">Контент главной страницы</string>
+    <string name="blank_page_summary">Пустая страница</string>
+    <string name="kiosk_page_summary">Страница киоска</string>
+    <string name="subscription_page_summary">Страница подписки</string>
+    <string name="feed_page_summary">Страница ленты</string>
+    <string name="channel_page_summary">Страница канала</string>
+    <string name="select_a_channel">Выберите канал</string>
+    <string name="select_a_kiosk">Выберите киоск</string>
+
+    <string name="kiosk">Киоск</string>
+    <string name="trending">В тренде</string>
+    <string name="top_50">Топ 50</string>
+    <string name="new_and_hot">Новое и горячее</string>
+    <string name="background_player_append">Добавлено в очередь в фоне</string>
+    <string name="popup_playing_append">Добавлено в очередь в окне</string>
+    <string name="play_all">Воспроизвести всё</string>
+
+    <string name="player_stream_failure">Не удалось воспроизвести этот поток</string>
+    <string name="play_queue_stream_detail">Подробности</string>
+    <string name="play_queue_audio_settings">Настройки аудио</string>
+    </resources>

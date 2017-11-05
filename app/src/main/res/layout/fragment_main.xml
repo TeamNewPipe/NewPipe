@@ -10,13 +10,14 @@
         android:id="@+id/main_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/dark_youtube_primary_color"
         app:tabGravity="fill"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@id/main_tab_layout"/>
+        android:layout_below="@id/main_tab_layout"/>
 
 </RelativeLayout>

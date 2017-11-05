@@ -1,22 +1,13 @@
 package org.schabi.newpipe.about;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.view.ContextMenu;
-import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.WebView;
+import android.view.*;
 import android.widget.TextView;
-
 import org.schabi.newpipe.R;
 
 import java.util.Arrays;
@@ -48,25 +39,7 @@ public class LicenseFragment extends Fragment {
      * @param license the license to show
      */
     public static void showLicense(Context context, License license) {
-        if(context == null) {
-            throw new NullPointerException("context is null");
-        }
-        if(license == null) {
-            throw new NullPointerException("license is null");
-        }
-        AlertDialog.Builder alert = new AlertDialog.Builder(context);
-        alert.setTitle(license.getName());
-
-        WebView wv = new WebView(context);
-        wv.loadUrl(license.getContentUri().toString());
-        alert.setView(wv);
-        alert.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        alert.show();
+        new LicenseFragmentHelper().execute(context, license);
     }
 
     @Override
@@ -111,7 +84,6 @@ public class LicenseFragment extends Fragment {
             });
             softwareComponentsView.addView(componentView);
             registerForContextMenu(componentView);
-
         }
         return rootView;
     }

@@ -149,7 +149,7 @@
 
 
     <string name="open_in_popup_mode">Apri in modalità popup</string>
-    <string name="popup_mode_share_menu_title">NewPipe in modalità popup</string>
+    <string name="popup_mode_share_menu_title">NewPipe modalità a comparsa</string>
 
     <string name="popup_playing_toast">Riproduzione in modalità popup</string>
     <string name="disabled">Disattivato</string>
@@ -240,7 +240,7 @@
     <string name="undo">Annulla</string>
 
     <string name="notification_channel_name">Notifiche NewPipe</string>
-    <string name="notification_channel_description">Notifiche per NewPipe in background e Popup Player</string>
+    <string name="notification_channel_description">Notifiche per NewPipe in background e per il lettore a comparsa</string>
 
     <string name="search_no_results">Nessun risultato</string>
     <string name="no_subscribers">Nessun iscritto</string>
@@ -257,12 +257,42 @@
 
     <string name="no_videos">Nessun video</string>
     <plurals name="videos">
-	<item quantity="one">%s video</item>
-	<item quantity="other">%s video</item>
+	<item quantity="one">%s filmato</item>
+	<item quantity="other">%s filmati</item>
 </plurals>
 
     <string name="item_deleted">Elemento eliminato</string>
 <string name="empty_subscription_feed_subtitle">Nulla da mostrare</string>
 
     <string name="delete_item_search_history">Vuoi eliminare questo elemento dalla cronologia?</string>
+<string name="main_page_content">Contenuto della pagina principale</string>
+    <string name="blank_page_summary">Pagina vuota</string>
+    <string name="kiosk_page_summary">Edicola</string>
+    <string name="subscription_page_summary">Pagina iscrizione</string>
+    <string name="feed_page_summary">Pagina del feed</string>
+    <string name="channel_page_summary">Pagina del canale</string>
+    <string name="select_a_channel">Seleziona un canale</string>
+    <string name="no_channel_subscribed_yet">Non ancora iscritto a nessun canale</string>
+    <string name="select_a_kiosk">Seleziona un\'edicola</string>
+
+    <string name="kiosk">Edicola</string>
+    <string name="trending">In tendenza</string>
+    <string name="top_50">Primi 50</string>
+    <string name="new_and_hot">Nuovi e caldi</string>
+<string name="show_hold_to_append_title">Mostra il suggerimento di tenere premuto per appendere</string>
+    <string name="show_hold_to_append_summary">Mostra un suggerimento quando il pulsante in sottofondo o a comparsa viene premuto nella pagina dei dettagli di un video</string>
+    <string name="background_player_append">In coda al riproduttore in sottofondo</string>
+    <string name="popup_playing_append">In coda al riproduttore a comparsa</string>
+    <string name="play_all">Riproduci tutto</string>
+
+    <string name="player_stream_failure">Impossibile riprodurre questo flusso</string>
+    <string name="player_unrecoverable_failure">Si è verificato un errore irrecuperabile al riproduttore</string>
+    <string name="player_recoverable_failure">Recupero dall\'errore del riproduttore</string>
+
+    <string name="title_activity_background_player">Riproduttore di sottofondo</string>
+    <string name="title_activity_popup_player">Riproduttore a comparsa</string>
+    <string name="play_queue_remove">Rimuovi</string>
+    <string name="play_queue_stream_detail">Dettagli</string>
+    <string name="play_queue_audio_settings">Impostazioni audio</string>
+    <string name="hold_to_append">Tieni premuto per accodare</string>
 </resources>

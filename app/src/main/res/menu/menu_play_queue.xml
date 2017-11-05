@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="org.schabi.newpipe.history.HistoryActivity">
+
+    <item android:id="@+id/action_history"
+        android:orderInCategory="981"
+        android:title="@string/action_history"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_settings"
+        android:orderInCategory="990"
+        android:title="@string/settings"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_system_audio"
+        android:orderInCategory="996"
+        android:title="@string/play_queue_audio_settings"
+        app:showAsAction="never"/>
+</menu>

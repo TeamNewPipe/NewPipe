@@ -1,11 +1,14 @@
 package org.schabi.newpipe.util;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -17,21 +20,18 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.stream.AudioStream;
-import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
 import org.schabi.newpipe.fragments.list.feed.FeedFragment;
+import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.history.HistoryActivity;
-import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.VideoPlayer;
+import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.settings.SettingsActivity;
-
-import java.util.ArrayList;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NavigationHelper {
@@ -40,46 +40,41 @@ public class NavigationHelper {
     /*//////////////////////////////////////////////////////////////////////////
     // Players
     //////////////////////////////////////////////////////////////////////////*/
+    public static Intent getPlayerIntent(final Context context,
+                                         final Class targetClazz,
+                                         final PlayQueue playQueue,
+                                         final String quality) {
+        Intent intent = new Intent(context, targetClazz)
+                .putExtra(VideoPlayer.PLAY_QUEUE, playQueue);
+        if (quality != null) intent.putExtra(VideoPlayer.PLAYBACK_QUALITY, quality);
 
-    public static Intent getOpenVideoPlayerIntent(Context context, Class targetClazz, StreamInfo info, int selectedStreamIndex) {
-        Intent mIntent = new Intent(context, targetClazz)
-                .putExtra(BasePlayer.VIDEO_TITLE, info.name)
-                .putExtra(BasePlayer.VIDEO_URL, info.url)
-                .putExtra(BasePlayer.VIDEO_THUMBNAIL_URL, info.thumbnail_url)
-                .putExtra(BasePlayer.CHANNEL_NAME, info.uploader_name)
-                .putExtra(VideoPlayer.INDEX_SEL_VIDEO_STREAM, selectedStreamIndex)
-                .putExtra(VideoPlayer.VIDEO_STREAMS_LIST, new ArrayList<>(ListHelper.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false)))
-                .putExtra(VideoPlayer.VIDEO_ONLY_AUDIO_STREAM, ListHelper.getHighestQualityAudio(info.audio_streams));
-        if (info.start_position > 0) mIntent.putExtra(BasePlayer.START_POSITION, info.start_position * 1000L);
-        return mIntent;
+        return intent;
     }
 
-    public static Intent getOpenVideoPlayerIntent(Context context, Class targetClazz, VideoPlayer instance) {
-        return new Intent(context, targetClazz)
-                .putExtra(BasePlayer.VIDEO_TITLE, instance.getVideoTitle())
-                .putExtra(BasePlayer.VIDEO_URL, instance.getVideoUrl())
-                .putExtra(BasePlayer.VIDEO_THUMBNAIL_URL, instance.getVideoThumbnailUrl())
-                .putExtra(BasePlayer.CHANNEL_NAME, instance.getUploaderName())
-                .putExtra(VideoPlayer.INDEX_SEL_VIDEO_STREAM, instance.getSelectedStreamIndex())
-                .putExtra(VideoPlayer.VIDEO_STREAMS_LIST, instance.getVideoStreamsList())
-                .putExtra(VideoPlayer.VIDEO_ONLY_AUDIO_STREAM, instance.getAudioStream())
-                .putExtra(BasePlayer.START_POSITION, instance.getPlayer().getCurrentPosition())
-                .putExtra(BasePlayer.PLAYBACK_SPEED, instance.getPlaybackSpeed());
+    public static Intent getPlayerIntent(final Context context,
+                                         final Class targetClazz,
+                                         final PlayQueue playQueue) {
+        return getPlayerIntent(context, targetClazz, playQueue, null);
     }
 
-    public static Intent getOpenBackgroundPlayerIntent(Context context, StreamInfo info) {
-        return getOpenBackgroundPlayerIntent(context, info, info.audio_streams.get(ListHelper.getDefaultAudioFormat(context, info.audio_streams)));
+    public static Intent getPlayerEnqueueIntent(final Context context,
+                                                final Class targetClazz,
+                                                final PlayQueue playQueue) {
+        return getPlayerIntent(context, targetClazz, playQueue)
+                .putExtra(BasePlayer.APPEND_ONLY, true);
     }
 
-    public static Intent getOpenBackgroundPlayerIntent(Context context, StreamInfo info, AudioStream audioStream) {
-        Intent mIntent = new Intent(context, BackgroundPlayer.class)
-                .putExtra(BasePlayer.VIDEO_TITLE, info.name)
-                .putExtra(BasePlayer.VIDEO_URL, info.url)
-                .putExtra(BasePlayer.VIDEO_THUMBNAIL_URL, info.thumbnail_url)
-                .putExtra(BasePlayer.CHANNEL_NAME, info.uploader_name)
-                .putExtra(BackgroundPlayer.AUDIO_STREAM, audioStream);
-        if (info.start_position > 0) mIntent.putExtra(BasePlayer.START_POSITION, info.start_position * 1000L);
-        return mIntent;
+    public static Intent getPlayerIntent(final Context context,
+                                         final Class targetClazz,
+                                         final PlayQueue playQueue,
+                                         final int repeatMode,
+                                         final float playbackSpeed,
+                                         final float playbackPitch,
+                                         final String playbackQuality) {
+        return getPlayerIntent(context, targetClazz, playQueue, playbackQuality)
+                .putExtra(BasePlayer.REPEAT_MODE, repeatMode)
+                .putExtra(BasePlayer.PLAYBACK_SPEED, playbackSpeed)
+                .putExtra(BasePlayer.PLAYBACK_PITCH, playbackPitch);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -93,7 +88,7 @@ public class NavigationHelper {
         if (!popped) openMainFragment(fragmentManager);
     }
 
-    private static void openMainFragment(FragmentManager fragmentManager) {
+    public static void openMainFragment(FragmentManager fragmentManager) {
         InfoCache.getInstance().trimCache();
 
         fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
@@ -159,6 +154,15 @@ public class NavigationHelper {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
                 .replace(R.id.fragment_holder, new FeedFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public static void openKioskFragment(FragmentManager fragmentManager, int serviceId, String kioskId)
+        throws ExtractionException {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+                .replace(R.id.fragment_holder, KioskFragment.getInstance(serviceId, kioskId))
                 .addToBackStack(null)
                 .commit();
     }
@@ -292,5 +296,56 @@ public class NavigationHelper {
                 break;
         }
         return null;
+    }
+
+
+    private static Uri openMarketUrl(String packageName) {
+        return Uri.parse("market://details")
+                .buildUpon()
+                .appendQueryParameter("id", packageName)
+                .build();
+    }
+
+    private static Uri getGooglePlayUrl(String packageName) {
+        return Uri.parse("https://play.google.com/store/apps/details")
+                .buildUpon()
+                .appendQueryParameter("id", packageName)
+                .build();
+    }
+
+    private static void installApp(Context context, String packageName) {
+        try {
+            // Try market:// scheme
+            context.startActivity(new Intent(Intent.ACTION_VIEW, openMarketUrl(packageName)));
+        } catch (ActivityNotFoundException e) {
+            // Fall back to google play URL (don't worry F-Droid can handle it :)
+            context.startActivity(new Intent(Intent.ACTION_VIEW, getGooglePlayUrl(packageName)));
+        }
+    }
+
+    /**
+     * Start an activity to install Kore
+     * @param context the context
+     */
+    public static void installKore(Context context) {
+        installApp(context, context.getString(R.string.kore_package));
+    }
+
+    /**
+     * Start Kore app to show a video on Kodi
+     *
+     * For a list of supported urls see the
+     * <a href="https://github.com/xbmc/Kore/blob/master/app/src/main/AndroidManifest.xml">
+     *     Kore source code
+     * </a>.
+     *
+     * @param context the context to use
+     * @param videoURL the url to the video
+     */
+    public static void playWithKore(Context context, Uri videoURL) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setPackage(context.getString(R.string.kore_package));
+        intent.setData(videoURL);
+        context.startActivity(intent);
     }
 }

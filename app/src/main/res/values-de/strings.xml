@@ -203,7 +203,7 @@
     <string name="channel_unsubscribed">Abo beenden</string>
     <string name="tab_subscriptions">Abos</string>
 
-    <string name="fragment_whats_new">Änderungen</string>
+    <string name="fragment_whats_new">Neuigkeiten</string>
 
     <string name="enable_search_history_title">Suchverlauf</string>
     <string name="enable_search_history_summary">Speichere den Suchverlauf lokal</string>
@@ -259,4 +259,29 @@
     <string name="empty_subscription_feed_subtitle">Nichts hier außer Grillen</string>
 
     <string name="delete_item_search_history">Möchten Sie dieses Element aus dem Suchverlauf löschen?</string>
-</resources>
+<string name="blank_page_summary">Leere Seite</string>
+    <string name="select_a_channel">Wähle einen Kanal aus</string>
+    <string name="no_channel_subscribed_yet">Noch kein Kanal abonniert</string>
+    <string name="trending">Trends</string>
+    <string name="popup_playing_append">Angereiht an Popup Player</string>
+    <string name="play_all">Alles abspielen</string>
+
+    <string name="play_queue_remove">Entfernen</string>
+    <string name="play_queue_audio_settings">Audio Einstellungen</string>
+    <string name="player_stream_failure">Abspielen des Streams fehlgeschlagen</string>
+    <string name="main_page_content">Inhalt der Hauptseite</string>
+    <string name="subscription_page_summary">Abonnement-Seite</string>
+    <string name="feed_page_summary">Feed-Seite</string>
+    <string name="channel_page_summary">Kanal-Seite</string>
+    <string name="title_activity_background_player">Hintergrund-Player</string>
+    <string name="title_activity_popup_player">Popup-Player</string>
+    <string name="play_queue_stream_detail">Details</string>
+    <string name="top_50">Top 50</string>
+    <string name="player_unrecoverable_failure">Es ist ein unumgänglicher Fehler im Video-Spieler aufgetreten</string>
+    <string name="player_recoverable_failure">Player-Fehler gelöst</string>
+
+    <string name="kiosk_page_summary">Kiosk-Seite</string>
+    <string name="select_a_kiosk">Kiosk auswählen</string>
+
+    <string name="kiosk">Kiosk</string>
+    </resources>

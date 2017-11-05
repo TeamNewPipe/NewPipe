@@ -20,62 +20,125 @@
         android:maxLines="2"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/playlist_detail_title_text_size"
-        tools:text="Mix musics #23 title Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum"/>
+        tools:text="Mix musics #23 title Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
 
     <RelativeLayout
-        android:id="@+id/uploader_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/playlist_detail_uploader_layout_height"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/playlist_title_view"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="6dp"
-        android:layout_marginTop="6dp"
-        android:layout_toLeftOf="@+id/playlist_stream_count"
-        android:layout_toStartOf="@+id/playlist_stream_count"
-        android:background="?attr/selectableItemBackground"
-        android:gravity="left|center_vertical"
-        android:padding="2dp"
-        android:visibility="gone"
-        tools:ignore="RtlHardcoded"
-        tools:visibility="visible">
+        android:id="@+id/playlist_meta">
+        <RelativeLayout
+            android:id="@+id/uploader_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/playlist_detail_uploader_layout_height"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="6dp"
+            android:layout_toLeftOf="@+id/playlist_stream_count"
+            android:layout_toStartOf="@+id/playlist_stream_count"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="left|center_vertical"
+            android:padding="2dp"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded"
+            tools:visibility="visible">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/uploader_avatar_view"
-            android:layout_width="@dimen/playlist_detail_uploader_image_size"
-            android:layout_height="@dimen/playlist_detail_uploader_image_size"
-            android:layout_alignParentLeft="true"
-            android:layout_margin="1dp"
-            android:src="@drawable/buddy"
-            app:civ_border_color="#ffffff"
-            app:civ_border_width="1dp"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/uploader_avatar_view"
+                android:layout_width="@dimen/playlist_detail_uploader_image_size"
+                android:layout_height="@dimen/playlist_detail_uploader_image_size"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="1dp"
+                android:src="@drawable/buddy"
+                app:civ_border_color="#ffffff"
+                app:civ_border_width="1dp"/>
+
+            <TextView
+                android:id="@+id/uploader_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4dp"
+                android:layout_toRightOf="@+id/uploader_avatar_view"
+                android:ellipsize="end"
+                android:gravity="left|center_vertical"
+                android:maxLines="1"
+                android:textSize="@dimen/playlist_detail_subtext_size"
+                tools:ignore="RtlHardcoded"
+                tools:text="Typical uploader name"/>
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/uploader_name"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="4dp"
-            android:layout_toRightOf="@+id/uploader_avatar_view"
+            android:id="@+id/playlist_stream_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/uploader_layout"
+            android:layout_alignTop="@+id/uploader_layout"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="6dp"
             android:ellipsize="end"
-            android:gravity="left|center_vertical"
+            android:gravity="right|center_vertical"
             android:maxLines="1"
             android:textSize="@dimen/playlist_detail_subtext_size"
             tools:ignore="RtlHardcoded"
-            tools:text="Typical uploader name"/>
+            tools:text="234 videos"/>
+
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/playlist_stream_count"
-        android:layout_width="wrap_content"
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/uploader_layout"
-        android:layout_alignEnd="@+id/playlist_title_view"
-        android:layout_alignRight="@+id/playlist_title_view"
-        android:layout_alignTop="@+id/uploader_layout"
-        android:ellipsize="end"
-        android:gravity="right|center_vertical"
-        android:maxLines="1"
-        android:textSize="@dimen/playlist_detail_subtext_size"
-        tools:ignore="RtlHardcoded"
-        tools:text="234 videos"/>
+        android:id="@+id/play_control"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_below="@+id/playlist_meta">
+
+        <Button
+            android:id="@+id/playlist_play_bg_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@+id/playlist_play_all_button"
+            android:layout_toStartOf="@+id/playlist_play_all_button"
+            android:text="@string/controls_background_title"
+            android:textSize="@dimen/channel_rss_title_size"
+            android:textColor="?attr/colorAccent"
+            android:theme="@style/RedButton"
+            android:drawableLeft="?attr/audio"
+            android:drawablePadding="4dp"
+            tools:ignore="RtlHardcoded"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/playlist_play_all_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@+id/playlist_play_popup_button"
+            android:layout_toStartOf="@+id/playlist_play_popup_button"
+            android:text="@string/play_all"
+            android:textSize="@dimen/channel_rss_title_size"
+            android:textColor="?attr/colorAccent"
+            android:theme="@style/RedButton"
+            tools:ignore="RtlHardcoded"
+            tools:visibility="visible"/>
+
+        <Button
+            android:id="@+id/playlist_play_popup_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_alignParentRight="true"
+            android:text="@string/controls_popup_title"
+            android:textSize="@dimen/channel_rss_title_size"
+            android:textColor="?attr/colorAccent"
+            android:theme="@style/RedButton"
+            android:drawableLeft="?attr/popup"
+            android:drawablePadding="4dp"
+            tools:ignore="RtlHardcoded"
+            tools:visibility="visible" />
+    </RelativeLayout>
 
 </RelativeLayout>

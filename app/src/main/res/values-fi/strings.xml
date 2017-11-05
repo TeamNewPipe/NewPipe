@@ -2,7 +2,7 @@
 <resources><string name="main_bg_subtitle">Napauta hakua aloittaaksesi</string>
     <string name="view_count_text">%1$s näyttökertaa</string>
     <string name="upload_date_text">Julkaistu %1$s</string>
-    <string name="no_player_found">Ei löytynyt suoratoisto soitinta. Haluatko asentaa VLC:n?</string>
+    <string name="no_player_found">Ei löytynyt suoratoistosoitinta. Haluatko asentaa VLC:n?</string>
     <string name="install">Asenna</string>
     <string name="cancel">Peruuta</string>
     <string name="open_in_browser">Avaa selaimessa</string>
@@ -15,9 +15,9 @@
     <string name="share_dialog_title">Jaa</string>
     <string name="choose_browser">Valitse selain</string>
     <string name="screen_rotation">kierto</string>
-    <string name="use_external_video_player_title">Käytä ulkoista videotoistinta</string>
+    <string name="use_external_video_player_title">Käytä ulkoista videosoitinta</string>
     <string name="use_external_video_player_summary">Joillain resoluutioilla EI ole ääntä, kun tämä on valittuna</string>
-    <string name="use_external_audio_player_title">Käytä ulkoista äänitoistinta</string>
+    <string name="use_external_audio_player_title">Käytä ulkoista äänisoitinta</string>
     <string name="popup_mode_share_menu_title">NewPipe ponnahdusikkuna</string>
     <string name="subscribe_button_title">Tilaa</string>
     <string name="subscribed_button_title">Tilattu</string>
@@ -28,16 +28,16 @@
     <string name="tab_main">Päävalikko</string>
     <string name="tab_subscriptions">Tilaukset</string>
 
-    <string name="fragment_whats_new">Uusimmat</string>
+    <string name="fragment_whats_new">Uudet</string>
 
     <string name="controls_background_title">Taustatoisto</string>
-    <string name="controls_popup_title">Ponnahdusikkuna</string>
+    <string name="controls_popup_title">Ikkuna</string>
 
     <string name="download_path_title">Videon latauksen sijainti</string>
     <string name="download_path_summary">Sijainti ladatuille videoille</string>
     <string name="download_path_dialog_title">Aseta sijainti minne videot tallennetaan</string>
 
-    <string name="download_path_audio_title">Audio latauksen sijainti</string>
+    <string name="download_path_audio_title">Audion latauksen sijainti</string>
     <string name="download_path_audio_summary">Sijainti ladatuille audiotiedostoille</string>
     <string name="download_path_audio_dialog_title">Aseta sijainti minne audiotiedostot tallennetaan</string>
 
@@ -73,10 +73,10 @@
     <string name="resume_on_audio_focus_gain_summary">Jatka toistoa keskeytysten jälkeen (esim. puhelut)</string>
     <string name="download_dialog_title">Lataa</string>
     <string name="next_video_title">Seuraava video</string>
-    <string name="show_next_and_similar_title">Näytä seuraava ja samankaltaisia videoita</string>
+    <string name="show_next_and_similar_title">Näytä seuraava video ja samankaltaisia videoita</string>
     <string name="url_not_supported_toast">URL ei tueta</string>
-    <string name="search_language_title">Oletus-sisällon kieli</string>
-    <string name="settings_category_player_title">Toistin</string>
+    <string name="search_language_title">Oletus sisällon kieli</string>
+    <string name="settings_category_player_title">Soitin</string>
     <string name="settings_category_player_behavior_title">Käyttäytyminen</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
     <string name="settings_category_history_title">Historia</string>
@@ -89,7 +89,7 @@
     <string name="content">Sisältö</string>
     <string name="show_age_restricted_content_title">Näytä ikärajoitettua sisältöä</string>
     <string name="video_is_age_restricted">Ikärajoitettu video. Ikärajoituksen voi sallia asetuksista.</string>
-    <string name="duration_live">live</string>
+    <string name="duration_live">suora</string>
     <string name="downloads">Lataukset</string>
     <string name="downloads_title">Lataukset</string>
     <string name="error_report_title">Virheraportti</string>
@@ -124,10 +124,10 @@
     <string name="app_ui_crash">Sovellus/UI kaatui</string>
     <string name="sorry_string">Pahoittelut, noin ei olisi pitänyt käydä.</string>
     <string name="error_report_button_text">Raportoi virhe sähköpostin kautta</string>
-    <string name="error_snackbar_message">Pahoittelit, joitain virheitä tapahtui.</string>
+    <string name="error_snackbar_message">Pahoittelut, joitain virheitä tapahtui.</string>
     <string name="error_snackbar_action">RAPORTTI</string>
     <string name="what_happened_headline">Mitä tapahtui:</string>
-    <string name="your_comment">Sinun viesti (Englanniksi):</string>
+    <string name="your_comment">Sinun viesti (englanniksi):</string>
     <string name="error_details_headline">Yksityiskohdat:</string>
 
 
@@ -150,29 +150,29 @@
     <string name="audio">Audio</string>
     <string name="retry">Toista uudelleen</string>
     <string name="storage_permission_denied">Oikeus tallennustilan hallintaan evätty</string>
-    <string name="use_old_player_title">Käytä vanhaa toistinta</string>
-    <string name="use_old_player_summary">Käytä vanhaa sisäänrakennettua Mediaframework toistinta</string>
+    <string name="use_old_player_title">Käytä vanhaa soitinta</string>
+    <string name="use_old_player_summary">Käytä vanhaa sisäänrakennettua Mediaframework soitinta</string>
 
     <string name="short_thousand">t.</string>
-    <string name="short_million">Milj.</string>
-    <string name="short_billion">Bilj.</string>
+    <string name="short_million">milj.</string>
+    <string name="short_billion">bilj.</string>
 
     <string name="no_subscribers">Ei tilaajia</string>
     <plurals name="subscribers">
 	<item quantity="one">%s tilaaja</item>
-	<item quantity="other">%s tilaajia</item>
+	<item quantity="other">%s tilaajaa</item>
 </plurals>
 
     <string name="no_views">Ei katselukertoja</string>
     <plurals name="views">
 	<item quantity="one">%s katselukerta</item>
-	<item quantity="other">%s katselukertoja</item>
+	<item quantity="other">%s katselukertaa</item>
 </plurals>
 
     <string name="no_videos">Ei videoita</string>
     <plurals name="videos">
 	<item quantity="one">%s video</item>
-	<item quantity="other">%s videoita</item>
+	<item quantity="other">%s videota</item>
 </plurals>
 
     <string name="start">Aloita</string>
@@ -185,7 +185,7 @@
     <string name="finish">OK</string>
 
     <string name="msg_name">Tiedostonimi</string>
-    <string name="msg_threads">Säikeet</string>
+    <string name="msg_threads">Viestiketjut</string>
     <string name="msg_error">Virhe</string>
     <string name="msg_server_unsupported">Serveriä ei tueta</string>
     <string name="msg_exists">Tiedosto on jo olemassa</string>
@@ -202,9 +202,9 @@
     <string name="recaptcha_request_toast">reCAPTCHA Haaste pyydetty</string>
 
     <string name="settings_category_downloads_title">Lataus</string>
-    <string name="settings_file_charset_title">Sallittuja merkkejä tiedostonimissä</string>
+    <string name="settings_file_charset_title">Sallitut merkit tiedostonimissä</string>
     <string name="settings_file_replacement_character_summary">Epäkelvot merkit korvataan tällä arvolla</string>
-    <string name="settings_file_replacement_character_title">Korvaus merkki</string>
+    <string name="settings_file_replacement_character_title">Korvaava merkki</string>
 
     <string name="charset_letters_and_digits">Kirjaimia ja numeroita</string>
     <string name="charset_most_special_characters">Suurin osa erikoismerkeistä</string>
@@ -221,7 +221,7 @@
     <string name="app_description">Vapaa kevyt YouTube frontend Android:lle.</string>
     <string name="view_on_github">Näytä GitHub:ssa</string>
     <string name="app_license_title">NewPipe:n Lisenssi</string>
-    <string name="contribution_encouragement">Olkoon sinulla ideoita; käännöksistä, design muutoksista, koodin siivoamisesta tai raskaista koodimuutoksista—apu on aina tervetullutta. Mitä enemmän saadaan tehtyä sen paremmaksi se tulee!</string>
+    <string name="contribution_encouragement">Olkoon sinulla ideoita; käännöksistä, design muutoksista, koodin siivoamisesta tai raskaista koodimuutoksista—apu on aina tervetullutta. Mitä enemmän saadaan tehtyä, sen paremmaksi sovellus tulee!</string>
     <string name="read_full_license">Lue lisenssi</string>
     <string name="contribution_title">Lahjoitus</string>
 
@@ -234,4 +234,37 @@
     <string name="history_cleared">Historia pyyhitty</string>
     <string name="item_deleted">Poistettu</string>
     <string name="delete_item_search_history">Haluatko poistaa tämän hakuhistoriasta?</string>
+<string name="resume_on_audio_focus_gain_title">Jatka toistoa</string>
+    <string name="what_device_headline">Info:</string>
+    <string name="info_labels">Mikä:\\nPyyntö:\\nSisällön kieli:\\nPalvelu:\\nGMT Aika:\\nPaketti:\\nVersio:\\nOS versio:\\nGlob. IP väli:</string>
+    <string name="copyright" formatted="true">© %1$s %2$s %3$s alla</string>
+    <string name="main_page_content">Pääsivun sisältö</string>
+    <string name="blank_page_summary">Tyhjä sivu</string>
+    <string name="kiosk_page_summary">Kioski sivu</string>
+    <string name="subscription_page_summary">Tilaukset sivu</string>
+    <string name="feed_page_summary">Syötteet sivu</string>
+    <string name="channel_page_summary">Kanavat sivu</string>
+    <string name="select_a_channel">Valitse kanava</string>
+    <string name="no_channel_subscribed_yet">Ei yhtään tilattua kanavaa vielä</string>
+    <string name="select_a_kiosk">Valitse kioski</string>
+
+    <string name="kiosk">Kioski</string>
+    <string name="trending">Nousussa</string>
+    <string name="top_50">Top 50</string>
+    <string name="new_and_hot">Uudet &amp; kuumat</string>
+<string name="show_hold_to_append_summary">Näytä vihje kun taustasoitto tai popup painiketta on painettu</string>
+    <string name="background_player_append">Lisätty taustasoittojonoon</string>
+    <string name="popup_playing_append">Lisätty popup-jonoon</string>
+    <string name="play_all">Toista kaikki</string>
+
+    <string name="player_stream_failure">Suoratoisto epäonnistui</string>
+    <string name="player_unrecoverable_failure">Palautuskelvoton soittimen virhe</string>
+    <string name="player_recoverable_failure">Palaudutaan soittimen virheestä</string>
+
+    <string name="title_activity_background_player">Taustasoittosoitin</string>
+    <string name="title_activity_popup_player">Popup-soitin</string>
+    <string name="play_queue_remove">Poista</string>
+    <string name="play_queue_stream_detail">Yksityiskohdat</string>
+    <string name="play_queue_audio_settings">Audioasetukset</string>
+    <string name="hold_to_append">Pidä pohjassa lisätäksesi jonoon</string>
 </resources>
