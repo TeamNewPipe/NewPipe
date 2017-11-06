@@ -14,7 +14,7 @@
     <string name="download">تنزيل</string>
     <string name="download_dialog_title">تنزيل</string>
     <string name="download_path_audio_dialog_title">أدخل مسار لتنزيل الملفات الصوتية.</string>
-    <string name="download_path_audio_summary">مسار حفظ التنزيلات الصوتية في.</string>
+    <string name="download_path_audio_summary">مسار حفظ التنزيلات الصوتية</string>
     <string name="download_path_audio_title">مسار الصوتيات المحفوظة</string>
     <string name="download_path_dialog_title">أدخل مسار التنزيل لملفات الفيديو</string>
     <string name="download_path_summary">مسار حفظ تنزيلات الفيديو في</string>
