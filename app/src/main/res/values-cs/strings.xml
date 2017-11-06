@@ -139,7 +139,7 @@
     <string name="short_thousand">k</string>
 
     <string name="open_in_popup_mode">Otevřít ve vyskakovacím okně</string>
-    <string name="short_million">M</string>
+    <string name="short_million">mil.</string>
     <string name="msg_popup_permission">Toto oprávnění je vyžadováno pro
 otevření ve vyskakovacím okně</string>
 
@@ -213,7 +213,7 @@ otevření ve vyskakovacím okně</string>
 	<item quantity="one">%s zhlédnutí</item>
 	<item quantity="few">%s zhlédnutí</item>
 	<item quantity="many">%s zhlédnutí</item>
-	<item quantity="other"></item>
+	<item quantity="other"/>
 </plurals>
 
     <string name="no_videos">Žádná videa</string>
