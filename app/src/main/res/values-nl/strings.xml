@@ -265,7 +265,7 @@ te openen in pop-upmodus</string>
     <string name="show_hold_to_append_summary">Toon tip wanneer achtergrond- of pop-upknop is ingedrukt op de video-detailpagina</string>
     <string name="background_player_append">Toegevoegd aan wachtrij voor achtergrondspeler</string>
     <string name="popup_playing_append">Toegevoegd aan wachtrij voor pop-upspeler</string>
-    <string name="play_all">Speel Alle</string>
+    <string name="play_all">Alles afspelen</string>
 
     <string name="player_stream_failure">Kon deze stream niet afspelen</string>
     <string name="player_unrecoverable_failure">Onherstelbare spelerfout opgetreden</string>
@@ -287,7 +287,7 @@ te openen in pop-upmodus</string>
     <string name="new_and_hot">Nieuw en populair</string>
     <string name="title_activity_background_player">Achtergrondspeler</string>
     <string name="title_activity_popup_player">Pop-upspeler</string>
-    <string name="play_queue_remove">Verwijder</string>
+    <string name="play_queue_remove">Verwijderen</string>
     <string name="play_queue_stream_detail">Details</string>
     <string name="play_queue_audio_settings">Audio-instellingen</string>
     <string name="hold_to_append">Houd ingedrukt om toe te voegen aan wachtrij</string>
