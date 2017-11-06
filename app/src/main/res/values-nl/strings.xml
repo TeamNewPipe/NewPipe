@@ -205,8 +205,8 @@ te openen in pop-upmodus</string>
     <string name="subscribe_button_title">Abonneer</string>
     <string name="subscribed_button_title">Geabonneerd</string>
     <string name="channel_unsubscribed">Abonnement opgezegd</string>
-    <string name="subscription_change_failed">Niet in staat abonnement te wijzigen</string>
-    <string name="subscription_update_failed">Niet in staat abbonement te vernieuwen</string>
+    <string name="subscription_change_failed">Kan het abonnement niet veranderen</string>
+    <string name="subscription_update_failed">Kan het abonnement niet vernieuwen</string>
 
     <string name="tab_main">Start</string>
     <string name="tab_subscriptions">Abonnementen</string>
