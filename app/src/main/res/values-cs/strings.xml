@@ -40,29 +40,29 @@
 
     <string name="download_dialog_title">Stáhnout</string>
     <string name="next_video_title">Následující video</string>
-    <string name="show_next_and_similar_title">Zobrazit následující a podobná videa</string>
+    <string name="show_next_and_similar_title">Zobrazovat další a podobná videa</string>
     <string name="url_not_supported_toast">URL není podporováno</string>
     <string name="search_language_title">Preferovaný jazyk obsahu</string>
-    <string name="settings_category_video_audio_title">Video a audio</string>
+    <string name="settings_category_video_audio_title">Video a zvuk</string>
     <string name="settings_category_appearance_title">Vzhled</string>
     <string name="settings_category_other_title">Ostatní</string>
-    <string name="background_player_playing_toast">Přehrávám na pozadí</string>
+    <string name="background_player_playing_toast">Přehrávání na pozadí</string>
     <string name="play_btn_text">Přehrát</string>
     <string name="general_error">Chyba</string>
     <string name="network_error">Chyba sítě</string>
     <string name="could_not_load_thumbnails">Nebylo možné nahrát všechny náhledy</string>
     <string name="youtube_signature_decryption_error">Nebylo možné dekódovat URL videa</string>
-    <string name="parsing_error">Nebylo možné analyzovat webovou stránku</string>
+    <string name="parsing_error">Nebylo možné analyzovat stránku</string>
     <string name="content_not_available">Obsah není k dispozici</string>
     <string name="blocked_by_gema">Obsah blokuje GEMA</string>
 
     <string name="list_thumbnail_view_description">Náhled videa</string>
     <string name="detail_thumbnail_view_description">Náhled videa</string>
-    <string name="detail_uploader_thumbnail_view_description">Náhled obrázku uploadera</string>
+    <string name="detail_uploader_thumbnail_view_description">Náhled avataru uploadera</string>
     <string name="detail_likes_img_view_description">To se mi líbí</string>
     <string name="detail_dislikes_img_view_description">To se mi nelíbí</string>
     <string name="use_tor_title">Použít Tor</string>
-    <string name="use_tor_summary">(Experimentální) Vynutit stahování skrz Tor pro zvýšené soukromí (streaming zatím není podporován).</string>
+    <string name="use_tor_summary">(Experimentální) Vynutit stahování skrz Tor pro zvýšené soukromí (streamovaná videa zatím nepodporována).</string>
 
     <string name="err_dir_create">Nebylo možné vytvořit složku pro stažené soubory \'%1$s\'</string>
     <string name="info_dir_created">Vytvořena složka pro stažené soubory \'%1$s\'</string>
@@ -74,7 +74,7 @@
     <string name="duration_live">živě</string>
 
     <string name="light_parsing_error">Nebylo možné kompletně analyzovat stránku</string>
-    <string name="main_bg_subtitle">Pro začátek stiskni hledat</string>
+    <string name="main_bg_subtitle">Začni stiskem hledat</string>
     <string name="msg_copied">Zkopírováno do schránky</string>
     <string name="msg_wait">Počkejte prosím…</string>
     <string name="msg_running">NewPipe se stahuje</string>
@@ -91,9 +91,9 @@
     <string name="start">Začít</string>
     <string name="retry">Zkusit znovu</string>
     <string name="video">Video</string>
-    <string name="audio">Audio</string>
+    <string name="audio">Zvuk</string>
     <string name="report_error">Nahlásit chybu</string>
-    <string name="error_details_headline">Detaily:</string>
+    <string name="error_details_headline">Podrobnosti:</string>
 
 
     <string name="what_happened_headline">Co se stalo:</string>
@@ -111,9 +111,9 @@
     <string name="downloads">Stažené soubory</string>
     <string name="downloads_title">Stažené soubory</string>
     <string name="what_device_headline">Info:</string>
-    <string name="your_comment">Vaše poznámky (Anglicky):</string>
+    <string name="your_comment">Vaše poznámky (anglicky):</string>
     <string name="storage_permission_denied">Oprávnění přístupu do úložiště bylo zamítnuto</string>
-    <string name="view">Shlédnout</string>
+    <string name="view">Přehrát</string>
     <string name="add">Nová mise</string>
     <string name="finish">Hotovo</string>
 
@@ -160,9 +160,9 @@ otevření ve vyskakovacím okně</string>
     <string name="tab_main">Hlavní</string>
     <string name="tab_subscriptions">Odběry</string>
 
-    <string name="fragment_whats_new">Co je nové</string>
+    <string name="fragment_whats_new">Co je nového</string>
 
-    <string name="controls_background_title">V pozadí</string>
+    <string name="controls_background_title">Na pozadí</string>
     <string name="controls_popup_title">V okně</string>
 
     <string name="default_popup_resolution_title">Výchozí rozlišení v okně</string>
@@ -187,7 +187,7 @@ otevření ve vyskakovacím okně</string>
     <string name="refresh">Obnovit</string>
     <string name="clear">Vyčistit</string>
     <string name="popup_resizing_indicator_title">Změna velikosti</string>
-    <string name="best_resolution">Nejlepší rozlošení</string>
+    <string name="best_resolution">Nejlepší rozlišení</string>
     <string name="undo">Vrátit</string>
 
     <string name="notification_channel_name">NewPipe notifikace</string>
@@ -208,12 +208,12 @@ otevření ve vyskakovacím okně</string>
 	<item quantity="other"/>
 </plurals>
 
-    <string name="no_views">Žádná shlédnutí</string>
+    <string name="no_views">Žádná zhlédnutí</string>
     <plurals name="views">
-	<item quantity="one">%s shlédnutí</item>
-	<item quantity="few">%s shlédnutí</item>
-	<item quantity="many">%s shlédnutí</item>
-	<item quantity="other"/>
+	<item quantity="one">%s zhlédnutí</item>
+	<item quantity="few">%s zhlédnutí</item>
+	<item quantity="many">%s zhlédnutí</item>
+	<item quantity="other"></item>
 </plurals>
 
     <string name="no_videos">Žádná videa</string>
@@ -234,12 +234,12 @@ otevření ve vyskakovacím okně</string>
 
     <string name="title_activity_about">O NewPipe</string>
     <string name="action_settings">Nastavení</string>
-    <string name="action_about">O</string>
+    <string name="action_about">O aplikaci</string>
     <string name="title_licenses">Licence třetích stran</string>
     <string name="copyright" formatted="true">© %1$s od %2$s pod %3$s</string>
-    <string name="error_unable_to_load_license">Nemožné nahrát licenci</string>
+    <string name="error_unable_to_load_license">Nepodařilo se nahrát licenci</string>
     <string name="action_open_website">Otevřít webstránku</string>
-    <string name="tab_about">O</string>
+    <string name="tab_about">O aplikaci</string>
     <string name="tab_contributors">Přispěvatelé</string>
     <string name="tab_licenses">Licence</string>
     <string name="app_description">Bezplatná a nenáročná YouTube aplikace pro Android.</string>
@@ -251,10 +251,42 @@ otevření ve vyskakovacím okně</string>
 
     <string name="title_activity_history">Histrorie</string>
     <string name="title_history_search">Vyhledáváno</string>
-    <string name="title_history_view">Sledováno</string>
+    <string name="title_history_view">Zhlédnuto</string>
     <string name="history_disabled">Historie je vypnutá</string>
     <string name="action_history">Historie</string>
     <string name="history_empty">Historie je prázdná</string>
     <string name="history_cleared">Historie byla vymazána</string>
     <string name="item_deleted">Položka byla odstraněna</string>
+<string name="show_hold_to_append_title">Zobrazovat nápovědu \"Podrž pro přidání\"</string>
+    <string name="show_hold_to_append_summary">Zobrazí se po stisku tlačítka na pozadí nebo v okně na stránce s podrobnostmi o videu</string>
+    <string name="background_player_append">Ve frontě přehrávače na pozadí</string>
+    <string name="popup_playing_append">Ve frontě přehrávače v okně</string>
+    <string name="play_all">Přehrát vše</string>
+
+    <string name="player_stream_failure">Přehrávání streamu selhalo</string>
+    <string name="player_unrecoverable_failure">Došlo k neobnovitelné chybě přehrávače</string>
+    <string name="player_recoverable_failure">Obnovování z chyby přehrávače</string>
+
+    <string name="delete_item_search_history">Odstranit tuto položku z historie vyhledávání?</string>
+
+    <string name="main_page_content">Obsah úvodní obrazovky</string>
+    <string name="blank_page_summary">Prázdná stránka</string>
+    <string name="kiosk_page_summary">Kiosek</string>
+    <string name="subscription_page_summary">Odběry</string>
+    <string name="feed_page_summary">Feed</string>
+    <string name="channel_page_summary">Kanál</string>
+    <string name="select_a_channel">Zvolte kanál</string>
+    <string name="no_channel_subscribed_yet">Žádný kanál dosud neodebírán</string>
+    <string name="select_a_kiosk">Zvolte kiosek</string>
+
+    <string name="kiosk">Kiosek</string>
+    <string name="trending">Trendy</string>
+    <string name="top_50">Top 50</string>
+    <string name="new_and_hot">Nové &amp; hot</string>
+    <string name="title_activity_background_player">Přehrávač na pozadí</string>
+    <string name="title_activity_popup_player">Přehrávač v okně</string>
+    <string name="play_queue_remove">Odebrat</string>
+    <string name="play_queue_stream_detail">Detaily</string>
+    <string name="play_queue_audio_settings">Nastavení audia</string>
+    <string name="hold_to_append">Podrž pro zařazení do fronty</string>
 </resources>
