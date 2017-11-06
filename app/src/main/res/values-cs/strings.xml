@@ -198,7 +198,7 @@ otevření ve vyskakovacím okně</string>
 
     <string name="use_old_player_summary">Starý zabudovaný Mediaframework přehrávač</string>
 
-    <string name="short_billion">B</string>
+    <string name="short_billion">mld.</string>
 
     <string name="no_subscribers">Žádní odběratelé</string>
     <plurals name="subscribers">
