@@ -261,7 +261,7 @@ te openen in pop-upmodus</string>
 
     <string name="item_deleted">Item verwijderd</string>
 <string name="delete_item_search_history">Wil je dit item uit je geschiedenis verwijderen?</string>
-<string name="show_hold_to_append_title">Laat vasthouden om te toevoegen zien</string>
+<string name="show_hold_to_append_title">Toon tip voor ingedrukt houden om toe te voegen</string>
     <string name="show_hold_to_append_summary">Toon tip wanneer achtergrond- of pop-upknop is ingedrukt op de video-detailpagina</string>
     <string name="background_player_append">Toegevoegd aan wachtrij voor achtergrondspeler</string>
     <string name="popup_playing_append">Toegevoegd aan wachtrij voor pop-upspeler</string>
