@@ -93,4 +93,20 @@
 
     <string name="controls_popup_title">نافذة</string>
 
+    <string name="autoplay_by_calling_app_summary">تشغيل الفيديو تلقائيا عند استدعاء نيوبيب من تطبيق آخر</string>
+    <string name="default_popup_resolution_title">جودة النوافذ الافتراضية</string>
+    <string name="show_higher_resolutions_title">إظهار جودة أعلى</string>
+    <string name="show_higher_resolutions_summary">فقط بعض الأجهزة تدعم تشغيل فيديوهات 2K / 4K</string>
+    <string name="default_video_format_title">تنسيق الفيديو الافتراضي</string>
+    <string name="popup_remember_size_pos_title">تذكر حجم النافذة و وضعها</string>
+    <string name="popup_remember_size_pos_summary">تذكر آخر حجم ومكان النافذة</string>
+    <string name="player_gesture_controls_title">ضوابط إشارة المشغل</string>
+    <string name="player_gesture_controls_summary">استخدم الإشارات للتحكم في سطوع وحجم المشغل</string>
+    <string name="show_search_suggestions_title">اقتراحات البحث</string>
+    <string name="show_search_suggestions_summary">عرض الاقتراحات عند البحث</string>
+    <string name="enable_search_history_title">سجل البحث</string>
+    <string name="enable_search_history_summary">تخزين طلبات البحث محليا</string>
+    <string name="enable_watch_history_summary">تتبع مقاطع الفيديو التي تمت مشاهدتها</string>
+    <string name="resume_on_audio_focus_gain_title">استئناف عند اكساب التركيز</string>
+    <string name="resume_on_audio_focus_gain_summary">متابعة اللعب بعد المقاطعات (مثل المكالمات الهاتفية)</string>
     </resources>
