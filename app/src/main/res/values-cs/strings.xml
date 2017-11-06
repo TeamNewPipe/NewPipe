@@ -30,8 +30,8 @@
 
     <string name="show_play_with_kodi_title">Zobrazit možnost \"Přehrát pomocí Kodi\"</string>
     <string name="show_play_with_kodi_summary">Zobrazit možnost přehrání videa pomocí multimediálního centra Kodi</string>
-    <string name="play_audio">Audio</string>
-    <string name="default_audio_format_title">Výchozí audio formát</string>
+    <string name="play_audio">Zvuk</string>
+    <string name="default_audio_format_title">Výchozí formát zvuku</string>
     <string name="webm_description">WebM — svobodný formát</string>
     <string name="m4a_description">M4A — lepší kvalita</string>
     <string name="theme_title">Téma</string>
@@ -39,7 +39,7 @@
     <string name="light_theme_title">Světlé</string>
 
     <string name="download_dialog_title">Stáhnout</string>
-    <string name="next_video_title">Následující video</string>
+    <string name="next_video_title">Další video</string>
     <string name="show_next_and_similar_title">Zobrazovat další a podobná videa</string>
     <string name="url_not_supported_toast">URL není podporováno</string>
     <string name="search_language_title">Preferovaný jazyk obsahu</string>
@@ -77,18 +77,18 @@
     <string name="main_bg_subtitle">Začni stiskem hledat</string>
     <string name="msg_copied">Zkopírováno do schránky</string>
     <string name="msg_wait">Počkejte prosím…</string>
-    <string name="msg_running">NewPipe se stahuje</string>
-    <string name="msg_running_detail">Stiskněte pro detaily</string>
+    <string name="msg_running">NewPipe stahuje</string>
+    <string name="msg_running_detail">Stiskni pro detaily</string>
     <string name="msg_server_unsupported">Server není podporován</string>
     <string name="msg_exists">Soubor již existuje</string>
-    <string name="msg_url_malform">Špatné URL nebo připojení k Internetu není k disposici</string>
+    <string name="msg_url_malform">Špatné URL nebo bez připojení k internetu</string>
     <string name="msg_error">Chyba</string>
     <string name="msg_name">Jméno souboru</string>
     <string name="msg_threads">Vlákna</string>
     <string name="pause">Zastavit</string>
     <string name="delete">Smazat</string>
 
-    <string name="start">Začít</string>
+    <string name="start">Start</string>
     <string name="retry">Zkusit znovu</string>
     <string name="video">Video</string>
     <string name="audio">Zvuk</string>
@@ -115,7 +115,7 @@
     <string name="storage_permission_denied">Oprávnění přístupu do úložiště bylo zamítnuto</string>
     <string name="view">Přehrát</string>
     <string name="add">Nová mise</string>
-    <string name="finish">Hotovo</string>
+    <string name="finish">OK</string>
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">Výzva reCAPTCHA</string>
@@ -145,14 +145,14 @@ otevření ve vyskakovacím okně</string>
 
     <string name="use_old_player_title">Použít starý přehrávač</string>
 <string name="use_external_video_player_summary">Některé formáty rozlišení NEBUDOU obsahovat zvukovou stopu po zapnutí této funkce</string>
-    <string name="show_higher_resolutions_title">Zobrazit vyšší rozlišení</string>
-    <string name="show_higher_resolutions_summary">Pouze některá zařízení podporují přehrávání videí ve 2K/4K</string>
-    <string name="default_video_format_title">Preferovaný video formát</string>
-    <string name="popup_remember_size_pos_title">Zapamatovat si velikost a pozici vyskakovacího okna</string>
-    <string name="popup_remember_size_pos_summary">Zapamatovat si poslední nastavení velikosti a pozice vyskakovacího okna</string>
-    <string name="popup_mode_share_menu_title">Režim NewPipe vyskakovacího okna</string>
+    <string name="show_higher_resolutions_title">Zobrazovat vyšší rozlišení</string>
+    <string name="show_higher_resolutions_summary">Pouze některá zařízení podporují přehrávání 2K/4K videí</string>
+    <string name="default_video_format_title">Výchozí formát videa</string>
+    <string name="popup_remember_size_pos_title">Pamatovat si velikost a pozici vyskakovacího okna</string>
+    <string name="popup_remember_size_pos_summary">Pamatovat si poslední velikost a pozici vyskakovacího okna</string>
+    <string name="popup_mode_share_menu_title">NewPipe režim vyskakovacího okna</string>
     <string name="subscribe_button_title">Odebírat</string>
-    <string name="subscribed_button_title">Odebírané</string>
+    <string name="subscribed_button_title">Odebíráno</string>
     <string name="channel_unsubscribed">Odběr zrušen</string>
     <string name="subscription_change_failed">Nelze změnit odběr</string>
     <string name="subscription_update_failed">Nelze aktualizovat odběr</string>
@@ -165,15 +165,15 @@ otevření ve vyskakovacím okně</string>
     <string name="controls_background_title">Na pozadí</string>
     <string name="controls_popup_title">V okně</string>
 
-    <string name="default_popup_resolution_title">Výchozí rozlišení v okně</string>
-    <string name="player_gesture_controls_title">Nastavení gest přehrávače</string>
-    <string name="player_gesture_controls_summary">Používat gesta pro kontrolu jasu a hlasitosti přehrávače</string>
-    <string name="show_search_suggestions_title">Vyhledat návrhy</string>
-    <string name="show_search_suggestions_summary">Ukazovat návrhy při vyhledávání</string>
-    <string name="enable_search_history_title">Historie prohlížení</string>
-    <string name="enable_search_history_summary">Ukládat hledané výrazy lokálně</string>
+    <string name="default_popup_resolution_title">Výchozí rozlišení vyskakovacího okna</string>
+    <string name="player_gesture_controls_title">Ovládání přehrávače gesty</string>
+    <string name="player_gesture_controls_summary">Používat gesta pro nastavení jasu a hlasitosti přehrávače</string>
+    <string name="show_search_suggestions_title">Návrhy vyhledávání</string>
+    <string name="show_search_suggestions_summary">Zobrazovat návrhy při vyhledávání</string>
+    <string name="enable_search_history_title">Historie vyhledávání</string>
+    <string name="enable_search_history_summary">Hledané výrazy lokálně uchovávat</string>
     <string name="enable_watch_history_title">Historie</string>
-    <string name="enable_watch_history_summary">Evidovat sledovaná videa</string>
+    <string name="enable_watch_history_summary">Evidovat zhlédnutá videa</string>
     <string name="resume_on_audio_focus_gain_title">Přehrávat po přechodu do popředí</string>
     <string name="resume_on_audio_focus_gain_summary">Pokračovat v přehrávání po přerušení (např. hovor)</string>
     <string name="settings_category_player_title">Přehrávač</string>
@@ -226,7 +226,7 @@ otevření ve vyskakovacím okně</string>
 
     <string name="settings_category_downloads_title">Stahování</string>
     <string name="settings_file_charset_title">Povolené znaky v názvech souborů</string>
-    <string name="settings_file_replacement_character_summary">Neplatné znaky jdou nahrazeny těmito znaky</string>
+    <string name="settings_file_replacement_character_summary">Neplatné znaky budou nahrazeny těmito</string>
     <string name="settings_file_replacement_character_title">Náhradní znak</string>
 
     <string name="charset_letters_and_digits">Písmena a číslice</string>
@@ -249,15 +249,15 @@ otevření ve vyskakovacím okně</string>
     <string name="read_full_license">Přečíst licenci</string>
     <string name="contribution_title">Příspěvek</string>
 
-    <string name="title_activity_history">Histrorie</string>
+    <string name="title_activity_history">Historie</string>
     <string name="title_history_search">Vyhledáváno</string>
     <string name="title_history_view">Zhlédnuto</string>
     <string name="history_disabled">Historie je vypnutá</string>
     <string name="action_history">Historie</string>
     <string name="history_empty">Historie je prázdná</string>
-    <string name="history_cleared">Historie byla vymazána</string>
+    <string name="history_cleared">Historie smazána</string>
     <string name="item_deleted">Položka byla odstraněna</string>
-<string name="show_hold_to_append_title">Zobrazovat nápovědu \"Podrž pro přidání\"</string>
+<string name="show_hold_to_append_title">Zobrazovat tip \"Podrž pro přidání\"</string>
     <string name="show_hold_to_append_summary">Zobrazí se po stisku tlačítka na pozadí nebo v okně na stránce s podrobnostmi o videu</string>
     <string name="background_player_append">Ve frontě přehrávače na pozadí</string>
     <string name="popup_playing_append">Ve frontě přehrávače v okně</string>
@@ -286,7 +286,7 @@ otevření ve vyskakovacím okně</string>
     <string name="title_activity_background_player">Přehrávač na pozadí</string>
     <string name="title_activity_popup_player">Přehrávač v okně</string>
     <string name="play_queue_remove">Odebrat</string>
-    <string name="play_queue_stream_detail">Detaily</string>
-    <string name="play_queue_audio_settings">Nastavení audia</string>
+    <string name="play_queue_stream_detail">Podrobnosti</string>
+    <string name="play_queue_audio_settings">Nastavení zvuku</string>
     <string name="hold_to_append">Podrž pro zařazení do fronty</string>
 </resources>
