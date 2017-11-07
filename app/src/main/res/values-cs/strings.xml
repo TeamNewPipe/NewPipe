@@ -204,24 +204,21 @@ otevření ve vyskakovacím okně</string>
     <plurals name="subscribers">
 	<item quantity="one">%s odběratel</item>
 	<item quantity="few">%s odběratelů</item>
-	<item quantity="many">%s odběratelé</item>
-	<item quantity="other"/>
+	<item quantity="other">%s odběratelé</item>
 </plurals>
 
     <string name="no_views">Žádná zhlédnutí</string>
     <plurals name="views">
 	<item quantity="one">%s zhlédnutí</item>
 	<item quantity="few">%s zhlédnutí</item>
-	<item quantity="many">%s zhlédnutí</item>
-	<item quantity="other"/>
+	<item quantity="other">%s zhlédnutí</item>
 </plurals>
 
     <string name="no_videos">Žádná videa</string>
     <plurals name="videos">
 	<item quantity="one">%s video</item>
 	<item quantity="few">%s videí</item>
-	<item quantity="many">%s videa</item>
-	<item quantity="other"/>
+	<item quantity="other">%s videa</item>
 </plurals>
 
     <string name="settings_category_downloads_title">Stahování</string>
