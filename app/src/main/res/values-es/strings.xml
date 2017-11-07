@@ -273,4 +273,18 @@ abrir en modo popup</string>
     <string name="kiosk">Kiosco</string>
     <string name="trending">Tendencias</string>
     <string name="top_50">Top 50</string>
-</resources>
+<string name="show_hold_to_append_summary">Mostrar sugerencia cuando se presiona el botón de segundo plano o popup en la página de detalles del vídeo</string>
+    <string name="background_player_append">En cola en el reproductor de fondo</string>
+    <string name="popup_playing_append">En cola en el reproductor popup</string>
+    <string name="play_all">Reproducir todo</string>
+
+    <string name="player_stream_failure">Error al reproducir esta transmisión</string>
+    <string name="player_unrecoverable_failure">Se produjo un error irrecuperable del reproductor</string>
+    <string name="player_recoverable_failure">Recuperándose del error del reproductor</string>
+
+    <string name="title_activity_background_player">Reproductor de fondo</string>
+    <string name="title_activity_popup_player">Reproductor popup</string>
+    <string name="play_queue_remove">Remover</string>
+    <string name="play_queue_stream_detail">Detalles</string>
+    <string name="play_queue_audio_settings">Ajustes de audio</string>
+    </resources>
