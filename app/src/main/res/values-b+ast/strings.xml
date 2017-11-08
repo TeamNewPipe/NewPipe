@@ -253,4 +253,26 @@
     <string name="history_cleared">Llimpióse l\'historial</string>
     <string name="item_deleted">Desanicióse l\'elementu</string>
     <string name="delete_item_search_history">¿Quies desaniciar esti elementu del historial de gueta?</string>
-</resources>
+<string name="play_all">Reproducir too</string>
+
+    <string name="player_stream_failure">Nun pudo reproducise esta tresmisión</string>
+    <string name="player_unrecoverable_failure">Asocedió un error irrecuperable del reproductor</string>
+    <string name="player_recoverable_failure">Recuperándose del error del reproductor</string>
+
+    <string name="main_page_content">Conteníu de la páxina principal</string>
+    <string name="blank_page_summary">Páxina en blancu</string>
+    <string name="kiosk_page_summary">Páxina del quioscu</string>
+    <string name="subscription_page_summary">Páxina de suscripción</string>
+    <string name="feed_page_summary">Páxina de fluxu</string>
+    <string name="channel_page_summary">Páxina de canal</string>
+    <string name="select_a_channel">Seleiciona un canal</string>
+    <string name="no_channel_subscribed_yet">Entá nun hai canales soscritos</string>
+    <string name="select_a_kiosk">Seleiciona un quioscu</string>
+
+    <string name="kiosk">Quioscu</string>
+    <string name="trending">Tendencies</string>
+    <string name="top_50">50 meyores</string>
+    <string name="title_activity_background_player">Reproductor de fondu</string>
+    <string name="play_queue_remove">Desaniciar</string>
+    <string name="play_queue_stream_detail">Detalles</string>
+    </resources>
