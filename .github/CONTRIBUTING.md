@@ -32,7 +32,7 @@ Do not report crashes in the GitHub issue tracker. NewPipe has an automated cras
 * Please test (compile and run) your code before you submit changes! Ideally, provide test feedback in the PR description. Untested code will **not** be merged!
 * Try to figure out yourself why builds on our CI fail.
 * Make sure your PR is up-to-date with the rest of the code. Often, a simple click on "Update branch" will do the job, but if not, you are asked to merge the master branch manually and resolve the problems on your own. That will make the maintainers' jobs way easier.
-* Please show intention to maintain your features and code after you contributed it. Unmaintained code is a hassle for the core developers, and just adds work. If you do not intend to maintain features you contributed, please think again about sumission, or clearly state that in the description of your PR.
+* Please show intention to maintain your features and code after you contributed it. Unmaintained code is a hassle for the core developers, and just adds work. If you do not intend to maintain features you contributed, please think again about submission, or clearly state that in the description of your PR.
 * Respond yourselves if someone requests changes or otherwise raises issues about your PRs.
 * Check if your contributions align with the [fdroid inclusion guidelines](https://f-droid.org/en/docs/Inclusion_Policy/).
 * Check if your submission can be build with the current fdroid build server setup.
