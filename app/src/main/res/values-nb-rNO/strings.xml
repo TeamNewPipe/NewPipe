@@ -254,4 +254,24 @@
     <string name="history_cleared">Historikk tømt</string>
     <string name="item_deleted">Element slettet</string>
 <string name="delete_item_search_history">Ønsker du å slette dette elementet fra søkehistorikken?</string>
+<string name="play_all">Spill av alle</string>
+
+    <string name="player_stream_failure">Klarte ikke å spille av denne strømmen</string>
+    <string name="player_unrecoverable_failure">Uopprettelig avspillerfeil oppstod</string>
+    <string name="blank_page_summary">Blank side</string>
+    <string name="kiosk_page_summary">Kiosk-side</string>
+    <string name="subscription_page_summary">Abonnementsside</string>
+    <string name="channel_page_summary">Kanalside</string>
+    <string name="select_a_channel">Velg en kanal</string>
+    <string name="select_a_kiosk">Velg en kiosk</string>
+
+    <string name="kiosk">Kiosk</string>
+    <string name="top_50">Topp 50</string>
+    <string name="new_and_hot">Nytt og hett</string>
+    <string name="title_activity_background_player">Bakgrunnsavspiller</string>
+    <string name="title_activity_popup_player">Oppsprettsavspiller</string>
+    <string name="play_queue_remove">Fjern</string>
+    <string name="play_queue_stream_detail">Detaljer</string>
+    <string name="play_queue_audio_settings">Lydinnstillinger</string>
+    <string name="hold_to_append">Hold for å legge i kø</string>
 </resources>
