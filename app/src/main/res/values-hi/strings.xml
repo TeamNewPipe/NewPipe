@@ -1,3 +1,58 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-</resources>
+<string name="view_count_text">%1$s दृश्य</string>
+    <string name="upload_date_text">%1$s को प्रकाशित</string>
+    <string name="no_player_found"></string>
+    <string name="install">इंस्टॉल करें</string>
+    <string name="open_in_browser">ब्राउज़र में खोलें</string>
+    <string name="open_in_popup_mode">पॉपअप मोड में खोलें</string>
+    <string name="share">शेयर करें</string>
+    <string name="download">डाउनलोड</string>
+    <string name="search">खोज</string>
+    <string name="settings">सेटिंग</string>
+    <string name="choose_browser">ब्राउज़र चुनें</string>
+    <string name="screen_rotation">रोटेशन</string>
+    <string name="popup_mode_share_menu_title">[NEWPIPE] पॉपअप मोड</string>
+    <string name="subscribe_button_title">सदस्य बनें</string>
+    <string name="subscribed_button_title">सदस्यता ली</string>
+    <string name="channel_unsubscribed">सदस्यता निकाली गई</string>
+    <string name="tab_subscriptions">सदस्यता</string>
+
+    <string name="controls_background_title">पीछे</string>
+    <string name="controls_popup_title">पॉप अप</string>
+
+    <string name="autoplay_by_calling_app_title">स्वतः चलाएं</string>
+    <string name="play_audio">ऑडियो</string>
+    <string name="light_theme_title">हलका</string>
+    <string name="black_theme_title">काली</string>
+    <string name="enable_watch_history_title">इतिहास</string>
+    <string name="download_dialog_title">डाउनलोड</string>
+    <string name="next_video_title">अगला वीडियो</string>
+    <string name="settings_category_video_audio_title">वीडियो और ऑडियो</string>
+    <string name="settings_category_history_title">इतिहास</string>
+    <string name="background_player_playing_toast">पीछे चल रहा है</string>
+    <string name="no_views">कोई दृश्य नहीं</string>
+    <string name="no_videos">कोई वीडियो नहीं है</string>
+    <string name="title_activity_about">[NewPipe] बारे में</string>
+    <string name="action_settings">सेटिंग</string>
+    <string name="action_about">इसके बारे में</string>
+    <string name="title_licenses">तृतीय पक्ष लाइसेंस</string>
+    <string name="action_open_website">वेबसाइट खोलें</string>
+    <string name="tab_about">इसके बारे में</string>
+    <string name="tab_licenses">लाइसेंस</string>
+    <string name="view_on_github">GitHub में देखें</string>
+    <string name="app_license_title">[NewPipe] का लाइसेंस</string>
+    <string name="read_full_license">लाइसेंस पढ़ें</string>
+    <string name="contribution_title">योगदान</string>
+
+    <string name="title_activity_history">इतिहास</string>
+    <string name="title_history_search">कोज चुके</string>
+    <string name="title_history_view">देखा वीडियो</string>
+    <string name="history_disabled">इतिहास अक्षम है</string>
+    <string name="action_history">इतिहास</string>
+    <string name="history_empty">इतिहास खाली है</string>
+    <string name="history_cleared">इतिहास स्पष्ट हो चुकी है</string>
+    <string name="item_deleted">मद हटाया गया</string>
+    <string name="trending">चर्चित</string>
+    <string name="play_queue_audio_settings">ऑडियो सेटिंग</string>
+    </resources>
