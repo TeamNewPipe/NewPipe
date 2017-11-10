@@ -284,7 +284,7 @@
     <string name="select_a_kiosk">Kiosk auswählen</string>
 
     <string name="kiosk">Kiosk</string>
-    <string name="show_hold_to_append_summary">"Tipp anzeigen,  wenn der Hintergrundwiedergabe-Button oder der Popup-Button auf der Videodetailseite gedrückt und gehalten wird"</string>
+    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe-Button oder der Popup-Button auf der Videodetailseite gedrückt und gehalten wird</string>
     <string name="background_player_append">In der Warteschlange bei der Hintergrundwiedergabe</string>
     <string name="new_and_hot">Neu und brandheiß</string>
     <string name="hold_to_append">Halten, um in die Warteschlange einzureihen</string>
