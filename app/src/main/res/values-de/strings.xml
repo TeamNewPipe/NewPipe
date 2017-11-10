@@ -5,7 +5,7 @@
     <string name="no_player_found">Keinen Streamplayer gefunden. Möchtest du VLC installieren?</string>
     <string name="install">Installieren</string>
     <string name="cancel">Abbrechen</string>
-    <string name="open_in_browser">In Browser öffnen</string>
+    <string name="open_in_browser">Im Browser öffnen</string>
     <string name="share">Teilen</string>
     <string name="download">Download</string>
     <string name="search">Suchen</string>
@@ -218,7 +218,7 @@
     <string name="history_cleared">Verlauf bereinigt</string>
 
 <string name="subscription_change_failed">Fehler beim Ändern des Abos</string>
-    <string name="subscription_update_failed">Fehler beim Updaten des Abos</string>
+    <string name="subscription_update_failed">Fehler beim Aktualisieren des Abos</string>
 
     <string name="resume_on_audio_focus_gain_summary">Nach Unterbrechungen (z.B. Telefonaten) Wiedergabe fortsetzen</string>
 
@@ -277,7 +277,7 @@
     <string name="title_activity_popup_player">Popup-Player</string>
     <string name="play_queue_stream_detail">Details</string>
     <string name="top_50">Top 50</string>
-    <string name="player_unrecoverable_failure">Es ist ein unumgänglicher Fehler im Video-Spieler aufgetreten</string>
+    <string name="player_unrecoverable_failure">Nicht behebbarer Wiedergabefehler aufgetreten</string>
     <string name="player_recoverable_failure">Player-Fehler gelöst</string>
 
     <string name="kiosk_page_summary">Kiosk-Seite</string>
