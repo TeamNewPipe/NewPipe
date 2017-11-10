@@ -2,7 +2,7 @@
 <resources>
 <string name="view_count_text">%1$s दृश्य</string>
     <string name="upload_date_text">%1$s को प्रकाशित</string>
-    <string name="no_player_found"></string>
+    <string name="no_player_found">वीडियो दिखाना के लिए एप्लिकेशन नहीं मिला. क्या आप VLC इंस्टॉल करना चाहते हैं?</string>
     <string name="install">इंस्टॉल करें</string>
     <string name="open_in_browser">ब्राउज़र में खोलें</string>
     <string name="open_in_popup_mode">पॉपअप मोड में खोलें</string>
@@ -55,4 +55,7 @@
     <string name="item_deleted">मद हटाया गया</string>
     <string name="trending">चर्चित</string>
     <string name="play_queue_audio_settings">ऑडियो सेटिंग</string>
+    <string name="main_bg_subtitle">खोज चिह्न दबाके आरंम्भ करे</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="did_you_mean">क्या आप का मतलब %1$s है?</string>
     </resources>
