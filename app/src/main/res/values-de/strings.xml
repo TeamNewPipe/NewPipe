@@ -15,7 +15,7 @@
     <string name="choose_browser">Browser</string>
     <string name="screen_rotation">Rotation</string>
     <string name="download_path_title">Downloadverzeichnis für Videos</string>
-    <string name="download_path_summary">Verzeichnis in dem heruntergeladene Videos gespeichert werden</string>
+    <string name="download_path_summary">Verzeichnis für heruntergeladene Videos</string>
     <string name="download_path_dialog_title">Downloadverzeichnis für Videos eingeben</string>
     <string name="default_resolution_title">Standardauflösung</string>
     <string name="play_with_kodi_title">Mit Kodi abspielen</string>
