@@ -160,7 +160,7 @@ public class ErrorActivity extends AppCompatActivity {
                 key = k;
             }
         }
-        String[] el = new String[]{report.get(key)};
+        String[] el = new String[]{report.get(key).toString()};
 
         Intent intent = new Intent(context, ErrorActivity.class);
         intent.putExtra(ERROR_INFO, errorInfo);

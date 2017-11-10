@@ -64,7 +64,7 @@ dependencies {
     implementation 'com.android.support:preference-v14:27.0.0'
 
     implementation 'com.google.code.gson:gson:2.8.2'
-    implementation 'ch.acra:acra:4.9.0'
+    implementation 'ch.acra:acra:4.9.2'
 
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
