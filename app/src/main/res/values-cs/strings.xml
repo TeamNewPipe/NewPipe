@@ -255,7 +255,7 @@ otevření ve vyskakovacím okně</string>
     <string name="history_cleared">Historie smazána</string>
     <string name="item_deleted">Položka byla odstraněna</string>
 <string name="show_hold_to_append_title">Zobrazovat tip \"Podrž pro přidání\"</string>
-    <string name="show_hold_to_append_summary">Zobrazí se na stránce videa po stisku tlačítek přehrát na pozadí nebo v okně</string>
+    <string name="show_hold_to_append_summary">Zobrazí se po stisku tlačítek přehrát na pozadí nebo v okně na stránce videa</string>
     <string name="background_player_append">Ve frontě přehrávače na pozadí</string>
     <string name="popup_playing_append">Ve frontě přehrávače v okně</string>
     <string name="play_all">Přehrát vše</string>
@@ -270,7 +270,7 @@ otevření ve vyskakovacím okně</string>
     <string name="blank_page_summary">Prázdná stránka</string>
     <string name="kiosk_page_summary">Kiosek</string>
     <string name="subscription_page_summary">Odběry</string>
-    <string name="feed_page_summary">Feed</string>
+    <string name="feed_page_summary">Novinky</string>
     <string name="channel_page_summary">Kanál</string>
     <string name="select_a_channel">Zvolte kanál</string>
     <string name="no_channel_subscribed_yet">Žádný kanál dosud neodebírán</string>
