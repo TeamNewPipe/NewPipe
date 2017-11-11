@@ -27,6 +27,7 @@ import android.content.res.TypedArray;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -94,6 +95,7 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
     private String resolution;
     private PlayQueue playQueue;
     private StreamInfo currentInfo;
+    private ImageButton screenRotationButton;
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -117,6 +119,9 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
         currentInfo = (StreamInfo) getArguments().getSerializable(INFO_KEY);
         playQueue = (PlayQueue) getArguments().getSerializable(VideoPlayer.PLAY_QUEUE);
         resolution = getArguments().getString(VideoPlayer.PLAYBACK_QUALITY);
+
+        screenRotationButton = layout.findViewById(R.id.screenRotationButton);
+        checkAutorotation();
 
         if(savedInstanceState != null) {
             currentInfo = (StreamInfo) savedInstanceState.getSerializable(INFO_KEY);
@@ -211,20 +216,20 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    public void loadVideo(StreamInfo info, PlayQueue _playQueue, String _resolution, View layout, long playbackPosition, boolean _isFullscreen) {
+    public void loadVideo(StreamInfo info, PlayQueue queue, String videoResolution, View layout, long playbackPosition, boolean fullscreen) {
         if(playerImpl == null || playerImpl.getPlayer() == null)
             return;
 
         if(layout == null)
             layout = getView();
 
-        if(_playQueue == null)
+        if(queue == null)
             playQueue = new SinglePlayQueue(info);
         else
-            playQueue = _playQueue;
+            playQueue = queue;
 
-        isFullscreen = _isFullscreen;
-        resolution = _resolution;
+        isFullscreen = fullscreen;
+        resolution = videoResolution;
         playQueue.setRecovery(playQueue.getIndex(), playbackPosition);
 
         Intent playerIntent = NavigationHelper.getPlayerIntent(getActivity(), BackgroundPlayer.class, playQueue, resolution);
@@ -278,6 +283,11 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
             params.setMargins(0,0,0,0);
             getActivity().findViewById(R.id.fragment_holder).setLayoutParams(params);
         }
+    }
+
+    public void checkAutorotation() {
+        boolean autorotationEnabled = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(this.getString(R.string.use_video_autorotation_key), false);
+        screenRotationButton.setVisibility(autorotationEnabled? View.GONE : View.VISIBLE);
     }
 
     private void toggleOrientation() {
@@ -687,21 +697,21 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
         public void showControlsThenHide() {
             if (queueVisible) return;
 
-            showOrHidePrevAndNextButtons();
+            showOrHideButtons();
             super.showControlsThenHide();
         }
 
         @Override
         public void showControls(long duration) {
             if (queueVisible) return;
-            showOrHidePrevAndNextButtons();
+            showOrHideButtons();
             super.showControls(duration);
         }
 
         @Override
         public void hideControls(final long duration, long delay) {
             if (DEBUG) Log.d(TAG, "hideControls() called with: delay = [" + delay + "]");
-            showOrHidePrevAndNextButtons();
+            showOrHideButtons();
 
             getControlsVisibilityHandler().removeCallbacksAndMessages(null);
             getControlsVisibilityHandler().postDelayed(new Runnable() {
@@ -716,11 +726,15 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
                 }
             }, delay);
         }
-        private  void showOrHidePrevAndNextButtons(){
+        private  void showOrHideButtons(){
             if(playQueue.getIndex() == 0)
                 playPreviousButton.setVisibility(View.GONE);
             if(playQueue.getIndex() + 1 == playQueue.getStreams().size())
                 playNextButton.setVisibility(View.GONE);
+            if(playQueue.getStreams().size() <= 1)
+                queueButton.setVisibility(View.GONE);
+            else
+                queueButton.setVisibility(View.VISIBLE);
         }
 
         private void updatePlaybackButtons() {

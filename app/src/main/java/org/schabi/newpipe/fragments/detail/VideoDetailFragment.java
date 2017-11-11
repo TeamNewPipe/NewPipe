@@ -198,8 +198,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         // It means when device will be rotated only current screen will be rotated too. Look at onDestroy()
-        int orientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR;
-        activity.setRequestedOrientation(orientation);
+        if(isAutorotationEnabled())
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 
         showRelatedStreams = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.show_next_video_key), true);
         PreferenceManager.getDefaultSharedPreferences(activity).registerOnSharedPreferenceChangeListener(this);
@@ -250,7 +250,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         currentInfo = null;
         sortedStreamVideosList = null;
         spinnerToolbar = null;
-        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+
+        if(isAutorotationEnabled()) {
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        }
     }
 
     @Override
@@ -288,6 +291,18 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             updateFlags |= RESOLUTIONS_MENU_UPDATE_FLAG;
         } else if (key.equals(getString(R.string.show_play_with_kodi_key))) {
             updateFlags |= TOOLBAR_ITEMS_UPDATE_FLAG;
+        }
+        if(key.equals(getString(R.string.use_video_autorotation_key))) {
+            if(!isAutorotationEnabled()) {
+                int currentOrientation = getResources().getDisplayMetrics().heightPixels > getResources().getDisplayMetrics().widthPixels
+                        ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
+                        : ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
+                activity.setRequestedOrientation(currentOrientation);
+            }
+            else {
+                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+            }
+            if(getMainVideoPlayer() != null) getMainVideoPlayer().checkAutorotation();
         }
     }
 
@@ -1086,6 +1101,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     // Useless now
     public void setAutoplay(boolean autoplay) {
         //this.autoPlayEnabled = autoplay;
+    }
+
+    private boolean isAutorotationEnabled() {
+        return PreferenceManager.getDefaultSharedPreferences(getContext())
+                .getBoolean(this.getString(R.string.use_video_autorotation_key), false);
     }
 
     public boolean isAutoplayPreferred () {

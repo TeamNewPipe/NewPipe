@@ -82,6 +82,8 @@
     <string name="show_next_and_similar_title">Show next and similar videos</string>
     <string name="show_hold_to_append_title">Show Hold to Append Tip</string>
     <string name="show_hold_to_append_summary">Show tip when background or popup button is pressed on video details page</string>
+    <string name="use_video_autorotation_title">Automatic screen orientation</string>
+    <string name="use_video_autorotation_summary">Use device sensor to detect current screen orientation while watching a video</string>
     <string name="url_not_supported_toast">URL not supported</string>
     <string name="search_language_title">Default content language</string>
     <string name="settings_category_player_title">Player</string>
