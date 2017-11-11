@@ -5,6 +5,12 @@
     tools:context=".fragments.list.impl.ChannelFragment">
 
     <item
+        android:id="@+id/menu_item_search"
+        android:icon="?attr/search"
+        android:title="@string/search"
+        app:showAsAction="always"/>
+
+    <item
         android:id="@+id/menu_item_openInBrowser"
         android:title="@string/open_in_browser"
         app:showAsAction="never"/>

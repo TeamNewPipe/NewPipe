@@ -44,6 +44,7 @@ class ActionBarHandler {
 
     private AppCompatActivity activity;
     private int selectedVideoStream = -1;
+    private String selectedStreamResolution = null;
 
     private SharedPreferences defaultPreferences;
 
@@ -51,6 +52,8 @@ class ActionBarHandler {
 
     // Only callbacks are listed here, there are more actions which don't need a callback.
     // those are edited directly. Typically VideoDetailFragment will implement those callbacks.
+    private OnActionListener onSearchListener;
+    private OnStreamChangesListener onStreamSelectedListener;
     private OnActionListener onShareListener;
     private OnActionListener onOpenInBrowserListener;
     private OnActionListener onDownloadListener;
@@ -61,6 +64,11 @@ class ActionBarHandler {
         void onActionSelected(int selectedStreamId);
     }
 
+    public interface OnStreamChangesListener {
+        void onActionSelected(int selectedStreamId);
+        void onStreamResolutionSelected(String selectedResolution);
+    }
+
     public ActionBarHandler(AppCompatActivity activity) {
         this.activity = activity;
     }
@@ -68,15 +76,25 @@ class ActionBarHandler {
     public void setupStreamList(final List<VideoStream> videoStreams, Spinner toolbarSpinner) {
         if (activity == null) return;
 
-        selectedVideoStream = ListHelper.getDefaultResolutionIndex(activity, videoStreams);
+        if(selectedStreamResolution == null) selectedVideoStream = ListHelper.getDefaultResolutionIndex(activity, videoStreams);
+        else selectedVideoStream = ListHelper.getDefaultResolutionIndex(activity, videoStreams, selectedStreamResolution);
 
         boolean isExternalPlayerEnabled = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(activity.getString(R.string.use_external_video_player_key), false);
         toolbarSpinner.setAdapter(new SpinnerToolbarAdapter(activity, videoStreams, isExternalPlayerEnabled));
-        toolbarSpinner.setSelection(selectedVideoStream);
+        final int defaultSelection = selectedVideoStream >= videoStreams.size()? videoStreams.size()-1 : selectedVideoStream;
+        toolbarSpinner.setSelection(defaultSelection);
         toolbarSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(defaultSelection == position) return;  // Without this line action called every time view loaded
                 selectedVideoStream = position;
+                VideoStream preferredVideoStream = videoStreams.get(selectedVideoStream);
+                selectedStreamResolution = preferredVideoStream.resolution;
+
+                if(onStreamSelectedListener != null) {
+                    onStreamSelectedListener.onActionSelected(selectedVideoStream);
+                    onStreamSelectedListener.onStreamResolutionSelected(preferredVideoStream.resolution);
+                }
             }
 
             @Override
@@ -105,6 +123,12 @@ class ActionBarHandler {
     public boolean onItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
+            case R.id.menu_item_search: {
+                if (onSearchListener != null) {
+                    onSearchListener.onActionSelected(selectedVideoStream);
+                }
+                return true;
+            }
             case R.id.menu_item_share: {
                 if (onShareListener != null) {
                     onShareListener.onActionSelected(selectedVideoStream);
@@ -137,13 +161,17 @@ class ActionBarHandler {
         return selectedVideoStream;
     }
 
+    public void setStreamResolution(String selectedResolution) { selectedStreamResolution = selectedResolution; }
+
+    public void setOnStreamSelectedListener(OnStreamChangesListener listener) { onStreamSelectedListener = listener; }
+
     public void setOnShareListener(OnActionListener listener) {
         onShareListener = listener;
     }
 
-    public void setOnOpenInBrowserListener(OnActionListener listener) {
-        onOpenInBrowserListener = listener;
-    }
+    public void setOnOpenInBrowserListener(OnActionListener listener) { onOpenInBrowserListener = listener; }
+
+    public void setOnSearchListener(OnActionListener listener) { onSearchListener = listener; }
 
     public void setOnDownloadListener(OnActionListener listener) {
         onDownloadListener = listener;

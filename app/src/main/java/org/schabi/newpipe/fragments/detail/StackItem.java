@@ -1,15 +1,19 @@
 package org.schabi.newpipe.fragments.detail;
 
+import org.schabi.newpipe.playlist.PlayQueue;
+
 import java.io.Serializable;
 
 class StackItem implements Serializable {
     private int serviceId;
     private String title, url;
+    private PlayQueue playQueue;
 
-    StackItem(int serviceId, String url, String title) {
+    StackItem(int serviceId, String url, String title, PlayQueue playQueue) {
         this.serviceId = serviceId;
         this.url = url;
         this.title = title;
+        this.playQueue = playQueue;
     }
 
     public void setTitle(String title) {
@@ -26,6 +30,10 @@ class StackItem implements Serializable {
 
     public String getUrl() {
         return url;
+    }
+
+    public PlayQueue getPlayQueue() {
+        return playQueue;
     }
 
     @Override

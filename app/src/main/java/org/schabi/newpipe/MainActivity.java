@@ -146,17 +146,20 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
     @Override
     public void onBackPressed() {
         if (DEBUG) Log.d(TAG, "onBackPressed() called");
-
-        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
-        // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
-        if (fragment instanceof BackPressable) {
-            if (((BackPressable) fragment).onBackPressed()) return;
-        }
-
+        if(sendBackPressedEvent()) return;
 
         if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
             finish();
         } else super.onBackPressed();
+    }
+
+    private boolean sendBackPressedEvent() {
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+        // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
+        if (fragment instanceof BackPressable) {
+            if (((BackPressable) fragment).onBackPressed()) return true;
+        }
+        return false;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -194,6 +197,12 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
 
         switch (id) {
             case android.R.id.home:
+                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+                // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
+                if (fragment instanceof BackPressable) {
+                    ((BackPressable) fragment).onBackPressed();
+                }
+
                 NavigationHelper.gotoMainFragment(getSupportFragmentManager());
                 return true;
             case R.id.action_settings:
@@ -238,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
             switch (((StreamingService.LinkType) intent.getSerializableExtra(Constants.KEY_LINK_TYPE))) {
                 case STREAM:
                     boolean autoPlay = intent.getBooleanExtra(VideoDetailFragment.AUTO_PLAY, false);
-                    NavigationHelper.openVideoDetailFragment(getSupportFragmentManager(), serviceId, url, title, autoPlay);
+                    NavigationHelper.openVideoDetailFragment(getSupportFragmentManager(), serviceId, url, title, autoPlay, null);
                     break;
                 case CHANNEL:
                     NavigationHelper.openChannelFragment(getSupportFragmentManager(), serviceId, url, title);

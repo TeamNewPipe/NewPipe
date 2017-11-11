@@ -19,32 +19,39 @@
 
 package org.schabi.newpipe.player;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.graphics.Color;
+import android.content.res.TypedArray;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.Player;
 
 import org.schabi.newpipe.R;
@@ -52,13 +59,14 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
 import org.schabi.newpipe.playlist.PlayQueueItemHolder;
+import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.lang.reflect.Field;
@@ -72,69 +80,100 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
  *
  * @author mauriciocolli
  */
-public final class MainVideoPlayer extends Activity {
+public final class MainVideoPlayer extends Fragment implements BackPressable {
     private static final String TAG = ".MainVideoPlayer";
     private static final boolean DEBUG = BasePlayer.DEBUG;
+    private static final String IS_FULLSCREEN = "is_fullscreen";
+    private static final String INFO_KEY = "info_key";
 
     private GestureDetector gestureDetector;
 
     private boolean activityPaused;
     private VideoPlayerImpl playerImpl;
+    private boolean isFullscreen = false;
+    private String resolution;
+    private PlayQueue playQueue;
+    private StreamInfo currentInfo;
+
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
-        ThemeHelper.setTheme(this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) getWindow().setStatusBarColor(Color.BLACK);
-        setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        ThemeHelper.setTheme(this.getActivity());
+        getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
+    }
 
-        if (getIntent() == null) {
-            Toast.makeText(this, R.string.general_error, Toast.LENGTH_SHORT).show();
-            finish();
-            return;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.activity_main_player, container, false);
+
+        playerImpl = new VideoPlayerImpl(getContext());
+        playerImpl.setup(layout.getRootView());
+        currentInfo = (StreamInfo) getArguments().getSerializable(INFO_KEY);
+        playQueue = (PlayQueue) getArguments().getSerializable(VideoPlayer.PLAY_QUEUE);
+        resolution = getArguments().getString(VideoPlayer.PLAYBACK_QUALITY);
+
+        if(savedInstanceState != null) {
+            currentInfo = (StreamInfo) savedInstanceState.getSerializable(INFO_KEY);
+            playQueue = (PlayQueue) savedInstanceState.getSerializable(VideoPlayer.PLAY_QUEUE);
+            resolution = savedInstanceState.getString(VideoPlayer.PLAYBACK_QUALITY);
+            loadVideo(currentInfo, playQueue, resolution, layout,
+                    savedInstanceState.getLong(BasePlayer.PLAYBACK_POSITION, 0),
+                    savedInstanceState.getBoolean(IS_FULLSCREEN));
+        }
+        else {
+            loadVideo(currentInfo, playQueue, resolution, layout, 0, false);
         }
 
-        showSystemUi();
-        setContentView(R.layout.activity_main_player);
-        playerImpl = new VideoPlayerImpl(this);
-        playerImpl.setup(findViewById(android.R.id.content));
-        playerImpl.handleIntent(getIntent());
+        return layout;
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
-        if (DEBUG) Log.d(TAG, "onNewIntent() called with: intent = [" + intent + "]");
-        super.onNewIntent(intent);
-        playerImpl.handleIntent(intent);
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putSerializable(INFO_KEY, currentInfo);
+        outState.putSerializable(VideoPlayer.PLAY_QUEUE, playQueue);
+        outState.putString(VideoPlayer.PLAYBACK_QUALITY, resolution);
+        outState.putLong(BasePlayer.PLAYBACK_POSITION, getPlaybackPosition());
+        outState.putBoolean(IS_FULLSCREEN, isFullscreen);
     }
 
     @Override
-    public void onBackPressed() {
-        if (DEBUG) Log.d(TAG, "onBackPressed() called");
-        super.onBackPressed();
-        if (playerImpl.isPlaying()) playerImpl.getPlayer().setPlayWhenReady(false);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if(isFullscreen) {
+            hideActionBar();
+            hideSystemUi();
+            ((ViewGroup) getView().getParent()).removeView(getView());
+            ((ViewGroup)getActivity().findViewById(R.id.video_item_detail)).addView(getView());
+        }
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         if (DEBUG) Log.d(TAG, "onStop() called");
         activityPaused = true;
 
         if (playerImpl.getPlayer() != null) {
             playerImpl.wasPlaying = playerImpl.getPlayer().getPlayWhenReady();
+            playerImpl.getPlayer().setPlayWhenReady(false);
             playerImpl.setRecovery();
             playerImpl.destroyPlayer();
         }
+        showSystemUi();
+        showActionBar();
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         if (DEBUG) Log.d(TAG, "onResume() called");
         if (activityPaused) {
@@ -145,45 +184,79 @@ public final class MainVideoPlayer extends Activity {
             playerImpl.initPlayback(playerImpl.playQueue);
 
             activityPaused = false;
+
+            if(isFullscreen) {
+                hideActionBar();
+            }
         }
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         if (DEBUG) Log.d(TAG, "onDestroy() called");
         if (playerImpl != null) playerImpl.destroy();
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
+    public boolean onBackPressed() {
+        if(!isFullscreen || playerImpl == null)
+            return false;
 
-        if (playerImpl.isSomePopupMenuVisible()) {
-            playerImpl.moreOptionsPopupMenu.dismiss();
-            playerImpl.getQualityPopupMenu().dismiss();
-            playerImpl.getPlaybackSpeedPopupMenu().dismiss();
-        }
+        playerImpl.onFullScreenButtonClicked();
+        return true;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
+    public void loadVideo(StreamInfo info, PlayQueue _playQueue, String _resolution, View layout, long playbackPosition, boolean _isFullscreen) {
+        if(playerImpl == null || playerImpl.getPlayer() == null)
+            return;
+
+        if(layout == null)
+            layout = getView();
+
+        if(_playQueue == null)
+            playQueue = new SinglePlayQueue(info);
+        else
+            playQueue = _playQueue;
+
+        isFullscreen = _isFullscreen;
+        resolution = _resolution;
+        playQueue.setRecovery(playQueue.getIndex(), playbackPosition);
+
+        Intent playerIntent = NavigationHelper.getPlayerIntent(getActivity(), BackgroundPlayer.class, playQueue, resolution);
+        playerImpl.handleIntent(playerIntent);
+        if(layout != null) layout.findViewById(R.id.surfaceView).setVisibility(View.GONE);
+    }
+
     private void showSystemUi() {
         if (DEBUG) Log.d(TAG, "showSystemUi() called");
-        if (playerImpl != null && playerImpl.queueVisible) return;
+        if (playerImpl != null && playerImpl.queueVisible || getActivity() == null) return;
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            getWindow().getDecorView().setSystemUiVisibility(
+            getActivity().getWindow().getDecorView().setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
             );
-        } else getWindow().getDecorView().setSystemUiVisibility(0);
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        } else getActivity().getWindow().getDecorView().setSystemUiVisibility(0);
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+    private void showActionBar() {
+        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        if(actionBar != null) {
+            actionBar.show();
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            TypedArray a = getActivity().getTheme().obtainStyledAttributes(R.style.ThemeOverlay_AppCompat_ActionBar, new int[]{R.attr.actionBarSize});
+            int attributeResourceId = a.getResourceId(0, 0);
+            params.setMargins(0, (int) getResources().getDimension(attributeResourceId), 0, 0);
+            getActivity().findViewById(R.id.fragment_holder).setLayoutParams(params);
+        }
     }
 
     private void hideSystemUi() {
+        if(!isFullscreen || getActivity() == null) return;
         if (DEBUG) Log.d(TAG, "hideSystemUi() called");
         if (android.os.Build.VERSION.SDK_INT >= 16) {
             int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -192,15 +265,29 @@ public final class MainVideoPlayer extends Activity {
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) visibility |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-            getWindow().getDecorView().setSystemUiVisibility(visibility);
+            getActivity().getWindow().getDecorView().setSystemUiVisibility(visibility);
         }
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    private void hideActionBar() {
+        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        if(actionBar != null) {
+            actionBar.hide();
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            params.setMargins(0,0,0,0);
+            getActivity().findViewById(R.id.fragment_holder).setLayoutParams(params);
+        }
     }
 
     private void toggleOrientation() {
-        setRequestedOrientation(getResources().getDisplayMetrics().heightPixels > getResources().getDisplayMetrics().widthPixels
+        getActivity().setRequestedOrientation(getResources().getDisplayMetrics().heightPixels > getResources().getDisplayMetrics().widthPixels
                 ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
                 : ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+    }
+
+    public long getPlaybackPosition() {
+        return (playerImpl != null && playerImpl.getPlayer() != null)? playerImpl.getPlayer().getCurrentPosition() : 0;
     }
 
     protected void setRepeatModeButton(final ImageButton imageButton, final int repeatMode) {
@@ -315,9 +402,16 @@ public final class MainVideoPlayer extends Activity {
         //////////////////////////////////////////////////////////////////////////*/
 
         @Override
+        public void onPlayerError(ExoPlaybackException error) {
+            super.onPlayerError(error);
+
+            if(error.type == ExoPlaybackException.TYPE_SOURCE)
+                removeThisFragment();
+        }
+
+        @Override
         public void shutdown() {
             super.shutdown();
-            finish();
         }
 
         @Override
@@ -327,6 +421,11 @@ public final class MainVideoPlayer extends Activity {
             channelTextView.setText(getUploaderName());
 
             playPauseButton.setImageResource(R.drawable.ic_pause_white);
+
+            Fragment fragment = getParentFragment().getFragmentManager().findFragmentById(R.id.fragment_holder);
+            // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
+            if (fragment instanceof QueueListener)
+                ((QueueListener) fragment).onSync(item, info);
         }
 
         @Override
@@ -341,32 +440,28 @@ public final class MainVideoPlayer extends Activity {
 
         @Override
         public void onFullScreenButtonClicked() {
-            super.onFullScreenButtonClicked();
 
             if (DEBUG) Log.d(TAG, "onFullScreenButtonClicked() called");
-            if (simpleExoPlayer == null) return;
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                    && !PermissionHelper.checkSystemAlertWindowPermission(MainVideoPlayer.this)) {
-                Toast.makeText(MainVideoPlayer.this, R.string.msg_popup_permission, Toast.LENGTH_LONG).show();
-                return;
+            if (!isFullscreen) {
+                isFullscreen = true;
+                hideActionBar();
+                hideSystemUi();
+
+                // Adding view to the top position because we need MATCH_PARENT to work for fullscreen
+                View view = getView();
+                ((ViewGroup) view.getParent()).removeView(view);
+                ((ViewGroup)getActivity().findViewById(R.id.video_item_detail)).addView(view);
+            } else {
+                isFullscreen = false;
+                showActionBar();
+                showSystemUi();
+
+                // Returning back
+                View view = getView();
+                ((ViewGroup) view.getParent()).removeView(view);
+                ((ViewGroup)getActivity().findViewById(R.id.detail_thumbnail_root_layout)).addView(view);
             }
-
-            setRecovery();
-            final Intent intent = NavigationHelper.getPlayerIntent(
-                    context,
-                    PopupVideoPlayer.class,
-                    this.getPlayQueue(),
-                    this.getRepeatMode(),
-                    this.getPlaybackSpeed(),
-                    this.getPlaybackPitch(),
-                    this.getPlaybackQuality()
-            );
-            context.startService(intent);
-
-            ((View) getControlAnimationView().getParent()).setVisibility(View.GONE);
-            destroy();
-            finish();
         }
 
         public void onPlayBackgroundButtonClicked() {
@@ -430,6 +525,8 @@ public final class MainVideoPlayer extends Activity {
         }
 
         private void onQueueClicked() {
+            if(playQueue.getIndex() < 0) return;
+
             queueVisible = true;
             hideSystemUi();
 
@@ -509,8 +606,10 @@ public final class MainVideoPlayer extends Activity {
 
         private void animatePlayButtons(final boolean show, final int duration) {
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
-            animateView(playPreviousButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
-            animateView(playNextButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
+            if(playQueue.getIndex() > 0)
+                animateView(playPreviousButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
+            if(playQueue.getIndex() + 1 < playQueue.getStreams().size())
+                animateView(playNextButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
         }
 
         @Override
@@ -538,8 +637,8 @@ public final class MainVideoPlayer extends Activity {
                     animatePlayButtons(true, 200);
                 }
             });
-            showSystemUi();
             getRootView().setKeepScreenOn(true);
+            getView().findViewById(R.id.surfaceView).setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -567,7 +666,6 @@ public final class MainVideoPlayer extends Activity {
 
         @Override
         public void onCompleted() {
-            showSystemUi();
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 0, 0, new Runnable() {
                 @Override
                 public void run() {
@@ -577,7 +675,8 @@ public final class MainVideoPlayer extends Activity {
             });
 
             getRootView().setKeepScreenOn(false);
-            super.onCompleted();
+            // Produce a bad interface
+            //super.onCompleted();
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -588,19 +687,22 @@ public final class MainVideoPlayer extends Activity {
         public void showControlsThenHide() {
             if (queueVisible) return;
 
+            showOrHidePrevAndNextButtons();
             super.showControlsThenHide();
         }
 
         @Override
         public void showControls(long duration) {
             if (queueVisible) return;
-
+            showOrHidePrevAndNextButtons();
             super.showControls(duration);
         }
 
         @Override
         public void hideControls(final long duration, long delay) {
             if (DEBUG) Log.d(TAG, "hideControls() called with: delay = [" + delay + "]");
+            showOrHidePrevAndNextButtons();
+
             getControlsVisibilityHandler().removeCallbacksAndMessages(null);
             getControlsVisibilityHandler().postDelayed(new Runnable() {
                 @Override
@@ -613,6 +715,12 @@ public final class MainVideoPlayer extends Activity {
                     });
                 }
             }, delay);
+        }
+        private  void showOrHidePrevAndNextButtons(){
+            if(playQueue.getIndex() == 0)
+                playPreviousButton.setVisibility(View.GONE);
+            if(playQueue.getIndex() + 1 == playQueue.getStreams().size())
+                playNextButton.setVisibility(View.GONE);
         }
 
         private void updatePlaybackButtons() {
@@ -645,11 +753,11 @@ public final class MainVideoPlayer extends Activity {
         }
 
         private void buildQueue() {
-            queueLayout = findViewById(R.id.playQueuePanel);
+            queueLayout = getActivity().findViewById(R.id.playQueuePanel);
 
-            itemsListCloseButton = findViewById(R.id.playQueueClose);
+            itemsListCloseButton = getActivity().findViewById(R.id.playQueueClose);
 
-            itemsList = findViewById(R.id.playQueue);
+            itemsList = getActivity().findViewById(R.id.playQueue);
             itemsList.setAdapter(playQueueAdapter);
             itemsList.setClickable(true);
             itemsList.setLongClickable(true);
@@ -767,7 +875,7 @@ public final class MainVideoPlayer extends Activity {
         @Override
         public boolean onDoubleTap(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
-            if (!playerImpl.isPlaying()) return false;
+            if (playerImpl.getPlayer() == null || !playerImpl.isPlaying()) return false;
 
             if (e.getX() > playerImpl.getRootView().getWidth() / 2) {
                 playerImpl.onFastForward();
@@ -791,7 +899,7 @@ public final class MainVideoPlayer extends Activity {
             return true;
         }
 
-        private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
+        private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getActivity().getApplicationContext());
 
         private final float stepsBrightness = 15, stepBrightness = (1f / stepsBrightness), minBrightness = .01f;
         private float currentBrightness = .5f;
@@ -844,13 +952,13 @@ public final class MainVideoPlayer extends Activity {
                 if (playerImpl.getVolumeTextView().getVisibility() != View.VISIBLE) animateView(playerImpl.getVolumeTextView(), true, 200);
                 if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) playerImpl.getBrightnessTextView().setVisibility(View.GONE);
             } else {
-                WindowManager.LayoutParams lp = getWindow().getAttributes();
+                WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
                 currentBrightness += up ? stepBrightness : -stepBrightness;
                 if (currentBrightness >= 1f) currentBrightness = 1f;
                 if (currentBrightness <= minBrightness) currentBrightness = minBrightness;
 
                 lp.screenBrightness = currentBrightness;
-                getWindow().setAttributes(lp);
+                getActivity().getWindow().setAttributes(lp);
                 if (DEBUG) Log.d(TAG, "onScroll().brightnessControl, currentBrightness = " + currentBrightness);
                 int brightnessNormalized = Math.round(currentBrightness * 100);
 
@@ -886,7 +994,21 @@ public final class MainVideoPlayer extends Activity {
                 isMoving = false;
                 onScrollEnd();
             }
-            return true;
+
+            // This hack allows to stop receiving touch events on scrollview while touching video player view
+            switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        return false;
+                    case MotionEvent.ACTION_MOVE:
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
+                        return true;
+                    default:
+                        return true;
+                }
         }
 
     }

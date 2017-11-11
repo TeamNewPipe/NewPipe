@@ -237,6 +237,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.menu_item_search:
+                NavigationHelper.openSearchFragment(getFragmentManager(), 0, "");
+                break;
             case R.id.menu_item_rss:
                 openRssFeed();
                 break;

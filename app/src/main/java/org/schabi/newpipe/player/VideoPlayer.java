@@ -263,7 +263,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
             buildQualityMenu();
             buildPlaybackSpeedMenu();
-            qualityTextView.setVisibility(View.VISIBLE);
+            // Look! Changed this temporary. Will remove qualityTextView soon
+            qualityTextView.setVisibility(View.GONE);
             playbackSpeedTextView.setVisibility(View.VISIBLE);
         }
     }

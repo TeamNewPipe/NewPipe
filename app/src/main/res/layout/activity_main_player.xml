@@ -130,7 +130,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true">
+            android:fitsSystemWindows="false">
 
             <RelativeLayout
                 android:id="@+id/topControls"
@@ -155,7 +155,8 @@
                     android:orientation="vertical"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
-                    tools:ignore="RtlHardcoded">
+                    tools:ignore="RtlHardcoded"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/titleTextView"
@@ -172,7 +173,8 @@
                         android:clickable="true"
                         android:focusable="true"
                         tools:ignore="RtlHardcoded"
-                        tools:text="The Video Title LONG very LONG"/>
+                        tools:text="The Video Title LONG very LONG"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:id="@+id/channelTextView"
@@ -187,7 +189,8 @@
                         android:textSize="12sp"
                         android:clickable="true"
                         android:focusable="true"
-                        tools:text="The Video Artist  LONG very LONG very Long"/>
+                        tools:text="The Video Artist  LONG very LONG very Long"
+                        android:visibility="gone"/>
                 </LinearLayout>
 
                 <TextView
@@ -216,7 +219,24 @@
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     tools:ignore="RtlHardcoded,RtlSymmetry"
-                    tools:text="1x" />
+                    tools:text="1x"
+                    android:visibility="gone" />
+
+                <ImageButton
+                    android:id="@+id/screenRotationButton"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_toLeftOf="@+id/queueButton"
+                    android:background="#00ffffff"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="8dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_screen_rotation_white"
+                    tools:ignore="ContentDescription,RtlHardcoded"
+                    android:visibility="gone"/>
 
                 <ImageButton
                     android:id="@+id/queueButton"

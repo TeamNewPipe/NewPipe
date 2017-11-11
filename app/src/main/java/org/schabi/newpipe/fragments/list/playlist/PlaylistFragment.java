@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -26,6 +27,9 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.InfoItemDialog;
+import org.schabi.newpipe.player.BackgroundPlayer;
+import org.schabi.newpipe.player.PopupVideoPlayer;
+import org.schabi.newpipe.playlist.ExternalPlayQueue;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlaylistPlayQueue;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
@@ -205,7 +209,15 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         headerPlayAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue());
+                final PlayQueue playQueue = new ExternalPlayQueue(
+                        currentInfo.service_id,
+                        currentInfo.url,
+                        currentInfo.next_streams_url,
+                        infoListAdapter.getItemsList(),
+                        0
+                );
+                InfoItem firstStream = infoListAdapter.getItemsList().get(0);
+                NavigationHelper.openVideoDetailFragment(getFragmentManager(), firstStream.service_id, firstStream.url, firstStream.name, false, playQueue);
             }
         });
         headerPopupButton.setOnClickListener(new View.OnClickListener() {

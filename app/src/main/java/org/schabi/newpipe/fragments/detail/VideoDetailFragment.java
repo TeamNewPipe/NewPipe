@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +13,10 @@ import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
@@ -61,14 +66,17 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
+import org.schabi.newpipe.fragments.QueueListener;
 import org.schabi.newpipe.history.HistoryListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
+import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.playlist.PlayQueue;
+import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
@@ -96,7 +104,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implements BackPressable, SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener, View.OnLongClickListener {
+public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implements BackPressable, QueueListener, SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener, View.OnLongClickListener {
     public static final String AUTO_PLAY = "auto_play";
 
     // Amount of videos to show on start
@@ -116,12 +124,17 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private boolean showRelatedStreams;
     private boolean wasRelatedStreamsExpanded = false;
 
+    private int oldSelectedStreamId = -1;
+    private String oldSelectedStreamResolution = null;
+
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
     @State
     protected String name;
     @State
     protected String url;
+    @State
+    protected PlayQueue playQueue;
 
     private StreamInfo currentInfo;
     private Disposable currentWorker;
@@ -170,9 +183,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     /*////////////////////////////////////////////////////////////////////////*/
 
-    public static VideoDetailFragment getInstance(int serviceId, String videoUrl, String name) {
+    public static VideoDetailFragment getInstance(int serviceId, String videoUrl, String name, PlayQueue playQueue) {
         VideoDetailFragment instance = new VideoDetailFragment();
-        instance.setInitialData(serviceId, videoUrl, name);
+        instance.setInitialData(serviceId, videoUrl, name, playQueue);
         return instance;
     }
 
@@ -184,6 +197,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        // It means when device will be rotated only current screen will be rotated too. Look at onDestroy()
+        int orientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR;
+        activity.setRequestedOrientation(orientation);
 
         showRelatedStreams = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.show_next_video_key), true);
         PreferenceManager.getDefaultSharedPreferences(activity).registerOnSharedPreferenceChangeListener(this);
@@ -216,7 +232,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         // Check if it was loading when the fragment was stopped/paused,
         if (wasLoading.getAndSet(false)) {
-            selectAndLoadVideo(serviceId, url, name);
+            selectAndLoadVideo(serviceId, url, name, playQueue);
+
         }
     }
 
@@ -224,11 +241,16 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     public void onDestroy() {
         super.onDestroy();
         PreferenceManager.getDefaultSharedPreferences(activity).unregisterOnSharedPreferenceChangeListener(this);
-
         if (currentWorker != null) currentWorker.dispose();
         if (disposables != null) disposables.clear();
         currentWorker = null;
         disposables = null;
+        infoItemBuilder = null;
+        actionBarHandler = null;
+        currentInfo = null;
+        sortedStreamVideosList = null;
+        spinnerToolbar = null;
+        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
     }
 
     @Override
@@ -276,6 +298,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private static final String INFO_KEY = "info_key";
     private static final String STACK_KEY = "stack_key";
     private static final String WAS_RELATED_EXPANDED_KEY = "was_related_expanded_key";
+    private static final String SELECTED_STREAM_ID_KEY = "selected_stream_id_key";
+    private static final String SELECTED_STREAM_RESOLUTION_KEY = "selected_stream_resolution_key";
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -292,7 +316,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             outState.putSerializable(INFO_KEY, currentInfo);
         }
 
+        if (playQueue != null) {
+            outState.putSerializable(VideoPlayer.PLAY_QUEUE, playQueue);
+        }
+
         outState.putSerializable(STACK_KEY, stack);
+        outState.putInt(SELECTED_STREAM_ID_KEY, oldSelectedStreamId);
+        outState.putString(SELECTED_STREAM_RESOLUTION_KEY, oldSelectedStreamResolution);
     }
 
     @Override
@@ -312,6 +342,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             //noinspection unchecked
             stack.addAll((Collection<? extends StackItem>) serializable);
         }
+        oldSelectedStreamId = savedState.getInt(SELECTED_STREAM_ID_KEY);
+        oldSelectedStreamResolution = savedState.getString(SELECTED_STREAM_RESOLUTION_KEY);
+        playQueue = (PlayQueue) savedState.getSerializable(VideoPlayer.PLAY_QUEUE);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -333,6 +366,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 if (currentInfo.uploader_url == null || currentInfo.uploader_url.isEmpty()) {
                     Log.w(TAG, "Can't open channel because we got no channel URL");
                 } else {
+                    hideMainVideoPlayer();
                     NavigationHelper.openChannelFragment(getFragmentManager(), currentInfo.service_id, currentInfo.uploader_url, currentInfo.uploader_name);
                 }
                 break;
@@ -378,7 +412,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     private void toggleExpandRelatedVideos(StreamInfo info) {
         if (DEBUG) Log.d(TAG, "toggleExpandRelatedVideos() called with: info = [" + info + "]");
-        if (!showRelatedStreams) return;
+        if (!showRelatedStreams || info == null) return;
 
         int nextCount = info.next_video != null ? 2 : 0;
         int initialCount = INITIAL_RELATED_VIDEOS + nextCount;
@@ -459,7 +493,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         infoItemBuilder.setOnStreamSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<StreamInfoItem>() {
             @Override
             public void selected(StreamInfoItem selectedItem) {
-                selectAndLoadVideo(selectedItem.service_id, selectedItem.url, selectedItem.name);
+                autoPlayEnabled = isAutoplayPreferred();
+                if(!autoPlayEnabled)
+                    hideMainVideoPlayer();
+                selectAndLoadVideo(selectedItem.service_id, selectedItem.url, selectedItem.name, null);
+
             }
 
             @Override
@@ -562,7 +600,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             for (int i = 0; i < to; i++) {
                 InfoItem item = info.related_streams.get(i);
                 //each = System.nanoTime();
-                relatedStreamsView.addView(infoItemBuilder.buildView(relatedStreamsView, item));
+                View infoView = infoItemBuilder.buildView(relatedStreamsView, item);
+                infoView.setOnLongClickListener(this);
+                relatedStreamsView.addView(infoView);
                 //if (DEBUG) Log.d(TAG, "each took " + ((System.nanoTime() - each) / 1000000L) + "ms");
             }
             //if (DEBUG) Log.d(TAG, "Total time " + ((System.nanoTime() - first) / 1000000L) + "ms");
@@ -617,7 +657,23 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private void setupActionBarHandler(final StreamInfo info) {
         if (DEBUG) Log.d(TAG, "setupActionBarHandler() called with: info = [" + info + "]");
         sortedStreamVideosList = new ArrayList<>(ListHelper.getSortedStreamVideosList(activity, info.video_streams, info.video_only_streams, false));
+        actionBarHandler.setStreamResolution(oldSelectedStreamResolution);
         actionBarHandler.setupStreamList(sortedStreamVideosList, spinnerToolbar);
+
+        actionBarHandler.setOnStreamSelectedListener(new ActionBarHandler.OnStreamChangesListener() {
+            @Override
+            public void onActionSelected (int selectedStreamId) {
+                if(getMainVideoPlayer() != null && oldSelectedStreamId != selectedStreamId && selectedStreamId != -1) {
+                    setupMainVideoPlayer();
+                }
+                oldSelectedStreamId = selectedStreamId;
+            }
+            @Override
+            public void onStreamResolutionSelected(String selectedResolution) {
+                oldSelectedStreamResolution = selectedResolution;
+            }
+        });
+
         actionBarHandler.setOnShareListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
@@ -654,6 +710,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             }
         });
 
+        actionBarHandler.setOnSearchListener(new ActionBarHandler.OnActionListener() {
+            @Override
+            public void onActionSelected(int selectedStreamId) {
+                NavigationHelper.openSearchFragment(getFragmentManager(), 0, "");
+            }
+        });
+
         actionBarHandler.setOnDownloadListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
@@ -686,11 +749,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         stack.clear();
     }
 
-    public void pushToStack(int serviceId, String videoUrl, String name) {
+    public void pushToStack(int serviceId, String videoUrl, String name, PlayQueue playQueue) {
         if (DEBUG) {
             Log.d(TAG, "pushToStack() called with: serviceId = [" + serviceId + "], videoUrl = [" + videoUrl + "], name = [" + name + "]");
         }
-
         if (stack.size() > 0 && stack.peek().getServiceId() == serviceId && stack.peek().getUrl().equals(videoUrl)) {
             Log.d(TAG, "pushToStack() called with: serviceId == peek.serviceId = [" + serviceId + "], videoUrl == peek.getUrl = [" + videoUrl + "]");
             return;
@@ -698,7 +760,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             Log.d(TAG, "pushToStack() wasn't equal");
         }
 
-        stack.push(new StackItem(serviceId, videoUrl, name));
+        stack.push(new StackItem(serviceId, videoUrl, name, playQueue));
     }
 
     public void setTitleToUrl(int serviceId, String videoUrl, String name) {
@@ -711,6 +773,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     @Override
     public boolean onBackPressed() {
+        // Player wanna handle back press so delegate the back press to it
+        if (getMainVideoPlayer() != null && getMainVideoPlayer() instanceof BackPressable)
+            if (getMainVideoPlayer().onBackPressed())
+                return true;
+
         if (DEBUG) Log.d(TAG, "onBackPressed() called");
         // That means that we are on the start of the stack,
         // return false to let the MainActivity handle the onBack
@@ -720,7 +787,25 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         // Get stack item from the new top
         StackItem peek = stack.peek();
 
-        selectAndLoadVideo(peek.getServiceId(), peek.getUrl(), !TextUtils.isEmpty(peek.getTitle()) ? peek.getTitle() : "");
+        // Choose saved to history item from playlist
+        PlayQueue peekQueue = stack.peek().getPlayQueue();
+        if(peekQueue != null && !peekQueue.getClass().equals(SinglePlayQueue.class)) {
+            int index = -1;
+            for (int i=0; i < peekQueue.getStreams().size(); i++) {
+                PlayQueueItem item = peekQueue.getItem(i);
+                if(item.getUrl().equals(stack.peek().getUrl())) {
+                    index = i;
+                    break;
+                }
+            }
+            if(index != -1)
+                peekQueue.setIndex(index);
+        }
+
+        autoPlayEnabled = false;
+        hideMainVideoPlayer();
+        selectAndLoadVideo(peek.getServiceId(), peek.getUrl(), !TextUtils.isEmpty(peek.getTitle()) ? peek.getTitle() : "", peek.getPlayQueue());
+
         return true;
     }
 
@@ -730,20 +815,23 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     @Override
     protected void doInitialLoadLogic() {
-        if (currentInfo == null) prepareAndLoadInfo();
+        if (currentInfo == null) {
+            autoPlayEnabled = isAutoplayPreferred();
+            prepareAndLoadInfo();
+        }
         else prepareAndHandleInfo(currentInfo, false);
     }
 
-    public void selectAndLoadVideo(int serviceId, String videoUrl, String name) {
-        setInitialData(serviceId, videoUrl, name);
+    public void selectAndLoadVideo(int serviceId, String videoUrl, String name, PlayQueue playQueue) {
+        setInitialData(serviceId, videoUrl, name, playQueue);
         prepareAndLoadInfo();
     }
 
     public void prepareAndHandleInfo(final StreamInfo info, boolean scrollToTop) {
         if (DEBUG) Log.d(TAG, "prepareAndHandleInfo() called with: info = [" + info + "], scrollToTop = [" + scrollToTop + "]");
 
-        setInitialData(info.service_id, info.url, info.name);
-        pushToStack(serviceId, url, name);
+        setInitialData(info.service_id, info.url, info.name, playQueue);
+        pushToStack(serviceId, url, name, playQueue);
         showLoading();
 
         Log.d(TAG, "prepareAndHandleInfo() called parallaxScrollRootView.getScrollY(): " + parallaxScrollRootView.getScrollY());
@@ -762,7 +850,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     protected void prepareAndLoadInfo() {
         parallaxScrollRootView.smoothScrollTo(0, 0);
-        pushToStack(serviceId, url, name);
+        pushToStack(serviceId, url, name, playQueue);
         startLoading(false);
     }
 
@@ -772,7 +860,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         currentInfo = null;
         if (currentWorker != null) currentWorker.dispose();
-
         currentWorker = ExtractorHelper.getStreamInfo(serviceId, url, forceLoad)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -780,7 +867,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                     @Override
                     public void accept(@NonNull StreamInfo result) throws Exception {
                         isLoading.set(false);
-                        currentInfo = result;
                         showContentWithAnimation(120, 0, 0);
                         handleResult(result);
                     }
@@ -827,7 +913,12 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             ((HistoryListener) activity).onVideoPlayed(currentInfo, getSelectedVideoStream());
         }
 
-        final PlayQueue itemQueue = new SinglePlayQueue(currentInfo);
+        if(getMainVideoPlayer() != null) {
+            if(playQueue == null)
+                playQueue = new SinglePlayQueue(currentInfo);
+            playQueue.setRecovery(0, getMainVideoPlayer().getPlaybackPosition());
+        }
+
         if (append) {
             NavigationHelper.enqueueOnPopupPlayer(activity, itemQueue);
         } else {
@@ -849,13 +940,15 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
             openExternalVideoPlayer(selectedVideoStream);
         } else {
-            openNormalPlayer(selectedVideoStream);
+            setupMainVideoPlayer();
         }
     }
 
 
     private void openNormalBackgroundPlayer(final boolean append) {
-        final PlayQueue itemQueue = new SinglePlayQueue(currentInfo);
+        if(getMainVideoPlayer() != null) {
+            playQueue.setRecovery(0, getMainVideoPlayer().getPlaybackPosition());
+        }
         if (append) {
             NavigationHelper.enqueueOnBackgroundPlayer(activity, itemQueue);
         } else {
@@ -897,24 +990,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
     }
 
-    private void openNormalPlayer(VideoStream selectedVideoStream) {
-        Intent mIntent;
-        boolean useOldPlayer = PlayerHelper.isUsingOldPlayer(activity) || (Build.VERSION.SDK_INT < 16);
-        if (!useOldPlayer) {
-            // ExoPlayer
-            final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
-            mIntent = NavigationHelper.getPlayerIntent(activity, MainVideoPlayer.class, playQueue, getSelectedVideoStream().resolution);
-        } else {
-            // Internal Player
-            mIntent = new Intent(activity, PlayVideoActivity.class)
-                    .putExtra(PlayVideoActivity.VIDEO_TITLE, currentInfo.name)
-                    .putExtra(PlayVideoActivity.STREAM_URL, selectedVideoStream.url)
-                    .putExtra(PlayVideoActivity.VIDEO_URL, currentInfo.url)
-                    .putExtra(PlayVideoActivity.START_POSITION, currentInfo.start_position);
-        }
-        startActivity(mIntent);
-    }
-
     private void openExternalVideoPlayer(VideoStream selectedVideoStream) {
         // External Player
         Intent intent = new Intent();
@@ -942,12 +1017,80 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
     }
 
+    private MainVideoPlayer getMainVideoPlayer() {
+        Fragment player = getChildFragmentManager().findFragmentById(R.id.detail_thumbnail_root_layout);
+        return (MainVideoPlayer) player;
+    }
+
+    private void setupMainVideoPlayer() {
+        boolean useOldPlayer = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.use_old_player_key), false)
+                || (Build.VERSION.SDK_INT < 16);
+
+        if(!useOldPlayer) {
+            MainVideoPlayer mainVideoPlayer = getMainVideoPlayer();
+            if (mainVideoPlayer != null && mainVideoPlayer.getView() != null) {
+                mainVideoPlayer.loadVideo(currentInfo, playQueue, getSelectedVideoStream().resolution, null, 0, false);
+                mainVideoPlayer.getView().setVisibility(View.VISIBLE);
+                return;
+            }
+            FragmentManager fm = getChildFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            mainVideoPlayer = new MainVideoPlayer();
+            Bundle arguments = new Bundle();
+            arguments.putSerializable(INFO_KEY, currentInfo);
+            arguments.putSerializable(VideoPlayer.PLAY_QUEUE, playQueue);
+            arguments.putString(VideoPlayer.PLAYBACK_QUALITY, getSelectedVideoStream().resolution);
+            mainVideoPlayer.setArguments(arguments);
+            ft.add(R.id.detail_thumbnail_root_layout, mainVideoPlayer);
+            ft.commit();
+        }
+        else {
+            // Internal Player
+            Intent mIntent = new Intent(activity, PlayVideoActivity.class)
+                    .putExtra(PlayVideoActivity.VIDEO_TITLE, currentInfo.name)
+                    .putExtra(PlayVideoActivity.STREAM_URL, getSelectedVideoStream().url)
+                    .putExtra(PlayVideoActivity.VIDEO_URL, currentInfo.url)
+                    .putExtra(PlayVideoActivity.START_POSITION, currentInfo.start_position);
+            startActivity(mIntent);
+        }
+    }
+
+    private void hideMainVideoPlayer() {
+        if(getMainVideoPlayer() == null || getMainVideoPlayer().getView() == null) return;
+        getMainVideoPlayer().getView().setVisibility(View.GONE);
+        getMainVideoPlayer().onStop();
+    }
+
+    // Useful method but i'm not use it now
+    private void removeMainVideoPlayer() {
+        if(getMainVideoPlayer() == null) return;
+        FragmentManager fm = getChildFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.remove(getMainVideoPlayer());
+        ft.commit();
+    }
+
+    @Override
+    public void onSync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info) {
+        // We don't want to update interface twice
+        if(playQueue == null || playQueue.getClass().equals(SinglePlayQueue.class) || currentInfo.equals(info)) return;
+        currentInfo = info;
+        autoPlayEnabled = false;
+        selectAndLoadVideo(info.service_id, info.url, info.name, playQueue);
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
+    // Useless now
     public void setAutoplay(boolean autoplay) {
-        this.autoPlayEnabled = autoplay;
+        //this.autoPlayEnabled = autoplay;
+    }
+
+    public boolean isAutoplayPreferred () {
+        return PreferenceManager.getDefaultSharedPreferences(getContext())
+                .getBoolean(getContext().getString(R.string.autoplay_through_intent_key), false);
     }
 
     private VideoStream getSelectedVideoStream() {
@@ -1036,10 +1179,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
     }
 
-    protected void setInitialData(int serviceId, String url, String name) {
+    protected void setInitialData(int serviceId, String url, String name, PlayQueue playQueue) {
         this.serviceId = serviceId;
         this.url = url;
         this.name = !TextUtils.isEmpty(name) ? name : "";
+        this.playQueue = playQueue;
     }
 
     private void setErrorImage(final int imageResource) {
@@ -1095,8 +1239,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     public void handleResult(@NonNull StreamInfo info) {
         super.handleResult(info);
 
-        setInitialData(info.service_id, info.url, info.name);
-        pushToStack(serviceId, url, name);
+        currentInfo = info;
+        setInitialData(info.service_id, info.url, info.name, playQueue);
+        pushToStack(serviceId, url, name, playQueue);
 
         animateView(thumbnailPlayButton, true, 200);
         videoTitleTextView.setText(name);
@@ -1154,7 +1299,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (autoPlayEnabled) {
             openVideoPlayer();
             // Only auto play in the first open
-            autoPlayEnabled = false;
+            // No. Always
+            //autoPlayEnabled = false;
         }
     }
 

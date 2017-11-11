@@ -137,21 +137,21 @@ public class NavigationHelper {
     }
 
     public static void openVideoDetailFragment(FragmentManager fragmentManager, int serviceId, String url, String title) {
-        openVideoDetailFragment(fragmentManager, serviceId, url, title, false);
+        openVideoDetailFragment(fragmentManager, serviceId, url, title, false, null);
     }
 
-    public static void openVideoDetailFragment(FragmentManager fragmentManager, int serviceId, String url, String title, boolean autoPlay) {
+    public static void openVideoDetailFragment(FragmentManager fragmentManager, int serviceId, String url, String title, boolean autoPlay, PlayQueue playQueue) {
         Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_holder);
         if (title == null) title = "";
 
         if (fragment instanceof VideoDetailFragment && fragment.isVisible()) {
             VideoDetailFragment detailFragment = (VideoDetailFragment) fragment;
             detailFragment.setAutoplay(autoPlay);
-            detailFragment.selectAndLoadVideo(serviceId, url, title);
+            detailFragment.selectAndLoadVideo(serviceId, url, title, playQueue);
             return;
         }
 
-        VideoDetailFragment instance = VideoDetailFragment.getInstance(serviceId, url, title);
+        VideoDetailFragment instance = VideoDetailFragment.getInstance(serviceId, url, title, playQueue);
         instance.setAutoplay(autoPlay);
 
         fragmentManager.beginTransaction()

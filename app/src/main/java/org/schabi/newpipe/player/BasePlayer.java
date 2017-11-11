@@ -110,6 +110,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     public static final String PLAYBACK_SPEED = "playback_speed";
     public static final String PLAYBACK_QUALITY = "playback_quality";
     public static final String PLAY_QUEUE = "play_queue";
+    public static final String PLAYBACK_POSITION = "playback_position";
     public static final String APPEND_ONLY = "append_only";
 
     /*//////////////////////////////////////////////////////////////////////////
