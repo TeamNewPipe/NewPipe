@@ -831,7 +831,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     protected void doInitialLoadLogic() {
         if (currentInfo == null) {
-            autoPlayEnabled = isAutoplayPreferred();
+            autoPlayEnabled = (playQueue != null && playQueue.getStreams().size() > 1) || isAutoplayPreferred();
             prepareAndLoadInfo();
         }
         else prepareAndHandleInfo(currentInfo, false);
