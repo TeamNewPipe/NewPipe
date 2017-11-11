@@ -132,6 +132,9 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
                 NavigationHelper.openChannelFragment(getParentFragment().getFragmentManager(), selectedItem.service_id, selectedItem.url, selectedItem.name);
 
             }
+
+            @Override
+            public void held(ChannelInfoItem selectedItem) {}
         });
 
         headerRootLayout.setOnClickListener(new View.OnClickListener() {

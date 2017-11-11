@@ -279,7 +279,7 @@ public abstract class PlayQueue implements Serializable {
             queueIndex.set(currentIndex % (size - 1));
 
         } else if (currentIndex == removeIndex && currentIndex == size - 1){
-            queueIndex.set(removeIndex - 1);
+            queueIndex.set(0);
         }
 
         if (backup != null) {

@@ -444,20 +444,22 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     @Override
     public void onClick(View view) {
+        if (player == null) return;
+
         if (view.getId() == repeatButton.getId()) {
-            if (player != null) player.onRepeatClicked();
+            player.onRepeatClicked();
 
         } else if (view.getId() == backwardButton.getId()) {
-            if (player != null) player.onPlayPrevious();
+            player.onPlayPrevious();
 
         } else if (view.getId() == playPauseButton.getId()) {
-            if (player != null) player.onVideoPlayPause();
+            player.onVideoPlayPause();
 
         } else if (view.getId() == forwardButton.getId()) {
-            if (player != null) player.onPlayNext();
+            player.onPlayNext();
 
         } else if (view.getId() == shuffleButton.getId()) {
-            if (player != null) player.onShuffleClicked();
+            player.onShuffleClicked();
 
         } else if (view.getId() == playbackSpeedButton.getId()) {
             playbackSpeedPopupMenu.show();

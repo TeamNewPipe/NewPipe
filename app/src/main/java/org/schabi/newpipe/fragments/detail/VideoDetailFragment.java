@@ -63,6 +63,7 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.history.HistoryListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.helper.PlayerHelper;
@@ -460,6 +461,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             public void selected(StreamInfoItem selectedItem) {
                 selectAndLoadVideo(selectedItem.service_id, selectedItem.url, selectedItem.name);
             }
+
+            @Override
+            public void held(StreamInfoItem selectedItem) {
+                showStreamDialog(selectedItem);
+            }
         });
 
         videoTitleRoot.setOnClickListener(this);
@@ -475,6 +481,32 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         detailControlsPopup.setOnLongClickListener(this);
         detailControlsBackground.setOnTouchListener(getOnControlsTouchListener());
         detailControlsPopup.setOnTouchListener(getOnControlsTouchListener());
+    }
+
+    private void showStreamDialog(final StreamInfoItem item) {
+        final Context context = getContext();
+        final String[] commands = new String[]{
+                context.getResources().getString(R.string.enqueue_on_background),
+                context.getResources().getString(R.string.enqueue_on_popup)
+        };
+
+        final DialogInterface.OnClickListener actions = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                switch (i) {
+                    case 0:
+                        NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                        break;
+                    case 1:
+                        NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(item));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
+
+        new InfoItemDialog(getActivity(), item, commands, actions).show();
     }
 
     private View.OnTouchListener getOnControlsTouchListener() {

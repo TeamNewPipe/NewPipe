@@ -79,8 +79,7 @@
         android:layout_toLeftOf="@id/itemHandle"
         android:layout_toStartOf="@id/itemHandle"
         android:ellipsize="end"
-        android:lines="1"
-        android:maxLines="1"
+        android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/video_item_search_title_text_size"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. "/>
@@ -94,7 +93,8 @@
         android:layout_toEndOf="@id/itemThumbnailView"
         android:layout_toLeftOf="@id/itemHandle"
         android:layout_toStartOf="@id/itemHandle"
-        android:lines="1"
+        android:ellipsize="end"
+        android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_upload_date_text_size"
         tools:text="Uploader"/>

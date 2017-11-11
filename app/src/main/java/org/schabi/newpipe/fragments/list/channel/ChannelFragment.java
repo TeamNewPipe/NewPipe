@@ -1,6 +1,7 @@
 package org.schabi.newpipe.fragments.list.channel;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,10 +33,13 @@ import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.fragments.subscription.SubscriptionService;
+import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.playlist.ChannelPlayQueue;
 import org.schabi.newpipe.playlist.PlayQueue;
+import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -76,9 +81,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     private TextView headerSubscribersTextView;
     private Button headerSubscribeButton;
 
-    private Button headerPlayAllButton;
-    private Button headerPopupButton;
-    private Button headerBackgroundButton;
+    private LinearLayout headerPlayAllButton;
+    private LinearLayout headerPopupButton;
+    private LinearLayout headerBackgroundButton;
 
     private MenuItem menuRssButton;
 
@@ -136,13 +141,52 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         headerSubscribersTextView = headerRootLayout.findViewById(R.id.channel_subscriber_view);
         headerSubscribeButton = headerRootLayout.findViewById(R.id.channel_subscribe_button);
 
-        headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_play_all_button);
-        headerPopupButton = headerRootLayout.findViewById(R.id.playlist_play_popup_button);
-        headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_play_bg_button);
+        headerPlayAllButton = headerRootLayout.findViewById(R.id.channel_play_all_button);
+        headerPopupButton = headerRootLayout.findViewById(R.id.channel_play_popup_button);
+        headerBackgroundButton = headerRootLayout.findViewById(R.id.channel_play_bg_button);
 
         return headerRootLayout;
     }
 
+    @Override
+    protected void showStreamDialog(final StreamInfoItem item) {
+        final Context context = getContext();
+        final String[] commands = new String[]{
+                context.getResources().getString(R.string.enqueue_on_background),
+                context.getResources().getString(R.string.enqueue_on_popup),
+                context.getResources().getString(R.string.start_here_on_main),
+                context.getResources().getString(R.string.start_here_on_background),
+                context.getResources().getString(R.string.start_here_on_popup),
+        };
+
+        final DialogInterface.OnClickListener actions = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                final int index = Math.max(infoListAdapter.getItemsList().indexOf(item), 0);
+                switch (i) {
+                    case 0:
+                        NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                        break;
+                    case 1:
+                        NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(item));
+                        break;
+                    case 2:
+                        NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
+                        break;
+                    case 3:
+                        NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
+                        break;
+                    case 4:
+                        NavigationHelper.playOnPopupPlayer(context, getPlayQueue(index));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
+
+        new InfoItemDialog(getActivity(), item, commands, actions).show();
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // Menu
     //////////////////////////////////////////////////////////////////////////*/
@@ -435,12 +479,16 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     }
 
     private PlayQueue getPlayQueue() {
+        return getPlayQueue(0);
+    }
+
+    private PlayQueue getPlayQueue(final int index) {
         return new ChannelPlayQueue(
                 currentInfo.service_id,
                 currentInfo.url,
                 currentInfo.next_streams_url,
                 infoListAdapter.getItemsList(),
-                0
+                index
         );
     }
 

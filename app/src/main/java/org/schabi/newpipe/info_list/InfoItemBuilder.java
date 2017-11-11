@@ -44,6 +44,7 @@ public class InfoItemBuilder {
 
     public interface OnInfoItemSelectedListener<T extends InfoItem> {
         void selected(T selectedItem);
+        void held(T selectedItem);
     }
 
     private final Context context;
