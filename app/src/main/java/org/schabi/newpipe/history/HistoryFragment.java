@@ -55,7 +55,7 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends BaseFragme
     private RecyclerView mRecyclerView;
     private HistoryEntryAdapter<E, ? extends RecyclerView.ViewHolder> mHistoryAdapter;
     private ItemTouchHelper.SimpleCallback mHistoryItemSwipeCallback;
-    private int allowedSwipeToDeleteDirections = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+    // private int allowedSwipeToDeleteDirections = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
 
     private HistoryDAO<E> mHistoryDataSource;
     private PublishSubject<Collection<E>> mHistoryEntryDeleteSubject;
@@ -99,7 +99,11 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends BaseFragme
                     }
                 });
 
-        mHistoryItemSwipeCallback = new ItemTouchHelper.SimpleCallback(0, allowedSwipeToDeleteDirections) {
+
+    }
+
+    protected void historyItemSwipeCallback(int swipeDirection) {
+        mHistoryItemSwipeCallback = new ItemTouchHelper.SimpleCallback(0, swipeDirection) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                 return false;
@@ -241,6 +245,7 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends BaseFragme
         if (mHistoryIsEnabled) {
             mRecyclerView.setVisibility(View.VISIBLE);
         } else {
+            mRecyclerView.setVisibility(View.GONE);
             mDisabledView.setVisibility(View.VISIBLE);
         }
 
@@ -262,10 +267,6 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends BaseFragme
     public void onPause() {
         super.onPause();
         mRecyclerViewState = mRecyclerView.getLayoutManager().onSaveInstanceState();
-    }
-
-    public void setAllowedSwipeToDeleteDirections(int allowedSwipeToDeleteDirections) {
-        this.allowedSwipeToDeleteDirections = allowedSwipeToDeleteDirections;
     }
 
     /**

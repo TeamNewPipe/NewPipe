@@ -56,6 +56,13 @@ public final class ListHelper {
         if (defaultPreferences == null) return 0;
 
         String defaultResolution = defaultPreferences.getString(context.getString(R.string.default_resolution_key), context.getString(R.string.default_resolution_value));
+        return getDefaultResolutionIndex(context, videoStreams, defaultResolution);
+    }
+
+    /**
+     * @see #getDefaultResolutionIndex(String, String, MediaFormat, List)
+     */
+    public static int getDefaultResolutionIndex(Context context, List<VideoStream> videoStreams, String defaultResolution) {
         return getDefaultResolutionWithDefaultFormat(context, defaultResolution, videoStreams);
     }
 
@@ -67,6 +74,13 @@ public final class ListHelper {
         if (defaultPreferences == null) return 0;
 
         String defaultResolution = defaultPreferences.getString(context.getString(R.string.default_popup_resolution_key), context.getString(R.string.default_popup_resolution_value));
+        return getPopupDefaultResolutionIndex(context, videoStreams, defaultResolution);
+    }
+
+    /**
+     * @see #getDefaultResolutionIndex(String, String, MediaFormat, List)
+     */
+    public static int getPopupDefaultResolutionIndex(Context context, List<VideoStream> videoStreams, String defaultResolution) {
         return getDefaultResolutionWithDefaultFormat(context, defaultResolution, videoStreams);
     }
 

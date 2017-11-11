@@ -100,7 +100,7 @@
     <string name="autoplay_by_calling_app_summary">Аутоматско пуштање видеа по позиву друге апликације</string>
     <string name="start">Почни</string>
     <string name="pause">Паузирај</string>
-    <string name="view">Приказ</string>
+    <string name="view">Пусти</string>
     <string name="delete">Обриши</string>
     <string name="checksum">Хеш</string>
 
@@ -269,4 +269,34 @@
     <string name="app_license_title">Лиценца Њупајпа</string>
     <string name="contribution_encouragement">Помоћ је увек добро дошла, било да имате идеју за превод, дизајн, козметичке или озбиљне измене кôда. Што се више уради, боље је!</string>
     <string name="item_deleted">Ставка обрисана</string>
-</resources>
+<string name="show_hold_to_append_summary">Приказ савета када је позадинско или искачуће дугме притиснуто на страници детаља видеа</string>
+    <string name="background_player_append">У реду за позадински плејер</string>
+    <string name="popup_playing_append">У реду за искачући плејер</string>
+    <string name="play_all">Пусти све</string>
+
+    <string name="player_stream_failure">Неуспех пуштања овог тока</string>
+    <string name="player_unrecoverable_failure">Десила се непоправљива грешка плејера</string>
+    <string name="player_recoverable_failure">Опорављам се од грешке плејера</string>
+
+    <string name="delete_item_search_history">Желите ли да обришете ову ставку из историјата претраге?</string>
+
+    <string name="main_page_content">Садржај на главној страници</string>
+    <string name="blank_page_summary">Празна страница</string>
+    <string name="kiosk_page_summary">Киоск страница</string>
+    <string name="subscription_page_summary">Страница претплате</string>
+    <string name="feed_page_summary">Страница довода</string>
+    <string name="channel_page_summary">Страница канала</string>
+    <string name="select_a_channel">Изаберите канал</string>
+    <string name="no_channel_subscribed_yet">Још нема претплата на канал</string>
+    <string name="select_a_kiosk">Изаберите киоск</string>
+
+    <string name="kiosk">Киоск</string>
+    <string name="trending">У тренду</string>
+    <string name="top_50">Топ 50</string>
+    <string name="new_and_hot">Ново и вруће</string>
+    <string name="title_activity_background_player">Позадински плејер</string>
+    <string name="title_activity_popup_player">Искачући плејер</string>
+    <string name="play_queue_remove">Уклони</string>
+    <string name="play_queue_stream_detail">Детаљи</string>
+    <string name="play_queue_audio_settings">Поставке звука</string>
+    </resources>

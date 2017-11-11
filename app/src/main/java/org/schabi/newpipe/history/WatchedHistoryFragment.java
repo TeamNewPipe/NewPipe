@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,8 @@ import org.schabi.newpipe.util.NavigationHelper;
 
 public class WatchedHistoryFragment extends HistoryFragment<WatchHistoryEntry> {
 
+    private static int allowedSwipeToDeleteDirections = ItemTouchHelper.LEFT;
+
     @NonNull
     public static WatchedHistoryFragment newInstance() {
         return new WatchedHistoryFragment();
@@ -34,7 +37,7 @@ public class WatchedHistoryFragment extends HistoryFragment<WatchHistoryEntry> {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        historyItemSwipeCallback(allowedSwipeToDeleteDirections);
     }
 
     @StringRes

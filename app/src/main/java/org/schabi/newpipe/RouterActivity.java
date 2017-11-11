@@ -10,22 +10,22 @@ import org.schabi.newpipe.util.NavigationHelper;
 import java.util.Collection;
 import java.util.HashSet;
 
-/*
+/**
  * Copyright (C) Christian Schabesberger 2017 <chris.schabesberger@mailbox.org>
- * RouterActivity .java is part of NewPipe.
+ * RouterActivity.java is part of NewPipe.
  *
- * OpenHitboxStreams is free software: you can redistribute it and/or modify
+ * NewPipe is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * OpenHitboxStreams is distributed in the hope that it will be useful,
+ * NewPipe is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with OpenHitboxStreams.  If not, see <http://www.gnu.org/licenses/>.
+ * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /**
@@ -43,9 +43,8 @@ public class RouterActivity extends AppCompatActivity {
     }
 
     protected void handleUrl(String url) {
-        try {
-            NavigationHelper.openByLink(this, url);
-        } catch (Exception e) {
+        boolean success = NavigationHelper.openByLink(this, url);
+        if (!success) {
             Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG).show();
         }
 

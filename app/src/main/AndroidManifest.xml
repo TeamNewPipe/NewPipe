@@ -38,6 +38,16 @@
             android:name=".player.BackgroundPlayer"
             android:exported="false"/>
 
+        <activity
+            android:name=".player.BackgroundPlayerActivity"
+            android:launchMode="singleTask"
+            android:label="@string/title_activity_background_player"/>
+
+        <activity
+            android:name=".player.PopupVideoPlayerActivity"
+            android:launchMode="singleTask"
+            android:label="@string/title_activity_popup_player"/>
+
         <service
             android:name=".player.PopupVideoPlayer"
             android:exported="false"/>
@@ -88,10 +98,14 @@
         <service android:name="us.shandian.giga.service.DownloadManagerService"/>
 
         <activity
-            android:name="com.nononsenseapps.filepicker.FilePickerActivity"
+            android:name=".util.FilePickerActivityHelper"
             android:label="@string/app_name"
-            android:launchMode="singleTop"
-            android:theme="@style/FilePickerTheme"/>
+            android:theme="@style/FilePickerThemeDark">
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".ReCaptchaActivity"

@@ -6,8 +6,8 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.Handler;
@@ -15,7 +15,6 @@ import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.Message;
 import android.support.v4.app.NotificationCompat.Builder;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.PermissionChecker;
 import android.util.Log;
 import android.widget.Toast;
@@ -96,12 +95,12 @@ public class DownloadManagerService extends Service {
                 openDownloadListIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Drawable icon = ContextCompat.getDrawable(this, R.mipmap.ic_launcher);
+        Bitmap iconBitmap = BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher);
 
         Builder builder = new Builder(this, getString(R.string.notification_channel_id))
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(android.R.drawable.stat_sys_download)
-                .setLargeIcon(((BitmapDrawable) icon).getBitmap())
+                .setLargeIcon(iconBitmap)
                 .setContentTitle(getString(R.string.msg_running))
                 .setContentText(getString(R.string.msg_running_detail));
 

@@ -5,7 +5,7 @@
     <string name="no_player_found">Keinen Streamplayer gefunden. Möchtest du VLC installieren?</string>
     <string name="install">Installieren</string>
     <string name="cancel">Abbrechen</string>
-    <string name="open_in_browser">In Browser öffnen</string>
+    <string name="open_in_browser">Im Browser öffnen</string>
     <string name="share">Teilen</string>
     <string name="download">Download</string>
     <string name="search">Suchen</string>
@@ -15,7 +15,7 @@
     <string name="choose_browser">Browser</string>
     <string name="screen_rotation">Rotation</string>
     <string name="download_path_title">Downloadverzeichnis für Videos</string>
-    <string name="download_path_summary">Verzeichnis in dem heruntergeladene Videos gespeichert werden</string>
+    <string name="download_path_summary">Verzeichnis für heruntergeladene Videos</string>
     <string name="download_path_dialog_title">Downloadverzeichnis für Videos eingeben</string>
     <string name="default_resolution_title">Standardauflösung</string>
     <string name="play_with_kodi_title">Mit Kodi abspielen</string>
@@ -119,7 +119,7 @@
 
     <string name="start">Starten</string>
     <string name="pause">Pause</string>
-    <string name="view">Ansehen</string>
+    <string name="view">Abspielen</string>
     <string name="add">Neue Mission</string>
     <string name="finish">OK</string>
     <string name="msg_server_unsupported">Server nicht unterstützt</string>
@@ -203,7 +203,7 @@
     <string name="channel_unsubscribed">Abo beenden</string>
     <string name="tab_subscriptions">Abos</string>
 
-    <string name="fragment_whats_new">Änderungen</string>
+    <string name="fragment_whats_new">Neuigkeiten</string>
 
     <string name="enable_search_history_title">Suchverlauf</string>
     <string name="enable_search_history_summary">Speichere den Suchverlauf lokal</string>
@@ -218,7 +218,7 @@
     <string name="history_cleared">Verlauf bereinigt</string>
 
 <string name="subscription_change_failed">Fehler beim Ändern des Abos</string>
-    <string name="subscription_update_failed">Fehler beim Updaten des Abos</string>
+    <string name="subscription_update_failed">Fehler beim Aktualisieren des Abos</string>
 
     <string name="resume_on_audio_focus_gain_summary">Nach Unterbrechungen (z.B. Telefonaten) Wiedergabe fortsetzen</string>
 
@@ -254,4 +254,38 @@
     <string name="charset_most_special_characters">Die meisten Sonderzeichen</string>
 
     <string name="item_deleted">Element gelöscht</string>
+    <string name="resume_on_audio_focus_gain_title">Fortsetzen bei erneutem Fokussieren</string>
+    <string name="settings_category_player_title">Player</string>
+    <string name="empty_subscription_feed_subtitle">Nichts hier außer Grillen</string>
+
+    <string name="delete_item_search_history">Möchten Sie dieses Element aus dem Suchverlauf löschen?</string>
+<string name="blank_page_summary">Leere Seite</string>
+    <string name="select_a_channel">Wähle einen Kanal aus</string>
+    <string name="no_channel_subscribed_yet">Noch kein Kanal abonniert</string>
+    <string name="trending">Trends</string>
+    <string name="popup_playing_append">Angereiht an Popup Player</string>
+    <string name="play_all">Alles abspielen</string>
+
+    <string name="play_queue_remove">Entfernen</string>
+    <string name="play_queue_audio_settings">Audio Einstellungen</string>
+    <string name="player_stream_failure">Abspielen des Streams fehlgeschlagen</string>
+    <string name="main_page_content">Inhalt der Hauptseite</string>
+    <string name="subscription_page_summary">Abonnement-Seite</string>
+    <string name="feed_page_summary">Feed-Seite</string>
+    <string name="channel_page_summary">Kanal-Seite</string>
+    <string name="title_activity_background_player">Hintergrund-Player</string>
+    <string name="title_activity_popup_player">Popup-Player</string>
+    <string name="play_queue_stream_detail">Details</string>
+    <string name="top_50">Top 50</string>
+    <string name="player_unrecoverable_failure">Nicht behebbarer Wiedergabefehler aufgetreten</string>
+    <string name="player_recoverable_failure">Player-Fehler gelöst</string>
+
+    <string name="kiosk_page_summary">Kiosk-Seite</string>
+    <string name="select_a_kiosk">Kiosk auswählen</string>
+
+    <string name="kiosk">Kiosk</string>
+    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe-Button oder der Popup-Button auf der Videodetailseite gedrückt und gehalten wird</string>
+    <string name="background_player_append">In der Warteschlange bei der Hintergrundwiedergabe</string>
+    <string name="new_and_hot">Neu und brandheiß</string>
+    <string name="hold_to_append">Halten, um in die Warteschlange einzureihen</string>
 </resources>

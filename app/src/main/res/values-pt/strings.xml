@@ -21,18 +21,18 @@
     <string name="download_path_dialog_title">Introduza o caminho para os vídeos</string>
     <string name="default_resolution_title">Resolução padrão</string>
     <string name="play_with_kodi_title">Reproduzir no Kodi</string>
-    <string name="kore_not_found">Aplicação não encontrada. Instalar o Kore?</string>
+    <string name="kore_not_found">Aplicação Kore não encontrada. Quer instalá-la?</string>
     <string name="show_play_with_kodi_title">Mostrar opção \"Reproduzir no Kodi\"</string>
     <string name="show_play_with_kodi_summary">Mostra uma opção para reproduzir o vídeo no Kodi</string>
     <string name="play_audio">Áudio</string>
     <string name="default_audio_format_title">Formato áudio padrão</string>
     <string name="webm_description">WebM — formato livre</string>
-    <string name="m4a_description">m4a — melhor qualidade</string>
+    <string name="m4a_description">M4A — melhor qualidade</string>
     <string name="download_dialog_title">Transferir</string>
     <string name="next_video_title">Vídeo seguinte</string>
     <string name="show_next_and_similar_title">Mostrar vídeos seguintes e semelhantes</string>
     <string name="url_not_supported_toast">URL não suportado</string>
-    <string name="search_language_title">Idioma preferido do conteúdo</string>
+    <string name="search_language_title">Idioma predefinido do conteúdo</string>
     <string name="settings_category_video_audio_title">Vídeo e áudio</string>
 
     <string name="list_thumbnail_view_description">Miniatura de vídeos</string>
@@ -60,19 +60,19 @@
     <string name="info_dir_created">Diretório \'%1$s\' criado com sucesso</string>
     <string name="general_error">Erro</string>
     <string name="could_not_load_thumbnails">Incapaz de carregar todas as miniaturas</string>
-    <string name="youtube_signature_decryption_error">Incapaz de decodificar a assinatura do vídeo.</string>
-    <string name="parsing_error">Incapaz de processar o sítio web.</string>
-    <string name="content_not_available">Conteúdo não disponível.</string>
-    <string name="blocked_by_gema">Bloqueado pela GEMA.</string>
+    <string name="youtube_signature_decryption_error">Incapaz de decodificar a assinatura do vídeo</string>
+    <string name="parsing_error">Incapaz de processar o site</string>
+    <string name="content_not_available">Conteúdo não disponível</string>
+    <string name="blocked_by_gema">Bloqueado pela GEMA</string>
 
     <string name="content">Conteúdo</string>
     <string name="show_age_restricted_content_title">Restringir conteúdo por idade</string>
-    <string name="video_is_age_restricted">O vídeo está restrito por idade. Ative a restrição de vídeos por idade nas definições.</string>
+    <string name="video_is_age_restricted">Vídeo com restrição de idade. É possível permitir este material através das Definições.</string>
 
-    <string name="light_parsing_error">Não foi possível processar o sítio web.</string>
-    <string name="could_not_setup_download_menu">Não foi possível configurar o menu de transferências.</string>
-    <string name="live_streams_not_supported">Esta é uma EMISSÃO EM DIRETO. Estas emissões ainda não são suportadas.</string>
-    <string name="could_not_get_stream">Não foi possível obter a emissão.</string>
+    <string name="light_parsing_error">Não foi possível processar totalmente o site</string>
+    <string name="could_not_setup_download_menu">Não foi possível configurar o menu de transferências</string>
+    <string name="live_streams_not_supported">Esta é uma EMISSÃO EM DIRETO, as quais ainda não são suportadas.</string>
+    <string name="could_not_get_stream">Não foi possível obter a emissão</string>
     <string name="sorry_string">Desculpe, isto não deveria ter acontecido.</string>
     <string name="error_report_button_text">Reportar erro por e-mail</string>
     <string name="error_snackbar_message">Ocorreram alguns erros.</string>
@@ -86,9 +86,9 @@
     <string name="video">Vídeo</string>
     <string name="audio">Áudio</string>
     <string name="retry">Tentar novamente</string>
-    <string name="storage_permission_denied">Não foi concedida permissão para aceder ao armazenamento</string>
+    <string name="storage_permission_denied">Permissão para aceder ao armazenamento foi negada</string>
     <string name="main_bg_subtitle">Toque para iniciar a pesquisa</string>
-    <string name="autoplay_by_calling_app_title">Reproduzir se invocado por outra aplicação</string>
+    <string name="autoplay_by_calling_app_title">Reprodução automática</string>
     <string name="autoplay_by_calling_app_summary">Reproduzir vídeo automaticamente se o NewPipe for invocado por outra aplicação</string>
     <string name="duration_live">direto</string>
 
@@ -101,7 +101,7 @@
 
     <string name="start">Iniciar</string>
     <string name="pause">Pausa</string>
-    <string name="view">Ver</string>
+    <string name="view">Reproduzir</string>
     <string name="delete">Apagar</string>
     <string name="checksum">Checksum</string>
 
@@ -115,8 +115,8 @@
     <string name="msg_url_malform">URL inválido ou Internet não disponível</string>
     <string name="msg_running_detail">Toque para detalhes</string>
     <string name="msg_wait">Por favor aguarde…</string>
-    <string name="msg_copied">Copiado para a área de transferência.</string>
-    <string name="no_available_dir">Por favor selecione um diretório disponível.</string>
+    <string name="msg_copied">Copiado para a área de transferência</string>
+    <string name="no_available_dir">Por favor selecione a pasta para as descargas</string>
 
     <string name="finish">OK</string>
     <string name="msg_threads">Processos</string>
@@ -145,11 +145,11 @@ o modo “popup“</string>
     <string name="reCaptcha_title">Desafio reCAPTCHA</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
 
-    <string name="popup_mode_share_menu_title">Modo popup de NewPipe</string>
+    <string name="popup_mode_share_menu_title">Modo popup do NewPipe</string>
 
     <string name="popup_playing_toast">Reproduzir em modo de popup</string>
     <string name="use_old_player_title">Usar reprodutor antigo</string>
-    <string name="use_old_player_summary">Versão antiga no reprodutor Mediaframework.</string>
+    <string name="use_old_player_summary">Versão antiga do reprodutor Mediaframework</string>
     <string name="default_video_format_title">Formato de vídeo preferido</string>
     <string name="disabled">Desativado</string>
 
@@ -186,10 +186,74 @@ o modo “popup“</string>
     <string name="tab_about">Sobre</string>
     <string name="tab_contributors">Colaboradores</string>
     <string name="tab_licenses">Licenças</string>
-    <string name="app_description">Aplicação leve, simples e grátis de Youtube para Android.</string>
-    <string name="view_on_github">Ver no Github</string>
+    <string name="app_description">Aplicação leve, simples e grátis de YouTube para Android.</string>
+    <string name="view_on_github">Ver no GitHub</string>
     <string name="app_license_title">Licença do NewPipe</string>
-    <string name="contribution_encouragement">Se tem ideias, tradução, alterações de design, limpeza de código ou alterações de código pesado, ajuda é sempre bem-vinda. Quanto mais se faz melhor fica!</string>
+    <string name="contribution_encouragement">Se tem ideias de tradução, alterações de design, limpeza de código ou alterações de código pesado—ajuda é sempre bem-vinda. Quanto mais se faz melhor fica!</string>
     <string name="read_full_license">Ler licença</string>
     <string name="contribution_title">Contribuição</string>
+<string name="subscribe_button_title">Subscrever</string>
+    <string name="subscribed_button_title">Subscrito</string>
+    <string name="channel_unsubscribed">Canal não subscrito</string>
+    <string name="subscription_change_failed">Incapaz de alterar a subscrição</string>
+    <string name="subscription_update_failed">Incapaz de atualizar a subscrição</string>
+
+    <string name="tab_main">Principal</string>
+    <string name="tab_subscriptions">Subscrições</string>
+
+    <string name="fragment_whats_new">O que há de novo</string>
+
+    <string name="enable_search_history_title">Histórico de Pesquisa</string>
+    <string name="enable_search_history_summary">Armazenar termos de pesquisa localmente</string>
+    <string name="enable_watch_history_title">Histórico</string>
+    <string name="enable_watch_history_summary">Armazenar histórico de vídeos assistidos</string>
+    <string name="resume_on_audio_focus_gain_title">Retomar ao ganhar foco</string>
+    <string name="resume_on_audio_focus_gain_summary">Continuar reprodução após interrupções (ex. chamadas)</string>
+    <string name="settings_category_player_title">Reprodutor</string>
+    <string name="settings_category_player_behavior_title">Comportamento</string>
+    <string name="settings_category_history_title">Histórico</string>
+    <string name="playlist">Lista de Reprodução</string>
+    <string name="undo">Desfazer</string>
+
+    <string name="notification_channel_name">Notificação do NewPipe</string>
+    <string name="notification_channel_description">Notificações do NewPipe e para reprodutores pop-up</string>
+
+    <string name="search_no_results">Sem resultados</string>
+    <string name="empty_subscription_feed_subtitle">Aqui não há nada para ver</string>
+
+    <string name="no_subscribers">Sem subscritores</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s subscrito</item>
+	<item quantity="other">%s subscritos</item>
+</plurals>
+
+    <string name="no_views">Sem visualizações</string>
+    <plurals name="views">
+	<item quantity="one">%s visualização</item>
+	<item quantity="other">%s visualizações</item>
+</plurals>
+
+    <string name="no_videos">Sem vídeos</string>
+    <plurals name="videos">
+	<item quantity="one">%s vídeo</item>
+	<item quantity="other">%s vídeos</item>
+</plurals>
+
+    <string name="settings_category_downloads_title">Download</string>
+    <string name="settings_file_charset_title">Caracteres permitidos em nomes de ficheiros</string>
+    <string name="settings_file_replacement_character_summary">Caracteres inválidos são substituídos por este valor</string>
+    <string name="settings_file_replacement_character_title">Carácter de substituição</string>
+
+    <string name="charset_letters_and_digits">Letras e dígitos</string>
+    <string name="charset_most_special_characters">Caracteres especiais</string>
+
+    <string name="title_activity_history">Histórico</string>
+    <string name="title_history_search">Pesquisado</string>
+    <string name="title_history_view">Visto</string>
+    <string name="history_disabled">Histórico está desativado</string>
+    <string name="action_history">Histórico</string>
+    <string name="history_empty">O histórico está vazio</string>
+    <string name="history_cleared">Histórico eliminado</string>
+    <string name="item_deleted">Item apagado</string>
+<string name="delete_item_search_history">Deseja apagar este item do histórico de pesquisa?</string>
 </resources>

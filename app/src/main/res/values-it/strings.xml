@@ -12,16 +12,16 @@
     <string name="settings">Impostazioni</string>
     <string name="did_you_mean">Intendevi: %1$s ?</string>
     <string name="share_dialog_title">Condividi con</string>
-    <string name="choose_browser">Scegli browser</string>
+    <string name="choose_browser">Scegli il browser</string>
     <string name="screen_rotation">rotazione</string>
-    <string name="download_path_title">Cartella dei video scaricati</string>
-    <string name="download_path_summary">Cartella in cui memorizzare i video scaricati.</string>
+    <string name="download_path_title">Percorso dei video scaricati</string>
+    <string name="download_path_summary">Percorso in cui memorizzare i video scaricati</string>
     <string name="download_path_dialog_title">Inserisci il percorso per i download</string>
     <string name="default_resolution_title">Risoluzione predefinita</string>
     <string name="play_with_kodi_title">Riproduci con Kodi</string>
-    <string name="kore_not_found">L\'applicazione Kore non è stata trovata. Vorresti installarla?</string>
+    <string name="kore_not_found">L\'applicazione Kore non è stata trovata. Vuoi installarla?</string>
     <string name="show_play_with_kodi_title">Mostra l\'opzione \"Riproduci con Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Mostra l\'opzione per riprodurre i video tramite Kodi.</string>
+    <string name="show_play_with_kodi_summary">Mostra l\'opzione per riprodurre i video tramite Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato audio predefinito</string>
     <string name="webm_description">WebM — formato libero</string>
@@ -30,7 +30,7 @@
     <string name="next_video_title">Prossimo video</string>
     <string name="show_next_and_similar_title">Mostra video a seguire e video simili</string>
     <string name="url_not_supported_toast">URL non supportato</string>
-    <string name="search_language_title">Lingua preferita per i contenuti</string>
+    <string name="search_language_title">Lingua predefinita per i contenuti</string>
     <string name="settings_category_video_audio_title">Video e Audio</string>
 
     <string name="list_thumbnail_view_description">Anteprima video</string>
@@ -40,12 +40,12 @@
     <string name="detail_likes_img_view_description">Mi piace</string>
     <string name="err_dir_create">Impossibile creare la cartella di download \'%1$s\'</string>
     <string name="info_dir_created">Creata la cartella per i download \'%1$s\'</string>
-    <string name="use_external_video_player_title">Usa un lettore video esterno</string>
-    <string name="use_external_audio_player_title">Usa un lettore audio esterno</string>
+    <string name="use_external_video_player_title">Usa un riproduttore video esterno</string>
+    <string name="use_external_audio_player_title">Usa un riproduttore audio esterno</string>
 
-    <string name="download_path_audio_title">Cartella degli audio scaricati</string>
-    <string name="download_path_audio_summary">Cartella dove salvare gli audio scaricati.</string>
-    <string name="download_path_audio_dialog_title">Inserisci la cartella per i file audio</string>
+    <string name="download_path_audio_title">Percorso degli audio scaricati</string>
+    <string name="download_path_audio_summary">Percorso dove salvare gli audio scaricati</string>
+    <string name="download_path_audio_dialog_title">Inserisci il percorso per i file audio</string>
 
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Scuro</string>
@@ -63,26 +63,26 @@
     <string name="content_not_available">Contenuto non disponibile</string>
     <string name="blocked_by_gema">Bloccato dalla GEMA</string>
     <string name="use_tor_title">Usa Tor</string>
-    <string name="use_tor_summary">(Sperimentale) Forza il traffico in download tramite Tor per una maggiore privacy (lo streaming dei video non è ancora supportato).</string>
+    <string name="use_tor_summary">(Sperimentale) Forza il traffico in download tramite Tor per una maggiore riservatezza (lo streaming dei video non è ancora supportato).</string>
 
     <string name="parsing_error">Impossibile analizzare il sito web</string>
     <string name="could_not_setup_download_menu">Impossibile impostare il menù di download</string>
 
 
-    <string name="live_streams_not_supported">Questo è uno stream dal vivo. Gli stream dal vivo non sono ancora supportati.</string>
+    <string name="live_streams_not_supported">Questo è uno stream in diretta, il quale non è ancora supportato.</string>
 
 
     <string name="content">Contenuti</string>
     <string name="show_age_restricted_content_title">Mostra contenuti vincolati all\'età</string>
-    <string name="video_is_age_restricted">Questo video è riservato ad un pubblico maturo. Per accedervi, abilita \"Mostra video vincolati all\'età\" nelle impostazioni.</string>
+    <string name="video_is_age_restricted">Questo video è riservato ad un pubblico maggiorenne. Per accedervi, abilita \"Mostra video vincolati all\'età\" nelle impostazioni.</string>
 
     <string name="main_bg_subtitle">Tocca \"cerca\" per iniziare</string>
-    <string name="autoplay_by_calling_app_title">Inizia automaticamente la riproduzione se NewPipe viene aperto da un\'altra app</string>
+    <string name="autoplay_by_calling_app_title">Riproduzione automatica</string>
     <string name="autoplay_by_calling_app_summary">Riproduci i video automaticamente quando NewPipe viene aperto da un\'altra app</string>
     <string name="duration_live">in diretta</string>
 
-    <string name="light_parsing_error">Impossibile eseguire il parsing completo del sito</string>
-    <string name="could_not_get_stream">Non è stato ottenuto alcuno stream</string>
+    <string name="light_parsing_error">Impossibile analizzare completamente il sito web</string>
+    <string name="could_not_get_stream">Non è stato ottenuto alcun flusso</string>
     <string name="sorry_string">Ci dispiace, non sarebbe dovuto succedere.</string>
     <string name="error_report_button_text">Segnala l\'errore via e-mail</string>
     <string name="error_snackbar_message">Ci dispiace, c\'è stato qualche errore.</string>
@@ -99,18 +99,18 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Riprova</string>
-    <string name="storage_permission_denied">È stato negato il permesso di accedere all\'archiviazione di massa</string>
+    <string name="storage_permission_denied">È stato negato il permesso di accesso all\'archiviazione di massa</string>
     <string name="downloads">Download</string>
     <string name="downloads_title">Download</string>
     <string name="error_report_title">Segnalazione errori</string>
 
     <string name="start">Inizia</string>
     <string name="pause">Pausa</string>
-    <string name="view">Visualizza</string>
+    <string name="view">Riproduci</string>
     <string name="delete">Elimina</string>
-    <string name="checksum">Checksum</string>
+    <string name="checksum">Codice di controllo</string>
 
-    <string name="add">Nuova missione</string>
+    <string name="add">Nuovo obiettivo</string>
     <string name="finish">OK</string>
 
     <string name="msg_name">Nome del file</string>
@@ -126,7 +126,7 @@
     <string name="no_available_dir">Seleziona una cartella disponibile in cui salvare i download</string>
 
     <string name="could_not_load_image">Impossibile caricare l\'immagine</string>
-    <string name="app_ui_crash">L\'app/UI è andata in crash</string>
+    <string name="app_ui_crash">L\'app/UI si è interrotta</string>
     <string name="info_labels">Cosa:\\nRichiesta:\\nLingua contenuto:\\nServizio:\\nOrario GMT:\\nPacchetto:\\nVersione:\\nVersione SO:\\nRange IP glob.:</string>
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
@@ -149,26 +149,26 @@
 
 
     <string name="open_in_popup_mode">Apri in modalità popup</string>
-    <string name="popup_mode_share_menu_title">NewPipe Modo popup</string>
+    <string name="popup_mode_share_menu_title">NewPipe modalità a comparsa</string>
 
     <string name="popup_playing_toast">Riproduzione in modalità popup</string>
     <string name="disabled">Disattivato</string>
 
     <string name="use_old_player_title">Usa il vecchio riproduttore</string>
-<string name="use_external_video_player_summary">Alcune risoluzioni non avranno audio se questa opzione viene abilitata.</string>
+<string name="use_external_video_player_summary">Alcune risoluzioni NON avranno l\'audio se questa opzione viene abilitata</string>
     <string name="controls_background_title">In sottofondo</string>
     <string name="controls_popup_title">Popup</string>
 
-    <string name="default_popup_resolution_title">Risoluzione predefinita per il popup</string>
+    <string name="default_popup_resolution_title">Risoluzione predefinita per la modalità popup</string>
     <string name="show_higher_resolutions_title">Mostra risoluzioni più alte</string>
-    <string name="show_higher_resolutions_summary">Solo alcuni dispositivi supportano la riproduzione di video in 2K e 4K.</string>
-    <string name="default_video_format_title">Formato video preferito</string>
+    <string name="show_higher_resolutions_summary">Solo alcuni dispositivi supportano la riproduzione di video in 2K e 4K</string>
+    <string name="default_video_format_title">Formato video predefinito</string>
     <string name="popup_remember_size_pos_title">Ricorda grandezza e posizione del popup</string>
     <string name="popup_remember_size_pos_summary">Ricorda l\'ultima grandezza e posizione del popup</string>
     <string name="player_gesture_controls_title">Controlli gestuali</string>
-    <string name="player_gesture_controls_summary">Usa i gesti per controllare luminosità e volume.</string>
+    <string name="player_gesture_controls_summary">Usa i gesti per controllare luminosità e volume</string>
     <string name="show_search_suggestions_title">Suggerimenti di ricerca</string>
-    <string name="show_search_suggestions_summary">Mostra suggerimenti durante la ricerca.</string>
+    <string name="show_search_suggestions_summary">Mostra i suggerimenti durante la ricerca</string>
 
     <string name="settings_category_popup_title">Popup</string>
     <string name="filter">Filtra i risultati</string>
@@ -177,10 +177,10 @@
     <string name="popup_resizing_indicator_title">Ridimensionamento</string>
     <string name="best_resolution">Risoluzione migliore</string>
 
-    <string name="use_old_player_summary">Precedente riproduttore integrato facente uso di Mediaframework</string>
+    <string name="use_old_player_summary">Precedente riproduttore integrato Mediaframework</string>
 
-    <string name="msg_popup_permission">Questo permesso è necessario
-\nper la modalità popup</string>
+    <string name="msg_popup_permission">Questo permesso è necessario 
+\nper aprire la modalità popup</string>
 
     <string name="action_settings">Impostazioni</string>
     <string name="action_about">Informazioni</string>
@@ -206,7 +206,7 @@
 
     <string name="tab_subscriptions">Iscrizioni</string>
 
-    <string name="fragment_whats_new">Nuovo</string>
+    <string name="fragment_whats_new">Novità</string>
 
     <string name="enable_search_history_title">Cronologia ricerche</string>
     <string name="enable_search_history_summary">Salva le ricerche localmente</string>
@@ -233,14 +233,14 @@
     <string name="history_cleared">Cronologia cancellata</string>
 
 <string name="tab_main">Principale</string>
-    <string name="settings_category_player_title">Player</string>
+    <string name="settings_category_player_title">Riproduttore</string>
     <string name="settings_category_player_behavior_title">Comportamento</string>
     <string name="settings_category_history_title">Cronologia</string>
-    <string name="playlist">Playlist</string>
+    <string name="playlist">Scaletta</string>
     <string name="undo">Annulla</string>
 
     <string name="notification_channel_name">Notifiche NewPipe</string>
-    <string name="notification_channel_description">Notifiche per NewPipe in background e Popup Player</string>
+    <string name="notification_channel_description">Notifiche per NewPipe in background e per il lettore a comparsa</string>
 
     <string name="search_no_results">Nessun risultato</string>
     <string name="no_subscribers">Nessun iscritto</string>
@@ -257,9 +257,42 @@
 
     <string name="no_videos">Nessun video</string>
     <plurals name="videos">
-	<item quantity="one">%s video</item>
-	<item quantity="other">%s video</item>
+	<item quantity="one">%s filmato</item>
+	<item quantity="other">%s filmati</item>
 </plurals>
 
     <string name="item_deleted">Elemento eliminato</string>
+<string name="empty_subscription_feed_subtitle">Nulla da mostrare</string>
+
+    <string name="delete_item_search_history">Vuoi eliminare questo elemento dalla cronologia?</string>
+<string name="main_page_content">Contenuto della pagina principale</string>
+    <string name="blank_page_summary">Pagina vuota</string>
+    <string name="kiosk_page_summary">Edicola</string>
+    <string name="subscription_page_summary">Pagina iscrizione</string>
+    <string name="feed_page_summary">Pagina del feed</string>
+    <string name="channel_page_summary">Pagina del canale</string>
+    <string name="select_a_channel">Seleziona un canale</string>
+    <string name="no_channel_subscribed_yet">Non ancora iscritto a nessun canale</string>
+    <string name="select_a_kiosk">Seleziona un\'edicola</string>
+
+    <string name="kiosk">Edicola</string>
+    <string name="trending">In tendenza</string>
+    <string name="top_50">Primi 50</string>
+    <string name="new_and_hot">Nuovi e caldi</string>
+<string name="show_hold_to_append_title">Mostra il suggerimento di tenere premuto per appendere</string>
+    <string name="show_hold_to_append_summary">Mostra un suggerimento quando il pulsante in sottofondo o a comparsa viene premuto nella pagina dei dettagli di un video</string>
+    <string name="background_player_append">In coda al riproduttore in sottofondo</string>
+    <string name="popup_playing_append">In coda al riproduttore a comparsa</string>
+    <string name="play_all">Riproduci tutto</string>
+
+    <string name="player_stream_failure">Impossibile riprodurre questo flusso</string>
+    <string name="player_unrecoverable_failure">Si è verificato un errore irrecuperabile al riproduttore</string>
+    <string name="player_recoverable_failure">Recupero dall\'errore del riproduttore</string>
+
+    <string name="title_activity_background_player">Riproduttore di sottofondo</string>
+    <string name="title_activity_popup_player">Riproduttore a comparsa</string>
+    <string name="play_queue_remove">Rimuovi</string>
+    <string name="play_queue_stream_detail">Dettagli</string>
+    <string name="play_queue_audio_settings">Impostazioni audio</string>
+    <string name="hold_to_append">Tieni premuto per accodare</string>
 </resources>

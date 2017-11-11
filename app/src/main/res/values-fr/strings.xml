@@ -18,7 +18,7 @@
     <string name="settings">Paramètres</string>
     <string name="share">Partager</string>
     <string name="share_dialog_title">Partager avec</string>
-    <string name="show_play_with_kodi_summary">Afficher une option pour lire la vidéo via la médiathèque Kodi</string>
+    <string name="show_play_with_kodi_summary">Afficher une option pour lire la vidéo via Kodi</string>
     <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
     <string name="upload_date_text">Ajoutée le %1$s</string>
     <string name="view_count_text">%1$s vues</string>
@@ -133,34 +133,33 @@
     <string name="reCaptcha_title">Test reCAPTCHA</string>
     <string name="recaptcha_request_toast">Test reCAPTCHA demandé</string>
 
-    <string name="open_in_popup_mode">Ouvrir dans une fenêtre popup</string>
-    <string name="popup_mode_share_menu_title">Mode popup de NewPipe</string>
+    <string name="open_in_popup_mode">Ouvrir dans une fenêtre flottante</string>
+    <string name="popup_mode_share_menu_title">Mode flottant de NewPipe</string>
 
-    <string name="popup_playing_toast">Lecture en mode popup</string>
+    <string name="popup_playing_toast">Lire dans le lecteur flottant</string>
     <string name="yes">Oui</string>
     <string name="later">Plus tard</string>
     <string name="disabled">Désactivé</string>
 
-    <string name="info_labels">Quoi :\\nRequête :\\nLang. du contenu:\\nService :\\nHeure GMT :\\nPaquage :\\nVersion :\\nVersion de l\'OS:\\nGamme globale d\'IPs :</string>
+    <string name="info_labels">Quoi :\\nRequête :\\nLangue du contenu :\\nService :\\nHeure GMT :\\nPaquet :\\nVersion :\\nVersion du système :\\nGlob. Plage IP :</string>
     <string name="use_old_player_title">Utiliser l\'ancien lecteur</string>
     <string name="use_old_player_summary">Ancienne version du lecteur Mediaframework</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
 
-    <string name="msg_popup_permission">Cette permission est nécessaire
-pour ouvrir en mode popup</string>
+    <string name="msg_popup_permission">Cette permission est nécessaire pour ouvrir en mode flottant</string>
 
     <string name="controls_background_title">Arrière-plan</string>
-    <string name="controls_popup_title">Lecture intégrée</string>
+    <string name="controls_popup_title">Lecture flottante</string>
 
-    <string name="default_popup_resolution_title">Résolution de la lecture intégrée</string>
+    <string name="default_popup_resolution_title">Résolution de la lecture flottante</string>
     <string name="show_higher_resolutions_title">Afficher des résolutions plus grandes</string>
     <string name="show_higher_resolutions_summary">Seulement certains périphériques supportent la lecture 2K/4K</string>
     <string name="default_video_format_title">Format vidéo par défaut</string>
-    <string name="popup_remember_size_pos_title">Mémoriser la taille et la position du lecteur intégré</string>
-    <string name="popup_remember_size_pos_summary">Mémoriser les derniers emplacements et la taille du lecteur intégré</string>
+    <string name="popup_remember_size_pos_title">Mémoriser la taille et la position du lecteur flottant</string>
+    <string name="popup_remember_size_pos_summary">Mémoriser les derniers emplacements et la taille du lecteur flottant</string>
 
-    <string name="settings_category_popup_title">Lecteur intégré</string>
+    <string name="settings_category_popup_title">Lecteur flottant</string>
     <string name="filter">Filtre</string>
     <string name="refresh">Actualiser</string>
     <string name="clear">Effacer</string>
@@ -178,7 +177,7 @@ pour ouvrir en mode popup</string>
 
     <string name="subscribe_button_title">S\'abonner</string>
     <string name="subscribed_button_title">Abonné</string>
-    <string name="channel_unsubscribed">Désabonné de la chaîne</string>
+    <string name="channel_unsubscribed">Désabonner de la chaîne</string>
     <string name="tab_main">Principal</string>
     <string name="tab_subscriptions">Abonnements</string>
 
@@ -189,7 +188,7 @@ pour ouvrir en mode popup</string>
     <string name="action_about">À propos</string>
     <string name="title_licenses">Licences tierces</string>
     <string name="error_unable_to_load_license">Impossible de charger la licence</string>
-    <string name="action_open_website">Ouvrir le site web</string>
+    <string name="action_open_website">Ouvrir le site</string>
     <string name="tab_about">À propos</string>
     <string name="tab_contributors">Contributeurs</string>
     <string name="tab_licenses">Licences</string>
@@ -231,7 +230,7 @@ pour ouvrir en mode popup</string>
     <string name="settings_category_player_behavior_title">Comportement</string>
     <string name="settings_category_history_title">Historique</string>
     <string name="playlist">Liste de lecture</string>
-    <string name="notification_channel_description">Notifications pour les lecteurs Background et Popup de NewPipe</string>
+    <string name="notification_channel_description">Notifications pour les lecteurs arrière-plan et flottant de NewPipe</string>
 
     <string name="search_no_results">Aucun résultat</string>
     <string name="empty_subscription_feed_subtitle">Rien ici à part des grillons</string>
@@ -257,4 +256,26 @@ pour ouvrir en mode popup</string>
     <string name="charset_most_special_characters">Caractères spéciaux</string>
 
     <string name="item_deleted">Objet effacé</string>
-</resources>
+<string name="delete_item_search_history">Voulez-vous supprimer cet élément de l\'historique de recherche ?</string>
+<string name="main_page_content">Contentu</string>
+    <string name="blank_page_summary">Page vide</string>
+    <string name="subscription_page_summary">Page de souscription</string>
+    <string name="feed_page_summary">Page de Flux</string>
+    <string name="channel_page_summary">Page de la chaîne</string>
+    <string name="select_a_channel">Sélectionnez une chaîne</string>
+    <string name="trending">Populaires</string>
+    <string name="top_50">Top 50</string>
+    <string name="new_and_hot">Nouveau &amp; populaire</string>
+<string name="background_player_append">Mettre en file d\'attente du lecteur en arrière plan</string>
+    <string name="popup_playing_append">Mettre en fil d\'attente du lecteur flottant</string>
+    <string name="play_all">Lire tout</string>
+
+    <string name="player_stream_failure">Échec de la lecture de cette vidéo</string>
+    <string name="player_unrecoverable_failure">Une erreur irrécupérable du lecteur s\'est produite</string>
+    <string name="no_channel_subscribed_yet">Encore aucune chaîne souscrite</string>
+    <string name="title_activity_background_player">Lecteur en arrière plan</string>
+    <string name="title_activity_popup_player">Lecteur flottant</string>
+    <string name="play_queue_remove">Retirer</string>
+    <string name="play_queue_stream_detail">Détails</string>
+    <string name="play_queue_audio_settings">Réglages audio</string>
+    </resources>

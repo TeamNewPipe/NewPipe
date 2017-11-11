@@ -79,7 +79,7 @@
     <string name="general_error">Ошибка</string>
     <string name="your_comment">Ваш комментарий (на английском):</string>
     <string name="err_dir_create">Невозможно создать папку для загрузки \'%1$s\'</string>
-    <string name="autoplay_by_calling_app_title">Автоматически воспроизводить при открытии из другого приложения</string>
+    <string name="autoplay_by_calling_app_title">Воспроизводить автоматически</string>
     <string name="autoplay_by_calling_app_summary">Автоматически воспроизводить видео при вызове NewPipe из другого приложения</string>
     <string name="content">Контент</string>
     <string name="video_is_age_restricted">Видео с возрастными ограничениями. Разрешить подобный контент можно в настройках.</string>
@@ -96,10 +96,10 @@
     <string name="live_streams_not_supported">Это прямая трансляция, они пока не поддерживаются.</string>
     <string name="could_not_load_image">Не удалось загрузить изображение</string>
     <string name="app_ui_crash">"Падение приложения/пользовательского интерфейса "</string>
-    <string name="sorry_string">Простите, такое не должно было произойти.</string>
+    <string name="sorry_string">Простите, это не должно было произойти.</string>
     <string name="error_report_button_text">Отправить отчёт об ошибке по электронной почте</string>
     <string name="error_snackbar_message">Простите, произошли ошибки.</string>
-    <string name="error_snackbar_action">ОТЧЕТ</string>
+    <string name="error_snackbar_action">ОТЧЁТ</string>
     <string name="what_device_headline">Информация:</string>
     <string name="what_happened_headline">Что произошло:</string>
     <string name="error_details_headline">Детали:</string>
@@ -185,7 +185,7 @@
     <string name="app_description">Бесплатный лёгкий интерфейс YouTube для Android.</string>
     <string name="view_on_github">Открыть на GitHub</string>
     <string name="contribution_encouragement">Приветствуется всё — идеи, перевод, изменения дизайна, чистка кода или огромные изменения в коде. Чем больше сделано, тем лучше!</string>
-    <string name="copyright" formatted="true">© %1$s за авторством %2$s под лицензией %3$s</string>
+    <string name="copyright" formatted="true">© %1$s %2$s под лицензией %3$s</string>
     <string name="contribution_title">Помощь проекту</string>
 <string name="subscribe_button_title">Подписаться</string>
     <string name="subscription_change_failed">Не удалось изменить подписку</string>
@@ -223,4 +223,59 @@
     <string name="history_empty">История пуста</string>
     <string name="history_cleared">История очищена</string>
 
-</resources>
+<string name="settings_category_player_title">Плеер</string>
+    <string name="settings_category_player_behavior_title">Поведение</string>
+    <string name="settings_category_history_title">История</string>
+    <string name="playlist">Плейлист</string>
+    <string name="undo">Отменить</string>
+
+    <string name="search_no_results">Нет результатов</string>
+    <string name="empty_subscription_feed_subtitle">Тут только сверчки</string>
+
+    <string name="no_subscribers">Нет подписчиков</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s подписчик</item>
+	<item quantity="few">%s подписчика</item>
+	<item quantity="many">%s подписчиков</item>
+	<item quantity="other"/>
+</plurals>
+
+    <string name="no_views">Нет просмотров</string>
+    <plurals name="views">
+	<item quantity="one">%s просмотр</item>
+	<item quantity="few">%s просмотра</item>
+	<item quantity="many">%s просмотров</item>
+	<item quantity="other"/>
+</plurals>
+
+    <string name="no_videos">Нет видео</string>
+    <plurals name="videos">
+	<item quantity="one">%s видео</item>
+	<item quantity="few">%s видео</item>
+	<item quantity="many">%s видео</item>
+	<item quantity="other"/>
+</plurals>
+
+    <string name="item_deleted">Элемент удалён</string>
+<string name="delete_item_search_history">Удалить этот элемент из истории поиска?</string>
+<string name="main_page_content">Контент главной страницы</string>
+    <string name="blank_page_summary">Пустая страница</string>
+    <string name="kiosk_page_summary">Страница киоска</string>
+    <string name="subscription_page_summary">Страница подписки</string>
+    <string name="feed_page_summary">Страница ленты</string>
+    <string name="channel_page_summary">Страница канала</string>
+    <string name="select_a_channel">Выберите канал</string>
+    <string name="select_a_kiosk">Выберите киоск</string>
+
+    <string name="kiosk">Киоск</string>
+    <string name="trending">В тренде</string>
+    <string name="top_50">Топ 50</string>
+    <string name="new_and_hot">Новое и горячее</string>
+    <string name="background_player_append">Добавлено в очередь в фоне</string>
+    <string name="popup_playing_append">Добавлено в очередь в окне</string>
+    <string name="play_all">Воспроизвести всё</string>
+
+    <string name="player_stream_failure">Не удалось воспроизвести этот поток</string>
+    <string name="play_queue_stream_detail">Подробности</string>
+    <string name="play_queue_audio_settings">Настройки аудио</string>
+    </resources>

@@ -104,7 +104,7 @@
     <string name="storage_permission_denied">Toegang tot opslag geweigerd</string>
     <string name="start">Begin</string>
     <string name="pause">Pauzeren</string>
-    <string name="view">Bekijken</string>
+    <string name="view">Afspelen</string>
     <string name="delete">Verwijderen</string>
     <string name="checksum">Controlesom</string>
 
@@ -164,7 +164,7 @@ te openen in pop-upmodus</string>
     <string name="refresh">Verversen</string>
     <string name="clear">Wissen</string>
 
-    <string name="popup_remember_size_pos_title">Onthou grootte en positie van pop-up</string>
+    <string name="popup_remember_size_pos_title">Onthoud grootte en positie van pop-up</string>
     <string name="popup_remember_size_pos_summary">Onthou laatste grootte en positie van pop-up</string>
 
     <string name="settings_category_popup_title">Pop-up</string>
@@ -205,8 +205,8 @@ te openen in pop-upmodus</string>
     <string name="subscribe_button_title">Abonneer</string>
     <string name="subscribed_button_title">Geabonneerd</string>
     <string name="channel_unsubscribed">Abonnement opgezegd</string>
-    <string name="subscription_change_failed">Niet in staat abonnement te wijzigen</string>
-    <string name="subscription_update_failed">Niet in staat abbonement te vernieuwen</string>
+    <string name="subscription_change_failed">Kan het abonnement niet veranderen</string>
+    <string name="subscription_update_failed">Kan het abonnement niet vernieuwen</string>
 
     <string name="tab_main">Start</string>
     <string name="tab_subscriptions">Abonnementen</string>
@@ -260,4 +260,35 @@ te openen in pop-upmodus</string>
 </plurals>
 
     <string name="item_deleted">Item verwijderd</string>
+<string name="delete_item_search_history">Wil je dit item uit je geschiedenis verwijderen?</string>
+<string name="show_hold_to_append_title">Toon tip voor ingedrukt houden om toe te voegen</string>
+    <string name="show_hold_to_append_summary">Toon tip wanneer achtergrond- of pop-upknop is ingedrukt op de video-detailpagina</string>
+    <string name="background_player_append">Toegevoegd aan wachtrij voor achtergrondspeler</string>
+    <string name="popup_playing_append">Toegevoegd aan wachtrij voor pop-upspeler</string>
+    <string name="play_all">Alles afspelen</string>
+
+    <string name="player_stream_failure">Kon deze stream niet afspelen</string>
+    <string name="player_unrecoverable_failure">Onherstelbare spelerfout opgetreden</string>
+    <string name="player_recoverable_failure">Aan het herstellen van spelerfout</string>
+
+    <string name="main_page_content">Content van hoofdpagina</string>
+    <string name="blank_page_summary">Blanke Pagina</string>
+    <string name="kiosk_page_summary">Kioskpagina</string>
+    <string name="subscription_page_summary">Abonnementenpagina</string>
+    <string name="feed_page_summary">Feedpagina</string>
+    <string name="channel_page_summary">Kanaalpagina</string>
+    <string name="select_a_channel">Selecteer een kanaal</string>
+    <string name="no_channel_subscribed_yet">Nog niet geabonneerd op een kanaal</string>
+    <string name="select_a_kiosk">Selecteer een kiosk</string>
+
+    <string name="kiosk">Kiosk</string>
+    <string name="trending">Trending</string>
+    <string name="top_50">Top 50</string>
+    <string name="new_and_hot">Nieuw en populair</string>
+    <string name="title_activity_background_player">Achtergrondspeler</string>
+    <string name="title_activity_popup_player">Pop-upspeler</string>
+    <string name="play_queue_remove">Verwijderen</string>
+    <string name="play_queue_stream_detail">Details</string>
+    <string name="play_queue_audio_settings">Audio-instellingen</string>
+    <string name="hold_to_append">Houd ingedrukt om toe te voegen aan wachtrij</string>
 </resources>

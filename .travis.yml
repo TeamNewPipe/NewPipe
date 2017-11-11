@@ -5,13 +5,10 @@ android:
   components:
     # The BuildTools version used by NewPipe
     - tools
-    - build-tools-26.0.1
+    - build-tools-27.0.1
 
     # The SDK version used to compile NewPipe
-    - android-26
-
-    # Additional components
-    - extra-android-m2repository
+    - android-27
 
 script: ./gradlew -Dorg.gradle.jvmargs=-Xmx1536m assembleDebug lintDebug testDebugUnitTest
 

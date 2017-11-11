@@ -7,6 +7,7 @@
     android:layout_height="128dp"
     android:background="@color/background_notification_color"
     android:clickable="true"
+    android:focusable="true"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
@@ -26,6 +27,7 @@
         android:layout_alignParentRight="true"
         android:background="#00000000"
         android:clickable="true"
+        android:focusable="true"
         android:padding="8dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_close_white_24dp"
@@ -82,9 +84,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="2dp"
         android:layout_alignTop="@+id/notificationProgressBar"
         android:layout_toRightOf="@+id/notificationCover"
+        android:layout_toEndOf="@+id/notificationCover"
         android:ellipsize="end"
         android:maxLines="1"
         android:textSize="12sp"
@@ -109,6 +113,7 @@
             android:layout_centerVertical="true"
             android:background="#00000000"
             android:clickable="true"
+            android:focusable="true"
             android:scaleType="fitXY"
             android:src="@drawable/ic_repeat_white"
             tools:ignore="ContentDescription"/>
@@ -122,9 +127,10 @@
             android:layout_toLeftOf="@+id/notificationPlayPause"
             android:background="#00000000"
             android:clickable="true"
+            android:focusable="true"
             android:padding="2dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_action_av_fast_rewind"
+            android:src="@drawable/exo_controls_previous"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -137,6 +143,7 @@
             android:background="#00000000"
             android:padding="2dp"
             android:clickable="true"
+            android:focusable="true"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_pause_white"
             tools:ignore="ContentDescription"/>
@@ -150,107 +157,10 @@
             android:layout_marginRight="8dp"
             android:background="#00000000"
             android:clickable="true"
+            android:focusable="true"
             android:padding="2dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_action_av_fast_forward"
+            android:src="@drawable/exo_controls_next"
             tools:ignore="ContentDescription"/>
     </RelativeLayout>
 </RelativeLayout>
-
-    <!--
-    <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/notificationContent"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:clickable="true"
-    android:background="@color/background_notification_color">
-
-    <ImageView
-        android:id="@+id/notificationCover"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:layout_marginRight="8dp"
-        android:src="@drawable/dummy_thumbnail"
-        android:scaleType="centerCrop"/>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_above="@+id/notificationButtons"
-        android:layout_toRightOf="@+id/notificationCover"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/notificationSongName"
-            style="@android:style/TextAppearance.StatusBar.EventContent.Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
-            android:ellipsize="marquee"
-            android:singleLine="true"
-            android:text="title" />
-
-        <TextView
-            android:id="@+id/notificationArtist"
-            style="@android:style/TextAppearance.StatusBar.EventContent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="marquee"
-            android:singleLine="true"
-            android:text="artist" />
-
-        <ProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/playbackProgress"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_marginRight="8dp" />
-    </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/notificationStop"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_margin="5dp"
-        android:background="#00ffffff"
-        android:clickable="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_close_white" />
-
-
-    <RelativeLayout
-        android:id="@+id/notificationButtons"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignBottom="@id/notificationCover"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/notificationCover"
-        android:orientation="horizontal" >
-
-        <ImageButton
-            android:id="@+id/notificationPlayPause"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="#00ffffff"
-            android:clickable="true"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_pause_white"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-
-        <ImageButton
-            android:id="@+id/notificationRewind"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="#00ffffff"
-            android:clickable="true"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_action_av_fast_rewind"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true" />
-    </RelativeLayout>
-
-</RelativeLayout>-->

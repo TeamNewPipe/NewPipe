@@ -28,6 +28,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/black"
                 android:clickable="true"
+                android:focusable="true"
                 android:foreground="?attr/selectableItemBackground">
 
                 <ImageView
@@ -52,6 +53,23 @@
                     tools:ignore="ContentDescription"
                     tools:visibility="visible"/>
 
+                <TextView
+                    android:id="@+id/touch_append_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#64000000"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:paddingTop="10dp"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text="@string/hold_to_append"
+                    android:visibility="gone"
+                    tools:ignore="RtlHardcoded"
+                    tools:visibility="visible"/>
             </FrameLayout>
 
             <!-- CONTENT -->
@@ -68,6 +86,7 @@
                     android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
+                    android:focusable="true"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp">
 
@@ -223,10 +242,12 @@
                             android:layout_width="80dp"
                             android:layout_height="55dp"
                             android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
                             android:layout_alignParentTop="true"
                             android:layout_gravity="center_vertical"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
+                            android:focusable="true"
                             android:contentDescription="@string/open_in_popup_mode"
                             android:drawableTop="?attr/popup"
                             android:gravity="center"
@@ -242,8 +263,10 @@
                             android:layout_alignParentTop="true"
                             android:layout_gravity="center_vertical"
                             android:layout_toLeftOf="@id/detail_controls_popup"
+                            android:layout_toStartOf="@id/detail_controls_popup"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
+                            android:focusable="true"
                             android:contentDescription="@string/play_audio"
                             android:drawableTop="?attr/audio"
                             android:gravity="center"

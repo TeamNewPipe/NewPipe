@@ -19,8 +19,8 @@ public abstract class BasePreferenceFragment extends PreferenceFragmentCompat {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        super.onCreate(savedInstanceState);
     }
 
     @Override

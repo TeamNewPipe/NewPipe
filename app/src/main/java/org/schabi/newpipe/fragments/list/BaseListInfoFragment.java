@@ -8,6 +8,7 @@ import android.view.View;
 
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
+import org.schabi.newpipe.util.Constants;
 
 import java.util.Queue;
 
@@ -21,7 +22,7 @@ import io.reactivex.schedulers.Schedulers;
 public abstract class BaseListInfoFragment<I extends ListInfo> extends BaseListFragment<I, ListExtractor.NextItemsResult> {
 
     @State
-    protected int serviceId = -1;
+    protected int serviceId = Constants.NO_SERVICE_ID;
     @State
     protected String name;
     @State

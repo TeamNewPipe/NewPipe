@@ -7,7 +7,7 @@
     <string name="what_device_headline">Informações:</string>
     <string name="webm_description">WebM — formato aberto</string>
     <string name="view_count_text">%1$s visualizações</string>
-    <string name="view">Ver</string>
+    <string name="view">Reproduzir</string>
     <string name="video_is_age_restricted">Vídeo com restrição de idade. Permissão para vídeos com essa restrição podem ser feitas no menu configurações.</string>
     <string name="video">Vídeo</string>
     <string name="autoplay_by_calling_app_summary">Reproduzir o vídeo automaticamente quando o NewPipe for aberto a partir de outro app</string>
@@ -95,7 +95,7 @@
     <string name="light_parsing_error">Não foi possível interpretar completamente o site</string>
     <string name="list_thumbnail_view_description">Miniatura do vídeo</string>
     <string name="live_streams_not_supported">Isto é uma transmissão ao vivo, a qual ainda não é suportada.</string>
-    <string name="main_bg_subtitle">Toque em busca para começar</string>
+    <string name="main_bg_subtitle">Toque em pesquisar para começar</string>
     <string name="msg_exists">Arquivo já existe</string>
     <string name="msg_threads">Threads</string>
     <string name="msg_url_malform">URL inválida ou internet indisponível</string>
@@ -233,12 +233,43 @@ abrir em modo popup</string>
 
     <string name="no_videos">Nenhum video</string>
     <plurals name="videos">
-	<item quantity="one">%s video</item>
-	<item quantity="other">%s videos</item>
+	<item quantity="one">%s vídeo</item>
+	<item quantity="other">%s vídeos</item>
 </plurals>
 
     <string name="item_deleted">Item excluído</string>
-<string name="settings_category_player_title">Player</string>
+<string name="settings_category_player_title">Reprodutor</string>
     <string name="empty_subscription_feed_subtitle">Não há nada aqui</string>
 
-    </resources>
+    <string name="delete_item_search_history">Deseja apagar este item do seu histórico de busca?</string>
+<string name="main_page_content">Conteúdo</string>
+    <string name="blank_page_summary">Página em Branco</string>
+    <string name="kiosk_page_summary">Página de Quiosque</string>
+    <string name="subscription_page_summary">Página de Inscrição</string>
+    <string name="feed_page_summary">Página de Atualizações</string>
+    <string name="channel_page_summary">Página de Canais</string>
+    <string name="select_a_channel">Selecione um canal</string>
+    <string name="no_channel_subscribed_yet">Nenhuma inscrição ainda</string>
+    <string name="select_a_kiosk">Selecione um quiosque</string>
+
+    <string name="kiosk">Quiosque</string>
+    <string name="trending">Em Alta</string>
+    <string name="top_50">Top 50</string>
+    <string name="new_and_hot">Novos e tendências</string>
+<string name="show_hold_to_append_title">Mostrar dica para Mantenha pressionado para colocar na fila</string>
+    <string name="show_hold_to_append_summary">Mostrar dica quando o botão de plano de fundo ou de popup for pressionado na página de detalhes do vídeo</string>
+    <string name="background_player_append">Adicionado a fila do reprodutor em plano de fundo</string>
+    <string name="popup_playing_append">Adicionado a fila no reprodutor popup</string>
+    <string name="play_all">Reproduzir tudo</string>
+
+    <string name="player_stream_failure">Falha ao reproduzir esta stream</string>
+    <string name="player_unrecoverable_failure">Ocorreu um erro no reprodutor</string>
+    <string name="player_recoverable_failure">Recuperando erro do reprodutor</string>
+
+    <string name="title_activity_background_player">Reprodutor de plano de fundo</string>
+    <string name="title_activity_popup_player">Reprodutor Popup</string>
+    <string name="play_queue_remove">Remover</string>
+    <string name="play_queue_stream_detail">Detalhes</string>
+    <string name="play_queue_audio_settings">Configurações de Áudio</string>
+    <string name="hold_to_append">Mantenha pressionado para colocar na fila</string>
+</resources>

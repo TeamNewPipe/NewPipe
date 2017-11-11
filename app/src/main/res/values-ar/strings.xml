@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="background_player_playing_toast">جاري التشغيل في الخلفية</string>
     <string name="cancel">إلغاء</string>
@@ -10,15 +10,15 @@
     <string name="detail_likes_img_view_description">الإعجابات</string>
     <string name="detail_thumbnail_view_description">صور معاينة الفيديو</string>
     <string name="detail_uploader_thumbnail_view_description">"Uploader's userpic thumbnail"</string>
-    <string name="did_you_mean">هل تقصد:</string>
+    <string name="did_you_mean">هل تقصد : %1$s ؟</string>
     <string name="download">تنزيل</string>
     <string name="download_dialog_title">تنزيل</string>
-    <string name="download_path_audio_dialog_title">أدخل مسار التنزيل للملفات الصوتية.</string>
-    <string name="download_path_audio_summary">مسار حفظ التنزيلات الصوتية في.</string>
+    <string name="download_path_audio_dialog_title">أدخل مسار لتنزيل الملفات الصوتية.</string>
+    <string name="download_path_audio_summary">مسار حفظ التنزيلات الصوتية</string>
     <string name="download_path_audio_title">مسار الصوتيات المحفوظة</string>
     <string name="download_path_dialog_title">أدخل مسار التنزيل لملفات الفيديو</string>
-    <string name="download_path_summary">مسار حفظ تنزيلات الفيديو في.</string>
-    <string name="download_path_title">مسار الفيديوهات المحفوظة</string>
+    <string name="download_path_summary">مسار حفظ تنزيلات الفيديو في</string>
+    <string name="download_path_title">مسار تحميل الفيديو</string>
     <string name="err_dir_create">"لا يمكن إنشاء مجلد للتنزيلات في '%1$s'"</string>
     <string name="info_dir_created">"تم إنشاء مجلد تنزيلات في '%1$s'"</string>
     <string name="install">تثبيت</string>
@@ -45,8 +45,8 @@
     <string name="show_next_and_similar_title">عرض التالي والفيديوهات المشابهة</string>
     <string name="show_play_with_kodi_summary">عرض خيار لتشغيل الفيديو بواسطة Kodi Media Center.</string>
     <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة Kodi.</string>
-    <string name="theme_title">الثيم</string>
-    <string name="upload_date_text">تم الرفع في %1$s</string>
+    <string name="theme_title">السمة</string>
+    <string name="upload_date_text">تم نشرها في %1$s</string>
     <string name="url_not_supported_toast">الرابط غير مدعوم</string>
     <string name="use_external_audio_player_title">استخدام مشغل صوتيات خارجي</string>
     <string name="use_external_video_player_title">استخدام مشغل فيديو خارجي</string>
@@ -60,4 +60,53 @@
     <string name="general_error">خطأ</string>
     <string name="parsing_error">لا يمكن تحليل الموقع.</string>
     <string name="youtube_signature_decryption_error">لا يمكن فك تشفير توقيع رابط الفيديو.</string>
-</resources>
+<string name="main_bg_subtitle">إضغط على البحث للمواصلة</string>
+    <string name="subscribe_button_title">إشترك</string>
+    <string name="subscribed_button_title">مشترك</string>
+    <string name="tab_main">الرئيسية</string>
+    <string name="tab_subscriptions">الإشتراكات</string>
+
+    <string name="fragment_whats_new">ما الجديد</string>
+
+    <string name="controls_background_title">الخلفية</string>
+    <string name="autoplay_by_calling_app_title">التشغيل التلقائي</string>
+    <string name="black_theme_title">أسود</string>
+    <string name="enable_watch_history_title">التأريخ</string>
+    <string name="settings_category_history_title">التأريخ</string>
+    <string name="content">المحتوى</string>
+    <string name="downloads">التنزيلات</string>
+    <string name="downloads_title">التنزيلات</string>
+    <string name="all">الكل</string>
+    <string name="channel">قناة</string>
+    <string name="video">فيديو</string>
+    <string name="settings_category_downloads_title">التنزيل</string>
+    <string name="action_about">عن التطبيق</string>
+    <string name="tab_about">عن التطبيق</string>
+    <string name="title_activity_history">التأريخ</string>
+    <string name="action_history">التأريخ</string>
+    <string name="open_in_popup_mode">فتح في نوافذ</string>
+    <string name="use_external_video_player_summary">بعض خيارات الجودة لن يكون الصوت عند تمكين هذا الخيار</string>
+    <string name="popup_mode_share_menu_title">NewPipe وضع النافذة</string>
+    <string name="channel_unsubscribed">تم إلغاء اشتراك القناة</string>
+    <string name="subscription_change_failed">تعذر تغيير في الاشتراك</string>
+    <string name="subscription_update_failed">تعذر تحديث الاشتراك</string>
+
+    <string name="controls_popup_title">نافذة</string>
+
+    <string name="autoplay_by_calling_app_summary">تشغيل الفيديو تلقائيا عند استدعاء نيوبيب من تطبيق آخر</string>
+    <string name="default_popup_resolution_title">جودة النوافذ الافتراضية</string>
+    <string name="show_higher_resolutions_title">إظهار جودة أعلى</string>
+    <string name="show_higher_resolutions_summary">فقط بعض الأجهزة تدعم تشغيل فيديوهات 2K / 4K</string>
+    <string name="default_video_format_title">تنسيق الفيديو الافتراضي</string>
+    <string name="popup_remember_size_pos_title">تذكر حجم النافذة و وضعها</string>
+    <string name="popup_remember_size_pos_summary">تذكر آخر حجم ومكان النافذة</string>
+    <string name="player_gesture_controls_title">ضوابط إشارة المشغل</string>
+    <string name="player_gesture_controls_summary">استخدم الإشارات للتحكم في سطوع وحجم المشغل</string>
+    <string name="show_search_suggestions_title">اقتراحات البحث</string>
+    <string name="show_search_suggestions_summary">عرض الاقتراحات عند البحث</string>
+    <string name="enable_search_history_title">سجل البحث</string>
+    <string name="enable_search_history_summary">تخزين طلبات البحث محليا</string>
+    <string name="enable_watch_history_summary">تتبع مقاطع الفيديو التي تمت مشاهدتها</string>
+    <string name="resume_on_audio_focus_gain_title">استئناف عند اكساب التركيز</string>
+    <string name="resume_on_audio_focus_gain_summary">متابعة اللعب بعد المقاطعات (مثل المكالمات الهاتفية)</string>
+    </resources>

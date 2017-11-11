@@ -19,7 +19,7 @@ public class AnimationUtils {
     private static final boolean DEBUG = MainActivity.DEBUG;
 
     public enum Type {
-        ALPHA, SCALE_AND_ALPHA, LIGHT_SCALE_AND_ALPHA
+        ALPHA, SCALE_AND_ALPHA, LIGHT_SCALE_AND_ALPHA, SLIDE_AND_ALPHA, LIGHT_SLIDE_AND_ALPHA
     }
 
     public static void animateView(View view, boolean enterOrExit, long duration) {
@@ -95,8 +95,15 @@ public class AnimationUtils {
             case LIGHT_SCALE_AND_ALPHA:
                 animateLightScaleAndAlpha(view, enterOrExit, duration, delay, execOnEnd);
                 break;
+            case SLIDE_AND_ALPHA:
+                animateSlideAndAlpha(view, enterOrExit, duration, delay, execOnEnd);
+                break;
+            case LIGHT_SLIDE_AND_ALPHA:
+                animateLightSlideAndAlpha(view, enterOrExit, duration, delay, execOnEnd);
+                break;
         }
     }
+
 
     /**
      * Animate the background color of a view
@@ -228,6 +235,52 @@ public class AnimationUtils {
             view.setScaleX(1f);
             view.setScaleY(1f);
             view.animate().setInterpolator(new FastOutSlowInInterpolator()).alpha(0f).scaleX(.95f).scaleY(.95f)
+                    .setDuration(duration).setStartDelay(delay).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    view.setVisibility(View.GONE);
+                    if (execOnEnd != null) execOnEnd.run();
+                }
+            }).start();
+        }
+    }
+
+    private static void animateSlideAndAlpha(final View view, boolean enterOrExit, long duration, long delay, final Runnable execOnEnd) {
+        if (enterOrExit) {
+            view.setTranslationY(-view.getHeight());
+            view.setAlpha(0f);
+            view.animate().setInterpolator(new FastOutSlowInInterpolator()).alpha(1f).translationY(0)
+                    .setDuration(duration).setStartDelay(delay).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    if (execOnEnd != null) execOnEnd.run();
+                }
+            }).start();
+        } else {
+            view.animate().setInterpolator(new FastOutSlowInInterpolator()).alpha(0f).translationY(-view.getHeight())
+                    .setDuration(duration).setStartDelay(delay).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    view.setVisibility(View.GONE);
+                    if (execOnEnd != null) execOnEnd.run();
+                }
+            }).start();
+        }
+    }
+
+    private static void animateLightSlideAndAlpha(final View view, boolean enterOrExit, long duration, long delay, final Runnable execOnEnd) {
+        if (enterOrExit) {
+            view.setTranslationY(-view.getHeight() / 2);
+            view.setAlpha(0f);
+            view.animate().setInterpolator(new FastOutSlowInInterpolator()).alpha(1f).translationY(0)
+                    .setDuration(duration).setStartDelay(delay).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    if (execOnEnd != null) execOnEnd.run();
+                }
+            }).start();
+        } else {
+            view.animate().setInterpolator(new FastOutSlowInInterpolator()).alpha(0f).translationY(-view.getHeight() / 2)
                     .setDuration(duration).setStartDelay(delay).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {

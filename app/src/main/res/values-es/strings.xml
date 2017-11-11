@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="view_count_text">%1$s visualizaciones</string>
-    <string name="upload_date_text">Publicado en %1$s</string>
+    <string name="upload_date_text">Publicado el %1$s</string>
     <string name="no_player_found">No se encontró ningún reproductor de vídeo. ¿Desea instalar VLC?</string>
     <string name="install">Instalar</string>
     <string name="cancel">Cancelar</string>
@@ -12,7 +12,7 @@
     <string name="settings">Ajustes</string>
     <string name="did_you_mean">¿Quiso decir: %1$s?</string>
     <string name="share_dialog_title">Compartir con</string>
-    <string name="choose_browser">Seleccionar navegador</string>
+    <string name="choose_browser">Elegir navegador</string>
     <string name="screen_rotation">rotación</string>
     <string name="download_path_title">Ruta de descarga de vídeo</string>
     <string name="download_path_summary">Ruta para almacenar los vídeos descargados</string>
@@ -72,7 +72,7 @@
     <string name="show_age_restricted_content_title">Mostrar contenido restringido por edad</string>
     <string name="video_is_age_restricted">Vídeo restringido por edad. Permitir este tipo de material es posible desde Ajustes.</string>
 
-    <string name="main_bg_subtitle">Toque buscar para empezar</string>
+    <string name="main_bg_subtitle">Toque en buscar para empezar</string>
     <string name="autoplay_by_calling_app_title">Autoreproducir</string>
     <string name="autoplay_by_calling_app_summary">Reproducir automáticamente un vídeo cuando NewPipe es llamado desde otra aplicación</string>
     <string name="duration_live">en vivo</string>
@@ -170,7 +170,7 @@ abrir en modo popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Redimensionando</string>
 
-    <string name="use_external_video_player_summary">Algunas resoluciones podrían no tener audio cuando esta opción está activada</string>
+    <string name="use_external_video_player_summary">Algunas resoluciones podrían NO tener audio cuando esta opción está activada</string>
     <string name="player_gesture_controls_title">Controles de gestos del reproductor</string>
     <string name="player_gesture_controls_summary">Usar gestos para controlar el brillo y volumen del reproductor</string>
     <string name="show_search_suggestions_title">Sugerencias de búsqueda</string>
@@ -238,7 +238,7 @@ abrir en modo popup</string>
     <string name="undo">Deshacer</string>
 
     <string name="search_no_results">No hay resultados</string>
-    <string name="empty_subscription_feed_subtitle">Nada aquí, pero grillos</string>
+    <string name="empty_subscription_feed_subtitle">Nada más que grillos</string>
 
     <string name="no_subscribers">Sin suscriptores</string>
     <plurals name="subscribers">
@@ -259,4 +259,32 @@ abrir en modo popup</string>
 </plurals>
 
     <string name="item_deleted">Elemento eliminado</string>
-</resources>
+<string name="delete_item_search_history">¿Desea eliminar este elemento del historial de búsqueda?</string>
+<string name="main_page_content">Contenido de la página principal</string>
+    <string name="blank_page_summary">Página en blanco</string>
+    <string name="kiosk_page_summary">Página del kiosco</string>
+    <string name="subscription_page_summary">Página de suscripción</string>
+    <string name="feed_page_summary">Página de feed</string>
+    <string name="channel_page_summary">Página del canal</string>
+    <string name="select_a_channel">Seleccione un canal</string>
+    <string name="no_channel_subscribed_yet">No hay canal suscrito todavía</string>
+    <string name="select_a_kiosk">Seleccione un kiosco</string>
+
+    <string name="kiosk">Kiosco</string>
+    <string name="trending">Tendencias</string>
+    <string name="top_50">Top 50</string>
+<string name="show_hold_to_append_summary">Mostrar sugerencia cuando se presiona el botón de segundo plano o popup en la página de detalles del vídeo</string>
+    <string name="background_player_append">En cola en el reproductor de fondo</string>
+    <string name="popup_playing_append">En cola en el reproductor popup</string>
+    <string name="play_all">Reproducir todo</string>
+
+    <string name="player_stream_failure">Error al reproducir esta transmisión</string>
+    <string name="player_unrecoverable_failure">Se produjo un error irrecuperable del reproductor</string>
+    <string name="player_recoverable_failure">Recuperándose del error del reproductor</string>
+
+    <string name="title_activity_background_player">Reproductor de fondo</string>
+    <string name="title_activity_popup_player">Reproductor popup</string>
+    <string name="play_queue_remove">Remover</string>
+    <string name="play_queue_stream_detail">Detalles</string>
+    <string name="play_queue_audio_settings">Ajustes de audio</string>
+    </resources>
