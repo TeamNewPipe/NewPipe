@@ -41,7 +41,7 @@
     <string name="download_path_audio_summary">Put za spremanje preuzetog zvuka u</string>
     <string name="download_path_audio_dialog_title">Unesi put za preuzimanje zvučne datoteke</string>
 
-    <string name="autoplay_by_calling_app_title">Automatski reprod. kada je NewPipe pozvan iz druge aplikacije</string>
+    <string name="autoplay_by_calling_app_title">Auto. reprod. kada je NewPipe pozvan iz druge apl.</string>
     <string name="autoplay_by_calling_app_summary">Automatski reproduciraj videozapis kad je NewPipe pozvan iz druge aplikacije</string>
     <string name="default_resolution_title">Zadana razlučivost</string>
     <string name="default_popup_resolution_title">Zadana razlučivost skočnog prozora</string>
@@ -49,7 +49,7 @@
     <string name="show_higher_resolutions_summary">Samo neki uređaji podržavaju reprodukciju 2K/4K videozapisa</string>
     <string name="play_with_kodi_title">Reproduciraj sa Kodijem</string>
     <string name="kore_not_found">Kore aplikacija nije pronađena. Želite li ju instalirati?</string>
-    <string name="show_play_with_kodi_title">Prikaži \"Reproduciraj putem Kodija\" opciju</string>
+    <string name="show_play_with_kodi_title">Prikaži opciju \"Reproduciraj putem Kodija\"</string>
     <string name="show_play_with_kodi_summary">Prikaži opciju za reproduciranje videozapisa putem Kodija</string>
     <string name="play_audio">Zvuk</string>
     <string name="default_audio_format_title">Zadani format zvuka</string>
