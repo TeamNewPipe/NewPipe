@@ -200,8 +200,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         ActionBar supportActionBar = activity.getSupportActionBar();
         if(useAsFrontPage) {
             supportActionBar.setDisplayHomeAsUpEnabled(false);
-            menuRssButton.setVisible(false);
-
         } else {
             inflater.inflate(R.menu.menu_channel, menu);
 
