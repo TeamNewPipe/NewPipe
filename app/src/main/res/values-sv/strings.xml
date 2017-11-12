@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="main_bg_subtitle">Tryck på sök för att börja</string>
+<resources><string name="main_bg_subtitle">Tryck på sök för att komma igång</string>
     <string name="upload_date_text">Publicerad den %1$s</string>
     <string name="no_player_found">Ingen strömspelare hittades. Vill du installera VLC?</string>
     <string name="install">Installera</string>
@@ -29,26 +29,26 @@
     <string name="download_path_audio_summary">Plats för att lagra nerladdat ljud i</string>
     <string name="download_path_audio_dialog_title">Ange nerladdningsplats för ljudfiler</string>
 
-    <string name="autoplay_by_calling_app_summary">Spela automatiskt upp en video när NewPipe är kallad från en annan app</string>
+    <string name="autoplay_by_calling_app_summary">Spelar automatiskt upp en video när NewPipe öppnas av en annan app</string>
     <string name="default_resolution_title">Standardupplösning</string>
     <string name="default_popup_resolution_title">Standardupplösning för popup</string>
     <string name="show_higher_resolutions_title">Visa högre upplösningar</string>
     <string name="show_higher_resolutions_summary">Det finns endast ett fåtal enheter som har stöd för uppspelning av 2K/4K-videor</string>
     <string name="play_with_kodi_title">Spela upp med Kodi</string>
-    <string name="kore_not_found">Kore-appen hittades inte. Installera Kore?</string>
+    <string name="kore_not_found">Kore-appen hittades inte. Installera den?</string>
     <string name="show_play_with_kodi_title">Visa alternativet \"Spela upp med Kodi\"</string>
     <string name="show_play_with_kodi_summary">Visa ett alternativ för att spela upp en video med mediacentret Kodi</string>
     <string name="play_audio">Ljud</string>
     <string name="default_audio_format_title">Standardformat för ljud</string>
     <string name="default_video_format_title">Videoformat som föredras</string>
     <string name="webm_description">WebM — fritt format</string>
-    <string name="m4a_description">m4a — bättre kvalité</string>
+    <string name="m4a_description">M4A — bättre kvalité</string>
     <string name="theme_title">Tema</string>
     <string name="light_theme_title">Ljus</string>
     <string name="dark_theme_title">Mörk</string>
     <string name="black_theme_title">Svart</string>
-    <string name="popup_remember_size_pos_title">Kom ihåg storleken och positionen för popup</string>
-    <string name="popup_remember_size_pos_summary">Kom ihåg den senast inställda storleken och positionen av popup-rutan</string>
+    <string name="popup_remember_size_pos_title">Kom ihåg popupstorlek och position</string>
+    <string name="popup_remember_size_pos_summary">Kom ihåg popup-rutans senaste storlek och position</string>
     <string name="player_gesture_controls_title">Gestkontroller för spelare</string>
     <string name="player_gesture_controls_summary">Använd gester för att kontrollera spelarens ljusstyrka och volym</string>
     <string name="show_search_suggestions_title">Sökförslag</string>
@@ -59,7 +59,7 @@
     <string name="next_video_title">Nästa video</string>
     <string name="show_next_and_similar_title">Visa nästkommande och liknande videor</string>
     <string name="url_not_supported_toast">Webbadressen stöds inte</string>
-    <string name="search_language_title">Språk som föredras för innehållet</string>
+    <string name="search_language_title">Standard innehållsspråk</string>
     <string name="settings_category_video_audio_title">Video &amp; Ljud</string>
     <string name="settings_category_popup_title">Popup-ruta</string>
     <string name="settings_category_appearance_title">Utseende</string>
@@ -69,7 +69,7 @@
     <string name="play_btn_text">Spela upp</string>
     <string name="content">Innehåll</string>
     <string name="show_age_restricted_content_title">Visa åldersbegränsat innehåll</string>
-    <string name="video_is_age_restricted">Videon är åldersbegränsad. Aktivera åldersbegränsade videor i inställningarna först.</string>
+    <string name="video_is_age_restricted">Videon är åldersbegränsad. Du kan aktivera åldersbegränsade videor i inställningarna.</string>
     <string name="duration_live">direkt</string>
     <string name="downloads">Nerladdningar</string>
     <string name="downloads_title">Nerladdningar</string>
@@ -87,12 +87,12 @@
     <string name="general_error">Fel</string>
     <string name="network_error">Nätverksfel</string>
     <string name="could_not_load_thumbnails">Kunde inte ladda alla miniatyrbilder</string>
-    <string name="parsing_error">Kunde inte tolka hemsidan.</string>
-    <string name="light_parsing_error">Kunde inte tolka hemsidan fullt ut.</string>
-    <string name="content_not_available">Innehållet är inte tillgängligt.</string>
-    <string name="blocked_by_gema">Blockerat av GEMA.</string>
-    <string name="could_not_setup_download_menu">Kunde inte ställa in nerladdningsmenyn.</string>
-    <string name="live_streams_not_supported">Det här är en DIREKTSÄNDNING. Det finns ännu inget stöd för dessa.</string>
+    <string name="parsing_error">Det gick inte att analysera webbplatsen</string>
+    <string name="light_parsing_error">Det gick inte att analysera webbplatsen helt</string>
+    <string name="content_not_available">Innehållet är inte tillgängligt</string>
+    <string name="blocked_by_gema">Blockerat av GEMA</string>
+    <string name="could_not_setup_download_menu">Kunde inte ställa in nerladdningsmenyn</string>
+    <string name="live_streams_not_supported">Det här är en DIREKTSÄNDNING vilket ännu inte stöds.</string>
     <string name="could_not_load_image">Kunde inte ladda Bild</string>
     <string name="app_ui_crash">App/AnvändarGränssnitt kraschade</string>
     <string name="sorry_string">Oj, det där skulle inte ha hänt.</string>
@@ -108,4 +108,57 @@
     <string name="detail_dislikes_img_view_description">Ogillanden</string>
     <string name="use_tor_title">Använd Tor</string>
     <string name="report_error">Rapportera ett fel</string>
+    <string name="view_count_text">%1$s visningar</string>
+    <string name="subscribe_button_title">Prenumerera</string>
+    <string name="subscribed_button_title">Prenumererad</string>
+    <string name="channel_unsubscribed">Prenumerationen togs bort</string>
+    <string name="subscription_change_failed">Kunde inte ändra prenumeration</string>
+    <string name="subscription_update_failed">Kunde inte uppdatera prenumeration</string>
+
+    <string name="tab_main">Hem</string>
+    <string name="tab_subscriptions">Prenumerationer</string>
+
+    <string name="fragment_whats_new">Vad är nytt</string>
+
+    <string name="autoplay_by_calling_app_title">Autospela</string>
+    <string name="enable_search_history_title">Sök historik</string>
+    <string name="enable_search_history_summary">Spara sökfrågor lokalt</string>
+    <string name="enable_watch_history_title">Historik</string>
+    <string name="enable_watch_history_summary">Håll koll på videor som du tittat på</string>
+    <string name="resume_on_audio_focus_gain_title">Fortsätt då fokus fås</string>
+    <string name="resume_on_audio_focus_gain_summary">Fortsätta spela efter avbrott (t.ex. telefonsamtal)</string>
+    <string name="show_hold_to_append_title">Visa \"Håll för att lägga till\" tips</string>
+    <string name="show_hold_to_append_summary">Visa tips när bakgrunds- eller popup-knappen trycks på sidan för videodetaljer</string>
+    <string name="settings_category_player_title">Spelare</string>
+    <string name="settings_category_player_behavior_title">Beteende</string>
+    <string name="settings_category_history_title">Historik</string>
+    <string name="background_player_append">Tillagd till bakgrunds-spelar kön</string>
+    <string name="popup_playing_append">Tillagd till popup-spelar kön</string>
+    <string name="playlist">Spellista</string>
+    <string name="popup_resizing_indicator_title">Storleksändring</string>
+    <string name="undo">Ångra</string>
+    <string name="play_all">Spela Alla</string>
+
+    <string name="notification_channel_name">NewPipe Avisering</string>
+    <string name="notification_channel_description">Aviseringar för NewPipe bakgrunds och popup-spelare</string>
+
+    <string name="unknown_content">[Okänd]</string>
+
+    <string name="youtube_signature_decryption_error">Kunde inte dekryptera video URL signatur</string>
+    <string name="could_not_get_stream">Kunde inte hitta någon ström</string>
+    <string name="player_stream_failure">Misslyckades med att spela denna ström</string>
+    <string name="player_unrecoverable_failure">Allvarligt spelarfel inträffade</string>
+    <string name="player_recoverable_failure">Återhämtar sig från spelarfel</string>
+
+    <string name="error_report_button_text">Rapportera fel via e-post</string>
+    <string name="info_labels">Vad:\\nBegäran:\\nInnehålls Språk:\\nTjänst:\\nGMT Tid:\\nPaket:\\nVersion:\\nOS-version:\\nGlob. IP-intervall:</string>
+    <string name="list_thumbnail_view_description">Videons miniatyrbild</string>
+    <string name="detail_thumbnail_view_description">Videons miniatyrbild</string>
+    <string name="detail_uploader_thumbnail_view_description">Uppladdarens avatar miniatyrbild</string>
+    <string name="use_tor_summary">(Experimentellt) Tvinga nedladdningstrafik via Tor för ökad integritet (strömmande videon stöds inte ännu).</string>
+    <string name="user_report">Användarrapport</string>
+    <string name="search_no_results">Inga resultat</string>
+    <string name="empty_subscription_feed_subtitle">Här va\' det tomt</string>
+
+    <string name="err_dir_create">Kunde inte skapa nedladdnings katalog \'%1$s\'</string>
     </resources>
