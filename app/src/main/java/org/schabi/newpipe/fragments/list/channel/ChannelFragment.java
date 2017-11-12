@@ -80,6 +80,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     private TextView headerTitleView;
     private TextView headerSubscribersTextView;
     private Button headerSubscribeButton;
+    private View playlistCtrl;
 
     private LinearLayout headerPlayAllButton;
     private LinearLayout headerPopupButton;
@@ -140,10 +141,12 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         headerTitleView = headerRootLayout.findViewById(R.id.channel_title_view);
         headerSubscribersTextView = headerRootLayout.findViewById(R.id.channel_subscriber_view);
         headerSubscribeButton = headerRootLayout.findViewById(R.id.channel_subscribe_button);
+        playlistCtrl = headerRootLayout.findViewById(R.id.playlist_control);
 
-        headerPlayAllButton = headerRootLayout.findViewById(R.id.channel_play_all_button);
-        headerPopupButton = headerRootLayout.findViewById(R.id.channel_play_popup_button);
-        headerBackgroundButton = headerRootLayout.findViewById(R.id.channel_play_bg_button);
+
+        headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_all_button);
+        headerPopupButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_popup_button);
+        headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_bg_button);
 
         return headerRootLayout;
     }
@@ -197,6 +200,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         ActionBar supportActionBar = activity.getSupportActionBar();
         if(useAsFrontPage) {
             supportActionBar.setDisplayHomeAsUpEnabled(false);
+            menuRssButton.setVisible(false);
+
         } else {
             inflater.inflate(R.menu.menu_channel, menu);
 
@@ -441,6 +446,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         } else headerSubscribersTextView.setVisibility(View.GONE);
 
         if (menuRssButton != null) menuRssButton.setVisible(!TextUtils.isEmpty(result.feed_url));
+        playlistCtrl.setVisibility(View.VISIBLE);
 
         if (!result.errors.isEmpty()) {
             showSnackBarError(result.errors, UserAction.REQUESTED_CHANNEL, NewPipe.getNameOfService(result.service_id), result.url, 0);

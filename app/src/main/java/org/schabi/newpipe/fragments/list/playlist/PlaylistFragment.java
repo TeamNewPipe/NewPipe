@@ -51,10 +51,11 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     private TextView headerUploaderName;
     private ImageView headerUploaderAvatar;
     private TextView headerStreamCount;
+    private View playlistCtrl;
 
-    private LinearLayout headerPlayAllButton;
-    private LinearLayout headerPopupButton;
-    private LinearLayout headerBackgroundButton;
+    private View headerPlayAllButton;
+    private View headerPopupButton;
+    private View headerBackgroundButton;
 
     public static PlaylistFragment getInstance(int serviceId, String url, String name) {
         PlaylistFragment instance = new PlaylistFragment();
@@ -82,10 +83,11 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         headerUploaderName = headerRootLayout.findViewById(R.id.uploader_name);
         headerUploaderAvatar = headerRootLayout.findViewById(R.id.uploader_avatar_view);
         headerStreamCount = headerRootLayout.findViewById(R.id.playlist_stream_count);
+        playlistCtrl = headerRootLayout.findViewById(R.id.playlist_control);
 
-        headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_play_all_button);
-        headerPopupButton = headerRootLayout.findViewById(R.id.playlist_play_popup_button);
-        headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_play_bg_button);
+        headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_all_button);
+        headerPopupButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_popup_button);
+        headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_bg_button);
 
         return headerRootLayout;
     }
@@ -189,6 +191,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 });
             }
         }
+
+        playlistCtrl.setVisibility(View.VISIBLE);
 
         imageLoader.displayImage(result.uploader_avatar_url, headerUploaderAvatar, DISPLAY_AVATAR_OPTIONS);
         headerStreamCount.setText(getResources().getQuantityString(R.plurals.videos, (int) result.stream_count, (int) result.stream_count));
