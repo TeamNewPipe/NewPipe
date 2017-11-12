@@ -1,6 +1,7 @@
 package org.schabi.newpipe.fragments.list.playlist;
 
-import android.content.Intent;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,8 +14,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,12 +24,12 @@ import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
-import org.schabi.newpipe.player.BackgroundPlayer;
-import org.schabi.newpipe.player.MainVideoPlayer;
-import org.schabi.newpipe.player.PopupVideoPlayer;
-import org.schabi.newpipe.playlist.ExternalPlayQueue;
+import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.playlist.PlayQueue;
+import org.schabi.newpipe.playlist.PlaylistPlayQueue;
+import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -50,10 +51,11 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     private TextView headerUploaderName;
     private ImageView headerUploaderAvatar;
     private TextView headerStreamCount;
+    private View playlistCtrl;
 
-    private Button headerPlayAllButton;
-    private Button headerPopupButton;
-    private Button headerBackgroundButton;
+    private View headerPlayAllButton;
+    private View headerPopupButton;
+    private View headerBackgroundButton;
 
     public static PlaylistFragment getInstance(int serviceId, String url, String name) {
         PlaylistFragment instance = new PlaylistFragment();
@@ -81,10 +83,11 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         headerUploaderName = headerRootLayout.findViewById(R.id.uploader_name);
         headerUploaderAvatar = headerRootLayout.findViewById(R.id.uploader_avatar_view);
         headerStreamCount = headerRootLayout.findViewById(R.id.playlist_stream_count);
+        playlistCtrl = headerRootLayout.findViewById(R.id.playlist_control);
 
-        headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_play_all_button);
-        headerPopupButton = headerRootLayout.findViewById(R.id.playlist_play_popup_button);
-        headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_play_bg_button);
+        headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_all_button);
+        headerPopupButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_popup_button);
+        headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_bg_button);
 
         return headerRootLayout;
     }
@@ -103,6 +106,45 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         inflater.inflate(R.menu.menu_playlist, menu);
     }
 
+    @Override
+    protected void showStreamDialog(final StreamInfoItem item) {
+        final Context context = getContext();
+        final String[] commands = new String[]{
+                context.getResources().getString(R.string.enqueue_on_background),
+                context.getResources().getString(R.string.enqueue_on_popup),
+                context.getResources().getString(R.string.start_here_on_main),
+                context.getResources().getString(R.string.start_here_on_background),
+                context.getResources().getString(R.string.start_here_on_popup),
+        };
+
+        final DialogInterface.OnClickListener actions = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                final int index = Math.max(infoListAdapter.getItemsList().indexOf(item), 0);
+                switch (i) {
+                    case 0:
+                        NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                        break;
+                    case 1:
+                        NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(item));
+                        break;
+                    case 2:
+                        NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
+                        break;
+                    case 3:
+                        NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
+                        break;
+                    case 4:
+                        NavigationHelper.playOnPopupPlayer(context, getPlayQueue(index));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
+
+        new InfoItemDialog(getActivity(), item, commands, actions).show();
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // Load and handle
     //////////////////////////////////////////////////////////////////////////*/
@@ -150,6 +192,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
             }
         }
 
+        playlistCtrl.setVisibility(View.VISIBLE);
+
         imageLoader.displayImage(result.uploader_avatar_url, headerUploaderAvatar, DISPLAY_AVATAR_OPTIONS);
         headerStreamCount.setText(getResources().getQuantityString(R.plurals.videos, (int) result.stream_count, (int) result.stream_count));
 
@@ -160,7 +204,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         headerPlayAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(buildPlaylistIntent(MainVideoPlayer.class));
+                NavigationHelper.playOnMainPlayer(activity, getPlayQueue());
             }
         });
         headerPopupButton.setOnClickListener(new View.OnClickListener() {
@@ -173,26 +217,29 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                     toast.show();
                     return;
                 }
-                activity.startService(buildPlaylistIntent(PopupVideoPlayer.class));
+                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue());
             }
         });
         headerBackgroundButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.startService(buildPlaylistIntent(BackgroundPlayer.class));
+                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue());
             }
         });
     }
 
-    private Intent buildPlaylistIntent(final Class targetClazz) {
-        final PlayQueue playQueue = new ExternalPlayQueue(
+    private PlayQueue getPlayQueue() {
+        return getPlayQueue(0);
+    }
+
+    private PlayQueue getPlayQueue(final int index) {
+        return new PlaylistPlayQueue(
                 currentInfo.service_id,
                 currentInfo.url,
                 currentInfo.next_streams_url,
                 infoListAdapter.getItemsList(),
-                0
+                index
         );
-        return NavigationHelper.getPlayerIntent(activity, targetClazz, playQueue);
     }
 
     @Override

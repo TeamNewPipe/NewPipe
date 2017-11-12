@@ -107,6 +107,8 @@ public class PlayQueueItemBuilder {
                 .bitmapConfig(Bitmap.Config.RGB_565) // Users won't be able to see much anyways
                 .preProcessor(bitmapProcessor)
                 .imageScaleType(ImageScaleType.EXACTLY)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
                 .build();
     }
 }

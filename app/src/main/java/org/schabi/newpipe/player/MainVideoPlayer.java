@@ -48,6 +48,7 @@ import com.google.android.exoplayer2.Player;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
@@ -397,7 +398,7 @@ public final class MainVideoPlayer extends Activity {
             getControlsRoot().setVisibility(View.INVISIBLE);
             queueLayout.setVisibility(View.VISIBLE);
 
-            itemsList.smoothScrollToPosition(playQueue.getIndex());
+            itemsList.scrollToPosition(playQueue.getIndex());
         }
 
         private void onQueueClosed() {
@@ -565,6 +566,9 @@ public final class MainVideoPlayer extends Activity {
             itemsList.setClickable(true);
             itemsList.setLongClickable(true);
 
+            itemsList.clearOnScrollListeners();
+            itemsList.addOnScrollListener(getQueueScrollListener());
+
             itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
             itemTouchHelper.attachToRecyclerView(itemsList);
 
@@ -576,6 +580,19 @@ public final class MainVideoPlayer extends Activity {
                     onQueueClosed();
                 }
             });
+        }
+
+        private OnScrollBelowItemsListener getQueueScrollListener() {
+            return new OnScrollBelowItemsListener() {
+                @Override
+                public void onScrolledDown(RecyclerView recyclerView) {
+                    if (playQueue != null && !playQueue.isComplete()) {
+                        playQueue.fetch();
+                    } else if (itemsList != null) {
+                        itemsList.clearOnScrollListeners();
+                    }
+                }
+            };
         }
 
         private ItemTouchHelper.SimpleCallback getItemTouchCallback() {

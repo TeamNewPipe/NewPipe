@@ -6,8 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/contrast_background_color"
-    android:paddingBottom="6dp">
+    android:background="?attr/contrast_background_color">
 
     <TextView
         android:id="@+id/playlist_title_view"
@@ -81,64 +80,14 @@
             android:textSize="@dimen/playlist_detail_subtext_size"
             tools:ignore="RtlHardcoded"
             tools:text="234 videos"/>
-
     </RelativeLayout>
 
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/play_control"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:layout_below="@+id/playlist_meta">
+        android:layout_below="@id/playlist_meta">
 
-        <Button
-            android:id="@+id/playlist_play_bg_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="2dp"
-            android:layout_toLeftOf="@+id/playlist_play_all_button"
-            android:layout_toStartOf="@+id/playlist_play_all_button"
-            android:text="@string/controls_background_title"
-            android:textSize="@dimen/channel_rss_title_size"
-            android:textColor="?attr/colorAccent"
-            android:theme="@style/RedButton"
-            android:drawableLeft="?attr/audio"
-            android:drawablePadding="4dp"
-            tools:ignore="RtlHardcoded"
-            tools:visibility="visible" />
-
-        <Button
-            android:id="@+id/playlist_play_all_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="2dp"
-            android:layout_toLeftOf="@+id/playlist_play_popup_button"
-            android:layout_toStartOf="@+id/playlist_play_popup_button"
-            android:text="@string/play_all"
-            android:textSize="@dimen/channel_rss_title_size"
-            android:textColor="?attr/colorAccent"
-            android:theme="@style/RedButton"
-            tools:ignore="RtlHardcoded"
-            tools:visibility="visible"/>
-
-        <Button
-            android:id="@+id/playlist_play_popup_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|right"
-            android:layout_alignParentRight="true"
-            android:text="@string/controls_popup_title"
-            android:textSize="@dimen/channel_rss_title_size"
-            android:textColor="?attr/colorAccent"
-            android:theme="@style/RedButton"
-            android:drawableLeft="?attr/popup"
-            android:drawablePadding="4dp"
-            tools:ignore="RtlHardcoded"
-            tools:visibility="visible" />
-    </RelativeLayout>
+        <include layout="@layout/playlist_control"/>
+    </LinearLayout>
 
 </RelativeLayout>
