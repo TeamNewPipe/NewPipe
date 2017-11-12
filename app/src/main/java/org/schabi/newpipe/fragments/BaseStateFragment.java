@@ -50,6 +50,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     protected Button errorButtonRetry;
     protected TextView errorTextView;
 
+    @State
     protected boolean useAsFrontPage = false;
 
     @Override
