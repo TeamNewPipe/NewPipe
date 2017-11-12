@@ -65,6 +65,7 @@ import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.event.PlayerEventListener;
+import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.playlist.PlayQueueItem;
@@ -96,7 +97,6 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
 public final class PopupVideoPlayer extends Service {
     private static final String TAG = ".PopupVideoPlayer";
     private static final boolean DEBUG = BasePlayer.DEBUG;
-    private static final int SHUTDOWN_FLING_VELOCITY = 10000;
 
     private static final int NOTIFICATION_ID = 40028922;
     public static final String ACTION_CLOSE = "org.schabi.newpipe.player.PopupVideoPlayer.CLOSE";
@@ -111,6 +111,9 @@ public final class PopupVideoPlayer extends Service {
     private WindowManager windowManager;
     private WindowManager.LayoutParams windowLayoutParams;
     private GestureDetector gestureDetector;
+
+    private int shutdownFlingVelocity;
+    private int tossFlingVelocity;
 
     private float screenWidth, screenHeight;
     private float popupWidth, popupHeight;
@@ -211,12 +214,14 @@ public final class PopupVideoPlayer extends Service {
         View rootView = View.inflate(this, R.layout.player_popup, null);
         playerImpl.setup(rootView);
 
+        shutdownFlingVelocity = PlayerHelper.getShutdownFlingVelocity(this);
+        tossFlingVelocity = PlayerHelper.getTossFlingVelocity(this);
+
         updateScreenSize();
 
+        final boolean popupRememberSizeAndPos = PlayerHelper.isRememberingPopupDimensions(this);
+        final float defaultSize = getResources().getDimension(R.dimen.popup_default_width);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean popupRememberSizeAndPos = sharedPreferences.getBoolean(getString(R.string.popup_remember_size_pos_key), true);
-
-        float defaultSize = getResources().getDimension(R.dimen.popup_default_width);
         popupWidth = popupRememberSizeAndPos ? sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize) : defaultSize;
 
         final int layoutParamType = Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
@@ -313,15 +318,6 @@ public final class PopupVideoPlayer extends Service {
         stopSelf();
     }
 
-    public void openControl(final Context context) {
-        Intent intent = new Intent(context, PopupVideoPlayerActivity.class);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        }
-        context.startActivity(intent);
-        context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
@@ -366,6 +362,7 @@ public final class PopupVideoPlayer extends Service {
     }
 
     private void updatePopupSize(int width, int height) {
+        if (playerImpl == null) return;
         if (DEBUG) Log.d(TAG, "updatePopupSize() called with: width = [" + width + "], height = [" + height + "]");
 
         width = (int) (width > maximumWidth ? maximumWidth : width < minimumWidth ? minimumWidth : width);
@@ -577,6 +574,7 @@ public final class PopupVideoPlayer extends Service {
 
         @Override
         public void sync(@NonNull PlayQueueItem item, @Nullable StreamInfo info) {
+            if (currentItem == item && currentInfo == info) return;
             super.sync(item, info);
             updateMetadata();
         }
@@ -617,7 +615,7 @@ public final class PopupVideoPlayer extends Service {
                     onVideoPlayPause();
                     break;
                 case ACTION_OPEN_CONTROLS:
-                    openControl(getApplicationContext());
+                    NavigationHelper.openPopupPlayerControl(getApplicationContext());
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();
@@ -791,10 +789,19 @@ public final class PopupVideoPlayer extends Service {
 
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            if (DEBUG) Log.d(TAG, "Fling velocity: dX=[" + velocityX + "], dY=[" + velocityY + "]");
             if (playerImpl == null) return false;
-            if (Math.abs(velocityX) > SHUTDOWN_FLING_VELOCITY) {
-                if (DEBUG) Log.d(TAG, "Popup close fling velocity= " + velocityX);
+
+            final float absVelocityX = Math.abs(velocityX);
+            final float absVelocityY = Math.abs(velocityY);
+            if (absVelocityX > shutdownFlingVelocity) {
                 onClose();
+                return true;
+            } else if (Math.max(absVelocityX, absVelocityY) > tossFlingVelocity) {
+                if (absVelocityX > tossFlingVelocity) windowLayoutParams.x = (int) velocityX;
+                if (absVelocityY > tossFlingVelocity) windowLayoutParams.y = (int) velocityY;
+                checkPositionBounds();
+                windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
                 return true;
             }
             return false;

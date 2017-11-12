@@ -12,6 +12,8 @@ import java.text.NumberFormat;
 import java.util.Formatter;
 import java.util.Locale;
 
+import javax.annotation.Nonnull;
+
 public class PlayerHelper {
     private PlayerHelper() {}
 
@@ -56,6 +58,10 @@ public class PlayerHelper {
         return isUsingOldPlayer(context, false);
     }
 
+    public static boolean isRememberingPopupDimensions(@Nonnull final Context context) {
+        return isRememberingPopupDimensions(context, true);
+    }
+
     public static long getPreferredCacheSize(@NonNull final Context context) {
         return 64 * 1024 * 1024L;
     }
@@ -83,6 +89,15 @@ public class PlayerHelper {
     public static boolean isUsingDSP(@NonNull final Context context) {
         return true;
     }
+
+    public static int getShutdownFlingVelocity(@Nonnull final Context context) {
+        return 10000;
+    }
+
+    public static int getTossFlingVelocity(@Nonnull final Context context) {
+        return 2500;
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Private helpers
     ////////////////////////////////////////////////////////////////////////////
@@ -102,5 +117,9 @@ public class PlayerHelper {
 
     private static boolean isUsingOldPlayer(@NonNull final Context context, final boolean b) {
         return getPreferences(context).getBoolean(context.getString(R.string.use_old_player_key), b);
+    }
+
+    private static boolean isRememberingPopupDimensions(@Nonnull final Context context, final boolean b) {
+        return getPreferences(context).getBoolean(context.getString(R.string.popup_remember_size_pos_key), b);
     }
 }

@@ -6,75 +6,166 @@
     android:id="@+id/channel_header_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp">
+    android:background="?attr/contrast_background_color">
 
-    <ImageView
-        android:id="@+id/channel_banner_image"
+    <RelativeLayout
+        android:id="@+id/channel_metadata"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@android:color/black"
-        android:fitsSystemWindows="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/channel_banner"
-        tools:ignore="ContentDescription"/>
+        android:layout_height="wrap_content">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/channel_avatar_view"
-        android:layout_width="@dimen/channel_avatar_size"
-        android:layout_height="@dimen/channel_avatar_size"
-        android:layout_alignTop="@id/channel_banner_image"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/buddy"
-        app:civ_border_color="#ffffff"
-        app:civ_border_width="2dp"
-        tools:ignore="RtlHardcoded"/>
+        <ImageView
+            android:id="@+id/channel_banner_image"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@android:color/black"
+            android:fitsSystemWindows="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/channel_banner"
+            tools:ignore="ContentDescription"/>
 
-    <TextView
-        android:id="@+id/channel_title_view"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/channel_avatar_view"
+            android:layout_width="@dimen/channel_avatar_size"
+            android:layout_height="@dimen/channel_avatar_size"
+            android:layout_alignTop="@id/channel_banner_image"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/buddy"
+            app:civ_border_color="#ffffff"
+            app:civ_border_width="2dp"
+            tools:ignore="RtlHardcoded"/>
+
+        <TextView
+            android:id="@+id/channel_title_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/channel_banner_image"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="6dp"
+            android:layout_toLeftOf="@+id/channel_subscribe_button"
+            android:layout_toRightOf="@+id/channel_avatar_view"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="@dimen/video_item_detail_title_text_size"
+            tools:ignore="RtlHardcoded"
+            tools:text="Lorem ipsum dolor"/>
+
+        <TextView
+            android:id="@+id/channel_subscriber_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/channel_title_view"
+            android:layout_alignRight="@+id/channel_title_view"
+            android:layout_below="@+id/channel_title_view"
+            android:ellipsize="end"
+            android:gravity="left|center"
+            android:lines="1"
+            android:textSize="@dimen/channel_subscribers_text_size"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded"
+            tools:text="123,141,411 subscribers"
+            tools:visibility="visible"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/channel_subscribe_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/channel_banner_image"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="2dp"
+            android:text="@string/subscribe_button_title"
+            android:textSize="@dimen/channel_rss_title_size"
+            android:theme="@style/RedButton"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded"
+            tools:visibility="visible"/>
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/channel_banner_image"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="6dp"
-        android:layout_toLeftOf="@+id/channel_subscribe_button"
-        android:layout_toRightOf="@+id/channel_avatar_view"
-        android:ellipsize="end"
-        android:lines="1"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="@dimen/video_item_detail_title_text_size"
-        tools:ignore="RtlHardcoded"
-        tools:text="Lorem ipsum dolor"/>
+        android:layout_height="25dp"
+        android:id="@+id/play_control"
+        android:layout_margin="@dimen/software_component_item_padding"
+        android:layout_below="@+id/channel_metadata">
 
-    <TextView
-        android:id="@+id/channel_subscriber_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/channel_title_view"
-        android:layout_alignRight="@+id/channel_title_view"
-        android:layout_below="@+id/channel_title_view"
-        android:ellipsize="end"
-        android:gravity="left|center"
-        android:lines="1"
-        android:textSize="@dimen/channel_subscribers_text_size"
-        android:visibility="gone"
-        tools:ignore="RtlHardcoded"
-        tools:text="123,141,411 subscribers"
-        tools:visibility="visible"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            android:id="@+id/channel_play_bg_button">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/controls_background_title"
+                android:textSize="@dimen/channel_rss_title_size"
+                android:textColor="?attr/colorAccent"
+                android:drawablePadding="4dp"
+                android:drawableLeft="?attr/audio"
+                android:drawableStart="?attr/audio"/>
+        </LinearLayout>
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/channel_subscribe_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/channel_banner_image"
-        android:layout_gravity="center_vertical|right"
-        android:layout_marginRight="2dp"
-        android:text="@string/subscribe_button_title"
-        android:textSize="@dimen/channel_rss_title_size"
-        android:theme="@style/RedButton"
-        android:visibility="gone"
-        tools:ignore="RtlHardcoded"
-        tools:visibility="visible"/>
+        <View android:id="@+id/anchorLeft"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:clickable="false"
+            android:background="?attr/colorAccent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            android:id="@+id/channel_play_all_button">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/play_all"
+                android:textSize="@dimen/channel_rss_title_size"
+                android:textColor="?attr/colorAccent"/>
+        </LinearLayout>
+
+        <View android:id="@+id/anchorRight"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:clickable="false"
+            android:background="?attr/colorAccent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            android:id="@+id/channel_play_popup_button">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/controls_popup_title"
+                android:textSize="@dimen/channel_rss_title_size"
+                android:textColor="?attr/colorAccent"
+                android:drawablePadding="4dp"
+                android:drawableLeft="?attr/popup"
+                android:drawableStart="?attr/popup"/>
+        </LinearLayout>
+    </LinearLayout>
+
 </RelativeLayout>
