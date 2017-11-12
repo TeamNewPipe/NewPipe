@@ -12,7 +12,7 @@
     <string name="settings">सेटिंग</string>
     <string name="choose_browser">ब्राउज़र चुनें</string>
     <string name="screen_rotation">रोटेशन</string>
-    <string name="popup_mode_share_menu_title">[NEWPIPE] पॉपअप मोड</string>
+    <string name="popup_mode_share_menu_title">NewPipe पॉपअप मोड</string>
     <string name="subscribe_button_title">सदस्य बनें</string>
     <string name="subscribed_button_title">सदस्यता ली</string>
     <string name="channel_unsubscribed">सदस्यता निकाली गई</string>
@@ -30,13 +30,13 @@
     <string name="next_video_title">अगला वीडियो</string>
     <string name="settings_category_video_audio_title">वीडियो और ऑडियो</string>
     <string name="settings_category_history_title">इतिहास</string>
-    <string name="background_player_playing_toast">पीछे चल रहा है</string>
+    <string name="background_player_playing_toast">बैकग्राउंड में चल रहा है</string>
     <string name="no_views">कोई दृश्य नहीं</string>
     <string name="no_videos">कोई वीडियो नहीं है</string>
-    <string name="title_activity_about">[NewPipe] बारे में</string>
+    <string name="title_activity_about">NewPipe बारे में जाने</string>
     <string name="action_settings">सेटिंग</string>
     <string name="action_about">इसके बारे में</string>
-    <string name="title_licenses">तृतीय पक्ष लाइसेंस</string>
+    <string name="title_licenses">तृतीय-पक्ष लाइसेंस</string>
     <string name="action_open_website">वेबसाइट खोलें</string>
     <string name="tab_about">इसके बारे में</string>
     <string name="tab_licenses">लाइसेंस</string>
@@ -151,7 +151,7 @@
     <string name="content_not_available">विषयवस्तु उपलब्ध नहीं है</string>
     <string name="blocked_by_gema">GEMA ने blocked किया है</string>
     <string name="could_not_setup_download_menu">डाउनलोड मेनू को स्थापित नहीं कर सकते</string>
-    <string name="live_streams_not_supported">यह LIVE STREAM है, जो की अभी पूरी तरह से काम नहीं कर रहा</string>
+    <string name="live_streams_not_supported">यह सीधा प्रसारण है, जो की अभी पूरी तरह से काम नहीं कर रहा.</string>
     <string name="could_not_get_stream">कोई भी विडियो नहीं मिल रहा</string>
     <string name="could_not_load_image">फोटो को load नहीं कर सकते</string>
     <string name="app_ui_crash">APP/UI टूट गया</string>
@@ -159,14 +159,14 @@
     <string name="player_unrecoverable_failure">कभी ठीक न होने वाले विडियो प्लेयर की त्रुटी आ रही है</string>
     <string name="player_recoverable_failure">विडियो प्लेयर त्रुटी से ठीक हो रहा है</string>
 
-    <string name="sorry_string">खेद है की, ऐसा होना नहीं चाहिए था</string>
+    <string name="sorry_string">खेद है की, ऐसा होना नहीं चाहिए था.</string>
     <string name="error_report_button_text">त्रुटी की रिपोर्ट को ईमेल से भेजे</string>
     <string name="error_snackbar_message">माफ़ करे , कुछ त्रुटियाँ हो रही है</string>
     <string name="error_snackbar_action">रिपोर्ट</string>
-    <string name="what_device_headline">जानकारी</string>
+    <string name="what_device_headline">जानकारी:</string>
     <string name="what_happened_headline">क्या हुआ:</string>
     <string name="info_labels">क्या:\\nमांग:\\nविषयवस्तु की भाषा:\\nसेवा:\\nजीएमटी समय:\\nपैकेज:\\nसंस्करण:\\nOS संस्करण:\\nGLOB. IP रेंज:</string>
-    <string name="your_comment">आपकी टिप्पणी</string>
+    <string name="your_comment">आपकी टिप्पणी:</string>
     <string name="error_details_headline">विवरण:</string>
 
 
@@ -176,7 +176,7 @@
     <string name="detail_likes_img_view_description">पसंद</string>
     <string name="detail_dislikes_img_view_description">नापसंद</string>
     <string name="use_tor_title">Tor का प्रयोग करे</string>
-    <string name="use_tor_summary">( प्रयोगात्मक ) व्यक्तिगत सुरक्षा को बढाने के लिए Tor के जरिये ट्रैफिक को डाउनलोड करने के लिए जोर दे ( विडियो को स्ट्रीम अभी नहीं कर सकता )</string>
+    <string name="use_tor_summary">( प्रयोगात्मक ) व्यक्तिगत सुरक्षा को बढाने के लिए Tor के जरिये ट्रैफिक को डाउनलोड करने के लिए जोर दे ( विडियो को स्ट्रीम अभी नहीं कर सकता ).</string>
     <string name="report_error">त्रुटी के रिपोर्ट करे</string>
     <string name="user_report">उपयोगकर्ता की रिपोर्ट</string>
     <string name="search_no_results">कोई परिणाम नहीं मिला</string>
@@ -199,7 +199,7 @@
     <string name="no_subscribers">कोई ग्राहक नहीं है</string>
     <plurals name="subscribers">
 	<item quantity="one">%s ग्राहक</item>
-	<item quantity="other">%s ग्राहक</item>
+	<item quantity="other">%s ग्राहको</item>
 </plurals>
 
     <plurals name="views">
@@ -229,7 +229,7 @@
     <string name="msg_url_malform">URL सही नहीं है या फिर इन्टरनेट उपलब्ध नहीं है</string>
     <string name="msg_running">न्यूपाइप डाउनलोड हो रहा है</string>
     <string name="msg_running_detail">विवरण देखने के लिए दबाये</string>
-    <string name="msg_wait">कृपया इंतज़ार करे</string>
+    <string name="msg_wait">कृपया इंतज़ार करे…</string>
     <string name="msg_copied">क्लिपबोर्ड पर कॉपी हो गया है</string>
     <string name="no_available_dir">कृपया उपलब्ध डाउनलोड फोल्डर को चुने</string>
     <string name="msg_popup_permission">पॉपअप के अंदाज में खोलने के लिए आज्ञा की जरुरत है</string>
@@ -250,7 +250,7 @@
     <string name="error_unable_to_load_license">लाइसेंस load नहीं हो रहा</string>
     <string name="tab_contributors">सहयोग करने वाले</string>
     <string name="app_description">एंड्राइड के लिए हल्का और मुफ्त फ्रंट एंड Youtube.</string>
-    <string name="contribution_encouragement">अगर आपके पास कोई सुझाव हो जैसे -अनुवाद , डिजाईन में बदलाव ,code को साफ़ रखना , या फिर code में जायदा बदलाव लाना हो तो - साहयता के लिए आपका स्वागत है . जितना ज्यादा होगा उतना बेहतर होगा</string>
+    <string name="contribution_encouragement">अगर आपके पास कोई सुझाव हो जैसे -अनुवाद , डिजाईन में बदलाव ,code को साफ़ रखना , या फिर code में जायदा बदलाव लाना हो तो - साहयता के लिए आपका स्वागत है . जितना ज्यादा होगा उतना बेहतर होगा !</string>
     <string name="delete_item_search_history">क्या आप इसको खोज इतिहास के मिटाना चाहते है ?</string>
 
     <string name="main_page_content">मुख्य पेज की विषयवस्तु</string>
