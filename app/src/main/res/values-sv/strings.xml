@@ -161,4 +161,122 @@
     <string name="empty_subscription_feed_subtitle">Här va\' det tomt</string>
 
     <string name="err_dir_create">Kunde inte skapa nedladdnings katalog \'%1$s\'</string>
-    </resources>
+    <string name="info_dir_created">Skapa nedladdnings katalog \'%1$s\'</string>
+
+    <string name="video">Video</string>
+    <string name="audio">Ljud</string>
+    <string name="retry">Försök igen</string>
+    <string name="storage_permission_denied">Tillgång till lagringsområde nekades</string>
+    <string name="use_old_player_title">Använd gamla spelaren</string>
+    <string name="use_old_player_summary">Gamla inbyggda Mediaframework-spelaren</string>
+
+    <string name="short_thousand">k</string>
+    <string name="short_million">mn</string>
+    <string name="short_billion">md</string>
+
+    <string name="no_subscribers">Inga prenumeranter</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s prenumerant</item>
+	<item quantity="other">%s prenumeranter</item>
+</plurals>
+
+    <string name="no_views">Inga visningar</string>
+    <plurals name="views">
+	<item quantity="one">%s visning</item>
+	<item quantity="other">%s visningar</item>
+</plurals>
+
+    <string name="no_videos">Inga videor</string>
+    <plurals name="videos">
+	<item quantity="one">%s video</item>
+	<item quantity="other">%s videon</item>
+</plurals>
+
+    <string name="start">Start</string>
+    <string name="pause">Pausa</string>
+    <string name="view">Spela</string>
+    <string name="delete">Ta bort</string>
+    <string name="checksum">Kontrollsumma</string>
+
+    <string name="add">Nytt uppdrag</string>
+    <string name="finish">Ok</string>
+
+    <string name="msg_name">Filnamn</string>
+    <string name="msg_threads">Trådar</string>
+    <string name="msg_error">Fel</string>
+    <string name="msg_server_unsupported">Serveren stöds inte</string>
+    <string name="msg_exists">Filen finns redan</string>
+    <string name="msg_url_malform">Felaktig webbadress eller Internet inte tillgängligt</string>
+    <string name="msg_running">NewPipe nedladdning</string>
+    <string name="msg_running_detail">Tryck för detaljer</string>
+    <string name="msg_wait">Vänta…</string>
+    <string name="msg_copied">Kopierat till urklipp</string>
+    <string name="no_available_dir">Välj en tillgänglig nedladdningsmapp</string>
+    <string name="msg_popup_permission">Denna tillåtelse behövs för att
+\nöppna i popup-läge</string>
+
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">reCAPTCHA utmaning</string>
+    <string name="recaptcha_request_toast">reCAPTCHA utmaning begärd</string>
+
+    <string name="settings_category_downloads_title">Nedladdning</string>
+    <string name="settings_file_charset_title">Tillåtna tecken i filnamn</string>
+    <string name="settings_file_replacement_character_summary">Ogiltiga tecken ersätts med detta värde</string>
+    <string name="settings_file_replacement_character_title">Ersättningstecknet</string>
+
+    <string name="charset_letters_and_digits">Bokstäver och siffror</string>
+    <string name="charset_most_special_characters">De flesta specialtecken</string>
+
+    <string name="title_activity_about">Om NewPipe</string>
+    <string name="action_settings">Inställningar</string>
+    <string name="action_about">Om</string>
+    <string name="title_licenses">Tredjepartslicenser</string>
+    <string name="copyright" formatted="true">© %1$s av %2$s under %3$s</string>
+    <string name="error_unable_to_load_license">Kunde inte ladda licens</string>
+    <string name="action_open_website">Öppna webbplats</string>
+    <string name="tab_about">Om</string>
+    <string name="tab_contributors">Medverkande</string>
+    <string name="tab_licenses">Licenser</string>
+    <string name="app_description">Gratis och enkel YouTube-app för Android.</string>
+    <string name="view_on_github">Visa på GitHub</string>
+    <string name="app_license_title">NewPipes licens</string>
+    <string name="contribution_encouragement">Vad du än har för idéer gällande översättning, designändringar, kod rengöring eller riktigt tunga så är hjälp alltid välkommet. Ju mer som görs desto bättre blir det!</string>
+    <string name="read_full_license">Läs hela licensen</string>
+    <string name="contribution_title">Bidrag</string>
+
+    <string name="title_activity_history">Historik</string>
+    <string name="title_history_search">Sökt</string>
+    <string name="title_history_view">Tittade</string>
+    <string name="history_disabled">Historik är inaktiverat</string>
+    <string name="action_history">Historik</string>
+    <string name="history_empty">Historiken är tom</string>
+    <string name="history_cleared">Historiken har rensats</string>
+    <string name="item_deleted">Objektet bortaget</string>
+    <string name="delete_item_search_history">Vill du ta bort det här objektet från sökhistoriken?</string>
+
+    <string name="main_page_content">Huvudsidans innehåll</string>
+    <string name="blank_page_summary">Tom sida</string>
+    <string name="kiosk_page_summary">Kiosk sida</string>
+    <string name="subscription_page_summary">Prenumerationssidan</string>
+    <string name="feed_page_summary">Flödessida</string>
+    <string name="channel_page_summary">Kanal-sida</string>
+    <string name="select_a_channel">Välj en kanal</string>
+    <string name="no_channel_subscribed_yet">Ingen kanal prenumererad än</string>
+    <string name="select_a_kiosk">Välj en kiosk</string>
+
+    <string name="kiosk">Kiosk</string>
+    <string name="trending">Trend</string>
+    <string name="top_50">Top 50</string>
+    <string name="new_and_hot">Aktuellt</string>
+    <string name="title_activity_background_player">Bakgrunds-spelare</string>
+    <string name="title_activity_popup_player">Popup-spelare</string>
+    <string name="play_queue_remove">Ta bort</string>
+    <string name="play_queue_stream_detail">Detaljer</string>
+    <string name="play_queue_audio_settings">Ljud inställningar</string>
+    <string name="hold_to_append">Håll för att placera i kön</string>
+    <string name="enqueue_on_background">Placera i bakgrunds-kön</string>
+    <string name="enqueue_on_popup">Placera i popup-kön</string>
+    <string name="start_here_on_main">Börja spela här</string>
+    <string name="start_here_on_background">Börja här i bakgrunden</string>
+    <string name="start_here_on_popup">Börja här i popup</string>
+</resources>
