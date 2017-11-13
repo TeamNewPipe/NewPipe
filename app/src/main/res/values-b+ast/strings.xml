@@ -275,4 +275,6 @@
     <string name="title_activity_background_player">Reproductor de fondu</string>
     <string name="play_queue_remove">Desaniciar</string>
     <string name="play_queue_stream_detail">Detalles</string>
+    <string name="new_and_hot">Nuevo y popular</string>
+    <string name="play_queue_audio_settings">Axustes d\'audiu</string>
     </resources>
