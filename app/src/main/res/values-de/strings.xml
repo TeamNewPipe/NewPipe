@@ -284,8 +284,16 @@
     <string name="select_a_kiosk">Kiosk auswählen</string>
 
     <string name="kiosk">Kiosk</string>
-    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe-Button oder der Popup-Button auf der Videodetailseite gedrückt und gehalten wird</string>
+    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe- oder Pop-up-Button auf der Videodetailseite gedrücktgehalten wird</string>
     <string name="background_player_append">In der Warteschlange der Hintergrundwiedergabe</string>
     <string name="new_and_hot">Neu und brandheiß</string>
-    <string name="hold_to_append">Halten, um in die Warteschlange einzureihen</string>
+    <string name="hold_to_append">Halten zum Hinzufügen zur Warteschleife</string>
+<string name="show_hold_to_append_title">‚Gedrückt halten, um Tipp hinzuzufügen‘ anzeigen</string>
+    <string name="unknown_content">[Unbekannt]</string>
+
+    <string name="enqueue_on_background">In Warteschlange für Hintergrundwiedergabe</string>
+    <string name="enqueue_on_popup">In Warteschlange für Pop-up</string>
+    <string name="start_here_on_main">Ab hier wiedergeben</string>
+    <string name="start_here_on_background">Ab hier im Hintergrundmodus</string>
+    <string name="start_here_on_popup">Ab hier im Pop-up</string>
 </resources>
