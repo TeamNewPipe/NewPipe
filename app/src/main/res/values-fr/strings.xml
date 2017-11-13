@@ -257,9 +257,9 @@
 
     <string name="item_deleted">Objet effacé</string>
 <string name="delete_item_search_history">Voulez-vous supprimer cet élément de l\'historique de recherche ?</string>
-<string name="main_page_content">Contentu</string>
+<string name="main_page_content">Contenu de la page principale</string>
     <string name="blank_page_summary">Page vide</string>
-    <string name="subscription_page_summary">Page de souscription</string>
+    <string name="subscription_page_summary">Abonnements</string>
     <string name="feed_page_summary">Page de Flux</string>
     <string name="channel_page_summary">Page de la chaîne</string>
     <string name="select_a_channel">Sélectionnez une chaîne</string>
