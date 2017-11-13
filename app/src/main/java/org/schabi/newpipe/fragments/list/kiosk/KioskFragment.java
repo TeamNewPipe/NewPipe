@@ -27,6 +27,7 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.NavigationHelper;
 
+import icepick.State;
 import io.reactivex.Single;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -53,6 +54,7 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
 
+    @State
     private String kioskId = "";
 
 
