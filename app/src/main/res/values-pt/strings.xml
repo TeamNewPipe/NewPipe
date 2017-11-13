@@ -266,4 +266,6 @@ o modo “popup“</string>
     <string name="main_page_content">Conteúdo da página principal</string>
     <string name="blank_page_summary">Página em branco</string>
     <string name="subscription_page_summary">Página de Subscrições</string>
+    <string name="channel_page_summary">Página do canal</string>
+    <string name="select_a_channel">Selecione um canal</string>
     </resources>
