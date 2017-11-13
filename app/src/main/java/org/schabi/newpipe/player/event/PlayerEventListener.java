@@ -10,4 +10,5 @@ public interface PlayerEventListener {
     void onProgressUpdate(int currentProgress, int duration, int bufferPercent);
     void onMetadataUpdate(StreamInfo info);
     void onServiceStopped();
+    void onFullScreenButtonClicked(boolean fullscreen);
 }

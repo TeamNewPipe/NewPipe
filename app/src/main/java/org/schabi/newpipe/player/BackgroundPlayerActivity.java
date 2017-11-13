@@ -36,4 +36,9 @@ public final class BackgroundPlayerActivity extends ServicePlayerActivity {
             ((BackgroundPlayer.BasePlayerImpl) player).removeActivityListener(this);
         }
     }
+
+    @Override
+    public void onFullScreenButtonClicked(boolean fullscreen) {
+
+    }
 }

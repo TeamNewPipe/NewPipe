@@ -194,27 +194,31 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (DEBUG) Log.d(TAG, "onOptionsItemSelected() called with: item = [" + item + "]");
         int id = item.getItemId();
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+        boolean isPlayerFragment = (fragment.isVisible() && fragment instanceof VideoDetailFragment);
 
         switch (id) {
             case android.R.id.home:
-                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
                 // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
                 if (fragment instanceof BackPressable) {
                     ((BackPressable) fragment).onBackPressed();
                 }
-
                 NavigationHelper.gotoMainFragment(getSupportFragmentManager());
                 return true;
             case R.id.action_settings:
                 NavigationHelper.openSettings(this);
+                if(isPlayerFragment)((VideoDetailFragment)fragment).hideMainVideoPlayer();
                 return true;
             case R.id.action_show_downloads:
+                if(isPlayerFragment)((VideoDetailFragment)fragment).hideMainVideoPlayer();
                 return NavigationHelper.openDownloads(this);
             case R.id.action_about:
                 NavigationHelper.openAbout(this);
+                if(isPlayerFragment)((VideoDetailFragment)fragment).hideMainVideoPlayer();
                 return true;
             case R.id.action_history:
                 NavigationHelper.openHistory(this);
+                if(isPlayerFragment)((VideoDetailFragment)fragment).hideMainVideoPlayer();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

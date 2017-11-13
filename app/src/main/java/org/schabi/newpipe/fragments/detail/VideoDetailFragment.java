@@ -1,26 +1,28 @@
 package org.schabi.newpipe.fragments.detail;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -37,6 +39,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -47,6 +50,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.nirhart.parallaxscroll.views.ParallaxScrollView;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
@@ -66,13 +70,13 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
-import org.schabi.newpipe.fragments.QueueListener;
 import org.schabi.newpipe.history.HistoryListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.VideoPlayer;
+import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.playlist.PlayQueue;
@@ -87,6 +91,7 @@ import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -104,7 +109,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implements BackPressable, QueueListener, SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener, View.OnLongClickListener {
+public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implements BackPressable, SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener, View.OnLongClickListener, PlayerEventListener {
     public static final String AUTO_PLAY = "auto_play";
 
     // Amount of videos to show on start
@@ -126,6 +131,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     private int oldSelectedStreamId = -1;
     private String oldSelectedStreamResolution = null;
+
+    private float currentBrightness;
 
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
@@ -181,6 +188,95 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private LinearLayout relatedStreamsView;
     private ImageButton relatedStreamExpandButton;
 
+    public int position = 0;
+    private MainVideoPlayer mVideoPlayer;
+
+    private ServiceConnection mServiceConnection;
+    private boolean mBounded;
+    private MainVideoPlayer.VideoPlayerImpl player;
+
+    private ServiceConnection getServiceConnection() {
+        return new ServiceConnection() {
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+                Log.d(getTag(), "Player service is disconnected");
+                unbind();
+            }
+
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                Log.d(getTag(), "Player service is connected");
+                MainVideoPlayer.LocalBinder localBinder = (MainVideoPlayer.LocalBinder)
+                        service;
+
+                mVideoPlayer = localBinder.getService();
+                player = localBinder.getPlayer();
+
+                startPlayerListener();
+
+                ViewGroup viewHolder = getView().findViewById(
+                        mVideoPlayer.isFullscreen?
+                                R.id.video_item_detail:
+                                R.id.detail_thumbnail_root_layout);
+
+                // There is no active player. Don't show player view
+                if(player.getPlayer().getCurrentPosition() == 0.0)
+                    mVideoPlayer.getView().setVisibility(View.GONE);
+
+                // if the player is not attached to fragment we will attach it
+                if(mVideoPlayer.getView().getParent() == null)
+                    viewHolder.addView(mVideoPlayer.getView());
+                // If the player is already attached to other instance of VideoDetailFragment just reattach it to the current instance
+                else if(getView().findViewById(R.layout.activity_main_player) == null) {
+                    removeVideoPlayerView();
+                    viewHolder.addView(mVideoPlayer.getView());
+                    hideMainVideoPlayer();
+                }
+
+                // It means that player was in fullscreen mode before orientation was changed
+                if(mVideoPlayer.isFullscreen) {
+                    hideActionBar();
+                    hideSystemUi();
+                }
+
+                Log.d(TAG, "Service connected");
+            }
+        };
+    }
+
+    private void bind() {
+        Intent serviceIntent = new Intent(getContext(), MainVideoPlayer.class);
+        final boolean success = getActivity().bindService(serviceIntent, mServiceConnection, Context.BIND_AUTO_CREATE);
+
+        if (!success) {
+            getActivity().unbindService(mServiceConnection);
+        }
+        mBounded = success;
+    }
+
+    private void unbind() {
+        if(mBounded) {
+            getActivity().unbindService(mServiceConnection);
+            mBounded = false;
+            stopPlayerListener();
+            mVideoPlayer = null;
+            player = null;
+        }
+    }
+
+    public void startPlayerListener() {
+        if(player != null) player.setFragmentListener(this);
+    }
+
+    public void stopPlayerListener() {
+        if(player != null) player.removeFragmentListener(this);
+    }
+
+    private void stopService() {
+        getActivity().stopService(new Intent(getActivity(), MainVideoPlayer.class));
+        unbind();
+    }
+
     /*////////////////////////////////////////////////////////////////////////*/
 
     public static VideoDetailFragment getInstance(int serviceId, String videoUrl, String name, PlayQueue playQueue) {
@@ -197,12 +293,20 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        ThemeHelper.setTheme(getContext());
+        setBrightness();
         // It means when device will be rotated only current screen will be rotated too. Look at onDestroy()
         if(isAutorotationEnabled())
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 
         showRelatedStreams = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.show_next_video_key), true);
         PreferenceManager.getDefaultSharedPreferences(activity).registerOnSharedPreferenceChangeListener(this);
+
+        if(savedInstanceState == null)
+            getActivity().startService(new Intent(getActivity(), MainVideoPlayer.class));
+
+        mServiceConnection = getServiceConnection();
+        bind();
     }
 
     @Override
@@ -233,8 +337,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         // Check if it was loading when the fragment was stopped/paused,
         if (wasLoading.getAndSet(false)) {
             selectAndLoadVideo(serviceId, url, name, playQueue);
-
         }
+        addVideoPlayerView();
     }
 
     @Override
@@ -254,6 +358,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if(isAutorotationEnabled()) {
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         }
+
+        unbind();
     }
 
     @Override
@@ -302,7 +408,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             else {
                 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
             }
-            if(getMainVideoPlayer() != null) getMainVideoPlayer().checkAutorotation();
+            if(mVideoPlayer != null) mVideoPlayer.checkAutorotation();
         }
     }
 
@@ -315,6 +421,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private static final String WAS_RELATED_EXPANDED_KEY = "was_related_expanded_key";
     private static final String SELECTED_STREAM_ID_KEY = "selected_stream_id_key";
     private static final String SELECTED_STREAM_RESOLUTION_KEY = "selected_stream_resolution_key";
+    private static final String CURRENT_BRIGHTNESS_KEY = "current_brightness_key";
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -338,6 +445,12 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         outState.putSerializable(STACK_KEY, stack);
         outState.putInt(SELECTED_STREAM_ID_KEY, oldSelectedStreamId);
         outState.putString(SELECTED_STREAM_RESOLUTION_KEY, oldSelectedStreamResolution);
+
+        // Our brightness value will survive after an orientation change
+        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+        outState.putFloat(CURRENT_BRIGHTNESS_KEY, lp.screenBrightness);
+
+        removeVideoPlayerView();
     }
 
     @Override
@@ -360,6 +473,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         oldSelectedStreamId = savedState.getInt(SELECTED_STREAM_ID_KEY);
         oldSelectedStreamResolution = savedState.getString(SELECTED_STREAM_RESOLUTION_KEY);
         playQueue = (PlayQueue) savedState.getSerializable(VideoPlayer.PLAY_QUEUE);
+        currentBrightness = savedState.getFloat(CURRENT_BRIGHTNESS_KEY);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -372,17 +486,19 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         switch (v.getId()) {
             case R.id.detail_controls_background:
+                hideMainVideoPlayer();
                 openBackgroundPlayer(false);
                 break;
             case R.id.detail_controls_popup:
+                hideMainVideoPlayer();
                 openPopupPlayer(false);
                 break;
             case R.id.detail_uploader_root_layout:
                 if (currentInfo.uploader_url == null || currentInfo.uploader_url.isEmpty()) {
                     Log.w(TAG, "Can't open channel because we got no channel URL");
                 } else {
-                    hideMainVideoPlayer();
                     NavigationHelper.openChannelFragment(getFragmentManager(), currentInfo.service_id, currentInfo.uploader_url, currentInfo.uploader_name);
+                    hideMainVideoPlayer();
                 }
                 break;
             case R.id.detail_thumbnail_root_layout:
@@ -403,9 +519,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         switch (v.getId()) {
             case R.id.detail_controls_background:
+                hideMainVideoPlayer();
                 openBackgroundPlayer(true);
                 break;
             case R.id.detail_controls_popup:
+                hideMainVideoPlayer();
                 openPopupPlayer(true);
                 break;
         }
@@ -678,7 +796,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         actionBarHandler.setOnStreamSelectedListener(new ActionBarHandler.OnStreamChangesListener() {
             @Override
             public void onActionSelected (int selectedStreamId) {
-                if(getMainVideoPlayer() != null && oldSelectedStreamId != selectedStreamId && selectedStreamId != -1) {
+                if(mVideoPlayer != null && oldSelectedStreamId != selectedStreamId && selectedStreamId != -1) {
                     setupMainVideoPlayer();
                 }
                 oldSelectedStreamId = selectedStreamId;
@@ -692,6 +810,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         actionBarHandler.setOnShareListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
+                hideMainVideoPlayer();
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_TEXT, info.url);
@@ -703,6 +822,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         actionBarHandler.setOnOpenInBrowserListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
+                hideMainVideoPlayer();
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(info.url));
@@ -713,6 +833,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         actionBarHandler.setOnPlayWithKodiListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
+                //untested
                 try {
                     NavigationHelper.playWithKore(activity, Uri.parse(info.url.replace("https", "http")));
                     if(activity instanceof HistoryListener) {
@@ -728,6 +849,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         actionBarHandler.setOnSearchListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
+                hideMainVideoPlayer();
                 NavigationHelper.openSearchFragment(getFragmentManager(), 0, "");
             }
         });
@@ -788,15 +910,21 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     @Override
     public boolean onBackPressed() {
-        // Player wanna handle back press so delegate the back press to it
-        if (getMainVideoPlayer() != null && getMainVideoPlayer() instanceof BackPressable)
-            if (getMainVideoPlayer().onBackPressed())
-                return true;
+        if (mVideoPlayer != null && mVideoPlayer.isFullscreen) {
+            mVideoPlayer.isFullscreen = false;
+            onFullScreenButtonClicked(false);
+            return true;
+        }
 
         if (DEBUG) Log.d(TAG, "onBackPressed() called");
         // That means that we are on the start of the stack,
         // return false to let the MainActivity handle the onBack
-        if (stack.size() <= 1) return false;
+        if (stack.size() <= 1) {
+            hideMainVideoPlayer();
+            stopService();
+            unbind();
+            return false;
+        }
         // Remove top
         stack.pop();
         // Get stack item from the new top
@@ -928,10 +1056,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             ((HistoryListener) activity).onVideoPlayed(currentInfo, getSelectedVideoStream());
         }
 
-        if(getMainVideoPlayer() != null) {
+        if(mVideoPlayer != null) {
             if(playQueue == null)
                 playQueue = new SinglePlayQueue(currentInfo);
-            playQueue.setRecovery(0, getMainVideoPlayer().getPlaybackPosition());
+            playQueue.setRecovery(0, mVideoPlayer.getPlaybackPosition());
         }
 
         if (append) {
@@ -961,8 +1089,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
 
     private void openNormalBackgroundPlayer(final boolean append) {
-        if(getMainVideoPlayer() != null) {
-            playQueue.setRecovery(0, getMainVideoPlayer().getPlaybackPosition());
+        if(playQueue == null) playQueue = new SinglePlayQueue(currentInfo);
+
+        if(mVideoPlayer != null) {
+            playQueue.setRecovery(0, mVideoPlayer.getPlaybackPosition());
         }
         if (append) {
             NavigationHelper.enqueueOnBackgroundPlayer(activity, itemQueue);
@@ -1032,32 +1162,18 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
     }
 
-    private MainVideoPlayer getMainVideoPlayer() {
-        Fragment player = getChildFragmentManager().findFragmentById(R.id.detail_thumbnail_root_layout);
-        return (MainVideoPlayer) player;
-    }
-
     private void setupMainVideoPlayer() {
         boolean useOldPlayer = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.use_old_player_key), false)
                 || (Build.VERSION.SDK_INT < 16);
 
         if(!useOldPlayer) {
-            MainVideoPlayer mainVideoPlayer = getMainVideoPlayer();
-            if (mainVideoPlayer != null && mainVideoPlayer.getView() != null) {
-                mainVideoPlayer.loadVideo(currentInfo, playQueue, getSelectedVideoStream().resolution, null, 0, false);
-                mainVideoPlayer.getView().setVisibility(View.VISIBLE);
-                return;
-            }
-            FragmentManager fm = getChildFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-            mainVideoPlayer = new MainVideoPlayer();
-            Bundle arguments = new Bundle();
-            arguments.putSerializable(INFO_KEY, currentInfo);
-            arguments.putSerializable(VideoPlayer.PLAY_QUEUE, playQueue);
-            arguments.putString(VideoPlayer.PLAYBACK_QUALITY, getSelectedVideoStream().resolution);
-            mainVideoPlayer.setArguments(arguments);
-            ft.add(R.id.detail_thumbnail_root_layout, mainVideoPlayer);
-            ft.commit();
+            if(mVideoPlayer == null || mVideoPlayer.getPlayer() == null) return;
+            long currentPosition = 0;
+            if(player.getVideoUrl() != null && player.getVideoUrl().equals(url))
+                currentPosition = mVideoPlayer.getPlayer().getCurrentPosition();
+
+            mVideoPlayer.loadVideo(currentInfo, playQueue, getSelectedVideoStream().resolution, currentPosition, false);
+            mVideoPlayer.getView().setVisibility(View.VISIBLE);
         }
         else {
             // Internal Player
@@ -1070,28 +1186,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
     }
 
-    private void hideMainVideoPlayer() {
-        if(getMainVideoPlayer() == null || getMainVideoPlayer().getView() == null) return;
-        getMainVideoPlayer().getView().setVisibility(View.GONE);
-        getMainVideoPlayer().onStop();
-    }
+    public void hideMainVideoPlayer() {
+        if(mVideoPlayer == null || mVideoPlayer.getView() == null) return;
 
-    // Useful method but i'm not use it now
-    private void removeMainVideoPlayer() {
-        if(getMainVideoPlayer() == null) return;
-        FragmentManager fm = getChildFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.remove(getMainVideoPlayer());
-        ft.commit();
-    }
-
-    @Override
-    public void onSync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info) {
-        // We don't want to update interface twice
-        if(playQueue == null || playQueue.getClass().equals(SinglePlayQueue.class) || currentInfo.equals(info)) return;
-        currentInfo = info;
-        autoPlayEnabled = false;
-        selectAndLoadVideo(info.service_id, info.url, info.name, playQueue);
+        mVideoPlayer.getView().setVisibility(View.GONE);
+        mVideoPlayer.onStop();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1111,6 +1210,24 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     public boolean isAutoplayPreferred () {
         return PreferenceManager.getDefaultSharedPreferences(getContext())
                 .getBoolean(getContext().getString(R.string.autoplay_through_intent_key), false);
+    }
+
+    private void addVideoPlayerView() {
+        if(mVideoPlayer == null || mVideoPlayer.getView() == null || getView() == null) return;
+
+        ViewGroup viewHolder = getView().findViewById(
+                mVideoPlayer.isFullscreen?
+                        R.id.video_item_detail:
+                        R.id.detail_thumbnail_root_layout);
+
+        removeVideoPlayerView();
+        viewHolder.addView(mVideoPlayer.getView());
+    }
+
+    private void removeVideoPlayerView() {
+        if(mVideoPlayer == null || mVideoPlayer.getView() == null) return;
+        if(mVideoPlayer.getView().getParent() != null)
+            ((ViewGroup)mVideoPlayer.getView().getParent()).removeView(mVideoPlayer.getView());
     }
 
     private VideoStream getSelectedVideoStream() {
@@ -1359,5 +1476,123 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         });
 
         showError(getString(R.string.blocked_by_gema), false, R.drawable.gruese_die_gema);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Player event listener
+    //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void onPlaybackUpdate(int state, int repeatMode, boolean shuffled, PlaybackParameters parameters) {
+        /*if(state == BasePlayer.STATE_COMPLETED) {
+        }
+        else if(state == BasePlayer.STATE_PAUSED) {
+        }
+        else if(state == BasePlayer.STATE_PLAYING) {
+        }*/
+    }
+
+    @Override
+    public void onProgressUpdate(int currentProgress, int duration, int bufferPercent) {
+
+    }
+
+    @Override
+    public void onMetadataUpdate(StreamInfo info) {
+        // We don't want to update interface twice
+        if(playQueue == null || playQueue.getClass().equals(SinglePlayQueue.class) || currentInfo == null || currentInfo.equals(info)) return;
+        currentInfo = info;
+        autoPlayEnabled = false;
+        selectAndLoadVideo(info.service_id, info.url, info.name, playQueue);
+    }
+
+    @Override
+    public void onServiceStopped() {
+        stopService();
+    }
+
+    @Override
+    public void onFullScreenButtonClicked(boolean fullscreen) {
+        View view = mVideoPlayer.getView();
+        ViewGroup parent = (ViewGroup) view.getParent();
+        parent.removeView(view);
+
+        if (fullscreen) {
+            hideSystemUi();
+            hideActionBar();
+
+            // Adding view to the top position because we need MATCH_PARENT to work for fullscreen
+            ((ViewGroup)getView().findViewById(R.id.video_item_detail)).addView(view);
+        } else {
+            showSystemUi();
+            showActionBar();
+
+            // Returning back
+            ((ViewGroup)parent.findViewById(R.id.detail_thumbnail_root_layout)).addView(view);
+        }
+        getView().requestLayout();
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Player related utils
+    //////////////////////////////////////////////////////////////////////////*/
+
+
+    private void showSystemUi() {
+        if (DEBUG) Log.d(TAG, "showSystemUi() called");
+        if (player == null || getActivity() == null) return;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            // I have some strange issues with other flags
+            getActivity().getWindow().getDecorView().setSystemUiVisibility(0);
+        } else getActivity().getWindow().getDecorView().setSystemUiVisibility(0);
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    private void showActionBar() {
+        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        if(actionBar != null) {
+            actionBar.show();
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            TypedArray a = getActivity().getTheme().obtainStyledAttributes(R.style.ThemeOverlay_AppCompat_ActionBar, new int[]{R.attr.actionBarSize});
+            int attributeResourceId = a.getResourceId(0, 0);
+            params.setMargins(0, (int) getResources().getDimension(attributeResourceId), 0, 0);
+            getActivity().findViewById(R.id.fragment_holder).setLayoutParams(params);
+        }
+    }
+
+    private void hideSystemUi() {
+        if(mVideoPlayer == null || !mVideoPlayer.isFullscreen || getActivity() == null) return;
+        if (DEBUG) Log.d(TAG, "hideSystemUi() called");
+        if (android.os.Build.VERSION.SDK_INT >= 16) {
+            int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) visibility |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+            getActivity().getWindow().getDecorView().setSystemUiVisibility(visibility);
+        }
+        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    private void hideActionBar() {
+        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        if(actionBar != null) {
+            actionBar.hide();
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            params.setMargins(0,0,0,0);
+            getActivity().findViewById(R.id.fragment_holder).setLayoutParams(params);
+        }
+    }
+
+    private void setBrightness() {
+        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+        if (currentBrightness != 0) {
+            lp.screenBrightness = currentBrightness;
+            getActivity().getWindow().setAttributes(lp);
+        }
+        else
+            currentBrightness = lp.screenBrightness;
     }
 }

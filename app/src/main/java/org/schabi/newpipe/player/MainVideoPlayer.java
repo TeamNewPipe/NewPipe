@@ -19,22 +19,25 @@
 
 package org.schabi.newpipe.player;
 
+import android.app.Activity;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.content.res.TypedArray;
 import android.media.AudioManager;
+import android.graphics.Bitmap;
+import android.os.Binder;
 import android.os.Build;
-import android.os.Bundle;
+import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
@@ -44,21 +47,28 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
+import android.widget.RemoteViews;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.SimpleExoPlayer;
 
+import org.schabi.newpipe.BuildConfig;
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
+import org.schabi.newpipe.player.event.PlayerEventListener;
+import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
@@ -77,122 +87,101 @@ import java.util.List;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 /**
- * Activity Player implementing VideoPlayer
+ * Player based on service implementing VideoPlayer
  *
- * @author mauriciocolli
+ * @author mauriciocolli and avently
  */
-public final class MainVideoPlayer extends Fragment implements BackPressable {
+public class MainVideoPlayer extends Service {
     private static final String TAG = ".MainVideoPlayer";
     private static final boolean DEBUG = BasePlayer.DEBUG;
-    private static final String IS_FULLSCREEN = "is_fullscreen";
-    private static final String INFO_KEY = "info_key";
 
     private GestureDetector gestureDetector;
 
-    private boolean activityPaused;
-    private VideoPlayerImpl playerImpl;
-    private boolean isFullscreen = false;
-    private String resolution;
-    private PlayQueue playQueue;
-    private StreamInfo currentInfo;
+    public VideoPlayerImpl playerImpl;
+    public boolean isFullscreen = false;
     private ImageButton screenRotationButton;
 
+    private PlayerEventListener fragmentListener;
+    private final IBinder mBinder = new MainVideoPlayer.LocalBinder();
+
+    // Notification
+    private NotificationManager notificationManager;
+    private NotificationCompat.Builder notBuilder;
+    private RemoteViews notRemoteView;
+    private static final int NOTIFICATION_ID = 417308;
+    public static final String ACTION_CLOSE = "org.schabi.newpipe.player.MainVideoPlayer.CLOSE";
+    public static final String ACTION_PLAY_PAUSE = "org.schabi.newpipe.player.MainVideoPlayer.PLAY_PAUSE";
+    public static final String ACTION_OPEN_CONTROLS = "org.schabi.newpipe.player.MainVideoPlayer.OPEN_CONTROLS";
+    public static final String ACTION_REPEAT = "org.schabi.newpipe.player.MainVideoPlayer.REPEAT";
+
+    private LockManager lockManager;
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Activity LifeCycle
+    // Service LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
-        ThemeHelper.setTheme(this.getActivity());
-        getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
+    public IBinder onBind(Intent intent) {
+        Log.d(TAG, "service in onBind");
+        return mBinder;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.activity_main_player, container, false);
+    public boolean onUnbind(Intent intent) {
+        return super.onUnbind(intent);
+    }
 
-        playerImpl = new VideoPlayerImpl(getContext());
-        playerImpl.setup(layout.getRootView());
-        currentInfo = (StreamInfo) getArguments().getSerializable(INFO_KEY);
-        playQueue = (PlayQueue) getArguments().getSerializable(VideoPlayer.PLAY_QUEUE);
-        resolution = getArguments().getString(VideoPlayer.PLAYBACK_QUALITY);
+    public class LocalBinder extends Binder {
+
+        public MainVideoPlayer getService() {
+            return MainVideoPlayer.this;
+        }
+
+        public VideoPlayerImpl getPlayer() {
+            return MainVideoPlayer.this.playerImpl;
+        }
+    }
+
+    @Override
+    public int onStartCommand(final Intent intent, final int flags, final int startId) {
+        Log.d(TAG, "onStartCommand() called");
+        return Service.START_NOT_STICKY;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        ThemeHelper.setTheme(this);
+        Log.d(TAG, "onCreate() called");
+        notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
+        lockManager = new LockManager(this);
+
+        createView();
+    }
+
+    public void createView() {
+        View layout = View.inflate(this, R.layout.activity_main_player, null);
+
+        playerImpl = new VideoPlayerImpl(this);
+        playerImpl.setStartedFromNewPipe(true);
+        playerImpl.setup(layout);
 
         screenRotationButton = layout.findViewById(R.id.screenRotationButton);
         checkAutorotation();
-
-        if(savedInstanceState != null) {
-            currentInfo = (StreamInfo) savedInstanceState.getSerializable(INFO_KEY);
-            playQueue = (PlayQueue) savedInstanceState.getSerializable(VideoPlayer.PLAY_QUEUE);
-            resolution = savedInstanceState.getString(VideoPlayer.PLAYBACK_QUALITY);
-            loadVideo(currentInfo, playQueue, resolution, layout,
-                    savedInstanceState.getLong(BasePlayer.PLAYBACK_POSITION, 0),
-                    savedInstanceState.getBoolean(IS_FULLSCREEN));
-        }
-        else {
-            loadVideo(currentInfo, playQueue, resolution, layout, 0, false);
-        }
-
-        return layout;
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        outState.putSerializable(INFO_KEY, currentInfo);
-        outState.putSerializable(VideoPlayer.PLAY_QUEUE, playQueue);
-        outState.putString(VideoPlayer.PLAYBACK_QUALITY, resolution);
-        outState.putLong(BasePlayer.PLAYBACK_POSITION, getPlaybackPosition());
-        outState.putBoolean(IS_FULLSCREEN, isFullscreen);
+    public SimpleExoPlayer getPlayer() {
+        return playerImpl.getPlayer();
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        if(isFullscreen) {
-            hideActionBar();
-            hideSystemUi();
-            ((ViewGroup) getView().getParent()).removeView(getView());
-            ((ViewGroup)getActivity().findViewById(R.id.video_item_detail)).addView(getView());
-        }
-    }
-
-    @Override
     public void onStop() {
-        super.onStop();
         if (DEBUG) Log.d(TAG, "onStop() called");
-        activityPaused = true;
 
         if (playerImpl.getPlayer() != null) {
             playerImpl.wasPlaying = playerImpl.getPlayer().getPlayWhenReady();
             playerImpl.getPlayer().setPlayWhenReady(false);
             playerImpl.setRecovery();
             playerImpl.destroyPlayer();
-        }
-        showSystemUi();
-        showActionBar();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (DEBUG) Log.d(TAG, "onResume() called");
-        if (activityPaused) {
-            playerImpl.initPlayer();
-            playerImpl.getPlayPauseButton().setImageResource(R.drawable.ic_play_arrow_white);
-
-            playerImpl.getPlayer().setPlayWhenReady(playerImpl.wasPlaying);
-            playerImpl.initPlayback(playerImpl.playQueue);
-
-            activityPaused = false;
-
-            if(isFullscreen) {
-                hideActionBar();
-            }
         }
     }
 
@@ -201,97 +190,56 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
         super.onDestroy();
         if (DEBUG) Log.d(TAG, "onDestroy() called");
         if (playerImpl != null) playerImpl.destroy();
-    }
 
-    @Override
-    public boolean onBackPressed() {
-        if(!isFullscreen || playerImpl == null)
-            return false;
-
-        playerImpl.onFullScreenButtonClicked();
-        return true;
+        if (playerImpl != null) {
+            if (getView() != null && getView().getParent() != null) {
+                ViewGroup parent = (ViewGroup) getView().getParent();
+                parent.removeView(getView());
+            }
+            playerImpl.cachedImage = null;
+            playerImpl.setRootView(null);
+            playerImpl.stopActivityBinding();
+            playerImpl.destroy();
+        }
+        if (notificationManager != null) notificationManager.cancel(NOTIFICATION_ID);
+        if (lockManager != null) lockManager.releaseWifiAndCpu();
+        playerImpl = null;
+        stopForeground(true);
+        stopSelf();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    public void loadVideo(StreamInfo info, PlayQueue queue, String videoResolution, View layout, long playbackPosition, boolean fullscreen) {
+    public void loadVideo(StreamInfo info, PlayQueue queue, String videoResolution, long playbackPosition, boolean fullscreen) {
         if(playerImpl == null || playerImpl.getPlayer() == null)
             return;
 
-        if(layout == null)
-            layout = getView();
-
         if(queue == null)
-            playQueue = new SinglePlayQueue(info);
+            playerImpl.playQueue = new SinglePlayQueue(info);
         else
-            playQueue = queue;
+            playerImpl.playQueue = queue;
 
         isFullscreen = fullscreen;
-        resolution = videoResolution;
-        playQueue.setRecovery(playQueue.getIndex(), playbackPosition);
+        playerImpl.playQueue.setRecovery(playerImpl.playQueue.getIndex(), playbackPosition);
 
-        Intent playerIntent = NavigationHelper.getPlayerIntent(getActivity(), BackgroundPlayer.class, playQueue, resolution);
+        Intent playerIntent = NavigationHelper.getPlayerIntent(this, BackgroundPlayer.class, playerImpl.playQueue, videoResolution);
         playerImpl.handleIntent(playerIntent);
-        if(layout != null) layout.findViewById(R.id.surfaceView).setVisibility(View.GONE);
-    }
 
-    private void showSystemUi() {
-        if (DEBUG) Log.d(TAG, "showSystemUi() called");
-        if (playerImpl != null && playerImpl.queueVisible || getActivity() == null) return;
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            getActivity().getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-            );
-        } else getActivity().getWindow().getDecorView().setSystemUiVisibility(0);
-        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    }
-    private void showActionBar() {
-        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
-        if(actionBar != null) {
-            actionBar.show();
-            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            TypedArray a = getActivity().getTheme().obtainStyledAttributes(R.style.ThemeOverlay_AppCompat_ActionBar, new int[]{R.attr.actionBarSize});
-            int attributeResourceId = a.getResourceId(0, 0);
-            params.setMargins(0, (int) getResources().getDimension(attributeResourceId), 0, 0);
-            getActivity().findViewById(R.id.fragment_holder).setLayoutParams(params);
-        }
-    }
-
-    private void hideSystemUi() {
-        if(!isFullscreen || getActivity() == null) return;
-        if (DEBUG) Log.d(TAG, "hideSystemUi() called");
-        if (android.os.Build.VERSION.SDK_INT >= 16) {
-            int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) visibility |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-            getActivity().getWindow().getDecorView().setSystemUiVisibility(visibility);
-        }
-        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    }
-
-    private void hideActionBar() {
-        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
-        if(actionBar != null) {
-            actionBar.hide();
-            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            params.setMargins(0,0,0,0);
-            getActivity().findViewById(R.id.fragment_holder).setLayoutParams(params);
-        }
+        getView().findViewById(R.id.surfaceView).setVisibility(View.GONE);
     }
 
     public void checkAutorotation() {
-        boolean autorotationEnabled = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(this.getString(R.string.use_video_autorotation_key), false);
+        boolean autorotationEnabled = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(this.getString(R.string.use_video_autorotation_key), false);
         screenRotationButton.setVisibility(autorotationEnabled? View.GONE : View.VISIBLE);
     }
 
     private void toggleOrientation() {
-        getActivity().setRequestedOrientation(getResources().getDisplayMetrics().heightPixels > getResources().getDisplayMetrics().widthPixels
+        Activity parent = playerImpl.getParentActivity();
+        if(parent == null) return;
+
+        parent.setRequestedOrientation(getResources().getDisplayMetrics().heightPixels > getResources().getDisplayMetrics().widthPixels
                 ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
                 : ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
     }
@@ -323,10 +271,82 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
         }
     }
 
+    public View getView() {
+        if(playerImpl == null) return null;
+
+        return playerImpl.getRootView();
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Notification
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private void resetNotification() {
+        notBuilder = createNotification();
+    }
+
+    private NotificationCompat.Builder createNotification() {
+        notRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_popup_notification);
+
+        notRemoteView.setTextViewText(R.id.notificationSongName, playerImpl.getVideoTitle());
+        notRemoteView.setTextViewText(R.id.notificationArtist, playerImpl.getUploaderName());
+        notRemoteView.setViewVisibility(R.id.notificationStop, View.GONE);
+
+        if(playerImpl.cachedImage != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, playerImpl.cachedImage);
+
+        notRemoteView.setOnClickPendingIntent(R.id.notificationPlayPause,
+                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));
+        notRemoteView.setOnClickPendingIntent(R.id.notificationStop,
+                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_CLOSE), PendingIntent.FLAG_UPDATE_CURRENT));
+        notRemoteView.setOnClickPendingIntent(R.id.notificationContent,
+                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_OPEN_CONTROLS), PendingIntent.FLAG_UPDATE_CURRENT));
+        notRemoteView.setOnClickPendingIntent(R.id.notificationRepeat,
+                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_REPEAT), PendingIntent.FLAG_UPDATE_CURRENT));
+
+        setRepeatModeRemote(notRemoteView, playerImpl.getRepeatMode());
+
+        return new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
+                .setOngoing(true)
+                .setSmallIcon(R.drawable.ic_play_arrow_white)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setContent(notRemoteView);
+    }
+
+    /**
+     * Updates the notification, and the play/pause button in it.
+     * Used for changes on the remoteView
+     *
+     * @param drawableId if != -1, sets the drawable with that id on the play/pause button
+     */
+    private void updateNotification(int drawableId) {
+        if (DEBUG) Log.d(TAG, "updateNotification() called with: drawableId = [" + drawableId + "]");
+        if (notBuilder == null || notRemoteView == null) return;
+        if (drawableId != -1) notRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
+        notificationManager.notify(NOTIFICATION_ID, notBuilder.build());
+    }
+
+    protected void setRepeatModeRemote(final RemoteViews remoteViews, final int repeatMode) {
+        final String methodName = "setImageResource";
+
+        if (remoteViews == null) return;
+
+        switch (repeatMode) {
+            case Player.REPEAT_MODE_OFF:
+                remoteViews.setInt(R.id.notificationRepeat, methodName, R.drawable.exo_controls_repeat_off);
+                break;
+            case Player.REPEAT_MODE_ONE:
+                remoteViews.setInt(R.id.notificationRepeat, methodName, R.drawable.exo_controls_repeat_one);
+                break;
+            case Player.REPEAT_MODE_ALL:
+                remoteViews.setInt(R.id.notificationRepeat, methodName, R.drawable.exo_controls_repeat_all);
+                break;
+        }
+    }
+
     ///////////////////////////////////////////////////////////////////////////
 
     @SuppressWarnings({"unused", "WeakerAccess"})
-    private class VideoPlayerImpl extends VideoPlayer {
+    public class VideoPlayerImpl extends VideoPlayer {
         private TextView titleTextView;
         private TextView channelTextView;
         private TextView volumeTextView;
@@ -340,7 +360,6 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
         private ImageButton playNextButton;
 
         private RelativeLayout queueLayout;
-        private ImageButton itemsListCloseButton;
         private RecyclerView itemsList;
         private ItemTouchHelper itemTouchHelper;
 
@@ -349,6 +368,16 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
         private ImageButton moreOptionsButton;
         public int moreOptionsPopupMenuGroupId = 89;
         public PopupMenu moreOptionsPopupMenu;
+
+        private Bitmap cachedImage;
+
+        @Override
+        public void handleIntent(Intent intent) {
+            super.handleIntent(intent);
+
+            resetNotification();
+            startForeground(NOTIFICATION_ID, notBuilder.build());
+        }
 
         VideoPlayerImpl(final Context context) {
             super("VideoPlayerImpl" + MainVideoPlayer.TAG, context);
@@ -397,6 +426,13 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
             moreOptionsButton.setOnClickListener(this);
         }
 
+        private Activity getParentActivity() {
+            if(getView().getParent() == null) return null;
+
+            ViewGroup parent = (ViewGroup) getView().getParent();
+            return (Activity) parent.getContext();
+        }
+
         /*//////////////////////////////////////////////////////////////////////////
         // ExoPlayer Video Listener
         //////////////////////////////////////////////////////////////////////////*/
@@ -404,7 +440,16 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
         @Override
         public void onRepeatModeChanged(int i) {
             super.onRepeatModeChanged(i);
+            setRepeatModeRemote(notRemoteView, i);
             updatePlaybackButtons();
+            updatePlayback();
+            updateNotification(-1);
+        }
+
+        @Override
+        public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+            super.onPlaybackParametersChanged(playbackParameters);
+            updatePlayback();
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -416,12 +461,13 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
             super.onPlayerError(error);
 
             if(error.type == ExoPlaybackException.TYPE_SOURCE)
-                removeThisFragment();
+                destroy();
         }
 
         @Override
         public void shutdown() {
             super.shutdown();
+            destroy();
         }
 
         @Override
@@ -432,16 +478,20 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
 
             playPauseButton.setImageResource(R.drawable.ic_pause_white);
 
-            Fragment fragment = getParentFragment().getFragmentManager().findFragmentById(R.id.fragment_holder);
-            // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
-            if (fragment instanceof QueueListener)
-                ((QueueListener) fragment).onSync(item, info);
+            updateMetadata();
         }
 
         @Override
         public void onShuffleClicked() {
             super.onShuffleClicked();
             updatePlaybackButtons();
+            updatePlayback();
+        }
+
+        @Override
+        public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
+            updateProgress(currentProgress, duration, bufferPercent);
+            super.onUpdateProgress(currentProgress, duration, bufferPercent);
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -450,28 +500,11 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
 
         @Override
         public void onFullScreenButtonClicked() {
-
             if (DEBUG) Log.d(TAG, "onFullScreenButtonClicked() called");
+            if(fragmentListener == null) return;
 
-            if (!isFullscreen) {
-                isFullscreen = true;
-                hideActionBar();
-                hideSystemUi();
-
-                // Adding view to the top position because we need MATCH_PARENT to work for fullscreen
-                View view = getView();
-                ((ViewGroup) view.getParent()).removeView(view);
-                ((ViewGroup)getActivity().findViewById(R.id.video_item_detail)).addView(view);
-            } else {
-                isFullscreen = false;
-                showActionBar();
-                showSystemUi();
-
-                // Returning back
-                View view = getView();
-                ((ViewGroup) view.getParent()).removeView(view);
-                ((ViewGroup)getActivity().findViewById(R.id.detail_thumbnail_root_layout)).addView(view);
-            }
+            isFullscreen = !isFullscreen;
+            fragmentListener.onFullScreenButtonClicked(isFullscreen);
         }
 
         public void onPlayBackgroundButtonClicked() {
@@ -538,7 +571,6 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
             if(playQueue.getIndex() < 0) return;
 
             queueVisible = true;
-            hideSystemUi();
 
             buildQueue();
             updatePlaybackButtons();
@@ -623,11 +655,18 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
         }
 
         @Override
+        public void changeState(int state) {
+            super.changeState(state);
+            updatePlayback();
+        }
+
+        @Override
         public void onBlocked() {
             super.onBlocked();
             playPauseButton.setImageResource(R.drawable.ic_pause_white);
             animatePlayButtons(false, 100);
             getRootView().setKeepScreenOn(true);
+            updateNotification(R.drawable.ic_play_arrow_white);
         }
 
         @Override
@@ -635,6 +674,7 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
             super.onBuffering();
             animatePlayButtons(false, 100);
             getRootView().setKeepScreenOn(true);
+            updateNotification(R.drawable.ic_play_arrow_white);
         }
 
         @Override
@@ -648,7 +688,11 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
                 }
             });
             getRootView().setKeepScreenOn(true);
-            getView().findViewById(R.id.surfaceView).setVisibility(View.VISIBLE);
+            getRootView().findViewById(R.id.surfaceView).setVisibility(View.VISIBLE);
+            lockManager.acquireWifiAndCpu();
+            resetNotification();
+            updateNotification(R.drawable.ic_pause_white);
+            startForeground(NOTIFICATION_ID, notBuilder.build());
         }
 
         @Override
@@ -661,9 +705,9 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
                     animatePlayButtons(true, 200);
                 }
             });
-
-            showSystemUi();
             getRootView().setKeepScreenOn(false);
+            lockManager.releaseWifiAndCpu();
+            stopForeground(true);
         }
 
         @Override
@@ -671,6 +715,7 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
             super.onPausedSeek();
             animatePlayButtons(false, 100);
             getRootView().setKeepScreenOn(true);
+            updateNotification(R.drawable.ic_play_arrow_white);
         }
 
 
@@ -685,13 +730,98 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
             });
 
             getRootView().setKeepScreenOn(false);
+            showControls(100);
+            lockManager.releaseWifiAndCpu();
+            stopForeground(true);
             // Produce a bad interface
             //super.onCompleted();
+        }
+
+        @Override
+        public void destroy() {
+            stopForeground(true);
+            super.destroy();
+        }
+
+        @Override
+        public void onThumbnailReceived(Bitmap thumbnail) {
+            super.onThumbnailReceived(thumbnail);
+            if (thumbnail != null) {
+                cachedImage = thumbnail;
+                // rebuild notification here since remote view does not release bitmaps, causing memory leaks
+                notBuilder = createNotification();
+
+                if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
+
+                updateNotification(-1);
+            }
+        }
+
+        /*//////////////////////////////////////////////////////////////////////////
+        // Broadcast Receiver
+        //////////////////////////////////////////////////////////////////////////*/
+
+        @Override
+        protected void setupBroadcastReceiver(IntentFilter intentFilter) {
+            super.setupBroadcastReceiver(intentFilter);
+            if (DEBUG) Log.d(TAG, "setupBroadcastReceiver() called with: intentFilter = [" + intentFilter + "]");
+            intentFilter.addAction(ACTION_CLOSE);
+            intentFilter.addAction(ACTION_PLAY_PAUSE);
+            intentFilter.addAction(ACTION_OPEN_CONTROLS);
+            intentFilter.addAction(ACTION_REPEAT);
+            intentFilter.addAction(Intent.ACTION_SCREEN_ON);
+            intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
+        }
+
+        @Override
+        public void onBroadcastReceived(Intent intent) {
+            super.onBroadcastReceived(intent);
+            if (intent == null || intent.getAction() == null) return;
+            if (DEBUG) Log.d(TAG, "onBroadcastReceived() called with: intent = [" + intent + "]");
+            switch (intent.getAction()) {
+                case ACTION_PLAY_PAUSE:
+                    onVideoPlayPause();
+                    break;
+                case ACTION_OPEN_CONTROLS:
+                    openControl(getApplicationContext());
+                    break;
+                case ACTION_REPEAT:
+                    onRepeatClicked();
+                    break;
+                case Intent.ACTION_SCREEN_ON:
+                    enableVideoRenderer(true);
+                    break;
+                case Intent.ACTION_SCREEN_OFF:
+                    enableVideoRenderer(false);
+                    break;
+            }
+            resetNotification();
         }
 
         /*//////////////////////////////////////////////////////////////////////////
         // Utils
         //////////////////////////////////////////////////////////////////////////*/
+
+        /*package-private*/ void enableVideoRenderer(final boolean enable) {
+            final int videoRendererIndex = getVideoRendererIndex();
+            if (trackSelector != null && videoRendererIndex != -1) {
+                trackSelector.setRendererDisabled(videoRendererIndex, !enable);
+            }
+        }
+        void openControl(Context context) {
+            Intent intent = NavigationHelper.getPlayerIntent(
+                    context,
+                    MainActivity.class,
+                    this.getPlayQueue(),
+                    this.getRepeatMode(),
+                    this.getPlaybackSpeed(),
+                    this.getPlaybackPitch(),
+                    this.getPlaybackQuality()
+            );
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setAction(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+        }
 
         @Override
         public void showControlsThenHide() {
@@ -720,7 +850,23 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
                     animateView(getControlsRoot(), false, duration, 0, new Runnable() {
                         @Override
                         public void run() {
-                            hideSystemUi();
+                            if(getView() == null || getView().getContext() == null || !isFullscreen) return;
+
+                            Activity parent = getParentActivity();
+                            if(parent == null) return;
+
+                            Window window = parent.getWindow();
+
+                            if (android.os.Build.VERSION.SDK_INT >= 16) {
+                                int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) visibility |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+                                window.getDecorView().setSystemUiVisibility(visibility);
+                            }
+                            window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
                         }
                     });
                 }
@@ -767,11 +913,11 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
         }
 
         private void buildQueue() {
-            queueLayout = getActivity().findViewById(R.id.playQueuePanel);
+            queueLayout = getRootView().findViewById(R.id.playQueuePanel);
 
-            itemsListCloseButton = getActivity().findViewById(R.id.playQueueClose);
+            ImageButton itemsListCloseButton = getRootView().findViewById(R.id.playQueueClose);
 
-            itemsList = getActivity().findViewById(R.id.playQueue);
+            itemsList = getRootView().findViewById(R.id.playQueue);
             itemsList.setAdapter(playQueueAdapter);
             itemsList.setClickable(true);
             itemsList.setLongClickable(true);
@@ -855,6 +1001,49 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
         }
 
         ///////////////////////////////////////////////////////////////////////////
+        // Manipulations with listener
+        ///////////////////////////////////////////////////////////////////////////
+
+        /*package-private*/ public void setFragmentListener(PlayerEventListener listener) {
+            fragmentListener = listener;
+            updateMetadata();
+            updatePlayback();
+            triggerProgressUpdate();
+        }
+
+        /*package-private*/public void removeFragmentListener(PlayerEventListener listener) {
+            if (fragmentListener == listener) {
+                fragmentListener = null;
+            }
+        }
+
+        private void updateMetadata() {
+            if (fragmentListener != null && currentInfo != null) {
+                fragmentListener.onMetadataUpdate(currentInfo);
+            }
+        }
+
+        private void updatePlayback() {
+            if (fragmentListener != null && simpleExoPlayer != null && playQueue != null) {
+                fragmentListener.onPlaybackUpdate(currentState, getRepeatMode(), playQueue.isShuffled(), simpleExoPlayer.getPlaybackParameters());
+            }
+        }
+
+        private void updateProgress(int currentProgress, int duration, int bufferPercent) {
+            if (fragmentListener != null) {
+                fragmentListener.onProgressUpdate(currentProgress, duration, bufferPercent);
+            }
+        }
+
+        private void stopActivityBinding() {
+            if (fragmentListener != null) {
+                fragmentListener.onServiceStopped();
+                fragmentListener = null;
+            }
+        }
+
+
+        ///////////////////////////////////////////////////////////////////////////
         // Getters
         ///////////////////////////////////////////////////////////////////////////
 
@@ -908,12 +1097,23 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
             if (playerImpl.isControlsVisible()) playerImpl.hideControls(150, 0);
             else {
                 playerImpl.showControlsThenHide();
-                showSystemUi();
+
+                Activity parent = playerImpl.getParentActivity();
+                if (parent != null && isFullscreen) {
+                    Window window = parent.getWindow();
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        window.getDecorView().setSystemUiVisibility(
+                                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        );
+                    } else
+                        window.getDecorView().setSystemUiVisibility(0);
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                }
             }
             return true;
         }
 
-        private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getActivity().getApplicationContext());
+        private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
 
         private final float stepsBrightness = 15, stepBrightness = (1f / stepsBrightness), minBrightness = .01f;
         private float currentBrightness = .5f;
@@ -965,14 +1165,19 @@ public final class MainVideoPlayer extends Fragment implements BackPressable {
 
                 if (playerImpl.getVolumeTextView().getVisibility() != View.VISIBLE) animateView(playerImpl.getVolumeTextView(), true, 200);
                 if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) playerImpl.getBrightnessTextView().setVisibility(View.GONE);
-            } else {
-                WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+            } else if(getView().getContext() != null) {
+                Activity parent = playerImpl.getParentActivity();
+                if(parent == null) return true;
+
+                Window window = parent.getWindow();
+
+                WindowManager.LayoutParams lp = window.getAttributes();
                 currentBrightness += up ? stepBrightness : -stepBrightness;
                 if (currentBrightness >= 1f) currentBrightness = 1f;
                 if (currentBrightness <= minBrightness) currentBrightness = minBrightness;
 
                 lp.screenBrightness = currentBrightness;
-                getActivity().getWindow().setAttributes(lp);
+                window.setAttributes(lp);
                 if (DEBUG) Log.d(TAG, "onScroll().brightnessControl, currentBrightness = " + currentBrightness);
                 int brightnessNormalized = Math.round(currentBrightness * 100);
 

@@ -36,4 +36,9 @@ public final class PopupVideoPlayerActivity extends ServicePlayerActivity {
             ((PopupVideoPlayer.VideoPlayerImpl) player).removeActivityListener(this);
         }
     }
+
+    @Override
+    public void onFullScreenButtonClicked(boolean fullscreen) {
+
+    }
 }

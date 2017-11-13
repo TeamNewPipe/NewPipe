@@ -34,6 +34,11 @@
             android:theme="@style/VideoPlayerTheme"
             tools:ignore="UnusedAttribute"/>
 
+
+        <service
+            android:name=".player.MainVideoPlayer"
+            android:exported="false"/>
+
         <service
             android:name=".player.BackgroundPlayer"
             android:exported="false"/>
