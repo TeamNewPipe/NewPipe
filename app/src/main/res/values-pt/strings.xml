@@ -271,4 +271,8 @@ o modo “popup“</string>
     <string name="no_channel_subscribed_yet">Nenhum canal subscreveu ainda</string>
     <string name="select_a_kiosk">Selecione um quiosque</string>
 
+    <string name="kiosk">Quiosque</string>
+    <string name="trending">Tendências</string>
+    <string name="top_50">Top 50</string>
+    <string name="new_and_hot">Novo e popular</string>
     </resources>
