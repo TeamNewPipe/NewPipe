@@ -256,4 +256,14 @@ o modo “popup“</string>
     <string name="history_cleared">Histórico eliminado</string>
     <string name="item_deleted">Item apagado</string>
 <string name="delete_item_search_history">Deseja apagar este item do histórico de pesquisa?</string>
-</resources>
+<string name="play_all">Reproduzir todos</string>
+
+    <string name="unknown_content">[Desconhecido]</string>
+
+    <string name="player_unrecoverable_failure">Ocorreu um erro irrecuperável do reprodutor</string>
+    <string name="player_recoverable_failure">Em recuperação de um erro do reprodutor</string>
+
+    <string name="main_page_content">Conteúdo da página principal</string>
+    <string name="blank_page_summary">Página em branco</string>
+    <string name="subscription_page_summary">Página de Subscrições</string>
+    </resources>
