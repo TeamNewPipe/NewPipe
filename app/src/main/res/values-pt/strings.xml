@@ -269,4 +269,6 @@ o modo “popup“</string>
     <string name="channel_page_summary">Página do canal</string>
     <string name="select_a_channel">Selecione um canal</string>
     <string name="no_channel_subscribed_yet">Nenhum canal subscreveu ainda</string>
+    <string name="select_a_kiosk">Selecione um quiosque</string>
+
     </resources>
