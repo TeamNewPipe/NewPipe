@@ -295,4 +295,11 @@
     <string name="play_queue_stream_detail">Dettagli</string>
     <string name="play_queue_audio_settings">Impostazioni audio</string>
     <string name="hold_to_append">Tieni premuto per accodare</string>
+<string name="unknown_content">[Sconosciuto]</string>
+
+    <string name="enqueue_on_background">In coda sullo sfondo</string>
+    <string name="enqueue_on_popup">In coda nel Popup</string>
+    <string name="start_here_on_main">Inizia la riproduzione qui</string>
+    <string name="start_here_on_background">Inizia qui sullo sfondo</string>
+    <string name="start_here_on_popup">Inizia qui nel Popup</string>
 </resources>
