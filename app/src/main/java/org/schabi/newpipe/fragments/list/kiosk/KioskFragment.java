@@ -55,7 +55,7 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
 public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
 
     @State
-    private String kioskId = "";
+    protected String kioskId = "";
 
 
     /*//////////////////////////////////////////////////////////////////////////
