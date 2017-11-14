@@ -268,4 +268,11 @@
     <string name="play_queue_audio_settings">Ääniasetukset</string>
     <string name="hold_to_append">Pidä pohjassa lisätäksesi jonoon</string>
 <string name="show_hold_to_append_title">Näytä vihje soittolistalle</string>
-    </resources>
+    <string name="unknown_content">[Tuntematon]</string>
+
+    <string name="enqueue_on_background">Lisää taustatoistojonoon</string>
+    <string name="enqueue_on_popup">Lisää ikkunajonoon</string>
+    <string name="start_here_on_main">Aloita toistaminen</string>
+    <string name="start_here_on_background">Aloita toisto taustalla</string>
+    <string name="start_here_on_popup">Aloita toisto ikkunassa</string>
+</resources>
