@@ -42,7 +42,6 @@ public final class InfoCache {
     private static final int TRIM_CACHE_TO = 30;
     private static final int DEFAULT_TIMEOUT_HOURS = 4;
 
-    // TODO: Replace to one with timeout (like the one from guava)
     private static final LruCache<String, CacheData> lruCache = new LruCache<>(MAX_ITEMS_ON_CACHE);
 
     private InfoCache() {
