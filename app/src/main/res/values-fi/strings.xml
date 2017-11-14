@@ -185,7 +185,7 @@
     <string name="finish">OK</string>
 
     <string name="msg_name">Tiedostonimi</string>
-    <string name="msg_threads">Viestiketjut</string>
+    <string name="msg_threads">Säikeet</string>
     <string name="msg_error">Virhe</string>
     <string name="msg_server_unsupported">Serveriä ei tueta</string>
     <string name="msg_exists">Tiedosto on jo olemassa</string>
