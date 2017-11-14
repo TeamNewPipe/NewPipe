@@ -1,36 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
-    android:clickable="true"
-    android:orientation="horizontal"
-    android:paddingBottom="8dp"
-    android:paddingTop="8dp">
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/item_suggestion_icon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        tools:ignore="ContentDescription,RtlHardcoded"
-        tools:src="?attr/history"/>
-
-    <TextView
-        android:id="@+id/item_suggestion_query"
+    <LinearLayout
+        android:id="@+id/suggestion_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="8dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@id/suggestion_insert"
+        android:layout_toStartOf="@id/suggestion_insert"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp">
+
+        <ImageView
+            android:id="@+id/item_suggestion_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            tools:ignore="ContentDescription,RtlHardcoded"
+            tools:src="?attr/history"/>
+
+        <TextView
+            android:id="@+id/item_suggestion_query"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="14sp"
+            tools:ignore="RtlHardcoded"
+            tools:text="Search query"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/suggestion_insert"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="14sp"
-        tools:ignore="RtlHardcoded"
-        tools:text="Search query"/>
-</LinearLayout>
+        android:src="?attr/search_add"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        tools:ignore="ContentDescription,RtlHardcoded"/>
+</RelativeLayout>

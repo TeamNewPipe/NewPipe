@@ -165,7 +165,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
         suggestionListAdapter = new SuggestionListAdapter(activity);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         isSearchHistoryEnabled = preferences.getBoolean(getString(R.string.enable_search_history_key), true);
-        suggestionListAdapter.setShowSugestinHistory(isSearchHistoryEnabled);
+        suggestionListAdapter.setShowSuggestionHistory(isSearchHistoryEnabled);
         
         searchHistoryDAO = NewPipeDatabase.getInstance().searchHistoryDAO();
     }
@@ -443,6 +443,11 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
             @Override
             public void onSuggestionItemSelected(SuggestionItem item) {
                 search(item.query);
+                searchEditText.setText(item.query);
+            }
+
+            @Override
+            public void onSuggestionItemInserted(SuggestionItem item) {
                 searchEditText.setText(item.query);
             }
 
