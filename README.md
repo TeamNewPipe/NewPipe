@@ -57,8 +57,8 @@ NewPipe does not use any Google framework libraries, or the YouTube API. It only
 * Search history
 * Search/Watch Playlists
 * Watch as queues Playlists
-* Queuing video
-* Trending Page
+* Queuing videos
+* Trending page
 
 ### Coming Features
 
