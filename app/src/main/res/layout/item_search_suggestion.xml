@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <LinearLayout
         android:id="@+id/suggestion_search"
@@ -17,7 +18,6 @@
         android:layout_toLeftOf="@id/suggestion_insert"
         android:layout_toStartOf="@id/suggestion_insert"
         android:layout_centerVertical="true"
-        android:orientation="horizontal"
         android:paddingBottom="8dp"
         android:paddingTop="8dp">
 
@@ -44,17 +44,28 @@
             tools:text="Search query"/>
     </LinearLayout>
 
-    <ImageView
+    <LinearLayout
         android:id="@+id/suggestion_insert"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:focusable="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:src="?attr/search_add"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        tools:ignore="ContentDescription,RtlHardcoded"/>
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:src="?attr/search_add"
+            tools:ignore="ContentDescription,RtlHardcoded"/>
+    </LinearLayout>
+
+
 </RelativeLayout>
