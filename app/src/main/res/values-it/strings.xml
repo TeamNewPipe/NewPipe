@@ -281,7 +281,7 @@
     <string name="new_and_hot">Nuovi e caldi</string>
 <string name="show_hold_to_append_title">Mostra il suggerimento di tenere premuto per appendere</string>
     <string name="show_hold_to_append_summary">Mostra un suggerimento quando il pulsante in sottofondo o a comparsa viene premuto nella pagina dei dettagli di un video</string>
-    <string name="background_player_append">In coda al riproduttore in sottofondo</string>
+    <string name="background_player_append">In coda sul lettore di sfondo</string>
     <string name="popup_playing_append">In coda al riproduttore a comparsa</string>
     <string name="play_all">Riproduci tutto</string>
 
