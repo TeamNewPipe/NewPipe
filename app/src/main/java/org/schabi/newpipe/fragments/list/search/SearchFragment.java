@@ -449,6 +449,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
             @Override
             public void onSuggestionItemInserted(SuggestionItem item) {
                 searchEditText.setText(item.query);
+                searchEditText.setSelection(searchEditText.getText().length());
             }
 
             @Override

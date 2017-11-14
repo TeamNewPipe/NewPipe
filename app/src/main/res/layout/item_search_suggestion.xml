@@ -57,11 +57,11 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:paddingBottom="8dp"
-        android:paddingTop="8dp">
+        android:paddingTop="10dp">
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_gravity="center"
             android:src="?attr/search_add"
             tools:ignore="ContentDescription,RtlHardcoded"/>
