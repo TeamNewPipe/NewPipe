@@ -59,7 +59,6 @@ import android.widget.TextView;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.SimpleExoPlayer;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
@@ -97,7 +96,7 @@ public class MainVideoPlayer extends Service {
 
     private GestureDetector gestureDetector;
 
-    public VideoPlayerImpl playerImpl;
+    private VideoPlayerImpl playerImpl;
     public boolean isFullscreen = false;
     private ImageButton screenRotationButton;
 
@@ -109,10 +108,10 @@ public class MainVideoPlayer extends Service {
     private NotificationCompat.Builder notBuilder;
     private RemoteViews notRemoteView;
     private static final int NOTIFICATION_ID = 417308;
-    public static final String ACTION_CLOSE = "org.schabi.newpipe.player.MainVideoPlayer.CLOSE";
-    public static final String ACTION_PLAY_PAUSE = "org.schabi.newpipe.player.MainVideoPlayer.PLAY_PAUSE";
-    public static final String ACTION_OPEN_CONTROLS = "org.schabi.newpipe.player.MainVideoPlayer.OPEN_CONTROLS";
-    public static final String ACTION_REPEAT = "org.schabi.newpipe.player.MainVideoPlayer.REPEAT";
+    private static final String ACTION_CLOSE = "org.schabi.newpipe.player.MainVideoPlayer.CLOSE";
+    private static final String ACTION_PLAY_PAUSE = "org.schabi.newpipe.player.MainVideoPlayer.PLAY_PAUSE";
+    private static final String ACTION_OPEN_CONTROLS = "org.schabi.newpipe.player.MainVideoPlayer.OPEN_CONTROLS";
+    private static final String ACTION_REPEAT = "org.schabi.newpipe.player.MainVideoPlayer.REPEAT";
 
     private LockManager lockManager;
 
@@ -122,12 +121,13 @@ public class MainVideoPlayer extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        Log.d(TAG, "service in onBind");
+        if(DEBUG) Log.d(TAG, "service in onBind");
         return mBinder;
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
+        if(DEBUG) Log.d(TAG, "service in onUnbind");
         return super.onUnbind(intent);
     }
 
@@ -144,7 +144,7 @@ public class MainVideoPlayer extends Service {
 
     @Override
     public int onStartCommand(final Intent intent, final int flags, final int startId) {
-        Log.d(TAG, "onStartCommand() called");
+        if(DEBUG) Log.d(TAG, "onStartCommand() called");
         return Service.START_NOT_STICKY;
     }
 
@@ -152,14 +152,14 @@ public class MainVideoPlayer extends Service {
     public void onCreate() {
         super.onCreate();
         ThemeHelper.setTheme(this);
-        Log.d(TAG, "onCreate() called");
+        if(DEBUG) Log.d(TAG, "onCreate() called");
         notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
         lockManager = new LockManager(this);
 
         createView();
     }
 
-    public void createView() {
+    private void createView() {
         View layout = View.inflate(this, R.layout.activity_main_player, null);
 
         playerImpl = new VideoPlayerImpl(this);
@@ -170,18 +170,13 @@ public class MainVideoPlayer extends Service {
         checkAutorotation();
     }
 
-    public SimpleExoPlayer getPlayer() {
-        return playerImpl.getPlayer();
-    }
-
-    public void onStop() {
-        if (DEBUG) Log.d(TAG, "onStop() called");
+    public void stop() {
+        if (DEBUG) Log.d(TAG, "stop() called");
 
         if (playerImpl.getPlayer() != null) {
             playerImpl.wasPlaying = playerImpl.getPlayer().getPlayWhenReady();
             playerImpl.getPlayer().setPlayWhenReady(false);
             playerImpl.setRecovery();
-            playerImpl.destroyPlayer();
         }
     }
 
@@ -189,7 +184,9 @@ public class MainVideoPlayer extends Service {
     public void onDestroy() {
         super.onDestroy();
         if (DEBUG) Log.d(TAG, "onDestroy() called");
-        if (playerImpl != null) playerImpl.destroy();
+
+        if (notificationManager != null) notificationManager.cancel(NOTIFICATION_ID);
+        if (lockManager != null) lockManager.releaseWifiAndCpu();
 
         if (playerImpl != null) {
             if (getView() != null && getView().getParent() != null) {
@@ -200,10 +197,8 @@ public class MainVideoPlayer extends Service {
             playerImpl.setRootView(null);
             playerImpl.stopActivityBinding();
             playerImpl.destroy();
+            playerImpl = null;
         }
-        if (notificationManager != null) notificationManager.cancel(NOTIFICATION_ID);
-        if (lockManager != null) lockManager.releaseWifiAndCpu();
-        playerImpl = null;
         stopForeground(true);
         stopSelf();
     }
@@ -213,8 +208,12 @@ public class MainVideoPlayer extends Service {
     //////////////////////////////////////////////////////////////////////////*/
 
     public void loadVideo(StreamInfo info, PlayQueue queue, String videoResolution, long playbackPosition, boolean fullscreen) {
-        if(playerImpl == null || playerImpl.getPlayer() == null)
-            return;
+        if(playerImpl == null)
+            createView();
+
+        // Player is null after playerImpl.destroy() was called
+        if(playerImpl.getPlayer() == null)
+            playerImpl.initPlayer();
 
         if(queue == null)
             playerImpl.playQueue = new SinglePlayQueue(info);
@@ -248,7 +247,7 @@ public class MainVideoPlayer extends Service {
         return (playerImpl != null && playerImpl.getPlayer() != null)? playerImpl.getPlayer().getCurrentPosition() : 0;
     }
 
-    protected void setRepeatModeButton(final ImageButton imageButton, final int repeatMode) {
+    private void setRepeatModeButton(final ImageButton imageButton, final int repeatMode) {
         switch (repeatMode) {
             case Player.REPEAT_MODE_OFF:
                 imageButton.setImageResource(R.drawable.exo_controls_repeat_off);
@@ -262,7 +261,7 @@ public class MainVideoPlayer extends Service {
         }
     }
 
-    protected void setShuffleButton(final ImageButton shuffleButton, final boolean shuffled) {
+    private void setShuffleButton(final ImageButton shuffleButton, final boolean shuffled) {
         final int shuffleAlpha = shuffled ? 255 : 77;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             shuffleButton.setImageAlpha(shuffleAlpha);
@@ -309,6 +308,7 @@ public class MainVideoPlayer extends Service {
                 .setOngoing(true)
                 .setSmallIcon(R.drawable.ic_play_arrow_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setPriority(NotificationCompat.PRIORITY_MIN)
                 .setContent(notRemoteView);
     }
 
@@ -325,7 +325,7 @@ public class MainVideoPlayer extends Service {
         notificationManager.notify(NOTIFICATION_ID, notBuilder.build());
     }
 
-    protected void setRepeatModeRemote(final RemoteViews remoteViews, final int repeatMode) {
+    private void setRepeatModeRemote(final RemoteViews remoteViews, final int repeatMode) {
         final String methodName = "setImageResource";
 
         if (remoteViews == null) return;
@@ -462,6 +462,9 @@ public class MainVideoPlayer extends Service {
 
             if(error.type == ExoPlaybackException.TYPE_SOURCE)
                 destroy();
+
+            if(fragmentListener != null)
+                fragmentListener.onPlayerError(error);
         }
 
         @Override
@@ -1102,9 +1105,7 @@ public class MainVideoPlayer extends Service {
                 if (parent != null && isFullscreen) {
                     Window window = parent.getWindow();
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                        window.getDecorView().setSystemUiVisibility(
-                                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        );
+                        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
                     } else
                         window.getDecorView().setSystemUiVisibility(0);
                     window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -1118,7 +1119,8 @@ public class MainVideoPlayer extends Service {
         private final float stepsBrightness = 15, stepBrightness = (1f / stepsBrightness), minBrightness = .01f;
         private float currentBrightness = .5f;
 
-        private int currentVolume, maxVolume = playerImpl.getAudioReactor().getMaxVolume();
+        private int currentVolume;
+        private final int maxVolume = playerImpl.getAudioReactor().getMaxVolume();
         private final float stepsVolume = 15, stepVolume = (float) Math.ceil(maxVolume / stepsVolume), minVolume = 0;
 
         private final String brightnessUnicode = new String(Character.toChars(0x2600));
