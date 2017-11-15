@@ -1129,7 +1129,8 @@ public class MainVideoPlayer extends Service {
 
         private final int MOVEMENT_THRESHOLD = 40;
         private final int eventsThreshold = 8;
-        private boolean triggered = false;
+        private boolean triggeredX = false;
+        private boolean triggeredY = false;
         private int eventsNum;
 
         // TODO: Improve video gesture controls
@@ -1142,60 +1143,83 @@ public class MainVideoPlayer extends Service {
                     ", e1.getRaw = [" + e1.getRawX() + ", " + e1.getRawY() + "]" +
                     ", e2.getRaw = [" + e2.getRawX() + ", " + e2.getRawY() + "]" +
                     ", distanceXy = [" + distanceX + ", " + distanceY + "]");
-            float abs = Math.abs(e2.getY() - e1.getY());
-            if (!triggered) {
-                triggered = abs > MOVEMENT_THRESHOLD;
+            float absX = Math.abs(e2.getX() - e1.getX());
+            float absY = Math.abs(e2.getY() - e1.getY());
+
+            if (!triggeredX && !triggeredY) {
+                triggeredX = absX > MOVEMENT_THRESHOLD && absX > absY;
+                triggeredY = absY > MOVEMENT_THRESHOLD && absY > absX;
                 return false;
             }
 
-            if (eventsNum++ % eventsThreshold != 0 || playerImpl.getCurrentState() == BasePlayer.STATE_COMPLETED) return false;
-            isMoving = true;
+            // It will help to drop two events at a time
+            if(absX > absY && !triggeredX) return false;
+            if(absX < absY && !triggeredY) return false;
+
+            if(absX > absY) {
+                isMoving = true;
+                boolean right = distanceX < 0;
+                float duration = playerImpl.getPlayer().getDuration();
+                float distance = right? absX : -absX;
+                float currentPosition = playerImpl.getPlayer().getCurrentPosition();
+                float position = currentPosition + distance * 1000 / 200;
+                position = position >= duration ? duration - 5000 : position;
+                position = position <= 0 ? 0 : position;
+                if(!playerImpl.isControlsVisible())
+                    playerImpl.showControls(0);
+
+                playerImpl.getPlayer().seekTo((long)position);
+            }
+            else {
+                if (eventsNum++ % eventsThreshold != 0 || playerImpl.getCurrentState() == BasePlayer.STATE_COMPLETED) return false;
+                isMoving = true;
 //            boolean up = !((e2.getY() - e1.getY()) > 0) && distanceY > 0; // Android's origin point is on top
-            boolean up = distanceY > 0;
+                boolean up = distanceY > 0;
 
+                if (e1.getX() > playerImpl.getRootView().getWidth() / 2) {
+                    double floor = Math.floor(up ? stepVolume : -stepVolume);
+                    currentVolume = (int) (playerImpl.getAudioReactor().getVolume() + floor);
+                    if (currentVolume >= maxVolume) currentVolume = maxVolume;
+                    if (currentVolume <= minVolume) currentVolume = (int) minVolume;
+                    playerImpl.getAudioReactor().setVolume(currentVolume);
 
-            if (e1.getX() > playerImpl.getRootView().getWidth() / 2) {
-                double floor = Math.floor(up ? stepVolume : -stepVolume);
-                currentVolume = (int) (playerImpl.getAudioReactor().getVolume() + floor);
-                if (currentVolume >= maxVolume) currentVolume = maxVolume;
-                if (currentVolume <= minVolume) currentVolume = (int) minVolume;
-                playerImpl.getAudioReactor().setVolume(currentVolume);
+                    currentVolume = playerImpl.getAudioReactor().getVolume();
+                    if (DEBUG) Log.d(TAG, "onScroll().volumeControl, currentVolume = " + currentVolume);
+                    final String volumeText = volumeUnicode + " " + Math.round((((float) currentVolume) / maxVolume) * 100) + "%";
+                    playerImpl.getVolumeTextView().setText(volumeText);
 
-                currentVolume = playerImpl.getAudioReactor().getVolume();
-                if (DEBUG) Log.d(TAG, "onScroll().volumeControl, currentVolume = " + currentVolume);
-                final String volumeText = volumeUnicode + " " + Math.round((((float) currentVolume) / maxVolume) * 100) + "%";
-                playerImpl.getVolumeTextView().setText(volumeText);
+                    if (playerImpl.getVolumeTextView().getVisibility() != View.VISIBLE) animateView(playerImpl.getVolumeTextView(), true, 200);
+                    if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) playerImpl.getBrightnessTextView().setVisibility(View.GONE);
+                } else if(getView().getContext() != null) {
+                    Activity parent = playerImpl.getParentActivity();
+                    if(parent == null) return true;
 
-                if (playerImpl.getVolumeTextView().getVisibility() != View.VISIBLE) animateView(playerImpl.getVolumeTextView(), true, 200);
-                if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) playerImpl.getBrightnessTextView().setVisibility(View.GONE);
-            } else if(getView().getContext() != null) {
-                Activity parent = playerImpl.getParentActivity();
-                if(parent == null) return true;
+                    Window window = parent.getWindow();
 
-                Window window = parent.getWindow();
+                    WindowManager.LayoutParams lp = window.getAttributes();
+                    currentBrightness += up ? stepBrightness : -stepBrightness;
+                    if (currentBrightness >= 1f) currentBrightness = 1f;
+                    if (currentBrightness <= minBrightness) currentBrightness = minBrightness;
 
-                WindowManager.LayoutParams lp = window.getAttributes();
-                currentBrightness += up ? stepBrightness : -stepBrightness;
-                if (currentBrightness >= 1f) currentBrightness = 1f;
-                if (currentBrightness <= minBrightness) currentBrightness = minBrightness;
+                    lp.screenBrightness = currentBrightness;
+                    window.setAttributes(lp);
+                    if (DEBUG) Log.d(TAG, "onScroll().brightnessControl, currentBrightness = " + currentBrightness);
+                    int brightnessNormalized = Math.round(currentBrightness * 100);
 
-                lp.screenBrightness = currentBrightness;
-                window.setAttributes(lp);
-                if (DEBUG) Log.d(TAG, "onScroll().brightnessControl, currentBrightness = " + currentBrightness);
-                int brightnessNormalized = Math.round(currentBrightness * 100);
+                    final String brightnessText = brightnessUnicode + " " + (brightnessNormalized == 1 ? 0 : brightnessNormalized) + "%";
+                    playerImpl.getBrightnessTextView().setText(brightnessText);
 
-                final String brightnessText = brightnessUnicode + " " + (brightnessNormalized == 1 ? 0 : brightnessNormalized) + "%";
-                playerImpl.getBrightnessTextView().setText(brightnessText);
-
-                if (playerImpl.getBrightnessTextView().getVisibility() != View.VISIBLE) animateView(playerImpl.getBrightnessTextView(), true, 200);
-                if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) playerImpl.getVolumeTextView().setVisibility(View.GONE);
+                    if (playerImpl.getBrightnessTextView().getVisibility() != View.VISIBLE) animateView(playerImpl.getBrightnessTextView(), true, 200);
+                    if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) playerImpl.getVolumeTextView().setVisibility(View.GONE);
+                }
             }
             return true;
         }
 
         private void onScrollEnd() {
             if (DEBUG) Log.d(TAG, "onScrollEnd() called");
-            triggered = false;
+            triggeredX = false;
+            triggeredY = false;
             eventsNum = 0;
             /* if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) playerImpl.getVolumeTextView().setVisibility(View.GONE);
             if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) playerImpl.getBrightnessTextView().setVisibility(View.GONE);*/
