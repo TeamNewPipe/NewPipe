@@ -102,7 +102,7 @@
     <string name="could_not_load_image">Kunne ikke laste bilde</string>
     <string name="app_ui_crash">Program/brukergrensesnitt kræsjet</string>
     <string name="pause">Pause</string>
-    <string name="view">Vis</string>
+    <string name="view">Spill</string>
     <string name="delete">Slett</string>
     <string name="checksum">Sjekksum</string>
 
