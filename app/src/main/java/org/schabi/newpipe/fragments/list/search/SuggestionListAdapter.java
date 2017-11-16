@@ -19,10 +19,11 @@ public class SuggestionListAdapter extends RecyclerView.Adapter<SuggestionListAd
     private final ArrayList<SuggestionItem> items = new ArrayList<>();
     private final Context context;
     private OnSuggestionItemSelected listener;
-    private boolean showSugestinHistory = true;
+    private boolean showSuggestionHistory = true;
 
     public interface OnSuggestionItemSelected {
         void onSuggestionItemSelected(SuggestionItem item);
+        void onSuggestionItemInserted(SuggestionItem item);
         void onSuggestionItemLongClick(SuggestionItem item);
     }
 
@@ -32,7 +33,7 @@ public class SuggestionListAdapter extends RecyclerView.Adapter<SuggestionListAd
 
     public void setItems(List<SuggestionItem> items) {
         this.items.clear();
-        if (showSugestinHistory) {
+        if (showSuggestionHistory) {
             this.items.addAll(items);
         } else {
             // remove history items if history is disabled
@@ -49,8 +50,8 @@ public class SuggestionListAdapter extends RecyclerView.Adapter<SuggestionListAd
         this.listener = listener;
     }
 
-    public void setShowSugestinHistory(boolean v) {
-        showSugestinHistory = v;
+    public void setShowSuggestionHistory(boolean v) {
+        showSuggestionHistory = v;
     }
 
     @Override
@@ -62,17 +63,23 @@ public class SuggestionListAdapter extends RecyclerView.Adapter<SuggestionListAd
     public void onBindViewHolder(SuggestionItemHolder holder, int position) {
         final SuggestionItem currentItem = getItem(position);
         holder.updateFrom(currentItem);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.queryView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (listener != null) listener.onSuggestionItemSelected(currentItem);
             }
         });
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+        holder.queryView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 if (listener != null) listener.onSuggestionItemLongClick(currentItem);
                 return true;
+            }
+        });
+        holder.insertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) listener.onSuggestionItemInserted(currentItem);
             }
         });
     }
@@ -93,6 +100,8 @@ public class SuggestionListAdapter extends RecyclerView.Adapter<SuggestionListAd
     public static class SuggestionItemHolder extends RecyclerView.ViewHolder {
         private final TextView itemSuggestionQuery;
         private final ImageView suggestionIcon;
+        private final View queryView;
+        private final View insertView;
 
         // Cache some ids, as they can potentially be constantly updated/recycled
         private final int historyResId;
@@ -102,6 +111,9 @@ public class SuggestionListAdapter extends RecyclerView.Adapter<SuggestionListAd
             super(rootView);
             suggestionIcon = rootView.findViewById(R.id.item_suggestion_icon);
             itemSuggestionQuery = rootView.findViewById(R.id.item_suggestion_query);
+
+            queryView = rootView.findViewById(R.id.suggestion_search);
+            insertView = rootView.findViewById(R.id.suggestion_insert);
 
             historyResId = resolveResourceIdFromAttr(rootView.getContext(), R.attr.history);
             searchResId = resolveResourceIdFromAttr(rootView.getContext(), R.attr.search);

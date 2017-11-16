@@ -34,22 +34,22 @@
 
             <TextView
                 android:id="@+id/notificationSongName"
-                style="@android:style/TextAppearance.StatusBar.EventContent.Title"
                 android:layout_width="match_parent"
                 android:ellipsize="end"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:textSize="14sp"
+                android:textColor="@color/background_title_color"
                 tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta."/>
 
             <TextView
                 android:id="@+id/notificationArtist"
                 android:layout_width="match_parent"
-                style="@android:style/TextAppearance.StatusBar.EventContent"
                 android:ellipsize="end"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:textSize="12sp"
+                android:textColor="@color/background_subtext_color"
                 tools:text="Duis posuere arcu condimentum lobortis mattis."/>
         </LinearLayout>
 

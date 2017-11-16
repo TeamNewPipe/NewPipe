@@ -26,6 +26,9 @@ import android.util.Log;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.extractor.Info;
 
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
 
 public final class InfoCache {
     private static final boolean DEBUG = MainActivity.DEBUG;
@@ -37,9 +40,9 @@ public final class InfoCache {
      * Trim the cache to this size
      */
     private static final int TRIM_CACHE_TO = 30;
+    private static final int DEFAULT_TIMEOUT_HOURS = 4;
 
-    // TODO: Replace to one with timeout (like the one from guava)
-    private static final LruCache<String, Info> lruCache = new LruCache<>(MAX_ITEMS_ON_CACHE);
+    private static final LruCache<String, CacheData> lruCache = new LruCache<>(MAX_ITEMS_ON_CACHE);
 
     private InfoCache() {
         //no instance
@@ -52,28 +55,29 @@ public final class InfoCache {
     public Info getFromKey(int serviceId, @NonNull String url) {
         if (DEBUG) Log.d(TAG, "getFromKey() called with: serviceId = [" + serviceId + "], url = [" + url + "]");
         synchronized (lruCache) {
-            return lruCache.get(serviceId + url);
+            return getInfo(lruCache, keyOf(serviceId, url));
         }
     }
 
     public void putInfo(@NonNull Info info) {
         if (DEBUG) Log.d(TAG, "putInfo() called with: info = [" + info + "]");
         synchronized (lruCache) {
-            lruCache.put(info.service_id + info.url, info);
+            final CacheData data = new CacheData(info, DEFAULT_TIMEOUT_HOURS, TimeUnit.HOURS);
+            lruCache.put(keyOf(info), data);
         }
     }
 
     public void removeInfo(@NonNull Info info) {
         if (DEBUG) Log.d(TAG, "removeInfo() called with: info = [" + info + "]");
         synchronized (lruCache) {
-            lruCache.remove(info.service_id + info.url);
+            lruCache.remove(keyOf(info));
         }
     }
 
     public void removeInfo(int serviceId, @NonNull String url) {
         if (DEBUG) Log.d(TAG, "removeInfo() called with: serviceId = [" + serviceId + "], url = [" + url + "]");
         synchronized (lruCache) {
-            lruCache.remove(serviceId + url);
+            lruCache.remove(keyOf(serviceId, url));
         }
     }
 
@@ -87,6 +91,7 @@ public final class InfoCache {
     public void trimCache() {
         if (DEBUG) Log.d(TAG, "trimCache() called");
         synchronized (lruCache) {
+            removeStaleCache(lruCache);
             lruCache.trimToSize(TRIM_CACHE_TO);
         }
     }
@@ -97,4 +102,51 @@ public final class InfoCache {
         }
     }
 
+    private static String keyOf(@NonNull final Info info) {
+        return keyOf(info.service_id, info.url);
+    }
+
+    private static String keyOf(final int serviceId, @NonNull final String url) {
+        return serviceId + url;
+    }
+
+    private static void removeStaleCache(@NonNull final LruCache<String, CacheData> cache) {
+        for (Map.Entry<String, CacheData> entry : cache.snapshot().entrySet()) {
+            final CacheData data = entry.getValue();
+            if (data != null && data.isExpired()) {
+                cache.remove(entry.getKey());
+            }
+        }
+    }
+
+    private static Info getInfo(@NonNull final LruCache<String, CacheData> cache,
+                                @NonNull final String key) {
+        final CacheData data = cache.get(key);
+        if (data == null) return null;
+
+        if (data.isExpired()) {
+            cache.remove(key);
+            return null;
+        }
+
+        return data.info;
+    }
+
+    final private static class CacheData {
+        final private long expireTimestamp;
+        final private Info info;
+
+        private CacheData(@NonNull final Info info,
+                          final long timeout,
+                          @NonNull final TimeUnit timeUnit) {
+            this.expireTimestamp = System.currentTimeMillis() +
+                    TimeUnit.MILLISECONDS.convert(timeout, timeUnit);
+
+            this.info = info;
+        }
+
+        private boolean isExpired() {
+            return System.currentTimeMillis() > expireTimestamp;
+        }
+    }
 }

@@ -842,6 +842,8 @@ public final class PopupVideoPlayer extends Service {
                 }
                 savePositionAndSize();
             }
+
+            v.performClick();
             return true;
         }
 
@@ -880,23 +882,25 @@ public final class PopupVideoPlayer extends Service {
         private final Context context;
         private final Handler mainHandler;
 
-        FetcherHandler(Context context, int serviceId, String url) {
+        private FetcherHandler(Context context, int serviceId, String url) {
             this.mainHandler = new Handler(PopupVideoPlayer.this.getMainLooper());
             this.context = context;
             this.url = url;
             this.serviceId = serviceId;
         }
 
-        /*package-private*/ void onReceive(final StreamInfo info) {
+        private void onReceive(final StreamInfo info) {
             mainHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    playerImpl.initPlayback(new SinglePlayQueue(info));
+                    final Intent intent = NavigationHelper.getPlayerIntent(getApplicationContext(),
+                            PopupVideoPlayer.class, new SinglePlayQueue(info));
+                    playerImpl.handleIntent(intent);
                 }
             });
         }
 
-        protected void onError(final Throwable exception) {
+        private void onError(final Throwable exception) {
             if (DEBUG) Log.d(TAG, "onError() called with: exception = [" + exception + "]");
             exception.printStackTrace();
             mainHandler.post(new Runnable() {
@@ -922,7 +926,7 @@ public final class PopupVideoPlayer extends Service {
             stopSelf();
         }
 
-        /*package-private*/ void onReCaptchaException() {
+        private void onReCaptchaException() {
             Toast.makeText(context, R.string.recaptcha_request_toast, Toast.LENGTH_LONG).show();
             // Starting ReCaptcha Challenge Activity
             Intent intent = new Intent(context, ReCaptchaActivity.class);
