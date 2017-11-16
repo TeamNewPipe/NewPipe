@@ -134,6 +134,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     protected final static int FAST_FORWARD_REWIND_AMOUNT = 10000; // 10 Seconds
     protected final static int PLAY_PREV_ACTIVATION_LIMIT = 5000; // 5 seconds
     protected final static int PROGRESS_LOOP_INTERVAL = 500;
+    protected final static int RECOVERY_SKIP_THRESHOLD = 3000; // 3 seconds
 
     protected SimpleExoPlayer simpleExoPlayer;
     protected AudioReactor audioReactor;
@@ -453,16 +454,20 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         final PlayQueueItem currentSourceItem = playQueue.getItem();
 
         // Check if already playing correct window
-        final boolean isCurrentWindowCorrect = simpleExoPlayer.getCurrentWindowIndex() == currentSourceIndex;
+        final boolean isCurrentWindowCorrect =
+                simpleExoPlayer.getCurrentWindowIndex() == currentSourceIndex;
 
         // Check if recovering
-        if (isCurrentWindowCorrect && currentSourceItem != null &&
-                currentSourceItem.getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
+        if (isCurrentWindowCorrect && currentSourceItem != null) {
             /* Recovering with sub-second position may cause a long buffer delay in ExoPlayer,
              * rounding this position to the nearest second will help alleviate this.*/
             final long position = currentSourceItem.getRecoveryPosition();
 
-            if (DEBUG) Log.d(TAG, "Rewinding to recovery window: " + currentSourceIndex + " at: " + getTimeString((int)position));
+            /* Skip recovering if the recovery position is not set.*/
+            if (position == PlayQueueItem.RECOVERY_UNSET) return;
+
+            if (DEBUG) Log.d(TAG, "Rewinding to recovery window: " + currentSourceIndex +
+                    " at: " + getTimeString((int)position));
             simpleExoPlayer.seekTo(currentSourceItem.getRecoveryPosition());
             playQueue.unsetRecovery(currentSourceIndex);
         }
@@ -514,10 +519,10 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
                 }
                 break;
             case Player.STATE_READY: //3
+                recover();
                 if (!isPrepared) {
                     isPrepared = true;
                     onPrepared(playWhenReady);
-                    recover();
                     break;
                 }
                 if (currentState == STATE_PAUSED_SEEK) break;
@@ -544,14 +549,18 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
      * an error to the play queue based on if the current error can be skipped.
      *
      * This is done because ExoPlayer reports the source exceptions before window is
-     * transitioned on seamless playback.
+     * transitioned on seamless playback. Because player error causes ExoPlayer to go
+     * back to {@link Player#STATE_IDLE STATE_IDLE}, we reset and prepare the media source
+     * again to resume playback.
      *
-     * Because player error causes ExoPlayer to go back to {@link Player#STATE_IDLE STATE_IDLE},
-     * we reset and prepare the media source again to resume playback.<br><br>
+     * In the event that this error is produced during a valid stream playback, we save the
+     * current position so the playback may be recovered and resumed manually by the user. This
+     * happens only if the playback is {@link #RECOVERY_SKIP_THRESHOLD} milliseconds until complete.
+     * <br><br>
      *
      * {@link ExoPlaybackException#TYPE_UNEXPECTED TYPE_UNEXPECTED}: <br><br>
      * If a runtime error occurred, then we can try to recover it by restarting the playback
-     * after setting the timestamp recovery.
+     * after setting the timestamp recovery. <br><br>
      *
      * {@link ExoPlaybackException#TYPE_RENDERER TYPE_RENDERER}: <br><br>
      * If the renderer failed, treat the error as unrecoverable.
@@ -568,6 +577,10 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
 
         switch (error.type) {
             case ExoPlaybackException.TYPE_SOURCE:
+                if (simpleExoPlayer.getCurrentPosition() <
+                        simpleExoPlayer.getDuration() - RECOVERY_SKIP_THRESHOLD) {
+                    setRecovery();
+                }
                 playQueue.error(isCurrentWindowValid());
                 showStreamError(error);
                 break;

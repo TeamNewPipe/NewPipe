@@ -154,6 +154,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     @Override
     protected void showStreamDialog(final StreamInfoItem item) {
         final Context context = getContext();
+        if (context == null || context.getResources() == null || getActivity() == null) return;
+
         final String[] commands = new String[]{
                 context.getResources().getString(R.string.enqueue_on_background),
                 context.getResources().getString(R.string.enqueue_on_popup),
