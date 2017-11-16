@@ -278,4 +278,20 @@
     <string name="play_queue_remove">Retirer</string>
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Réglages audio</string>
-    </resources>
+    <string name="show_hold_to_append_title">Afficher l\'aide \"Appui long pour mettre en file d\'attente\"</string>
+    <string name="show_hold_to_append_summary">Afficher l\'aide lors de l\'appui du bouton de fond ou de lecteur flottant sur la page de détails d\'une vidéo</string>
+    <string name="unknown_content">[Inconnu]</string>
+
+    <string name="player_recoverable_failure">Récupération de l\'erreur du lecteur</string>
+
+    <string name="kiosk_page_summary">Page Kiosque</string>
+    <string name="select_a_kiosk">Sélectionner un kiosque</string>
+
+    <string name="kiosk">Kiosque</string>
+    <string name="hold_to_append">Appui long pour mettre en file d\'attente</string>
+    <string name="enqueue_on_background">Mettre en file d\'attente en fond</string>
+    <string name="enqueue_on_popup">Mettre en file d\'attente en lecture flottante</string>
+    <string name="start_here_on_main">Démarrer ici</string>
+    <string name="start_here_on_background">Démarrer ici en fond</string>
+    <string name="start_here_on_popup">Démarrer ici en lecteur flottant</string>
+</resources>
