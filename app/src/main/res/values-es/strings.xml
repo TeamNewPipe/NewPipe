@@ -294,4 +294,7 @@ abrir en modo popup</string>
     <string name="start_here_on_main">Comenzar a reproducir aquí</string>
     <string name="start_here_on_background">Comenzar aquí en segundo plano</string>
     <string name="start_here_on_popup">Comenzar aquí en popup</string>
-</resources>
+<string name="show_hold_to_append_title">Desplegar consejo \"Mantener para poner en la fila\"</string>
+    <string name="new_and_hot">Nuevo y popular</string>
+    <string name="hold_to_append">Mantener para poner en la fila</string>
+    </resources>
