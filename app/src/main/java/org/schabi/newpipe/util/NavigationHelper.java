@@ -32,11 +32,11 @@ import org.schabi.newpipe.history.HistoryActivity;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BackgroundPlayerActivity;
 import org.schabi.newpipe.player.BasePlayer;
-import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayerActivity;
 import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.playlist.PlayQueue;
+import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.settings.SettingsActivity;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
@@ -83,8 +83,9 @@ public class NavigationHelper {
                 .putExtra(BasePlayer.PLAYBACK_PITCH, playbackPitch);
     }
 
-    public static void playOnMainPlayer(final Context context, final PlayQueue queue) {
-        context.startActivity(getPlayerIntent(context, MainVideoPlayer.class, queue));
+    public static void playOnMainPlayer(final FragmentManager fragmentManager, final PlayQueue queue) {
+        PlayQueueItem firstStream = queue.getItem(0);
+        NavigationHelper.openVideoDetailFragment(fragmentManager, firstStream.getServiceId(), firstStream.getUrl(), firstStream.getTitle(), false, queue);
     }
 
     public static void playOnPopupPlayer(final Context context, final PlayQueue queue) {

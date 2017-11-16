@@ -98,7 +98,6 @@ public class MainVideoPlayer extends Service {
 
     private VideoPlayerImpl playerImpl;
     public boolean isFullscreen = false;
-    private ImageButton screenRotationButton;
 
     private PlayerEventListener fragmentListener;
     private final IBinder mBinder = new MainVideoPlayer.LocalBinder();
@@ -165,9 +164,6 @@ public class MainVideoPlayer extends Service {
         playerImpl = new VideoPlayerImpl(this);
         playerImpl.setStartedFromNewPipe(true);
         playerImpl.setup(layout);
-
-        screenRotationButton = layout.findViewById(R.id.screenRotationButton);
-        checkAutorotation();
     }
 
     public void stop() {
@@ -227,11 +223,6 @@ public class MainVideoPlayer extends Service {
         playerImpl.handleIntent(playerIntent);
 
         getView().findViewById(R.id.surfaceView).setVisibility(View.GONE);
-    }
-
-    public void checkAutorotation() {
-        boolean autorotationEnabled = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(this.getString(R.string.use_video_autorotation_key), false);
-        screenRotationButton.setVisibility(autorotationEnabled? View.GONE : View.VISIBLE);
     }
 
     private void toggleOrientation() {
@@ -354,6 +345,7 @@ public class MainVideoPlayer extends Service {
         private ImageButton queueButton;
         private ImageButton repeatButton;
         private ImageButton shuffleButton;
+        private ImageButton screenRotationButton;
 
         private ImageButton playPauseButton;
         private ImageButton playPreviousButton;
@@ -393,7 +385,7 @@ public class MainVideoPlayer extends Service {
             this.queueButton = rootView.findViewById(R.id.queueButton);
             this.repeatButton = rootView.findViewById(R.id.repeatButton);
             this.shuffleButton = rootView.findViewById(R.id.shuffleButton);
-
+            this.screenRotationButton = rootView.findViewById(R.id.screenRotationButton);
             this.playPauseButton = rootView.findViewById(R.id.playPauseButton);
             this.playPreviousButton = rootView.findViewById(R.id.playPreviousButton);
             this.playNextButton = rootView.findViewById(R.id.playNextButton);
@@ -403,6 +395,7 @@ public class MainVideoPlayer extends Service {
 
             titleTextView.setSelected(true);
             channelTextView.setSelected(true);
+            checkAutorotation();
 
             getRootView().setKeepScreenOn(true);
         }
@@ -423,6 +416,7 @@ public class MainVideoPlayer extends Service {
             playPauseButton.setOnClickListener(this);
             playPreviousButton.setOnClickListener(this);
             playNextButton.setOnClickListener(this);
+            screenRotationButton.setOnClickListener(this);
             moreOptionsButton.setOnClickListener(this);
         }
 
@@ -528,7 +522,6 @@ public class MainVideoPlayer extends Service {
 
             ((View) getControlAnimationView().getParent()).setVisibility(View.GONE);
             destroy();
-            finish();
         }
 
 
@@ -543,6 +536,9 @@ public class MainVideoPlayer extends Service {
 
             } else if (v.getId() == playNextButton.getId()) {
                 onPlayNext();
+
+            } else if (v.getId() == screenRotationButton.getId()) {
+                onScreenRotationClicked();
 
             } else if (v.getId() == queueButton.getId()) {
                 onQueueClicked();
@@ -800,6 +796,16 @@ public class MainVideoPlayer extends Service {
             }
             resetNotification();
         }
+        /*@Override
+        public void onConfigurationChanged(Configuration newConfig) {
+            super.onConfigurationChanged(newConfig);
+
+            if (playerImpl.isSomePopupMenuVisible()) {
+                playerImpl.moreOptionsPopupMenu.dismiss();
+                playerImpl.getQualityPopupMenu().dismiss();
+                playerImpl.getPlaybackSpeedPopupMenu().dismiss();
+            }
+        }*/
 
         /*//////////////////////////////////////////////////////////////////////////
         // Utils
@@ -892,6 +898,11 @@ public class MainVideoPlayer extends Service {
 
             setRepeatModeButton(repeatButton, getRepeatMode());
             setShuffleButton(shuffleButton, playQueue.isShuffled());
+        }
+
+        public void checkAutorotation() {
+            boolean autorotationEnabled = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(getApplication().getString(R.string.use_video_autorotation_key), false);
+            screenRotationButton.setVisibility(autorotationEnabled? View.GONE : View.VISIBLE);
         }
 
         private void buildMoreOptionsMenu() {

@@ -74,6 +74,7 @@ import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.history.HistoryListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
+import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.VideoPlayer;
@@ -238,7 +239,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 if(mVideoPlayer.getView().getParent() == null)
                     viewHolder.addView(mVideoPlayer.getView());
                 // If the player is already attached to other instance of VideoDetailFragment just reattach it to the current instance
-                else if(getView().findViewById(R.layout.activity_main_player) == null) {
+                else if(getView().findViewById(R.id.aspectRatioLayout) == null) {
                     removeVideoPlayerView();
                     viewHolder.addView(mVideoPlayer.getView());
                     hideMainVideoPlayer();
@@ -413,7 +414,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             else {
                 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
             }
-            if(mVideoPlayer != null) mVideoPlayer.checkAutorotation();
+            if(mVideoPlayer != null && player != null) player.checkAutorotation();
         }
     }
 
@@ -1068,11 +1069,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
 
         if (append) {
-            NavigationHelper.enqueueOnPopupPlayer(activity, itemQueue);
+            NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(currentInfo));
         } else {
             Toast.makeText(activity, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
             final Intent intent = NavigationHelper.getPlayerIntent(
-                    activity, PopupVideoPlayer.class, itemQueue, getSelectedVideoStream().resolution
+                    activity, PopupVideoPlayer.class, playQueue, getSelectedVideoStream().resolution
             );
             activity.startService(intent);
         }
@@ -1101,9 +1102,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             playQueue.setRecovery(0, mVideoPlayer.getPlaybackPosition());
         }
         if (append) {
-            NavigationHelper.enqueueOnBackgroundPlayer(activity, itemQueue);
+            NavigationHelper.enqueueOnBackgroundPlayer(activity, new SinglePlayQueue(currentInfo));
         } else {
-            NavigationHelper.playOnBackgroundPlayer(activity, itemQueue);
+            NavigationHelper.playOnBackgroundPlayer(activity, playQueue);
         }
     }
 

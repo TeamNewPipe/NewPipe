@@ -27,9 +27,6 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.InfoItemDialog;
-import org.schabi.newpipe.player.BackgroundPlayer;
-import org.schabi.newpipe.player.PopupVideoPlayer;
-import org.schabi.newpipe.playlist.ExternalPlayQueue;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlaylistPlayQueue;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
@@ -134,7 +131,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                         NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(item));
                         break;
                     case 2:
-                        NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
+                        NavigationHelper.playOnMainPlayer(getFragmentManager(), getPlayQueue(index));
                         break;
                     case 3:
                         NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
@@ -209,15 +206,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         headerPlayAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final PlayQueue playQueue = new ExternalPlayQueue(
-                        currentInfo.service_id,
-                        currentInfo.url,
-                        currentInfo.next_streams_url,
-                        infoListAdapter.getItemsList(),
-                        0
-                );
-                InfoItem firstStream = infoListAdapter.getItemsList().get(0);
-                NavigationHelper.openVideoDetailFragment(getFragmentManager(), firstStream.service_id, firstStream.url, firstStream.name, false, playQueue);
+                NavigationHelper.playOnMainPlayer(getFragmentManager(), getPlayQueue());
             }
         });
         headerPopupButton.setOnClickListener(new View.OnClickListener() {

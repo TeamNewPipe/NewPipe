@@ -124,6 +124,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
     private View topControlsRoot;
     private TextView qualityTextView;
+    private ImageButton fullScreenButton;
 
     private ValueAnimator controlViewAnimator;
     private Handler controlsVisibilityHandler = new Handler();
@@ -165,6 +166,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         this.bottomControlsRoot = rootView.findViewById(R.id.bottomControls);
         this.topControlsRoot = rootView.findViewById(R.id.topControls);
         this.qualityTextView = rootView.findViewById(R.id.qualityTextView);
+        this.fullScreenButton = rootView.findViewById(R.id.fullScreenButton);
 
         //this.aspectRatioFrameLayout.setAspectRatio(16.0f / 9.0f);
 
@@ -185,6 +187,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         playbackSeekBar.setOnSeekBarChangeListener(this);
         playbackSpeedTextView.setOnClickListener(this);
         qualityTextView.setOnClickListener(this);
+        fullScreenButton.setOnClickListener(this);
     }
 
     @Override
@@ -452,7 +455,9 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     @Override
     public void onClick(View v) {
         if (DEBUG) Log.d(TAG, "onClick() called with: v = [" + v + "]");
-        if (v.getId() == qualityTextView.getId()) {
+        if (v.getId() == fullScreenButton.getId()) {
+            onFullScreenButtonClicked();
+        } else if (v.getId() == qualityTextView.getId()) {
             onQualitySelectorClicked();
         } else if (v.getId() == playbackSpeedTextView.getId()) {
             onPlaybackSpeedClicked();
@@ -749,6 +754,8 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     public TextView getQualityTextView() {
         return qualityTextView;
     }
+
+    public ImageButton getFullScreenButton() { return fullScreenButton; }
 
     public PopupMenu getQualityPopupMenu() {
         return qualityPopupMenu;

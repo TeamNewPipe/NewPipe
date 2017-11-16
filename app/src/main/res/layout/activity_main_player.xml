@@ -209,7 +209,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="2dp"
-                    android:layout_toLeftOf="@+id/queueButton"
+                    android:layout_toLeftOf="@+id/screenRotationButton"
                     android:gravity="center"
                     android:minHeight="35dp"
                     android:minWidth="40dp"
@@ -240,7 +240,7 @@
                     android:layout_height="35dp"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
-                    android:layout_toLeftOf="@+id/moreOptionsButton"
+                    android:layout_toLeftOf="@+id/fullScreenButton"
                     android:background="#00ffffff"
                     android:clickable="true"
                     android:focusable="true"
@@ -249,6 +249,19 @@
                     android:src="@drawable/list"
                     tools:ignore="ContentDescription,RtlHardcoded"
                     android:visibility="gone" />
+
+                <ImageButton
+                    android:id="@+id/fullScreenButton"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="4dp"
+                    android:background="#00ffffff"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_fullscreen_exit_white"
+                    tools:ignore="ContentDescription,RtlHardcoded"/>
 
                 <ImageButton
                     android:id="@+id/moreOptionsButton"
@@ -262,6 +275,7 @@
                     android:focusable="true"
                     android:scaleType="fitXY"
                     android:src="?attr/options"
+                    android:visibility="gone"
                     tools:ignore="ContentDescription,RtlHardcoded"/>
 
             </RelativeLayout>
