@@ -144,8 +144,7 @@
 
     <string name="add">Новая миссия</string>
     <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:\\nГлобальный диапазон IP:</string>
-    <string name="msg_popup_permission">Это разрешение нужно,
-\nчтобы показывать всплывающее окно</string>
+    <string name="msg_popup_permission">Разрешение необходимо для воспроизведения видео в отдельном окне</string>
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="open_in_popup_mode">Открыть в отдельном окне</string>
