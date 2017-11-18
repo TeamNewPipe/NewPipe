@@ -278,4 +278,6 @@
     <string name="player_stream_failure">Не удалось воспроизвести этот поток</string>
     <string name="play_queue_stream_detail">Подробности</string>
     <string name="play_queue_audio_settings">Настройки аудио</string>
+    <string name="no_channel_subscribed_yet">Пока нет ни одной подписки</string>
+    <string name="play_queue_remove">Удалить</string>
     </resources>
