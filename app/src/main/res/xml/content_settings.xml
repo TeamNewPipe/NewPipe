@@ -5,8 +5,8 @@
 
     <ListPreference
         android:defaultValue="@string/default_service_value"
-        android:entries="@array/service_list_description"
-        android:entryValues="@array/service_list_values"
+        android:entries="@array/service_list"
+        android:entryValues="@array/service_list"
         android:key="@string/service_key"
         android:summary="%s"
         android:title="@string/service_title"/>

@@ -30,12 +30,9 @@ import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.subscription.SubscriptionFragment;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
-
-import java.util.concurrent.ExecutionException;
 
 public class MainFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
     private ViewPager viewPager;
@@ -139,7 +136,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_search:
-                NavigationHelper.openSearchFragment(getFragmentManager(), Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("service", "0")), "");
+                NavigationHelper.openSearchFragment(getFragmentManager(), NewPipe.getIdOfService(PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("service", "YouTube")), "");
                 return true;
         }
         return super.onOptionsItemSelected(item);
