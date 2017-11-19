@@ -256,4 +256,31 @@ o modo “popup“</string>
     <string name="history_cleared">Histórico eliminado</string>
     <string name="item_deleted">Item apagado</string>
 <string name="delete_item_search_history">Deseja apagar este item do histórico de pesquisa?</string>
+<string name="play_all">Reproduzir todos</string>
+
+    <string name="unknown_content">[Desconhecido]</string>
+
+    <string name="player_unrecoverable_failure">Ocorreu um erro irrecuperável do reprodutor</string>
+    <string name="player_recoverable_failure">Em recuperação de um erro do reprodutor</string>
+
+    <string name="main_page_content">Conteúdo da página principal</string>
+    <string name="blank_page_summary">Página em branco</string>
+    <string name="subscription_page_summary">Página de Subscrições</string>
+    <string name="channel_page_summary">Página do canal</string>
+    <string name="select_a_channel">Selecione um canal</string>
+    <string name="no_channel_subscribed_yet">Nenhum canal subscreveu ainda</string>
+    <string name="select_a_kiosk">Selecione um quiosque</string>
+
+    <string name="kiosk">Quiosque</string>
+    <string name="trending">Tendências</string>
+    <string name="top_50">Top 50</string>
+    <string name="new_and_hot">Novo e popular</string>
+    <string name="title_activity_background_player">Reprodutor em segundo plano</string>
+    <string name="title_activity_popup_player">Reprodutor Popup</string>
+    <string name="play_queue_remove">Remover</string>
+    <string name="play_queue_stream_detail">Detalhes</string>
+    <string name="play_queue_audio_settings">Definições de Áudio</string>
+    <string name="start_here_on_main">Começar a reproduzir aqui</string>
+    <string name="start_here_on_background">Começar aqui em Segundo Plano</string>
+    <string name="start_here_on_popup">Começar aqui em Popup</string>
 </resources>

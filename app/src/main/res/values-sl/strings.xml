@@ -273,4 +273,22 @@ odpiranje v pojavnem načinu</string>
 
     <string name="item_deleted">Predmet je izbrisan</string>
 <string name="delete_item_search_history">Ali želite izbrisati predmet iz zgodovine iskanja?</string>
-</resources>
+<string name="play_all">Predvajaj vse</string>
+
+    <string name="unknown_content">[ Neznano ]</string>
+
+    <string name="player_stream_failure">Predvajanje pretoka je spodletelo</string>
+    <string name="main_page_content">Vsebina glavne strani</string>
+    <string name="blank_page_summary">Prazna stran</string>
+    <string name="subscription_page_summary">Stran naročanja</string>
+    <string name="feed_page_summary">Stran virov</string>
+    <string name="channel_page_summary">Stran kanalov</string>
+    <string name="select_a_channel">Izbor kanala</string>
+    <string name="top_50">Najboljših 50</string>
+    <string name="new_and_hot">Novo in vroče</string>
+    <string name="title_activity_background_player">Ozadnji predvajalnik</string>
+    <string name="title_activity_popup_player">Pojavni predvajalnik</string>
+    <string name="play_queue_remove">Odstrani</string>
+    <string name="play_queue_stream_detail">Podrobnosti</string>
+    <string name="play_queue_audio_settings">Nastavitve zvoka</string>
+    </resources>

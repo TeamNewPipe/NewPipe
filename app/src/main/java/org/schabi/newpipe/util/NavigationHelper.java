@@ -5,10 +5,11 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -28,7 +29,12 @@ import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.history.HistoryActivity;
+import org.schabi.newpipe.player.BackgroundPlayer;
+import org.schabi.newpipe.player.BackgroundPlayerActivity;
 import org.schabi.newpipe.player.BasePlayer;
+import org.schabi.newpipe.player.MainVideoPlayer;
+import org.schabi.newpipe.player.PopupVideoPlayer;
+import org.schabi.newpipe.player.PopupVideoPlayerActivity;
 import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.settings.SettingsActivity;
@@ -77,6 +83,29 @@ public class NavigationHelper {
                 .putExtra(BasePlayer.PLAYBACK_PITCH, playbackPitch);
     }
 
+    public static void playOnMainPlayer(final Context context, final PlayQueue queue) {
+        context.startActivity(getPlayerIntent(context, MainVideoPlayer.class, queue));
+    }
+
+    public static void playOnPopupPlayer(final Context context, final PlayQueue queue) {
+        Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
+        context.startService(getPlayerIntent(context, PopupVideoPlayer.class, queue));
+    }
+
+    public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue) {
+        Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
+        context.startService(getPlayerIntent(context, BackgroundPlayer.class, queue));
+    }
+
+    public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue) {
+        Toast.makeText(context, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
+        context.startService(getPlayerEnqueueIntent(context, PopupVideoPlayer.class, queue));
+    }
+
+    public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue) {
+        Toast.makeText(context, R.string.background_player_append, Toast.LENGTH_SHORT).show();
+        context.startService(getPlayerEnqueueIntent(context, BackgroundPlayer.class, queue));
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // Through FragmentManager
     //////////////////////////////////////////////////////////////////////////*/
@@ -228,6 +257,23 @@ public class NavigationHelper {
         Intent intent = new Intent(activity, DownloadActivity.class);
         activity.startActivity(intent);
         return true;
+    }
+
+    public static void openBackgroundPlayerControl(final Context context) {
+        openServicePlayerControl(context, BackgroundPlayerActivity.class);
+    }
+
+    public static void openPopupPlayerControl(final Context context) {
+        openServicePlayerControl(context, PopupVideoPlayerActivity.class);
+    }
+
+    private static void openServicePlayerControl(final Context context, final Class clazz) {
+        final Intent intent = new Intent(context, clazz);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+        context.startActivity(intent);
+        context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
     }
 
     /*//////////////////////////////////////////////////////////////////////////

@@ -42,15 +42,15 @@
     <string name="background_player_playing_toast">Spiele im Hintergrund ab</string>
     <string name="play_btn_text">Abspielen</string>
 
-    <string name="use_tor_title">Benutze TOR</string>
-    <string name="use_tor_summary">(Experimentell) Erzwinge das Herunterladen durch TOR für verbesserte Privatsphäre (Videostream noch nicht unterstützt).</string>
+    <string name="use_tor_title">Benutze Tor</string>
+    <string name="use_tor_summary">(Experimentell) Erzwinge das Herunterladen durch Tor für verbesserte Privatsphäre (Videostream noch nicht unterstützt).</string>
     <string name="network_error">Netzwerkfehler</string>
 
-    <string name="download_path_audio_title">Downloadverzeichnis für Musik</string>
-    <string name="download_path_audio_summary">Verzeichnis zum Speichern heruntergeladener Audiodateien</string>
-    <string name="download_path_audio_dialog_title">Pfad für heruntergeladene Audiodateien eingeben</string>
+    <string name="download_path_audio_title">Downloadverzeichnis für Audiodateien</string>
+    <string name="download_path_audio_summary">Verzeichnis für heruntergeladene Audiodateien</string>
+    <string name="download_path_audio_dialog_title">Downloadverzeichnis für Audiodateien eingeben</string>
 
-    <string name="theme_title">Aussehen</string>
+    <string name="theme_title">Design</string>
     <string name="dark_theme_title">Dunkel</string>
     <string name="light_theme_title">Hell</string>
 
@@ -61,7 +61,7 @@
     <string name="general_error">Fehler</string>
     <string name="could_not_load_thumbnails">Konnte nicht alle Vorschaubilder laden</string>
     <string name="youtube_signature_decryption_error">Konnte Video-URL-Signatur nicht entschlüsseln</string>
-    <string name="parsing_error">Konnte Webseite nicht parsen</string>
+    <string name="parsing_error">Konnte Webseite nicht analysieren</string>
     <string name="content_not_available">Inhalt nicht verfügbar</string>
     <string name="blocked_by_gema">Durch die GEMA gesperrt</string>
 
@@ -73,7 +73,7 @@
     <string name="live_streams_not_supported">Dies ist ein LIVESTREAM. Diese werden noch nicht unterstützt.</string>
 
 
-    <string name="light_parsing_error">Konnte Webseite nicht vollständig parsen</string>
+    <string name="light_parsing_error">Konnte Webseite nicht vollständig analysieren</string>
     <string name="error_report_button_text">Fehler via E-Mail melden</string>
     <string name="error_snackbar_action">MELDEN</string>
     <string name="what_device_headline">Info:</string>
@@ -94,7 +94,7 @@
     <string name="report_error">Einen Fehler melden</string>
     <string name="user_report">Anwenderbericht</string>
 
-    <string name="duration_live">live</string>
+    <string name="duration_live">Live</string>
 
     <string name="main_bg_subtitle">„Suchen“ antippen und loslegen</string>
     <string name="downloads">Downloads</string>
@@ -163,13 +163,13 @@
 
     <string name="popup_remember_size_pos_title">Größe und Position des Popups merken</string>
 <string name="use_external_video_player_summary">Manche Auflösungen werden KEINE Tonspur haben, wenn diese Option eingeschaltet ist</string>
-    <string name="popup_remember_size_pos_summary">Merke Position und Größe des Popups</string>
+    <string name="popup_remember_size_pos_summary">Letzte Größe und Position des Popups merken</string>
     <string name="player_gesture_controls_title">Gestensteuerung</string>
     <string name="player_gesture_controls_summary">Helligkeit und Lautstärke des Players mit Gesten steuern</string>
     <string name="show_search_suggestions_title">Durchsuche Vorschläge</string>
     <string name="show_search_suggestions_summary">Zeige Vorschläge beim Suchen</string>
 
-    <string name="settings_category_popup_title">Pop-up</string>
+    <string name="settings_category_popup_title">Popup</string>
     <string name="filter">Filter</string>
     <string name="refresh">Aktualisieren</string>
     <string name="clear">Leeren</string>
@@ -224,7 +224,7 @@
 
 
     <string name="notification_channel_name">NewPipe Benachrichtigung</string>
-    <string name="notification_channel_description">Benachrichtigungen für NewPipe Hintergrund- und Popup-Spieler</string>
+    <string name="notification_channel_description">Benachrichtigungen für NewPipe Hintergrund- und Popup-Player</string>
 
     <string name="tab_main">Übersicht</string>
     <string name="settings_category_player_behavior_title">Verhalten</string>
@@ -258,12 +258,12 @@
     <string name="settings_category_player_title">Player</string>
     <string name="empty_subscription_feed_subtitle">Nichts hier außer Grillen</string>
 
-    <string name="delete_item_search_history">Möchten Sie dieses Element aus dem Suchverlauf löschen?</string>
+    <string name="delete_item_search_history">Möchtest du dieses Element aus dem Suchverlauf löschen?</string>
 <string name="blank_page_summary">Leere Seite</string>
     <string name="select_a_channel">Wähle einen Kanal aus</string>
     <string name="no_channel_subscribed_yet">Noch kein Kanal abonniert</string>
     <string name="trending">Trends</string>
-    <string name="popup_playing_append">Angereiht an Popup Player</string>
+    <string name="popup_playing_append">In der Warteschlange des Popup-Players</string>
     <string name="play_all">Alles abspielen</string>
 
     <string name="play_queue_remove">Entfernen</string>
@@ -284,8 +284,16 @@
     <string name="select_a_kiosk">Kiosk auswählen</string>
 
     <string name="kiosk">Kiosk</string>
-    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe-Button oder der Popup-Button auf der Videodetailseite gedrückt und gehalten wird</string>
-    <string name="background_player_append">In der Warteschlange bei der Hintergrundwiedergabe</string>
+    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe- oder Pop-up-Button auf der Videodetailseite gedrücktgehalten wird</string>
+    <string name="background_player_append">In der Warteschlange der Hintergrundwiedergabe</string>
     <string name="new_and_hot">Neu und brandheiß</string>
-    <string name="hold_to_append">Halten, um in die Warteschlange einzureihen</string>
+    <string name="hold_to_append">Halten zum Hinzufügen zur Warteschleife</string>
+<string name="show_hold_to_append_title">‚Gedrückt halten, um Tipp hinzuzufügen‘ anzeigen</string>
+    <string name="unknown_content">[Unbekannt]</string>
+
+    <string name="enqueue_on_background">In Warteschlange für Hintergrundwiedergabe</string>
+    <string name="enqueue_on_popup">In Warteschlange für Pop-up</string>
+    <string name="start_here_on_main">Ab hier wiedergeben</string>
+    <string name="start_here_on_background">Ab hier im Hintergrundmodus</string>
+    <string name="start_here_on_popup">Ab hier im Pop-up</string>
 </resources>

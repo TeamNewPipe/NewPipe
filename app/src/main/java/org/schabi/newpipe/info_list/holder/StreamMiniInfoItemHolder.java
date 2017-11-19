@@ -67,6 +67,38 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
                 }
             }
         });
+
+        switch (item.stream_type) {
+            case AUDIO_STREAM:
+            case VIDEO_STREAM:
+            case FILE:
+                enableLongClick(item);
+                break;
+            case LIVE_STREAM:
+            case AUDIO_LIVE_STREAM:
+            case NONE:
+            default:
+                disableLongClick();
+                break;
+        }
+    }
+
+    private void enableLongClick(final StreamInfoItem item) {
+        itemView.setLongClickable(true);
+        itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if (itemBuilder.getOnStreamSelectedListener() != null) {
+                    itemBuilder.getOnStreamSelectedListener().held(item);
+                }
+                return true;
+            }
+        });
+    }
+
+    private void disableLongClick() {
+        itemView.setLongClickable(false);
+        itemView.setOnLongClickListener(null);
     }
 
     /**

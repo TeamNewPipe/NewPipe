@@ -209,7 +209,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="2dp"
-                    android:layout_toLeftOf="@+id/screenRotationButton"
+                    android:layout_toLeftOf="@+id/queueButton"
                     android:gravity="center"
                     android:minHeight="35dp"
                     android:minWidth="40dp"
@@ -219,27 +219,12 @@
                     tools:text="1x" />
 
                 <ImageButton
-                    android:id="@+id/screenRotationButton"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                    android:layout_toLeftOf="@+id/queueButton"
-                    android:background="#00ffffff"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:padding="8dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_screen_rotation_white"
-                    tools:ignore="ContentDescription,RtlHardcoded"/>
-
-                <ImageButton
                     android:id="@+id/queueButton"
                     android:layout_width="30dp"
                     android:layout_height="35dp"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
-                    android:layout_toLeftOf="@+id/fullScreenButton"
+                    android:layout_toLeftOf="@+id/moreOptionsButton"
                     android:background="#00ffffff"
                     android:clickable="true"
                     android:focusable="true"
@@ -249,16 +234,17 @@
                     tools:ignore="ContentDescription,RtlHardcoded"/>
 
                 <ImageButton
-                    android:id="@+id/fullScreenButton"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:id="@+id/moreOptionsButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_marginLeft="4dp"
+                    android:layout_marginLeft="2dp"
+					android:padding="5dp"
                     android:background="#00ffffff"
                     android:clickable="true"
                     android:focusable="true"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ic_fullscreen_exit_white"
+                    android:src="?attr/options"
                     tools:ignore="ContentDescription,RtlHardcoded"/>
 
             </RelativeLayout>

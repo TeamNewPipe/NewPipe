@@ -1,6 +1,7 @@
 package org.schabi.newpipe.fragments.list;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -19,7 +20,9 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.StateSaver;
 
@@ -139,6 +142,11 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                         useAsFrontPage?getParentFragment().getFragmentManager():getFragmentManager(),
                         selectedItem.service_id, selectedItem.url, selectedItem.name);
             }
+
+            @Override
+            public void held(StreamInfoItem selectedItem) {
+                showStreamDialog(selectedItem);
+            }
         });
 
         infoListAdapter.setOnChannelSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<ChannelInfoItem>() {
@@ -149,6 +157,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                         useAsFrontPage?getParentFragment().getFragmentManager():getFragmentManager(),
                         selectedItem.service_id, selectedItem.url, selectedItem.name);
             }
+
+            @Override
+            public void held(ChannelInfoItem selectedItem) {}
         });
 
         infoListAdapter.setOnPlaylistSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<PlaylistInfoItem>() {
@@ -159,6 +170,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                         useAsFrontPage?getParentFragment().getFragmentManager():getFragmentManager(),
                         selectedItem.service_id, selectedItem.url, selectedItem.name);
             }
+
+            @Override
+            public void held(PlaylistInfoItem selectedItem) {}
         });
 
         itemsList.clearOnScrollListeners();
@@ -176,6 +190,33 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         }
     }
 
+    protected void showStreamDialog(final StreamInfoItem item) {
+        final Context context = getContext();
+        if (context == null || context.getResources() == null || getActivity() == null) return;
+
+        final String[] commands = new String[]{
+                context.getResources().getString(R.string.enqueue_on_background),
+                context.getResources().getString(R.string.enqueue_on_popup)
+        };
+
+        final DialogInterface.OnClickListener actions = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                switch (i) {
+                    case 0:
+                        NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                        break;
+                    case 1:
+                        NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(item));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
+
+        new InfoItemDialog(getActivity(), item, commands, actions).show();
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // Menu
     //////////////////////////////////////////////////////////////////////////*/

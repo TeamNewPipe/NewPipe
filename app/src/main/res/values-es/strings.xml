@@ -96,7 +96,7 @@
     <string name="report_error">Reportar un error</string>
     <string name="user_report">Reporte de usuario</string>
 
-    <string name="video">Vídeos</string>
+    <string name="video">Vídeo</string>
 
     <string name="audio">Audio</string>
     <string name="retry">Reintentar</string>
@@ -287,4 +287,14 @@ abrir en modo popup</string>
     <string name="play_queue_remove">Remover</string>
     <string name="play_queue_stream_detail">Detalles</string>
     <string name="play_queue_audio_settings">Ajustes de audio</string>
+    <string name="unknown_content">[Desconocido]</string>
+
+    <string name="enqueue_on_background">Poner en cola de segundo plano</string>
+    <string name="enqueue_on_popup">Poner en cola de popup</string>
+    <string name="start_here_on_main">Comenzar a reproducir aquí</string>
+    <string name="start_here_on_background">Comenzar aquí en segundo plano</string>
+    <string name="start_here_on_popup">Comenzar aquí en popup</string>
+<string name="show_hold_to_append_title">Desplegar consejo \"Mantener para poner en la fila\"</string>
+    <string name="new_and_hot">Nuevo y popular</string>
+    <string name="hold_to_append">Mantener para poner en la fila</string>
     </resources>

@@ -41,7 +41,7 @@
     <string name="download_path_audio_summary">Put za spremanje preuzetog zvuka u</string>
     <string name="download_path_audio_dialog_title">Unesi put za preuzimanje zvučne datoteke</string>
 
-    <string name="autoplay_by_calling_app_title">Automatski reprod. kada je NewPipe pozvan iz druge aplikacije</string>
+    <string name="autoplay_by_calling_app_title">Auto. reprod. kada je NewPipe pozvan iz druge apl.</string>
     <string name="autoplay_by_calling_app_summary">Automatski reproduciraj videozapis kad je NewPipe pozvan iz druge aplikacije</string>
     <string name="default_resolution_title">Zadana razlučivost</string>
     <string name="default_popup_resolution_title">Zadana razlučivost skočnog prozora</string>
@@ -49,7 +49,7 @@
     <string name="show_higher_resolutions_summary">Samo neki uređaji podržavaju reprodukciju 2K/4K videozapisa</string>
     <string name="play_with_kodi_title">Reproduciraj sa Kodijem</string>
     <string name="kore_not_found">Kore aplikacija nije pronađena. Želite li ju instalirati?</string>
-    <string name="show_play_with_kodi_title">Prikaži \"Reproduciraj putem Kodija\" opciju</string>
+    <string name="show_play_with_kodi_title">Prikaži opciju \"Reproduciraj putem Kodija\"</string>
     <string name="show_play_with_kodi_summary">Prikaži opciju za reproduciranje videozapisa putem Kodija</string>
     <string name="play_audio">Zvuk</string>
     <string name="default_audio_format_title">Zadani format zvuka</string>
@@ -255,4 +255,29 @@
     <string name="player_unrecoverable_failure">Dogodila se neoporavljiva pogreška reproduktora</string>
     <string name="player_recoverable_failure">Oporavljanje od pogreške reproduktora</string>
 
-    </resources>
+    <string name="show_hold_to_append_title">Prikaži savjet za držanje</string>
+    <string name="show_hold_to_append_summary">Prikažite savjet kada je pritisnut gumb za pozadinsku ili skočnu reprodukciju na stranici detalja videozapisa</string>
+    <string name="popup_playing_append">U redu čekanja za skočnu reprodukciju</string>
+    <string name="delete_item_search_history">Želite li izbrisati ovu stavku iz povijesti pretraživanja?</string>
+
+    <string name="main_page_content">Sadržaj</string>
+    <string name="blank_page_summary">Prazna stranica</string>
+    <string name="kiosk_page_summary">Kiosk stranica</string>
+    <string name="subscription_page_summary">Pretplate</string>
+    <string name="feed_page_summary">Novosti</string>
+    <string name="channel_page_summary">Kanal</string>
+    <string name="select_a_channel">Odaberite kanal</string>
+    <string name="no_channel_subscribed_yet">Niste pretplaćeni na nijedan kanal</string>
+    <string name="select_a_kiosk">Odaberite kiosk</string>
+
+    <string name="kiosk">Nazivi kioska</string>
+    <string name="trending">U trendu</string>
+    <string name="top_50">Top 50</string>
+    <string name="new_and_hot">Novo i popularno</string>
+    <string name="title_activity_background_player">Red čekanja</string>
+    <string name="title_activity_popup_player">Skočni reproduktor</string>
+    <string name="play_queue_remove">Ukloni</string>
+    <string name="play_queue_stream_detail">Detalji</string>
+    <string name="play_queue_audio_settings">Postavke zvuka</string>
+    <string name="hold_to_append">Zadržite za dodavanje u red čekanja</string>
+</resources>

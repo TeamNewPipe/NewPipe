@@ -274,4 +274,21 @@
     <string name="play_queue_stream_detail">Detaljer</string>
     <string name="play_queue_audio_settings">Lydinnstillinger</string>
     <string name="hold_to_append">Hold for å legge i kø</string>
+<string name="show_hold_to_append_title">Vis \"Hold for å legge til\" -tips</string>
+    <string name="show_hold_to_append_summary">Vis tips når bakgrunns- eller oppsårettsknapp trykkes på siden for videodetaljer</string>
+    <string name="background_player_append">Lagt i kø for bakgrunnsavspiller</string>
+    <string name="popup_playing_append">Lagt i kø for oppsprettsspiller</string>
+    <string name="unknown_content">[Ukjent]</string>
+
+    <string name="player_recoverable_failure">Gjenoppretter fra spillerfeil</string>
+
+    <string name="main_page_content">Hovedsidens innhold</string>
+    <string name="feed_page_summary">Strømside</string>
+    <string name="no_channel_subscribed_yet">Abonnerer ikke på noen kanaler enda</string>
+    <string name="trending">På vei opp</string>
+    <string name="enqueue_on_background">Legg i bakgrunnskø</string>
+    <string name="enqueue_on_popup">Legg i oppsprettskø</string>
+    <string name="start_here_on_main">Start avspilling her</string>
+    <string name="start_here_on_background">Start her i bakgrunnen</string>
+    <string name="start_here_on_popup">Start her i oppsprettsvindu</string>
 </resources>

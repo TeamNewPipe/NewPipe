@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="cancel">Annuler</string>
-    <string name="choose_browser">Choisir un navigateur </string>
+    <string name="choose_browser">Choisir un navigateur</string>
     <string name="default_resolution_title">Définition par défaut</string>
     <string name="did_you_mean">Vouliez-vous dire : %1$s ?</string>
     <string name="download">Télécharger</string>
@@ -18,7 +18,7 @@
     <string name="settings">Paramètres</string>
     <string name="share">Partager</string>
     <string name="share_dialog_title">Partager avec</string>
-    <string name="show_play_with_kodi_summary">Afficher une option pour lire la vidéo via Kodi</string>
+    <string name="show_play_with_kodi_summary">Afficher une option pour lire la vidéo avec Kodi</string>
     <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
     <string name="upload_date_text">Ajoutée le %1$s</string>
     <string name="view_count_text">%1$s vues</string>
@@ -37,7 +37,7 @@
     <string name="detail_thumbnail_view_description">Miniature d’aperçu vidéo</string>
     <string name="detail_dislikes_img_view_description">Je n’aime pas</string>
     <string name="detail_likes_img_view_description">J’aime</string>
-    <string name="search_language_title">Langue préférée du contenu</string>
+    <string name="search_language_title">Langue par défaut du contenu</string>
     <string name="detail_uploader_thumbnail_view_description">Miniature de l’avatar de l’utilisateur</string>
     <string name="use_external_video_player_title">Utiliser un lecteur vidéo externe</string>
     <string name="use_external_audio_player_title">Utiliser un lecteur audio externe</string>
@@ -153,7 +153,7 @@
     <string name="controls_popup_title">Lecture flottante</string>
 
     <string name="default_popup_resolution_title">Résolution de la lecture flottante</string>
-    <string name="show_higher_resolutions_title">Afficher des résolutions plus grandes</string>
+    <string name="show_higher_resolutions_title">Afficher des résolutions plus élevées</string>
     <string name="show_higher_resolutions_summary">Seulement certains périphériques supportent la lecture 2K/4K</string>
     <string name="default_video_format_title">Format vidéo par défaut</string>
     <string name="popup_remember_size_pos_title">Mémoriser la taille et la position du lecteur flottant</string>
@@ -233,7 +233,7 @@
     <string name="notification_channel_description">Notifications pour les lecteurs arrière-plan et flottant de NewPipe</string>
 
     <string name="search_no_results">Aucun résultat</string>
-    <string name="empty_subscription_feed_subtitle">Rien ici à part des grillons</string>
+    <string name="empty_subscription_feed_subtitle">Rien à voir ici</string>
 
     <string name="no_subscribers">Aucun abonné</string>
     <plurals name="subscribers">
@@ -257,9 +257,9 @@
 
     <string name="item_deleted">Objet effacé</string>
 <string name="delete_item_search_history">Voulez-vous supprimer cet élément de l\'historique de recherche ?</string>
-<string name="main_page_content">Contentu</string>
+<string name="main_page_content">Contenu de la page principale</string>
     <string name="blank_page_summary">Page vide</string>
-    <string name="subscription_page_summary">Page de souscription</string>
+    <string name="subscription_page_summary">Abonnements</string>
     <string name="feed_page_summary">Page de Flux</string>
     <string name="channel_page_summary">Page de la chaîne</string>
     <string name="select_a_channel">Sélectionnez une chaîne</string>
@@ -278,4 +278,20 @@
     <string name="play_queue_remove">Retirer</string>
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Réglages audio</string>
-    </resources>
+    <string name="show_hold_to_append_title">Afficher l\'aide \"Appui long pour mettre en file d\'attente\"</string>
+    <string name="show_hold_to_append_summary">Afficher l\'aide lors de l\'appui du bouton de fond ou de lecteur flottant sur la page de détails d\'une vidéo</string>
+    <string name="unknown_content">[Inconnu]</string>
+
+    <string name="player_recoverable_failure">Récupération de l\'erreur du lecteur</string>
+
+    <string name="kiosk_page_summary">Page Kiosque</string>
+    <string name="select_a_kiosk">Sélectionner un kiosque</string>
+
+    <string name="kiosk">Kiosque</string>
+    <string name="hold_to_append">Appui long pour mettre en file d\'attente</string>
+    <string name="enqueue_on_background">Mettre en file d\'attente en fond</string>
+    <string name="enqueue_on_popup">Mettre en file d\'attente en lecture flottante</string>
+    <string name="start_here_on_main">Démarrer ici</string>
+    <string name="start_here_on_background">Démarrer ici en fond</string>
+    <string name="start_here_on_popup">Démarrer ici en lecteur flottant</string>
+</resources>

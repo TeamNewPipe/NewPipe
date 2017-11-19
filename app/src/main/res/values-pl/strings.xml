@@ -27,15 +27,15 @@
     <string name="download_path_audio_dialog_title">Podaj ścieżkę zapisu audio</string>
 
     <string name="autoplay_by_calling_app_title">Autoodtwarzanie</string>
-    <string name="autoplay_by_calling_app_summary">Automatycznie odtwórz video kiedy NewPipe zostanie wywołany z innej aplikacji</string>
+    <string name="autoplay_by_calling_app_summary">Automatycznie odtwórz video, kiedy NewPipe zostanie wywołany z innej aplikacji</string>
     <string name="default_resolution_title">Domyślna rozdzielczość</string>
     <string name="play_with_kodi_title">Odtwórz w Kodi</string>
     <string name="kore_not_found">Aplikacja Kore nie została znaleziona. Zainstalować Kore?</string>
     <string name="show_play_with_kodi_title">Pokaż opcję \"Odtwórz z Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Wyświetl opcję aby odtworzyć video przez Kodi</string>
+    <string name="show_play_with_kodi_summary">Wyświetl opcję, aby odtworzyć video przez Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Domyślny format audio</string>
-    <string name="webm_description">WebM — darmowy format</string>
+    <string name="webm_description">WebM — otwarty i darmowy format</string>
     <string name="m4a_description">m4a — lepsza jakość</string>
     <string name="theme_title">Motyw</string>
     <string name="dark_theme_title">Ciemny</string>
@@ -126,7 +126,7 @@
     <string name="reCaptcha_title">Rozwiąż reCAPTCHA</string>
     <string name="recaptcha_request_toast">Prośba o ReCAPTCHA</string>
 
-    <string name="use_external_video_player_summary">Niektóre rozdzielczości nie będą miały dźwięku jeśli ta opcja jest włączona</string>
+    <string name="use_external_video_player_summary">Niektóre rozdzielczości nie będą miały dźwięku, jeśli ta opcja jest włączona</string>
     <string name="controls_background_title">W tle</string>
     <string name="default_popup_resolution_title">Domyślna rozdzielczość dla trybu okienkowego</string>
     <string name="show_higher_resolutions_title">Pokaż wyższe rozdzielczości</string>
@@ -136,7 +136,7 @@
     <string name="popup_remember_size_pos_title">Zapamiętaj rozmiar i pozycję trybu okienkowego</string>
     <string name="popup_remember_size_pos_summary">Zapamiętaj ostatni rozmiar i pozycję ustawioną dla trybu okienkowego</string>
     <string name="player_gesture_controls_title">Sterowanie odtwarzaczem za pomocą gestów</string>
-    <string name="player_gesture_controls_summary">Użyj gestów aby sterować jasnością i głośnością odtwarzacza</string>
+    <string name="player_gesture_controls_summary">Użyj gestów, aby sterować jasnością i głośnością odtwarzacza</string>
     <string name="show_search_suggestions_title">Szukaj sugestii</string>
     <string name="show_search_suggestions_summary">Pokazuj sugestie podczas wyszukiwania</string>
 
@@ -202,9 +202,9 @@
     <string name="fragment_whats_new">Co nowego</string>
 
     <string name="enable_search_history_title">Historia wyszukiwania</string>
-    <string name="enable_search_history_summary">Zapisuj historie wyszukiwania lokalnie</string>
+    <string name="enable_search_history_summary">Zapisuj lokalnie historię wyszukiwania</string>
     <string name="enable_watch_history_title">Historia oglądania</string>
-    <string name="enable_watch_history_summary">Zapisuj historie oglądania</string>
+    <string name="enable_watch_history_summary">Zapisuj historię oglądania</string>
     <string name="resume_on_audio_focus_gain_title"/>
     <string name="resume_on_audio_focus_gain_summary">Kontynuuj odtwarzanie po przerwaniu (np. po rozmowie telefonicznej)</string>
 
