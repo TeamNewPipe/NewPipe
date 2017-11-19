@@ -280,4 +280,20 @@
     <string name="play_queue_audio_settings">Настройки аудио</string>
     <string name="no_channel_subscribed_yet">Пока нет подписок</string>
     <string name="play_queue_remove">Удалить</string>
-    </resources>
+    <string name="subscribed_button_title">Отписаться</string>
+    <string name="channel_unsubscribed">Подписка отменена</string>
+    <string name="show_hold_to_append_title">Подсказка о длинном нажатии</string>
+    <string name="show_hold_to_append_summary">Отображать подсказку о длинном нажатии на кнопки \"В фоне\" и \"В окне\" для добавления в очередь</string>
+    <string name="unknown_content">[Неизвестно]</string>
+
+    <string name="player_recoverable_failure">Восстановление после ошибки проигрывателя</string>
+
+    <string name="title_activity_background_player">Воспроизведение в фоне</string>
+    <string name="title_activity_popup_player">Воспроизведение в окне</string>
+    <string name="hold_to_append">Зажмите чтобы добавить в очередь</string>
+    <string name="enqueue_on_background">Добавить в очередь в фоне</string>
+    <string name="enqueue_on_popup">Добавить в очередь в окне</string>
+    <string name="start_here_on_main">Воспроизвести</string>
+    <string name="start_here_on_background">Воспроизвести в фоне</string>
+    <string name="start_here_on_popup">Воспроизвести в окне</string>
+</resources>
