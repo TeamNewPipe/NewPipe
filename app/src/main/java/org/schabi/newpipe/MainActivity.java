@@ -50,6 +50,7 @@ import org.schabi.newpipe.database.history.dao.WatchHistoryDAO;
 import org.schabi.newpipe.database.history.model.HistoryEntry;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.database.history.model.WatchHistoryEntry;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -95,6 +96,8 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
         final NavigationView drawerItems = findViewById(R.id.navigation);
         setSupportActionBar(toolbar);
 
+        drawerItems.getMenu().getItem(NewPipe.getIdOfService(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("service", "YouTube"))).setChecked(true);
+
         final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
         toggle.syncState();
         drawer.addDrawerListener(toggle);
@@ -125,14 +128,15 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
 
         drawerItems.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                drawerItems.getMenu().getItem(NewPipe.getIdOfService(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("service", "YouTube"))).setChecked(false);
                 SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
                 editor.putString("service", item.getTitle().toString());
                 editor.apply();
                 drawer.closeDrawers();
+                drawerItems.getMenu().getItem(NewPipe.getIdOfService(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("service", "YouTube"))).setChecked(true);
                 return true;
             }
         });
-
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
