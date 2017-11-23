@@ -272,4 +272,11 @@ abrir em modo popup</string>
     <string name="play_queue_stream_detail">Detalhes</string>
     <string name="play_queue_audio_settings">Configurações de Áudio</string>
     <string name="hold_to_append">Mantenha pressionado para colocar na fila</string>
+<string name="unknown_content">[Desconhecido]</string>
+
+    <string name="enqueue_on_background">Adicionar a fila em plano de fundo</string>
+    <string name="enqueue_on_popup">Adicionar a fila em Popup</string>
+    <string name="start_here_on_main">Iniciar a reproduzir à partir daqui</string>
+    <string name="start_here_on_background">Iniciar aqui em plano de fundo</string>
+    <string name="start_here_on_popup">Iniciar aqui em popup</string>
 </resources>
