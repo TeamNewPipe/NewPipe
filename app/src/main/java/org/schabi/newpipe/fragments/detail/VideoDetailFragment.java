@@ -125,6 +125,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private InfoItemBuilder infoItemBuilder = null;
 
     private int updateFlags = 0;
+    private boolean isPaused;
     private static final int RELATED_STREAMS_UPDATE_FLAG = 0x1;
     private static final int RESOLUTIONS_MENU_UPDATE_FLAG = 0x2;
     private static final int TOOLBAR_ITEMS_UPDATE_FLAG = 0x4;
@@ -325,12 +326,16 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     public void onPause() {
         super.onPause();
+        isPaused = true;
         if (currentWorker != null) currentWorker.dispose();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        isPaused = false;
+        if(player != null)
+            player.enableVideoRenderer(true);
 
         if (updateFlags != 0) {
             if (!isLoading.get() && currentInfo != null) {
@@ -1495,7 +1500,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     @Override
     public void onProgressUpdate(int currentProgress, int duration, int bufferPercent) {
-
+        if(isPaused && player != null)
+            player.enableVideoRenderer(false);
     }
 
     @Override

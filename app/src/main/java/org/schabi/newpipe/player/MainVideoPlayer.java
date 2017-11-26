@@ -812,7 +812,7 @@ public class MainVideoPlayer extends Service {
         // Utils
         //////////////////////////////////////////////////////////////////////////*/
 
-        /*package-private*/ void enableVideoRenderer(final boolean enable) {
+        public void enableVideoRenderer(final boolean enable) {
             final int videoRendererIndex = getVideoRendererIndex();
             if (trackSelector != null && videoRendererIndex != -1) {
                 trackSelector.setRendererDisabled(videoRendererIndex, !enable);
