@@ -247,11 +247,14 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 }
 
                 player.enableVideoRenderer(true);
-                if(getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels) {
+                boolean isLandscape = getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
+                if(isLandscape) {
                     if((!player.isPlaying() && player.getPlayQueue() != playQueue) || player.getPlayQueue() == null)
                         setupMainVideoPlayer();
                     player.checkLandscape();
                 }
+                else if(mVideoPlayer.isFullscreen)
+                    player.onFullScreenButtonClicked();
             }
         };
     }
