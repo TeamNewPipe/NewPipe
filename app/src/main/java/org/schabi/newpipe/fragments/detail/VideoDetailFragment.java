@@ -852,14 +852,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             }
         });
 
-        actionBarHandler.setOnSearchListener(new ActionBarHandler.OnActionListener() {
-            @Override
-            public void onActionSelected(int selectedStreamId) {
-                hideMainVideoPlayer();
-                NavigationHelper.openSearchFragment(getFragmentManager(), 0, "");
-            }
-        });
-
         actionBarHandler.setOnDownloadListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
