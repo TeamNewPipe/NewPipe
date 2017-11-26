@@ -639,6 +639,7 @@ public final class MainVideoPlayer extends Activity {
                             onPlayBackgroundButtonClicked();
                             break;
                     }
+                    showControlsThenHide();
                     return false;
                 }
             });
