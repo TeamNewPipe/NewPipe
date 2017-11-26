@@ -27,14 +27,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
-import android.content.res.TypedArray;
-import android.media.AudioManager;
 import android.graphics.Bitmap;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
@@ -42,7 +40,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.GestureDetector;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -73,7 +70,6 @@ import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
 import org.schabi.newpipe.playlist.PlayQueueItemHolder;
-import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -83,6 +79,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.List;
 
+import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 /**
@@ -106,11 +103,21 @@ public class MainVideoPlayer extends Service {
     private NotificationManager notificationManager;
     private NotificationCompat.Builder notBuilder;
     private RemoteViews notRemoteView;
+    private RemoteViews bigNotRemoteView;
     private static final int NOTIFICATION_ID = 417308;
     private static final String ACTION_CLOSE = "org.schabi.newpipe.player.MainVideoPlayer.CLOSE";
     private static final String ACTION_PLAY_PAUSE = "org.schabi.newpipe.player.MainVideoPlayer.PLAY_PAUSE";
     private static final String ACTION_OPEN_CONTROLS = "org.schabi.newpipe.player.MainVideoPlayer.OPEN_CONTROLS";
     private static final String ACTION_REPEAT = "org.schabi.newpipe.player.MainVideoPlayer.REPEAT";
+    private static final String ACTION_PLAY_NEXT = "org.schabi.newpipe.player.MainVideoPlayer.ACTION_PLAY_NEXT";
+    private static final String ACTION_PLAY_PREVIOUS = "org.schabi.newpipe.player.MainVideoPlayer.ACTION_PLAY_PREVIOUS";
+    private static final String ACTION_FAST_REWIND = "org.schabi.newpipe.player.MainVideoPlayer.ACTION_FAST_REWIND";
+    private static final String ACTION_FAST_FORWARD = "org.schabi.newpipe.player.MainVideoPlayer.ACTION_FAST_FORWARD";
+
+    private static final String SET_IMAGE_RESOURCE_METHOD = "setImageResource";
+    private final String setAlphaMethodName = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) ? "setImageAlpha" : "setAlpha";
+
+    private boolean shouldUpdateOnProgress;
 
     private LockManager lockManager;
 
@@ -154,6 +161,7 @@ public class MainVideoPlayer extends Service {
         if(DEBUG) Log.d(TAG, "onCreate() called");
         notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
         lockManager = new LockManager(this);
+        shouldUpdateOnProgress = true;
 
         createView();
     }
@@ -271,33 +279,58 @@ public class MainVideoPlayer extends Service {
     }
 
     private NotificationCompat.Builder createNotification() {
-        notRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_popup_notification);
+        notRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
+        bigNotRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification_expanded);
 
-        notRemoteView.setTextViewText(R.id.notificationSongName, playerImpl.getVideoTitle());
-        notRemoteView.setTextViewText(R.id.notificationArtist, playerImpl.getUploaderName());
-        notRemoteView.setViewVisibility(R.id.notificationStop, View.GONE);
-
-        if(playerImpl.cachedImage != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, playerImpl.cachedImage);
-
-        notRemoteView.setOnClickPendingIntent(R.id.notificationPlayPause,
-                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));
-        notRemoteView.setOnClickPendingIntent(R.id.notificationStop,
-                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_CLOSE), PendingIntent.FLAG_UPDATE_CURRENT));
-        notRemoteView.setOnClickPendingIntent(R.id.notificationContent,
-                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_OPEN_CONTROLS), PendingIntent.FLAG_UPDATE_CURRENT));
-        notRemoteView.setOnClickPendingIntent(R.id.notificationRepeat,
-                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_REPEAT), PendingIntent.FLAG_UPDATE_CURRENT));
-
-        setRepeatModeRemote(notRemoteView, playerImpl.getRepeatMode());
+        setupNotification(notRemoteView);
+        setupNotification(bigNotRemoteView);
 
         return new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
                 .setOngoing(true)
                 .setSmallIcon(R.drawable.ic_play_arrow_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setPriority(NotificationCompat.PRIORITY_MIN)
-                .setContent(notRemoteView);
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setCustomContentView(notRemoteView)
+                .setCustomBigContentView(bigNotRemoteView);
     }
 
+    private void setupNotification(RemoteViews remoteViews) {
+        if (playerImpl == null)
+            return;
+
+        if(playerImpl.cachedImage != null) remoteViews.setImageViewBitmap(R.id.notificationCover, playerImpl.cachedImage);
+
+        remoteViews.setTextViewText(R.id.notificationSongName, playerImpl.getVideoTitle());
+        remoteViews.setTextViewText(R.id.notificationArtist, playerImpl.getUploaderName());
+
+        remoteViews.setOnClickPendingIntent(R.id.notificationPlayPause,
+                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));
+        remoteViews.setOnClickPendingIntent(R.id.notificationStop,
+                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_CLOSE), PendingIntent.FLAG_UPDATE_CURRENT));
+        remoteViews.setOnClickPendingIntent(R.id.notificationContent,
+                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_OPEN_CONTROLS), PendingIntent.FLAG_UPDATE_CURRENT));
+        remoteViews.setOnClickPendingIntent(R.id.notificationRepeat,
+                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_REPEAT), PendingIntent.FLAG_UPDATE_CURRENT));
+
+        if (playerImpl.playQueue != null && playerImpl.playQueue.size() > 1) {
+            remoteViews.setInt(R.id.notificationFRewind, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_previous);
+            remoteViews.setInt(R.id.notificationFForward, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_next);
+            remoteViews.setOnClickPendingIntent(R.id.notificationFRewind,
+                    PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PREVIOUS), PendingIntent.FLAG_UPDATE_CURRENT));
+            remoteViews.setOnClickPendingIntent(R.id.notificationFForward,
+                    PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_NEXT), PendingIntent.FLAG_UPDATE_CURRENT));
+        } else {
+            remoteViews.setInt(R.id.notificationFRewind, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_rewind);
+            remoteViews.setInt(R.id.notificationFForward, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_fastforward);
+            remoteViews.setOnClickPendingIntent(R.id.notificationFRewind,
+                    PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_FAST_REWIND), PendingIntent.FLAG_UPDATE_CURRENT));
+            remoteViews.setOnClickPendingIntent(R.id.notificationFForward,
+                    PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_FAST_FORWARD), PendingIntent.FLAG_UPDATE_CURRENT));
+        }
+
+        setRepeatModeRemote(remoteViews, playerImpl.getRepeatMode());
+    }
+    
     /**
      * Updates the notification, and the play/pause button in it.
      * Used for changes on the remoteView
@@ -306,9 +339,23 @@ public class MainVideoPlayer extends Service {
      */
     private void updateNotification(int drawableId) {
         if (DEBUG) Log.d(TAG, "updateNotification() called with: drawableId = [" + drawableId + "]");
-        if (notBuilder == null || notRemoteView == null) return;
-        if (drawableId != -1) notRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
+        if (notBuilder == null) return;
+        if (drawableId != -1) {
+            if (notRemoteView != null)
+                notRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
+            if (bigNotRemoteView != null)
+                bigNotRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
+        }
         notificationManager.notify(NOTIFICATION_ID, notBuilder.build());
+    }
+
+    private void setControlsOpacity(@IntRange(from = 0, to = 255) int opacity) {
+        if (notRemoteView != null) notRemoteView.setInt(R.id.notificationPlayPause, setAlphaMethodName, opacity);
+        if (bigNotRemoteView != null) bigNotRemoteView.setInt(R.id.notificationPlayPause, setAlphaMethodName, opacity);
+        if (notRemoteView != null) notRemoteView.setInt(R.id.notificationFForward, setAlphaMethodName, opacity);
+        if (bigNotRemoteView != null) bigNotRemoteView.setInt(R.id.notificationFForward, setAlphaMethodName, opacity);
+        if (notRemoteView != null) notRemoteView.setInt(R.id.notificationFRewind, setAlphaMethodName, opacity);
+        if (bigNotRemoteView != null) bigNotRemoteView.setInt(R.id.notificationFRewind, setAlphaMethodName, opacity);
     }
 
     private void setRepeatModeRemote(final RemoteViews remoteViews, final int repeatMode) {
@@ -363,6 +410,8 @@ public class MainVideoPlayer extends Service {
             super.handleIntent(intent);
 
             resetNotification();
+            if (bigNotRemoteView != null) bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
+            if (notRemoteView != null) notRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
             startForeground(NOTIFICATION_ID, notBuilder.build());
         }
 
@@ -387,6 +436,9 @@ public class MainVideoPlayer extends Service {
             this.moreOptionsButton = rootView.findViewById(R.id.moreOptionsButton);
             this.moreOptionsPopupMenu = new PopupMenu(context, moreOptionsButton);
             this.moreOptionsPopupMenu.getMenuInflater().inflate(R.menu.menu_videooptions, moreOptionsPopupMenu.getMenu());
+
+            TextView qualityTextView = rootView.findViewById(R.id.qualityTextView);
+            qualityTextView.setVisibility(View.GONE);
 
             titleTextView.setSelected(true);
             channelTextView.setSelected(true);
@@ -482,8 +534,19 @@ public class MainVideoPlayer extends Service {
 
         @Override
         public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
-            updateProgress(currentProgress, duration, bufferPercent);
             super.onUpdateProgress(currentProgress, duration, bufferPercent);
+            updateProgress(currentProgress, duration, bufferPercent);
+
+            if (!shouldUpdateOnProgress || getCurrentState() == BasePlayer.STATE_COMPLETED || getCurrentState() == BasePlayer.STATE_PAUSED || playerImpl.getPlayQueue() == null) return;
+            resetNotification();
+            if (bigNotRemoteView != null) {
+                bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
+                bigNotRemoteView.setTextViewText(R.id.notificationTime, getTimeString(currentProgress) + " / " + getTimeString(duration));
+            }
+            if (notRemoteView != null) {
+                notRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
+            }
+            updateNotification(-1);
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -573,6 +636,9 @@ public class MainVideoPlayer extends Service {
             queueLayout.setVisibility(View.VISIBLE);
 
             itemsList.scrollToPosition(playQueue.getIndex());
+
+            if(playQueue.getStreams().size() > 4 && !isFullscreen)
+                onFullScreenButtonClicked();
         }
 
         private void onQueueClosed() {
@@ -660,6 +726,7 @@ public class MainVideoPlayer extends Service {
             playPauseButton.setImageResource(R.drawable.ic_pause_white);
             animatePlayButtons(false, 100);
             getRootView().setKeepScreenOn(true);
+            setControlsOpacity(77);
             updateNotification(R.drawable.ic_play_arrow_white);
         }
 
@@ -686,6 +753,7 @@ public class MainVideoPlayer extends Service {
             getRootView().findViewById(R.id.surfaceView).setVisibility(View.VISIBLE);
             lockManager.acquireWifiAndCpu();
             resetNotification();
+            setControlsOpacity(255);
             updateNotification(R.drawable.ic_pause_white);
             startForeground(NOTIFICATION_ID, notBuilder.build());
         }
@@ -739,6 +807,15 @@ public class MainVideoPlayer extends Service {
         }
 
         @Override
+        public void initThumbnail(final String url) {
+            resetNotification();
+            if (notRemoteView != null) notRemoteView.setImageViewResource(R.id.notificationCover, R.drawable.dummy_thumbnail);
+            if (bigNotRemoteView != null) bigNotRemoteView.setImageViewResource(R.id.notificationCover, R.drawable.dummy_thumbnail);
+            updateNotification(-1);
+            super.initThumbnail(url);
+        }
+
+        @Override
         public void onThumbnailReceived(Bitmap thumbnail) {
             super.onThumbnailReceived(thumbnail);
             if (thumbnail != null) {
@@ -747,6 +824,7 @@ public class MainVideoPlayer extends Service {
                 notBuilder = createNotification();
 
                 if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
+                if (bigNotRemoteView != null) bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
 
                 updateNotification(-1);
             }
@@ -764,6 +842,11 @@ public class MainVideoPlayer extends Service {
             intentFilter.addAction(ACTION_PLAY_PAUSE);
             intentFilter.addAction(ACTION_OPEN_CONTROLS);
             intentFilter.addAction(ACTION_REPEAT);
+            intentFilter.addAction(ACTION_PLAY_PREVIOUS);
+            intentFilter.addAction(ACTION_PLAY_NEXT);
+            intentFilter.addAction(ACTION_FAST_REWIND);
+            intentFilter.addAction(ACTION_FAST_FORWARD);
+
             intentFilter.addAction(Intent.ACTION_SCREEN_ON);
             intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
         }
@@ -774,6 +857,21 @@ public class MainVideoPlayer extends Service {
             if (intent == null || intent.getAction() == null) return;
             if (DEBUG) Log.d(TAG, "onBroadcastReceived() called with: intent = [" + intent + "]");
             switch (intent.getAction()) {
+                case ACTION_CLOSE:
+                    onVideoPlayPause();
+                    break;
+                case ACTION_PLAY_NEXT:
+                    onPlayNext();
+                    break;
+                case ACTION_PLAY_PREVIOUS:
+                    onPlayPrevious();
+                    break;
+                case ACTION_FAST_FORWARD:
+                    onFastForward();
+                    break;
+                case ACTION_FAST_REWIND:
+                    onFastRewind();
+                    break;
                 case ACTION_PLAY_PAUSE:
                     onVideoPlayPause();
                     break;
@@ -784,9 +882,11 @@ public class MainVideoPlayer extends Service {
                     onRepeatClicked();
                     break;
                 case Intent.ACTION_SCREEN_ON:
+                    shouldUpdateOnProgress = true;
                     enableVideoRenderer(true);
                     break;
                 case Intent.ACTION_SCREEN_OFF:
+                    shouldUpdateOnProgress = false;
                     enableVideoRenderer(false);
                     break;
             }

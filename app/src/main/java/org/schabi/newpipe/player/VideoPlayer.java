@@ -252,7 +252,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     @Override
     public void sync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info) {
         super.sync(item, info);
-        qualityTextView.setVisibility(View.GONE);
         playbackSpeedTextView.setVisibility(View.GONE);
 
         if (info != null) {
@@ -266,8 +265,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
             buildQualityMenu();
             buildPlaybackSpeedMenu();
-            // Look! Changed this temporary. Will remove qualityTextView soon
-            qualityTextView.setVisibility(View.GONE);
             playbackSpeedTextView.setVisibility(View.VISIBLE);
         }
     }

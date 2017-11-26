@@ -1483,6 +1483,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             showError(getString(R.string.live_streams_not_supported), false);
         } else if (exception instanceof ContentNotAvailableException) {
             showError(getString(R.string.content_not_available), false);
+
+            playNextStream();
         } else {
             int errorId = exception instanceof YoutubeStreamExtractor.DecryptException ? R.string.youtube_signature_decryption_error :
                     exception instanceof ParsingException ? R.string.parsing_error : R.string.general_error;
@@ -1535,8 +1537,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     @Override
     public void onPlayerError(ExoPlaybackException error) {
-        if(error.type == ExoPlaybackException.TYPE_SOURCE)
+        if(error.type == ExoPlaybackException.TYPE_SOURCE || error.type == ExoPlaybackException.TYPE_UNEXPECTED) {
             hideMainVideoPlayer();
+            if(mVideoPlayer != null && mVideoPlayer.isFullscreen) {
+                player.onFullScreenButtonClicked();
+            }
+            playNextStream();
+        }
     }
 
     @Override
@@ -1625,4 +1632,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         else
             currentBrightness = lp.screenBrightness;
     }
-}
+
+    private void playNextStream() {
+        if(playQueue != null && playQueue.getStreams().size()>playQueue.getIndex()+1) {
+            playQueue.setIndex(playQueue.getIndex()+1);
+            PlayQueueItem next = playQueue.getItem();
+            autoPlayEnabled = true;
+            selectAndLoadVideo(next.getServiceId(), next.getUrl(), next.getTitle(), playQueue);
+        }
+
+    }}
