@@ -686,6 +686,7 @@ public class MainVideoPlayer extends Service {
                     animatePlayButtons(true, 200);
                 }
             });
+            checkLandscape();
             getRootView().setKeepScreenOn(true);
             getRootView().findViewById(R.id.surfaceView).setVisibility(View.VISIBLE);
             lockManager.acquireWifiAndCpu();
@@ -905,6 +906,13 @@ public class MainVideoPlayer extends Service {
             screenRotationButton.setVisibility(autorotationEnabled? View.GONE : View.VISIBLE);
         }
 
+        public void checkLandscape() {
+            Activity parent = playerImpl.getParentActivity();
+            boolean isLandscape = getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
+            if(parent != null && isLandscape && !isFullscreen && getCurrentState() != STATE_COMPLETED)
+                playerImpl.onFullScreenButtonClicked();
+        }
+
         private void buildMoreOptionsMenu() {
             if (moreOptionsPopupMenu == null) return;
             moreOptionsPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -1110,7 +1118,10 @@ public class MainVideoPlayer extends Service {
 
             if (playerImpl.isControlsVisible()) playerImpl.hideControls(150, 0);
             else {
-                playerImpl.showControlsThenHide();
+                if(playerImpl.currentState == BasePlayer.STATE_COMPLETED)
+                    playerImpl.showControls(0);
+                else
+                    playerImpl.showControlsThenHide();
 
                 Activity parent = playerImpl.getParentActivity();
                 if (parent != null && isFullscreen) {

@@ -244,6 +244,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                     viewHolder.addView(mVideoPlayer.getView());
                     hideMainVideoPlayer();
                 }
+
+                player.checkLandscape();
             }
         };
     }
@@ -1485,12 +1487,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     @Override
     public void onPlaybackUpdate(int state, int repeatMode, boolean shuffled, PlaybackParameters parameters) {
-        /*if(state == BasePlayer.STATE_COMPLETED) {
+        if(state == BasePlayer.STATE_COMPLETED) {
+            if(mVideoPlayer.isFullscreen)
+                player.onFullScreenButtonClicked();
         }
-        else if(state == BasePlayer.STATE_PAUSED) {
-        }
-        else if(state == BasePlayer.STATE_PLAYING) {
-        }*/
     }
 
     @Override
