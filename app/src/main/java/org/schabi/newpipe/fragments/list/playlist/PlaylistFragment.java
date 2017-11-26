@@ -131,7 +131,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                         NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(item));
                         break;
                     case 2:
-                        NavigationHelper.playOnMainPlayer(getFragmentManager(), getPlayQueue(index));
+                        NavigationHelper.playOnMainPlayer(getFragmentManager(), getPlayQueue(index), true);
                         break;
                     case 3:
                         NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
@@ -206,7 +206,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         headerPlayAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavigationHelper.playOnMainPlayer(getFragmentManager(), getPlayQueue());
+                NavigationHelper.playOnMainPlayer(getFragmentManager(), getPlayQueue(), true);
             }
         });
         headerPopupButton.setOnClickListener(new View.OnClickListener() {

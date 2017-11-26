@@ -83,9 +83,9 @@ public class NavigationHelper {
                 .putExtra(BasePlayer.PLAYBACK_PITCH, playbackPitch);
     }
 
-    public static void playOnMainPlayer(final FragmentManager fragmentManager, final PlayQueue queue) {
-        PlayQueueItem firstStream = queue.getItem(0);
-        NavigationHelper.openVideoDetailFragment(fragmentManager, firstStream.getServiceId(), firstStream.getUrl(), firstStream.getTitle(), false, queue);
+    public static void playOnMainPlayer(final FragmentManager fragmentManager, final PlayQueue queue, boolean autoPlay) {
+        PlayQueueItem currentStream = queue.getItem();
+        NavigationHelper.openVideoDetailFragment(fragmentManager, currentStream.getServiceId(), currentStream.getUrl(), currentStream.getTitle(), autoPlay, queue);
     }
 
     public static void playOnPopupPlayer(final Context context, final PlayQueue queue) {
@@ -147,19 +147,18 @@ public class NavigationHelper {
 
         if (fragment instanceof VideoDetailFragment && fragment.isVisible()) {
             VideoDetailFragment detailFragment = (VideoDetailFragment) fragment;
-            detailFragment.setAutoplay(autoPlay);
             detailFragment.selectAndLoadVideo(serviceId, url, title, playQueue);
+            detailFragment.setAutoplay(autoPlay);
             return;
         }
 
         VideoDetailFragment instance = VideoDetailFragment.getInstance(serviceId, url, title, playQueue);
-        instance.setAutoplay(autoPlay);
-
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
                 .replace(R.id.fragment_holder, instance)
                 .addToBackStack(null)
                 .commit();
+        instance.setAutoplay(autoPlay);
     }
 
     public static void openChannelFragment(FragmentManager fragmentManager, int serviceId, String url, String name) {

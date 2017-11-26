@@ -246,6 +246,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                     hideMainVideoPlayer();
                 }
 
+                player.enableVideoRenderer(true);
                 player.checkLandscape();
             }
         };
@@ -1068,7 +1069,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
 
         if (append) {
-            NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(currentInfo));
+            SinglePlayQueue queue = new SinglePlayQueue(currentInfo);
+            if(player != null && player.getPlayer() != null)
+                queue.setRecovery(0, player.getPlayer().getCurrentPosition());
+            NavigationHelper.enqueueOnPopupPlayer(activity, queue);
         } else {
             Toast.makeText(activity, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
             final Intent intent = NavigationHelper.getPlayerIntent(
@@ -1101,7 +1105,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             playQueue.setRecovery(0, mVideoPlayer.getPlaybackPosition());
         }
         if (append) {
-            NavigationHelper.enqueueOnBackgroundPlayer(activity, new SinglePlayQueue(currentInfo));
+            SinglePlayQueue queue = new SinglePlayQueue(currentInfo);
+            if(player != null && player.getPlayer() != null)
+                queue.setRecovery(0, player.getPlayer().getCurrentPosition());
+            NavigationHelper.enqueueOnBackgroundPlayer(activity, queue);
         } else {
             NavigationHelper.playOnBackgroundPlayer(activity, playQueue);
         }
@@ -1177,8 +1184,12 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
             // Continue from paused position
             long currentPosition = 0;
-            if(player != null && player.getPlayer() != null && player.getVideoUrl() != null && player.getVideoUrl().equals(url))
-                currentPosition = player.getPlayer().getCurrentPosition();
+            if(playQueue != null && player.getPlayer() != null) {
+                if(playQueue.getItem().getRecoveryPosition() != 0)
+                    currentPosition = playQueue.getItem().getRecoveryPosition();
+                else if(player.getVideoUrl() != null && player.getVideoUrl().equals(url))
+                    currentPosition = player.getPlayer().getCurrentPosition();
+            }
 
             mVideoPlayer.loadVideo(currentInfo, playQueue, getSelectedVideoStream().resolution, currentPosition, false);
             mVideoPlayer.getView().setVisibility(View.VISIBLE);
@@ -1205,9 +1216,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    // Useless now
     public void setAutoplay(boolean autoplay) {
-        //this.autoPlayEnabled = autoplay;
+        autoPlayEnabled = autoplay;
     }
 
     private boolean isAutorotationEnabled() {

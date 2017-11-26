@@ -53,6 +53,8 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.history.HistoryListener;
+import org.schabi.newpipe.player.VideoPlayer;
+import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.StateSaver;
@@ -135,7 +137,13 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
             // Return if launched from a launcher (e.g. Nova Launcher, Pixel Launcher ...)
             // to not destroy the already created backstack
             String action = intent.getAction();
-            if ((action != null && action.equals(Intent.ACTION_MAIN)) && intent.hasCategory(Intent.CATEGORY_LAUNCHER)) return;
+
+            if ((action != null && action.equals(Intent.ACTION_MAIN)) && intent.hasCategory(Intent.CATEGORY_LAUNCHER)) {
+                PlayQueue playQueue = (PlayQueue) intent.getSerializableExtra(VideoPlayer.PLAY_QUEUE);
+                if(playQueue != null)
+                    NavigationHelper.playOnMainPlayer(getSupportFragmentManager(), playQueue, true);
+                return;
+            }
         }
 
         super.onNewIntent(intent);
