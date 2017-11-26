@@ -247,7 +247,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 }
 
                 player.enableVideoRenderer(true);
-                player.checkLandscape();
+                if(getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels) {
+                    if((!player.isPlaying() && player.getPlayQueue() != playQueue) || player.getPlayQueue() == null)
+                        setupMainVideoPlayer();
+                    player.checkLandscape();
+                }
             }
         };
     }
@@ -1180,18 +1184,21 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 || (Build.VERSION.SDK_INT < 16);
 
         if(!useOldPlayer) {
-            if(mVideoPlayer == null) return;
+            if(mVideoPlayer == null || currentInfo == null) return;
+
+            if(playQueue == null)
+                playQueue = new SinglePlayQueue(currentInfo);
 
             // Continue from paused position
             long currentPosition = 0;
-            if(playQueue != null && player.getPlayer() != null) {
+            if(player.getPlayer() != null) {
                 if(playQueue.getItem().getRecoveryPosition() != 0)
                     currentPosition = playQueue.getItem().getRecoveryPosition();
                 else if(player.getVideoUrl() != null && player.getVideoUrl().equals(url))
                     currentPosition = player.getPlayer().getCurrentPosition();
             }
 
-            mVideoPlayer.loadVideo(currentInfo, playQueue, getSelectedVideoStream().resolution, currentPosition, false);
+            mVideoPlayer.loadVideo(currentInfo, playQueue, getSelectedVideoStream().resolution, currentPosition);
             mVideoPlayer.getView().setVisibility(View.VISIBLE);
         }
         else {

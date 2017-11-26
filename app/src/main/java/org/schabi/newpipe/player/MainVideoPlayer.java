@@ -203,7 +203,7 @@ public class MainVideoPlayer extends Service {
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    public void loadVideo(StreamInfo info, PlayQueue queue, String videoResolution, long playbackPosition, boolean fullscreen) {
+    public void loadVideo(StreamInfo info, PlayQueue queue, String videoResolution, long playbackPosition) {
         if(playerImpl == null)
             createView();
 
@@ -211,12 +211,7 @@ public class MainVideoPlayer extends Service {
         if(playerImpl.getPlayer() == null)
             playerImpl.initPlayer();
 
-        if(queue == null)
-            playerImpl.playQueue = new SinglePlayQueue(info);
-        else
-            playerImpl.playQueue = queue;
-
-        isFullscreen = fullscreen;
+        playerImpl.playQueue = queue;
         playerImpl.playQueue.setRecovery(playerImpl.playQueue.getIndex(), playbackPosition);
 
         Intent playerIntent = NavigationHelper.getPlayerIntent(this, BackgroundPlayer.class, playerImpl.playQueue, videoResolution);
