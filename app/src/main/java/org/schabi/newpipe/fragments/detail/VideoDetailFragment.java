@@ -219,10 +219,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
                 startPlayerListener();
 
-                // There is no active player. Don't show player view
-                if(player.getPlayer().getCurrentPosition() == 0.0)
-                    mVideoPlayer.getView().setVisibility(View.GONE);
-
                 // It means that player was in fullscreen mode before orientation was changed
                 if(mVideoPlayer.isFullscreen) {
                     hideActionBar();
@@ -251,7 +247,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 if(isLandscape) {
                     if((!player.isPlaying() && player.getPlayQueue() != playQueue) || player.getPlayQueue() == null)
                         setupMainVideoPlayer();
-                    player.checkLandscape();
+                    // Let's give a user time to look at video information page if video is not playing
+                    if(player.isPlaying())
+                        player.checkLandscape();
                 }
                 else if(mVideoPlayer.isFullscreen)
                     player.onFullScreenButtonClicked();
@@ -1073,6 +1071,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             if(playQueue == null)
                 playQueue = new SinglePlayQueue(currentInfo);
             playQueue.setRecovery(0, mVideoPlayer.getPlaybackPosition());
+            pausePlayer();
         }
 
         if (append) {
@@ -1110,6 +1109,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         if(mVideoPlayer != null) {
             playQueue.setRecovery(0, mVideoPlayer.getPlaybackPosition());
+            pausePlayer();
         }
         if (append) {
             SinglePlayQueue queue = new SinglePlayQueue(currentInfo);
@@ -1122,6 +1122,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     }
 
     private void openExternalBackgroundPlayer(AudioStream audioStream) {
+        pausePlayer();
+
         Intent intent;
         intent = new Intent();
         try {
@@ -1156,6 +1158,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     }
 
     private void openExternalVideoPlayer(VideoStream selectedVideoStream) {
+        pausePlayer();
+
         // External Player
         Intent intent = new Intent();
         try {
@@ -1195,8 +1199,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             // Continue from paused position
             long currentPosition = 0;
             if(player.getPlayer() != null) {
-                if(playQueue.getItem().getRecoveryPosition() != 0)
+                // We use it to continue playback when returning back from popupPlayer
+                if(playQueue.getItem().getRecoveryPosition() > 0)
                     currentPosition = playQueue.getItem().getRecoveryPosition();
+                // We use it to continue playback when quality was changed
                 else if(player.getVideoUrl() != null && player.getVideoUrl().equals(url))
                     currentPosition = player.getPlayer().getCurrentPosition();
             }
@@ -1563,6 +1569,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
             // Adding view to the top position because we need MATCH_PARENT to work for fullscreen
             ((ViewGroup)getView().findViewById(R.id.video_item_detail)).addView(view);
+            // If we want fullscreen layout than view should be visible
+            view.setVisibility(View.VISIBLE);
         } else {
             showSystemUi();
             showActionBar();
@@ -1641,4 +1649,12 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             selectAndLoadVideo(next.getServiceId(), next.getUrl(), next.getTitle(), playQueue);
         }
 
-    }}
+    }
+
+    private void pausePlayer() {
+        // Pause the player because we don't want to see two notifications
+        if(player != null && player.isPlaying())
+            player.onVideoPlayPause();
+    }
+
+}

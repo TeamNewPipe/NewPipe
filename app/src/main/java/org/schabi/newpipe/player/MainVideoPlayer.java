@@ -295,7 +295,8 @@ public class MainVideoPlayer extends Service {
     }
 
     private void setupNotification(RemoteViews remoteViews) {
-        if (playerImpl == null)
+        // Don't show anything until player is playing
+        if (playerImpl == null || !playerImpl.isPlaying())
             return;
 
         if(playerImpl.cachedImage != null) remoteViews.setImageViewBitmap(R.id.notificationCover, playerImpl.cachedImage);
@@ -978,6 +979,8 @@ public class MainVideoPlayer extends Service {
             }, delay);
         }
         private  void showOrHideButtons(){
+            if(playQueue == null) return;
+
             if(playQueue.getIndex() == 0)
                 playPreviousButton.setVisibility(View.GONE);
             if(playQueue.getIndex() + 1 == playQueue.getStreams().size())
