@@ -88,6 +88,12 @@
             android:title="@string/resume_on_audio_focus_gain_title"/>
 
         <SwitchPreference
+                android:defaultValue="false"
+                android:key="@string/continue_in_background_key"
+                android:summary="@string/continue_in_background_summary"
+                android:title="@string/continue_in_background_title"/>
+
+        <SwitchPreference
             android:defaultValue="true"
             android:key="@string/player_gesture_controls_key"
             android:summary="@string/player_gesture_controls_summary"

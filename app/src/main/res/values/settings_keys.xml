@@ -14,6 +14,7 @@
 
     <string name="player_gesture_controls_key" translatable="false">player_gesture_controls</string>
     <string name="resume_on_audio_focus_gain_key" translatable="false">resume_on_audio_focus_gain</string>
+    <string name="continue_in_background_key" translatable="false">continue_in_background</string>
     <string name="popup_remember_size_pos_key" translatable="false">popup_remember_size_pos_key</string>
 
     <string name="default_resolution_key" translatable="false">default_resolution</string>

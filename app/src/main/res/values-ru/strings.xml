@@ -204,6 +204,8 @@
     <string name="enable_watch_history_summary">Запоминать просмотренные видео</string>
     <string name="resume_on_audio_focus_gain_title">Возобновлять при возврате фокуса</string>
     <string name="resume_on_audio_focus_gain_summary">Возобновлять воспроизведение после перерывов (например, телефонных звонков)</string>
+    <string name="continue_in_background_title">Играть аудио в фоне</string>
+    <string name="continue_in_background_summary">Автоматически продолжить играть аудио дорожку при выключении экрана и при скрытии приложения</string>
 
 
     <string name="notification_channel_name">Уведомление NewPipe</string>

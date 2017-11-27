@@ -46,12 +46,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageButton;
-import android.widget.PopupMenu;
-import android.widget.RelativeLayout;
-import android.widget.RemoteViews;
-import android.widget.SeekBar;
-import android.widget.TextView;
+import android.widget.*;
 
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
@@ -296,7 +291,7 @@ public class MainVideoPlayer extends Service {
 
     private void setupNotification(RemoteViews remoteViews) {
         // Don't show anything until player is playing
-        if (playerImpl == null || !playerImpl.isPlaying())
+        if (playerImpl == null)
             return;
 
         if(playerImpl.cachedImage != null) remoteViews.setImageViewBitmap(R.id.notificationCover, playerImpl.cachedImage);
@@ -331,7 +326,7 @@ public class MainVideoPlayer extends Service {
 
         setRepeatModeRemote(remoteViews, playerImpl.getRepeatMode());
     }
-    
+
     /**
      * Updates the notification, and the play/pause button in it.
      * Used for changes on the remoteView
@@ -736,7 +731,6 @@ public class MainVideoPlayer extends Service {
             super.onBuffering();
             animatePlayButtons(false, 100);
             getRootView().setKeepScreenOn(true);
-            updateNotification(R.drawable.ic_play_arrow_white);
         }
 
         @Override
@@ -884,11 +878,13 @@ public class MainVideoPlayer extends Service {
                     break;
                 case Intent.ACTION_SCREEN_ON:
                     shouldUpdateOnProgress = true;
-                    enableVideoRenderer(true);
+                    if(isBackgroundPlaybackEnabled())
+                        enableVideoRenderer(true);
                     break;
                 case Intent.ACTION_SCREEN_OFF:
                     shouldUpdateOnProgress = false;
-                    enableVideoRenderer(false);
+                    if(isBackgroundPlaybackEnabled())
+                        enableVideoRenderer(false);
                     break;
             }
             resetNotification();
@@ -918,15 +914,18 @@ public class MainVideoPlayer extends Service {
             Intent intent = NavigationHelper.getPlayerIntent(
                     context,
                     MainActivity.class,
-                    this.getPlayQueue(),
-                    this.getRepeatMode(),
-                    this.getPlaybackSpeed(),
-                    this.getPlaybackPitch(),
-                    this.getPlaybackQuality()
+                    null
             );
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.setAction(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
+            context.startActivity(intent);
+            context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+        }
+
+        public boolean isBackgroundPlaybackEnabled() {
+            return PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
+                    .getBoolean(getApplicationContext().getString(R.string.continue_in_background_key), false);
         }
 
         @Override

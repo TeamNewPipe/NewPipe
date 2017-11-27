@@ -219,6 +219,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
                 startPlayerListener();
 
+                // There is no active player. Don't show player view
+                if(!player.isPlaying() && !player.isCompleted() && !player.isProgressLoopRunning())
+                    mVideoPlayer.getView().setVisibility(View.GONE);
+
                 // It means that player was in fullscreen mode before orientation was changed
                 if(mVideoPlayer.isFullscreen) {
                     hideActionBar();
@@ -340,7 +344,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     public void onResume() {
         super.onResume();
         isPaused = false;
-        if(player != null)
+        if(player != null && player.isBackgroundPlaybackEnabled())
             player.enableVideoRenderer(true);
 
         if (updateFlags != 0) {
@@ -1528,8 +1532,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     @Override
     public void onProgressUpdate(int currentProgress, int duration, int bufferPercent) {
-        if(isPaused && player != null)
+        if(!isPaused || player == null) return;
+
+        if(player.isBackgroundPlaybackEnabled())
             player.enableVideoRenderer(false);
+        else if(player.isPlaying())
+            player.onVideoPlayPause();
+
     }
 
     @Override
@@ -1653,7 +1662,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     private void pausePlayer() {
         // Pause the player because we don't want to see two notifications
-        if(player != null && player.isPlaying())
+        if(player != null && player.getPlayer() != null && player.isPlaying())
             player.onVideoPlayPause();
     }
 
