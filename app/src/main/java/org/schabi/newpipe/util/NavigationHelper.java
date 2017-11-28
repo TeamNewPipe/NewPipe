@@ -29,12 +29,7 @@ import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.history.HistoryActivity;
-import org.schabi.newpipe.player.BackgroundPlayer;
-import org.schabi.newpipe.player.BackgroundPlayerActivity;
-import org.schabi.newpipe.player.BasePlayer;
-import org.schabi.newpipe.player.PopupVideoPlayer;
-import org.schabi.newpipe.player.PopupVideoPlayerActivity;
-import org.schabi.newpipe.player.VideoPlayer;
+import org.schabi.newpipe.player.*;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.settings.SettingsActivity;
@@ -95,7 +90,9 @@ public class NavigationHelper {
 
     public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue) {
         Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
-        context.startService(getPlayerIntent(context, BackgroundPlayer.class, queue));
+        Intent intent = getPlayerIntent(context, MainVideoPlayer.class, queue);
+        intent.putExtra(BasePlayer.AUDIO_ONLY, true);
+        context.startService(intent);
     }
 
     public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue) {
@@ -105,7 +102,9 @@ public class NavigationHelper {
 
     public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue) {
         Toast.makeText(context, R.string.background_player_append, Toast.LENGTH_SHORT).show();
-        context.startService(getPlayerEnqueueIntent(context, BackgroundPlayer.class, queue));
+        Intent intent = getPlayerEnqueueIntent(context, MainVideoPlayer.class, queue);
+        intent.putExtra(BasePlayer.AUDIO_ONLY, true);
+        context.startService(getPlayerEnqueueIntent(context, MainVideoPlayer.class, queue));
     }
     /*//////////////////////////////////////////////////////////////////////////
     // Through FragmentManager

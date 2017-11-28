@@ -115,6 +115,7 @@ public class MainVideoPlayer extends Service {
     private boolean shouldUpdateOnProgress;
 
     private LockManager lockManager;
+    private PlayerEventListener activityListener;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service LifeCycle
@@ -146,6 +147,7 @@ public class MainVideoPlayer extends Service {
     @Override
     public int onStartCommand(final Intent intent, final int flags, final int startId) {
         if(DEBUG) Log.d(TAG, "onStartCommand() called");
+        playerImpl.handleIntent(intent);
         return Service.START_NOT_STICKY;
     }
 
@@ -217,7 +219,7 @@ public class MainVideoPlayer extends Service {
         playerImpl.playQueue = queue;
         playerImpl.playQueue.setRecovery(playerImpl.playQueue.getIndex(), playbackPosition);
 
-        Intent playerIntent = NavigationHelper.getPlayerIntent(this, BackgroundPlayer.class, playerImpl.playQueue, videoResolution);
+        Intent playerIntent = NavigationHelper.getPlayerIntent(this, MainVideoPlayer.class, playerImpl.playQueue, videoResolution);
         playerImpl.handleIntent(playerIntent);
 
         getView().findViewById(R.id.surfaceView).setVisibility(View.GONE);
@@ -394,6 +396,7 @@ public class MainVideoPlayer extends Service {
         private ItemTouchHelper itemTouchHelper;
 
         private boolean queueVisible;
+        public boolean audioOnly = false;
 
         private ImageButton moreOptionsButton;
         public int moreOptionsPopupMenuGroupId = 89;
@@ -404,6 +407,17 @@ public class MainVideoPlayer extends Service {
         @Override
         public void handleIntent(Intent intent) {
             super.handleIntent(intent);
+
+            if(intent.getBooleanExtra(BasePlayer.AUDIO_ONLY, false)) {
+                enableVideoRenderer(false);
+                audioOnly = true;
+            }
+            else {
+                enableVideoRenderer(true);
+                audioOnly = false;
+            }
+
+            if(getPlayQueue() == null) return;
 
             resetNotification();
             if (bigNotRemoteView != null) bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
@@ -497,17 +511,8 @@ public class MainVideoPlayer extends Service {
         public void onPlayerError(ExoPlaybackException error) {
             super.onPlayerError(error);
 
-            if(error.type == ExoPlaybackException.TYPE_SOURCE)
-                destroy();
-
             if(fragmentListener != null)
                 fragmentListener.onPlayerError(error);
-        }
-
-        @Override
-        public void shutdown() {
-            super.shutdown();
-            destroy();
         }
 
         @Override
@@ -765,7 +770,12 @@ public class MainVideoPlayer extends Service {
             });
             getRootView().setKeepScreenOn(false);
             lockManager.releaseWifiAndCpu();
-            stopForeground(true);
+            updateNotification(R.drawable.ic_play_arrow_white);
+
+            if(audioOnly)
+                stopForeground(false);
+            else
+                stopForeground(true);
         }
 
         @Override
@@ -790,7 +800,12 @@ public class MainVideoPlayer extends Service {
             getRootView().setKeepScreenOn(false);
             showControls(100);
             lockManager.releaseWifiAndCpu();
-            stopForeground(true);
+            updateNotification(R.drawable.ic_play_arrow_white);
+
+            if(audioOnly)
+                stopForeground(false);
+            else
+                stopForeground(true);
             // Produce a bad interface
             //super.onCompleted();
         }
@@ -853,7 +868,8 @@ public class MainVideoPlayer extends Service {
             if (DEBUG) Log.d(TAG, "onBroadcastReceived() called with: intent = [" + intent + "]");
             switch (intent.getAction()) {
                 case ACTION_CLOSE:
-                    onVideoPlayPause();
+                    getPlayer().setPlayWhenReady(false);
+                    stopForeground(true);
                     break;
                 case ACTION_PLAY_NEXT:
                     onPlayNext();
@@ -871,7 +887,10 @@ public class MainVideoPlayer extends Service {
                     onVideoPlayPause();
                     break;
                 case ACTION_OPEN_CONTROLS:
-                    openControl(getApplicationContext());
+                    if(!audioOnly)
+                        openControl(getApplicationContext());
+                    else
+                        NavigationHelper.openBackgroundPlayerControl(getApplicationContext());
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();
@@ -1136,9 +1155,25 @@ public class MainVideoPlayer extends Service {
             }
         }
 
+        /*package-private*/ void setActivityListener(PlayerEventListener listener) {
+            activityListener = listener;
+            updateMetadata();
+            updatePlayback();
+            triggerProgressUpdate();
+        }
+
+        /*package-private*/ void removeActivityListener(PlayerEventListener listener) {
+            if (activityListener == listener) {
+                activityListener = null;
+            }
+        }
+
         private void updateMetadata() {
             if (fragmentListener != null && currentInfo != null) {
                 fragmentListener.onMetadataUpdate(currentInfo);
+            }
+            if (activityListener != null && currentInfo != null) {
+                activityListener.onMetadataUpdate(currentInfo);
             }
         }
 
@@ -1146,11 +1181,17 @@ public class MainVideoPlayer extends Service {
             if (fragmentListener != null && simpleExoPlayer != null && playQueue != null) {
                 fragmentListener.onPlaybackUpdate(currentState, getRepeatMode(), playQueue.isShuffled(), simpleExoPlayer.getPlaybackParameters());
             }
+            if (activityListener != null && simpleExoPlayer != null && playQueue != null) {
+                activityListener.onPlaybackUpdate(currentState, getRepeatMode(), playQueue.isShuffled(), getPlaybackParameters());
+            }
         }
 
         private void updateProgress(int currentProgress, int duration, int bufferPercent) {
             if (fragmentListener != null) {
                 fragmentListener.onProgressUpdate(currentProgress, duration, bufferPercent);
+            }
+            if (activityListener != null) {
+                activityListener.onProgressUpdate(currentProgress, duration, bufferPercent);
             }
         }
 
@@ -1158,6 +1199,10 @@ public class MainVideoPlayer extends Service {
             if (fragmentListener != null) {
                 fragmentListener.onServiceStopped();
                 fragmentListener = null;
+            }
+            if (activityListener != null) {
+                activityListener.onServiceStopped();
+                activityListener = null;
             }
         }
 

@@ -250,10 +250,12 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 boolean isLandscape = getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
                 if(isLandscape) {
                     if((!player.isPlaying() && player.getPlayQueue() != playQueue) || player.getPlayQueue() == null)
-                        setupMainVideoPlayer();
+                        openVideoPlayer();
                     // Let's give a user time to look at video information page if video is not playing
-                    if(player.isPlaying())
+                    if(player.isPlaying()) {
+                        player.audioOnly = false;
                         player.checkLandscape();
+                    }
                 }
                 else if(mVideoPlayer.isFullscreen)
                     player.onFullScreenButtonClicked();
@@ -344,7 +346,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     public void onResume() {
         super.onResume();
         isPaused = false;
-        if(player != null && player.isBackgroundPlaybackEnabled())
+        if(player != null && player.isBackgroundPlaybackEnabled() && !player.audioOnly)
             player.enableVideoRenderer(true);
 
         if (updateFlags != 0) {
@@ -820,7 +822,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             @Override
             public void onActionSelected (int selectedStreamId) {
                 if(mVideoPlayer != null && oldSelectedStreamId != selectedStreamId && selectedStreamId != -1) {
-                    setupMainVideoPlayer();
+                    openVideoPlayer();
                 }
                 oldSelectedStreamId = selectedStreamId;
             }
@@ -1203,7 +1205,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             // Continue from paused position
             long currentPosition = 0;
             if(player.getPlayer() != null) {
-                // We use it to continue playback when returning back from popupPlayer
+                // We use it to continue playback when returning back from popup or background players
                 if(playQueue.getItem().getRecoveryPosition() > 0)
                     currentPosition = playQueue.getItem().getRecoveryPosition();
                 // We use it to continue playback when quality was changed
@@ -1474,9 +1476,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         if (autoPlayEnabled) {
             openVideoPlayer();
-            // Only auto play in the first open
-            // No. Always
-            //autoPlayEnabled = false;
         }
     }
 
@@ -1535,9 +1534,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     public void onProgressUpdate(int currentProgress, int duration, int bufferPercent) {
         if(!isPaused || player == null) return;
 
-        if(player.isBackgroundPlaybackEnabled())
+        if(player.isBackgroundPlaybackEnabled() && !player.audioOnly)
             player.enableVideoRenderer(false);
-        else if(player.isPlaying())
+        else if(player.isPlaying() && !player.audioOnly)
             player.onVideoPlayPause();
 
     }
