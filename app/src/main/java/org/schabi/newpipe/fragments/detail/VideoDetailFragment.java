@@ -246,14 +246,14 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                     hideMainVideoPlayer();
                 }
 
-                player.enableVideoRenderer(true);
+                player.useVideoSource(true);
                 boolean isLandscape = getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
                 if(isLandscape) {
                     if((!player.isPlaying() && player.getPlayQueue() != playQueue) || player.getPlayQueue() == null)
-                        openVideoPlayer();
+                        setupMainVideoPlayer();
                     // Let's give a user time to look at video information page if video is not playing
                     if(player.isPlaying()) {
-                        player.audioOnly = false;
+                        player.isBackgroundPlayerSelected = false;
                         player.checkLandscape();
                     }
                 }
@@ -346,8 +346,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     public void onResume() {
         super.onResume();
         isPaused = false;
-        if(player != null && player.isBackgroundPlaybackEnabled() && !player.audioOnly)
-            player.enableVideoRenderer(true);
+        if(player != null && player.isBackgroundPlaybackEnabled() && !player.isBackgroundPlayerSelected)
+            player.useVideoSource(true);
 
         if (updateFlags != 0) {
             if (!isLoading.get() && currentInfo != null) {
@@ -976,7 +976,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     protected void doInitialLoadLogic() {
         if (currentInfo == null) {
-            autoPlayEnabled = (playQueue != null && playQueue.getStreams().size() > 1) || isAutoplayPreferred();
+            if(!autoPlayEnabled)
+                autoPlayEnabled = (playQueue != null && playQueue.getStreams().size() > 1) || isAutoplayPreferred();
             prepareAndLoadInfo();
         }
         else prepareAndHandleInfo(currentInfo, false);
@@ -1213,7 +1214,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                     currentPosition = player.getPlayer().getCurrentPosition();
             }
 
-            mVideoPlayer.loadVideo(currentInfo, playQueue, getSelectedVideoStream().resolution, currentPosition);
+            mVideoPlayer.loadVideo(playQueue, getSelectedVideoStream().resolution, currentPosition);
             mVideoPlayer.getView().setVisibility(View.VISIBLE);
         }
         else {
@@ -1532,13 +1533,14 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     @Override
     public void onProgressUpdate(int currentProgress, int duration, int bufferPercent) {
-        if(!isPaused || player == null) return;
+        // We don't want to interrupt playback and don't want to see notification if player is stopped
+        if(!isPaused || player == null || player.isBackgroundPlayerSelected || player.getPlayer() == null || !player.isPlaying()) return;
 
-        if(player.isBackgroundPlaybackEnabled() && !player.audioOnly)
-            player.enableVideoRenderer(false);
-        else if(player.isPlaying() && !player.audioOnly)
-            player.onVideoPlayPause();
-
+        // Video enabled. Let's think what to do with source in background
+        if(player.isBackgroundPlaybackEnabled())
+            player.useVideoSource(false);
+        else
+            player.getPlayer().setPlayWhenReady(false);
     }
 
     @Override

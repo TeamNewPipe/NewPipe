@@ -52,9 +52,12 @@ import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 
+import com.google.android.exoplayer2.source.MediaSource;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.MediaFormat;
+import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
@@ -208,7 +211,7 @@ public class MainVideoPlayer extends Service {
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    public void loadVideo(StreamInfo info, PlayQueue queue, String videoResolution, long playbackPosition) {
+    public void loadVideo(PlayQueue queue, String videoResolution, long playbackPosition) {
         if(playerImpl == null)
             createView();
 
@@ -216,6 +219,9 @@ public class MainVideoPlayer extends Service {
         if(playerImpl.getPlayer() == null)
             playerImpl.initPlayer();
 
+        playerImpl.selectedResolution = videoResolution;
+        playerImpl.isBackgroundPlayerSelected = false;
+        playerImpl.audioOnly = false;
         playerImpl.playQueue = queue;
         playerImpl.playQueue.setRecovery(playerImpl.playQueue.getIndex(), playbackPosition);
 
@@ -397,6 +403,9 @@ public class MainVideoPlayer extends Service {
 
         private boolean queueVisible;
         public boolean audioOnly = false;
+        public boolean isBackgroundPlayerSelected = false;
+
+        private String selectedResolution;
 
         private ImageButton moreOptionsButton;
         public int moreOptionsPopupMenuGroupId = 89;
@@ -406,18 +415,12 @@ public class MainVideoPlayer extends Service {
 
         @Override
         public void handleIntent(Intent intent) {
+            if(intent.getSerializableExtra(BasePlayer.PLAY_QUEUE) == null) return;
+
+            isBackgroundPlayerSelected = intent.getBooleanExtra(BasePlayer.AUDIO_ONLY, false);
+            audioOnly = isBackgroundPlayerSelected;
+            // We need to setup audioOnly before super()
             super.handleIntent(intent);
-
-            if(intent.getBooleanExtra(BasePlayer.AUDIO_ONLY, false)) {
-                enableVideoRenderer(false);
-                audioOnly = true;
-            }
-            else {
-                enableVideoRenderer(true);
-                audioOnly = false;
-            }
-
-            if(getPlayQueue() == null) return;
 
             resetNotification();
             if (bigNotRemoteView != null) bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
@@ -520,9 +523,6 @@ public class MainVideoPlayer extends Service {
             super.sync(item, info);
             titleTextView.setText(getVideoTitle());
             channelTextView.setText(getUploaderName());
-
-            playPauseButton.setImageResource(R.drawable.ic_pause_white);
-
             updateMetadata();
         }
 
@@ -548,6 +548,20 @@ public class MainVideoPlayer extends Service {
                 notRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
             }
             updateNotification(-1);
+        }
+
+        @Override
+        @Nullable
+        public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
+            if(!audioOnly)
+                return super.sourceOf(item, info);
+            else {
+                final int index = ListHelper.getDefaultAudioFormat(context, info.audio_streams);
+                if (index < 0 || index >= info.audio_streams.size()) return null;
+
+                final AudioStream audio = info.audio_streams.get(index);
+                return buildMediaSource(audio.url, MediaFormat.getSuffixById(audio.format));
+            }
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -772,7 +786,7 @@ public class MainVideoPlayer extends Service {
             lockManager.releaseWifiAndCpu();
             updateNotification(R.drawable.ic_play_arrow_white);
 
-            if(audioOnly)
+            if(isBackgroundPlayerSelected)
                 stopForeground(false);
             else
                 stopForeground(true);
@@ -802,7 +816,7 @@ public class MainVideoPlayer extends Service {
             lockManager.releaseWifiAndCpu();
             updateNotification(R.drawable.ic_play_arrow_white);
 
-            if(audioOnly)
+            if(isBackgroundPlayerSelected)
                 stopForeground(false);
             else
                 stopForeground(true);
@@ -887,7 +901,7 @@ public class MainVideoPlayer extends Service {
                     onVideoPlayPause();
                     break;
                 case ACTION_OPEN_CONTROLS:
-                    if(!audioOnly)
+                    if(!isBackgroundPlayerSelected)
                         openControl(getApplicationContext());
                     else
                         NavigationHelper.openBackgroundPlayerControl(getApplicationContext());
@@ -898,26 +912,16 @@ public class MainVideoPlayer extends Service {
                 case Intent.ACTION_SCREEN_ON:
                     shouldUpdateOnProgress = true;
                     if(isBackgroundPlaybackEnabled())
-                        enableVideoRenderer(true);
+                        useVideoSource(true);
                     break;
                 case Intent.ACTION_SCREEN_OFF:
                     shouldUpdateOnProgress = false;
                     if(isBackgroundPlaybackEnabled())
-                        enableVideoRenderer(false);
+                        useVideoSource(false);
                     break;
             }
             resetNotification();
         }
-        /*@Override
-        public void onConfigurationChanged(Configuration newConfig) {
-            super.onConfigurationChanged(newConfig);
-
-            if (playerImpl.isSomePopupMenuVisible()) {
-                playerImpl.moreOptionsPopupMenu.dismiss();
-                playerImpl.getQualityPopupMenu().dismiss();
-                playerImpl.getPlaybackSpeedPopupMenu().dismiss();
-            }
-        }*/
 
         /*//////////////////////////////////////////////////////////////////////////
         // Utils
@@ -1074,6 +1078,19 @@ public class MainVideoPlayer extends Service {
                     onQueueClosed();
                 }
             });
+        }
+
+        public void useVideoSource(boolean video) {
+            if(playQueue == null || selectedResolution == null || audioOnly == !video) return;
+
+            boolean shouldStartPlaying = true;
+            if(getPlayer() != null)
+                shouldStartPlaying = isPlaying();
+
+            audioOnly = !video;
+            setRecovery();
+            initPlayback(playQueue);
+            getPlayer().setPlayWhenReady(shouldStartPlaying);
         }
 
         private OnScrollBelowItemsListener getQueueScrollListener() {
