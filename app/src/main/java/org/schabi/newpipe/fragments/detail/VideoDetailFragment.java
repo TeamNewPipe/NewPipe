@@ -520,8 +520,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 if (currentInfo.uploader_url == null || currentInfo.uploader_url.isEmpty()) {
                     Log.w(TAG, "Can't open channel because we got no channel URL");
                 } else {
-                    NavigationHelper.openChannelFragment(getFragmentManager(), currentInfo.service_id, currentInfo.uploader_url, currentInfo.uploader_name);
                     hideMainVideoPlayer();
+                    NavigationHelper.openChannelFragment(getFragmentManager(), currentInfo.service_id, currentInfo.uploader_url, currentInfo.uploader_name);
                 }
                 break;
             case R.id.detail_thumbnail_root_layout:
@@ -1230,6 +1230,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         mVideoPlayer.getView().setVisibility(View.GONE);
         mVideoPlayer.stop();
+        autoPlayEnabled = false;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1247,7 +1248,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     private boolean isAutoplayPreferred() {
         return PreferenceManager.getDefaultSharedPreferences(getContext())
-                .getBoolean(getContext().getString(R.string.autoplay_through_intent_key), false);
+                .getBoolean(getContext().getString(R.string.autoplay_always_key), false);
     }
 
     private void addVideoPlayerView() {

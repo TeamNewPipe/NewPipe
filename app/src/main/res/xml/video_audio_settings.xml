@@ -76,6 +76,12 @@
         android:title="@string/settings_category_player_behavior_title">
 
         <SwitchPreference
+                android:defaultValue="false"
+                android:key="@string/autoplay_always_key"
+                android:summary="@string/autoplay_always_summary"
+                android:title="@string/autoplay_always_title"/>
+
+        <SwitchPreference
             android:defaultValue="false"
             android:key="@string/autoplay_through_intent_key"
             android:summary="@string/autoplay_by_calling_app_summary"
