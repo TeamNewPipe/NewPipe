@@ -920,7 +920,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     public boolean onBackPressed() {
         if (mVideoPlayer != null && mVideoPlayer.isFullscreen) {
             mVideoPlayer.isFullscreen = false;
-            onFullScreenButtonClicked(false);
+            mVideoPlayer.toggleOrientation();
             return true;
         }
 

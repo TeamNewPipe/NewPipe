@@ -231,7 +231,7 @@ public class MainVideoPlayer extends Service {
         getView().findViewById(R.id.surfaceView).setVisibility(View.GONE);
     }
 
-    private void toggleOrientation() {
+    public void toggleOrientation() {
         Activity parent = playerImpl.getParentActivity();
         if(parent == null) return;
 
@@ -452,7 +452,11 @@ public class MainVideoPlayer extends Service {
 
             TextView qualityTextView = rootView.findViewById(R.id.qualityTextView);
             qualityTextView.setVisibility(View.GONE);
-
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) getFullScreenButton().getLayoutParams();
+            params.width = 0;
+            params.leftMargin = 0;
+            getFullScreenButton().setVisibility(View.INVISIBLE);
+            getFullScreenButton().setLayoutParams(params);
             titleTextView.setSelected(true);
             channelTextView.setSelected(true);
             checkAutorotation();
