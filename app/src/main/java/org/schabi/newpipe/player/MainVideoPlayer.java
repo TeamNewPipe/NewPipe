@@ -167,7 +167,7 @@ public class MainVideoPlayer extends Service {
     }
 
     private void createView() {
-        View layout = View.inflate(this, R.layout.activity_main_player, null);
+        View layout = View.inflate(this, R.layout.player_main, null);
 
         playerImpl = new VideoPlayerImpl(this);
         playerImpl.setStartedFromNewPipe(true);
