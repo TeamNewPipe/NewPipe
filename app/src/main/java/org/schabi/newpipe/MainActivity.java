@@ -22,6 +22,7 @@ package org.schabi.newpipe;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -92,6 +93,10 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         initHistory();
+
+        if(PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean(this.getString(R.string.use_video_autorotation_key), false))
+            this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
     }
 
     @Override

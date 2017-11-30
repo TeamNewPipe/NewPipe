@@ -17,7 +17,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
@@ -316,10 +315,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         setHasOptionsMenu(true);
         ThemeHelper.setTheme(getContext());
         setBrightness();
-        // It means when device will be rotated only current screen will be rotated too. Look at onDestroy()
-        if(isAutorotationEnabled())
-            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-
         showRelatedStreams = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.show_next_video_key), true);
         PreferenceManager.getDefaultSharedPreferences(activity).registerOnSharedPreferenceChangeListener(this);
 
@@ -379,10 +374,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         currentInfo = null;
         sortedStreamVideosList = null;
         spinnerToolbar = null;
-
-        if(isAutorotationEnabled()) {
-            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-        }
 
         unbind();
     }
