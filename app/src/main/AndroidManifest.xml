@@ -39,10 +39,6 @@
             android:name=".player.MainVideoPlayer"
             android:exported="false"/>
 
-        <service
-            android:name=".player.BackgroundPlayer"
-            android:exported="false"/>
-
         <activity
             android:name=".player.BackgroundPlayerActivity"
             android:launchMode="singleTask"

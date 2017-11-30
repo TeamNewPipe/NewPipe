@@ -588,7 +588,7 @@ public class MainVideoPlayer extends Service {
             setRecovery();
             final Intent intent = NavigationHelper.getPlayerIntent(
                     context,
-                    BackgroundPlayer.class,
+                    MainVideoPlayer.class,
                     this.getPlayQueue(),
                     this.getRepeatMode(),
                     this.getPlaybackSpeed(),
