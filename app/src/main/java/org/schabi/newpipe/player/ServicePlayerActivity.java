@@ -199,8 +199,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 if (service instanceof PlayerServiceBinder) {
                     player = ((PlayerServiceBinder) service).getPlayerInstance();
                 }
-                else if (service instanceof MainVideoPlayer.LocalBinder) {
-                    player = ((MainVideoPlayer.LocalBinder) service).getPlayer();
+                else if (service instanceof MainPlayerService.LocalBinder) {
+                    player = ((MainPlayerService.LocalBinder) service).getPlayer();
                 }
 
                 if (player == null || player.getPlayQueue() == null ||

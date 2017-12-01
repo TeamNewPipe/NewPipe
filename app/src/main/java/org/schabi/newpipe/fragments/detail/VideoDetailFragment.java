@@ -73,7 +73,7 @@ import org.schabi.newpipe.history.HistoryListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.player.BasePlayer;
-import org.schabi.newpipe.player.MainVideoPlayer;
+import org.schabi.newpipe.player.MainPlayerService;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.player.event.PlayerEventListener;
@@ -189,11 +189,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private ImageButton relatedStreamExpandButton;
 
     public int position = 0;
-    private MainVideoPlayer mVideoPlayer;
+    private MainPlayerService mPlayerService;
 
     private ServiceConnection mServiceConnection;
     private boolean mBounded;
-    private MainVideoPlayer.VideoPlayerImpl player;
+    private MainPlayerService.VideoPlayerImpl player;
 
     private ServiceConnection getServiceConnection() {
         return new ServiceConnection() {
@@ -206,10 +206,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
                 if(DEBUG) Log.d(TAG, "Player service is connected");
-                MainVideoPlayer.LocalBinder localBinder = (MainVideoPlayer.LocalBinder)
+                MainPlayerService.LocalBinder localBinder = (MainPlayerService.LocalBinder)
                         service;
 
-                mVideoPlayer = localBinder.getService();
+                mPlayerService = localBinder.getService();
                 player = localBinder.getPlayer();
                 player.useVideoSource(true);
 
@@ -223,7 +223,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 boolean isLandscape = getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
                 if(isLandscape) {
                     if((!player.isPlaying() && player.getPlayQueue() != playQueue) || player.getPlayQueue() == null)
-                        setupMainVideoPlayer();
+                        setupMainPlayer();
                     // Let's give a user time to look at video information page if video is not playing
                     if(player.isPlaying()) {
                         player.notifyIsInBackground(false);
@@ -238,7 +238,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     private void bind() {
         if(DEBUG) Log.d(TAG, "bind() called");
-        Intent serviceIntent = new Intent(getContext(), MainVideoPlayer.class);
+        Intent serviceIntent = new Intent(getContext(), MainPlayerService.class);
         final boolean success = getActivity().bindService(serviceIntent, mServiceConnection, Context.BIND_AUTO_CREATE);
 
         if (!success) {
@@ -253,7 +253,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             getActivity().unbindService(mServiceConnection);
             mBounded = false;
             stopPlayerListener();
-            mVideoPlayer = null;
+            mPlayerService = null;
             player = null;
         }
     }
@@ -267,7 +267,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     }
 
     private void stopService() {
-        getActivity().stopService(new Intent(getActivity(), MainVideoPlayer.class));
+        getActivity().stopService(new Intent(getActivity(), MainPlayerService.class));
         unbind();
     }
 
@@ -293,7 +293,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         PreferenceManager.getDefaultSharedPreferences(activity).registerOnSharedPreferenceChangeListener(this);
 
         if(savedInstanceState == null)
-            getActivity().startService(new Intent(getActivity(), MainVideoPlayer.class));
+            getActivity().startService(new Intent(getActivity(), MainPlayerService.class));
 
         mServiceConnection = getServiceConnection();
         bind();
@@ -398,7 +398,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             else {
                 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
             }
-            if(mVideoPlayer != null && player != null) player.checkAutorotation();
+            if(mPlayerService != null && player != null) player.checkAutorotation();
         }
     }
 
@@ -476,18 +476,18 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         switch (v.getId()) {
             case R.id.detail_controls_background:
-                hideMainVideoPlayer();
+                hideMainPlayer();
                 openBackgroundPlayer(false);
                 break;
             case R.id.detail_controls_popup:
-                hideMainVideoPlayer();
+                hideMainPlayer();
                 openPopupPlayer(false);
                 break;
             case R.id.detail_uploader_root_layout:
                 if (currentInfo.uploader_url == null || currentInfo.uploader_url.isEmpty()) {
                     Log.w(TAG, "Can't open channel because we got no channel URL");
                 } else {
-                    hideMainVideoPlayer();
+                    hideMainPlayer();
                     NavigationHelper.openChannelFragment(getFragmentManager(), currentInfo.service_id, currentInfo.uploader_url, currentInfo.uploader_name);
                 }
                 break;
@@ -509,11 +509,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         switch (v.getId()) {
             case R.id.detail_controls_background:
-                hideMainVideoPlayer();
+                hideMainPlayer();
                 openBackgroundPlayer(true);
                 break;
             case R.id.detail_controls_popup:
-                hideMainVideoPlayer();
+                hideMainPlayer();
                 openPopupPlayer(true);
                 break;
         }
@@ -618,7 +618,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             public void selected(StreamInfoItem selectedItem) {
                 autoPlayEnabled = isAutoplayPreferred();
                 if(!autoPlayEnabled)
-                    hideMainVideoPlayer();
+                    hideMainPlayer();
                 selectAndLoadVideo(selectedItem.service_id, selectedItem.url, selectedItem.name, null);
 
             }
@@ -786,7 +786,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         actionBarHandler.setOnStreamSelectedListener(new ActionBarHandler.OnStreamChangesListener() {
             @Override
             public void onActionSelected (int selectedStreamId) {
-                if(mVideoPlayer != null && oldSelectedStreamId != selectedStreamId && selectedStreamId != -1) {
+                if(mPlayerService != null && oldSelectedStreamId != selectedStreamId && selectedStreamId != -1) {
                     openVideoPlayer();
                 }
                 oldSelectedStreamId = selectedStreamId;
@@ -800,7 +800,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         actionBarHandler.setOnShareListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
-                hideMainVideoPlayer();
+                hideMainPlayer();
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_TEXT, info.url);
@@ -812,7 +812,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         actionBarHandler.setOnOpenInBrowserListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
-                hideMainVideoPlayer();
+                hideMainPlayer();
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(info.url));
@@ -892,9 +892,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     @Override
     public boolean onBackPressed() {
-        if (mVideoPlayer != null && player != null && player.isInFullscreen()) {
+        if (mPlayerService != null && player != null && player.isInFullscreen()) {
             player.notifyIsInFullscreen(false);
-            mVideoPlayer.toggleOrientation();
+            mPlayerService.toggleOrientation();
             return true;
         }
 
@@ -902,7 +902,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         // That means that we are on the start of the stack,
         // return false to let the MainActivity handle the onBack
         if (stack.size() <= 1) {
-            hideMainVideoPlayer();
+            hideMainPlayer();
             stopService();
             return false;
         }
@@ -913,7 +913,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         selectStreamFromHistory(peek);
 
         autoPlayEnabled = false;
-        hideMainVideoPlayer();
+        hideMainPlayer();
         selectAndLoadVideo(peek.getServiceId(), peek.getUrl(), !TextUtils.isEmpty(peek.getTitle()) ? peek.getTitle() : "", peek.getPlayQueue());
 
         return true;
@@ -1024,10 +1024,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             ((HistoryListener) activity).onVideoPlayed(currentInfo, getSelectedVideoStream());
         }
 
-        if(mVideoPlayer != null) {
+        if(mPlayerService != null) {
             if(playQueue == null)
                 playQueue = new SinglePlayQueue(currentInfo);
-            playQueue.setRecovery(0, mVideoPlayer.getPlaybackPosition());
+            playQueue.setRecovery(0, mPlayerService.getPlaybackPosition());
             pausePlayer();
         }
 
@@ -1055,7 +1055,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
             openExternalVideoPlayer(selectedVideoStream);
         } else {
-            setupMainVideoPlayer();
+            setupMainPlayer();
         }
     }
 
@@ -1064,8 +1064,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if(playQueue == null)
             playQueue = new SinglePlayQueue(currentInfo);
 
-        if(mVideoPlayer != null) {
-            playQueue.setRecovery(0, mVideoPlayer.getPlaybackPosition());
+        if(mPlayerService != null) {
+            playQueue.setRecovery(0, mPlayerService.getPlaybackPosition());
             pausePlayer();
         }
         if (append) {
@@ -1143,12 +1143,12 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
     }
 
-    private void setupMainVideoPlayer() {
+    private void setupMainPlayer() {
         boolean useOldPlayer = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.use_old_player_key), false)
                 || (Build.VERSION.SDK_INT < 16);
 
         if(!useOldPlayer) {
-            if(mVideoPlayer == null || currentInfo == null) return;
+            if(mPlayerService == null || currentInfo == null) return;
 
             if(playQueue == null)
                 playQueue = new SinglePlayQueue(currentInfo);
@@ -1164,8 +1164,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                     currentPosition = player.getPlayer().getCurrentPosition();
             }
 
-            mVideoPlayer.loadVideo(playQueue, getSelectedVideoStream().resolution, currentPosition);
-            mVideoPlayer.getView().setVisibility(View.VISIBLE);
+            mPlayerService.loadVideo(playQueue, getSelectedVideoStream().resolution, currentPosition);
+            mPlayerService.getView().setVisibility(View.VISIBLE);
         }
         else {
             // Internal Player
@@ -1178,11 +1178,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
     }
 
-    public void hideMainVideoPlayer() {
-        if(mVideoPlayer == null || mVideoPlayer.getView() == null) return;
+    public void hideMainPlayer() {
+        if(mPlayerService == null || mPlayerService.getView() == null) return;
 
-        mVideoPlayer.getView().setVisibility(View.GONE);
-        mVideoPlayer.stop();
+        mPlayerService.getView().setVisibility(View.GONE);
+        mPlayerService.stop();
         autoPlayEnabled = false;
     }
 
@@ -1205,7 +1205,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     }
 
     private void addVideoPlayerView() {
-        if(mVideoPlayer == null || mVideoPlayer.getView() == null || getView() == null) return;
+        if(mPlayerService == null || mPlayerService.getView() == null || getView() == null) return;
 
         ViewGroup viewHolder = getView().findViewById(
                 player.isInFullscreen()?
@@ -1213,13 +1213,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                         R.id.detail_thumbnail_root_layout);
 
         removeVideoPlayerView();
-        viewHolder.addView(mVideoPlayer.getView());
+        viewHolder.addView(mPlayerService.getView());
     }
 
     private void removeVideoPlayerView() {
-        if(mVideoPlayer == null || mVideoPlayer.getView() == null) return;
-        if(mVideoPlayer.getView().getParent() != null)
-            ((ViewGroup)mVideoPlayer.getView().getParent()).removeView(mVideoPlayer.getView());
+        if(mPlayerService == null || mPlayerService.getView() == null) return;
+        if(mPlayerService.getView().getParent() != null)
+            ((ViewGroup)mPlayerService.getView().getParent()).removeView(mPlayerService.getView());
     }
 
     private VideoStream getSelectedVideoStream() {
@@ -1505,8 +1505,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     public void onPlayerError(ExoPlaybackException error) {
         if(error.type == ExoPlaybackException.TYPE_SOURCE || error.type == ExoPlaybackException.TYPE_UNEXPECTED) {
-            hideMainVideoPlayer();
-            if(mVideoPlayer != null && player.isInFullscreen()) {
+            hideMainPlayer();
+            if(mPlayerService != null && player.isInFullscreen()) {
                 player.onFullScreenButtonClicked();
             }
             playNextStream();
@@ -1520,7 +1520,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     @Override
     public void onFullScreenButtonClicked(boolean fullscreen) {
-        View view = mVideoPlayer.getView();
+        View view = mPlayerService.getView();
         ViewGroup parent = (ViewGroup) view.getParent();
         parent.removeView(view);
 
@@ -1568,7 +1568,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     }
 
     private void hideSystemUi() {
-        if(mVideoPlayer == null || !player.isInFullscreen() || getActivity() == null) return;
+        if(mPlayerService == null || !player.isInFullscreen() || getActivity() == null) return;
         if (DEBUG) Log.d(TAG, "hideSystemUi() called");
         if (android.os.Build.VERSION.SDK_INT >= 16) {
             int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -1641,18 +1641,18 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                         R.id.detail_thumbnail_root_layout);
 
         // if the player is not attached to fragment we will attach it
-        if(mVideoPlayer.getView().getParent() == null)
-            viewHolder.addView(mVideoPlayer.getView());
+        if(mPlayerService.getView().getParent() == null)
+            viewHolder.addView(mPlayerService.getView());
         // If the player is already attached to other instance of VideoDetailFragment just reattach it to the current instance
         else if(getView().findViewById(R.id.aspectRatioLayout) == null) {
             removeVideoPlayerView();
-            viewHolder.addView(mVideoPlayer.getView());
-            hideMainVideoPlayer();
+            viewHolder.addView(mPlayerService.getView());
+            hideMainPlayer();
         }
 
         // There is no active player. Don't show player view
         if(!player.isPlaying() && !player.isCompleted() && !player.isProgressLoopRunning())
-            mVideoPlayer.getView().setVisibility(View.GONE);
+            mPlayerService.getView().setVisibility(View.GONE);
     }
 
     private void pausePlayer() {

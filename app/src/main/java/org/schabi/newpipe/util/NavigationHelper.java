@@ -90,7 +90,7 @@ public class NavigationHelper {
 
     public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue) {
         Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
-        Intent intent = getPlayerIntent(context, MainVideoPlayer.class, queue);
+        Intent intent = getPlayerIntent(context, MainPlayerService.class, queue);
         intent.putExtra(BasePlayer.AUDIO_ONLY, true);
         context.startService(intent);
     }
@@ -102,9 +102,9 @@ public class NavigationHelper {
 
     public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue) {
         Toast.makeText(context, R.string.background_player_append, Toast.LENGTH_SHORT).show();
-        Intent intent = getPlayerEnqueueIntent(context, MainVideoPlayer.class, queue);
+        Intent intent = getPlayerEnqueueIntent(context, MainPlayerService.class, queue);
         intent.putExtra(BasePlayer.AUDIO_ONLY, true);
-        context.startService(getPlayerEnqueueIntent(context, MainVideoPlayer.class, queue));
+        context.startService(getPlayerEnqueueIntent(context, MainPlayerService.class, queue));
     }
     /*//////////////////////////////////////////////////////////////////////////
     // Through FragmentManager

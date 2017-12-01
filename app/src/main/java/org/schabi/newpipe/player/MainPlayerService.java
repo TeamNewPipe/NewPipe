@@ -1,6 +1,6 @@
 /*
  * Copyright 2017 Mauricio Colli <mauriciocolli@outlook.com>
- * MainVideoPlayer.java is part of NewPipe
+ * MainPlayerService.java is part of NewPipe
  *
  * License: GPL-3.0+
  * This program is free software: you can redistribute it and/or modify
@@ -85,8 +85,8 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
  *
  * @author mauriciocolli and avently
  */
-public class MainVideoPlayer extends Service {
-    private static final String TAG = ".MainVideoPlayer";
+public class MainPlayerService extends Service {
+    private static final String TAG = ".MainPlayerService";
     private static final boolean DEBUG = BasePlayer.DEBUG;
 
     private GestureDetector gestureDetector;
@@ -94,7 +94,7 @@ public class MainVideoPlayer extends Service {
     private VideoPlayerImpl playerImpl;
 
     private PlayerEventListener fragmentListener;
-    private final IBinder mBinder = new MainVideoPlayer.LocalBinder();
+    private final IBinder mBinder = new MainPlayerService.LocalBinder();
 
     // Notification
     private NotificationManager notificationManager;
@@ -102,14 +102,14 @@ public class MainVideoPlayer extends Service {
     private RemoteViews notRemoteView;
     private RemoteViews bigNotRemoteView;
     private static final int NOTIFICATION_ID = 417308;
-    private static final String ACTION_CLOSE = "org.schabi.newpipe.player.MainVideoPlayer.CLOSE";
-    private static final String ACTION_PLAY_PAUSE = "org.schabi.newpipe.player.MainVideoPlayer.PLAY_PAUSE";
-    private static final String ACTION_OPEN_CONTROLS = "org.schabi.newpipe.player.MainVideoPlayer.OPEN_CONTROLS";
-    private static final String ACTION_REPEAT = "org.schabi.newpipe.player.MainVideoPlayer.REPEAT";
-    private static final String ACTION_PLAY_NEXT = "org.schabi.newpipe.player.MainVideoPlayer.ACTION_PLAY_NEXT";
-    private static final String ACTION_PLAY_PREVIOUS = "org.schabi.newpipe.player.MainVideoPlayer.ACTION_PLAY_PREVIOUS";
-    private static final String ACTION_FAST_REWIND = "org.schabi.newpipe.player.MainVideoPlayer.ACTION_FAST_REWIND";
-    private static final String ACTION_FAST_FORWARD = "org.schabi.newpipe.player.MainVideoPlayer.ACTION_FAST_FORWARD";
+    private static final String ACTION_CLOSE = "org.schabi.newpipe.player.MainPlayerService.CLOSE";
+    private static final String ACTION_PLAY_PAUSE = "org.schabi.newpipe.player.MainPlayerService.PLAY_PAUSE";
+    private static final String ACTION_OPEN_CONTROLS = "org.schabi.newpipe.player.MainPlayerService.OPEN_CONTROLS";
+    private static final String ACTION_REPEAT = "org.schabi.newpipe.player.MainPlayerService.REPEAT";
+    private static final String ACTION_PLAY_NEXT = "org.schabi.newpipe.player.MainPlayerService.ACTION_PLAY_NEXT";
+    private static final String ACTION_PLAY_PREVIOUS = "org.schabi.newpipe.player.MainPlayerService.ACTION_PLAY_PREVIOUS";
+    private static final String ACTION_FAST_REWIND = "org.schabi.newpipe.player.MainPlayerService.ACTION_FAST_REWIND";
+    private static final String ACTION_FAST_FORWARD = "org.schabi.newpipe.player.MainPlayerService.ACTION_FAST_FORWARD";
 
     private static final String SET_IMAGE_RESOURCE_METHOD = "setImageResource";
     private final String setAlphaMethodName = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) ? "setImageAlpha" : "setAlpha";
@@ -137,12 +137,12 @@ public class MainVideoPlayer extends Service {
 
     public class LocalBinder extends Binder {
 
-        public MainVideoPlayer getService() {
-            return MainVideoPlayer.this;
+        public MainPlayerService getService() {
+            return MainPlayerService.this;
         }
 
         public VideoPlayerImpl getPlayer() {
-            return MainVideoPlayer.this.playerImpl;
+            return MainPlayerService.this.playerImpl;
         }
     }
 
@@ -224,7 +224,7 @@ public class MainVideoPlayer extends Service {
         playerImpl.playQueue = queue;
         playerImpl.playQueue.setRecovery(playerImpl.playQueue.getIndex(), playbackPosition);
 
-        Intent playerIntent = NavigationHelper.getPlayerIntent(this, MainVideoPlayer.class, playerImpl.playQueue, videoResolution);
+        Intent playerIntent = NavigationHelper.getPlayerIntent(this, MainPlayerService.class, playerImpl.playQueue, videoResolution);
         playerImpl.handleIntent(playerIntent);
 
         getView().findViewById(R.id.surfaceView).setVisibility(View.GONE);
@@ -429,7 +429,7 @@ public class MainVideoPlayer extends Service {
         }
 
         VideoPlayerImpl(final Context context) {
-            super("VideoPlayerImpl" + MainVideoPlayer.TAG, context);
+            super("VideoPlayerImpl" + MainPlayerService.TAG, context);
         }
 
         @Override
@@ -586,7 +586,7 @@ public class MainVideoPlayer extends Service {
             setRecovery();
             final Intent intent = NavigationHelper.getPlayerIntent(
                     context,
-                    MainVideoPlayer.class,
+                    MainPlayerService.class,
                     this.getPlayQueue(),
                     this.getRepeatMode(),
                     this.getPlaybackSpeed(),
@@ -1338,7 +1338,7 @@ public class MainVideoPlayer extends Service {
             if (!isPlayerGestureEnabled) return false;
 
             //noinspection PointlessBooleanExpression
-            if (DEBUG && false) Log.d(TAG, "MainVideoPlayer.onScroll = " +
+            if (DEBUG && false) Log.d(TAG, "MainPlayerService.onScroll = " +
                     ", e1.getRaw = [" + e1.getRawX() + ", " + e1.getRawY() + "]" +
                     ", e2.getRaw = [" + e2.getRawX() + ", " + e2.getRawY() + "]" +
                     ", distanceXy = [" + distanceX + ", " + distanceY + "]");

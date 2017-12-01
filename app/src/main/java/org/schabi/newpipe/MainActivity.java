@@ -220,18 +220,18 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
                 return true;
             case R.id.action_settings:
                 NavigationHelper.openSettings(this);
-                if(isPlayerFragment)((VideoDetailFragment)fragment).hideMainVideoPlayer();
+                if(isPlayerFragment)((VideoDetailFragment)fragment).hideMainPlayer();
                 return true;
             case R.id.action_show_downloads:
-                if(isPlayerFragment)((VideoDetailFragment)fragment).hideMainVideoPlayer();
+                if(isPlayerFragment)((VideoDetailFragment)fragment).hideMainPlayer();
                 return NavigationHelper.openDownloads(this);
             case R.id.action_about:
                 NavigationHelper.openAbout(this);
-                if(isPlayerFragment)((VideoDetailFragment)fragment).hideMainVideoPlayer();
+                if(isPlayerFragment)((VideoDetailFragment)fragment).hideMainPlayer();
                 return true;
             case R.id.action_history:
                 NavigationHelper.openHistory(this);
-                if(isPlayerFragment)((VideoDetailFragment)fragment).hideMainVideoPlayer();
+                if(isPlayerFragment)((VideoDetailFragment)fragment).hideMainPlayer();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

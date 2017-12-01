@@ -36,7 +36,7 @@
 
 
         <service
-            android:name=".player.MainVideoPlayer"
+            android:name=".player.MainPlayerService"
             android:exported="false"/>
 
         <activity

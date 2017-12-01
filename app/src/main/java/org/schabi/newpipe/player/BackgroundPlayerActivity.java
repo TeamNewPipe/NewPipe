@@ -20,20 +20,20 @@ public final class BackgroundPlayerActivity extends ServicePlayerActivity {
 
     @Override
     public Intent getBindIntent() {
-        return new Intent(this, MainVideoPlayer.class);
+        return new Intent(this, MainPlayerService.class);
     }
 
     @Override
     public void startPlayerListener() {
-        if (player != null && player instanceof MainVideoPlayer.VideoPlayerImpl) {
-            ((MainVideoPlayer.VideoPlayerImpl) player).setActivityListener(this);
+        if (player != null && player instanceof MainPlayerService.VideoPlayerImpl) {
+            ((MainPlayerService.VideoPlayerImpl) player).setActivityListener(this);
         }
     }
 
     @Override
     public void stopPlayerListener() {
-        if (player != null && player instanceof MainVideoPlayer.VideoPlayerImpl) {
-            ((MainVideoPlayer.VideoPlayerImpl) player).removeActivityListener(this);
+        if (player != null && player instanceof MainPlayerService.VideoPlayerImpl) {
+            ((MainPlayerService.VideoPlayerImpl) player).removeActivityListener(this);
         }
     }
 
