@@ -92,7 +92,6 @@ public class MainVideoPlayer extends Service {
     private GestureDetector gestureDetector;
 
     private VideoPlayerImpl playerImpl;
-    public boolean isFullscreen = false;
 
     private PlayerEventListener fragmentListener;
     private final IBinder mBinder = new MainVideoPlayer.LocalBinder();
@@ -220,7 +219,7 @@ public class MainVideoPlayer extends Service {
             playerImpl.initPlayer();
 
         playerImpl.selectedResolution = videoResolution;
-        playerImpl.isBackgroundPlayerSelected = false;
+        playerImpl.notifyIsInBackground(false);
         playerImpl.audioOnly = false;
         playerImpl.playQueue = queue;
         playerImpl.playQueue.setRecovery(playerImpl.playQueue.getIndex(), playbackPosition);
@@ -402,8 +401,9 @@ public class MainVideoPlayer extends Service {
         private ItemTouchHelper itemTouchHelper;
 
         private boolean queueVisible;
-        public boolean audioOnly = false;
-        public boolean isBackgroundPlayerSelected = false;
+        private boolean audioOnly = false;
+        private boolean isBackgroundPlayerSelected = false;
+        private boolean isFullscreen = false;
 
         private String selectedResolution;
 
@@ -417,8 +417,8 @@ public class MainVideoPlayer extends Service {
         public void handleIntent(Intent intent) {
             if(intent.getSerializableExtra(BasePlayer.PLAY_QUEUE) == null) return;
 
-            isBackgroundPlayerSelected = intent.getBooleanExtra(BasePlayer.AUDIO_ONLY, false);
-            audioOnly = isBackgroundPlayerSelected;
+            notifyIsInBackground(intent.getBooleanExtra(BasePlayer.AUDIO_ONLY, false));
+            audioOnly = isInBackground();
             // We need to setup audioOnly before super()
             super.handleIntent(intent);
 
@@ -450,8 +450,6 @@ public class MainVideoPlayer extends Service {
             this.moreOptionsPopupMenu = new PopupMenu(context, moreOptionsButton);
             this.moreOptionsPopupMenu.getMenuInflater().inflate(R.menu.menu_videooptions, moreOptionsPopupMenu.getMenu());
 
-            TextView qualityTextView = rootView.findViewById(R.id.qualityTextView);
-            qualityTextView.setVisibility(View.GONE);
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) getFullScreenButton().getLayoutParams();
             params.width = 0;
             params.leftMargin = 0;
@@ -577,8 +575,8 @@ public class MainVideoPlayer extends Service {
             if (DEBUG) Log.d(TAG, "onFullScreenButtonClicked() called");
             if(fragmentListener == null) return;
 
-            isFullscreen = !isFullscreen;
-            fragmentListener.onFullScreenButtonClicked(isFullscreen);
+            notifyIsInFullscreen(!isInFullscreen());
+            fragmentListener.onFullScreenButtonClicked(isInFullscreen());
         }
 
         public void onPlayBackgroundButtonClicked() {
@@ -656,7 +654,7 @@ public class MainVideoPlayer extends Service {
 
             itemsList.scrollToPosition(playQueue.getIndex());
 
-            if(playQueue.getStreams().size() > 4 && !isFullscreen)
+            if(playQueue.getStreams().size() > 4 && !isInFullscreen())
                 onFullScreenButtonClicked();
         }
 
@@ -790,10 +788,11 @@ public class MainVideoPlayer extends Service {
             lockManager.releaseWifiAndCpu();
             updateNotification(R.drawable.ic_play_arrow_white);
 
-            if(isBackgroundPlayerSelected)
+            if(isInBackground()) {
                 stopForeground(false);
-            else
+            } else {
                 stopForeground(true);
+            }
         }
 
         @Override
@@ -820,12 +819,11 @@ public class MainVideoPlayer extends Service {
             lockManager.releaseWifiAndCpu();
             updateNotification(R.drawable.ic_play_arrow_white);
 
-            if(isBackgroundPlayerSelected)
+            if(isInBackground()) {
                 stopForeground(false);
-            else
+            } else {
                 stopForeground(true);
-            // Produce a bad interface
-            //super.onCompleted();
+            }
         }
 
         @Override
@@ -905,7 +903,7 @@ public class MainVideoPlayer extends Service {
                     onVideoPlayPause();
                     break;
                 case ACTION_OPEN_CONTROLS:
-                    if(!isBackgroundPlayerSelected)
+                    if(!isInBackground())
                         openControl(getApplicationContext());
                     else
                         NavigationHelper.openBackgroundPlayerControl(getApplicationContext());
@@ -955,6 +953,22 @@ public class MainVideoPlayer extends Service {
                     .getBoolean(getApplicationContext().getString(R.string.continue_in_background_key), false);
         }
 
+        public void notifyIsInBackground (boolean background) {
+            isBackgroundPlayerSelected = background;
+        }
+
+        public boolean isInBackground() {
+            return isBackgroundPlayerSelected;
+        }
+
+        public void notifyIsInFullscreen(boolean fullscreen) {
+            isFullscreen = fullscreen;
+        }
+
+        public boolean isInFullscreen() {
+            return isFullscreen;
+        }
+
         @Override
         public void showControlsThenHide() {
             if (queueVisible) return;
@@ -982,7 +996,7 @@ public class MainVideoPlayer extends Service {
                     animateView(getControlsRoot(), false, duration, 0, new Runnable() {
                         @Override
                         public void run() {
-                            if(getView() == null || getView().getContext() == null || !isFullscreen) return;
+                            if(getView() == null || getView().getContext() == null || !isInFullscreen()) return;
 
                             Activity parent = getParentActivity();
                             if(parent == null) return;
@@ -1033,7 +1047,7 @@ public class MainVideoPlayer extends Service {
         public void checkLandscape() {
             Activity parent = playerImpl.getParentActivity();
             boolean isLandscape = getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
-            if(parent != null && isLandscape && !isFullscreen && getCurrentState() != STATE_COMPLETED)
+            if(parent != null && isLandscape && !isInFullscreen() && getCurrentState() != STATE_COMPLETED)
                 playerImpl.onFullScreenButtonClicked();
         }
 
@@ -1163,14 +1177,14 @@ public class MainVideoPlayer extends Service {
         // Manipulations with listener
         ///////////////////////////////////////////////////////////////////////////
 
-        /*package-private*/ public void setFragmentListener(PlayerEventListener listener) {
+        public void setFragmentListener(PlayerEventListener listener) {
             fragmentListener = listener;
             updateMetadata();
             updatePlayback();
             triggerProgressUpdate();
         }
 
-        /*package-private*/public void removeFragmentListener(PlayerEventListener listener) {
+        public void removeFragmentListener(PlayerEventListener listener) {
             if (fragmentListener == listener) {
                 fragmentListener = null;
             }
@@ -1287,7 +1301,7 @@ public class MainVideoPlayer extends Service {
                     playerImpl.showControlsThenHide();
 
                 Activity parent = playerImpl.getParentActivity();
-                if (parent != null && isFullscreen) {
+                if (parent != null && playerImpl.isInFullscreen()) {
                     Window window = parent.getWindow();
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN

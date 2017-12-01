@@ -202,6 +202,7 @@
                     android:text="720p"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
+                    android:visibility="gone"
                     tools:ignore="HardcodedText,RtlHardcoded"/>
 
                 <TextView

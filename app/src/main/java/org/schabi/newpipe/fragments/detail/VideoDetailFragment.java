@@ -43,7 +43,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -78,11 +77,8 @@ import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.player.event.PlayerEventListener;
-import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
-import org.schabi.newpipe.playlist.PlayQueue;
-import org.schabi.newpipe.playlist.PlayQueueItem;
-import org.schabi.newpipe.playlist.SinglePlayQueue;
+import org.schabi.newpipe.playlist.*;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
@@ -215,48 +211,26 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
                 mVideoPlayer = localBinder.getService();
                 player = localBinder.getPlayer();
+                player.useVideoSource(true);
 
                 startPlayerListener();
+                attachPlayerViewToFragment();
 
-                // There is no active player. Don't show player view
-                if(!player.isPlaying() && !player.isCompleted() && !player.isProgressLoopRunning())
-                    mVideoPlayer.getView().setVisibility(View.GONE);
+                // It will do nothing if the player are not in fullscreen mode
+                hideActionBar();
+                hideSystemUi();
 
-                // It means that player was in fullscreen mode before orientation was changed
-                if(mVideoPlayer.isFullscreen) {
-                    hideActionBar();
-                    hideSystemUi();
-                }
-
-                if(getView() == null) return;
-
-                ViewGroup viewHolder = getView().findViewById(
-                        mVideoPlayer.isFullscreen?
-                                R.id.video_item_detail:
-                                R.id.detail_thumbnail_root_layout);
-
-                // if the player is not attached to fragment we will attach it
-                if(mVideoPlayer.getView().getParent() == null)
-                    viewHolder.addView(mVideoPlayer.getView());
-                // If the player is already attached to other instance of VideoDetailFragment just reattach it to the current instance
-                else if(getView().findViewById(R.id.aspectRatioLayout) == null) {
-                    removeVideoPlayerView();
-                    viewHolder.addView(mVideoPlayer.getView());
-                    hideMainVideoPlayer();
-                }
-
-                player.useVideoSource(true);
                 boolean isLandscape = getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
                 if(isLandscape) {
                     if((!player.isPlaying() && player.getPlayQueue() != playQueue) || player.getPlayQueue() == null)
                         setupMainVideoPlayer();
                     // Let's give a user time to look at video information page if video is not playing
                     if(player.isPlaying()) {
-                        player.isBackgroundPlayerSelected = false;
+                        player.notifyIsInBackground(false);
                         player.checkLandscape();
                     }
                 }
-                else if(mVideoPlayer.isFullscreen)
+                else if(player.isInFullscreen())
                     player.onFullScreenButtonClicked();
             }
         };
@@ -341,7 +315,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     public void onResume() {
         super.onResume();
         isPaused = false;
-        if(player != null && player.isBackgroundPlaybackEnabled() && !player.isBackgroundPlayerSelected)
+        if(player != null && player.isBackgroundPlaybackEnabled() && !player.isInBackground())
             player.useVideoSource(true);
 
         if (updateFlags != 0) {
@@ -918,8 +892,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     @Override
     public boolean onBackPressed() {
-        if (mVideoPlayer != null && mVideoPlayer.isFullscreen) {
-            mVideoPlayer.isFullscreen = false;
+        if (mVideoPlayer != null && player != null && player.isInFullscreen()) {
+            player.notifyIsInFullscreen(false);
             mVideoPlayer.toggleOrientation();
             return true;
         }
@@ -930,28 +904,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (stack.size() <= 1) {
             hideMainVideoPlayer();
             stopService();
-            unbind();
             return false;
         }
         // Remove top
         stack.pop();
         // Get stack item from the new top
         StackItem peek = stack.peek();
-
-        // Choose saved to history item from playlist
-        PlayQueue peekQueue = stack.peek().getPlayQueue();
-        if(peekQueue != null && !peekQueue.getClass().equals(SinglePlayQueue.class)) {
-            int index = -1;
-            for (int i=0; i < peekQueue.getStreams().size(); i++) {
-                PlayQueueItem item = peekQueue.getItem(i);
-                if(item.getUrl().equals(stack.peek().getUrl())) {
-                    index = i;
-                    break;
-                }
-            }
-            if(index != -1)
-                peekQueue.setIndex(index);
-        }
+        selectStreamFromHistory(peek);
 
         autoPlayEnabled = false;
         hideMainVideoPlayer();
@@ -1249,7 +1208,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if(mVideoPlayer == null || mVideoPlayer.getView() == null || getView() == null) return;
 
         ViewGroup viewHolder = getView().findViewById(
-                mVideoPlayer.isFullscreen?
+                player.isInFullscreen()?
                         R.id.video_item_detail:
                         R.id.detail_thumbnail_root_layout);
 
@@ -1517,7 +1476,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     public void onPlaybackUpdate(int state, int repeatMode, boolean shuffled, PlaybackParameters parameters) {
         if(state == BasePlayer.STATE_COMPLETED) {
-            if(mVideoPlayer.isFullscreen)
+            if(player.isInFullscreen())
                 player.onFullScreenButtonClicked();
         }
     }
@@ -1525,7 +1484,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     public void onProgressUpdate(int currentProgress, int duration, int bufferPercent) {
         // We don't want to interrupt playback and don't want to see notification if player is stopped
-        if(!isPaused || player == null || player.isBackgroundPlayerSelected || player.getPlayer() == null || !player.isPlaying()) return;
+        if(!isPaused || player == null || player.isInBackground() || player.getPlayer() == null || !player.isPlaying()) return;
 
         // Video enabled. Let's think what to do with source in background
         if(player.isBackgroundPlaybackEnabled())
@@ -1547,7 +1506,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     public void onPlayerError(ExoPlaybackException error) {
         if(error.type == ExoPlaybackException.TYPE_SOURCE || error.type == ExoPlaybackException.TYPE_UNEXPECTED) {
             hideMainVideoPlayer();
-            if(mVideoPlayer != null && mVideoPlayer.isFullscreen) {
+            if(mVideoPlayer != null && player.isInFullscreen()) {
                 player.onFullScreenButtonClicked();
             }
             playNextStream();
@@ -1609,7 +1568,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     }
 
     private void hideSystemUi() {
-        if(mVideoPlayer == null || !mVideoPlayer.isFullscreen || getActivity() == null) return;
+        if(mVideoPlayer == null || !player.isInFullscreen() || getActivity() == null) return;
         if (DEBUG) Log.d(TAG, "hideSystemUi() called");
         if (android.os.Build.VERSION.SDK_INT >= 16) {
             int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -1624,8 +1583,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     }
 
     private void hideActionBar() {
+        if(player == null || !player.isInFullscreen() || getView() == null) return;
+
         ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
-        if(actionBar != null && getView() != null) {
+        if(actionBar != null) {
             actionBar.hide();
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             params.setMargins(0,0,0,0);
@@ -1651,6 +1612,47 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             selectAndLoadVideo(next.getServiceId(), next.getUrl(), next.getTitle(), playQueue);
         }
 
+    }
+
+    private void selectStreamFromHistory(StackItem peek) {
+        // Choose stream from saved to history item. If we will not select it we will play the wrong stream
+        PlayQueue peekQueue = peek.getPlayQueue();
+        if(peekQueue != null && (peekQueue instanceof PlaylistPlayQueue || peekQueue instanceof ChannelPlayQueue)) {
+            int index = -1;
+            for (int i=0; i < peekQueue.getStreams().size(); i++) {
+                PlayQueueItem item = peekQueue.getItem(i);
+                // Trying to find an URL in PlayQueue that equals an URL from StackItem
+                if(item.getUrl().equals(peek.getUrl())) {
+                    index = i;
+                    break;
+                }
+            }
+            if(index != -1)
+                peekQueue.setIndex(index);
+        }
+    }
+
+    private void attachPlayerViewToFragment() {
+        if(getView() == null) return;
+
+        ViewGroup viewHolder = getView().findViewById(
+                player.isInFullscreen()?
+                        R.id.video_item_detail:
+                        R.id.detail_thumbnail_root_layout);
+
+        // if the player is not attached to fragment we will attach it
+        if(mVideoPlayer.getView().getParent() == null)
+            viewHolder.addView(mVideoPlayer.getView());
+        // If the player is already attached to other instance of VideoDetailFragment just reattach it to the current instance
+        else if(getView().findViewById(R.id.aspectRatioLayout) == null) {
+            removeVideoPlayerView();
+            viewHolder.addView(mVideoPlayer.getView());
+            hideMainVideoPlayer();
+        }
+
+        // There is no active player. Don't show player view
+        if(!player.isPlaying() && !player.isCompleted() && !player.isProgressLoopRunning())
+            mVideoPlayer.getView().setVisibility(View.GONE);
     }
 
     private void pausePlayer() {

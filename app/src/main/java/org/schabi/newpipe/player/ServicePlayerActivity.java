@@ -541,6 +541,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     @Override
     public void onPlayerError(ExoPlaybackException error) {
+        // PlayerEventListener implementation
     }
 
     @Override
