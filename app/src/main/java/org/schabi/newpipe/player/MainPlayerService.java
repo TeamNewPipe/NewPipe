@@ -196,9 +196,6 @@ public class MainPlayerService extends Service {
                 ViewGroup parent = (ViewGroup) getView().getParent();
                 parent.removeView(getView());
             }
-            playerImpl.cachedImage = null;
-            playerImpl.setRootView(null);
-            playerImpl.stopActivityBinding();
             playerImpl.destroy();
             playerImpl = null;
         }
@@ -211,13 +208,6 @@ public class MainPlayerService extends Service {
     //////////////////////////////////////////////////////////////////////////*/
 
     public void loadVideo(PlayQueue queue, String videoResolution, long playbackPosition) {
-        if(playerImpl == null)
-            createView();
-
-        // Player is null after playerImpl.destroy() was called
-        if(playerImpl.getPlayer() == null)
-            playerImpl.initPlayer();
-
         playerImpl.selectedResolution = videoResolution;
         playerImpl.notifyIsInBackground(false);
         playerImpl.audioOnly = false;
@@ -827,9 +817,18 @@ public class MainPlayerService extends Service {
         }
 
         @Override
+        public void shutdown() {
+            if (DEBUG) Log.d(TAG, "Shutting down...");
+            // Override it because we don't want playerImpl destroyed
+        }
+
+        @Override
         public void destroy() {
-            stopForeground(true);
             super.destroy();
+            cachedImage = null;
+            setRootView(null);
+            stopForeground(true);
+            stopActivityBinding();
         }
 
         @Override

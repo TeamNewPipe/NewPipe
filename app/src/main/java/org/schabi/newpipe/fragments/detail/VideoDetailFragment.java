@@ -1150,14 +1150,17 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if(!useOldPlayer) {
             if(mPlayerService == null || currentInfo == null) return;
 
-            if(playQueue == null)
+            // Size can be 0 because queue removes bad stream automatically when error occurs
+            // For now we can just select another quality and recreate SinglePlayQueue here
+            // Solution will be a reimplementation of stream selector
+            if(playQueue == null || playQueue.size() == 0)
                 playQueue = new SinglePlayQueue(currentInfo);
 
             // Continue from paused position
             long currentPosition = 0;
             if(player.getPlayer() != null) {
                 // We use it to continue playback when returning back from popup or background players
-                if(playQueue.getItem().getRecoveryPosition() > 0)
+                if(playQueue.getItem() != null && playQueue.getItem().getRecoveryPosition() > 0)
                     currentPosition = playQueue.getItem().getRecoveryPosition();
                 // We use it to continue playback when quality was changed
                 else if(player.getVideoUrl() != null && player.getVideoUrl().equals(url))
