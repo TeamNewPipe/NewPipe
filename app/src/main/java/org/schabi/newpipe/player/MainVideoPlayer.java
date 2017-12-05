@@ -22,12 +22,15 @@ package org.schabi.newpipe.player;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -81,6 +84,8 @@ public final class MainVideoPlayer extends Activity {
     private boolean activityPaused;
     private VideoPlayerImpl playerImpl;
 
+    private SharedPreferences defaultPreferences;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Activity LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -89,6 +94,7 @@ public final class MainVideoPlayer extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
+        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         ThemeHelper.setTheme(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) getWindow().setStatusBarColor(Color.BLACK);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -98,6 +104,8 @@ public final class MainVideoPlayer extends Activity {
             finish();
             return;
         }
+
+
 
         showSystemUi();
         setContentView(R.layout.activity_main_player);
@@ -145,6 +153,11 @@ public final class MainVideoPlayer extends Activity {
             playerImpl.initPlayback(playerImpl.playQueue);
 
             activityPaused = false;
+        }
+        if(globalScreenOrientationLocked()) {
+            boolean lastOrientationWasLandscape
+                    = defaultPreferences.getBoolean(getString(R.string.last_orientation_landscape_key), false);
+            setLandScape(lastOrientationWasLandscape);
         }
     }
 
@@ -198,9 +211,26 @@ public final class MainVideoPlayer extends Activity {
     }
 
     private void toggleOrientation() {
-        setRequestedOrientation(getResources().getDisplayMetrics().heightPixels > getResources().getDisplayMetrics().widthPixels
+        setLandScape(!isLandScape());
+        defaultPreferences.edit()
+                .putBoolean(getString(R.string.last_orientation_landscape_key), !isLandScape())
+                .apply();
+    }
+
+    private boolean isLandScape() {
+        return getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
+    }
+
+    private void setLandScape(boolean v) {
+        setRequestedOrientation(v
                 ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
                 : ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+    }
+
+    private boolean globalScreenOrientationLocked() {
+        // 1: Screen orientation changes using acelerometer
+        // 0: Screen orientatino is locked
+        return !(android.provider.Settings.System.getInt(getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 1);
     }
 
     protected void setRepeatModeButton(final ImageButton imageButton, final int repeatMode) {
