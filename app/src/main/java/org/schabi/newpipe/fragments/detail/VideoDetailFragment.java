@@ -893,8 +893,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     public boolean onBackPressed() {
         if (mPlayerService != null && player != null && player.isInFullscreen()) {
-            player.notifyIsInFullscreen(false);
-            mPlayerService.toggleOrientation();
+            // This will show systemUI and pause the player.
+            // User can tap on Play button and video will be in fullscreen mode again
+            player.onFullScreenButtonClicked();
+            player.getPlayer().setPlayWhenReady(false);
             return true;
         }
 
