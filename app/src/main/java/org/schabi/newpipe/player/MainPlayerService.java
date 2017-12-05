@@ -200,6 +200,7 @@ public class MainPlayerService extends Service {
             playerImpl = null;
         }
         stopForeground(true);
+        notificationManager.cancel(NOTIFICATION_ID);
         stopSelf();
     }
 
@@ -782,6 +783,7 @@ public class MainPlayerService extends Service {
                 stopForeground(false);
             } else {
                 stopForeground(true);
+                notificationManager.cancel(NOTIFICATION_ID);
             }
         }
 
@@ -813,6 +815,7 @@ public class MainPlayerService extends Service {
                 stopForeground(false);
             } else {
                 stopForeground(true);
+                notificationManager.cancel(NOTIFICATION_ID);
             }
         }
 
@@ -828,6 +831,7 @@ public class MainPlayerService extends Service {
             cachedImage = null;
             setRootView(null);
             stopForeground(true);
+            notificationManager.cancel(NOTIFICATION_ID);
             stopActivityBinding();
         }
 
@@ -885,6 +889,7 @@ public class MainPlayerService extends Service {
                 case ACTION_CLOSE:
                     getPlayer().setPlayWhenReady(false);
                     stopForeground(true);
+                    notificationManager.cancel(NOTIFICATION_ID);
                     break;
                 case ACTION_PLAY_NEXT:
                     onPlayNext();

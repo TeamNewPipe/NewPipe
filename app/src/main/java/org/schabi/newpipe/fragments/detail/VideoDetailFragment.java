@@ -1656,7 +1656,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
 
         // There is no active player. Don't show player view
-        if(!player.isPlaying() && !player.isCompleted() && !player.isProgressLoopRunning())
+        if(!player.isProgressLoopRunning() && !player.isPlaying() && (player.getPlayer() == null || player.getPlayer().getCurrentPosition() <= 0))
             mPlayerService.getView().setVisibility(View.GONE);
     }
 
