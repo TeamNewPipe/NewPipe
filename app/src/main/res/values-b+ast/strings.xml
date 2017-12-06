@@ -277,4 +277,17 @@
     <string name="play_queue_stream_detail">Detalles</string>
     <string name="new_and_hot">Nuevo y popular</string>
     <string name="play_queue_audio_settings">Axustes d\'audiu</string>
-    </resources>
+    <string name="show_hold_to_append_title">Amosar conseyu Mantener p\'amestar</string>
+    <string name="show_hold_to_append_summary">Amuesa\'l conseyu al primir el botón de Ventanu o tener el videu de fondu na so páxina de detalles</string>
+    <string name="background_player_append">Púnxose na cola del reproductor de fondu</string>
+    <string name="popup_playing_append">Púnxose nel reproductor de ventanu</string>
+    <string name="unknown_content">[Desconozse]</string>
+
+    <string name="title_activity_popup_player">Reproductor en ventanu</string>
+    <string name="hold_to_append">Mantener p\'amestar</string>
+    <string name="enqueue_on_background">Púnxose na cola de fondu</string>
+    <string name="enqueue_on_popup">Púnxose na cola del ventanu</string>
+    <string name="start_here_on_main">Entamar reproducción equí</string>
+    <string name="start_here_on_background">Entamar equí de fondu</string>
+    <string name="start_here_on_popup">Entamár equí de ventanu</string>
+</resources>
