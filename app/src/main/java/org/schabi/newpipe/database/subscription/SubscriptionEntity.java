@@ -116,10 +116,7 @@ public class SubscriptionEntity {
 
     @Ignore
     public ChannelInfoItem toChannelInfoItem() {
-        ChannelInfoItem item = new ChannelInfoItem();
-        item.url = getUrl();
-        item.service_id = getServiceId();
-        item.name = getName();
+        ChannelInfoItem item = new ChannelInfoItem(getServiceId(), getUrl(), getName());
         item.thumbnail_url = getAvatarUrl();
         item.subscriber_count = getSubscriberCount();
         item.description = getDescription();
