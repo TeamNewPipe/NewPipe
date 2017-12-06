@@ -222,16 +222,16 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
                 boolean isLandscape = getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
                 if(isLandscape) {
-                    if((!player.isPlaying() && player.getPlayQueue() != playQueue) || player.getPlayQueue() == null)
-                        setupMainPlayer();
-                    // Let's give a user time to look at video information page if video is not playing
-                    if(player.isPlaying()) {
-                        player.notifyIsInBackground(false);
-                        player.checkLandscape();
-                    }
+                    checkLandscape();
                 }
                 else if(player.isInFullscreen())
                     player.onFullScreenButtonClicked();
+
+                if (currentInfo != null && isAutoplayEnabled() && mPlayerService.getView().getVisibility() == View.GONE) {
+                    setupMainPlayer();
+                } else if(currentInfo == null) {
+                    selectAndLoadVideo(serviceId, url, "", playQueue);
+                }
             }
         };
     }
@@ -289,12 +289,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         setHasOptionsMenu(true);
         ThemeHelper.setTheme(getContext());
         setBrightness();
+        if(isAutoplayPreferred()) setAutoplay(true);
         showRelatedStreams = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.show_next_video_key), true);
         PreferenceManager.getDefaultSharedPreferences(activity).registerOnSharedPreferenceChangeListener(this);
 
-        if(savedInstanceState == null)
-            getActivity().startService(new Intent(getActivity(), MainPlayerService.class));
-
+        getActivity().startService(new Intent(getActivity(), MainPlayerService.class));
         mServiceConnection = getServiceConnection();
         bind();
     }
@@ -616,8 +615,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         infoItemBuilder.setOnStreamSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<StreamInfoItem>() {
             @Override
             public void selected(StreamInfoItem selectedItem) {
-                autoPlayEnabled = isAutoplayPreferred();
-                if(!autoPlayEnabled)
+                setAutoplay(isAutoplayPreferred());
+                if(!isAutoplayPreferred())
                     hideMainPlayer();
                 selectAndLoadVideo(selectedItem.service_id, selectedItem.url, selectedItem.name, null);
 
@@ -914,8 +913,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         StackItem peek = stack.peek();
         selectStreamFromHistory(peek);
 
-        autoPlayEnabled = false;
         hideMainPlayer();
+
+        setAutoplay(false);
         selectAndLoadVideo(peek.getServiceId(), peek.getUrl(), !TextUtils.isEmpty(peek.getTitle()) ? peek.getTitle() : "", peek.getPlayQueue());
 
         return true;
@@ -927,17 +927,16 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     @Override
     protected void doInitialLoadLogic() {
-        if (currentInfo == null) {
-            if(!autoPlayEnabled)
-                autoPlayEnabled = (playQueue != null && playQueue.getStreams().size() > 1) || isAutoplayPreferred();
-            prepareAndLoadInfo();
-        }
-        else prepareAndHandleInfo(currentInfo, false);
+        if (currentInfo != null)
+            prepareAndHandleInfo(currentInfo, false);
     }
 
     public void selectAndLoadVideo(int serviceId, String videoUrl, String name, PlayQueue playQueue) {
         setInitialData(serviceId, videoUrl, name, playQueue);
-        prepareAndLoadInfo();
+
+        parallaxScrollRootView.smoothScrollTo(0, 0);
+        pushToStack(serviceId, url, name, playQueue);
+        startLoading(false);
     }
 
     public void prepareAndHandleInfo(final StreamInfo info, boolean scrollToTop) {
@@ -961,12 +960,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         });
     }
 
-    protected void prepareAndLoadInfo() {
-        parallaxScrollRootView.smoothScrollTo(0, 0);
-        pushToStack(serviceId, url, name, playQueue);
-        startLoading(false);
-    }
-
     @Override
     public void startLoading(boolean forceLoad) {
         super.startLoading(forceLoad);
@@ -982,6 +975,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                         isLoading.set(false);
                         showContentWithAnimation(120, 0, 0);
                         handleResult(result);
+                        if (isAutoplayEnabled()) {
+                            openVideoPlayer();
+                        }
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -1188,7 +1184,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         mPlayerService.getView().setVisibility(View.GONE);
         mPlayerService.stop();
-        autoPlayEnabled = false;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1199,14 +1194,23 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         autoPlayEnabled = autoplay;
     }
 
-    private boolean isAutorotationEnabled() {
-        return PreferenceManager.getDefaultSharedPreferences(getContext())
-                .getBoolean(this.getString(R.string.use_video_autorotation_key), false);
-    }
-
+    // This method asks preferences for user selected behaviour
     private boolean isAutoplayPreferred() {
         return PreferenceManager.getDefaultSharedPreferences(getContext())
                 .getBoolean(getContext().getString(R.string.autoplay_always_key), false);
+    }
+
+    // This method overrides default behaviour when setAutoplay() is called
+    private boolean isAutoplayEnabled() {
+        if(playQueue != null && playQueue.getStreams().size() == 0)
+            return false;
+        else
+            return autoPlayEnabled;
+    }
+
+    private boolean isAutorotationEnabled() {
+        return PreferenceManager.getDefaultSharedPreferences(getContext())
+                .getBoolean(this.getString(R.string.use_video_autorotation_key), false);
     }
 
     private void addVideoPlayerView() {
@@ -1429,10 +1433,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (!info.errors.isEmpty()) {
             showSnackBarError(info.errors, UserAction.REQUESTED_STREAM, NewPipe.getNameOfService(info.service_id), info.url, 0);
         }
-
-        if (autoPlayEnabled) {
-            openVideoPlayer();
-        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1501,10 +1501,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     public void onMetadataUpdate(StreamInfo info) {
         // We don't want to update interface twice
-        if(playQueue == null || playQueue.getClass().equals(SinglePlayQueue.class) || currentInfo == null || currentInfo.equals(info)) return;
+        if(playQueue == null || playQueue instanceof SinglePlayQueue || currentInfo == null || currentInfo.equals(info) || mPlayerService.getView().getVisibility() == View.GONE) return;
         currentInfo = info;
-        autoPlayEnabled = false;
-        selectAndLoadVideo(info.service_id, info.url, info.name, playQueue);
+        setAutoplay(false);
+        prepareAndHandleInfo(info, true);
     }
 
     @Override
@@ -1613,7 +1613,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if(playQueue != null && playQueue.getStreams().size()>playQueue.getIndex()+1) {
             playQueue.setIndex(playQueue.getIndex()+1);
             PlayQueueItem next = playQueue.getItem();
-            autoPlayEnabled = true;
+            setAutoplay(true);
             selectAndLoadVideo(next.getServiceId(), next.getUrl(), next.getTitle(), playQueue);
         }
 
@@ -1666,4 +1666,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             player.onVideoPlayPause();
     }
 
+    private void checkLandscape() {
+        if((!player.isPlaying() && player.getPlayQueue() != playQueue) || player.getPlayQueue() == null)
+            setAutoplay(true);
+        // Let's give a user time to look at video information page if video is not playing
+        if(player.isPlaying()) {
+            player.notifyIsInBackground(false);
+            player.checkLandscape();
+        }
+    }
 }

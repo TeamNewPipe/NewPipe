@@ -145,9 +145,9 @@ public class NavigationHelper {
         if (title == null) title = "";
 
         if (fragment instanceof VideoDetailFragment && fragment.isVisible()) {
-            VideoDetailFragment detailFragment = (VideoDetailFragment) fragment;
-            detailFragment.selectAndLoadVideo(serviceId, url, title, playQueue);
-            detailFragment.setAutoplay(autoPlay);
+            VideoDetailFragment instance = (VideoDetailFragment) fragment;
+            if(autoPlay) instance.setAutoplay(true);
+            instance.selectAndLoadVideo(serviceId, url, title, playQueue);
             return;
         }
 
@@ -157,7 +157,7 @@ public class NavigationHelper {
                 .replace(R.id.fragment_holder, instance)
                 .addToBackStack(null)
                 .commit();
-        instance.setAutoplay(autoPlay);
+        if(autoPlay) instance.setAutoplay(true);
     }
 
     public static void openChannelFragment(FragmentManager fragmentManager, int serviceId, String url, String name) {
