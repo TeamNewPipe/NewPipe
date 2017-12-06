@@ -26,6 +26,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Binder;
@@ -119,6 +120,8 @@ public class MainPlayerService extends Service {
     private LockManager lockManager;
     private PlayerEventListener activityListener;
 
+    private SharedPreferences defaultPreferences;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Service LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -160,6 +163,7 @@ public class MainPlayerService extends Service {
         if(DEBUG) Log.d(TAG, "onCreate() called");
         notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
         lockManager = new LockManager(this);
+        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         shouldUpdateOnProgress = true;
 
         createView();
@@ -222,10 +226,21 @@ public class MainPlayerService extends Service {
     }
 
     public void toggleOrientation() {
+        setLandScape(!isLandScape());
+        defaultPreferences.edit()
+                .putBoolean(getString(R.string.last_orientation_landscape_key), !isLandScape())
+                .apply();
+    }
+
+    private boolean isLandScape() {
+        return getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
+    }
+
+    private void setLandScape(boolean v) {
         Activity parent = playerImpl.getParentActivity();
         if(parent == null) return;
 
-        parent.setRequestedOrientation(getResources().getDisplayMetrics().heightPixels > getResources().getDisplayMetrics().widthPixels
+        parent.setRequestedOrientation(v
                 ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
                 : ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
     }
@@ -953,8 +968,7 @@ public class MainPlayerService extends Service {
         }
 
         public boolean isBackgroundPlaybackEnabled() {
-            return PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
-                    .getBoolean(getApplicationContext().getString(R.string.continue_in_background_key), false);
+            return defaultPreferences.getBoolean(getApplicationContext().getString(R.string.continue_in_background_key), false);
         }
 
         public void notifyIsInBackground (boolean background) {
@@ -1044,14 +1058,13 @@ public class MainPlayerService extends Service {
         }
 
         public void checkAutorotation() {
-            boolean autorotationEnabled = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(getApplication().getString(R.string.use_video_autorotation_key), false);
+            boolean autorotationEnabled = defaultPreferences.getBoolean(getApplication().getString(R.string.use_video_autorotation_key), false);
             screenRotationButton.setVisibility(autorotationEnabled? View.GONE : View.VISIBLE);
         }
 
         public void checkLandscape() {
             Activity parent = playerImpl.getParentActivity();
-            boolean isLandscape = getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
-            if(parent != null && isLandscape && !isInFullscreen() && getCurrentState() != STATE_COMPLETED)
+            if(parent != null && isLandScape() && !isInFullscreen() && getCurrentState() != STATE_COMPLETED)
                 playerImpl.onFullScreenButtonClicked();
         }
 

@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -94,9 +95,13 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
 
         initHistory();
 
-        if(PreferenceManager.getDefaultSharedPreferences(this)
-                .getBoolean(this.getString(R.string.use_video_autorotation_key), false))
+        if(sharedPreferences.getBoolean(this.getString(R.string.use_video_autorotation_key), false)) {
             this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        } else if(globalScreenOrientationLocked()) {
+            boolean lastOrientationWasLandscape
+                    = sharedPreferences.getBoolean(getString(R.string.last_orientation_landscape_key), false);
+            setLandScape(lastOrientationWasLandscape);
+        }
     }
 
     @Override
@@ -352,5 +357,21 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
             SearchHistoryEntry searchHistoryEntry = new SearchHistoryEntry(new Date(), serviceId, query);
             historyEntrySubject.onNext(searchHistoryEntry);
         }
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Utils
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private void setLandScape(boolean v) {
+        setRequestedOrientation(v
+                ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+                : ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+    }
+
+    private boolean globalScreenOrientationLocked() {
+        // 1: Screen orientation changes using acelerometer
+        // 0: Screen orientatino is locked
+        return !(android.provider.Settings.System.getInt(getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 1);
     }
 }
