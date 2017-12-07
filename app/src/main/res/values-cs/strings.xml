@@ -205,7 +205,7 @@ otevření ve vyskakovacím okně</string>
 	<item quantity="one">%s odběratel</item>
 	<item quantity="few">%s odběratelé</item>
 	<item quantity="many">%s odběratelů</item>
-	<item quantity="other"></item>
+	<item quantity="other"/>
 </plurals>
 
     <string name="no_views">Žádná zhlédnutí</string>
@@ -220,7 +220,7 @@ otevření ve vyskakovacím okně</string>
 	<item quantity="one">%s video</item>
 	<item quantity="few">%s videa</item>
 	<item quantity="many">%s videí</item>
-	<item quantity="other"></item>
+	<item quantity="other"/>
 </plurals>
 
     <string name="settings_category_downloads_title">Stahování</string>
@@ -246,7 +246,7 @@ otevření ve vyskakovacím okně</string>
     <string name="app_license_title">Licence NewPipe</string>
     <string name="contribution_encouragement">Pokud máte nápady na zlepšení jako; překlad, změny designu, vylepšování kódu nebo opravdu velké změny kódu - pomoc je vždy vítána. Čím více se udělá, tím lepší to bude!</string>
     <string name="read_full_license">Přečíst licenci</string>
-    <string name="contribution_title">Příspěvek</string>
+    <string name="contribution_title">Podílet se</string>
 
     <string name="title_activity_history">Historie</string>
     <string name="title_history_search">Vyhledáváno</string>
@@ -295,4 +295,9 @@ otevření ve vyskakovacím okně</string>
     <string name="start_here_on_main">Začne hrát zde</string>
     <string name="start_here_on_background">Začne zde na pozadí</string>
     <string name="start_here_on_popup">Začne zde v okně</string>
-</resources>
+<string name="donation_title">Donate</string>
+    <string name="donation_encouragement">NewPipe je vyvíjen dobrovolníky, kteří tráví svůj volný čas, aby vaše zkušenost s aplikací byla co nejlepší. Nyní je čas vrátit něco zpět, aby naši vývojáři mohli NewPipe dále zlepšovat a zároveň si vychutnat šálek kávy!</string>
+    <string name="give_back">Daruj</string>
+    <string name="website_title">Webová stránka</string>
+    <string name="website_encouragement">Pro další informace a poslední novinky o NewPipe navštivte naši stránku.</string>
+    </resources>
