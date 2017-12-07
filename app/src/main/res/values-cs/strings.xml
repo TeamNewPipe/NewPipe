@@ -39,7 +39,7 @@
     <string name="light_theme_title">Světlé</string>
 
     <string name="download_dialog_title">Stáhnout</string>
-    <string name="next_video_title">Další video</string>
+    <string name="next_video_title">Další videa</string>
     <string name="show_next_and_similar_title">Zobrazovat další a podobná videa</string>
     <string name="url_not_supported_toast">URL není podporováno</string>
     <string name="search_language_title">Preferovaný jazyk obsahu</string>
@@ -254,10 +254,10 @@ otevření ve vyskakovacím okně</string>
     <string name="history_disabled">Historie je vypnutá</string>
     <string name="action_history">Historie</string>
     <string name="history_empty">Historie je prázdná</string>
-    <string name="history_cleared">Historie smazána</string>
+    <string name="history_cleared">Historie vymazána</string>
     <string name="item_deleted">Položka byla odstraněna</string>
 <string name="show_hold_to_append_title">Zobrazovat tip \"Podrž pro přidání\"</string>
-    <string name="show_hold_to_append_summary">Zobrazí se po stisku tlačítka přehrát na pozadí nebo přehrát v okně na stránce videa</string>
+    <string name="show_hold_to_append_summary">Zobrazí se po stisku tlačítek přehrát na pozadí nebo přehrát v okně na stránce s videem</string>
     <string name="background_player_append">Ve frontě přehrávače na pozadí</string>
     <string name="popup_playing_append">Ve frontě přehrávače v okně</string>
     <string name="play_all">Přehrát vše</string>
