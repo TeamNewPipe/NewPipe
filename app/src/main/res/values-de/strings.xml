@@ -191,7 +191,7 @@
     <string name="contribution_encouragement">Ob Ideen, Übersetzung, Design-Änderungen, Code-Aufräumung oder richtig große Code-Änderungen - Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
     <string name="title_licenses">Drittanbieter Lizenzen</string>
     <string name="view_on_github">Auf GitHub ansehen</string>
-    <string name="contribution_title">Beitrag</string>
+    <string name="contribution_title">Beitragen</string>
 <string name="settings_category_downloads_title">Download</string>
     <string name="settings_file_charset_title">Erlaubt Zeichen im Dateinamen</string>
     <string name="settings_file_replacement_character_summary">Ungültige Zeichen werden mit diesem Zeichen ersetzt</string>
@@ -296,4 +296,8 @@
     <string name="start_here_on_main">Ab hier wiedergeben</string>
     <string name="start_here_on_background">Ab hier im Hintergrundmodus</string>
     <string name="start_here_on_popup">Ab hier im Pop-up</string>
-</resources>
+<string name="donation_title">Spenden</string>
+    <string name="give_back">Zurückgeben</string>
+    <string name="website_title">Website</string>
+    <string name="website_encouragement">Um mehr Informationen und die aktuellsten Nachrichten über NewPipe zu bekommen, besuche unsere Website.</string>
+    </resources>
