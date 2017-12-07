@@ -242,7 +242,7 @@
     <string name="view_on_github">Vis på GitHub</string>
     <string name="app_license_title">NewPipe sin lisens</string>
     <string name="contribution_encouragement">Hvorvidt du har idéer vedrørende oversettelser, designendringer, koderenskning, eller tunge kodeendringer—hjelp er alltids kjærkommen. Desto mer som gjøres, desto bedre blir det!</string>
-    <string name="read_full_license">Les lisens</string>
+    <string name="read_full_license">Les lisensen</string>
     <string name="contribution_title">Bidra</string>
 
     <string name="title_activity_history">Historikk</string>
