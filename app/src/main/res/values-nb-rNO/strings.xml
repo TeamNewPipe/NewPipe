@@ -243,7 +243,7 @@
     <string name="app_license_title">NewPipe sin lisens</string>
     <string name="contribution_encouragement">Hvorvidt du har idéer vedrørende oversettelser, designendringer, koderenskning, eller tunge kodeendringer—hjelp er alltids kjærkommen. Desto mer som gjøres, desto bedre blir det!</string>
     <string name="read_full_license">Les lisens</string>
-    <string name="contribution_title">Bidrag</string>
+    <string name="contribution_title">Bidra</string>
 
     <string name="title_activity_history">Historikk</string>
     <string name="title_history_search">Søk</string>
@@ -291,4 +291,9 @@
     <string name="start_here_on_main">Start avspilling her</string>
     <string name="start_here_on_background">Start her i bakgrunnen</string>
     <string name="start_here_on_popup">Start her i oppsprettsvindu</string>
-</resources>
+<string name="donation_title">Doner</string>
+    <string name="donation_encouragement">NewPipe utvikles av frivillige som bruker deres fritid til å gi deg den beste opplevelsen. Nå er det tid for å gi tilbake, slik at utviklerne kan gjøre NewPipe enda bedre, mens de nyter en varm kopp java.</string>
+    <string name="give_back">Bidra</string>
+    <string name="website_title">Nettside</string>
+    <string name="website_encouragement">Mer informasjon og siste nytt om NewPipe er å finne på vår nettside.</string>
+    </resources>
