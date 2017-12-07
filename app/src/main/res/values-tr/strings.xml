@@ -191,7 +191,7 @@
     <string name="app_license_title">NewPipe\'ın Lisansı</string>
     <string name="contribution_encouragement">Fikirleriniz; çeviri, tasarım değişiklikleri, kod temizliği, ya da gerçek köklü kod değişikleri olsun—yardımınıza her zaman açığız. Daha çok yapıldıkça daha iyiye gider!</string>
     <string name="read_full_license">Lisansı oku</string>
-    <string name="contribution_title">Katkı</string>
+    <string name="contribution_title">Katkıda bulun</string>
 <string name="settings_category_downloads_title">İndirme</string>
     <string name="settings_file_charset_title">Dosya adlarında izin verilen karakterler</string>
     <string name="settings_file_replacement_character_summary">Geçersiz karakterler bu değer ile değiştirilir</string>
@@ -293,4 +293,9 @@
     <string name="start_here_on_main">Burayı Oynatmaya Başla</string>
     <string name="start_here_on_background">Arka Planda Burayı Başlat</string>
     <string name="start_here_on_popup">Açılır Pencerede Burayı Başlat</string>
-</resources>
+<string name="donation_title">Bağış yapın</string>
+    <string name="donation_encouragement">NewPipe, size en iyi deneyimi sunmak için boş zamanını harcayan gönüllüler tarafından geliştirilmektedir. Geliştiricilerimizin bir fincan kahvenin tadını çıkarırken NewPipe\'ı daha da çok iyileştirebilmelerinden emin olmak için karşılığını vermenin tam zamanı!</string>
+    <string name="give_back">Karşılığını ver</string>
+    <string name="website_title">Web sitesi</string>
+    <string name="website_encouragement">NewPipe hakkında daha çok bilgiyi ve son haberleri almak için web sitemize uğrayın.</string>
+    </resources>
