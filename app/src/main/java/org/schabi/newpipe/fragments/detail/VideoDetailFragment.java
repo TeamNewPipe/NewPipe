@@ -387,18 +387,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         } else if (key.equals(getString(R.string.show_play_with_kodi_key))) {
             updateFlags |= TOOLBAR_ITEMS_UPDATE_FLAG;
         }
-        if(key.equals(getString(R.string.use_video_autorotation_key))) {
-            if(!isAutorotationEnabled()) {
-                int currentOrientation = getResources().getDisplayMetrics().heightPixels > getResources().getDisplayMetrics().widthPixels
-                        ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
-                        : ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
-                activity.setRequestedOrientation(currentOrientation);
-            }
-            else {
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-            }
-            if(mPlayerService != null && player != null) player.checkAutorotation();
-        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1206,11 +1194,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             return false;
         else
             return autoPlayEnabled;
-    }
-
-    private boolean isAutorotationEnabled() {
-        return PreferenceManager.getDefaultSharedPreferences(getContext())
-                .getBoolean(this.getString(R.string.use_video_autorotation_key), false);
     }
 
     private void addVideoPlayerView() {

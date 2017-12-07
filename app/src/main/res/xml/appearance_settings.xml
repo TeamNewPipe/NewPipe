@@ -22,9 +22,4 @@
         android:title="@string/show_hold_to_append_title"
         android:summary="@string/show_hold_to_append_summary"/>
 
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="@string/use_video_autorotation_key"
-        android:title="@string/use_video_autorotation_title"
-        android:summary="@string/use_video_autorotation_summary"/>
 </PreferenceScreen>

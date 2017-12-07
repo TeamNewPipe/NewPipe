@@ -30,8 +30,6 @@
     <string name="next_video_title">Следующее видео</string>
     <string name="url_not_supported_toast">URL не поддерживается</string>
     <string name="show_next_and_similar_title">Показывать следующее и предложенные видео</string>
-    <string name="use_video_autorotation_title">Автоматически поворачивать плеер</string>
-    <string name="use_video_autorotation_summary">Использовать датчик устройства для определения портретного или ландшафтного режимов</string>
     <string name="search_language_title">Язык контента по умолчанию</string>
     <string name="settings_category_video_audio_title">Видео и Аудио</string>
     <string name="settings_category_appearance_title">Внешний вид</string>

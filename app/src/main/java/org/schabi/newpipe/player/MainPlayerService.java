@@ -463,7 +463,6 @@ public class MainPlayerService extends Service {
             getFullScreenButton().setLayoutParams(params);
             titleTextView.setSelected(true);
             channelTextView.setSelected(true);
-            checkAutorotation();
 
             getRootView().setKeepScreenOn(true);
         }
@@ -1055,11 +1054,6 @@ public class MainPlayerService extends Service {
 
             setRepeatModeButton(repeatButton, getRepeatMode());
             setShuffleButton(shuffleButton, playQueue.isShuffled());
-        }
-
-        public void checkAutorotation() {
-            boolean autorotationEnabled = defaultPreferences.getBoolean(getApplication().getString(R.string.use_video_autorotation_key), false);
-            screenRotationButton.setVisibility(autorotationEnabled? View.GONE : View.VISIBLE);
         }
 
         public void checkLandscape() {

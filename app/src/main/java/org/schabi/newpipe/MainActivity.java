@@ -95,9 +95,7 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
 
         initHistory();
 
-        if(sharedPreferences.getBoolean(this.getString(R.string.use_video_autorotation_key), false)) {
-            this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-        } else if(globalScreenOrientationLocked()) {
+        if(globalScreenOrientationLocked()) {
             boolean lastOrientationWasLandscape
                     = sharedPreferences.getBoolean(getString(R.string.last_orientation_landscape_key), false);
             setLandScape(lastOrientationWasLandscape);
