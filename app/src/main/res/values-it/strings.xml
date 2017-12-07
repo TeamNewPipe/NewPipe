@@ -196,7 +196,7 @@
     <string name="app_license_title">Licenza di NewPipe</string>
     <string name="contribution_encouragement">Un aiuto è sempre il benvenuto: nuove idee, design o traduzioni, piccoli cambi o modifiche radicali del codice rendono l\'applicazione sempre migliore!</string>
     <string name="read_full_license">Leggi la licenza</string>
-    <string name="contribution_title">Contributi</string>
+    <string name="contribution_title">Partecipa</string>
 <string name="title_activity_about">Informazioni su NewPipe</string>
     <string name="subscribe_button_title">Iscriviti</string>
     <string name="subscribed_button_title">Iscritto</string>
@@ -302,4 +302,7 @@
     <string name="start_here_on_main">Inizia la riproduzione qui</string>
     <string name="start_here_on_background">Inizia qui sullo sfondo</string>
     <string name="start_here_on_popup">Inizia qui nel Popup</string>
-</resources>
+<string name="donation_title">Dona</string>
+    <string name="website_title">Sito web</string>
+    <string name="website_encouragement">Per ricevere maggiori informazioni e le ultime novità su NewPipe visita il nostro sito web.</string>
+    </resources>
