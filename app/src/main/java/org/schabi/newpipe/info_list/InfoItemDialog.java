@@ -19,7 +19,7 @@ public class InfoItemDialog {
                           @NonNull final StreamInfoItem info,
                           @NonNull final String[] commands,
                           @NonNull final DialogInterface.OnClickListener actions) {
-        this(activity, commands, actions, info.name, info.uploader_name);
+        this(activity, commands, actions, info.getName(), info.uploader_name);
     }
 
     public InfoItemDialog(@NonNull final Activity activity,

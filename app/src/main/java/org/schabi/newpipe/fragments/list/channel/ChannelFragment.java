@@ -105,7 +105,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 && useAsFrontPage
                 && isVisibleToUser) {
             try {
-                activity.getSupportActionBar().setTitle(currentInfo.name);
+                activity.getSupportActionBar().setTitle(currentInfo.getName());
             } catch (Exception e) {
                 onError(e);
             }
@@ -208,7 +208,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
             if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "], inflater = [" + inflater + "]");
             menuRssButton = menu.findItem(R.id.menu_item_rss);
             if (currentInfo != null) {
-                menuRssButton.setVisible(!TextUtils.isEmpty(currentInfo.feed_url));
+                menuRssButton.setVisible(!TextUtils.isEmpty(currentInfo.getFeedUrl()));
             }
 
         }
@@ -217,7 +217,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     private void openRssFeed() {
         final ChannelInfo info = currentInfo;
         if(info != null) {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(info.feed_url));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(info.getFeedUrl()));
             startActivity(intent);
         }
     }
@@ -264,12 +264,12 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
             @Override
             public void accept(Throwable throwable) throws Exception {
                 animateView(headerSubscribeButton, false, 100);
-                showSnackBarError(throwable, UserAction.SUBSCRIPTION, NewPipe.getNameOfService(currentInfo.service_id), "Get subscription status", 0);
+                showSnackBarError(throwable, UserAction.SUBSCRIPTION, NewPipe.getNameOfService(currentInfo.getServiceId()), "Get subscription status", 0);
             }
         };
 
         final Observable<List<SubscriptionEntity>> observable = subscriptionService.subscriptionTable()
-                .getSubscription(info.service_id, info.url)
+                .getSubscription(info.getServiceId(), info.getUrl())
                 .toObservable();
 
         disposables.add(observable
@@ -315,14 +315,14 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         final Action onComplete = new Action() {
             @Override
             public void run() throws Exception {
-                if (DEBUG) Log.d(TAG, "Updated subscription: " + info.url);
+                if (DEBUG) Log.d(TAG, "Updated subscription: " + info.getUrl());
             }
         };
 
         final Consumer<Throwable> onError = new Consumer<Throwable>() {
             @Override
             public void accept(@NonNull Throwable throwable) throws Exception {
-                onUnrecoverableError(throwable, UserAction.SUBSCRIPTION, NewPipe.getNameOfService(info.service_id), "Updating Subscription for " + info.url, R.string.subscription_update_failed);
+                onUnrecoverableError(throwable, UserAction.SUBSCRIPTION, NewPipe.getNameOfService(info.getServiceId()), "Updating Subscription for " + info.getUrl(), R.string.subscription_update_failed);
             }
         };
 
@@ -343,7 +343,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         final Consumer<Throwable> onError = new Consumer<Throwable>() {
             @Override
             public void accept(@NonNull Throwable throwable) throws Exception {
-                onUnrecoverableError(throwable, UserAction.SUBSCRIPTION, NewPipe.getNameOfService(currentInfo.service_id), "Subscription Change", R.string.subscription_change_failed);
+                onUnrecoverableError(throwable, UserAction.SUBSCRIPTION, NewPipe.getNameOfService(currentInfo.getServiceId()), "Subscription Change", R.string.subscription_change_failed);
             }
         };
 
@@ -367,9 +367,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 if (subscriptionEntities.isEmpty()) {
                     if (DEBUG) Log.d(TAG, "No subscription to this channel!");
                     SubscriptionEntity channel = new SubscriptionEntity();
-                    channel.setServiceId(info.service_id);
-                    channel.setUrl(info.url);
-                    channel.setData(info.name, info.avatar_url, info.description, info.subscriber_count);
+                    channel.setServiceId(info.getServiceId());
+                    channel.setUrl(info.getUrl());
+                    channel.setData(info.getName(), info.getAvatarUrl(), info.getDescription(), info.getSubscriberCount());
                     subscribeButtonMonitor = monitorSubscribeButton(headerSubscribeButton, mapOnSubscribe(channel));
                 } else {
                     if (DEBUG) Log.d(TAG, "Found subscription to this channel!");
@@ -440,16 +440,16 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         imageLoader.displayImage(result.banner_url, headerChannelBanner, DISPLAY_BANNER_OPTIONS);
         imageLoader.displayImage(result.avatar_url, headerAvatarView, DISPLAY_AVATAR_OPTIONS);
 
-        if (result.subscriber_count != -1) {
-            headerSubscribersTextView.setText(Localization.localizeSubscribersCount(activity, result.subscriber_count));
+        if (result.getSubscriberCount() != -1) {
+            headerSubscribersTextView.setText(Localization.localizeSubscribersCount(activity, result.getSubscriberCount()));
             headerSubscribersTextView.setVisibility(View.VISIBLE);
         } else headerSubscribersTextView.setVisibility(View.GONE);
 
-        if (menuRssButton != null) menuRssButton.setVisible(!TextUtils.isEmpty(result.feed_url));
+        if (menuRssButton != null) menuRssButton.setVisible(!TextUtils.isEmpty(result.getFeedUrl()));
         playlistCtrl.setVisibility(View.VISIBLE);
 
         if (!result.errors.isEmpty()) {
-            showSnackBarError(result.errors, UserAction.REQUESTED_CHANNEL, NewPipe.getNameOfService(result.service_id), result.url, 0);
+            showSnackBarError(result.errors, UserAction.REQUESTED_CHANNEL, NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
         }
 
         if (disposables != null) disposables.clear();
@@ -490,9 +490,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
     private PlayQueue getPlayQueue(final int index) {
         return new ChannelPlayQueue(
-                currentInfo.service_id,
-                currentInfo.url,
-                currentInfo.next_streams_url,
+                currentInfo.getServiceId(),
+                currentInfo.getUrl(),
+                currentInfo.getNextStreamsUrl(),
                 infoListAdapter.getItemsList(),
                 index
         );
@@ -502,8 +502,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     public void handleNextItems(ListExtractor.NextItemsResult result) {
         super.handleNextItems(result);
 
-        if (!result.errors.isEmpty()) {
-            showSnackBarError(result.errors, UserAction.REQUESTED_CHANNEL, NewPipe.getNameOfService(serviceId),
+        if (!result.getErrors().isEmpty()) {
+            showSnackBarError(result.getErrors(), UserAction.REQUESTED_CHANNEL, NewPipe.getNameOfService(serviceId),
                     "Get next page of: " + url, R.string.general_error);
         }
     }

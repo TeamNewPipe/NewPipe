@@ -393,7 +393,7 @@ public final class BackgroundPlayer extends Service {
             if (index < 0 || index >= info.audio_streams.size()) return null;
 
             final AudioStream audio = info.audio_streams.get(index);
-            return buildMediaSource(audio.url, MediaFormat.getSuffixById(audio.format));
+            return buildMediaSource(audio.getUrl(), MediaFormat.getSuffixById(audio.format));
         }
 
         @Override

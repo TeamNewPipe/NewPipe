@@ -529,7 +529,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     @Override
     public void onMetadataUpdate(StreamInfo info) {
         if (info != null) {
-            metadataTitle.setText(info.name);
+            metadataTitle.setText(info.getName());
             metadataArtist.setText(info.uploader_name);
             scrollToSelected();
         }
