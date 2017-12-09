@@ -41,7 +41,7 @@
     <string name="dark_theme_title">Ciemny</string>
     <string name="light_theme_title">Jasny</string>
 
-    <string name="download_dialog_title">Pobieranie</string>
+    <string name="download_dialog_title">Pobrane</string>
     <string name="next_video_title">Następne video</string>
     <string name="show_next_and_similar_title">Pokaż następne i podobne filmy</string>
     <string name="url_not_supported_toast">URL nie obsługiwany</string>
@@ -55,8 +55,8 @@
     <string name="show_age_restricted_content_title">Pokaż zawartość z ograniczeniem wieku</string>
     <string name="video_is_age_restricted">Film z ograniczeniami wiekowymi. Najpierw zezwól na filmy z ograniczeniem wiekowym w ustawieniach.</string>
     <string name="duration_live">Na żywo</string>
-    <string name="downloads">Pobrania</string>
-    <string name="downloads_title">Pobrania</string>
+    <string name="downloads">Pobrane</string>
+    <string name="downloads_title">Pobrane</string>
     <string name="error_report_title">Raport błędu</string>
 
     <string name="general_error">Błąd</string>
@@ -76,7 +76,7 @@
     <string name="error_snackbar_action">ZGŁOŚ</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Co się stało:</string>
-    <string name="info_labels">Co:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:\\nGlob. Zakres IP:</string>
+    <string name="info_labels">Co:\\nRequest:\\nContent Język:\\nService:\\nGMT Czas:\\nPackage:\\nVersion:\\nOS version:\\nGlob. Zakres IP:</string>
     <string name="your_comment">Twój komentarz (po angielsku):</string>
     <string name="error_details_headline">Szczegóły:</string>
 
@@ -85,7 +85,7 @@
     <string name="detail_thumbnail_view_description">Miniatura filmu</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura zdjęcia wysyłającego</string>
     <string name="detail_likes_img_view_description">Polubienia</string>
-    <string name="detail_dislikes_img_view_description">Łapki w dół</string>
+    <string name="detail_dislikes_img_view_description">To mi się nie podoba</string>
     <string name="use_tor_title">Użyj Tor</string>
     <string name="report_error">Zgłoś błąd</string>
     <string name="user_report">Raport użytkownika</string>
@@ -137,7 +137,7 @@
     <string name="popup_remember_size_pos_summary">Zapamiętaj ostatni rozmiar i pozycję trybu okienkowego</string>
     <string name="player_gesture_controls_title">Sterowanie odtwarzaczem za pomocą gestów</string>
     <string name="player_gesture_controls_summary">Użyj gestów, aby sterować jasnością i głośnością odtwarzacza</string>
-    <string name="show_search_suggestions_title">Szukaj sugestii</string>
+    <string name="show_search_suggestions_title">Wyszukaj sugestie</string>
     <string name="show_search_suggestions_summary">Pokazuj sugestie podczas wyszukiwania</string>
 
     <string name="settings_category_popup_title">Tryb okienkowy</string>
@@ -248,22 +248,22 @@
 	<item quantity="one">%s subskrybent</item>
 	<item quantity="few">%s subskrybentów</item>
 	<item quantity="many">%s subskrybentów</item>
-	<item quantity="other"></item>
+	<item quantity="other"/>
 </plurals>
 
     <plurals name="views">
 	<item quantity="one">%s odtworzenie</item>
-	<item quantity="few"></item>
+	<item quantity="few"/>
 	<item quantity="many">%s odtworzeń</item>
-	<item quantity="other"></item>
+	<item quantity="other"/>
 </plurals>
 
     <string name="no_videos">Brak filmów</string>
     <plurals name="videos">
 	<item quantity="one">%s film</item>
 	<item quantity="few">%s filmów</item>
-	<item quantity="many"></item>
-	<item quantity="other"></item>
+	<item quantity="many"/>
+	<item quantity="other"/>
 </plurals>
 
     <string name="charset_most_special_characters">Większość znaków specjalnych</string>
