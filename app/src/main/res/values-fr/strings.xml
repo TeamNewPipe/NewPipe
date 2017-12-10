@@ -2,7 +2,7 @@
 <resources>
     <string name="cancel">Annuler</string>
     <string name="choose_browser">Choisir un navigateur</string>
-    <string name="default_resolution_title">Définition par défaut</string>
+    <string name="default_resolution_title">Résolution par défaut</string>
     <string name="did_you_mean">Vouliez-vous dire : %1$s ?</string>
     <string name="download">Télécharger</string>
     <string name="download_path_title">Chemin de téléchargement</string>
@@ -296,7 +296,8 @@
     <string name="start_here_on_background">Démarrer ici en fond</string>
     <string name="start_here_on_popup">Démarrer dans le lecteur pop-up</string>
 <string name="donation_title">Donner</string>
-    <string name="donation_encouragement">NewPipe est développé par des volontaires sur leur temps libre afin de vous proposer la meilleur expérience. Maintenant il est temps de leurs offrir un kawa pour les soutenir dans leurs efforts et rendre NewPipe encore meilleur!</string>
+    <string name="donation_encouragement">NewPipe est développé par des volontaires sur leur temps libre afin de vous proposer la meilleur expérience. Maintenant il est temps de leurs offrir un café pour les soutenir dans leurs efforts et rendre NewPipe encore meilleur !</string>
     <string name="website_title">Site</string>
     <string name="website_encouragement">Pour obtenir plus d\'informations et les dernières nouvelles à propos de NewPipe, visitez notre site Internet.</string>
+    <string name="give_back">Donner en retour</string>
     </resources>
