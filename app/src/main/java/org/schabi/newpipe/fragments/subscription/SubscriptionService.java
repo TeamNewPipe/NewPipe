@@ -112,7 +112,7 @@ public class SubscriptionService {
                     // Subscriber count changes very often, making this check almost unnecessary.
                     // Consider removing it later.
                     if (!isSubscriptionUpToDate(info, subscription)) {
-                        subscription.setData(info.name, info.avatar_url, info.description, info.subscriber_count);
+                        subscription.setData(info.getName(), info.getAvatarUrl(), info.getDescription(), info.getSubscriberCount());
 
                         return update(subscription);
                     }
@@ -122,7 +122,7 @@ public class SubscriptionService {
             }
         };
 
-        return subscriptionTable().getSubscription(info.service_id, info.url)
+        return subscriptionTable().getSubscription(info.getServiceId(), info.getUrl())
                 .firstOrError()
                 .flatMapCompletable(update);
     }
@@ -137,11 +137,11 @@ public class SubscriptionService {
     }
 
     private boolean isSubscriptionUpToDate(final ChannelInfo info, final SubscriptionEntity entity) {
-        return info.url.equals(entity.getUrl()) &&
-                info.service_id == entity.getServiceId() &&
-                info.name.equals(entity.getName()) &&
-                info.avatar_url.equals(entity.getAvatarUrl()) &&
-                info.description.equals(entity.getDescription()) &&
-                info.subscriber_count == entity.getSubscriberCount();
+        return info.getUrl().equals(entity.getUrl()) &&
+                info.getServiceId() == entity.getServiceId() &&
+                info.getName().equals(entity.getName()) &&
+                info.getAvatarUrl().equals(entity.getAvatarUrl()) &&
+                info.getDescription().equals(entity.getDescription()) &&
+                info.getSubscriberCount() == entity.getSubscriberCount();
     }
 }

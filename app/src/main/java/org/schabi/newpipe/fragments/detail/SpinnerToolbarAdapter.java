@@ -60,7 +60,7 @@ public class SpinnerToolbarAdapter extends BaseAdapter {
         ImageView woSoundIcon = convertView.findViewById(R.id.wo_sound_icon);
         TextView text = convertView.findViewById(android.R.id.text1);
         VideoStream item = (VideoStream) getItem(position);
-        text.setText(MediaFormat.getNameById(item.format) + " " + item.resolution);
+        text.setText(item.getFormat().getName() + " " + item.getResolution());
 
         int visibility = !showIconNoAudio ? View.GONE
                 : item.isVideoOnly ? View.VISIBLE

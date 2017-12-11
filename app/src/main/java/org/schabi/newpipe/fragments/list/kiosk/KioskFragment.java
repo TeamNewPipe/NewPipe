@@ -155,10 +155,10 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         ActionBar supportActionBar = activity.getSupportActionBar();
         supportActionBar.setTitle(title);
 
-        if (!result.errors.isEmpty()) {
-            showSnackBarError(result.errors,
+        if (!result.getErrors().isEmpty()) {
+            showSnackBarError(result.getErrors(),
                     UserAction.REQUESTED_PLAYLIST,
-                    NewPipe.getNameOfService(result.service_id), result.url, 0);
+                    NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
         }
     }
 
@@ -166,8 +166,8 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     public void handleNextItems(ListExtractor.NextItemsResult result) {
         super.handleNextItems(result);
 
-        if (!result.errors.isEmpty()) {
-            showSnackBarError(result.errors,
+        if (!result.getErrors().isEmpty()) {
+            showSnackBarError(result.getErrors(),
                     UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(serviceId)
                     , "Get next page of: " + url, 0);
         }

@@ -190,8 +190,8 @@ public abstract class BaseListInfoFragment<I extends ListInfo> extends BaseListF
     public void handleResult(@NonNull I result) {
         super.handleResult(result);
 
-        url = result.url;
-        name = result.name;
+        url = result.getUrl();
+        name = result.getName();
         setTitle(name);
 
         if (infoListAdapter.getItemsList().size() == 0) {
