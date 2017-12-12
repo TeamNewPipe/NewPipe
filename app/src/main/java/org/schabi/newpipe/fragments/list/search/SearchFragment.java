@@ -861,8 +861,8 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
         lastSearchedQuery = searchQuery;
 
         if (infoListAdapter.getItemsList().size() == 0) {
-            if (result.resultList.size() > 0) {
-                infoListAdapter.addInfoItemList(result.resultList);
+            if (!result.getResults().isEmpty()) {
+                infoListAdapter.addInfoItemList(result.getResults());
             } else {
                 infoListAdapter.clearStreamItemList();
                 showEmptyState();
@@ -876,11 +876,11 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     @Override
     public void handleNextItems(ListExtractor.NextItemsResult result) {
         showListFooter(false);
-        currentPage = Integer.parseInt(result.nextItemsUrl);
-        infoListAdapter.addInfoItemList(result.nextItemsList);
+        currentPage = Integer.parseInt(result.getNextItemsUrl());
+        infoListAdapter.addInfoItemList(result.getNextItemsList());
 
-        if (!result.errors.isEmpty()) {
-            showSnackBarError(result.errors, UserAction.SEARCHED, NewPipe.getNameOfService(serviceId)
+        if (!result.getErrors().isEmpty()) {
+            showSnackBarError(result.getErrors(), UserAction.SEARCHED, NewPipe.getNameOfService(serviceId)
                     , "\"" + searchQuery + "\" → page " + currentPage, 0);
         }
         super.handleNextItems(result);

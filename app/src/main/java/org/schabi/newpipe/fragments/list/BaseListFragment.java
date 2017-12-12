@@ -140,7 +140,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                 onItemSelected(selectedItem);
                 NavigationHelper.openVideoDetailFragment(
                         useAsFrontPage?getParentFragment().getFragmentManager():getFragmentManager(),
-                        selectedItem.service_id, selectedItem.url, selectedItem.name);
+                        selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
             }
 
             @Override
@@ -155,7 +155,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                 onItemSelected(selectedItem);
                 NavigationHelper.openChannelFragment(
                         useAsFrontPage?getParentFragment().getFragmentManager():getFragmentManager(),
-                        selectedItem.service_id, selectedItem.url, selectedItem.name);
+                        selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
             }
 
             @Override
@@ -168,7 +168,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                 onItemSelected(selectedItem);
                 NavigationHelper.openPlaylistFragment(
                         useAsFrontPage?getParentFragment().getFragmentManager():getFragmentManager(),
-                        selectedItem.service_id, selectedItem.url, selectedItem.name);
+                        selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
             }
 
             @Override

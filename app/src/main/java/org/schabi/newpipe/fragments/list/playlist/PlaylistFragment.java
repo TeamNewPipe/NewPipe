@@ -181,13 +181,13 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         animateView(headerRootLayout, true, 100);
         animateView(headerUploaderLayout, true, 300);
         headerUploaderLayout.setOnClickListener(null);
-        if (!TextUtils.isEmpty(result.uploader_name)) {
-            headerUploaderName.setText(result.uploader_name);
-            if (!TextUtils.isEmpty(result.uploader_url)) {
+        if (!TextUtils.isEmpty(result.getUploaderName())) {
+            headerUploaderName.setText(result.getUploaderName());
+            if (!TextUtils.isEmpty(result.getUploaderUrl())) {
                 headerUploaderLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        NavigationHelper.openChannelFragment(getFragmentManager(), result.service_id, result.uploader_url, result.uploader_name);
+                        NavigationHelper.openChannelFragment(getFragmentManager(), result.getServiceId(), result.getUploaderUrl(), result.getUploaderName());
                     }
                 });
             }
@@ -195,11 +195,11 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
         playlistCtrl.setVisibility(View.VISIBLE);
 
-        imageLoader.displayImage(result.uploader_avatar_url, headerUploaderAvatar, DISPLAY_AVATAR_OPTIONS);
+        imageLoader.displayImage(result.getUploaderAvatarUrl(), headerUploaderAvatar, DISPLAY_AVATAR_OPTIONS);
         headerStreamCount.setText(getResources().getQuantityString(R.plurals.videos, (int) result.stream_count, (int) result.stream_count));
 
-        if (!result.errors.isEmpty()) {
-            showSnackBarError(result.errors, UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(result.service_id), result.url, 0);
+        if (!result.getErrors().isEmpty()) {
+            showSnackBarError(result.getErrors(), UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
         }
 
         headerPlayAllButton.setOnClickListener(new View.OnClickListener() {
@@ -235,9 +235,9 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     private PlayQueue getPlayQueue(final int index) {
         return new PlaylistPlayQueue(
-                currentInfo.service_id,
-                currentInfo.url,
-                currentInfo.next_streams_url,
+                currentInfo.getServiceId(),
+                currentInfo.getUrl(),
+                currentInfo.getNextStreamsUrl(),
                 infoListAdapter.getItemsList(),
                 index
         );
@@ -247,8 +247,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     public void handleNextItems(ListExtractor.NextItemsResult result) {
         super.handleNextItems(result);
 
-        if (!result.errors.isEmpty()) {
-            showSnackBarError(result.errors, UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(serviceId)
+        if (!result.getErrors().isEmpty()) {
+            showSnackBarError(result.getErrors(), UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(serviceId)
                     , "Get next page of: " + url, 0);
         }
     }

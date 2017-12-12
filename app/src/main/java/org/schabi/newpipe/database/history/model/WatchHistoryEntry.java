@@ -48,7 +48,7 @@ public class WatchHistoryEntry extends HistoryEntry {
     }
 
     public WatchHistoryEntry(StreamInfo streamInfo) {
-        this(new Date(), streamInfo.service_id, streamInfo.name, streamInfo.url,
+        this(new Date(), streamInfo.getServiceId(), streamInfo.getName(), streamInfo.getUrl(),
                 streamInfo.id, streamInfo.thumbnail_url, streamInfo.uploader_name, streamInfo.duration);
     }
 

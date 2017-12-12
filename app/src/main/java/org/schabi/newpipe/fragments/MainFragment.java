@@ -2,6 +2,7 @@ package org.schabi.newpipe.fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -30,30 +31,28 @@ import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.subscription.SubscriptionFragment;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
-
-import java.util.concurrent.ExecutionException;
 
 public class MainFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
     private ViewPager viewPager;
     private boolean showBlankTab = false;
 
-    private static final int FALLBACK_SERVICE_ID = 0; // Youtbe
+    public int currentServiceId = -1;
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Constants
+    //////////////////////////////////////////////////////////////////////////*/
+
+
+    private static final int FALLBACK_SERVICE_ID = 0; // Youtube
     private static final String FALLBACK_CHANNEL_URL =
             "https://www.youtube.com/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ";
     private static final String FALLBACK_CHANNEL_NAME = "Music";
     private static final String FALLBACK_KIOSK_ID = "Trending";
-
-    public int currentServiceId = -1;
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Konst
-    //////////////////////////////////////////////////////////////////////////*/
-
-    private static final int KIOSK_MENU_OFFSETT = 2000;
+    private static final int KIOSK_MENU_OFFSET = 2000;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
@@ -66,7 +65,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         currentServiceId = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(getActivity())
                 .getString(getString(R.string.current_service_key), "0"));
         return inflater.inflate(R.layout.fragment_main, container, false);
@@ -86,27 +85,27 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         tabLayout.setupWithViewPager(viewPager);
 
-        if(ThemeHelper.isLightThemeSelected(getActivity())) {
+        int channelIcon;
+        int whatsHotIcon;
+
+        if (ThemeHelper.isLightThemeSelected(getActivity())) {
             tabLayout.setBackgroundColor(getResources().getColor(R.color.light_youtube_primary_color));
+            channelIcon = R.drawable.ic_channel_black_24dp;
+            whatsHotIcon = R.drawable.ic_whatshot_black_24dp;
+        } else {
+            channelIcon = R.drawable.ic_channel_white_24dp;
+            whatsHotIcon = R.drawable.ic_whatshot_white_24dp;
         }
 
-       if(PreferenceManager.getDefaultSharedPreferences(getActivity())
+
+        if (PreferenceManager.getDefaultSharedPreferences(getActivity())
                 .getString(getString(R.string.main_page_content_key), getString(R.string.blank_page_key))
                 .equals(getString(R.string.subscription_page_key))) {
-           if(ThemeHelper.isLightThemeSelected(getActivity())) {
-               tabLayout.getTabAt(0).setIcon(R.drawable.ic_channel_black_24dp);
-           } else{
-               tabLayout.getTabAt(0).setIcon(R.drawable.ic_channel_white_24dp);
-           }
-       } else {
-           if(ThemeHelper.isLightThemeSelected(getActivity())) {
-               tabLayout.getTabAt(0).setIcon(R.drawable.ic_whatshot_black_24dp);
-               tabLayout.getTabAt(1).setIcon(R.drawable.ic_channel_black_24dp);
-           } else {
-               tabLayout.getTabAt(0).setIcon(R.drawable.ic_whatshot_white_24dp);
-               tabLayout.getTabAt(1).setIcon(R.drawable.ic_channel_white_24dp);
-           }
-       }
+            tabLayout.getTabAt(0).setIcon(channelIcon);
+        } else {
+            tabLayout.getTabAt(0).setIcon(whatsHotIcon);
+            tabLayout.getTabAt(1).setIcon(channelIcon);
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -182,7 +181,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                             .equals(getString(R.string.subscription_page_key))) {
                         return new SubscriptionFragment();
                     } else {
-                        return getMainPageFramgent();
+                        return getMainPageFragment();
                     }
                 case 1:
                     return new SubscriptionFragment();
@@ -213,7 +212,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     // Main page content
     //////////////////////////////////////////////////////////////////////////*/
 
-    private Fragment getMainPageFramgent() {
+    private Fragment getMainPageFragment() {
         try {
             SharedPreferences preferences =
                     PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -268,7 +267,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         KioskList kl = service.getKioskList();
         int i = 0;
         for(final String ks : kl.getAvailableKiosks()) {
-            menu.add(0, KIOSK_MENU_OFFSETT + i, Menu.NONE,
+            menu.add(0, KIOSK_MENU_OFFSET + i, Menu.NONE,
                     KioskTranslator.getTranslatedKioskName(ks, getContext()))
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                         @Override

@@ -103,7 +103,7 @@ public final class InfoCache {
     }
 
     private static String keyOf(@NonNull final Info info) {
-        return keyOf(info.service_id, info.url);
+        return keyOf(info.getServiceId(), info.getUrl());
     }
 
     private static String keyOf(final int serviceId, @NonNull final String url) {
