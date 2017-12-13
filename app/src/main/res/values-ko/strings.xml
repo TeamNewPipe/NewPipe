@@ -15,22 +15,22 @@
     <string name="choose_browser">브라우저 선택</string>
     <string name="screen_rotation">회전</string>
     <string name="download_path_title">비디오 다운로드 위치</string>
-    <string name="download_path_summary">다운로드된 비디오가 저장될 경로를 선택하세요.</string>
+    <string name="download_path_summary">다운로드된 비디오가 저장될 경로를 선택하세요</string>
     <string name="download_path_dialog_title">비디오 다운로드 경로 입력</string>
     <string name="default_resolution_title">기본 해상도</string>
     <string name="play_with_kodi_title">Kodi로 재생</string>
     <string name="kore_not_found">Kore 앱이 발견되지 않았습니다. Kore를 설치할까요?</string>
     <string name="show_play_with_kodi_title">\"Kodi로 재생\" 옵션 표시</string>
-    <string name="show_play_with_kodi_summary">비디오를 Kodi media center를 사용해 재생하는 옵션을 표시합니다.</string>
+    <string name="show_play_with_kodi_summary">비디오를 Kodi media center를 사용해 재생하는 옵션을 표시합니다</string>
     <string name="play_audio">오디오</string>
-    <string name="default_audio_format_title">기본 오디오 포맷</string>
-    <string name="webm_description">WebM — 무료 자유 포맷입니다</string>
-    <string name="m4a_description">m4a — 보다 나은 품질</string>
+    <string name="default_audio_format_title">기본 오디오 형식</string>
+    <string name="webm_description">WebM — 공개형 무료 자유 포맷입니다</string>
+    <string name="m4a_description">m4a — 보다 나은 품질을 제공합니다</string>
     <string name="download_dialog_title">다운로드</string>
     <string name="next_video_title">다음 비디오</string>
     <string name="show_next_and_similar_title">다음 및 유사한 비디오 표시</string>
     <string name="url_not_supported_toast">지원하지 않는 URL 입니다</string>
-    <string name="search_language_title">선호하는 컨텐츠 언어</string>
+    <string name="search_language_title">기본 컨텐츠 언어</string>
     <string name="settings_category_video_audio_title">비디오 &amp; 오디오</string>
 
     <string name="list_thumbnail_view_description">비디오 미리보기 썸네일</string>
@@ -42,8 +42,8 @@
     <string name="use_external_audio_player_title">외부 오디오 플레이어 사용</string>
 
     <string name="download_path_audio_title">오디오 다운로드 경로</string>
-    <string name="download_path_audio_summary">다운로드된 오디오를 저장할 경로입니다.</string>
-    <string name="download_path_audio_dialog_title">오디오 파일 다운로드 경로를 입력하세요.</string>
+    <string name="download_path_audio_summary">다운로드된 오디오를 저장할 경로입니다</string>
+    <string name="download_path_audio_dialog_title">오디오 파일 다운로드 경로를 입력하세요</string>
 
     <string name="theme_title">테마</string>
     <string name="dark_theme_title">어두운 테마</string>
@@ -61,24 +61,24 @@
     <string name="err_dir_create">다운로드 디렉토리를 만들 수 없습니다 \'%1$s\'</string>
     <string name="info_dir_created">다운로드 디렉토리를 만들었습니다 \'%1$s\'</string>
     <string name="main_bg_subtitle">검색 버튼을 눌러서 시작하세요</string>
-    <string name="autoplay_by_calling_app_title">다른 앱에서 호출되었을 경우 자동 재생합니다</string>
-    <string name="autoplay_by_calling_app_summary">NewPipe가 다른 앱으로부터 호출되었을 경우 비디오를 자동으로 재생합니다.</string>
+    <string name="autoplay_by_calling_app_title">자동으로 재생</string>
+    <string name="autoplay_by_calling_app_summary">NewPipe가 다른 앱으로부터 호출되었을 경우 비디오를 자동으로 재생합니다</string>
     <string name="content">컨텐츠</string>
     <string name="show_age_restricted_content_title">나이 제한이 있는 컨텐츠를 표시</string>
-    <string name="video_is_age_restricted">비디오에 나이 제한이 걸려있습니다. 설정에서 나이 제한 비디오를 먼저 허용하세요.</string>
+    <string name="video_is_age_restricted">연령 제한 비디오입니다. 설정 메뉴에서 시청 허용 여부를 변경하실 수 있습니다.</string>
     <string name="duration_live">라이브</string>
 
     <string name="general_error">오류</string>
     <string name="could_not_load_thumbnails">모든 썸네일을 불러올 수 없습니다</string>
-    <string name="youtube_signature_decryption_error">비디오 URL 서명을 복호화할 수 없습니다.</string>
-    <string name="parsing_error">웹사이트를 가져올 수 없습니다.</string>
-    <string name="light_parsing_error">웹사이트를 완전히 가져올 수 없습니다.</string>
-    <string name="content_not_available">컨텐츠를 사용할 수 없습니다.</string>
-    <string name="blocked_by_gema">GEMA에 의해 차단되었습니다.</string>
-    <string name="could_not_setup_download_menu">다운로드 메뉴를 설치할 수 없습니다.</string>
-    <string name="live_streams_not_supported">이것은 라이브 스트림입니다. 아직 지원되지 않습니다.</string>
-    <string name="could_not_get_stream">어떠한 스트림도 가져올 수 없습니다.</string>
-    <string name="sorry_string">죄송합니다.</string>
+    <string name="youtube_signature_decryption_error">비디오 URL 서명을 복호화할 수 없습니다</string>
+    <string name="parsing_error">웹사이트를 가져올 수 없습니다</string>
+    <string name="light_parsing_error">웹사이트를 완전히 가져올 수 없습니다</string>
+    <string name="content_not_available">컨텐츠를 사용할 수 없습니다</string>
+    <string name="blocked_by_gema">GEMA에 의해 차단되었습니다</string>
+    <string name="could_not_setup_download_menu">다운로드 메뉴를 설정할 수 없습니다</string>
+    <string name="live_streams_not_supported">실시간 스트리밍 비디오는 아직 지원되지 않습니다.</string>
+    <string name="could_not_get_stream">어떠한 스트림도 가져올 수 없습니다</string>
+    <string name="sorry_string">죄송합니다</string>
     <string name="error_report_button_text">이메일을 통해 오류 보고</string>
     <string name="error_snackbar_message">죄송합니다. 오류가 발생했습니다.</string>
     <string name="error_snackbar_action">보고</string>
@@ -102,4 +102,186 @@
     <string name="delete">삭제</string>
     <string name="checksum">체크섬</string>
 
+<string name="open_in_popup_mode">팝업 모드에서 열기</string>
+    <string name="use_external_video_player_summary">이 옵션을 사용할 경우 일부 해상도에서 소리가 나지 않을 수 있습니다</string>
+    <string name="popup_mode_share_menu_title">뉴파이프 팝업 모드</string>
+    <string name="subscribe_button_title">구독</string>
+    <string name="subscribed_button_title">구독됨</string>
+    <string name="channel_unsubscribed">채널 구독 해제됨</string>
+    <string name="subscription_change_failed">구독 여부를 변경할 수 없음</string>
+    <string name="subscription_update_failed">구독을 업데이트할 수 없음</string>
+
+    <string name="tab_main">메인 화면</string>
+    <string name="tab_subscriptions">구독</string>
+
+    <string name="fragment_whats_new">새로운 영상</string>
+
+    <string name="controls_background_title">배경</string>
+    <string name="controls_popup_title">팝업</string>
+
+    <string name="default_popup_resolution_title">기본 팝업 해상도</string>
+    <string name="show_higher_resolutions_title">높은 해상도 표시</string>
+    <string name="show_higher_resolutions_summary">일부 기기에서만 2K/4K 해상도 재생이 지원됩니다</string>
+    <string name="default_video_format_title">기본 비디오 형식</string>
+    <string name="black_theme_title">검은 테마</string>
+    <string name="popup_remember_size_pos_title">팝업 크기 및 위치 기억</string>
+    <string name="popup_remember_size_pos_summary">마지막으로 사용한 팝업 위치 및 크기를 기억합니다</string>
+    <string name="player_gesture_controls_title">제스쳐로 재생 조작</string>
+    <string name="player_gesture_controls_summary">제스쳐를 사용해 화면 밝기와 음량을 조절합니다</string>
+    <string name="show_search_suggestions_title">검색 제안</string>
+    <string name="show_search_suggestions_summary">검색 중에 제안을 표시합니다</string>
+    <string name="enable_search_history_title">검색 기록</string>
+    <string name="enable_search_history_summary">검색 기록을 기기에 저장합니다</string>
+    <string name="enable_watch_history_title">기록</string>
+    <string name="enable_watch_history_summary">시청했던 비디오 기록을 저장</string>
+    <string name="resume_on_audio_focus_gain_title">초점 복원시 재생 재개</string>
+    <string name="resume_on_audio_focus_gain_summary">전화 통화 등으로 인해 재생이 중단된 이후에 다시 재생을 시작합니다</string>
+    <string name="show_hold_to_append_title">눌러서 팁 표시</string>
+    <string name="show_hold_to_append_summary">비디오 상세 정보 페이지에서 백그라운드 재생 또는 팝업 버튼을 누를 경우 팁 표시</string>
+    <string name="settings_category_player_title">플레이어</string>
+    <string name="settings_category_player_behavior_title">동작</string>
+    <string name="settings_category_history_title">기록</string>
+    <string name="settings_category_popup_title">팝업</string>
+    <string name="popup_playing_toast">팝업 모드에서 재생 중</string>
+    <string name="background_player_append">백그라운드 플레이어에 대기됨</string>
+    <string name="popup_playing_append">팝업 플레이어에 대기됨</string>
+    <string name="error_report_title">오류 보고</string>
+    <string name="all">전부</string>
+    <string name="channel">채널</string>
+    <string name="playlist">재생목록</string>
+    <string name="yes">네</string>
+    <string name="later">나중에</string>
+    <string name="disabled">해제됨</string>
+    <string name="filter">필터</string>
+    <string name="refresh">새로고침</string>
+    <string name="clear">지우기</string>
+    <string name="popup_resizing_indicator_title">크기 조절</string>
+    <string name="best_resolution">최대 해상도</string>
+    <string name="undo">되돌리기</string>
+    <string name="play_all">전부 재생</string>
+
+    <string name="notification_channel_name">뉴파이프 알림</string>
+    <string name="notification_channel_description">뉴파이프 백그라운드 및 팝업 플레이어 알림</string>
+
+    <string name="unknown_content">[알 수 없음]</string>
+
+    <string name="could_not_load_image">이미지를 불러올 수 없습니다</string>
+    <string name="app_ui_crash">앱/UI 충돌</string>
+    <string name="player_stream_failure">이 스트림을 재생할 수 없습니다</string>
+    <string name="player_unrecoverable_failure">복구할 수 없는 플레이어 오류가 발생했습니다</string>
+    <string name="player_recoverable_failure">플레이어 오류로부터 복구 중</string>
+
+    <string name="info_labels">무엇을:\\n요청:\\n컨텐츠 언어:\\n서비스:\\nGMT 기준 시간:\\n패키지:\\n버전:\\n안드로이드 버전:\\nIP주소 범위:</string>
+    <string name="search_no_results">결과 없음</string>
+    <string name="empty_subscription_feed_subtitle">구독할 항목을 추가하세요</string>
+
+    <string name="use_old_player_title">구형 플레이어 사용</string>
+    <string name="use_old_player_summary">내장된 구형 Mediaframework 플레이어 사용</string>
+
+    <string name="short_thousand">천</string>
+    <string name="short_million">백만</string>
+    <string name="short_billion">10억</string>
+
+    <string name="no_subscribers">구독자 없음</string>
+    <plurals name="subscribers">
+	<item quantity="other">%s 구독자</item>
+</plurals>
+
+    <string name="no_views">시청 횟수 없음</string>
+    <plurals name="views">
+	<item quantity="other">%s 시청 횟수</item>
+</plurals>
+
+    <string name="no_videos">비디오 없음</string>
+    <plurals name="videos">
+	<item quantity="other">%s 비디오</item>
+</plurals>
+
+    <string name="view">재생</string>
+    <string name="add">새로운 미션</string>
+    <string name="finish">OK</string>
+
+    <string name="msg_name">파일명</string>
+    <string name="msg_threads">쓰레드</string>
+    <string name="msg_error">오류</string>
+    <string name="msg_server_unsupported">지원하지 않는 서버</string>
+    <string name="msg_exists">파일이 이미 존재합니다</string>
+    <string name="msg_url_malform">올바르지 않은 URL이거나 인터넷에 접속할 수 없음</string>
+    <string name="msg_running">뉴파이프 다운로드 중</string>
+    <string name="msg_running_detail">터치해서 상세 정보 확인</string>
+    <string name="msg_wait">잠시만 기다려주십시오…</string>
+    <string name="msg_copied">클립보드에 복사됨</string>
+    <string name="no_available_dir">다운로드 할 폴더를 선택하세요</string>
+    <string name="msg_popup_permission">이 권한은 팝업 모드에서
+\n열기 위해 필요합니다</string>
+
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="recaptcha_request_toast">reCAPTCHA Challenge 요청됨</string>
+
+    <string name="settings_category_downloads_title">다운로드</string>
+    <string name="settings_file_charset_title">파일명에 허용되는 문자</string>
+    <string name="settings_file_replacement_character_summary">올바르지 않은 문자는 다음 문자로 대체됩니다</string>
+    <string name="settings_file_replacement_character_title">대체 문자</string>
+
+    <string name="charset_letters_and_digits">문자 및 숫자</string>
+    <string name="charset_most_special_characters">가장 특수한 문자</string>
+
+    <string name="title_activity_about">뉴파이프에 대해서</string>
+    <string name="action_settings">설정</string>
+    <string name="action_about">뉴파이프</string>
+    <string name="title_licenses">제3자 라이센스</string>
+    <string name="copyright" formatted="true">© %3$s 하에서 %2$s 에 의한 %1$s</string>
+    <string name="error_unable_to_load_license">라이센스 불러올 수 없음</string>
+    <string name="action_open_website">웹사이트 열기</string>
+    <string name="tab_about">뉴파이프</string>
+    <string name="tab_contributors">기여자</string>
+    <string name="tab_licenses">라이센스</string>
+    <string name="app_description">안드로이드를 위한 개방/자유/무료 유튜브 프론트엔드 입니다.</string>
+    <string name="contribution_title">기여</string>
+    <string name="contribution_encouragement">번역, 디자인, 코딩 등 다양한 기여를 언제나 환영합니다. 향상에 참여해주세요!</string>
+    <string name="view_on_github">GitHub에서 보기</string>
+    <string name="donation_title">기부</string>
+    <string name="donation_encouragement">뉴파이프는 자원봉사자들이 자발적으로 여가 시간을 활용해 개발하고 있습니다. 이제 이러한 노력에 보답할 시간입니다.</string>
+    <string name="give_back">보답하기</string>
+    <string name="website_title">웹사이트</string>
+    <string name="website_encouragement">뉴파이프에 관한 최신 및 상세 정보를 얻으려면 웹사이트를 방문하세요.</string>
+    <string name="app_license_title">뉴파이프가 채택한 라이센스</string>
+    <string name="read_full_license">라이센스 읽기</string>
+
+
+    <string name="title_activity_history">기록</string>
+    <string name="title_history_search">검색함</string>
+    <string name="title_history_view">시청함</string>
+    <string name="history_disabled">기록을 사용하지 않습니다</string>
+    <string name="action_history">기록</string>
+    <string name="history_empty">기록이 없습니다</string>
+    <string name="history_cleared">기록이 삭제되었습니다</string>
+    <string name="item_deleted">항목이 삭제되었습니다</string>
+    <string name="delete_item_search_history">이 항목을 검색 기록에서 삭제할까요?</string>
+
+    <string name="main_page_content">메인 화면의 내용</string>
+    <string name="blank_page_summary">빈 페이지</string>
+    <string name="kiosk_page_summary">키오스크 페이지</string>
+    <string name="subscription_page_summary">구독 페이지</string>
+    <string name="feed_page_summary">구독 피드 페이지</string>
+    <string name="channel_page_summary">채널 페이지</string>
+    <string name="select_a_channel">채널 선택</string>
+    <string name="no_channel_subscribed_yet">구독중인 채널이 없습니다</string>
+    <string name="select_a_kiosk">키오스크 선택</string>
+
+    <string name="kiosk">키오스크</string>
+    <string name="trending">인기 급상승</string>
+    <string name="top_50">탑 50</string>
+    <string name="new_and_hot">신작 &amp; 뜨는 동영상</string>
+    <string name="title_activity_background_player">백그라운드 플레이어</string>
+    <string name="title_activity_popup_player">팝업 플레이어</string>
+    <string name="play_queue_remove">제거</string>
+    <string name="play_queue_stream_detail">상세 정보</string>
+    <string name="play_queue_audio_settings">오디오 설정</string>
+    <string name="hold_to_append">눌러서 대기 목록에 추가</string>
+    <string name="enqueue_on_background">백그라운드에 대기</string>
+    <string name="enqueue_on_popup">팝업에 대기</string>
+    <string name="start_here_on_main">여기서부터 재생</string>
+    <string name="start_here_on_background">여기서부터 백그라운드에서 재생</string>
+    <string name="start_here_on_popup">여기서부터 팝업에 재생</string>
 </resources>
