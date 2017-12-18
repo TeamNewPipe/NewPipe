@@ -90,20 +90,39 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
+    public void onActivityCreated(Bundle savedState) {
+        super.onActivityCreated(savedState);
+        try {
+            activity.getSupportActionBar()
+                    .setTitle(KioskTranslator.getTranslatedKioskName(kioskId, getActivity()));
+        } catch (Exception e) {
+            onUnrecoverableError(e, UserAction.UI_ERROR,
+                    "none",
+                    "none", R.string.app_ui_crash);
+        }
+    }
+
+    @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if(useAsFrontPage && isVisibleToUser) {
+        if(useAsFrontPage && isVisibleToUser && activity != null) {
             try {
-                activity.getSupportActionBar().setTitle(KioskTranslator.getTranslatedKioskName(kioskId, getActivity()));
+                activity.getSupportActionBar()
+                        .setTitle(KioskTranslator.getTranslatedKioskName(kioskId, getActivity()));
             } catch (Exception e) {
-                onError(e);
+                onUnrecoverableError(e, UserAction.UI_ERROR,
+                        "none",
+                        "none", R.string.app_ui_crash);
             }
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_kiosk, container, false);
+        View view = inflater.inflate(R.layout.fragment_kiosk, container, false);
+        activity.getSupportActionBar()
+                .setTitle(KioskTranslator.getTranslatedKioskName(kioskId, getActivity()));
+        return view;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
