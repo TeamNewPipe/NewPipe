@@ -305,4 +305,6 @@
 <string name="donation_title">Dona</string>
     <string name="website_title">Sito web</string>
     <string name="website_encouragement">Per ricevere maggiori informazioni e le ultime novità su NewPipe visita il nostro sito web.</string>
+    <string name="donation_encouragement">NewPipe è sviluppato da volontari che spendono il loro tempo libero per regalarti la migliore esperienza. È tempo di restituire il favore permettendo ai nostri sviluppatori di migliorare ulteriormente NewPipe mentre gustano una tazza di Giava!</string>
+    <string name="give_back">Restituisci</string>
     </resources>
