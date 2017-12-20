@@ -30,7 +30,7 @@
     <string name="next_video_title">الفيديو التالي</string>
     <string name="no_player_found">لا يوجد مشغل فيديو. هل تريد تثبيت VLC ؟</string>
     <string name="open_in_browser">فتح في المتصفح</string>
-    <string name="play_audio">صوت</string>
+    <string name="play_audio">الصوت</string>
     <string name="play_btn_text">تشغيل</string>
     <string name="play_with_kodi_title">تشغيل بواسطة Kodi</string>
     <string name="screen_rotation">التدوير</string>
@@ -44,7 +44,7 @@
     <string name="share_dialog_title">مشاركة بواسطة</string>
     <string name="show_next_and_similar_title">عرض التالي والفيديوهات المشابهة</string>
     <string name="show_play_with_kodi_summary">عرض خيار لتشغيل الفيديو بواسطة Kodi Media Center.</string>
-    <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة Kodi.</string>
+    <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة Kodi</string>
     <string name="theme_title">السمة</string>
     <string name="upload_date_text">تم نشرها في %1$s</string>
     <string name="url_not_supported_toast">الرابط غير مدعوم</string>
@@ -53,7 +53,7 @@
     <string name="use_tor_summary">(إختبارية) إجراء التنزيلات من خلال استخدام بروكسي Tor لزيادة الخصوصية ( تشغيل الفيديو المباشر غير مدعوم حتى الأن ).</string>
     <string name="use_tor_title">استخدام Tor</string>
     <string name="view_count_text">%1$s المشاهدات</string>
-    <string name="webm_description">صيغة حرة—WebM</string>
+    <string name="webm_description">WebM—صيغة حرة</string>
     <string name="blocked_by_gema">تم حجبه بواسطة GEMA</string>
     <string name="content_not_available">المحتوى غير متاح.</string>
     <string name="could_not_load_thumbnails">لم يتمكن من تحميل كل صور المعاينة</string>
@@ -61,7 +61,7 @@
     <string name="parsing_error">لا يمكن تحليل الموقع.</string>
     <string name="youtube_signature_decryption_error">لا يمكن فك تشفير توقيع رابط الفيديو.</string>
 <string name="main_bg_subtitle">انقر على البحث للبدء</string>
-    <string name="subscribe_button_title">إشترك</string>
+    <string name="subscribe_button_title">إشتراك</string>
     <string name="subscribed_button_title">مشترك</string>
     <string name="tab_main">الرئيسية</string>
     <string name="tab_subscriptions">الإشتراكات</string>
@@ -85,7 +85,7 @@
     <string name="title_activity_history">التأريخ</string>
     <string name="action_history">التأريخ</string>
     <string name="open_in_popup_mode">فتح في النافذة المنبثقه</string>
-    <string name="use_external_video_player_summary">بعض خيارات الجودة لن يكون هنالك صوت عند تمكين هذا الخيار</string>
+    <string name="use_external_video_player_summary">عند تمكين هذا الخيار لن يكون هنالك صوت في بعض خيارات الجودة</string>
     <string name="popup_mode_share_menu_title">وضع النافذة NewPipe المنبثقة</string>
     <string name="channel_unsubscribed">تم إلغاء اشتراك القناة</string>
     <string name="subscription_change_failed">تعذر تغيير في الاشتراك</string>
@@ -154,7 +154,7 @@
     <string name="error_snackbar_action">تقرير</string>
     <string name="what_device_headline">معلومات:</string>
     <string name="what_happened_headline">ماذا حدث:</string>
-    <string name="info_labels"></string>
+    <string name="info_labels"/>
     <string name="your_comment">تعليقك (باللغة الإنجليزية):</string>
     <string name="error_details_headline">تفاصيل:</string>
 
@@ -176,10 +176,10 @@
 
     <string name="no_subscribers">صفر لا تقم با الإختيار (في بعض اللغات) لأنها ليست \"حالة خاصة\" للأندرويد</string>
     <plurals name="subscribers">
-	<item quantity="zero">%s مشترك</item>
-	<item quantity="one">%s مشتركين</item>
-	<item quantity="two">%s مشتركين</item>
-	<item quantity="few">%s مشتركون</item>
+	<item quantity="zero"></item>
+	<item quantity="one"></item>
+	<item quantity="two"></item>
+	<item quantity="few"></item>
 	<item quantity="many"></item>
 	<item quantity="other"></item>
 </plurals>
@@ -262,4 +262,6 @@
     <string name="play_queue_audio_settings">إعدادات الصوت</string>
     <string name="start_here_on_main">بدء التشغيل هنا</string>
     <string name="start_here_on_popup">تشغيل هنا في وضع النافذة المنبثقة</string>
-</resources>
+<string name="reCaptcha_title">تحدي ريكابتشا</string>
+    <string name="hold_to_append">اضغط للإدراج بقائمة الانتظار</string>
+    </resources>
