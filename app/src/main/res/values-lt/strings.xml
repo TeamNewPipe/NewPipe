@@ -1,5 +1,4 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="main_bg_subtitle">Palieskite paiešką, kad pradėtumėte</string>
     <string name="view_count_text">%1$s peržiūrų</string>
     <string name="upload_date_text">Publikuota %1$s</string>
     <string name="no_player_found">Nerastas srauto grotuvas. Ar norite įdiegti VLC?</string>
@@ -19,6 +18,17 @@
     <string name="use_external_video_player_summary">Kai kurios raiškos nepalaiko audio, kai ši parinktis įgalinta</string>
     <string name="use_external_audio_player_title">Naudoti išorinį audio grotuvą</string>
     <string name="popup_mode_share_menu_title">NewPipe iššokančiojo lango rėžimas</string>
+    <string name="subscribe_button_title">Prenumeruoti</string>
+    <string name="subscribed_button_title">Užprenumeruota</string>
+    <string name="channel_unsubscribed">Kanalo prenumerata atšaukta</string>
+    <string name="subscription_change_failed">Negalima pakeisti prenumeratos</string>
+    <string name="subscription_update_failed">Negalima atnaujinti prenumeratos</string>
+
+    <string name="tab_main">Pagrindinis</string>
+    <string name="tab_subscriptions">Prenumeratos</string>
+
+    <string name="fragment_whats_new">Kas naujo</string>
+
     <string name="controls_background_title">Fonas</string>
     <string name="controls_popup_title">Išokantis langelis</string>
 
@@ -55,6 +65,23 @@
     <string name="player_gesture_controls_summary">Naudokite gestus valdyti grotuvo ryškumą ir garsumą</string>
     <string name="show_search_suggestions_title">Paieškos nuspėjimai</string>
     <string name="show_search_suggestions_summary">Rodyti nuspėjimus, kai ieškoma</string>
+    <string name="enable_search_history_title">Paieškos istorija</string>
+    <string name="enable_search_history_summary">Saugoti paieškos užklausas vietinėje atmintyje</string>
+    <string name="enable_watch_history_title">Istorija</string>
+    <string name="enable_watch_history_summary">Sekti peržiūrėtus vaizdo įrašus</string>
+    <string name="resume_on_audio_focus_gain_title">Atnaujinti, kai perkialiamas dėmesys</string>
+    <string name="resume_on_audio_focus_gain_summary">Tęsti grojimą po pertraukčių (pvz telefono skambučių)</string>
+    <string name="download_dialog_title">Atsisiųsti</string>
+    <string name="next_video_title">Kitas vaizdo įrašas</string>
+    <string name="show_next_and_similar_title">Rodyti kitus panašius vaizdo įrašus</string>
+    <string name="show_hold_to_append_title">Laikykite, kad pridėti patarimą</string>
+    <string name="show_hold_to_append_summary">Rodyti patarimą, kai foninio ar langelio mygtukas paspaudžiamas vaizdo įrašo detalių puslapyje</string>
+    <string name="url_not_supported_toast">URL nepalaikoma</string>
+    <string name="search_language_title">Numatytoji turinio kalba</string>
+    <string name="settings_category_player_title">Grotuvas</string>
+    <string name="settings_category_player_behavior_title">Elgsena</string>
+    <string name="settings_category_video_audio_title">Vaizdas ir garsas</string>
+    <string name="settings_category_history_title">Istorija</string>
     <string name="download_dialog_title">Atsisiųsti</string>
     <string name="next_video_title">Kitas vaizdo įrašas</string>
     <string name="show_next_and_similar_title">Rodyti kitus panašius vaizdo įrašus</string>
@@ -66,6 +93,12 @@
     <string name="settings_category_other_title">Kita</string>
     <string name="background_player_playing_toast">Groja fone</string>
     <string name="popup_playing_toast">Grojama iššokančiojo lango rėžime</string>
+    <string name="background_player_append">Įtraukta į foninio grotuvo eilę</string>
+    <string name="popup_playing_append">Įtraukta į langelio grotuvo eilę</string>
+    <string name="play_btn_text">Groti</string>
+    <string name="content">Turinys</string>
+    <string name="show_age_restricted_content_title">Rodyti amžiaus cenzo apribotą turinį</string>
+    <string name="video_is_age_restricted">Vaizdo įrašas su amžiaus apribojimais. Šios medžiados leidimas yra įmanomas per nustatymus.</string>
     <string name="play_btn_text">Groti</string>
     <string name="content">Turinys</string>
     <string name="show_age_restricted_content_title">Rodyti amžiaus cenzo apribotą turinį</string>
@@ -75,6 +108,7 @@
     <string name="error_report_title">Klaidų ataskaita</string>
     <string name="all">Visi</string>
     <string name="channel">Kanalas</string>
+    <string name="playlist">Grojaraštis</string>
     <string name="yes">Taip</string>
     <string name="later">Vėliau</string>
     <string name="disabled">Išjungta</string>
@@ -83,6 +117,15 @@
     <string name="clear">Išvalyti</string>
     <string name="popup_resizing_indicator_title">Dydžio keitimas</string>
     <string name="best_resolution">Geriausia raiška</string>
+    <string name="undo">Atgal</string>
+    <string name="play_all">Groti visus</string>
+
+    <string name="notification_channel_name">NewPipe pranešimai</string>
+    <string name="notification_channel_description">NewPipe foninio ir langelio rėžimo grotuvų pranešimai</string>
+
+    <string name="unknown_content">[Nežinoma]</string>
+
+    <!-- error strings -->
     <string name="general_error">Klaida</string>
     <string name="network_error">Tinklo klaida</string>
     <string name="could_not_load_thumbnails">Negalima įkelti visų miniatiūrų</string>
@@ -96,6 +139,11 @@
     <string name="could_not_get_stream">Negalima gauti jokio srauto</string>
     <string name="could_not_load_image">Negalima įkelti jokio paveikslėlio</string>
     <string name="app_ui_crash">Programėlė/ vartotojo sąsaja nulūžo</string>
+    <string name="player_stream_failure">Nepavyko groti šio srauto</string>
+    <string name="player_unrecoverable_failure">Įvyko nepataisoma grotuvo klaida</string>
+    <string name="player_recoverable_failure">Atkuriama po grotuvo klaidos</string>
+
+    <!-- error activity -->
     <string name="sorry_string">Atsiprašome, taip neturėjo įvykti</string>
     <string name="error_report_button_text">Raportuoti apie klaidą e- paštu</string>
     <string name="error_snackbar_message">Atsiprašome, ištiko keletas klaidų.</string>
@@ -107,6 +155,8 @@
     <string name="error_details_headline">Detalės:</string>
 
 
+
+    <!-- Content descriptions (for better accessibility) -->
     <string name="list_thumbnail_view_description">Vaizdo įrašo peržiūros miniatiūra</string>
     <string name="detail_thumbnail_view_description">Vaizdo įrašo peržiūros miniatiūra</string>
     <string name="detail_uploader_thumbnail_view_description">Įkėlėjo naudotojo paveikslėlio miniatiūra</string>
@@ -116,12 +166,54 @@
     <string name="use_tor_summary">(Eksperimentinis) priverstinaisiųsti per Tor dėl privatumo (vaizdo įrašų užkrovimas dar nepalaikomas).</string>
     <string name="report_error">Pranešti apie klaidą</string>
     <string name="user_report">Naudoti raportavimą</string>
+    <string name="search_no_results">Nėra rezultatų</string>
+    <string name="empty_subscription_feed_subtitle">Čia nėra nieko tik svirpliai</string>
+
     <string name="err_dir_create">Negalima sukurti atsisiuntimų aplanko \'%1$s\'</string>
     <string name="info_dir_created">Sukurtas atsisiuntimų apkankas \'%1$s\'</string>
 
     <string name="video">Vaizdas</string>
     <string name="audio">Muzika</string>
     <string name="retry">Bandyti iš naujo</string>
+    <string name="storage_permission_denied">Saugyklos prieiga uždrausta</string>
+    <string name="use_old_player_title">Naudoti seną grotuvą</string>
+    <string name="use_old_player_summary">Senas įtaisytas media grotuvas</string>
+
+    <string name="short_thousand">Tūkst.</string>
+    <string name="short_million">Mln.</string>
+    <string name="short_billion">Mlrd.</string>
+
+    <!--Zero don't get selected (in some languages) as it is not a "special case" for android-->
+    <string name="no_subscribers">Nėra prenumeratorių</string>
+    <plurals name="subscribers">
+        <item quantity="one">%s prenumeratorius</item>
+        <item quantity="other">%s prenumeratorių</item>
+    </plurals>
+
+    <string name="no_views">Nėra peržiūrų</string>
+    <plurals name="views">
+        <item quantity="one">%s peržiūra</item>
+        <item quantity="other">%s peržiūros</item>
+    </plurals>
+
+    <string name="no_videos">Nėra vaizdo įrašų</string>
+    <plurals name="videos">
+        <item quantity="one">Vaizdo įrašai</item>
+        <item quantity="other">%s vaizdo įrašai</item>
+    </plurals>
+
+    <!-- Missions -->
+    <string name="start">Pradėti</string>
+    <string name="pause">Pauzė</string>
+    <string name="view">Groti</string>
+    <string name="delete">Ištrinti</string>
+    <string name="checksum">Kontrolinė suma</string>
+
+    <!-- Fragment -->
+    <string name="add">Nauja užduotis</string>
+    <string name="finish">Gerai</string>
+
+    <!-- Msg -->
     <string name="use_old_player_title">Naudoti seną grotuvą</string>
     <string name="use_old_player_summary">Senas įtaisytas media grotuvas</string>
 
@@ -146,7 +238,6 @@
 
     <string name="add">Nauja užduotis</string>
     <string name="finish">Gerai</string>
-
     <string name="msg_name">Bylos pavadinimas</string>
     <string name="msg_threads">Gijos</string>
     <string name="msg_error">Klaida</string>
@@ -160,8 +251,86 @@
     <string name="no_available_dir">Prašome pasirinkti galimą atsisiuntimų aplankalą</string>
     <string name="msg_popup_permission">Šis leidimas nereikalingas, kad atidarytiviššokančio lango rėžime</string>
 
+    <!-- Checksum types -->
+
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA iššūkis</string>
     <string name="recaptcha_request_toast">reCAPTCHA prašomas iššūkis</string>
 
+    <!-- End of GigaGet's Strings -->
+
+    <!-- Downloads -->
+    <string name="settings_category_downloads_title">Parsisiųsti</string>
+    <string name="settings_file_charset_title">Leidžiami simboliai bylų pavadinimuose</string>
+    <string name="settings_file_replacement_character_summary">Neleidžiami simboliai pakičiami šia reikšme</string>
+    <string name="settings_file_replacement_character_title">Pakaitinis simbolis</string>
+
+    <string name="charset_letters_and_digits">Raidės ir skaičiai</string>
+    <string name="charset_most_special_characters">Specialieji simboliai</string>
+
+    <!-- About -->
+    <string name="title_activity_about">Apie NewPipe</string>
+    <string name="action_settings">Nustatymai</string>
+    <string name="action_about">Apie</string>
+    <string name="title_licenses">Trečiųjų šalių leidimai</string>
+    <string name="copyright" formatted="true">© %1$s %2$s kaip %3$s</string>
+    <string name="error_unable_to_load_license">Negalima įkelti leidimo</string>
+    <string name="action_open_website">Atverti puslapį</string>
+    <string name="tab_about">Apie</string>
+    <string name="tab_contributors">Bendrakūrėjai</string>
+    <string name="tab_licenses">Leidimai</string>
+    <string name="app_description">Nemokama, be reklamų YouTube žiūrėjimo programėlė skirta Android.</string>
+    <string name="contribution_title">Prisidėkite</string>
+    <string name="contribution_encouragement">Jei turite įdėjų dėl: vertimų, išvaizdos pakeitimų, programinio kodo sutvarkymo, arbastambesnių kodo pakeitimų - pagalba visada laukiama. Kuo daugiau daroma tuo geriau gaunasi!</string>
+    <string name="view_on_github">Peržiūrėti GitHub</string>
+    <string name="donation_title">Paremti</string>
+    <string name="donation_encouragement">NewPipe kuriama savanorių, kurie praleidžia savo laisvą laiką, kad sukurti geriausią patirtį Jums. Dabar yra laikas už tai atsidėkoti, kad mūsų kūrėjai galėtų padaryti NewPipe dar geresne!</string>
+    <string name="give_back">Duoti atgal</string>
+    <string name="website_title">Puslapis</string>
+    <string name="website_encouragement">Kad sužinotumėte paskiausias naujienas apie NewPipe apsilankykite mūsų puslapyje.</string>
+    <string name="app_license_title">NewPipe licenzija</string>
+    <string name="read_full_license">Skaityti leidimą</string>
+
+
+    <!-- History -->
+    <string name="title_activity_history">Istorija</string>
+    <string name="title_history_search">Ieškota</string>
+    <string name="title_history_view">Žiūrėta</string>
+    <string name="history_disabled">Istorija išjungta</string>
+    <string name="action_history">Istorija</string>
+    <string name="history_empty">Istorija tuščia</string>
+    <string name="history_cleared">Istorija išvalyta</string>
+    <string name="item_deleted">Elementas ištrintas</string>
+    <string name="delete_item_search_history">Ar norite ištrinti šį elementą iš paieškos istorijos?</string>
+
+    <!-- Content -->
+    <string name="main_page_content">Pagrindinio puslapio turinys</string>
+    <string name="blank_page_summary">Tuščias puslapis</string>
+    <string name="kiosk_page_summary">Kiosko puslapis</string>
+    <string name="subscription_page_summary">Prenumeratos puslapis</string>
+    <string name="feed_page_summary">Srauto puslapis</string>
+    <string name="channel_page_summary">Kanalo puslapis</string>
+    <string name="select_a_channel">Pasirinkti kanalą</string>
+    <string name="no_channel_subscribed_yet">Dar neužprenumeruotas nė vienas puslapis</string>
+    <string name="select_a_kiosk">Pasirinkti kioską</string>
+
+    <!-- Kiosk Names -->
+    <string name="kiosk">Kioskas</string>
+    <string name="trending">Tendensijos</string>
+    <string name="top_50">Top 50</string>
+    <string name="new_and_hot">Nauja ir karšta</string>
+
+    <!-- Play Queue -->
+    <string name="title_activity_background_player">Foninis grotuvas</string>
+    <string name="title_activity_popup_player">Išokantis grotuvas</string>
+    <string name="play_queue_remove">Pašalinti</string>
+    <string name="play_queue_stream_detail">Detalės</string>
+    <string name="play_queue_audio_settings">Garso nustatymai</string>
+    <string name="hold_to_append">Laikykite, kad įtraukti į eilę</string>
+    <string name="enqueue_on_background">Įtraukti į eilę fone</string>
+    <string name="enqueue_on_popup">Įtraukti į išokančio langelio rėžimo eilę</string>
+    <string name="start_here_on_main">Pradėti groti čia</string>
+    <string name="start_here_on_background">Paleisti čia fone</string>
+    <string name="start_here_on_popup">Pradėti čia langelyje</string>
+</resources>
     </resources>
