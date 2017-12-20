@@ -193,7 +193,7 @@ abrir en modo popup</string>
     <string name="app_license_title">Licencia de NewPipe</string>
     <string name="contribution_encouragement">Si tienes ideas de; traducción, cambios de diseño, limpieza de código o cambios de código realmente fuertes—la ayuda siempre es bienvenida. Cuanto más se hace, mejor se pone!</string>
     <string name="read_full_license">Leer licencia</string>
-    <string name="contribution_title">Contribución</string>
+    <string name="contribution_title">Contribuir</string>
 <string name="subscribe_button_title">Suscribirse</string>
     <string name="subscribed_button_title">Suscrito</string>
     <string name="channel_unsubscribed">Canal no suscrito</string>
@@ -297,4 +297,9 @@ abrir en modo popup</string>
 <string name="show_hold_to_append_title">Desplegar consejo \"Mantener para poner en la fila\"</string>
     <string name="new_and_hot">Nuevo y popular</string>
     <string name="hold_to_append">Mantener para poner en la fila</string>
+    <string name="donation_title">Donar</string>
+    <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que emplean su tiempo libre en mejorar tu experiencia. ¡ Ahora puedes devolver el favor para asegurar que los desarrolladores puedan crear un NewPipe aún mejor mientras saborean una taza de Java !</string>
+    <string name="give_back">Donar</string>
+    <string name="website_title">Página web</string>
+    <string name="website_encouragement">Para obtener más información y las últimas noticias sobre NewPipe, visita nuestra web.</string>
     </resources>
