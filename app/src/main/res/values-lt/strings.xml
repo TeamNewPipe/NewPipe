@@ -128,15 +128,15 @@
     <plurals name="subscribers">
 	<item quantity="one">%s prenumeratorius</item>
 	<item quantity="few">%s prenumeratoriai</item>
-	<item quantity="many"></item>
-	<item quantity="other"></item>
+	<item quantity="many"/>
+	<item quantity="other"/>
 </plurals>
 
     <plurals name="videos">
 	<item quantity="one">Vaizdo įrašai</item>
-	<item quantity="few"></item>
-	<item quantity="many"></item>
-	<item quantity="other"></item>
+	<item quantity="few"/>
+	<item quantity="many"/>
+	<item quantity="other"/>
 </plurals>
 
     <string name="start">Pradėti</string>
@@ -164,4 +164,11 @@
     <string name="reCaptcha_title">reCAPTCHA iššūkis</string>
     <string name="recaptcha_request_toast">reCAPTCHA prašomas iššūkis</string>
 
+    <string name="subscribe_button_title">Prenumeruoti</string>
+    <string name="subscribed_button_title">Užprenumeruota</string>
+    <string name="channel_unsubscribed">Kanalas Nebeprenumeruojamas</string>
+    <string name="subscription_change_failed">Negalima keisti prenumeratos</string>
+    <string name="subscription_update_failed">Negalima atnaujinti prenumeratos</string>
+
+    <string name="tab_main">Pagrindinis</string>
     </resources>
