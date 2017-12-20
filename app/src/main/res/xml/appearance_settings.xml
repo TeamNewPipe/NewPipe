@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/settings_category_appearance_title">
+
+    <ListPreference
+        android:defaultValue="@string/default_theme_value"
+        android:entries="@array/theme_description_list"
+        android:entryValues="@array/theme_values_list"
+        android:key="@string/theme_key"
+        android:summary="%s"
+        android:title="@string/theme_title"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/show_next_video_key"
+        android:title="@string/show_next_and_similar_title"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/show_hold_to_append_key"
+        android:title="@string/show_hold_to_append_title"
+        android:summary="@string/show_hold_to_append_summary"/>
+</PreferenceScreen>

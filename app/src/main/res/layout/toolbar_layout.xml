@@ -16,7 +16,8 @@
         android:gravity="center_vertical"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar">
+        app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:titleTextAppearance="@style/Toolbar.Title">
 
         <Spinner
             android:id="@+id/toolbar_spinner"
@@ -34,10 +35,5 @@
             tools:visibility="visible"/>
 
     </android.support.v7.widget.Toolbar>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="@drawable/toolbar_shadow"/>
 
 </LinearLayout>

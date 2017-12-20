@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/content">
+
+    <ListPreference
+        android:defaultValue="@string/default_language_value"
+        android:entries="@array/language_names"
+        android:entryValues="@array/language_codes"
+        android:key="@string/search_language_key"
+        android:summary="%s"
+        android:title="@string/search_language_title"/>
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/show_age_restricted_content"
+        android:title="@string/show_age_restricted_content_title"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/show_search_suggestions_key"
+        android:summary="@string/show_search_suggestions_summary"
+        android:title="@string/show_search_suggestions_title"/>
+    <ListPreference
+        android:defaultValue="@string/kiosk_page_key"
+        android:entries="@array/main_page_content_names"
+        android:entryValues="@array/main_page_content_pages"
+        android:key="@string/main_page_content_key"
+        android:title="@string/main_page_content"
+        android:summary="%s"/>
+
+</PreferenceScreen>

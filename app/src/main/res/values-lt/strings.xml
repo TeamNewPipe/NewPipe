@@ -1,6 +1,4 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
-    <string name="main_bg_subtitle">Palieskite paiešką, kad pradėtumėte</string>
     <string name="view_count_text">%1$s peržiūrų</string>
     <string name="upload_date_text">Publikuota %1$s</string>
     <string name="no_player_found">Nerastas srauto grotuvas. Ar norite įdiegti VLC?</string>
@@ -84,6 +82,12 @@
     <string name="settings_category_player_behavior_title">Elgsena</string>
     <string name="settings_category_video_audio_title">Vaizdas ir garsas</string>
     <string name="settings_category_history_title">Istorija</string>
+    <string name="download_dialog_title">Atsisiųsti</string>
+    <string name="next_video_title">Kitas vaizdo įrašas</string>
+    <string name="show_next_and_similar_title">Rodyti kitus panašius vaizdo įrašus</string>
+    <string name="url_not_supported_toast">URL nepalaikoma</string>
+    <string name="search_language_title">Numatytoji turinio kalba</string>
+    <string name="settings_category_video_audio_title">Vaizdas ir garsas</string>
     <string name="settings_category_popup_title">Iššokantis langas</string>
     <string name="settings_category_appearance_title">Išvaizda</string>
     <string name="settings_category_other_title">Kita</string>
@@ -95,6 +99,9 @@
     <string name="content">Turinys</string>
     <string name="show_age_restricted_content_title">Rodyti amžiaus cenzo apribotą turinį</string>
     <string name="video_is_age_restricted">Vaizdo įrašas su amžiaus apribojimais. Šios medžiados leidimas yra įmanomas per nustatymus.</string>
+    <string name="play_btn_text">Groti</string>
+    <string name="content">Turinys</string>
+    <string name="show_age_restricted_content_title">Rodyti amžiaus cenzo apribotą turinį</string>
     <string name="duration_live">Gyvai</string>
     <string name="downloads">Atsisiuntimai</string>
     <string name="downloads_title">Atsisiuntimai</string>
@@ -146,6 +153,7 @@
     <string name="info_labels">Kas:\\nUžklausa:\\nTurinys Kalba:\\nPaslauga:\\nGMT Time:\\nPaketas:\\nVersija:\\nOperacinė Sistema versija:\\nGlob. IP diapazonas:</string>
     <string name="your_comment">Jūsų komentaras (abglų kalba):</string>
     <string name="error_details_headline">Detalės:</string>
+
 
 
     <!-- Content descriptions (for better accessibility) -->
@@ -206,6 +214,30 @@
     <string name="finish">Gerai</string>
 
     <!-- Msg -->
+    <string name="use_old_player_title">Naudoti seną grotuvą</string>
+    <string name="use_old_player_summary">Senas įtaisytas media grotuvas</string>
+
+    <plurals name="subscribers">
+	<item quantity="one">%s prenumeratorius</item>
+	<item quantity="few">%s prenumeratoriai</item>
+	<item quantity="many"></item>
+	<item quantity="other"></item>
+</plurals>
+
+    <plurals name="videos">
+	<item quantity="one">Vaizdo įrašai</item>
+	<item quantity="few"></item>
+	<item quantity="many"></item>
+	<item quantity="other"></item>
+</plurals>
+
+    <string name="start">Pradėti</string>
+    <string name="pause">Pauzė</string>
+    <string name="delete">Ištrinti</string>
+    <string name="checksum">Kontrolinė suma</string>
+
+    <string name="add">Nauja užduotis</string>
+    <string name="finish">Gerai</string>
     <string name="msg_name">Bylos pavadinimas</string>
     <string name="msg_threads">Gijos</string>
     <string name="msg_error">Klaida</string>
@@ -220,6 +252,7 @@
     <string name="msg_popup_permission">Šis leidimas nereikalingas, kad atidarytiviššokančio lango rėžime</string>
 
     <!-- Checksum types -->
+
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA iššūkis</string>
     <string name="recaptcha_request_toast">reCAPTCHA prašomas iššūkis</string>
@@ -300,3 +333,4 @@
     <string name="start_here_on_background">Paleisti čia fone</string>
     <string name="start_here_on_popup">Pradėti čia langelyje</string>
 </resources>
+    </resources>

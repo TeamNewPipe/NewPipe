@@ -23,7 +23,7 @@
     <string name="download_path_audio_summary">Lokasi untuk menyimpan audio yang diunduh</string>
     <string name="download_path_audio_dialog_title">Masukkan lokasi unduhan berkas audio</string>
 
-    <string name="autoplay_by_calling_app_title">Putar otomatis ketika dipanggil dari aplikasi lain</string>
+    <string name="autoplay_by_calling_app_title">Putar otomatis</string>
     <string name="autoplay_by_calling_app_summary">Otomatis memutar video ketika NewPipe dijalankan dari aplikasi lain</string>
     <string name="default_resolution_title">Resolusi baku</string>
     <string name="play_with_kodi_title">Putar dengan Kodi</string>
@@ -33,7 +33,7 @@
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio baku</string>
     <string name="webm_description">WebM — format bebas</string>
-    <string name="m4a_description">m4a — kualitas lebih baik</string>
+    <string name="m4a_description">M4A — kualitas lebih baik</string>
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Gelap</string>
     <string name="light_theme_title">Terang</string>
@@ -61,15 +61,15 @@
     <string name="error_report_title">Laporan galat</string>
 
     <string name="general_error">Galat</string>
-    <string name="parsing_error">Tidak bisa mengurai situs web.</string>
-    <string name="light_parsing_error">Sama sekali tidak bisa mengurai situs web.</string>
-    <string name="content_not_available">Konten tidak tersedia.</string>
-    <string name="blocked_by_gema">Diblokir oleh GEMA.</string>
-    <string name="could_not_setup_download_menu">Tidak bisa menyiapkan menu unduhan.</string>
-    <string name="live_streams_not_supported">Ini adalah SIARAN LANGSUNG. Fitur ini belum didukung.</string>
+    <string name="parsing_error">Tidak dapat mengurai situs web</string>
+    <string name="light_parsing_error">Sama sekali tidak dapat mengurai situs web</string>
+    <string name="content_not_available">Konten tidak tersedia</string>
+    <string name="blocked_by_gema">Diblokir oleh GEMA</string>
+    <string name="could_not_setup_download_menu">Tidak bisa menyiapkan menu unduhan</string>
+    <string name="live_streams_not_supported">Ini adalah SIARAN LANGSUNG, yang mana ini belum didukung.</string>
     <string name="could_not_load_image">Tidak bisa memuat gambar</string>
     <string name="sorry_string">Maaf, hal tersebut seharusnya tidak terjadi.</string>
-    <string name="error_report_button_text">Lapor galat via surel</string>
+    <string name="error_report_button_text">Lapor galat via surat elektronik</string>
     <string name="error_snackbar_message">Maaf, telah terjadi galat.</string>
     <string name="error_snackbar_action">LAPOR</string>
     <string name="what_device_headline">Info:</string>
@@ -92,7 +92,7 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Ulangi</string>
-    <string name="storage_permission_denied">Izin untuk mengakses penyimpanan ditolak</string>
+    <string name="storage_permission_denied">Izin akses penyimpanan ditolak</string>
 
     <string name="delete">Hapus</string>
     <string name="view">Tonton</string>
@@ -117,7 +117,7 @@
     <string name="no_player_found">Tidak ditemukan pemutar stream. Apakah anda ingin memasang VLC?</string>
     <string name="youtube_signature_decryption_error">Tidak bisa mendekrip tanda tangan URL video.</string>
     <string name="app_ui_crash">App/UI rusak</string>
-    <string name="could_not_get_stream">Tidak bisa mendapatkan stream apapun.</string>
+    <string name="could_not_get_stream">Tidak bisa mendapatkan stream apapun</string>
     <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:\\nIP:</string>
     <string name="user_report">Laporan pengguna</string>
 
@@ -132,31 +132,28 @@
     <string name="all">Semua</string>
     <string name="channel">Saluran</string>
 
-    <string name="videos">video</string>
-    <string name="views">ditonton</string>
     <string name="short_thousand">R</string>
     <string name="short_million">J</string>
     <string name="short_billion">T</string>
 
-    <string name="subscriber">pelanggan</string>
+
     <string name="yes">Ya</string>
     <string name="later">Nanti</string>
 
-    <string name="subscribe">Langganan</string>
 
     <string name="open_in_popup_mode">Buka di mode popup</string>
     <string name="msg_popup_permission">Izin ini dibutuhkan untuk
 membuka di mode popup</string>
 
-    <string name="popup_mode_share_menu_title">Mode Popup NewPipe</string>
+    <string name="popup_mode_share_menu_title">Mode popup NewPipe</string>
 
     <string name="popup_playing_toast">Memutar dalam mode popup</string>
     <string name="use_old_player_title">Gunakan pemutar lama</string>
-    <string name="use_old_player_summary">Versi lama pemutar Mediaframework.</string>
+    <string name="use_old_player_summary">Versi lama pemutar Mediaframework</string>
     <string name="disabled">Dinonaktifkan</string>
 
-    <string name="preferred_video_format_title">Pilihan format video</string>
-    <string name="subscriber_plural">subscriber</string>
+    <string name="default_video_format_title">Pilihan format video</string>
+
     <string name="default_popup_resolution_title">Resolusi popup bawaan</string>
     <string name="show_higher_resolutions_title">Tampilkan resolusi yang lebih tinggi</string>
     <string name="show_higher_resolutions_summary">Hanya perangkat tertentu yang mendukung pemutaran video 2K/4K</string>
@@ -169,7 +166,7 @@ membuka di mode popup</string>
     <string name="filter">Filter</string>
     <string name="use_external_video_player_summary">Beberapa resolusi TIDAK akan memiliki suara ketika opsi ini diaktifkan</string>
     <string name="popup_remember_size_pos_title">Ingat ukuran dan posisi sembulan</string>
-    <string name="popup_remember_size_pos_summary">Ingat ukuran terakhir dan pengaturan posisi sembulan</string>
+    <string name="popup_remember_size_pos_summary">Ingat ukuran terakhir dan pengaturan posisi popup</string>
 
     <string name="settings_category_popup_title">Sembulan</string>
     <string name="popup_resizing_indicator_title">Ubah ukuran</string>
@@ -181,4 +178,44 @@ membuka di mode popup</string>
 
 <string name="best_resolution">Resolusi terbaik</string>
 
+    <string name="settings_category_downloads_title">Unduh</string>
+    <string name="settings_file_charset_title">Karakter yang diizinkan sebagai nama berkas</string>
+    <string name="settings_file_replacement_character_summary">Karakter yang tidak valid akan diganti dengan karakter ini</string>
+    <string name="settings_file_replacement_character_title">Karakter pengganti</string>
+
+    <string name="charset_letters_and_digits">Huruf dan angka</string>
+    <string name="charset_most_special_characters">Karakter spesial umum</string>
+
+    <string name="title_activity_about">Tentang NewPipe</string>
+    <string name="action_settings">Pengaturan</string>
+    <string name="action_about">Tentang</string>
+    <string name="title_licenses">Lisensi pihak ketiga</string>
+    <string name="copyright" formatted="true">© %1$s oleh %2$s di bawah %3$s</string>
+    <string name="error_unable_to_load_license">Tidak bisa memuat lisensi</string>
+    <string name="action_open_website">Buka situs web</string>
+    <string name="tab_about">Tentang</string>
+    <string name="tab_contributors">Kontributor</string>
+    <string name="tab_licenses">Lisensi</string>
+    <string name="app_description">Antarmuka YouTube yang ringan dan gratis untuk Android.</string>
+    <string name="view_on_github">Lihat di Github</string>
+    <string name="app_license_title">Lisensi NewPipe</string>
+    <string name="contribution_encouragement">Terlepas apakah Anda memiliki ide, terjemahan, perubahan desain, pembersihan kode, atau perubahan kode yang signifikan, segala bantuan akan selalu diterima. Semakin banyak akan semakin baik jadinya!</string>
+    <string name="read_full_license">Baca lisensi</string>
+    <string name="contribution_title">Kontribusi</string>
+<string name="subscribe_button_title">Berlangganan</string>
+    <string name="subscribed_button_title">Langganan</string>
+    <string name="fragment_whats_new">Apa Yang Baru</string>
+
+    <string name="resume_on_audio_focus_gain_title">Lanjutkan saat fokus</string>
+    <string name="resume_on_audio_focus_gain_summary">Lanjutkan pemutaran setelah interupsi (mis. panggilan telepon)</string>
+
+    <string name="tab_main">Utama</string>
+    <string name="enable_search_history_title">Cari riwayat</string>
+    <string name="enable_search_history_summary">Simpan pencarian secara lokal</string>
+    <string name="enable_watch_history_title">Riwayat</string>
+    <string name="notification_channel_name">Notifikasi NewPipe</string>
+    <string name="title_activity_history">Riwayat</string>
+    <string name="history_disabled">Riwayat dinonaktifkan</string>
+    <string name="action_history">Riwayat</string>
+    <string name="history_empty">Riwayat kosong.</string>
     </resources>

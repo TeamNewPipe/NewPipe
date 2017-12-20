@@ -12,6 +12,7 @@
         android:layout_height="64dp"
         android:background="@color/background_notification_color"
         android:clickable="true"
+        android:focusable="true"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -33,22 +34,22 @@
 
             <TextView
                 android:id="@+id/notificationSongName"
-                style="@android:style/TextAppearance.StatusBar.EventContent.Title"
                 android:layout_width="match_parent"
                 android:ellipsize="end"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:textSize="14sp"
+                android:textColor="@color/background_title_color"
                 tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec aliquam augue, eget cursus est. Ut id tristique enim, ut scelerisque tellus. Sed ultricies ipsum non mauris ultricies, commodo malesuada velit porta."/>
 
             <TextView
                 android:id="@+id/notificationArtist"
                 android:layout_width="match_parent"
-                style="@android:style/TextAppearance.StatusBar.EventContent"
                 android:ellipsize="end"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:textSize="12sp"
+                android:textColor="@color/background_subtext_color"
                 tools:text="Duis posuere arcu condimentum lobortis mattis."/>
         </LinearLayout>
 
@@ -58,6 +59,7 @@
             android:layout_height="match_parent"
             android:background="#00000000"
             android:clickable="true"
+            android:focusable="true"
             android:padding="5dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_repeat_white"
@@ -69,9 +71,10 @@
             android:layout_height="match_parent"
             android:background="#00000000"
             android:clickable="true"
+            android:focusable="true"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_action_av_fast_rewind"
+            android:src="@drawable/exo_controls_previous"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -80,6 +83,7 @@
             android:layout_height="match_parent"
             android:background="#00000000"
             android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/ic_pause_white"
             tools:ignore="ContentDescription"/>
 
@@ -89,9 +93,10 @@
             android:layout_height="match_parent"
             android:background="#00000000"
             android:clickable="true"
+            android:focusable="true"
             android:padding="5dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_action_av_fast_forward"
+            android:src="@drawable/exo_controls_next"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -101,6 +106,7 @@
             android:layout_marginLeft="5dp"
             android:background="#00000000"
             android:clickable="true"
+            android:focusable="true"
             android:padding="5dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_close_white_24dp"

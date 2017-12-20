@@ -6,12 +6,7 @@
     android:layout_height="?attr/actionBarSize"
     android:background="?attr/colorPrimary">
 
-    <View
-        android:id="@+id/dropdown_anchor"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <AutoCompleteTextView
+    <EditText
         android:id="@+id/toolbar_search_edit_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,12 +17,12 @@
         android:background="?attr/colorPrimary"
         android:drawableLeft="?attr/search"
         android:drawablePadding="8dp"
-        android:dropDownAnchor="@+id/dropdown_anchor"
         android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:hint="@string/search"
         android:imeOptions="actionSearch|flagNoFullscreen"
         android:inputType="textFilter|textNoSuggestions"
         android:maxLines="1"
-        tools:hint="Search..."
         tools:ignore="RtlHardcoded"/>
 
     <FrameLayout

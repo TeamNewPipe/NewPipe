@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
-/**
+/*
  * Copyright (C) Hans-Christoph Steiner 2016 <hans@eds.org>
  * ExitActivity.java is part of NewPipe.
  *

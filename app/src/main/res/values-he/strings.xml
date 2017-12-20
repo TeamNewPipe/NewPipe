@@ -43,7 +43,7 @@
     <string name="show_play_with_kodi_summary">הראה אפשרות לנגן סרטון דרך \"Kodi media center\".</string>
     <string name="play_audio">שמע</string>
     <string name="default_audio_format_title">פורמט ברירת המחדל לשמע</string>
-    <string name="preferred_video_format_title">פורמט הוידאו המועדף</string>
+    <string name="default_video_format_title">פורמט הוידאו המועדף</string>
     <string name="webm_description">WebM — פורמט חינמי</string>
     <string name="m4a_description">m4a — איכות יותר גבוהה</string>
     <string name="theme_title">ערכת נושא</string>

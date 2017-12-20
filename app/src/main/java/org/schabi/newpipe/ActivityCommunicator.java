@@ -1,6 +1,6 @@
 package org.schabi.newpipe;
 
-/**
+/*
  * Created by Christian Schabesberger on 24.12.15.
  *
  * Copyright (C) Christian Schabesberger 2015 <chris.schabesberger@mailbox.org>

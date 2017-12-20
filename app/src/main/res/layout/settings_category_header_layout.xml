@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="14dp"
+        android:background="?attr/contrast_background_color">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="?attr/toolbar_shadow_drawable"/>
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/separator_color"/>
+
+    <include layout="@layout/settings_category_header_title"/>
+</LinearLayout>

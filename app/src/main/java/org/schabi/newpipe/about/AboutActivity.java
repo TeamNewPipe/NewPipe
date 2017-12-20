@@ -36,11 +36,13 @@ public class AboutActivity extends AppCompatActivity {
             new SoftwareComponent("Rhino", "2015", "Mozilla", "https://www.mozilla.org/rhino/", StandardLicenses.MPL2),
             new SoftwareComponent("ACRA", "2013", "Kevin Gaudin", "http://www.acra.ch", StandardLicenses.APACHE2),
             new SoftwareComponent("Universal Image Loader", "2011 - 2015", "Sergey Tarasevich", "https://github.com/nostra13/Android-Universal-Image-Loader", StandardLicenses.APACHE2),
-            new SoftwareComponent("Netcipher", "2015", "The Guardian Project", "https://guardianproject.info/code/netcipher/", StandardLicenses.APACHE2),
             new SoftwareComponent("CircleImageView", "2014 - 2017", "Henning Dodenhof", "https://github.com/hdodenhof/CircleImageView", StandardLicenses.APACHE2),
             new SoftwareComponent("ParalaxScrollView", "2014", "Nir Hartmann", "https://github.com/nirhart/ParallaxScroll", StandardLicenses.MIT),
             new SoftwareComponent("NoNonsense-FilePicker", "2016", "Jonas Kalderstam", "https://github.com/spacecowboy/NoNonsense-FilePicker", StandardLicenses.MPL2),
-            new SoftwareComponent("ExoPlayer", "2014-2017", "Google Inc", "https://github.com/google/ExoPlayer", StandardLicenses.APACHE2)
+            new SoftwareComponent("ExoPlayer", "2014-2017", "Google Inc", "https://github.com/google/ExoPlayer", StandardLicenses.APACHE2),
+            new SoftwareComponent("RxAndroid", "2015", "The RxAndroid authors", "https://github.com/ReactiveX/RxAndroid", StandardLicenses.APACHE2),
+            new SoftwareComponent("RxJava", "2016-present", "RxJava Contributors", "https://github.com/ReactiveX/RxJava", StandardLicenses.APACHE2),
+            new SoftwareComponent("RxBinding", "2015", "Jake Wharton", "https://github.com/JakeWharton/RxBinding", StandardLicenses.APACHE2)
     };
 
     /**
@@ -65,7 +67,7 @@ public class AboutActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_about);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
@@ -73,10 +75,10 @@ public class AboutActivity extends AppCompatActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
     }
 
@@ -127,14 +129,18 @@ public class AboutActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_about, container, false);
-            TextView version = (TextView) rootView.findViewById(R.id.app_version);
+            TextView version = rootView.findViewById(R.id.app_version);
             version.setText(BuildConfig.VERSION_NAME);
 
             View githubLink = rootView.findViewById(R.id.github_link);
             githubLink.setOnClickListener(new OnGithubLinkClickListener());
 
-            View licenseLink = rootView.findViewById(R.id.app_read_license);
-            licenseLink.setOnClickListener(new OnReadFullLicenseClickListener());
+            View donationLink = rootView.findViewById(R.id.donation_link);
+            donationLink.setOnClickListener(new OnDonationLinkClickListener());
+
+            View websiteLink = rootView.findViewById(R.id.website_link);
+            websiteLink.setOnClickListener(new OnWebsiteLinkClickListener());
+
             return rootView;
         }
 
@@ -147,10 +153,21 @@ public class AboutActivity extends AppCompatActivity {
             }
         }
 
-        private static class OnReadFullLicenseClickListener implements View.OnClickListener {
+        private static class OnDonationLinkClickListener implements View.OnClickListener {
             @Override
-            public void onClick(View v) {
-                LicenseFragment.showLicense(v.getContext(), StandardLicenses.GPL3);
+            public void onClick(final View view) {
+                final Context context = view.getContext();
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.donation_url)));
+                context.startActivity(intent);
+            }
+        }
+
+        private static class OnWebsiteLinkClickListener implements View.OnClickListener {
+            @Override
+            public void onClick(final View view) {
+                final Context context = view.getContext();
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.website_url)));
+                context.startActivity(intent);
             }
         }
     }

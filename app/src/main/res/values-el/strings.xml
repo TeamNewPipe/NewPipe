@@ -60,4 +60,6 @@
 
     <string name="err_dir_create">Δεν μπόρεσε να δημιουργηθεί ο φάκελος \'%1$s\'</string>
     <string name="info_dir_created">Δημιουργήθηκε ο φάκελος \'%1$s\'</string>
-</resources>
+<string name="short_billion">Δ</string>
+
+    </resources>

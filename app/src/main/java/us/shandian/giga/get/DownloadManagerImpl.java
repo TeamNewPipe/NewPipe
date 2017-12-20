@@ -101,6 +101,18 @@ public class DownloadManagerImpl implements DownloadManager {
 
     }
 
+    /**
+     * Sort a list of mission by its timestamp. Oldest first
+     * @param missions the missions to sort
+     */
+    static void sortByTimestamp(List<DownloadMission> missions) {
+        Collections.sort(missions, new Comparator<DownloadMission>() {
+            @Override
+            public int compare(DownloadMission o1, DownloadMission o2) {
+                return Long.valueOf(o1.timestamp).compareTo(o2.timestamp);
+            }
+        });
+    }
 
     /**
      * Loads finished missions from the data source
@@ -111,12 +123,8 @@ public class DownloadManagerImpl implements DownloadManager {
             finishedMissions = new ArrayList<>();
         }
         // Ensure its sorted
-        Collections.sort(finishedMissions, new Comparator<DownloadMission>() {
-            @Override
-            public int compare(DownloadMission o1, DownloadMission o2) {
-                return (int) (o1.timestamp - o2.timestamp);
-            }
-        });
+        sortByTimestamp(finishedMissions);
+
         mMissions.ensureCapacity(mMissions.size() + finishedMissions.size());
         for (DownloadMission mission : finishedMissions) {
             File downloadedFile = mission.getDownloadedFile();

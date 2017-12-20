@@ -1,30 +1,72 @@
+/*
+ * Copyright 2017 Mauricio Colli <mauriciocolli@outlook.com>
+ * MainVideoPlayer.java is part of NewPipe
+ *
+ * License: GPL-3.0+
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package org.schabi.newpipe.player;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.exoplayer2.Player;
+
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
+import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.playlist.PlayQueueItem;
+import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
+import org.schabi.newpipe.playlist.PlayQueueItemHolder;
 import org.schabi.newpipe.util.AnimationUtils;
+import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.List;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -33,15 +75,16 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
  *
  * @author mauriciocolli
  */
-public class MainVideoPlayer extends Activity {
+public final class MainVideoPlayer extends Activity {
     private static final String TAG = ".MainVideoPlayer";
     private static final boolean DEBUG = BasePlayer.DEBUG;
 
-    private AudioManager audioManager;
     private GestureDetector gestureDetector;
 
     private boolean activityPaused;
     private VideoPlayerImpl playerImpl;
+
+    private SharedPreferences defaultPreferences;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity LifeCycle
@@ -51,10 +94,10 @@ public class MainVideoPlayer extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
+        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         ThemeHelper.setTheme(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) getWindow().setStatusBarColor(Color.BLACK);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         if (getIntent() == null) {
             Toast.makeText(this, R.string.general_error, Toast.LENGTH_SHORT).show();
@@ -62,9 +105,11 @@ public class MainVideoPlayer extends Activity {
             return;
         }
 
+
+
         showSystemUi();
         setContentView(R.layout.activity_main_player);
-        playerImpl = new VideoPlayerImpl();
+        playerImpl = new VideoPlayerImpl(this);
         playerImpl.setup(findViewById(android.R.id.content));
         playerImpl.handleIntent(getIntent());
     }
@@ -88,8 +133,10 @@ public class MainVideoPlayer extends Activity {
         super.onStop();
         if (DEBUG) Log.d(TAG, "onStop() called");
         activityPaused = true;
+
         if (playerImpl.getPlayer() != null) {
-            playerImpl.setVideoStartPos((int) playerImpl.getPlayer().getCurrentPosition());
+            playerImpl.wasPlaying = playerImpl.getPlayer().getPlayWhenReady();
+            playerImpl.setRecovery();
             playerImpl.destroyPlayer();
         }
     }
@@ -101,8 +148,16 @@ public class MainVideoPlayer extends Activity {
         if (activityPaused) {
             playerImpl.initPlayer();
             playerImpl.getPlayPauseButton().setImageResource(R.drawable.ic_play_arrow_white);
-            playerImpl.play(false);
+
+            playerImpl.getPlayer().setPlayWhenReady(playerImpl.wasPlaying);
+            playerImpl.initPlayback(playerImpl.playQueue);
+
             activityPaused = false;
+        }
+        if(globalScreenOrientationLocked()) {
+            boolean lastOrientationWasLandscape
+                    = defaultPreferences.getBoolean(getString(R.string.last_orientation_landscape_key), false);
+            setLandScape(lastOrientationWasLandscape);
         }
     }
 
@@ -113,12 +168,24 @@ public class MainVideoPlayer extends Activity {
         if (playerImpl != null) playerImpl.destroy();
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if (playerImpl.isSomePopupMenuVisible()) {
+            playerImpl.moreOptionsPopupMenu.dismiss();
+            playerImpl.getQualityPopupMenu().dismiss();
+            playerImpl.getPlaybackSpeedPopupMenu().dismiss();
+        }
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
     private void showSystemUi() {
         if (DEBUG) Log.d(TAG, "showSystemUi() called");
+        if (playerImpl != null && playerImpl.queueVisible) return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             getWindow().getDecorView().setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -144,9 +211,49 @@ public class MainVideoPlayer extends Activity {
     }
 
     private void toggleOrientation() {
-        setRequestedOrientation(getResources().getDisplayMetrics().heightPixels > getResources().getDisplayMetrics().widthPixels
+        setLandScape(!isLandScape());
+        defaultPreferences.edit()
+                .putBoolean(getString(R.string.last_orientation_landscape_key), !isLandScape())
+                .apply();
+    }
+
+    private boolean isLandScape() {
+        return getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
+    }
+
+    private void setLandScape(boolean v) {
+        setRequestedOrientation(v
                 ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
                 : ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+    }
+
+    private boolean globalScreenOrientationLocked() {
+        // 1: Screen orientation changes using acelerometer
+        // 0: Screen orientatino is locked
+        return !(android.provider.Settings.System.getInt(getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 1);
+    }
+
+    protected void setRepeatModeButton(final ImageButton imageButton, final int repeatMode) {
+        switch (repeatMode) {
+            case Player.REPEAT_MODE_OFF:
+                imageButton.setImageResource(R.drawable.exo_controls_repeat_off);
+                break;
+            case Player.REPEAT_MODE_ONE:
+                imageButton.setImageResource(R.drawable.exo_controls_repeat_one);
+                break;
+            case Player.REPEAT_MODE_ALL:
+                imageButton.setImageResource(R.drawable.exo_controls_repeat_all);
+                break;
+        }
+    }
+
+    protected void setShuffleButton(final ImageButton shuffleButton, final boolean shuffled) {
+        final int shuffleAlpha = shuffled ? 255 : 77;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            shuffleButton.setImageAlpha(shuffleAlpha);
+        } else {
+            shuffleButton.setAlpha(shuffleAlpha);
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -157,32 +264,49 @@ public class MainVideoPlayer extends Activity {
         private TextView channelTextView;
         private TextView volumeTextView;
         private TextView brightnessTextView;
+        private ImageButton queueButton;
         private ImageButton repeatButton;
+        private ImageButton shuffleButton;
 
-        private ImageButton screenRotationButton;
         private ImageButton playPauseButton;
+        private ImageButton playPreviousButton;
+        private ImageButton playNextButton;
 
-        VideoPlayerImpl() {
-            super("VideoPlayerImpl" + MainVideoPlayer.TAG, MainVideoPlayer.this);
+        private RelativeLayout queueLayout;
+        private ImageButton itemsListCloseButton;
+        private RecyclerView itemsList;
+        private ItemTouchHelper itemTouchHelper;
+
+        private boolean queueVisible;
+
+        private ImageButton moreOptionsButton;
+        public int moreOptionsPopupMenuGroupId = 89;
+        public PopupMenu moreOptionsPopupMenu;
+
+        VideoPlayerImpl(final Context context) {
+            super("VideoPlayerImpl" + MainVideoPlayer.TAG, context);
         }
 
         @Override
         public void initViews(View rootView) {
             super.initViews(rootView);
-            this.titleTextView = (TextView) rootView.findViewById(R.id.titleTextView);
-            this.channelTextView = (TextView) rootView.findViewById(R.id.channelTextView);
-            this.volumeTextView = (TextView) rootView.findViewById(R.id.volumeTextView);
-            this.brightnessTextView = (TextView) rootView.findViewById(R.id.brightnessTextView);
-            this.repeatButton = (ImageButton) rootView.findViewById(R.id.repeatButton);
+            this.titleTextView = rootView.findViewById(R.id.titleTextView);
+            this.channelTextView = rootView.findViewById(R.id.channelTextView);
+            this.volumeTextView = rootView.findViewById(R.id.volumeTextView);
+            this.brightnessTextView = rootView.findViewById(R.id.brightnessTextView);
+            this.queueButton = rootView.findViewById(R.id.queueButton);
+            this.repeatButton = rootView.findViewById(R.id.repeatButton);
+            this.shuffleButton = rootView.findViewById(R.id.shuffleButton);
 
-            this.screenRotationButton = (ImageButton) rootView.findViewById(R.id.screenRotationButton);
-            this.playPauseButton = (ImageButton) rootView.findViewById(R.id.playPauseButton);
+            this.playPauseButton = rootView.findViewById(R.id.playPauseButton);
+            this.playPreviousButton = rootView.findViewById(R.id.playPreviousButton);
+            this.playNextButton = rootView.findViewById(R.id.playNextButton);
+            this.moreOptionsButton = rootView.findViewById(R.id.moreOptionsButton);
+            this.moreOptionsPopupMenu = new PopupMenu(context, moreOptionsButton);
+            this.moreOptionsPopupMenu.getMenuInflater().inflate(R.menu.menu_videooptions, moreOptionsPopupMenu.getMenu());
 
-            // Due to a bug on lower API, lets set the alpha instead of using a drawable
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) repeatButton.setImageAlpha(77);
-            else { //noinspection deprecation
-                repeatButton.setAlpha(77);
-            }
+            titleTextView.setSelected(true);
+            channelTextView.setSelected(true);
 
             getRootView().setKeepScreenOn(true);
         }
@@ -194,30 +318,63 @@ public class MainVideoPlayer extends Activity {
             MySimpleOnGestureListener listener = new MySimpleOnGestureListener();
             gestureDetector = new GestureDetector(context, listener);
             gestureDetector.setIsLongpressEnabled(false);
-            playerImpl.getRootView().setOnTouchListener(listener);
+            getRootView().setOnTouchListener(listener);
 
+            queueButton.setOnClickListener(this);
             repeatButton.setOnClickListener(this);
+            shuffleButton.setOnClickListener(this);
+
             playPauseButton.setOnClickListener(this);
-            screenRotationButton.setOnClickListener(this);
+            playPreviousButton.setOnClickListener(this);
+            playNextButton.setOnClickListener(this);
+            moreOptionsButton.setOnClickListener(this);
+        }
+
+        /*//////////////////////////////////////////////////////////////////////////
+        // ExoPlayer Video Listener
+        //////////////////////////////////////////////////////////////////////////*/
+
+        @Override
+        public void onRepeatModeChanged(int i) {
+            super.onRepeatModeChanged(i);
+            updatePlaybackButtons();
+        }
+
+        /*//////////////////////////////////////////////////////////////////////////
+        // Playback Listener
+        //////////////////////////////////////////////////////////////////////////*/
+
+        @Override
+        public void shutdown() {
+            super.shutdown();
+            finish();
         }
 
         @Override
-        public void handleIntent(Intent intent) {
-            super.handleIntent(intent);
+        public void sync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info) {
+            super.sync(item, info);
             titleTextView.setText(getVideoTitle());
-            channelTextView.setText(getChannelName());
+            channelTextView.setText(getUploaderName());
+
+            playPauseButton.setImageResource(R.drawable.ic_pause_white);
         }
 
         @Override
-        public void playUrl(String url, String format, boolean autoPlay) {
-            super.playUrl(url, format, autoPlay);
-            playPauseButton.setImageResource(autoPlay ? R.drawable.ic_pause_white : R.drawable.ic_play_arrow_white);
+        public void onShuffleClicked() {
+            super.onShuffleClicked();
+            updatePlaybackButtons();
         }
+
+        /*//////////////////////////////////////////////////////////////////////////
+        // Player Overrides
+        //////////////////////////////////////////////////////////////////////////*/
 
         @Override
         public void onFullScreenButtonClicked() {
+            super.onFullScreenButtonClicked();
+
             if (DEBUG) Log.d(TAG, "onFullScreenButtonClicked() called");
-            if (playerImpl.getPlayer() == null) return;
+            if (simpleExoPlayer == null) return;
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
                     && !PermissionHelper.checkSystemAlertWindowPermission(MainVideoPlayer.this)) {
@@ -225,53 +382,125 @@ public class MainVideoPlayer extends Activity {
                 return;
             }
 
-            context.startService(NavigationHelper.getOpenVideoPlayerIntent(context, PopupVideoPlayer.class, playerImpl));
-            if (playerImpl != null) playerImpl.destroyPlayer();
+            setRecovery();
+            final Intent intent = NavigationHelper.getPlayerIntent(
+                    context,
+                    PopupVideoPlayer.class,
+                    this.getPlayQueue(),
+                    this.getRepeatMode(),
+                    this.getPlaybackSpeed(),
+                    this.getPlaybackPitch(),
+                    this.getPlaybackQuality()
+            );
+            context.startService(intent);
 
             ((View) getControlAnimationView().getParent()).setVisibility(View.GONE);
-            MainVideoPlayer.this.finish();
+            destroy();
+            finish();
         }
 
-        @Override
-        @SuppressWarnings("deprecation")
-        public void onRepeatClicked() {
-            super.onRepeatClicked();
-            if (DEBUG) Log.d(TAG, "onRepeatClicked() called");
-            switch (getCurrentRepeatMode()) {
-                case REPEAT_DISABLED:
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) repeatButton.setImageAlpha(77);
-                    else repeatButton.setAlpha(77);
+        public void onPlayBackgroundButtonClicked() {
+            if (DEBUG) Log.d(TAG, "onPlayBackgroundButtonClicked() called");
+            if (playerImpl.getPlayer() == null) return;
 
-                    break;
-                case REPEAT_ONE:
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) repeatButton.setImageAlpha(255);
-                    else repeatButton.setAlpha(255);
+            setRecovery();
+            final Intent intent = NavigationHelper.getPlayerIntent(
+                    context,
+                    BackgroundPlayer.class,
+                    this.getPlayQueue(),
+                    this.getRepeatMode(),
+                    this.getPlaybackSpeed(),
+                    this.getPlaybackPitch(),
+                    this.getPlaybackQuality()
+            );
+            context.startService(intent);
 
-                    break;
-                case REPEAT_ALL:
-                    // Waiting :)
-                    break;
-            }
+            ((View) getControlAnimationView().getParent()).setVisibility(View.GONE);
+            destroy();
+            finish();
         }
+
 
         @Override
         public void onClick(View v) {
             super.onClick(v);
-            if (v.getId() == repeatButton.getId()) onRepeatClicked();
-            else if (v.getId() == playPauseButton.getId()) onVideoPlayPause();
-            else if (v.getId() == screenRotationButton.getId()) onScreenRotationClicked();
+            if (v.getId() == playPauseButton.getId()) {
+                onVideoPlayPause();
+
+            } else if (v.getId() == playPreviousButton.getId()) {
+                onPlayPrevious();
+
+            } else if (v.getId() == playNextButton.getId()) {
+                onPlayNext();
+
+            } else if (v.getId() == queueButton.getId()) {
+                onQueueClicked();
+                return;
+            } else if (v.getId() == repeatButton.getId()) {
+                onRepeatClicked();
+                return;
+            } else if (v.getId() == shuffleButton.getId()) {
+                onShuffleClicked();
+                return;
+            } else if (v.getId() == moreOptionsButton.getId()) {
+                onMoreOptionsClicked();
+            }
 
             if (getCurrentState() != STATE_COMPLETED) {
                 getControlsVisibilityHandler().removeCallbacksAndMessages(null);
-                animateView(playerImpl.getControlsRoot(), true, 300, 0, new Runnable() {
+                animateView(getControlsRoot(), true, 300, 0, new Runnable() {
                     @Override
                     public void run() {
-                        if (getCurrentState() == STATE_PLAYING && !playerImpl.isSomePopupMenuVisible()) {
+                        if (getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible()) {
                             hideControls(300, DEFAULT_CONTROLS_HIDE_TIME);
                         }
                     }
                 });
             }
+        }
+
+        private void onQueueClicked() {
+            queueVisible = true;
+            hideSystemUi();
+
+            buildQueue();
+            updatePlaybackButtons();
+
+            getControlsRoot().setVisibility(View.INVISIBLE);
+            queueLayout.setVisibility(View.VISIBLE);
+
+            itemsList.scrollToPosition(playQueue.getIndex());
+        }
+
+        private void onQueueClosed() {
+            queueLayout.setVisibility(View.GONE);
+            queueVisible = false;
+        }
+
+        private void onMoreOptionsClicked() {
+            if (DEBUG) Log.d(TAG, "onMoreOptionsClicked() called");
+            buildMoreOptionsMenu();
+
+            try {
+                Field[] fields = moreOptionsPopupMenu.getClass().getDeclaredFields();
+                for (Field field : fields) {
+                    if ("mPopup".equals(field.getName())) {
+                        field.setAccessible(true);
+                        Object menuPopupHelper = field.get(moreOptionsPopupMenu);
+                        Class<?> classPopupHelper = Class.forName(menuPopupHelper
+                                .getClass().getName());
+                        Method setForceIcons = classPopupHelper.getMethod(
+                                "setForceShowIcon", boolean.class);
+                        setForceIcons.invoke(menuPopupHelper, true);
+                        break;
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            moreOptionsPopupMenu.show();
+            isSomePopupMenuVisible = true;
+            showControls(300);
         }
 
         private void onScreenRotationClicked() {
@@ -282,7 +511,7 @@ public class MainVideoPlayer extends Activity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             super.onStopTrackingTouch(seekBar);
-            if (playerImpl.wasPlaying()) {
+            if (wasPlaying()) {
                 hideControls(100, 0);
             }
         }
@@ -294,28 +523,38 @@ public class MainVideoPlayer extends Activity {
         }
 
         @Override
-        public void onError(Exception exception) {
-            exception.printStackTrace();
-            Toast.makeText(context, "Failed to play this video", Toast.LENGTH_SHORT).show();
-            finish();
+        protected int getDefaultResolutionIndex(final List<VideoStream> sortedVideos) {
+            return ListHelper.getDefaultResolutionIndex(context, sortedVideos);
+        }
+
+        @Override
+        protected int getOverrideResolutionIndex(final List<VideoStream> sortedVideos,
+                                                 final String playbackQuality) {
+            return ListHelper.getDefaultResolutionIndex(context, sortedVideos, playbackQuality);
         }
 
         /*//////////////////////////////////////////////////////////////////////////
         // States
         //////////////////////////////////////////////////////////////////////////*/
 
+        private void animatePlayButtons(final boolean show, final int duration) {
+            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
+            animateView(playPreviousButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
+            animateView(playNextButton, AnimationUtils.Type.SCALE_AND_ALPHA, show, duration);
+        }
+
         @Override
-        public void onLoading() {
-            super.onLoading();
+        public void onBlocked() {
+            super.onBlocked();
             playPauseButton.setImageResource(R.drawable.ic_pause_white);
-            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 100);
+            animatePlayButtons(false, 100);
             getRootView().setKeepScreenOn(true);
         }
 
         @Override
         public void onBuffering() {
             super.onBuffering();
-            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 100);
+            animatePlayButtons(false, 100);
             getRootView().setKeepScreenOn(true);
         }
 
@@ -326,7 +565,7 @@ public class MainVideoPlayer extends Activity {
                 @Override
                 public void run() {
                     playPauseButton.setImageResource(R.drawable.ic_pause_white);
-                    animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, true, 200);
+                    animatePlayButtons(true, 200);
                 }
             });
             showSystemUi();
@@ -340,7 +579,7 @@ public class MainVideoPlayer extends Activity {
                 @Override
                 public void run() {
                     playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
-                    animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, true, 200);
+                    animatePlayButtons(true, 200);
                 }
             });
 
@@ -351,25 +590,22 @@ public class MainVideoPlayer extends Activity {
         @Override
         public void onPausedSeek() {
             super.onPausedSeek();
-            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 100);
+            animatePlayButtons(false, 100);
             getRootView().setKeepScreenOn(true);
         }
 
 
         @Override
         public void onCompleted() {
-            if (getCurrentRepeatMode() == RepeatMode.REPEAT_ONE) {
-                playPauseButton.setImageResource(R.drawable.ic_pause_white);
-            } else {
-                showSystemUi();
-                animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 0, 0, new Runnable() {
-                    @Override
-                    public void run() {
-                        playPauseButton.setImageResource(R.drawable.ic_replay_white);
-                        animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, true, 300);
-                    }
-                });
-            }
+            showSystemUi();
+            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 0, 0, new Runnable() {
+                @Override
+                public void run() {
+                    playPauseButton.setImageResource(R.drawable.ic_replay_white);
+                    animatePlayButtons(true, 300);
+                }
+            });
+
             getRootView().setKeepScreenOn(false);
             super.onCompleted();
         }
@@ -377,6 +613,20 @@ public class MainVideoPlayer extends Activity {
         /*//////////////////////////////////////////////////////////////////////////
         // Utils
         //////////////////////////////////////////////////////////////////////////*/
+
+        @Override
+        public void showControlsThenHide() {
+            if (queueVisible) return;
+
+            super.showControlsThenHide();
+        }
+
+        @Override
+        public void showControls(long duration) {
+            if (queueVisible) return;
+
+            super.showControls(duration);
+        }
 
         @Override
         public void hideControls(final long duration, long delay) {
@@ -393,6 +643,123 @@ public class MainVideoPlayer extends Activity {
                     });
                 }
             }, delay);
+        }
+
+        private void updatePlaybackButtons() {
+            if (repeatButton == null || shuffleButton == null ||
+                    simpleExoPlayer == null || playQueue == null) return;
+
+            setRepeatModeButton(repeatButton, getRepeatMode());
+            setShuffleButton(shuffleButton, playQueue.isShuffled());
+        }
+
+        private void buildMoreOptionsMenu() {
+            if (moreOptionsPopupMenu == null) return;
+            moreOptionsPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    switch (menuItem.getItemId()) {
+                        case R.id.toggleOrientation:
+                            onScreenRotationClicked();
+                            break;
+                        case R.id.switchPopup:
+                            onFullScreenButtonClicked();
+                            break;
+                        case R.id.switchBackground:
+                            onPlayBackgroundButtonClicked();
+                            break;
+                    }
+                    return false;
+                }
+            });
+        }
+
+        private void buildQueue() {
+            queueLayout = findViewById(R.id.playQueuePanel);
+
+            itemsListCloseButton = findViewById(R.id.playQueueClose);
+
+            itemsList = findViewById(R.id.playQueue);
+            itemsList.setAdapter(playQueueAdapter);
+            itemsList.setClickable(true);
+            itemsList.setLongClickable(true);
+
+            itemsList.clearOnScrollListeners();
+            itemsList.addOnScrollListener(getQueueScrollListener());
+
+            itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
+            itemTouchHelper.attachToRecyclerView(itemsList);
+
+            playQueueAdapter.setSelectedListener(getOnSelectedListener());
+
+            itemsListCloseButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onQueueClosed();
+                }
+            });
+        }
+
+        private OnScrollBelowItemsListener getQueueScrollListener() {
+            return new OnScrollBelowItemsListener() {
+                @Override
+                public void onScrolledDown(RecyclerView recyclerView) {
+                    if (playQueue != null && !playQueue.isComplete()) {
+                        playQueue.fetch();
+                    } else if (itemsList != null) {
+                        itemsList.clearOnScrollListeners();
+                    }
+                }
+            };
+        }
+
+        private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
+            return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
+                @Override
+                public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source, RecyclerView.ViewHolder target) {
+                    if (source.getItemViewType() != target.getItemViewType()) {
+                        return false;
+                    }
+
+                    final int sourceIndex = source.getLayoutPosition();
+                    final int targetIndex = target.getLayoutPosition();
+                    playQueue.move(sourceIndex, targetIndex);
+                    return true;
+                }
+
+                @Override
+                public boolean isLongPressDragEnabled() {
+                    return false;
+                }
+
+                @Override
+                public boolean isItemViewSwipeEnabled() {
+                    return false;
+                }
+
+                @Override
+                public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {}
+            };
+        }
+
+        private PlayQueueItemBuilder.OnSelectedListener getOnSelectedListener() {
+            return new PlayQueueItemBuilder.OnSelectedListener() {
+                @Override
+                public void selected(PlayQueueItem item, View view) {
+                    onSelected(item);
+                }
+
+                @Override
+                public void held(PlayQueueItem item, View view) {
+                    final int index = playQueue.indexOf(item);
+                    if (index != -1) playQueue.remove(index);
+                }
+
+                @Override
+                public void onStartDrag(PlayQueueItemHolder viewHolder) {
+                    if (itemTouchHelper != null) itemTouchHelper.startDrag(viewHolder);
+                }
+            };
         }
 
         ///////////////////////////////////////////////////////////////////////////
@@ -431,15 +798,20 @@ public class MainVideoPlayer extends Activity {
         public boolean onDoubleTap(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
             if (!playerImpl.isPlaying()) return false;
-            if (e.getX() > playerImpl.getRootView().getWidth() / 2) playerImpl.onFastForward();
-            else playerImpl.onFastRewind();
+
+            if (e.getX() > playerImpl.getRootView().getWidth() / 2) {
+                playerImpl.onFastForward();
+            } else {
+                playerImpl.onFastRewind();
+            }
+
             return true;
         }
 
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onSingleTapConfirmed() called with: e = [" + e + "]");
-            if (playerImpl.getCurrentState() != BasePlayer.STATE_PLAYING) return true;
+            if (playerImpl.getCurrentState() == BasePlayer.STATE_BLOCKED) return true;
 
             if (playerImpl.isControlsVisible()) playerImpl.hideControls(150, 0);
             else {
@@ -449,12 +821,12 @@ public class MainVideoPlayer extends Activity {
             return true;
         }
 
-        private final boolean isGestureControlsEnabled = playerImpl.getSharedPreferences().getBoolean(getString(R.string.player_gesture_controls_key), true);
+        private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
 
         private final float stepsBrightness = 15, stepBrightness = (1f / stepsBrightness), minBrightness = .01f;
         private float currentBrightness = .5f;
 
-        private int currentVolume, maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        private int currentVolume, maxVolume = playerImpl.getAudioReactor().getMaxVolume();
         private final float stepsVolume = 15, stepVolume = (float) Math.ceil(maxVolume / stepsVolume), minVolume = 0;
 
         private final String brightnessUnicode = new String(Character.toChars(0x2600));
@@ -468,7 +840,7 @@ public class MainVideoPlayer extends Activity {
         // TODO: Improve video gesture controls
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            if (!isGestureControlsEnabled) return false;
+            if (!isPlayerGestureEnabled) return false;
 
             //noinspection PointlessBooleanExpression
             if (DEBUG && false) Log.d(TAG, "MainVideoPlayer.onScroll = " +
@@ -489,13 +861,15 @@ public class MainVideoPlayer extends Activity {
 
             if (e1.getX() > playerImpl.getRootView().getWidth() / 2) {
                 double floor = Math.floor(up ? stepVolume : -stepVolume);
-                currentVolume = (int) (audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) + floor);
+                currentVolume = (int) (playerImpl.getAudioReactor().getVolume() + floor);
                 if (currentVolume >= maxVolume) currentVolume = maxVolume;
                 if (currentVolume <= minVolume) currentVolume = (int) minVolume;
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);
+                playerImpl.getAudioReactor().setVolume(currentVolume);
 
+                currentVolume = playerImpl.getAudioReactor().getVolume();
                 if (DEBUG) Log.d(TAG, "onScroll().volumeControl, currentVolume = " + currentVolume);
-                playerImpl.getVolumeTextView().setText(volumeUnicode + " " + Math.round((((float) currentVolume) / maxVolume) * 100) + "%");
+                final String volumeText = volumeUnicode + " " + Math.round((((float) currentVolume) / maxVolume) * 100) + "%";
+                playerImpl.getVolumeTextView().setText(volumeText);
 
                 if (playerImpl.getVolumeTextView().getVisibility() != View.VISIBLE) animateView(playerImpl.getVolumeTextView(), true, 200);
                 if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) playerImpl.getBrightnessTextView().setVisibility(View.GONE);
@@ -510,7 +884,8 @@ public class MainVideoPlayer extends Activity {
                 if (DEBUG) Log.d(TAG, "onScroll().brightnessControl, currentBrightness = " + currentBrightness);
                 int brightnessNormalized = Math.round(currentBrightness * 100);
 
-                playerImpl.getBrightnessTextView().setText(brightnessUnicode + " " + (brightnessNormalized == 1 ? 0 : brightnessNormalized) + "%");
+                final String brightnessText = brightnessUnicode + " " + (brightnessNormalized == 1 ? 0 : brightnessNormalized) + "%";
+                playerImpl.getBrightnessTextView().setText(brightnessText);
 
                 if (playerImpl.getBrightnessTextView().getVisibility() != View.VISIBLE) animateView(playerImpl.getBrightnessTextView(), true, 200);
                 if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) playerImpl.getVolumeTextView().setVisibility(View.GONE);

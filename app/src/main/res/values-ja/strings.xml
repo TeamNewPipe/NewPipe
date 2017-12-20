@@ -139,9 +139,7 @@
     <string name="all">全て</string>
     <string name="channel">ﾁｬﾝﾈﾙ</string>
 
-    <string name="videos">動画</string>
-    <string name="subscriber">購読者</string>
-    <string name="views">表示</string>
+
     <string name="short_thousand">K</string>
     <string name="short_million">000000</string>
     <string name="short_billion">000000000</string>
@@ -149,7 +147,6 @@
     <string name="yes">はい</string>
     <string name="later">後で</string>
 
-    <string name="subscribe">購読</string>
 
     <string name="open_in_popup_mode">ポップアップモードで開く</string>
     <string name="msg_popup_permission">ポップアップモードで開くには
@@ -162,8 +159,8 @@
     <string name="use_old_player_summary">Mediaframework プレーヤーの古いビルド。</string>
     <string name="disabled">無効</string>
 
-    <string name="preferred_video_format_title">お好みのビデオ フォーマット</string>
-    <string name="subscriber_plural">購読者</string>
+    <string name="default_video_format_title">お好みのビデオ フォーマット</string>
+
     <string name="default_popup_resolution_title">デフォルトのポップアップ解像度</string>
     <string name="show_higher_resolutions_title">高い解像度で表示</string>
     <string name="show_higher_resolutions_summary">一部のデバイスのみ 2K/4K ビデオの再生をサポートしています</string>
@@ -198,7 +195,6 @@
     <string name="tab_about">アプリについて</string>
     <string name="tab_contributors">貢献者</string>
     <string name="tab_licenses">ライセンス</string>
-    <string name="github_url">https://github.com/TeamNewPipe/NewPipe</string>
     <string name="app_description">Android 用の無料で軽量な Youtube フロントエンド。</string>
     <string name="view_on_github">Github で表示</string>
     <string name="app_license_title">NewPipe のライセンス</string>

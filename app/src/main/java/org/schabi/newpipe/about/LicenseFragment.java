@@ -1,22 +1,13 @@
 package org.schabi.newpipe.about;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.view.ContextMenu;
-import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.WebView;
+import android.view.*;
 import android.widget.TextView;
-
 import org.schabi.newpipe.R;
 
 import java.util.Arrays;
@@ -48,25 +39,7 @@ public class LicenseFragment extends Fragment {
      * @param license the license to show
      */
     public static void showLicense(Context context, License license) {
-        if(context == null) {
-            throw new NullPointerException("context is null");
-        }
-        if(license == null) {
-            throw new NullPointerException("license is null");
-        }
-        AlertDialog.Builder alert = new AlertDialog.Builder(context);
-        alert.setTitle(license.getName());
-
-        WebView wv = new WebView(context);
-        wv.loadUrl(license.getContentUri().toString());
-        alert.setView(wv);
-        alert.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        alert.show();
+        new LicenseFragmentHelper().execute(context, license);
     }
 
     @Override
@@ -87,12 +60,15 @@ public class LicenseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_licenses, container, false);
-        ViewGroup softwareComponentsView = (ViewGroup) rootView.findViewById(R.id.software_components);
+        ViewGroup softwareComponentsView = rootView.findViewById(R.id.software_components);
+
+        View licenseLink = rootView.findViewById(R.id.app_read_license);
+        licenseLink.setOnClickListener(new OnReadFullLicenseClickListener());
 
         for (final SoftwareComponent component : softwareComponents) {
             View componentView = inflater.inflate(R.layout.item_software_component, container, false);
-            TextView softwareName = (TextView) componentView.findViewById(R.id.name);
-            TextView copyright = (TextView) componentView.findViewById(R.id.copyright);
+            TextView softwareName = componentView.findViewById(R.id.name);
+            TextView copyright = componentView.findViewById(R.id.copyright);
             softwareName.setText(component.getName());
             copyright.setText(getContext().getString(R.string.copyright,
                     component.getYears(),
@@ -111,7 +87,6 @@ public class LicenseFragment extends Fragment {
             });
             softwareComponentsView.addView(componentView);
             registerForContextMenu(componentView);
-
         }
         return rootView;
     }
@@ -146,5 +121,12 @@ public class LicenseFragment extends Fragment {
     private void openWebsite(String componentLink) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(componentLink));
         startActivity(browserIntent);
+    }
+
+    private static class OnReadFullLicenseClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            LicenseFragment.showLicense(v.getContext(), StandardLicenses.GPL3);
+        }
     }
 }

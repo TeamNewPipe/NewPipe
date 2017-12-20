@@ -45,7 +45,7 @@
     <string name="show_play_with_kodi_summary">Kodi মিডিয়া সেন্টারে এর মাধ্যমে ভিডিও প্লে করার জন্য একটি বিকল্প প্রদর্শন কর।</string>
     <string name="play_audio">অডিও</string>
     <string name="default_audio_format_title">ডিফল্ট অডিও ফরম্যাট</string>
-    <string name="preferred_video_format_title">পছন্দসই ভিডিও ফরম্যাট</string>
+    <string name="default_video_format_title">পছন্দসই ভিডিও ফরম্যাট</string>
     <string name="webm_description">WebM — বিনামূল্য/স্বাধীন ফরম্যাট</string>
     <string name="m4a_description">m4a — ভালো মানের</string>
     <string name="theme_title">থিম</string>
@@ -133,11 +133,8 @@
     <string name="storage_permission_denied">স্টোরেজ অ্যাক্সেস করার অনুমতি অস্বীকার করা হয়েছে</string>
     <string name="use_old_player_title">পুরানো প্লেয়ার ব্যবহার করো</string>
     <string name="use_old_player_summary">মিডিয়াফ্রেমওয়ার্ক প্লেয়ারের পুরানো বিল্ড।</string>
-    <string name="videos">ভিডিওগুলি</string>
-    <string name="subscriber">গ্রাহক</string>
-    <string name="subscriber_plural">গ্রাহকরা</string>
-    <string name="subscribe">সাবস্ক্রাইব</string>
-    <string name="views">প্রদর্শন</string>
+
+
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>

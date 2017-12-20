@@ -23,7 +23,11 @@ package org.schabi.newpipe;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -34,19 +38,37 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import org.schabi.newpipe.download.DownloadActivity;
+import org.schabi.newpipe.database.AppDatabase;
+import org.schabi.newpipe.database.history.dao.HistoryDAO;
+import org.schabi.newpipe.database.history.dao.SearchHistoryDAO;
+import org.schabi.newpipe.database.history.dao.WatchHistoryDAO;
+import org.schabi.newpipe.database.history.model.HistoryEntry;
+import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
+import org.schabi.newpipe.database.history.model.WatchHistoryEntry;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
-import org.schabi.newpipe.fragments.search.SearchFragment;
-import org.schabi.newpipe.settings.SettingsActivity;
+import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.history.HistoryListener;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.Date;
+
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subjects.PublishSubject;
+
+public class MainActivity extends AppCompatActivity implements HistoryListener {
     private static final String TAG = "MainActivity";
     public static final boolean DEBUG = false;
+    private SharedPreferences sharedPreferences;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity's LifeCycle
@@ -63,8 +85,21 @@ public class MainActivity extends AppCompatActivity {
             initFragments();
         }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        initHistory();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (!isChangingConfigurations()) {
+            StateSaver.clearStateFiles();
+        }
+
+        disposeHistory();
     }
 
     @Override
@@ -75,7 +110,20 @@ public class MainActivity extends AppCompatActivity {
         if (sharedPreferences.getBoolean(Constants.KEY_THEME_CHANGE, false)) {
             if (DEBUG) Log.d(TAG, "Theme has changed, recreating activity...");
             sharedPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, false).apply();
-            this.recreate();
+            // https://stackoverflow.com/questions/10844112/runtimeexception-performing-pause-of-activity-that-is-not-resumed
+            // Briefly, let the activity resume properly posting the recreate call to end of the message queue
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    MainActivity.this.recreate();
+                }
+            });
+        }
+
+        if(sharedPreferences.getBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false)) {
+            if (DEBUG) Log.d(TAG, "main page has changed, recreating main fragment...");
+            sharedPreferences.edit().putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false).apply();
+            NavigationHelper.openMainActivity(this);
         }
 
     }
@@ -100,7 +148,10 @@ public class MainActivity extends AppCompatActivity {
         if (DEBUG) Log.d(TAG, "onBackPressed() called");
 
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
-        if (fragment instanceof VideoDetailFragment) if (((VideoDetailFragment) fragment).onActivityBackPressed()) return;
+        // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
+        if (fragment instanceof BackPressable) {
+            if (((BackPressable) fragment).onBackPressed()) return;
+        }
 
 
         if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
@@ -131,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setDisplayShowTitleEnabled(false);
             actionBar.setDisplayHomeAsUpEnabled(false);
         }
         return true;
@@ -143,19 +193,19 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         switch (id) {
-            case android.R.id.home: {
+            case android.R.id.home:
                 NavigationHelper.gotoMainFragment(getSupportFragmentManager());
                 return true;
-            }
-            case R.id.action_settings: {
+            case R.id.action_settings:
                 NavigationHelper.openSettings(this);
                 return true;
-            }
-            case R.id.action_show_downloads: {
+            case R.id.action_show_downloads:
                 return NavigationHelper.openDownloads(this);
-            }
             case R.id.action_about:
                 NavigationHelper.openAbout(this);
+                return true;
+            case R.id.action_history:
+                NavigationHelper.openHistory(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -167,6 +217,8 @@ public class MainActivity extends AppCompatActivity {
     //////////////////////////////////////////////////////////////////////////*/
 
     private void initFragments() {
+        if (DEBUG) Log.d(TAG, "initFragments() called");
+        StateSaver.clearStateFiles();
         if (getIntent() != null && getIntent().hasExtra(Constants.KEY_LINK_TYPE)) {
             handleIntent(getIntent());
         } else NavigationHelper.gotoMainFragment(getSupportFragmentManager());
@@ -191,6 +243,9 @@ public class MainActivity extends AppCompatActivity {
                 case CHANNEL:
                     NavigationHelper.openChannelFragment(getSupportFragmentManager(), serviceId, url, title);
                     break;
+                case PLAYLIST:
+                    NavigationHelper.openPlaylistFragment(getSupportFragmentManager(), serviceId, url, title);
+                    break;
             }
         } else if (intent.hasExtra(Constants.KEY_OPEN_SEARCH)) {
             String searchQuery = intent.getStringExtra(Constants.KEY_QUERY);
@@ -199,6 +254,77 @@ public class MainActivity extends AppCompatActivity {
             NavigationHelper.openSearchFragment(getSupportFragmentManager(), serviceId, searchQuery);
         } else {
             NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+        }
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // History
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private WatchHistoryDAO watchHistoryDAO;
+    private SearchHistoryDAO searchHistoryDAO;
+    private PublishSubject<HistoryEntry> historyEntrySubject;
+    private Disposable disposable;
+
+    private void initHistory() {
+        final AppDatabase database = NewPipeDatabase.getInstance();
+        watchHistoryDAO = database.watchHistoryDAO();
+        searchHistoryDAO = database.searchHistoryDAO();
+        historyEntrySubject = PublishSubject.create();
+        disposable = historyEntrySubject
+                .observeOn(Schedulers.io())
+                .subscribe(getHistoryEntryConsumer());
+    }
+
+    private void disposeHistory() {
+        if (disposable != null) disposable.dispose();
+        watchHistoryDAO = null;
+        searchHistoryDAO = null;
+    }
+
+    @NonNull
+    private Consumer<HistoryEntry> getHistoryEntryConsumer() {
+        return new Consumer<HistoryEntry>() {
+            @Override
+            public void accept(HistoryEntry historyEntry) throws Exception {
+                //noinspection unchecked
+                HistoryDAO<HistoryEntry> historyDAO = (HistoryDAO<HistoryEntry>)
+                        (historyEntry instanceof SearchHistoryEntry ? searchHistoryDAO : watchHistoryDAO);
+
+                HistoryEntry latestEntry = historyDAO.getLatestEntry();
+                if (historyEntry.hasEqualValues(latestEntry)) {
+                    latestEntry.setCreationDate(historyEntry.getCreationDate());
+                    historyDAO.update(latestEntry);
+                } else {
+                    historyDAO.insert(historyEntry);
+                }
+            }
+        };
+    }
+
+    private void addWatchHistoryEntry(StreamInfo streamInfo) {
+        if (sharedPreferences.getBoolean(getString(R.string.enable_watch_history_key), true)) {
+            WatchHistoryEntry entry = new WatchHistoryEntry(streamInfo);
+            historyEntrySubject.onNext(entry);
+        }
+    }
+
+    @Override
+    public void onVideoPlayed(StreamInfo streamInfo, @Nullable VideoStream videoStream) {
+        addWatchHistoryEntry(streamInfo);
+    }
+
+    @Override
+    public void onAudioPlayed(StreamInfo streamInfo, AudioStream audioStream) {
+        addWatchHistoryEntry(streamInfo);
+    }
+
+    @Override
+    public void onSearch(int serviceId, String query) {
+        // Add search history entry
+        if (sharedPreferences.getBoolean(getString(R.string.enable_search_history_key), true)) {
+            SearchHistoryEntry searchHistoryEntry = new SearchHistoryEntry(new Date(), serviceId, query);
+            historyEntrySubject.onNext(searchHistoryEntry);
         }
     }
 }

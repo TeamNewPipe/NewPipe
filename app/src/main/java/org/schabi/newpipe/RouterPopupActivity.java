@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -20,10 +21,13 @@ public class RouterPopupActivity extends RouterActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
                 && !PermissionHelper.checkSystemAlertWindowPermission(this)) {
             Toast.makeText(this, R.string.msg_popup_permission, Toast.LENGTH_LONG).show();
+            finish();
             return;
         }
-        StreamingService service = NewPipe.getServiceByUrl(url);
-        if (service == null) {
+        StreamingService service;
+        try {
+            service = NewPipe.getServiceByUrl(url);
+        } catch (ExtractionException e) {
             Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG).show();
             return;
         }
@@ -40,5 +44,7 @@ public class RouterPopupActivity extends RouterActivity {
         callIntent.putExtra(Constants.KEY_URL, url);
         callIntent.putExtra(Constants.KEY_SERVICE_ID, service.getServiceId());
         startService(callIntent);
+
+        finish();
     }
 }
