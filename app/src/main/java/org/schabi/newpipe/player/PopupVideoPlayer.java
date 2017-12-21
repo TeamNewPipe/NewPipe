@@ -275,7 +275,7 @@ public final class PopupVideoPlayer extends Service {
 
         return new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
                 .setOngoing(true)
-                .setSmallIcon(R.drawable.ic_play_arrow_white)
+                .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setContent(notRemoteView);
     }
