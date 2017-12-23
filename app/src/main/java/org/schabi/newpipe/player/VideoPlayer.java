@@ -75,7 +75,13 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
  * @author mauriciocolli
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.VideoListener, SeekBar.OnSeekBarChangeListener, View.OnClickListener, Player.EventListener, PopupMenu.OnMenuItemClickListener, PopupMenu.OnDismissListener {
+public abstract class VideoPlayer extends BasePlayer
+        implements SimpleExoPlayer.VideoListener,
+        SeekBar.OnSeekBarChangeListener,
+        View.OnClickListener,
+        Player.EventListener,
+        PopupMenu.OnMenuItemClickListener,
+        PopupMenu.OnDismissListener {
     public static final boolean DEBUG = BasePlayer.DEBUG;
     public final String TAG;
 

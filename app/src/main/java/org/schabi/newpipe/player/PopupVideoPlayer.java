@@ -44,6 +44,7 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.RemoteViews;
 import android.widget.SeekBar;
@@ -401,6 +402,7 @@ public final class PopupVideoPlayer extends Service {
 
     protected class VideoPlayerImpl extends VideoPlayer {
         private TextView resizingIndicator;
+        private ImageButton fullScreenButton;
 
         @Override
         public void handleIntent(Intent intent) {
@@ -418,6 +420,13 @@ public final class PopupVideoPlayer extends Service {
         public void initViews(View rootView) {
             super.initViews(rootView);
             resizingIndicator = rootView.findViewById(R.id.resizing_indicator);
+            fullScreenButton = rootView.findViewById(R.id.fullScreenButton);
+            fullScreenButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onFullScreenButtonClicked();
+                }
+            });
         }
 
         @Override
