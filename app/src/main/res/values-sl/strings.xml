@@ -227,7 +227,7 @@ odpiranje v pojavnem načinu</string>
     <string name="notification_channel_name">Obvestila NewPipe</string>
     <string name="notification_channel_description">Obvestila predvajalnika NewPipe</string>
 
-    <string name="contribution_title">Sodelovanje pri projektu</string>
+    <string name="contribution_title">Doprinos k projektu</string>
 
     <string name="title_activity_history">Zgodovina</string>
     <string name="title_history_search">Preiskano</string>
@@ -291,4 +291,6 @@ odpiranje v pojavnem načinu</string>
     <string name="play_queue_remove">Odstrani</string>
     <string name="play_queue_stream_detail">Podrobnosti</string>
     <string name="play_queue_audio_settings">Nastavitve zvoka</string>
+    <string name="donation_title">Donacija</string>
+    <string name="website_title">Spletišče</string>
     </resources>
