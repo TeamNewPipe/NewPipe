@@ -96,7 +96,7 @@
     <string name="report_error">Reportar un error</string>
     <string name="user_report">Reporte de usuario</string>
 
-    <string name="video">Vídeos</string>
+    <string name="video">Vídeo</string>
 
     <string name="audio">Audio</string>
     <string name="retry">Reintentar</string>
@@ -193,7 +193,7 @@ abrir en modo popup</string>
     <string name="app_license_title">Licencia de NewPipe</string>
     <string name="contribution_encouragement">Si tienes ideas de; traducción, cambios de diseño, limpieza de código o cambios de código realmente fuertes—la ayuda siempre es bienvenida. Cuanto más se hace, mejor se pone!</string>
     <string name="read_full_license">Leer licencia</string>
-    <string name="contribution_title">Contribución</string>
+    <string name="contribution_title">Contribuir</string>
 <string name="subscribe_button_title">Suscribirse</string>
     <string name="subscribed_button_title">Suscrito</string>
     <string name="channel_unsubscribed">Canal no suscrito</string>
@@ -273,4 +273,33 @@ abrir en modo popup</string>
     <string name="kiosk">Kiosco</string>
     <string name="trending">Tendencias</string>
     <string name="top_50">Top 50</string>
-</resources>
+<string name="show_hold_to_append_summary">Mostrar sugerencia cuando se presiona el botón de segundo plano o popup en la página de detalles del vídeo</string>
+    <string name="background_player_append">En cola en el reproductor de fondo</string>
+    <string name="popup_playing_append">En cola en el reproductor popup</string>
+    <string name="play_all">Reproducir todo</string>
+
+    <string name="player_stream_failure">Error al reproducir esta transmisión</string>
+    <string name="player_unrecoverable_failure">Se produjo un error irrecuperable del reproductor</string>
+    <string name="player_recoverable_failure">Recuperándose del error del reproductor</string>
+
+    <string name="title_activity_background_player">Reproductor de fondo</string>
+    <string name="title_activity_popup_player">Reproductor popup</string>
+    <string name="play_queue_remove">Remover</string>
+    <string name="play_queue_stream_detail">Detalles</string>
+    <string name="play_queue_audio_settings">Ajustes de audio</string>
+    <string name="unknown_content">[Desconocido]</string>
+
+    <string name="enqueue_on_background">Poner en cola de segundo plano</string>
+    <string name="enqueue_on_popup">Poner en cola de popup</string>
+    <string name="start_here_on_main">Comenzar a reproducir aquí</string>
+    <string name="start_here_on_background">Comenzar aquí en segundo plano</string>
+    <string name="start_here_on_popup">Comenzar aquí en popup</string>
+<string name="show_hold_to_append_title">Desplegar consejo \"Mantener para poner en la fila\"</string>
+    <string name="new_and_hot">Nuevo y popular</string>
+    <string name="hold_to_append">Mantener para poner en la fila</string>
+    <string name="donation_title">Donar</string>
+    <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que emplean su tiempo libre en mejorar tu experiencia. ¡ Ahora puedes devolver el favor para asegurar que los desarrolladores puedan crear un NewPipe aún mejor mientras saborean una taza de Java !</string>
+    <string name="give_back">Donar</string>
+    <string name="website_title">Página web</string>
+    <string name="website_encouragement">Para obtener más información y las últimas noticias sobre NewPipe, visita nuestra web.</string>
+    </resources>

@@ -242,7 +242,7 @@
     <string name="app_license_title">Llicencia de NewPipe</string>
     <string name="contribution_encouragement">Si tienes idees, quies traducir, facer cambeos, llimpiar el códigu u otres coses, l\'ayuda siempres s\'agradez. ¡Cuánto más se faiga, más s\'ameyora!</string>
     <string name="read_full_license">Lleer llicencia</string>
-    <string name="contribution_title">Collaboración</string>
+    <string name="contribution_title">Collaborar</string>
 
     <string name="title_activity_history">Historial</string>
     <string name="title_history_search">Guetao</string>
@@ -253,4 +253,46 @@
     <string name="history_cleared">Llimpióse l\'historial</string>
     <string name="item_deleted">Desanicióse l\'elementu</string>
     <string name="delete_item_search_history">¿Quies desaniciar esti elementu del historial de gueta?</string>
-</resources>
+<string name="play_all">Reproducir too</string>
+
+    <string name="player_stream_failure">Nun pudo reproducise esta tresmisión</string>
+    <string name="player_unrecoverable_failure">Asocedió un error irrecuperable del reproductor</string>
+    <string name="player_recoverable_failure">Recuperándose del error del reproductor</string>
+
+    <string name="main_page_content">Conteníu de la páxina principal</string>
+    <string name="blank_page_summary">Páxina en blancu</string>
+    <string name="kiosk_page_summary">Páxina del quioscu</string>
+    <string name="subscription_page_summary">Páxina de suscripción</string>
+    <string name="feed_page_summary">Páxina de fluxu</string>
+    <string name="channel_page_summary">Páxina de canal</string>
+    <string name="select_a_channel">Seleiciona un canal</string>
+    <string name="no_channel_subscribed_yet">Entá nun hai canales soscritos</string>
+    <string name="select_a_kiosk">Seleiciona un quioscu</string>
+
+    <string name="kiosk">Quioscu</string>
+    <string name="trending">Tendencies</string>
+    <string name="top_50">50 meyores</string>
+    <string name="title_activity_background_player">Reproductor de fondu</string>
+    <string name="play_queue_remove">Desaniciar</string>
+    <string name="play_queue_stream_detail">Detalles</string>
+    <string name="new_and_hot">Nuevo y popular</string>
+    <string name="play_queue_audio_settings">Axustes d\'audiu</string>
+    <string name="show_hold_to_append_title">Amosar conseyu Mantener p\'amestar</string>
+    <string name="show_hold_to_append_summary">Amuesa\'l conseyu al primir el botón de Ventanu o tener el videu de fondu na so páxina de detalles</string>
+    <string name="background_player_append">Púnxose na cola del reproductor de fondu</string>
+    <string name="popup_playing_append">Púnxose na cola nel reproductor de ventanu</string>
+    <string name="unknown_content">[Desconozse]</string>
+
+    <string name="title_activity_popup_player">Reproductor en ventanu</string>
+    <string name="hold_to_append">Mantener p\'amestar</string>
+    <string name="enqueue_on_background">Púnxose na cola de fondu</string>
+    <string name="enqueue_on_popup">Púnxose na cola del ventanu</string>
+    <string name="start_here_on_main">Entamar reproducción equí</string>
+    <string name="start_here_on_background">Entamar equí de fondu</string>
+    <string name="start_here_on_popup">Entamár equí de ventanu</string>
+<string name="donation_title">Donar</string>
+    <string name="donation_encouragement">NewPipe ta desendolcáu por voluntarios que gasten el so tiempu llibre pa ufrite la meyor esperiencia. ¡Agora ye momentu de devolve-yos el favor p\'aseguar l\'ameyoramientu de NewPipe mentanto esfruten d\'un café!</string>
+    <string name="give_back">Devolver favor</string>
+    <string name="website_title">Sitiu web</string>
+    <string name="website_encouragement">Pa consiguir información y les anuncies caberes tocante a NewPipe visita\'l nuesu sitiu web.</string>
+    </resources>

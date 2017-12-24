@@ -1,0 +1,279 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+<string name="view_count_text">%1$s दृश्य</string>
+    <string name="upload_date_text">%1$s को प्रकाशित</string>
+    <string name="no_player_found">वीडियो दिखाने के लिए एप्लिकेशन नहीं मिला. क्या आप VLC इंस्टॉल करना चाहते हैं ?</string>
+    <string name="install">इंस्टॉल करें</string>
+    <string name="open_in_browser">ब्राउज़र में खोलें</string>
+    <string name="open_in_popup_mode">पॉपअप मोड में खोलें</string>
+    <string name="share">शेयर करें</string>
+    <string name="download">डाउनलोड</string>
+    <string name="search">खोज</string>
+    <string name="settings">सेटिंग</string>
+    <string name="choose_browser">ब्राउज़र चुनें</string>
+    <string name="screen_rotation">स्क्रीन रोटेशन</string>
+    <string name="popup_mode_share_menu_title">NewPipe पॉपअप मोड</string>
+    <string name="subscribe_button_title">सदस्य बनें</string>
+    <string name="subscribed_button_title">सदस्यता ली</string>
+    <string name="channel_unsubscribed">सदस्यता निकाली गई</string>
+    <string name="tab_subscriptions">सदस्यता</string>
+
+    <string name="controls_background_title">पीछे</string>
+    <string name="controls_popup_title">पॉपअप</string>
+
+    <string name="autoplay_by_calling_app_title">स्वतः चलाएं</string>
+    <string name="play_audio">ऑडियो</string>
+    <string name="light_theme_title">हलका</string>
+    <string name="black_theme_title">काली</string>
+    <string name="enable_watch_history_title">इतिहास</string>
+    <string name="download_dialog_title">डाउनलोड</string>
+    <string name="next_video_title">अगला वीडियो</string>
+    <string name="settings_category_video_audio_title">वीडियो और ऑडियो</string>
+    <string name="settings_category_history_title">इतिहास</string>
+    <string name="background_player_playing_toast">बैकग्राउंड में चल रहा है</string>
+    <string name="no_views">कोई दर्शक नहीं</string>
+    <string name="no_videos">कोई वीडियो नहीं है</string>
+    <string name="title_activity_about">न्यूपाइप के बारे में जाने</string>
+    <string name="action_settings">सेटिंग</string>
+    <string name="action_about">इसके बारे में</string>
+    <string name="title_licenses">तृतीय-पक्ष लाइसेंस</string>
+    <string name="action_open_website">वेबसाइट खोलें</string>
+    <string name="tab_about">इसके बारे में</string>
+    <string name="tab_licenses">लाइसेंस</string>
+    <string name="view_on_github">GitHub में देखें</string>
+    <string name="app_license_title">न्यूपाइप का लाइसेंस</string>
+    <string name="read_full_license">लाइसेंस पढ़ें</string>
+    <string name="contribution_title">योगदान</string>
+
+    <string name="title_activity_history">इतिहास</string>
+    <string name="title_history_search">खोजा जा चूका है</string>
+    <string name="title_history_view">विडियो जो देख लिए गए है</string>
+    <string name="history_disabled">इतिहास disable है</string>
+    <string name="action_history">इतिहास</string>
+    <string name="history_empty">इतिहास खाली है</string>
+    <string name="history_cleared">इतिहास साफ़ हो चुकी है</string>
+    <string name="item_deleted">Item हटा दिया गया है</string>
+    <string name="trending">फ़िलहाल चर्चा में है</string>
+    <string name="play_queue_audio_settings">ऑडियो सेटिंग</string>
+    <string name="main_bg_subtitle">खोज चिह्न दबाके आरंम्भ करे</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="did_you_mean">क्या आप का मतलब %1$s है?</string>
+    <string name="share_dialog_title">शेयर करें</string>
+    <string name="use_external_video_player_title">अन्य वीडियो प्लेयर इस्तेमाल करे</string>
+    <string name="use_external_video_player_summary">यह विकल्प चुनने से कुछ वीडियो से ध्वनि नहीं आएगी</string>
+    <string name="use_external_audio_player_title">अन्य ऑडियो प्लेयर इस्तमाल करे</string>
+    <string name="tab_main">मुख्य</string>
+    <string name="subscription_change_failed">सदस्यता को बदलने में असमर्थ है</string>
+    <string name="subscription_update_failed">सदस्यता को अपडेट करने में असमर्थ है</string>
+
+    <string name="fragment_whats_new">देखे की नया क्या है</string>
+
+    <string name="download_path_title">विडियो को डाउनलोड करने के लिए फाइल की जगह</string>
+    <string name="download_path_summary">डाउनलोड किये गए विडियो को फाइल में रखने की जगह</string>
+    <string name="download_path_dialog_title">विडियो के लिए डाउनलोड करने की फाइल की जगह डाले</string>
+
+    <string name="download_path_audio_title">ऑडियो डाउनलोड का फाइल की जगह</string>
+    <string name="download_path_audio_summary">डाउनलोड किये गए ऑडियो की फाइल की जगह</string>
+    <string name="download_path_audio_dialog_title">ऑडियो डाउनलोड करने के लिए फाइल की जगह डाले</string>
+
+    <string name="autoplay_by_calling_app_summary">जब न्यू पाइप को दुसरे एप्प से बुलावा आये तो विडियो अपनी स्वेछा से चले</string>
+    <string name="default_resolution_title">डिफ़ॉल्ट वीडियो की क्वालिटी</string>
+    <string name="default_popup_resolution_title">डिफ़ॉल्ट विडियो पॉपअप की क्वालिटी</string>
+    <string name="show_higher_resolutions_title">विडियो की उच्त्तर क्वालिटी देखे</string>
+    <string name="show_higher_resolutions_summary">केवल कुछ ही फ़ोन है जो 2K/4K विडियो प्ले होते है</string>
+    <string name="play_with_kodi_title">kodi से चलाये</string>
+    <string name="kore_not_found">kore एप्प नहीं मिला,क्या आपके फ़ोन में इनस्टॉल है ?</string>
+    <string name="show_play_with_kodi_title">\"Kodi से चलाये\" वाला विकल्प दिखाए</string>
+    <string name="show_play_with_kodi_summary">उस विकल्प को दिखाए जिसमे Kodi Media Center के जरिये विडियो प्ले किया जाता है</string>
+    <string name="default_audio_format_title">डिफ़ॉल्ट ऑडियो का फॉर्मेट</string>
+    <string name="default_video_format_title">डिफ़ॉल्ट विडियो का फॉर्मेट</string>
+    <string name="webm_description">webm - फ्री फॉर्मेट</string>
+    <string name="m4a_description">M4A - बेहतर क्वालिटी</string>
+    <string name="theme_title">एप्प का नया रूप</string>
+    <string name="dark_theme_title">काला</string>
+    <string name="popup_remember_size_pos_title">विडियो पॉपअप की आकर और उसकी स्थति को याद रखे</string>
+    <string name="popup_remember_size_pos_summary">विडियो पॉपअप के पहले वाली आकर और उसकी स्थिति को याद रखे</string>
+    <string name="player_gesture_controls_title">विडियो प्लेयर के gesture कण्ट्रोल</string>
+    <string name="player_gesture_controls_summary">विडियो प्लेयर की ब्राइटनेस और ध्वनी को नियंत्रण के लिए फ़ोन में gesture से इशारो का प्रयोग करे</string>
+    <string name="show_search_suggestions_title">खोज के सुझाव देखे</string>
+    <string name="show_search_suggestions_summary">जब कुछ ढूंड रहे हो तो सुझाव दिखाये</string>
+    <string name="enable_search_history_title">खोज के इतिहास को देखे</string>
+    <string name="enable_search_history_summary">खोज के query को फ़ोन की मेमोरी में ही रखे</string>
+    <string name="enable_watch_history_summary">जो विडियो देखे है उस पर नजर रखे</string>
+    <string name="resume_on_audio_focus_gain_title">जब फोकस मिले तो विडियो resume हो</string>
+    <string name="resume_on_audio_focus_gain_summary">रूकावट आने पर भी विडियो को जारी रखे (जैसे - फ़ोन कॉल आये)</string>
+    <string name="show_next_and_similar_title">आगे ऐसा ही विडियो दिखाए जैसा पहले देखा था</string>
+    <string name="show_hold_to_append_title">tip को विस्तार करने के hold को दिखाए</string>
+    <string name="show_hold_to_append_summary">जब बैकग्राउंड और पॉपअप बटन विडियो के विवरण पन्ने में दबाई जाए तो tip को दिखाए</string>
+    <string name="url_not_supported_toast">ये वाला URL इसमें नहीं चलेगा</string>
+    <string name="search_language_title">डिफ़ॉल्ट विषय की भाषा</string>
+    <string name="settings_category_player_title">प्लेयर</string>
+    <string name="settings_category_player_behavior_title">चाल चलन</string>
+    <string name="settings_category_popup_title">पॉपअप</string>
+    <string name="settings_category_appearance_title">दिखावट</string>
+    <string name="settings_category_other_title">और दुसरे</string>
+    <string name="popup_playing_toast">विडियो पॉपअप के अंदाज में चल रहा</string>
+    <string name="background_player_append">बैकग्राउंड प्लेयर की कतार पर</string>
+    <string name="popup_playing_append">पॉपअप प्लेयर की कतार पर</string>
+    <string name="play_btn_text">चलाये</string>
+    <string name="content">विषयवस्तु</string>
+    <string name="show_age_restricted_content_title">उम्र प्रतिबंदित से सम्बंधित विषयवस्तु दिखाये (जैसे - हिंसात्मक,कामोतोजनक)</string>
+    <string name="video_is_age_restricted">उम्र प्रतिबंदित विडियो है .इस प्रकार की विषयवस्तु को अनुमति देने के लिए Setting से संभव है |</string>
+    <string name="duration_live">सीधा प्रसारण</string>
+    <string name="downloads">डाउनलोड</string>
+    <string name="downloads_title">डाउनलोड</string>
+    <string name="error_report_title">त्रुटी की रिपोर्ट</string>
+    <string name="all">सारे</string>
+    <string name="channel">चैनल</string>
+    <string name="playlist">प्लेलिस्ट</string>
+    <string name="yes">सहमत हूँ</string>
+    <string name="later">बाद में</string>
+    <string name="disabled">बंद करे</string>
+    <string name="filter">छलनी</string>
+    <string name="refresh">तरोताजा</string>
+    <string name="clear">साफ़</string>
+    <string name="popup_resizing_indicator_title">आकार को छोटा-बड़ा करे</string>
+    <string name="best_resolution">बेहतर विडियो की क्वालिटी</string>
+    <string name="undo">वापस जाए</string>
+    <string name="play_all">सारे प्ले करे</string>
+
+    <string name="notification_channel_name">NewPipe की अधिसूचना</string>
+    <string name="notification_channel_description">NewPipe के बैकग्राउंड में चल रहे विडियो और पॉपअप विडियो के लिए अधिसूचना</string>
+
+    <string name="unknown_content">[नहीं जानते]</string>
+
+    <string name="general_error">त्रुटी</string>
+    <string name="network_error">नेटवर्क में त्रुटी</string>
+    <string name="could_not_load_thumbnails">सारे thumbnail(फोटो जो फ़ोन की मेमोरी में है ) भरे नहीं जा सकते</string>
+    <string name="youtube_signature_decryption_error">विडियो के URL signature को decrypt नहीं कर सकते</string>
+    <string name="parsing_error">इस website का निरंक्षण नहीं कर सकते</string>
+    <string name="light_parsing_error">website का पूरी तरह से निरंक्षण नहीं हो सकता</string>
+    <string name="content_not_available">विषयवस्तु उपलब्ध नहीं है</string>
+    <string name="blocked_by_gema">GEMA ने block किया है</string>
+    <string name="could_not_setup_download_menu">डाउनलोड मेनू को स्थापित नहीं कर सकते</string>
+    <string name="live_streams_not_supported">यह सीधा प्रसारण है, जो की अभी पूरी तरह से काम नहीं कर रहा.</string>
+    <string name="could_not_get_stream">कोई भी विडियो नहीं मिल रहा</string>
+    <string name="could_not_load_image">फोटो को load नहीं कर सकते</string>
+    <string name="app_ui_crash">APP/UI टूट गया</string>
+    <string name="player_stream_failure">इस विडियो को चलाने में असफलता हो रही है</string>
+    <string name="player_unrecoverable_failure">कभी ठीक न होने वाले विडियो प्लेयर की त्रुटी आ रही है</string>
+    <string name="player_recoverable_failure">विडियो प्लेयर त्रुटी से ठीक हो रहा है</string>
+
+    <string name="sorry_string">खेद है की, ऐसा होना नहीं चाहिए था.</string>
+    <string name="error_report_button_text">त्रुटी की रिपोर्ट को ईमेल से भेजे</string>
+    <string name="error_snackbar_message">माफ़ करे , कुछ त्रुटियाँ हो रही है</string>
+    <string name="error_snackbar_action">रिपोर्ट</string>
+    <string name="what_device_headline">जानकारी:</string>
+    <string name="what_happened_headline">क्या हुआ:</string>
+    <string name="info_labels">क्या:\\nमांग:\\nविषयवस्तु की भाषा:\\nसेवा:\\nजीएमटी समय:\\nपैकेज:\\nसंस्करण:\\nOS संस्करण:\\nGLOB. IP रेंज:</string>
+    <string name="your_comment">आपकी टिप्पणी:</string>
+    <string name="error_details_headline">विवरण:</string>
+
+
+    <string name="list_thumbnail_view_description">विडियो के thumbnail के पूर्व दर्शन</string>
+    <string name="detail_thumbnail_view_description">विडियो के thumbnail के पूर्व दर्शन</string>
+    <string name="detail_uploader_thumbnail_view_description">अपलोडर के thumbnail वाले फोटो</string>
+    <string name="detail_likes_img_view_description">पसंद</string>
+    <string name="detail_dislikes_img_view_description">नापसंद</string>
+    <string name="use_tor_title">Tor का प्रयोग करे</string>
+    <string name="use_tor_summary">( प्रयोगात्मक ) व्यक्तिगत सुरक्षा को बढाने के लिए Tor के जरिये ट्रैफिक को डाउनलोड करने के लिए जोर दे ( विडियो को स्ट्रीम अभी नहीं कर सकता ).</string>
+    <string name="report_error">त्रुटी के रिपोर्ट करे</string>
+    <string name="user_report">उपयोगकर्ता की रिपोर्ट</string>
+    <string name="search_no_results">कोई परिणाम नहीं मिला</string>
+    <string name="empty_subscription_feed_subtitle">यंहा कुछ नहीं है</string>
+
+    <string name="err_dir_create">"डाउनलोड वाली डायरेक्टरी को बना नहीं सकते  \'%1$s\'"</string>
+    <string name="info_dir_created">डाउनलोड की डायरेक्टरी बन चुकी है \'%1$s\'</string>
+
+    <string name="video">विडियो</string>
+    <string name="audio">ऑडियो</string>
+    <string name="retry">फिर से कोशिश करे</string>
+    <string name="storage_permission_denied">स्टोरेज में प्रवेश के लिए अनुमति नहीं मिली</string>
+    <string name="use_old_player_title">पुराना विडियो प्लेयर प्रयोग करे</string>
+    <string name="use_old_player_summary">पुराना Mediaframework Player जो फ़ोन में बना हुआ है</string>
+
+    <string name="short_thousand">हज़ार</string>
+    <string name="short_million">करोड़</string>
+    <string name="short_billion">अरब</string>
+
+    <string name="no_subscribers">कोई भी सदस्य नहीं है</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s सदस्य</item>
+	<item quantity="other">%s सदस्यो</item>
+</plurals>
+
+    <plurals name="views">
+	<item quantity="one">%s दर्शक</item>
+	<item quantity="other">%s दर्शके</item>
+</plurals>
+
+    <plurals name="videos">
+	<item quantity="one">%s विडियो</item>
+	<item quantity="other">%s वीडियो</item>
+</plurals>
+
+    <string name="start">शुरू</string>
+    <string name="pause">रोके</string>
+    <string name="view">चलाये</string>
+    <string name="delete">मिटाए</string>
+    <string name="checksum">checksum</string>
+
+    <string name="add">नया मिशन</string>
+    <string name="finish">ठीक है</string>
+
+    <string name="msg_name">फाइल का नाम</string>
+    <string name="msg_threads">मेसेज के thread</string>
+    <string name="msg_error">त्रुटी</string>
+    <string name="msg_server_unsupported">server ठीक से चल नहीं रहा</string>
+    <string name="msg_exists">फाइल पहले से ही बनी हुई है</string>
+    <string name="msg_url_malform">URL सही नहीं है या फिर हो सकता है इन्टरनेट उपलब्ध नहीं है</string>
+    <string name="msg_running">न्यूपाइप डाउनलोड हो रहा है</string>
+    <string name="msg_running_detail">विवरण देखने के लिए दबाये</string>
+    <string name="msg_wait">कृपया इंतज़ार करे…</string>
+    <string name="msg_copied">क्लिपबोर्ड पर कॉपी हो गया है</string>
+    <string name="no_available_dir">कृपया उपलब्ध डाउनलोड फोल्डर को चुने</string>
+    <string name="msg_popup_permission">पॉपअप के तरीके में खोलने के लिए अनुमति की जरुरत है</string>
+
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">reCAPTCHA चुनोती</string>
+    <string name="recaptcha_request_toast">reCAPTCHA चुनोती के लिए निवेदन</string>
+
+    <string name="settings_category_downloads_title">डाउनलोड</string>
+    <string name="settings_file_charset_title">फाइल के नाम के लिए आवश्यक characters(जैसे - १२३, abc) की अनुमति है</string>
+    <string name="settings_file_replacement_character_summary">अमान्य characters इस value से बदल जायेंगे</string>
+    <string name="settings_file_replacement_character_title">रिप्लेसमेंट करैक्टर</string>
+
+    <string name="charset_letters_and_digits">वर्ण और अंक</string>
+    <string name="charset_most_special_characters">विशेष वर्ण</string>
+
+    <string name="copyright" formatted="true">%2$s के द्वारा © %1$s जो %3$s के अधीन आते है</string>
+    <string name="error_unable_to_load_license">लाइसेंस load नहीं हो रहा</string>
+    <string name="tab_contributors">सहयोगकर्ता</string>
+    <string name="app_description">एंड्राइड के लिए कम मेमोरी वाला और मुफ्त फ्रंट एंड Youtube.</string>
+    <string name="contribution_encouragement">अगर आपके पास कोई सुझाव हो जैसे -अनुवाद , डिजाईन में बदलाव ,code को साफ़ रखना , या फिर code में जायदा बदलाव लाना हो तो - साहयता के लिए आपका स्वागत है . जितना ज्यादा होगा उतना बेहतर होगा !</string>
+    <string name="delete_item_search_history">क्या आप इसको खोज इतिहास के मिटाना चाहते है ?</string>
+
+    <string name="main_page_content">मुख्य पेज की विषयवस्तु</string>
+    <string name="blank_page_summary">खाली पन्ना</string>
+    <string name="kiosk_page_summary">kiosk पन्ना</string>
+    <string name="subscription_page_summary">सदस्यता वाला पन्ना</string>
+    <string name="feed_page_summary">फीड वाला पेज</string>
+    <string name="channel_page_summary">चैनल वाला पन्ना</string>
+    <string name="select_a_channel">चैनल को चुने</string>
+    <string name="no_channel_subscribed_yet">अभी तक किसी भी चैनल के सदस्य नहीं है</string>
+    <string name="select_a_kiosk">kiosk को चुने</string>
+
+    <string name="kiosk">kiosk</string>
+    <string name="top_50">टॉप 50</string>
+    <string name="new_and_hot">नया और गरम</string>
+    <string name="title_activity_background_player">बैकग्राउंड प्लेयर</string>
+    <string name="title_activity_popup_player">पॉपअप प्लेयर</string>
+    <string name="play_queue_remove">निकाले</string>
+    <string name="play_queue_stream_detail">विवरण</string>
+    <string name="hold_to_append">कतार में खड़ा करे</string>
+    <string name="enqueue_on_background">कतार को बैकग्राउंड में लगाये</string>
+    <string name="enqueue_on_popup">कतार को पॉपअप में लगाये</string>
+    <string name="start_here_on_main">यंहा से चलाना शुरू करे</string>
+    <string name="start_here_on_background">बैकग्राउंड में चलाना शुरू करे</string>
+    <string name="start_here_on_popup">पॉपअप में चलाना शुरू करे</string>
+</resources>

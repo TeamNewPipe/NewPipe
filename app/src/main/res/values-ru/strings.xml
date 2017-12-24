@@ -109,7 +109,7 @@
     <string name="report_error">Сообщить об ошибке</string>
     <string name="user_report">Сообщить о нарушении</string>
 
-    <string name="info_dir_created">Создать папку для загруженного \'%1$s\'</string>
+    <string name="info_dir_created">Создана папка для загрузок \'%1$s\'</string>
 
     <string name="video">Видео</string>
     <string name="audio">Аудио</string>
@@ -126,7 +126,7 @@
     <string name="controls_popup_title">В окне</string>
 
     <string name="show_higher_resolutions_summary">Только некоторые устройства могут воспроизводить видео в 2K/4K</string>
-    <string name="default_video_format_title">Предпочитаемый формат видео</string>
+    <string name="default_video_format_title">Формат видео по умолчанию</string>
     <string name="black_theme_title">Чёрная</string>
     <string name="popup_remember_size_pos_title">Запоминать размер и положение всплывающего окна</string>
     <string name="player_gesture_controls_summary">Использовать жесты для изменения яркости и громкости</string>
@@ -144,8 +144,8 @@
 
     <string name="add">Новая миссия</string>
     <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:\\nГлобальный диапазон IP:</string>
-    <string name="msg_popup_permission">Это разрешение нужно,
-\nчтобы показывать всплывающее окно</string>
+    <string name="msg_popup_permission">Это разрешение нужно для 
+\nвоспроизведения видео в отдельном окне</string>
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="open_in_popup_mode">Открыть в отдельном окне</string>
@@ -182,7 +182,7 @@
     <string name="tab_about">О приложении</string>
     <string name="tab_contributors">Участники</string>
     <string name="read_full_license">Прочитать лицензию</string>
-    <string name="app_description">Бесплатный лёгкий интерфейс YouTube для Android.</string>
+    <string name="app_description">Бесплатный и лёгкий интерфейс YouTube для Android.</string>
     <string name="view_on_github">Открыть на GitHub</string>
     <string name="contribution_encouragement">Приветствуется всё — идеи, перевод, изменения дизайна, чистка кода или огромные изменения в коде. Чем больше сделано, тем лучше!</string>
     <string name="copyright" formatted="true">© %1$s %2$s под лицензией %3$s</string>
@@ -278,4 +278,22 @@
     <string name="player_stream_failure">Не удалось воспроизвести этот поток</string>
     <string name="play_queue_stream_detail">Подробности</string>
     <string name="play_queue_audio_settings">Настройки аудио</string>
-    </resources>
+    <string name="no_channel_subscribed_yet">Пока нет подписок</string>
+    <string name="play_queue_remove">Удалить</string>
+    <string name="subscribed_button_title">Отписаться</string>
+    <string name="channel_unsubscribed">Подписка отменена</string>
+    <string name="show_hold_to_append_title">Подсказка о длинном нажатии</string>
+    <string name="show_hold_to_append_summary">Отображать подсказку о длинном нажатии на кнопки \"В фоне\" и \"В окне\" для добавления в очередь</string>
+    <string name="unknown_content">[Неизвестно]</string>
+
+    <string name="player_recoverable_failure">Восстановление после ошибки проигрывателя</string>
+
+    <string name="title_activity_background_player">Воспроизведение в фоне</string>
+    <string name="title_activity_popup_player">Воспроизведение в окне</string>
+    <string name="hold_to_append">Зажмите чтобы добавить в очередь</string>
+    <string name="enqueue_on_background">Добавить в очередь в фоне</string>
+    <string name="enqueue_on_popup">Добавить в очередь в окне</string>
+    <string name="start_here_on_main">Воспроизвести</string>
+    <string name="start_here_on_background">Воспроизвести в фоне</string>
+    <string name="start_here_on_popup">Воспроизвести в окне</string>
+</resources>

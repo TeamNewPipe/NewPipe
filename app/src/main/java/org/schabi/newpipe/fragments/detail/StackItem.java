@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 class StackItem implements Serializable {
     private int serviceId;
-    private String title, url;
+    private String title;
+    private String url;
 
     StackItem(int serviceId, String url, String title) {
         this.serviceId = serviceId;

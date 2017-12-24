@@ -75,7 +75,13 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
  * @author mauriciocolli
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.VideoListener, SeekBar.OnSeekBarChangeListener, View.OnClickListener, Player.EventListener, PopupMenu.OnMenuItemClickListener, PopupMenu.OnDismissListener {
+public abstract class VideoPlayer extends BasePlayer
+        implements SimpleExoPlayer.VideoListener,
+        SeekBar.OnSeekBarChangeListener,
+        View.OnClickListener,
+        Player.EventListener,
+        PopupMenu.OnMenuItemClickListener,
+        PopupMenu.OnDismissListener {
     public static final boolean DEBUG = BasePlayer.DEBUG;
     public final String TAG;
 
@@ -124,12 +130,11 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
 
     private View topControlsRoot;
     private TextView qualityTextView;
-    private ImageButton fullScreenButton;
 
     private ValueAnimator controlViewAnimator;
     private Handler controlsVisibilityHandler = new Handler();
 
-    private boolean isSomePopupMenuVisible = false;
+    boolean isSomePopupMenuVisible = false;
     private int qualityPopupMenuGroupId = 69;
     private PopupMenu qualityPopupMenu;
 
@@ -166,7 +171,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         this.bottomControlsRoot = rootView.findViewById(R.id.bottomControls);
         this.topControlsRoot = rootView.findViewById(R.id.topControls);
         this.qualityTextView = rootView.findViewById(R.id.qualityTextView);
-        this.fullScreenButton = rootView.findViewById(R.id.fullScreenButton);
 
         //this.aspectRatioFrameLayout.setAspectRatio(16.0f / 9.0f);
 
@@ -186,7 +190,6 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         super.initListeners();
         playbackSeekBar.setOnSeekBarChangeListener(this);
         playbackSpeedTextView.setOnClickListener(this);
-        fullScreenButton.setOnClickListener(this);
         qualityTextView.setOnClickListener(this);
     }
 
@@ -272,24 +275,25 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     }
 
     @Override
+    @Nullable
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
         final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
 
-        final VideoStream video;
+        final int index;
         if (playbackQuality == null) {
-            final int index = getDefaultResolutionIndex(videos);
-            video = videos.get(index);
+            index = getDefaultResolutionIndex(videos);
         } else {
-            final int index = getOverrideResolutionIndex(videos, getPlaybackQuality());
-            video = videos.get(index);
+            index = getOverrideResolutionIndex(videos, getPlaybackQuality());
         }
+        if (index < 0 || index >= videos.size()) return null;
+        final VideoStream video = videos.get(index);
 
-        final MediaSource streamSource = buildMediaSource(video.url, MediaFormat.getSuffixById(video.format));
+        final MediaSource streamSource = buildMediaSource(video.getUrl(), MediaFormat.getSuffixById(video.format));
         final AudioStream audio = ListHelper.getHighestQualityAudio(info.audio_streams);
         if (!video.isVideoOnly || audio == null) return streamSource;
 
         // Merge with audio stream in case if video does not contain audio
-        final MediaSource audioSource = buildMediaSource(audio.url, MediaFormat.getSuffixById(audio.format));
+        final MediaSource audioSource = buildMediaSource(audio.getUrl(), MediaFormat.getSuffixById(audio.format));
         return new MergingMediaSource(streamSource, audioSource);
     }
 
@@ -453,9 +457,7 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
     @Override
     public void onClick(View v) {
         if (DEBUG) Log.d(TAG, "onClick() called with: v = [" + v + "]");
-        if (v.getId() == fullScreenButton.getId()) {
-            onFullScreenButtonClicked();
-        } else if (v.getId() == qualityTextView.getId()) {
+        if (v.getId() == qualityTextView.getId()) {
             onQualitySelectorClicked();
         } else if (v.getId() == playbackSpeedTextView.getId()) {
             onPlaybackSpeedClicked();
@@ -753,12 +755,12 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         return qualityTextView;
     }
 
-    public ImageButton getFullScreenButton() {
-        return fullScreenButton;
-    }
-
     public PopupMenu getQualityPopupMenu() {
         return qualityPopupMenu;
+    }
+
+    public PopupMenu getPlaybackSpeedPopupMenu() {
+        return playbackSpeedPopupMenu;
     }
 
     public View getSurfaceForeground() {

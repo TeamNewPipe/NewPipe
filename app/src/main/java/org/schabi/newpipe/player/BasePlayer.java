@@ -26,6 +26,7 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -76,7 +77,6 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
@@ -134,6 +134,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     protected final static int FAST_FORWARD_REWIND_AMOUNT = 10000; // 10 Seconds
     protected final static int PLAY_PREV_ACTIVATION_LIMIT = 5000; // 5 seconds
     protected final static int PROGRESS_LOOP_INTERVAL = 500;
+    protected final static int RECOVERY_SKIP_THRESHOLD = 3000; // 3 seconds
 
     protected SimpleExoPlayer simpleExoPlayer;
     protected AudioReactor audioReactor;
@@ -193,7 +194,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
                 .observeOn(AndroidSchedulers.mainThread())
                 .filter(new Predicate<Long>() {
                     @Override
-                    public boolean test(@NonNull Long aLong) throws Exception {
+                    public boolean test(Long aLong) throws Exception {
                         return isProgressLoopRunning();
                     }
                 })
@@ -235,7 +236,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         initPlayback(queue);
     }
 
-    protected void initPlayback(@NonNull final PlayQueue queue) {
+    protected void initPlayback(final PlayQueue queue) {
         playQueue = queue;
         playQueue.init();
         playbackManager = new MediaSourceManager(this, playQueue);
@@ -453,16 +454,20 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         final PlayQueueItem currentSourceItem = playQueue.getItem();
 
         // Check if already playing correct window
-        final boolean isCurrentWindowCorrect = simpleExoPlayer.getCurrentWindowIndex() == currentSourceIndex;
+        final boolean isCurrentWindowCorrect =
+                simpleExoPlayer.getCurrentWindowIndex() == currentSourceIndex;
 
         // Check if recovering
-        if (isCurrentWindowCorrect && currentSourceItem != null &&
-                currentSourceItem.getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
+        if (isCurrentWindowCorrect && currentSourceItem != null) {
             /* Recovering with sub-second position may cause a long buffer delay in ExoPlayer,
              * rounding this position to the nearest second will help alleviate this.*/
             final long position = currentSourceItem.getRecoveryPosition();
 
-            if (DEBUG) Log.d(TAG, "Rewinding to recovery window: " + currentSourceIndex + " at: " + getTimeString((int)position));
+            /* Skip recovering if the recovery position is not set.*/
+            if (position == PlayQueueItem.RECOVERY_UNSET) return;
+
+            if (DEBUG) Log.d(TAG, "Rewinding to recovery window: " + currentSourceIndex +
+                    " at: " + getTimeString((int)position));
             simpleExoPlayer.seekTo(currentSourceItem.getRecoveryPosition());
             playQueue.unsetRecovery(currentSourceIndex);
         }
@@ -515,7 +520,6 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
                 break;
             case Player.STATE_READY: //3
                 recover();
-
                 if (!isPrepared) {
                     isPrepared = true;
                     onPrepared(playWhenReady);
@@ -545,14 +549,18 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
      * an error to the play queue based on if the current error can be skipped.
      *
      * This is done because ExoPlayer reports the source exceptions before window is
-     * transitioned on seamless playback.
+     * transitioned on seamless playback. Because player error causes ExoPlayer to go
+     * back to {@link Player#STATE_IDLE STATE_IDLE}, we reset and prepare the media source
+     * again to resume playback.
      *
-     * Because player error causes ExoPlayer to go back to {@link Player#STATE_IDLE STATE_IDLE},
-     * we reset and prepare the media source again to resume playback.<br><br>
+     * In the event that this error is produced during a valid stream playback, we save the
+     * current position so the playback may be recovered and resumed manually by the user. This
+     * happens only if the playback is {@link #RECOVERY_SKIP_THRESHOLD} milliseconds until complete.
+     * <br><br>
      *
      * {@link ExoPlaybackException#TYPE_UNEXPECTED TYPE_UNEXPECTED}: <br><br>
      * If a runtime error occurred, then we can try to recover it by restarting the playback
-     * after setting the timestamp recovery.
+     * after setting the timestamp recovery. <br><br>
      *
      * {@link ExoPlaybackException#TYPE_RENDERER TYPE_RENDERER}: <br><br>
      * If the renderer failed, treat the error as unrecoverable.
@@ -569,6 +577,10 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
 
         switch (error.type) {
             case ExoPlaybackException.TYPE_SOURCE:
+                if (simpleExoPlayer.getCurrentPosition() <
+                        simpleExoPlayer.getDuration() - RECOVERY_SKIP_THRESHOLD) {
+                    setRecovery();
+                }
                 playQueue.error(isCurrentWindowValid());
                 showStreamError(error);
                 break;
@@ -591,12 +603,12 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         if (DEBUG) Log.d(TAG, "onPositionDiscontinuity() called with window index = [" + newWindowIndex + "]");
 
         // If the user selects a new track, then the discontinuity occurs after the index is changed.
-        // Therefore, the only source that causes a discrepancy would be autoplay,
+        // Therefore, the only source that causes a discrepancy would be gapless transition,
         // which can only offset the current track by +1.
-        if (newWindowIndex != playQueue.getIndex() && playbackManager != null) {
+        if (newWindowIndex == playQueue.getIndex() + 1) {
             playQueue.offsetIndex(+1);
-            playbackManager.load();
         }
+        playbackManager.load();
     }
 
     @Override
@@ -613,6 +625,8 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         if (simpleExoPlayer == null) return;
         if (DEBUG) Log.d(TAG, "Blocking...");
 
+        currentItem = null;
+        currentInfo = null;
         simpleExoPlayer.stop();
         isPrepared = false;
 
@@ -631,17 +645,21 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     }
 
     @Override
-    public void sync(@android.support.annotation.NonNull final PlayQueueItem item,
+    public void sync(@NonNull final PlayQueueItem item,
                      @Nullable final StreamInfo info) {
-        if (simpleExoPlayer == null) return;
-        if (DEBUG) Log.d(TAG, "Syncing...");
-
+        if (currentItem == item && currentInfo == info) return;
         currentItem = item;
         currentInfo = info;
 
+        if (DEBUG) Log.d(TAG, "Syncing...");
+        if (simpleExoPlayer == null) return;
+
         // Check if on wrong window
-        final int currentSourceIndex = playQueue.getIndex();
-        if (simpleExoPlayer.getCurrentWindowIndex() != currentSourceIndex) {
+        final int currentSourceIndex = playQueue.indexOf(item);
+        if (currentSourceIndex != playQueue.getIndex()) {
+            Log.e(TAG, "Play Queue may be desynchronized: item index=[" + currentSourceIndex +
+                    "], queue index=[" + playQueue.getIndex() + "]");
+        } else if (simpleExoPlayer.getCurrentWindowIndex() != currentSourceIndex || !isPlaying()) {
             final long startPos = info != null ? info.start_position : 0;
             if (DEBUG) Log.d(TAG, "Rewinding to correct window: " + currentSourceIndex + " at: " + getTimeString((int)startPos));
             simpleExoPlayer.seekTo(currentSourceIndex, startPos);
@@ -756,10 +774,6 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         } else {
             playQueue.setIndex(index);
         }
-
-        if (!isPlaying()) {
-            onVideoPlayPause();
-        }
     }
 
     public void seekBy(int milliSeconds) {
@@ -826,15 +840,15 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     }
 
     public String getVideoUrl() {
-        return currentItem == null ? null : currentItem.getUrl();
+        return currentItem == null ? context.getString(R.string.unknown_content) : currentItem.getUrl();
     }
 
     public String getVideoTitle() {
-        return currentItem == null ? null : currentItem.getTitle();
+        return currentItem == null ? context.getString(R.string.unknown_content) : currentItem.getTitle();
     }
 
     public String getUploaderName() {
-        return currentItem == null ? null : currentItem.getUploader();
+        return currentItem == null ? context.getString(R.string.unknown_content) : currentItem.getUploader();
     }
 
     public boolean isCompleted() {
@@ -870,8 +884,10 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     }
 
     public PlaybackParameters getPlaybackParameters() {
+        final PlaybackParameters defaultParameters = new PlaybackParameters(1f, 1f);
+        if (simpleExoPlayer == null) return defaultParameters;
         final PlaybackParameters parameters = simpleExoPlayer.getPlaybackParameters();
-        return parameters == null ? new PlaybackParameters(1f, 1f) : parameters;
+        return parameters == null ? defaultParameters : parameters;
     }
 
     public void setPlaybackParameters(float speed, float pitch) {
@@ -900,7 +916,9 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         final int queuePos = playQueue.getIndex();
         final long windowPos = simpleExoPlayer.getCurrentPosition();
 
-        setRecovery(queuePos, windowPos);
+        if (windowPos > 0 && windowPos <= simpleExoPlayer.getDuration()) {
+            setRecovery(queuePos, windowPos);
+        }
     }
 
     public void setRecovery(final int queuePos, final long windowPos) {

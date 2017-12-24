@@ -13,21 +13,22 @@
 </p>
 <hr />
 <p align="center"><a href="#screenshots">Screenshots</a> &bull; <a href="#description">Description</a> &bull; <a href="#features">Features</a> &bull; <a href="#contribution">Contribution</a> &bull; <a href="#donate">Donate</a> &bull; <a href="#license">License</a></p>
+<p align="center"><a href="https://newpipe.schabi.org">Website</a> &bull; <a href="https://newpipe.schabi.org/blog/">Blog</a>  &bull; <a href="https://newpipe.schabi.org/press/">Press</a></p>
 <hr />
 WARNING: PUTTING NEWPIPE OR ANY FORK OF IT INTO GOOGLE PLAYSTORE VIOLATES THEIR TERMS OF CONDITIONS.
 
 ## Screenshots
 
-[<img src="screenshots/shot_1.png" width=160>](screenshots/shot_1.png)
-[<img src="screenshots/shot_2.png" width=160>](screenshots/shot_2.png)
-[<img src="screenshots/shot_3.png" width=160>](screenshots/shot_3.png)
-[<img src="screenshots/shot_4.png" width=160>](screenshots/shot_4.png)
-[<img src="screenshots/shot_5.png" width=160>](screenshots/shot_5.png)
-[<img src="screenshots/shot_6.png" width=160>](screenshots/shot_6.png)
-[<img src="screenshots/shot_7.png" width=160>](screenshots/shot_7.png)
-[<img src="screenshots/shot_8.png" width=160>](screenshots/shot_8.png)
-[<img src="screenshots/shot_9.png" width=160>](screenshots/shot_9.png)
-[<img src="screenshots/shot_10.png" width=160>](screenshots/shot_10.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_1.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_1.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_2.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_2.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_3.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_3.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_4.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_4.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_5.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_5.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_6.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_6.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_7.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_7.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_8.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_8.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_9.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_9.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_10.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_10.png)
 
 ## Description
 

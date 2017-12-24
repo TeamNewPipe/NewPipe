@@ -21,13 +21,13 @@
     <string name="download_path_dialog_title">输入视频存储路径</string>
     <string name="default_resolution_title">默认分辨率</string>
     <string name="play_with_kodi_title">用 Kodi 播放</string>
-    <string name="kore_not_found">找不到 Kore 应用程式，您要安装 Kore 吗？</string>
+    <string name="kore_not_found">找不到 Kore 应用程式，安装它吗？</string>
     <string name="show_play_with_kodi_title">显示 “用 Kodi 播放” 的选项</string>
     <string name="show_play_with_kodi_summary">显示以 Kodi 媒体中心播放视频的选项</string>
     <string name="play_audio">音频</string>
     <string name="default_audio_format_title">默认音频格式</string>
     <string name="webm_description">WebM — 开放格式</string>
-    <string name="m4a_description">m4a — 更佳品质</string>
+    <string name="m4a_description">M4A — 更佳品质</string>
     <string name="theme_title">主题</string>
     <string name="dark_theme_title">暗色系</string>
     <string name="light_theme_title">明亮色系</string>
@@ -36,7 +36,7 @@
     <string name="next_video_title">即将播放</string>
     <string name="show_next_and_similar_title">显示下一部和相近的视频</string>
     <string name="url_not_supported_toast">不支援此网址</string>
-    <string name="search_language_title">首选内容语言</string>
+    <string name="search_language_title">默认内容语言</string>
     <string name="settings_category_video_audio_title">视频和音频</string>
     <string name="settings_category_appearance_title">外观</string>
     <string name="settings_category_other_title">其他</string>
@@ -62,14 +62,14 @@
     <string name="video_is_age_restricted">视频有年龄限制。请先在设置中启用\"显示年龄限制内容\"。</string>
     <string name="general_error">错误</string>
     <string name="could_not_load_thumbnails">无法加载所有缩略图</string>
-    <string name="youtube_signature_decryption_error">无法解密视频网址签名。</string>
-    <string name="parsing_error">无法解析网站。</string>
-    <string name="light_parsing_error">无法完全解析网站。</string>
-    <string name="content_not_available">内容不可用。</string>
-    <string name="blocked_by_gema">已被 GEMA 屏蔽。</string>
-    <string name="could_not_setup_download_menu">无法设置下载菜单。</string>
-    <string name="live_streams_not_supported">这是一个在线流媒体。这尚不支持。</string>
-    <string name="could_not_get_stream">无法获取任何流媒体。</string>
+    <string name="youtube_signature_decryption_error">无法解密视频网址签名</string>
+    <string name="parsing_error">无法解析网站</string>
+    <string name="light_parsing_error">无法完全解析网站</string>
+    <string name="content_not_available">内容不可用</string>
+    <string name="blocked_by_gema">已被 GEMA 屏蔽</string>
+    <string name="could_not_setup_download_menu">无法设置下载菜单</string>
+    <string name="live_streams_not_supported">这是一个在线流媒体，尚不支持。</string>
+    <string name="could_not_get_stream">无法获取任何流媒体</string>
     <string name="sorry_string">抱歉，这本不应该发生。</string>
     <string name="error_report_button_text">使用邮件报告错误</string>
     <string name="error_snackbar_message">抱歉，发生了一些错误。</string>
@@ -86,15 +86,15 @@
     <string name="video">视频</string>
     <string name="audio">音频</string>
     <string name="retry">重试</string>
-    <string name="storage_permission_denied">访问存储的权限被拒绝</string>
-    <string name="autoplay_by_calling_app_title">另一应用调用时自动播放</string>
+    <string name="storage_permission_denied">无权访问存储空间</string>
+    <string name="autoplay_by_calling_app_title">自动播放</string>
     <string name="autoplay_by_calling_app_summary">当 NewPipe 被其他应用调用时自动播放视频</string>
     <string name="duration_live">直播</string>
 
     <string name="main_bg_subtitle">点按搜索开始使用</string>
     <string name="start">开始</string>
     <string name="pause">暂停</string>
-    <string name="view">查看</string>
+    <string name="view">播放</string>
     <string name="delete">删除</string>
     <string name="checksum">校验和</string>
 
@@ -109,8 +109,8 @@
     <string name="msg_running">NewPipe 正在下载</string>
     <string name="msg_running_detail">点击了解细节</string>
     <string name="msg_wait">请稍候…</string>
-    <string name="msg_copied">已复制到剪贴板。</string>
-    <string name="no_available_dir">请选择一个可用的下载目录。</string>
+    <string name="msg_copied">已复制到剪贴板</string>
+    <string name="no_available_dir">请选择一个可用的下载目录</string>
 
     <string name="add">新任务</string>
     <string name="downloads">下载</string>
@@ -155,8 +155,8 @@
     <string name="show_search_suggestions_summary">在搜索时显示搜索建议</string>
     <string name="enable_search_history_title">搜索记录</string>
     <string name="enable_search_history_summary">在本地存储搜索请求</string>
-    <string name="enable_watch_history_title">观看历史</string>
-    <string name="enable_watch_history_summary">存储观看历史</string>
+    <string name="enable_watch_history_title">历史</string>
+    <string name="enable_watch_history_summary">记住观看的视频</string>
     <string name="resume_on_audio_focus_gain_title">焦点恢复</string>
     <string name="resume_on_audio_focus_gain_summary">在打扰（例如来电）过后恢复视频播放</string>
 
@@ -178,7 +178,7 @@
     <string name="notification_channel_description">NewPipe 后台播放和窗口播放器的通知</string>
 
     <string name="use_old_player_title">使用旧版播放器</string>
-    <string name="use_old_player_summary">旧版本的内置媒体播放器。</string>
+    <string name="use_old_player_summary">旧版本的内置媒体播放器</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
@@ -216,7 +216,39 @@
     <string name="title_history_view">观看记录</string>
     <string name="history_disabled">历史记录已禁用</string>
     <string name="action_history">历史记录</string>
-    <string name="history_empty">没有历史记录。</string>
+    <string name="history_empty">没有历史记录</string>
     <string name="history_cleared">历史记录已清除</string>
 
-</resources>
+<string name="settings_category_player_title">播放器</string>
+    <string name="settings_category_player_behavior_title">行为</string>
+    <string name="settings_category_history_title">历史记录</string>
+    <string name="background_player_append">在后台播放器上排队</string>
+    <string name="popup_playing_append">在弹出播放器上排队</string>
+    <string name="playlist">播放列表</string>
+    <string name="undo">撤销</string>
+    <string name="play_all">全部播放</string>
+
+    <string name="unknown_content">[未知]</string>
+
+    <string name="player_stream_failure">播放此流媒体失败</string>
+    <string name="player_unrecoverable_failure">发生无法解决的播放器错误</string>
+    <string name="search_no_results">没有结果</string>
+    <string name="empty_subscription_feed_subtitle">空空如也</string>
+
+    <string name="no_subscribers">无订阅者</string>
+    <plurals name="subscribers">
+	<item quantity="other">%s 位订阅者</item>
+</plurals>
+
+    <string name="no_views">无观看次数</string>
+    <plurals name="views">
+	<item quantity="other">%s 次观看</item>
+</plurals>
+
+    <string name="no_videos">没有视频</string>
+    <plurals name="videos">
+	<item quantity="other">%s 部视频</item>
+</plurals>
+
+    <string name="item_deleted">项目已删除</string>
+    </resources>

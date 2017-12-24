@@ -185,7 +185,7 @@
             android:name=".RouterPopupActivity"
             android:label="@string/popup_mode_share_menu_title"
             android:taskAffinity=""
-            android:theme="@android:style/Theme.NoDisplay">
+            android:theme="@style/PopupPermissionsTheme">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>

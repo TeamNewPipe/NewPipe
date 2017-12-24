@@ -7,6 +7,7 @@
     android:layout_height="@dimen/video_item_search_height"
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
+    android:focusable="true"
     android:padding="@dimen/video_item_search_padding">
 
     <ImageView
@@ -48,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/itemThumbnailView"
+        android:layout_toEndOf="@+id/itemThumbnailView"
         android:ellipsize="end"
         android:maxLines="2"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -60,6 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/itemVideoTitleView"
         android:layout_toRightOf="@+id/itemThumbnailView"
+        android:layout_toEndOf="@+id/itemThumbnailView"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_uploader_text_size"
@@ -71,6 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/itemThumbnailView"
+        android:layout_toEndOf="@+id/itemThumbnailView"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_upload_date_text_size"

@@ -62,6 +62,9 @@ public class LicenseFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_licenses, container, false);
         ViewGroup softwareComponentsView = rootView.findViewById(R.id.software_components);
 
+        View licenseLink = rootView.findViewById(R.id.app_read_license);
+        licenseLink.setOnClickListener(new OnReadFullLicenseClickListener());
+
         for (final SoftwareComponent component : softwareComponents) {
             View componentView = inflater.inflate(R.layout.item_software_component, container, false);
             TextView softwareName = componentView.findViewById(R.id.name);
@@ -118,5 +121,12 @@ public class LicenseFragment extends Fragment {
     private void openWebsite(String componentLink) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(componentLink));
         startActivity(browserIntent);
+    }
+
+    private static class OnReadFullLicenseClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            LicenseFragment.showLicense(v.getContext(), StandardLicenses.GPL3);
+        }
     }
 }
