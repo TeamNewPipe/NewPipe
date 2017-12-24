@@ -1,9 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+    }
     compileSdkVersion 26
-    buildToolsVersion '26.0.1'
-
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "org.schabi.newpipe"
         minSdkVersion 15
@@ -30,7 +31,17 @@ android {
             applicationIdSuffix ".beta"
         }
     }
-
+    flavorDimensions "platform"
+    productFlavors {
+        normal {
+            dimension "platform"
+        }
+        tv {
+            dimension "platform"
+            minSdkVersion 21
+            versionNameSuffix "-tv"
+        }
+    }
     lintOptions {
         checkReleaseBuilds false
         // Or, if you prefer, you can continue to check for errors in release builds,
@@ -47,39 +58,33 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
         exclude module: 'support-annotations'
     }
-
-    compile 'com.github.TeamNewPipe:NewPipeExtractor:1df3f67'
-
+    compile 'com.github.wb9688:NewPipeExtractor:97c55eed31197b68c0601501c7ac5223c138df0b'
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
-
-    compile 'com.android.support:appcompat-v7:26.0.1'
-    compile 'com.android.support:support-v4:26.0.1'
-    compile 'com.android.support:design:26.0.1'
-    compile 'com.android.support:recyclerview-v7:26.0.1'
-    compile 'com.android.support:preference-v14:26.0.1'
-
-    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:support-v4:26.1.0'
+    compile 'com.android.support:design:26.1.0'
+    compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.android.support:preference-v14:26.1.0'
+    tvCompile 'com.android.support.constraint:constraint-layout:1.0.2'
+    tvCompile 'com.android.support:leanback-v17:26.1.0'
+    tvCompile 'com.github.bumptech.glide:glide:3.8.0'
+    compile 'com.google.code.gson:gson:2.8.0'
     compile 'ch.acra:acra:4.9.0'
-
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.nirhart:parallaxscroll:1.0'
     compile 'com.nononsenseapps:filepicker:3.0.1'
     compile 'com.google.android.exoplayer:exoplayer:r2.5.1'
-
     debugCompile 'com.facebook.stetho:stetho:1.5.0'
     debugCompile 'com.facebook.stetho:stetho-urlconnection:1.5.0'
-    debugCompile 'com.android.support:multidex:1.0.1'
-
+    debugCompile 'com.android.support:multidex:1.0.2'
     compile 'io.reactivex.rxjava2:rxjava:2.1.2'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
-
-    compile 'android.arch.persistence.room:runtime:1.0.0-alpha8'
-    compile 'android.arch.persistence.room:rxjava2:1.0.0-alpha8'
-    annotationProcessor 'android.arch.persistence.room:compiler:1.0.0-alpha8'
-
+    compile 'android.arch.persistence.room:runtime:1.0.0-beta2'
+    compile 'android.arch.persistence.room:rxjava2:1.0.0-beta2'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.0.0-beta2'
     compile 'frankiesardo:icepick:3.2.0'
-    provided 'frankiesardo:icepick-processor:3.2.0'
+    annotationProcessor 'frankiesardo:icepick-processor:3.2.0'
 }
