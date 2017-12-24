@@ -76,9 +76,9 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:$supportLibVersion"
     implementation "com.android.support:preference-v14:$supportLibVersion"
 
-    tvCompile "com.android.support:leanback-v17:$supportLibVersion"
-    tvCompile 'com.android.support.constraint:constraint-layout:1.0.2'
-    tvCompile 'com.github.bumptech.glide:glide:3.8.0'
+    tvImplementation "com.android.support:leanback-v17:$supportLibVersion"
+    tvImplementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    tvImplementation 'com.github.bumptech.glide:glide:3.8.0'
 
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'ch.acra:acra:4.9.2'
