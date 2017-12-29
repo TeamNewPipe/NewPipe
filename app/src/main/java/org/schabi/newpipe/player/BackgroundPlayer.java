@@ -180,8 +180,7 @@ public final class BackgroundPlayer extends Service {
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCustomContentView(notRemoteView)
-                .setCustomBigContentView(bigNotRemoteView)
-                .setContentIntent(NavigationHelper.getServicePlayerControlPendingIntent(this, BackgroundPlayerActivity.class));
+                .setCustomBigContentView(bigNotRemoteView);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) builder.setPriority(NotificationCompat.PRIORITY_MAX);
         return builder;
     }
@@ -454,6 +453,7 @@ public final class BackgroundPlayer extends Service {
             super.setupBroadcastReceiver(intentFilter);
             intentFilter.addAction(ACTION_CLOSE);
             intentFilter.addAction(ACTION_PLAY_PAUSE);
+            intentFilter.addAction(ACTION_OPEN_CONTROLS);
             intentFilter.addAction(ACTION_REPEAT);
             intentFilter.addAction(ACTION_PLAY_PREVIOUS);
             intentFilter.addAction(ACTION_PLAY_NEXT);
@@ -477,6 +477,9 @@ public final class BackgroundPlayer extends Service {
                     break;
                 case ACTION_PLAY_PAUSE:
                     onVideoPlayPause();
+                    break;
+                case ACTION_OPEN_CONTROLS:
+                    NavigationHelper.openBackgroundPlayerControl(getApplicationContext());
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();
