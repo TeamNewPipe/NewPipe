@@ -1,6 +1,7 @@
 package org.schabi.newpipe.util;
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -44,6 +45,8 @@ import org.schabi.newpipe.settings.SettingsActivity;
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NavigationHelper {
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
+
+    public static final int PENDING_INTENT_OPEN_PLAYER_ACTIVITY = 1546;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Players
@@ -269,13 +272,24 @@ public class NavigationHelper {
         openServicePlayerControl(context, PopupVideoPlayerActivity.class);
     }
 
-    private static void openServicePlayerControl(final Context context, final Class clazz) {
-        final Intent intent = new Intent(context, clazz);
+    private static void openServicePlayerControl(final Context context, final Class activityClass) {
+        Intent intent = getServicePlayerControlIntent(context, activityClass);
+        context.startActivity(intent);
+        context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+    }
+
+    public static Intent getServicePlayerControlIntent(final Context context, final Class activityClass) {
+        final Intent intent = new Intent(context, activityClass);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
-        context.startActivity(intent);
-        context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+        return intent;
+    }
+
+    public static PendingIntent getServicePlayerControlPendingIntent(final Context context, final Class activityClass) {
+        Intent intent = getServicePlayerControlIntent(context, activityClass);
+        PendingIntent pIntent = PendingIntent.getActivity(context, PENDING_INTENT_OPEN_PLAYER_ACTIVITY, intent, 0);
+        return pIntent;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
