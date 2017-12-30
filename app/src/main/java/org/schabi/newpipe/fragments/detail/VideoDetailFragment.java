@@ -545,8 +545,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 }
             });
         }
-
-        if (TextUtils.isEmpty(info.getUploaderAvatarUrl())) {
+        
+        if (!TextUtils.isEmpty(info.getUploaderAvatarUrl())) {
             imageLoader.displayImage(info.getUploaderAvatarUrl(), uploaderThumb, DISPLAY_AVATAR_OPTIONS);
         }
     }

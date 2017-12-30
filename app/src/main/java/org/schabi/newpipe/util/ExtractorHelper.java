@@ -143,16 +143,16 @@ public final class ExtractorHelper {
         return checkCache(forceLoad, serviceId, url, Single.fromCallable(new Callable<KioskInfo>() {
             @Override
             public KioskInfo call() throws Exception {
-                return KioskInfo.getInfo(NewPipe.getService(serviceId), url, contentCountry);
+                return KioskInfo.getInfo(NewPipe.getService(serviceId), url, toUpperCase(contentCountry));
             }
         }));
     }
 
-    public static Single<NextItemsResult> getMoreKioskItems(final int serviceId, final String url, final String nextStreamsUrl) {
+    public static Single<NextItemsResult> getMoreKioskItems(final int serviceId, final String url, final String nextStreamsUrl, final String contentCountry) {
         return Single.fromCallable(new Callable<NextItemsResult>() {
             @Override
             public NextItemsResult call() throws Exception {
-                return KioskInfo.getMoreItems(NewPipe.getService(serviceId), url, nextStreamsUrl);
+                return KioskInfo.getMoreItems(NewPipe.getService(serviceId), url, nextStreamsUrl, toUpperCase(contentCountry));
             }
         });
     }
@@ -266,5 +266,18 @@ public final class ExtractorHelper {
      */
     public static boolean isInterruptedCaused(Throwable throwable) {
         return ExtractorHelper.hasExactCauseThrowable(throwable, InterruptedIOException.class, InterruptedException.class);
+    }
+
+    public static String toUpperCase(String value) {
+        StringBuilder sb = new StringBuilder(value);
+        for (int index = 0; index < sb.length(); index++) {
+            char c = sb.charAt(index);
+            if (Character.isLowerCase(c)) {
+                sb.setCharAt(index, Character.toUpperCase(c));
+            } else {
+                sb.setCharAt(index, Character.toLowerCase(c));
+            }
+        }
+        return sb.toString();
     }
 }
