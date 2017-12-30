@@ -176,12 +176,12 @@
 
     <string name="no_subscribers">صفر لا تقم با الإختيار (في بعض اللغات) لأنها ليست \"حالة خاصة\" للأندرويد</string>
     <plurals name="subscribers">
-	<item quantity="zero"></item>
-	<item quantity="one"></item>
-	<item quantity="two"></item>
-	<item quantity="few"></item>
-	<item quantity="many"></item>
-	<item quantity="other"></item>
+	<item quantity="zero">صفر</item>
+	<item quantity="one">واحد</item>
+	<item quantity="two">اثنان</item>
+	<item quantity="few">قليل</item>
+	<item quantity="many">كثير</item>
+	<item quantity="other">أخرى</item>
 </plurals>
 
     <string name="no_views">لاتوجد مشاهدات</string>
@@ -264,4 +264,32 @@
     <string name="start_here_on_popup">تشغيل هنا في وضع النافذة المنبثقة</string>
 <string name="reCaptcha_title">تحدي ريكابتشا</string>
     <string name="hold_to_append">اضغط للإدراج بقائمة الانتظار</string>
+    <plurals name="views">
+	<item quantity="zero">صفر</item>
+	<item quantity="one">واحد</item>
+	<item quantity="two">اثنان</item>
+	<item quantity="few">قليل</item>
+	<item quantity="many">كثير</item>
+	<item quantity="other">أخرى</item>
+</plurals>
+
+    <plurals name="videos">
+	<item quantity="zero">صفر</item>
+	<item quantity="one">واحد</item>
+	<item quantity="two">اثنان</item>
+	<item quantity="few">قليل</item>
+	<item quantity="many">كثير</item>
+	<item quantity="other">أخرى</item>
+</plurals>
+
+    <string name="recaptcha_request_toast">إعادة طلب كلمة التحقق</string>
+
+    <string name="copyright" formatted="true">© %1$sبواسطة%2$sتحت%3$s</string>
+    <string name="kiosk_page_summary">صفحة الكشك</string>
+    <string name="select_a_kiosk">حدد كشك</string>
+
+    <string name="kiosk">كشك</string>
+    <string name="enqueue_on_background">إدراج بقائمة الانتظار على خلفية</string>
+    <string name="enqueue_on_popup">إدراج بقائمة الانتظار على المنبثقة</string>
+    <string name="start_here_on_background">ابدأ هنا على خلفية المصدر</string>
     </resources>
