@@ -129,7 +129,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
             @Override
             public void selected(ChannelInfoItem selectedItem) {
                 // Requires the parent fragment to find holder for fragment replacement
-                NavigationHelper.openChannelFragment(getParentFragment().getFragmentManager(), selectedItem.service_id, selectedItem.url, selectedItem.name);
+                NavigationHelper.openChannelFragment(getParentFragment().getFragmentManager(), selectedItem.getServiceId(), selectedItem.url, selectedItem.getName());
 
             }
 

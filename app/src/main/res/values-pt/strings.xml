@@ -7,7 +7,7 @@
     <string name="cancel">Cancelar</string>
     <string name="open_in_browser">Abrir no navegador</string>
     <string name="share">Partilhar</string>
-    <string name="download">Transferir</string>
+    <string name="download">Descarregar</string>
     <string name="search">Pesquisar</string>
     <string name="settings">Definições</string>
     <string name="did_you_mean">Será que queria dizer: %1$s?</string>
@@ -16,12 +16,12 @@
     <string name="screen_rotation">rotação</string>
     <string name="use_external_video_player_title">Utilizar reprodutor de vídeo externo</string>
     <string name="use_external_audio_player_title">Utilizar reprodutor de áudio externo</string>
-    <string name="download_path_title">Local de transferência de vídeo</string>
-    <string name="download_path_summary">Local para guardar os vídeos transferidos</string>
-    <string name="download_path_dialog_title">Introduza o caminho para os vídeos</string>
+    <string name="download_path_title">Local para a descarga de vídeos</string>
+    <string name="download_path_summary">Local para guardar os vídeos descarregados</string>
+    <string name="download_path_dialog_title">Digite o caminho para os vídeos</string>
     <string name="default_resolution_title">Resolução padrão</string>
     <string name="play_with_kodi_title">Reproduzir no Kodi</string>
-    <string name="kore_not_found">Aplicação Kore não encontrada. Quer instalá-la?</string>
+    <string name="kore_not_found">Aplicação Kore não encontrada. Instalar?</string>
     <string name="show_play_with_kodi_title">Mostrar opção \"Reproduzir no Kodi\"</string>
     <string name="show_play_with_kodi_summary">Mostra uma opção para reproduzir o vídeo no Kodi</string>
     <string name="play_audio">Áudio</string>
@@ -52,9 +52,9 @@
 
     <string name="use_tor_title">Usar Tor</string>
     <string name="use_tor_summary">(Experimental) Usar a rede Tor para aumentar a privacidade (ainda não é suportada a emissão de vídeos).</string>
-    <string name="download_path_audio_title">Local de transferência de áudio</string>
-    <string name="download_path_audio_summary">Local para guardar o áudio transferido.</string>
-    <string name="download_path_audio_dialog_title">Introduza o caminho para os ficheiros de áudio</string>
+    <string name="download_path_audio_title">Local para a descarga de áudio</string>
+    <string name="download_path_audio_summary">Local para guardar o áudio descarregado</string>
+    <string name="download_path_audio_dialog_title">Digite o caminho para os ficheiros de áudio</string>
 
     <string name="err_dir_create">Não foi possível criar o diretório \'%1$s\'</string>
     <string name="info_dir_created">Diretório \'%1$s\' criado com sucesso</string>
@@ -165,7 +165,7 @@ o modo “popup“</string>
     <string name="refresh">Atualizar</string>
     <string name="clear">Limpar</string>
     <string name="controls_background_title">Em segundo plano</string>
-    <string name="use_external_video_player_summary">Algumas resoluções NÃO terão áudio quando esta opção estiver ativada</string>
+    <string name="use_external_video_player_summary">Algumas resoluções não terão áudio se esta opção estiver ativa</string>
     <string name="popup_remember_size_pos_summary">Lembrar último tamanho e posição do popup</string>
 
     <string name="popup_resizing_indicator_title">Redimensionar</string>
@@ -201,7 +201,7 @@ o modo “popup“</string>
     <string name="tab_main">Principal</string>
     <string name="tab_subscriptions">Subscrições</string>
 
-    <string name="fragment_whats_new">O que há de novo</string>
+    <string name="fragment_whats_new">Novidades</string>
 
     <string name="enable_search_history_title">Histórico de Pesquisa</string>
     <string name="enable_search_history_summary">Armazenar termos de pesquisa localmente</string>

@@ -95,7 +95,7 @@ public final class ListHelper {
         int highestQualityIndex = 0;
         if (audioStreams.size() > 1) for (int i = 1; i < audioStreams.size(); i++) {
             AudioStream audioStream = audioStreams.get(i);
-            if (audioStream.average_bitrate >= audioStreams.get(highestQualityIndex).average_bitrate) highestQualityIndex = i;
+            if (audioStream.getAverageBitrate() >= audioStreams.get(highestQualityIndex).getAverageBitrate()) highestQualityIndex = i;
         }
         return highestQualityIndex;
     }
@@ -124,10 +124,10 @@ public final class ListHelper {
         int highestQualityIndex = -1;
         for (int i = 0; i < audioStreams.size(); i++) {
             AudioStream audioStream = audioStreams.get(i);
-            if (highestQualityIndex == -1 && audioStream.format == defaultFormat.id) highestQualityIndex = i;
+            if (highestQualityIndex == -1 && audioStream.getFormat() == defaultFormat) highestQualityIndex = i;
 
-            if (highestQualityIndex != -1 && audioStream.format == defaultFormat.id
-                    && audioStream.average_bitrate > audioStreams.get(highestQualityIndex).average_bitrate) {
+            if (highestQualityIndex != -1 && audioStream.getFormat() == defaultFormat
+                    && audioStream.getAverageBitrate() > audioStreams.get(highestQualityIndex).getAverageBitrate()) {
                 highestQualityIndex = i;
             }
         }
@@ -171,23 +171,23 @@ public final class ListHelper {
 
         if (videoOnlyStreams != null) {
             for (VideoStream stream : videoOnlyStreams) {
-                if (!showHigherResolutions && HIGH_RESOLUTION_LIST.contains(stream.resolution)) continue;
+                if (!showHigherResolutions && HIGH_RESOLUTION_LIST.contains(stream.getResolution())) continue;
                 retList.add(stream);
             }
         }
         if (videoStreams != null) {
             for (VideoStream stream : videoStreams) {
-                if (!showHigherResolutions && HIGH_RESOLUTION_LIST.contains(stream.resolution)) continue;
+                if (!showHigherResolutions && HIGH_RESOLUTION_LIST.contains(stream.getResolution())) continue;
                 retList.add(stream);
             }
         }
 
         // Add all to the hashmap
-        for (VideoStream videoStream : retList) hashMap.put(videoStream.resolution, videoStream);
+        for (VideoStream videoStream : retList) hashMap.put(videoStream.getResolution(), videoStream);
 
         // Override the values when the key == resolution, with the defaultFormat
         for (VideoStream videoStream : retList) {
-            if (videoStream.format == defaultFormat.id) hashMap.put(videoStream.resolution, videoStream);
+            if (videoStream.getFormat() == defaultFormat) hashMap.put(videoStream.getResolution(), videoStream);
         }
 
         retList.clear();
@@ -219,8 +219,8 @@ public final class ListHelper {
         Collections.sort(videoStreams, new Comparator<VideoStream>() {
             @Override
             public int compare(VideoStream o1, VideoStream o2) {
-                int res1 = Integer.parseInt(o1.resolution.replace("0p60", "1").replaceAll("[^\\d.]", ""));
-                int res2 = Integer.parseInt(o2.resolution.replace("0p60", "1").replaceAll("[^\\d.]", ""));
+                int res1 = Integer.parseInt(o1.getResolution().replace("0p60", "1").replaceAll("[^\\d.]", ""));
+                int res2 = Integer.parseInt(o2.getResolution().replace("0p60", "1").replaceAll("[^\\d.]", ""));
 
                 return ascendingOrder ? res1 - res2 : res2 - res1;
             }
@@ -235,9 +235,9 @@ public final class ListHelper {
         int defaultStreamIndex = -1;
         for (int i = 0; i < videoStreams.size(); i++) {
             VideoStream stream = videoStreams.get(i);
-            if (defaultStreamIndex == -1 && stream.resolution.equals(defaultResolution)) defaultStreamIndex = i;
+            if (defaultStreamIndex == -1 && stream.getResolution().equals(defaultResolution)) defaultStreamIndex = i;
 
-            if (stream.format == defaultFormat.id && stream.resolution.equals(defaultResolution)) {
+            if (stream.getFormat() == defaultFormat && stream.getResolution().equals(defaultResolution)) {
                 return i;
             }
         }

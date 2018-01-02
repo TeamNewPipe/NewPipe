@@ -223,7 +223,7 @@
     <string name="app_license_title">NewPipe:n Lisenssi</string>
     <string name="contribution_encouragement">Olkoon sinulla ideoita; käännöksistä, design muutoksista, koodin siivoamisesta tai raskaista koodimuutoksista—apu on aina tervetullutta. Mitä enemmän saadaan tehtyä, sen paremmaksi sovellus tulee!</string>
     <string name="read_full_license">Lue lisenssi</string>
-    <string name="contribution_title">Lahjoitus</string>
+    <string name="contribution_title">Osallistu</string>
 
     <string name="title_activity_history">Historia</string>
     <string name="title_history_search">Haettu</string>
@@ -275,4 +275,9 @@
     <string name="start_here_on_main">Aloita toistaminen</string>
     <string name="start_here_on_background">Aloita toisto taustalla</string>
     <string name="start_here_on_popup">Aloita toisto ikkunassa</string>
-</resources>
+<string name="donation_title">Lahjoita</string>
+    <string name="donation_encouragement">NewPipe kehitetään vapaaehtoisten toimesta, jotka käyttävät vapaa-aikaansa tuottaakseen parhaimman kokemuksen sinulle. Nyt on aika antaa takaisin, jotta kehittäjät voivat tehdä NewPipe:sta vielä paremman nauttiessaan kupin kahvia!</string>
+    <string name="give_back">Anna takaisin</string>
+    <string name="website_title">Websivu</string>
+    <string name="website_encouragement">Käy verkkosivuillamme saadaksesi lisää tietoa ja uusimmat uutiset NewPipe:sta.</string>
+    </resources>

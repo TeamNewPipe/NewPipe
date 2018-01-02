@@ -40,7 +40,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         if (!(infoItem instanceof StreamInfoItem)) return;
         final StreamInfoItem item = (StreamInfoItem) infoItem;
 
-        itemVideoTitleView.setText(item.name);
+        itemVideoTitleView.setText(item.getName());
         itemUploaderView.setText(item.uploader_name);
 
         if (item.duration > 0) {

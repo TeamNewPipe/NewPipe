@@ -298,4 +298,9 @@ te openen in pop-upmodus</string>
     <string name="start_here_on_main">Hier beginnen spelen</string>
     <string name="start_here_on_background">Hier beginnen in achtergrond</string>
     <string name="start_here_on_popup">Hier beginnen in pop-up</string>
-</resources>
+<string name="donation_title">Doneren</string>
+    <string name="donation_encouragement">NewPipe wordt door vrijwilligers in hun vrije tijd ontwikkeld om jou de beste ervaring te brengen. Nu is het tijd om terug te geven, zodat onze ontwikkelaars NewPipe nóg beter kunnen maken terwijl ze van hun kopje koffie genieten!</string>
+    <string name="give_back">Teruggeven</string>
+    <string name="website_title">Website</string>
+    <string name="website_encouragement">Bezoek onze website voor meer informatie en het laatste nieuws over NewPipe.</string>
+    </resources>

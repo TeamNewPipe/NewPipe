@@ -75,7 +75,13 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
  * @author mauriciocolli
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.VideoListener, SeekBar.OnSeekBarChangeListener, View.OnClickListener, Player.EventListener, PopupMenu.OnMenuItemClickListener, PopupMenu.OnDismissListener {
+public abstract class VideoPlayer extends BasePlayer
+        implements SimpleExoPlayer.VideoListener,
+        SeekBar.OnSeekBarChangeListener,
+        View.OnClickListener,
+        Player.EventListener,
+        PopupMenu.OnMenuItemClickListener,
+        PopupMenu.OnDismissListener {
     public static final boolean DEBUG = BasePlayer.DEBUG;
     public final String TAG;
 
@@ -283,12 +289,12 @@ public abstract class VideoPlayer extends BasePlayer implements SimpleExoPlayer.
         if (index < 0 || index >= videos.size()) return null;
         final VideoStream video = videos.get(index);
 
-        final MediaSource streamSource = buildMediaSource(video.url, MediaFormat.getSuffixById(video.format));
+        final MediaSource streamSource = buildMediaSource(video.getUrl(), MediaFormat.getSuffixById(video.format));
         final AudioStream audio = ListHelper.getHighestQualityAudio(info.audio_streams);
         if (!video.isVideoOnly || audio == null) return streamSource;
 
         // Merge with audio stream in case if video does not contain audio
-        final MediaSource audioSource = buildMediaSource(audio.url, MediaFormat.getSuffixById(audio.format));
+        final MediaSource audioSource = buildMediaSource(audio.getUrl(), MediaFormat.getSuffixById(audio.format));
         return new MergingMediaSource(streamSource, audioSource);
     }
 

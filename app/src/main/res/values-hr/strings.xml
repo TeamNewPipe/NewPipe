@@ -280,4 +280,10 @@
     <string name="play_queue_stream_detail">Detalji</string>
     <string name="play_queue_audio_settings">Postavke zvuka</string>
     <string name="hold_to_append">Zadržite za dodavanje u red čekanja</string>
-</resources>
+<string name="unknown_content">[Nepoznato]</string>
+
+    <string name="donation_title">Doniraj</string>
+    <string name="website_title">Web stranica</string>
+    <string name="start_here_on_main">Ovdje započni reprodukciju</string>
+    <string name="start_here_on_background">Ovdje započni repr. u pozadini</string>
+    </resources>

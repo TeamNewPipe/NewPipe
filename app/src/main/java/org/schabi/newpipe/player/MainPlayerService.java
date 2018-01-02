@@ -1058,7 +1058,7 @@ public class MainPlayerService extends Service {
 
         public void checkLandscape() {
             Activity parent = playerImpl.getParentActivity();
-            if(parent != null && isLandScape() && !isInFullscreen() && getCurrentState() != STATE_COMPLETED)
+            if(parent != null && isLandScape() && !isInFullscreen() && getCurrentState() != STATE_COMPLETED && !isBackgroundPlayerSelected)
                 playerImpl.onFullScreenButtonClicked();
         }
 

@@ -32,7 +32,7 @@ public class PlaylistInfoItemHolder extends InfoItemHolder {
         if (!(infoItem instanceof PlaylistInfoItem)) return;
         final PlaylistInfoItem item = (PlaylistInfoItem) infoItem;
 
-        itemTitleView.setText(item.name);
+        itemTitleView.setText(item.getName());
         itemStreamCountView.setText(item.stream_count + "");
         itemUploaderView.setText(item.uploader_name);
 

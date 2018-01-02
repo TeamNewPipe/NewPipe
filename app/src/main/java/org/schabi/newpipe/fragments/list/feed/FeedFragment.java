@@ -297,12 +297,12 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
             // Called only when response is non-empty
             @Override
             public void onSuccess(final ChannelInfo channelInfo) {
-                if (infoListAdapter == null || channelInfo.related_streams.isEmpty()) {
+                if (infoListAdapter == null || channelInfo.getRelatedStreams().isEmpty()) {
                     onDone();
                     return;
                 }
 
-                final InfoItem item = channelInfo.related_streams.get(0);
+                final InfoItem item = channelInfo.getRelatedStreams().get(0);
                 // Keep requesting new items if the current one already exists
                 boolean itemExists = doesItemExist(infoListAdapter.getItemsList(), item);
                 if (!itemExists) {
@@ -412,9 +412,9 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     private boolean doesItemExist(final List<InfoItem> items, final InfoItem item) {
         for (final InfoItem existingItem : items) {
             if (existingItem.info_type == item.info_type &&
-                    existingItem.service_id == item.service_id &&
-                    existingItem.name.equals(item.name) &&
-                    existingItem.url.equals(item.url)) return true;
+                    existingItem.getServiceId() == item.getServiceId() &&
+                    existingItem.getName().equals(item.getName()) &&
+                    existingItem.getUrl().equals(item.getUrl())) return true;
         }
         return false;
     }
