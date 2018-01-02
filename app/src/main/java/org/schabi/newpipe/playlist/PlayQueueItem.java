@@ -30,12 +30,12 @@ public class PlayQueueItem implements Serializable {
     private transient Single<StreamInfo> stream;
 
     PlayQueueItem(@NonNull final StreamInfo info) {
-        this(info.name, info.url, info.service_id, info.duration, info.thumbnail_url, info.uploader_name);
+        this(info.getName(), info.getUrl(), info.getServiceId(), info.duration, info.thumbnail_url, info.uploader_name);
         this.stream = Single.just(info);
     }
 
     PlayQueueItem(@NonNull final StreamInfoItem item) {
-        this(item.name, item.url, item.service_id, item.duration, item.thumbnail_url, item.uploader_name);
+        this(item.getName(), item.getUrl(), item.getServiceId(), item.duration, item.thumbnail_url, item.uploader_name);
     }
 
     private PlayQueueItem(final String name, final String url, final int serviceId,

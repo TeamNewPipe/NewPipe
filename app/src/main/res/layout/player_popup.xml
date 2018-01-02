@@ -92,6 +92,7 @@
                 android:layout_alignParentRight="true"
                 android:background="#00ffffff"
                 android:clickable="true"
+                android:focusable="true"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_fullscreen_white"
                 tools:ignore="ContentDescription,RtlHardcoded"/>

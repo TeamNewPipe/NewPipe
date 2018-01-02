@@ -19,8 +19,6 @@ import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.KioskTranslator;
-import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.ArrayList;
@@ -131,9 +129,12 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
             @Override
             public void selected(ChannelInfoItem selectedItem) {
                 // Requires the parent fragment to find holder for fragment replacement
-                NavigationHelper.openChannelFragment(getParentFragment().getFragmentManager(), selectedItem.service_id, selectedItem.url, selectedItem.name);
+                NavigationHelper.openChannelFragment(getParentFragment().getFragmentManager(), selectedItem.getServiceId(), selectedItem.url, selectedItem.getName());
 
             }
+
+            @Override
+            public void held(ChannelInfoItem selectedItem) {}
         });
 
         headerRootLayout.setOnClickListener(new View.OnClickListener() {

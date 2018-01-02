@@ -5,6 +5,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +28,7 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.NavigationHelper;
 
+import icepick.State;
 import io.reactivex.Single;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -53,7 +55,8 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
 
-    private String kioskId = "";
+    @State
+    protected String kioskId = "";
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -88,20 +91,39 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
+    public void onActivityCreated(Bundle savedState) {
+        super.onActivityCreated(savedState);
+        try {
+            activity.getSupportActionBar()
+                    .setTitle(KioskTranslator.getTranslatedKioskName(kioskId, getActivity()));
+        } catch (Exception e) {
+            onUnrecoverableError(e, UserAction.UI_ERROR,
+                    "none",
+                    "none", R.string.app_ui_crash);
+        }
+    }
+
+    @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if(useAsFrontPage && isVisibleToUser) {
+        if(useAsFrontPage && isVisibleToUser && activity != null) {
             try {
-                activity.getSupportActionBar().setTitle(KioskTranslator.getTranslatedKioskName(kioskId, getActivity()));
+                activity.getSupportActionBar()
+                        .setTitle(KioskTranslator.getTranslatedKioskName(kioskId, getActivity()));
             } catch (Exception e) {
-                onError(e);
+                onUnrecoverableError(e, UserAction.UI_ERROR,
+                        "none",
+                        "none", R.string.app_ui_crash);
             }
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_kiosk, container, false);
+        View view = inflater.inflate(R.layout.fragment_kiosk, container, false);
+        activity.getSupportActionBar()
+                .setTitle(KioskTranslator.getTranslatedKioskName(kioskId, getActivity()));
+        return view;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -132,7 +154,11 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
 
     @Override
     public Single<ListExtractor.NextItemsResult> loadMoreItemsLogic() {
-        return ExtractorHelper.getMoreKioskItems(serviceId, url, currentNextItemsUrl);
+        String contentCountry = PreferenceManager
+                .getDefaultSharedPreferences(activity)
+                .getString(getString(R.string.search_language_key),
+                        getString(R.string.default_language_value));
+        return ExtractorHelper.getMoreKioskItems(serviceId, url, currentNextItemsUrl, contentCountry);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -153,10 +179,10 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         ActionBar supportActionBar = activity.getSupportActionBar();
         supportActionBar.setTitle(title);
 
-        if (!result.errors.isEmpty()) {
-            showSnackBarError(result.errors,
+        if (!result.getErrors().isEmpty()) {
+            showSnackBarError(result.getErrors(),
                     UserAction.REQUESTED_PLAYLIST,
-                    NewPipe.getNameOfService(result.service_id), result.url, 0);
+                    NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
         }
     }
 
@@ -164,8 +190,8 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     public void handleNextItems(ListExtractor.NextItemsResult result) {
         super.handleNextItems(result);
 
-        if (!result.errors.isEmpty()) {
-            showSnackBarError(result.errors,
+        if (!result.getErrors().isEmpty()) {
+            showSnackBarError(result.getErrors(),
                     UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(serviceId)
                     , "Get next page of: " + url, 0);
         }

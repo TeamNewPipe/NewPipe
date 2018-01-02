@@ -165,7 +165,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
         suggestionListAdapter = new SuggestionListAdapter(activity);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         isSearchHistoryEnabled = preferences.getBoolean(getString(R.string.enable_search_history_key), true);
-        suggestionListAdapter.setShowSugestinHistory(isSearchHistoryEnabled);
+        suggestionListAdapter.setShowSuggestionHistory(isSearchHistoryEnabled);
         
         searchHistoryDAO = NewPipeDatabase.getInstance().searchHistoryDAO();
     }
@@ -444,6 +444,12 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
             public void onSuggestionItemSelected(SuggestionItem item) {
                 search(item.query);
                 searchEditText.setText(item.query);
+            }
+
+            @Override
+            public void onSuggestionItemInserted(SuggestionItem item) {
+                searchEditText.setText(item.query);
+                searchEditText.setSelection(searchEditText.getText().length());
             }
 
             @Override
@@ -855,8 +861,8 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
         lastSearchedQuery = searchQuery;
 
         if (infoListAdapter.getItemsList().size() == 0) {
-            if (result.resultList.size() > 0) {
-                infoListAdapter.addInfoItemList(result.resultList);
+            if (!result.getResults().isEmpty()) {
+                infoListAdapter.addInfoItemList(result.getResults());
             } else {
                 infoListAdapter.clearStreamItemList();
                 showEmptyState();
@@ -870,11 +876,11 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     @Override
     public void handleNextItems(ListExtractor.NextItemsResult result) {
         showListFooter(false);
-        currentPage = Integer.parseInt(result.nextItemsUrl);
-        infoListAdapter.addInfoItemList(result.nextItemsList);
+        currentPage = Integer.parseInt(result.getNextItemsUrl());
+        infoListAdapter.addInfoItemList(result.getNextItemsList());
 
-        if (!result.errors.isEmpty()) {
-            showSnackBarError(result.errors, UserAction.SEARCHED, NewPipe.getNameOfService(serviceId)
+        if (!result.getErrors().isEmpty()) {
+            showSnackBarError(result.getErrors(), UserAction.SEARCHED, NewPipe.getNameOfService(serviceId)
                     , "\"" + searchQuery + "\" → page " + currentPage, 0);
         }
         super.handleNextItems(result);

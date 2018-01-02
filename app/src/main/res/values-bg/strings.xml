@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="main_bg_subtitle">Натисни на търсене за да започнеш</string>
+    <string name="view_count_text">%1$s гледания</string>
+    <string name="upload_date_text">Публикувано на %1$s</string>
+    <string name="no_player_found">Не е намерен стрийм плейър. Желаете ли да инсталирате VLC?</string>
+    <string name="install">Инсталирай</string>
+    <string name="cancel">Затвори</string>
+    <string name="open_in_browser">Отвори в браузъра</string>
+    <string name="open_in_popup_mode">Отвори в подпрозорец</string>
+    <string name="share">Сподели</string>
+    <string name="download">Сваляне</string>
+    <string name="search">Търси</string>
+    <string name="settings">Настройки</string>
+    <string name="did_you_mean">Може би имахте в предвид: %1$s ?</string>
+    <string name="share_dialog_title">Сподели с</string>
+    <string name="choose_browser">Избери браузър</string>
+    <string name="screen_rotation">ориентация</string>
+    <string name="use_external_video_player_title">Използвай външен видео плейър</string>
+    <string name="use_external_video_player_summary">Някои резолюции няма да имат вграден аудио поток ако изберете тази опция</string>
+    <string name="use_external_audio_player_title">Използвай външен аудио плейър</string>
+    <string name="popup_mode_share_menu_title">Режим с подпрозорец на NewPipe</string>
+    <string name="subscribe_button_title">Абониране</string>
+    <string name="subscribed_button_title">Абониран</string>
+    <string name="channel_unsubscribed">Премахнат абонамент за канала</string>
+    <string name="subscription_change_failed">Не мога да променя абонаментите</string>
+    <string name="subscription_update_failed">Не мога да обновя абонаментите</string>
+
+    <string name="tab_subscriptions">Абонаменти</string>
+
+    <string name="fragment_whats_new">Новости</string>
+
+    <string name="controls_background_title">Фон</string>
+    <string name="controls_popup_title">Подпрозорец</string>
+
+    <string name="download_path_title">Локация за запис на клиповете</string>
+    <string name="download_path_summary">Път за съхранение на свалени клипове</string>
+    <string name="download_path_dialog_title">Въведи път за съхранение на свалени клипове</string>
+
+    <string name="download_path_audio_title">Локация за запис на аудио</string>
+    <string name="download_path_audio_summary">Път за съхранение на свалено аудио</string>
+    <string name="download_path_audio_dialog_title">Въведи път за съхранение на свалено аудио</string>
+
+    <string name="autoplay_by_calling_app_title">Автоматично възпроизвеждане</string>
+    <string name="autoplay_by_calling_app_summary">Автоматично въпроизвеждане на видео, когато NewPipe е повикан от друго приложение</string>
+    <string name="default_resolution_title">Резолюция по подразбиране</string>
+    <string name="default_popup_resolution_title">Резолюция по подразбиране на подпрозореца</string>
+    <string name="show_higher_resolutions_title">Покажи по-високи резолюции</string>
+    <string name="show_higher_resolutions_summary">Само някои устройства поддържат възпроизвеждане на 2K/4K клипове</string>
+    <string name="play_with_kodi_title">Въпроизвеждане с Kodi</string>
+    <string name="kore_not_found">Приложението Kore не е намерено. Желаете ли да го инсталирате?</string>
+    <string name="show_play_with_kodi_title">Покажи опция \"Въпроизвеждане с Kodi\"</string>
+    <string name="show_play_with_kodi_summary">Показване на опция за въпроизвеждане на видео чрез Kodi media center</string>
+    <string name="play_audio">Аудио</string>
+    <string name="default_audio_format_title">Аудио формат по подразбиране</string>
+    <string name="default_video_format_title">Видео формат по подразбиране</string>
+    <string name="webm_description">WebM — свободен формат</string>
+    <string name="m4a_description">M4A — по-добро качество</string>
+    <string name="theme_title">Тема</string>
+    <string name="light_theme_title">Светла</string>
+    <string name="dark_theme_title">Тъмна</string>
+    <string name="black_theme_title">Черна</string>
+    <string name="popup_remember_size_pos_title">Помни размера и позицията на подпрозореца</string>
+    <string name="popup_remember_size_pos_summary">Запомни последния размер и позиция на подпрозореца</string>
+    <string name="player_gesture_controls_title">Контролиране на плейъра чрез жестове</string>
+    <string name="player_gesture_controls_summary">Използвай жестове за да контролираш яркостта и силата на звука на плейъра</string>
+    <string name="show_search_suggestions_title">Предложения за търсене</string>
+    <string name="show_search_suggestions_summary">Покажи предположения по време на търсене</string>
+    <string name="enable_search_history_title">История на търсенията</string>
+    <string name="enable_search_history_summary">Съхранявай заявките за търсене локално</string>
+    <string name="enable_watch_history_title">История</string>
+    <string name="enable_watch_history_summary">Следи изгледаните клипове</string>
+    <string name="resume_on_audio_focus_gain_title">Поднови клип при възобновяване на фокуса</string>
+    <string name="resume_on_audio_focus_gain_summary">Продължава въпроизвеждането след прекъсване (например, телефонно обаждане)</string>
+    <string name="download_dialog_title">Свалени</string>
+    <string name="next_video_title">Следващ клип</string>
+    <string name="show_next_and_similar_title">Показвай следващия и подобни клипове</string>
+    <string name="show_hold_to_append_title">Показвай поле със съвет \"Задръж за добавяне\"</string>
+    <string name="url_not_supported_toast">Неподдържан URL</string>
+    <string name="search_language_title">Език на съдържанието по подразбиране</string>
+    <string name="settings_category_player_title">Плейър</string>
+    <string name="settings_category_player_behavior_title">Поведение</string>
+    <string name="settings_category_video_audio_title">Видео &amp; Аудио</string>
+    <string name="settings_category_history_title">История</string>
+    <string name="settings_category_popup_title">Подпрозорец</string>
+    <string name="settings_category_appearance_title">Вид</string>
+    <string name="settings_category_other_title">Други</string>
+    <string name="background_player_playing_toast">Въпроизвеждане във фонов режим</string>
+    <string name="popup_playing_toast">Въпроизвеждане в подпрозорец</string>
+    <string name="background_player_append">Включен в опашката на фоновия плейър</string>
+    <string name="popup_playing_append">Включен в опашката за възпроизвеждане в подпрозорец</string>
+    <string name="play_btn_text">Възпроизвеждане</string>
+    <string name="content">Съдържание</string>
+    <string name="show_age_restricted_content_title">Покажи съдържание с ограничение във възрастта</string>
+    <string name="video_is_age_restricted">Съдържание за възрастни. Разрешаването на такова съдържание става от Настройки.</string>
+    <string name="duration_live">на живо</string>
+    <string name="downloads">Изтегляния</string>
+    <string name="downloads_title">Изтегляния</string>
+    <string name="error_report_title">Съобщение за грешка</string>
+    <string name="all">Всички</string>
+    <string name="channel">Канал</string>
+    <string name="playlist">Плейлист</string>
+    <string name="yes">Да</string>
+    <string name="later">По-късно</string>
+    <string name="disabled">Забранено</string>
+    <string name="filter">Филтър</string>
+    <string name="refresh">Обнови</string>
+    <string name="clear">Изчисти</string>
+    <string name="popup_resizing_indicator_title">Оразмеряване</string>
+    <string name="best_resolution">Най-добра резолюция</string>
+    <string name="undo">Отмени</string>
+    <string name="play_all">Възпроизведи всички</string>
+
+    <string name="notification_channel_name">Известия от NewPipe</string>
+    <string name="notification_channel_description">Известия за фоновия плейър и плейъра на подпрозореца на NewPipe</string>
+
+    <string name="unknown_content">[Неизвестен]</string>
+
+    <string name="general_error">Грешка</string>
+    <string name="network_error">Проблем с мрежата</string>
+    <string name="could_not_load_thumbnails">Не мога да заредя всички миниатюри</string>
+    <string name="parsing_error">Не мога да интерпретирам правилно уебсайта</string>
+    <string name="light_parsing_error">Не мога да интерпретирам изцяло правилно уебсайта</string>
+    <string name="content_not_available">Съдържанието не е налично</string>
+    <string name="blocked_by_gema">Блокирано от GEMA</string>
+    <string name="could_not_setup_download_menu">Не мога да настроя меню за сваляне</string>
+    <string name="live_streams_not_supported">Това е предаване на живо, което все още не се поддържа.</string>
+    <string name="could_not_get_stream">Не мога да достъпя нито един поток</string>
+    <string name="could_not_load_image">Не мога да заредя изображение</string>
+    <string name="app_ui_crash">Приложението или потребителският интерфейс се сринаха</string>
+    <string name="player_stream_failure">Неуспех при възпроизвеждането на този поток</string>
+    <string name="player_unrecoverable_failure">Критичен проблем с плейъра</string>
+    <string name="player_recoverable_failure">Опит за възстановяване от възникналия проблем с плейъра</string>
+
+    <string name="sorry_string">Съжаляваме, но това не би трябвало да се случва.</string>
+    <string name="error_report_button_text">Докладвай за грешката чрез имейл</string>
+    <string name="error_snackbar_message">Съжаляваме, възникнаха някои грешки.</string>
+    <string name="error_snackbar_action">ДОКЛАД</string>
+    <string name="what_device_headline">Инфо:</string>
+    <string name="what_happened_headline">Какво се случи:</string>
+    <string name="your_comment">Вашият коментар (на английски):</string>
+    <string name="error_details_headline">Подробности:</string>
+
+
+    <string name="detail_thumbnail_view_description">Миниатюра на клипа</string>
+    <string name="detail_uploader_thumbnail_view_description">Миниатюра на аватаря на качилия клипа</string>
+    <string name="detail_likes_img_view_description">Харесвания</string>
+    <string name="detail_dislikes_img_view_description">Нехаресвания</string>
+    <string name="use_tor_title">Използвай Tor</string>
+    <string name="use_tor_summary">(Експериментално) Пренасочвай трафика при сваляне към мрежата на Tor за по-високо ниво на поверителност (стриймването на клипове все още не се поддържа).</string>
+    <string name="report_error">Докладвай за грешка</string>
+    <string name="search_no_results">Няма резултати</string>
+    <string name="empty_subscription_feed_subtitle">Тук все още няма нищо</string>
+
+    <string name="err_dir_create">Не мога да създам директория за свалянията в \'%1$s\'</string>
+    <string name="info_dir_created">Създадох директория за свалянията в \'%1$s\'</string>
+
+    <string name="video">Видео</string>
+    <string name="audio">Аудио</string>
+    <string name="retry">Опитай отново</string>
+    <string name="storage_permission_denied">Отказан достъп до хранилището (провери правата)</string>
+    <string name="use_old_player_title">Използвай стария плейър</string>
+    <string name="use_old_player_summary">Използваю стария вграден Mediaframewoek плейър</string>
+
+    <plurals name="subscribers">
+	<item quantity="one">%s абонат</item>
+	<item quantity="other">%s абонати</item>
+</plurals>
+
+    <string name="no_views">Няма гледания</string>
+    <plurals name="views">
+	<item quantity="one">%s гледане</item>
+	<item quantity="other">%s гледания</item>
+</plurals>
+
+    <string name="no_videos">Няма клипове</string>
+    <plurals name="videos">
+	<item quantity="one">%s клип</item>
+	<item quantity="other">%s клипове</item>
+</plurals>
+
+    <string name="pause">Пауза</string>
+    <string name="view">Начало</string>
+    <string name="delete">Изтрий</string>
+    <string name="checksum">Чексума</string>
+
+    <string name="finish">Готово</string>
+
+    <string name="msg_name">Име на файла</string>
+    <string name="msg_threads">Нишки</string>
+    <string name="msg_error">Грешка</string>
+    <string name="msg_server_unsupported">Сървърът не се поддържа</string>
+    <string name="msg_exists">Файлът вече съществува</string>
+    <string name="msg_url_malform">Неправилен формат на URL-а или няма връзка</string>
+    <string name="msg_running">NewPipe Сваляне</string>
+    <string name="msg_running_detail">Натисни за подробности</string>
+    <string name="msg_wait">Моля, изчакайте…</string>
+    <string name="msg_copied">Копирано в клипборда</string>
+    <string name="settings_file_charset_title">Позволени символи в името на файловете</string>
+    <string name="settings_file_replacement_character_summary">Невалидните символи се заменят с тази стойност</string>
+    <string name="settings_file_replacement_character_title">Стойност за замяна</string>
+
+    <string name="charset_letters_and_digits">Букви и цифри</string>
+    <string name="title_activity_about">За NewPipe</string>
+    <string name="action_settings">Настройки</string>
+    <string name="action_about">Относно приложението</string>
+    <string name="title_licenses">Лицензи от трети страни</string>
+    <string name="error_unable_to_load_license">Не мога да заредя лицензите</string>
+    <string name="action_open_website">Отвори уебсайта</string>
+    <string name="tab_about">Относно приложението</string>
+    <string name="tab_contributors">Допринесли</string>
+    <string name="tab_licenses">Лицензии</string>
+    <string name="app_description">Безплатен и лек YouTube фронтенд за Android.</string>
+    <string name="view_on_github">Виж в GitHub</string>
+    </resources>

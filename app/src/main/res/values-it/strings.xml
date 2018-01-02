@@ -196,7 +196,7 @@
     <string name="app_license_title">Licenza di NewPipe</string>
     <string name="contribution_encouragement">Un aiuto è sempre il benvenuto: nuove idee, design o traduzioni, piccoli cambi o modifiche radicali del codice rendono l\'applicazione sempre migliore!</string>
     <string name="read_full_license">Leggi la licenza</string>
-    <string name="contribution_title">Contributi</string>
+    <string name="contribution_title">Partecipa</string>
 <string name="title_activity_about">Informazioni su NewPipe</string>
     <string name="subscribe_button_title">Iscriviti</string>
     <string name="subscribed_button_title">Iscritto</string>
@@ -281,7 +281,7 @@
     <string name="new_and_hot">Nuovi e caldi</string>
 <string name="show_hold_to_append_title">Mostra il suggerimento di tenere premuto per appendere</string>
     <string name="show_hold_to_append_summary">Mostra un suggerimento quando il pulsante in sottofondo o a comparsa viene premuto nella pagina dei dettagli di un video</string>
-    <string name="background_player_append">In coda al riproduttore in sottofondo</string>
+    <string name="background_player_append">In coda sul lettore di sfondo</string>
     <string name="popup_playing_append">In coda al riproduttore a comparsa</string>
     <string name="play_all">Riproduci tutto</string>
 
@@ -295,4 +295,16 @@
     <string name="play_queue_stream_detail">Dettagli</string>
     <string name="play_queue_audio_settings">Impostazioni audio</string>
     <string name="hold_to_append">Tieni premuto per accodare</string>
-</resources>
+<string name="unknown_content">[Sconosciuto]</string>
+
+    <string name="enqueue_on_background">In coda sullo sfondo</string>
+    <string name="enqueue_on_popup">In coda nel Popup</string>
+    <string name="start_here_on_main">Inizia la riproduzione qui</string>
+    <string name="start_here_on_background">Inizia qui sullo sfondo</string>
+    <string name="start_here_on_popup">Inizia qui nel Popup</string>
+<string name="donation_title">Dona</string>
+    <string name="website_title">Sito web</string>
+    <string name="website_encouragement">Per ricevere maggiori informazioni e le ultime novità su NewPipe visita il nostro sito web.</string>
+    <string name="donation_encouragement">NewPipe è sviluppato da volontari che spendono il loro tempo libero per regalarti la migliore esperienza. È tempo di restituire il favore permettendo ai nostri sviluppatori di migliorare ulteriormente NewPipe mentre gustano una tazza di Giava!</string>
+    <string name="give_back">Restituisci</string>
+    </resources>

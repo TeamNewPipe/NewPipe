@@ -135,8 +135,12 @@ public class AboutActivity extends AppCompatActivity {
             View githubLink = rootView.findViewById(R.id.github_link);
             githubLink.setOnClickListener(new OnGithubLinkClickListener());
 
-            View licenseLink = rootView.findViewById(R.id.app_read_license);
-            licenseLink.setOnClickListener(new OnReadFullLicenseClickListener());
+            View donationLink = rootView.findViewById(R.id.donation_link);
+            donationLink.setOnClickListener(new OnDonationLinkClickListener());
+
+            View websiteLink = rootView.findViewById(R.id.website_link);
+            websiteLink.setOnClickListener(new OnWebsiteLinkClickListener());
+
             return rootView;
         }
 
@@ -149,10 +153,21 @@ public class AboutActivity extends AppCompatActivity {
             }
         }
 
-        private static class OnReadFullLicenseClickListener implements View.OnClickListener {
+        private static class OnDonationLinkClickListener implements View.OnClickListener {
             @Override
-            public void onClick(View v) {
-                LicenseFragment.showLicense(v.getContext(), StandardLicenses.GPL3);
+            public void onClick(final View view) {
+                final Context context = view.getContext();
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.donation_url)));
+                context.startActivity(intent);
+            }
+        }
+
+        private static class OnWebsiteLinkClickListener implements View.OnClickListener {
+            @Override
+            public void onClick(final View view) {
+                final Context context = view.getContext();
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.website_url)));
+                context.startActivity(intent);
             }
         }
     }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    android:id="@+id/menu_video_options"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@drawable/ic_screen_rotation_white"
+        android:id="@+id/toggleOrientation"
+        android:title="Toggle orientation"
+        app:showAsAction="always|withText" />
+    <item
+        android:icon="@drawable/ic_fullscreen_exit_white"
+        android:id="@+id/switchPopup"
+        android:title="Switch to popup"
+        app:showAsAction="always|withText" />
+    <item android:icon="?audio"
+        android:id="@+id/switchBackground"
+        android:title="Switch to background"
+        app:showAsAction="always|withText" />
+</menu>
+

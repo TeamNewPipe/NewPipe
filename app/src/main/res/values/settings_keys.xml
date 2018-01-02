@@ -75,6 +75,8 @@
         <item>@string/audio_webm_key</item>
     </string-array>
 
+    <string name="last_orientation_landscape_key" translatable="false">last_orientation_landscape_key</string>
+
     <!-- THEMES -->
     <string name="theme_key" translatable="false">theme</string>
     <string name="light_theme_key" translatable="false">light_theme</string>

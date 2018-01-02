@@ -171,9 +171,9 @@ abrir em modo popup</string>
     <string name="app_description">Um leve, simples e grátis aplicativo de YouTube para Android.</string>
     <string name="view_on_github">Ver no GitHub</string>
     <string name="app_license_title">Licença do NewPipe</string>
-    <string name="contribution_encouragement">Sempre que tiver ideias, traduções, mudanças do design, limpeza de código ou grandes alterações de código, a ajuda é bem vinda. Quanto mais for feito melhor o aplicativo fica!</string>
+    <string name="contribution_encouragement">Sempre que tiver ideias, traduções, mudanças do design, limpeza de código ou grandes alterações de código, a ajuda é bem vinda. Quanto mais for feito, melhor o aplicativo fica!</string>
     <string name="read_full_license">Ler licença</string>
-    <string name="contribution_title">Contribuição</string>
+    <string name="contribution_title">Contribuir</string>
 <string name="copyright" formatted="true">© %1$s %2$s protegido pela licença %3$s</string>
     <string name="title_activity_about">Sobre NewPipe</string>
     <string name="settings_category_downloads_title">Download</string>
@@ -272,4 +272,16 @@ abrir em modo popup</string>
     <string name="play_queue_stream_detail">Detalhes</string>
     <string name="play_queue_audio_settings">Configurações de Áudio</string>
     <string name="hold_to_append">Mantenha pressionado para colocar na fila</string>
-</resources>
+<string name="unknown_content">[Desconhecido]</string>
+
+    <string name="enqueue_on_background">Adicionar a fila em plano de fundo</string>
+    <string name="enqueue_on_popup">Adicionar a fila em Popup</string>
+    <string name="start_here_on_main">Iniciar a reproduzir à partir daqui</string>
+    <string name="start_here_on_background">Iniciar aqui em plano de fundo</string>
+    <string name="start_here_on_popup">Iniciar aqui em popup</string>
+<string name="donation_title">Doar</string>
+    <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que gastam seu tempo livre para trazer a melhor experiência para você. Agora é a hora de retribuir o favor e ter certeza que os desenvolvedores podem fazer com que o NewPipe fique ainda melhor enquanto desfrutam uma xícara de café!</string>
+    <string name="give_back">Retribuir</string>
+    <string name="website_title">Site oficial</string>
+    <string name="website_encouragement">Para obter mais informações e as últimas notícias sobre o NewPipe visite nosso Site.</string>
+    </resources>

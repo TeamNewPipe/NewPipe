@@ -22,17 +22,22 @@ package org.schabi.newpipe.player;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -48,6 +53,7 @@ import com.google.android.exoplayer2.Player;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
@@ -58,6 +64,8 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.List;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -76,6 +84,8 @@ public final class MainVideoPlayer extends Activity {
     private boolean activityPaused;
     private VideoPlayerImpl playerImpl;
 
+    private SharedPreferences defaultPreferences;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Activity LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -84,6 +94,7 @@ public final class MainVideoPlayer extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
+        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         ThemeHelper.setTheme(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) getWindow().setStatusBarColor(Color.BLACK);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -93,6 +104,8 @@ public final class MainVideoPlayer extends Activity {
             finish();
             return;
         }
+
+
 
         showSystemUi();
         setContentView(R.layout.activity_main_player);
@@ -141,6 +154,11 @@ public final class MainVideoPlayer extends Activity {
 
             activityPaused = false;
         }
+        if(globalScreenOrientationLocked()) {
+            boolean lastOrientationWasLandscape
+                    = defaultPreferences.getBoolean(getString(R.string.last_orientation_landscape_key), false);
+            setLandScape(lastOrientationWasLandscape);
+        }
     }
 
     @Override
@@ -148,6 +166,17 @@ public final class MainVideoPlayer extends Activity {
         super.onDestroy();
         if (DEBUG) Log.d(TAG, "onDestroy() called");
         if (playerImpl != null) playerImpl.destroy();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if (playerImpl.isSomePopupMenuVisible()) {
+            playerImpl.moreOptionsPopupMenu.dismiss();
+            playerImpl.getQualityPopupMenu().dismiss();
+            playerImpl.getPlaybackSpeedPopupMenu().dismiss();
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -182,9 +211,26 @@ public final class MainVideoPlayer extends Activity {
     }
 
     private void toggleOrientation() {
-        setRequestedOrientation(getResources().getDisplayMetrics().heightPixels > getResources().getDisplayMetrics().widthPixels
+        setLandScape(!isLandScape());
+        defaultPreferences.edit()
+                .putBoolean(getString(R.string.last_orientation_landscape_key), !isLandScape())
+                .apply();
+    }
+
+    private boolean isLandScape() {
+        return getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
+    }
+
+    private void setLandScape(boolean v) {
+        setRequestedOrientation(v
                 ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
                 : ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+    }
+
+    private boolean globalScreenOrientationLocked() {
+        // 1: Screen orientation changes using acelerometer
+        // 0: Screen orientatino is locked
+        return !(android.provider.Settings.System.getInt(getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 1);
     }
 
     protected void setRepeatModeButton(final ImageButton imageButton, final int repeatMode) {
@@ -222,7 +268,6 @@ public final class MainVideoPlayer extends Activity {
         private ImageButton repeatButton;
         private ImageButton shuffleButton;
 
-        private ImageButton screenRotationButton;
         private ImageButton playPauseButton;
         private ImageButton playPreviousButton;
         private ImageButton playNextButton;
@@ -233,6 +278,10 @@ public final class MainVideoPlayer extends Activity {
         private ItemTouchHelper itemTouchHelper;
 
         private boolean queueVisible;
+
+        private ImageButton moreOptionsButton;
+        public int moreOptionsPopupMenuGroupId = 89;
+        public PopupMenu moreOptionsPopupMenu;
 
         VideoPlayerImpl(final Context context) {
             super("VideoPlayerImpl" + MainVideoPlayer.TAG, context);
@@ -249,10 +298,12 @@ public final class MainVideoPlayer extends Activity {
             this.repeatButton = rootView.findViewById(R.id.repeatButton);
             this.shuffleButton = rootView.findViewById(R.id.shuffleButton);
 
-            this.screenRotationButton = rootView.findViewById(R.id.screenRotationButton);
             this.playPauseButton = rootView.findViewById(R.id.playPauseButton);
             this.playPreviousButton = rootView.findViewById(R.id.playPreviousButton);
             this.playNextButton = rootView.findViewById(R.id.playNextButton);
+            this.moreOptionsButton = rootView.findViewById(R.id.moreOptionsButton);
+            this.moreOptionsPopupMenu = new PopupMenu(context, moreOptionsButton);
+            this.moreOptionsPopupMenu.getMenuInflater().inflate(R.menu.menu_videooptions, moreOptionsPopupMenu.getMenu());
 
             titleTextView.setSelected(true);
             channelTextView.setSelected(true);
@@ -276,7 +327,7 @@ public final class MainVideoPlayer extends Activity {
             playPauseButton.setOnClickListener(this);
             playPreviousButton.setOnClickListener(this);
             playNextButton.setOnClickListener(this);
-            screenRotationButton.setOnClickListener(this);
+            moreOptionsButton.setOnClickListener(this);
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -348,6 +399,28 @@ public final class MainVideoPlayer extends Activity {
             finish();
         }
 
+        public void onPlayBackgroundButtonClicked() {
+            if (DEBUG) Log.d(TAG, "onPlayBackgroundButtonClicked() called");
+            if (playerImpl.getPlayer() == null) return;
+
+            setRecovery();
+            final Intent intent = NavigationHelper.getPlayerIntent(
+                    context,
+                    BackgroundPlayer.class,
+                    this.getPlayQueue(),
+                    this.getRepeatMode(),
+                    this.getPlaybackSpeed(),
+                    this.getPlaybackPitch(),
+                    this.getPlaybackQuality()
+            );
+            context.startService(intent);
+
+            ((View) getControlAnimationView().getParent()).setVisibility(View.GONE);
+            destroy();
+            finish();
+        }
+
+
         @Override
         public void onClick(View v) {
             super.onClick(v);
@@ -360,9 +433,6 @@ public final class MainVideoPlayer extends Activity {
             } else if (v.getId() == playNextButton.getId()) {
                 onPlayNext();
 
-            } else if (v.getId() == screenRotationButton.getId()) {
-                onScreenRotationClicked();
-
             } else if (v.getId() == queueButton.getId()) {
                 onQueueClicked();
                 return;
@@ -372,6 +442,8 @@ public final class MainVideoPlayer extends Activity {
             } else if (v.getId() == shuffleButton.getId()) {
                 onShuffleClicked();
                 return;
+            } else if (v.getId() == moreOptionsButton.getId()) {
+                onMoreOptionsClicked();
             }
 
             if (getCurrentState() != STATE_COMPLETED) {
@@ -397,12 +469,38 @@ public final class MainVideoPlayer extends Activity {
             getControlsRoot().setVisibility(View.INVISIBLE);
             queueLayout.setVisibility(View.VISIBLE);
 
-            itemsList.smoothScrollToPosition(playQueue.getIndex());
+            itemsList.scrollToPosition(playQueue.getIndex());
         }
 
         private void onQueueClosed() {
             queueLayout.setVisibility(View.GONE);
             queueVisible = false;
+        }
+
+        private void onMoreOptionsClicked() {
+            if (DEBUG) Log.d(TAG, "onMoreOptionsClicked() called");
+            buildMoreOptionsMenu();
+
+            try {
+                Field[] fields = moreOptionsPopupMenu.getClass().getDeclaredFields();
+                for (Field field : fields) {
+                    if ("mPopup".equals(field.getName())) {
+                        field.setAccessible(true);
+                        Object menuPopupHelper = field.get(moreOptionsPopupMenu);
+                        Class<?> classPopupHelper = Class.forName(menuPopupHelper
+                                .getClass().getName());
+                        Method setForceIcons = classPopupHelper.getMethod(
+                                "setForceShowIcon", boolean.class);
+                        setForceIcons.invoke(menuPopupHelper, true);
+                        break;
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            moreOptionsPopupMenu.show();
+            isSomePopupMenuVisible = true;
+            showControls(300);
         }
 
         private void onScreenRotationClicked() {
@@ -555,6 +653,27 @@ public final class MainVideoPlayer extends Activity {
             setShuffleButton(shuffleButton, playQueue.isShuffled());
         }
 
+        private void buildMoreOptionsMenu() {
+            if (moreOptionsPopupMenu == null) return;
+            moreOptionsPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    switch (menuItem.getItemId()) {
+                        case R.id.toggleOrientation:
+                            onScreenRotationClicked();
+                            break;
+                        case R.id.switchPopup:
+                            onFullScreenButtonClicked();
+                            break;
+                        case R.id.switchBackground:
+                            onPlayBackgroundButtonClicked();
+                            break;
+                    }
+                    return false;
+                }
+            });
+        }
+
         private void buildQueue() {
             queueLayout = findViewById(R.id.playQueuePanel);
 
@@ -564,6 +683,9 @@ public final class MainVideoPlayer extends Activity {
             itemsList.setAdapter(playQueueAdapter);
             itemsList.setClickable(true);
             itemsList.setLongClickable(true);
+
+            itemsList.clearOnScrollListeners();
+            itemsList.addOnScrollListener(getQueueScrollListener());
 
             itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
             itemTouchHelper.attachToRecyclerView(itemsList);
@@ -576,6 +698,19 @@ public final class MainVideoPlayer extends Activity {
                     onQueueClosed();
                 }
             });
+        }
+
+        private OnScrollBelowItemsListener getQueueScrollListener() {
+            return new OnScrollBelowItemsListener() {
+                @Override
+                public void onScrolledDown(RecyclerView recyclerView) {
+                    if (playQueue != null && !playQueue.isComplete()) {
+                        playQueue.fetch();
+                    } else if (itemsList != null) {
+                        itemsList.clearOnScrollListeners();
+                    }
+                }
+            };
         }
 
         private ItemTouchHelper.SimpleCallback getItemTouchCallback() {

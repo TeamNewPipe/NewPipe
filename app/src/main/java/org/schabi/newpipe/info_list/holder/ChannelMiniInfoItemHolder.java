@@ -36,7 +36,7 @@ public class ChannelMiniInfoItemHolder extends InfoItemHolder {
         if (!(infoItem instanceof ChannelInfoItem)) return;
         final ChannelInfoItem item = (ChannelInfoItem) infoItem;
 
-        itemTitleView.setText(item.name);
+        itemTitleView.setText(item.getName());
         itemAdditionalDetailView.setText(getDetailLine(item));
 
         itemBuilder.getImageLoader()

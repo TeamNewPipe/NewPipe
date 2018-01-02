@@ -191,7 +191,7 @@
     <string name="app_license_title">NewPipe\'ın Lisansı</string>
     <string name="contribution_encouragement">Fikirleriniz; çeviri, tasarım değişiklikleri, kod temizliği, ya da gerçek köklü kod değişikleri olsun—yardımınıza her zaman açığız. Daha çok yapıldıkça daha iyiye gider!</string>
     <string name="read_full_license">Lisansı oku</string>
-    <string name="contribution_title">Katkı</string>
+    <string name="contribution_title">Katkıda bulun</string>
 <string name="settings_category_downloads_title">İndirme</string>
     <string name="settings_file_charset_title">Dosya adlarında izin verilen karakterler</string>
     <string name="settings_file_replacement_character_summary">Geçersiz karakterler bu değer ile değiştirilir</string>
@@ -248,12 +248,54 @@
 </plurals>
 
     <string name="title_activity_history">Geçmiş</string>
-    <string name="title_history_search">Arandı</string>
-    <string name="title_history_view">İzlendi</string>
+    <string name="title_history_search">Aranan</string>
+    <string name="title_history_view">İzlenen</string>
     <string name="history_disabled">Geçmiş devre dışı</string>
     <string name="action_history">Geçmiş</string>
     <string name="history_empty">Geçmiş boş</string>
     <string name="history_cleared">Geçmiş temizlendi</string>
     <string name="item_deleted">Öge silindi</string>
 <string name="delete_item_search_history">Bu içeriği arama geçmişinden silmek istiyor musunuz?</string>
-</resources>
+<string name="show_hold_to_append_title">Eklemek İçin Bas İpucunu Göster</string>
+    <string name="show_hold_to_append_summary">Video ayrıntıları sayfasında arka plan veya açılır pencere düğmesine basıldığında ipucu göster</string>
+    <string name="background_player_append">Arka plan oynatıcıda kuyruğa eklendi</string>
+    <string name="popup_playing_append">Açılır pencere oynatıcıda kuyruğa eklendi</string>
+    <string name="play_all">Tümünü Oynat</string>
+
+    <string name="unknown_content">[Bilinmeyen]</string>
+
+    <string name="player_stream_failure">Bu akış oynatılamıyor</string>
+    <string name="player_unrecoverable_failure">Kurtarılamaz oynatıcı hatası oluştu</string>
+    <string name="player_recoverable_failure">Oynatıcı hatasından kurtarılıyor</string>
+
+    <string name="main_page_content">Ana sayfanın içeriği</string>
+    <string name="blank_page_summary">Boş Sayfa</string>
+    <string name="kiosk_page_summary">Büfe Sayfası</string>
+    <string name="subscription_page_summary">Abonelik Sayfası</string>
+    <string name="feed_page_summary">Besleme Sayfası</string>
+    <string name="channel_page_summary">Kanal Sayfası</string>
+    <string name="select_a_channel">Kanal seç</string>
+    <string name="no_channel_subscribed_yet">Henüz abone olunan kanal yok</string>
+    <string name="select_a_kiosk">Büfe seç</string>
+
+    <string name="kiosk">Büfe</string>
+    <string name="trending">Eğilimler</string>
+    <string name="top_50">En Üst 50</string>
+    <string name="new_and_hot">Yeni ve sıcak</string>
+    <string name="title_activity_background_player">Arka Plan Oynatıcı</string>
+    <string name="title_activity_popup_player">Açılır Pencere Oynatıcı</string>
+    <string name="play_queue_remove">Kaldır</string>
+    <string name="play_queue_stream_detail">Ayrıntılar</string>
+    <string name="play_queue_audio_settings">Ses Ayarları</string>
+    <string name="hold_to_append">Kuyruğa Almak İçin Bas</string>
+    <string name="enqueue_on_background">Arka Planda Kuyruğa Al</string>
+    <string name="enqueue_on_popup">Açılır Pencerede Kuyruğa Al</string>
+    <string name="start_here_on_main">Burayı Oynatmaya Başla</string>
+    <string name="start_here_on_background">Arka Planda Burayı Başlat</string>
+    <string name="start_here_on_popup">Açılır Pencerede Burayı Başlat</string>
+<string name="donation_title">Bağış yapın</string>
+    <string name="donation_encouragement">NewPipe, size en iyi deneyimi sunmak için boş zamanını harcayan gönüllüler tarafından geliştirilmektedir. Geliştiricilerimizin bir fincan kahvenin tadını çıkarırken NewPipe\'ı daha da çok iyileştirebilmelerinden emin olmak için karşılığını vermenin tam zamanı!</string>
+    <string name="give_back">Karşılığını ver</string>
+    <string name="website_title">Web sitesi</string>
+    <string name="website_encouragement">NewPipe hakkında daha çok bilgiyi ve son haberleri almak için web sitemize uğrayın.</string>
+    </resources>

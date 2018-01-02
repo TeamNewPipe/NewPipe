@@ -39,7 +39,7 @@
     <string name="light_theme_title">Světlé</string>
 
     <string name="download_dialog_title">Stáhnout</string>
-    <string name="next_video_title">Další video</string>
+    <string name="next_video_title">Další videa</string>
     <string name="show_next_and_similar_title">Zobrazovat další a podobná videa</string>
     <string name="url_not_supported_toast">URL není podporováno</string>
     <string name="search_language_title">Preferovaný jazyk obsahu</string>
@@ -100,7 +100,7 @@
     <string name="error_snackbar_action">NAHLÁSIT</string>
     <string name="sorry_string">Omlouváme se, tohle se nemělo stát.</string>
     <string name="error_report_button_text">Nahlásit chybu přes e-mail</string>
-    <string name="error_snackbar_message">Omlouváme se, staly se nějaké chyby.</string>
+    <string name="error_snackbar_message">Omlouváme se, nastaly určité chyby.</string>
     <string name="could_not_load_image">Nepodařilo se nahrát obrázek</string>
     <string name="app_ui_crash">Aplikace/UI spadlo</string>
     <string name="live_streams_not_supported">Tento stream je vysílán živě, funkce ještě není podporována.</string>
@@ -112,7 +112,7 @@
     <string name="downloads_title">Stažené soubory</string>
     <string name="what_device_headline">Info:</string>
     <string name="your_comment">Vaše poznámky (anglicky):</string>
-    <string name="storage_permission_denied">Oprávnění přístupu do úložiště bylo zamítnuto</string>
+    <string name="storage_permission_denied">Oprávnění přístupu do úložiště zamítnuto</string>
     <string name="view">Přehrát</string>
     <string name="add">Nová mise</string>
     <string name="finish">OK</string>
@@ -125,7 +125,7 @@
 
     <string name="checksum">Kontrolní součet</string>
 
-    <string name="no_available_dir">Prosím vyberte dostupnou složku pro stažení souborů</string>
+    <string name="no_available_dir">Prosím vyberte dostupnou složku pro stahování</string>
 
     <string name="user_report">Hlášení uživatele</string>
 
@@ -191,7 +191,7 @@ otevření ve vyskakovacím okně</string>
     <string name="undo">Vrátit</string>
 
     <string name="notification_channel_name">NewPipe notifikace</string>
-    <string name="notification_channel_description">Notifikace pro NewPipe v pozadí a v okně</string>
+    <string name="notification_channel_description">Notifikace pro NewPipe přehrávače v pozadí a v okně</string>
 
     <string name="search_no_results">Žádné výsledky</string>
     <string name="empty_subscription_feed_subtitle">Je tu sranda jak v márnici</string>
@@ -203,8 +203,9 @@ otevření ve vyskakovacím okně</string>
     <string name="no_subscribers">Žádní odběratelé</string>
     <plurals name="subscribers">
 	<item quantity="one">%s odběratel</item>
-	<item quantity="few">%s odběratelů</item>
-	<item quantity="other">%s odběratelé</item>
+	<item quantity="few">%s odběratelé</item>
+	<item quantity="many">%s odběratelů</item>
+	<item quantity="other"/>
 </plurals>
 
     <string name="no_views">Žádná zhlédnutí</string>
@@ -217,8 +218,9 @@ otevření ve vyskakovacím okně</string>
     <string name="no_videos">Žádná videa</string>
     <plurals name="videos">
 	<item quantity="one">%s video</item>
-	<item quantity="few">%s videí</item>
-	<item quantity="other">%s videa</item>
+	<item quantity="few">%s videa</item>
+	<item quantity="many">%s videí</item>
+	<item quantity="other"/>
 </plurals>
 
     <string name="settings_category_downloads_title">Stahování</string>
@@ -244,7 +246,7 @@ otevření ve vyskakovacím okně</string>
     <string name="app_license_title">Licence NewPipe</string>
     <string name="contribution_encouragement">Pokud máte nápady na zlepšení jako; překlad, změny designu, vylepšování kódu nebo opravdu velké změny kódu - pomoc je vždy vítána. Čím více se udělá, tím lepší to bude!</string>
     <string name="read_full_license">Přečíst licenci</string>
-    <string name="contribution_title">Příspěvek</string>
+    <string name="contribution_title">Podílet se</string>
 
     <string name="title_activity_history">Historie</string>
     <string name="title_history_search">Vyhledáváno</string>
@@ -252,10 +254,10 @@ otevření ve vyskakovacím okně</string>
     <string name="history_disabled">Historie je vypnutá</string>
     <string name="action_history">Historie</string>
     <string name="history_empty">Historie je prázdná</string>
-    <string name="history_cleared">Historie smazána</string>
+    <string name="history_cleared">Historie vymazána</string>
     <string name="item_deleted">Položka byla odstraněna</string>
 <string name="show_hold_to_append_title">Zobrazovat tip \"Podrž pro přidání\"</string>
-    <string name="show_hold_to_append_summary">Zobrazí se na stránce videa po stisku tlačítek přehrát na pozadí nebo v okně</string>
+    <string name="show_hold_to_append_summary">Zobrazí se po stisku tlačítek přehrát na pozadí nebo přehrát v okně na stránce s videem</string>
     <string name="background_player_append">Ve frontě přehrávače na pozadí</string>
     <string name="popup_playing_append">Ve frontě přehrávače v okně</string>
     <string name="play_all">Přehrát vše</string>
@@ -270,7 +272,7 @@ otevření ve vyskakovacím okně</string>
     <string name="blank_page_summary">Prázdná stránka</string>
     <string name="kiosk_page_summary">Kiosek</string>
     <string name="subscription_page_summary">Odběry</string>
-    <string name="feed_page_summary">Feed</string>
+    <string name="feed_page_summary">Novinky</string>
     <string name="channel_page_summary">Kanál</string>
     <string name="select_a_channel">Zvolte kanál</string>
     <string name="no_channel_subscribed_yet">Žádný kanál dosud neodebírán</string>
@@ -286,4 +288,16 @@ otevření ve vyskakovacím okně</string>
     <string name="play_queue_stream_detail">Podrobnosti</string>
     <string name="play_queue_audio_settings">Nastavení zvuku</string>
     <string name="hold_to_append">Podrž pro zařazení do fronty</string>
-</resources>
+<string name="unknown_content">[Neznámý]</string>
+
+    <string name="enqueue_on_background">Do fronty na pozadí</string>
+    <string name="enqueue_on_popup">Do fronty v okně</string>
+    <string name="start_here_on_main">Začne hrát zde</string>
+    <string name="start_here_on_background">Začne zde na pozadí</string>
+    <string name="start_here_on_popup">Začne zde v okně</string>
+<string name="donation_title">Donate</string>
+    <string name="donation_encouragement">NewPipe je vyvíjen dobrovolníky, kteří tráví svůj volný čas, aby vaše zkušenost s aplikací byla co nejlepší. Nyní je čas vrátit něco zpět, aby naši vývojáři mohli NewPipe dále zlepšovat a zároveň si vychutnat šálek kávy!</string>
+    <string name="give_back">Daruj</string>
+    <string name="website_title">Webová stránka</string>
+    <string name="website_encouragement">Pro další informace a poslední novinky o NewPipe navštivte naši stránku.</string>
+    </resources>
