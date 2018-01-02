@@ -57,6 +57,7 @@ import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.history.HistoryListener;
 import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.playlist.PlayQueue;
+import org.schabi.newpipe.settings.SettingsContentObserver;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.StateSaver;
@@ -69,10 +70,11 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 
-public class MainActivity extends AppCompatActivity implements HistoryListener {
+public class MainActivity extends AppCompatActivity implements HistoryListener, SettingsContentObserver.OnChangeListener {
     private static final String TAG = "MainActivity";
     public static final boolean DEBUG = false;
     private SharedPreferences sharedPreferences;
+    private SettingsContentObserver mSettingsContentObserver;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity's LifeCycle
@@ -95,11 +97,8 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
 
         initHistory();
 
-        if(globalScreenOrientationLocked()) {
-            boolean lastOrientationWasLandscape
-                    = sharedPreferences.getBoolean(getString(R.string.last_orientation_landscape_key), false);
-            setLandScape(lastOrientationWasLandscape);
-        }
+        mSettingsContentObserver = new SettingsContentObserver(new Handler(), this);
+        setupOrientation();
     }
 
     @Override
@@ -136,6 +135,15 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
             NavigationHelper.openMainActivity(this);
         }
 
+        getContentResolver().registerContentObserver(
+                android.provider.Settings.System.CONTENT_URI, true,
+                mSettingsContentObserver );
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        getContentResolver().unregisterContentObserver(mSettingsContentObserver);
     }
 
     @Override
@@ -371,5 +379,21 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
         // 1: Screen orientation changes using acelerometer
         // 0: Screen orientatino is locked
         return !(android.provider.Settings.System.getInt(getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 1);
+    }
+
+    private void setupOrientation() {
+        if(sharedPreferences == null) return;
+        if(globalScreenOrientationLocked()) {
+            boolean lastOrientationWasLandscape
+                    = sharedPreferences.getBoolean(getString(R.string.last_orientation_landscape_key), false);
+            setLandScape(lastOrientationWasLandscape);
+        }
+        else
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+    }
+
+    @Override
+    public void onSettingsChanged() {
+        setupOrientation();
     }
 }
