@@ -154,7 +154,6 @@
     <string name="error_snackbar_action">تقرير</string>
     <string name="what_device_headline">معلومات:</string>
     <string name="what_happened_headline">ماذا حدث:</string>
-    <string name="info_labels"/>
     <string name="your_comment">تعليقك (باللغة الإنجليزية):</string>
     <string name="error_details_headline">تفاصيل:</string>
 
@@ -176,12 +175,6 @@
 
     <string name="no_subscribers">صفر لا تقم با الإختيار (في بعض اللغات) لأنها ليست \"حالة خاصة\" للأندرويد</string>
     <plurals name="subscribers">
-	<item quantity="zero"></item>
-	<item quantity="one"></item>
-	<item quantity="two"></item>
-	<item quantity="few"></item>
-	<item quantity="many"></item>
-	<item quantity="other"></item>
 </plurals>
 
     <string name="no_views">لاتوجد مشاهدات</string>

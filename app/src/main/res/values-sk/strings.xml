@@ -248,7 +248,6 @@ otvorenie okna na popredí</string>
 	<item quantity="one">%s odberateľ</item>
 	<item quantity="few">%s odberatelia</item>
 	<item quantity="many">%s odberateľov</item>
-	<item quantity="other"></item>
 </plurals>
 
     <string name="no_views">Žiadne zobrazenia</string>
@@ -256,7 +255,6 @@ otvorenie okna na popredí</string>
 	<item quantity="one">%s zobrazenie</item>
 	<item quantity="few">%s zobrazenia</item>
 	<item quantity="many">%s zobrazení</item>
-	<item quantity="other"></item>
 </plurals>
 
     <string name="no_videos">Žiadne videá</string>
@@ -264,7 +262,6 @@ otvorenie okna na popredí</string>
 	<item quantity="one">%s video</item>
 	<item quantity="few">%s videá</item>
 	<item quantity="many">%s videí</item>
-	<item quantity="other"></item>
 </plurals>
 
     <string name="item_deleted">Položka bola odstránená</string>
