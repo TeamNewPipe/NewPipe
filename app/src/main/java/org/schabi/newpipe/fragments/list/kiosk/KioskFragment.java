@@ -58,13 +58,9 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     @State
     protected String kioskId = "";
 
-
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
-
-    private View headerRootLayout;
-    private TextView headerTitleView;
 
     public static KioskFragment getInstance(int serviceId)
             throws ExtractionException {

@@ -222,18 +222,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         }
     }
 
-    private void openChannelUriInBrowser() {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        startActivity(intent);
-    }
-
-    private void shareChannelUri() {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, url);
-        startActivity(Intent.createChooser(intent, getString(R.string.share_dialog_title)));
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -241,10 +229,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 openRssFeed();
                 break;
             case R.id.menu_item_openInBrowser:
-                openChannelUriInBrowser();
+                openUrlInBrowser(url);
                 break;
             case R.id.menu_item_share: {
-                shareChannelUri();
+                shareUrl(url);
                 break;
             }
             default:

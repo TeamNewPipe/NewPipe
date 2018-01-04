@@ -626,21 +626,14 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         actionBarHandler.setOnShareListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, info.getUrl());
-                intent.setType("text/plain");
-                startActivity(Intent.createChooser(intent, activity.getString(R.string.share_dialog_title)));
+                shareUrl(info.getUrl());
             }
         });
 
         actionBarHandler.setOnOpenInBrowserListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(info.getUrl()));
-                startActivity(Intent.createChooser(intent, activity.getString(R.string.choose_browser)));
+                openUrlInBrowser(info.getUrl());
             }
         });
 

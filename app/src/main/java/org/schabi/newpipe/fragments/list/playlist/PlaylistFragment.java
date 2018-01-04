@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -99,13 +100,6 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "], inflater = [" + inflater + "]");
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_playlist, menu);
-    }
-
-    @Override
     protected void showStreamDialog(final StreamInfoItem item) {
         final Context context = getContext();
         if (context == null || context.getResources() == null || getActivity() == null) return;
@@ -146,6 +140,14 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
         new InfoItemDialog(getActivity(), item, commands, actions).show();
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "], inflater = [" + inflater + "]");
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_playlist, menu);
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Load and handle
     //////////////////////////////////////////////////////////////////////////*/
@@ -159,6 +161,23 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     protected Single<PlaylistInfo> loadResult(boolean forceLoad) {
         return ExtractorHelper.getPlaylistInfo(serviceId, url, forceLoad);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_openInBrowser:
+                openUrlInBrowser(url);
+                break;
+            case R.id.menu_item_share: {
+                shareUrl(url);
+                break;
+            }
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
+
 
     /*//////////////////////////////////////////////////////////////////////////
     // Contract
