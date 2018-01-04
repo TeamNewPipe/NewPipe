@@ -124,6 +124,11 @@
 
     <string name="unknown_content">[Unknown]</string>
 
+    <string name="toggle_orientation">Toggle Orientation</string>
+    <string name="switch_to_background">Switch to Background</string>
+    <string name="switch_to_popup">Switch to Popup</string>
+    <string name="switch_to_main">Switch to Main</string>
+
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="network_error">Network error</string>

@@ -1,14 +1,13 @@
 package org.schabi.newpipe.fragments.list.playlist;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ListExtractor;
@@ -33,7 +31,6 @@ import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.PermissionHelper;
 
 import io.reactivex.Single;
 
@@ -102,6 +99,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     @Override
     protected void showStreamDialog(final StreamInfoItem item) {
         final Context context = getContext();
+        final Activity activity = getActivity();
         if (context == null || context.getResources() == null || getActivity() == null) return;
 
         final String[] commands = new String[]{
@@ -121,7 +119,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                         NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
                         break;
                     case 1:
-                        NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(item));
+                        NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
                         break;
                     case 2:
                         NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
@@ -130,7 +128,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                         NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
                         break;
                     case 4:
-                        NavigationHelper.playOnPopupPlayer(context, getPlayQueue(index));
+                        NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
                         break;
                     default:
                         break;
@@ -230,13 +228,6 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         headerPopupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !PermissionHelper.checkSystemAlertWindowPermission(activity)) {
-                    Toast toast = Toast.makeText(activity, R.string.msg_popup_permission, Toast.LENGTH_LONG);
-                    TextView messageView = toast.getView().findViewById(android.R.id.message);
-                    if (messageView != null) messageView.setGravity(Gravity.CENTER);
-                    toast.show();
-                    return;
-                }
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue());
             }
         });

@@ -1,16 +1,21 @@
 package org.schabi.newpipe.fragments.list;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -24,6 +29,7 @@ import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.StateSaver;
 
 import java.util.List;
@@ -192,6 +198,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
 
     protected void showStreamDialog(final StreamInfoItem item) {
         final Context context = getContext();
+        final Activity activity = getActivity();
         if (context == null || context.getResources() == null || getActivity() == null) return;
 
         final String[] commands = new String[]{
@@ -207,7 +214,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                         NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
                         break;
                     case 1:
-                        NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(item));
+                        NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
                         break;
                     default:
                         break;

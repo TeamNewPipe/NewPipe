@@ -18,9 +18,8 @@ public class RouterPopupActivity extends RouterActivity {
 
     @Override
     protected void handleUrl(String url) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                && !PermissionHelper.checkSystemAlertWindowPermission(this)) {
-            Toast.makeText(this, R.string.msg_popup_permission, Toast.LENGTH_LONG).show();
+        if (!PermissionHelper.isPopupEnabled(this)) {
+            PermissionHelper.showPopupEnablementToast(this);
             finish();
             return;
         }

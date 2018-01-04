@@ -219,16 +219,20 @@ public final class ExtractorHelper {
         // as it will cause a infinite loop if it is
         Throwable cause, getCause = throwable;
 
+        // Check if throwable is a subclass of any of the filtered classes
+        final Class throwableClass = throwable.getClass();
         for (Class<?> causesEl : causesToCheck) {
-            if (throwable.getClass().isAssignableFrom(causesEl)) {
+            if (causesEl.isAssignableFrom(throwableClass)) {
                 return true;
             }
         }
 
+        // Iteratively checks if the root cause of the throwable is a subclass of the filtered class
         while ((cause = throwable.getCause()) != null && getCause != cause) {
             getCause = cause;
+            final Class causeClass = cause.getClass();
             for (Class<?> causesEl : causesToCheck) {
-                if (cause.getClass().isAssignableFrom(causesEl)) {
+                if (causesEl.isAssignableFrom(causeClass)) {
                     return true;
                 }
             }

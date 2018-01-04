@@ -31,10 +31,14 @@
         android:layout_below="@+id/itemTitleView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:ellipsize="marquee"
+        android:fadingEdge="horizontal"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
         android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_uploader_text_size"
         android:visibility="gone"
         tools:visibility="visible"
-        tools:text="TYPE" />
+        tools:text="UPLOADER" />
 </RelativeLayout>

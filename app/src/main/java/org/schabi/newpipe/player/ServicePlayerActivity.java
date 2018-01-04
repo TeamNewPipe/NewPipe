@@ -100,6 +100,11 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     public abstract void stopPlayerListener();
 
+    public abstract int getPlayerOptionMenuResource();
+
+    public abstract boolean onPlayerOptionSelected(MenuItem item);
+
+    public abstract Intent getPlayerShutdownIntent();
     ////////////////////////////////////////////////////////////////////////////
     // Activity Lifecycle
     ////////////////////////////////////////////////////////////////////////////
@@ -134,6 +139,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_play_queue, menu);
+        getMenuInflater().inflate(getPlayerOptionMenuResource(), menu);
         return true;
     }
 
@@ -153,8 +159,13 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             case R.id.action_system_audio:
                 startActivity(new Intent(Settings.ACTION_SOUND_SETTINGS));
                 return true;
+            case R.id.action_switch_main:
+                this.player.setRecovery();
+                getApplicationContext().sendBroadcast(getPlayerShutdownIntent());
+                getApplicationContext().startActivity(getSwitchIntent(MainVideoPlayer.class));
+                return true;
         }
-        return super.onOptionsItemSelected(item);
+        return onPlayerOptionSelected(item) || super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -163,6 +174,17 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         unbind();
     }
 
+    protected Intent getSwitchIntent(final Class clazz) {
+        return NavigationHelper.getPlayerIntent(
+                getApplicationContext(),
+                clazz,
+                this.player.getPlayQueue(),
+                this.player.getRepeatMode(),
+                this.player.getPlaybackSpeed(),
+                this.player.getPlaybackPitch(),
+                null
+        );
+    }
     ////////////////////////////////////////////////////////////////////////////
     // Service Connection
     ////////////////////////////////////////////////////////////////////////////
@@ -288,14 +310,11 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             final float playbackSpeed = BasePlayer.PLAYBACK_SPEEDS[i];
             final String formattedSpeed = formatSpeed(playbackSpeed);
             final MenuItem item = playbackSpeedPopupMenu.getMenu().add(PLAYBACK_SPEED_POPUP_MENU_GROUP_ID, i, Menu.NONE, formattedSpeed);
-            item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem menuItem) {
-                    if (player == null) return false;
+            item.setOnMenuItemClickListener(menuItem -> {
+                if (player == null) return false;
 
-                    player.setPlaybackSpeed(playbackSpeed);
-                    return true;
-                }
+                player.setPlaybackSpeed(playbackSpeed);
+                return true;
             });
         }
     }
@@ -308,14 +327,11 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             final float playbackPitch = BasePlayer.PLAYBACK_PITCHES[i];
             final String formattedPitch = formatPitch(playbackPitch);
             final MenuItem item = playbackPitchPopupMenu.getMenu().add(PLAYBACK_PITCH_POPUP_MENU_GROUP_ID, i, Menu.NONE, formattedPitch);
-            item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem menuItem) {
-                    if (player == null) return false;
+            item.setOnMenuItemClickListener(menuItem -> {
+                if (player == null) return false;
 
-                    player.setPlaybackPitch(playbackPitch);
-                    return true;
-                }
+                player.setPlaybackPitch(playbackPitch);
+                return true;
             });
         }
     }
@@ -323,24 +339,18 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private void buildItemPopupMenu(final PlayQueueItem item, final View view) {
         final PopupMenu menu = new PopupMenu(this, view);
         final MenuItem remove = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 0, Menu.NONE, R.string.play_queue_remove);
-        remove.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                if (player == null) return false;
+        remove.setOnMenuItemClickListener(menuItem -> {
+            if (player == null) return false;
 
-                final int index = player.getPlayQueue().indexOf(item);
-                if (index != -1) player.getPlayQueue().remove(index);
-                return true;
-            }
+            final int index = player.getPlayQueue().indexOf(item);
+            if (index != -1) player.getPlayQueue().remove(index);
+            return true;
         });
 
         final MenuItem detail = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 1, Menu.NONE, R.string.play_queue_stream_detail);
-        detail.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                onOpenDetail(item.getServiceId(), item.getUrl(), item.getTitle());
-                return true;
-            }
+        detail.setOnMenuItemClickListener(menuItem -> {
+            onOpenDetail(item.getServiceId(), item.getUrl(), item.getTitle());
+            return true;
         });
 
         menu.show();

@@ -505,7 +505,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                         NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
                         break;
                     case 1:
-                        NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(item));
+                        NavigationHelper.enqueueOnPopupPlayer(getActivity(), new SinglePlayQueue(item));
                         break;
                     default:
                         break;
@@ -813,11 +813,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     }
 
     private void openPopupPlayer(final boolean append) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !PermissionHelper.checkSystemAlertWindowPermission(activity)) {
-            Toast toast = Toast.makeText(activity, R.string.msg_popup_permission, Toast.LENGTH_LONG);
-            TextView messageView = toast.getView().findViewById(android.R.id.message);
-            if (messageView != null) messageView.setGravity(Gravity.CENTER);
-            toast.show();
+        if (!PermissionHelper.isPopupEnabled(activity)) {
+            PermissionHelper.showPopupEnablementToast(activity);
             return;
         }
 

@@ -1,7 +1,6 @@
 package org.schabi.newpipe.util;
 
 import android.app.Activity;
-import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -21,9 +20,7 @@ import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
@@ -45,8 +42,6 @@ import org.schabi.newpipe.settings.SettingsActivity;
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NavigationHelper {
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
-
-    public static final int PENDING_INTENT_OPEN_PLAYER_ACTIVITY = 1546;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Players
@@ -92,9 +87,13 @@ public class NavigationHelper {
         context.startActivity(getPlayerIntent(context, MainVideoPlayer.class, queue));
     }
 
-    public static void playOnPopupPlayer(final Context context, final PlayQueue queue) {
-        Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
-        context.startService(getPlayerIntent(context, PopupVideoPlayer.class, queue));
+    public static void playOnPopupPlayer(final Activity activity, final PlayQueue queue) {
+        if (!PermissionHelper.isPopupEnabled(activity)) {
+            PermissionHelper.showPopupEnablementToast(activity);
+            return;
+        }
+        Toast.makeText(activity, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
+        activity.startService(getPlayerIntent(activity, PopupVideoPlayer.class, queue));
     }
 
     public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue) {
@@ -102,9 +101,13 @@ public class NavigationHelper {
         context.startService(getPlayerIntent(context, BackgroundPlayer.class, queue));
     }
 
-    public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue) {
-        Toast.makeText(context, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
-        context.startService(getPlayerEnqueueIntent(context, PopupVideoPlayer.class, queue));
+    public static void enqueueOnPopupPlayer(final Activity activity, final PlayQueue queue) {
+        if (!PermissionHelper.isPopupEnabled(activity)) {
+            PermissionHelper.showPopupEnablementToast(activity);
+            return;
+        }
+        Toast.makeText(activity, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
+        activity.startService(getPlayerEnqueueIntent(activity, PopupVideoPlayer.class, queue));
     }
 
     public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue) {
@@ -264,34 +267,22 @@ public class NavigationHelper {
         return true;
     }
 
-    public static void openBackgroundPlayerControl(final Context context) {
-        openServicePlayerControl(context, BackgroundPlayerActivity.class);
+    public static Intent getBackgroundPlayerActivityIntent(final Context context) {
+        return getServicePlayerActivityIntent(context, BackgroundPlayerActivity.class);
     }
 
-    public static void openPopupPlayerControl(final Context context) {
-        openServicePlayerControl(context, PopupVideoPlayerActivity.class);
+    public static Intent getPopupPlayerActivityIntent(final Context context) {
+        return getServicePlayerActivityIntent(context, PopupVideoPlayerActivity.class);
     }
 
-    private static void openServicePlayerControl(final Context context, final Class activityClass) {
-        Intent intent = getServicePlayerControlIntent(context, activityClass);
-        context.startActivity(intent);
-        context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
-    }
-
-    public static Intent getServicePlayerControlIntent(final Context context, final Class activityClass) {
-        final Intent intent = new Intent(context, activityClass);
+    private static Intent getServicePlayerActivityIntent(final Context context,
+                                                         final Class activityClass) {
+        Intent intent = new Intent(context, activityClass);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
         return intent;
     }
-
-    public static PendingIntent getServicePlayerControlPendingIntent(final Context context, final Class activityClass) {
-        Intent intent = getServicePlayerControlIntent(context, activityClass);
-        PendingIntent pIntent = PendingIntent.getActivity(context, PENDING_INTENT_OPEN_PLAYER_ACTIVITY, intent, 0);
-        return pIntent;
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Link handling
     //////////////////////////////////////////////////////////////////////////*/
