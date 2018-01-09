@@ -167,7 +167,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 openUrlInBrowser(url);
                 break;
             case R.id.menu_item_share: {
-                shareUrl(url);
+                shareUrl(name, url);
                 break;
             }
             default:
