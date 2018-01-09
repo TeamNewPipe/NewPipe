@@ -33,7 +33,7 @@
     <string name="play_audio">Zvuk</string>
     <string name="default_audio_format_title">Predvolený zvukový formát</string>
     <string name="webm_description">WebM — voľný formát</string>
-    <string name="m4a_description">m4a — lepšia kvalita</string>
+    <string name="m4a_description">M4A — lepšia kvalita</string>
     <string name="theme_title">Téma</string>
     <string name="dark_theme_title">Tmavá</string>
     <string name="light_theme_title">Svetlá</string>
@@ -128,7 +128,7 @@
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">Výzva reCAPTCHA</string>
 
-    <string name="black_theme_title">Tmavá</string>
+    <string name="black_theme_title">Čierna</string>
 
     <string name="all">Všetko</string>
     <string name="channel">Kanály</string>
@@ -248,7 +248,7 @@ otvorenie okna na popredí</string>
 	<item quantity="one">%s odberateľ</item>
 	<item quantity="few">%s odberatelia</item>
 	<item quantity="many">%s odberateľov</item>
-	<item quantity="other"></item>
+	<item quantity="other"/>
 </plurals>
 
     <string name="no_views">Žiadne zobrazenia</string>
@@ -256,7 +256,7 @@ otvorenie okna na popredí</string>
 	<item quantity="one">%s zobrazenie</item>
 	<item quantity="few">%s zobrazenia</item>
 	<item quantity="many">%s zobrazení</item>
-	<item quantity="other"></item>
+	<item quantity="other"/>
 </plurals>
 
     <string name="no_videos">Žiadne videá</string>
@@ -264,7 +264,7 @@ otvorenie okna na popredí</string>
 	<item quantity="one">%s video</item>
 	<item quantity="few">%s videá</item>
 	<item quantity="many">%s videí</item>
-	<item quantity="other"></item>
+	<item quantity="other"/>
 </plurals>
 
     <string name="item_deleted">Položka bola odstránená</string>
