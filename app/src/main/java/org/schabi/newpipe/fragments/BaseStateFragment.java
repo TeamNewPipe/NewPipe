@@ -249,7 +249,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
 
     protected void openUrlInBrowser(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        startActivity(intent);
+        startActivity(Intent.createChooser(intent, activity.getString(R.string.share_dialog_title)));
     }
 
     protected void shareUrl(String url) {
