@@ -2,7 +2,7 @@
 <resources>
 <string name="main_bg_subtitle">ప్రారంభించడానికి శోధనను క్లిక్</string>
     <string name="view_count_text">%1$s వీక్షణలు</string>
-    <string name="upload_date_text">%1$\ts ప్రచురించబడింది</string>
+    <string name="upload_date_text">%1$s ప్రచురించబడింది</string>
     <string name="install">ఇన్స్టాల్</string>
     <string name="cancel">రద్దు చేయి</string>
     <string name="open_in_browser">బ్రౌజర్ తెరవండి</string>
