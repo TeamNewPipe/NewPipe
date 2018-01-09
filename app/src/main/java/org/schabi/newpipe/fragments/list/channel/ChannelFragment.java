@@ -231,7 +231,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 openUrlInBrowser(url);
                 break;
             case R.id.menu_item_share: {
-                shareUrl(url);
+                shareUrl(name, url);
                 break;
             }
             default:

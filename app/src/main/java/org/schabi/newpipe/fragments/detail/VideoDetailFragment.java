@@ -623,12 +623,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (DEBUG) Log.d(TAG, "setupActionBarHandler() called with: info = [" + info + "]");
         sortedStreamVideosList = new ArrayList<>(ListHelper.getSortedStreamVideosList(activity, info.getVideoStreams(), info.getVideoOnlyStreams(), false));
         actionBarHandler.setupStreamList(sortedStreamVideosList, spinnerToolbar);
-        actionBarHandler.setOnShareListener(new ActionBarHandler.OnActionListener() {
-            @Override
-            public void onActionSelected(int selectedStreamId) {
-                shareUrl(info.getUrl());
-            }
-        });
+        actionBarHandler.setOnShareListener(selectedStreamId -> shareUrl(info.name, info.url));
 
         actionBarHandler.setOnOpenInBrowserListener(new ActionBarHandler.OnActionListener() {
             @Override
