@@ -9,7 +9,7 @@
         android:entryValues="@array/language_codes"
         android:key="@string/search_language_key"
         android:summary="%s"
-        android:title="@string/search_language_title"/>
+        android:title="@string/default_content_country_title"/>
 
     <SwitchPreference
         android:defaultValue="false"
