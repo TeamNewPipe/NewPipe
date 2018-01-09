@@ -17,7 +17,8 @@ public final class CheckTranslations {
     private static boolean remove = false;
     private static int checks = 0;
     private static int matches = 0;
-    private static Pattern p, e;
+    private static int changes = 0;
+    private static Pattern p, pb, pe, e, o;
 
     /**
      * Search translated strings.xml files for empty item / plural tags
@@ -56,7 +57,10 @@ public final class CheckTranslations {
         }
 
         p = Pattern.compile("(<item quantity=\")(zero|one|two|three|few|many|other)(\"></item>|\"/>)");
+        pb = Pattern.compile("(<plurals[\\sa-zA-Z=\"]*>)");
+        pe = Pattern.compile("(</plurals>)");
         e = Pattern.compile("(<string[\\sa-z_\\\"=]*)((><\\/string>|\\/>){1})");
+        o = Pattern.compile("(<item quantity=\"other\">)[^</>]*(<\\/item>)");
 
         for (int i = 0; i < args.length; i++) {
             if (!args[i].equals("-d") && !args[i].equals("-p") && !args[i].equals("-e") && !args[i].equals("-r")) {
@@ -73,7 +77,9 @@ public final class CheckTranslations {
 
         System.out.println(checks + " files were checked.");
         System.out.println(matches + " corrupt lines detected.");
-        if (remove) System.out.println(matches + " corrupt lines removed.");
+        if (remove) {
+            System.out.println(matches + " corrupt lines removed and " + changes + " lines fixed.");
+        }
     }
 
 
@@ -101,7 +107,8 @@ public final class CheckTranslations {
 
         List<String> lines = new ArrayList<String>();
         boolean checkFailed = false;
-
+        boolean otherDetected = false;
+        boolean inPlurals = false;
         try (BufferedReader br = new BufferedReader(new FileReader(f))) {
             String line;
             int ln = 0;
@@ -120,6 +127,38 @@ public final class CheckTranslations {
                 }
             }
             br.close();
+            int pluralsLine = 0;
+            for (int i = 0; i < lines.size(); i++) {
+                if (o.matcher(lines.get(i)).find()) {
+                    otherDetected = true;
+                }
+                if (plurals && pb.matcher(lines.get(i)).find()) {
+                    inPlurals = true;
+                    pluralsLine = i;
+                } else if (plurals && pe.matcher(lines.get(i)).find()) {
+                    inPlurals = false;
+                    if (!otherDetected) {
+                        boolean b = false;
+                        check: for(int j = pluralsLine; j < i; j++) {
+                            if (lines.get(j).contains("many")) {
+                                b = true;
+                                pluralsLine = j;
+                                break check;
+                            }
+                        }
+                        if (remove && b) {
+                            if (debug) System.out.println("    Line " + (pluralsLine + 1) + " was " + ((remove) ? "changed" : "detected") + ": '" + lines.get(pluralsLine) + "'");
+                            lines.set(pluralsLine, lines.get(pluralsLine).replace("many", "other"));
+                            changes++;
+                            checkFailed = true;
+                        } else if (debug) {
+                            if (debug) System.out.println("    WARNING: Line " + (i + 1) + " - No <item quantity=\"other\"> found!");
+                        }
+                    }
+                    otherDetected = false;
+                }
+                 
+            }
             if (remove && checkFailed) {
                 Files.write(f.toPath(), lines, Charset.forName("UTF-8"));
             }
