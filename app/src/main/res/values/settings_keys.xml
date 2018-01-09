@@ -100,7 +100,9 @@
     <string name="show_next_video_key" translatable="false">show_next_video</string>
     <string name="show_hold_to_append_key" translatable="false">show_hold_to_append</string>
     <string name="default_language_value">en</string>
+    <string name="default_country_value">GB</string>
     <string name="search_language_key" translatable="false">search_language</string>
+    <string name="content_country_key" translatable="false">content_country</string>
     <string name="show_age_restricted_content" translatable="false">show_age_restricted_content</string>
     <string name="use_tor_key" translatable="false">use_tor</string>
     <string name="enable_search_history_key" translatable="false">enable_search_history</string>
@@ -518,7 +520,7 @@
         <item>Sweden</item>
         <item>Switzerland</item>
         <item>Syrian ArabRepublic(Syria)</item>
-        <item>Taiwan,RepublicofChina</item>
+        <item>Taiwan, Republicof China</item>
         <item>Tajikistan</item>
         <item>Tanzania</item>
         <item>Thailand</item>
@@ -534,10 +536,10 @@
         <item>Tuvalu</item>
         <item>Uganda</item>
         <item>Ukraine</item>
-        <item>UnitedArabEmirates</item>
-        <item>UnitedKingdom</item>
+        <item>United Arab Emirates</item>
+        <item>United Kingdom</item>
         <item>USA</item>
-        <item>MinorOutlyingIslands</item>
+        <item>Minor Outlying Islands</item>
         <item>Uruguay</item>
         <item>Uzbekistan</item>
         <item>Vanuatu</item>
