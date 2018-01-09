@@ -247,21 +247,21 @@ otvorenie okna na popredí</string>
     <plurals name="subscribers">
 	<item quantity="one">%s odberateľ</item>
 	<item quantity="few">%s odberatelia</item>
-	<item quantity="many">%s odberateľov</item>
+	<item quantity="other">%s odberateľov</item>
 </plurals>
 
     <string name="no_views">Žiadne zobrazenia</string>
     <plurals name="views">
 	<item quantity="one">%s zobrazenie</item>
 	<item quantity="few">%s zobrazenia</item>
-	<item quantity="many">%s zobrazení</item>
+	<item quantity="other">%s zobrazení</item>
 </plurals>
 
     <string name="no_videos">Žiadne videá</string>
     <plurals name="videos">
 	<item quantity="one">%s video</item>
 	<item quantity="few">%s videá</item>
-	<item quantity="many">%s videí</item>
+	<item quantity="other">%s videí</item>
 </plurals>
 
     <string name="item_deleted">Položka bola odstránená</string>
