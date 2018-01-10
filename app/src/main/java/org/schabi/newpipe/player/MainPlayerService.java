@@ -407,7 +407,7 @@ public class MainPlayerService extends Service {
         private ItemTouchHelper itemTouchHelper;
 
         private boolean queueVisible;
-        private boolean audioOnly = false;
+        public boolean audioOnly = false;
         private boolean isBackgroundPlayerSelected = false;
         private boolean isFullscreen = false;
 
@@ -609,6 +609,7 @@ public class MainPlayerService extends Service {
         public void onClick(View v) {
             super.onClick(v);
             if (v.getId() == playPauseButton.getId()) {
+                useVideoSource(true);
                 onVideoPlayPause();
 
             } else if (v.getId() == playPreviousButton.getId()) {
@@ -931,12 +932,14 @@ public class MainPlayerService extends Service {
                     break;
                 case Intent.ACTION_SCREEN_ON:
                     shouldUpdateOnProgress = true;
-                    if(isBackgroundPlaybackEnabled())
+                    // Interrupt playback only when screen turns on and user is watching video in fragment
+                    if(isBackgroundPlaybackEnabled() && !isInBackground() && getPlayer() != null && (isPlaying() || getPlayer().isLoading()))
                         useVideoSource(true);
                     break;
                 case Intent.ACTION_SCREEN_OFF:
                     shouldUpdateOnProgress = false;
-                    if(isBackgroundPlaybackEnabled())
+                    // Interrupt playback only when screen turns off with video working
+                    if(isBackgroundPlaybackEnabled() && !isInBackground() && getPlayer() != null && (isPlaying() || getPlayer().isLoading()))
                         useVideoSource(false);
                     break;
             }

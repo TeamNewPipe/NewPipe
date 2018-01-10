@@ -213,7 +213,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
                 mPlayerService = localBinder.getService();
                 player = localBinder.getPlayer();
-                player.useVideoSource(true);
 
                 startPlayerListener();
                 attachPlayerViewToFragment();
@@ -221,6 +220,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 // It will do nothing if the player are not in fullscreen mode
                 hideActionBar();
                 hideSystemUi();
+
+                if(player.isInBackground()) return;
 
                 boolean isLandscape = getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
                 if(isLandscape) {
@@ -316,8 +317,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     public void onResume() {
         super.onResume();
         isPaused = false;
-        if(player != null && player.isBackgroundPlaybackEnabled() && !player.isInBackground())
-            player.useVideoSource(true);
 
         if (updateFlags != 0) {
             if (!isLoading.get() && currentInfo != null) {
@@ -1157,6 +1156,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                     currentPosition = player.getPlayer().getCurrentPosition();
             }
 
+            player.audioOnly = false;
             mPlayerService.loadVideo(playQueue, getSelectedVideoStream().getResolution(), currentPosition);
             mPlayerService.getView().setVisibility(View.VISIBLE);
         }
@@ -1493,13 +1493,19 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     public void onProgressUpdate(int currentProgress, int duration, int bufferPercent) {
         // We don't want to interrupt playback and don't want to see notification if player is stopped
-        if(!isPaused || player == null || player.isInBackground() || player.getPlayer() == null || !player.isPlaying()) return;
+        if(player == null || player.getPlayer() == null || !player.isPlaying() || player.isInBackground()) return;
 
-        // Video enabled. Let's think what to do with source in background
-        if(player.isBackgroundPlaybackEnabled())
-            player.useVideoSource(false);
+        // This will be called when user goes to another app
+        if(isPaused)
+        {
+            // Video enabled. Let's think what to do with source in background
+            if(player.isBackgroundPlaybackEnabled())
+                player.useVideoSource(false);
+            else
+                player.getPlayer().setPlayWhenReady(false);
+        }
         else
-            player.getPlayer().setPlayWhenReady(false);
+            player.useVideoSource(true);
     }
 
     @Override
