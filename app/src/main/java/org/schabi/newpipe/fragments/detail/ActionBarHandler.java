@@ -123,12 +123,6 @@ class ActionBarHandler {
     public boolean onItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.menu_item_search: {
-                if (onSearchListener != null) {
-                    onSearchListener.onActionSelected(selectedVideoStream);
-                }
-                return true;
-            }
             case R.id.menu_item_share: {
                 if (onShareListener != null) {
                     onShareListener.onActionSelected(selectedVideoStream);

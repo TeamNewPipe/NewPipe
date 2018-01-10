@@ -364,12 +364,6 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void setLandScape(boolean v) {
-        setRequestedOrientation(v
-                ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
-                : ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
-    }
-
     private boolean globalScreenOrientationLocked() {
         // 1: Screen orientation changes using acelerometer
         // 0: Screen orientatino is locked
@@ -381,7 +375,9 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
         if(globalScreenOrientationLocked()) {
             boolean lastOrientationWasLandscape
                     = sharedPreferences.getBoolean(getString(R.string.last_orientation_landscape_key), false);
-            setLandScape(lastOrientationWasLandscape);
+            setRequestedOrientation(lastOrientationWasLandscape
+                    ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+                    : ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
         }
         else
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);

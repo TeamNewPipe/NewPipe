@@ -394,6 +394,7 @@ public class MainPlayerService extends Service {
         private TextView channelTextView;
         private TextView volumeTextView;
         private TextView brightnessTextView;
+        private TextView qualityTextView;
         private ImageButton queueButton;
         private ImageButton repeatButton;
         private ImageButton shuffleButton;
@@ -446,6 +447,7 @@ public class MainPlayerService extends Service {
             this.channelTextView = rootView.findViewById(R.id.channelTextView);
             this.volumeTextView = rootView.findViewById(R.id.volumeTextView);
             this.brightnessTextView = rootView.findViewById(R.id.brightnessTextView);
+            this.qualityTextView = rootView.findViewById(R.id.qualityTextView);
             this.queueButton = rootView.findViewById(R.id.queueButton);
             this.repeatButton = rootView.findViewById(R.id.repeatButton);
             this.shuffleButton = rootView.findViewById(R.id.shuffleButton);
@@ -582,6 +584,7 @@ public class MainPlayerService extends Service {
             if(fragmentListener == null) return;
 
             notifyIsInFullscreen(!isInFullscreen());
+            qualityTextView.setVisibility(isInFullscreen()? View.VISIBLE : View.GONE);
             fragmentListener.onFullScreenButtonClicked(isInFullscreen());
         }
 
