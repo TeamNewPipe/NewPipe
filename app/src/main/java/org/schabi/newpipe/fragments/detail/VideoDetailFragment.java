@@ -222,6 +222,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 hideActionBar();
                 hideSystemUi();
 
+                if(currentInfo == null) {
+                    selectAndLoadVideo(serviceId, url, "", playQueue);
+                }
+
                 if(player.isInBackground()) return;
 
                 boolean isLandscape = getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
@@ -233,8 +237,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
                 if (currentInfo != null && isAutoplayEnabled() && mPlayerService.getView().getVisibility() == View.GONE) {
                     setupMainPlayer();
-                } else if(currentInfo == null) {
-                    selectAndLoadVideo(serviceId, url, "", playQueue);
                 }
             }
         };
@@ -1667,7 +1669,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
 
         // There is no active player. Don't show player view
-        if(!player.isProgressLoopRunning() && !player.isPlaying() && (player.getPlayer() == null || player.getPlayer().getCurrentPosition() <= 0))
+        if(!player.isProgressLoopRunning() && !player.isPlaying() && (player.getPlayer() == null || player.getPlayer().getCurrentPosition() <= 0) || player.isInBackground())
             mPlayerService.getView().setVisibility(View.GONE);
     }
 
