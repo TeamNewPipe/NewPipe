@@ -86,7 +86,6 @@ class ActionBarHandler {
         toolbarSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(defaultSelection == position) return;  // Without this line action called every time view loaded
                 selectedVideoStream = position;
                 VideoStream preferredVideoStream = videoStreams.get(selectedVideoStream);
                 selectedStreamResolution = preferredVideoStream.resolution;

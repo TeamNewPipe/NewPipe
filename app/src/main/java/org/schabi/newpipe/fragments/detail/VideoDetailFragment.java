@@ -780,7 +780,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         actionBarHandler.setOnStreamSelectedListener(new ActionBarHandler.OnStreamChangesListener() {
             @Override
             public void onActionSelected (int selectedStreamId) {
-                if(mPlayerService != null && oldSelectedStreamId != selectedStreamId && selectedStreamId != -1) {
+                // Don't reload player automatically if a selected quality is the same and if nothing is playing. After user will tap on Play button video will use selected quality
+                if(mPlayerService != null && oldSelectedStreamId != selectedStreamId && selectedStreamId != -1 && mPlayerService.getView().getVisibility() == View.VISIBLE) {
                     openVideoPlayer();
                 }
                 oldSelectedStreamId = selectedStreamId;
