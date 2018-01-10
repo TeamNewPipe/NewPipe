@@ -153,13 +153,7 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
             // Return if launched from a launcher (e.g. Nova Launcher, Pixel Launcher ...)
             // to not destroy the already created backstack
             String action = intent.getAction();
-
-            if ((action != null && action.equals(Intent.ACTION_MAIN)) && intent.hasCategory(Intent.CATEGORY_LAUNCHER)) {
-                PlayQueue playQueue = (PlayQueue) intent.getSerializableExtra(VideoPlayer.PLAY_QUEUE);
-                if(playQueue != null)
-                    NavigationHelper.playOnMainPlayer(getSupportFragmentManager(), playQueue, true);
-                return;
-            }
+            if ((action != null && action.equals(Intent.ACTION_MAIN)) && intent.hasCategory(Intent.CATEGORY_LAUNCHER)) return;
         }
 
         super.onNewIntent(intent);
@@ -275,7 +269,8 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
             switch (((StreamingService.LinkType) intent.getSerializableExtra(Constants.KEY_LINK_TYPE))) {
                 case STREAM:
                     boolean autoPlay = intent.getBooleanExtra(VideoDetailFragment.AUTO_PLAY, false);
-                    NavigationHelper.openVideoDetailFragment(getSupportFragmentManager(), serviceId, url, title, autoPlay, null);
+                    PlayQueue playQueue = (PlayQueue) intent.getSerializableExtra(VideoPlayer.PLAY_QUEUE);
+                    NavigationHelper.openVideoDetailFragment(getSupportFragmentManager(), serviceId, url, title, autoPlay, playQueue);
                     break;
                 case CHANNEL:
                     NavigationHelper.openChannelFragment(getSupportFragmentManager(), serviceId, url, title);

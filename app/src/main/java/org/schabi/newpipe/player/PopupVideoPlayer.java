@@ -59,12 +59,14 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
@@ -466,10 +468,13 @@ public final class PopupVideoPlayer extends Service {
                         this.getPlaybackPitch(),
                         this.getPlaybackQuality()
                 );
-                if (!isStartedFromNewPipe()) intent.putExtra(VideoPlayer.STARTED_FROM_NEWPIPE, false);
+                intent.putExtra(VideoPlayer.STARTED_FROM_NEWPIPE, isStartedFromNewPipe());
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.setAction(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                intent.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
+                intent.putExtra(Constants.KEY_URL, getVideoUrl());
+                intent.putExtra(Constants.KEY_TITLE, getVideoTitle());
+                intent.putExtra(VideoDetailFragment.AUTO_PLAY, PreferenceManager.getDefaultSharedPreferences(context)
+                        .getBoolean(context.getString(R.string.autoplay_through_intent_key), false));
             } else {
                 intent = new Intent(PopupVideoPlayer.this, PlayVideoActivity.class)
                         .putExtra(PlayVideoActivity.VIDEO_TITLE, getVideoTitle())
