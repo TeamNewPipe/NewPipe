@@ -63,6 +63,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.player.event.PlayerEventListener;
+import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.playlist.PlayQueue;
@@ -94,7 +95,7 @@ public class MainPlayerService extends Service {
 
     private VideoPlayerImpl playerImpl;
 
-    private PlayerEventListener fragmentListener;
+    private PlayerServiceEventListener fragmentListener;
     private final IBinder mBinder = new MainPlayerService.LocalBinder();
 
     // Notification
@@ -1191,14 +1192,14 @@ public class MainPlayerService extends Service {
         // Manipulations with listener
         ///////////////////////////////////////////////////////////////////////////
 
-        public void setFragmentListener(PlayerEventListener listener) {
+        public void setFragmentListener(PlayerServiceEventListener listener) {
             fragmentListener = listener;
             updateMetadata();
             updatePlayback();
             triggerProgressUpdate();
         }
 
-        public void removeFragmentListener(PlayerEventListener listener) {
+        public void removeFragmentListener(PlayerServiceEventListener listener) {
             if (fragmentListener == listener) {
                 fragmentListener = null;
             }

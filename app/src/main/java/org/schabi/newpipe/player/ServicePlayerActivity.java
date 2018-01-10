@@ -23,7 +23,6 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 
@@ -537,11 +536,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             metadataArtist.setText(info.uploader_name);
             scrollToSelected();
         }
-    }
-
-    @Override
-    public void onPlayerError(ExoPlaybackException error) {
-        // PlayerEventListener implementation
     }
 
     @Override

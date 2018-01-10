@@ -78,6 +78,7 @@ import org.schabi.newpipe.player.MainPlayerService;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.player.event.PlayerEventListener;
+import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.playlist.*;
@@ -108,7 +109,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implements BackPressable, SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener, View.OnLongClickListener, PlayerEventListener {
+public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implements BackPressable, SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener, View.OnLongClickListener, PlayerEventListener, PlayerServiceEventListener {
     private static final String TAG = ".VideoDetailFragment";
     private static final boolean DEBUG = BasePlayer.DEBUG;
     public static final String AUTO_PLAY = "auto_play";

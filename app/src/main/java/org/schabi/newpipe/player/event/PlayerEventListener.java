@@ -1,7 +1,5 @@
 package org.schabi.newpipe.player.event;
 
-
-import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -11,6 +9,4 @@ public interface PlayerEventListener {
     void onProgressUpdate(int currentProgress, int duration, int bufferPercent);
     void onMetadataUpdate(StreamInfo info);
     void onServiceStopped();
-    void onFullScreenButtonClicked(boolean fullscreen);
-    void onPlayerError(ExoPlaybackException error);
 }
