@@ -68,9 +68,9 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.player.event.PlayerEventListener;
+import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
-import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -86,7 +86,6 @@ import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.player.helper.PlayerHelper.isUsingOldPlayer;
@@ -104,7 +103,6 @@ public final class PopupVideoPlayer extends Service {
     private static final int NOTIFICATION_ID = 40028922;
     public static final String ACTION_CLOSE = "org.schabi.newpipe.player.PopupVideoPlayer.CLOSE";
     public static final String ACTION_PLAY_PAUSE = "org.schabi.newpipe.player.PopupVideoPlayer.PLAY_PAUSE";
-    public static final String ACTION_OPEN_CONTROLS = "org.schabi.newpipe.player.PopupVideoPlayer.OPEN_CONTROLS";
     public static final String ACTION_REPEAT = "org.schabi.newpipe.player.PopupVideoPlayer.REPEAT";
 
     private static final String POPUP_SAVED_WIDTH = "popup_saved_width";
@@ -171,17 +169,7 @@ public final class PopupVideoPlayer extends Service {
             currentWorker = ExtractorHelper.getStreamInfo(serviceId,url,false)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Consumer<StreamInfo>() {
-                        @Override
-                        public void accept(@NonNull StreamInfo info) throws Exception {
-                            fetcherRunnable.onReceive(info);
-                        }
-                    }, new Consumer<Throwable>() {
-                        @Override
-                        public void accept(@NonNull Throwable throwable) throws Exception {
-                            fetcherRunnable.onError(throwable);
-                        }
-                    });
+                    .subscribe(fetcherRunnable::onReceive, fetcherRunnable::onError);
         } else {
             playerImpl.setStartedFromNewPipe(true);
             playerImpl.handleIntent(intent);
@@ -269,10 +257,13 @@ public final class PopupVideoPlayer extends Service {
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));
         notRemoteView.setOnClickPendingIntent(R.id.notificationStop,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_CLOSE), PendingIntent.FLAG_UPDATE_CURRENT));
-        notRemoteView.setOnClickPendingIntent(R.id.notificationContent,
-                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_OPEN_CONTROLS), PendingIntent.FLAG_UPDATE_CURRENT));
         notRemoteView.setOnClickPendingIntent(R.id.notificationRepeat,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_REPEAT), PendingIntent.FLAG_UPDATE_CURRENT));
+
+        // Starts popup player activity -- attempts to unlock lockscreen
+        final Intent intent = NavigationHelper.getPopupPlayerActivityIntent(this);
+        notRemoteView.setOnClickPendingIntent(R.id.notificationContent,
+                PendingIntent.getActivity(this, NOTIFICATION_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT));
 
         setRepeatModeRemote(notRemoteView, playerImpl.getRepeatMode());
 
@@ -423,12 +414,7 @@ public final class PopupVideoPlayer extends Service {
             super.initViews(rootView);
             resizingIndicator = rootView.findViewById(R.id.resizing_indicator);
             fullScreenButton = rootView.findViewById(R.id.fullScreenButton);
-            fullScreenButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onFullScreenButtonClicked();
-                }
-            });
+            fullScreenButton.setOnClickListener(v -> onFullScreenButtonClicked());
         }
 
         @Override
@@ -610,7 +596,6 @@ public final class PopupVideoPlayer extends Service {
             if (DEBUG) Log.d(TAG, "setupBroadcastReceiver() called with: intentFilter = [" + intentFilter + "]");
             intentFilter.addAction(ACTION_CLOSE);
             intentFilter.addAction(ACTION_PLAY_PAUSE);
-            intentFilter.addAction(ACTION_OPEN_CONTROLS);
             intentFilter.addAction(ACTION_REPEAT);
 
             intentFilter.addAction(Intent.ACTION_SCREEN_ON);
@@ -628,9 +613,6 @@ public final class PopupVideoPlayer extends Service {
                     break;
                 case ACTION_PLAY_PAUSE:
                     onVideoPlayPause();
-                    break;
-                case ACTION_OPEN_CONTROLS:
-                    NavigationHelper.openPopupPlayerControl(getApplicationContext());
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();
@@ -905,22 +887,17 @@ public final class PopupVideoPlayer extends Service {
         }
 
         private void onReceive(final StreamInfo info) {
-            mainHandler.post(new Runnable() {
-                @Override
-                public void run() {
+            mainHandler.post(() -> {
                     final Intent intent = NavigationHelper.getPlayerIntent(getApplicationContext(),
                             PopupVideoPlayer.class, new SinglePlayQueue(info));
                     playerImpl.handleIntent(intent);
-                }
             });
         }
 
         private void onError(final Throwable exception) {
             if (DEBUG) Log.d(TAG, "onError() called with: exception = [" + exception + "]");
             exception.printStackTrace();
-            mainHandler.post(new Runnable() {
-                @Override
-                public void run() {
+            mainHandler.post(() -> {
                     if (exception instanceof ReCaptchaException) {
                         onReCaptchaException();
                     } else if (exception instanceof IOException) {
@@ -936,7 +913,6 @@ public final class PopupVideoPlayer extends Service {
                                 exception instanceof ParsingException ? R.string.parsing_error : R.string.general_error;
                         ErrorActivity.reportError(mainHandler, context, exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(UserAction.REQUESTED_STREAM, NewPipe.getNameOfService(serviceId), url, errorId));
                     }
-                }
             });
             stopSelf();
         }

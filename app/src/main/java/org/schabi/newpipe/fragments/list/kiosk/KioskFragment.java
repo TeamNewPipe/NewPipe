@@ -58,13 +58,9 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     @State
     protected String kioskId = "";
 
-
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
-
-    private View headerRootLayout;
-    private TextView headerTitleView;
 
     public static KioskFragment getInstance(int serviceId)
             throws ExtractionException {
@@ -147,8 +143,8 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     public Single<KioskInfo> loadResult(boolean forceReload) {
         String contentCountry = PreferenceManager
                 .getDefaultSharedPreferences(activity)
-                .getString(getString(R.string.search_language_key),
-                        getString(R.string.default_language_value));
+                .getString(getString(R.string.content_country_key),
+                        getString(R.string.default_country_value));
         return ExtractorHelper.getKioskInfo(serviceId, url, contentCountry, forceReload);
     }
 
@@ -156,8 +152,8 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     public Single<ListExtractor.NextItemsResult> loadMoreItemsLogic() {
         String contentCountry = PreferenceManager
                 .getDefaultSharedPreferences(activity)
-                .getString(getString(R.string.search_language_key),
-                        getString(R.string.default_language_value));
+                .getString(getString(R.string.content_country_key),
+                        getString(R.string.default_country_value));
         return ExtractorHelper.getMoreKioskItems(serviceId, url, currentNextItemsUrl, contentCountry);
     }
 

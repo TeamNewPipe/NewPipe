@@ -10,3 +10,4 @@
 gradle.properties
 *~
 .weblate
+*.class

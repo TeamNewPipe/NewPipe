@@ -242,7 +242,7 @@
     <string name="app_license_title">NewPipes licens</string>
     <string name="contribution_encouragement">Vad du än har för idéer gällande översättning, designändringar, kod rengöring eller riktigt tunga så är hjälp alltid välkommet. Ju mer som görs desto bättre blir det!</string>
     <string name="read_full_license">Läs hela licensen</string>
-    <string name="contribution_title">Bidrag</string>
+    <string name="contribution_title">Bidra</string>
 
     <string name="title_activity_history">Historik</string>
     <string name="title_history_search">Sökt</string>
@@ -266,7 +266,7 @@
 
     <string name="kiosk">Kiosk</string>
     <string name="trending">Trend</string>
-    <string name="top_50">Top 50</string>
+    <string name="top_50">Topp 50</string>
     <string name="new_and_hot">Aktuellt</string>
     <string name="title_activity_background_player">Bakgrunds-spelare</string>
     <string name="title_activity_popup_player">Popup-spelare</string>
@@ -279,4 +279,9 @@
     <string name="start_here_on_main">Börja spela här</string>
     <string name="start_here_on_background">Börja här i bakgrunden</string>
     <string name="start_here_on_popup">Börja här i popup</string>
-</resources>
+<string name="donation_title">Donera</string>
+    <string name="donation_encouragement">NewPipe utvecklas av frivilliga som spenderar sin fritid på att ge dig den bästa användarupplevelsen. Nu är det tid att ge tillbaka för att säkerställa att utvecklarna kan göra NewPipe ännu bättre medan de njuter av en kopp kaffe!</string>
+    <string name="give_back">Ge tillbaka</string>
+    <string name="website_title">Webbplats</string>
+    <string name="website_encouragement">För att få mer information och de senaste nyheterna om NewPipe, besök vår webbplats.</string>
+    </resources>

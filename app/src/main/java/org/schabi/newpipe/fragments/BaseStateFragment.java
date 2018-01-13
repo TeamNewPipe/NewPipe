@@ -1,6 +1,7 @@
 package org.schabi.newpipe.fragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -18,6 +19,7 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -239,5 +241,23 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         if (rootView == null) return;
 
         ErrorActivity.reportError(getContext(), exception, MainActivity.class, rootView, ErrorActivity.ErrorInfo.make(userAction, serviceName, request, errorId));
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Utils
+    //////////////////////////////////////////////////////////////////////////*/
+
+
+    protected void openUrlInBrowser(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(Intent.createChooser(intent, activity.getString(R.string.share_dialog_title)));
+    }
+
+    protected void shareUrl(String subject, String url) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, url);
+        startActivity(Intent.createChooser(intent, getString(R.string.share_dialog_title)));
     }
 }

@@ -128,15 +128,10 @@
     <plurals name="subscribers">
 	<item quantity="one">%s prenumeratorius</item>
 	<item quantity="few">%s prenumeratoriai</item>
-	<item quantity="many"/>
-	<item quantity="other"/>
 </plurals>
 
     <plurals name="videos">
 	<item quantity="one">Vaizdo įrašai</item>
-	<item quantity="few"/>
-	<item quantity="many"/>
-	<item quantity="other"/>
 </plurals>
 
     <string name="start">Pradėti</string>
@@ -214,9 +209,6 @@
     <string name="no_views">Nėra peržiūrų</string>
     <plurals name="views">
 	<item quantity="one">%a peržiūra</item>
-	<item quantity="few"></item>
-	<item quantity="many"></item>
-	<item quantity="other"></item>
 </plurals>
 
     <string name="no_videos">Nėra vaizdo įrašų</string>

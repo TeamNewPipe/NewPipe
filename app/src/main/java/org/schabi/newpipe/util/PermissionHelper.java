@@ -11,6 +11,11 @@ import android.provider.Settings;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.view.Gravity;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.schabi.newpipe.R;
 
 public class PermissionHelper {
     public static final int PERMISSION_WRITE_STORAGE = 778;
@@ -91,5 +96,17 @@ public class PermissionHelper {
             activity.startActivityForResult(i, PERMISSION_SYSTEM_ALERT_WINDOW);
             return false;
         }else return true;
+    }
+
+    public static boolean isPopupEnabled(Activity activity) {
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
+                PermissionHelper.checkSystemAlertWindowPermission(activity);
+    }
+
+    public static void showPopupEnablementToast(Context context) {
+        Toast toast = Toast.makeText(context, R.string.msg_popup_permission, Toast.LENGTH_LONG);
+        TextView messageView = toast.getView().findViewById(android.R.id.message);
+        if (messageView != null) messageView.setGravity(Gravity.CENTER);
+        toast.show();
     }
 }

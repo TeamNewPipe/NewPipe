@@ -34,7 +34,7 @@
 
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Oscuro</string>
-    <string name="light_theme_title">Ligero</string>
+    <string name="light_theme_title">Claro</string>
 
     <string name="settings_category_appearance_title">Apariencia</string>
     <string name="settings_category_other_title">Otros</string>
@@ -127,7 +127,7 @@
     <string name="app_ui_crash">La interfaz de la app dejó de funcionar</string>
     <string name="info_labels">Lo sucedido:\\nSolicitud:\\nIdioma del contenido:\\nServicio:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del S.O:\\nRango global de la IP:</string>
 
-    <string name="black_theme_title">Oscuro</string>
+    <string name="black_theme_title">Negro</string>
 
     <string name="all">Todo</string>
     <string name="channel">Canal</string>
