@@ -50,7 +50,7 @@ public final class PopupVideoPlayerActivity extends ServicePlayerActivity {
         if (item.getItemId() == R.id.action_switch_background) {
             this.player.setRecovery();
             getApplicationContext().sendBroadcast(getPlayerShutdownIntent());
-            getApplicationContext().startService(getSwitchIntent(BackgroundPlayer.class));
+            getApplicationContext().startService(getSwitchIntent(MainPlayerService.class, true));
             return true;
         }
         return false;

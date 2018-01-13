@@ -26,13 +26,17 @@ import android.widget.TextView;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
+import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
 import org.schabi.newpipe.playlist.PlayQueueItemHolder;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -162,7 +166,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             case R.id.action_switch_main:
                 this.player.setRecovery();
                 getApplicationContext().sendBroadcast(getPlayerShutdownIntent());
-                getApplicationContext().startActivity(getSwitchIntent(MainVideoPlayer.class));
+                getApplicationContext().startActivity(getSwitchIntent(MainActivity.class, false));
                 return true;
         }
         return onPlayerOptionSelected(item) || super.onOptionsItemSelected(item);
@@ -174,8 +178,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         unbind();
     }
 
-    protected Intent getSwitchIntent(final Class clazz) {
-        return NavigationHelper.getPlayerIntent(
+    protected Intent getSwitchIntent(final Class clazz, boolean audioOnly) {
+        Intent intent = NavigationHelper.getPlayerIntent(
                 getApplicationContext(),
                 clazz,
                 this.player.getPlayQueue(),
@@ -184,6 +188,13 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 this.player.getPlaybackPitch(),
                 null
         );
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
+        intent.putExtra(Constants.KEY_URL, this.player.getVideoUrl());
+        intent.putExtra(Constants.KEY_TITLE, this.player.getVideoTitle());
+        intent.putExtra(VideoDetailFragment.AUTO_PLAY, true);
+        intent.putExtra(BasePlayer.AUDIO_ONLY, audioOnly);
+        return intent;
     }
     ////////////////////////////////////////////////////////////////////////////
     // Service Connection

@@ -5,7 +5,7 @@ import android.view.MenuItem;
 
 import org.schabi.newpipe.R;
 
-import static org.schabi.newpipe.player.BackgroundPlayer.ACTION_CLOSE;
+import static org.schabi.newpipe.player.MainPlayerService.ACTION_CLOSE;
 
 public final class BackgroundPlayerActivity extends ServicePlayerActivity {
 
@@ -50,7 +50,7 @@ public final class BackgroundPlayerActivity extends ServicePlayerActivity {
         if (item.getItemId() == R.id.action_switch_popup) {
             this.player.setRecovery();
             getApplicationContext().sendBroadcast(getPlayerShutdownIntent());
-            getApplicationContext().startService(getSwitchIntent(PopupVideoPlayer.class));
+            getApplicationContext().startService(getSwitchIntent(PopupVideoPlayer.class, false));
             return true;
         }
         return false;

@@ -104,7 +104,7 @@ public class MainPlayerService extends Service {
     private RemoteViews notRemoteView;
     private RemoteViews bigNotRemoteView;
     private static final int NOTIFICATION_ID = 417308;
-    private static final String ACTION_CLOSE = "org.schabi.newpipe.player.MainPlayerService.CLOSE";
+    public static final String ACTION_CLOSE = "org.schabi.newpipe.player.MainPlayerService.CLOSE";
     private static final String ACTION_PLAY_PAUSE = "org.schabi.newpipe.player.MainPlayerService.PLAY_PAUSE";
     private static final String ACTION_OPEN_CONTROLS = "org.schabi.newpipe.player.MainPlayerService.OPEN_CONTROLS";
     private static final String ACTION_REPEAT = "org.schabi.newpipe.player.MainPlayerService.REPEAT";
@@ -296,7 +296,7 @@ public class MainPlayerService extends Service {
 
         return new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
                 .setOngoing(true)
-                .setSmallIcon(R.drawable.ic_play_arrow_white)
+                .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setCustomContentView(notRemoteView)
@@ -317,8 +317,9 @@ public class MainPlayerService extends Service {
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));
         remoteViews.setOnClickPendingIntent(R.id.notificationStop,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_CLOSE), PendingIntent.FLAG_UPDATE_CURRENT));
+        // Starts VideoDetailFragment or opens BackgroundPlayerActivity.
         remoteViews.setOnClickPendingIntent(R.id.notificationContent,
-                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_OPEN_CONTROLS), PendingIntent.FLAG_UPDATE_CURRENT));
+                PendingIntent.getActivity(this, NOTIFICATION_ID, getIntentForNotification(), PendingIntent.FLAG_UPDATE_CURRENT));
         remoteViews.setOnClickPendingIntent(R.id.notificationRepeat,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_REPEAT), PendingIntent.FLAG_UPDATE_CURRENT));
 
@@ -337,6 +338,7 @@ public class MainPlayerService extends Service {
             remoteViews.setOnClickPendingIntent(R.id.notificationFForward,
                     PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_FAST_FORWARD), PendingIntent.FLAG_UPDATE_CURRENT));
         }
+
 
         setRepeatModeRemote(remoteViews, playerImpl.getRepeatMode());
     }
@@ -384,6 +386,24 @@ public class MainPlayerService extends Service {
                 remoteViews.setInt(R.id.notificationRepeat, methodName, R.drawable.exo_controls_repeat_all);
                 break;
         }
+    }
+
+    private Intent getIntentForNotification() {
+        Intent intent;
+        if(playerImpl.isInBackground()) {
+            intent = NavigationHelper.getBackgroundPlayerActivityIntent(getApplicationContext());
+        }
+        else {
+            intent = NavigationHelper.getPlayerIntent(
+                    getApplicationContext(),
+                    MainActivity.class,
+                    null
+            );
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setAction(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+        }
+        return intent;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -570,7 +590,7 @@ public class MainPlayerService extends Service {
                 if (index < 0 || index >= info.audio_streams.size()) return null;
 
                 final AudioStream audio = info.audio_streams.get(index);
-                return buildMediaSource(audio.url, MediaFormat.getSuffixById(audio.format));
+                return buildMediaSource(audio.getUrl(), MediaFormat.getSuffixById(audio.format));
             }
         }
 
@@ -640,12 +660,9 @@ public class MainPlayerService extends Service {
 
             if (getCurrentState() != STATE_COMPLETED) {
                 getControlsVisibilityHandler().removeCallbacksAndMessages(null);
-                animateView(getControlsRoot(), true, 300, 0, new Runnable() {
-                    @Override
-                    public void run() {
-                        if (getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible()) {
-                            hideControls(300, DEFAULT_CONTROLS_HIDE_TIME);
-                        }
+                animateView(getControlsRoot(), true, 300, 0, () -> {
+                    if (getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible()) {
+                        hideControls(300, DEFAULT_CONTROLS_HIDE_TIME);
                     }
                 });
             }
@@ -702,6 +719,7 @@ public class MainPlayerService extends Service {
         private void onScreenRotationClicked() {
             if (DEBUG) Log.d(TAG, "onScreenRotationClicked() called");
             toggleOrientation();
+            showControlsThenHide();
         }
 
         @Override
@@ -787,12 +805,9 @@ public class MainPlayerService extends Service {
         @Override
         public void onPaused() {
             super.onPaused();
-            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, new Runnable() {
-                @Override
-                public void run() {
-                    playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
-                    animatePlayButtons(true, 200);
-                }
+            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, () -> {
+                playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
+                animatePlayButtons(true, 200);
             });
             getRootView().setKeepScreenOn(false);
             lockManager.releaseWifiAndCpu();
@@ -817,12 +832,9 @@ public class MainPlayerService extends Service {
 
         @Override
         public void onCompleted() {
-            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 0, 0, new Runnable() {
-                @Override
-                public void run() {
-                    playPauseButton.setImageResource(R.drawable.ic_replay_white);
-                    animatePlayButtons(true, 300);
-                }
+            animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 0, 0, () -> {
+                playPauseButton.setImageResource(R.drawable.ic_replay_white);
+                animatePlayButtons(true, 300);
             });
 
             getRootView().setKeepScreenOn(false);
@@ -925,12 +937,6 @@ public class MainPlayerService extends Service {
                 case ACTION_PLAY_PAUSE:
                     onVideoPlayPause();
                     break;
-                case ACTION_OPEN_CONTROLS:
-                    if(!isInBackground())
-                        openControl(getApplicationContext());
-                    else
-                        NavigationHelper.openBackgroundPlayerControl(getApplicationContext());
-                    break;
                 case ACTION_REPEAT:
                     onRepeatClicked();
                     break;
@@ -959,18 +965,6 @@ public class MainPlayerService extends Service {
             if (trackSelector != null && videoRendererIndex != -1) {
                 trackSelector.setRendererDisabled(videoRendererIndex, !enable);
             }
-        }
-        void openControl(Context context) {
-            Intent intent = NavigationHelper.getPlayerIntent(
-                    context,
-                    MainActivity.class,
-                    null
-            );
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.setAction(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_LAUNCHER);
-            context.startActivity(intent);
-            context.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
         }
 
         public boolean isBackgroundPlaybackEnabled() {
@@ -1014,13 +1008,9 @@ public class MainPlayerService extends Service {
             showOrHideButtons();
 
             getControlsVisibilityHandler().removeCallbacksAndMessages(null);
-            getControlsVisibilityHandler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    animateView(getControlsRoot(), false, duration, 0, new Runnable() {
-                        @Override
-                        public void run() {
-                            if(getView() == null || getView().getContext() == null || !isInFullscreen()) return;
+            getControlsVisibilityHandler().postDelayed(() ->
+                animateView(getControlsRoot(), false, duration, 0, () -> {
+                        if(getView() == null || getView().getContext() == null || !isInFullscreen()) return;
 
                             Activity parent = getParentActivity();
                             if(parent == null) return;
@@ -1037,10 +1027,8 @@ public class MainPlayerService extends Service {
                                 window.getDecorView().setSystemUiVisibility(visibility);
                             }
                             window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                        }
-                    });
-                }
-            }, delay);
+                    })
+        , delay);
         }
         private  void showOrHideButtons(){
             if(playQueue == null) return;
@@ -1071,22 +1059,19 @@ public class MainPlayerService extends Service {
 
         private void buildMoreOptionsMenu() {
             if (moreOptionsPopupMenu == null) return;
-            moreOptionsPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem menuItem) {
-                    switch (menuItem.getItemId()) {
-                        case R.id.toggleOrientation:
-                            onScreenRotationClicked();
-                            break;
-                        case R.id.switchPopup:
-                            onFullScreenButtonClicked();
-                            break;
-                        case R.id.switchBackground:
-                            onPlayBackgroundButtonClicked();
-                            break;
-                    }
-                    return false;
+            moreOptionsPopupMenu.setOnMenuItemClickListener(menuItem -> {
+                switch (menuItem.getItemId()) {
+                    case R.id.toggleOrientation:
+                        onScreenRotationClicked();
+                        break;
+                    case R.id.switchPopup:
+                        onFullScreenButtonClicked();
+                        break;
+                    case R.id.switchBackground:
+                        onPlayBackgroundButtonClicked();
+                        break;
                 }
+                return false;
             });
         }
 
@@ -1108,12 +1093,9 @@ public class MainPlayerService extends Service {
 
             playQueueAdapter.setSelectedListener(getOnSelectedListener());
 
-            itemsListCloseButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onQueueClosed();
-                }
-            });
+            itemsListCloseButton.setOnClickListener(view ->
+                onQueueClosed()
+            );
         }
 
         public void useVideoSource(boolean video) {

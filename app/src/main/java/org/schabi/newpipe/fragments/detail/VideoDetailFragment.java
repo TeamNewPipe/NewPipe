@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Build;
@@ -18,7 +17,6 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.text.TextUtilsCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -31,7 +29,6 @@ import android.text.util.Linkify;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -59,7 +56,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
@@ -655,7 +651,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                         NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
                         break;
                     case 1:
-                        NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(item));
+                        NavigationHelper.enqueueOnPopupPlayer(getActivity(), new SinglePlayQueue(item));
                         break;
                     default:
                         break;
@@ -776,7 +772,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         sortedStreamVideosList = new ArrayList<>(ListHelper.getSortedStreamVideosList(activity, info.getVideoStreams(), info.getVideoOnlyStreams(), false));
         actionBarHandler.setStreamResolution(oldSelectedStreamResolution);
         actionBarHandler.setupStreamList(sortedStreamVideosList, spinnerToolbar);
-
         actionBarHandler.setOnStreamSelectedListener(new ActionBarHandler.OnStreamChangesListener() {
             @Override
             public void onActionSelected (int selectedStreamId) {
@@ -792,26 +787,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             }
         });
 
-        actionBarHandler.setOnShareListener(new ActionBarHandler.OnActionListener() {
-            @Override
-            public void onActionSelected(int selectedStreamId) {
-                hideMainPlayer();
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, info.getUrl());
-                intent.setType("text/plain");
-                startActivity(Intent.createChooser(intent, activity.getString(R.string.share_dialog_title)));
-            }
-        });
+        actionBarHandler.setOnShareListener(selectedStreamId -> shareUrl(info.name, info.url));
 
         actionBarHandler.setOnOpenInBrowserListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
                 hideMainPlayer();
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(info.getUrl()));
-                startActivity(Intent.createChooser(intent, activity.getString(R.string.choose_browser)));
+                openUrlInBrowser(info.getUrl());
             }
         });
 
@@ -1006,11 +988,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     }
 
     private void openPopupPlayer(final boolean append) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !PermissionHelper.checkSystemAlertWindowPermission(activity)) {
-            Toast toast = Toast.makeText(activity, R.string.msg_popup_permission, Toast.LENGTH_LONG);
-            TextView messageView = toast.getView().findViewById(android.R.id.message);
-            if (messageView != null) messageView.setGravity(Gravity.CENTER);
-            toast.show();
+        if (!PermissionHelper.isPopupEnabled(activity)) {
+            PermissionHelper.showPopupEnablementToast(activity);
             return;
         }
 
