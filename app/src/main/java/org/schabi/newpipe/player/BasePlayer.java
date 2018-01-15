@@ -61,8 +61,10 @@ import com.google.android.exoplayer2.util.Util;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.fragments.playlist.StreamRecordManager;
 import org.schabi.newpipe.player.helper.AudioReactor;
 import org.schabi.newpipe.player.helper.CacheFactory;
 import org.schabi.newpipe.player.helper.LoadController;
@@ -77,9 +79,9 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Predicate;
+import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 
@@ -147,6 +149,9 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     protected DefaultExtractorsFactory extractorsFactory;
 
     protected Disposable progressUpdateReactor;
+    protected CompositeDisposable databaseUpdateReactor;
+
+    protected StreamRecordManager recordManager;
 
     //////////////////////////////////////////////////////////////////////////*/
 
@@ -172,6 +177,12 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     public void initPlayer() {
         if (DEBUG) Log.d(TAG, "initPlayer() called with: context = [" + context + "]");
 
+        if (recordManager == null) {
+            recordManager = new StreamRecordManager(NewPipeDatabase.getInstance(context));
+        }
+        if (databaseUpdateReactor != null) databaseUpdateReactor.dispose();
+        databaseUpdateReactor = new CompositeDisposable();
+
         final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
         final AdaptiveTrackSelection.Factory trackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
         final LoadControl loadControl = new LoadController(context);
@@ -193,18 +204,8 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     private Disposable getProgressReactor() {
         return Observable.interval(PROGRESS_LOOP_INTERVAL, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .filter(new Predicate<Long>() {
-                    @Override
-                    public boolean test(Long aLong) throws Exception {
-                        return isProgressLoopRunning();
-                    }
-                })
-                .subscribe(new Consumer<Long>() {
-                    @Override
-                    public void accept(Long aLong) throws Exception {
-                        triggerProgressUpdate();
-                    }
-                });
+                .filter(ignored -> isProgressLoopRunning())
+                .subscribe(ignored -> triggerProgressUpdate());
     }
 
     public void handleIntent(Intent intent) {
@@ -281,6 +282,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         if (playQueue != null) playQueue.dispose();
         if (playbackManager != null) playbackManager.dispose();
         if (audioReactor != null) audioReactor.abandonAudioFocus();
+        if (databaseUpdateReactor != null) databaseUpdateReactor.dispose();
     }
 
     public void destroy() {
@@ -291,6 +293,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
 
         trackSelector = null;
         simpleExoPlayer = null;
+        recordManager = null;
     }
 
     public MediaSource buildMediaSource(String url, String overrideExtension) {
@@ -668,10 +671,13 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
                     "], queue index=[" + playQueue.getIndex() + "]");
         } else if (simpleExoPlayer.getCurrentWindowIndex() != currentSourceIndex || !isPlaying()) {
             final long startPos = info != null ? info.start_position : 0;
-            if (DEBUG) Log.d(TAG, "Rewinding to correct window: " + currentSourceIndex + " at: " + getTimeString((int)startPos));
+            if (DEBUG) Log.d(TAG, "Rewinding to correct window: " + currentSourceIndex +
+                    " at: " + getTimeString((int)startPos));
             simpleExoPlayer.seekTo(currentSourceIndex, startPos);
         }
 
+        databaseUpdateReactor.add(recordManager.onViewed(currentInfo).subscribe());
+        recordManager.removeRecord();
         initThumbnail(info == null ? item.getThumbnailUrl() : info.thumbnail_url);
     }
 

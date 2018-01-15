@@ -1,6 +1,8 @@
-package org.schabi.newpipe.database.history;
+package org.schabi.newpipe.database;
 
 import android.arch.persistence.room.TypeConverter;
+
+import org.schabi.newpipe.extractor.stream.StreamType;
 
 import java.util.Date;
 
@@ -24,5 +26,15 @@ public class Converters {
     @TypeConverter
     public static Long dateToTimestamp(Date date) {
         return date == null ? null : date.getTime();
+    }
+
+    @TypeConverter
+    public static StreamType streamTypeOf(String value) {
+        return StreamType.valueOf(value);
+    }
+
+    @TypeConverter
+    public static String stringOf(StreamType streamType) {
+        return streamType.name();
     }
 }

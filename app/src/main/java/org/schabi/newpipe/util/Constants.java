@@ -12,4 +12,5 @@ public class Constants {
     public static final String KEY_MAIN_PAGE_CHANGE = "key_main_page_change";
 
     public static final int NO_SERVICE_ID = -1;
+    public static final String NO_URL = "";
 }

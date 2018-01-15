@@ -28,4 +28,10 @@ public final class NewPipeDatabase {
 
         return databaseInstance;
     }
+
+    @NonNull
+    public static AppDatabase getInstance(Context context) {
+        if (databaseInstance == null) init(context);
+        return databaseInstance;
+    }
 }

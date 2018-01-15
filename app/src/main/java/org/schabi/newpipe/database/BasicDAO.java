@@ -23,9 +23,6 @@ public interface BasicDAO<Entity> {
     @Insert(onConflict = OnConflictStrategy.FAIL)
     List<Long> insertAll(final Collection<Entity> entities);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    long upsert(final Entity entity);
-
     /* Searches */
     Flowable<List<Entity>> getAll();
 
