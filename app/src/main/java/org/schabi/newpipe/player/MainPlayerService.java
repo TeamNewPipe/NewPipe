@@ -41,7 +41,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.GestureDetector;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -215,7 +214,7 @@ public class MainPlayerService extends Service {
 
     public void loadVideo(PlayQueue queue, String videoResolution, long playbackPosition) {
         playerImpl.selectedResolution = videoResolution;
-        playerImpl.notifyIsInBackground(false);
+        playerImpl.selectAudioPlayer(false);
         playerImpl.audioOnly = false;
         playerImpl.playQueue = queue;
         playerImpl.playQueue.setRecovery(playerImpl.playQueue.getIndex(), playbackPosition);
@@ -390,7 +389,7 @@ public class MainPlayerService extends Service {
 
     private Intent getIntentForNotification() {
         Intent intent;
-        if(playerImpl.isInBackground()) {
+        if(playerImpl.audioPlayerSelected()) {
             intent = NavigationHelper.getBackgroundPlayerActivityIntent(getApplicationContext());
         }
         else {
@@ -445,8 +444,8 @@ public class MainPlayerService extends Service {
         public void handleIntent(Intent intent) {
             if(intent.getSerializableExtra(BasePlayer.PLAY_QUEUE) == null) return;
 
-            notifyIsInBackground(intent.getBooleanExtra(BasePlayer.AUDIO_ONLY, false));
-            audioOnly = isInBackground();
+            selectAudioPlayer(intent.getBooleanExtra(BasePlayer.AUDIO_ONLY, false));
+            audioOnly = audioPlayerSelected();
             // We need to setup audioOnly before super()
             super.handleIntent(intent);
 
@@ -813,7 +812,7 @@ public class MainPlayerService extends Service {
             lockManager.releaseWifiAndCpu();
             updateNotification(R.drawable.ic_play_arrow_white);
 
-            if(isInBackground()) {
+            if(audioPlayerSelected()) {
                 stopForeground(false);
             } else {
                 stopForeground(true);
@@ -842,7 +841,7 @@ public class MainPlayerService extends Service {
             lockManager.releaseWifiAndCpu();
             updateNotification(R.drawable.ic_play_arrow_white);
 
-            if(isInBackground()) {
+            if(audioPlayerSelected()) {
                 stopForeground(false);
             } else {
                 stopForeground(true);
@@ -943,13 +942,13 @@ public class MainPlayerService extends Service {
                 case Intent.ACTION_SCREEN_ON:
                     shouldUpdateOnProgress = true;
                     // Interrupt playback only when screen turns on and user is watching video in fragment
-                    if(isBackgroundPlaybackEnabled() && !isInBackground() && getPlayer() != null && (isPlaying() || getPlayer().isLoading()))
+                    if(backgroundPlaybackEnabledInSettings() && !audioPlayerSelected() && getPlayer() != null && (isPlaying() || getPlayer().isLoading()))
                         useVideoSource(true);
                     break;
                 case Intent.ACTION_SCREEN_OFF:
                     shouldUpdateOnProgress = false;
                     // Interrupt playback only when screen turns off with video working
-                    if(isBackgroundPlaybackEnabled() && !isInBackground() && getPlayer() != null && (isPlaying() || getPlayer().isLoading()))
+                    if(backgroundPlaybackEnabledInSettings() && !audioPlayerSelected() && getPlayer() != null && (isPlaying() || getPlayer().isLoading()))
                         useVideoSource(false);
                     break;
             }
@@ -967,15 +966,15 @@ public class MainPlayerService extends Service {
             }
         }
 
-        public boolean isBackgroundPlaybackEnabled() {
+        public boolean backgroundPlaybackEnabledInSettings() {
             return defaultPreferences.getBoolean(getApplicationContext().getString(R.string.continue_in_background_key), false);
         }
 
-        public void notifyIsInBackground (boolean background) {
+        public void selectAudioPlayer(boolean background) {
             isBackgroundPlayerSelected = background;
         }
 
-        public boolean isInBackground() {
+        public boolean audioPlayerSelected() {
             return isBackgroundPlayerSelected;
         }
 

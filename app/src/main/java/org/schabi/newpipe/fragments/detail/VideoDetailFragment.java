@@ -222,7 +222,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                     selectAndLoadVideo(serviceId, url, "", playQueue);
                 }
 
-                if(player.isInBackground()) return;
+                if(player.audioPlayerSelected()) return;
 
                 boolean isLandscape = getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
                 if(isLandscape) {
@@ -1476,13 +1476,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     public void onProgressUpdate(int currentProgress, int duration, int bufferPercent) {
         // We don't want to interrupt playback and don't want to see notification if player is stopped
-        if(player == null || player.getPlayer() == null || !player.isPlaying() || player.isInBackground()) return;
+        if(player == null || player.getPlayer() == null || !player.isPlaying() || player.audioPlayerSelected()) return;
 
         // This will be called when user goes to another app
         if(isPaused)
         {
             // Video enabled. Let's think what to do with source in background
-            if(player.isBackgroundPlaybackEnabled())
+            if(player.backgroundPlaybackEnabledInSettings())
                 player.useVideoSource(false);
             else
                 player.getPlayer().setPlayWhenReady(false);
@@ -1649,7 +1649,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
 
         // There is no active player. Don't show player view
-        if(!player.isProgressLoopRunning() && !player.isPlaying() && (player.getPlayer() == null || player.getPlayer().getCurrentPosition() <= 0) || player.isInBackground())
+        if(!player.isProgressLoopRunning() && !player.isPlaying() && (player.getPlayer() == null || player.getPlayer().getCurrentPosition() <= 0) || player.audioPlayerSelected())
             mPlayerService.getView().setVisibility(View.GONE);
     }
 
@@ -1664,7 +1664,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             setAutoplay(true);
         // Let's give a user time to look at video information page if video is not playing
         if(player.isPlaying()) {
-            player.notifyIsInBackground(false);
+            player.selectAudioPlayer(false);
             player.checkLandscape();
         }
     }
