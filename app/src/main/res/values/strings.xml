@@ -224,6 +224,7 @@
     <string name="start">Start</string>
     <string name="pause">Pause</string>
     <string name="view">Play</string>
+    <string name="create">Create</string>
     <string name="delete">Delete</string>
     <string name="checksum">Checksum</string>
 
@@ -353,6 +354,7 @@
     <string name="youtube" translatable="false">YouTube</string>
     <string name="soundcloud" translatable="false">SoundCloud</string>
 
+
     <!-- Preferred player -->
     <string name="preferred_player_share_menu_title" translatable="false">@string/preferred_player_settings_title</string>
     <string name="preferred_player_share_menu_dialog_title">Open with preferred player</string>
@@ -365,4 +367,8 @@
     
     <string name="preferred_player_fetcher_notification_title">Getting info…</string>
     <string name="preferred_player_fetcher_notification_message">"The requested content is loading"</string>
+
+    <!-- Local Playlist -->
+    <string name="create_playlist">Create New Playlist</string>
+    <string name="playlist_name_input">Name</string>
 </resources>

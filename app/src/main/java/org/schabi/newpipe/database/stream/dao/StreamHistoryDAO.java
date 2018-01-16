@@ -48,7 +48,6 @@ public abstract class StreamHistoryDAO implements BasicDAO<StreamHistoryEntity> 
             "  COUNT(*) AS " + STREAM_WATCH_COUNT +
             " FROM " + STREAM_HISTORY_TABLE + " GROUP BY " + JOIN_STREAM_ID + ")" +
 
-            " ON " + STREAM_ID + " = " + JOIN_STREAM_ID +
-            " ORDER BY " + STREAM_ACCESS_DATE + " DESC")
+            " ON " + STREAM_ID + " = " + JOIN_STREAM_ID)
     public abstract Flowable<List<StreamStatisticsEntry>> getStatistics();
 }

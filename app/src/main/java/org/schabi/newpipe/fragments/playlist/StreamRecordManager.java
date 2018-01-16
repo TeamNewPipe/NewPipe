@@ -44,4 +44,31 @@ public class StreamRecordManager {
     public int removeHistory(final long streamId) {
         return historyTable.deleteHistory(streamId);
     }
+
+    public void removeRecord() {
+        historyTable.getStatistics().firstElement().subscribe(
+                new MaybeObserver<List<StreamStatisticsEntry>>() {
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(List<StreamStatisticsEntry> streamStatisticsEntries) {
+                        hashCode();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                }
+        );
+    }
 }

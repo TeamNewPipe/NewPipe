@@ -15,6 +15,7 @@ import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.InfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamMiniInfoItemHolder;
 
@@ -52,6 +53,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int STREAM_HOLDER_TYPE = 0x101;
     private static final int MINI_CHANNEL_HOLDER_TYPE = 0x200;
     private static final int CHANNEL_HOLDER_TYPE = 0x201;
+    private static final int MINI_PLAYLIST_HOLDER_TYPE = 0x300;
     private static final int PLAYLIST_HOLDER_TYPE = 0x301;
 
     private final InfoItemBuilder infoItemBuilder;
@@ -207,7 +209,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             case CHANNEL:
                 return useMiniVariant ? MINI_CHANNEL_HOLDER_TYPE : CHANNEL_HOLDER_TYPE;
             case PLAYLIST:
-                return PLAYLIST_HOLDER_TYPE;
+                return useMiniVariant ? MINI_PLAYLIST_HOLDER_TYPE : PLAYLIST_HOLDER_TYPE;
             default:
                 Log.e(TAG, "Trollolo");
                 return -1;
@@ -230,6 +232,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return new ChannelMiniInfoItemHolder(infoItemBuilder, parent);
             case CHANNEL_HOLDER_TYPE:
                 return new ChannelInfoItemHolder(infoItemBuilder, parent);
+            case MINI_PLAYLIST_HOLDER_TYPE:
+                return new PlaylistMiniInfoItemHolder(infoItemBuilder, parent);
             case PLAYLIST_HOLDER_TYPE:
                 return new PlaylistInfoItemHolder(infoItemBuilder, parent);
             default:

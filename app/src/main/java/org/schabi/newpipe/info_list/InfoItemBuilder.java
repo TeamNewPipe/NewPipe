@@ -16,6 +16,7 @@ import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.InfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamMiniInfoItemHolder;
 
@@ -75,7 +76,7 @@ public class InfoItemBuilder {
             case CHANNEL:
                 return useMiniVariant ? new ChannelMiniInfoItemHolder(this, parent) : new ChannelInfoItemHolder(this, parent);
             case PLAYLIST:
-                return new PlaylistInfoItemHolder(this, parent);
+                return useMiniVariant ? new PlaylistMiniInfoItemHolder(this, parent) : new PlaylistInfoItemHolder(this, parent);
             default:
                 Log.e(TAG, "Trollolo");
                 throw new RuntimeException("InfoType not expected = " + infoType.name());

@@ -14,6 +14,8 @@ import java.util.List;
 
 import io.reactivex.Completable;
 import io.reactivex.Maybe;
+import io.reactivex.Scheduler;
+import io.reactivex.schedulers.Schedulers;
 
 public class LocalPlaylistManager {
 
@@ -46,7 +48,7 @@ public class LocalPlaylistManager {
             }
 
             return playlistStreamTable.insertAll(joinEntities);
-        }));
+        })).subscribeOn(Schedulers.io());
     }
 
     public Maybe<Long> appendToPlaylist(final long playlistId, final StreamEntity stream) {
@@ -57,7 +59,7 @@ public class LocalPlaylistManager {
         return Maybe.zip(streamIdFuture, joinIndexFuture, (streamId, currentMaxJoinIndex) ->
                 playlistStreamTable.insert(new PlaylistStreamEntity(playlistId,
                         streamId, currentMaxJoinIndex + 1))
-        );
+        ).subscribeOn(Schedulers.io());
     }
 
     public Completable updateJoin(final long playlistId, final List<Long> streamIds) {
@@ -73,6 +75,8 @@ public class LocalPlaylistManager {
     }
 
     public Maybe<List<PlaylistMetadataEntry>> getPlaylists() {
-        return playlistStreamTable.getPlaylistMetadata().firstElement();
+        return playlistStreamTable.getPlaylistMetadata()
+                .firstElement()
+                .subscribeOn(Schedulers.io());
     }
 }
