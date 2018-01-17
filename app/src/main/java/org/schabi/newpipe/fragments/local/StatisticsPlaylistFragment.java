@@ -35,7 +35,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public abstract class HistoryPlaylistFragment
+public abstract class StatisticsPlaylistFragment
         extends BaseListFragment<List<StreamStatisticsEntry>, Void> {
 
     private View headerRootLayout;
@@ -130,9 +130,7 @@ public abstract class HistoryPlaylistFragment
         infoListAdapter.setOnStreamSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<StreamInfoItem>() {
             @Override
             public void selected(StreamInfoItem selectedItem) {
-                if (getParentFragment() == null) return;
-                // Requires the parent fragment to find holder for fragment replacement
-                NavigationHelper.openVideoDetailFragment(getParentFragment().getFragmentManager(),
+                NavigationHelper.openVideoDetailFragment(getFragmentManager(),
                         selectedItem.getServiceId(), selectedItem.url, selectedItem.getName());
             }
 
@@ -231,7 +229,7 @@ public abstract class HistoryPlaylistFragment
 
             @Override
             public void onError(Throwable exception) {
-                HistoryPlaylistFragment.this.onError(exception);
+                StatisticsPlaylistFragment.this.onError(exception);
             }
 
             @Override

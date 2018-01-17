@@ -273,7 +273,26 @@
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp"
                             android:text="@string/controls_background_title"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/detail_controls_playlist_append"
+                            android:layout_width="60dp"
+                            android:layout_height="55dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_toLeftOf="@id/detail_controls_background"
+                            android:layout_toStartOf="@id/detail_controls_background"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:contentDescription="@string/append_playlist"
+                            android:drawableTop="?attr/playlist_add"
+                            android:gravity="center"
+                            android:paddingBottom="6dp"
+                            android:paddingTop="6dp"
+                            android:text="@string/controls_add_to_playlist_title"
+                            android:textSize="12sp"/>
                     </RelativeLayout>
 
                     <!--UPLOADER-->

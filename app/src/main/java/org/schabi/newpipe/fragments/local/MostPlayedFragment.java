@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MostPlayedFragment extends HistoryPlaylistFragment {
+public class MostPlayedFragment extends StatisticsPlaylistFragment {
     @Override
     protected String getName() {
         return getString(R.string.title_most_played);

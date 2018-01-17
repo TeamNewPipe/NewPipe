@@ -144,9 +144,8 @@ public class LocalPlaylistFragment extends BaseListFragment<List<StreamEntity>, 
         infoListAdapter.setOnStreamSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<StreamInfoItem>() {
             @Override
             public void selected(StreamInfoItem selectedItem) {
-                if (getParentFragment() == null) return;
                 // Requires the parent fragment to find holder for fragment replacement
-                NavigationHelper.openVideoDetailFragment(getParentFragment().getFragmentManager(),
+                NavigationHelper.openVideoDetailFragment(getFragmentManager(),
                         selectedItem.getServiceId(), selectedItem.url, selectedItem.getName());
             }
 

@@ -41,6 +41,7 @@
         <item name="play">@drawable/ic_play_arrow_black_24dp</item>
         <item name="ic_hot">@drawable/ic_whatshot_black_24dp</item>
         <item name="ic_channel">@drawable/ic_channel_black_24dp</item>
+        <item name="playlist_add">@drawable/ic_playlist_add_black_24dp</item>
 
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
@@ -88,6 +89,7 @@
         <item name="play">@drawable/ic_play_arrow_white_24dp</item>
         <item name="ic_hot">@drawable/ic_whatshot_white_24dp</item>
         <item name="ic_channel">@drawable/ic_channel_white_24dp</item>
+        <item name="playlist_add">@drawable/ic_playlist_add_white_24dp</item>
 
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>

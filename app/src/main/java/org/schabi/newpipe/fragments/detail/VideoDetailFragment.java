@@ -58,6 +58,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
+import org.schabi.newpipe.fragments.local.PlaylistAppendDialog;
 import org.schabi.newpipe.history.HistoryListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
@@ -145,6 +146,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     private TextView detailControlsBackground;
     private TextView detailControlsPopup;
+    private TextView detailControlsAddToPlaylist;
     private TextView appendControlsDetail;
 
     private LinearLayout videoDescriptionRootLayout;
@@ -327,6 +329,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             case R.id.detail_controls_popup:
                 openPopupPlayer(false);
                 break;
+            case R.id.detail_controls_playlist_append:
+                if (getFragmentManager() != null && currentInfo != null) {
+                    PlaylistAppendDialog.newInstance(currentInfo).show(getFragmentManager(), TAG);
+                }
+                break;
             case R.id.detail_uploader_root_layout:
                 if (TextUtils.isEmpty(currentInfo.getUploaderUrl())) {
                     Log.w(TAG, "Can't open channel because we got no channel URL");
@@ -429,6 +436,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         detailControlsBackground = rootView.findViewById(R.id.detail_controls_background);
         detailControlsPopup = rootView.findViewById(R.id.detail_controls_popup);
+        detailControlsAddToPlaylist = rootView.findViewById(R.id.detail_controls_playlist_append);
         appendControlsDetail = rootView.findViewById(R.id.touch_append_detail);
 
         videoDescriptionRootLayout = rootView.findViewById(R.id.detail_description_root_layout);
@@ -479,6 +487,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         thumbnailBackgroundButton.setOnClickListener(this);
         detailControlsBackground.setOnClickListener(this);
         detailControlsPopup.setOnClickListener(this);
+        detailControlsAddToPlaylist.setOnClickListener(this);
         relatedStreamExpandButton.setOnClickListener(this);
 
         detailControlsBackground.setLongClickable(true);
