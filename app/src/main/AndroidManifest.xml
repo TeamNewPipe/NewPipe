@@ -45,15 +45,6 @@
             android:label="@string/title_activity_background_player"/>
 
         <activity
-            android:name=".player.PopupVideoPlayerActivity"
-            android:launchMode="singleTask"
-            android:label="@string/title_activity_popup_player"/>
-
-        <service
-            android:name=".player.PopupVideoPlayer"
-            android:exported="false"/>
-
-        <activity
             android:name=".settings.SettingsActivity"
             android:label="@string/settings"/>
 

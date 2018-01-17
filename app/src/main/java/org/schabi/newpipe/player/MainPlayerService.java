@@ -1657,7 +1657,7 @@ public class MainPlayerService extends Service {
             windowLayoutParams.y = (int) posY;
 
             //noinspection PointlessBooleanExpression
-            if (DEBUG && false) Log.d(TAG, "PopupVideoPlayer.onScroll = " +
+            if (DEBUG && false) Log.d(TAG, "MainPlayer.onScroll = " +
                     ", e1.getRaw = [" + e1.getRawX() + ", " + e1.getRawY() + "]" +
                     ", e2.getRaw = [" + e2.getRawX() + ", " + e2.getRawY() + "]" +
                     ", distanceXy = [" + distanceX + ", " + distanceY + "]" +
