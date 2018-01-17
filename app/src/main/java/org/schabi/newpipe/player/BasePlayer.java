@@ -64,7 +64,7 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.fragments.playlist.StreamRecordManager;
+import org.schabi.newpipe.fragments.local.StreamRecordManager;
 import org.schabi.newpipe.player.helper.AudioReactor;
 import org.schabi.newpipe.player.helper.CacheFactory;
 import org.schabi.newpipe.player.helper.LoadController;
@@ -676,7 +676,6 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         }
 
         databaseUpdateReactor.add(recordManager.onViewed(currentInfo).subscribe());
-        recordManager.removeRecord();
         initThumbnail(info == null ? item.getThumbnailUrl() : info.thumbnail_url);
     }
 

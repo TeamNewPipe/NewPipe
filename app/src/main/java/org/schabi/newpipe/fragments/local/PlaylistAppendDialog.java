@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.playlist;
+package org.schabi.newpipe.fragments.local;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -113,6 +113,7 @@ public class PlaylistAppendDialog extends DialogFragment {
                 .subscribe(metadataEntries -> {
                     if (metadataEntries.isEmpty()) {
                         openCreatePlaylistDialog();
+                        return;
                     }
 
                     List<InfoItem> playlistInfoItems = new ArrayList<>(metadataEntries.size());
@@ -123,8 +124,6 @@ public class PlaylistAppendDialog extends DialogFragment {
                     playlistAdapter.clearStreamItemList();
                     playlistAdapter.addInfoItemList(playlistInfoItems);
                     playlistRecyclerView.setVisibility(View.VISIBLE);
-
-                    getDialog().setCanceledOnTouchOutside(true);
                 });
     }
 
@@ -141,7 +140,7 @@ public class PlaylistAppendDialog extends DialogFragment {
     public void openCreatePlaylistDialog() {
         if (streamInfo == null || getFragmentManager() == null) return;
 
-        getDialog().dismiss();
         PlaylistCreationDialog.newInstance(streamInfo).show(getFragmentManager(), TAG);
+        getDialog().dismiss();
     }
 }

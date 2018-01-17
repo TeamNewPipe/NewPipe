@@ -32,6 +32,7 @@
 
     <string name="tab_main">Main</string>
     <string name="tab_subscriptions">Subscriptions</string>
+    <string name="tab_bookmarks">Bookmarks</string>
 
     <string name="fragment_whats_new">What\'s New</string>
 
@@ -304,6 +305,8 @@
     <string name="history_cleared">History cleared</string>
     <string name="item_deleted">Item deleted</string>
     <string name="delete_item_search_history">Do you want to delete this item from search history?</string>
+    <string name="title_watch_history">Watch History</string>
+    <string name="title_most_played">Most Played</string>
 
     <!-- Content -->
     <string name="main_page_content">Content of main page</string>
@@ -370,5 +373,6 @@
 
     <!-- Local Playlist -->
     <string name="create_playlist">Create New Playlist</string>
+    <string name="delete_playlist">Delete Playlist</string>
     <string name="playlist_name_input">Name</string>
 </resources>

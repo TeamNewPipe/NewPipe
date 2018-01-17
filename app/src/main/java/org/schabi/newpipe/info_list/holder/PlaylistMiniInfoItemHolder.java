@@ -47,6 +47,14 @@ public class PlaylistMiniInfoItemHolder extends InfoItemHolder {
                 itemBuilder.getOnPlaylistSelectedListener().selected(item);
             }
         });
+
+        itemView.setLongClickable(true);
+        itemView.setOnLongClickListener(view -> {
+            if (itemBuilder.getOnPlaylistSelectedListener() != null) {
+                itemBuilder.getOnPlaylistSelectedListener().held(item);
+            }
+            return true;
+        });
     }
 
     /**

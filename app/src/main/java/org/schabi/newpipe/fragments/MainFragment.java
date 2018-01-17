@@ -29,6 +29,7 @@ import org.schabi.newpipe.extractor.kiosk.KioskList;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
 import org.schabi.newpipe.fragments.list.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
+import org.schabi.newpipe.fragments.local.BookmarkFragment;
 import org.schabi.newpipe.fragments.subscription.SubscriptionFragment;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
@@ -87,9 +88,11 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         if (isSubscriptionsPageOnlySelected()) {
             tabLayout.getTabAt(0).setIcon(channelIcon);
+            tabLayout.getTabAt(1).setText(R.string.tab_bookmarks);
         } else {
             tabLayout.getTabAt(0).setIcon(whatsHotIcon);
             tabLayout.getTabAt(1).setIcon(channelIcon);
+            tabLayout.getTabAt(2).setText(R.string.tab_bookmarks);
         }
     }
 
@@ -147,7 +150,6 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     }
 
     private class PagerAdapter extends FragmentPagerAdapter {
-
         PagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -158,7 +160,15 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 case 0:
                     return isSubscriptionsPageOnlySelected() ? new SubscriptionFragment() : getMainPageFragment();
                 case 1:
-                    return new SubscriptionFragment();
+                    if(PreferenceManager.getDefaultSharedPreferences(getActivity())
+                            .getString(getString(R.string.main_page_content_key), getString(R.string.blank_page_key))
+                            .equals(getString(R.string.subscription_page_key))) {
+                        return new BookmarkFragment();
+                    } else {
+                        return new SubscriptionFragment();
+                    }
+                case 2:
+                    return new BookmarkFragment();
                 default:
                     return new BlankFragment();
             }
@@ -172,7 +182,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         @Override
         public int getCount() {
-            return isSubscriptionsPageOnlySelected() ? 1 : 2;
+            return isSubscriptionsPageOnlySelected() ? 2 : 3;
         }
     }
 
@@ -187,6 +197,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     }
 
     private Fragment getMainPageFragment() {
+        if (getActivity() == null) return new BlankFragment();
+
         try {
             SharedPreferences preferences =
                     PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -214,6 +226,10 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 String name = preferences.getString(getString(R.string.main_page_selected_channel_name),
                         FALLBACK_CHANNEL_NAME);
                 ChannelFragment fragment = ChannelFragment.getInstance(serviceId, url, name);
+                fragment.useAsFrontPage(true);
+                return fragment;
+            } else if (setMainPage.equals(getString(R.string.bookmark_page_key))) {
+                final BookmarkFragment fragment = new BookmarkFragment();
                 fragment.useAsFrontPage(true);
                 return fragment;
             } else {

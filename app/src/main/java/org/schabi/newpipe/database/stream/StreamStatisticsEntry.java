@@ -4,7 +4,9 @@ import android.arch.persistence.room.ColumnInfo;
 
 import org.schabi.newpipe.database.stream.model.StreamHistoryEntity;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
+import org.schabi.newpipe.info_list.stored.StreamStatisticsInfoItem;
 
 import java.util.Date;
 
@@ -50,5 +52,16 @@ public class StreamStatisticsEntry {
         this.streamId = streamId;
         this.latestAccessDate = latestAccessDate;
         this.watchCount = watchCount;
+    }
+
+    public StreamStatisticsInfoItem toStreamStatisticsInfoItem() {
+        StreamStatisticsInfoItem item =
+                new StreamStatisticsInfoItem(uid, serviceId, url, title, streamType);
+        item.setDuration(duration);
+        item.setUploaderName(uploader);
+        item.setThumbnailUrl(thumbnailUrl);
+        item.setLatestAccessDate(latestAccessDate);
+        item.setWatchCount(watchCount);
+        return item;
     }
 }

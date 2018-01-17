@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.playlist;
+package org.schabi.newpipe.fragments.local;
 
 import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
@@ -13,8 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Completable;
+import io.reactivex.Flowable;
 import io.reactivex.Maybe;
-import io.reactivex.Scheduler;
+import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
 public class LocalPlaylistManager {
@@ -74,9 +75,16 @@ public class LocalPlaylistManager {
         }));
     }
 
-    public Maybe<List<PlaylistMetadataEntry>> getPlaylists() {
-        return playlistStreamTable.getPlaylistMetadata()
-                .firstElement()
+    public Flowable<List<PlaylistMetadataEntry>> getPlaylists() {
+        return playlistStreamTable.getPlaylistMetadata().subscribeOn(Schedulers.io());
+    }
+
+    public Flowable<List<StreamEntity>> getPlaylist(final long playlistId) {
+        return playlistStreamTable.getOrderedStreamsOf(playlistId).subscribeOn(Schedulers.io());
+    }
+
+    public Single<Integer> deletePlaylist(final long playlistId) {
+        return Single.fromCallable(() -> playlistTable.deletePlaylist(playlistId))
                 .subscribeOn(Schedulers.io());
     }
 }
