@@ -10,16 +10,18 @@ import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.database.history.model.WatchHistoryEntry;
 import org.schabi.newpipe.database.playlist.dao.PlaylistDAO;
 import org.schabi.newpipe.database.playlist.dao.PlaylistStreamDAO;
-import org.schabi.newpipe.database.stream.dao.StreamHistoryDAO;
-import org.schabi.newpipe.database.stream.dao.StreamDAO;
 import org.schabi.newpipe.database.playlist.model.PlaylistEntity;
 import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity;
+import org.schabi.newpipe.database.stream.dao.StreamDAO;
+import org.schabi.newpipe.database.stream.dao.StreamHistoryDAO;
 import org.schabi.newpipe.database.stream.dao.StreamStateDAO;
-import org.schabi.newpipe.database.stream.model.StreamHistoryEntity;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
+import org.schabi.newpipe.database.stream.model.StreamHistoryEntity;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.database.subscription.SubscriptionDAO;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
+
+import static org.schabi.newpipe.database.Migrations.DB_VER_12_0;
 
 @TypeConverters({Converters.class})
 @Database(
@@ -28,7 +30,7 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity;
                 StreamEntity.class, StreamHistoryEntity.class, StreamStateEntity.class,
                 PlaylistEntity.class, PlaylistStreamEntity.class
         },
-        version = 1,
+        version = DB_VER_12_0,
         exportSchema = false
 )
 public abstract class AppDatabase extends RoomDatabase {

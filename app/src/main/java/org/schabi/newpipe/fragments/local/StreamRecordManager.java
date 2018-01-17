@@ -35,7 +35,7 @@ public class StreamRecordManager {
     }
 
     public int removeHistory(final long streamId) {
-        return historyTable.deleteHistory(streamId);
+        return historyTable.deleteStreamHistory(streamId);
     }
 
     public Flowable<List<StreamStatisticsEntry>> getStatistics() {

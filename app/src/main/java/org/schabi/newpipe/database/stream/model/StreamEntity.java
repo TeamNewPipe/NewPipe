@@ -24,9 +24,9 @@ public class StreamEntity {
     final public static String STREAM_SERVICE_ID        = "service_id";
     final public static String STREAM_URL               = "url";
     final public static String STREAM_TITLE             = "title";
-    final public static String STREAM_TYPE              = "streamType";
-    final public static String STREAM_UPLOADER          = "uploader";
+    final public static String STREAM_TYPE              = "stream_type";
     final public static String STREAM_DURATION          = "duration";
+    final public static String STREAM_UPLOADER          = "uploader";
     final public static String STREAM_THUMBNAIL_URL     = "thumbnail_url";
 
     @PrimaryKey(autoGenerate = true)

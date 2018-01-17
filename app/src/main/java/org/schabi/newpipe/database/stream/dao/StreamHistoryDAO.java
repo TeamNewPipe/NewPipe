@@ -37,7 +37,7 @@ public abstract class StreamHistoryDAO implements BasicDAO<StreamHistoryEntity> 
     }
 
     @Query("DELETE FROM " + STREAM_HISTORY_TABLE + " WHERE " + JOIN_STREAM_ID + " = :streamId")
-    public abstract int deleteHistory(final long streamId);
+    public abstract int deleteStreamHistory(final long streamId);
 
     @Query("SELECT * FROM " + STREAM_TABLE +
 
