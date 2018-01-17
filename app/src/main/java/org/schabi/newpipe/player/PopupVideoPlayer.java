@@ -149,7 +149,7 @@ public final class PopupVideoPlayer extends Service {
         playerImpl = new VideoPlayerImpl(this);
         ThemeHelper.setTheme(this);
 
-        mBinder = new PlayerServiceBinder(playerImpl);
+        //mBinder = new PlayerServiceBinder(playerImpl);
     }
 
     @Override

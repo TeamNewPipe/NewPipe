@@ -89,7 +89,9 @@ public class NavigationHelper {
             return;
         }
         Toast.makeText(activity, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
-        activity.startService(getPlayerIntent(activity, PopupVideoPlayer.class, queue));
+        Intent intent = getPlayerIntent(activity, MainPlayerService.class, queue);
+        intent.putExtra(Constants.KEY_POPUP, true);
+        activity.startService(intent);
     }
 
     public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue) {
@@ -105,14 +107,16 @@ public class NavigationHelper {
             return;
         }
         Toast.makeText(activity, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
-        activity.startService(getPlayerEnqueueIntent(activity, PopupVideoPlayer.class, queue));
+        Intent intent = getPlayerEnqueueIntent(activity, MainPlayerService.class, queue);
+        intent.putExtra(Constants.KEY_POPUP, true);
+        activity.startService(intent);
     }
 
     public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue) {
         Toast.makeText(context, R.string.background_player_append, Toast.LENGTH_SHORT).show();
         Intent intent = getPlayerEnqueueIntent(context, MainPlayerService.class, queue);
         intent.putExtra(BasePlayer.AUDIO_ONLY, true);
-        context.startService(getPlayerEnqueueIntent(context, MainPlayerService.class, queue));
+        context.startService(intent);
     }
     /*//////////////////////////////////////////////////////////////////////////
     // Through FragmentManager
@@ -271,7 +275,7 @@ public class NavigationHelper {
     }
 
     public static Intent getPopupPlayerActivityIntent(final Context context) {
-        return getServicePlayerActivityIntent(context, PopupVideoPlayerActivity.class);
+        return getServicePlayerActivityIntent(context, BackgroundPlayerActivity.class);
     }
 
     private static Intent getServicePlayerActivityIntent(final Context context,

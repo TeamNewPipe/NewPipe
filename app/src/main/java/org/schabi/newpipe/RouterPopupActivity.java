@@ -7,7 +7,7 @@ import android.widget.Toast;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.player.PopupVideoPlayer;
+import org.schabi.newpipe.player.MainPlayerService;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.PermissionHelper;
 
@@ -31,7 +31,7 @@ public class RouterPopupActivity extends RouterActivity {
             return;
         }
 
-        Intent callIntent = new Intent(this, PopupVideoPlayer.class);
+        Intent callIntent = new Intent(this, MainPlayerService.class);
         switch (service.getLinkTypeByUrl(url)) {
             case STREAM:
                 break;

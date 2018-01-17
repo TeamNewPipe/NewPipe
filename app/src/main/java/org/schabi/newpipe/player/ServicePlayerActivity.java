@@ -50,7 +50,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private boolean serviceBound;
     private ServiceConnection serviceConnection;
 
-    protected BasePlayer player;
+    protected MainPlayerService.VideoPlayerImpl player;
 
     private boolean seeking;
     private boolean redraw;
@@ -108,7 +108,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     public abstract boolean onPlayerOptionSelected(MenuItem item);
 
-    public abstract Intent getPlayerShutdownIntent();
+    public abstract void setupMenu(Menu menu);
     ////////////////////////////////////////////////////////////////////////////
     // Activity Lifecycle
     ////////////////////////////////////////////////////////////////////////////
@@ -144,7 +144,15 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_play_queue, menu);
         getMenuInflater().inflate(getPlayerOptionMenuResource(), menu);
+        //setupMenu(menu);
         return true;
+    }
+
+    // Allow to setup visibility of menuItems
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        setupMenu(menu);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -165,7 +173,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 return true;
             case R.id.action_switch_main:
                 this.player.setRecovery();
-                getApplicationContext().sendBroadcast(getPlayerShutdownIntent());
                 getApplicationContext().startActivity(getSwitchIntent(MainActivity.class, false));
                 return true;
         }
