@@ -156,7 +156,7 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
         final float absVelocityX = Math.abs(velocityX);
         final float absVelocityY = Math.abs(velocityY);
         if (absVelocityX > shutdownFlingVelocity) {
-            service.onClose();
+            service.onDestroy();
             return true;
         } else if (Math.max(absVelocityX, absVelocityY) > tossFlingVelocity) {
             if (absVelocityX > tossFlingVelocity) service.windowLayoutParams.x = (int) velocityX;

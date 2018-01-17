@@ -239,10 +239,6 @@ public class MainPlayerService extends Service {
         stopSelf();
     }
 
-    public void onClose() {
-        onDestroy();
-    }
-
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         if(!playerImpl.popupPlayerSelected()) return;
@@ -475,9 +471,11 @@ public class MainPlayerService extends Service {
     private Intent getIntentForNotification() {
         Intent intent;
         if(playerImpl.audioPlayerSelected() || playerImpl.popupPlayerSelected()) {
+            // Means we play in popup or audio only. Let's show BackgroundPlayerActivity
             intent = NavigationHelper.getBackgroundPlayerActivityIntent(getApplicationContext());
         }
         else {
+            // We are playing in fragment. Don't open another activity just show fragment. That's it
             intent = NavigationHelper.getPlayerIntent(
                     getApplicationContext(),
                     MainActivity.class,

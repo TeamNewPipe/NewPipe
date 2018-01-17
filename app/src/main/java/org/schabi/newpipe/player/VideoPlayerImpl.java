@@ -1,7 +1,5 @@
 package org.schabi.newpipe.player;
 
-///////////////////////////////////////////////////////////////////////////
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -66,14 +64,12 @@ public class VideoPlayerImpl extends VideoPlayer {
     private TextView channelTextView;
     private TextView volumeTextView;
     private TextView brightnessTextView;
-    private TextView qualityTextView;
     private TextView resizingIndicator;
     private ImageButton queueButton;
     private ImageButton repeatButton;
     private ImageButton shuffleButton;
     private ImageButton screenRotationButton;
     private Space spaceBeforeFullscreenButton;
-    private ImageButton fullScreenButton;
 
     private ImageButton playPauseButton;
     private ImageButton playPreviousButton;
@@ -119,7 +115,7 @@ public class VideoPlayerImpl extends VideoPlayer {
         setupElementsVisibility();
 
         if(!audioPlayerSelected())
-            service.getView().setVisibility(View.VISIBLE);
+            getRootView().setVisibility(View.VISIBLE);
         else
             service.removeViewFromParent();
     }
@@ -137,7 +133,6 @@ public class VideoPlayerImpl extends VideoPlayer {
         this.channelTextView = rootView.findViewById(R.id.channelTextView);
         this.volumeTextView = rootView.findViewById(R.id.volumeTextView);
         this.brightnessTextView = rootView.findViewById(R.id.brightnessTextView);
-        this.qualityTextView = rootView.findViewById(R.id.qualityTextView);
         this.queueButton = rootView.findViewById(R.id.queueButton);
         this.repeatButton = rootView.findViewById(R.id.repeatButton);
         this.shuffleButton = rootView.findViewById(R.id.shuffleButton);
@@ -150,9 +145,8 @@ public class VideoPlayerImpl extends VideoPlayer {
         this.moreOptionsPopupMenu.getMenuInflater().inflate(R.menu.menu_videooptions, moreOptionsPopupMenu.getMenu());
         this.resizingIndicator = rootView.findViewById(R.id.resizing_indicator);
         this.spaceBeforeFullscreenButton = rootView.findViewById(R.id.spaceBeforeFullscreenButton);
-        this.fullScreenButton = rootView.findViewById(R.id.fullScreenButton);
 
-        this.fullScreenButton.setOnClickListener(v -> onFullScreenButtonClicked());
+        getFullScreenButton().setOnClickListener(v -> onFullScreenButtonClicked());
         titleTextView.setSelected(true);
         channelTextView.setSelected(true);
 
@@ -161,16 +155,16 @@ public class VideoPlayerImpl extends VideoPlayer {
 
     public void setupElementsVisibility() {
         if (popupPlayerSelected()) {
-            fullScreenButton.setVisibility(View.VISIBLE);
+            getFullScreenButton().setVisibility(View.VISIBLE);
             screenRotationButton.setVisibility(View.GONE);
-            service.getView().findViewById(R.id.titleAndChannel).setVisibility(View.GONE);
-            qualityTextView.setVisibility(View.VISIBLE);
+            getRootView().findViewById(R.id.titleAndChannel).setVisibility(View.GONE);
+            getQualityTextView().setVisibility(View.VISIBLE);
             spaceBeforeFullscreenButton.setVisibility(View.VISIBLE);
         } else {
-            fullScreenButton.setVisibility(View.GONE);
+            getFullScreenButton().setVisibility(View.GONE);
             screenRotationButton.setVisibility(View.VISIBLE);
-            service.getView().findViewById(R.id.titleAndChannel).setVisibility(View.VISIBLE);
-            qualityTextView.setVisibility(isInFullscreen()? View.VISIBLE : View.INVISIBLE);
+            getRootView().findViewById(R.id.titleAndChannel).setVisibility(View.VISIBLE);
+            getQualityTextView().setVisibility(isInFullscreen()? View.VISIBLE : View.INVISIBLE);
             spaceBeforeFullscreenButton.setVisibility(View.GONE);
         }
     }
@@ -197,15 +191,15 @@ public class VideoPlayerImpl extends VideoPlayer {
 
     public Activity getParentActivity() {
         // ! instanceof ViewGroup means that view was added via windowManager for Popup
-        if(service.getView().getParent() == null || !(service.getView().getParent() instanceof ViewGroup)) return null;
+        if(getRootView().getParent() == null || !(getRootView().getParent() instanceof ViewGroup)) return null;
 
-        ViewGroup parent = (ViewGroup) service.getView().getParent();
+        ViewGroup parent = (ViewGroup) getRootView().getParent();
         return (Activity) parent.getContext();
     }
 
-        /*//////////////////////////////////////////////////////////////////////////
-        // ExoPlayer Video Listener
-        //////////////////////////////////////////////////////////////////////////*/
+    /*//////////////////////////////////////////////////////////////////////////
+    // ExoPlayer Video Listener
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void onRepeatModeChanged(int i) {
@@ -280,9 +274,9 @@ public class VideoPlayerImpl extends VideoPlayer {
         }
     }
 
-        /*//////////////////////////////////////////////////////////////////////////
-        // Player Overrides
-        //////////////////////////////////////////////////////////////////////////*/
+    /*//////////////////////////////////////////////////////////////////////////
+    // Player Overrides
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public void onFullScreenButtonClicked() {
@@ -323,7 +317,7 @@ public class VideoPlayerImpl extends VideoPlayer {
             if(fragmentListener == null) return;
 
             playerInFullscreenNow(!isInFullscreen());
-            qualityTextView.setVisibility(isInFullscreen()? View.VISIBLE : View.GONE);
+            getQualityTextView().setVisibility(isInFullscreen()? View.VISIBLE : View.GONE);
             fragmentListener.onFullScreenButtonClicked(isInFullscreen());
         }
 
@@ -611,9 +605,9 @@ public class VideoPlayerImpl extends VideoPlayer {
         }
     }
 
-        /*//////////////////////////////////////////////////////////////////////////
-        // Broadcast Receiver
-        //////////////////////////////////////////////////////////////////////////*/
+    /*//////////////////////////////////////////////////////////////////////////
+    // Broadcast Receiver
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     protected void setupBroadcastReceiver(IntentFilter intentFilter) {
@@ -639,7 +633,7 @@ public class VideoPlayerImpl extends VideoPlayer {
         if (DEBUG) Log.d(TAG, "onBroadcastReceived() called with: intent = [" + intent + "]");
         switch (intent.getAction()) {
             case ACTION_CLOSE:
-                service.onClose();
+                service.onDestroy();
                 break;
             case ACTION_PLAY_NEXT:
                 onPlayNext();
@@ -680,9 +674,9 @@ public class VideoPlayerImpl extends VideoPlayer {
         service.resetNotification();
     }
 
-        /*//////////////////////////////////////////////////////////////////////////
-        // Utils
-        //////////////////////////////////////////////////////////////////////////*/
+    /*//////////////////////////////////////////////////////////////////////////
+    // Utils
+    //////////////////////////////////////////////////////////////////////////*/
 
     public boolean backgroundPlaybackEnabledInSettings() {
         return service.defaultPreferences.getBoolean(service.getString(R.string.continue_in_background_key), false);
@@ -736,7 +730,7 @@ public class VideoPlayerImpl extends VideoPlayer {
         getControlsVisibilityHandler().removeCallbacksAndMessages(null);
         getControlsVisibilityHandler().postDelayed(() ->
                         animateView(getControlsRoot(), false, duration, 0, () -> {
-                            if(service.getView() == null || service.getView().getContext() == null || !isInFullscreen()) return;
+                            if(getRootView() == null || getRootView().getContext() == null || !isInFullscreen()) return;
 
                             Activity parent = getParentActivity();
                             if(parent == null) return;
