@@ -50,7 +50,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private boolean serviceBound;
     private ServiceConnection serviceConnection;
 
-    protected MainPlayerService.VideoPlayerImpl player;
+    protected VideoPlayerImpl player;
 
     private boolean seeking;
     private boolean redraw;
@@ -144,7 +144,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_play_queue, menu);
         getMenuInflater().inflate(getPlayerOptionMenuResource(), menu);
-        //setupMenu(menu);
         return true;
     }
 

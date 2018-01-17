@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.MainPlayerService;
 import org.schabi.newpipe.player.VideoPlayer;
+import org.schabi.newpipe.player.VideoPlayerImpl;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 
 import static org.schabi.newpipe.player.BasePlayer.DEBUG;
@@ -18,7 +19,7 @@ import static org.schabi.newpipe.player.BasePlayer.TAG;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListener implements View.OnTouchListener {
-    private MainPlayerService.VideoPlayerImpl playerImpl;
+    private VideoPlayerImpl playerImpl;
     private MainPlayerService service;
 
     private int initialPopupX, initialPopupY;
@@ -29,7 +30,7 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
     private int shutdownFlingVelocity;
     private int tossFlingVelocity;
 
-    public PlayerGestureListener(MainPlayerService.VideoPlayerImpl playerImpl, MainPlayerService service) {
+    public PlayerGestureListener(final VideoPlayerImpl playerImpl, final MainPlayerService service) {
         this.playerImpl = playerImpl;
         this.service = service;
         this.shutdownFlingVelocity = PlayerHelper.getShutdownFlingVelocity(service);

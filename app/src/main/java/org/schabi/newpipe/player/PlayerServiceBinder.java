@@ -5,13 +5,13 @@ import android.support.annotation.NonNull;
 import org.mozilla.javascript.tools.jsc.Main;
 
 class PlayerServiceBinder extends Binder {
-    private final MainPlayerService.VideoPlayerImpl mainPlayer;
+    private final VideoPlayerImpl mainPlayer;
 
-    PlayerServiceBinder(@NonNull final MainPlayerService.VideoPlayerImpl mainPlayer) {
+    PlayerServiceBinder(@NonNull final VideoPlayerImpl mainPlayer) {
         this.mainPlayer = mainPlayer;
     }
 
-    MainPlayerService.VideoPlayerImpl getPlayerInstance() {
+    VideoPlayerImpl getPlayerInstance() {
         return mainPlayer;
     }
 }

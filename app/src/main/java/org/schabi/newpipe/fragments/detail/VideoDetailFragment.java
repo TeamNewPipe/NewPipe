@@ -72,6 +72,7 @@ import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.MainPlayerService;
 import org.schabi.newpipe.player.VideoPlayer;
+import org.schabi.newpipe.player.VideoPlayerImpl;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.helper.PlayerHelper;
@@ -192,7 +193,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private ServiceConnection mServiceConnection;
     private boolean mBounded;
     private boolean shouldOpenPlayerAfterServiceConnects;
-    private MainPlayerService.VideoPlayerImpl player;
+    private VideoPlayerImpl player;
 
     private ServiceConnection getServiceConnection() {
         return new ServiceConnection() {
