@@ -21,10 +21,12 @@ public final class NewPipeDatabase {
         databaseInstance = Room
                 .databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME)
                 .addMigrations(MIGRATION_11_12)
+                .fallbackToDestructiveMigration()
                 .build();
     }
 
     @NonNull
+    @Deprecated
     public static AppDatabase getInstance() {
         if (databaseInstance == null) throw new RuntimeException("Database not initialized");
 
