@@ -78,12 +78,13 @@ public class PlaylistCreationDialog extends DialogFragment {
                             new LocalPlaylistManager(NewPipeDatabase.getInstance(getContext()));
                     final List<StreamEntity> streams =
                             Collections.singletonList(new StreamEntity(streamInfo));
+                    final Toast successToast = Toast.makeText(getActivity(),
+                            "Playlist " + name + " successfully created",
+                            Toast.LENGTH_SHORT);
 
                     playlistManager.createPlaylist(name, streams)
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(longs -> Toast.makeText(getActivity(),
-                                    "Playlist " + name + " successfully created",
-                                    Toast.LENGTH_SHORT).show());
+                            .subscribe(longs -> successToast.show());
                 });
 
         return dialogBuilder.create();
