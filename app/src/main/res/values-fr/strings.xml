@@ -130,7 +130,7 @@
     <string name="channel">Chaîne</string>
 
 
-    <string name="reCaptcha_title">Test reCAPTCHA</string>
+    <string name="reCaptcha_title">Défi reCAPTCHA</string>
     <string name="recaptcha_request_toast">Test reCAPTCHA demandé</string>
 
     <string name="open_in_popup_mode">Ouvrir en mode fenêtré</string>
