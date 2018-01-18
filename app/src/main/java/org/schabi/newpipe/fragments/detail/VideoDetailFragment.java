@@ -505,7 +505,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                         NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
                         break;
                     case 1:
-                        NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(item));
+                        NavigationHelper.enqueueOnPopupPlayer(getActivity(), new SinglePlayQueue(item));
                         break;
                     default:
                         break;
@@ -623,24 +623,12 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (DEBUG) Log.d(TAG, "setupActionBarHandler() called with: info = [" + info + "]");
         sortedStreamVideosList = new ArrayList<>(ListHelper.getSortedStreamVideosList(activity, info.getVideoStreams(), info.getVideoOnlyStreams(), false));
         actionBarHandler.setupStreamList(sortedStreamVideosList, spinnerToolbar);
-        actionBarHandler.setOnShareListener(new ActionBarHandler.OnActionListener() {
-            @Override
-            public void onActionSelected(int selectedStreamId) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, info.getUrl());
-                intent.setType("text/plain");
-                startActivity(Intent.createChooser(intent, activity.getString(R.string.share_dialog_title)));
-            }
-        });
+        actionBarHandler.setOnShareListener(selectedStreamId -> shareUrl(info.name, info.url));
 
         actionBarHandler.setOnOpenInBrowserListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(info.getUrl()));
-                startActivity(Intent.createChooser(intent, activity.getString(R.string.choose_browser)));
+                openUrlInBrowser(info.getUrl());
             }
         });
 
@@ -820,11 +808,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     }
 
     private void openPopupPlayer(final boolean append) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !PermissionHelper.checkSystemAlertWindowPermission(activity)) {
-            Toast toast = Toast.makeText(activity, R.string.msg_popup_permission, Toast.LENGTH_LONG);
-            TextView messageView = toast.getView().findViewById(android.R.id.message);
-            if (messageView != null) messageView.setGravity(Gravity.CENTER);
-            toast.show();
+        if (!PermissionHelper.isPopupEnabled(activity)) {
+            PermissionHelper.showPopupEnablementToast(activity);
             return;
         }
 

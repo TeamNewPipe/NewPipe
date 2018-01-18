@@ -57,13 +57,13 @@ public final class ExtractorHelper {
         }
     }
 
-    public static Single<SearchResult> searchFor(final int serviceId, final String query, final int pageNumber, final String searchLanguage, final SearchEngine.Filter filter) {
+    public static Single<SearchResult> searchFor(final int serviceId, final String query, final int pageNumber, final String contentCountry, final SearchEngine.Filter filter) {
         checkServiceId(serviceId);
         return Single.fromCallable(new Callable<SearchResult>() {
             @Override
             public SearchResult call() throws Exception {
                 return SearchResult.getSearchResult(NewPipe.getService(serviceId).getSearchEngine(),
-                        query, pageNumber, searchLanguage, filter);
+                        query, pageNumber, contentCountry, filter);
             }
         });
     }
@@ -79,12 +79,12 @@ public final class ExtractorHelper {
                 });
     }
 
-    public static Single<List<String>> suggestionsFor(final int serviceId, final String query, final String searchLanguage) {
+    public static Single<List<String>> suggestionsFor(final int serviceId, final String query, final String contentCountry) {
         checkServiceId(serviceId);
         return Single.fromCallable(new Callable<List<String>>() {
             @Override
             public List<String> call() throws Exception {
-                return NewPipe.getService(serviceId).getSuggestionExtractor().suggestionList(query, searchLanguage);
+                return NewPipe.getService(serviceId).getSuggestionExtractor().suggestionList(query, contentCountry);
             }
         });
     }
@@ -143,7 +143,8 @@ public final class ExtractorHelper {
         return checkCache(forceLoad, serviceId, url, Single.fromCallable(new Callable<KioskInfo>() {
             @Override
             public KioskInfo call() throws Exception {
-                return KioskInfo.getInfo(NewPipe.getService(serviceId), url, toUpperCase(contentCountry));
+                Log.e("---------", contentCountry);
+                return KioskInfo.getInfo(NewPipe.getService(serviceId), url, contentCountry);
             }
         }));
     }
@@ -152,7 +153,7 @@ public final class ExtractorHelper {
         return Single.fromCallable(new Callable<NextItemsResult>() {
             @Override
             public NextItemsResult call() throws Exception {
-                return KioskInfo.getMoreItems(NewPipe.getService(serviceId), url, nextStreamsUrl, toUpperCase(contentCountry));
+                return KioskInfo.getMoreItems(NewPipe.getService(serviceId), url, nextStreamsUrl, contentCountry);
             }
         });
     }
@@ -219,16 +220,20 @@ public final class ExtractorHelper {
         // as it will cause a infinite loop if it is
         Throwable cause, getCause = throwable;
 
+        // Check if throwable is a subclass of any of the filtered classes
+        final Class throwableClass = throwable.getClass();
         for (Class<?> causesEl : causesToCheck) {
-            if (throwable.getClass().isAssignableFrom(causesEl)) {
+            if (causesEl.isAssignableFrom(throwableClass)) {
                 return true;
             }
         }
 
+        // Iteratively checks if the root cause of the throwable is a subclass of the filtered class
         while ((cause = throwable.getCause()) != null && getCause != cause) {
             getCause = cause;
+            final Class causeClass = cause.getClass();
             for (Class<?> causesEl : causesToCheck) {
-                if (cause.getClass().isAssignableFrom(causesEl)) {
+                if (causesEl.isAssignableFrom(causeClass)) {
                     return true;
                 }
             }

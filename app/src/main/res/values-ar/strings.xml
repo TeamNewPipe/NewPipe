@@ -176,13 +176,13 @@
 
     <string name="no_subscribers">صفر لا تقم با الإختيار (في بعض اللغات) لأنها ليست \"حالة خاصة\" للأندرويد</string>
     <plurals name="subscribers">
-	<item quantity="zero">صفر</item>
-	<item quantity="one">واحد</item>
-	<item quantity="two">اثنان</item>
-	<item quantity="few">قليل</item>
-	<item quantity="many">كثير</item>
-	<item quantity="other">أخرى</item>
-</plurals>
+	    <item quantity="zero">صفر</item>
+	    <item quantity="one">واحد</item>
+	    <item quantity="two">اثنان</item>
+	    <item quantity="few">قليل</item>
+	    <item quantity="many">كثير</item>
+	    <item quantity="other">أخرى</item>
+    </plurals>
 
     <string name="no_views">لاتوجد مشاهدات</string>
     <string name="no_videos">لاتوجد فديوهات</string>
@@ -292,4 +292,4 @@
     <string name="enqueue_on_background">إدراج بقائمة الانتظار على خلفية</string>
     <string name="enqueue_on_popup">إدراج بقائمة الانتظار على المنبثقة</string>
     <string name="start_here_on_background">ابدأ هنا على خلفية المصدر</string>
-    </resources>
+</resources>

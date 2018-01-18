@@ -1,10 +1,10 @@
 package org.schabi.newpipe.fragments.list.channel;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,7 +12,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,7 +22,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jakewharton.rxbinding2.view.RxView;
 
@@ -153,6 +151,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
     @Override
     protected void showStreamDialog(final StreamInfoItem item) {
+        final Activity activity = getActivity();
         final Context context = getContext();
         if (context == null || context.getResources() == null || getActivity() == null) return;
 
@@ -173,7 +172,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                         NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
                         break;
                     case 1:
-                        NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(item));
+                        NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
                         break;
                     case 2:
                         NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
@@ -182,7 +181,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                         NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
                         break;
                     case 4:
-                        NavigationHelper.playOnPopupPlayer(context, getPlayQueue(index));
+                        NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
                         break;
                     default:
                         break;
@@ -222,18 +221,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         }
     }
 
-    private void openChannelUriInBrowser() {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        startActivity(intent);
-    }
-
-    private void shareChannelUri() {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, url);
-        startActivity(Intent.createChooser(intent, getString(R.string.share_dialog_title)));
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -241,10 +228,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 openRssFeed();
                 break;
             case R.id.menu_item_openInBrowser:
-                openChannelUriInBrowser();
+                openUrlInBrowser(url);
                 break;
             case R.id.menu_item_share: {
-                shareChannelUri();
+                shareUrl(name, url);
                 break;
             }
             default:
@@ -466,13 +453,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         headerPopupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !PermissionHelper.checkSystemAlertWindowPermission(activity)) {
-                    Toast toast = Toast.makeText(activity, R.string.msg_popup_permission, Toast.LENGTH_LONG);
-                    TextView messageView = toast.getView().findViewById(android.R.id.message);
-                    if (messageView != null) messageView.setGravity(Gravity.CENTER);
-                    toast.show();
-                    return;
-                }
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue());
             }
         });

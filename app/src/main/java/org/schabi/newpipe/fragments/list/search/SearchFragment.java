@@ -111,7 +111,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
 
     private int currentPage = 0;
     private int currentNextPage = 0;
-    private String searchLanguage;
+    private String contentCountry;
     private boolean isSuggestionsEnabled = true;
     private boolean isSearchHistoryEnabled = true;
 
@@ -176,7 +176,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         isSuggestionsEnabled = preferences.getBoolean(getString(R.string.show_search_suggestions_key), true);
-        searchLanguage = preferences.getString(getString(R.string.search_language_key), getString(R.string.default_language_value));
+        contentCountry = preferences.getString(getString(R.string.content_country_key), getString(R.string.default_country_value));
     }
 
     @Override
@@ -619,7 +619,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
                             return local.materialize();
                         }
 
-                        final Observable<List<SuggestionItem>> network = ExtractorHelper.suggestionsFor(serviceId, query, searchLanguage).toObservable()
+                        final Observable<List<SuggestionItem>> network = ExtractorHelper.suggestionsFor(serviceId, query, contentCountry).toObservable()
                                 .map(new Function<List<String>, List<SuggestionItem>>() {
                                     @Override
                                     public List<SuggestionItem> apply(@io.reactivex.annotations.NonNull List<String> strings) throws Exception {
@@ -731,7 +731,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
         super.startLoading(forceLoad);
         if (disposables != null) disposables.clear();
         if (searchDisposable != null) searchDisposable.dispose();
-        searchDisposable = ExtractorHelper.searchFor(serviceId, searchQuery, currentPage, searchLanguage, filter)
+        searchDisposable = ExtractorHelper.searchFor(serviceId, searchQuery, currentPage, contentCountry, filter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<SearchResult>() {
@@ -755,7 +755,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
         showListFooter(true);
         if (searchDisposable != null) searchDisposable.dispose();
         currentNextPage = currentPage + 1;
-        searchDisposable = ExtractorHelper.getMoreSearchItems(serviceId, searchQuery, currentNextPage, searchLanguage, filter)
+        searchDisposable = ExtractorHelper.getMoreSearchItems(serviceId, searchQuery, currentNextPage, contentCountry, filter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<ListExtractor.NextItemsResult>() {

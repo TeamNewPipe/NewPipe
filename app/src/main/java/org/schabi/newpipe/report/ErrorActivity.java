@@ -382,7 +382,7 @@ public class ErrorActivity extends AppCompatActivity {
 
     private String getContentLangString() {
         return PreferenceManager.getDefaultSharedPreferences(this)
-                .getString(this.getString(R.string.search_language_key), "none");
+                .getString(this.getString(R.string.content_country_key), "none");
     }
 
     private String getOsString() {

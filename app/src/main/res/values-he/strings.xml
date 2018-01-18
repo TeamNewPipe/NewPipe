@@ -178,24 +178,18 @@
     <plurals name="subscribers">
 	<item quantity="one">%s עוקב</item>
 	<item quantity="two">%s עוקבים</item>
-	<item quantity="many"></item>
-	<item quantity="other"></item>
 </plurals>
 
     <string name="no_views">אין תצוגות</string>
     <plurals name="views">
 	<item quantity="one">תצוגה %s</item>
 	<item quantity="two">%s תצוגות</item>
-	<item quantity="many"></item>
-	<item quantity="other"></item>
 </plurals>
 
     <string name="no_videos">אין סרטונים</string>
     <plurals name="videos">
 	<item quantity="one">סרטון %s</item>
 	<item quantity="two">%s סרטונים</item>
-	<item quantity="many"></item>
-	<item quantity="other"></item>
 </plurals>
 
     <string name="start">התחל</string>

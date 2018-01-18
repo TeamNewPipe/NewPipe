@@ -247,23 +247,18 @@
     <plurals name="subscribers">
 	<item quantity="one">%s subskrybent</item>
 	<item quantity="few">%s subskrybentów</item>
-	<item quantity="many">%s subskrybentów</item>
-	<item quantity="other"/>
+	<item quantity="other">%s subskrybentów</item>
 </plurals>
 
     <plurals name="views">
 	<item quantity="one">%s odtworzenie</item>
-	<item quantity="few"/>
-	<item quantity="many">%s odtworzeń</item>
-	<item quantity="other"/>
+	<item quantity="other">%s odtworzeń</item>
 </plurals>
 
     <string name="no_videos">Brak filmów</string>
     <plurals name="videos">
 	<item quantity="one">%s film</item>
 	<item quantity="few">%s filmów</item>
-	<item quantity="many"/>
-	<item quantity="other"/>
 </plurals>
 
     <string name="charset_most_special_characters">Większość znaków specjalnych</string>

@@ -65,7 +65,6 @@ public final class BackgroundPlayer extends Service {
 
     public static final String ACTION_CLOSE = "org.schabi.newpipe.player.BackgroundPlayer.CLOSE";
     public static final String ACTION_PLAY_PAUSE = "org.schabi.newpipe.player.BackgroundPlayer.PLAY_PAUSE";
-    public static final String ACTION_OPEN_CONTROLS = "org.schabi.newpipe.player.BackgroundPlayer.OPEN_CONTROLS";
     public static final String ACTION_REPEAT = "org.schabi.newpipe.player.BackgroundPlayer.REPEAT";
     public static final String ACTION_PLAY_NEXT = "org.schabi.newpipe.player.BackgroundPlayer.ACTION_PLAY_NEXT";
     public static final String ACTION_PLAY_PREVIOUS = "org.schabi.newpipe.player.BackgroundPlayer.ACTION_PLAY_PREVIOUS";
@@ -195,10 +194,13 @@ public final class BackgroundPlayer extends Service {
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));
         remoteViews.setOnClickPendingIntent(R.id.notificationStop,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_CLOSE), PendingIntent.FLAG_UPDATE_CURRENT));
-        remoteViews.setOnClickPendingIntent(R.id.notificationContent,
-                PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_OPEN_CONTROLS), PendingIntent.FLAG_UPDATE_CURRENT));
         remoteViews.setOnClickPendingIntent(R.id.notificationRepeat,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_REPEAT), PendingIntent.FLAG_UPDATE_CURRENT));
+
+        // Starts background player activity -- attempts to unlock lockscreen
+        final Intent intent = NavigationHelper.getBackgroundPlayerActivityIntent(this);
+        remoteViews.setOnClickPendingIntent(R.id.notificationContent,
+                PendingIntent.getActivity(this, NOTIFICATION_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT));
 
         if (basePlayerImpl.playQueue != null && basePlayerImpl.playQueue.size() > 1) {
             remoteViews.setInt(R.id.notificationFRewind, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_previous);
@@ -393,7 +395,7 @@ public final class BackgroundPlayer extends Service {
             if (index < 0 || index >= info.audio_streams.size()) return null;
 
             final AudioStream audio = info.audio_streams.get(index);
-            return buildMediaSource(audio.getUrl(), MediaFormat.getSuffixById(audio.format));
+            return buildMediaSource(audio.getUrl(), MediaFormat.getSuffixById(audio.getFormatId()));
         }
 
         @Override
@@ -453,7 +455,6 @@ public final class BackgroundPlayer extends Service {
             super.setupBroadcastReceiver(intentFilter);
             intentFilter.addAction(ACTION_CLOSE);
             intentFilter.addAction(ACTION_PLAY_PAUSE);
-            intentFilter.addAction(ACTION_OPEN_CONTROLS);
             intentFilter.addAction(ACTION_REPEAT);
             intentFilter.addAction(ACTION_PLAY_PREVIOUS);
             intentFilter.addAction(ACTION_PLAY_NEXT);
@@ -477,9 +478,6 @@ public final class BackgroundPlayer extends Service {
                     break;
                 case ACTION_PLAY_PAUSE:
                     onVideoPlayPause();
-                    break;
-                case ACTION_OPEN_CONTROLS:
-                    NavigationHelper.openBackgroundPlayerControl(getApplicationContext());
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();
