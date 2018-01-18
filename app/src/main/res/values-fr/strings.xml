@@ -216,7 +216,7 @@
     <string name="enable_watch_history_title">Historique</string>
     <string name="title_activity_history">Historique</string>
     <string name="title_history_search">Recherché</string>
-    <string name="title_history_view">Vue</string>
+    <string name="title_history_view">Regardé</string>
     <string name="history_disabled">L\'historique est désactivé</string>
     <string name="action_history">Historique</string>
     <string name="history_empty">L\'historique est vide</string>
@@ -256,14 +256,14 @@
 
     <string name="charset_most_special_characters">Caractères spéciaux</string>
 
-    <string name="item_deleted">Objet effacé</string>
+    <string name="item_deleted">Élément effacé</string>
 <string name="delete_item_search_history">Voulez-vous supprimer cet élément de l\'historique de recherche ?</string>
 <string name="main_page_content">Contenu de la page principale</string>
     <string name="blank_page_summary">Page vide</string>
     <string name="subscription_page_summary">Abonnements</string>
     <string name="feed_page_summary">Page de Flux</string>
     <string name="channel_page_summary">Page de la chaîne</string>
-    <string name="select_a_channel">Sélectionnez une chaîne</string>
+    <string name="select_a_channel">Sélectionner une chaîne</string>
     <string name="trending">Populaires</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Nouveau &amp; populaire</string>
@@ -274,8 +274,8 @@
     <string name="player_stream_failure">Échec de la lecture de ce flux</string>
     <string name="player_unrecoverable_failure">Une erreur irrécupérable du lecteur s\'est produite</string>
     <string name="no_channel_subscribed_yet">Encore aucune chaîne souscrite</string>
-    <string name="title_activity_background_player">Lecteur en arrière plan</string>
-    <string name="title_activity_popup_player">Lecteur pop-up</string>
+    <string name="title_activity_background_player">Lecteur en arrière-plan</string>
+    <string name="title_activity_popup_player">Lecteur fenêtré</string>
     <string name="play_queue_remove">Retirer</string>
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Réglages audio</string>
@@ -290,14 +290,20 @@
 
     <string name="kiosk">Kiosque</string>
     <string name="hold_to_append">Appui long pour mettre en file d\'attente</string>
-    <string name="enqueue_on_background">Mettre en file d\'attente en fond</string>
-    <string name="enqueue_on_popup">Mettre en file d\'attente du lecteur pop-up</string>
+    <string name="enqueue_on_background">Mettre en file d\'attente en arrière-plan</string>
+    <string name="enqueue_on_popup">Mettre en file d\'attente du lecteur fenêtré</string>
     <string name="start_here_on_main">Démarrer ici</string>
-    <string name="start_here_on_background">Démarrer ici en fond</string>
-    <string name="start_here_on_popup">Démarrer dans le lecteur pop-up</string>
+    <string name="start_here_on_background">Démarrer ici en arrière-plan</string>
+    <string name="start_here_on_popup">Démarrer ici en fenêtré</string>
 <string name="donation_title">Donner</string>
     <string name="donation_encouragement">NewPipe est développé par des volontaires sur leur temps libre afin de vous proposer la meilleur expérience. Maintenant il est temps de leurs offrir un café pour les soutenir dans leurs efforts et rendre NewPipe encore meilleur !</string>
     <string name="website_title">Site</string>
     <string name="website_encouragement">Pour obtenir plus d\'informations et les dernières nouvelles à propos de NewPipe, visitez notre site Internet.</string>
     <string name="give_back">Donner en retour</string>
+    <string name="default_content_country_title">Pays du contenu par défaut</string>
+    <string name="toggle_orientation">Orientation</string>
+    <string name="switch_to_background">Basculer en arrière-plan</string>
+    <string name="switch_to_popup">Basculer en fenêtré</string>
+    <string name="switch_to_main">Basculer en normal</string>
+
     </resources>
