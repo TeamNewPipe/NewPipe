@@ -242,10 +242,10 @@
 	<item quantity="other">%s abonnés</item>
 </plurals>
 
-    <string name="no_views">Aucun visionnage</string>
+    <string name="no_views">Aucune vue</string>
     <plurals name="views">
-	<item quantity="one">%s visionnage</item>
-	<item quantity="other">%s visionnages</item>
+	<item quantity="one">%s vue</item>
+	<item quantity="other">%s vues</item>
 </plurals>
 
     <string name="no_videos">Aucune vidéo</string>

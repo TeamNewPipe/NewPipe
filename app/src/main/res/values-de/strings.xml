@@ -145,31 +145,30 @@
     <string name="disabled">Deaktiviert</string>
 
     <string name="use_old_player_title">Benutze den alten Player</string>
-    <string name="open_in_popup_mode">Im Popup-Modus öffnen</string>
+    <string name="open_in_popup_mode">Im Pop-up Modus öffnen</string>
     <string name="default_video_format_title">Bevorzugtes Videoformat</string>
-    <string name="popup_playing_toast">Spiele im Popup-Modus ab</string>
-    <string name="popup_mode_share_menu_title">NewPipe Popup-Modus</string>
+    <string name="popup_playing_toast">Spiele im Pop-up Modus ab</string>
+    <string name="popup_mode_share_menu_title">NewPipe Pop-up Modus</string>
 
 
-    <string name="msg_popup_permission">Diese Berechtigung ist für das
-Öffnen im Popup-Modus erforderlich</string>
+    <string name="msg_popup_permission">Diese Berechtigung ist für das Öffnen im Pop-up Modus erforderlich</string>
 
     <string name="use_old_player_summary">Alter eingebauter Mediaframework-Player</string>
-    <string name="default_popup_resolution_title">Standardauflösung des Popups</string>
+    <string name="default_popup_resolution_title">Standardauflösung des Pop-ups</string>
     <string name="show_higher_resolutions_title">Zeige höhere Auflösungen an</string>
-    <string name="show_higher_resolutions_summary">Nur einige Geräte unterstützen das Abspielen von 2K-/4K-Videos</string>
+    <string name="show_higher_resolutions_summary">Nur manche Geräte unterstützen das Abspielen von 2K-/4K-Videos</string>
     <string name="controls_background_title">Hintergrund</string>
-    <string name="controls_popup_title">Popup</string>
+    <string name="controls_popup_title">Pop-up</string>
 
-    <string name="popup_remember_size_pos_title">Größe und Position des Popups merken</string>
+    <string name="popup_remember_size_pos_title">Größe und Position des Pop-ups merken</string>
 <string name="use_external_video_player_summary">Manche Auflösungen werden KEINE Tonspur haben, wenn diese Option eingeschaltet ist</string>
-    <string name="popup_remember_size_pos_summary">Letzte Größe und Position des Popups merken</string>
+    <string name="popup_remember_size_pos_summary">Letzte Größe und Position des Pop-ups merken</string>
     <string name="player_gesture_controls_title">Gestensteuerung</string>
-    <string name="player_gesture_controls_summary">Helligkeit und Lautstärke des Players mit Gesten steuern</string>
+    <string name="player_gesture_controls_summary">Benutze Gesten um Helligkeit und Lautstärke zu justieren</string>
     <string name="show_search_suggestions_title">Durchsuche Vorschläge</string>
     <string name="show_search_suggestions_summary">Zeige Vorschläge beim Suchen</string>
 
-    <string name="settings_category_popup_title">Popup</string>
+    <string name="settings_category_popup_title">Pop-up</string>
     <string name="filter">Filter</string>
     <string name="refresh">Aktualisieren</string>
     <string name="clear">Leeren</string>
@@ -224,9 +223,9 @@
 
 
     <string name="notification_channel_name">NewPipe Benachrichtigung</string>
-    <string name="notification_channel_description">Benachrichtigungen für NewPipe Hintergrund- und Popup-Player</string>
+    <string name="notification_channel_description">Benachrichtigungen für NewPipe Hintergrund- und Pop-up Player</string>
 
-    <string name="tab_main">Übersicht</string>
+    <string name="tab_main">Main</string>
     <string name="settings_category_player_behavior_title">Verhalten</string>
     <string name="settings_category_history_title">Verlauf</string>
     <string name="playlist">Playlist</string>
@@ -263,7 +262,7 @@
     <string name="select_a_channel">Wähle einen Kanal aus</string>
     <string name="no_channel_subscribed_yet">Noch kein Kanal abonniert</string>
     <string name="trending">Trends</string>
-    <string name="popup_playing_append">In der Warteschlange des Popup-Players</string>
+    <string name="popup_playing_append">In der Warteschlange des Pop-up Players</string>
     <string name="play_all">Alles abspielen</string>
 
     <string name="play_queue_remove">Entfernen</string>
@@ -274,7 +273,7 @@
     <string name="feed_page_summary">Feed-Seite</string>
     <string name="channel_page_summary">Kanal-Seite</string>
     <string name="title_activity_background_player">Hintergrund-Player</string>
-    <string name="title_activity_popup_player">Popup-Player</string>
+    <string name="title_activity_popup_player">Pop-up Player</string>
     <string name="play_queue_stream_detail">Details</string>
     <string name="top_50">Top 50</string>
     <string name="player_unrecoverable_failure">Nicht behebbarer Wiedergabefehler aufgetreten</string>
@@ -284,7 +283,7 @@
     <string name="select_a_kiosk">Kiosk auswählen</string>
 
     <string name="kiosk">Kiosk</string>
-    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe- oder Pop-up-Button auf der Videodetailseite gedrücktgehalten wird</string>
+    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe- oder Pop-up-Button auf der Videodetailseite gedrückt gehalten wird</string>
     <string name="background_player_append">In der Warteschlange der Hintergrundwiedergabe</string>
     <string name="new_and_hot">Neu und brandheiß</string>
     <string name="hold_to_append">Halten zum Hinzufügen zur Warteschleife</string>

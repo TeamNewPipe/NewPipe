@@ -14,7 +14,7 @@
     <string name="choose_browser">ﾌﾞﾗｳｻﾞｰを選択</string>
     <string name="screen_rotation">回転</string>
     <string name="download_path_title">動画を保存する場所</string>
-    <string name="download_path_summary">動画を保存する位置</string>
+    <string name="download_path_summary">動画を保存する場所</string>
     <string name="download_path_dialog_title">動画を保存する場所を入力して下さい</string>
     <string name="default_resolution_title">基本解像度</string>
     <string name="play_with_kodi_title">Kodi で再生</string>
@@ -92,7 +92,7 @@
     <string name="audio">音楽</string>
     <string name="retry">再試行</string>
     <string name="storage_permission_denied">記録領域への接続要求が拒否されました</string>
-    <string name="autoplay_by_calling_app_title">呼び出し</string>
+    <string name="autoplay_by_calling_app_title">自動再生</string>
     <string name="autoplay_by_calling_app_summary">NewPipeが他のｱﾌﾟﾘｹｰｼｮﾝから呼び出された際に､自動的に動画を再生します｡</string>
     <string name="report_error">不具合を報告</string>
     <string name="user_report">利用者報告</string>
@@ -172,7 +172,7 @@
     <string name="clear">クリア</string>
 
     <string name="popup_remember_size_pos_title">ポップアップのサイズと位置を記憶する</string>
-    <string name="popup_remember_size_pos_summary">最後のサイズと位置を記憶してポップアップを設定します</string>
+    <string name="popup_remember_size_pos_summary">ポップアップの前回のサイズと位置を記憶します</string>
 
     <string name="settings_category_popup_title">ポップアップ</string>
     <string name="popup_resizing_indicator_title">サイズを変更</string>
@@ -201,4 +201,22 @@
     <string name="contribution_encouragement">アイデア、翻訳、デザインの変更、コードのクリーニング、または本当に重いコードの変更がありますか。ヘルプは常に歓迎します。さらに良いものになりますように!</string>
     <string name="read_full_license">ライセンスを読む</string>
     <string name="contribution_title">貢献</string>
-</resources>
+<string name="subscribe_button_title">チャンネル登録</string>
+    <string name="subscribed_button_title">チャンネル登録しました</string>
+    <string name="channel_unsubscribed">チャンネル登録を解除しました</string>
+    <string name="subscription_change_failed">チャンネル登録を変更できません</string>
+    <string name="subscription_update_failed">チャンネル登録を更新できません</string>
+
+    <string name="tab_main">メイン</string>
+    <string name="tab_subscriptions">登録リスト</string>
+
+    <string name="fragment_whats_new">新着</string>
+
+    <string name="enable_search_history_title">検索履歴</string>
+    <string name="enable_search_history_summary">検索履歴をローカルに保存します</string>
+    <string name="enable_watch_history_title">再生履歴</string>
+    <string name="enable_watch_history_summary">再生した動画を記録します</string>
+    <string name="resume_on_audio_focus_gain_title">フォーカスで再開</string>
+    <string name="resume_on_audio_focus_gain_summary">電話などによる中断の後、再生を再開します</string>
+    <string name="settings_category_player_title">プレイヤー</string>
+    </resources>
