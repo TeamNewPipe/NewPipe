@@ -10,6 +10,7 @@
 
     <com.google.android.exoplayer2.ui.AspectRatioFrameLayout
         android:id="@+id/aspectRatioLayout"
+		 app:resize_mode="zoom"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
