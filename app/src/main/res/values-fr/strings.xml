@@ -131,7 +131,7 @@
 
 
     <string name="reCaptcha_title">Défi reCAPTCHA</string>
-    <string name="recaptcha_request_toast">Test reCAPTCHA demandé</string>
+    <string name="recaptcha_request_toast">Défi reCAPTCHA demandé</string>
 
     <string name="open_in_popup_mode">Ouvrir en mode fenêtré</string>
     <string name="popup_mode_share_menu_title">Mode fenêtré NewPipe</string>
