@@ -528,7 +528,7 @@ public class VideoPlayerImpl extends VideoPlayer {
         service.lockManager.releaseWifiAndCpu();
         service.updateNotification(R.drawable.ic_play_arrow_white);
 
-        if(audioPlayerSelected()) {
+        if(!videoPlayerSelected()) {
             service.stopForeground(false);
         } else {
             service.stopForeground(true);

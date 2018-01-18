@@ -722,9 +722,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             for (int i = 0; i < to; i++) {
                 InfoItem item = info.getRelatedStreams().get(i);
                 //each = System.nanoTime();
-                View infoView = infoItemBuilder.buildView(relatedStreamsView, item);
-                infoView.setOnLongClickListener(this);
-                relatedStreamsView.addView(infoView);
+                relatedStreamsView.addView(infoItemBuilder.buildView(relatedStreamsView, item));
                 //if (DEBUG) Log.d(TAG, "each took " + ((System.nanoTime() - each) / 1000000L) + "ms");
             }
             //if (DEBUG) Log.d(TAG, "Total time " + ((System.nanoTime() - first) / 1000000L) + "ms");
@@ -1648,29 +1646,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 peekQueue.setIndex(index);
         }
     }
-
-    /*private void attachPlayerViewToFragment() {
-        if(getView() == null) return;
-
-        ViewGroup viewHolder = getView().findViewById(
-                player.isInFullscreen()?
-                        R.id.video_item_detail:
-                        R.id.detail_thumbnail_root_layout);
-
-        // if the player is not attached to fragment we will attach it
-        if(mPlayerService.getView().getParent() == null)
-            viewHolder.addView(mPlayerService.getView());
-        // If the player is already attached to other instance of VideoDetailFragment just reattach it to the current instance
-        else if(getView().findViewById(R.id.aspectRatioLayout) == null) {
-            removeVideoPlayerView();
-            viewHolder.addView(mPlayerService.getView());
-            hideMainPlayer();
-        }
-
-        // There is no active player. Don't show player view
-        if(!player.isProgressLoopRunning() && !player.isPlaying() && (player.getPlayer() == null || player.getPlayer().getCurrentPosition() <= 0) || player.audioPlayerSelected())
-            mPlayerService.getView().setVisibility(View.GONE);
-    }*/
 
     private void pausePlayer() {
         // Pause the player because we don't want to see two notifications

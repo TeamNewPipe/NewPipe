@@ -344,7 +344,7 @@
             <ImageButton
                     android:id="@+id/playPreviousButton"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="150dp"
                     android:layout_weight="1"
                     android:layout_marginRight="30dp"
                     android:layout_marginEnd="30dp"
@@ -359,7 +359,7 @@
             <ImageButton
                     android:id="@+id/playPauseButton"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="150dp"
                     android:layout_weight="1"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:scaleType="fitCenter"
@@ -369,7 +369,7 @@
             <ImageButton
                     android:id="@+id/playNextButton"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="150dp"
                     android:layout_weight="1"
                     android:layout_marginLeft="30dp"
                     android:layout_marginStart="30dp"
