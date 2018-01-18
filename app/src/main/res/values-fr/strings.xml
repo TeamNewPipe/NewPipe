@@ -53,7 +53,7 @@
     <string name="settings_category_appearance_title">Apparence</string>
     <string name="network_error">Erreur réseau</string>
 
-    <string name="download_path_audio_title">Chemin de téléchargement de l\'audio</string>
+    <string name="download_path_audio_title">Chemin de téléchargement</string>
     <string name="download_path_audio_summary">Chemin de stockage des fichiers audio téléchargés</string>
     <string name="download_path_audio_dialog_title">Entrez le chemin de téléchargement des fichiers audio</string>
 
@@ -66,12 +66,12 @@
 
     <string name="error_snackbar_message">Désolé, des erreurs se sont produites.</string>
     <string name="content">Contenu</string>
-    <string name="show_age_restricted_content_title">Afficher le contenu soumis à une restriction d\'âge</string>
-    <string name="duration_live">En direct</string>
+    <string name="show_age_restricted_content_title">Afficher le contenu avec restriction d\'âge</string>
+    <string name="duration_live">Direct</string>
 
     <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
     <string name="youtube_signature_decryption_error">Erreur lors du décryptage du lien</string>
-    <string name="light_parsing_error">Impossible d\'analyser le site complètement</string>
+    <string name="light_parsing_error">Impossible d\'analyser complètement le site web</string>
     <string name="live_streams_not_supported">Il s\'agit d\'un direct, non supporté pour le moment.</string>
     <string name="sorry_string">Désolé, une erreur inattendue s\'est produite.</string>
     <string name="autoplay_by_calling_app_summary">Lire automatiquement la vidéo lorsque NewPipe est appelée par une autre application</string>
@@ -93,7 +93,7 @@
     <string name="user_report">Rapport utilisateur</string>
 
     <string name="error_snackbar_action">SIGNALER</string>
-    <string name="could_not_setup_download_menu">Impossible de mettre en place le menu de téléchargement</string>
+    <string name="could_not_setup_download_menu">Impossible de configurer le menu de téléchargement</string>
     <string name="could_not_get_stream">Impossible d\'obtenir un flux</string>
     <string name="downloads">Téléchargements</string>
     <string name="downloads_title">Téléchargements</string>
@@ -109,19 +109,19 @@
     <string name="finish">OK</string>
 
     <string name="msg_name">Nom du fichier</string>
-    <string name="msg_threads">Threads</string>
+    <string name="msg_threads">Discussions</string>
     <string name="msg_error">Erreur</string>
     <string name="msg_server_unsupported">Serveur non supporté</string>
     <string name="msg_exists">Fichier déjà existant</string>
     <string name="msg_url_malform">URL malformée ou internet indisponible</string>
     <string name="msg_running">Téléchargement NewPipe</string>
-    <string name="msg_running_detail">Toucher pour plus de détails</string>
+    <string name="msg_running_detail">Appuyer pour plus de détails</string>
     <string name="msg_wait">Veuillez patienter…</string>
     <string name="msg_copied">Copié dans le presse-papier</string>
     <string name="no_available_dir">Sélectionner un dossier de téléchargement disponible</string>
 
-    <string name="could_not_load_image">L’image ne peut pas être chargée</string>
-    <string name="app_ui_crash">L’appli/l’interface utilisateur a crashé</string>
+    <string name="could_not_load_image">Impossible de charger l\'image</string>
+    <string name="app_ui_crash">L’appli/l’interface a crashé</string>
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="black_theme_title">Noir</string>
@@ -133,10 +133,10 @@
     <string name="reCaptcha_title">Test reCAPTCHA</string>
     <string name="recaptcha_request_toast">Test reCAPTCHA demandé</string>
 
-    <string name="open_in_popup_mode">Ouvrir dans le lecteur pop-up</string>
-    <string name="popup_mode_share_menu_title">Lecteur pop-up de NewPipe</string>
+    <string name="open_in_popup_mode">Ouvrir en mode fenêtré</string>
+    <string name="popup_mode_share_menu_title">Mode fenêtré NewPipe</string>
 
-    <string name="popup_playing_toast">Lire dans le lecteur pop-up</string>
+    <string name="popup_playing_toast">Lire en mode fenêtré</string>
     <string name="yes">Oui</string>
     <string name="later">Plus tard</string>
     <string name="disabled">Désactivé</string>
@@ -147,38 +147,38 @@
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
 
-    <string name="msg_popup_permission">Cette permission est nécessaire pour
-\nutiliser le mode pop-up</string>
+    <string name="msg_popup_permission">Cette autorisation est nécessaire pour 
+\nutiliser le mode fenêtré</string>
 
     <string name="controls_background_title">Arrière-plan</string>
-    <string name="controls_popup_title">Pop-up</string>
+    <string name="controls_popup_title">Fenêtre</string>
 
-    <string name="default_popup_resolution_title">Taille du lecteur pop-up</string>
+    <string name="default_popup_resolution_title">Résolution par défaut de la fenêtre</string>
     <string name="show_higher_resolutions_title">Afficher des résolutions plus élevées</string>
-    <string name="show_higher_resolutions_summary">Seulement certains périphériques supportent la lecture 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Certains appareils uniquement supportent la lecture 2K/4K</string>
     <string name="default_video_format_title">Format vidéo par défaut</string>
-    <string name="popup_remember_size_pos_title">Mémoriser la taille et la position du lecteur pop-up</string>
-    <string name="popup_remember_size_pos_summary">Mémoriser le dernier emplacement et la taille du lecteur pop-up</string>
+    <string name="popup_remember_size_pos_title">Mémoriser la taille et la position de la fenêtre</string>
+    <string name="popup_remember_size_pos_summary">Mémoriser la dernière taille et position de la fenêtre</string>
 
-    <string name="settings_category_popup_title">Pop-up</string>
+    <string name="settings_category_popup_title">Fenêtre</string>
     <string name="filter">Filtre</string>
     <string name="refresh">Actualiser</string>
     <string name="clear">Effacer</string>
     <string name="popup_resizing_indicator_title">Redimensionner</string>
 
-    <string name="short_billion">Md</string>
+    <string name="short_billion">B</string>
 
     <string name="use_external_video_player_summary">Certaines résolutions n\'auront PAS de son si cette option est activée</string>
-    <string name="player_gesture_controls_summary">Utilisez les gestes pour contrôler la luminosité et le volume du lecteur</string>
-    <string name="show_search_suggestions_title">Chercher des suggestions</string>
-    <string name="show_search_suggestions_summary">Montrer les suggestions pendant la recherche</string>
+    <string name="player_gesture_controls_summary">Utiliser les gestes pour contrôler la luminosité et le volume du lecteur</string>
+    <string name="show_search_suggestions_title">Suggestions de recherche</string>
+    <string name="show_search_suggestions_summary">Afficher les suggestions lors d\'une recherche</string>
 
 <string name="player_gesture_controls_title">Gestes pour contrôler la lecture</string>
     <string name="best_resolution">Meilleure résolution</string>
 
     <string name="subscribe_button_title">S\'abonner</string>
     <string name="subscribed_button_title">Abonné</string>
-    <string name="channel_unsubscribed">Désabonner de la chaîne</string>
+    <string name="channel_unsubscribed">Désabonné de la chaîne</string>
     <string name="tab_main">Principal</string>
     <string name="tab_subscriptions">Abonnements</string>
 
@@ -202,8 +202,8 @@
     <string name="title_activity_about">À propos de NewPipe</string>
     <string name="copyright" formatted="true">© %1$s par %2$s sous %3$s</string>
     <string name="contribution_encouragement">Que ce soit pour des idées, traductions, changements de design, nettoyage ou gros changements de code, l\'aide est toujours la bienvenue. Plus on contribue, meilleur il devient !</string>
-    <string name="subscription_change_failed">Incapable de changer l\'abonnement</string>
-    <string name="subscription_update_failed">Incapable de mettre à jour l\'abonnement</string>
+    <string name="subscription_change_failed">Impossible de modifier l\'abonnement</string>
+    <string name="subscription_update_failed">Impossible d\'actualiser l\'abonnement</string>
 
     <string name="resume_on_audio_focus_gain_summary">Continuer la lecture après les interruptions (ex : appels)</string>
 
@@ -231,10 +231,10 @@
     <string name="settings_category_player_behavior_title">Comportement</string>
     <string name="settings_category_history_title">Historique</string>
     <string name="playlist">Liste de lecture</string>
-    <string name="notification_channel_description">Notifications pour les lecteurs \"Arrière-plan\" et \"Pop-up\" de NewPipe</string>
+    <string name="notification_channel_description">Notifications pour les lecteurs \"Arrière-plan\" et \"Fenêtre\" de NewPipe</string>
 
     <string name="search_no_results">Aucun résultat</string>
-    <string name="empty_subscription_feed_subtitle">Rien à voir ici</string>
+    <string name="empty_subscription_feed_subtitle">Aucun contenu</string>
 
     <string name="no_subscribers">Aucun abonné</string>
     <plurals name="subscribers">
@@ -267,11 +267,11 @@
     <string name="trending">Populaires</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Nouveau &amp; populaire</string>
-<string name="background_player_append">Mettre en file d\'attente du lecteur en arrière plan</string>
-    <string name="popup_playing_append">Mettre en file d\'attente du lecteur pop-up</string>
-    <string name="play_all">Lire tout</string>
+<string name="background_player_append">Mis en file d\'attente du lecteur en arrière-plan</string>
+    <string name="popup_playing_append">Mis en file d\'attente du lecteur fenêtré</string>
+    <string name="play_all">Tout lire</string>
 
-    <string name="player_stream_failure">Échec de la lecture de cette vidéo</string>
+    <string name="player_stream_failure">Échec de la lecture de ce flux</string>
     <string name="player_unrecoverable_failure">Une erreur irrécupérable du lecteur s\'est produite</string>
     <string name="no_channel_subscribed_yet">Encore aucune chaîne souscrite</string>
     <string name="title_activity_background_player">Lecteur en arrière plan</string>
@@ -280,7 +280,7 @@
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Réglages audio</string>
     <string name="show_hold_to_append_title">Afficher l\'aide \"Appui long pour mettre en file d\'attente\"</string>
-    <string name="show_hold_to_append_summary">Afficher l\'aide en restant appuyé sur les boutons \"Arrière-plan\" et \"Pop-up\" sur la page de détails d\'une vidéo</string>
+    <string name="show_hold_to_append_summary">Afficher l\'aide en appuyant sur les boutons \"Arrière-plan\" et \"Fenêtre\" sur la page de détails d\'une vidéo</string>
     <string name="unknown_content">[Inconnu]</string>
 
     <string name="player_recoverable_failure">Récupération de l\'erreur du lecteur</string>
