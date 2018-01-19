@@ -302,4 +302,10 @@ abrir en modo popup</string>
     <string name="give_back">Donar</string>
     <string name="website_title">Página web</string>
     <string name="website_encouragement">Para obtener más información y las últimas noticias sobre NewPipe, visita nuestra web.</string>
+    <string name="default_content_country_title">País del contenido por defecto</string>
+    <string name="toggle_orientation">Alternar orientación</string>
+    <string name="switch_to_background">Cambiar a segundo plano</string>
+    <string name="switch_to_popup">Cambiar a popup</string>
+    <string name="switch_to_main">Cambiar a principal</string>
+
     </resources>
