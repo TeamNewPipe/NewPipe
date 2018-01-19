@@ -59,7 +59,7 @@
     <string name="youtube_signature_decryption_error">No se pudo descifrar la URL del vídeo</string>
     <string name="parsing_error">No se pudo analizar el sitio web</string>
     <string name="show_next_and_similar_title">Mostrar vídeos siguientes y similares</string>
-    <string name="search_language_title">Idioma por defecto del contenido</string>
+    <string name="search_language_title">Idioma del contenido por defecto</string>
     <string name="list_thumbnail_view_description">Vista previa del vídeo</string>
     <string name="detail_thumbnail_view_description">Vista previa del vídeo</string>
     <string name="detail_likes_img_view_description">Me gusta</string>
@@ -294,9 +294,9 @@ abrir en modo popup</string>
     <string name="start_here_on_main">Comenzar a reproducir aquí</string>
     <string name="start_here_on_background">Comenzar aquí en segundo plano</string>
     <string name="start_here_on_popup">Comenzar aquí en popup</string>
-<string name="show_hold_to_append_title">Desplegar consejo \"Mantener para poner en la fila\"</string>
+<string name="show_hold_to_append_title">Mostrar consejo \"Mantener para poner en la cola\"</string>
     <string name="new_and_hot">Nuevo y popular</string>
-    <string name="hold_to_append">Mantener para poner en la fila</string>
+    <string name="hold_to_append">Mantener para poner en la cola</string>
     <string name="donation_title">Donar</string>
     <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que emplean su tiempo libre en mejorar tu experiencia. ¡ Ahora puedes devolver el favor para asegurar que los desarrolladores puedan crear un NewPipe aún mejor mientras saborean una taza de Java !</string>
     <string name="give_back">Donar</string>
