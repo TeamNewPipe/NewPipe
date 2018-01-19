@@ -307,4 +307,10 @@
     <string name="website_encouragement">Per ricevere maggiori informazioni e le ultime novità su NewPipe visita il nostro sito web.</string>
     <string name="donation_encouragement">NewPipe è sviluppato da volontari che spendono il loro tempo libero per regalarti la migliore esperienza. È tempo di restituire il favore permettendo ai nostri sviluppatori di migliorare ulteriormente NewPipe mentre gustano una tazza di Giava!</string>
     <string name="give_back">Restituisci</string>
+    <string name="default_content_country_title">Paese predefinito per i contenuti</string>
+    <string name="toggle_orientation">Cambia orientamento</string>
+    <string name="switch_to_background">Cambia in background</string>
+    <string name="switch_to_popup">Cambia in visualizzazione a comparsa</string>
+    <string name="switch_to_main">Cambia al menù principale</string>
+
     </resources>
