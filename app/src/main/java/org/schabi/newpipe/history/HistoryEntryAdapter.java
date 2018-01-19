@@ -75,6 +75,16 @@ public abstract class HistoryEntryAdapter<E extends HistoryEntry, VH extends Rec
                 }
             }
         });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                final OnHistoryItemClickListener<E> historyItemClickListener = onHistoryItemClickListener;
+                if(historyItemClickListener != null) {
+                    return historyItemClickListener.onHistoryItemLongClick(entry);
+                }
+                return false;
+            }
+        });
         onBindViewHolder(holder, entry, position);
     }
 
@@ -102,5 +112,6 @@ public abstract class HistoryEntryAdapter<E extends HistoryEntry, VH extends Rec
 
     public interface OnHistoryItemClickListener<E extends HistoryEntry> {
         void onHistoryItemClick(E historyItem);
+        boolean onHistoryItemLongClick(E historyItem);
     }
 }

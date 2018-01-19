@@ -1,6 +1,9 @@
 package org.schabi.newpipe.history;
 
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -23,6 +26,10 @@ import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.history.dao.HistoryDAO;
 import org.schabi.newpipe.database.history.model.HistoryEntry;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.info_list.InfoItemDialog;
+import org.schabi.newpipe.playlist.SinglePlayQueue;
+import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -267,6 +274,35 @@ public abstract class HistoryFragment<E extends HistoryEntry> extends BaseFragme
     public void onPause() {
         super.onPause();
         mRecyclerViewState = mRecyclerView.getLayoutManager().onSaveInstanceState();
+    }
+
+    protected void showStreamDialog(final StreamInfoItem item) {
+        final Context context = getContext();
+        final Activity activity = getActivity();
+        if (context == null || context.getResources() == null || getActivity() == null) return;
+
+        final String[] commands = new String[]{
+                context.getResources().getString(R.string.enqueue_on_background),
+                context.getResources().getString(R.string.enqueue_on_popup),
+        };
+
+        final DialogInterface.OnClickListener actions = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                switch (i) {
+                    case 0:
+                        NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                        break;
+                    case 1:
+                        NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
+
+        new InfoItemDialog(getActivity(), item, commands, actions).show();
     }
 
     /**
