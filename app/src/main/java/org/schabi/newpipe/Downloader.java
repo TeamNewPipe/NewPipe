@@ -40,6 +40,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class Downloader implements org.schabi.newpipe.extractor.Downloader {
 
     public static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0";
+    public static final String ACCEPT_LANGUAGE = "en-US";
     private static String mCookies = "";
 
     private static Downloader instance = null;
@@ -128,6 +129,7 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
             con.setReadTimeout(30 * 1000);// 30s
             con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", USER_AGENT);
+            con.setRequestProperty("Accept-Language", ACCEPT_LANGUAGE);
 
             if (getCookies().length() > 0) {
                 con.setRequestProperty("Cookie", getCookies());
