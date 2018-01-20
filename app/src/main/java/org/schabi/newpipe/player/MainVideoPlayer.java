@@ -25,6 +25,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Build;
@@ -37,7 +38,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.GestureDetector;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -62,6 +62,7 @@ import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.PopupMenuIconHacker;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.lang.reflect.Field;
@@ -326,7 +327,7 @@ public final class MainVideoPlayer extends Activity {
             this.playNextButton = rootView.findViewById(R.id.playNextButton);
             this.moreOptionsButton = rootView.findViewById(R.id.moreOptionsButton);
             this.moreOptionsPopupMenu = new PopupMenu(context, moreOptionsButton);
-            this.moreOptionsPopupMenu.getMenuInflater().inflate(R.menu.menu_videooptions, moreOptionsPopupMenu.getMenu());
+            buildMoreOptionsMenu();
 
             titleTextView.setSelected(true);
             channelTextView.setSelected(true);
@@ -499,25 +500,7 @@ public final class MainVideoPlayer extends Activity {
 
         private void onMoreOptionsClicked() {
             if (DEBUG) Log.d(TAG, "onMoreOptionsClicked() called");
-            buildMoreOptionsMenu();
 
-            try {
-                Field[] fields = moreOptionsPopupMenu.getClass().getDeclaredFields();
-                for (Field field : fields) {
-                    if ("mPopup".equals(field.getName())) {
-                        field.setAccessible(true);
-                        Object menuPopupHelper = field.get(moreOptionsPopupMenu);
-                        Class<?> classPopupHelper = Class.forName(menuPopupHelper
-                                .getClass().getName());
-                        Method setForceIcons = classPopupHelper.getMethod(
-                                "setForceShowIcon", boolean.class);
-                        setForceIcons.invoke(menuPopupHelper, true);
-                        break;
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
             moreOptionsPopupMenu.show();
             isSomePopupMenuVisible = true;
             showControls(300);
@@ -659,7 +642,9 @@ public final class MainVideoPlayer extends Activity {
         }
 
         private void buildMoreOptionsMenu() {
-            if (moreOptionsPopupMenu == null) return;
+            this.moreOptionsPopupMenu.getMenuInflater().inflate(R.menu.menu_videooptions,
+                    moreOptionsPopupMenu.getMenu());
+
             moreOptionsPopupMenu.setOnMenuItemClickListener(menuItem -> {
                 switch (menuItem.getItemId()) {
                     case R.id.toggleOrientation:
@@ -674,6 +659,22 @@ public final class MainVideoPlayer extends Activity {
                 }
                 return false;
             });
+
+            try {
+                PopupMenuIconHacker.setShowPopupIcon(moreOptionsPopupMenu);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            // fix icon theme
+            if(ThemeHelper.isLightThemeSelected(MainVideoPlayer.this)) {
+                moreOptionsPopupMenu.getMenu()
+                        .findItem(R.id.toggleOrientation)
+                        .setIcon(R.drawable.ic_screen_rotation_black_24dp);
+                moreOptionsPopupMenu.getMenu()
+                        .findItem(R.id.switchPopup)
+                        .setIcon(R.drawable.ic_fullscreen_exit_black_24dp);
+            }
         }
 
         private void buildQueue() {
