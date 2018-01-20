@@ -379,7 +379,7 @@ public final class MainVideoPlayer extends Activity {
             titleTextView.setText(getVideoTitle());
             channelTextView.setText(getUploaderName());
 
-            playPauseButton.setImageResource(R.drawable.ic_pause_white);
+            //playPauseButton.setImageResource(R.drawable.ic_pause_white);
         }
 
         @Override
