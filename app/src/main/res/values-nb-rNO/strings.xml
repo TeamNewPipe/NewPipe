@@ -296,4 +296,13 @@
     <string name="give_back">Bidra</string>
     <string name="website_title">Nettside</string>
     <string name="website_encouragement">Mer informasjon og siste nytt om NewPipe er å finne på vår nettside.</string>
+    <string name="default_content_country_title">Forvalgt innholdsland</string>
+    <string name="service_title">Tjeneste</string>
+    <string name="toggle_orientation">Veksle skjermretning</string>
+    <string name="switch_to_background">Bytt til bakgrunnsmodus</string>
+    <string name="switch_to_popup">Bytt til oppsprettsmodus</string>
+    <string name="switch_to_main">Bytt til hovedmodus</string>
+
+    <string name="drawer_open">Åpne skuff</string>
+    <string name="drawer_close">Lukk skuff</string>
     </resources>
