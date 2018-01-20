@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright 2017 Mauricio Colli <mauriciocolli@outlook.com>
  * InfoCache.java is part of NewPipe
  *

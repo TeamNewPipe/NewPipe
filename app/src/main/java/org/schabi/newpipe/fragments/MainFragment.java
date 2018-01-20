@@ -138,7 +138,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_search:
-                NavigationHelper.openSearchFragment(getFragmentManager(), 0, "");
+                NavigationHelper.openSearchFragment(getFragmentManager(), NewPipe.getIdOfService(PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("service", "YouTube")), "");
                 return true;
         }
         return super.onOptionsItemSelected(item);

@@ -2,7 +2,6 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/content">
-
     <ListPreference
         android:defaultValue="@string/default_country_value"
         android:entries="@array/country_names"
@@ -38,5 +37,4 @@
         android:key="@string/main_page_content_key"
         android:title="@string/main_page_content"
         android:summary="%s"/>
-
 </PreferenceScreen>
