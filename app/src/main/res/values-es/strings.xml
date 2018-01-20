@@ -308,4 +308,7 @@ abrir en modo popup</string>
     <string name="switch_to_popup">Cambiar a popup</string>
     <string name="switch_to_main">Cambiar a principal</string>
 
+    <string name="service_title">Servicio</string>
+    <string name="drawer_open">Abrir cajón</string>
+    <string name="drawer_close">Cerrar cajón</string>
     </resources>
