@@ -28,8 +28,13 @@ import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -45,6 +50,7 @@ import org.schabi.newpipe.database.history.dao.WatchHistoryDAO;
 import org.schabi.newpipe.database.history.model.HistoryEntry;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.database.history.model.WatchHistoryEntry;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -69,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
     private static final String TAG = "MainActivity";
     public static final boolean DEBUG = false;
     private SharedPreferences sharedPreferences;
+    private ActionBarDrawerToggle toggle = null;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity's LifeCycle
@@ -76,7 +83,8 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
+        if (DEBUG)
+            Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
         ThemeHelper.setTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -85,8 +93,59 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
             initFragments();
         }
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
+        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        final NavigationView drawerItems = findViewById(R.id.navigation);
         setSupportActionBar(toolbar);
+
+        drawerItems.getMenu().getItem(NewPipe.getIdOfService(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("service", "YouTube"))).setChecked(true);
+
+        if (!BuildConfig.BUILD_TYPE.equals("release")) {
+            toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
+            toggle.syncState();
+            drawer.addDrawerListener(toggle);
+
+            drawerItems.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    drawerItems.getMenu().getItem(NewPipe.getIdOfService(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("service", "YouTube"))).setChecked(false);
+                    SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+                    editor.putString("service", item.getTitle().toString());
+                    editor.apply();
+                    drawer.closeDrawers();
+                    drawerItems.getMenu().getItem(NewPipe.getIdOfService(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("service", "YouTube"))).setChecked(true);
+                    return true;
+                }
+            });
+        } else {
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        }
+
+        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            onBackPressed();
+                        }
+                    });
+                } else {
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                    if (toggle != null) {
+                        toggle.syncState();
+                        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                drawer.openDrawer(GravityCompat.START);
+                            }
+                        });
+                    }
+                }
+            }
+        });
+
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         initHistory();
