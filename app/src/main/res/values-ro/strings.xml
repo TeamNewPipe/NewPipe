@@ -76,7 +76,7 @@
     <string name="main_bg_subtitle">Apăsați căutare pentru a începe</string>
     <string name="autoplay_by_calling_app_title">Redă automat</string>
     <string name="autoplay_by_calling_app_summary">Redă automat un videoclip atunci când NewPipe este deschis din altă aplicație</string>
-    <string name="duration_live">în direct</string>
+    <string name="duration_live">În direct</string>
     <string name="downloads">Descărcări</string>
     <string name="downloads_title">Descărcări</string>
     <string name="error_report_title">Raport de erori</string>
@@ -168,7 +168,7 @@ pentru a deschide în mod pop-up</string>
     <string name="show_search_suggestions_title">Arată sugestii</string>
     <string name="show_search_suggestions_summary">Arată sugestii în timpul căutării</string>
 
-    <string name="settings_category_popup_title">Pop-up</string>
+    <string name="settings_category_popup_title">Popup</string>
     <string name="filter">Filtrează</string>
     <string name="refresh">Reîmprospătare</string>
     <string name="clear">Șterge</string>
@@ -192,7 +192,7 @@ pentru a deschide în mod pop-up</string>
     <string name="enable_watch_history_summary">Memorează videourile văzute</string>
     <string name="resume_on_audio_focus_gain_title">Reia la câștigarea focalizării</string>
     <string name="resume_on_audio_focus_gain_summary">Continuă redarea după întreruperi (ex. după apeluri)</string>
-    <string name="settings_category_player_title">Player</string>
+    <string name="settings_category_player_title">"Player "</string>
     <string name="settings_category_player_behavior_title">Comportament</string>
     <string name="settings_category_history_title">Istoric</string>
     <string name="playlist">Playlist</string>
@@ -273,4 +273,7 @@ pentru a deschide în mod pop-up</string>
     <string name="trending">Trenduri</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Tendințe</string>
-</resources>
+<string name="service_title">Serviciu</string>
+    <string name="background_player_append">Adăugaţi în playlist fundal</string>
+    <string name="popup_playing_append">Adăugaţi în playlist pop-up</string>
+    </resources>
