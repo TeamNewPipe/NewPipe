@@ -298,4 +298,7 @@
     <string name="switch_to_popup">الإنتقال إلى نافذة منبثقة</string>
     <string name="switch_to_main">التحول إلى الرئيسية</string>
 
+    <string name="service_title">الخدمة</string>
+    <string name="drawer_open">فتح الدرج</string>
+    <string name="drawer_close">إغلاق الدرج</string>
     </resources>
