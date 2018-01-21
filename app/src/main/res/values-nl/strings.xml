@@ -303,4 +303,13 @@ te openen in pop-upmodus</string>
     <string name="give_back">Teruggeven</string>
     <string name="website_title">Website</string>
     <string name="website_encouragement">Bezoek onze website voor meer informatie en het laatste nieuws over NewPipe.</string>
+    <string name="default_content_country_title">Standaardinhoudsland</string>
+    <string name="service_title">Dienst</string>
+    <string name="toggle_orientation">Oriëntatie wijzigen</string>
+    <string name="switch_to_background">Verplaatsen naar achtergrond</string>
+    <string name="switch_to_popup">Verplaatsen naar pop-up</string>
+    <string name="switch_to_main">Verplaatsen naar normaal</string>
+
+    <string name="drawer_open">Menu openen</string>
+    <string name="drawer_close">Menu sluiten</string>
     </resources>
