@@ -75,4 +75,14 @@
 
     <!-- Kiosk view Dimensions-->
     <dimen name="kiosk_title_text_size">30sp</dimen>
+
+    <!-- Play on TV Dimensions-->
+    <dimen name="play_on_tv_header_padding_top">18dp</dimen>
+    <dimen name="play_on_tv_header_padding_left">10dp</dimen>
+    <dimen name="play_on_tv_header_padding_right">10dp</dimen>
+    <dimen name="play_on_tv_item_text_size">16sp</dimen>
+    <dimen name="play_on_tv_item_text_size_small">14sp</dimen>
+    <dimen name="play_on_tv_item_padding">8dp</dimen>
+    <dimen name="play_on_tv_progressbar">50dp</dimen>
+
 </resources>

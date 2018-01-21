@@ -13,7 +13,6 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.text.TextUtilsCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -25,7 +24,6 @@ import android.text.util.Linkify;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -37,7 +35,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -51,7 +48,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
@@ -67,6 +63,7 @@ import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
+import org.schabi.newpipe.player.PlayOnTvActivity;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.playlist.PlayQueue;
@@ -636,6 +633,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             }
         });
 
+        actionBarHandler.setOnPlayOnTvListener(new ActionBarHandler.OnActionListener() {
+            @Override
+            public void onActionSelected(int selectedStreamId) {
+                playOnTv(info.getId());
+            }
+        });
+
         actionBarHandler.setOnPlayWithKodiListener(new ActionBarHandler.OnActionListener() {
             @Override
             public void onActionSelected(int selectedStreamId) {
@@ -890,6 +894,14 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             e.printStackTrace();
         }
     }
+
+
+    private void playOnTv(String videoId) {
+
+        startActivity(new Intent(activity, PlayOnTvActivity.class)
+                .putExtra(PlayOnTvActivity.VIDEO_ID, videoId));
+    }
+
 
     private void openNormalPlayer(VideoStream selectedVideoStream) {
         Intent mIntent;

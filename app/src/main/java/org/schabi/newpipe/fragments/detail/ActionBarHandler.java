@@ -55,6 +55,7 @@ class ActionBarHandler {
     private OnActionListener onOpenInBrowserListener;
     private OnActionListener onDownloadListener;
     private OnActionListener onPlayWithKodiListener;
+    private OnActionListener onPlayOnTvListener;
 
     // Triggered when a stream related action is triggered.
     public interface OnActionListener {
@@ -127,6 +128,12 @@ class ActionBarHandler {
                     onPlayWithKodiListener.onActionSelected(selectedVideoStream);
                 }
                 return true;
+            case R.id.menu_item_playOnTv: {
+                if (onPlayOnTvListener != null) {
+                    onPlayOnTvListener.onActionSelected(selectedVideoStream);
+                }
+            }
+            return true;
             default:
                 Log.e(TAG, "Menu Item not known");
         }
@@ -143,6 +150,10 @@ class ActionBarHandler {
 
     public void setOnOpenInBrowserListener(OnActionListener listener) {
         onOpenInBrowserListener = listener;
+    }
+
+    public void setOnPlayOnTvListener(OnActionListener listener) {
+        onPlayOnTvListener = listener;
     }
 
     public void setOnDownloadListener(OnActionListener listener) {

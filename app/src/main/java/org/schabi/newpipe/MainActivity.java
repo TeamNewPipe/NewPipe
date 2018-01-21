@@ -50,6 +50,7 @@ import org.schabi.newpipe.database.history.dao.WatchHistoryDAO;
 import org.schabi.newpipe.database.history.model.HistoryEntry;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.database.history.model.WatchHistoryEntry;
+import org.schabi.newpipe.dial.DialService;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.stream.AudioStream;
@@ -149,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         initHistory();
+        discoverDialServers();
     }
 
     @Override
@@ -314,6 +316,13 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
         } else {
             NavigationHelper.gotoMainFragment(getSupportFragmentManager());
         }
+    }
+
+    private void discoverDialServers() {
+
+        Intent discoveryIntent = new Intent(this, DialService.class);
+        discoveryIntent.setAction(DialService.ACTION_DISCOVERY);
+        startService(discoveryIntent);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
