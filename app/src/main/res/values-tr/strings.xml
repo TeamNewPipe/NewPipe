@@ -270,15 +270,15 @@
 
     <string name="main_page_content">Ana sayfanın içeriği</string>
     <string name="blank_page_summary">Boş Sayfa</string>
-    <string name="kiosk_page_summary">Büfe Sayfası</string>
+    <string name="kiosk_page_summary">Köşk Sayfası</string>
     <string name="subscription_page_summary">Abonelik Sayfası</string>
     <string name="feed_page_summary">Besleme Sayfası</string>
     <string name="channel_page_summary">Kanal Sayfası</string>
     <string name="select_a_channel">Kanal seç</string>
     <string name="no_channel_subscribed_yet">Henüz abone olunan kanal yok</string>
-    <string name="select_a_kiosk">Büfe seç</string>
+    <string name="select_a_kiosk">Köşk seç</string>
 
-    <string name="kiosk">Büfe</string>
+    <string name="kiosk">Köşk</string>
     <string name="trending">Eğilimler</string>
     <string name="top_50">En Üst 50</string>
     <string name="new_and_hot">Yeni ve sıcak</string>
@@ -291,11 +291,20 @@
     <string name="enqueue_on_background">Arka Planda Kuyruğa Al</string>
     <string name="enqueue_on_popup">Açılır Pencerede Kuyruğa Al</string>
     <string name="start_here_on_main">Burayı Oynatmaya Başla</string>
-    <string name="start_here_on_background">Arka Planda Burayı Başlat</string>
-    <string name="start_here_on_popup">Açılır Pencerede Burayı Başlat</string>
+    <string name="start_here_on_background">Burayı Arka Planda Başlat</string>
+    <string name="start_here_on_popup">Burayı Açılır Pencerede Başlat</string>
 <string name="donation_title">Bağış yapın</string>
     <string name="donation_encouragement">NewPipe, size en iyi deneyimi sunmak için boş zamanını harcayan gönüllüler tarafından geliştirilmektedir. Geliştiricilerimizin bir fincan kahvenin tadını çıkarırken NewPipe\'ı daha da çok iyileştirebilmelerinden emin olmak için karşılığını vermenin tam zamanı!</string>
     <string name="give_back">Karşılığını ver</string>
     <string name="website_title">Web sitesi</string>
     <string name="website_encouragement">NewPipe hakkında daha çok bilgiyi ve son haberleri almak için web sitemize uğrayın.</string>
+    <string name="default_content_country_title">Öntanımlı içerik ülkesi</string>
+    <string name="service_title">Hizmet</string>
+    <string name="toggle_orientation">Yönelimi Değiştir</string>
+    <string name="switch_to_background">Arka Plana Geç</string>
+    <string name="switch_to_popup">Açılır Pencereye Geç</string>
+    <string name="switch_to_main">Ana Görünüme Geç</string>
+
+    <string name="drawer_open">Çekmeceyi Aç</string>
+    <string name="drawer_close">Çekmeceyi Kapat</string>
     </resources>
