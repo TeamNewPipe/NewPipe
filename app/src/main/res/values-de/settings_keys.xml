@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources translatable="false">
+    <!-- Service -->
+
+    <!-- Key values -->
+
+
+
+
+
+
+
+
+
+    <!-- THEMES -->
+
+    <!-- Content & History -->
+    <string name="default_language_value">en</string>
+    <string name="default_country_value">GB</string>
+
+    <!-- FileName Downloads  -->
+
+
+
+
+    <!-- alternatively, load these from some local android data store -->
+
+
+
+</resources>
