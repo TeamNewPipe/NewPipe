@@ -313,4 +313,7 @@
     <string name="switch_to_popup">Cambia in visualizzazione a comparsa</string>
     <string name="switch_to_main">Cambia al menù principale</string>
 
+    <string name="service_title">Servizio</string>
+    <string name="drawer_open">"Apri il menù "</string>
+    <string name="drawer_close">Chiudi il menù</string>
     </resources>
