@@ -172,7 +172,7 @@ otevření ve vyskakovacím okně</string>
     <string name="show_search_suggestions_summary">Zobrazovat návrhy při vyhledávání</string>
     <string name="enable_search_history_title">Historie vyhledávání</string>
     <string name="enable_search_history_summary">Hledané výrazy lokálně uchovávat</string>
-    <string name="enable_watch_history_title">Historie</string>
+    <string name="enable_watch_history_title">Historie sledování</string>
     <string name="enable_watch_history_summary">Evidovat zhlédnutá videa</string>
     <string name="resume_on_audio_focus_gain_title">Přehrávat po přechodu do popředí</string>
     <string name="resume_on_audio_focus_gain_summary">Pokračovat v přehrávání po přerušení (např. hovor)</string>
