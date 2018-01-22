@@ -300,4 +300,5 @@
     <string name="website_title">Website</string>
     <string name="website_encouragement">Um mehr Informationen und die aktuellsten Nachrichten über NewPipe zu bekommen, besuche unsere Website.</string>
     <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit damit verbringen, dir das beste Erlebnis zu bieten. Jetzt ist es an der Zeit, etwas zurückzugeben, um sicherzustellen, dass unsere Entwickler NewPipe noch besser machen können, während sie eine Tasse Java genießen!</string>
+    <string name="service_title">Service</string>
     </resources>
