@@ -2,6 +2,7 @@ package org.schabi.newpipe;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ public class RouterActivity extends AppCompatActivity {
     }
 
     protected void handleUrl(String url) {
+        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitAll().build()); // FIXME
         boolean success = NavigationHelper.openByLink(this, url);
         if (!success) {
             Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG).show();
