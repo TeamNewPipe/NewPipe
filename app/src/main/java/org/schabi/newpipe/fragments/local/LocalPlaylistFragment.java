@@ -288,7 +288,7 @@ public class LocalPlaylistFragment extends BaseListFragment<List<StreamEntity>, 
     private List<InfoItem> getStreamItems(final List<StreamEntity> streams) {
         List<InfoItem> items = new ArrayList<>(streams.size());
         for (final StreamEntity stream : streams) {
-            items.add(stream.toStreamInfoItem());
+            items.add(stream.toStreamEntityInfoItem());
         }
         return items;
     }

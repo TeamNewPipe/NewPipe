@@ -9,6 +9,7 @@ import android.arch.persistence.room.PrimaryKey;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
+import org.schabi.newpipe.info_list.stored.StreamEntityInfoItem;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.util.Constants;
 
@@ -88,9 +89,9 @@ public class StreamEntity implements Serializable {
     }
 
     @Ignore
-    public StreamInfoItem toStreamInfoItem() throws IllegalArgumentException {
-        StreamInfoItem item = new StreamInfoItem(
-                getServiceId(), getUrl(), getTitle(), getStreamType());
+    public StreamEntityInfoItem toStreamEntityInfoItem() throws IllegalArgumentException {
+        StreamEntityInfoItem item = new StreamEntityInfoItem(getUid(), getServiceId(),
+                getUrl(), getTitle(), getStreamType());
         item.setThumbnailUrl(getThumbnailUrl());
         item.setUploaderName(getUploader());
         item.setDuration(getDuration());

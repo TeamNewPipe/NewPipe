@@ -1,24 +1,16 @@
 package org.schabi.newpipe.info_list.stored;
 
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 
 import java.util.Date;
 
-public class StreamStatisticsInfoItem extends StreamInfoItem {
-    private final long streamId;
-
+public final class StreamStatisticsInfoItem extends StreamEntityInfoItem {
     private Date latestAccessDate;
     private long watchCount;
 
     public StreamStatisticsInfoItem(final long streamId, final int serviceId,
                                     final String url, final String name, final StreamType type) {
-        super(serviceId, url, name, type);
-        this.streamId = streamId;
-    }
-
-    public long getStreamId() {
-        return streamId;
+        super(streamId, serviceId, url, name, type);
     }
 
     public Date getLatestAccessDate() {

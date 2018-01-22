@@ -58,10 +58,9 @@ public class LocalPlaylistManager {
                                      final int indexOffset) {
 
         List<PlaylistStreamEntity> joinEntities = new ArrayList<>(streams.size());
-        for (int index = 0; index < streams.size(); index++) {
-            // Upsert streams and get their ids
-            final long streamId = streamTable.upsert(streams.get(index));
-            joinEntities.add(new PlaylistStreamEntity(playlistId, streamId,
+        final List<Long> streamIds = streamTable.upsertAll(streams);
+        for (int index = 0; index < streamIds.size(); index++) {
+            joinEntities.add(new PlaylistStreamEntity(playlistId, streamIds.get(index),
                     index + indexOffset));
         }
         return playlistStreamTable.insertAll(joinEntities);
@@ -76,7 +75,7 @@ public class LocalPlaylistManager {
         return Completable.fromRunnable(() -> database.runInTransaction(() -> {
             playlistStreamTable.deleteBatch(playlistId);
             playlistStreamTable.insertAll(joinEntities);
-        }));
+        })).subscribeOn(Schedulers.io());
     }
 
     public Flowable<List<PlaylistMetadataEntry>> getPlaylists() {

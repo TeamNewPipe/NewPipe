@@ -5,7 +5,7 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import static org.schabi.newpipe.util.Constants.NO_SERVICE_ID;
 import static org.schabi.newpipe.util.Constants.NO_URL;
 
-public class LocalPlaylistInfoItem extends PlaylistInfoItem {
+public final class LocalPlaylistInfoItem extends PlaylistInfoItem {
     private final long playlistId;
 
     public LocalPlaylistInfoItem(final long playlistId, final String name) {
