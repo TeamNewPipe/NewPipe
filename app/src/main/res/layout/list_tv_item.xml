@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:padding="@dimen/play_on_tv_item_padding">
+
+    <TextView
+        android:id="@+id/itemTvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="@dimen/play_on_tv_item_text_size"
+        android:lines="1"
+        tools:text="LG Smart TV" />
+    <TextView
+        android:id="@+id/itemTvDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/itemTvName"
+        android:lines="1"
+        android:ellipsize="end"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="@dimen/play_on_tv_item_text_size_small"
+        tools:text="Linux 3.11, LG Smart TV v. 1.0" />
+</RelativeLayout>

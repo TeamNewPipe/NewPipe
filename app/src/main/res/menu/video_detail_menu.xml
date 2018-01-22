@@ -24,4 +24,9 @@
         android:id="@+id/menu_item_openInBrowser"
         android:title="@string/open_in_browser"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/menu_item_playOnTv"
+        android:title="@string/play_on_tv"
+        app:showAsAction="never"/>
 </menu>

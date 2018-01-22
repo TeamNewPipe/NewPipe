@@ -89,4 +89,6 @@ dependencies {
 
     implementation 'frankiesardo:icepick:3.2.0'
     annotationProcessor 'frankiesardo:icepick-processor:3.2.0'
+
+    implementation 'de.w3is:jdial:1.2'
 }
