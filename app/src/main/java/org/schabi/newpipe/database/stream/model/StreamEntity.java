@@ -9,7 +9,10 @@ import android.arch.persistence.room.PrimaryKey;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
+import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.util.Constants;
+
+import java.io.Serializable;
 
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_SERVICE_ID;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_TABLE;
@@ -17,7 +20,7 @@ import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_URL;
 
 @Entity(tableName = STREAM_TABLE,
         indices = {@Index(value = {STREAM_SERVICE_ID, STREAM_URL}, unique = true)})
-public class StreamEntity {
+public class StreamEntity implements Serializable {
 
     final public static String STREAM_TABLE             = "streams";
     final public static String STREAM_ID                = "uid";
@@ -76,6 +79,12 @@ public class StreamEntity {
     public StreamEntity(final StreamInfo info) {
         this(info.service_id, info.name, info.url, info.stream_type, info.thumbnail_url,
                 info.uploader_name, info.duration);
+    }
+
+    @Ignore
+    public StreamEntity(final PlayQueueItem item) {
+        this(item.getServiceId(), item.getTitle(), item.getUrl(), item.getStreamType(),
+                item.getThumbnailUrl(), item.getUploader(), item.getDuration());
     }
 
     @Ignore

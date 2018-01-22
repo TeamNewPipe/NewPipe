@@ -29,6 +29,7 @@ import com.google.android.exoplayer2.Player;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
+import org.schabi.newpipe.fragments.local.PlaylistAppendDialog;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
@@ -149,8 +150,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             case android.R.id.home:
                 finish();
                 return true;
-            case R.id.action_history:
-                NavigationHelper.openHistory(this);
+            case R.id.action_append_playlist:
+                appendToPlaylist();
                 return true;
             case R.id.action_settings:
                 NavigationHelper.openSettings(this);
@@ -185,6 +186,14 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 null
         ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
+
+    private void appendToPlaylist() {
+        if (this.player != null && this.player.getPlayQueue() != null) {
+            PlaylistAppendDialog.fromPlayQueueItems(this.player.getPlayQueue().getStreams())
+                    .show(getSupportFragmentManager(), getTag());
+        }
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Service Connection
     ////////////////////////////////////////////////////////////////////////////

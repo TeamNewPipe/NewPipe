@@ -33,34 +33,38 @@ public class LocalPlaylistManager {
     }
 
     public Maybe<List<Long>> createPlaylist(final String name, final List<StreamEntity> streams) {
-        // Disallow creation of empty playlists until user is able to select thumbnail
+        // Disallow creation of empty playlists
         if (streams.isEmpty()) return Maybe.empty();
         final StreamEntity defaultStream = streams.get(0);
-        final PlaylistEntity newPlaylist = new PlaylistEntity(name, defaultStream.getThumbnailUrl());
+        final PlaylistEntity newPlaylist =
+                new PlaylistEntity(name, defaultStream.getThumbnailUrl());
 
-        return Maybe.fromCallable(() -> database.runInTransaction(() -> {
-            final long playlistId = playlistTable.insert(newPlaylist);
-
-            List<PlaylistStreamEntity> joinEntities = new ArrayList<>(streams.size());
-            for (int index = 0; index < streams.size(); index++) {
-                // Upsert streams and get their ids
-                final long streamId = streamTable.upsert(streams.get(index));
-                joinEntities.add(new PlaylistStreamEntity(playlistId, streamId, index));
-            }
-
-            return playlistStreamTable.insertAll(joinEntities);
-        })).subscribeOn(Schedulers.io());
+        return Maybe.fromCallable(() -> database.runInTransaction(() ->
+                upsertStreams(playlistTable.insert(newPlaylist), streams, 0))
+        ).subscribeOn(Schedulers.io());
     }
 
-    public Maybe<Long> appendToPlaylist(final long playlistId, final StreamEntity stream) {
-        final Maybe<Long> streamIdFuture = Maybe.fromCallable(() -> streamTable.upsert(stream));
-        final Maybe<Integer> joinIndexFuture =
-                playlistStreamTable.getMaximumIndexOf(playlistId).firstElement();
+    public Maybe<List<Long>> appendToPlaylist(final long playlistId,
+                                              final List<StreamEntity> streams) {
+        return playlistStreamTable.getMaximumIndexOf(playlistId)
+                .firstElement()
+                .map(maxJoinIndex -> database.runInTransaction(() ->
+                        upsertStreams(playlistId, streams, maxJoinIndex + 1))
+                ).subscribeOn(Schedulers.io());
+    }
 
-        return Maybe.zip(streamIdFuture, joinIndexFuture, (streamId, currentMaxJoinIndex) ->
-                playlistStreamTable.insert(new PlaylistStreamEntity(playlistId,
-                        streamId, currentMaxJoinIndex + 1))
-        ).subscribeOn(Schedulers.io());
+    private List<Long> upsertStreams(final long playlistId,
+                                     final List<StreamEntity> streams,
+                                     final int indexOffset) {
+
+        List<PlaylistStreamEntity> joinEntities = new ArrayList<>(streams.size());
+        for (int index = 0; index < streams.size(); index++) {
+            // Upsert streams and get their ids
+            final long streamId = streamTable.upsert(streams.get(index));
+            joinEntities.add(new PlaylistStreamEntity(playlistId, streamId,
+                    index + indexOffset));
+        }
+        return playlistStreamTable.insertAll(joinEntities);
     }
 
     public Completable updateJoin(final long playlistId, final List<Long> streamIds) {

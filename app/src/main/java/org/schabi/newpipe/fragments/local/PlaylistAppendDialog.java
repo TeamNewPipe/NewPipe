@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,34 +18,48 @@ import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.info_list.stored.LocalPlaylistInfoItem;
+import org.schabi.newpipe.playlist.PlayQueueItem;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
-public class PlaylistAppendDialog extends DialogFragment {
+public final class PlaylistAppendDialog extends PlaylistDialog {
     private static final String TAG = PlaylistAppendDialog.class.getCanonicalName();
-    private static final String INFO_KEY = "info_key";
 
-    private StreamInfo streamInfo;
-
-    private View newPlaylistButton;
     private RecyclerView playlistRecyclerView;
     private InfoListAdapter playlistAdapter;
 
-    public static PlaylistAppendDialog newInstance(final StreamInfo info) {
+    public static PlaylistAppendDialog fromStreamInfo(final StreamInfo info) {
         PlaylistAppendDialog dialog = new PlaylistAppendDialog();
-        dialog.setInfo(info);
+        dialog.setInfo(Collections.singletonList(new StreamEntity(info)));
         return dialog;
     }
 
-    private void setInfo(StreamInfo info) {
-        this.streamInfo = info;
+    public static PlaylistAppendDialog fromStreamInfoItems(final List<StreamInfoItem> items) {
+        PlaylistAppendDialog dialog = new PlaylistAppendDialog();
+        List<StreamEntity> entities = new ArrayList<>(items.size());
+        for (final StreamInfoItem item : items) {
+            entities.add(new StreamEntity(item));
+        }
+        dialog.setInfo(entities);
+        return dialog;
+    }
+
+    public static PlaylistAppendDialog fromPlayQueueItems(final List<PlayQueueItem> items) {
+        PlaylistAppendDialog dialog = new PlaylistAppendDialog();
+        List<StreamEntity> entities = new ArrayList<>(items.size());
+        for (final PlayQueueItem item : items) {
+            entities.add(new StreamEntity(item));
+        }
+        dialog.setInfo(entities);
+        return dialog;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -60,14 +73,9 @@ public class PlaylistAppendDialog extends DialogFragment {
         playlistAdapter.useMiniItemVariants(true);
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (savedInstanceState != null) {
-            Serializable serial = savedInstanceState.getSerializable(INFO_KEY);
-            if (serial instanceof StreamInfo) streamInfo = (StreamInfo) serial;
-        }
-    }
+    /*//////////////////////////////////////////////////////////////////////////
+    // Views
+    //////////////////////////////////////////////////////////////////////////*/
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -79,7 +87,7 @@ public class PlaylistAppendDialog extends DialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        newPlaylistButton = view.findViewById(R.id.newPlaylist);
+        final View newPlaylistButton = view.findViewById(R.id.newPlaylist);
         playlistRecyclerView = view.findViewById(R.id.playlist_list);
         playlistRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         playlistRecyclerView.setAdapter(playlistAdapter);
@@ -92,12 +100,14 @@ public class PlaylistAppendDialog extends DialogFragment {
         playlistAdapter.setOnPlaylistSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<PlaylistInfoItem>() {
             @Override
             public void selected(PlaylistInfoItem selectedItem) {
-                if (!(selectedItem instanceof LocalPlaylistInfoItem)) return;
+                if (!(selectedItem instanceof LocalPlaylistInfoItem) || getStreams() == null)
+                    return;
+
                 final long playlistId = ((LocalPlaylistInfoItem) selectedItem).getPlaylistId();
                 final Toast successToast =
                         Toast.makeText(getContext(), "Added", Toast.LENGTH_SHORT);
 
-                playlistManager.appendToPlaylist(playlistId, new StreamEntity(streamInfo))
+                playlistManager.appendToPlaylist(playlistId, getStreams())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(ignored -> successToast.show());
 
@@ -127,20 +137,14 @@ public class PlaylistAppendDialog extends DialogFragment {
                 });
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putSerializable(INFO_KEY, streamInfo);
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Helper
     //////////////////////////////////////////////////////////////////////////*/
 
     public void openCreatePlaylistDialog() {
-        if (streamInfo == null || getFragmentManager() == null) return;
+        if (getStreams() == null || getFragmentManager() == null) return;
 
-        PlaylistCreationDialog.newInstance(streamInfo).show(getFragmentManager(), TAG);
+        PlaylistCreationDialog.newInstance(getStreams()).show(getFragmentManager(), TAG);
         getDialog().dismiss();
     }
 }

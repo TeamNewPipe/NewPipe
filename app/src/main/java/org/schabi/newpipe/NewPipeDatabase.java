@@ -19,7 +19,7 @@ public final class NewPipeDatabase {
 
     public static void init(Context context) {
         databaseInstance = Room
-                .databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME)
+                .databaseBuilder(context, AppDatabase.class, DATABASE_NAME)
                 .addMigrations(MIGRATION_11_12)
                 .fallbackToDestructiveMigration()
                 .build();

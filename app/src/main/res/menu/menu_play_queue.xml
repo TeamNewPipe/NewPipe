@@ -1,11 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="org.schabi.newpipe.history.HistoryActivity">
+    tools:context=".player.BackgroundPlayerActivity">
 
-    <item android:id="@+id/action_history"
+    <item android:id="@+id/action_append_playlist"
         android:orderInCategory="981"
-        android:title="@string/action_history"
+        android:title="@string/append_playlist"
         app:showAsAction="never"/>
 
     <item android:id="@+id/action_settings"

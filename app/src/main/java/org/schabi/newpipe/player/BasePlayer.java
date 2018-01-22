@@ -675,6 +675,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
             simpleExoPlayer.seekTo(currentSourceIndex, startPos);
         }
 
+        // TODO: update exoplayer to 2.6.x in order to register view count on repeated streams
         databaseUpdateReactor.add(recordManager.onViewed(currentInfo).subscribe());
         initThumbnail(info == null ? item.getThumbnailUrl() : info.thumbnail_url);
     }

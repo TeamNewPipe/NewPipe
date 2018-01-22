@@ -331,7 +331,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 break;
             case R.id.detail_controls_playlist_append:
                 if (getFragmentManager() != null && currentInfo != null) {
-                    PlaylistAppendDialog.newInstance(currentInfo).show(getFragmentManager(), TAG);
+                    PlaylistAppendDialog.fromStreamInfo(currentInfo)
+                            .show(getFragmentManager(), TAG);
                 }
                 break;
             case R.id.detail_uploader_root_layout:

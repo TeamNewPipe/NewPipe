@@ -15,7 +15,7 @@ public class Migrations {
             /*
             * Unfortunately these queries must be hardcoded due to the possibility of
             * schema and names changing at a later date, thus invalidating the older migration
-            * scripts if names are not hardcoded.
+            * scripts if they are not hardcoded.
             * */
 
             // Not much we can do about this, since room doesn't create tables before migration.
