@@ -298,4 +298,13 @@ otevření ve vyskakovacím okně</string>
     <string name="give_back">Daruj</string>
     <string name="website_title">Webová stránka</string>
     <string name="website_encouragement">Pro další informace a poslední novinky o NewPipe navštivte naši stránku.</string>
+    <string name="default_content_country_title">Země výchozího obsahu</string>
+    <string name="service_title">Služba</string>
+    <string name="toggle_orientation">Změna orientaci</string>
+    <string name="switch_to_background">Na pozadí</string>
+    <string name="switch_to_popup">Do okna</string>
+    <string name="switch_to_main">Přepnout na hlavní</string>
+
+    <string name="drawer_open">Otevřít Drawer</string>
+    <string name="drawer_close">Zavřít Drawer</string>
     </resources>
