@@ -85,14 +85,15 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         int channelIcon = ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.ic_channel);
         int whatsHotIcon = ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.ic_hot);
+        int bookmarkIcon = ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.ic_bookmark);
 
         if (isSubscriptionsPageOnlySelected()) {
             tabLayout.getTabAt(0).setIcon(channelIcon);
-            tabLayout.getTabAt(1).setText(R.string.tab_bookmarks);
+            tabLayout.getTabAt(1).setIcon(bookmarkIcon);
         } else {
             tabLayout.getTabAt(0).setIcon(whatsHotIcon);
             tabLayout.getTabAt(1).setIcon(channelIcon);
-            tabLayout.getTabAt(2).setText(R.string.tab_bookmarks);
+            tabLayout.getTabAt(2).setIcon(bookmarkIcon);
         }
     }
 

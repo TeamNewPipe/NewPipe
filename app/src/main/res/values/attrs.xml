@@ -26,6 +26,7 @@
     <attr name="play" format="reference"/>
     <attr name="ic_hot" format="reference"/>
     <attr name="ic_channel" format="reference"/>
+    <attr name="ic_bookmark" format="reference"/>
     <attr name="playlist_add" format="reference"/>
 
     <!-- Can't refer to colors directly into drawable's xml-->
