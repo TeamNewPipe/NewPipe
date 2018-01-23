@@ -31,7 +31,6 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.os.Build;
-import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -49,20 +48,12 @@ import android.widget.PopupMenu;
 import android.widget.RemoteViews;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 
 import org.schabi.newpipe.BuildConfig;
-import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.ReCaptchaActivity;
-import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
-import org.schabi.newpipe.extractor.exceptions.ParsingException;
-import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
-import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.event.PlayerEventListener;
@@ -70,21 +61,11 @@ import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.playlist.PlayQueueItem;
-import org.schabi.newpipe.playlist.SinglePlayQueue;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.Constants;
-import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
-import java.io.IOException;
 import java.util.List;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.player.helper.PlayerHelper.isUsingOldPlayer;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -125,8 +106,8 @@ public final class PopupVideoPlayer extends Service {
     private RemoteViews notRemoteView;
 
     private VideoPlayerImpl playerImpl;
-    private Disposable currentWorker;
     private LockManager lockManager;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Service-Activity Binder
     //////////////////////////////////////////////////////////////////////////*/
@@ -157,21 +138,8 @@ public final class PopupVideoPlayer extends Service {
         if (playerImpl.getPlayer() == null) initPopup();
         if (!playerImpl.isPlaying()) playerImpl.getPlayer().setPlayWhenReady(true);
 
-        if (intent != null && intent.getStringExtra(Constants.KEY_URL) != null) {
-            final int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
-            final String url = intent.getStringExtra(Constants.KEY_URL);
+        playerImpl.handleIntent(intent);
 
-            playerImpl.setStartedFromNewPipe(false);
-
-            final FetcherHandler fetcherRunnable = new FetcherHandler(this, serviceId, url);
-            currentWorker = ExtractorHelper.getStreamInfo(serviceId,url,false)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(fetcherRunnable::onReceive, fetcherRunnable::onError);
-        } else {
-            playerImpl.setStartedFromNewPipe(true);
-            playerImpl.handleIntent(intent);
-        }
         return START_NOT_STICKY;
     }
 
@@ -302,7 +270,6 @@ public final class PopupVideoPlayer extends Service {
         }
         if (lockManager != null) lockManager.releaseWifiAndCpu();
         if (notificationManager != null) notificationManager.cancel(NOTIFICATION_ID);
-        if (currentWorker != null) currentWorker.dispose();
         mBinder = null;
         playerImpl = null;
 
@@ -452,7 +419,6 @@ public final class PopupVideoPlayer extends Service {
                         this.getPlaybackPitch(),
                         this.getPlaybackQuality()
                 );
-                if (!isStartedFromNewPipe()) intent.putExtra(VideoPlayer.STARTED_FROM_NEWPIPE, false);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             } else {
                 intent = new Intent(PopupVideoPlayer.this, PlayVideoActivity.class)
@@ -862,63 +828,4 @@ public final class PopupVideoPlayer extends Service {
             return true;
         }
     }
-
-    /**
-     * Fetcher handler used if open by a link out of NewPipe
-     */
-    private class FetcherHandler {
-        private final int serviceId;
-        private final String url;
-
-        private final Context context;
-        private final Handler mainHandler;
-
-        private FetcherHandler(Context context, int serviceId, String url) {
-            this.mainHandler = new Handler(PopupVideoPlayer.this.getMainLooper());
-            this.context = context;
-            this.url = url;
-            this.serviceId = serviceId;
-        }
-
-        private void onReceive(final StreamInfo info) {
-            mainHandler.post(() -> {
-                final Intent intent = NavigationHelper.getPlayerIntent(getApplicationContext(),
-                        PopupVideoPlayer.class, new SinglePlayQueue(info));
-                playerImpl.handleIntent(intent);
-            });
-        }
-
-        private void onError(final Throwable exception) {
-            if (DEBUG) Log.d(TAG, "onError() called with: exception = [" + exception + "]");
-            exception.printStackTrace();
-            mainHandler.post(() -> {
-                if (exception instanceof ReCaptchaException) {
-                    onReCaptchaException();
-                } else if (exception instanceof IOException) {
-                    Toast.makeText(context, R.string.network_error, Toast.LENGTH_LONG).show();
-                } else if (exception instanceof YoutubeStreamExtractor.GemaException) {
-                    Toast.makeText(context, R.string.blocked_by_gema, Toast.LENGTH_LONG).show();
-                } else if (exception instanceof YoutubeStreamExtractor.LiveStreamException) {
-                    Toast.makeText(context, R.string.live_streams_not_supported, Toast.LENGTH_LONG).show();
-                } else if (exception instanceof ContentNotAvailableException) {
-                    Toast.makeText(context, R.string.content_not_available, Toast.LENGTH_LONG).show();
-                } else {
-                    int errorId = exception instanceof YoutubeStreamExtractor.DecryptException ? R.string.youtube_signature_decryption_error :
-                            exception instanceof ParsingException ? R.string.parsing_error : R.string.general_error;
-                    ErrorActivity.reportError(mainHandler, context, exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(UserAction.REQUESTED_STREAM, NewPipe.getNameOfService(serviceId), url, errorId));
-                }
-            });
-            stopSelf();
-        }
-
-        private void onReCaptchaException() {
-            Toast.makeText(context, R.string.recaptcha_request_toast, Toast.LENGTH_LONG).show();
-            // Starting ReCaptcha Challenge Activity
-            Intent intent = new Intent(context, ReCaptchaActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
-            stopSelf();
-        }
-    }
-
 }

@@ -124,7 +124,7 @@
         <activity
             android:name=".RouterActivity"
             android:taskAffinity=""
-            android:theme="@android:style/Theme.NoDisplay">
+            android:theme="@style/RouterActivityThemeDark">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
@@ -175,17 +175,21 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
-
                 <category android:name="android.intent.category.DEFAULT"/>
-
                 <data android:mimeType="text/plain"/>
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".RouterPlayerActivity$FetcherService"
+            android:exported="false"/>
+
         <activity
-            android:name=".RouterPopupActivity"
-            android:label="@string/popup_mode_share_menu_title"
+            android:name=".RouterPlayerActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/preferred_player_share_menu_title"
             android:taskAffinity=""
-            android:theme="@style/PopupPermissionsTheme">
+            android:theme="@style/RouterActivityThemeDark">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
@@ -204,6 +208,11 @@
                 <data android:pathPrefix="/embed/"/>
                 <data android:pathPrefix="/watch"/>
                 <data android:pathPrefix="/attribution_link"/>
+                <!-- channel prefix -->
+                <data android:pathPrefix="/channel/"/>
+                <data android:pathPrefix="/user/"/>
+                <!-- playlist prefix -->
+                <data android:pathPrefix="/playlist"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>

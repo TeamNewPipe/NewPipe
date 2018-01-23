@@ -19,29 +19,38 @@
 
 package org.schabi.newpipe.util;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.schabi.newpipe.MainActivity;
+import org.schabi.newpipe.R;
+import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.ListExtractor.NextItemsResult;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
+import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.search.SearchEngine;
 import org.schabi.newpipe.extractor.search.SearchResult;
+import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.UserAction;
 
+import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import io.reactivex.Maybe;
-import io.reactivex.MaybeSource;
 import io.reactivex.Single;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 
 public final class ExtractorHelper {
     private static final String TAG = ExtractorHelper.class.getSimpleName();
@@ -199,6 +208,37 @@ public final class ExtractorHelper {
     }
 
     /**
+     * A simple and general error handler that show a Toast for known exceptions, and for others, opens the report error activity with the (optional) error message.
+     */
+    public static void handleGeneralException(Context context, int serviceId, String url, Throwable exception, UserAction userAction, String optionalErrorMessage) {
+        final Handler handler = new Handler(context.getMainLooper());
+
+        handler.post(() -> {
+            if (exception instanceof ReCaptchaException) {
+                Toast.makeText(context, R.string.recaptcha_request_toast, Toast.LENGTH_LONG).show();
+                // Starting ReCaptcha Challenge Activity
+                Intent intent = new Intent(context, ReCaptchaActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            } else if (exception instanceof IOException) {
+                Toast.makeText(context, R.string.network_error, Toast.LENGTH_LONG).show();
+            } else if (exception instanceof YoutubeStreamExtractor.GemaException) {
+                Toast.makeText(context, R.string.blocked_by_gema, Toast.LENGTH_LONG).show();
+            } else if (exception instanceof YoutubeStreamExtractor.LiveStreamException) {
+                Toast.makeText(context, R.string.live_streams_not_supported, Toast.LENGTH_LONG).show();
+            } else if (exception instanceof ContentNotAvailableException) {
+                Toast.makeText(context, R.string.content_not_available, Toast.LENGTH_LONG).show();
+            } else {
+                int errorId = exception instanceof YoutubeStreamExtractor.DecryptException ? R.string.youtube_signature_decryption_error :
+                        exception instanceof ParsingException ? R.string.parsing_error : R.string.general_error;
+                ErrorActivity.reportError(handler, context, exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(userAction,
+                        serviceId == -1 ? "none" : NewPipe.getNameOfService(serviceId), url + (optionalErrorMessage == null ? "" : optionalErrorMessage), errorId));
+            }
+        });
+
+    }
+
+    /**
      * Check if throwable have the cause that can be assignable from the causes to check.
      *
      * @see Class#isAssignableFrom(Class)
@@ -262,18 +302,5 @@ public final class ExtractorHelper {
         return ExtractorHelper.hasExactCauseThrowable(throwable,
                 InterruptedIOException.class,
                 InterruptedException.class);
-    }
-
-    public static String toUpperCase(String value) {
-        StringBuilder sb = new StringBuilder(value);
-        for (int index = 0; index < sb.length(); index++) {
-            char c = sb.charAt(index);
-            if (Character.isLowerCase(c)) {
-                sb.setCharAt(index, Character.toUpperCase(c));
-            } else {
-                sb.setCharAt(index, Character.toLowerCase(c));
-            }
-        }
-        return sb.toString();
     }
 }
