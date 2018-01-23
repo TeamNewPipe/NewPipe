@@ -28,8 +28,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
@@ -39,13 +37,12 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
 
     private final SubscriptionService subscriptionService = SubscriptionService.getInstance();
 
-    private AtomicBoolean allItemsLoaded = new AtomicBoolean(false);
-    private HashSet<String> itemsLoaded = new HashSet<>();
+    private AtomicBoolean areAllItemsDisplayed = new AtomicBoolean(false);
+    private HashSet<String> displayedItems = new HashSet<>();
 
     private int feedLoadCount = MIN_ITEMS_INITIAL_LOAD;
 
-    private CompositeDisposable feedDisposable = new CompositeDisposable();
-    private Disposable subscriptionsConsumerDisposable;
+    private SubscriptionsObserver subscriptionsObserver;
     private FeedItemsSubscriber feedItemsSubscriber;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -81,24 +78,9 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
         super.onDestroy();
 
         disposeEverything();
-        disposeSubscriptionsConsumer();
-        feedDisposable = null;
+        disposeSubscriptionsObserver();
         feedItemsSubscriber = null;
     }
-
-//    @Override
-//    public void onDestroyView() {
-//        // Do not monitor for updates when user is not viewing the feed fragment.
-//        // This is a waste of bandwidth.
-//        disposeEverything();
-//        super.onDestroyView();
-//    }
-
-    /*@Override
-    protected RecyclerView.LayoutManager getListLayoutManager() {
-        boolean isPortrait = getResources().getDisplayMetrics().heightPixels > getResources().getDisplayMetrics().widthPixels;
-        return new GridLayoutManager(activity, isPortrait ? 1 : 2);
-    }*/
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -110,7 +92,6 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
 
             if (useAsFrontPage) {
                 supportActionBar.setDisplayShowTitleEnabled(true);
-                //supportActionBar.setDisplayShowTitleEnabled(false);
             }
         }
     }
@@ -128,16 +109,16 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
     @Override
     public void writeTo(Queue<Object> objectsToSave) {
         super.writeTo(objectsToSave);
-        objectsToSave.add(allItemsLoaded);
-        objectsToSave.add(itemsLoaded);
+        objectsToSave.add(areAllItemsDisplayed);
+        objectsToSave.add(displayedItems);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void readFrom(@NonNull Queue<Object> savedObjects) throws Exception {
         super.readFrom(savedObjects);
-        allItemsLoaded = (AtomicBoolean) savedObjects.poll();
-        itemsLoaded = (HashSet<String>) savedObjects.poll();
+        areAllItemsDisplayed = (AtomicBoolean) savedObjects.poll();
+        displayedItems = (HashSet<String>) savedObjects.poll();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -147,40 +128,32 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
     @Override
     public void startLoading(boolean forceLoad) {
         if (DEBUG) Log.d(TAG, "startLoading(forceLoad = " + forceLoad + ")");
-        if (subscriptionsConsumerDisposable != null) {
-            return;
+
+        if (subscriptionsObserver == null) {
+            isLoading.set(true);
+            showLoading();
+            showListFooter(true);
+
+            subscriptionsObserver = new SubscriptionsObserver(this);
+            subscriptionService.getSubscription()
+                    .toObservable()
+                    .onErrorReturnItem(Collections.emptyList())
+                    .observeOn(Schedulers.io())
+                    .subscribe(subscriptionsObserver);
         }
-
-        if (allItemsLoaded.get()) {
-            if (infoListAdapter.getItemsList().size() == 0) {
-                showEmptyState();
-            } else {
-                showListFooter(false);
-                hideLoading();
-            }
-
-            isLoading.set(false);
-            return;
-        }
-
-        isLoading.set(true);
-        showLoading();
-        showListFooter(true);
-
-        this.subscriptionsConsumerDisposable =
-                subscriptionService.getSubscription()
-                .onErrorReturnItem(Collections.emptyList())
-                .observeOn(Schedulers.io())
-                .subscribe(new SubscriptionsConsumer(this), this::onError);
     }
 
     @Override
     public void handleResult(@NonNull List<StreamInfoItem> result) {
         if (DEBUG) Log.d(TAG, "handleResult([" + result.size() + "])");
 
-        setAllItemsLoaded(false);
+        setAllItemsDisplayed(false);
         isLoading.set(true);
         showLoading();
+
+        if (feedItemsSubscriber != null) {
+            feedItemsSubscriber.dispose();
+        }
 
         feedItemsSubscriber = new FeedItemsSubscriber(this, infoListAdapter);
         Flowable.fromIterable(result)
@@ -189,18 +162,12 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
                 .subscribe(feedItemsSubscriber);
     }
 
-    boolean isItemAlreadyLoaded(String itemIdent) {
-        boolean isItemAlreadyLoaded = itemsLoaded.contains(itemIdent);
-        itemsLoaded.add(itemIdent);
-        return isItemAlreadyLoaded;
-    }
-
     /**
      * Sets a flag that indicates whether all items have finished loading.
-     * @param allItemsLoaded Whether all items have been loaded
+     * @param areAllItemsDisplayed Whether all items have been displayed
      */
-    void setAllItemsLoaded(boolean allItemsLoaded) {
-        this.allItemsLoaded.set(allItemsLoaded);
+    void setAllItemsDisplayed(boolean areAllItemsDisplayed) {
+        this.areAllItemsDisplayed.set(areAllItemsDisplayed);
     }
 
     /**
@@ -214,6 +181,13 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
     protected void loadMoreItems() {
         isLoading.set(true);
         delayHandler.removeCallbacksAndMessages(null);
+
+        // Do not load more items if new items are currently being
+        // downloaded by the SubscriptionsObserver. They will be added once it is finished.
+        if (subscriptionsObserver != null && subscriptionsObserver.areItemsBeingLoaded()) {
+            return;
+        }
+
         // Add a little of a delay when requesting more items because the cache is so fast,
         // that the view seems stuck to the user when he scroll to the bottom
         delayHandler.postDelayed(new Runnable() {
@@ -226,7 +200,7 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
 
     @Override
     protected boolean hasMoreItems() {
-        return !allItemsLoaded.get();
+        return !areAllItemsDisplayed.get();
     }
 
     private final Handler delayHandler = new Handler();
@@ -241,32 +215,50 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
+    // Keeping track of added items
+    //////////////////////////////////////////////////////////////////////////*/
+
+    boolean isItemAlreadyDisplayed(final InfoItem item) {
+        return displayedItems.contains(getItemIdent(item));
+    }
+
+    void setItemDisplayed(final InfoItem item) {
+        displayedItems.add(getItemIdent(item));
+    }
+
+    /**
+     * @param item The item in question.
+     * @return An identifier used to keep track of items that have already been displayed.
+     */
+    private String getItemIdent(final InfoItem item) {
+        return item.getServiceId() + item.getUrl();
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
     private void resetFragment() {
         if (DEBUG) Log.d(TAG, "resetFragment() called");
-        disposeSubscriptionsConsumer();
-        if (feedDisposable != null) feedDisposable.clear();
+        disposeSubscriptionsObserver();
         if (infoListAdapter != null) infoListAdapter.clearStreamItemList();
 
         delayHandler.removeCallbacksAndMessages(null);
-        setAllItemsLoaded(false);
+        setAllItemsDisplayed(false);
         showListFooter(false);
-        itemsLoaded.clear();
+        displayedItems.clear();
     }
 
     private void disposeEverything() {
-        if (feedDisposable != null) feedDisposable.clear();
-        if (feedItemsSubscriber != null) feedItemsSubscriber.cancel();
+        if (feedItemsSubscriber != null) feedItemsSubscriber.dispose();
         delayHandler.removeCallbacksAndMessages(null);
     }
 
-    private void disposeSubscriptionsConsumer() {
-        if (DEBUG) Log.e(TAG, "Disposing SubscriptionsConsumer");
-        if (subscriptionsConsumerDisposable != null) {
-            subscriptionsConsumerDisposable.dispose();
-            subscriptionsConsumerDisposable = null;
+    private void disposeSubscriptionsObserver() {
+        if (DEBUG) Log.d(TAG, "Disposing SubscriptionsObserver");
+        if (subscriptionsObserver != null) {
+            subscriptionsObserver.dispose();
+            subscriptionsObserver = null;
         }
     }
 
@@ -274,8 +266,14 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
         int heightPixels = getResources().getDisplayMetrics().heightPixels;
         int itemHeightPixels = activity.getResources().getDimensionPixelSize(R.dimen.video_item_search_height);
 
-        int items = itemHeightPixels > 0 ? heightPixels / itemHeightPixels + OFF_SCREEN_ITEMS_COUNT : MIN_ITEMS_INITIAL_LOAD;
-        return Math.max(MIN_ITEMS_INITIAL_LOAD, items);
+        int nrItemsToLoad;
+        if (itemHeightPixels > 0) {
+            nrItemsToLoad = heightPixels / itemHeightPixels + OFF_SCREEN_ITEMS_COUNT;
+        } else {
+            nrItemsToLoad = MIN_ITEMS_INITIAL_LOAD;
+        }
+
+        return Math.max(MIN_ITEMS_INITIAL_LOAD, nrItemsToLoad);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
