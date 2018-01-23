@@ -109,7 +109,7 @@
     <string name="finish">OK</string>
 
     <string name="msg_name">Nom du fichier</string>
-    <string name="msg_threads">Discussions</string>
+    <string name="msg_threads">Threads</string>
     <string name="msg_error">Erreur</string>
     <string name="msg_server_unsupported">Serveur non supporté</string>
     <string name="msg_exists">Fichier déjà existant</string>
@@ -301,7 +301,7 @@
     <string name="website_encouragement">Pour obtenir plus d\'informations et les dernières nouvelles à propos de NewPipe, visitez notre site Internet.</string>
     <string name="give_back">Donner en retour</string>
     <string name="default_content_country_title">Pays du contenu par défaut</string>
-    <string name="toggle_orientation">Orientation</string>
+    <string name="toggle_orientation">Rotation</string>
     <string name="switch_to_background">Basculer en arrière-plan</string>
     <string name="switch_to_popup">Basculer en fenêtré</string>
     <string name="switch_to_main">Basculer en normal</string>
