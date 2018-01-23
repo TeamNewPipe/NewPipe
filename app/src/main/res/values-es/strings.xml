@@ -284,7 +284,7 @@ abrir en modo popup</string>
 
     <string name="title_activity_background_player">Reproductor de fondo</string>
     <string name="title_activity_popup_player">Reproductor popup</string>
-    <string name="play_queue_remove">Remover</string>
+    <string name="play_queue_remove">Quitar</string>
     <string name="play_queue_stream_detail">Detalles</string>
     <string name="play_queue_audio_settings">Ajustes de audio</string>
     <string name="unknown_content">[Desconocido]</string>
