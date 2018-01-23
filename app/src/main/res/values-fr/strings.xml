@@ -153,7 +153,7 @@
     <string name="controls_background_title">Arrière-plan</string>
     <string name="controls_popup_title">Fenêtre</string>
 
-    <string name="default_popup_resolution_title">Résolution par défaut de la fenêtre</string>
+    <string name="default_popup_resolution_title">Résolution de la fenêtre par défaut</string>
     <string name="show_higher_resolutions_title">Afficher des résolutions plus élevées</string>
     <string name="show_higher_resolutions_summary">Certains appareils uniquement supportent la lecture 2K/4K</string>
     <string name="default_video_format_title">Format vidéo par défaut</string>
@@ -212,7 +212,7 @@
     <string name="settings_file_replacement_character_title">Caractère de remplacement</string>
 
     <string name="enable_search_history_title">Historique de recherche</string>
-    <string name="enable_search_history_summary">Sauvegarder les recherches sur l\'appareil</string>
+    <string name="enable_search_history_summary">Conserver les recherches sur l\'appareil</string>
     <string name="enable_watch_history_title">Historique</string>
     <string name="title_activity_history">Historique</string>
     <string name="title_history_search">Recherché</string>
