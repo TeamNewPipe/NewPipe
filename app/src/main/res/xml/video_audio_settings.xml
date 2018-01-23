@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:title="@string/settings_category_video_audio_title">
 
     <ListPreference
@@ -80,6 +79,14 @@
             android:key="@string/autoplay_through_intent_key"
             android:summary="@string/autoplay_by_calling_app_summary"
             android:title="@string/autoplay_by_calling_app_title"/>
+
+        <ListPreference
+            android:defaultValue="@string/preferred_player_default"
+            android:entries="@array/preferred_player_description_list"
+            android:entryValues="@array/preferred_player_values_list"
+            android:key="@string/preferred_player_key"
+            android:summary="%s"
+            android:title="@string/preferred_player_settings_title"/>
 
         <SwitchPreference
             android:defaultValue="false"

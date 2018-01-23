@@ -5,6 +5,7 @@
     <string name="view_count_text">%1$s views</string>
     <string name="upload_date_text">Published on %1$s</string>
     <string name="no_player_found">No stream player found. Do you want to install VLC?</string>
+    <string name="no_player_found_toast">No stream player found (you can install VLC to play it)</string>
     <string name="install">Install</string>
     <string name="cancel">Cancel</string>
     <string name="fdroid_vlc_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
@@ -119,6 +120,8 @@
     <string name="best_resolution">Best resolution</string>
     <string name="undo">Undo</string>
     <string name="play_all">Play All</string>
+    <string name="always">Always</string>
+    <string name="just_once">Just Once</string>
 
     <string name="notification_channel_id" translatable="false">newpipe</string>
     <string name="notification_channel_name">NewPipe Notification</string>
@@ -148,6 +151,10 @@
     <string name="player_stream_failure">Failed to play this stream</string>
     <string name="player_unrecoverable_failure">Unrecoverable player error occurred</string>
     <string name="player_recoverable_failure">Recovering from player error</string>
+    <string name="external_player_unsupported_link_type">External players don\'t support these types of links</string>
+    <string name="invalid_url_toast">Invalid URL</string>
+    <string name="video_streams_empty">No video streams found</string>
+    <string name="audio_streams_empty">No audio streams found</string>
 
     <!-- error activity -->
     <string name="sorry_string">Sorry, that should not have happened.</string>
@@ -336,4 +343,17 @@
     <string name="drawer_close">Close Drawer</string>
     <string name="youtube" translatable="false">YouTube</string>
     <string name="soundcloud" translatable="false">SoundCloud</string>
+
+    <!-- Preferred player -->
+    <string name="preferred_player_share_menu_title">@string/preferred_player_settings_title</string>
+    <string name="preferred_player_share_menu_dialog_title">Open with preferred player</string>
+    <string name="preferred_player_settings_title">Preferred player</string>
+
+    <string name="video_player">Video player</string>
+    <string name="background_player">Background player</string>
+    <string name="popup_player">Popup player</string>
+    <string name="always_ask_player">Always ask</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Getting info…</string>
+    <string name="preferred_player_fetcher_notification_message">"The requested content is loading"</string>
 </resources>

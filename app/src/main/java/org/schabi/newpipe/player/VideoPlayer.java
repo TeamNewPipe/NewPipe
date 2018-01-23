@@ -39,7 +39,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
@@ -86,12 +85,6 @@ public abstract class VideoPlayer extends BasePlayer
     public final String TAG;
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Intent
-    //////////////////////////////////////////////////////////////////////////*/
-
-    public static final String STARTED_FROM_NEWPIPE = "started_from_newpipe";
-
-    /*//////////////////////////////////////////////////////////////////////////
     // Player
     //////////////////////////////////////////////////////////////////////////*/
 
@@ -102,7 +95,6 @@ public abstract class VideoPlayer extends BasePlayer
 
     protected String playbackQuality;
 
-    private boolean startedFromNewPipe = true;
     protected boolean wasPlaying = false;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -693,14 +685,6 @@ public abstract class VideoPlayer extends BasePlayer
 
     public VideoStream getSelectedVideoStream() {
         return availableStreams.get(selectedStreamIndex);
-    }
-
-    public boolean isStartedFromNewPipe() {
-        return startedFromNewPipe;
-    }
-
-    public void setStartedFromNewPipe(boolean startedFromNewPipe) {
-        this.startedFromNewPipe = startedFromNewPipe;
     }
 
     public Handler getControlsVisibilityHandler() {
