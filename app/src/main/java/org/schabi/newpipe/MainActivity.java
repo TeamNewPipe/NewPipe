@@ -219,7 +219,8 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
     private void initFragments() {
         if (DEBUG) Log.d(TAG, "initFragments() called");
         StateSaver.clearStateFiles();
-        if (getIntent() != null && getIntent().hasExtra(Constants.KEY_LINK_TYPE)) {
+        if (getIntent() != null && (getIntent().hasExtra(Constants.KEY_LINK_TYPE)
+                || getIntent().hasExtra(Constants.KEY_OPEN_SEARCH))) {
             handleIntent(getIntent());
         } else NavigationHelper.gotoMainFragment(getSupportFragmentManager());
     }
