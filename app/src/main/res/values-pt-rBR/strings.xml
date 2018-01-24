@@ -284,4 +284,30 @@ abrir em modo popup</string>
     <string name="give_back">Retribuir</string>
     <string name="website_title">Site oficial</string>
     <string name="website_encouragement">Para obter mais informações e as últimas notícias sobre o NewPipe visite nosso Site.</string>
-    </resources>
+    <string name="no_player_found_toast">Nenhum reprodudor de stream encontrado (você pode instalar VLC para reproduzir isto)</string>
+    <string name="default_content_country_title">País do conteúdo padrão</string>
+    <string name="service_title">Serviço</string>
+    <string name="always">Sempre</string>
+    <string name="just_once">Apenas esta vez</string>
+
+    <string name="toggle_orientation">Alterar a orientação</string>
+    <string name="switch_to_background">Alterar para plano de fundo</string>
+    <string name="switch_to_popup">Alterar para Popup</string>
+    <string name="switch_to_main">Aletar para principal</string>
+
+    <string name="external_player_unsupported_link_type">Reprodutores externos não suportam estes tipos de links</string>
+    <string name="invalid_url_toast">URL inválida</string>
+    <string name="video_streams_empty">Nenhum stream de vídeo encontrado</string>
+    <string name="audio_streams_empty">Nenhum stream de áudio encontrado</string>
+
+    <string name="preferred_player_share_menu_dialog_title">Abrir com reprodutor padrão</string>
+    <string name="preferred_player_settings_title">Reprodutor padrão</string>
+
+    <string name="video_player">Reprodutor de vídeo</string>
+    <string name="background_player">Reprodutor em plano de fundo</string>
+    <string name="popup_player">Reprodutor popup</string>
+    <string name="always_ask_player">Sempre perguntar</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Obtendo informações…</string>
+    <string name="preferred_player_fetcher_notification_message">O conteúdo solicitado está carregando</string>
+</resources>
