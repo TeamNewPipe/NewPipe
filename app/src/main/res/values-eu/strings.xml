@@ -298,4 +298,23 @@
 
     <string name="drawer_open">"Ireki tiradera "</string>
     <string name="drawer_close">Itxi tiradera</string>
-    </resources>
+    <string name="no_player_found_toast">Ez da jarioen erreproduzigailurik aurkitu (VLC instalatu dezakezu)</string>
+    <string name="always">Beti</string>
+    <string name="just_once">Behin besterik ez</string>
+
+    <string name="external_player_unsupported_link_type">Kanpo erreproduzigailuek ez dituzte mota honetako estekak onartzen</string>
+    <string name="invalid_url_toast">URL baliogabea</string>
+    <string name="video_streams_empty">Ez da bideo jariorik aurkitu</string>
+    <string name="audio_streams_empty">Ez da audio jariorik aurkitu</string>
+
+    <string name="preferred_player_share_menu_dialog_title">Ireki gogoko erreproduzigailuarekin</string>
+    <string name="preferred_player_settings_title">Gogoko erreproduzigailua</string>
+
+    <string name="video_player">Bideo erreproduzigailua</string>
+    <string name="background_player">Bigarren planoko erreproduzigailua</string>
+    <string name="popup_player">Laster-leiho erreproduzigailua</string>
+    <string name="always_ask_player">Galdetu beti</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Informazioa eskuratzen…</string>
+    <string name="preferred_player_fetcher_notification_message">Eskatutako edukia kargatzen ari da</string>
+</resources>
