@@ -309,4 +309,23 @@
     <string name="service_title">Service</string>
     <string name="drawer_open">Ouvrir le menu</string>
     <string name="drawer_close">Fermer le menu</string>
-    </resources>
+    <string name="no_player_found_toast">Aucun lecteur de flux trouvé (vous pouvez installer VLC pour le lire)</string>
+    <string name="always">Toujours</string>
+    <string name="just_once">Une seule fois</string>
+
+    <string name="external_player_unsupported_link_type">Les lecteurs externes ne supportent pas ces types de liens</string>
+    <string name="invalid_url_toast">Lien non valide</string>
+    <string name="video_streams_empty">Aucun flux vidéo trouvé</string>
+    <string name="audio_streams_empty">Aucun flux audio trouvé</string>
+
+    <string name="preferred_player_share_menu_dialog_title">Ouvrir avec le lecteur préféré</string>
+    <string name="preferred_player_settings_title">Lecteur préféré</string>
+
+    <string name="video_player">Lecteur vidéo</string>
+    <string name="background_player">Lecteur en arrière-plan</string>
+    <string name="popup_player">Lecteur en fenêtré</string>
+    <string name="always_ask_player">Toujours demander</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Obtention des infos…</string>
+    <string name="preferred_player_fetcher_notification_message">Le contenu demandé est en chargement</string>
+</resources>
