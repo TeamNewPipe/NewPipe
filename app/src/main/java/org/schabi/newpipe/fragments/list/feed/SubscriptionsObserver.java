@@ -10,6 +10,7 @@ import org.schabi.newpipe.fragments.subscription.SubscriptionService;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import io.reactivex.Observer;
@@ -64,34 +65,52 @@ final class SubscriptionsObserver implements Observer<List<SubscriptionEntity>>,
         final List<StreamInfoItem> newItems = new ArrayList<>(subscriptionEntities.size());
 
         for (SubscriptionEntity subscriptionEntity : subscriptionEntities) {
-            if (DEBUG)
-                Log.d(TAG, "Loading channel info for " + subscriptionEntity.getName() + ".");
-            ChannelInfo channelInfo = subscriptionService.getChannelInfo(subscriptionEntity)
-                    .onErrorComplete()
-                    .blockingGet();
-
-            if (channelInfo == null) {
-                continue;
-            }
-
-            if (DEBUG) Log.d(TAG, "Loading newest item for " + channelInfo.getName() + ".");
-            List<InfoItem> streams = channelInfo.getRelatedStreams();
-
-            if (!streams.isEmpty()) {
-                InfoItem item = streams.get(0);
-                if (item instanceof StreamInfoItem) {
-                    if (!feedFragment.isItemAlreadyDisplayed(item)) {
-                        newItems.add((StreamInfoItem) item);
-                    }
-                }
-            }
+            loadNewItemsFromSubscription(newItems, subscriptionEntity);
         }
 
-        Collections.sort(newItems, (item1, item2) -> item1.getUploadDate().compareTo(item2.getUploadDate()));
+        Collections.sort(newItems, new Comparator<StreamInfoItem>() {
+            @Override
+            public int compare(StreamInfoItem item1, StreamInfoItem item2) {
+                PublicationTime publicationTime1 = PublicationTime.parse(item1.getUploadDate());
+                PublicationTime publicationTime2 = PublicationTime.parse(item2.getUploadDate());
+
+                return publicationTime1.compareTo(publicationTime2);
+            }
+        });
 
         if (DEBUG) Log.d(TAG, "Finished loading newest items.");
 
         AndroidSchedulers.mainThread().scheduleDirect(() -> feedFragment.handleResult(newItems));
+    }
+
+    private void loadNewItemsFromSubscription(List<StreamInfoItem> newItems,
+                                              SubscriptionEntity subscriptionEntity) {
+        if (DEBUG) Log.d(TAG, "Loading channel info for: " + subscriptionEntity.getName());
+        ChannelInfo channelInfo = subscriptionService.getChannelInfo(subscriptionEntity)
+                .onErrorComplete()
+                .blockingGet();
+
+        if (channelInfo == null) {
+            return;
+        }
+
+        if (DEBUG) Log.d(TAG, "Loading newest item for " + channelInfo.getName() + ".");
+        List<InfoItem> streams = channelInfo.getRelatedStreams();
+
+        for (InfoItem item : streams) {
+            if (item instanceof StreamInfoItem && !feedFragment.isItemAlreadyDisplayed(item)) {
+                StreamInfoItem streamItem = (StreamInfoItem) item;
+                PublicationTime publicationTime = PublicationTime.parse(streamItem.getUploadDate());
+
+                if (publicationTime.compareTo(PublicationTime.MAX_PUBLICATION_TIME) <= 0) {
+                    newItems.add(streamItem);
+                } else {
+                    // Once an item is older then the MAX_PUBLICATION_TIME,
+                    // all following items will be older, too.
+                    break;
+                }
+            }
+        }
     }
 
     @Override
