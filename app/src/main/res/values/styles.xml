@@ -29,9 +29,11 @@
         <item name="selected">@drawable/ic_fiber_manual_record_black_24dp</item>
         <item name="search_add">@drawable/ic_arrow_top_left_black_24dp</item>
         <item name="options">@drawable/ic_more_vert_black_24dp</item>
+        <item name="play">@drawable/ic_play_arrow_black_24dp</item>
 
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
+        <item name="checked_selector_drawable">@drawable/light_checked_selector</item>
         <item name="queue_background_color">@color/light_queue_background_color</item>
         <item name="toolbar_shadow_drawable">@drawable/toolbar_shadow_light</item>
         <item name="selector_drawable">@drawable/light_selector</item>
@@ -69,9 +71,11 @@
         <item name="selected">@drawable/ic_fiber_manual_record_white_24dp</item>
         <item name="search_add">@drawable/ic_arrow_top_left_white_24dp</item>
         <item name="options">@drawable/ic_more_vert_white_24dp</item>
+        <item name="play">@drawable/ic_play_arrow_white_24dp</item>
 
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>
+        <item name="checked_selector_drawable">@drawable/dark_checked_selector</item>
         <item name="queue_background_color">@color/dark_queue_background_color</item>
         <item name="toolbar_shadow_drawable">@drawable/toolbar_shadow_dark</item>
         <item name="selector_drawable">@drawable/dark_selector</item>
@@ -164,12 +168,27 @@
         <item name="android:background">@color/dark_youtube_primary_color</item>
     </style>
 
-    <style name="PopupPermissionsTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="RouterActivityThemeLight" parent="LightTheme">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="colorAccent">@android:color/transparent</item>
+
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation</item>
-        <item name="android:windowNoDisplay">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <style name="RouterActivityThemeDark" parent="DarkTheme">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="colorAccent">@android:color/transparent</item>
+
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
     </style>
 </resources>

@@ -13,7 +13,6 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.text.TextUtilsCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -25,7 +24,6 @@ import android.text.util.Linkify;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -37,7 +35,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -51,7 +48,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
@@ -80,6 +76,7 @@ import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -394,7 +391,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         if (relatedStreamsView.getChildCount() > initialCount) {
             relatedStreamsView.removeViews(initialCount, relatedStreamsView.getChildCount() - (initialCount));
-            relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(activity, resolveResourceIdFromAttr(R.attr.expand)));
+            relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand)));
             return;
         }
 
@@ -404,7 +401,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             //Log.d(TAG, "i = " + i);
             relatedStreamsView.addView(infoItemBuilder.buildView(relatedStreamsView, item));
         }
-        relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(activity, resolveResourceIdFromAttr(R.attr.collapse)));
+        relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.collapse)));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -579,7 +576,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             relatedStreamRootLayout.setVisibility(View.VISIBLE);
             relatedStreamExpandButton.setVisibility(View.VISIBLE);
 
-            relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(activity, resolveResourceIdFromAttr(R.attr.expand)));
+            relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand)));
         } else {
             if (info.getNextVideo() == null) relatedStreamRootLayout.setVisibility(View.GONE);
             relatedStreamExpandButton.setVisibility(View.GONE);
@@ -807,7 +804,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 16) {
             openNormalBackgroundPlayer(append);
         } else {
-            openExternalBackgroundPlayer(audioStream);
+            NavigationHelper.playOnExternalPlayer(activity, currentInfo.getName(), currentInfo.getUploaderName(), audioStream);
         }
     }
 
@@ -841,12 +838,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
 
         if (PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
-            openExternalVideoPlayer(selectedVideoStream);
+            NavigationHelper.playOnExternalPlayer(activity, currentInfo.getName(), currentInfo.getUploaderName(), selectedVideoStream);
         } else {
             openNormalPlayer(selectedVideoStream);
         }
     }
-
 
     private void openNormalBackgroundPlayer(final boolean append) {
         final PlayQueue itemQueue = new SinglePlayQueue(currentInfo);
@@ -854,40 +850,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             NavigationHelper.enqueueOnBackgroundPlayer(activity, itemQueue);
         } else {
             NavigationHelper.playOnBackgroundPlayer(activity, itemQueue);
-        }
-    }
-
-    private void openExternalBackgroundPlayer(AudioStream audioStream) {
-        Intent intent;
-        intent = new Intent();
-        try {
-            intent.setAction(Intent.ACTION_VIEW);
-            intent.setDataAndType(Uri.parse(audioStream.getUrl()), audioStream.getFormat().getMimeType());
-            intent.putExtra(Intent.EXTRA_TITLE, currentInfo.getName());
-            intent.putExtra("title", currentInfo.getName());
-            activity.startActivity(intent);
-        } catch (Exception e) {
-            e.printStackTrace();
-            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setMessage(R.string.no_player_found)
-                    .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent();
-                            intent.setAction(Intent.ACTION_VIEW);
-                            intent.setData(Uri.parse(activity.getString(R.string.fdroid_vlc_url)));
-                            activity.startActivity(intent);
-                        }
-                    })
-                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Log.i(TAG, "You unlocked a secret unicorn.");
-                        }
-                    });
-            builder.create().show();
-            Log.e(TAG, "Either no Streaming player for audio was installed, or something important crashed:");
-            e.printStackTrace();
         }
     }
 
@@ -907,33 +869,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                     .putExtra(PlayVideoActivity.START_POSITION, currentInfo.getStartPosition());
         }
         startActivity(mIntent);
-    }
-
-    private void openExternalVideoPlayer(VideoStream selectedVideoStream) {
-        // External Player
-        Intent intent = new Intent();
-        try {
-            intent.setAction(Intent.ACTION_VIEW)
-                    .setDataAndType(Uri.parse(selectedVideoStream.getUrl()), selectedVideoStream.getFormat().getMimeType())
-                    .putExtra(Intent.EXTRA_TITLE, currentInfo.getName())
-                    .putExtra("title", currentInfo.getName());
-            this.startActivity(intent);
-        } catch (Exception e) {
-            e.printStackTrace();
-            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setMessage(R.string.no_player_found)
-                    .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent()
-                                    .setAction(Intent.ACTION_VIEW)
-                                    .setData(Uri.parse(getString(R.string.fdroid_vlc_url)));
-                            startActivity(intent);
-                        }
-                    })
-                    .setNegativeButton(R.string.cancel, null);
-            builder.create().show();
-        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////

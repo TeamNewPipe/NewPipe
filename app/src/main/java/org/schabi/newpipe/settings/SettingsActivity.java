@@ -72,7 +72,9 @@ public class SettingsActivity extends AppCompatActivity implements BasePreferenc
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
-            finish();
+            if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+                finish();
+            } else getSupportFragmentManager().popBackStack();
         }
         return true;
     }

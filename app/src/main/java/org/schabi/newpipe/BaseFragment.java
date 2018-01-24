@@ -78,17 +78,6 @@ public abstract class BaseFragment extends Fragment {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Utils
-    //////////////////////////////////////////////////////////////////////////*/
-
-    protected final int resolveResourceIdFromAttr(@AttrRes int attr) {
-        TypedArray a = activity.getTheme().obtainStyledAttributes(new int[]{attr});
-        int attributeResourceId = a.getResourceId(0, 0);
-        a.recycle();
-        return attributeResourceId;
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
     // DisplayImageOptions default configurations
     //////////////////////////////////////////////////////////////////////////*/
 
