@@ -12,7 +12,7 @@ import android.support.annotation.NonNull;
  */
 class PublicationTime implements Comparable<PublicationTime> {
 
-    static final PublicationTime MAX_PUBLICATION_TIME = new PublicationTime(TimeAgo.MONTHS, 1);
+    static final PublicationTime MAX_PUBLICATION_TIME = new PublicationTime(TimeAgo.WEEKS, 4);
 
     private final TimeAgo timeAgo;
 

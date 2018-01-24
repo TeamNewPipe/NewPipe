@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -30,7 +31,15 @@ import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * The "What's New" feed.
+ * <p>
+ *     It displays the newest streams of every subscribed channel.
+ * </p>
+ */
 public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
+
+    static final boolean DEBUG = MainActivity.DEBUG;
 
     private static final int OFF_SCREEN_ITEMS_COUNT = 3;
     private static final int MIN_ITEMS_INITIAL_LOAD = 8;
@@ -50,11 +59,6 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container, Bundle savedInstanceState) {
         feedLoadCount = howManyItemsToLoad();
@@ -64,22 +68,13 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
     @Override
     public void onPause() {
         super.onPause();
-        disposeEverything();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (wasLoading.get()) doInitialLoadLogic();
+        delayHandler.removeCallbacksAndMessages(null);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         disposeEverything();
-        disposeSubscriptionsObserver();
-        feedItemsSubscriber = null;
     }
 
     @Override
@@ -145,7 +140,7 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
 
     @Override
     public void handleResult(@NonNull List<StreamInfoItem> result) {
-        if (DEBUG) Log.d(TAG, "handleResult([" + result.size() + "])");
+        if (DEBUG) Log.d(TAG, "handleResult(result = [" + result.size() + "])");
 
         setAllItemsDisplayed(false);
         isLoading.set(true);
@@ -190,12 +185,7 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
 
         // Add a little of a delay when requesting more items because the cache is so fast,
         // that the view seems stuck to the user when he scroll to the bottom
-        delayHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                requestFeed();
-            }
-        }, 300);
+        delayHandler.postDelayed(this::requestFeed, 300);
     }
 
     @Override
@@ -206,7 +196,7 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
     private final Handler delayHandler = new Handler();
 
     private void requestFeed() {
-        if (DEBUG) Log.d(TAG, "requestFeed() feedItemsSubscriber = [" + feedItemsSubscriber + "]");
+        if (DEBUG) Log.d(TAG, "requestFeed(); feedItemsSubscriber = " + feedItemsSubscriber);
         if (feedItemsSubscriber == null) return;
 
         isLoading.set(true);
@@ -218,10 +208,20 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
     // Keeping track of added items
     //////////////////////////////////////////////////////////////////////////*/
 
+    /**
+     * Checks whether an item is already displayed in the feed.
+     * @param item The item in question
+     * @return Whether the item is displayed
+     */
     boolean isItemAlreadyDisplayed(final InfoItem item) {
         return displayedItems.contains(getItemIdent(item));
     }
 
+    /**
+     * Marks the item as displayed in the feed.
+     * The method must be called every time an item is actually displayed.
+     * @param item The item in question
+     */
     void setItemDisplayed(final InfoItem item) {
         displayedItems.add(getItemIdent(item));
     }
@@ -239,26 +239,25 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
     //////////////////////////////////////////////////////////////////////////*/
 
     private void resetFragment() {
-        if (DEBUG) Log.d(TAG, "resetFragment() called");
-        disposeSubscriptionsObserver();
-        if (infoListAdapter != null) infoListAdapter.clearStreamItemList();
-
+        if (DEBUG) Log.d(TAG, "resetFragment()");
         delayHandler.removeCallbacksAndMessages(null);
+        disposeEverything();
+
+        if (infoListAdapter != null) infoListAdapter.clearStreamItemList();
         setAllItemsDisplayed(false);
         showListFooter(false);
         displayedItems.clear();
     }
 
     private void disposeEverything() {
-        if (feedItemsSubscriber != null) feedItemsSubscriber.dispose();
-        delayHandler.removeCallbacksAndMessages(null);
-    }
-
-    private void disposeSubscriptionsObserver() {
-        if (DEBUG) Log.d(TAG, "Disposing SubscriptionsObserver");
         if (subscriptionsObserver != null) {
             subscriptionsObserver.dispose();
             subscriptionsObserver = null;
+        }
+
+        if (feedItemsSubscriber != null) {
+            feedItemsSubscriber.dispose();
+            feedItemsSubscriber = null;
         }
     }
 
