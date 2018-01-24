@@ -316,4 +316,24 @@
     <string name="service_title">Servizio</string>
     <string name="drawer_open">"Apri il menù "</string>
     <string name="drawer_close">Chiudi il menù</string>
-    </resources>
+    <string name="no_player_found_toast">Nessun riproduttore multimediale trovato (puoi installare VLC per riprodurlo)</string>
+    <string name="always">Sempre</string>
+    <string name="just_once">Solo una volta</string>
+
+    <string name="external_player_unsupported_link_type">I riproduttori esterni non supportano questa tipologia di collegamenti</string>
+    <string name="invalid_url_toast">URL invalido</string>
+    <string name="video_streams_empty">Nessun flusso video trovato</string>
+    <string name="audio_streams_empty">Nessun flusso audio trovato</string>
+
+    <string name="preferred_player_share_menu_title">Riproduttore preferito</string>
+    <string name="preferred_player_share_menu_dialog_title">Apri con il riproduttore preferito</string>
+    <string name="preferred_player_settings_title">Riproduttore preferito</string>
+
+    <string name="video_player">Riproduttore video</string>
+    <string name="background_player">Riproduttore di fondo</string>
+    <string name="popup_player">Riproduttore a comparsa</string>
+    <string name="always_ask_player">Chiedi sempre</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Raccogliendo informazioni…</string>
+    <string name="preferred_player_fetcher_notification_message">Il contenuto richiesto sta caricando</string>
+</resources>
