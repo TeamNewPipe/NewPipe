@@ -287,7 +287,7 @@
     <string name="background_player_append">In der Warteschlange der Hintergrundwiedergabe</string>
     <string name="new_and_hot">Neu &amp; Heiß</string>
     <string name="hold_to_append">Halten zum Hinzufügen zur Warteschleife</string>
-<string name="show_hold_to_append_title">‚Gedrückt halten, um Tipp hinzuzufügen‘ anzeigen</string>
+<string name="show_hold_to_append_title">\"Gedrückt halten, um Tipp hinzuzufügen\" anzeigen</string>
     <string name="unknown_content">[Unbekannt]</string>
 
     <string name="enqueue_on_background">In Warteschlange für Hintergrundwiedergabe</string>
@@ -301,4 +301,31 @@
     <string name="website_encouragement">Um mehr Informationen und die aktuellsten Nachrichten über NewPipe zu bekommen, besuche unsere Website.</string>
     <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit damit verbringen, dir das beste Erlebnis zu bieten. Jetzt ist es an der Zeit, etwas zurückzugeben, um sicherzustellen, dass unsere Entwickler NewPipe noch besser machen können, während sie eine Tasse Java genießen!</string>
     <string name="service_title">Service</string>
-    </resources>
+    <string name="no_player_found_toast">Kein Streamplayer gefunden (Du kannst VLC installieren, um ihn abzuspielen)</string>
+    <string name="default_content_country_title">Standard-Land des Inhalts</string>
+    <string name="always">Immer</string>
+    <string name="just_once">Nur einmal</string>
+
+    <string name="toggle_orientation">Ausrichtung umschalten</string>
+    <string name="switch_to_background">In den Hintergrund wechseln</string>
+    <string name="switch_to_popup">Zu Popup wechseln</string>
+    <string name="switch_to_main">Zur Hauptseite wechseln</string>
+
+    <string name="external_player_unsupported_link_type">Externe Player unterstützen diese Art von Links nicht</string>
+    <string name="invalid_url_toast">Ungültige URL</string>
+    <string name="video_streams_empty">Keine Video-Streams gefunden</string>
+    <string name="audio_streams_empty">Keine Audio-Streams gefunden</string>
+
+    <string name="drawer_open">Navigationsleiste öffnen</string>
+    <string name="drawer_close">Navigationsleiste schließen</string>
+    <string name="preferred_player_share_menu_dialog_title">Mit bevorzugtem Player öffnen</string>
+    <string name="preferred_player_settings_title">Bevorzugter Player</string>
+
+    <string name="video_player">Video-Player</string>
+    <string name="background_player">Hintergrund-Player</string>
+    <string name="popup_player">Popup-Player</string>
+    <string name="always_ask_player">Immer fragen</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Informationen werden abgerufen…</string>
+    <string name="preferred_player_fetcher_notification_message">Der angeforderte Inhalt wird geladen</string>
+</resources>
