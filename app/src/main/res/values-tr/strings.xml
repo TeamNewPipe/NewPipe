@@ -307,4 +307,23 @@
 
     <string name="drawer_open">Çekmeceyi Aç</string>
     <string name="drawer_close">Çekmeceyi Kapat</string>
-    </resources>
+    <string name="no_player_found_toast">Akış oynatıcı bulunamadı (oynatmak için VLC\'yi kurabilirsiniz)</string>
+    <string name="always">Her Zaman</string>
+    <string name="just_once">Yalnızca Bir Kez</string>
+
+    <string name="external_player_unsupported_link_type">Harici oynatıcılar bu türdeki bağlantıları desteklemiyor</string>
+    <string name="invalid_url_toast">Geçersiz URL</string>
+    <string name="video_streams_empty">Video akışı bulunamadı</string>
+    <string name="audio_streams_empty">Ses akışı bulunamadı</string>
+
+    <string name="preferred_player_share_menu_dialog_title">Yeğlenen oynatıcıyla aç</string>
+    <string name="preferred_player_settings_title">Yeğlenen oynatıcı</string>
+
+    <string name="video_player">Video oynatıcı</string>
+    <string name="background_player">Arka plan oynatıcı</string>
+    <string name="popup_player">Açılır pencere oynatıcı</string>
+    <string name="always_ask_player">Her zaman sor</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Bilgi alınıyor…</string>
+    <string name="preferred_player_fetcher_notification_message">İstenen içerik yükleniyor</string>
+</resources>
