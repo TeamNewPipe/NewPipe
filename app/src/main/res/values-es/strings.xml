@@ -311,4 +311,24 @@ abrir en modo popup</string>
     <string name="service_title">Servicio</string>
     <string name="drawer_open">Abrir cajón</string>
     <string name="drawer_close">Cerrar cajón</string>
-    </resources>
+    <string name="no_player_found_toast">No se ha encontrado ningún reproductor de streaming (puede instalar VLC para reproducirlo)</string>
+    <string name="always">Siempre</string>
+    <string name="just_once">Sólo una vez</string>
+
+    <string name="external_player_unsupported_link_type">Los reproductores externos no soportan este tipo de enlaces</string>
+    <string name="invalid_url_toast">URL no válida</string>
+    <string name="video_streams_empty">No se encontraron transmisiones de vídeo</string>
+    <string name="audio_streams_empty">No se encontraron transmisiones de audio</string>
+
+    <string name="preferred_player_share_menu_title">\@string/preferred_player_settings_title</string>
+    <string name="preferred_player_share_menu_dialog_title">Abrir con el reproductor preferido</string>
+    <string name="preferred_player_settings_title">Reproductor preferido</string>
+
+    <string name="video_player">Reproductor de vídeo</string>
+    <string name="background_player">Reproductor de fondo</string>
+    <string name="popup_player">Reproductor de popup</string>
+    <string name="always_ask_player">Preguntar siempre</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Obteniendo información…</string>
+    <string name="preferred_player_fetcher_notification_message">El contenido solicitado se está cargando</string>
+</resources>
