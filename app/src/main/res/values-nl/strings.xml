@@ -312,4 +312,24 @@ te openen in pop-upmodus</string>
 
     <string name="drawer_open">Menu openen</string>
     <string name="drawer_close">Menu sluiten</string>
-    </resources>
+    <string name="no_player_found_toast">Geen speler met streamondersteuning gevonden (je kan VLC installeren om het af te spelen)</string>
+    <string name="always">Altijd</string>
+    <string name="just_once">Eenmalig</string>
+
+    <string name="external_player_unsupported_link_type">Externe spelers ondersteunen deze soorten koppelingen niet</string>
+    <string name="invalid_url_toast">Ongeldige URL</string>
+    <string name="video_streams_empty">Geen videostreams gevonden</string>
+    <string name="audio_streams_empty">Geen audiostreams gevonden</string>
+
+    <string name="preferred_player_share_menu_title">Voorkeursspeler</string>
+    <string name="preferred_player_share_menu_dialog_title">Openen met voorkeursspeler</string>
+    <string name="preferred_player_settings_title">Voorkeursspeler</string>
+
+    <string name="video_player">Videospeler</string>
+    <string name="background_player">Achtergrondspeler</string>
+    <string name="popup_player">Pop-upspeler</string>
+    <string name="always_ask_player">Altijd vragen</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Info ophalen…</string>
+    <string name="preferred_player_fetcher_notification_message">De gevraagde inhoud is aan het laden</string>
+</resources>
