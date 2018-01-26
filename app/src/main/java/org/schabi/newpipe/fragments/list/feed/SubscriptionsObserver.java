@@ -13,6 +13,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.subscription.SubscriptionService;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -28,7 +29,7 @@ import static org.schabi.newpipe.fragments.list.feed.FeedFragment.DEBUG;
  * Every time the subscriptions change and on init, the SubscriptionsObserver:
  * <ul>
  *     <li>Loads all {@link StreamInfoItem}s of every subscribed channel</li>
- *     <li>Discards all items older than {@link PublicationTime#MAX_PUBLICATION_TIME}</li>
+ *     <li>Discards all items older than {@link #oldestUploadDate}</li>
  *     <li>Sorts the items by publication time.</li>
  *     <li>Calls {@link FeedFragment#handleResult(List)}</li>
  * </ul>
@@ -41,6 +42,8 @@ final class SubscriptionsObserver implements Observer<List<SubscriptionEntity>>,
 
     private final FeedFragment feedFragment;
 
+    private final Calendar oldestUploadDate;
+
     private Disposable thisDisposable;
 
     private boolean areItemsBeingLoaded;
@@ -51,6 +54,9 @@ final class SubscriptionsObserver implements Observer<List<SubscriptionEntity>>,
      */
     SubscriptionsObserver(FeedFragment feedFragment) {
         this.feedFragment = feedFragment;
+
+        oldestUploadDate = Calendar.getInstance();
+        oldestUploadDate.add(Calendar.MONTH, -1);
     }
 
     /**
@@ -87,10 +93,15 @@ final class SubscriptionsObserver implements Observer<List<SubscriptionEntity>>,
         }
 
         Collections.sort(newItems, (item1, item2) -> {
-            PublicationTime publicationTime1 = PublicationTime.parse(item1.getUploadDate());
-            PublicationTime publicationTime2 = PublicationTime.parse(item2.getUploadDate());
-
-            return publicationTime1.compareTo(publicationTime2);
+            if (item1.getUploadDate() != null && item2.getUploadDate() != null) {
+                return item2.getUploadDate().compareTo(item1.getUploadDate());
+            } else if (item1.getUploadDate() != null) {
+                return 1;
+            } else if (item2.getUploadDate() != null) {
+                return -1;
+            } else {
+                return 0;
+            }
         });
 
         if (DEBUG) Log.d(TAG, "Finished loading newest items.");
@@ -115,9 +126,13 @@ final class SubscriptionsObserver implements Observer<List<SubscriptionEntity>>,
         for (InfoItem item : streams) {
             if (item instanceof StreamInfoItem && !feedFragment.isItemAlreadyDisplayed(item)) {
                 StreamInfoItem streamItem = (StreamInfoItem) item;
-                PublicationTime publicationTime = PublicationTime.parse(streamItem.getUploadDate());
 
-                if (publicationTime.compareTo(PublicationTime.MAX_PUBLICATION_TIME) <= 0) {
+                if (streamItem.getUploadDate() == null) {
+                    // If a service doesn't provide a parsed upload date,
+                    // include just the first element.
+                    newItems.add(streamItem);
+                    break;
+                } else if (streamItem.getUploadDate().compareTo(oldestUploadDate) >= 0) {
                     newItems.add(streamItem);
                 } else {
                     // Once an item is older then the MAX_PUBLICATION_TIME,
