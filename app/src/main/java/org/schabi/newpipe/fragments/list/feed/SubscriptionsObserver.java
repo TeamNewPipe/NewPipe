@@ -10,6 +10,7 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.fragments.subscription.SubscriptionService;
 
 import java.util.ArrayList;
@@ -128,10 +129,12 @@ final class SubscriptionsObserver implements Observer<List<SubscriptionEntity>>,
                 StreamInfoItem streamItem = (StreamInfoItem) item;
 
                 if (streamItem.getUploadDate() == null) {
-                    // If a service doesn't provide a parsed upload date,
-                    // include just the first element.
                     newItems.add(streamItem);
-                    break;
+                    if (streamItem.getStreamType() != StreamType.LIVE_STREAM) {
+                        // If a service doesn't provide a parsed upload date, include only
+                        // the first element unless it is a live stream.
+                        break;
+                    }
                 } else if (streamItem.getUploadDate().compareTo(oldestUploadDate) >= 0) {
                     newItems.add(streamItem);
                 } else {
