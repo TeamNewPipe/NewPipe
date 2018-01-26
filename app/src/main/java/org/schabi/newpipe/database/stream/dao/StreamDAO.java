@@ -7,17 +7,23 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Transaction;
 
 import org.schabi.newpipe.database.BasicDAO;
+import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
+import org.schabi.newpipe.database.stream.model.StreamHistoryEntity;
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Flowable;
 
+import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.PLAYLIST_STREAM_JOIN_TABLE;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_ID;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_SERVICE_ID;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_TABLE;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_URL;
+import static org.schabi.newpipe.database.stream.model.StreamHistoryEntity.STREAM_HISTORY_TABLE;
+import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_STATE_TABLE;
 
 @Dao
 public abstract class StreamDAO implements BasicDAO<StreamEntity> {
@@ -77,4 +83,22 @@ public abstract class StreamDAO implements BasicDAO<StreamEntity> {
         update(streams);
         return streamIds;
     }
+
+    @Query("DELETE FROM " + STREAM_TABLE + " WHERE " + STREAM_ID +
+            " NOT IN " +
+            "(SELECT DISTINCT " + STREAM_ID + " FROM " + STREAM_TABLE +
+
+            " LEFT JOIN " + STREAM_HISTORY_TABLE +
+            " ON " + STREAM_ID + " = " +
+            StreamHistoryEntity.STREAM_HISTORY_TABLE + "." + StreamHistoryEntity.JOIN_STREAM_ID +
+
+            " LEFT JOIN " + STREAM_STATE_TABLE +
+            " ON " + STREAM_ID + " = " +
+            StreamStateEntity.STREAM_STATE_TABLE + "." + StreamStateEntity.JOIN_STREAM_ID +
+
+            " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE +
+            " ON " + STREAM_ID + " = " +
+            PlaylistStreamEntity.PLAYLIST_STREAM_JOIN_TABLE + "." + PlaylistStreamEntity.JOIN_STREAM_ID +
+            ")")
+    public abstract int deleteOrphans();
 }

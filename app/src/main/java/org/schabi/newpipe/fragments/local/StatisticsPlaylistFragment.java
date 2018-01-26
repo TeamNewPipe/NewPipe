@@ -19,8 +19,8 @@ import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
+import org.schabi.newpipe.info_list.OnInfoItemGesture;
 import org.schabi.newpipe.info_list.stored.StreamStatisticsInfoItem;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
@@ -127,7 +127,7 @@ public abstract class StatisticsPlaylistFragment
     protected void initListeners() {
         super.initListeners();
 
-        infoListAdapter.setOnStreamSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<StreamInfoItem>() {
+        infoListAdapter.setOnStreamSelectedListener(new OnInfoItemGesture<StreamInfoItem>() {
             @Override
             public void selected(StreamInfoItem selectedItem) {
                 NavigationHelper.openVideoDetailFragment(getFragmentManager(),

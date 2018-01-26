@@ -21,8 +21,8 @@ import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
+import org.schabi.newpipe.info_list.OnInfoItemGesture;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
@@ -141,7 +141,7 @@ public class LocalPlaylistFragment extends BaseListFragment<List<StreamEntity>, 
     protected void initListeners() {
         super.initListeners();
 
-        infoListAdapter.setOnStreamSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<StreamInfoItem>() {
+        infoListAdapter.setOnStreamSelectedListener(new OnInfoItemGesture<StreamInfoItem>() {
             @Override
             public void selected(StreamInfoItem selectedItem) {
                 // Requires the parent fragment to find holder for fragment replacement
@@ -219,7 +219,7 @@ public class LocalPlaylistFragment extends BaseListFragment<List<StreamEntity>, 
         super.startLoading(forceLoad);
         resetFragment();
 
-        playlistManager.getPlaylist(playlistId)
+        playlistManager.getPlaylistStreams(playlistId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getPlaylistObserver());
     }
@@ -317,7 +317,7 @@ public class LocalPlaylistFragment extends BaseListFragment<List<StreamEntity>, 
         if (super.onError(exception)) return true;
 
         onUnrecoverableError(exception, UserAction.SOMETHING_ELSE,
-                "none", "Subscriptions", R.string.general_error);
+                "none", "Local Playlist", R.string.general_error);
         return true;
     }
 

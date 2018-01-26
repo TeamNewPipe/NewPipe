@@ -35,8 +35,7 @@ public final class PlaylistCreationDialog extends PlaylistDialog {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         if (getStreams() == null) return super.onCreateDialog(savedInstanceState);
 
-        View dialogView = View.inflate(getContext(),
-                R.layout.dialog_create_playlist, null);
+        View dialogView = View.inflate(getContext(), R.layout.dialog_playlist_name, null);
         EditText nameInput = dialogView.findViewById(R.id.playlist_name);
 
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext())

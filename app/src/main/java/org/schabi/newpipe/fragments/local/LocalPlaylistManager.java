@@ -1,5 +1,7 @@
 package org.schabi.newpipe.fragments.local;
 
+import android.support.annotation.Nullable;
+
 import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.dao.PlaylistDAO;
@@ -82,7 +84,7 @@ public class LocalPlaylistManager {
         return playlistStreamTable.getPlaylistMetadata().subscribeOn(Schedulers.io());
     }
 
-    public Flowable<List<StreamEntity>> getPlaylist(final long playlistId) {
+    public Flowable<List<StreamEntity>> getPlaylistStreams(final long playlistId) {
         return playlistStreamTable.getOrderedStreamsOf(playlistId).subscribeOn(Schedulers.io());
     }
 
@@ -90,4 +92,28 @@ public class LocalPlaylistManager {
         return Single.fromCallable(() -> playlistTable.deletePlaylist(playlistId))
                 .subscribeOn(Schedulers.io());
     }
+
+    public Maybe<Integer> renamePlaylist(final long playlistId, final String name) {
+        return modifyPlaylist(playlistId, name, null);
+    }
+
+    public Maybe<Integer> changePlaylistThumbnail(final long playlistId,
+                                                  final String thumbnailUrl) {
+        return modifyPlaylist(playlistId, null, thumbnailUrl);
+    }
+
+    private Maybe<Integer> modifyPlaylist(final long playlistId,
+                                          @Nullable final String name,
+                                          @Nullable final String thumbnailUrl) {
+        return playlistTable.getPlaylist(playlistId)
+                .firstElement()
+                .filter(playlistEntities -> !playlistEntities.isEmpty())
+                .map(playlistEntities -> {
+                    PlaylistEntity playlist = playlistEntities.get(0);
+                    if (name != null) playlist.setName(name);
+                    if (thumbnailUrl != null) playlist.setThumbnailUrl(thumbnailUrl);
+                    return playlistTable.update(playlist);
+                }).subscribeOn(Schedulers.io());
+    }
+
 }

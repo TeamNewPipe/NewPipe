@@ -62,6 +62,7 @@ import org.schabi.newpipe.fragments.local.PlaylistAppendDialog;
 import org.schabi.newpipe.history.HistoryListener;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
+import org.schabi.newpipe.info_list.OnInfoItemGesture;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.helper.PlayerHelper;
@@ -471,7 +472,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     protected void initListeners() {
         super.initListeners();
-        infoItemBuilder.setOnStreamSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<StreamInfoItem>() {
+        infoItemBuilder.setOnStreamSelectedListener(new OnInfoItemGesture<StreamInfoItem>() {
             @Override
             public void selected(StreamInfoItem selectedItem) {
                 selectAndLoadVideo(selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());

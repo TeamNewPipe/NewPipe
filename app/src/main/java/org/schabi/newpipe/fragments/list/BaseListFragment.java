@@ -3,19 +3,15 @@ package org.schabi.newpipe.fragments.list;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -24,12 +20,11 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.info_list.OnInfoItemGesture;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.StateSaver;
 
 import java.util.List;
@@ -140,7 +135,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     @Override
     protected void initListeners() {
         super.initListeners();
-        infoListAdapter.setOnStreamSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<StreamInfoItem>() {
+        infoListAdapter.setOnStreamSelectedListener(new OnInfoItemGesture<StreamInfoItem>() {
             @Override
             public void selected(StreamInfoItem selectedItem) {
                 onItemSelected(selectedItem);
@@ -155,7 +150,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
             }
         });
 
-        infoListAdapter.setOnChannelSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<ChannelInfoItem>() {
+        infoListAdapter.setOnChannelSelectedListener(new OnInfoItemGesture<ChannelInfoItem>() {
             @Override
             public void selected(ChannelInfoItem selectedItem) {
                 onItemSelected(selectedItem);
@@ -163,12 +158,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                         useAsFrontPage?getParentFragment().getFragmentManager():getFragmentManager(),
                         selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
             }
-
-            @Override
-            public void held(ChannelInfoItem selectedItem) {}
         });
 
-        infoListAdapter.setOnPlaylistSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<PlaylistInfoItem>() {
+        infoListAdapter.setOnPlaylistSelectedListener(new OnInfoItemGesture<PlaylistInfoItem>() {
             @Override
             public void selected(PlaylistInfoItem selectedItem) {
                 onItemSelected(selectedItem);
@@ -176,9 +168,6 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                         useAsFrontPage?getParentFragment().getFragmentManager():getFragmentManager(),
                         selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
             }
-
-            @Override
-            public void held(PlaylistInfoItem selectedItem) {}
         });
 
         itemsList.clearOnScrollListeners();

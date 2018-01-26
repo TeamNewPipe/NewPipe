@@ -19,8 +19,8 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.info_list.OnInfoItemGesture;
 import org.schabi.newpipe.info_list.stored.LocalPlaylistInfoItem;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 
@@ -97,7 +97,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
 
         newPlaylistButton.setOnClickListener(ignored -> openCreatePlaylistDialog());
 
-        playlistAdapter.setOnPlaylistSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<PlaylistInfoItem>() {
+        playlistAdapter.setOnPlaylistSelectedListener(new OnInfoItemGesture<PlaylistInfoItem>() {
             @Override
             public void selected(PlaylistInfoItem selectedItem) {
                 if (!(selectedItem instanceof LocalPlaylistInfoItem) || getStreams() == null)
@@ -113,9 +113,6 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
 
                 getDialog().dismiss();
             }
-
-            @Override
-            public void held(PlaylistInfoItem selectedItem) {}
         });
 
         playlistManager.getPlaylists()

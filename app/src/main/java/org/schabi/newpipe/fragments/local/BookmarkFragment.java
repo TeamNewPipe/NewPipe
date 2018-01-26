@@ -21,9 +21,9 @@ import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.fragments.BaseStateFragment;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.info_list.OnInfoItemGesture;
 import org.schabi.newpipe.info_list.stored.LocalPlaylistInfoItem;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -33,10 +33,8 @@ import java.util.Collections;
 import java.util.List;
 
 import icepick.State;
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -143,7 +141,7 @@ public class BookmarkFragment extends BaseStateFragment<List<PlaylistMetadataEnt
     protected void initListeners() {
         super.initListeners();
 
-        infoListAdapter.setOnPlaylistSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<PlaylistInfoItem>() {
+        infoListAdapter.setOnPlaylistSelectedListener(new OnInfoItemGesture<PlaylistInfoItem>() {
             @Override
             public void selected(PlaylistInfoItem selectedItem) {
                 // Requires the parent fragment to find holder for fragment replacement

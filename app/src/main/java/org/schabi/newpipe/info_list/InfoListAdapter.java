@@ -10,7 +10,6 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.info_list.InfoItemBuilder.OnInfoItemSelectedListener;
 import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.InfoItemHolder;
@@ -56,6 +55,10 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int MINI_PLAYLIST_HOLDER_TYPE = 0x300;
     private static final int PLAYLIST_HOLDER_TYPE = 0x301;
 
+    private static final int STATISTICS_HOLDER_TYPE = 0x1000;
+    private static final int LOCAL_PLAYLIST_STREAM_HOLDER_TYPE = 0x1001;
+    private static final int LOCAL_PLAYLIST_HOLDER_TYPE = 0x3000;
+
     private final InfoItemBuilder infoItemBuilder;
     private final ArrayList<InfoItem> infoItemList;
     private boolean useMiniVariant = false;
@@ -77,15 +80,15 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         infoItemList = new ArrayList<>();
     }
 
-    public void setOnStreamSelectedListener(OnInfoItemSelectedListener<StreamInfoItem> listener) {
+    public void setOnStreamSelectedListener(OnInfoItemGesture<StreamInfoItem> listener) {
         infoItemBuilder.setOnStreamSelectedListener(listener);
     }
 
-    public void setOnChannelSelectedListener(OnInfoItemSelectedListener<ChannelInfoItem> listener) {
+    public void setOnChannelSelectedListener(OnInfoItemGesture<ChannelInfoItem> listener) {
         infoItemBuilder.setOnChannelSelectedListener(listener);
     }
 
-    public void setOnPlaylistSelectedListener(OnInfoItemSelectedListener<PlaylistInfoItem> listener) {
+    public void setOnPlaylistSelectedListener(OnInfoItemGesture<PlaylistInfoItem> listener) {
         infoItemBuilder.setOnPlaylistSelectedListener(listener);
     }
 
@@ -202,7 +205,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (footer != null && position == infoItemList.size() && showFooter) {
             return FOOTER_TYPE;
         }
-        InfoItem item = infoItemList.get(position);
+        final InfoItem item = infoItemList.get(position);
         switch (item.info_type) {
             case STREAM:
                 return useMiniVariant ? MINI_STREAM_HOLDER_TYPE : STREAM_HOLDER_TYPE;

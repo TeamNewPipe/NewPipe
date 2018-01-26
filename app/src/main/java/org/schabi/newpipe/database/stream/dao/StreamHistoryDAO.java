@@ -6,6 +6,7 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Transaction;
 
 import org.schabi.newpipe.database.BasicDAO;
+import org.schabi.newpipe.database.stream.StreamHistoryEntry;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.database.stream.model.StreamHistoryEntity;
 
@@ -35,6 +36,12 @@ public abstract class StreamHistoryDAO implements BasicDAO<StreamHistoryEntity> 
     public Flowable<List<StreamHistoryEntity>> listByService(int serviceId) {
         throw new UnsupportedOperationException();
     }
+
+    @Query("SELECT * FROM " + STREAM_TABLE +
+            " INNER JOIN " + STREAM_HISTORY_TABLE +
+            " ON " + STREAM_ID + " = " + JOIN_STREAM_ID +
+            " ORDER BY " + STREAM_ACCESS_DATE + " DESC")
+    public abstract Flowable<List<StreamHistoryEntry>> getHistory();
 
     @Query("DELETE FROM " + STREAM_HISTORY_TABLE + " WHERE " + JOIN_STREAM_ID + " = :streamId")
     public abstract int deleteStreamHistory(final long streamId);
