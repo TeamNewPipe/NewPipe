@@ -3,10 +3,14 @@ package org.schabi.newpipe.database.history.model;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.Index;
 
 import java.util.Date;
 
-@Entity(tableName = SearchHistoryEntry.TABLE_NAME)
+import static org.schabi.newpipe.database.history.model.SearchHistoryEntry.SEARCH;
+
+@Entity(tableName = SearchHistoryEntry.TABLE_NAME,
+        indices = {@Index(value = SEARCH)})
 public class SearchHistoryEntry extends HistoryEntry {
 
     public static final String TABLE_NAME = "search_history";

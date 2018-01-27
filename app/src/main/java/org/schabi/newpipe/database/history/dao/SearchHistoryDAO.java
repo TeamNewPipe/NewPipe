@@ -2,6 +2,7 @@ package org.schabi.newpipe.database.history.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
+import android.support.annotation.Nullable;
 
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 
@@ -22,6 +23,7 @@ public interface SearchHistoryDAO extends HistoryDAO<SearchHistoryEntry> {
 
     @Query("SELECT * FROM " + TABLE_NAME + " WHERE " + ID + " = (SELECT MAX(" + ID + ") FROM " + TABLE_NAME + ")")
     @Override
+    @Nullable
     SearchHistoryEntry getLatestEntry();
 
     @Query("DELETE FROM " + TABLE_NAME)

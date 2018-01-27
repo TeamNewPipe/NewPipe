@@ -61,10 +61,9 @@ import com.google.android.exoplayer2.util.Util;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
-import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.fragments.local.StreamRecordManager;
+import org.schabi.newpipe.history.HistoryRecordManager;
 import org.schabi.newpipe.player.helper.AudioReactor;
 import org.schabi.newpipe.player.helper.CacheFactory;
 import org.schabi.newpipe.player.helper.LoadController;
@@ -150,7 +149,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     protected Disposable progressUpdateReactor;
     protected CompositeDisposable databaseUpdateReactor;
 
-    protected StreamRecordManager recordManager;
+    protected HistoryRecordManager recordManager;
 
     //////////////////////////////////////////////////////////////////////////*/
 
@@ -176,9 +175,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     public void initPlayer() {
         if (DEBUG) Log.d(TAG, "initPlayer() called with: context = [" + context + "]");
 
-        if (recordManager == null) {
-            recordManager = new StreamRecordManager(NewPipeDatabase.getInstance(context));
-        }
+        if (recordManager == null) recordManager = new HistoryRecordManager(context);
         if (databaseUpdateReactor != null) databaseUpdateReactor.dispose();
         databaseUpdateReactor = new CompositeDisposable();
 
@@ -614,7 +611,8 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         // If the user selects a new track, then the discontinuity occurs after the index is changed.
         // Therefore, the only source that causes a discrepancy would be gapless transition,
         // which can only offset the current track by +1.
-        if (newWindowIndex == playQueue.getIndex() + 1) {
+        if (newWindowIndex == playQueue.getIndex() + 1 ||
+                (newWindowIndex == 0 && playQueue.getIndex() == playQueue.size() - 1)) {
             playQueue.offsetIndex(+1);
         }
         playbackManager.load();

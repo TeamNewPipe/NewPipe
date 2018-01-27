@@ -44,6 +44,7 @@ import com.nirhart.parallaxscroll.views.ParallaxScrollView;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
@@ -60,6 +61,7 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.local.PlaylistAppendDialog;
 import org.schabi.newpipe.history.HistoryListener;
+import org.schabi.newpipe.history.HistoryRecordManager;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.OnInfoItemGesture;
@@ -649,9 +651,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             public void onActionSelected(int selectedStreamId) {
                 try {
                     NavigationHelper.playWithKore(activity, Uri.parse(info.getUrl().replace("https", "http")));
-                    if(activity instanceof HistoryListener) {
-                        ((HistoryListener) activity).onVideoPlayed(info, null);
-                    }
                 } catch (Exception e) {
                     if(DEBUG) Log.i(TAG, "Failed to start kore", e);
                     showInstallKoreDialog(activity);
@@ -805,10 +804,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private void openBackgroundPlayer(final boolean append) {
         AudioStream audioStream = currentInfo.getAudioStreams().get(ListHelper.getDefaultAudioFormat(activity, currentInfo.getAudioStreams()));
 
-        if (activity instanceof HistoryListener) {
-            ((HistoryListener) activity).onAudioPlayed(currentInfo, audioStream);
-        }
-
         boolean useExternalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
 
@@ -825,10 +820,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             return;
         }
 
-        if (activity instanceof HistoryListener) {
-            ((HistoryListener) activity).onVideoPlayed(currentInfo, getSelectedVideoStream());
-        }
-
         final PlayQueue itemQueue = new SinglePlayQueue(currentInfo);
         if (append) {
             NavigationHelper.enqueueOnPopupPlayer(activity, itemQueue);
@@ -843,10 +834,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     private void openVideoPlayer() {
         VideoStream selectedVideoStream = getSelectedVideoStream();
-
-        if (activity instanceof HistoryListener) {
-            ((HistoryListener) activity).onVideoPlayed(currentInfo, selectedVideoStream);
-        }
 
         if (PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
             NavigationHelper.playOnExternalPlayer(activity, currentInfo.getName(), currentInfo.getUploaderName(), selectedVideoStream);

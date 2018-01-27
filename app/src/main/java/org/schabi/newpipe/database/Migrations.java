@@ -20,6 +20,7 @@ public class Migrations {
 
             // Not much we can do about this, since room doesn't create tables before migration.
             // It's either this or blasting the entire database anew.
+            database.execSQL("CREATE  INDEX `index_search_history_search` ON `search_history` (`search`)");
             database.execSQL("CREATE TABLE IF NOT EXISTS `streams` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `service_id` INTEGER NOT NULL, `url` TEXT, `title` TEXT, `stream_type` TEXT, `duration` INTEGER, `uploader` TEXT, `thumbnail_url` TEXT)");
             database.execSQL("CREATE UNIQUE INDEX `index_streams_service_id_url` ON `streams` (`service_id`, `url`)");
             database.execSQL("CREATE TABLE IF NOT EXISTS `stream_history` (`stream_id` INTEGER NOT NULL, `access_date` INTEGER NOT NULL, PRIMARY KEY(`stream_id`, `access_date`), FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE )");

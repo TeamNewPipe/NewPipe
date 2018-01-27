@@ -2,7 +2,6 @@ package org.schabi.newpipe.fragments.list.search;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -30,10 +29,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
-import org.schabi.newpipe.database.history.dao.SearchHistoryDAO;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
@@ -44,7 +41,7 @@ import org.schabi.newpipe.extractor.search.SearchEngine;
 import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
-import org.schabi.newpipe.history.HistoryListener;
+import org.schabi.newpipe.history.HistoryRecordManager;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.AnimationUtils;
@@ -64,16 +61,11 @@ import java.util.concurrent.TimeUnit;
 
 import icepick.State;
 import io.reactivex.Flowable;
-import io.reactivex.Notification;
 import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 
@@ -121,7 +113,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     private CompositeDisposable disposables = new CompositeDisposable();
 
     private SuggestionListAdapter suggestionListAdapter;
-    private SearchHistoryDAO searchHistoryDAO;
+    private HistoryRecordManager historyRecordManager;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -166,8 +158,8 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         isSearchHistoryEnabled = preferences.getBoolean(getString(R.string.enable_search_history_key), true);
         suggestionListAdapter.setShowSuggestionHistory(isSearchHistoryEnabled);
-        
-        searchHistoryDAO = NewPipeDatabase.getInstance().searchHistoryDAO();
+
+        historyRecordManager = new HistoryRecordManager(context);
     }
 
     @Override
@@ -535,36 +527,24 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     }
 
     private void showDeleteSuggestionDialog(final SuggestionItem item) {
+        final Disposable onDelete = historyRecordManager.deleteSearchHistory(item.query)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        howManyDeleted -> suggestionPublisher
+                                .onNext(searchEditText.getText().toString()),
+
+                        throwable -> showSnackBarError(throwable,
+                                UserAction.SOMETHING_ELSE, "none",
+                                "Deleting item failed", R.string.general_error)
+                );
+
         new AlertDialog.Builder(activity)
                 .setTitle(item.query)
                 .setMessage(R.string.delete_item_search_history)
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        disposables.add(Observable
-                                .fromCallable(new Callable<Integer>() {
-                                    @Override
-                                    public Integer call() throws Exception {
-                                        return searchHistoryDAO.deleteAllWhereQuery(item.query);
-                                    }
-                                })
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(new Consumer<Integer>() {
-                                    @Override
-                                    public void accept(Integer howManyDeleted) throws Exception {
-                                        suggestionPublisher.onNext(searchEditText.getText().toString());
-                                    }
-                                }, new Consumer<Throwable>() {
-                                    @Override
-                                    public void accept(Throwable throwable) throws Exception {
-                                        showSnackBarError(throwable, UserAction.SOMETHING_ELSE, "none", "Deleting item failed", R.string.general_error);
-                                    }
-                                }));
-                    }
-                }).show();
+                .setPositiveButton(R.string.delete, (dialog, which) -> disposables.add(onDelete))
+                .show();
     }
 
     @Override
@@ -589,83 +569,67 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
         final Observable<String> observable = suggestionPublisher
                 .debounce(SUGGESTIONS_DEBOUNCE, TimeUnit.MILLISECONDS)
                 .startWith(searchQuery != null ? searchQuery : "")
-                .filter(new Predicate<String>() {
-                    @Override
-                    public boolean test(@io.reactivex.annotations.NonNull String query) throws Exception {
-                        return isSuggestionsEnabled;
-                    }
-                });
+                .filter(query -> isSuggestionsEnabled);
 
         suggestionDisposable = observable
-                .switchMap(new Function<String, ObservableSource<Notification<List<SuggestionItem>>>>() {
-                    @Override
-                    public ObservableSource<Notification<List<SuggestionItem>>> apply(@io.reactivex.annotations.NonNull final String query) throws Exception {
-                        final Flowable<List<SearchHistoryEntry>> flowable = query.length() > 0
-                                ? searchHistoryDAO.getSimilarEntries(query, 3)
-                                : searchHistoryDAO.getUniqueEntries(25);
-                        final Observable<List<SuggestionItem>> local = flowable.toObservable()
-                                .map(new Function<List<SearchHistoryEntry>, List<SuggestionItem>>() {
-                                    @Override
-                                    public List<SuggestionItem> apply(@io.reactivex.annotations.NonNull List<SearchHistoryEntry> searchHistoryEntries) throws Exception {
-                                        List<SuggestionItem> result = new ArrayList<>();
-                                        for (SearchHistoryEntry entry : searchHistoryEntries)
-                                            result.add(new SuggestionItem(true, entry.getSearch()));
-                                        return result;
-                                    }
-                                });
+                .switchMap(query -> {
+                    final Flowable<List<SearchHistoryEntry>> flowable = historyRecordManager
+                            .getRelatedSearches(query, 3, 25);
+                    final Observable<List<SuggestionItem>> local = flowable.toObservable()
+                            .map(searchHistoryEntries -> {
+                                List<SuggestionItem> result = new ArrayList<>();
+                                for (SearchHistoryEntry entry : searchHistoryEntries)
+                                    result.add(new SuggestionItem(true, entry.getSearch()));
+                                return result;
+                            });
 
-                        if (query.length() < THRESHOLD_NETWORK_SUGGESTION) {
-                            // Only pass through if the query length is equal or greater than THRESHOLD_NETWORK_SUGGESTION
-                            return local.materialize();
+                    if (query.length() < THRESHOLD_NETWORK_SUGGESTION) {
+                        // Only pass through if the query length is equal or greater than THRESHOLD_NETWORK_SUGGESTION
+                        return local.materialize();
+                    }
+
+                    final Observable<List<SuggestionItem>> network = ExtractorHelper
+                            .suggestionsFor(serviceId, query, contentCountry)
+                            .toObservable()
+                            .map(strings -> {
+                                List<SuggestionItem> result = new ArrayList<>();
+                                for (String entry : strings) {
+                                    result.add(new SuggestionItem(false, entry));
+                                }
+                                return result;
+                            });
+
+                    return Observable.zip(local, network, (localResult, networkResult) -> {
+                        List<SuggestionItem> result = new ArrayList<>();
+                        if (localResult.size() > 0) result.addAll(localResult);
+
+                        // Remove duplicates
+                        final Iterator<SuggestionItem> iterator = networkResult.iterator();
+                        while (iterator.hasNext() && localResult.size() > 0) {
+                            final SuggestionItem next = iterator.next();
+                            for (SuggestionItem item : localResult) {
+                                if (item.query.equals(next.query)) {
+                                    iterator.remove();
+                                    break;
+                                }
+                            }
                         }
 
-                        final Observable<List<SuggestionItem>> network = ExtractorHelper.suggestionsFor(serviceId, query, contentCountry).toObservable()
-                                .map(new Function<List<String>, List<SuggestionItem>>() {
-                                    @Override
-                                    public List<SuggestionItem> apply(@io.reactivex.annotations.NonNull List<String> strings) throws Exception {
-                                        List<SuggestionItem> result = new ArrayList<>();
-                                        for (String entry : strings) result.add(new SuggestionItem(false, entry));
-                                        return result;
-                                    }
-                                });
-
-                        return Observable.zip(local, network, new BiFunction<List<SuggestionItem>, List<SuggestionItem>, List<SuggestionItem>>() {
-                            @Override
-                            public List<SuggestionItem> apply(@io.reactivex.annotations.NonNull List<SuggestionItem> localResult, @io.reactivex.annotations.NonNull List<SuggestionItem> networkResult) throws Exception {
-                                List<SuggestionItem> result = new ArrayList<>();
-                                if (localResult.size() > 0) result.addAll(localResult);
-
-                                // Remove duplicates
-                                final Iterator<SuggestionItem> iterator = networkResult.iterator();
-                                while (iterator.hasNext() && localResult.size() > 0) {
-                                    final SuggestionItem next = iterator.next();
-                                    for (SuggestionItem item : localResult) {
-                                        if (item.query.equals(next.query)) {
-                                            iterator.remove();
-                                            break;
-                                        }
-                                    }
-                                }
-
-                                if (networkResult.size() > 0) result.addAll(networkResult);
-                                return result;
-                            }
-                        }).materialize();
-                    }
+                        if (networkResult.size() > 0) result.addAll(networkResult);
+                        return result;
+                    }).materialize();
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Notification<List<SuggestionItem>>>() {
-                    @Override
-                    public void accept(@io.reactivex.annotations.NonNull Notification<List<SuggestionItem>> listNotification) throws Exception {
-                        if (listNotification.isOnNext()) {
-                            handleSuggestions(listNotification.getValue());
-                        } else if (listNotification.isOnError()) {
-                            Throwable error = listNotification.getError();
-                            if (!ExtractorHelper.hasAssignableCauseThrowable(error,
-                                    IOException.class, SocketException.class, InterruptedException.class, InterruptedIOException.class)) {
-                                onSuggestionError(error);
-                            }
+                .subscribe(listNotification -> {
+                    if (listNotification.isOnNext()) {
+                        handleSuggestions(listNotification.getValue());
+                    } else if (listNotification.isOnError()) {
+                        Throwable error = listNotification.getError();
+                        if (!ExtractorHelper.hasAssignableCauseThrowable(error,
+                                IOException.class, SocketException.class,
+                                InterruptedException.class, InterruptedIOException.class)) {
+                            onSuggestionError(error);
                         }
                     }
                 });
@@ -718,11 +682,14 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
         hideSuggestionsPanel();
         hideKeyboardSearch();
 
-        if (activity instanceof HistoryListener) {
-            ((HistoryListener) activity).onSearch(serviceId, query);
-            suggestionPublisher.onNext(query);
-        }
-
+        historyRecordManager.onSearched(serviceId, query)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        ignored -> {},
+                        error -> showSnackBarError(error, UserAction.SEARCHED,
+                                NewPipe.getNameOfService(serviceId), query, 0)
+                );
+        suggestionPublisher.onNext(query);
         startLoading(false);
     }
 

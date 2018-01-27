@@ -1,9 +1,8 @@
-package org.schabi.newpipe.database.stream;
+package org.schabi.newpipe.database.history.model;
 
 import android.arch.persistence.room.ColumnInfo;
 
 import org.schabi.newpipe.database.stream.model.StreamEntity;
-import org.schabi.newpipe.database.stream.model.StreamHistoryEntity;
 import org.schabi.newpipe.extractor.stream.StreamType;
 
 import java.util.Date;
@@ -43,5 +42,9 @@ public class StreamHistoryEntry {
         this.thumbnailUrl = thumbnailUrl;
         this.streamId = streamId;
         this.accessDate = accessDate;
+    }
+
+    public StreamHistoryEntity toStreamHistoryEntity() {
+        return new StreamHistoryEntity(streamId, accessDate);
     }
 }

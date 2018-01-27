@@ -1,14 +1,13 @@
-package org.schabi.newpipe.database.stream.dao;
+package org.schabi.newpipe.database.history.dao;
 
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Transaction;
 
 import org.schabi.newpipe.database.BasicDAO;
-import org.schabi.newpipe.database.stream.StreamHistoryEntry;
+import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
-import org.schabi.newpipe.database.stream.model.StreamHistoryEntity;
+import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
 
 import java.util.List;
 
@@ -18,9 +17,9 @@ import static org.schabi.newpipe.database.stream.StreamStatisticsEntry.STREAM_LA
 import static org.schabi.newpipe.database.stream.StreamStatisticsEntry.STREAM_WATCH_COUNT;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_ID;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_TABLE;
-import static org.schabi.newpipe.database.stream.model.StreamHistoryEntity.JOIN_STREAM_ID;
-import static org.schabi.newpipe.database.stream.model.StreamHistoryEntity.STREAM_ACCESS_DATE;
-import static org.schabi.newpipe.database.stream.model.StreamHistoryEntity.STREAM_HISTORY_TABLE;
+import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.JOIN_STREAM_ID;
+import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.STREAM_ACCESS_DATE;
+import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.STREAM_HISTORY_TABLE;
 
 @Dao
 public abstract class StreamHistoryDAO implements BasicDAO<StreamHistoryEntity> {

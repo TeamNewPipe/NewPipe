@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,18 +16,22 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.history.dao.HistoryDAO;
-import org.schabi.newpipe.database.history.model.WatchHistoryEntry;
+import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
-public class WatchedHistoryFragment extends HistoryFragment<WatchHistoryEntry> {
+import io.reactivex.Flowable;
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
-    private static int allowedSwipeToDeleteDirections = ItemTouchHelper.LEFT;
+
+public class WatchedHistoryFragment extends HistoryFragment<StreamHistoryEntry> {
 
     @NonNull
     public static WatchedHistoryFragment newInstance() {
@@ -37,7 +41,6 @@ public class WatchedHistoryFragment extends HistoryFragment<WatchHistoryEntry> {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        historyItemSwipeCallback(allowedSwipeToDeleteDirections);
     }
 
     @StringRes
@@ -48,27 +51,59 @@ public class WatchedHistoryFragment extends HistoryFragment<WatchHistoryEntry> {
 
     @NonNull
     @Override
-    protected WatchedHistoryAdapter createAdapter() {
-        return new WatchedHistoryAdapter(getContext());
+    protected StreamHistoryAdapter createAdapter() {
+        return new StreamHistoryAdapter(getContext());
+    }
+
+    @Override
+    protected Single<List<Long>> insert(Collection<StreamHistoryEntry> entries) {
+        return historyRecordManager.insertStreamHistory(entries);
+    }
+
+    @Override
+    protected Single<Integer> delete(Collection<StreamHistoryEntry> entries) {
+        return historyRecordManager.deleteStreamHistory(entries);
     }
 
     @NonNull
     @Override
-    protected HistoryDAO<WatchHistoryEntry> createHistoryDAO() {
-        return NewPipeDatabase.getInstance().watchHistoryDAO();
+    protected Flowable<List<StreamHistoryEntry>> getAll() {
+        return historyRecordManager.getStreamHistory();
     }
 
     @Override
-    public void onHistoryItemClick(WatchHistoryEntry historyItem) {
-        NavigationHelper.openVideoDetail(getContext(),
-                historyItem.getServiceId(),
-                historyItem.getUrl(),
-                historyItem.getTitle());
+    public void onHistoryItemClick(StreamHistoryEntry historyItem) {
+        NavigationHelper.openVideoDetail(getContext(), historyItem.serviceId, historyItem.url,
+                historyItem.title);
     }
 
-    private static class WatchedHistoryAdapter extends HistoryEntryAdapter<WatchHistoryEntry, ViewHolder> {
+    @Override
+    public void onHistoryItemLongClick(StreamHistoryEntry item) {
+        new AlertDialog.Builder(activity)
+                .setTitle(item.title)
+                .setMessage(R.string.delete_stream_history_prompt)
+                .setCancelable(true)
+                .setNeutralButton(R.string.cancel, null)
+                .setPositiveButton(R.string.delete_one, (dialog, i) -> {
+                    final Single<Integer> onDelete = historyRecordManager
+                            .deleteStreamHistory(Collections.singleton(item))
+                            .observeOn(AndroidSchedulers.mainThread());
+                    disposables.add(onDelete.subscribe());
+                    makeSnackbar(R.string.item_deleted);
+                })
+                .setNegativeButton(R.string.delete_all, (dialog, i) -> {
+                    final Single<Integer> onDeleteAll = historyRecordManager
+                            .deleteStreamHistory(item.streamId)
+                            .observeOn(AndroidSchedulers.mainThread());
+                    disposables.add(onDeleteAll.subscribe());
+                    makeSnackbar(R.string.item_deleted);
+                })
+                .show();
+    }
 
-        public WatchedHistoryAdapter(Context context) {
+    private static class StreamHistoryAdapter extends HistoryEntryAdapter<StreamHistoryEntry, ViewHolder> {
+
+        StreamHistoryAdapter(Context context) {
             super(context);
         }
 
@@ -87,13 +122,13 @@ public class WatchedHistoryFragment extends HistoryFragment<WatchHistoryEntry> {
         }
 
         @Override
-        void onBindViewHolder(ViewHolder holder, WatchHistoryEntry entry, int position) {
-            holder.date.setText(getFormattedDate(entry.getCreationDate()));
-            holder.streamTitle.setText(entry.getTitle());
-            holder.uploader.setText(entry.getUploader());
-            holder.duration.setText(Localization.getDurationString(entry.getDuration()));
-            ImageLoader.getInstance()
-                    .displayImage(entry.getThumbnailURL(), holder.thumbnailView, StreamInfoItemHolder.DISPLAY_THUMBNAIL_OPTIONS);
+        void onBindViewHolder(ViewHolder holder, StreamHistoryEntry entry, int position) {
+            holder.date.setText(getFormattedDate(entry.accessDate));
+            holder.streamTitle.setText(entry.title);
+            holder.uploader.setText(entry.uploader);
+            holder.duration.setText(Localization.getDurationString(entry.duration));
+            ImageLoader.getInstance().displayImage(entry.thumbnailUrl, holder.thumbnailView,
+                    StreamInfoItemHolder.DISPLAY_THUMBNAIL_OPTIONS);
         }
     }
 

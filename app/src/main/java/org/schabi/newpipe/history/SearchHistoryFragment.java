@@ -5,22 +5,27 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.history.dao.HistoryDAO;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.util.NavigationHelper;
 
-public class SearchHistoryFragment extends HistoryFragment<SearchHistoryEntry> {
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
-    private static int allowedSwipeToDeleteDirections = ItemTouchHelper.RIGHT;
+import io.reactivex.Flowable;
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+
+public class SearchHistoryFragment extends HistoryFragment<SearchHistoryEntry> {
 
     @NonNull
     public static SearchHistoryFragment newInstance() {
@@ -30,7 +35,6 @@ public class SearchHistoryFragment extends HistoryFragment<SearchHistoryEntry> {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        historyItemSwipeCallback(allowedSwipeToDeleteDirections);
     }
 
     @NonNull
@@ -39,21 +43,58 @@ public class SearchHistoryFragment extends HistoryFragment<SearchHistoryEntry> {
         return new SearchHistoryAdapter(getContext());
     }
 
+    @Override
+    protected Single<List<Long>> insert(Collection<SearchHistoryEntry> entries) {
+        return historyRecordManager.insertSearches(entries);
+    }
+
+    @Override
+    protected Single<Integer> delete(Collection<SearchHistoryEntry> entries) {
+        return historyRecordManager.deleteSearches(entries);
+    }
+
+    @NonNull
+    @Override
+    protected Flowable<List<SearchHistoryEntry>> getAll() {
+        return historyRecordManager.getSearchHistory();
+    }
+
     @StringRes
     @Override
     int getEnabledConfigKey() {
         return R.string.enable_search_history_key;
     }
 
-    @NonNull
     @Override
-    protected HistoryDAO<SearchHistoryEntry> createHistoryDAO() {
-        return NewPipeDatabase.getInstance().searchHistoryDAO();
+    public void onHistoryItemClick(final SearchHistoryEntry historyItem) {
+        NavigationHelper.openSearch(getContext(), historyItem.getServiceId(),
+                historyItem.getSearch());
     }
 
     @Override
-    public void onHistoryItemClick(SearchHistoryEntry historyItem) {
-        NavigationHelper.openSearch(getContext(), historyItem.getServiceId(), historyItem.getSearch());
+    public void onHistoryItemLongClick(final SearchHistoryEntry item) {
+        if (activity == null) return;
+
+        new AlertDialog.Builder(activity)
+                .setTitle(item.getSearch())
+                .setMessage(R.string.delete_item_search_history)
+                .setCancelable(true)
+                .setNeutralButton(R.string.cancel, null)
+                .setPositiveButton(R.string.delete_one, (dialog, i) -> {
+                    final Single<Integer> onDelete = historyRecordManager
+                            .deleteSearches(Collections.singleton(item))
+                            .observeOn(AndroidSchedulers.mainThread());
+                    disposables.add(onDelete.subscribe());
+                    makeSnackbar(R.string.item_deleted);
+                })
+                .setNegativeButton(R.string.delete_all, (dialog, i) -> {
+                    final Single<Integer> onDeleteAll = historyRecordManager
+                            .deleteSearchHistory(item.getSearch())
+                            .observeOn(AndroidSchedulers.mainThread());
+                    disposables.add(onDeleteAll.subscribe());
+                    makeSnackbar(R.string.item_deleted);
+                })
+                .show();
     }
 
     private static class ViewHolder extends RecyclerView.ViewHolder {

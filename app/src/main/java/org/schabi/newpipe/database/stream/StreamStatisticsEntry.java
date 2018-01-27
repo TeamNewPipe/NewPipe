@@ -2,9 +2,8 @@ package org.schabi.newpipe.database.stream;
 
 import android.arch.persistence.room.ColumnInfo;
 
-import org.schabi.newpipe.database.stream.model.StreamHistoryEntity;
+import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.stored.StreamStatisticsInfoItem;
 

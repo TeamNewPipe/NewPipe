@@ -13,12 +13,12 @@ import android.view.ViewGroup;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
-import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
+import org.schabi.newpipe.history.HistoryRecordManager;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.OnInfoItemGesture;
 import org.schabi.newpipe.info_list.stored.StreamStatisticsInfoItem;
@@ -49,7 +49,7 @@ public abstract class StatisticsPlaylistFragment
 
     /* Used for independent events */
     private Subscription databaseSubscription;
-    private StreamRecordManager recordManager;
+    private HistoryRecordManager recordManager;
 
     ///////////////////////////////////////////////////////////////////////////
     // Abstracts
@@ -68,7 +68,7 @@ public abstract class StatisticsPlaylistFragment
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        recordManager = new StreamRecordManager(NewPipeDatabase.getInstance(context));
+        recordManager = new HistoryRecordManager(context);
     }
 
     @Override
@@ -205,7 +205,7 @@ public abstract class StatisticsPlaylistFragment
         super.startLoading(forceLoad);
         resetFragment();
 
-        recordManager.getStatistics()
+        recordManager.getStreamStatistics()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getHistoryObserver());
     }
