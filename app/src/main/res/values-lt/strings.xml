@@ -126,12 +126,15 @@
     <string name="use_old_player_summary">Senas įtaisytas media grotuvas</string>
 
     <plurals name="subscribers">
-	<item quantity="one">%s prenumeratorius</item>
-	<item quantity="few">%s prenumeratoriai</item>
+	<item quantity="one">% prenumeratorius</item>
+	<item quantity="few">% prenumeratoriai</item>
+	<item quantity="other">% prenumeratorių</item>
 </plurals>
 
     <plurals name="videos">
-	<item quantity="one">Vaizdo įrašai</item>
+	<item quantity="one">% vaizdo įrašas</item>
+	<item quantity="few">% vaizdo įrašai</item>
+	<item quantity="other">% vaizdo įrašų</item>
 </plurals>
 
     <string name="start">Pradėti</string>
@@ -208,7 +211,9 @@
     <string name="no_subscribers">Nėra prenumeratorių</string>
     <string name="no_views">Nėra peržiūrų</string>
     <plurals name="views">
-	<item quantity="one">%a peržiūra</item>
+	<item quantity="one">% peržiūra</item>
+	<item quantity="few">% peržiūros</item>
+	<item quantity="other">% peržiūrų</item>
 </plurals>
 
     <string name="no_videos">Nėra vaizdo įrašų</string>
