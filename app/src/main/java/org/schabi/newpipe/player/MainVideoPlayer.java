@@ -25,7 +25,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Build;
@@ -65,8 +64,6 @@ import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.PopupMenuIconHacker;
 import org.schabi.newpipe.util.ThemeHelper;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.List;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -400,9 +397,8 @@ public final class MainVideoPlayer extends Activity {
             if (DEBUG) Log.d(TAG, "onFullScreenButtonClicked() called");
             if (simpleExoPlayer == null) return;
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                    && !PermissionHelper.checkSystemAlertWindowPermission(MainVideoPlayer.this)) {
-                Toast.makeText(MainVideoPlayer.this, R.string.msg_popup_permission, Toast.LENGTH_LONG).show();
+            if (!PermissionHelper.isPopupEnabled(context)) {
+                PermissionHelper.showPopupEnablementToast(context);
                 return;
             }
 
