@@ -5,18 +5,16 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 
 import org.schabi.newpipe.database.history.dao.SearchHistoryDAO;
-import org.schabi.newpipe.database.history.dao.WatchHistoryDAO;
+import org.schabi.newpipe.database.history.dao.StreamHistoryDAO;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
-import org.schabi.newpipe.database.history.model.WatchHistoryEntry;
+import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
 import org.schabi.newpipe.database.playlist.dao.PlaylistDAO;
 import org.schabi.newpipe.database.playlist.dao.PlaylistStreamDAO;
 import org.schabi.newpipe.database.playlist.model.PlaylistEntity;
 import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity;
 import org.schabi.newpipe.database.stream.dao.StreamDAO;
-import org.schabi.newpipe.database.history.dao.StreamHistoryDAO;
 import org.schabi.newpipe.database.stream.dao.StreamStateDAO;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
-import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.database.subscription.SubscriptionDAO;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
@@ -26,7 +24,7 @@ import static org.schabi.newpipe.database.Migrations.DB_VER_12_0;
 @TypeConverters({Converters.class})
 @Database(
         entities = {
-                SubscriptionEntity.class, WatchHistoryEntry.class, SearchHistoryEntry.class,
+                SubscriptionEntity.class, SearchHistoryEntry.class,
                 StreamEntity.class, StreamHistoryEntity.class, StreamStateEntity.class,
                 PlaylistEntity.class, PlaylistStreamEntity.class
         },
@@ -38,8 +36,6 @@ public abstract class AppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "newpipe.db";
 
     public abstract SubscriptionDAO subscriptionDAO();
-
-    public abstract WatchHistoryDAO watchHistoryDAO();
 
     public abstract SearchHistoryDAO searchHistoryDAO();
 

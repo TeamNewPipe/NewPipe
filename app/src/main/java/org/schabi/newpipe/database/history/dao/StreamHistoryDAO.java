@@ -3,6 +3,7 @@ package org.schabi.newpipe.database.history.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
+import android.support.annotation.Nullable;
 
 import org.schabi.newpipe.database.BasicDAO;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
@@ -22,7 +23,14 @@ import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.STRE
 import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.STREAM_HISTORY_TABLE;
 
 @Dao
-public abstract class StreamHistoryDAO implements BasicDAO<StreamHistoryEntity> {
+public abstract class StreamHistoryDAO implements HistoryDAO<StreamHistoryEntity> {
+    @Query("SELECT * FROM " + STREAM_HISTORY_TABLE +
+            " WHERE " + STREAM_ACCESS_DATE + " = " +
+            "(SELECT MAX(" + STREAM_ACCESS_DATE + ") FROM " + STREAM_HISTORY_TABLE + ")")
+    @Override
+    @Nullable
+    public abstract StreamHistoryEntity getLatestEntry();
+
     @Override
     @Query("SELECT * FROM " + STREAM_HISTORY_TABLE)
     public abstract Flowable<List<StreamHistoryEntity>> getAll();

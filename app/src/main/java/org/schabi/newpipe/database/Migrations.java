@@ -51,6 +51,8 @@ public class Migrations {
                     "ON watch_history.service_id == streams.service_id " +
                     "AND watch_history.url == streams.url " +
                     "ORDER BY creation_date DESC");
+
+            database.execSQL("DROP TABLE IF EXISTS watch_history");
         }
     };
 }
