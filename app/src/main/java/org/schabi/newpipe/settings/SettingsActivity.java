@@ -43,7 +43,8 @@ public class SettingsActivity extends AppCompatActivity implements BasePreferenc
 
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {
-        ThemeHelper.setTheme(this);
+        setTheme(ThemeHelper.getSettingsThemeStyle(this));
+
         super.onCreate(savedInstanceBundle);
         setContentView(R.layout.settings_layout);
 

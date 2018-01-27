@@ -90,6 +90,20 @@
         <item name="contrast_background_color">@color/black_contrast_background_color</item>
     </style>
 
+    <!-- Settings -->
+    <style name="LightSettingsTheme" parent="LightTheme">
+        <item name="colorAccent">@color/light_settings_accent_color</item>
+    </style>
+
+    <style name="DarkSettingsTheme" parent="DarkTheme">
+        <item name="colorAccent">@color/dark_settings_accent_color</item>
+    </style>
+
+    <style name="BlackSettingsTheme" parent="BlackTheme">
+        <item name="colorAccent">@color/black_settings_accent_color</item>
+    </style>
+
+
     <style name="PlayerTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/black</item>

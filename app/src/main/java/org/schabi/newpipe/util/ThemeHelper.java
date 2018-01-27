@@ -49,6 +49,21 @@ public class ThemeHelper {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(themeKey, defaultTheme);
     }
 
+    @StyleRes
+    public static int getSettingsThemeStyle(Context context) {
+        String lightTheme = context.getResources().getString(R.string.light_theme_key);
+        String darkTheme = context.getResources().getString(R.string.dark_theme_key);
+        String blackTheme = context.getResources().getString(R.string.black_theme_key);
+
+        String selectedTheme = getSelectedTheme(context);
+
+        if (selectedTheme.equals(lightTheme)) return R.style.LightSettingsTheme;
+        else if (selectedTheme.equals(blackTheme)) return R.style.BlackSettingsTheme;
+        else if (selectedTheme.equals(darkTheme)) return R.style.DarkSettingsTheme;
+            // Fallback
+        else return R.style.DarkSettingsTheme;
+    }
+
     /**
      * Get a resource id from a resource styled according to the the context's theme.
      */
