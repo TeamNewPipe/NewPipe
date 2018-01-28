@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.local;
+package org.schabi.newpipe.fragments.local.bookmark;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,14 +14,13 @@ import android.view.ViewGroup;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.fragments.list.BaseListFragment;
+import org.schabi.newpipe.fragments.local.BaseLocalListFragment;
+import org.schabi.newpipe.fragments.local.OnCustomItemGesture;
 import org.schabi.newpipe.history.HistoryRecordManager;
 import org.schabi.newpipe.info_list.InfoItemDialog;
-import org.schabi.newpipe.info_list.OnInfoItemGesture;
-import org.schabi.newpipe.info_list.stored.StreamStatisticsInfoItem;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
@@ -36,7 +35,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public abstract class StatisticsPlaylistFragment
-        extends BaseListFragment<List<StreamStatisticsEntry>, Void> {
+        extends BaseLocalListFragment<List<StreamStatisticsEntry>, Void> {
 
     private View headerRootLayout;
     private View playlistControl;
@@ -57,9 +56,7 @@ public abstract class StatisticsPlaylistFragment
 
     protected abstract String getName();
 
-    protected abstract List<InfoItem> processResult(final List<StreamStatisticsEntry> results);
-
-    protected abstract String getAdditionalDetail(final StreamStatisticsInfoItem infoItem);
+    protected abstract List<StreamStatisticsEntry> processResult(final List<StreamStatisticsEntry> results);
 
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle
@@ -106,8 +103,6 @@ public abstract class StatisticsPlaylistFragment
     @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
-        infoListAdapter.useMiniItemVariants(true);
-
         setFragmentTitle(getName());
     }
 
@@ -127,27 +122,31 @@ public abstract class StatisticsPlaylistFragment
     protected void initListeners() {
         super.initListeners();
 
-        infoListAdapter.setOnStreamSelectedListener(new OnInfoItemGesture<StreamInfoItem>() {
+        itemListAdapter.setSelectedListener(new OnCustomItemGesture<LocalItem>() {
             @Override
-            public void selected(StreamInfoItem selectedItem) {
-                NavigationHelper.openVideoDetailFragment(getFragmentManager(),
-                        selectedItem.getServiceId(), selectedItem.url, selectedItem.getName());
+            public void selected(LocalItem selectedItem) {
+                if (selectedItem instanceof StreamStatisticsEntry) {
+                    final StreamStatisticsEntry item = (StreamStatisticsEntry) selectedItem;
+                    NavigationHelper.openVideoDetailFragment(getFragmentManager(),
+                            item.serviceId, item.url, item.title);
+                }
             }
 
             @Override
-            public void held(StreamInfoItem selectedItem) {
-                showStreamDialog(selectedItem);
+            public void held(LocalItem selectedItem) {
+                if (selectedItem instanceof StreamStatisticsEntry) {
+                    showStreamDialog((StreamStatisticsEntry) selectedItem);
+                }
             }
         });
 
     }
 
-    @Override
-    protected void showStreamDialog(final StreamInfoItem item) {
+    private void showStreamDialog(final StreamStatisticsEntry item) {
         final Context context = getContext();
         final Activity activity = getActivity();
-        if (context == null || context.getResources() == null
-                || getActivity() == null || !(item instanceof StreamStatisticsInfoItem)) return;
+        if (context == null || context.getResources() == null || getActivity() == null) return;
+        final StreamInfoItem infoItem = item.toStreamInfoItem();
 
         final String[] commands = new String[]{
                 context.getResources().getString(R.string.enqueue_on_background),
@@ -158,13 +157,13 @@ public abstract class StatisticsPlaylistFragment
         };
 
         final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
-            final int index = Math.max(infoListAdapter.getItemsList().indexOf(item), 0);
+            final int index = Math.max(itemListAdapter.getItemsList().indexOf(item), 0);
             switch (i) {
                 case 0:
-                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(infoItem));
                     break;
                 case 1:
-                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
+                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(infoItem));
                     break;
                 case 2:
                     NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
@@ -180,13 +179,12 @@ public abstract class StatisticsPlaylistFragment
             }
         };
 
-        final String detail = getAdditionalDetail((StreamStatisticsInfoItem) item);
-        new InfoItemDialog(getActivity(), commands, actions, item.getName(), detail).show();
+        new InfoItemDialog(getActivity(), infoItem, commands, actions).show();
     }
 
     private void resetFragment() {
         if (databaseSubscription != null) databaseSubscription.cancel();
-        if (infoListAdapter != null) infoListAdapter.clearStreamItemList();
+        if (itemListAdapter != null) itemListAdapter.clearStreamItemList();
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -241,7 +239,7 @@ public abstract class StatisticsPlaylistFragment
     @Override
     public void handleResult(@NonNull List<StreamStatisticsEntry> result) {
         super.handleResult(result);
-        infoListAdapter.clearStreamItemList();
+        itemListAdapter.clearStreamItemList();
 
         if (result.isEmpty()) {
             showEmptyState();
@@ -251,7 +249,7 @@ public abstract class StatisticsPlaylistFragment
         animateView(headerRootLayout, true, 100);
         animateView(itemsList, true, 300);
 
-        infoListAdapter.addInfoItemList(processResult(result));
+        itemListAdapter.addInfoItemList(processResult(result));
         if (itemsListState != null) {
             itemsList.getLayoutManager().onRestoreInstanceState(itemsListState);
             itemsListState = null;
@@ -265,20 +263,6 @@ public abstract class StatisticsPlaylistFragment
         headerBackgroundButton.setOnClickListener(view ->
                 NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue()));
         hideLoading();
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Contract
-    //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    protected void loadMoreItems() {
-        // Do nothing
-    }
-
-    @Override
-    protected boolean hasMoreItems() {
-        return false;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -310,10 +294,12 @@ public abstract class StatisticsPlaylistFragment
     }
 
     private PlayQueue getPlayQueue(final int index) {
-        final List<InfoItem> infoItems = infoListAdapter.getItemsList();
+        final List<LocalItem> infoItems = itemListAdapter.getItemsList();
         List<StreamInfoItem> streamInfoItems = new ArrayList<>(infoItems.size());
-        for (final InfoItem item : infoItems) {
-            if (item instanceof StreamInfoItem) streamInfoItems.add((StreamInfoItem) item);
+        for (final LocalItem item : infoItems) {
+            if (item instanceof StreamStatisticsEntry) {
+                streamInfoItems.add(((StreamStatisticsEntry) item).toStreamInfoItem());
+            }
         }
         return new SinglePlayQueue(streamInfoItems, index);
     }

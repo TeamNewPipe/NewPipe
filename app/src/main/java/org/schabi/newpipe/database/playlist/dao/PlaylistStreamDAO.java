@@ -6,6 +6,7 @@ import android.arch.persistence.room.Transaction;
 
 import org.schabi.newpipe.database.BasicDAO;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
+import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 
@@ -37,17 +38,13 @@ public abstract class PlaylistStreamDAO implements BasicDAO<PlaylistStreamEntity
             " WHERE " + JOIN_PLAYLIST_ID + " = :playlistId")
     public abstract void deleteBatch(final long playlistId);
 
-    @Query("SELECT MAX(" + JOIN_INDEX + ")" +
+    @Query("SELECT COALESCE(MAX(" + JOIN_INDEX + "), -1)" +
             " FROM " + PLAYLIST_STREAM_JOIN_TABLE +
             " WHERE " + JOIN_PLAYLIST_ID + " = :playlistId")
     public abstract Flowable<Integer> getMaximumIndexOf(final long playlistId);
 
     @Transaction
-    @Query("SELECT " + STREAM_ID + ", " + STREAM_SERVICE_ID + ", " + STREAM_URL + ", " +
-            STREAM_TITLE + ", " + STREAM_TYPE + ", " + STREAM_UPLOADER + ", " +
-            STREAM_DURATION + ", " + STREAM_THUMBNAIL_URL +
-
-            " FROM " + STREAM_TABLE + " INNER JOIN " +
+    @Query("SELECT * FROM " + STREAM_TABLE + " INNER JOIN " +
             // get ids of streams of the given playlist
             "(SELECT " + JOIN_STREAM_ID + "," + JOIN_INDEX +
             " FROM " + PLAYLIST_STREAM_JOIN_TABLE + " WHERE "
@@ -56,14 +53,16 @@ public abstract class PlaylistStreamDAO implements BasicDAO<PlaylistStreamEntity
             // then merge with the stream metadata
             " ON " + STREAM_ID + " = " + JOIN_STREAM_ID +
             " ORDER BY " + JOIN_INDEX + " ASC")
-    public abstract Flowable<List<StreamEntity>> getOrderedStreamsOf(long playlistId);
+    public abstract Flowable<List<PlaylistStreamEntry>> getOrderedStreamsOf(long playlistId);
 
     @Transaction
     @Query("SELECT " + PLAYLIST_ID + ", " + PLAYLIST_NAME + ", " +
-            PLAYLIST_THUMBNAIL_URL + ", COUNT(*) AS " + PLAYLIST_STREAM_COUNT +
+            PLAYLIST_THUMBNAIL_URL + ", " +
+            "COALESCE(COUNT(" + JOIN_PLAYLIST_ID + "), 0) AS " + PLAYLIST_STREAM_COUNT +
 
-            " FROM " + PLAYLIST_TABLE + " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE +
-            " ON " + PLAYLIST_TABLE + "." + PLAYLIST_ID + " = " + PLAYLIST_STREAM_JOIN_TABLE + "." + JOIN_PLAYLIST_ID +
+            " FROM " + PLAYLIST_TABLE +
+            " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE +
+            " ON " + PLAYLIST_ID + " = " + JOIN_PLAYLIST_ID +
             " GROUP BY " + JOIN_PLAYLIST_ID)
     public abstract Flowable<List<PlaylistMetadataEntry>> getPlaylistMetadata();
 }

@@ -1,7 +1,7 @@
-package org.schabi.newpipe.fragments.local;
+package org.schabi.newpipe.fragments.local.bookmark;
 
+import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -17,18 +17,15 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
-import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.fragments.BaseStateFragment;
-import org.schabi.newpipe.info_list.InfoItemDialog;
-import org.schabi.newpipe.info_list.InfoListAdapter;
-import org.schabi.newpipe.info_list.OnInfoItemGesture;
-import org.schabi.newpipe.info_list.stored.LocalPlaylistInfoItem;
+import org.schabi.newpipe.fragments.local.LocalItemListAdapter;
+import org.schabi.newpipe.fragments.local.LocalPlaylistManager;
+import org.schabi.newpipe.fragments.local.OnCustomItemGesture;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,7 +39,7 @@ public class BookmarkFragment extends BaseStateFragment<List<PlaylistMetadataEnt
     private View watchHistoryButton;
     private View mostWatchedButton;
 
-    private InfoListAdapter infoListAdapter;
+    private LocalItemListAdapter itemListAdapter;
     private RecyclerView itemsList;
 
     @State
@@ -68,7 +65,7 @@ public class BookmarkFragment extends BaseStateFragment<List<PlaylistMetadataEnt
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        infoListAdapter = new InfoListAdapter(activity);
+        itemListAdapter = new LocalItemListAdapter(activity);
         localPlaylistManager = new LocalPlaylistManager(NewPipeDatabase.getInstance(context));
     }
 
@@ -122,7 +119,6 @@ public class BookmarkFragment extends BaseStateFragment<List<PlaylistMetadataEnt
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
-        infoListAdapter = new InfoListAdapter(getActivity());
         itemsList = rootView.findViewById(R.id.items_list);
         itemsList.setLayoutManager(new LinearLayoutManager(activity));
 
@@ -131,35 +127,30 @@ public class BookmarkFragment extends BaseStateFragment<List<PlaylistMetadataEnt
         watchHistoryButton = headerRootLayout.findViewById(R.id.watchHistory);
         mostWatchedButton = headerRootLayout.findViewById(R.id.mostWatched);
 
-        infoListAdapter.setHeader(headerRootLayout);
-        infoListAdapter.useMiniItemVariants(true);
+        itemListAdapter.setHeader(headerRootLayout);
 
-        itemsList.setAdapter(infoListAdapter);
+        itemsList.setAdapter(itemListAdapter);
     }
 
     @Override
     protected void initListeners() {
         super.initListeners();
 
-        infoListAdapter.setOnPlaylistSelectedListener(new OnInfoItemGesture<PlaylistInfoItem>() {
+        itemListAdapter.setSelectedListener(new OnCustomItemGesture<LocalItem>() {
             @Override
-            public void selected(PlaylistInfoItem selectedItem) {
+            public void selected(LocalItem selectedItem) {
                 // Requires the parent fragment to find holder for fragment replacement
-                if (selectedItem instanceof LocalPlaylistInfoItem && getParentFragment() != null) {
-                    final long playlistId = ((LocalPlaylistInfoItem) selectedItem).getPlaylistId();
-
+                if (selectedItem instanceof PlaylistMetadataEntry && getParentFragment() != null) {
+                    final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
                     NavigationHelper.openLocalPlaylistFragment(
-                            getParentFragment().getFragmentManager(),
-                            playlistId,
-                            selectedItem.getName()
-                    );
+                            getParentFragment().getFragmentManager(), entry.uid, entry.name);
                 }
             }
 
             @Override
-            public void held(PlaylistInfoItem selectedItem) {
-                if (selectedItem instanceof LocalPlaylistInfoItem) {
-                    showPlaylistDialog((LocalPlaylistInfoItem) selectedItem);
+            public void held(LocalItem selectedItem) {
+                if (selectedItem instanceof PlaylistMetadataEntry) {
+                    showDeleteDialog((PlaylistMetadataEntry) selectedItem);
                 }
             }
         });
@@ -177,36 +168,25 @@ public class BookmarkFragment extends BaseStateFragment<List<PlaylistMetadataEnt
         });
     }
 
-    private void showPlaylistDialog(final LocalPlaylistInfoItem item) {
-        final Context context = getContext();
-        if (context == null || context.getResources() == null || getActivity() == null) return;
-
-        final String[] commands = new String[]{
-                context.getResources().getString(R.string.delete_playlist)
-        };
-
-        final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
-            switch (i) {
-                case 0:
+    private void showDeleteDialog(final PlaylistMetadataEntry item) {
+        new AlertDialog.Builder(activity)
+                .setTitle(item.name)
+                .setMessage(R.string.delete_playlist_prompt)
+                .setCancelable(true)
+                .setPositiveButton(R.string.delete, (dialog, i) -> {
                     final Toast deleteSuccessful =
                             Toast.makeText(getContext(), "Deleted", Toast.LENGTH_SHORT);
-                    disposables.add(localPlaylistManager.deletePlaylist(item.getPlaylistId())
+                    disposables.add(localPlaylistManager.deletePlaylist(item.uid)
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(ignored -> deleteSuccessful.show()));
-                    break;
-                default:
-                    break;
-            }
-        };
-
-        final String videoCount = getResources().getQuantityString(R.plurals.videos,
-                (int) item.getStreamCount(), (int) item.getStreamCount());
-        new InfoItemDialog(getActivity(), commands, actions, item.getName(), videoCount).show();
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
     }
 
     private void resetFragment() {
         if (disposables != null) disposables.clear();
-        if (infoListAdapter != null) infoListAdapter.clearStreamItemList();
+        if (itemListAdapter != null) itemListAdapter.clearStreamItemList();
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -254,12 +234,12 @@ public class BookmarkFragment extends BaseStateFragment<List<PlaylistMetadataEnt
     public void handleResult(@NonNull List<PlaylistMetadataEntry> result) {
         super.handleResult(result);
 
-        infoListAdapter.clearStreamItemList();
+        itemListAdapter.clearStreamItemList();
 
         if (result.isEmpty()) {
             showEmptyState();
         } else {
-            infoListAdapter.addInfoItemList(infoItemsOf(result));
+            itemListAdapter.addInfoItemList(infoItemsOf(result));
             if (itemsListState != null) {
                 itemsList.getLayoutManager().onRestoreInstanceState(itemsListState);
                 itemsListState = null;
@@ -269,13 +249,9 @@ public class BookmarkFragment extends BaseStateFragment<List<PlaylistMetadataEnt
     }
 
 
-    private List<InfoItem> infoItemsOf(List<PlaylistMetadataEntry> playlists) {
-        List<InfoItem> playlistInfoItems = new ArrayList<>(playlists.size());
-        for (final PlaylistMetadataEntry playlist : playlists) {
-            playlistInfoItems.add(playlist.toStoredPlaylistInfoItem());
-        }
-        Collections.sort(playlistInfoItems, (o1, o2) -> o1.name.compareToIgnoreCase(o2.name));
-        return playlistInfoItems;
+    private List<PlaylistMetadataEntry> infoItemsOf(List<PlaylistMetadataEntry> playlists) {
+        Collections.sort(playlists, (o1, o2) -> o1.name.compareToIgnoreCase(o2.name));
+        return playlists;
     }
 
     /*//////////////////////////////////////////////////////////////////////////

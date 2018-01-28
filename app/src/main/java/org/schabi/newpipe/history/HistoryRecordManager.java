@@ -48,6 +48,14 @@ public class HistoryRecordManager {
         streamHistoryKey = context.getString(R.string.enable_watch_history_key);
     }
 
+    public Single<Integer> removeOrphanedRecords() {
+        return Single.fromCallable(streamTable::deleteOrphans).subscribeOn(Schedulers.io());
+    }
+
+    ///////////////////////////////////////////////////////
+    // Watch History
+    ///////////////////////////////////////////////////////
+
     public Maybe<Long> onViewed(final StreamInfo info) {
         if (!isStreamHistoryEnabled()) return Maybe.empty();
 

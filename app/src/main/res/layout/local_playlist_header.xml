@@ -14,6 +14,11 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="6dp"
+        android:layout_toLeftOf="@id/playlist_stream_count"
+        android:layout_toStartOf="@id/playlist_stream_count"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
         android:marqueeRepeatLimit="marquee_forever"
@@ -21,13 +26,13 @@
         android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/playlist_detail_title_text_size"
-        tools:text="Mix musics #23 title Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum" />
+        tools:text="Mix musics #23 title Lorem ipsum dolor sit amet, consectetur..." />
 
     <TextView
         android:id="@+id/playlist_stream_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/playlist_title_view"
+        android:layout_alignBottom="@id/playlist_title_view"
         android:layout_alignParentRight="true"
         android:layout_marginRight="6dp"
         android:ellipsize="end"

@@ -55,10 +55,6 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int MINI_PLAYLIST_HOLDER_TYPE = 0x300;
     private static final int PLAYLIST_HOLDER_TYPE = 0x301;
 
-    private static final int STATISTICS_HOLDER_TYPE = 0x1000;
-    private static final int LOCAL_PLAYLIST_STREAM_HOLDER_TYPE = 0x1001;
-    private static final int LOCAL_PLAYLIST_HOLDER_TYPE = 0x3000;
-
     private final InfoItemBuilder infoItemBuilder;
     private final ArrayList<InfoItem> infoItemList;
     private boolean useMiniVariant = false;

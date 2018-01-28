@@ -1,19 +1,14 @@
-package org.schabi.newpipe.database.stream;
+package org.schabi.newpipe.database.playlist;
 
 import android.arch.persistence.room.ColumnInfo;
 
 import org.schabi.newpipe.database.LocalItem;
-import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
+import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 
-import java.util.Date;
-
-public class StreamStatisticsEntry implements LocalItem {
-    final public static String STREAM_LATEST_DATE = "latestAccess";
-    final public static String STREAM_WATCH_COUNT = "watchCount";
-
+public class PlaylistStreamEntry implements LocalItem {
     @ColumnInfo(name = StreamEntity.STREAM_ID)
     final public long uid;
     @ColumnInfo(name = StreamEntity.STREAM_SERVICE_ID)
@@ -30,17 +25,14 @@ public class StreamStatisticsEntry implements LocalItem {
     final public String uploader;
     @ColumnInfo(name = StreamEntity.STREAM_THUMBNAIL_URL)
     final public String thumbnailUrl;
-    @ColumnInfo(name = StreamHistoryEntity.JOIN_STREAM_ID)
+    @ColumnInfo(name = PlaylistStreamEntity.JOIN_STREAM_ID)
     final public long streamId;
-    @ColumnInfo(name = StreamStatisticsEntry.STREAM_LATEST_DATE)
-    final public Date latestAccessDate;
-    @ColumnInfo(name = StreamStatisticsEntry.STREAM_WATCH_COUNT)
-    final public long watchCount;
+    @ColumnInfo(name = PlaylistStreamEntity.JOIN_INDEX)
+    final public int joinIndex;
 
-    public StreamStatisticsEntry(long uid, int serviceId, String url, String title,
-                                 StreamType streamType, long duration, String uploader,
-                                 String thumbnailUrl, long streamId, Date latestAccessDate,
-                                 long watchCount) {
+    public PlaylistStreamEntry(long uid, int serviceId, String url, String title,
+                               StreamType streamType, long duration, String uploader,
+                               String thumbnailUrl, long streamId, int joinIndex) {
         this.uid = uid;
         this.serviceId = serviceId;
         this.url = url;
@@ -50,20 +42,19 @@ public class StreamStatisticsEntry implements LocalItem {
         this.uploader = uploader;
         this.thumbnailUrl = thumbnailUrl;
         this.streamId = streamId;
-        this.latestAccessDate = latestAccessDate;
-        this.watchCount = watchCount;
+        this.joinIndex = joinIndex;
     }
 
-    public StreamInfoItem toStreamInfoItem() {
+    public StreamInfoItem toStreamInfoItem() throws IllegalArgumentException {
         StreamInfoItem item = new StreamInfoItem(serviceId, url, title, streamType);
-        item.setDuration(duration);
-        item.setUploaderName(uploader);
         item.setThumbnailUrl(thumbnailUrl);
+        item.setUploaderName(uploader);
+        item.setDuration(duration);
         return item;
     }
 
     @Override
     public LocalItemType getLocalItemType() {
-        return LocalItemType.STATISTIC_STREAM_ITEM;
+        return LocalItemType.PLAYLIST_STREAM_ITEM;
     }
 }

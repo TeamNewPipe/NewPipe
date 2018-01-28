@@ -2,13 +2,14 @@ package org.schabi.newpipe.database.playlist;
 
 import android.arch.persistence.room.ColumnInfo;
 
+import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.info_list.stored.LocalPlaylistInfoItem;
 
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_ID;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_NAME;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_THUMBNAIL_URL;
 
-public class PlaylistMetadataEntry {
+public class PlaylistMetadataEntry implements LocalItem {
     final public static String PLAYLIST_STREAM_COUNT = "streamCount";
 
     @ColumnInfo(name = PLAYLIST_ID)
@@ -32,5 +33,10 @@ public class PlaylistMetadataEntry {
         storedPlaylistInfoItem.setThumbnailUrl(thumbnailUrl);
         storedPlaylistInfoItem.setStreamCount(streamCount);
         return storedPlaylistInfoItem;
+    }
+
+    @Override
+    public LocalItemType getLocalItemType() {
+        return LocalItemType.PLAYLIST_ITEM;
     }
 }

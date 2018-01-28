@@ -3,10 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".player.BackgroundPlayerActivity">
 
-    <item android:id="@+id/action_append_playlist"
-        android:orderInCategory="981"
+    <item
+        android:id="@+id/action_append_playlist"
+        android:icon="?attr/playlist_add"
         android:title="@string/append_playlist"
-        app:showAsAction="never"/>
+        android:visible="true"
+        app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/action_settings"
         android:orderInCategory="990"

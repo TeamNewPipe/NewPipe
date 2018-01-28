@@ -1,7 +1,6 @@
-package org.schabi.newpipe.info_list.holder;
+package org.schabi.newpipe.fragments.local.holder;
 
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,40 +10,44 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.database.LocalItem;
+import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
+import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.fragments.local.LocalItemBuilder;
 import org.schabi.newpipe.util.Localization;
 
-public class StreamPlaylistInfoItemHolder extends InfoItemHolder {
+import java.text.DateFormat;
+
+public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
 
     public final ImageView itemThumbnailView;
     public final TextView itemVideoTitleView;
-    public final TextView itemUploaderView;
+    public final TextView itemAdditionalDetailsView;
     public final TextView itemDurationView;
     public final View itemHandleView;
 
-    StreamPlaylistInfoItemHolder(InfoItemBuilder infoItemBuilder, int layoutId, ViewGroup parent) {
+    LocalPlaylistStreamItemHolder(LocalItemBuilder infoItemBuilder, int layoutId, ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
 
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
         itemVideoTitleView = itemView.findViewById(R.id.itemVideoTitleView);
-        itemUploaderView = itemView.findViewById(R.id.itemUploaderView);
+        itemAdditionalDetailsView = itemView.findViewById(R.id.itemAdditionalDetails);
         itemDurationView = itemView.findViewById(R.id.itemDurationView);
         itemHandleView = itemView.findViewById(R.id.itemHandle);
     }
 
-    public StreamPlaylistInfoItemHolder(InfoItemBuilder infoItemBuilder, ViewGroup parent) {
-        this(infoItemBuilder, R.layout.list_playlist_mini_item, parent);
+    public LocalPlaylistStreamItemHolder(LocalItemBuilder infoItemBuilder, ViewGroup parent) {
+        this(infoItemBuilder, R.layout.list_stream_playlist_item, parent);
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem) {
-        if (!(infoItem instanceof StreamInfoItem)) return;
-        final StreamInfoItem item = (StreamInfoItem) infoItem;
+    public void updateFromItem(final LocalItem localItem, final DateFormat dateFormat) {
+        if (!(localItem instanceof PlaylistStreamEntry)) return;
+        final PlaylistStreamEntry item = (PlaylistStreamEntry) localItem;
 
-        itemVideoTitleView.setText(item.getName());
-        itemUploaderView.setText(item.uploader_name);
+        itemVideoTitleView.setText(item.title);
+        itemAdditionalDetailsView.setText(Localization.concatenateStrings(item.uploader,
+                NewPipe.getNameOfService(item.serviceId)));
 
         if (item.duration > 0) {
             itemDurationView.setText(Localization.getDurationString(item.duration));
@@ -56,19 +59,19 @@ public class StreamPlaylistInfoItemHolder extends InfoItemHolder {
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        itemBuilder.getImageLoader().displayImage(item.thumbnail_url, itemThumbnailView,
-                StreamPlaylistInfoItemHolder.DISPLAY_THUMBNAIL_OPTIONS);
+        itemBuilder.getImageLoader().displayImage(item.thumbnailUrl, itemThumbnailView,
+                LocalPlaylistStreamItemHolder.DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
-            if (itemBuilder.getOnStreamSelectedListener() != null) {
-                itemBuilder.getOnStreamSelectedListener().selected(item);
+            if (itemBuilder.getOnItemSelectedListener() != null) {
+                itemBuilder.getOnItemSelectedListener().selected(item);
             }
         });
 
         itemView.setLongClickable(true);
         itemView.setOnLongClickListener(view -> {
-            if (itemBuilder.getOnStreamSelectedListener() != null) {
-                itemBuilder.getOnStreamSelectedListener().held(item);
+            if (itemBuilder.getOnItemSelectedListener() != null) {
+                itemBuilder.getOnItemSelectedListener().held(item);
             }
             return true;
         });
@@ -77,13 +80,13 @@ public class StreamPlaylistInfoItemHolder extends InfoItemHolder {
         itemHandleView.setOnTouchListener(getOnTouchListener(item));
     }
 
-    private View.OnTouchListener getOnTouchListener(final StreamInfoItem item) {
+    private View.OnTouchListener getOnTouchListener(final PlaylistStreamEntry item) {
         return (view, motionEvent) -> {
             view.performClick();
             if (itemBuilder != null &&
                     motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN) {
-                itemBuilder.getOnStreamSelectedListener()
-                        .drag(item, StreamPlaylistInfoItemHolder.this);
+                itemBuilder.getOnItemSelectedListener().drag(item,
+                        LocalPlaylistStreamItemHolder.this);
             }
             return false;
         };

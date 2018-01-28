@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.PluralsRes;
 import android.support.annotation.StringRes;
 import android.text.TextUtils;
@@ -14,7 +15,9 @@ import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 /*
@@ -39,7 +42,31 @@ import java.util.Locale;
 
 public class Localization {
 
+    public final static String DOT_SEPARATOR = " • ";
+
     private Localization() {
+    }
+
+    @NonNull
+    public static String concatenateStrings(final String... strings) {
+        return concatenateStrings(Arrays.asList(strings));
+    }
+
+    @NonNull
+    public static String concatenateStrings(final List<String> strings) {
+        if (strings.isEmpty()) return "";
+
+        final StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(strings.get(0));
+
+        for (int i = 1; i < strings.size(); i++) {
+            final String string = strings.get(i);
+            if (!TextUtils.isEmpty(string)) {
+                stringBuilder.append(DOT_SEPARATOR).append(strings.get(i));
+            }
+        }
+
+        return stringBuilder.toString();
     }
 
     public static Locale getPreferredLocale(Context context) {

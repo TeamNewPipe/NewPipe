@@ -32,6 +32,7 @@ import io.reactivex.Flowable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -169,8 +170,14 @@ public abstract class HistoryFragment<E> extends BaseFragment
 
     private void clearHistory() {
         final Collection<E> itemsToDelete = new ArrayList<>(mHistoryAdapter.getItems());
-        disposables.add(delete(itemsToDelete).observeOn(AndroidSchedulers.mainThread())
-                .subscribe());
+
+        final Disposable deletion = delete(itemsToDelete)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
+        final Disposable cleanUp = historyRecordManager.removeOrphanedRecords()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
+        disposables.addAll(deletion, cleanUp);
 
         makeSnackbar(R.string.history_cleared);
         mHistoryAdapter.clear();

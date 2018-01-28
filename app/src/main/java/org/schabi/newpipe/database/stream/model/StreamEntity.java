@@ -9,7 +9,6 @@ import android.arch.persistence.room.PrimaryKey;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
-import org.schabi.newpipe.info_list.stored.StreamEntityInfoItem;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.util.Constants;
 
@@ -86,16 +85,6 @@ public class StreamEntity implements Serializable {
     public StreamEntity(final PlayQueueItem item) {
         this(item.getServiceId(), item.getTitle(), item.getUrl(), item.getStreamType(),
                 item.getThumbnailUrl(), item.getUploader(), item.getDuration());
-    }
-
-    @Ignore
-    public StreamEntityInfoItem toStreamEntityInfoItem() throws IllegalArgumentException {
-        StreamEntityInfoItem item = new StreamEntityInfoItem(getUid(), getServiceId(),
-                getUrl(), getTitle(), getStreamType());
-        item.setThumbnailUrl(getThumbnailUrl());
-        item.setUploaderName(getUploader());
-        item.setDuration(getDuration());
-        return item;
     }
 
     public long getUid() {

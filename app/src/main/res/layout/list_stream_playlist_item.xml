@@ -70,7 +70,7 @@
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique..."/>
 
     <TextView
-        android:id="@+id/itemUploaderView"
+        android:id="@+id/itemAdditionalDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/itemVideoTitleView"
