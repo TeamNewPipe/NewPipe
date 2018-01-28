@@ -5,12 +5,18 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
@@ -20,11 +26,14 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.fragments.subscription.SubscriptionService;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.InfoCache;
 
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Queue;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.Flowable;
@@ -46,13 +55,20 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
 
     private final SubscriptionService subscriptionService = SubscriptionService.getInstance();
 
-    private AtomicBoolean areAllItemsDisplayed = new AtomicBoolean(false);
-    private HashSet<String> displayedItems = new HashSet<>();
+    private FeedState currentState = FeedState.INITIALIZING;
+    private AtomicBoolean loadedItemsUpToDate = new AtomicBoolean();
+    private Calendar itemsUpdateDate;
+    private Set<String> displayedItems = new HashSet<>();
 
     private int feedLoadCount = MIN_ITEMS_INITIAL_LOAD;
 
     private SubscriptionsObserver subscriptionsObserver;
     private FeedItemsSubscriber feedItemsSubscriber;
+
+    private View refreshButton;
+    private TextView refreshText;
+    private ImageView refreshIcon;
+    private Animation refreshRotation;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle
@@ -69,6 +85,12 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
     public void onPause() {
         super.onPause();
         delayHandler.removeCallbacksAndMessages(null);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setUpdateTimeText();
     }
 
     @Override
@@ -92,6 +114,36 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
     }
 
     @Override
+    protected void initViews(View rootView, Bundle savedInstanceState) {
+        super.initViews(rootView, savedInstanceState);
+
+        refreshButton = rootView.findViewById(R.id.refreshButton);
+        refreshText = rootView.findViewById(R.id.refreshText);
+        refreshIcon = rootView.findViewById(R.id.refreshIcon);
+
+        refreshRotation = new RotateAnimation(0, 360,
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f);
+        refreshRotation.setRepeatCount(Animation.INFINITE);
+        refreshRotation.setDuration(1200);
+        refreshRotation.setInterpolator(new LinearInterpolator());
+    }
+
+    @Override
+    protected void initListeners() {
+        super.initListeners();
+
+        refreshButton.setOnClickListener(v -> {
+            if (currentState != FeedState.LOADING_SUBSCRIPTIONS) {
+                // Clear the cache in order to download new items.
+                InfoCache.getInstance().clearCache();
+
+                reloadContent();
+            }
+        });
+    }
+
+    @Override
     public void reloadContent() {
         resetFragment();
         super.reloadContent();
@@ -104,7 +156,9 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
     @Override
     public void writeTo(Queue<Object> objectsToSave) {
         super.writeTo(objectsToSave);
-        objectsToSave.add(areAllItemsDisplayed);
+        objectsToSave.add(currentState);
+        objectsToSave.add(loadedItemsUpToDate);
+        objectsToSave.add(itemsUpdateDate);
         objectsToSave.add(displayedItems);
     }
 
@@ -112,8 +166,10 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
     @SuppressWarnings("unchecked")
     public void readFrom(@NonNull Queue<Object> savedObjects) throws Exception {
         super.readFrom(savedObjects);
-        areAllItemsDisplayed = (AtomicBoolean) savedObjects.poll();
-        displayedItems = (HashSet<String>) savedObjects.poll();
+        currentState = (FeedState) savedObjects.poll();
+        loadedItemsUpToDate = (AtomicBoolean) savedObjects.poll();
+        itemsUpdateDate = (Calendar) savedObjects.poll();
+        displayedItems = (Set<String>) savedObjects.poll();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -124,10 +180,12 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
     public void startLoading(boolean forceLoad) {
         if (DEBUG) Log.d(TAG, "startLoading(forceLoad = " + forceLoad + ")");
 
+        if (currentState != FeedState.INITIALIZING) {
+            currentState.doEnterState(this);
+        }
+
         if (subscriptionsObserver == null) {
-            isLoading.set(true);
-            showLoading();
-            showListFooter(true);
+            setState(FeedState.LOADING_SUBSCRIPTIONS);
 
             subscriptionsObserver = new SubscriptionsObserver(this);
             subscriptionService.getSubscription()
@@ -142,13 +200,17 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
     public void handleResult(@NonNull List<StreamInfoItem> result) {
         if (DEBUG) Log.d(TAG, "handleResult(result = [" + result.size() + "])");
 
-        setAllItemsDisplayed(false);
-        isLoading.set(true);
-        showLoading();
-
         if (feedItemsSubscriber != null) {
             feedItemsSubscriber.dispose();
         }
+
+        if (infoListAdapter != null && !loadedItemsUpToDate.get()) {
+            infoListAdapter.clearStreamItemList();
+            itemsUpdateDate = Calendar.getInstance();
+        }
+
+        setState(FeedState.LOADING_ITEMS);
+        setUpdateTimeText();
 
         feedItemsSubscriber = new FeedItemsSubscriber(this, infoListAdapter);
         Flowable.fromIterable(result)
@@ -157,29 +219,24 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
                 .subscribe(feedItemsSubscriber);
     }
 
-    /**
-     * Sets a flag that indicates whether all items have finished loading.
-     * @param areAllItemsDisplayed Whether all items have been displayed
-     */
-    void setAllItemsDisplayed(boolean areAllItemsDisplayed) {
-        this.areAllItemsDisplayed.set(areAllItemsDisplayed);
-    }
-
-    /**
-     * Sets a flag that indicates that loading has finished.
-     */
-    void setLoadingFinished() {
-        this.isLoading.set(false);
+    private void setUpdateTimeText() {
+        if (itemsUpdateDate != null) {
+            String updateTime = DateUtils.getRelativeDateTimeString(activity,
+                    itemsUpdateDate.getTimeInMillis(),
+                    DateUtils.SECOND_IN_MILLIS,
+                    DateUtils.WEEK_IN_MILLIS,
+                    DateUtils.FORMAT_ABBREV_RELATIVE).toString();
+            refreshText.setText(getString(R.string.feed_last_updated, updateTime));
+        }
     }
 
     @Override
     protected void loadMoreItems() {
-        isLoading.set(true);
         delayHandler.removeCallbacksAndMessages(null);
 
         // Do not load more items if new items are currently being
         // downloaded by the SubscriptionsObserver. They will be added once it is finished.
-        if (subscriptionsObserver != null && subscriptionsObserver.areItemsBeingLoaded()) {
+        if (currentState == FeedState.LOADING_SUBSCRIPTIONS) {
             return;
         }
 
@@ -190,7 +247,7 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
 
     @Override
     protected boolean hasMoreItems() {
-        return !areAllItemsDisplayed.get();
+        return currentState == FeedState.IDLE;
     }
 
     private final Handler delayHandler = new Handler();
@@ -199,7 +256,6 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
         if (DEBUG) Log.d(TAG, "requestFeed(); feedItemsSubscriber = " + feedItemsSubscriber);
         if (feedItemsSubscriber == null) return;
 
-        isLoading.set(true);
         delayHandler.removeCallbacksAndMessages(null);
         feedItemsSubscriber.requestNext();
     }
@@ -243,10 +299,9 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
         delayHandler.removeCallbacksAndMessages(null);
         disposeEverything();
 
-        if (infoListAdapter != null) infoListAdapter.clearStreamItemList();
-        setAllItemsDisplayed(false);
-        showListFooter(false);
         displayedItems.clear();
+        loadedItemsUpToDate.set(false);
+        setState(FeedState.INITIALIZING);
     }
 
     private void disposeEverything() {
@@ -292,5 +347,102 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
         int errorId = exception instanceof ExtractionException ? R.string.parsing_error : R.string.general_error;
         onUnrecoverableError(exception, UserAction.SOMETHING_ELSE, "none", "Requesting feed", errorId);
         return true;
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Feed Fragment States
+    //////////////////////////////////////////////////////////////////////////*/
+
+    /**
+     * Switches the state of the feed and takes care of all visual changes.
+     * @param nextState The state to switch to
+     */
+    synchronized void setState(final FeedState nextState) {
+        if (currentState != nextState) {
+            final FeedState previousState = currentState;
+            currentState = nextState;
+
+            activity.runOnUiThread(() -> {
+                previousState.doLeaveState(FeedFragment.this);
+                nextState.doEnterState(FeedFragment.this);
+            });
+        }
+    }
+
+    /**
+     * Represents the different state the feed can be in.
+     */
+    enum FeedState {
+        /**
+         * The feed is initializing either because it was just created or because it was reset.
+         */
+        INITIALIZING,
+
+        /**
+         * The feed is currently loading new videos from every subscribed channel.
+         */
+        LOADING_SUBSCRIPTIONS {
+            @Override
+            void enterState (FeedFragment feed) {
+                feed.isLoading.set(true);
+                feed.refreshIcon.startAnimation(feed.refreshRotation);
+
+            }
+
+            @Override
+            void leaveState(FeedFragment feed) {
+                feed.isLoading.set(false);
+                feed.loadedItemsUpToDate.set(true);
+                feed.refreshIcon.clearAnimation();
+            }
+        },
+
+        /**
+         * The feed is loading new items to display.
+         */
+        LOADING_ITEMS {
+            @Override
+            void enterState(FeedFragment feed) {
+                feed.showListFooter(true);
+                feed.showLoading();
+            }
+        },
+
+        /**
+         * The feed is not doing anything, but there are still new items to display.
+         */
+        IDLE,
+
+        /**
+         * The feed has displayed all available new items.
+         */
+        All_ITEMS_LOADED {
+            @Override
+            void enterState(FeedFragment feed) {
+                feed.showListFooter(false);
+                feed.hideLoading();
+            }
+        },
+        ;
+
+        void doEnterState(FeedFragment feed) {
+            if (DEBUG) Log.d(feed.TAG, "Entering state " + toString());
+            enterState(feed);
+        }
+
+        void enterState(FeedFragment feed) {
+            // Do nothing by default.
+        }
+
+        void doLeaveState(FeedFragment feed) {
+            if (DEBUG) Log.d(feed.TAG, "Leaving state " + toString());
+            leaveState(feed);
+        }
+
+        void leaveState(FeedFragment feed) {
+            // Do nothing by default.
+        }
+
+
     }
 }

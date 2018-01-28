@@ -47,8 +47,6 @@ final class SubscriptionsObserver implements Observer<List<SubscriptionEntity>>,
 
     private Disposable thisDisposable;
 
-    private boolean areItemsBeingLoaded;
-
     /**
      * Creates an Observer that will watch the subscriptions and load the items of each.
      * @param feedFragment The current {@link FeedFragment}
@@ -58,13 +56,6 @@ final class SubscriptionsObserver implements Observer<List<SubscriptionEntity>>,
 
         oldestUploadDate = Calendar.getInstance();
         oldestUploadDate.add(Calendar.MONTH, -1);
-    }
-
-    /**
-     * @return Whether the Observer is busy; whether the item are currently being loaded.
-     */
-    boolean areItemsBeingLoaded() {
-        return  areItemsBeingLoaded;
     }
 
 
@@ -77,16 +68,6 @@ final class SubscriptionsObserver implements Observer<List<SubscriptionEntity>>,
     @Override
     public void onNext(List<SubscriptionEntity> subscriptionEntities) {
         if (DEBUG) Log.d(TAG, "onNext(subscriptionEntities = [" + subscriptionEntities.size() +  "])");
-
-        try {
-            areItemsBeingLoaded = true;
-            loadNewItems(subscriptionEntities);
-        } finally {
-            areItemsBeingLoaded = false;
-        }
-    }
-
-    private void loadNewItems(List<SubscriptionEntity> subscriptionEntities) {
         final List<StreamInfoItem> newItems = new ArrayList<>(subscriptionEntities.size());
 
         for (SubscriptionEntity subscriptionEntity : subscriptionEntities) {

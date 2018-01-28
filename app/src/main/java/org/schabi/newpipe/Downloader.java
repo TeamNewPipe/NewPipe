@@ -40,10 +40,12 @@ import javax.net.ssl.HttpsURLConnection;
 public class Downloader implements org.schabi.newpipe.extractor.Downloader {
 
     public static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0";
-    public static final String ACCEPT_LANGUAGE = "en-US";
+    private static final String DEFAULT_ACCEPT_LANGUAGE = "en";
     private static String mCookies = "";
 
     private static Downloader instance = null;
+
+    private String httpAcceptLanguage = DEFAULT_ACCEPT_LANGUAGE;
 
     private Downloader() {
     }
@@ -119,9 +121,18 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
     }
 
     /**
+     * Sets the default "Accept-Language" HTTP header for all requests.
+     * @param httpAcceptLanguage The language code
+     * @see #download(String, String)
+     */
+    void setHttpAcceptLanguage(String httpAcceptLanguage) {
+        this.httpAcceptLanguage = httpAcceptLanguage;
+    }
+
+    /**
      * Common functionality between download(String url) and download(String url, String language)
      */
-    private static String dl(HttpsURLConnection con) throws IOException, ReCaptchaException {
+    private String dl(HttpsURLConnection con) throws IOException, ReCaptchaException {
         StringBuilder response = new StringBuilder();
         BufferedReader in = null;
 
@@ -129,7 +140,10 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
             con.setReadTimeout(30 * 1000);// 30s
             con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", USER_AGENT);
-            con.setRequestProperty("Accept-Language", ACCEPT_LANGUAGE);
+
+            if (con.getRequestProperty("Accept-Language") == null) {
+                con.setRequestProperty("Accept-Language", httpAcceptLanguage);
+            }
 
             if (getCookies().length() > 0) {
                 con.setRequestProperty("Cookie", getCookies());

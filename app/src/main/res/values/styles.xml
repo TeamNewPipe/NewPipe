@@ -30,6 +30,7 @@
         <item name="search_add">@drawable/ic_arrow_top_left_black_24dp</item>
         <item name="options">@drawable/ic_more_vert_black_24dp</item>
         <item name="play">@drawable/ic_play_arrow_black_24dp</item>
+        <item name="refresh_small">@drawable/ic_refresh_black_18dp</item>
 
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
@@ -72,6 +73,7 @@
         <item name="search_add">@drawable/ic_arrow_top_left_white_24dp</item>
         <item name="options">@drawable/ic_more_vert_white_24dp</item>
         <item name="play">@drawable/ic_play_arrow_white_24dp</item>
+        <item name="refresh_small">@drawable/ic_refresh_white_18dp</item>
 
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>

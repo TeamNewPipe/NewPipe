@@ -70,7 +70,7 @@ final class FeedItemsSubscriber implements Subscriber<List<StreamInfoItem>>, Dis
             feedFragment.setItemDisplayed(item);
         }
 
-        feedFragment.setLoadingFinished();
+        feedFragment.setState(FeedFragment.FeedState.IDLE);
     }
 
     @Override
@@ -81,10 +81,7 @@ final class FeedItemsSubscriber implements Subscriber<List<StreamInfoItem>>, Dis
     @Override
     public void onComplete() {
         if (DEBUG) Log.d(TAG, "onComplete() All items displayed");
-
-        feedFragment.setAllItemsDisplayed(true);
-        feedFragment.showListFooter(false);
-        feedFragment.hideLoading();
+        feedFragment.setState(FeedFragment.FeedState.All_ITEMS_LOADED);
 
         if (infoListAdapter.getItemsList().isEmpty()) {
             feedFragment.showEmptyState();

@@ -167,7 +167,7 @@
     <string name="popup_mode_share_menu_title">NewPipe tryb okienkowy</string>
     <string name="controls_popup_title">Tryb okienkowy</string>
 
-<string name="best_resolution">Najlepsza rozdzielczość</string>
+    <string name="best_resolution">Najlepsza rozdzielczość</string>
 
     <string name="settings_category_downloads_title">Pobierz</string>
     <string name="settings_file_replacement_character_summary">Niepoprawne znaki są zamienione na tę wartość</string>
@@ -186,7 +186,7 @@
     <string name="contribution_encouragement">Jeżeli masz pomysł na tłumaczenie, zmiany w wyglądzie aplikacji, oczyszczenie kodu źródłowego, pomoc jest zawsze mile widziana. Im więcej jest zrobione, tym lepiej!</string>
     <string name="read_full_license">Przeczytaj licencję</string>
     <string name="contribution_title">Wkład</string>
-<string name="settings_file_charset_title">Dozwolone znaki w nazwach plików</string>
+    <string name="settings_file_charset_title">Dozwolone znaki w nazwach plików</string>
     <string name="settings_file_replacement_character_title">Znak zamienny</string>
 
     <string name="copyright" formatted="true">© %1$s przez %2$s pod %3$s</string>
@@ -198,8 +198,6 @@
 
     <string name="tab_main">Główna</string>
     <string name="tab_subscriptions">Subskrypcje</string>
-
-    <string name="fragment_whats_new">Co nowego</string>
 
     <string name="enable_search_history_title">Historia wyszukiwania</string>
     <string name="enable_search_history_summary">Zapisuj lokalnie historię wyszukiwania</string>
@@ -221,7 +219,7 @@
     <string name="history_empty">Historia jest pusta</string>
     <string name="history_cleared">Historia została wyczyszczona</string>
 
-<string name="settings_category_player_title">Odtwarzacz</string>
+    <string name="settings_category_player_title">Odtwarzacz</string>
     <string name="settings_category_player_behavior_title">Zachowanie</string>
     <string name="settings_category_history_title">Historia</string>
     <string name="playlist">Playlista</string>
@@ -245,21 +243,21 @@
 
     <string name="no_subscribers">Brak subskrybentów</string>
     <plurals name="subscribers">
-	<item quantity="one">%s subskrybent</item>
-	<item quantity="few">%s subskrybentów</item>
-	<item quantity="other">%s subskrybentów</item>
-</plurals>
+        <item quantity="one">%s subskrybent</item>
+        <item quantity="few">%s subskrybentów</item>
+        <item quantity="other">%s subskrybentów</item>
+    </plurals>
 
     <plurals name="views">
-	<item quantity="one">%s odtworzenie</item>
-	<item quantity="other">%s odtworzeń</item>
-</plurals>
+        <item quantity="one">%s odtworzenie</item>
+        <item quantity="other">%s odtworzeń</item>
+    </plurals>
 
     <string name="no_videos">Brak filmów</string>
     <plurals name="videos">
-	<item quantity="one">%s film</item>
-	<item quantity="few">%s filmów</item>
-</plurals>
+        <item quantity="one">%s film</item>
+        <item quantity="few">%s filmów</item>
+    </plurals>
 
     <string name="charset_most_special_characters">Większość znaków specjalnych</string>
 
@@ -296,7 +294,8 @@
     <string name="start_here_on_main">Zacznij Odtwarzanie Tutaj</string>
     <string name="start_here_on_background">Zacznij Odwarzanie Tutaj — w Tle</string>
     <string name="start_here_on_popup">Zacznij Odtwarzanie Tutaj — w Okienku</string>
-<string name="no_player_found_toast">Nie znaleziono odtwarzacza strumieniowego (żeby odtworzyć możesz zainstalować VLC)</string>
+
+    <string name="no_player_found_toast">Nie znaleziono odtwarzacza strumieniowego (żeby odtworzyć możesz zainstalować VLC)</string>
     <string name="default_content_country_title">Domyślny kraj zawartości</string>
     <string name="service_title">Usługa</string>
     <string name="always">Zawsze</string>
@@ -319,4 +318,37 @@
     
     <string name="preferred_player_fetcher_notification_title">Informacje…</string>
     <string name="preferred_player_fetcher_notification_message">Ładuję żądaną zawartość</string>
+
+    <!-- "What's New" feed -->
+    <string name="fragment_whats_new">Co nowego</string>
+    <string name="feed_first_time_loading">Ładuję nowości po raz pierwszy</string>
+    <string name="feed_last_updated">Zaktualizowano: %s</string>
+
+    <!-- Parsing YouTube upload dates in the format '2 days ago' -->
+    <string name="downloader_http_accept_language">pl</string>
+    <string-array name="upload_date_seconds_ago_phrase">
+        <item>sek</item>
+    </string-array>
+    <string-array name="upload_date_minutes_ago_phrase">
+        <item>min</item>
+    </string-array>
+    <string-array name="upload_date_hours_ago_phrase">
+        <item>godz</item>
+    </string-array>
+    <string-array name="upload_date_days_ago_phrase">
+        <item> dzień</item>
+        <item> dni</item>
+    </string-array>
+    <string-array name="upload_date_weeks_ago_phrase">
+        <item>tydzień</item>
+        <item>tygodnie</item>
+    </string-array>
+    <string-array name="upload_date_months_ago_phrase">
+        <item>miesiąc</item>
+        <item>miesięcy</item>
+    </string-array>
+    <string-array name="upload_date_years_ago_phrase">
+        <item>rok</item>
+        <item>lat</item>
+    </string-array>
 </resources>

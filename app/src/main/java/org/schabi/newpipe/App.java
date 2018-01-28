@@ -16,6 +16,8 @@ import org.acra.config.ACRAConfigurationException;
 import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.ReportSenderFactory;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.services.youtube.YoutubeService;
 import org.schabi.newpipe.report.AcraReportSenderFactory;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
@@ -81,6 +83,8 @@ public class App extends Application {
         ImageLoader.getInstance().init(config);
 
         configureRxJavaErrorHandler();
+
+        localizeYouTubeDatesParser();
     }
 
     private void configureRxJavaErrorHandler() {
@@ -148,5 +152,19 @@ public class App extends Application {
 
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.createNotificationChannel(mChannel);
+    }
+
+    private void localizeYouTubeDatesParser() {
+        Downloader.getInstance().setHttpAcceptLanguage(getString(R.string.downloader_http_accept_language));
+
+        YoutubeService youtubeService = (YoutubeService) ServiceList.YouTube.getService();
+        youtubeService.setTimeAgoParserPhrases(
+                getResources().getStringArray(R.array.upload_date_seconds_ago_phrase),
+                getResources().getStringArray(R.array.upload_date_minutes_ago_phrase),
+                getResources().getStringArray(R.array.upload_date_hours_ago_phrase),
+                getResources().getStringArray(R.array.upload_date_days_ago_phrase),
+                getResources().getStringArray(R.array.upload_date_weeks_ago_phrase),
+                getResources().getStringArray(R.array.upload_date_months_ago_phrase),
+                getResources().getStringArray(R.array.upload_date_years_ago_phrase));
     }
 }
