@@ -305,4 +305,24 @@
 
     <string name="drawer_open">Åpne skuff</string>
     <string name="drawer_close">Lukk skuff</string>
-    </resources>
+    <string name="no_player_found_toast">Ingen strømmespiller installert (du kan installere VLC for å spille den)</string>
+    <string name="always">Alltid</string>
+    <string name="just_once">Kun én gang</string>
+
+    <string name="external_player_unsupported_link_type">Eksterne avspillere kan ikke spille lenker av disse typene</string>
+    <string name="invalid_url_toast">Ugyldig nettadresse</string>
+    <string name="video_streams_empty">Fant ingen videostrømmer</string>
+    <string name="audio_streams_empty">Fant ingen lydstrømmer</string>
+
+    <string name="preferred_player_share_menu_title">\@string/preferred_player_settings_title</string>
+    <string name="preferred_player_share_menu_dialog_title">Åpne med foretrukket avspiller</string>
+    <string name="preferred_player_settings_title">Foretrukket avpsiller</string>
+
+    <string name="video_player">Videoavspiller</string>
+    <string name="background_player">Bakgrunnsavspiller</string>
+    <string name="popup_player">Oppsprettsavspiller</string>
+    <string name="always_ask_player">Spør alltid</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Henter informasjon…</string>
+    <string name="preferred_player_fetcher_notification_message">Forespurt innhold innlastes</string>
+</resources>
