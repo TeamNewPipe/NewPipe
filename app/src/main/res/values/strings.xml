@@ -345,7 +345,7 @@
     <string name="soundcloud" translatable="false">SoundCloud</string>
 
     <!-- Preferred player -->
-    <string name="preferred_player_share_menu_title">@string/preferred_player_settings_title</string>
+    <string name="preferred_player_share_menu_title" translatable="false">@string/preferred_player_settings_title</string>
     <string name="preferred_player_share_menu_dialog_title">Open with preferred player</string>
     <string name="preferred_player_settings_title">Preferred player</string>
 
