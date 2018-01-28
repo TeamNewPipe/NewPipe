@@ -1,8 +1,11 @@
 package org.schabi.newpipe.util;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 /**
@@ -30,7 +33,8 @@ public class ZipHelper {
     private static final int BUFFER_SIZE = 2048;
 
     /**
-     * This function helps to create zip files
+     * This function helps to create zip files.
+     * Caution this will override the original file.
      * @param outZip The ZipOutputStream where the data should be stored in
      * @param file The path of the file that should be added to zip.
      * @param name The path of the file inside the zip.
@@ -47,5 +51,44 @@ public class ZipHelper {
             outZip.write(data, 0, count);
         }
         inputStream.close();
+    }
+
+    /**
+     * This will extract data from Zipfiles.
+     * Caution this will override the original file.
+     * @param inZip The ZipOutputStream where the data is stored in
+     * @param file The path of the file on the disk where the data should be extracted to.
+     * @param name The path of the file inside the zip.
+     * @return will return true if the file was found within the zip file
+     * @throws Exception
+     */
+    public static boolean extractFileFromZip(ZipInputStream inZip, String file, String name) throws Exception {
+        byte data[] = new byte[BUFFER_SIZE];
+
+        boolean found = false;
+
+        ZipEntry ze;
+        while((ze = inZip.getNextEntry()) != null) {
+            if(ze.getName().equals(name)) {
+                found = true;
+                // delete old file first
+                File oldFile = new File(file);
+                if(oldFile.exists()) {
+                    if(!oldFile.delete()) {
+                        throw new Exception("Could not delete " + file);
+                    }
+                }
+
+                FileOutputStream outFile = new FileOutputStream(file);
+                int count = 0;
+                while((count = inZip.read(data)) != -1) {
+                    outFile.write(data, 0, count);
+                }
+
+                outFile.close();
+                inZip.closeEntry();
+            }
+        }
+        return true;
     }
 }
