@@ -58,7 +58,6 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private View header = null;
     private View footer = null;
 
-
     public LocalItemListAdapter(Activity activity) {
         localItemBuilder = new LocalItemBuilder(activity);
         localItems = new ArrayList<>();
@@ -99,21 +98,16 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
-    public void addInfoItem(LocalItem data) {
-        addInfoItemList(Collections.singletonList(data));
-    }
+    public void removeItem(final LocalItem data) {
+        final int index = localItems.indexOf(data);
 
-    public void removeItemAt(final int infoListPosition) {
-        if (infoListPosition < 0 || infoListPosition >= localItems.size()) return;
-
-        localItems.remove(infoListPosition);
-
-        notifyItemRemoved(infoListPosition + (header != null ? 1 : 0));
+        localItems.remove(index);
+        notifyItemRemoved(index + (header != null ? 1 : 0));
     }
 
     public boolean swapItems(int fromAdapterPosition, int toAdapterPosition) {
-        final int actualFrom = offsetWithoutHeader(fromAdapterPosition);
-        final int actualTo = offsetWithoutHeader(toAdapterPosition);
+        final int actualFrom = adapterOffsetWithoutHeader(fromAdapterPosition);
+        final int actualTo = adapterOffsetWithoutHeader(toAdapterPosition);
 
         if (actualFrom < 0 || actualTo < 0) return false;
         if (actualFrom >= localItems.size() || actualTo >= localItems.size()) return false;
@@ -150,7 +144,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         else notifyItemRemoved(sizeConsideringHeader());
     }
 
-    private int offsetWithoutHeader(final int offset) {
+    private int adapterOffsetWithoutHeader(final int offset) {
         return offset - (header != null ? 1 : 0);
     }
 

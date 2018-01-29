@@ -28,7 +28,7 @@
             android:layout_height="50dp"
             android:layout_toRightOf="@+id/newPlaylistIcon"
             android:gravity="left|center"
-            android:text="Create New Playlist"
+            android:text="@string/create_playlist"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="15sp"
             android:textStyle="bold"

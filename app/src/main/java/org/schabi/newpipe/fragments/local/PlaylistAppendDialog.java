@@ -99,8 +99,8 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                     return;
 
                 final long playlistId = ((PlaylistMetadataEntry) selectedItem).uid;
-                final Toast successToast =
-                        Toast.makeText(getContext(), "Added", Toast.LENGTH_SHORT);
+                final Toast successToast = Toast.makeText(getContext(),
+                        R.string.playlist_add_stream_success, Toast.LENGTH_SHORT);
 
                 playlistManager.appendToPlaylist(playlistId, getStreams())
                         .observeOn(AndroidSchedulers.mainThread())

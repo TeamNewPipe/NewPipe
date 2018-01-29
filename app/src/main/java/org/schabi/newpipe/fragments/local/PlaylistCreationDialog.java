@@ -48,7 +48,7 @@ public final class PlaylistCreationDialog extends PlaylistDialog {
                     final LocalPlaylistManager playlistManager =
                             new LocalPlaylistManager(NewPipeDatabase.getInstance(getContext()));
                     final Toast successToast = Toast.makeText(getActivity(),
-                            "Playlist successfully created",
+                            R.string.playlist_creation_success,
                             Toast.LENGTH_SHORT);
 
                     playlistManager.createPlaylist(name, getStreams())

@@ -275,7 +275,7 @@ public abstract class StatisticsPlaylistFragment
         if (super.onError(exception)) return true;
 
         onUnrecoverableError(exception, UserAction.SOMETHING_ELSE,
-                "none", "History", R.string.general_error);
+                "none", "History Statistics", R.string.general_error);
         return true;
     }
 

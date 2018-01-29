@@ -54,6 +54,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     private View headerPopupButton;
     private View headerBackgroundButton;
 
+    private MenuItem playlistAppendButton;
+
     public static PlaylistFragment getInstance(int serviceId, String url, String name) {
         PlaylistFragment instance = new PlaylistFragment();
         instance.setInitialData(serviceId, url, name);
@@ -141,9 +143,15 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "], inflater = [" + inflater + "]");
+        if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu +
+                "], inflater = [" + inflater + "]");
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_playlist, menu);
+
+        playlistAppendButton = menu.findItem(R.id.menu_append_playlist);
+        if (currentInfo != null) {
+            playlistAppendButton.setVisible(!currentInfo.getRelatedStreams().isEmpty());
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -166,10 +174,12 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
             case R.id.menu_item_openInBrowser:
                 openUrlInBrowser(url);
                 break;
-            case R.id.menu_item_share: {
+            case R.id.menu_item_share:
                 shareUrl(name, url);
                 break;
-            }
+            case R.id.menu_append_playlist:
+                appendToPlaylist(getFragmentManager(), TAG);
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -214,6 +224,9 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
         imageLoader.displayImage(result.getUploaderAvatarUrl(), headerUploaderAvatar, DISPLAY_AVATAR_OPTIONS);
         headerStreamCount.setText(getResources().getQuantityString(R.plurals.videos, (int) result.stream_count, (int) result.stream_count));
+
+        if (playlistAppendButton != null) playlistAppendButton
+                .setVisible(!currentInfo.getRelatedStreams().isEmpty());
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);

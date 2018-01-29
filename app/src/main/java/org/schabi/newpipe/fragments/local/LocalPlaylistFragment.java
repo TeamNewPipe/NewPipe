@@ -34,14 +34,19 @@ import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import icepick.State;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.subjects.PublishSubject;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void> {
+
+    private static final long SAVE_DEBOUNCE_MILLIS = 1000;
 
     private View headerRootLayout;
     private TextView headerTitleView;
@@ -65,6 +70,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private CompositeDisposable disposables = new CompositeDisposable();
     private Subscription databaseSubscription;
     private LocalPlaylistManager playlistManager;
+
+    private PublishSubject<Long> debouncedSaveSignal;
+    private Disposable debouncedSaver;
 
     public static LocalPlaylistFragment getInstance(long playlistId, String name) {
         LocalPlaylistFragment instance = new LocalPlaylistFragment();
@@ -90,10 +98,21 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        debouncedSaveSignal = PublishSubject.create();
+        debouncedSaver = getDebouncedSaver();
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
 
-        saveJoin();
+        if (debouncedSaveSignal != null) debouncedSaveSignal.onComplete();
+        if (debouncedSaver != null) debouncedSaver.dispose();
+
+        debouncedSaveSignal = null;
+        debouncedSaver = null;
 
         itemsListState = itemsList.getLayoutManager().onSaveInstanceState();
     }
@@ -189,7 +208,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 context.getResources().getString(R.string.start_here_on_main),
                 context.getResources().getString(R.string.start_here_on_background),
                 context.getResources().getString(R.string.start_here_on_popup),
-                "Set as Thumbnail",
+                context.getResources().getString(R.string.set_as_playlist_thumbnail),
                 context.getResources().getString(R.string.delete)
         };
 
@@ -217,8 +236,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     changeThumbnailUrl(item.thumbnailUrl);
                     break;
                 case 6:
-                    itemListAdapter.removeItemAt(index);
+                    itemListAdapter.removeItem(item);
                     setVideoCount(itemListAdapter.getItemsList().size());
+                    saveDebounced();
                     break;
                 default:
                     break;
@@ -241,7 +261,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
                 final int sourceIndex = source.getAdapterPosition();
                 final int targetIndex = target.getAdapterPosition();
-                return itemListAdapter.swapItems(sourceIndex, targetIndex);
+                final boolean isSwapped = itemListAdapter.swapItems(sourceIndex, targetIndex);
+                if (isSwapped) saveDebounced();
+                return isSwapped;
             }
 
             @Override
@@ -418,7 +440,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     final LocalPlaylistManager playlistManager =
                             new LocalPlaylistManager(NewPipeDatabase.getInstance(getContext()));
                     final Toast successToast = Toast.makeText(getActivity(),
-                            "Playlist renamed",
+                            R.string.playlist_rename_success,
                             Toast.LENGTH_SHORT);
 
                     playlistManager.renamePlaylist(playlistId, name)
@@ -431,12 +453,24 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     private void changeThumbnailUrl(final String thumbnailUrl) {
         final Toast successToast = Toast.makeText(getActivity(),
-                "Playlist thumbnail changed",
+                R.string.playlist_thumbnail_change_success,
                 Toast.LENGTH_SHORT);
 
         playlistManager.changePlaylistThumbnail(playlistId, thumbnailUrl)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignore -> successToast.show());
+    }
+
+    private void saveDebounced() {
+        debouncedSaveSignal.onNext(System.currentTimeMillis());
+    }
+
+    private Disposable getDebouncedSaver() {
+        return debouncedSaveSignal
+                .debounce(SAVE_DEBOUNCE_MILLIS, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnDispose(this::saveJoin)
+                .subscribe(ignored -> saveJoin());
     }
 
     private void saveJoin() {

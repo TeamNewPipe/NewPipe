@@ -1031,6 +1031,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (!TextUtils.isEmpty(info.getUploaderName())) {
             uploaderTextView.setText(info.getUploaderName());
             uploaderTextView.setVisibility(View.VISIBLE);
+            uploaderTextView.setSelected(true);
         } else {
             uploaderTextView.setVisibility(View.GONE);
         }

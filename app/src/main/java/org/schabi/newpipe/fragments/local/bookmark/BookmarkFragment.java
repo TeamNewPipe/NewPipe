@@ -174,8 +174,8 @@ public class BookmarkFragment extends BaseStateFragment<List<PlaylistMetadataEnt
                 .setMessage(R.string.delete_playlist_prompt)
                 .setCancelable(true)
                 .setPositiveButton(R.string.delete, (dialog, i) -> {
-                    final Toast deleteSuccessful =
-                            Toast.makeText(getContext(), "Deleted", Toast.LENGTH_SHORT);
+                    final Toast deleteSuccessful = Toast.makeText(getContext(),
+                            R.string.playlist_delete_success, Toast.LENGTH_SHORT);
                     disposables.add(localPlaylistManager.deletePlaylist(item.uid)
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(ignored -> deleteSuccessful.show()));
