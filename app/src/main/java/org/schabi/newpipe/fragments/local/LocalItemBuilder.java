@@ -32,7 +32,7 @@ public class LocalItemBuilder {
     private final Context context;
     private ImageLoader imageLoader = ImageLoader.getInstance();
 
-    private OnCustomItemGesture<LocalItem> onSelectedListener;
+    private OnLocalItemGesture<LocalItem> onSelectedListener;
 
     public LocalItemBuilder(Context context) {
         this.context = context;
@@ -46,11 +46,11 @@ public class LocalItemBuilder {
         return imageLoader;
     }
 
-    public OnCustomItemGesture<LocalItem> getOnItemSelectedListener() {
+    public OnLocalItemGesture<LocalItem> getOnItemSelectedListener() {
         return onSelectedListener;
     }
 
-    public void setOnItemSelectedListener(OnCustomItemGesture<LocalItem> listener) {
+    public void setOnItemSelectedListener(OnLocalItemGesture<LocalItem> listener) {
         this.onSelectedListener = listener;
     }
 }

@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.extractor.InfoItem;
 
-public abstract class OnCustomItemGesture<T extends LocalItem> {
+public abstract class OnLocalItemGesture<T extends LocalItem> {
 
     public abstract void selected(T selectedItem);
 

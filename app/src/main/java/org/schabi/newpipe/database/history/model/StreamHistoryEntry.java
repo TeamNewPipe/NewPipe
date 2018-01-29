@@ -28,10 +28,13 @@ public class StreamHistoryEntry {
     final public long streamId;
     @ColumnInfo(name = StreamHistoryEntity.STREAM_ACCESS_DATE)
     final public Date accessDate;
+    @ColumnInfo(name = StreamHistoryEntity.STREAM_REPEAT_COUNT)
+    final public long repeatCount;
 
     public StreamHistoryEntry(long uid, int serviceId, String url, String title,
                               StreamType streamType, long duration, String uploader,
-                              String thumbnailUrl, long streamId, Date accessDate) {
+                              String thumbnailUrl, long streamId, Date accessDate,
+                              long repeatCount) {
         this.uid = uid;
         this.serviceId = serviceId;
         this.url = url;
@@ -42,9 +45,15 @@ public class StreamHistoryEntry {
         this.thumbnailUrl = thumbnailUrl;
         this.streamId = streamId;
         this.accessDate = accessDate;
+        this.repeatCount = repeatCount;
     }
 
     public StreamHistoryEntity toStreamHistoryEntity() {
-        return new StreamHistoryEntity(streamId, accessDate);
+        return new StreamHistoryEntity(streamId, accessDate, repeatCount);
+    }
+
+    public boolean hasEqualValues(StreamHistoryEntry other) {
+        return this.uid == other.uid && streamId == other.streamId &&
+                accessDate.compareTo(other.accessDate) == 0;
     }
 }

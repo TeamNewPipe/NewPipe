@@ -66,7 +66,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                 Localization.getPreferredLocale(activity));
     }
 
-    public void setSelectedListener(OnCustomItemGesture<LocalItem> listener) {
+    public void setSelectedListener(OnLocalItemGesture<LocalItem> listener) {
         localItemBuilder.setOnItemSelectedListener(listener);
     }
 

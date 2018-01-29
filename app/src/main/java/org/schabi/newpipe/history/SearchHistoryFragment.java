@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
+import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.Collection;
@@ -99,12 +101,12 @@ public class SearchHistoryFragment extends HistoryFragment<SearchHistoryEntry> {
 
     private static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView search;
-        private final TextView time;
+        private final TextView info;
 
         public ViewHolder(View itemView) {
             super(itemView);
             search = itemView.findViewById(R.id.search);
-            time = itemView.findViewById(R.id.time);
+            info = itemView.findViewById(R.id.info);
         }
     }
 
@@ -125,7 +127,11 @@ public class SearchHistoryFragment extends HistoryFragment<SearchHistoryEntry> {
         @Override
         void onBindViewHolder(ViewHolder holder, SearchHistoryEntry entry, int position) {
             holder.search.setText(entry.getSearch());
-            holder.time.setText(getFormattedDate(entry.getCreationDate()));
+
+            final String info = Localization.concatenateStrings(
+                    getFormattedDate(entry.getCreationDate()),
+                    NewPipe.getNameOfService(entry.getServiceId()));
+            holder.info.setText(info);
         }
     }
 }

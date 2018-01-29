@@ -14,6 +14,7 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 
+import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.STREAM_REPEAT_COUNT;
 import static org.schabi.newpipe.database.stream.StreamStatisticsEntry.STREAM_LATEST_DATE;
 import static org.schabi.newpipe.database.stream.StreamStatisticsEntry.STREAM_WATCH_COUNT;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_ID;
@@ -59,7 +60,7 @@ public abstract class StreamHistoryDAO implements HistoryDAO<StreamHistoryEntity
             " INNER JOIN " +
             "(SELECT " + JOIN_STREAM_ID + ", " +
             "  MAX(" + STREAM_ACCESS_DATE + ") AS " + STREAM_LATEST_DATE + ", " +
-            "  COUNT(*) AS " + STREAM_WATCH_COUNT +
+            "  SUM(" + STREAM_REPEAT_COUNT + ") AS " + STREAM_WATCH_COUNT +
             " FROM " + STREAM_HISTORY_TABLE + " GROUP BY " + JOIN_STREAM_ID + ")" +
 
             " ON " + STREAM_ID + " = " + JOIN_STREAM_ID)

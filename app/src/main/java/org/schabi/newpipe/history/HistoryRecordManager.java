@@ -62,7 +62,16 @@ public class HistoryRecordManager {
         final Date currentTime = new Date();
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
             final long streamId = streamTable.upsert(new StreamEntity(info));
-            return streamHistoryTable.insert(new StreamHistoryEntity(streamId, currentTime));
+            StreamHistoryEntity latestEntry = streamHistoryTable.getLatestEntry();
+
+            if (latestEntry != null && latestEntry.getStreamUid() == streamId) {
+                streamHistoryTable.delete(latestEntry);
+                latestEntry.setAccessDate(currentTime);
+                latestEntry.setRepeatCount(latestEntry.getRepeatCount() + 1);
+                return streamHistoryTable.insert(latestEntry);
+            } else {
+                return streamHistoryTable.insert(new StreamHistoryEntity(streamId, currentTime));
+            }
         })).subscribeOn(Schedulers.io());
     }
 

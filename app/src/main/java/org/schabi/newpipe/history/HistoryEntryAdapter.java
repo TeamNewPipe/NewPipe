@@ -1,6 +1,7 @@
 package org.schabi.newpipe.history;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -22,11 +23,13 @@ public abstract class HistoryEntryAdapter<E, VH extends RecyclerView.ViewHolder>
 
     private final ArrayList<E> mEntries;
     private final DateFormat mDateFormat;
+    private final Context mContext;
     private OnHistoryItemClickListener<E> onHistoryItemClickListener = null;
 
 
     public HistoryEntryAdapter(Context context) {
         super();
+        mContext = context;
         mEntries = new ArrayList<>();
         mDateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM,
                 Localization.getPreferredLocale(context));
@@ -49,6 +52,10 @@ public abstract class HistoryEntryAdapter<E, VH extends RecyclerView.ViewHolder>
 
     protected String getFormattedDate(Date date) {
         return mDateFormat.format(date);
+    }
+
+    protected String getFormattedViewString(final long viewCount) {
+        return Localization.shortViewCount(mContext, viewCount);
     }
 
     @Override

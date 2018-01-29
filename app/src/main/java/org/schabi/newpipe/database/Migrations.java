@@ -23,7 +23,7 @@ public class Migrations {
             database.execSQL("CREATE  INDEX `index_search_history_search` ON `search_history` (`search`)");
             database.execSQL("CREATE TABLE IF NOT EXISTS `streams` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `service_id` INTEGER NOT NULL, `url` TEXT, `title` TEXT, `stream_type` TEXT, `duration` INTEGER, `uploader` TEXT, `thumbnail_url` TEXT)");
             database.execSQL("CREATE UNIQUE INDEX `index_streams_service_id_url` ON `streams` (`service_id`, `url`)");
-            database.execSQL("CREATE TABLE IF NOT EXISTS `stream_history` (`stream_id` INTEGER NOT NULL, `access_date` INTEGER NOT NULL, PRIMARY KEY(`stream_id`, `access_date`), FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE )");
+            database.execSQL("CREATE TABLE IF NOT EXISTS `stream_history` (`stream_id` INTEGER NOT NULL, `access_date` INTEGER NOT NULL, `repeat_count` INTEGER NOT NULL, PRIMARY KEY(`stream_id`, `access_date`), FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE )");
             database.execSQL("CREATE  INDEX `index_stream_history_stream_id` ON `stream_history` (`stream_id`)");
             database.execSQL("CREATE TABLE IF NOT EXISTS `stream_state` (`stream_id` INTEGER NOT NULL, `progress_time` INTEGER NOT NULL, PRIMARY KEY(`stream_id`), FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE )");
             database.execSQL("CREATE TABLE IF NOT EXISTS `playlists` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `thumbnail_url` TEXT)");
@@ -45,8 +45,8 @@ public class Migrations {
 
             // Once the streams have PKs, join them with the normalized history table
             // and populate it with the remaining data from watch history
-            database.execSQL("INSERT INTO stream_history (stream_id, access_date)" +
-                    "SELECT uid, creation_date " +
+            database.execSQL("INSERT INTO stream_history (stream_id, access_date, repeat_count)" +
+                    "SELECT uid, creation_date, 1 " +
                     "FROM watch_history INNER JOIN streams " +
                     "ON watch_history.service_id == streams.service_id " +
                     "AND watch_history.url == streams.url " +

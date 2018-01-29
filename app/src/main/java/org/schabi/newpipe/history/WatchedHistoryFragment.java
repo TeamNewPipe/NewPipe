@@ -123,7 +123,16 @@ public class WatchedHistoryFragment extends HistoryFragment<StreamHistoryEntry> 
 
         @Override
         void onBindViewHolder(ViewHolder holder, StreamHistoryEntry entry, int position) {
-            holder.date.setText(getFormattedDate(entry.accessDate));
+            final String formattedDate = getFormattedDate(entry.accessDate);
+            final String info;
+            if (entry.repeatCount > 1) {
+                info = Localization.concatenateStrings(formattedDate,
+                        getFormattedViewString(entry.repeatCount));
+            } else {
+                info = formattedDate;
+            }
+
+            holder.info.setText(info);
             holder.streamTitle.setText(entry.title);
             holder.uploader.setText(entry.uploader);
             holder.duration.setText(Localization.getDurationString(entry.duration));
@@ -133,7 +142,7 @@ public class WatchedHistoryFragment extends HistoryFragment<StreamHistoryEntry> 
     }
 
     private static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView date;
+        private final TextView info;
         private final TextView streamTitle;
         private final ImageView thumbnailView;
         private final TextView uploader;
@@ -142,7 +151,7 @@ public class WatchedHistoryFragment extends HistoryFragment<StreamHistoryEntry> 
         public ViewHolder(View itemView) {
             super(itemView);
             thumbnailView = itemView.findViewById(R.id.itemThumbnailView);
-            date = itemView.findViewById(R.id.itemAdditionalDetails);
+            info = itemView.findViewById(R.id.itemAdditionalDetails);
             streamTitle = itemView.findViewById(R.id.itemVideoTitleView);
             uploader = itemView.findViewById(R.id.itemUploaderView);
             duration = itemView.findViewById(R.id.itemDurationView);

@@ -22,7 +22,7 @@ import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.local.LocalItemListAdapter;
 import org.schabi.newpipe.fragments.local.LocalPlaylistManager;
-import org.schabi.newpipe.fragments.local.OnCustomItemGesture;
+import org.schabi.newpipe.fragments.local.OnLocalItemGesture;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
 
@@ -136,7 +136,7 @@ public class BookmarkFragment extends BaseStateFragment<List<PlaylistMetadataEnt
     protected void initListeners() {
         super.initListeners();
 
-        itemListAdapter.setSelectedListener(new OnCustomItemGesture<LocalItem>() {
+        itemListAdapter.setSelectedListener(new OnLocalItemGesture<LocalItem>() {
             @Override
             public void selected(LocalItem selectedItem) {
                 // Requires the parent fragment to find holder for fragment replacement

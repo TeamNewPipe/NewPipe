@@ -13,15 +13,11 @@ import android.widget.Toast;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
-import org.schabi.newpipe.extractor.InfoItem;
-import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.info_list.InfoListAdapter;
-import org.schabi.newpipe.info_list.OnInfoItemGesture;
-import org.schabi.newpipe.info_list.stored.LocalPlaylistInfoItem;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 
 import java.util.ArrayList;
@@ -34,7 +30,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     private static final String TAG = PlaylistAppendDialog.class.getCanonicalName();
 
     private RecyclerView playlistRecyclerView;
-    private InfoListAdapter playlistAdapter;
+    private LocalItemListAdapter playlistAdapter;
 
     public static PlaylistAppendDialog fromStreamInfo(final StreamInfo info) {
         PlaylistAppendDialog dialog = new PlaylistAppendDialog();
@@ -69,8 +65,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        playlistAdapter = new InfoListAdapter(getActivity());
-        playlistAdapter.useMiniItemVariants(true);
+        playlistAdapter = new LocalItemListAdapter(getActivity());
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -97,13 +92,13 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
 
         newPlaylistButton.setOnClickListener(ignored -> openCreatePlaylistDialog());
 
-        playlistAdapter.setOnPlaylistSelectedListener(new OnInfoItemGesture<PlaylistInfoItem>() {
+        playlistAdapter.setSelectedListener(new OnLocalItemGesture<LocalItem>() {
             @Override
-            public void selected(PlaylistInfoItem selectedItem) {
-                if (!(selectedItem instanceof LocalPlaylistInfoItem) || getStreams() == null)
+            public void selected(LocalItem selectedItem) {
+                if (!(selectedItem instanceof PlaylistMetadataEntry) || getStreams() == null)
                     return;
 
-                final long playlistId = ((LocalPlaylistInfoItem) selectedItem).getPlaylistId();
+                final long playlistId = ((PlaylistMetadataEntry) selectedItem).uid;
                 final Toast successToast =
                         Toast.makeText(getContext(), "Added", Toast.LENGTH_SHORT);
 
@@ -123,13 +118,8 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                         return;
                     }
 
-                    List<InfoItem> playlistInfoItems = new ArrayList<>(metadataEntries.size());
-                    for (final PlaylistMetadataEntry metadataEntry : metadataEntries) {
-                        playlistInfoItems.add(metadataEntry.toStoredPlaylistInfoItem());
-                    }
-
                     playlistAdapter.clearStreamItemList();
-                    playlistAdapter.addInfoItemList(playlistInfoItems);
+                    playlistAdapter.addInfoItemList(metadataEntries);
                     playlistRecyclerView.setVisibility(View.VISIBLE);
                 });
     }

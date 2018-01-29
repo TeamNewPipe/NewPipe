@@ -151,7 +151,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(itemsList);
 
-        itemListAdapter.setSelectedListener(new OnCustomItemGesture<LocalItem>() {
+        itemListAdapter.setSelectedListener(new OnLocalItemGesture<LocalItem>() {
             @Override
             public void selected(LocalItem selectedItem) {
                 if (selectedItem instanceof PlaylistStreamEntry) {

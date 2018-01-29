@@ -3,6 +3,7 @@ package org.schabi.newpipe.database.history.model;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.support.annotation.NonNull;
 
@@ -29,6 +30,7 @@ public class StreamHistoryEntity {
     final public static String STREAM_HISTORY_TABLE = "stream_history";
     final public static String JOIN_STREAM_ID       = "stream_id";
     final public static String STREAM_ACCESS_DATE   = "access_date";
+    final public static String STREAM_REPEAT_COUNT  = "repeat_count";
 
     @ColumnInfo(name = JOIN_STREAM_ID)
     private long streamUid;
@@ -37,9 +39,18 @@ public class StreamHistoryEntity {
     @ColumnInfo(name = STREAM_ACCESS_DATE)
     private Date accessDate;
 
-    public StreamHistoryEntity(long streamUid, @NonNull Date accessDate) {
+    @ColumnInfo(name = STREAM_REPEAT_COUNT)
+    private long repeatCount;
+
+    public StreamHistoryEntity(long streamUid, @NonNull Date accessDate, long repeatCount) {
         this.streamUid = streamUid;
         this.accessDate = accessDate;
+        this.repeatCount = repeatCount;
+    }
+
+    @Ignore
+    public StreamHistoryEntity(long streamUid, @NonNull Date accessDate) {
+        this(streamUid, accessDate, 1);
     }
 
     public long getStreamUid() {
@@ -56,5 +67,13 @@ public class StreamHistoryEntity {
 
     public void setAccessDate(@NonNull Date accessDate) {
         this.accessDate = accessDate;
+    }
+
+    public long getRepeatCount() {
+        return repeatCount;
+    }
+
+    public void setRepeatCount(long repeatCount) {
+        this.repeatCount = repeatCount;
     }
 }

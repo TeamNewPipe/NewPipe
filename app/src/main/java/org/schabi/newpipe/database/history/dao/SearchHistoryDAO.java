@@ -4,6 +4,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
 import android.support.annotation.Nullable;
 
+import org.schabi.newpipe.database.BasicDAO;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 
 import java.util.List;
@@ -21,8 +22,8 @@ public interface SearchHistoryDAO extends HistoryDAO<SearchHistoryEntry> {
 
     String ORDER_BY_CREATION_DATE = " ORDER BY " + CREATION_DATE + " DESC";
 
-    @Query("SELECT * FROM " + TABLE_NAME + " WHERE " + ID + " = (SELECT MAX(" + ID + ") FROM " + TABLE_NAME + ")")
-    @Override
+    @Query("SELECT * FROM " + TABLE_NAME +
+            " WHERE " + ID + " = (SELECT MAX(" + ID + ") FROM " + TABLE_NAME + ")")
     @Nullable
     SearchHistoryEntry getLatestEntry();
 

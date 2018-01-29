@@ -3,7 +3,6 @@ package org.schabi.newpipe.database.playlist;
 import android.arch.persistence.room.ColumnInfo;
 
 import org.schabi.newpipe.database.LocalItem;
-import org.schabi.newpipe.info_list.stored.LocalPlaylistInfoItem;
 
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_ID;
 import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_NAME;
@@ -26,13 +25,6 @@ public class PlaylistMetadataEntry implements LocalItem {
         this.name = name;
         this.thumbnailUrl = thumbnailUrl;
         this.streamCount = streamCount;
-    }
-
-    public LocalPlaylistInfoItem toStoredPlaylistInfoItem() {
-        LocalPlaylistInfoItem storedPlaylistInfoItem = new LocalPlaylistInfoItem(uid, name);
-        storedPlaylistInfoItem.setThumbnailUrl(thumbnailUrl);
-        storedPlaylistInfoItem.setStreamCount(streamCount);
-        return storedPlaylistInfoItem;
     }
 
     @Override
