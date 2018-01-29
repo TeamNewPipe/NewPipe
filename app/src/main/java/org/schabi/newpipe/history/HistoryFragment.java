@@ -156,7 +156,7 @@ public abstract class HistoryFragment<E> extends BaseFragment
                 .setMessage(R.string.delete_all_history_prompt)
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.delete, (dialog, i) -> clearHistory())
+                .setPositiveButton(R.string.delete_all, (dialog, i) -> clearHistory())
                 .show();
     }
 

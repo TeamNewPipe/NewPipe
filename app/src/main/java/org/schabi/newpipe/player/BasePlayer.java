@@ -581,6 +581,8 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
             errorToast = null;
         }
 
+        savePlaybackState();
+
         switch (error.type) {
             case ExoPlaybackException.TYPE_SOURCE:
                 if (simpleExoPlayer.getCurrentPosition() <
@@ -758,6 +760,8 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         if (simpleExoPlayer == null || playQueue == null) return;
         if (DEBUG) Log.d(TAG, "onPlayPrevious() called");
 
+        savePlaybackState();
+
         /* If current playback has run for PLAY_PREV_ACTIVATION_LIMIT milliseconds, restart current track.
         * Also restart the track if the current track is the first in a queue.*/
         if (simpleExoPlayer.getCurrentPosition() > PLAY_PREV_ACTIVATION_LIMIT || playQueue.getIndex() == 0) {
@@ -771,6 +775,8 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     public void onPlayNext() {
         if (playQueue == null) return;
         if (DEBUG) Log.d(TAG, "onPlayNext() called");
+
+        savePlaybackState();
 
         playQueue.offsetIndex(+1);
     }
@@ -833,6 +839,24 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         );
     }
 
+    protected void savePlaybackState(final StreamInfo info, final long progress) {
+        if (context == null || info == null || databaseUpdateReactor == null) return;
+        final Disposable stateSaver = recordManager.saveStreamState(info, progress)
+                .observeOn(AndroidSchedulers.mainThread())
+                .onErrorComplete()
+                .subscribe();
+        databaseUpdateReactor.add(stateSaver);
+    }
+
+    private void savePlaybackState() {
+        if (simpleExoPlayer == null || currentInfo == null) return;
+
+        if (simpleExoPlayer.getCurrentPosition() > RECOVERY_SKIP_THRESHOLD &&
+                simpleExoPlayer.getCurrentPosition() <
+                        simpleExoPlayer.getDuration() - RECOVERY_SKIP_THRESHOLD) {
+            savePlaybackState(currentInfo, simpleExoPlayer.getCurrentPosition());
+        }
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // Getters and Setters
     //////////////////////////////////////////////////////////////////////////*/

@@ -92,10 +92,6 @@ public abstract class StreamDAO implements BasicDAO<StreamEntity> {
             " ON " + STREAM_ID + " = " +
             StreamHistoryEntity.STREAM_HISTORY_TABLE + "." + StreamHistoryEntity.JOIN_STREAM_ID +
 
-            " LEFT JOIN " + STREAM_STATE_TABLE +
-            " ON " + STREAM_ID + " = " +
-            StreamStateEntity.STREAM_STATE_TABLE + "." + StreamStateEntity.JOIN_STREAM_ID +
-
             " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE +
             " ON " + STREAM_ID + " = " +
             PlaylistStreamEntity.PLAYLIST_STREAM_JOIN_TABLE + "." + PlaylistStreamEntity.JOIN_STREAM_ID +

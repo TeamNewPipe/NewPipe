@@ -3,23 +3,25 @@ package org.schabi.newpipe.history;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.history.dao.SearchHistoryDAO;
-import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
+import org.schabi.newpipe.database.history.dao.StreamHistoryDAO;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
+import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
+import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.database.stream.dao.StreamDAO;
-import org.schabi.newpipe.database.history.dao.StreamHistoryDAO;
+import org.schabi.newpipe.database.stream.dao.StreamStateDAO;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
-import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +36,7 @@ public class HistoryRecordManager {
     private final StreamDAO streamTable;
     private final StreamHistoryDAO streamHistoryTable;
     private final SearchHistoryDAO searchHistoryTable;
+    private final StreamStateDAO streamStateTable;
     private final SharedPreferences sharedPreferences;
     private final String searchHistoryKey;
     private final String streamHistoryKey;
@@ -43,13 +46,10 @@ public class HistoryRecordManager {
         streamTable = database.streamDAO();
         streamHistoryTable = database.streamHistoryDAO();
         searchHistoryTable = database.searchHistoryDAO();
+        streamStateTable = database.streamStateDAO();
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         searchHistoryKey = context.getString(R.string.enable_search_history_key);
         streamHistoryKey = context.getString(R.string.enable_watch_history_key);
-    }
-
-    public Single<Integer> removeOrphanedRecords() {
-        return Single.fromCallable(streamTable::deleteOrphans).subscribeOn(Schedulers.io());
     }
 
     ///////////////////////////////////////////////////////
@@ -160,5 +160,32 @@ public class HistoryRecordManager {
 
     private boolean isSearchHistoryEnabled() {
         return sharedPreferences.getBoolean(searchHistoryKey, false);
+    }
+
+    ///////////////////////////////////////////////////////
+    // Stream State History
+    ///////////////////////////////////////////////////////
+
+    @SuppressWarnings("unused")
+    public Maybe<StreamStateEntity> loadStreamState(final StreamInfo info) {
+        return Maybe.fromCallable(() -> streamTable.upsert(new StreamEntity(info)))
+                .flatMap(streamId -> streamStateTable.getState(streamId).firstElement())
+                .flatMap(states -> states.isEmpty() ? Maybe.empty() : Maybe.just(states.get(0)))
+                .subscribeOn(Schedulers.io());
+    }
+
+    public Maybe<Long> saveStreamState(@NonNull final StreamInfo info, final long progressTime) {
+        return Maybe.fromCallable(() -> database.runInTransaction(() -> {
+            final long streamId = streamTable.upsert(new StreamEntity(info));
+            return streamStateTable.upsert(new StreamStateEntity(streamId, progressTime));
+        })).subscribeOn(Schedulers.io());
+    }
+
+    ///////////////////////////////////////////////////////
+    // Utility
+    ///////////////////////////////////////////////////////
+
+    public Single<Integer> removeOrphanedRecords() {
+        return Single.fromCallable(streamTable::deleteOrphans).subscribeOn(Schedulers.io());
     }
 }
