@@ -469,7 +469,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         return debouncedSaveSignal
                 .debounce(SAVE_DEBOUNCE_MILLIS, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnDispose(this::saveJoin)
                 .subscribe(ignored -> saveJoin());
     }
 

@@ -14,7 +14,7 @@ import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.JO
 import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.PLAYLIST_STREAM_JOIN_TABLE;
 
 @Entity(tableName = PLAYLIST_STREAM_JOIN_TABLE,
-        primaryKeys = {JOIN_PLAYLIST_ID, JOIN_STREAM_ID, JOIN_INDEX},
+        primaryKeys = {JOIN_PLAYLIST_ID, JOIN_INDEX},
         indices = {
                 @Index(value = {JOIN_PLAYLIST_ID, JOIN_INDEX}, unique = true),
                 @Index(value = {JOIN_STREAM_ID})

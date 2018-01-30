@@ -222,11 +222,16 @@ public abstract class HistoryFragment<E> extends BaseFragment
     @Override
     public void onDestroy() {
         super.onDestroy();
+
+        if (disposables != null) disposables.dispose();
+        if (historySubscription != null) historySubscription.cancel();
+
         mSharedPreferences.unregisterOnSharedPreferenceChangeListener(mHistoryIsEnabledChangeListener);
         mSharedPreferences = null;
         mHistoryIsEnabledChangeListener = null;
         mHistoryIsEnabledKey = null;
-        if (disposables != null) disposables.dispose();
+        historySubscription = null;
+        disposables = null;
     }
 
     @Override
