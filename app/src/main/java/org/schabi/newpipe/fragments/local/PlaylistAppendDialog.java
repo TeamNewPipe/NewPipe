@@ -1,5 +1,6 @@
 package org.schabi.newpipe.fragments.local;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,12 +26,15 @@ import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 
 public final class PlaylistAppendDialog extends PlaylistDialog {
     private static final String TAG = PlaylistAppendDialog.class.getCanonicalName();
 
     private RecyclerView playlistRecyclerView;
     private LocalItemListAdapter playlistAdapter;
+
+    private Disposable playlistReactor;
 
     public static PlaylistAppendDialog fromStreamInfo(final StreamInfo info) {
         PlaylistAppendDialog dialog = new PlaylistAppendDialog();
@@ -68,6 +72,15 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         playlistAdapter = new LocalItemListAdapter(getActivity());
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (playlistReactor != null) playlistReactor.dispose();
+        playlistReactor = null;
+        playlistRecyclerView = null;
+        playlistAdapter = null;
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -99,18 +112,20 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                     return;
 
                 final long playlistId = ((PlaylistMetadataEntry) selectedItem).uid;
-                final Toast successToast = Toast.makeText(getContext(),
-                        R.string.playlist_add_stream_success, Toast.LENGTH_SHORT);
+                @SuppressLint("ShowToast")
+                final Toast successToast = Toast.makeText(getContext(), R.string.playlist_add_stream_success,
+                        Toast.LENGTH_SHORT);
 
                 playlistManager.appendToPlaylist(playlistId, getStreams())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(ignored -> successToast.show());
+                        .doOnDispose(successToast::show)
+                        .subscribe(ignored -> {});
 
                 getDialog().dismiss();
             }
         });
 
-        playlistManager.getPlaylists()
+        playlistReactor = playlistManager.getPlaylists()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(metadataEntries -> {
                     if (metadataEntries.isEmpty()) {
@@ -118,9 +133,13 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                         return;
                     }
 
-                    playlistAdapter.clearStreamItemList();
-                    playlistAdapter.addItems(metadataEntries);
-                    playlistRecyclerView.setVisibility(View.VISIBLE);
+                    if (playlistAdapter != null) {
+                        playlistAdapter.clearStreamItemList();
+                        playlistAdapter.addItems(metadataEntries);
+                    }
+                    if (playlistRecyclerView != null) {
+                        playlistRecyclerView.setVisibility(View.VISIBLE);
+                    }
                 });
     }
 
