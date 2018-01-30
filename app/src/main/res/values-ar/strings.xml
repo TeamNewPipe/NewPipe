@@ -176,13 +176,13 @@
 
     <string name="no_subscribers">صفر لا تقم با الإختيار (في بعض اللغات) لأنها ليست \"حالة خاصة\" للأندرويد</string>
     <plurals name="subscribers">
-	    <item quantity="zero">صفر</item>
-	    <item quantity="one">واحد</item>
-	    <item quantity="two">اثنان</item>
-	    <item quantity="few">قليل</item>
-	    <item quantity="many">كثير</item>
-	    <item quantity="other">أخرى</item>
-    </plurals>
+	<item quantity="zero">صفر</item>
+	<item quantity="one">%s مشترك</item>
+	<item quantity="two">اثنان</item>
+	<item quantity="few">قليل</item>
+	<item quantity="many">كثير</item>
+	<item quantity="other">%s مشتركون</item>
+</plurals>
 
     <string name="no_views">لاتوجد مشاهدات</string>
     <string name="no_videos">لاتوجد فديوهات</string>
@@ -266,20 +266,20 @@
     <string name="hold_to_append">اضغط للإدراج بقائمة الانتظار</string>
     <plurals name="views">
 	<item quantity="zero">صفر</item>
-	<item quantity="one">واحد</item>
+	<item quantity="one">%s مشاهدة</item>
 	<item quantity="two">اثنان</item>
 	<item quantity="few">قليل</item>
 	<item quantity="many">كثير</item>
-	<item quantity="other">أخرى</item>
+	<item quantity="other">%s مشاهدات</item>
 </plurals>
 
     <plurals name="videos">
 	<item quantity="zero">صفر</item>
-	<item quantity="one">واحد</item>
+	<item quantity="one">%s فيديو</item>
 	<item quantity="two">اثنان</item>
 	<item quantity="few">قليل</item>
 	<item quantity="many">كثير</item>
-	<item quantity="other">أخرى</item>
+	<item quantity="other">%s فيديوهات</item>
 </plurals>
 
     <string name="recaptcha_request_toast">إعادة طلب كلمة التحقق</string>
@@ -301,4 +301,9 @@
     <string name="service_title">الخدمة</string>
     <string name="drawer_open">فتح الدرج</string>
     <string name="drawer_close">إغلاق الدرج</string>
+    <string name="always">دائمًا</string>
+    <string name="just_once">مرة واحدة فقط</string>
+
+    <string name="invalid_url_toast">العنوان خاطئ</string>
+    <string name="preferred_player_share_menu_title">\@string/preferred_player_settings_title</string>
     </resources>
