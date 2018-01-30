@@ -45,18 +45,14 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
     public final TextView itemDurationView;
     public final TextView itemAdditionalDetails;
 
-    LocalStatisticStreamItemHolder(LocalItemBuilder infoItemBuilder, int layoutId, ViewGroup parent) {
-        super(infoItemBuilder, layoutId, parent);
+    public LocalStatisticStreamItemHolder(LocalItemBuilder infoItemBuilder, ViewGroup parent) {
+        super(infoItemBuilder, R.layout.list_stream_item, parent);
 
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
         itemVideoTitleView = itemView.findViewById(R.id.itemVideoTitleView);
         itemUploaderView = itemView.findViewById(R.id.itemUploaderView);
         itemDurationView = itemView.findViewById(R.id.itemDurationView);
         itemAdditionalDetails = itemView.findViewById(R.id.itemAdditionalDetails);
-    }
-
-    public LocalStatisticStreamItemHolder(LocalItemBuilder infoItemBuilder, ViewGroup parent) {
-        this(infoItemBuilder, R.layout.list_stream_item, parent);
     }
 
     private String getStreamInfoDetailLine(final StreamStatisticsEntry entry,
@@ -88,8 +84,7 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         itemAdditionalDetails.setText(getStreamInfoDetailLine(item, dateFormat));
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        itemBuilder.getImageLoader().displayImage(item.thumbnailUrl, itemThumbnailView,
-                DISPLAY_THUMBNAIL_OPTIONS);
+        itemBuilder.displayImage(item.thumbnailUrl, itemThumbnailView, DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnItemSelectedListener() != null) {

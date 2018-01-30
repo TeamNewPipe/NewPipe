@@ -249,7 +249,7 @@ public abstract class StatisticsPlaylistFragment
         animateView(headerRootLayout, true, 100);
         animateView(itemsList, true, 300);
 
-        itemListAdapter.addInfoItemList(processResult(result));
+        itemListAdapter.addItems(processResult(result));
         if (itemsListState != null) {
             itemsList.getLayoutManager().onRestoreInstanceState(itemsListState);
             itemsListState = null;

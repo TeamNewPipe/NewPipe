@@ -239,7 +239,7 @@ public class BookmarkFragment extends BaseStateFragment<List<PlaylistMetadataEnt
         if (result.isEmpty()) {
             showEmptyState();
         } else {
-            itemListAdapter.addInfoItemList(infoItemsOf(result));
+            itemListAdapter.addItems(infoItemsOf(result));
             if (itemsListState != null) {
                 itemsList.getLayoutManager().onRestoreInstanceState(itemsListState);
                 itemsListState = null;

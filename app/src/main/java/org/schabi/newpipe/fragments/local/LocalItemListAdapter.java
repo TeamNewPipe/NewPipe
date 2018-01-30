@@ -69,10 +69,10 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         localItemBuilder.setOnItemSelectedListener(listener);
     }
 
-    public void addInfoItemList(List<? extends LocalItem> data) {
+    public void addItems(List<? extends LocalItem> data) {
         if (data != null) {
             if (DEBUG) {
-                Log.d(TAG, "addInfoItemList() before > localItems.size() = " +
+                Log.d(TAG, "addItems() before > localItems.size() = " +
                         localItems.size() + ", data.size() = " + data.size());
             }
 
@@ -80,7 +80,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
             localItems.addAll(data);
 
             if (DEBUG) {
-                Log.d(TAG, "addInfoItemList() after > offsetStart = " + offsetStart +
+                Log.d(TAG, "addItems() after > offsetStart = " + offsetStart +
                         ", localItems.size() = " + localItems.size() +
                         ", header = " + header + ", footer = " + footer +
                         ", showFooter = " + showFooter);
@@ -92,7 +92,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                 int footerNow = sizeConsideringHeader();
                 notifyItemMoved(offsetStart, footerNow);
 
-                if (DEBUG) Log.d(TAG, "addInfoItemList() footer from " + offsetStart +
+                if (DEBUG) Log.d(TAG, "addItems() footer from " + offsetStart +
                         " to " + footerNow);
             }
         }

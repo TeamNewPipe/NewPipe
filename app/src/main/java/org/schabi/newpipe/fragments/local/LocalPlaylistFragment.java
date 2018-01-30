@@ -349,7 +349,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         animateView(headerRootLayout, true, 100);
         animateView(itemsList, true, 300);
 
-        itemListAdapter.addInfoItemList(result);
+        itemListAdapter.addItems(result);
         if (itemsListState != null) {
             itemsList.getLayoutManager().onRestoreInstanceState(itemsListState);
             itemsListState = null;

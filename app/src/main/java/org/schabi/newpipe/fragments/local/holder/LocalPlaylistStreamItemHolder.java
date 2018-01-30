@@ -1,5 +1,6 @@
 package org.schabi.newpipe.fragments.local.holder;
 
+import android.graphics.Bitmap;
 import android.support.v4.content.ContextCompat;
 import android.view.MotionEvent;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
@@ -59,8 +61,7 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        itemBuilder.getImageLoader().displayImage(item.thumbnailUrl, itemThumbnailView,
-                LocalPlaylistStreamItemHolder.DISPLAY_THUMBNAIL_OPTIONS);
+        itemBuilder.displayImage(item.thumbnailUrl, itemThumbnailView, DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnItemSelectedListener() != null) {

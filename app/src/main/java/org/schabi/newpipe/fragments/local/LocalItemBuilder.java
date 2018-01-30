@@ -1,8 +1,12 @@
 package org.schabi.newpipe.fragments.local;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.widget.ImageView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.process.BitmapProcessor;
 
 import org.schabi.newpipe.database.LocalItem;
 
@@ -42,8 +46,9 @@ public class LocalItemBuilder {
         return context;
     }
 
-    public ImageLoader getImageLoader() {
-        return imageLoader;
+    public void displayImage(final String url, final ImageView view,
+                             final DisplayImageOptions options) {
+        imageLoader.displayImage(url, view, options);
     }
 
     public OnLocalItemGesture<LocalItem> getOnItemSelectedListener() {

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
@@ -80,7 +81,9 @@ public class App extends Application {
         initNotificationChannel();
 
         // Initialize image loader
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+                .memoryCache(new WeakMemoryCache())
+                .build();
         ImageLoader.getInstance().init(config);
 
         configureRxJavaErrorHandler();

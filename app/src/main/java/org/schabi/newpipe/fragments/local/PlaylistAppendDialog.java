@@ -119,7 +119,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                     }
 
                     playlistAdapter.clearStreamItemList();
-                    playlistAdapter.addInfoItemList(metadataEntries);
+                    playlistAdapter.addItems(metadataEntries);
                     playlistRecyclerView.setVisibility(View.VISIBLE);
                 });
     }

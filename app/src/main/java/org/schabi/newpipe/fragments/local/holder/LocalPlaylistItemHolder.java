@@ -43,8 +43,7 @@ public class LocalPlaylistItemHolder extends LocalItemHolder {
         itemStreamCountView.setText(String.valueOf(item.streamCount));
         itemUploaderView.setVisibility(View.INVISIBLE);
 
-        itemBuilder.getImageLoader().displayImage(item.thumbnailUrl, itemThumbnailView,
-                DISPLAY_THUMBNAIL_OPTIONS);
+        itemBuilder.displayImage(item.thumbnailUrl, itemThumbnailView, DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnItemSelectedListener() != null) {
