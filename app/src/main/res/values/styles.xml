@@ -1,6 +1,15 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <style name="OpeningTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="colorAccent">@android:color/transparent</item>
+
+        <item name="android:windowBackground">@color/dark_background_color</item>
+    </style>
+
+    <!-- Base themes -->
+
     <style name="LightTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/light_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
@@ -30,6 +39,8 @@
         <item name="search_add">@drawable/ic_arrow_top_left_black_24dp</item>
         <item name="options">@drawable/ic_more_vert_black_24dp</item>
         <item name="play">@drawable/ic_play_arrow_black_24dp</item>
+        <item name="ic_hot">@drawable/ic_whatshot_black_24dp</item>
+        <item name="ic_channel">@drawable/ic_channel_black_24dp</item>
 
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
@@ -42,7 +53,10 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
-    <!-- Dark Theme-->
+    <style name="LightTheme.Switchable">
+        <item name="android:windowAnimationStyle">@style/SwitchAnimation</item>
+    </style>
+
     <style name="DarkTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/dark_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_youtube_dark_color</item>
@@ -72,6 +86,8 @@
         <item name="search_add">@drawable/ic_arrow_top_left_white_24dp</item>
         <item name="options">@drawable/ic_more_vert_white_24dp</item>
         <item name="play">@drawable/ic_play_arrow_white_24dp</item>
+        <item name="ic_hot">@drawable/ic_whatshot_white_24dp</item>
+        <item name="ic_channel">@drawable/ic_channel_white_24dp</item>
 
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>
@@ -84,10 +100,19 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
+    <style name="DarkTheme.Switchable">
+        <item name="android:windowAnimationStyle">@style/SwitchAnimation</item>
+    </style>
+
     <style name="BlackTheme" parent="DarkTheme">
         <item name="android:windowBackground">@color/black_background_color</item>
+
         <item name="separator_color">@color/black_separator_color</item>
         <item name="contrast_background_color">@color/black_contrast_background_color</item>
+    </style>
+
+    <style name="BlackTheme.Switchable">
+        <item name="android:windowAnimationStyle">@style/SwitchAnimation</item>
     </style>
 
     <!-- Settings -->
@@ -103,83 +128,32 @@
         <item name="colorAccent">@color/black_settings_accent_color</item>
     </style>
 
-
-    <style name="PlayerTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@android:color/black</item>
+    <style name="SwitchAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/switch_service_in</item>
+        <item name="android:windowExitAnimation">@anim/switch_service_out</item>
     </style>
 
     <style name="Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">18sp</item>
     </style>
 
-
-    <style name="RedButton" parent="Widget.AppCompat.Button.Colored">
-        <item name="colorButtonNormal">@color/subscribe_background_color</item>
-        <item name="android:textColor">@color/subscribe_text_color</item>
-        <item name="colorControlHighlight">@color/dark_ripple_color</item>
-    </style>
-
-    <style name="VideoPlayerTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="OldVideoPlayerTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/light_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
         <item name="colorAccent">@color/light_youtube_accent_color</item>
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowActionBarOverlay">true</item>
         <item name="windowActionBarOverlay">true</item>
-        <item name="android:actionBarStyle">@style/VideoPlayerActionBarTheme</item>
-        <item name="actionBarStyle">@style/VideoPlayerActionBarTheme</item>
+        <item name="android:actionBarStyle">@style/OldVideoPlayerActionBarTheme</item>
+        <item name="actionBarStyle">@style/OldVideoPlayerActionBarTheme</item>
         <item name="android:windowBackground">@android:color/black</item>
     </style>
 
-    <style name="VideoPlayerActionBarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+    <style name="OldVideoPlayerActionBarTheme" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:displayOptions">showHome</item>
         <item name="displayOptions">showHome</item>
         <item name="android:background">@color/video_overlay_color</item>
         <item name="background">@color/video_overlay_color</item>
-    </style>
-
-    <style name="FilePickerThemeLight" parent="NNF_BaseTheme.Light">
-        <item name="colorPrimary">@color/light_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
-        <item name="colorAccent">@color/light_youtube_accent_color</item>
-        <item name="android:background">@color/light_background_color</item>
-        <item name="nnf_separator_color">@color/light_separator_color</item>
-
-        <item name="alertDialogTheme">@style/FilePickerAlertDialogThemeLight</item>
-        <item name="nnf_toolbarTheme">@style/FilePickerToolbarLight</item>
-    </style>
-
-    <style name="FilePickerAlertDialogThemeLight" parent="Theme.AppCompat.Dialog.Alert">
-        <item name="colorPrimary">@color/light_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
-        <item name="colorAccent">@color/light_youtube_accent_color</item>
-    </style>
-
-    <style name="FilePickerToolbarLight" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:background">@color/light_youtube_primary_color</item>
-    </style>
-
-    <style name="FilePickerThemeDark" parent="FilePickerThemeLight">
-        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/dark_youtube_dark_color</item>
-        <item name="colorAccent">@color/dark_youtube_accent_color</item>
-        <item name="android:background">@color/dark_background_color</item>
-        <item name="android:textColorPrimary">@color/dark_youtube_accent_color</item>
-        <item name="nnf_separator_color">@color/black_separator_color</item>
-
-        <item name="alertDialogTheme">@style/FilePickerAlertDialogThemeDark</item>
-        <item name="nnf_toolbarTheme">@style/FilePickerToolbarDark</item>
-    </style>
-
-    <style name="FilePickerAlertDialogThemeDark" parent="Theme.AppCompat.Dialog.Alert">
-        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
-        <item name="colorPrimaryDark">@color/dark_youtube_dark_color</item>
-        <item name="colorAccent">@color/dark_youtube_accent_color</item>
-    </style>
-
-    <style name="FilePickerToolbarDark" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:background">@color/dark_youtube_primary_color</item>
     </style>
 
     <style name="RouterActivityThemeLight" parent="LightTheme">
