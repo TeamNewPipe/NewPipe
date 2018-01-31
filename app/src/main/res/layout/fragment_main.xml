@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="@color/dark_youtube_primary_color"
+        android:background="?attr/colorPrimary"
         app:tabGravity="fill"/>
 
     <android.support.v4.view.ViewPager

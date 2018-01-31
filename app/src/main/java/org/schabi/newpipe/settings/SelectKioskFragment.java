@@ -14,20 +14,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.fragments.subscription.SubscriptionService;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.KioskTranslator;
-import org.schabi.newpipe.util.ServiceIconMapper;
+import org.schabi.newpipe.util.ServiceHelper;
 
 import java.util.List;
 import java.util.Vector;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Christian Schabesberger on 09.10.17.
@@ -125,13 +121,15 @@ public class SelectKioskFragment extends DialogFragment {
                 throws Exception {
 
             for(StreamingService service : NewPipe.getServices()) {
+                //TODO: Multi-service support
+                if (service.getServiceId() != ServiceList.YouTube.getId()) continue;
+
                 for(String kioskId : service.getKioskList().getAvailableKiosks()) {
                     String name = String.format(getString(R.string.service_kiosk_string),
                             service.getServiceInfo().name,
                             KioskTranslator.getTranslatedKioskName(kioskId, getContext()));
                     kioskList.add(new Entry(
-                            //ServiceIconMapper.getIconResource(service.getServiceId()),
-                            ServiceIconMapper.getIconResource(-1),
+                            ServiceHelper.getIcon(service.getServiceId()),
                             service.getServiceId(),
                             kioskId,
                             name));
@@ -140,9 +138,7 @@ public class SelectKioskFragment extends DialogFragment {
         }
 
         public int getItemCount() {
-            //todo: uncommend this line on multyservice support
-            //return kioskList.size();
-            return 1;
+            return kioskList.size();
         }
 
         public SelectKioskItemHolder onCreateViewHolder(ViewGroup parent, int type) {

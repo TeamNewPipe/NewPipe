@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="ic_launcher_background">#CD201F</color>
 
     <!-- Light Theme -->
     <color name="light_background_color">#EEEEEE</color>
-    <color name="light_youtube_primary_color">#e53935</color>
-    <color name="light_youtube_dark_color">#d32f2f</color>
-    <color name="light_youtube_accent_color">#000000</color>
     <color name="light_settings_accent_color">#e53935</color>
     <color name="light_separator_color">#32000000</color>
     <color name="light_ripple_color">#48868686</color>
@@ -18,9 +16,6 @@
 
     <!-- Dark Theme -->
     <color name="dark_background_color">#222222</color>
-    <color name="dark_youtube_primary_color">#CD322E</color>
-    <color name="dark_youtube_dark_color">#BC211D</color>
-    <color name="dark_youtube_accent_color">#FFFFFF</color>
     <color name="dark_settings_accent_color">#ff5252</color>
     <color name="dark_separator_color">#0affffff</color>
     <color name="dark_ripple_color">#48ffffff</color>

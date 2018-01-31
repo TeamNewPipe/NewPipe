@@ -328,5 +328,4 @@
     
     <string name="preferred_player_fetcher_notification_title">Obtention des infos…</string>
     <string name="preferred_player_fetcher_notification_message">Le contenu demandé est en chargement</string>
-<string name="preferred_player_share_menu_title">\@string/preferred_player_settings_title</string>
     </resources>
