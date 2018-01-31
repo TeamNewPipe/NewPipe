@@ -390,6 +390,5 @@
     <string name="playlist_creation_success">Playlist successfully created</string>
     <string name="playlist_add_stream_success">Added to playlist</string>
     <string name="playlist_thumbnail_change_success">Playlist thumbnail changed</string>
-    <string name="playlist_rename_success">Playlist renamed</string>
-    <string name="playlist_delete_success">Playlist deleted</string>
+    <string name="playlist_delete_failure">Failed to delete playlist</string>
 </resources>

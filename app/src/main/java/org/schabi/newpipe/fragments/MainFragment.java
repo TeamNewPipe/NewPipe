@@ -229,10 +229,6 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 ChannelFragment fragment = ChannelFragment.getInstance(serviceId, url, name);
                 fragment.useAsFrontPage(true);
                 return fragment;
-            } else if (setMainPage.equals(getString(R.string.bookmark_page_key))) {
-                final BookmarkFragment fragment = new BookmarkFragment();
-                fragment.useAsFrontPage(true);
-                return fragment;
             } else {
                 return new BlankFragment();
             }

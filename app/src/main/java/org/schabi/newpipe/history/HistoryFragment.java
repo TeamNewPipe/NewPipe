@@ -14,6 +14,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -173,10 +174,19 @@ public abstract class HistoryFragment<E> extends BaseFragment
 
         final Disposable deletion = delete(itemsToDelete)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe();
+                .subscribe(
+                        ignored -> Log.d(TAG, "Clear history deleted [" +
+                        itemsToDelete.size() + "] items."),
+                        error -> Log.e(TAG, "Clear history delete step failed", error)
+                );
+
         final Disposable cleanUp = historyRecordManager.removeOrphanedRecords()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe();
+                .subscribe(
+                        ignored -> Log.d(TAG, "Clear history deleted orphaned stream records"),
+                        error -> Log.e(TAG, "Clear history remove orphaned records failed", error)
+                );
+
         disposables.addAll(deletion, cleanUp);
 
         makeSnackbar(R.string.history_cleared);

@@ -6,7 +6,7 @@ import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import java.util.Collections;
 import java.util.List;
 
-public class WatchHistoryFragment extends StatisticsPlaylistFragment {
+public final class WatchHistoryFragment extends StatisticsPlaylistFragment {
     @Override
     protected String getName() {
         return getString(R.string.title_watch_history);

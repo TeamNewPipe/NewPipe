@@ -676,7 +676,11 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         }
 
         // TODO: update exoplayer to 2.6.x in order to register view count on repeated streams
-        databaseUpdateReactor.add(recordManager.onViewed(currentInfo).subscribe());
+        databaseUpdateReactor.add(recordManager.onViewed(currentInfo).onErrorComplete()
+                .subscribe(
+                        ignored -> {/* successful */},
+                        error -> Log.e(TAG, "Player onViewed() failure: ", error)
+                ));
         initThumbnail(info == null ? item.getThumbnailUrl() : info.thumbnail_url);
     }
 
@@ -844,7 +848,10 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         final Disposable stateSaver = recordManager.saveStreamState(info, progress)
                 .observeOn(AndroidSchedulers.mainThread())
                 .onErrorComplete()
-                .subscribe();
+                .subscribe(
+                        ignored -> {/* successful */},
+                        error -> Log.e(TAG, "savePlaybackState() failure: ", error)
+                );
         databaseUpdateReactor.add(stateSaver);
     }
 

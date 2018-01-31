@@ -11,9 +11,12 @@
         android:id="@+id/playlist_title_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="6dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_toLeftOf="@id/playlist_stream_count"
         android:layout_toStartOf="@id/playlist_stream_count"
         android:background="?attr/selectableItemBackground"
@@ -26,7 +29,7 @@
         android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/playlist_detail_title_text_size"
-        tools:text="Mix musics #23 title Lorem ipsum dolor sit amet, consectetur..." />
+        tools:text="Mix musics #23 title Lorem ipsum dolor sit amet, consectetur..."/>
 
     <TextView
         android:id="@+id/playlist_stream_count"
@@ -34,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/playlist_title_view"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="6dp"
+        android:padding="6dp"
         android:ellipsize="end"
         android:gravity="right|center_vertical"
         android:maxLines="1"

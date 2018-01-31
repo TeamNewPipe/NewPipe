@@ -32,13 +32,9 @@ import java.util.List;
 import icepick.State;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
-import static org.schabi.newpipe.util.AnimationUtils.animateView;
-
 public abstract class StatisticsPlaylistFragment
         extends BaseLocalListFragment<List<StreamStatisticsEntry>, Void> {
 
-    private View headerRootLayout;
-    private View playlistControl;
     private View headerPlayAllButton;
     private View headerPopupButton;
     private View headerBackgroundButton;
@@ -59,13 +55,13 @@ public abstract class StatisticsPlaylistFragment
     protected abstract List<StreamStatisticsEntry> processResult(final List<StreamStatisticsEntry> results);
 
     ///////////////////////////////////////////////////////////////////////////
-    // Fragment LifeCycle
+    // Fragment LifeCycle - Creation
     ///////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        recordManager = new HistoryRecordManager(context);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        recordManager = new HistoryRecordManager(getContext());
     }
 
     @Override
@@ -75,46 +71,23 @@ public abstract class StatisticsPlaylistFragment
         return inflater.inflate(R.layout.fragment_playlist, container, false);
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        itemsListState = itemsList.getLayoutManager().onSaveInstanceState();
-    }
-
-    @Override
-    public void onDestroyView() {
-        if (databaseSubscription != null) databaseSubscription.cancel();
-        super.onDestroyView();
-    }
-
-    @Override
-    public void onDestroy() {
-        if (databaseSubscription != null) databaseSubscription.cancel();
-        databaseSubscription = null;
-        recordManager = null;
-
-        super.onDestroy();
-    }
-
     ///////////////////////////////////////////////////////////////////////////
-    // Fragment Views
+    // Fragment LifeCycle - Views
     ///////////////////////////////////////////////////////////////////////////
 
     @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
-        setFragmentTitle(getName());
+        setTitle(getName());
     }
 
     @Override
     protected View getListHeader() {
-        headerRootLayout = activity.getLayoutInflater().inflate(R.layout.playlist_control,
+        final View headerRootLayout = activity.getLayoutInflater().inflate(R.layout.playlist_control,
                 itemsList, false);
-        playlistControl = headerRootLayout.findViewById(R.id.playlist_control);
         headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_all_button);
         headerPopupButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_popup_button);
         headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_bg_button);
-
         return headerRootLayout;
     }
 
@@ -139,74 +112,47 @@ public abstract class StatisticsPlaylistFragment
                 }
             }
         });
-
-    }
-
-    private void showStreamDialog(final StreamStatisticsEntry item) {
-        final Context context = getContext();
-        final Activity activity = getActivity();
-        if (context == null || context.getResources() == null || getActivity() == null) return;
-        final StreamInfoItem infoItem = item.toStreamInfoItem();
-
-        final String[] commands = new String[]{
-                context.getResources().getString(R.string.enqueue_on_background),
-                context.getResources().getString(R.string.enqueue_on_popup),
-                context.getResources().getString(R.string.start_here_on_main),
-                context.getResources().getString(R.string.start_here_on_background),
-                context.getResources().getString(R.string.start_here_on_popup),
-        };
-
-        final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
-            final int index = Math.max(itemListAdapter.getItemsList().indexOf(item), 0);
-            switch (i) {
-                case 0:
-                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(infoItem));
-                    break;
-                case 1:
-                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(infoItem));
-                    break;
-                case 2:
-                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
-                    break;
-                case 3:
-                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
-                    break;
-                case 4:
-                    NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
-                    break;
-                default:
-                    break;
-            }
-        };
-
-        new InfoItemDialog(getActivity(), infoItem, commands, actions).show();
-    }
-
-    private void resetFragment() {
-        if (databaseSubscription != null) databaseSubscription.cancel();
-        if (itemListAdapter != null) itemListAdapter.clearStreamItemList();
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // Loader
+    // Fragment LifeCycle - Loading
     ///////////////////////////////////////////////////////////////////////////
-
-    @Override
-    public void showLoading() {
-        super.showLoading();
-        animateView(headerRootLayout, false, 200);
-        animateView(itemsList, false, 100);
-    }
 
     @Override
     public void startLoading(boolean forceLoad) {
         super.startLoading(forceLoad);
-        resetFragment();
-
         recordManager.getStreamStatistics()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getHistoryObserver());
     }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment LifeCycle - Destruction
+    ///////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        itemsListState = itemsList.getLayoutManager().onSaveInstanceState();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (databaseSubscription != null) databaseSubscription.cancel();
+        databaseSubscription = null;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        recordManager = null;
+        itemsListState = null;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Statistics Loader
+    ///////////////////////////////////////////////////////////////////////////
 
     private Subscriber<List<StreamStatisticsEntry>> getHistoryObserver() {
         return new Subscriber<List<StreamStatisticsEntry>>() {
@@ -246,32 +192,33 @@ public abstract class StatisticsPlaylistFragment
             return;
         }
 
-        animateView(headerRootLayout, true, 100);
-        animateView(itemsList, true, 300);
-
         itemListAdapter.addItems(processResult(result));
         if (itemsListState != null) {
             itemsList.getLayoutManager().onRestoreInstanceState(itemsListState);
             itemsListState = null;
         }
 
-        playlistControl.setVisibility(View.VISIBLE);
         headerPlayAllButton.setOnClickListener(view ->
                 NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
         headerPopupButton.setOnClickListener(view ->
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
         headerBackgroundButton.setOnClickListener(view ->
                 NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue()));
+
         hideLoading();
     }
-
     ///////////////////////////////////////////////////////////////////////////
     // Fragment Error Handling
     ///////////////////////////////////////////////////////////////////////////
 
     @Override
+    protected void resetFragment() {
+        super.resetFragment();
+        if (databaseSubscription != null) databaseSubscription.cancel();
+    }
+
+    @Override
     protected boolean onError(Throwable exception) {
-        resetFragment();
         if (super.onError(exception)) return true;
 
         onUnrecoverableError(exception, UserAction.SOMETHING_ELSE,
@@ -283,10 +230,44 @@ public abstract class StatisticsPlaylistFragment
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected void setFragmentTitle(final String title) {
-        if (activity.getSupportActionBar() != null) {
-            activity.getSupportActionBar().setTitle(title);
-        }
+    private void showStreamDialog(final StreamStatisticsEntry item) {
+        final Context context = getContext();
+        final Activity activity = getActivity();
+        if (context == null || context.getResources() == null || getActivity() == null) return;
+        final StreamInfoItem infoItem = item.toStreamInfoItem();
+
+        final String[] commands = new String[]{
+                context.getResources().getString(R.string.enqueue_on_background),
+                context.getResources().getString(R.string.enqueue_on_popup),
+                context.getResources().getString(R.string.start_here_on_main),
+                context.getResources().getString(R.string.start_here_on_background),
+                context.getResources().getString(R.string.start_here_on_popup),
+        };
+
+        final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
+            final int index = Math.max(itemListAdapter.getItemsList().indexOf(item), 0);
+            switch (i) {
+                case 0:
+                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(infoItem));
+                    break;
+                case 1:
+                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(infoItem));
+                    break;
+                case 2:
+                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
+                    break;
+                case 3:
+                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
+                    break;
+                case 4:
+                    NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        new InfoItemDialog(getActivity(), infoItem, commands, actions).show();
     }
 
     private PlayQueue getPlayQueue() {

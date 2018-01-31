@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,6 @@ import java.util.concurrent.TimeUnit;
 
 import icepick.State;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.subjects.PublishSubject;
 
@@ -51,8 +51,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private View headerRootLayout;
     private TextView headerTitleView;
     private TextView headerStreamCount;
-    private View playlistControl;
 
+    private View playlistControl;
     private View headerPlayAllButton;
     private View headerPopupButton;
     private View headerBackgroundButton;
@@ -66,10 +66,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     private ItemTouchHelper itemTouchHelper;
 
-    /* Used for independent events */
-    private CompositeDisposable disposables = new CompositeDisposable();
-    private Subscription databaseSubscription;
     private LocalPlaylistManager playlistManager;
+    private Subscription databaseSubscription;
 
     private PublishSubject<Long> debouncedSaveSignal;
     private Disposable debouncedSaver;
@@ -81,13 +79,14 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // Fragment LifeCycle
+    // Fragment LifeCycle - Creation
     ///////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        playlistManager = new LocalPlaylistManager(NewPipeDatabase.getInstance(context));
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        playlistManager = new LocalPlaylistManager(NewPipeDatabase.getInstance(getContext()));
+        debouncedSaveSignal = PublishSubject.create();
     }
 
     @Override
@@ -97,53 +96,23 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         return inflater.inflate(R.layout.fragment_playlist, container, false);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        debouncedSaveSignal = PublishSubject.create();
-        debouncedSaver = getDebouncedSaver();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        if (debouncedSaveSignal != null) debouncedSaveSignal.onComplete();
-        if (debouncedSaver != null) debouncedSaver.dispose();
-
-        debouncedSaveSignal = null;
-        debouncedSaver = null;
-
-        itemsListState = itemsList.getLayoutManager().onSaveInstanceState();
-    }
-
-    @Override
-    public void onDestroyView() {
-        if (disposables != null) disposables.clear();
-
-        super.onDestroyView();
-    }
-
-    @Override
-    public void onDestroy() {
-        if (disposables != null) disposables.dispose();
-        if (databaseSubscription != null) databaseSubscription.cancel();
-
-        disposables = null;
-        databaseSubscription = null;
-        playlistManager = null;
-
-        super.onDestroy();
-    }
-
     ///////////////////////////////////////////////////////////////////////////
-    // Fragment Views
+    // Fragment Lifecycle - Views
     ///////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void setTitle(final String title) {
+        super.setTitle(title);
+
+        if (headerTitleView != null) {
+            headerTitleView.setText(title);
+        }
+    }
 
     @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
-        setFragmentTitle(name);
+        setTitle(name);
     }
 
     @Override
@@ -155,6 +124,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         headerTitleView.setSelected(true);
 
         headerStreamCount = headerRootLayout.findViewById(R.id.playlist_stream_count);
+
         playlistControl = headerRootLayout.findViewById(R.id.playlist_control);
         headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_all_button);
         headerPopupButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_popup_button);
@@ -166,6 +136,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     @Override
     protected void initListeners() {
         super.initListeners();
+
+        headerTitleView.setOnClickListener(view -> createRenameDialog());
 
         itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(itemsList);
@@ -192,8 +164,235 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 if (itemTouchHelper != null) itemTouchHelper.startDrag(viewHolder);
             }
         });
-        headerTitleView.setOnClickListener(view -> createRenameDialog());
     }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment Lifecycle - Loading
+    ///////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void showLoading() {
+        super.showLoading();
+        animateView(headerRootLayout, false, 200);
+        animateView(playlistControl, false, 200);
+    }
+
+    @Override
+    public void hideLoading() {
+        super.hideLoading();
+        animateView(headerRootLayout, true, 200);
+        animateView(playlistControl, true, 200);
+    }
+
+    @Override
+    public void startLoading(boolean forceLoad) {
+        super.startLoading(forceLoad);
+
+        if (debouncedSaver != null) debouncedSaver.dispose();
+        debouncedSaver = getDebouncedSaver();
+
+        playlistManager.getPlaylistStreams(playlistId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getPlaylistObserver());
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment Lifecycle - Destruction
+    ///////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        itemsListState = itemsList.getLayoutManager().onSaveInstanceState();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (databaseSubscription != null) databaseSubscription.cancel();
+        if (debouncedSaver != null) debouncedSaver.dispose();
+
+        databaseSubscription = null;
+        debouncedSaver = null;
+        itemTouchHelper = null;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (debouncedSaveSignal != null) debouncedSaveSignal.onComplete();
+
+        debouncedSaveSignal = null;
+        playlistManager = null;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Playlist Stream Loader
+    ///////////////////////////////////////////////////////////////////////////
+
+    private Subscriber<List<PlaylistStreamEntry>> getPlaylistObserver() {
+        return new Subscriber<List<PlaylistStreamEntry>>() {
+            @Override
+            public void onSubscribe(Subscription s) {
+                showLoading();
+
+                if (databaseSubscription != null) databaseSubscription.cancel();
+                databaseSubscription = s;
+                databaseSubscription.request(1);
+            }
+
+            @Override
+            public void onNext(List<PlaylistStreamEntry> streams) {
+                // Do not allow saving while the result is being updated
+                if (debouncedSaver != null) debouncedSaver.dispose();
+                handleResult(streams);
+                debouncedSaver = getDebouncedSaver();
+
+                if (databaseSubscription != null) databaseSubscription.request(1);
+            }
+
+            @Override
+            public void onError(Throwable exception) {
+                LocalPlaylistFragment.this.onError(exception);
+            }
+
+            @Override
+            public void onComplete() {}
+        };
+    }
+
+    @Override
+    public void handleResult(@NonNull List<PlaylistStreamEntry> result) {
+        super.handleResult(result);
+        itemListAdapter.clearStreamItemList();
+
+        if (result.isEmpty()) {
+            showEmptyState();
+            return;
+        }
+
+        itemListAdapter.addItems(result);
+        if (itemsListState != null) {
+            itemsList.getLayoutManager().onRestoreInstanceState(itemsListState);
+            itemsListState = null;
+        }
+        setVideoCount(itemListAdapter.getItemsList().size());
+
+        headerPlayAllButton.setOnClickListener(view ->
+                NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
+        headerPopupButton.setOnClickListener(view ->
+                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
+        headerBackgroundButton.setOnClickListener(view ->
+                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue()));
+
+        hideLoading();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Fragment Error Handling
+    ///////////////////////////////////////////////////////////////////////////
+
+    @Override
+    protected void resetFragment() {
+        super.resetFragment();
+        if (databaseSubscription != null) databaseSubscription.cancel();
+    }
+
+    @Override
+    protected boolean onError(Throwable exception) {
+        if (super.onError(exception)) return true;
+
+        onUnrecoverableError(exception, UserAction.SOMETHING_ELSE,
+                "none", "Local Playlist", R.string.general_error);
+        return true;
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Playlist Metadata/Streams Manipulation
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private void createRenameDialog() {
+        if (playlistId == null || name == null || getContext() == null) return;
+
+        final View dialogView = View.inflate(getContext(), R.layout.dialog_playlist_name, null);
+        EditText nameEdit = dialogView.findViewById(R.id.playlist_name);
+        nameEdit.setText(name);
+        nameEdit.setSelection(nameEdit.getText().length());
+
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext())
+                .setTitle(R.string.rename_playlist)
+                .setView(dialogView)
+                .setCancelable(true)
+                .setNegativeButton(R.string.cancel, null)
+                .setPositiveButton(R.string.create, (dialogInterface, i) ->
+                        changePlaylistName(nameEdit.getText().toString())
+                );
+
+        dialogBuilder.show();
+    }
+
+    private void changePlaylistName(final String name) {
+        this.name = name;
+        setTitle(name);
+
+        Log.e(TAG, "Updating playlist id=[" + playlistId +
+                "] with new name=[" + name + "] items");
+
+        playlistManager.renamePlaylist(playlistId, name)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(longs -> {/*Do nothing on success*/}, this::onError);
+    }
+
+    private void changeThumbnailUrl(final String thumbnailUrl) {
+        final Toast successToast = Toast.makeText(getActivity(),
+                R.string.playlist_thumbnail_change_success,
+                Toast.LENGTH_SHORT);
+
+        Log.e(TAG, "Updating playlist id=[" + playlistId +
+                "] with new thumbnail url=[" + thumbnailUrl + "]");
+
+        playlistManager.changePlaylistThumbnail(playlistId, thumbnailUrl)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(ignore -> successToast.show(), this::onError);
+    }
+
+    private void deleteItem(final PlaylistStreamEntry item) {
+        itemListAdapter.removeItem(item);
+        setVideoCount(itemListAdapter.getItemsList().size());
+        saveDebounced();
+    }
+
+    private void saveDebounced() {
+        debouncedSaveSignal.onNext(System.currentTimeMillis());
+    }
+
+    private Disposable getDebouncedSaver() {
+        return debouncedSaveSignal
+                .debounce(SAVE_DEBOUNCE_MILLIS, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(ignored -> saveJoin());
+    }
+
+    private void saveJoin() {
+        final List<LocalItem> items = itemListAdapter.getItemsList();
+        List<Long> streamIds = new ArrayList<>(items.size());
+        for (final LocalItem item : items) {
+            if (item instanceof PlaylistStreamEntry) {
+                streamIds.add(((PlaylistStreamEntry) item).streamId);
+            }
+        }
+
+        Log.e(TAG, "Updating playlist id=[" + playlistId +
+                "] with [" + streamIds.size() + "] items");
+
+        playlistManager.updateJoin(playlistId, streamIds)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(() -> {/*Do nothing on success*/}, this::onError);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Utils
+    //////////////////////////////////////////////////////////////////////////*/
 
     protected void showStreamDialog(final PlaylistStreamEntry item) {
         final Context context = getContext();
@@ -236,9 +435,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     changeThumbnailUrl(item.thumbnailUrl);
                     break;
                 case 6:
-                    itemListAdapter.removeItem(item);
-                    setVideoCount(itemListAdapter.getItemsList().size());
-                    saveDebounced();
+                    deleteItem(item);
                     break;
                 default:
                     break;
@@ -281,122 +478,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         };
     }
 
-    private void resetFragment() {
-        if (disposables != null) disposables.clear();
-        if (databaseSubscription != null) databaseSubscription.cancel();
-        if (itemListAdapter != null) itemListAdapter.clearStreamItemList();
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Loader
-    ///////////////////////////////////////////////////////////////////////////
-
-    @Override
-    public void showLoading() {
-        super.showLoading();
-        animateView(headerRootLayout, false, 200);
-        animateView(itemsList, false, 100);
-    }
-
-    @Override
-    public void startLoading(boolean forceLoad) {
-        super.startLoading(forceLoad);
-        resetFragment();
-
-        playlistManager.getPlaylistStreams(playlistId)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getPlaylistObserver());
-    }
-
-    private Subscriber<List<PlaylistStreamEntry>> getPlaylistObserver() {
-        return new Subscriber<List<PlaylistStreamEntry>>() {
-            @Override
-            public void onSubscribe(Subscription s) {
-                showLoading();
-
-                if (databaseSubscription != null) databaseSubscription.cancel();
-                databaseSubscription = s;
-                databaseSubscription.request(1);
-            }
-
-            @Override
-            public void onNext(List<PlaylistStreamEntry> streams) {
-                handleResult(streams);
-                if (databaseSubscription != null) databaseSubscription.request(1);
-            }
-
-            @Override
-            public void onError(Throwable exception) {
-                LocalPlaylistFragment.this.onError(exception);
-            }
-
-            @Override
-            public void onComplete() {
-            }
-        };
-    }
-
-    @Override
-    public void handleResult(@NonNull List<PlaylistStreamEntry> result) {
-        super.handleResult(result);
-        itemListAdapter.clearStreamItemList();
-
-        if (result.isEmpty()) {
-            showEmptyState();
-            return;
-        }
-
-        animateView(headerRootLayout, true, 100);
-        animateView(itemsList, true, 300);
-
-        itemListAdapter.addItems(result);
-        if (itemsListState != null) {
-            itemsList.getLayoutManager().onRestoreInstanceState(itemsListState);
-            itemsListState = null;
-        }
-        setVideoCount(itemListAdapter.getItemsList().size());
-
-        playlistControl.setVisibility(View.VISIBLE);
-
-        headerPlayAllButton.setOnClickListener(view ->
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
-        headerPopupButton.setOnClickListener(view ->
-                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
-        headerBackgroundButton.setOnClickListener(view ->
-                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue()));
-        hideLoading();
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Fragment Error Handling
-    ///////////////////////////////////////////////////////////////////////////
-
-    @Override
-    protected boolean onError(Throwable exception) {
-        resetFragment();
-        if (super.onError(exception)) return true;
-
-        onUnrecoverableError(exception, UserAction.SOMETHING_ELSE,
-                "none", "Local Playlist", R.string.general_error);
-        return true;
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Utils
-    //////////////////////////////////////////////////////////////////////////*/
-
     private void setInitialData(long playlistId, String name) {
         this.playlistId = playlistId;
         this.name = !TextUtils.isEmpty(name) ? name : "";
-    }
-
-    private void setFragmentTitle(final String title) {
-        if (activity != null && activity.getSupportActionBar() != null) {
-            activity.getSupportActionBar().setTitle(title);
-        }
-        if (headerTitleView != null) {
-            headerTitleView.setText(title);
-        }
     }
 
     private void setVideoCount(final long count) {
@@ -418,72 +502,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             }
         }
         return new SinglePlayQueue(streamInfoItems, index);
-    }
-
-    private void createRenameDialog() {
-        if (playlistId == null || name == null || getContext() == null) return;
-
-        final View dialogView = View.inflate(getContext(), R.layout.dialog_playlist_name, null);
-        EditText nameEdit = dialogView.findViewById(R.id.playlist_name);
-        nameEdit.setText(name);
-        nameEdit.setSelection(nameEdit.getText().length());
-
-        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext())
-                .setTitle(R.string.rename_playlist)
-                .setView(dialogView)
-                .setCancelable(true)
-                .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.create, (dialogInterface, i) -> {
-                    name = nameEdit.getText().toString();
-                    setFragmentTitle(name);
-
-                    final LocalPlaylistManager playlistManager =
-                            new LocalPlaylistManager(NewPipeDatabase.getInstance(getContext()));
-                    final Toast successToast = Toast.makeText(getActivity(),
-                            R.string.playlist_rename_success,
-                            Toast.LENGTH_SHORT);
-
-                    playlistManager.renamePlaylist(playlistId, name)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(longs -> successToast.show());
-                });
-
-        dialogBuilder.show();
-    }
-
-    private void changeThumbnailUrl(final String thumbnailUrl) {
-        final Toast successToast = Toast.makeText(getActivity(),
-                R.string.playlist_thumbnail_change_success,
-                Toast.LENGTH_SHORT);
-
-        playlistManager.changePlaylistThumbnail(playlistId, thumbnailUrl)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(ignore -> successToast.show());
-    }
-
-    private void saveDebounced() {
-        debouncedSaveSignal.onNext(System.currentTimeMillis());
-    }
-
-    private Disposable getDebouncedSaver() {
-        return debouncedSaveSignal
-                .debounce(SAVE_DEBOUNCE_MILLIS, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(ignored -> saveJoin());
-    }
-
-    private void saveJoin() {
-        final List<LocalItem> items = itemListAdapter.getItemsList();
-        List<Long> streamIds = new ArrayList<>(items.size());
-        for (final LocalItem item : items) {
-            if (item instanceof PlaylistStreamEntry) {
-                streamIds.add(((PlaylistStreamEntry) item).streamId);
-            }
-        }
-
-        playlistManager.updateJoin(playlistId, streamIds)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe();
     }
 }
 

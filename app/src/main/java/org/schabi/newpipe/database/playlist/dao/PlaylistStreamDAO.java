@@ -63,6 +63,7 @@ public abstract class PlaylistStreamDAO implements BasicDAO<PlaylistStreamEntity
             " FROM " + PLAYLIST_TABLE +
             " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE +
             " ON " + PLAYLIST_ID + " = " + JOIN_PLAYLIST_ID +
-            " GROUP BY " + JOIN_PLAYLIST_ID)
+            " GROUP BY " + JOIN_PLAYLIST_ID +
+            " ORDER BY " + PLAYLIST_NAME + " COLLATE NOCASE ASC")
     public abstract Flowable<List<PlaylistMetadataEntry>> getPlaylistMetadata();
 }

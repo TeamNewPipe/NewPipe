@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ import java.util.List;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 
 
 public class WatchedHistoryFragment extends HistoryFragment<StreamHistoryEntry> {
@@ -85,17 +87,25 @@ public class WatchedHistoryFragment extends HistoryFragment<StreamHistoryEntry> 
                 .setCancelable(true)
                 .setNeutralButton(R.string.cancel, null)
                 .setPositiveButton(R.string.delete_one, (dialog, i) -> {
-                    final Single<Integer> onDelete = historyRecordManager
+                    final Disposable onDelete = historyRecordManager
                             .deleteStreamHistory(Collections.singleton(item))
-                            .observeOn(AndroidSchedulers.mainThread());
-                    disposables.add(onDelete.subscribe());
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(
+                                    ignored -> {/*successful*/},
+                                    error -> Log.e(TAG, "Watch history Delete One failed:", error)
+                            );
+                    disposables.add(onDelete);
                     makeSnackbar(R.string.item_deleted);
                 })
                 .setNegativeButton(R.string.delete_all, (dialog, i) -> {
-                    final Single<Integer> onDeleteAll = historyRecordManager
+                    final Disposable onDeleteAll = historyRecordManager
                             .deleteStreamHistory(item.streamId)
-                            .observeOn(AndroidSchedulers.mainThread());
-                    disposables.add(onDeleteAll.subscribe());
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(
+                                    ignored -> {/*successful*/},
+                                    error -> Log.e(TAG, "Watch history Delete All failed:", error)
+                            );
+                    disposables.add(onDeleteAll);
                     makeSnackbar(R.string.item_deleted);
                 })
                 .show();
