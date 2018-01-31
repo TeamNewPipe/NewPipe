@@ -126,14 +126,14 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     @Override
     public void showLoading() {
         super.showLoading();
-        animateView(itemsList, false, 200);
+        if (itemsList != null) animateView(itemsList, false, 200);
         if (headerRootView != null) animateView(headerRootView, false, 200);
     }
 
     @Override
     public void hideLoading() {
         super.hideLoading();
-        animateView(itemsList, true, 200);
+        if (itemsList != null) animateView(itemsList, true, 200);
         if (headerRootView != null) animateView(headerRootView, true, 200);
     }
 
@@ -142,7 +142,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         super.showError(message, showRetryButton);
         showListFooter(false);
 
-        animateView(itemsList, false, 200);
+        if (itemsList != null) animateView(itemsList, false, 200);
         if (headerRootView != null) animateView(headerRootView, false, 200);
     }
 

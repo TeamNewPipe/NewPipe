@@ -37,6 +37,7 @@ import org.schabi.newpipe.util.OnClickGesture;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import icepick.State;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -49,7 +50,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     // Save the list 10 seconds after the last change occurred
     private static final long SAVE_DEBOUNCE_MILLIS = 10000;
-    private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 15;
+    private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 12;
 
     private View headerRootLayout;
     private TextView headerTitleView;
@@ -75,6 +76,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private PublishSubject<Long> debouncedSaveSignal;
     private Disposable debouncedSaver;
 
+    /* Has the playlist been fully loaded from db */
+    private AtomicBoolean isLoadingComplete;
+    /* Has the playlist been modified (e.g. items reordered or deleted) */
+    private AtomicBoolean isModified;
+
     public static LocalPlaylistFragment getInstance(long playlistId, String name) {
         LocalPlaylistFragment instance = new LocalPlaylistFragment();
         instance.setInitialData(playlistId, name);
@@ -90,6 +96,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         super.onCreate(savedInstanceState);
         playlistManager = new LocalPlaylistManager(NewPipeDatabase.getInstance(getContext()));
         debouncedSaveSignal = PublishSubject.create();
+
+        isLoadingComplete = new AtomicBoolean();
+        isModified = new AtomicBoolean();
     }
 
     @Override
@@ -176,15 +185,15 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     @Override
     public void showLoading() {
         super.showLoading();
-        animateView(headerRootLayout, false, 200);
-        animateView(playlistControl, false, 200);
+        if (headerRootLayout != null) animateView(headerRootLayout, false, 200);
+        if (playlistControl != null) animateView(playlistControl, false, 200);
     }
 
     @Override
     public void hideLoading() {
         super.hideLoading();
-        animateView(headerRootLayout, true, 200);
-        animateView(playlistControl, true, 200);
+        if (headerRootLayout != null) animateView(headerRootLayout, true, 200);
+        if (playlistControl != null) animateView(playlistControl, true, 200);
     }
 
     @Override
@@ -194,7 +203,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         if (debouncedSaver != null) debouncedSaver.dispose();
         debouncedSaver = getDebouncedSaver();
 
+        isLoadingComplete.set(false);
+        isModified.set(false);
+
         playlistManager.getPlaylistStreams(playlistId)
+                .onBackpressureLatest()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getPlaylistObserver());
     }
@@ -207,12 +220,15 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public void onPause() {
         super.onPause();
         itemsListState = itemsList.getLayoutManager().onSaveInstanceState();
-        saveImmediate(); // Save on exit
+
+        // Save on exit
+        saveImmediate();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+
         if (databaseSubscription != null) databaseSubscription.cancel();
         if (debouncedSaver != null) debouncedSaver.dispose();
 
@@ -228,6 +244,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         debouncedSaveSignal = null;
         playlistManager = null;
+
+        isLoadingComplete = null;
+        isModified = null;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -239,6 +258,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             @Override
             public void onSubscribe(Subscription s) {
                 showLoading();
+                isLoadingComplete.set(false);
 
                 if (databaseSubscription != null) databaseSubscription.cancel();
                 databaseSubscription = s;
@@ -247,10 +267,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
             @Override
             public void onNext(List<PlaylistStreamEntry> streams) {
-                // Do not allow saving while the result is being updated
-                if (debouncedSaver != null) debouncedSaver.dispose();
-                handleResult(streams);
-                debouncedSaver = getDebouncedSaver();
+                // Skip handling the result after it has been modified
+                if (isModified == null || !isModified.get()) {
+                    handleResult(streams);
+                    isLoadingComplete.set(true);
+                }
 
                 if (databaseSubscription != null) databaseSubscription.request(1);
             }
@@ -339,7 +360,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         this.name = name;
         setTitle(name);
 
-        Log.e(TAG, "Updating playlist id=[" + playlistId +
+        Log.d(TAG, "Updating playlist id=[" + playlistId +
                 "] with new name=[" + name + "] items");
 
         playlistManager.renamePlaylist(playlistId, name)
@@ -352,7 +373,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 R.string.playlist_thumbnail_change_success,
                 Toast.LENGTH_SHORT);
 
-        Log.e(TAG, "Updating playlist id=[" + playlistId +
+        Log.d(TAG, "Updating playlist id=[" + playlistId +
                 "] with new thumbnail url=[" + thumbnailUrl + "]");
 
         playlistManager.changePlaylistThumbnail(playlistId, thumbnailUrl)
@@ -363,10 +384,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private void deleteItem(final PlaylistStreamEntry item) {
         itemListAdapter.removeItem(item);
         setVideoCount(itemListAdapter.getItemsList().size());
-        saveDebounced();
+        saveChanges();
     }
 
-    private void saveDebounced() {
+    private void saveChanges() {
+        isModified.set(true);
         debouncedSaveSignal.onNext(System.currentTimeMillis());
     }
 
@@ -374,10 +396,18 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         return debouncedSaveSignal
                 .debounce(SAVE_DEBOUNCE_MILLIS, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(ignored -> saveImmediate());
+                .subscribe(ignored -> saveImmediate(), this::onError);
     }
 
     private void saveImmediate() {
+        // List must be loaded and modified in order to save
+        if (isLoadingComplete == null || isModified == null ||
+                !isLoadingComplete.get() || !isModified.get()) {
+            Log.w(TAG, "Attempting to save playlist when local playlist " +
+                    "is not loaded or not modified: playlist id=[" + playlistId + "]");
+            return;
+        }
+
         final List<LocalItem> items = itemListAdapter.getItemsList();
         List<Long> streamIds = new ArrayList<>(items.size());
         for (final LocalItem item : items) {
@@ -386,12 +416,60 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             }
         }
 
-        Log.e(TAG, "Updating playlist id=[" + playlistId +
+        Log.d(TAG, "Updating playlist id=[" + playlistId +
                 "] with [" + streamIds.size() + "] items");
 
         playlistManager.updateJoin(playlistId, streamIds)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> {/*Do nothing on success*/}, this::onError);
+                .subscribe(
+                        () -> { if (isModified != null) isModified.set(false); },
+                        this::onError
+                );
+    }
+
+
+    private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
+        return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
+                ItemTouchHelper.ACTION_STATE_IDLE) {
+            @Override
+            public int interpolateOutOfBoundsScroll(RecyclerView recyclerView, int viewSize,
+                                                    int viewSizeOutOfBounds, int totalSize,
+                                                    long msSinceStartScroll) {
+                final int standardSpeed = super.interpolateOutOfBoundsScroll(recyclerView, viewSize,
+                        viewSizeOutOfBounds, totalSize, msSinceStartScroll);
+                final int minimumAbsVelocity = Math.max(MINIMUM_INITIAL_DRAG_VELOCITY,
+                        Math.abs(standardSpeed));
+                return minimumAbsVelocity * (int) Math.signum(viewSizeOutOfBounds);
+            }
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source,
+                                  RecyclerView.ViewHolder target) {
+                if (source.getItemViewType() != target.getItemViewType() ||
+                        itemListAdapter == null) {
+                    return false;
+                }
+
+                final int sourceIndex = source.getAdapterPosition();
+                final int targetIndex = target.getAdapterPosition();
+                final boolean isSwapped = itemListAdapter.swapItems(sourceIndex, targetIndex);
+                if (isSwapped) saveChanges();
+                return isSwapped;
+            }
+
+            @Override
+            public boolean isLongPressDragEnabled() {
+                return false;
+            }
+
+            @Override
+            public boolean isItemViewSwipeEnabled() {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {}
+        };
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -447,50 +525,6 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         };
 
         new InfoItemDialog(getActivity(), infoItem, commands, actions).show();
-    }
-
-    private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
-        return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
-                ItemTouchHelper.ACTION_STATE_IDLE) {
-            @Override
-            public int interpolateOutOfBoundsScroll(RecyclerView recyclerView, int viewSize,
-                                                    int viewSizeOutOfBounds, int totalSize,
-                                                    long msSinceStartScroll) {
-                final int standardSpeed = super.interpolateOutOfBoundsScroll(recyclerView, viewSize,
-                        viewSizeOutOfBounds, totalSize, msSinceStartScroll);
-                final int minimumAbsVelocity = Math.max(MINIMUM_INITIAL_DRAG_VELOCITY,
-                        Math.abs(standardSpeed));
-                return minimumAbsVelocity * (int) Math.signum(viewSizeOutOfBounds);
-            }
-
-            @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source,
-                                  RecyclerView.ViewHolder target) {
-                if (source.getItemViewType() != target.getItemViewType() ||
-                        itemListAdapter == null) {
-                    return false;
-                }
-
-                final int sourceIndex = source.getAdapterPosition();
-                final int targetIndex = target.getAdapterPosition();
-                final boolean isSwapped = itemListAdapter.swapItems(sourceIndex, targetIndex);
-                if (isSwapped) saveDebounced();
-                return isSwapped;
-            }
-
-            @Override
-            public boolean isLongPressDragEnabled() {
-                return false;
-            }
-
-            @Override
-            public boolean isItemViewSwipeEnabled() {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {}
-        };
     }
 
     private void setInitialData(long playlistId, String name) {

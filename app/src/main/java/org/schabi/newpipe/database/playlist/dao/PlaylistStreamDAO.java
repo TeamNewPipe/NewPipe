@@ -47,8 +47,8 @@ public abstract class PlaylistStreamDAO implements BasicDAO<PlaylistStreamEntity
     @Query("SELECT * FROM " + STREAM_TABLE + " INNER JOIN " +
             // get ids of streams of the given playlist
             "(SELECT " + JOIN_STREAM_ID + "," + JOIN_INDEX +
-            " FROM " + PLAYLIST_STREAM_JOIN_TABLE + " WHERE "
-            + JOIN_PLAYLIST_ID + " = :playlistId)" +
+            " FROM " + PLAYLIST_STREAM_JOIN_TABLE +
+            " WHERE " + JOIN_PLAYLIST_ID + " = :playlistId)" +
 
             // then merge with the stream metadata
             " ON " + STREAM_ID + " = " + JOIN_STREAM_ID +
