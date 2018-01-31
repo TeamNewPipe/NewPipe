@@ -47,7 +47,9 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void> {
 
-    private static final long SAVE_DEBOUNCE_MILLIS = 2000;
+    // Save the list 10 seconds after the last change occurred
+    private static final long SAVE_DEBOUNCE_MILLIS = 10000;
+    private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 15;
 
     private View headerRootLayout;
     private TextView headerTitleView;
@@ -205,6 +207,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public void onPause() {
         super.onPause();
         itemsListState = itemsList.getLayoutManager().onSaveInstanceState();
+        saveImmediate(); // Save on exit
     }
 
     @Override
@@ -371,10 +374,10 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         return debouncedSaveSignal
                 .debounce(SAVE_DEBOUNCE_MILLIS, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(ignored -> saveJoin());
+                .subscribe(ignored -> saveImmediate());
     }
 
-    private void saveJoin() {
+    private void saveImmediate() {
         final List<LocalItem> items = itemListAdapter.getItemsList();
         List<Long> streamIds = new ArrayList<>(items.size());
         for (final LocalItem item : items) {
@@ -449,6 +452,17 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
         return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
                 ItemTouchHelper.ACTION_STATE_IDLE) {
+            @Override
+            public int interpolateOutOfBoundsScroll(RecyclerView recyclerView, int viewSize,
+                                                    int viewSizeOutOfBounds, int totalSize,
+                                                    long msSinceStartScroll) {
+                final int standardSpeed = super.interpolateOutOfBoundsScroll(recyclerView, viewSize,
+                        viewSizeOutOfBounds, totalSize, msSinceStartScroll);
+                final int minimumAbsVelocity = Math.max(MINIMUM_INITIAL_DRAG_VELOCITY,
+                        Math.abs(standardSpeed));
+                return minimumAbsVelocity * (int) Math.signum(viewSizeOutOfBounds);
+            }
+
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source,
                                   RecyclerView.ViewHolder target) {
