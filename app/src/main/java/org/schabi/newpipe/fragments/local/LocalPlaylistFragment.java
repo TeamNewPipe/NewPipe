@@ -47,7 +47,7 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void> {
 
-    private static final long SAVE_DEBOUNCE_MILLIS = 1000;
+    private static final long SAVE_DEBOUNCE_MILLIS = 2000;
 
     private View headerRootLayout;
     private TextView headerTitleView;

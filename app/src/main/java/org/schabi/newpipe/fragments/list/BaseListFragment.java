@@ -29,6 +29,7 @@ import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Queue;
 
@@ -194,22 +195,26 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
 
         final String[] commands = new String[]{
                 context.getResources().getString(R.string.enqueue_on_background),
-                context.getResources().getString(R.string.enqueue_on_popup)
+                context.getResources().getString(R.string.enqueue_on_popup),
+                context.getResources().getString(R.string.append_playlist)
         };
 
-        final DialogInterface.OnClickListener actions = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                switch (i) {
-                    case 0:
-                        NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
-                        break;
-                    case 1:
-                        NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
-                        break;
-                    default:
-                        break;
-                }
+        final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
+            switch (i) {
+                case 0:
+                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                    break;
+                case 1:
+                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
+                    break;
+                case 2:
+                    if (getFragmentManager() != null) {
+                        PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
+                                .show(getFragmentManager(), TAG);
+                    }
+                    break;
+                default:
+                    break;
             }
         };
 
