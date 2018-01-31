@@ -32,7 +32,7 @@ import static org.schabi.newpipe.fragments.list.feed.FeedFragment.DEBUG;
  *     <li>Loads all {@link StreamInfoItem}s of every subscribed channel</li>
  *     <li>Discards all items older than {@link #oldestUploadDate}</li>
  *     <li>Sorts the items by publication time.</li>
- *     <li>Calls {@link FeedFragment#handleResult(List)}</li>
+ *     <li>Calls {@link FeedFragment#handleResult(FeedInfo)}</li>
  * </ul>
  */
 final class SubscriptionsObserver implements Observer<List<SubscriptionEntity>>, Disposable {
@@ -68,7 +68,7 @@ final class SubscriptionsObserver implements Observer<List<SubscriptionEntity>>,
     @Override
     public void onNext(List<SubscriptionEntity> subscriptionEntities) {
         if (DEBUG) Log.d(TAG, "onNext(subscriptionEntities = [" + subscriptionEntities.size() +  "])");
-        final List<StreamInfoItem> newItems = new ArrayList<>(subscriptionEntities.size());
+        final List<StreamInfoItem> newItems = new ArrayList<>(5 * subscriptionEntities.size());
 
         for (SubscriptionEntity subscriptionEntity : subscriptionEntities) {
             loadNewItemsFromSubscription(newItems, subscriptionEntity);
@@ -87,8 +87,9 @@ final class SubscriptionsObserver implements Observer<List<SubscriptionEntity>>,
         });
 
         if (DEBUG) Log.d(TAG, "Finished loading newest items.");
+        final FeedInfo feedInfo = new FeedInfo(Calendar.getInstance(), newItems);
 
-        AndroidSchedulers.mainThread().scheduleDirect(() -> feedFragment.handleResult(newItems));
+        AndroidSchedulers.mainThread().scheduleDirect(() -> feedFragment.handleResult(feedInfo));
     }
 
     private void loadNewItemsFromSubscription(List<StreamInfoItem> newItems,

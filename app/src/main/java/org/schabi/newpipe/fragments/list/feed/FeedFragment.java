@@ -22,7 +22,6 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.fragments.subscription.SubscriptionService;
 import org.schabi.newpipe.report.UserAction;
@@ -31,7 +30,6 @@ import org.schabi.newpipe.util.InfoCache;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -46,7 +44,7 @@ import io.reactivex.schedulers.Schedulers;
  *     It displays the newest streams of every subscribed channel.
  * </p>
  */
-public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
+public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
 
     static final boolean DEBUG = MainActivity.DEBUG;
 
@@ -70,6 +68,8 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
     private ImageView refreshIcon;
     private Animation refreshRotation;
 
+    private FeedInfoCache feedInfoCache;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -78,6 +78,7 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container, Bundle savedInstanceState) {
         feedLoadCount = howManyItemsToLoad();
+        setRetainInstance(true);
         return inflater.inflate(R.layout.fragment_feed, container, false);
     }
 
@@ -184,6 +185,15 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
             currentState.doEnterState(this);
         }
 
+        if (feedInfoCache == null) {
+            feedInfoCache = new FeedInfoCache(activity);
+
+            FeedInfo cachedFeedInfo = feedInfoCache.read();
+            if (cachedFeedInfo != null) {
+                handleResult(cachedFeedInfo);
+            }
+        }
+
         if (subscriptionsObserver == null) {
             setState(FeedState.LOADING_SUBSCRIPTIONS);
 
@@ -197,8 +207,8 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
     }
 
     @Override
-    public void handleResult(@NonNull List<StreamInfoItem> result) {
-        if (DEBUG) Log.d(TAG, "handleResult(result = [" + result.size() + "])");
+    public void handleResult(@NonNull FeedInfo result) {
+        if (DEBUG) Log.d(TAG, "handleResult(result = " + result + ")");
 
         if (feedItemsSubscriber != null) {
             feedItemsSubscriber.dispose();
@@ -206,14 +216,16 @@ public class FeedFragment extends BaseListFragment<List<StreamInfoItem>, Void> {
 
         if (infoListAdapter != null && !loadedItemsUpToDate.get()) {
             infoListAdapter.clearStreamItemList();
-            itemsUpdateDate = Calendar.getInstance();
+            itemsUpdateDate = result.getLastUpdated();
+
+            feedInfoCache.store(result);
         }
 
         setState(FeedState.LOADING_ITEMS);
         setUpdateTimeText();
 
         feedItemsSubscriber = new FeedItemsSubscriber(this, infoListAdapter);
-        Flowable.fromIterable(result)
+        Flowable.fromIterable(result.getInfoItems())
                 .observeOn(AndroidSchedulers.mainThread())
                 .buffer(feedLoadCount)
                 .subscribe(feedItemsSubscriber);
