@@ -32,6 +32,7 @@ import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.OnClickGesture;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -142,7 +143,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
         itemTouchHelper.attachToRecyclerView(itemsList);
 
-        itemListAdapter.setSelectedListener(new OnLocalItemGesture<LocalItem>() {
+        itemListAdapter.setSelectedListener(new OnClickGesture<LocalItem>() {
             @Override
             public void selected(LocalItem selectedItem) {
                 if (selectedItem instanceof PlaylistStreamEntry) {

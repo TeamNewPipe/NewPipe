@@ -1,11 +1,8 @@
-package org.schabi.newpipe.fragments.local;
+package org.schabi.newpipe.util;
 
 import android.support.v7.widget.RecyclerView;
 
-import org.schabi.newpipe.database.LocalItem;
-import org.schabi.newpipe.extractor.InfoItem;
-
-public abstract class OnLocalItemGesture<T extends LocalItem> {
+public abstract class OnClickGesture<T> {
 
     public abstract void selected(T selectedItem);
 

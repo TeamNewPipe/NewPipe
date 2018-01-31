@@ -18,9 +18,9 @@ import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.fragments.local.BaseLocalListFragment;
 import org.schabi.newpipe.fragments.local.LocalPlaylistManager;
-import org.schabi.newpipe.fragments.local.OnLocalItemGesture;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.OnClickGesture;
 
 import java.util.List;
 
@@ -95,7 +95,7 @@ public final class BookmarkFragment
     protected void initListeners() {
         super.initListeners();
 
-        itemListAdapter.setSelectedListener(new OnLocalItemGesture<LocalItem>() {
+        itemListAdapter.setSelectedListener(new OnClickGesture<LocalItem>() {
             @Override
             public void selected(LocalItem selectedItem) {
                 // Requires the parent fragment to find holder for fragment replacement

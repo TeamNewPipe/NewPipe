@@ -9,6 +9,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.process.BitmapProcessor;
 
 import org.schabi.newpipe.database.LocalItem;
+import org.schabi.newpipe.util.OnClickGesture;
 
 /*
  * Created by Christian Schabesberger on 26.09.16.
@@ -36,7 +37,7 @@ public class LocalItemBuilder {
     private final Context context;
     private ImageLoader imageLoader = ImageLoader.getInstance();
 
-    private OnLocalItemGesture<LocalItem> onSelectedListener;
+    private OnClickGesture<LocalItem> onSelectedListener;
 
     public LocalItemBuilder(Context context) {
         this.context = context;
@@ -51,11 +52,11 @@ public class LocalItemBuilder {
         imageLoader.displayImage(url, view, options);
     }
 
-    public OnLocalItemGesture<LocalItem> getOnItemSelectedListener() {
+    public OnClickGesture<LocalItem> getOnItemSelectedListener() {
         return onSelectedListener;
     }
 
-    public void setOnItemSelectedListener(OnLocalItemGesture<LocalItem> listener) {
+    public void setOnItemSelectedListener(OnClickGesture<LocalItem> listener) {
         this.onSelectedListener = listener;
     }
 }

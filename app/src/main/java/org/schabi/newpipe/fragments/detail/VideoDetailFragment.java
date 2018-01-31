@@ -44,7 +44,6 @@ import com.nirhart.parallaxscroll.views.ParallaxScrollView;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
-import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
@@ -60,11 +59,8 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.local.PlaylistAppendDialog;
-import org.schabi.newpipe.history.HistoryListener;
-import org.schabi.newpipe.history.HistoryRecordManager;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
-import org.schabi.newpipe.info_list.OnInfoItemGesture;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.helper.PlayerHelper;
@@ -79,6 +75,7 @@ import org.schabi.newpipe.util.InfoCache;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -474,7 +471,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     protected void initListeners() {
         super.initListeners();
-        infoItemBuilder.setOnStreamSelectedListener(new OnInfoItemGesture<StreamInfoItem>() {
+        infoItemBuilder.setOnStreamSelectedListener(new OnClickGesture<StreamInfoItem>() {
             @Override
             public void selected(StreamInfoItem selectedItem) {
                 selectAndLoadVideo(selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());

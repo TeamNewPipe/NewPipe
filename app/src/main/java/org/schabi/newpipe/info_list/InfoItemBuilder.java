@@ -19,6 +19,7 @@ import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamMiniInfoItemHolder;
+import org.schabi.newpipe.util.OnClickGesture;
 
 /*
  * Created by Christian Schabesberger on 26.09.16.
@@ -46,9 +47,9 @@ public class InfoItemBuilder {
     private final Context context;
     private ImageLoader imageLoader = ImageLoader.getInstance();
 
-    private OnInfoItemGesture<StreamInfoItem> onStreamSelectedListener;
-    private OnInfoItemGesture<ChannelInfoItem> onChannelSelectedListener;
-    private OnInfoItemGesture<PlaylistInfoItem> onPlaylistSelectedListener;
+    private OnClickGesture<StreamInfoItem> onStreamSelectedListener;
+    private OnClickGesture<ChannelInfoItem> onChannelSelectedListener;
+    private OnClickGesture<PlaylistInfoItem> onPlaylistSelectedListener;
 
     public InfoItemBuilder(Context context) {
         this.context = context;
@@ -86,27 +87,27 @@ public class InfoItemBuilder {
         return imageLoader;
     }
 
-    public OnInfoItemGesture<StreamInfoItem> getOnStreamSelectedListener() {
+    public OnClickGesture<StreamInfoItem> getOnStreamSelectedListener() {
         return onStreamSelectedListener;
     }
 
-    public void setOnStreamSelectedListener(OnInfoItemGesture<StreamInfoItem> listener) {
+    public void setOnStreamSelectedListener(OnClickGesture<StreamInfoItem> listener) {
         this.onStreamSelectedListener = listener;
     }
 
-    public OnInfoItemGesture<ChannelInfoItem> getOnChannelSelectedListener() {
+    public OnClickGesture<ChannelInfoItem> getOnChannelSelectedListener() {
         return onChannelSelectedListener;
     }
 
-    public void setOnChannelSelectedListener(OnInfoItemGesture<ChannelInfoItem> listener) {
+    public void setOnChannelSelectedListener(OnClickGesture<ChannelInfoItem> listener) {
         this.onChannelSelectedListener = listener;
     }
 
-    public OnInfoItemGesture<PlaylistInfoItem> getOnPlaylistSelectedListener() {
+    public OnClickGesture<PlaylistInfoItem> getOnPlaylistSelectedListener() {
         return onPlaylistSelectedListener;
     }
 
-    public void setOnPlaylistSelectedListener(OnInfoItemGesture<PlaylistInfoItem> listener) {
+    public void setOnPlaylistSelectedListener(OnClickGesture<PlaylistInfoItem> listener) {
         this.onPlaylistSelectedListener = listener;
     }
 

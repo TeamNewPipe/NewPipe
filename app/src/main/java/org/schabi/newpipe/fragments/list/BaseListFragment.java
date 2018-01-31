@@ -23,9 +23,9 @@ import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.fragments.local.PlaylistAppendDialog;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.InfoListAdapter;
-import org.schabi.newpipe.info_list.OnInfoItemGesture;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
 
 import java.util.ArrayList;
@@ -137,7 +137,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     @Override
     protected void initListeners() {
         super.initListeners();
-        infoListAdapter.setOnStreamSelectedListener(new OnInfoItemGesture<StreamInfoItem>() {
+        infoListAdapter.setOnStreamSelectedListener(new OnClickGesture<StreamInfoItem>() {
             @Override
             public void selected(StreamInfoItem selectedItem) {
                 onItemSelected(selectedItem);
@@ -152,7 +152,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
             }
         });
 
-        infoListAdapter.setOnChannelSelectedListener(new OnInfoItemGesture<ChannelInfoItem>() {
+        infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
             @Override
             public void selected(ChannelInfoItem selectedItem) {
                 onItemSelected(selectedItem);
@@ -162,7 +162,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
             }
         });
 
-        infoListAdapter.setOnPlaylistSelectedListener(new OnInfoItemGesture<PlaylistInfoItem>() {
+        infoListAdapter.setOnPlaylistSelectedListener(new OnClickGesture<PlaylistInfoItem>() {
             @Override
             public void selected(PlaylistInfoItem selectedItem) {
                 onItemSelected(selectedItem);

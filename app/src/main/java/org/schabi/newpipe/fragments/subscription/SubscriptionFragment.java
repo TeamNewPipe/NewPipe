@@ -17,9 +17,9 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.info_list.InfoListAdapter;
-import org.schabi.newpipe.info_list.OnInfoItemGesture;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.OnClickGesture;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -125,7 +125,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     protected void initListeners() {
         super.initListeners();
 
-        infoListAdapter.setOnChannelSelectedListener(new OnInfoItemGesture<ChannelInfoItem>() {
+        infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
             @Override
             public void selected(ChannelInfoItem selectedItem) {
                 // Requires the parent fragment to find holder for fragment replacement

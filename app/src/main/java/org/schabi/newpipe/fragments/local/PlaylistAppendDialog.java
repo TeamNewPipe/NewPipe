@@ -19,6 +19,7 @@ import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.playlist.PlayQueueItem;
+import org.schabi.newpipe.util.OnClickGesture;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -81,7 +82,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                 new LocalPlaylistManager(NewPipeDatabase.getInstance(getContext()));
 
         playlistAdapter = new LocalItemListAdapter(getActivity());
-        playlistAdapter.setSelectedListener(new OnLocalItemGesture<LocalItem>() {
+        playlistAdapter.setSelectedListener(new OnClickGesture<LocalItem>() {
             @Override
             public void selected(LocalItem selectedItem) {
                 if (!(selectedItem instanceof PlaylistMetadataEntry) || getStreams() == null)

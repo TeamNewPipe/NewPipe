@@ -17,6 +17,7 @@ import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamMiniInfoItemHolder;
+import org.schabi.newpipe.util.OnClickGesture;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,15 +77,15 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         infoItemList = new ArrayList<>();
     }
 
-    public void setOnStreamSelectedListener(OnInfoItemGesture<StreamInfoItem> listener) {
+    public void setOnStreamSelectedListener(OnClickGesture<StreamInfoItem> listener) {
         infoItemBuilder.setOnStreamSelectedListener(listener);
     }
 
-    public void setOnChannelSelectedListener(OnInfoItemGesture<ChannelInfoItem> listener) {
+    public void setOnChannelSelectedListener(OnClickGesture<ChannelInfoItem> listener) {
         infoItemBuilder.setOnChannelSelectedListener(listener);
     }
 
-    public void setOnPlaylistSelectedListener(OnInfoItemGesture<PlaylistInfoItem> listener) {
+    public void setOnPlaylistSelectedListener(OnClickGesture<PlaylistInfoItem> listener) {
         infoItemBuilder.setOnPlaylistSelectedListener(listener);
     }
 

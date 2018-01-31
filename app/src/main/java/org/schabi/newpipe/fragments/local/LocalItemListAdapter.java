@@ -12,6 +12,7 @@ import org.schabi.newpipe.fragments.local.holder.LocalPlaylistItemHolder;
 import org.schabi.newpipe.fragments.local.holder.LocalPlaylistStreamItemHolder;
 import org.schabi.newpipe.fragments.local.holder.LocalStatisticStreamItemHolder;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.OnClickGesture;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                 Localization.getPreferredLocale(activity));
     }
 
-    public void setSelectedListener(OnLocalItemGesture<LocalItem> listener) {
+    public void setSelectedListener(OnClickGesture<LocalItem> listener) {
         localItemBuilder.setOnItemSelectedListener(listener);
     }
 
