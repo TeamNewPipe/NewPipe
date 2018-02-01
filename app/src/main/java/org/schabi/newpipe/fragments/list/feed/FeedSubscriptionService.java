@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
+import io.reactivex.Maybe;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -62,7 +63,6 @@ final class FeedSubscriptionService {
     }
 
     /**
-     *
      * @return
      */
     public static FeedSubscriptionService getInstance() {
@@ -87,7 +87,8 @@ final class FeedSubscriptionService {
         return areSubscriptionsBeingLoaded;
     }
 
-    private FeedInfo getFeedInfoFromSubscriptions(List<SubscriptionEntity> subscriptionEntities) {
+    private FeedInfo getFeedInfoFromSubscriptions(List<SubscriptionEntity> subscriptionEntities)
+            throws Exception {
         if (DEBUG) Log.d(TAG, "getFeedInfoFromSubscriptions(subscriptionEntities = ["
                 + subscriptionEntities.size() +  "])");
 
@@ -99,7 +100,7 @@ final class FeedSubscriptionService {
         }
     }
 
-    private FeedInfo loadFeedInfo(List<SubscriptionEntity> subscriptionEntities) {
+    private FeedInfo loadFeedInfo(List<SubscriptionEntity> subscriptionEntities) throws Exception {
         final FeedInfoCreator feedInfoCreator = new FeedInfoCreator(subscriptionEntities.size());
 
         for (SubscriptionEntity subscriptionEntity : subscriptionEntities) {
@@ -110,11 +111,12 @@ final class FeedSubscriptionService {
     }
 
     private void loadNewItemsFromSubscription(FeedInfoCreator feedInfoCreator,
-                                              SubscriptionEntity subscriptionEntity) {
+                                              SubscriptionEntity subscriptionEntity)
+            throws Exception {
         if (DEBUG) Log.d(TAG, "Loading channel info for: " + subscriptionEntity.getName());
-        ChannelInfo channelInfo = subscriptionService.getChannelInfo(subscriptionEntity)
-                .onErrorComplete()
-                .blockingGet();
+
+        ChannelInfo channelInfo =
+                getMaybeValue(subscriptionService.getChannelInfo(subscriptionEntity));
 
         if (channelInfo == null) {
             return;
@@ -124,7 +126,7 @@ final class FeedSubscriptionService {
         List<InfoItem> streams = channelInfo.getRelatedStreams();
 
         for (InfoItem item : streams) {
-            if (item instanceof StreamInfoItem /*&& !feedFragment.isItemAlreadyDisplayed(item)*/) {
+            if (item instanceof StreamInfoItem) {
                 StreamInfoItem streamItem = (StreamInfoItem) item;
 
                 if (streamItem.getUploadDate() == null) {
@@ -137,7 +139,7 @@ final class FeedSubscriptionService {
                 } else if (streamItem.getUploadDate().compareTo(oldestUploadDate) >= 0) {
                     feedInfoCreator.add(streamItem);
                 } else {
-                    // Once an item is older then the MAX_PUBLICATION_TIME,
+                    // Once an item is older then the oldestUploadDate,
                     // all following items will be older, too.
                     break;
                 }
@@ -145,19 +147,37 @@ final class FeedSubscriptionService {
         }
     }
 
+    private <T> T getMaybeValue(Maybe<T> maybe) throws Exception {
+        final Exception[] maybeInnerException = {null};
+        T value = maybe.onErrorComplete(throwable -> {
+                    if (throwable instanceof Exception) {
+                        maybeInnerException[0] = (Exception) throwable;
+                        return true;
+                    } else return false;
+                })
+                .blockingGet();
+
+        if (maybeInnerException[0] != null) {
+            throw maybeInnerException[0];
+        }
+
+        return value;
+    }
+
     /**
      * @param item The item in question.
      * @return An identifier used to keep track of items across different runs.
      */
-    private String getItemIdent(final InfoItem item) {
+    private static String getItemIdent(final InfoItem item) {
         return item.getServiceId() + item.getUrl();
     }
 
     private class FeedInfoCreator {
+        private static final int EXPECTED_ITEMS_PER_SUBSCRIPTION = 5;
         private final List<StreamInfoItem> infoItems;
 
         FeedInfoCreator(int subscriptionCount) {
-            infoItems = new ArrayList<>(5 * subscriptionCount);
+            infoItems = new ArrayList<>(EXPECTED_ITEMS_PER_SUBSCRIPTION * subscriptionCount);
         }
 
         void add(StreamInfoItem streamInfoItem) {

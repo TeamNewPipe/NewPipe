@@ -25,6 +25,7 @@ import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.InfoCache;
 
+import java.io.IOException;
 import java.util.Queue;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -47,7 +48,7 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
 
     private int feedLoadCount = MIN_ITEMS_INITIAL_LOAD;
 
-    private FeedSubscriptionService feedSubscriptionService;
+    private FeedSubscriptionService feedSubscriptionService = FeedSubscriptionService.getInstance();
     private Disposable subscriptionsDisposable;
 
     private FeedItemsSubscriber feedItemsSubscriber;
@@ -129,8 +130,7 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
             FeedInfo newFeedInfo = newAvailableFeedInfo.getAndSet(null);
             if (newFeedInfo != null) {
                 displayFeedInfo(newFeedInfo);
-            } else if (feedSubscriptionService == null
-                    || !feedSubscriptionService.areSubscriptionsBeingLoaded()) {
+            } else if (!feedSubscriptionService.areSubscriptionsBeingLoaded()) {
                 // Clear the cache in order to download new items.
                 InfoCache.getInstance().clearCache();
 
@@ -146,6 +146,8 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
     public void reloadContent() {
         resetFragment();
         super.reloadContent();
+        hideLoading();
+        refreshButton.setVisibility(View.VISIBLE);
         updateViewState();
     }
 
@@ -184,7 +186,6 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
         }
 
         if (subscriptionsDisposable == null) {
-            feedSubscriptionService = FeedSubscriptionService.getInstance();
             subscriptionsDisposable = feedSubscriptionService.getFeedInfoObservable()
                     .subscribe(this::handleResult, this::onError);
         }
@@ -198,6 +199,9 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
             displayFeedInfo(result);
         } else if (result.isNewerThan(currentFeedInfo)) {
             newAvailableFeedInfo.set(result);
+        } else {
+            // The streams did not change, but the date did.
+            currentFeedInfo = result;
         }
 
         updateViewState();
@@ -258,7 +262,7 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
     /**
      *
      */
-    private void updateViewState() {
+    void updateViewState() {
         if (DEBUG) Log.d(TAG, "updateViewState()");
 
         updateRefreshText();
@@ -280,7 +284,7 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
     }
 
     private void updateRefreshAnimation() {
-        if (feedSubscriptionService == null
+        if (subscriptionsDisposable == null
                 || feedSubscriptionService.areSubscriptionsBeingLoaded()) {
             refreshIcon.startAnimation(refreshRotation);
         } else {
@@ -289,6 +293,12 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
     }
 
     private void updateLoadingSpinner() {
+        if (subscriptionsDisposable == null) {
+            // Do not change the loading state when the feed is not subscribed to any items
+            // (e.g. if the error panel is shown because this would also hide the panel).
+            return;
+        }
+
         if (feedItemsSubscriber == null || feedItemsSubscriber.areMoreItemsAvailable()) {
             showListFooter(true);
             showLoading();
@@ -322,7 +332,6 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
         if (subscriptionsDisposable != null) {
             subscriptionsDisposable.dispose();
             subscriptionsDisposable = null;
-            feedSubscriptionService = null;
         }
     }
 
@@ -347,14 +356,25 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
     @Override
     public void showError(String message, boolean showRetryButton) {
         resetFragment();
+        refreshButton.setVisibility(View.GONE);
         super.showError(message, showRetryButton);
     }
 
     @Override
     protected boolean onError(Throwable exception) {
+        int errorId = exception instanceof ExtractionException ? R.string.parsing_error : R.string.general_error;
+
+        // If a network error occurs and some items have already been displayed (e.g. from cache),
+        // show a snack-bar error in order not to hide the displayed items.
+        if (!infoListAdapter.getItemsList().isEmpty() && exception instanceof IOException) {
+            showSnackBarError(exception, UserAction.SOMETHING_ELSE,
+                    "none", "Requesting feed", errorId);
+            updateViewState();
+            return true;
+        }
+
         if (super.onError(exception)) return true;
 
-        int errorId = exception instanceof ExtractionException ? R.string.parsing_error : R.string.general_error;
         onUnrecoverableError(exception, UserAction.SOMETHING_ELSE, "none", "Requesting feed", errorId);
         return true;
     }

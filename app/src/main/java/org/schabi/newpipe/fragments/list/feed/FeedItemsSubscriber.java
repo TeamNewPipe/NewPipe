@@ -105,6 +105,7 @@ final class FeedItemsSubscriber implements Subscriber<List<StreamInfoItem>>, Dis
         if (infoListAdapter.getItemsList().isEmpty()) {
             feedFragment.showEmptyState();
         }
+        feedFragment.updateViewState();
     }
 
     @Override
