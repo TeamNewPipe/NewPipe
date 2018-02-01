@@ -323,6 +323,7 @@
     <string name="fragment_whats_new">Co nowego</string>
     <string name="feed_first_time_loading">Ładuję nowości po raz pierwszy</string>
     <string name="feed_last_updated">Zaktualizowano: %s</string>
+    <string name="feed_new_items_available">Nowe filmy dostępne. Kliknij tutaj.</string>
 
     <!-- Parsing YouTube upload dates in the format '2 days ago' -->
     <string name="downloader_http_accept_language">pl</string>

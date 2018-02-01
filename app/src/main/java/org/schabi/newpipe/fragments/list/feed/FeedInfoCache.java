@@ -17,6 +17,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import static org.schabi.newpipe.fragments.list.feed.FeedInfo.INVALID_CONTENT_HASH;
+
 final class FeedInfoCache {
 
     private static final String FEED_INFO_CACHE_FILENAME = "feed_info_cache.ser";
@@ -75,7 +77,8 @@ final class FeedInfoCache {
     private FeedInfo getFeedWithLimitedSize(FeedInfo feedInfo) {
         if (feedInfo.getInfoItems().size() > MAX_FEED_CACHE_ITEMS) {
             return new FeedInfo(feedInfo.getLastUpdated(),
-                    new ArrayList<>(feedInfo.getInfoItems().subList(0, MAX_FEED_CACHE_ITEMS)));
+                    new ArrayList<>(feedInfo.getInfoItems().subList(0, MAX_FEED_CACHE_ITEMS)),
+                    INVALID_CONTENT_HASH);
         } else {
             return feedInfo;
         }

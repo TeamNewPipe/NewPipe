@@ -359,6 +359,7 @@
     <string name="fragment_whats_new">What\'s New</string>
     <string name="feed_first_time_loading">Loading news for the first time</string>
     <string name="feed_last_updated">Last updated: <xliff:g id="update_time">%s</xliff:g></string>
+    <string name="feed_new_items_available">New videos available. Click here.</string>
 
     <!-- Parsing YouTube upload dates in the format '2 days ago' -->
     <string name="downloader_http_accept_language">en</string>

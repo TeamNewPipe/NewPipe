@@ -14,14 +14,20 @@ import java.util.List;
 
 class FeedInfo implements Serializable {
 
+    static final long INVALID_CONTENT_HASH = 0;
+
     private final Calendar lastUpdated;
 
     private final List<StreamInfoItem> infoItems;
 
+    private final long contentHash;
 
-    FeedInfo(@NonNull Calendar lastUpdated, @NonNull List<StreamInfoItem> infoItems) {
+    FeedInfo(@NonNull Calendar lastUpdated,
+             @NonNull List<StreamInfoItem> infoItems,
+             long contentHash) {
         this.lastUpdated = lastUpdated;
         this.infoItems = infoItems;
+        this.contentHash = contentHash;
     }
 
     @NonNull
@@ -34,20 +40,12 @@ class FeedInfo implements Serializable {
         return infoItems;
     }
 
-    boolean isOlderThan(FeedInfo other) {
-        if (this.infoItems.isEmpty() && !other.infoItems.isEmpty()) {
-            return true;
-        }
+    boolean isNewerThan(FeedInfo other) {
+        return other == null
+                || other.contentHash == INVALID_CONTENT_HASH
+                || (this.contentHash != other.contentHash
+                        && this.lastUpdated.compareTo(other.lastUpdated) > 0);
 
-        if (!this.infoItems.isEmpty() && !other.infoItems.isEmpty()) {
-            StreamInfoItem item1 = this.infoItems.get(0);
-            StreamInfoItem item2 = other.infoItems.get(0);
-
-            return item1.getServiceId() != item2.getServiceId()
-                    || !item1.getUrl().equals(item2.getUrl());
-        }
-
-        return false;
     }
 
     @Override

@@ -12,6 +12,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 import io.reactivex.disposables.Disposable;
 
@@ -21,7 +22,7 @@ import static org.schabi.newpipe.fragments.list.feed.FeedFragment.DEBUG;
  * A Subscriber that manages the displaying of batches of {@link StreamInfoItem}s.
  * <p>
  *     On every request and on init, the FeedItemsSubscriber adds every item in the batch to the
- *     {@link InfoListAdapter} of the FeedFragment and marks the item as displayed.
+ *     {@link InfoListAdapter} of the FeedFragment.
  * </p>
  */
 final class FeedItemsSubscriber implements Subscriber<List<StreamInfoItem>>, Disposable {
@@ -30,6 +31,9 @@ final class FeedItemsSubscriber implements Subscriber<List<StreamInfoItem>>, Dis
 
     private final FeedFragment feedFragment;
     private final InfoListAdapter infoListAdapter;
+
+    private AtomicReference<FeedItemsState> feedItemsState =
+            new AtomicReference<>(FeedItemsState.INITIALIZING);
 
     private Subscription thisSubscription;
 
@@ -54,6 +58,23 @@ final class FeedItemsSubscriber implements Subscriber<List<StreamInfoItem>>, Dis
         }
     }
 
+    /**
+     * @return
+     */
+    boolean areMoreItemsAvailable() {
+        FeedItemsState feedItemsState = this.feedItemsState.get();
+        return feedItemsState != FeedItemsState.ALL_ITEMS_DISPLAYED;
+    }
+
+    /**
+     * @return
+     */
+    boolean haveItemsBeenRequested() {
+        FeedItemsState feedItemsState = this.feedItemsState.get();
+        return feedItemsState == FeedItemsState.MORE_ITEMS_AVAILABLE
+                || feedItemsState == FeedItemsState.ALL_ITEMS_DISPLAYED;
+    }
+
 
     @Override
     public void onSubscribe(Subscription subscription) {
@@ -67,13 +88,11 @@ final class FeedItemsSubscriber implements Subscriber<List<StreamInfoItem>>, Dis
         if (DEBUG) Log.d(TAG, "onNext(items = [" + items.size() + "])");
         for (StreamInfoItem item: items) {
             infoListAdapter.addInfoItem(item);
-            feedFragment.setItemDisplayed(item);
         }
 
-        feedFragment.setState(FeedFragment.FeedState.IDLE);
+        switchFeedItemsState();
     }
 
-    @Override
     public void onError(Throwable t) {
         feedFragment.onError(t);
     }
@@ -81,7 +100,7 @@ final class FeedItemsSubscriber implements Subscriber<List<StreamInfoItem>>, Dis
     @Override
     public void onComplete() {
         if (DEBUG) Log.d(TAG, "onComplete() All items displayed");
-        feedFragment.setState(FeedFragment.FeedState.All_ITEMS_LOADED);
+        feedItemsState.set(FeedItemsState.ALL_ITEMS_DISPLAYED);
 
         if (infoListAdapter.getItemsList().isEmpty()) {
             feedFragment.showEmptyState();
@@ -100,5 +119,34 @@ final class FeedItemsSubscriber implements Subscriber<List<StreamInfoItem>>, Dis
     @Override
     public boolean isDisposed() {
         return thisSubscription == null;
+    }
+
+    private void switchFeedItemsState() {
+        FeedItemsState prevState = feedItemsState.get();
+
+        boolean switched;
+        switched = feedItemsState.compareAndSet(FeedItemsState.INITIALIZING,
+                                                FeedItemsState.DISPLAYED_FIRST_BATCH)
+
+                || feedItemsState.compareAndSet(FeedItemsState.DISPLAYED_FIRST_BATCH,
+                                                FeedItemsState.MORE_ITEMS_AVAILABLE);
+
+        FeedItemsState thenState = feedItemsState.get();
+        if (DEBUG) Log.d(TAG, "switchFeedItemsState(); " + prevState + " -> " + thenState
+                + " (" + switched + ")");
+    }
+
+    private enum FeedItemsState {
+        /** The subscriber didn't have a chance to do anything, yet. */
+        INITIALIZING,
+
+        /**  */
+        DISPLAYED_FIRST_BATCH,
+
+        /**  */
+        MORE_ITEMS_AVAILABLE,
+
+        /**  */
+        ALL_ITEMS_DISPLAYED,
     }
 }

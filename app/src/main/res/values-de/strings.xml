@@ -332,6 +332,7 @@
     <string name="fragment_whats_new">Neuigkeiten</string>
     <string name="feed_first_time_loading">Lade Neuigkeiten zum ersten mal</string>
     <string name="feed_last_updated">Aktualisiert: %s</string>
+    <string name="feed_new_items_available">Neue filme verfügbar. Hier klicken.</string>
 
     <!-- Parsing YouTube upload dates in the format '2 days ago' -->
     <string name="downloader_http_accept_language">de</string>
