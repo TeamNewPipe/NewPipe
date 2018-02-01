@@ -19,6 +19,9 @@ import java.util.ArrayList;
 
 import static org.schabi.newpipe.fragments.list.feed.FeedInfo.INVALID_CONTENT_HASH;
 
+/**
+ * Handles caching the {@link FeedInfo} in the internal cache directory.
+ */
 final class FeedInfoCache {
 
     private static final String FEED_INFO_CACHE_FILENAME = "feed_info_cache.ser";
@@ -28,10 +31,18 @@ final class FeedInfoCache {
 
     private final File cacheFile;
 
+    /**
+     * Creates a cache for the {@link FeedInfo}.
+     * @param context The current context used to get the internal cache directory
+     */
     FeedInfoCache(Context context) {
         cacheFile = new File(context.getCacheDir(), FEED_INFO_CACHE_FILENAME);
     }
 
+    /**
+     * Stores the feed info in the cache.
+     * @param feedInfo The geed info in question
+     */
     void store(FeedInfo feedInfo) {
         if (feedInfo.getInfoItems().isEmpty()) {
             return;
@@ -52,6 +63,9 @@ final class FeedInfoCache {
         }
     }
 
+    /**
+     * @return The feed info from the cache or {@code null}.
+     */
     @Nullable
     public FeedInfo read() {
         if (!cacheFile.exists()) {

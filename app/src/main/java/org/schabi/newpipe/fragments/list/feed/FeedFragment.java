@@ -260,7 +260,8 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
     //////////////////////////////////////////////////////////////////////////*/
 
     /**
-     *
+     * Handles updating the state of all visual elements of the feed in one place.
+     * Called whenever the state may have changed.
      */
     void updateViewState() {
         if (DEBUG) Log.d(TAG, "updateViewState()");

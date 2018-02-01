@@ -63,7 +63,7 @@ final class FeedSubscriptionService {
     }
 
     /**
-     * @return
+     * @return The instance of the service singleton.
      */
     public static FeedSubscriptionService getInstance() {
         if (instance == null) {
@@ -74,14 +74,17 @@ final class FeedSubscriptionService {
     }
 
     /**
-     * @return
+     * @return An observable that will that will emit {@link FeedInfo}
+     *         every time the subscriptions change.
      */
     Observable<FeedInfo> getFeedInfoObservable() {
         return feedInfoObservable;
     }
 
     /**
-     * @return
+     * @return {@code true} if the service is currently loading the feed info
+     *         from the subscriptions.<br>
+     *         {@code false} otherwise.
      */
     boolean areSubscriptionsBeingLoaded() {
         return areSubscriptionsBeingLoaded;
@@ -172,6 +175,9 @@ final class FeedSubscriptionService {
         return item.getServiceId() + item.getUrl();
     }
 
+    /**
+     * Manages the creation of a {@link FeedInfo}.
+     */
     private class FeedInfoCreator {
         private static final int EXPECTED_ITEMS_PER_SUBSCRIPTION = 5;
         private final List<StreamInfoItem> infoItems;

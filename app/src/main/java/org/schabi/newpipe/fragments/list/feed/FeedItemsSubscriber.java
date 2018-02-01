@@ -59,7 +59,8 @@ final class FeedItemsSubscriber implements Subscriber<List<StreamInfoItem>>, Dis
     }
 
     /**
-     * @return
+     * @return {@code true} if there are more items available to be displayed.<br>
+     *         {@code false} if all items have already been displayed.
      */
     boolean areMoreItemsAvailable() {
         FeedItemsState feedItemsState = this.feedItemsState.get();
@@ -67,7 +68,9 @@ final class FeedItemsSubscriber implements Subscriber<List<StreamInfoItem>>, Dis
     }
 
     /**
-     * @return
+     * @return {@code true} if the user has requested to display more items
+     *         by interacting with the feed.<br>
+     *         {@code false} otherwise.
      */
     boolean haveItemsBeenRequested() {
         FeedItemsState feedItemsState = this.feedItemsState.get();
@@ -141,13 +144,13 @@ final class FeedItemsSubscriber implements Subscriber<List<StreamInfoItem>>, Dis
         /** The subscriber didn't have a chance to do anything, yet. */
         INITIALIZING,
 
-        /**  */
+        /** Displayed just the first batch of items that is requested automatically.  */
         DISPLAYED_FIRST_BATCH,
 
-        /**  */
+        /** Displayed more that the first batch, but there are still more item available. */
         MORE_ITEMS_AVAILABLE,
 
-        /**  */
+        /** Displayed all available items. */
         ALL_ITEMS_DISPLAYED,
     }
 }
