@@ -182,6 +182,7 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
             FeedInfo cachedFeedInfo = feedInfoCache.read();
             if (cachedFeedInfo != null) {
                 displayFeedInfo(cachedFeedInfo);
+                feedSubscriptionService.setBaseFeedInfo(cachedFeedInfo);
             }
         }
 
@@ -199,13 +200,14 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
             displayFeedInfo(result);
         } else if (result.isNewerThan(currentFeedInfo)) {
             newAvailableFeedInfo.set(result);
+            feedSubscriptionService.setBaseFeedInfo(result);
         } else {
             // The streams did not change, but the date did.
             currentFeedInfo = result;
         }
 
         updateViewState();
-        feedInfoCache.store(result); // TODO Move to FeedSubscriptionService
+        feedInfoCache.store(result);
     }
 
     private boolean userHasNotViewedItems() {

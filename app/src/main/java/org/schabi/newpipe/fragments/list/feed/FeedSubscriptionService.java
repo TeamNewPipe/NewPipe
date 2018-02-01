@@ -16,7 +16,9 @@ import org.schabi.newpipe.fragments.subscription.SubscriptionService;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Maybe;
 import io.reactivex.Observable;
@@ -49,6 +51,8 @@ final class FeedSubscriptionService {
 
     private final Observable<FeedInfo> feedInfoObservable;
 
+    private Map<String, StreamInfoItem> baseStreamItems = Collections.emptyMap();
+
     private boolean areSubscriptionsBeingLoaded = true;
 
     private FeedSubscriptionService() {
@@ -79,6 +83,16 @@ final class FeedSubscriptionService {
      */
     Observable<FeedInfo> getFeedInfoObservable() {
         return feedInfoObservable;
+    }
+
+    /**
+     * The YouTube service returns approximated upload dates that get more and more inaccurate
+     * the older the videos get. This method allows to provide an older feed info that will be used
+     * to recover the older and more accurate upload dates.
+     * @param baseFeedInfo The older feed info (e.g. from cache)
+     */
+    void setBaseFeedInfo(final FeedInfo baseFeedInfo) {
+        Schedulers.computation().scheduleDirect(() -> buildBaseFeedInfo(baseFeedInfo));
     }
 
     /**
@@ -167,12 +181,29 @@ final class FeedSubscriptionService {
         return value;
     }
 
+    private void buildBaseFeedInfo(FeedInfo baseFeedInfo) {
+        Map<String, StreamInfoItem> baseStreamItems =
+                new HashMap<>(baseFeedInfo.getInfoItems().size());
+
+        for (StreamInfoItem streamItem : baseFeedInfo.getInfoItems()) {
+            baseStreamItems.put(getItemIdent(streamItem), streamItem);
+        }
+
+        this.baseStreamItems = baseStreamItems;
+    }
+
     /**
      * @param item The item in question.
      * @return An identifier used to keep track of items across different runs.
      */
     private static String getItemIdent(final InfoItem item) {
         return item.getServiceId() + item.getUrl();
+    }
+
+    private static boolean isUploadDateApproximated(StreamInfoItem streamInfoItem) {
+        Calendar uploadDate = streamInfoItem.getUploadDate();
+        return uploadDate == null || (uploadDate.get(Calendar.MILLISECOND) == 0
+                && uploadDate.get(Calendar.SECOND) == 0);
     }
 
     /**
@@ -187,6 +218,7 @@ final class FeedSubscriptionService {
         }
 
         void add(StreamInfoItem streamInfoItem) {
+            restoreAccurateUploadDate(streamInfoItem);
             infoItems.add(streamInfoItem);
         }
 
@@ -195,6 +227,15 @@ final class FeedSubscriptionService {
             long feedInfoHash = calculateFeedInfoHash();
 
             return new FeedInfo(Calendar.getInstance(), infoItems, feedInfoHash);
+        }
+
+        private void restoreAccurateUploadDate(StreamInfoItem streamInfoItem) {
+            if (isUploadDateApproximated(streamInfoItem)) {
+                StreamInfoItem baseItem = baseStreamItems.get(getItemIdent(streamInfoItem));
+                if (baseItem != null) {
+                    streamInfoItem.setUploadDate(baseItem.getUploadDate());
+                }
+            }
         }
 
         private void sortItems() {
