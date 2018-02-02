@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="upload_date_text">%1$s に公開</string>
-    <string name="no_player_found">ｽﾄﾘｰﾑのﾌﾟﾚｲﾔｰが見つかりません｡VLC を入手しますか｡</string>
+    <string name="no_player_found">動画プレイヤーが見つかりません｡VLC を入手しますか？</string>
     <string name="install">入手</string>
     <string name="cancel">取り消し</string>
     <string name="open_in_browser">ブラウザで開く</string>
