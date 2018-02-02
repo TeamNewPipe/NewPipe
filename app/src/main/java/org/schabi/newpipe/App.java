@@ -4,7 +4,9 @@ import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Build;
+import android.support.v4.util.ArraySet;
 import android.util.Log;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -28,6 +30,7 @@ import org.schabi.newpipe.util.StateSaver;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.SocketException;
+import java.util.Set;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.exceptions.CompositeException;
@@ -159,12 +162,23 @@ public class App extends Application {
 
         YoutubeService youtubeService = (YoutubeService) ServiceList.YouTube.getService();
         youtubeService.setTimeAgoParserPhrases(
-                getResources().getStringArray(R.array.upload_date_seconds_ago_phrase),
-                getResources().getStringArray(R.array.upload_date_minutes_ago_phrase),
-                getResources().getStringArray(R.array.upload_date_hours_ago_phrase),
-                getResources().getStringArray(R.array.upload_date_days_ago_phrase),
-                getResources().getStringArray(R.array.upload_date_weeks_ago_phrase),
-                getResources().getStringArray(R.array.upload_date_months_ago_phrase),
-                getResources().getStringArray(R.array.upload_date_years_ago_phrase));
+                getAllPluralForms(R.plurals.upload_date_seconds_ago_phrase),
+                getAllPluralForms(R.plurals.upload_date_minutes_ago_phrase),
+                getAllPluralForms(R.plurals.upload_date_hours_ago_phrase),
+                getAllPluralForms(R.plurals.upload_date_days_ago_phrase),
+                getAllPluralForms(R.plurals.upload_date_weeks_ago_phrase),
+                getAllPluralForms(R.plurals.upload_date_months_ago_phrase),
+                getAllPluralForms(R.plurals.upload_date_years_ago_phrase));
+    }
+
+    private Set<String> getAllPluralForms(int plural_id) {
+        Set<String> pluralForms = new ArraySet<>(4);
+        Resources resources = getResources();
+
+        for (int quantity = 0; quantity <= 20; quantity++) {
+            pluralForms.add(resources.getQuantityString(plural_id, quantity));
+        }
+
+        return pluralForms;
     }
 }

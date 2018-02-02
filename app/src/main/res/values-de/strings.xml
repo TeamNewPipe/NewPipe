@@ -336,25 +336,32 @@
 
     <!-- Parsing YouTube upload dates in the format '2 days ago' -->
     <string name="downloader_http_accept_language">de</string>
-    <string-array name="upload_date_seconds_ago_phrase">
-        <item>sek</item>
-    </string-array>
-    <string-array name="upload_date_minutes_ago_phrase">
-        <item>min</item>
-    </string-array>
-    <string-array name="upload_date_hours_ago_phrase">
-        <item>stunde</item>
-    </string-array>
-    <string-array name="upload_date_days_ago_phrase">
-        <item>tag</item>
-    </string-array>
-    <string-array name="upload_date_weeks_ago_phrase">
-        <item>woche</item>
-    </string-array>
-    <string-array name="upload_date_months_ago_phrase">
-        <item>monat</item>
-    </string-array>
-    <string-array name="upload_date_years_ago_phrase">
-        <item>jahr</item>
-    </string-array>
+    <plurals name="upload_date_seconds_ago_phrase">
+        <item quantity="one">sek</item>
+        <item quantity="other">sek</item>
+    </plurals>
+    <plurals name="upload_date_minutes_ago_phrase">
+        <item quantity="one">min</item>
+        <item quantity="other">min</item>
+    </plurals>
+    <plurals name="upload_date_hours_ago_phrase">
+        <item quantity="one">stunde</item>
+        <item quantity="other">stunden</item>
+    </plurals>
+    <plurals name="upload_date_days_ago_phrase">
+        <item quantity="one">tag</item>
+        <item quantity="other">tage</item>
+    </plurals>
+    <plurals name="upload_date_weeks_ago_phrase">
+        <item quantity="one">woche</item>
+        <item quantity="other">wochen</item>
+    </plurals>
+    <plurals name="upload_date_months_ago_phrase">
+        <item quantity="one">monat</item>
+        <item quantity="other">monate</item>
+    </plurals>
+    <plurals name="upload_date_years_ago_phrase">
+        <item quantity="one">jahr</item>
+        <item quantity="other">jahre</item>
+    </plurals>
 </resources>

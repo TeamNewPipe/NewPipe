@@ -239,24 +239,30 @@
     <string name="player_unrecoverable_failure">Wystąpił nieodwracalny błąd odtwarzacza</string>
     <string name="player_recoverable_failure">Odzyskiwanie po błędzie odtwarzacza</string>
 
-    <string name="empty_subscription_feed_subtitle">Nic tu nie ma. Słychać świerszcze...</string>
+    <string name="empty_subscription_feed_subtitle">Nic tu nie ma. Słychać świerszcze…</string>
 
     <string name="no_subscribers">Brak subskrybentów</string>
+    <!-- http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#pl -->
     <plurals name="subscribers">
         <item quantity="one">%s subskrybent</item>
-        <item quantity="few">%s subskrybentów</item>
-        <item quantity="other">%s subskrybentów</item>
+        <item quantity="few">%s subskrybenci</item>
+        <item quantity="many">%s subskrybentów</item>
+        <item quantity="other">%s subskrybenta</item>
     </plurals>
 
     <plurals name="views">
         <item quantity="one">%s odtworzenie</item>
-        <item quantity="other">%s odtworzeń</item>
+        <item quantity="few">%s odtworzenia</item>
+        <item quantity="many">%s odtworzeń</item>
+        <item quantity="other">%s odtworzenia</item>
     </plurals>
 
     <string name="no_videos">Brak filmów</string>
     <plurals name="videos">
         <item quantity="one">%s film</item>
-        <item quantity="few">%s filmów</item>
+        <item quantity="few">%s filmy</item>
+        <item quantity="many">%s filmów</item>
+        <item quantity="other">%s filmu</item>
     </plurals>
 
     <string name="charset_most_special_characters">Większość znaków specjalnych</string>
@@ -327,29 +333,46 @@
 
     <!-- Parsing YouTube upload dates in the format '2 days ago' -->
     <string name="downloader_http_accept_language">pl</string>
-    <string-array name="upload_date_seconds_ago_phrase">
-        <item>sek</item>
-    </string-array>
-    <string-array name="upload_date_minutes_ago_phrase">
-        <item>min</item>
-    </string-array>
-    <string-array name="upload_date_hours_ago_phrase">
-        <item>godz</item>
-    </string-array>
-    <string-array name="upload_date_days_ago_phrase">
-        <item> dzień</item>
-        <item> dni</item>
-    </string-array>
-    <string-array name="upload_date_weeks_ago_phrase">
-        <item>tydzień</item>
-        <item>tygodnie</item>
-    </string-array>
-    <string-array name="upload_date_months_ago_phrase">
-        <item>miesiąc</item>
-        <item>miesięcy</item>
-    </string-array>
-    <string-array name="upload_date_years_ago_phrase">
-        <item>rok</item>
-        <item>lat</item>
-    </string-array>
+    <plurals name="upload_date_seconds_ago_phrase">
+        <item quantity="one">sek</item>
+        <item quantity="few">sek</item>
+        <item quantity="many">sek</item>
+        <item quantity="other">sek</item>
+    </plurals>
+    <plurals name="upload_date_minutes_ago_phrase">
+        <item quantity="one">min</item>
+        <item quantity="few">min</item>
+        <item quantity="many">min</item>
+        <item quantity="other">min</item>
+    </plurals>
+    <plurals name="upload_date_hours_ago_phrase">
+        <item quantity="one">godz</item>
+        <item quantity="few">godz</item>
+        <item quantity="many">godz</item>
+        <item quantity="other">godz</item>
+    </plurals>
+    <plurals name="upload_date_days_ago_phrase">
+        <item quantity="one"> dzień</item>
+        <item quantity="few"> dni</item>
+        <item quantity="many"> dni</item>
+        <item quantity="other"> dnia</item>
+    </plurals>
+    <plurals name="upload_date_weeks_ago_phrase">
+        <item quantity="one">tydzień</item>
+        <item quantity="few">tygodnie</item>
+        <item quantity="many">tygodni</item>
+        <item quantity="other">tygodnia</item>
+    </plurals>
+    <plurals name="upload_date_months_ago_phrase">
+        <item quantity="one">miesiąc</item>
+        <item quantity="few">miesiące</item>
+        <item quantity="many">miesięcy</item>
+        <item quantity="other">miesiąca</item>
+    </plurals>
+    <plurals name="upload_date_years_ago_phrase">
+        <item quantity="one">rok</item>
+        <item quantity="few">lata</item>
+        <item quantity="many">lat</item>
+        <item quantity="other">roku</item>
+    </plurals>
 </resources>
