@@ -14,6 +14,18 @@
         android:clickable="true"
         android:focusable="true">
 
+        <ImageView
+            android:id="@+id/newItemsIcon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_alignParentLeft="true"
+            android:gravity="left|center"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:src="?attr/ic_new_releases_small"
+            android:visibility="gone"
+            tools:ignore="ContentDescription,RtlHardcoded"/>
+
         <TextView
             android:id="@+id/refreshText"
             android:layout_width="match_parent"
@@ -24,6 +36,7 @@
             android:textSize="14sp"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
+            android:layout_toRightOf="@id/newItemsIcon"
             tools:ignore="RtlHardcoded"/>
 
         <ImageView
@@ -35,7 +48,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:src="?attr/refresh_small"
+            android:src="?attr/ic_refresh_small"
             tools:ignore="ContentDescription,RtlHardcoded"/>
 
         <View

@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
@@ -59,6 +60,8 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
     private TextView refreshText;
     private ImageView refreshIcon;
     private Animation refreshRotation;
+    private ImageView newItemsIcon;
+    private Animation newItemsBlinking;
 
     private FeedInfoCache feedInfoCache;
 
@@ -113,6 +116,7 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
         refreshButton = rootView.findViewById(R.id.refreshButton);
         refreshText = rootView.findViewById(R.id.refreshText);
         refreshIcon = rootView.findViewById(R.id.refreshIcon);
+        newItemsIcon = rootView.findViewById(R.id.newItemsIcon);
 
         refreshRotation = new RotateAnimation(0, 360,
                 Animation.RELATIVE_TO_SELF, 0.5f,
@@ -120,6 +124,11 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
         refreshRotation.setRepeatCount(Animation.INFINITE);
         refreshRotation.setDuration(1200);
         refreshRotation.setInterpolator(new LinearInterpolator());
+
+        newItemsBlinking = new AlphaAnimation(1.0f, 0.2f);
+        newItemsBlinking.setRepeatMode(Animation.REVERSE);
+        newItemsBlinking.setRepeatCount(Animation.INFINITE);
+        newItemsBlinking.setDuration(1000);
     }
 
     @Override
@@ -269,7 +278,7 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
         if (DEBUG) Log.d(TAG, "updateViewState()");
 
         updateRefreshText();
-        updateRefreshAnimation();
+        updateIconsState();
         updateLoadingSpinner();
     }
 
@@ -283,6 +292,21 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
                     DateUtils.WEEK_IN_MILLIS,
                     DateUtils.FORMAT_ABBREV_RELATIVE).toString();
             refreshText.setText(getString(R.string.feed_last_updated, updateTime));
+        }
+    }
+
+    private void updateIconsState() {
+        if (newAvailableFeedInfo.get() != null) {
+            refreshIcon.clearAnimation();
+            refreshIcon.setVisibility(View.GONE);
+            newItemsIcon.setVisibility(View.VISIBLE);
+            newItemsIcon.startAnimation(newItemsBlinking);
+        } else {
+            refreshIcon.setVisibility(View.VISIBLE);
+            newItemsIcon.clearAnimation();
+            newItemsIcon.setVisibility(View.GONE);
+
+            updateRefreshAnimation();
         }
     }
 
