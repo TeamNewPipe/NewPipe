@@ -131,8 +131,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private int oldSelectedStreamId = -1;
     private String oldSelectedStreamResolution = null;
 
-    private float currentBrightness;
-
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
     @State
@@ -300,7 +298,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         ThemeHelper.setTheme(getContext());
-        setBrightness();
         if(isAutoplayPreferred()) setAutoplay(true);
         showRelatedStreams = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.show_next_video_key), true);
         PreferenceManager.getDefaultSharedPreferences(activity).registerOnSharedPreferenceChangeListener(this);
@@ -318,12 +315,14 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         super.onPause();
         isPaused = true;
         if (currentWorker != null) currentWorker.dispose();
+        setupBrightness(true);
     }
 
     @Override
     public void onResume() {
         super.onResume();
         isPaused = false;
+        setupBrightness(false);
 
         if (updateFlags != 0) {
             if (!isLoading.get() && currentInfo != null) {
@@ -408,7 +407,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private static final String WAS_RELATED_EXPANDED_KEY = "was_related_expanded_key";
     private static final String SELECTED_STREAM_ID_KEY = "selected_stream_id_key";
     private static final String SELECTED_STREAM_RESOLUTION_KEY = "selected_stream_resolution_key";
-    private static final String CURRENT_BRIGHTNESS_KEY = "current_brightness_key";
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -432,10 +430,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         outState.putSerializable(STACK_KEY, stack);
         outState.putInt(SELECTED_STREAM_ID_KEY, oldSelectedStreamId);
         outState.putString(SELECTED_STREAM_RESOLUTION_KEY, oldSelectedStreamResolution);
-
-        // Our brightness value will survive after an orientation change
-        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
-        outState.putFloat(CURRENT_BRIGHTNESS_KEY, lp.screenBrightness);
 
         if(player != null && !player.popupPlayerSelected())
             removeVideoPlayerView();
@@ -461,7 +455,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         oldSelectedStreamId = savedState.getInt(SELECTED_STREAM_ID_KEY);
         oldSelectedStreamResolution = savedState.getString(SELECTED_STREAM_RESOLUTION_KEY);
         playQueue = (PlayQueue) savedState.getSerializable(VideoPlayer.PLAY_QUEUE);
-        currentBrightness = savedState.getFloat(CURRENT_BRIGHTNESS_KEY);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1609,14 +1602,28 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
     }
 
-    private void setBrightness() {
+    private void setupBrightness(boolean save) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
-        if (currentBrightness != 0) {
-            lp.screenBrightness = currentBrightness;
-            getActivity().getWindow().setAttributes(lp);
+        float brightnessLevel;
+
+        if(save) {
+            // Save current brightness level
+            brightnessLevel = lp.screenBrightness;
+            sp.edit().putFloat(getString(R.string.brightness_level_key), brightnessLevel).apply();
+
+            // Restore the old  brightness when fragment.onPause() called.
+            // It means when user leaves this fragment brightness will be set to system brightness
+            lp.screenBrightness = -1;
         }
-        else
-            currentBrightness = lp.screenBrightness;
+        else {
+            // Restore already saved brightness level
+            brightnessLevel = sp.getFloat(getString(R.string.brightness_level_key), lp.screenBrightness);
+            if(brightnessLevel <= 0.0f && brightnessLevel > 1.0f) return;
+
+            lp.screenBrightness = brightnessLevel;
+        }
+        getActivity().getWindow().setAttributes(lp);
     }
 
     private void playNextStream() {
