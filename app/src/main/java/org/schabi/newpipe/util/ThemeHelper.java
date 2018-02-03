@@ -7,16 +7,32 @@ import android.support.annotation.AttrRes;
 import android.support.annotation.StyleRes;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 
 public class ThemeHelper {
 
     /**
      * Apply the selected theme (on NewPipe settings) in the context
+     * with the default style (see {@link #setTheme(Context, int)}).
      *
      * @param context context that the theme will be applied
      */
     public static void setTheme(Context context) {
-        context.setTheme(getSelectedThemeStyle(context));
+        setTheme(context, -1);
+    }
+
+    /**
+     * Apply the selected theme (on NewPipe settings) in the context,
+     * themed according with the styles defined for the service .
+     *
+     * @param context   context that the theme will be applied
+     * @param serviceId the theme will be styled to the service with this id,
+     *                  pass -1 to get the default style
+     */
+    public static void setTheme(Context context, int serviceId) {
+        context.setTheme(getThemeForService(context, serviceId));
     }
 
     /**
@@ -29,18 +45,42 @@ public class ThemeHelper {
     }
 
     @StyleRes
-    public static int getSelectedThemeStyle(Context context) {
+    public static int getThemeForService(Context context, int serviceId) {
         String lightTheme = context.getResources().getString(R.string.light_theme_key);
         String darkTheme = context.getResources().getString(R.string.dark_theme_key);
         String blackTheme = context.getResources().getString(R.string.black_theme_key);
 
         String selectedTheme = getSelectedTheme(context);
 
-        if (selectedTheme.equals(lightTheme)) return R.style.LightTheme;
-        else if (selectedTheme.equals(blackTheme)) return R.style.BlackTheme;
-        else if (selectedTheme.equals(darkTheme)) return R.style.DarkTheme;
-            // Fallback
-        else return R.style.DarkTheme;
+        int defaultTheme = R.style.DarkTheme;
+        if (selectedTheme.equals(lightTheme)) defaultTheme = R.style.LightTheme;
+        else if (selectedTheme.equals(blackTheme)) defaultTheme = R.style.BlackTheme;
+        else if (selectedTheme.equals(darkTheme)) defaultTheme = R.style.DarkTheme;
+
+        if (serviceId <= -1) {
+            return defaultTheme;
+        }
+
+        final StreamingService service;
+        try {
+            service = NewPipe.getService(serviceId);
+        } catch (ExtractionException ignored) {
+            return defaultTheme;
+        }
+
+        String themeName = "DarkTheme";
+        if (selectedTheme.equals(lightTheme)) themeName = "LightTheme";
+        else if (selectedTheme.equals(blackTheme)) themeName = "BlackTheme";
+        else if (selectedTheme.equals(darkTheme)) themeName = "DarkTheme";
+
+        themeName += "." + service.getServiceInfo().name;
+        int resourceId = context.getResources().getIdentifier(themeName, "style", context.getPackageName());
+
+        if (resourceId > 0) {
+            return resourceId;
+        }
+
+        return defaultTheme;
     }
 
     public static String getSelectedTheme(Context context) {

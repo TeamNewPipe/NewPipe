@@ -240,4 +240,6 @@
     <string name="history_cleared">已清除歷史紀錄</string>
     <string name="item_deleted">項目已刪除</string>
     <string name="delete_item_search_history">確定要刪除此項搜尋紀錄嗎？</string>
-</resources>
+<string name="no_player_found_toast">沒有找到串流播放器(你可以安裝 VLC播放器 來播放)</string>
+    <string name="show_hold_to_append_title">顯示鎖定到附加指引上</string>
+    </resources>
