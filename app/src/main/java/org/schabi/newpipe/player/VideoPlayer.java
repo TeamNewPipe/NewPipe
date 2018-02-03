@@ -29,12 +29,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceView;
@@ -46,17 +48,24 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
+import com.google.android.exoplayer2.source.SingleSampleMediaSource;
+import com.google.android.exoplayer2.source.TrackGroupArray;
+import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.exoplayer2.ui.SubtitleView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
+import org.schabi.newpipe.extractor.Subtitles;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
@@ -64,6 +73,9 @@ import org.schabi.newpipe.util.ListHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.google.android.exoplayer2.C.SELECTION_FLAG_AUTOSELECT;
+import static com.google.android.exoplayer2.C.TIME_UNSET;
+import static com.google.android.exoplayer2.C.TRACK_TYPE_TEXT;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -95,6 +107,8 @@ public abstract class VideoPlayer extends BasePlayer
 
     protected String playbackQuality;
 
+    private List<Subtitles> availableCaptions;
+
     protected boolean wasPlaying = false;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -123,6 +137,11 @@ public abstract class VideoPlayer extends BasePlayer
     private View topControlsRoot;
     private TextView qualityTextView;
 
+    private SubtitleView subtitleView;
+
+    private TextView resizeView;
+    private TextView captionTextView;
+
     private ValueAnimator controlViewAnimator;
     private Handler controlsVisibilityHandler = new Handler();
 
@@ -132,6 +151,9 @@ public abstract class VideoPlayer extends BasePlayer
 
     private int playbackSpeedPopupMenuGroupId = 79;
     private PopupMenu playbackSpeedPopupMenu;
+
+    private int captionPopupMenuGroupId = 89;
+    private PopupMenu captionPopupMenu;
 
     ///////////////////////////////////////////////////////////////////////////
 
@@ -163,6 +185,12 @@ public abstract class VideoPlayer extends BasePlayer
         this.bottomControlsRoot = rootView.findViewById(R.id.bottomControls);
         this.topControlsRoot = rootView.findViewById(R.id.topControls);
         this.qualityTextView = rootView.findViewById(R.id.qualityTextView);
+        this.subtitleView = rootView.findViewById(R.id.subtitleView);
+
+        this.resizeView =  rootView.findViewById(R.id.resizeTextView);
+        resizeView.setText(PlayerHelper.resizeTypeOf(context, aspectRatioFrameLayout.getResizeMode()));
+
+        this.captionTextView = rootView.findViewById(R.id.captionTextView);
 
         //this.aspectRatioFrameLayout.setAspectRatio(16.0f / 9.0f);
 
@@ -172,9 +200,13 @@ public abstract class VideoPlayer extends BasePlayer
 
         this.qualityPopupMenu = new PopupMenu(context, qualityTextView);
         this.playbackSpeedPopupMenu = new PopupMenu(context, playbackSpeedTextView);
+        this.captionPopupMenu = new PopupMenu(context, captionTextView);
 
-        ((ProgressBar) this.loadingPanel.findViewById(R.id.progressBarLoadingPanel)).getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
+        ((ProgressBar) this.loadingPanel.findViewById(R.id.progressBarLoadingPanel))
+                .getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
 
+        subtitleView.setFixedTextSize(TypedValue.COMPLEX_UNIT_PX,
+                PlayerHelper.getCaptionSizePx(context));
     }
 
     @Override
@@ -183,14 +215,22 @@ public abstract class VideoPlayer extends BasePlayer
         playbackSeekBar.setOnSeekBarChangeListener(this);
         playbackSpeedTextView.setOnClickListener(this);
         qualityTextView.setOnClickListener(this);
+        captionTextView.setOnClickListener(this);
+        resizeView.setOnClickListener(this);
     }
 
     @Override
     public void initPlayer() {
         super.initPlayer();
+
+        // Setup video view
         simpleExoPlayer.setVideoSurfaceView(surfaceView);
         simpleExoPlayer.addVideoListener(this);
 
+        // Setup subtitle view
+        simpleExoPlayer.addTextOutput(cues -> subtitleView.onCues(cues));
+
+        // Setup audio session with onboard equalizer
         if (Build.VERSION.SDK_INT >= 21) {
             trackSelector.setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context));
         }
@@ -236,6 +276,39 @@ public abstract class VideoPlayer extends BasePlayer
         playbackSpeedPopupMenu.setOnDismissListener(this);
     }
 
+    private void buildCaptionMenu() {
+        if (captionPopupMenu == null) return;
+        captionPopupMenu.getMenu().removeGroup(captionPopupMenuGroupId);
+
+        if (availableCaptions == null || trackSelector == null) return;
+        MenuItem captionOffItem = captionPopupMenu.getMenu().add(captionPopupMenuGroupId,
+                0, Menu.NONE, "Caption Off");
+        captionOffItem.setOnMenuItemClickListener(menuItem -> {
+            final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
+            if (trackSelector != null && textRendererIndex != -1) {
+                trackSelector.setRendererDisabled(textRendererIndex, true);
+            }
+            return true;
+        });
+
+        for (int i = 0; i < availableCaptions.size(); i++) {
+            final Subtitles subtitles = availableCaptions.get(i);
+            final String captionLanguage = PlayerHelper.captionLanguageOf(subtitles);
+            MenuItem captionItem = captionPopupMenu.getMenu().add(captionPopupMenuGroupId,
+                    i + 1, Menu.NONE, captionLanguage);
+            captionItem.setOnMenuItemClickListener(menuItem -> {
+                final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
+                if (trackSelector != null && textRendererIndex != -1) {
+                    trackSelector.setRendererDisabled(textRendererIndex, false);
+                    trackSelector.setParameters(trackSelector.getParameters()
+                            .withPreferredTextLanguage(captionLanguage));
+                }
+                return true;
+            });
+        }
+        //captionPopupMenu.setOnMenuItemClickListener(this);
+        captionPopupMenu.setOnDismissListener(this);
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // Playback Listener
     //////////////////////////////////////////////////////////////////////////*/
@@ -249,9 +322,11 @@ public abstract class VideoPlayer extends BasePlayer
         super.sync(item, info);
         qualityTextView.setVisibility(View.GONE);
         playbackSpeedTextView.setVisibility(View.GONE);
+        captionTextView.setVisibility(View.GONE);
 
         if (info != null) {
-            final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
+            final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
+                    info.video_streams, info.video_only_streams, false);
             availableStreams = new ArrayList<>(videos);
             if (playbackQuality == null) {
                 selectedStreamIndex = getDefaultResolutionIndex(videos);
@@ -261,8 +336,12 @@ public abstract class VideoPlayer extends BasePlayer
 
             buildQualityMenu();
             buildPlaybackSpeedMenu();
+            buildCaptionMenu();
             qualityTextView.setVisibility(View.VISIBLE);
             playbackSpeedTextView.setVisibility(View.VISIBLE);
+
+            availableCaptions = info.getSubtitles();
+            if (!availableCaptions.isEmpty()) captionTextView.setVisibility(View.VISIBLE);
         }
     }
 
@@ -280,13 +359,39 @@ public abstract class VideoPlayer extends BasePlayer
         if (index < 0 || index >= videos.size()) return null;
         final VideoStream video = videos.get(index);
 
-        final MediaSource streamSource = buildMediaSource(video.getUrl(), MediaFormat.getSuffixById(video.format));
-        final AudioStream audio = ListHelper.getHighestQualityAudio(info.audio_streams);
-        if (!video.isVideoOnly || audio == null) return streamSource;
+        List<MediaSource> mediaSources = new ArrayList<>();
+        // Create video stream source
+        final MediaSource streamSource = buildMediaSource(video.getUrl(),
+                MediaFormat.getSuffixById(video.getFormatId()));
+        mediaSources.add(streamSource);
 
-        // Merge with audio stream in case if video does not contain audio
-        final MediaSource audioSource = buildMediaSource(audio.getUrl(), MediaFormat.getSuffixById(audio.format));
-        return new MergingMediaSource(streamSource, audioSource);
+        // Create optional audio stream source
+        final AudioStream audio = ListHelper.getHighestQualityAudio(info.audio_streams);
+        if (video.isVideoOnly && audio != null) {
+            // Merge with audio stream in case if video does not contain audio
+            final MediaSource audioSource = buildMediaSource(audio.getUrl(),
+                    MediaFormat.getSuffixById(audio.getFormatId()));
+            mediaSources.add(audioSource);
+        }
+
+        // Create subtitle sources
+        for (final Subtitles subtitle : info.getSubtitles()) {
+            final String mimeType = PlayerHelper.mimeTypesOf(subtitle.getFileType());
+            if (mimeType == null) continue;
+
+            final Format textFormat = Format.createTextSampleFormat(null, mimeType,
+                    SELECTION_FLAG_AUTOSELECT, PlayerHelper.captionLanguageOf(subtitle));
+            final MediaSource textSource = new SingleSampleMediaSource(
+                    Uri.parse(subtitle.getURL()), cacheDataSourceFactory, textFormat, TIME_UNSET);
+            mediaSources.add(textSource);
+        }
+
+        if (mediaSources.size() == 1) {
+            return mediaSources.get(0);
+        } else {
+            return new MergingMediaSource(mediaSources.toArray(
+                    new MediaSource[mediaSources.size()]));
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -363,6 +468,20 @@ public abstract class VideoPlayer extends BasePlayer
     /*//////////////////////////////////////////////////////////////////////////
     // ExoPlayer Video Listener
     //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
+        super.onTracksChanged(trackGroups, trackSelections);
+        if (trackSelector == null || captionTextView == null) return;
+
+        if (trackSelector.getRendererDisabled(getRendererIndex(C.TRACK_TYPE_TEXT)) ||
+                trackSelector.getParameters().preferredTextLanguage == null) {
+            captionTextView.setText("No Caption");
+        } else {
+            final String preferredLanguage = trackSelector.getParameters().preferredTextLanguage;
+            captionTextView.setText(preferredLanguage);
+        }
+    }
 
     @Override
     public void onVideoSizeChanged(int width, int height, int unappliedRotationDegrees, float pixelWidthHeightRatio) {
@@ -453,6 +572,10 @@ public abstract class VideoPlayer extends BasePlayer
             onQualitySelectorClicked();
         } else if (v.getId() == playbackSpeedTextView.getId()) {
             onPlaybackSpeedClicked();
+        } else if (v.getId() == resizeView.getId()) {
+            onResizeClicked();
+        } else if (v.getId() == captionTextView.getId()) {
+            onCaptionClicked();
         }
     }
 
@@ -516,6 +639,27 @@ public abstract class VideoPlayer extends BasePlayer
         showControls(300);
     }
 
+    private void onCaptionClicked() {
+        if (DEBUG) Log.d(TAG, "onCaptionClicked() called");
+        captionPopupMenu.show();
+        isSomePopupMenuVisible = true;
+        showControls(300);
+    }
+
+    protected void onResizeClicked() {
+        if (aspectRatioFrameLayout != null && context != null) {
+            final int currentResizeMode = aspectRatioFrameLayout.getResizeMode();
+            final int newResizeMode;
+            if (currentResizeMode == AspectRatioFrameLayout.RESIZE_MODE_ZOOM) {
+                newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT;
+            } else {
+                newResizeMode = currentResizeMode + 1;
+            }
+
+            aspectRatioFrameLayout.setResizeMode(newResizeMode);
+            resizeView.setText(PlayerHelper.resizeTypeOf(context, newResizeMode));
+        }
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // SeekBar Listener
     //////////////////////////////////////////////////////////////////////////*/
@@ -557,11 +701,11 @@ public abstract class VideoPlayer extends BasePlayer
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    public int getVideoRendererIndex() {
+    public int getRendererIndex(final int trackIndex) {
         if (simpleExoPlayer == null) return -1;
 
         for (int t = 0; t < simpleExoPlayer.getRendererCount(); t++) {
-            if (simpleExoPlayer.getRendererType(t) == C.TRACK_TYPE_VIDEO) {
+            if (simpleExoPlayer.getRendererType(t) == trackIndex) {
                 return t;
             }
         }

@@ -49,6 +49,7 @@ import android.widget.RemoteViews;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 
@@ -642,7 +643,7 @@ public final class PopupVideoPlayer extends Service {
         //////////////////////////////////////////////////////////////////////////*/
 
         /*package-private*/ void enableVideoRenderer(final boolean enable) {
-            final int videoRendererIndex = getVideoRendererIndex();
+            final int videoRendererIndex = getRendererIndex(C.TRACK_TYPE_VIDEO);
             if (trackSelector != null && videoRendererIndex != -1) {
                 trackSelector.setRendererDisabled(videoRendererIndex, !enable);
             }

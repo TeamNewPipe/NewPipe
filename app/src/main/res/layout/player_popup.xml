@@ -28,6 +28,10 @@
             android:layout_height="match_parent"
             android:background="@android:color/black"/>
 
+        <com.google.android.exoplayer2.ui.SubtitleView
+            android:id="@+id/subtitleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
 
 
@@ -97,6 +101,34 @@
                 android:src="@drawable/ic_fullscreen_white"
                 tools:ignore="ContentDescription,RtlHardcoded"/>
 
+            <TextView
+                android:id="@+id/resizeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:padding="5dp"
+                android:layout_below="@id/qualityTextView"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:minWidth="50dp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,RtlHardcoded"
+                tools:text="FIT"/>
+
+            <TextView
+                android:id="@+id/captionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_below="@id/qualityTextView"
+                android:layout_toRightOf="@id/resizeTextView"
+                android:gravity="center"
+                android:minHeight="35dp"
+                android:minWidth="40dp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded,RtlSymmetry"
+                tools:text="English" />
         </RelativeLayout>
 
         <!--Shadow Bottom Control-->
