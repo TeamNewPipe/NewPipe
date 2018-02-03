@@ -72,8 +72,10 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container, Bundle savedInstanceState) {
-        feedLoadCount = howManyItemsToLoad();
+        // Do not create a new instance of the feed on screen rotation.
         setRetainInstance(true);
+
+        feedLoadCount = howManyItemsToLoad();
         return inflater.inflate(R.layout.fragment_feed, container, false);
     }
 
@@ -168,6 +170,7 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
     public void writeTo(Queue<Object> objectsToSave) {
         super.writeTo(objectsToSave);
         objectsToSave.add(currentFeedInfo);
+        objectsToSave.add(newAvailableFeedInfo);
     }
 
     @Override
@@ -175,6 +178,7 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
     public void readFrom(@NonNull Queue<Object> savedObjects) throws Exception {
         super.readFrom(savedObjects);
         currentFeedInfo = (FeedInfo) savedObjects.poll();
+        newAvailableFeedInfo = (AtomicReference<FeedInfo>) savedObjects.poll();
     }
 
     /*//////////////////////////////////////////////////////////////////////////

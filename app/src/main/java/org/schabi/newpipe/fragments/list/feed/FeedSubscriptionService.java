@@ -59,6 +59,7 @@ final class FeedSubscriptionService {
         feedInfoObservable = subscriptionService.getSubscription()
                 .toObservable()
                 .map(this::getFeedInfoFromSubscriptions)
+                .doOnSubscribe(disposable -> areSubscriptionsBeingLoaded = true)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 
