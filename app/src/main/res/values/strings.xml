@@ -233,6 +233,7 @@
     <string name="delete_all">Delete All</string>
     <string name="checksum">Checksum</string>
     <string name="dismiss">Dismiss</string>
+    <string name="rename">Rename</string>
 
     <!-- Fragment -->
     <string name="add">New mission</string>

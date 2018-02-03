@@ -27,6 +27,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import icepick.State;
@@ -185,6 +186,8 @@ public abstract class StatisticsPlaylistFragment
     @Override
     public void handleResult(@NonNull List<StreamStatisticsEntry> result) {
         super.handleResult(result);
+        if (itemListAdapter == null) return;
+
         itemListAdapter.clearStreamItemList();
 
         if (result.isEmpty()) {
@@ -275,6 +278,10 @@ public abstract class StatisticsPlaylistFragment
     }
 
     private PlayQueue getPlayQueue(final int index) {
+        if (itemListAdapter == null) {
+            return new SinglePlayQueue(Collections.emptyList(), 0);
+        }
+
         final List<LocalItem> infoItems = itemListAdapter.getItemsList();
         List<StreamInfoItem> streamInfoItems = new ArrayList<>(infoItems.size());
         for (final LocalItem item : infoItems) {

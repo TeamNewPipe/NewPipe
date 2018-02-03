@@ -11,8 +11,6 @@ import android.os.Build;
 import android.util.Log;
 
 import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
-import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
-import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
@@ -83,7 +81,7 @@ public class App extends Application {
         initNotificationChannel();
 
         // Initialize image loader
-        ImageLoader.getInstance().init(getImageLoaderConfigurations(10));
+        ImageLoader.getInstance().init(getImageLoaderConfigurations(10, 50));
 
         configureRxJavaErrorHandler();
     }
@@ -121,9 +119,11 @@ public class App extends Application {
         });
     }
 
-    private ImageLoaderConfiguration getImageLoaderConfigurations(final int memoryCacheSizeMb) {
+    private ImageLoaderConfiguration getImageLoaderConfigurations(final int memoryCacheSizeMb,
+                                                                  final int diskCacheSizeMb) {
         return new ImageLoaderConfiguration.Builder(this)
                 .memoryCache(new LRULimitedMemoryCache(memoryCacheSizeMb * 1024 * 1024))
+                .diskCacheSize(diskCacheSizeMb * 1024 * 1024)
                 .build();
     }
 

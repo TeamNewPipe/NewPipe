@@ -35,6 +35,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -289,6 +290,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     @Override
     public void handleResult(@NonNull List<PlaylistStreamEntry> result) {
         super.handleResult(result);
+        if (itemListAdapter == null) return;
+
         itemListAdapter.clearStreamItemList();
 
         if (result.isEmpty()) {
@@ -349,7 +352,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .setView(dialogView)
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.create, (dialogInterface, i) ->
+                .setPositiveButton(R.string.rename, (dialogInterface, i) ->
                         changePlaylistName(nameEdit.getText().toString())
                 );
 
@@ -382,6 +385,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private void deleteItem(final PlaylistStreamEntry item) {
+        if (itemListAdapter == null) return;
+
         itemListAdapter.removeItem(item);
         setVideoCount(itemListAdapter.getItemsList().size());
         saveChanges();
@@ -543,6 +548,10 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private PlayQueue getPlayQueue(final int index) {
+        if (itemListAdapter == null) {
+            return new SinglePlayQueue(Collections.emptyList(), 0);
+        }
+
         final List<LocalItem> infoItems = itemListAdapter.getItemsList();
         List<StreamInfoItem> streamInfoItems = new ArrayList<>(infoItems.size());
         for (final LocalItem item : infoItems) {
