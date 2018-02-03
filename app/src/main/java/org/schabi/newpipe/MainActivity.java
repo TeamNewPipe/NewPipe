@@ -204,8 +204,36 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
         } else super.onBackPressed();
     }
 
+    /**
+     * Implement the following diagram behavior for the up button:
+     * <pre>
+     *              +---------------+
+     *              |  Main Screen  +----+
+     *              +-------+-------+    |
+     *                      |            |
+     *                      ▲ Up         | Search Button
+     *                      |            |
+     *                 +----+-----+      |
+     *    +------------+  Search  |◄-----+
+     *    |            +----+-----+
+     *    |   Open          |
+     *    |  something      ▲ Up
+     *    |                 |
+     *    |    +------------+-------------+
+     *    |    |                          |
+     *    |    |  Video    <->  Channel   |
+     *    +---►|  Channel  <->  Playlist  |
+     *         |  Video    <->  ....      |
+     *         |                          |
+     *         +--------------------------+
+     * </pre>
+     */
     private void onHomeButtonPressed() {
-        NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+        // If search fragment wasn't found in the backstack...
+        if (!NavigationHelper.tryGotoSearchFragment(getSupportFragmentManager())) {
+            // ...go to the main fragment
+            NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -237,11 +265,6 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
         updateDrawerNavigation();
 
         return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override

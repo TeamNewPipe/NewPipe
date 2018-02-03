@@ -51,6 +51,7 @@ import java.util.ArrayList;
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NavigationHelper {
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
+    public static final String SEARCH_FRAGMENT_TAG = "search_fragment_tag";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Players
@@ -244,11 +245,21 @@ public class NavigationHelper {
                 .commit();
     }
 
+    public static boolean tryGotoSearchFragment(FragmentManager fragmentManager) {
+        if (MainActivity.DEBUG) {
+            for (int i = 0; i < fragmentManager.getBackStackEntryCount(); i++) {
+                Log.d("NavigationHelper", "tryGoToSearchFragment() [" + i + "] = [" + fragmentManager.getBackStackEntryAt(i) + "]");
+            }
+        }
+
+        return fragmentManager.popBackStackImmediate(SEARCH_FRAGMENT_TAG, 0);
+    }
+
     public static void openSearchFragment(FragmentManager fragmentManager, int serviceId, String query) {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
                 .replace(R.id.fragment_holder, SearchFragment.getInstance(serviceId, query))
-                .addToBackStack(null)
+                .addToBackStack(SEARCH_FRAGMENT_TAG)
                 .commit();
     }
 
