@@ -1,10 +1,12 @@
 package org.schabi.newpipe.fragments.detail;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
@@ -143,6 +145,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private StreamInfo currentInfo;
     private Disposable currentWorker;
     private CompositeDisposable disposables = new CompositeDisposable();
+    BroadcastReceiver broadcastReceiver;
+    public static final String ACTION_HIDE_MAIN_PLAYER = "org.schabi.newpipe.fragments.detail.VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -303,6 +307,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         PreferenceManager.getDefaultSharedPreferences(activity).registerOnSharedPreferenceChangeListener(this);
 
         startService();
+        setupBroadcastReceiver();
     }
 
     @Override
@@ -357,6 +362,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         sortedStreamVideosList = null;
         spinnerToolbar = null;
 
+        getActivity().unregisterReceiver(broadcastReceiver);
         unbind();
     }
 
@@ -1320,6 +1326,17 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     protected void showError(String message, boolean showRetryButton, @DrawableRes int imageError) {
         super.showError(message, showRetryButton);
         setErrorImage(imageError);
+    }
+
+    private void setupBroadcastReceiver() {
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                hideMainPlayer();
+            }
+        };
+        IntentFilter intentFilter = new IntentFilter(ACTION_HIDE_MAIN_PLAYER);
+        getActivity().registerReceiver(broadcastReceiver, intentFilter);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
