@@ -45,7 +45,7 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
         if (DEBUG) Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
         if (playerImpl.getPlayer() == null || !playerImpl.isPlaying() || !playerImpl.isPlayerReady()) return false;
 
-        float widthToCheck = playerImpl.popupPlayerSelected() ? service.popupWidth / 2 : playerImpl.getRootView().getWidth() / 2;
+        float widthToCheck = playerImpl.popupPlayerSelected() ? playerImpl.getPopupWidth() / 2 : playerImpl.getRootView().getWidth() / 2;
 
         if (e.getX() > widthToCheck) {
             playerImpl.onFastForward();
@@ -100,10 +100,10 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
 
         if(!playerImpl.popupPlayerSelected()) return super.onDown(e);
 
-        initialPopupX = service.windowLayoutParams.x;
-        initialPopupY = service.windowLayoutParams.y;
-        service.popupWidth = service.windowLayoutParams.width;
-        service.popupHeight = service.windowLayoutParams.height;
+        initialPopupX = playerImpl.getWindowLayoutParams().x;
+        initialPopupY = playerImpl.getWindowLayoutParams().y;
+        playerImpl.setPopupWidth(playerImpl.getWindowLayoutParams().width);
+        playerImpl.setPopupHeight(playerImpl.getWindowLayoutParams().height);
         return super.onDown(e);
     }
 
@@ -115,7 +115,7 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
 
         playerImpl.updateScreenSize();
         playerImpl.checkPositionBounds();
-        playerImpl.updatePopupSize((int) service.screenWidth, -1);
+        playerImpl.updatePopupSize(playerImpl.getWindowLayoutParams(), (int) playerImpl.getScreenWidth(), -1);
     }
 
     private boolean handleOnScrollInPopup(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
@@ -128,14 +128,14 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
         float diffX = (int) (e2.getRawX() - e1.getRawX()), posX = (int) (initialPopupX + diffX);
         float diffY = (int) (e2.getRawY() - e1.getRawY()), posY = (int) (initialPopupY + diffY);
 
-        if (posX > (service.screenWidth - service.popupWidth)) posX = (int) (service.screenWidth - service.popupWidth);
+        if (posX > (playerImpl.getScreenWidth() - playerImpl.getPopupWidth())) posX = (int) (playerImpl.getScreenWidth() - playerImpl.getPopupWidth());
         else if (posX < 0) posX = 0;
 
-        if (posY > (service.screenHeight - service.popupHeight)) posY = (int) (service.screenHeight - service.popupHeight);
+        if (posY > (playerImpl.getScreenHeight() - playerImpl.getPopupHeight())) posY = (int) (playerImpl.getScreenHeight() - playerImpl.getPopupHeight());
         else if (posY < 0) posY = 0;
 
-        service.windowLayoutParams.x = (int) posX;
-        service.windowLayoutParams.y = (int) posY;
+        playerImpl.getWindowLayoutParams().x = (int) posX;
+        playerImpl.getWindowLayoutParams().y = (int) posY;
 
         //noinspection PointlessBooleanExpression
         if (DEBUG && false) Log.d(TAG, "MainPlayer.onScroll = " +
@@ -143,8 +143,8 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
                 ", e2.getRaw = [" + e2.getRawX() + ", " + e2.getRawY() + "]" +
                 ", distanceXy = [" + distanceX + ", " + distanceY + "]" +
                 ", posXy = [" + posX + ", " + posY + "]" +
-                ", popupWh = [" + service.popupWidth + " x " + service.popupHeight + "]");
-        service.windowManager.updateViewLayout(service.getView(), service.windowLayoutParams);
+                ", popupWh = [" + playerImpl.getPopupWidth() + " x " + playerImpl.getPopupHeight() + "]");
+        playerImpl.updateViewLayout(service.getView(), playerImpl.getWindowLayoutParams());
         return true;
     }
 
@@ -159,17 +159,17 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
             service.onDestroy();
             return true;
         } else if (Math.max(absVelocityX, absVelocityY) > tossFlingVelocity) {
-            if (absVelocityX > tossFlingVelocity) service.windowLayoutParams.x = (int) velocityX;
-            if (absVelocityY > tossFlingVelocity) service.windowLayoutParams.y = (int) velocityY;
+            if (absVelocityX > tossFlingVelocity) playerImpl.getWindowLayoutParams().x = (int) velocityX;
+            if (absVelocityY > tossFlingVelocity) playerImpl.getWindowLayoutParams().y = (int) velocityY;
             playerImpl.checkPositionBounds();
-            service.windowManager.updateViewLayout(service.getView(), service.windowLayoutParams);
+            playerImpl.updateViewLayout(service.getView(), playerImpl.getWindowLayoutParams());
             return true;
         }
         return false;
     }
 
     private boolean handleTouchInPopup(View v, MotionEvent event) {
-        service.gestureDetector.onTouchEvent(event);
+        playerImpl.getGestureDetector().onTouchEvent(event);
 
         if (event.getPointerCount() == 2 && !isResizing) {
             if (DEBUG) Log.d(TAG, "onTouch() 2 finger pointer detected, enabling resizing.");
@@ -219,17 +219,17 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
         final float diff = Math.abs(firstPointerX - secondPointerX);
         if (firstPointerX > secondPointerX) {
             // second pointer is the anchor (the leftmost pointer)
-            service.windowLayoutParams.x = (int) (event.getRawX() - diff);
+            playerImpl.getWindowLayoutParams().x = (int) (event.getRawX() - diff);
         } else {
             // first pointer is the anchor
-            service.windowLayoutParams.x = (int) event.getRawX();
+            playerImpl.getWindowLayoutParams().x = (int) event.getRawX();
         }
 
         playerImpl.checkPositionBounds();
         playerImpl.updateScreenSize();
 
-        final int width = (int) Math.min(service.screenWidth, diff);
-        playerImpl.updatePopupSize(width, -1);
+        final int width = (int) Math.min(playerImpl.getScreenWidth(), diff);
+        playerImpl.updatePopupSize(playerImpl.getWindowLayoutParams(), width, -1);
 
         return true;
     }
@@ -359,7 +359,7 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
 
         //noinspection PointlessBooleanExpression
         if (DEBUG && false) Log.d(TAG, "onTouch() called with: v = [" + v + "], event = [" + event + "]");
-        service.gestureDetector.onTouchEvent(event);
+        playerImpl.getGestureDetector().onTouchEvent(event);
         if (event.getAction() == MotionEvent.ACTION_UP && isMoving) {
             isMoving = false;
             onScrollEnd();

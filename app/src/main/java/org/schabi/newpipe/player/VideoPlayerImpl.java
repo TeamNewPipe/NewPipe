@@ -1,10 +1,13 @@
 package org.schabi.newpipe.player;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.PixelFormat;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,10 +16,12 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
@@ -40,6 +45,7 @@ import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.event.PlayerGestureListener;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
+import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
@@ -80,9 +86,10 @@ public class VideoPlayerImpl extends VideoPlayer {
     private ItemTouchHelper itemTouchHelper;
 
     private boolean queueVisible;
-    public boolean audioOnly = false;
-    private boolean isAudioPlayerSelected = false;
-    public boolean isPopupPlayerSelected = false;
+    private PlayerType playerType = PlayerType.VIDEO;
+
+    // We can use audioOnly variable with any type of video. It tells to the player to disable video stream
+    private boolean audioOnly = false;
     private boolean isFullscreen = false;
     private boolean shouldUpdateOnProgress;
 
@@ -90,40 +97,59 @@ public class VideoPlayerImpl extends VideoPlayer {
     public int moreOptionsPopupMenuGroupId = 89;
     public PopupMenu moreOptionsPopupMenu;
 
-    Bitmap cachedImage;
+    private Bitmap cachedImage;
 
     private MainPlayerService service;
     private PlayerServiceEventListener fragmentListener;
     private PlayerEventListener activityListener;
+    private GestureDetector gestureDetector;
 
+    // Popup
+    private WindowManager.LayoutParams windowLayoutParams;
+    private WindowManager windowManager;
+    static final String POPUP_SAVED_WIDTH = "popup_saved_width";
+    static final String POPUP_SAVED_X = "popup_saved_x";
+    static final String POPUP_SAVED_Y = "popup_saved_y";
+    private float screenWidth, screenHeight;
+    private float popupWidth, popupHeight;
     private float minimumWidth, minimumHeight;
     private float maximumWidth, maximumHeight;
+    // Popup end
+
 
     @Override
     public void handleIntent(Intent intent) {
         if(intent.getSerializableExtra(BasePlayer.PLAY_QUEUE) == null) return;
 
-        selectAudioPlayer(intent.getBooleanExtra(BasePlayer.AUDIO_ONLY, false));
+        choosePlayerTypeFromIntent(intent);
         audioOnly = audioPlayerSelected();
         // We need to setup audioOnly before super()
         super.handleIntent(intent);
 
         service.resetNotification();
-        if (service.bigNotRemoteView != null) service.bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
-        if (service.notRemoteView != null) service.notRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
-        service.startForeground(NOTIFICATION_ID, service.notBuilder.build());
+        if (service.getBigNotRemoteView() != null) service.getBigNotRemoteView().setProgressBar(R.id.notificationProgressBar, 100, 0, false);
+        if (service.getNotRemoteView() != null) service.getNotRemoteView().setProgressBar(R.id.notificationProgressBar, 100, 0, false);
+        service.startForeground(NOTIFICATION_ID, service.getNotBuilder().build());
         setupElementsVisibility();
 
-        if(!audioPlayerSelected())
-            getRootView().setVisibility(View.VISIBLE);
-        else
+        if(audioPlayerSelected()) {
             service.removeViewFromParent();
+        }
+        else if(popupPlayerSelected()) {
+            getRootView().setVisibility(View.VISIBLE);
+            initPopup();
+        }
+        else {
+            getRootView().setVisibility(View.VISIBLE);
+            initVideoPlayer();
+        }
     }
 
     VideoPlayerImpl(final MainPlayerService service) {
         super("VideoPlayerImpl", service);
         this.service = service;
         this.shouldUpdateOnProgress = true;
+        this.windowManager = (WindowManager) service.getSystemService(WINDOW_SERVICE);
     }
 
     @Override
@@ -174,8 +200,7 @@ public class VideoPlayerImpl extends VideoPlayer {
         super.initListeners();
 
         PlayerGestureListener listener = new PlayerGestureListener(this, service);
-        service.gestureDetector = new GestureDetector(context, listener);
-        service.gestureDetector.setIsLongpressEnabled(true);
+        gestureDetector = new GestureDetector(context, listener);
         getRootView().setOnTouchListener(listener);
 
         queueButton.setOnClickListener(this);
@@ -204,7 +229,7 @@ public class VideoPlayerImpl extends VideoPlayer {
     @Override
     public void onRepeatModeChanged(int i) {
         super.onRepeatModeChanged(i);
-        setRepeatModeRemote(service.notRemoteView, i);
+        setRepeatModeRemote(service.getNotRemoteView(), i);
         updatePlaybackButtons();
         updatePlayback();
         service.updateNotification(-1);
@@ -250,12 +275,12 @@ public class VideoPlayerImpl extends VideoPlayer {
 
         if (!shouldUpdateOnProgress || getCurrentState() == BasePlayer.STATE_COMPLETED || getCurrentState() == BasePlayer.STATE_PAUSED || getPlayQueue() == null) return;
         service.resetNotification();
-        if (service.bigNotRemoteView != null) {
-            service.bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
-            service.bigNotRemoteView.setTextViewText(R.id.notificationTime, getTimeString(currentProgress) + " / " + getTimeString(duration));
+        if (service.getBigNotRemoteView() != null) {
+            service.getBigNotRemoteView().setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
+            service.getBigNotRemoteView().setTextViewText(R.id.notificationTime, getTimeString(currentProgress) + " / " + getTimeString(duration));
         }
-        if (service.notRemoteView != null) {
-            service.notRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
+        if (service.getNotRemoteView() != null) {
+            service.getNotRemoteView().setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
         }
         service.updateNotification(-1);
     }
@@ -297,7 +322,6 @@ public class VideoPlayerImpl extends VideoPlayer {
                         this.getPlaybackPitch(),
                         this.getPlaybackQuality()
                 );
-                intent.putExtra(VideoPlayer.STARTED_FROM_NEWPIPE, isStartedFromNewPipe());
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
                 intent.putExtra(Constants.KEY_URL, getVideoUrl());
@@ -500,21 +524,18 @@ public class VideoPlayerImpl extends VideoPlayer {
     @Override
     public void onPlaying() {
         super.onPlaying();
-        animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, new Runnable() {
-            @Override
-            public void run() {
+        animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, () -> {
                 playPauseButton.setImageResource(R.drawable.ic_pause_white);
                 animatePlayButtons(true, 200);
-            }
         });
         checkLandscape();
         getRootView().setKeepScreenOn(true);
         getSurfaceView().setVisibility(View.VISIBLE);
-        service.lockManager.acquireWifiAndCpu();
+        service.getLockManager().acquireWifiAndCpu();
         service.resetNotification();
         service.setControlsOpacity(255);
         service.updateNotification(R.drawable.ic_pause_white);
-        service.startForeground(NOTIFICATION_ID, service.notBuilder.build());
+        service.startForeground(NOTIFICATION_ID, service.getNotBuilder().build());
     }
 
     @Override
@@ -525,14 +546,14 @@ public class VideoPlayerImpl extends VideoPlayer {
             animatePlayButtons(true, 200);
         });
         getRootView().setKeepScreenOn(false);
-        service.lockManager.releaseWifiAndCpu();
+        service.getLockManager().releaseWifiAndCpu();
         service.updateNotification(R.drawable.ic_play_arrow_white);
 
         if(!videoPlayerSelected()) {
             service.stopForeground(false);
         } else {
             service.stopForeground(true);
-            service.notificationManager.cancel(NOTIFICATION_ID);
+            service.getNotificationManager().cancel(NOTIFICATION_ID);
         }
     }
 
@@ -554,14 +575,14 @@ public class VideoPlayerImpl extends VideoPlayer {
 
         getRootView().setKeepScreenOn(false);
         showControls(100);
-        service.lockManager.releaseWifiAndCpu();
+        service.getLockManager().releaseWifiAndCpu();
         service.updateNotification(R.drawable.ic_play_arrow_white);
 
         if(audioPlayerSelected()) {
             service.stopForeground(false);
         } else {
             service.stopForeground(true);
-            service.notificationManager.cancel(NOTIFICATION_ID);
+            service.getNotificationManager().cancel(NOTIFICATION_ID);
         }
     }
 
@@ -577,15 +598,15 @@ public class VideoPlayerImpl extends VideoPlayer {
         cachedImage = null;
         setRootView(null);
         service.stopForeground(true);
-        service.notificationManager.cancel(NOTIFICATION_ID);
+        service.getNotificationManager().cancel(NOTIFICATION_ID);
         stopActivityBinding();
     }
 
     @Override
     public void initThumbnail(final String url) {
         service.resetNotification();
-        if (service.notRemoteView != null) service.notRemoteView.setImageViewResource(R.id.notificationCover, R.drawable.dummy_thumbnail);
-        if (service.bigNotRemoteView != null) service.bigNotRemoteView.setImageViewResource(R.id.notificationCover, R.drawable.dummy_thumbnail);
+        if (service.getNotRemoteView() != null) service.getNotRemoteView().setImageViewResource(R.id.notificationCover, R.drawable.dummy_thumbnail);
+        if (service.getBigNotRemoteView() != null) service.getBigNotRemoteView().setImageViewResource(R.id.notificationCover, R.drawable.dummy_thumbnail);
         service. updateNotification(-1);
         super.initThumbnail(url);
     }
@@ -596,10 +617,10 @@ public class VideoPlayerImpl extends VideoPlayer {
         if (thumbnail != null) {
             cachedImage = thumbnail;
             // rebuild notification here since remote view does not release bitmaps, causing memory leaks
-            service.notBuilder = service.createNotification();
+            service.resetNotification();
 
-            if (service.notRemoteView != null) service.notRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
-            if (service.bigNotRemoteView != null) service.bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
+            if (service.getNotRemoteView() != null) service.getNotRemoteView().setImageViewBitmap(R.id.notificationCover, thumbnail);
+            if (service.getBigNotRemoteView() != null) service.getBigNotRemoteView().setImageViewBitmap(R.id.notificationCover, thumbnail);
 
             service.updateNotification(-1);
         }
@@ -678,24 +699,39 @@ public class VideoPlayerImpl extends VideoPlayer {
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    public boolean backgroundPlaybackEnabledInSettings() {
-        return service.defaultPreferences.getBoolean(service.getString(R.string.continue_in_background_key), false);
+    private void choosePlayerTypeFromIntent(Intent intent) {
+        // If you want to open popup from the app just include Constants.POPUP_ONLY into an extra
+        if((intent.getBooleanExtra(Constants.POPUP_ONLY, false)
+                || intent.getStringExtra(Constants.KEY_URL) != null)
+                && !intent.getBooleanExtra(BasePlayer.AUDIO_ONLY, false)) {
+            playerType = PlayerType.POPUP;
+        }
+        else if(intent.getBooleanExtra(BasePlayer.AUDIO_ONLY, false)) {
+            playerType = PlayerType.AUDIO;
+        }
+        else {
+            playerType = PlayerType.VIDEO;
+        }
     }
 
-    public void selectAudioPlayer(boolean background) {
-        isAudioPlayerSelected = background;
+    public boolean backgroundPlaybackEnabledInSettings() {
+        return PreferenceManager.getDefaultSharedPreferences(service).getBoolean(service.getString(R.string.continue_in_background_key), false);
+    }
+
+    public void selectAudioPlayer(boolean justAudio) {
+        playerType = justAudio? PlayerType.AUDIO : PlayerType.VIDEO;
     }
 
     public boolean audioPlayerSelected() {
-        return isAudioPlayerSelected;
+        return playerType == PlayerType.AUDIO;
     }
 
     public boolean videoPlayerSelected() {
-        return !popupPlayerSelected() && !audioPlayerSelected();
+        return playerType == PlayerType.VIDEO;
     }
 
     public boolean popupPlayerSelected() {
-        return isPopupPlayerSelected;
+        return playerType == PlayerType.POPUP;
     }
 
 
@@ -779,7 +815,7 @@ public class VideoPlayerImpl extends VideoPlayer {
 
     public void checkLandscape() {
         Activity parent = getParentActivity();
-        if(parent != null && service.isLandScape() && !isInFullscreen() && getCurrentState() != STATE_COMPLETED && !isAudioPlayerSelected)
+        if(parent != null && service.isLandScape() && !isInFullscreen() && getCurrentState() != STATE_COMPLETED && !audioPlayerSelected())
             onFullScreenButtonClicked();
     }
 
@@ -900,66 +936,6 @@ public class VideoPlayerImpl extends VideoPlayer {
         };
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Popup utils
-    //////////////////////////////////////////////////////////////////////////*/
-
-    public void checkPositionBounds() {
-        if (service.windowLayoutParams.x > service.screenWidth - service.windowLayoutParams.width)
-            service.windowLayoutParams.x = (int) (service.screenWidth - service.windowLayoutParams.width);
-        if (service.windowLayoutParams.x < 0) service.windowLayoutParams.x = 0;
-        if (service.windowLayoutParams.y > service.screenHeight - service.windowLayoutParams.height)
-            service.windowLayoutParams.y = (int) (service.screenHeight - service.windowLayoutParams.height);
-        if (service.windowLayoutParams.y < 0) service.windowLayoutParams.y = 0;
-    }
-
-    public void savePositionAndSize() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(service);
-        sharedPreferences.edit().putInt(POPUP_SAVED_X, service.windowLayoutParams.x).apply();
-        sharedPreferences.edit().putInt(POPUP_SAVED_Y, service.windowLayoutParams.y).apply();
-        sharedPreferences.edit().putFloat(POPUP_SAVED_WIDTH, service.windowLayoutParams.width).apply();
-    }
-
-    float getMinimumVideoHeight(float width) {
-        //if (DEBUG) Log.d(TAG, "getMinimumVideoHeight() called with: width = [" + width + "], returned: " + height);
-        return width / (16.0f / 9.0f); // Respect the 16:9 ratio that most videos have
-    }
-
-    public void updateScreenSize() {
-        DisplayMetrics metrics = new DisplayMetrics();
-        service.windowManager.getDefaultDisplay().getMetrics(metrics);
-
-        service.screenWidth = metrics.widthPixels;
-        service.screenHeight = metrics.heightPixels;
-        if (DEBUG) Log.d(TAG, "updateScreenSize() called > screenWidth = " + service.screenWidth + ", screenHeight = " + service.screenHeight);
-
-        service.popupWidth = service.getResources().getDimension(R.dimen.popup_default_width);
-        service.popupHeight = getMinimumVideoHeight(service.popupWidth);
-
-        minimumWidth = service.getResources().getDimension(R.dimen.popup_minimum_width);
-        minimumHeight = getMinimumVideoHeight(minimumWidth);
-
-        maximumWidth = service.screenWidth;
-        maximumHeight = service.screenHeight;
-    }
-
-    public void updatePopupSize(int width, int height) {
-        if (DEBUG) Log.d(TAG, "updatePopupSize() called with: width = [" + width + "], height = [" + height + "]");
-
-        width = (int) (width > maximumWidth ? maximumWidth : width < minimumWidth ? minimumWidth : width);
-
-        if (height == -1) height = (int) getMinimumVideoHeight(width);
-        else height = (int) (height > maximumHeight ? maximumHeight : height < minimumHeight ? minimumHeight : height);
-
-        service.windowLayoutParams.width = width;
-        service.windowLayoutParams.height = height;
-        service.popupWidth = width;
-        service.popupHeight = height;
-
-        if (DEBUG) Log.d(TAG, "updatePopupSize() updated values:  width = [" + width + "], height = [" + height + "]");
-        service.windowManager.updateViewLayout(getRootView(), service.windowLayoutParams);
-    }
-
     protected void setRepeatModeRemote(final RemoteViews remoteViews, final int repeatMode) {
         final String methodName = "setImageResource";
 
@@ -976,6 +952,115 @@ public class VideoPlayerImpl extends VideoPlayer {
                 remoteViews.setInt(R.id.notificationRepeat, methodName, R.drawable.exo_controls_repeat_all);
                 break;
         }
+    }
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Init
+    //////////////////////////////////////////////////////////////////////////*/
+
+    @SuppressLint("RtlHardcoded")
+    private void initPopup() {
+        if (DEBUG) Log.d(TAG, "initPopup() called");;
+
+        updateScreenSize();
+
+        final boolean popupRememberSizeAndPos = PlayerHelper.isRememberingPopupDimensions(service);
+        final float defaultSize = service.getResources().getDimension(R.dimen.popup_default_width);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(service);
+        popupWidth = popupRememberSizeAndPos ? sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize) : defaultSize;
+
+        final int layoutParamType = Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+
+        windowLayoutParams = new WindowManager.LayoutParams(
+                (int) popupWidth, (int) getMinimumVideoHeight(popupWidth),
+                layoutParamType,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                PixelFormat.TRANSLUCENT);
+        windowLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
+
+        int centerX = (int) (screenWidth / 2f - popupWidth / 2f);
+        int centerY = (int) (screenHeight / 2f - popupHeight / 2f);
+        windowLayoutParams.x = popupRememberSizeAndPos ? sharedPreferences.getInt(POPUP_SAVED_X, centerX) : centerX;
+        windowLayoutParams.y = popupRememberSizeAndPos ? sharedPreferences.getInt(POPUP_SAVED_Y, centerY) : centerY;
+
+        checkPositionBounds();
+
+        getLoadingPanel().setMinimumWidth(windowLayoutParams.width);
+        getLoadingPanel().setMinimumHeight(windowLayoutParams.height);
+
+        service.removeViewFromParent();
+        windowManager.addView(service.getView(), windowLayoutParams);
+    }
+
+    private void initVideoPlayer () {
+        service.getView().setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,FrameLayout.LayoutParams.MATCH_PARENT));
+    }
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Popup utils
+    //////////////////////////////////////////////////////////////////////////*/
+
+    public void updateViewLayout(View view, WindowManager.LayoutParams windowLayoutParams) {
+        windowManager.updateViewLayout(view, windowLayoutParams);
+    }
+
+    public void checkPositionBounds() {
+        if (windowLayoutParams.x > screenWidth - windowLayoutParams.width)
+            windowLayoutParams.x = (int) (screenWidth - windowLayoutParams.width);
+        if (windowLayoutParams.x < 0) windowLayoutParams.x = 0;
+        if (windowLayoutParams.y > screenHeight - windowLayoutParams.height)
+            windowLayoutParams.y = (int) (screenHeight - windowLayoutParams.height);
+        if (windowLayoutParams.y < 0) windowLayoutParams.y = 0;
+    }
+
+    public void savePositionAndSize() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(service);
+        sharedPreferences.edit().putInt(POPUP_SAVED_X, windowLayoutParams.x).apply();
+        sharedPreferences.edit().putInt(POPUP_SAVED_Y, windowLayoutParams.y).apply();
+        sharedPreferences.edit().putFloat(POPUP_SAVED_WIDTH, windowLayoutParams.width).apply();
+    }
+
+    public void updateScreenSize() {
+        DisplayMetrics metrics = new DisplayMetrics();
+        windowManager.getDefaultDisplay().getMetrics(metrics);
+
+        screenWidth = metrics.widthPixels;
+        screenHeight = metrics.heightPixels;
+        if (DEBUG)
+            Log.d(TAG, "updateScreenSize() called > screenWidth = " + screenWidth + ", screenHeight = " + screenHeight);
+
+        popupWidth = service.getResources().getDimension(R.dimen.popup_default_width);
+        popupHeight = getMinimumVideoHeight(popupWidth);
+
+        minimumWidth = service.getResources().getDimension(R.dimen.popup_minimum_width);
+        minimumHeight = getMinimumVideoHeight(minimumWidth);
+
+        maximumWidth = screenWidth;
+        maximumHeight = screenHeight;
+    }
+
+    public void updatePopupSize(WindowManager.LayoutParams windowLayoutParams, int width, int height) {
+        if (DEBUG) Log.d(TAG, "updatePopupSize() called with: width = [" + width + "], height = [" + height + "]");
+
+        width = (int) (width > maximumWidth ? maximumWidth : width < minimumWidth ? minimumWidth : width);
+
+        if (height == -1) height = (int) getMinimumVideoHeight(width);
+        else height = (int) (height > maximumHeight ? maximumHeight : height < minimumHeight ? minimumHeight : height);
+
+        windowLayoutParams.width = width;
+        windowLayoutParams.height = height;
+        popupWidth = width;
+        popupHeight = height;
+
+        if (DEBUG) Log.d(TAG, "updatePopupSize() updated values:  width = [" + width + "], height = [" + height + "]");
+        updateViewLayout(getRootView(), windowLayoutParams);
+    }
+
+    private float getMinimumVideoHeight(float width) {
+        //if (DEBUG) Log.d(TAG, "getMinimumVideoHeight() called with: width = [" + width + "], returned: " + height);
+        return width / (16.0f / 9.0f); // Respect the 16:9 ratio that most videos have
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -1048,7 +1133,7 @@ public class VideoPlayerImpl extends VideoPlayer {
 
 
     ///////////////////////////////////////////////////////////////////////////
-    // Getters
+    // Getters / setters
     ///////////////////////////////////////////////////////////////////////////
 
     public TextView getTitleTextView() {
@@ -1074,5 +1159,41 @@ public class VideoPlayerImpl extends VideoPlayer {
     @SuppressWarnings("WeakerAccess")
     public TextView getResizingIndicator() {
         return resizingIndicator;
+    }
+
+    public Bitmap getCachedImage() {
+        return cachedImage;
+    }
+
+    public GestureDetector getGestureDetector() {
+        return gestureDetector;
+    }
+
+    public WindowManager.LayoutParams getWindowLayoutParams() {
+        return windowLayoutParams;
+    }
+
+    public float getScreenWidth() {
+        return screenWidth;
+    }
+
+    public float getScreenHeight() {
+        return screenHeight;
+    }
+
+    public float getPopupWidth() {
+        return popupWidth;
+    }
+
+    public float getPopupHeight() {
+        return popupHeight;
+    }
+
+    public void setPopupWidth(float width) {
+        popupWidth = width;
+    }
+
+    public void setPopupHeight(float height) {
+        popupHeight = height;
     }
 }

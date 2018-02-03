@@ -19,7 +19,6 @@
 
 package org.schabi.newpipe.player;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -29,7 +28,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.PixelFormat;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Handler;
@@ -38,8 +36,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.IntRange;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -61,7 +57,6 @@ import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.helper.LockManager;
-import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
@@ -81,31 +76,18 @@ public class MainPlayerService extends Service {
     private static final String TAG = ".MainPlayerService";
     private static final boolean DEBUG = BasePlayer.DEBUG;
 
-    public GestureDetector gestureDetector;
-
     private VideoPlayerImpl playerImpl;
 
-    // Popup
-    static final String POPUP_SAVED_WIDTH = "popup_saved_width";
-    static final String POPUP_SAVED_X = "popup_saved_x";
-    static final String POPUP_SAVED_Y = "popup_saved_y";
-
     private Disposable currentWorker;
-    public WindowManager windowManager;
-    public WindowManager.LayoutParams windowLayoutParams;
-
-    public float screenWidth, screenHeight;
-    public float popupWidth, popupHeight;
-
-
+    private WindowManager windowManager;
 
     private final IBinder mBinder = new MainPlayerService.LocalBinder();
 
     // Notification
-    NotificationManager notificationManager;
-    NotificationCompat.Builder notBuilder;
-    RemoteViews notRemoteView;
-    RemoteViews bigNotRemoteView;
+    private NotificationManager notificationManager;
+    private NotificationCompat.Builder notBuilder;
+    private RemoteViews notRemoteView;
+    private RemoteViews bigNotRemoteView;
     static final int NOTIFICATION_ID = 417308;
     static final String ACTION_CLOSE = "org.schabi.newpipe.player.MainPlayerService.CLOSE";
     static final String ACTION_PLAY_PAUSE = "org.schabi.newpipe.player.MainPlayerService.PLAY_PAUSE";
@@ -119,9 +101,15 @@ public class MainPlayerService extends Service {
     private static final String SET_IMAGE_RESOURCE_METHOD = "setImageResource";
     private final String setAlphaMethodName = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) ? "setImageAlpha" : "setAlpha";
 
-    LockManager lockManager;
+    private LockManager lockManager;
 
-    SharedPreferences defaultPreferences;
+    private SharedPreferences defaultPreferences;
+
+    public enum PlayerType {
+        VIDEO,
+        AUDIO,
+        POPUP
+    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service LifeCycle
@@ -158,17 +146,7 @@ public class MainPlayerService extends Service {
         // It's just a connection without action
         if(intent.getExtras() == null) return Service.START_NOT_STICKY;
 
-
-        // If you want to open popup from the app just include Constants.KEY_POPUP into an extra
-        playerImpl.isPopupPlayerSelected = (intent.getBooleanExtra(Constants.KEY_POPUP, false)
-                || intent.getStringExtra(Constants.KEY_URL) != null)
-                && !intent.getBooleanExtra(BasePlayer.AUDIO_ONLY, false);
         playerImpl.setStartedFromNewPipe(intent.getSerializableExtra(BasePlayer.PLAY_QUEUE) != null);
-
-        if(playerImpl.popupPlayerSelected())
-            initPopup();
-        else
-            initVideoPlayer();
 
         // Means we already have PlayQueue
         if(playerImpl.isStartedFromNewPipe()) {
@@ -244,7 +222,7 @@ public class MainPlayerService extends Service {
         if(!playerImpl.popupPlayerSelected()) return;
 
         playerImpl.updateScreenSize();
-        playerImpl.updatePopupSize(windowLayoutParams.width, -1);
+        playerImpl.updatePopupSize(playerImpl.getWindowLayoutParams(), playerImpl.getWindowLayoutParams().width, -1);
         playerImpl.checkPositionBounds();
     }
 
@@ -305,48 +283,6 @@ public class MainPlayerService extends Service {
         return playerImpl.getRootView();
     }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Init
-    //////////////////////////////////////////////////////////////////////////*/
-
-    @SuppressLint("RtlHardcoded")
-    private void initPopup() {
-        if (DEBUG) Log.d(TAG, "initPopup() called");;
-
-        playerImpl.updateScreenSize();
-
-        final boolean popupRememberSizeAndPos = PlayerHelper.isRememberingPopupDimensions(this);
-        final float defaultSize = getResources().getDimension(R.dimen.popup_default_width);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        popupWidth = popupRememberSizeAndPos ? sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize) : defaultSize;
-
-        final int layoutParamType = Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
-
-        windowLayoutParams = new WindowManager.LayoutParams(
-                (int) popupWidth, (int) playerImpl.getMinimumVideoHeight(popupWidth),
-                layoutParamType,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-                PixelFormat.TRANSLUCENT);
-        windowLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
-
-        int centerX = (int) (screenWidth / 2f - popupWidth / 2f);
-        int centerY = (int) (screenHeight / 2f - popupHeight / 2f);
-        windowLayoutParams.x = popupRememberSizeAndPos ? sharedPreferences.getInt(POPUP_SAVED_X, centerX) : centerX;
-        windowLayoutParams.y = popupRememberSizeAndPos ? sharedPreferences.getInt(POPUP_SAVED_Y, centerY) : centerY;
-
-        playerImpl.checkPositionBounds();
-
-        playerImpl.getLoadingPanel().setMinimumWidth(windowLayoutParams.width);
-        playerImpl.getLoadingPanel().setMinimumHeight(windowLayoutParams.height);
-
-        removeViewFromParent();
-        windowManager.addView(getView(), windowLayoutParams);
-    }
-
-    private void initVideoPlayer () {
-        getView().setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,FrameLayout.LayoutParams.MATCH_PARENT));
-    }
-
     public void removeViewFromParent() {
         if (getView().getParent() != null) {
             if (playerImpl.getParentActivity() != null) {
@@ -367,7 +303,7 @@ public class MainPlayerService extends Service {
         notBuilder = createNotification();
     }
 
-    NotificationCompat.Builder createNotification() {
+    private NotificationCompat.Builder createNotification() {
         notRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification);
         bigNotRemoteView = new RemoteViews(BuildConfig.APPLICATION_ID, R.layout.player_notification_expanded);
 
@@ -388,7 +324,7 @@ public class MainPlayerService extends Service {
         if (playerImpl == null)
             return;
 
-        if(playerImpl.cachedImage != null) remoteViews.setImageViewBitmap(R.id.notificationCover, playerImpl.cachedImage);
+        if(playerImpl.getCachedImage() != null) remoteViews.setImageViewBitmap(R.id.notificationCover, playerImpl.getCachedImage());
 
         remoteViews.setTextViewText(R.id.notificationSongName, playerImpl.getVideoTitle());
         remoteViews.setTextViewText(R.id.notificationArtist, playerImpl.getUploaderName());
@@ -488,6 +424,29 @@ public class MainPlayerService extends Service {
         return intent;
     }
 
+    /*//////////////////////////////////////////////////////////////////////////
+    // Getters
+    //////////////////////////////////////////////////////////////////////////*/
+
+    public NotificationManager getNotificationManager() {
+        return notificationManager;
+    }
+
+    public LockManager getLockManager() {
+        return lockManager;
+    }
+
+    public NotificationCompat.Builder getNotBuilder() {
+        return notBuilder;
+    }
+
+    public RemoteViews getBigNotRemoteView() {
+        return bigNotRemoteView;
+    }
+
+    public RemoteViews getNotRemoteView() {
+        return notRemoteView;
+    }
 
     /**
      * Fetcher handler used if open by a link out of NewPipe

@@ -13,5 +13,5 @@ public class Constants {
 
     public static final int NO_SERVICE_ID = -1;
 
-    public static final String KEY_POPUP = "key_popup";
+    public static final String POPUP_ONLY = "popup_only";
 }

@@ -90,7 +90,7 @@ public class NavigationHelper {
         }
         Toast.makeText(activity, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
         Intent intent = getPlayerIntent(activity, MainPlayerService.class, queue);
-        intent.putExtra(Constants.KEY_POPUP, true);
+        intent.putExtra(Constants.POPUP_ONLY, true);
         activity.startService(intent);
     }
 
@@ -108,7 +108,7 @@ public class NavigationHelper {
         }
         Toast.makeText(activity, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
         Intent intent = getPlayerEnqueueIntent(activity, MainPlayerService.class, queue);
-        intent.putExtra(Constants.KEY_POPUP, true);
+        intent.putExtra(Constants.POPUP_ONLY, true);
         activity.startService(intent);
     }
 
