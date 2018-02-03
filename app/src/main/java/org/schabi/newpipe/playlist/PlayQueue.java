@@ -38,7 +38,7 @@ import io.reactivex.subjects.BehaviorSubject;
  * message bus, it must be initialized.
  * */
 public abstract class PlayQueue implements Serializable {
-    private final String TAG = "PlayQueue@" + Integer.toHexString(hashCode());
+    public final String TAG = "PlayQueue@" + Integer.toHexString(hashCode());
 
     public static final boolean DEBUG = true;
 

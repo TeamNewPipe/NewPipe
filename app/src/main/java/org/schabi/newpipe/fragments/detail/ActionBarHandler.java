@@ -65,7 +65,6 @@ class ActionBarHandler {
     }
 
     public interface OnStreamChangesListener {
-        void onActionSelected(int selectedStreamId);
         void onStreamResolutionSelected(String selectedResolution);
     }
 
@@ -82,16 +81,20 @@ class ActionBarHandler {
         boolean isExternalPlayerEnabled = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(activity.getString(R.string.use_external_video_player_key), false);
         toolbarSpinner.setAdapter(new SpinnerToolbarAdapter(activity, videoStreams, isExternalPlayerEnabled));
         final int defaultSelection = selectedVideoStream >= videoStreams.size()? videoStreams.size()-1 : selectedVideoStream;
+        selectedVideoStream = defaultSelection;
+
         toolbarSpinner.setSelection(defaultSelection);
         toolbarSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedVideoStream = position;
+                // Don't call methods twice with identical selection
+                if(selectedVideoStream == position) return;
+                else selectedVideoStream = position;
+
                 VideoStream preferredVideoStream = videoStreams.get(selectedVideoStream);
                 selectedStreamResolution = preferredVideoStream.resolution;
 
                 if(onStreamSelectedListener != null) {
-                    onStreamSelectedListener.onActionSelected(selectedVideoStream);
                     onStreamSelectedListener.onStreamResolutionSelected(preferredVideoStream.resolution);
                 }
             }

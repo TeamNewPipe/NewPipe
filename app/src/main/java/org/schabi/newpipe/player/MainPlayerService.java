@@ -469,6 +469,7 @@ public class MainPlayerService extends Service {
             mainHandler.post(() -> {
                 final Intent intent = NavigationHelper.getPlayerIntent(getApplicationContext(),
                         MainPlayerService.class, new SinglePlayQueue(info));
+                intent.putExtra(Constants.POPUP_ONLY, true);
                 playerImpl.handleIntent(intent);
             });
         }

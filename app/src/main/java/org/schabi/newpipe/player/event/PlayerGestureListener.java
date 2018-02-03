@@ -283,7 +283,7 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
             boolean right = distanceX < 0;
             float duration = playerImpl.getPlayer().getDuration();
             float distance = right? absX : -absX;
-            float currentPosition = playerImpl.getPlayer().getCurrentPosition();
+            float currentPosition = service.getPlaybackPosition();
             float position = currentPosition + distance * 1000 / 200;
             position = position >= duration ? duration - 5000 : position;
             position = position <= 0 ? 0 : position;

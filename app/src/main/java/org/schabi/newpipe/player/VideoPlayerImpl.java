@@ -677,18 +677,13 @@ public class VideoPlayerImpl extends VideoPlayer {
             case Intent.ACTION_SCREEN_ON:
                 shouldUpdateOnProgress = true;
                 // Interrupt playback only when screen turns on and user is watching video in fragment
-                if(backgroundPlaybackEnabledInSettings() && !audioPlayerSelected() && getPlayer() != null && (isPlaying() || getPlayer().isLoading()))
+                if(backgroundPlaybackEnabledInSettings() && getPlayer() != null && (isPlaying() || getPlayer().isLoading()))
                     useVideoSource(true);
                 break;
             case Intent.ACTION_SCREEN_OFF:
                 shouldUpdateOnProgress = false;
                 // Interrupt playback only when screen turns off with video working
-                Log.d(TAG, "onBroadcastReceived: "+backgroundPlaybackEnabledInSettings());
-                Log.d(TAG, "onBroadcastReceived: "+!audioPlayerSelected());
-                Log.d(TAG, "onBroadcastReceived: "+(getPlayer() != null));
-                Log.d(TAG, "onBroadcastReceived: "+(isPlaying() || getPlayer().isLoading()));
-
-                if(backgroundPlaybackEnabledInSettings() && !audioPlayerSelected() && getPlayer() != null && (isPlaying() || getPlayer().isLoading()))
+                if(backgroundPlaybackEnabledInSettings() && getPlayer() != null && (isPlaying() || getPlayer().isLoading()))
                     useVideoSource(false);
                 break;
         }
@@ -701,13 +696,12 @@ public class VideoPlayerImpl extends VideoPlayer {
 
     private void choosePlayerTypeFromIntent(Intent intent) {
         // If you want to open popup from the app just include Constants.POPUP_ONLY into an extra
-        if((intent.getBooleanExtra(Constants.POPUP_ONLY, false)
-                || intent.getStringExtra(Constants.KEY_URL) != null)
-                && !intent.getBooleanExtra(BasePlayer.AUDIO_ONLY, false)) {
-            playerType = PlayerType.POPUP;
-        }
-        else if(intent.getBooleanExtra(BasePlayer.AUDIO_ONLY, false)) {
+        if(intent.getBooleanExtra(BasePlayer.AUDIO_ONLY, false)) {
             playerType = PlayerType.AUDIO;
+        }
+        else if(intent.getBooleanExtra(Constants.POPUP_ONLY, false)
+                || intent.getStringExtra(Constants.KEY_URL) != null) {
+            playerType = PlayerType.POPUP;
         }
         else {
             playerType = PlayerType.VIDEO;
@@ -861,7 +855,12 @@ public class VideoPlayerImpl extends VideoPlayer {
     }
 
     public void useVideoSource(boolean video) {
-        if(playQueue == null || audioOnly == !video || audioPlayerSelected()) return;
+        // Return when: old value of audioOnly equals to the new value, audio player is selected,
+        // video player is selected AND fragment is not shown
+        if(playQueue == null
+                || audioOnly == !video
+                || audioPlayerSelected()
+                || (video && videoPlayerSelected() && fragmentListener.isPaused())) return;
 
         boolean shouldStartPlaying = true;
         if(getPlayer() != null)
