@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         final NavigationView drawerItems = findViewById(R.id.navigation);
 
-        drawerItems.setItemIconTintList(null);
+        //drawerItems.setItemIconTintList(null); // Set null to use the original icon
         drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
 
         if (!BuildConfig.BUILD_TYPE.equals("release")) {
@@ -204,8 +204,36 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
         } else super.onBackPressed();
     }
 
+    /**
+     * Implement the following diagram behavior for the up button:
+     * <pre>
+     *              +---------------+
+     *              |  Main Screen  +----+
+     *              +-------+-------+    |
+     *                      |            |
+     *                      ▲ Up         | Search Button
+     *                      |            |
+     *                 +----+-----+      |
+     *    +------------+  Search  |◄-----+
+     *    |            +----+-----+
+     *    |   Open          |
+     *    |  something      ▲ Up
+     *    |                 |
+     *    |    +------------+-------------+
+     *    |    |                          |
+     *    |    |  Video    <->  Channel   |
+     *    +---►|  Channel  <->  Playlist  |
+     *         |  Video    <->  ....      |
+     *         |                          |
+     *         +--------------------------+
+     * </pre>
+     */
     private void onHomeButtonPressed() {
-        NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+        // If search fragment wasn't found in the backstack...
+        if (!NavigationHelper.tryGotoSearchFragment(getSupportFragmentManager())) {
+            // ...go to the main fragment
+            NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -237,11 +265,6 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
         updateDrawerNavigation();
 
         return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
