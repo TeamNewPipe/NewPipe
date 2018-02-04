@@ -134,6 +134,10 @@
     <string name="switch_to_popup">Switch to Popup</string>
     <string name="switch_to_main">Switch to Main</string>
 
+    <string name="import_data_title">Import database</string>
+    <string name="export_data_title">Export database</string>
+    <string name="import_data_summary">Will override your current history and subscriptions</string>
+    <string name="export_data_summary">Export history, subscriptions and playlists.</string>
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="network_error">Network error</string>
@@ -317,6 +321,11 @@
     <string name="select_a_channel">Select a channel</string>
     <string name="no_channel_subscribed_yet">No channel subscribed yet</string>
     <string name="select_a_kiosk">Select a kiosk</string>
+    <string name="export_complete_toast">Export complete</string>
+    <string name="import_complete_toast">Import complete</string>
+    <string name="no_valid_zip_file">No valid Zip file</string>
+    <string name="could_not_import_all_files">WARNING: Could not import all files.</string>
+    <string name="override_current_data">This will override your current setup.</string>
 
     <!-- Kiosk Names -->
     <string name="kiosk">Kiosk</string>
