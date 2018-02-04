@@ -90,7 +90,8 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
+        if (DEBUG)
+            Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
@@ -168,22 +169,26 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getBoolean(Constants.KEY_THEME_CHANGE, false)) {
-            if (DEBUG) Log.d(TAG, "Theme has changed, recreating activity...");
+            if (DEBUG)
+                Log.d(TAG, "Theme has changed, recreating activity...");
+
             sharedPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, false).apply();
             // https://stackoverflow.com/questions/10844112/runtimeexception-performing-pause-of-activity-that-is-not-resumed
             // Briefly, let the activity resume properly posting the recreate call to end of the message queue
             new Handler(Looper.getMainLooper()).post(MainActivity.this::recreate);
         }
 
-        if(sharedPreferences.getBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false)) {
-            if (DEBUG) Log.d(TAG, "main page has changed, recreating main fragment...");
+        if (sharedPreferences.getBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false)) {
+            if (DEBUG)
+                Log.d(TAG, "main page has changed, recreating main fragment...");
+
             sharedPreferences.edit().putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false).apply();
             NavigationHelper.openMainActivity(this);
         }
 
         getContentResolver().registerContentObserver(
                 android.provider.Settings.System.CONTENT_URI, true,
-                mSettingsContentObserver );
+                mSettingsContentObserver);
     }
 
     @Override
@@ -194,12 +199,15 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
 
     @Override
     protected void onNewIntent(Intent intent) {
-        if (DEBUG) Log.d(TAG, "onNewIntent() called with: intent = [" + intent + "]");
+        if (DEBUG)
+            Log.d(TAG, "onNewIntent() called with: intent = [" + intent + "]");
+
         if (intent != null) {
             // Return if launched from a launcher (e.g. Nova Launcher, Pixel Launcher ...)
             // to not destroy the already created backstack
             String action = intent.getAction();
-            if ((action != null && action.equals(Intent.ACTION_MAIN)) && intent.hasCategory(Intent.CATEGORY_LAUNCHER)) return;
+            if ((action != null && action.equals(Intent.ACTION_MAIN)) && intent.hasCategory(Intent.CATEGORY_LAUNCHER))
+                return;
         }
 
         super.onNewIntent(intent);
@@ -209,12 +217,16 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
 
     @Override
     public void onBackPressed() {
-        if (DEBUG) Log.d(TAG, "onBackPressed() called");
-        if(sendBackPressedEvent()) return;
+        if (DEBUG)
+            Log.d(TAG, "onBackPressed() called");
+
+        if (sendBackPressedEvent())
+            return;
 
         if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
             finish();
-        } else super.onBackPressed();
+        } else
+            super.onBackPressed();
     }
 
     // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
@@ -222,7 +234,8 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
         // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
         if (fragment instanceof BackPressable) {
-            if (((BackPressable) fragment).onBackPressed()) return true;
+            if (((BackPressable) fragment).onBackPressed())
+                return true;
         }
         return false;
     }
@@ -265,7 +278,9 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "]");
+        if (DEBUG)
+            Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "]");
+
         super.onCreateOptionsMenu(menu);
 
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
@@ -292,7 +307,9 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (DEBUG) Log.d(TAG, "onOptionsItemSelected() called with: item = [" + item + "]");
+        if (DEBUG)
+            Log.d(TAG, "onOptionsItemSelected() called with: item = [" + item + "]");
+
         int id = item.getItemId();
         Intent hideMainPlayerIntent = new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER);
 
@@ -326,11 +343,14 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
     //////////////////////////////////////////////////////////////////////////*/
 
     private void initFragments() {
-        if (DEBUG) Log.d(TAG, "initFragments() called");
+        if (DEBUG)
+            Log.d(TAG, "initFragments() called");
+
         StateSaver.clearStateFiles();
         if (getIntent() != null && getIntent().hasExtra(Constants.KEY_LINK_TYPE)) {
             handleIntent(getIntent());
-        } else NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+        } else
+            NavigationHelper.gotoMainFragment(getSupportFragmentManager());
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -338,7 +358,8 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
     //////////////////////////////////////////////////////////////////////////*/
 
     private void updateDrawerNavigation() {
-        if (getSupportActionBar() == null) return;
+        if (getSupportActionBar() == null)
+            return;
 
         final Toolbar toolbar = findViewById(R.id.toolbar);
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -359,7 +380,8 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
     }
 
     private void handleIntent(Intent intent) {
-        if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
+        if (DEBUG)
+            Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
 
         if (intent.hasExtra(Constants.KEY_LINK_TYPE)) {
             String url = intent.getStringExtra(Constants.KEY_URL);
@@ -380,7 +402,8 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
             }
         } else if (intent.hasExtra(Constants.KEY_OPEN_SEARCH)) {
             String searchQuery = intent.getStringExtra(Constants.KEY_QUERY);
-            if (searchQuery == null) searchQuery = "";
+            if (searchQuery == null)
+                searchQuery = "";
             int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
             NavigationHelper.openSearchFragment(getSupportFragmentManager(), serviceId, searchQuery);
         } else {
@@ -408,7 +431,9 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
     }
 
     private void disposeHistory() {
-        if (disposable != null) disposable.dispose();
+        if (disposable != null)
+            disposable.dispose();
+
         watchHistoryDAO = null;
         searchHistoryDAO = null;
     }
@@ -470,15 +495,16 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
     }
 
     private void setupOrientation() {
-        if(sharedPreferences == null) return;
-        if(globalScreenOrientationLocked()) {
+        if (sharedPreferences == null)
+            return;
+
+        if (globalScreenOrientationLocked()) {
             boolean lastOrientationWasLandscape
                     = sharedPreferences.getBoolean(getString(R.string.last_orientation_landscape_key), false);
             setRequestedOrientation(lastOrientationWasLandscape
                     ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
                     : ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
-        }
-        else
+        } else
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
     }
 

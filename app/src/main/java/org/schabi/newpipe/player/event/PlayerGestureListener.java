@@ -42,8 +42,11 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
 
     @Override
     public boolean onDoubleTap(MotionEvent e) {
-        if (DEBUG) Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
-        if (playerImpl.getPlayer() == null || !playerImpl.isPlaying() || !playerImpl.isPlayerReady()) return false;
+        if (DEBUG)
+            Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
+
+        if (playerImpl.getPlayer() == null || !playerImpl.isPlaying() || !playerImpl.isPlayerReady())
+            return false;
 
         float widthToCheck = playerImpl.popupPlayerSelected() ? playerImpl.getPopupWidth() / 2 : playerImpl.getRootView().getWidth() / 2;
 
@@ -58,21 +61,25 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
 
     @Override
     public boolean onSingleTapConfirmed(MotionEvent e) {
-        if (DEBUG) Log.d(TAG, "onSingleTapConfirmed() called with: e = [" + e + "]");
+        if (DEBUG)
+            Log.d(TAG, "onSingleTapConfirmed() called with: e = [" + e + "]");
 
-        if(playerImpl.popupPlayerSelected()) {
+        if (playerImpl.popupPlayerSelected()) {
             playerImpl.onVideoPlayPause();
             return true;
         }
 
-        if (playerImpl.getCurrentState() == BasePlayer.STATE_BLOCKED) return true;
+        if (playerImpl.getCurrentState() == BasePlayer.STATE_BLOCKED)
+            return true;
 
-        if (playerImpl.isControlsVisible()) playerImpl.hideControls(150, 0);
-        else {
-            if(playerImpl.getCurrentState() == BasePlayer.STATE_COMPLETED)
+        if (playerImpl.isControlsVisible()) {
+            playerImpl.hideControls(150, 0);
+        } else {
+            if (playerImpl.getCurrentState() == BasePlayer.STATE_COMPLETED) {
                 playerImpl.showControls(0);
-            else
+            } else {
                 playerImpl.showControlsThenHide();
+            }
 
             Activity parent = playerImpl.getParentActivity();
             if (parent != null && playerImpl.isInFullscreen()) {
@@ -96,9 +103,11 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
 
     @Override
     public boolean onDown(MotionEvent e) {
-        if (DEBUG) Log.d(TAG, "onDown() called with: e = [" + e + "]");
+        if (DEBUG)
+            Log.d(TAG, "onDown() called with: e = [" + e + "]");
 
-        if(!playerImpl.popupPlayerSelected()) return super.onDown(e);
+        if (!playerImpl.popupPlayerSelected())
+            return super.onDown(e);
 
         initialPopupX = playerImpl.getWindowLayoutParams().x;
         initialPopupY = playerImpl.getWindowLayoutParams().y;
@@ -109,9 +118,11 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
 
     @Override
     public void onLongPress(MotionEvent e) {
-        if (DEBUG) Log.d(TAG, "onLongPress() called with: e = [" + e + "]");
+        if (DEBUG)
+            Log.d(TAG, "onLongPress() called with: e = [" + e + "]");
 
-        if(!playerImpl.popupPlayerSelected()) return;
+        if (!playerImpl.popupPlayerSelected())
+            return;
 
         playerImpl.updateScreenSize();
         playerImpl.checkPositionBounds();
@@ -119,39 +130,49 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
     }
 
     private boolean handleOnScrollInPopup(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        if (isResizing) return super.onScroll(e1, e2, distanceX, distanceY);
+        if (isResizing)
+            return super.onScroll(e1, e2, distanceX, distanceY);
 
         if (playerImpl.getCurrentState() != BasePlayer.STATE_BUFFERING
-                && (!isMoving || playerImpl.getControlsRoot().getAlpha() != 1f)) playerImpl.showControls(0);
+                && (!isMoving || playerImpl.getControlsRoot().getAlpha() != 1f))
+            playerImpl.showControls(0);
         isMoving = true;
 
         float diffX = (int) (e2.getRawX() - e1.getRawX()), posX = (int) (initialPopupX + diffX);
         float diffY = (int) (e2.getRawY() - e1.getRawY()), posY = (int) (initialPopupY + diffY);
 
-        if (posX > (playerImpl.getScreenWidth() - playerImpl.getPopupWidth())) posX = (int) (playerImpl.getScreenWidth() - playerImpl.getPopupWidth());
-        else if (posX < 0) posX = 0;
+        if (posX > (playerImpl.getScreenWidth() - playerImpl.getPopupWidth()))
+            posX = (int) (playerImpl.getScreenWidth() - playerImpl.getPopupWidth());
+        else if (posX < 0)
+            posX = 0;
 
-        if (posY > (playerImpl.getScreenHeight() - playerImpl.getPopupHeight())) posY = (int) (playerImpl.getScreenHeight() - playerImpl.getPopupHeight());
-        else if (posY < 0) posY = 0;
+        if (posY > (playerImpl.getScreenHeight() - playerImpl.getPopupHeight()))
+            posY = (int) (playerImpl.getScreenHeight() - playerImpl.getPopupHeight());
+        else if (posY < 0)
+            posY = 0;
 
         playerImpl.getWindowLayoutParams().x = (int) posX;
         playerImpl.getWindowLayoutParams().y = (int) posY;
 
         //noinspection PointlessBooleanExpression
-        if (DEBUG && false) Log.d(TAG, "MainPlayer.onScroll = " +
-                ", e1.getRaw = [" + e1.getRawX() + ", " + e1.getRawY() + "]" +
-                ", e2.getRaw = [" + e2.getRawX() + ", " + e2.getRawY() + "]" +
-                ", distanceXy = [" + distanceX + ", " + distanceY + "]" +
-                ", posXy = [" + posX + ", " + posY + "]" +
-                ", popupWh = [" + playerImpl.getPopupWidth() + " x " + playerImpl.getPopupHeight() + "]");
+        if (DEBUG && false)
+            Log.d(TAG, "MainPlayer.onScroll = " +
+                    ", e1.getRaw = [" + e1.getRawX() + ", " + e1.getRawY() + "]" +
+                    ", e2.getRaw = [" + e2.getRawX() + ", " + e2.getRawY() + "]" +
+                    ", distanceXy = [" + distanceX + ", " + distanceY + "]" +
+                    ", posXy = [" + posX + ", " + posY + "]" +
+                    ", popupWh = [" + playerImpl.getPopupWidth() + " x " + playerImpl.getPopupHeight() + "]");
         playerImpl.updateViewLayout(service.getView(), playerImpl.getWindowLayoutParams());
         return true;
     }
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        if (DEBUG) Log.d(TAG, "Fling velocity: dX=[" + velocityX + "], dY=[" + velocityY + "]");
-        if(!playerImpl.popupPlayerSelected()) return true;
+        if (DEBUG)
+            Log.d(TAG, "Fling velocity: dX=[" + velocityX + "], dY=[" + velocityY + "]");
+
+        if (!playerImpl.popupPlayerSelected())
+            return true;
 
         final float absVelocityX = Math.abs(velocityX);
         final float absVelocityY = Math.abs(velocityY);
@@ -159,8 +180,10 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
             service.onDestroy();
             return true;
         } else if (Math.max(absVelocityX, absVelocityY) > tossFlingVelocity) {
-            if (absVelocityX > tossFlingVelocity) playerImpl.getWindowLayoutParams().x = (int) velocityX;
-            if (absVelocityY > tossFlingVelocity) playerImpl.getWindowLayoutParams().y = (int) velocityY;
+            if (absVelocityX > tossFlingVelocity)
+                playerImpl.getWindowLayoutParams().x = (int) velocityX;
+            if (absVelocityY > tossFlingVelocity)
+                playerImpl.getWindowLayoutParams().y = (int) velocityY;
             playerImpl.checkPositionBounds();
             playerImpl.updateViewLayout(service.getView(), playerImpl.getWindowLayoutParams());
             return true;
@@ -172,7 +195,9 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
         playerImpl.getGestureDetector().onTouchEvent(event);
 
         if (event.getPointerCount() == 2 && !isResizing) {
-            if (DEBUG) Log.d(TAG, "onTouch() 2 finger pointer detected, enabling resizing.");
+            if (DEBUG)
+                Log.d(TAG, "onTouch() 2 finger pointer detected, enabling resizing.");
+
             playerImpl.showAndAnimateControl(-1, true);
             playerImpl.getLoadingPanel().setVisibility(View.GONE);
 
@@ -183,13 +208,16 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
         }
 
         if (event.getAction() == MotionEvent.ACTION_MOVE && !isMoving && isResizing) {
-            if (DEBUG) Log.d(TAG, "onTouch() ACTION_MOVE > v = [" + v + "],  e1.getRaw = [" + event.getRawX() + ", " + event.getRawY() + "]");
+            if (DEBUG)
+                Log.d(TAG, "onTouch() ACTION_MOVE > v = [" + v + "],  e1.getRaw = [" + event.getRawX() + ", " + event.getRawY() + "]");
+
             return handleMultiDrag(event);
         }
 
         if (event.getAction() == MotionEvent.ACTION_UP) {
             if (DEBUG)
                 Log.d(TAG, "onTouch() ACTION_UP > v = [" + v + "],  e1.getRaw = [" + event.getRawX() + ", " + event.getRawY() + "]");
+
             if (isMoving) {
                 isMoving = false;
                 onScrollEnd();
@@ -208,10 +236,11 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
     }
 
     private boolean handleMultiDrag(final MotionEvent event) {
-        if(!playerImpl.popupPlayerSelected()) return true;
+        if (!playerImpl.popupPlayerSelected())
+            return true;
 
-
-        if (event.getPointerCount() != 2) return false;
+        if (event.getPointerCount() != 2)
+            return false;
 
         final float firstPointerX = event.getX(0);
         final float secondPointerX = event.getX(1);
@@ -256,15 +285,19 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
     // TODO: Improve video gesture controls
     @Override
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        if(playerImpl.popupPlayerSelected()) return handleOnScrollInPopup(e1, e2, distanceX, distanceY);
+        if (playerImpl.popupPlayerSelected())
+            return handleOnScrollInPopup(e1, e2, distanceX, distanceY);
 
-        if (!isPlayerGestureEnabled) return false;
+        if (!isPlayerGestureEnabled)
+            return false;
 
         //noinspection PointlessBooleanExpression
-        if (DEBUG && false) Log.d(TAG, "MainPlayerService.onScroll = " +
-                ", e1.getRaw = [" + e1.getRawX() + ", " + e1.getRawY() + "]" +
-                ", e2.getRaw = [" + e2.getRawX() + ", " + e2.getRawY() + "]" +
-                ", distanceXy = [" + distanceX + ", " + distanceY + "]");
+        if (DEBUG && false)
+            Log.d(TAG, "MainPlayerService.onScroll = " +
+                    ", e1.getRaw = [" + e1.getRawX() + ", " + e1.getRawY() + "]" +
+                    ", e2.getRaw = [" + e2.getRawX() + ", " + e2.getRawY() + "]" +
+                    ", distanceXy = [" + distanceX + ", " + distanceY + "]");
+
         float absX = Math.abs(e2.getX() - e1.getX());
         float absY = Math.abs(e2.getY() - e1.getY());
 
@@ -275,25 +308,27 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
         }
 
         // It will help to drop two events at a time
-        if(absX > absY && !triggeredX) return false;
-        if(absX < absY && !triggeredY) return false;
+        if (absX > absY && !triggeredX)
+            return false;
+        if (absX < absY && !triggeredY)
+            return false;
 
-        if(absX > absY) {
+        if (absX > absY) {
             isMoving = true;
             boolean right = distanceX < 0;
             float duration = playerImpl.getPlayer().getDuration();
-            float distance = right? absX : -absX;
+            float distance = right ? absX : -absX;
             float currentPosition = service.getPlaybackPosition();
             float position = currentPosition + distance * 1000 / 200;
             position = position >= duration ? duration - 5000 : position;
             position = position <= 0 ? 0 : position;
-            if(!playerImpl.isControlsVisible())
+            if (!playerImpl.isControlsVisible())
                 playerImpl.showControls(0);
 
-            playerImpl.getPlayer().seekTo((long)position);
-        }
-        else {
-            if (eventsNum++ % eventsThreshold != 0 || playerImpl.getCurrentState() == BasePlayer.STATE_COMPLETED) return false;
+            playerImpl.getPlayer().seekTo((long) position);
+        } else {
+            if (eventsNum++ % eventsThreshold != 0 || playerImpl.getCurrentState() == BasePlayer.STATE_COMPLETED)
+                return false;
             isMoving = true;
 //            boolean up = !((e2.getY() - e1.getY()) > 0) && distanceY > 0; // Android's origin point is on top
             boolean up = distanceY > 0;
@@ -301,52 +336,69 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
             if (e1.getX() > playerImpl.getRootView().getWidth() / 2) {
                 double floor = Math.floor(up ? stepVolume : -stepVolume);
                 currentVolume = (int) (playerImpl.getAudioReactor().getVolume() + floor);
-                if (currentVolume >= maxVolume) currentVolume = maxVolume;
-                if (currentVolume <= minVolume) currentVolume = (int) minVolume;
+                if (currentVolume >= maxVolume)
+                    currentVolume = maxVolume;
+                if (currentVolume <= minVolume)
+                    currentVolume = (int) minVolume;
                 playerImpl.getAudioReactor().setVolume(currentVolume);
 
                 currentVolume = playerImpl.getAudioReactor().getVolume();
-                if (DEBUG) Log.d(TAG, "onScroll().volumeControl, currentVolume = " + currentVolume);
+                if (DEBUG)
+                    Log.d(TAG, "onScroll().volumeControl, currentVolume = " + currentVolume);
+
                 final String volumeText = volumeUnicode + " " + Math.round((((float) currentVolume) / maxVolume) * 100) + "%";
                 playerImpl.getVolumeTextView().setText(volumeText);
 
-                if (playerImpl.getVolumeTextView().getVisibility() != View.VISIBLE) animateView(playerImpl.getVolumeTextView(), true, 200);
-                if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) playerImpl.getBrightnessTextView().setVisibility(View.GONE);
-            } else if(service.getView().getContext() != null) {
+                if (playerImpl.getVolumeTextView().getVisibility() != View.VISIBLE)
+                    animateView(playerImpl.getVolumeTextView(), true, 200);
+                if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE)
+                    playerImpl.getBrightnessTextView().setVisibility(View.GONE);
+            } else if (service.getView().getContext() != null) {
                 Activity parent = playerImpl.getParentActivity();
-                if(parent == null) return true;
+                if (parent == null)
+                    return true;
 
                 Window window = parent.getWindow();
 
                 WindowManager.LayoutParams lp = window.getAttributes();
                 currentBrightness += up ? stepBrightness : -stepBrightness;
-                if (currentBrightness >= 1f) currentBrightness = 1f;
-                if (currentBrightness <= minBrightness) currentBrightness = minBrightness;
+                if (currentBrightness >= 1f)
+                    currentBrightness = 1f;
+                if (currentBrightness <= minBrightness)
+                    currentBrightness = minBrightness;
 
                 lp.screenBrightness = currentBrightness;
                 window.setAttributes(lp);
-                if (DEBUG) Log.d(TAG, "onScroll().brightnessControl, currentBrightness = " + currentBrightness);
+                if (DEBUG)
+                    Log.d(TAG, "onScroll().brightnessControl, currentBrightness = " + currentBrightness);
+
                 int brightnessNormalized = Math.round(currentBrightness * 100);
 
                 final String brightnessText = brightnessUnicode + " " + (brightnessNormalized == 1 ? 0 : brightnessNormalized) + "%";
                 playerImpl.getBrightnessTextView().setText(brightnessText);
 
-                if (playerImpl.getBrightnessTextView().getVisibility() != View.VISIBLE) animateView(playerImpl.getBrightnessTextView(), true, 200);
-                if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) playerImpl.getVolumeTextView().setVisibility(View.GONE);
+                if (playerImpl.getBrightnessTextView().getVisibility() != View.VISIBLE)
+                    animateView(playerImpl.getBrightnessTextView(), true, 200);
+                if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE)
+                    playerImpl.getVolumeTextView().setVisibility(View.GONE);
             }
         }
         return true;
     }
 
     private void onScrollEnd() {
-        if (DEBUG) Log.d(TAG, "onScrollEnd() called");
+        if (DEBUG)
+            Log.d(TAG, "onScrollEnd() called");
+
         triggeredX = false;
         triggeredY = false;
         eventsNum = 0;
             /* if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) playerImpl.getVolumeTextView().setVisibility(View.GONE);
             if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) playerImpl.getBrightnessTextView().setVisibility(View.GONE);*/
-        if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) animateView(playerImpl.getVolumeTextView(), false, 200, 200);
-        if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) animateView(playerImpl.getBrightnessTextView(), false, 200, 200);
+        if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE)
+            animateView(playerImpl.getVolumeTextView(), false, 200, 200);
+        if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE)
+            animateView(playerImpl.getBrightnessTextView(), false, 200, 200);
 
         if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == BasePlayer.STATE_PLAYING) {
             playerImpl.hideControls(300, VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME);
@@ -355,10 +407,13 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if(playerImpl.popupPlayerSelected()) return handleTouchInPopup(v, event);
+        if (playerImpl.popupPlayerSelected())
+            return handleTouchInPopup(v, event);
 
         //noinspection PointlessBooleanExpression
-        if (DEBUG && false) Log.d(TAG, "onTouch() called with: v = [" + v + "], event = [" + event + "]");
+        if (DEBUG && false)
+            Log.d(TAG, "onTouch() called with: v = [" + v + "], event = [" + event + "]");
+
         playerImpl.getGestureDetector().onTouchEvent(event);
         if (event.getAction() == MotionEvent.ACTION_UP && isMoving) {
             isMoving = false;

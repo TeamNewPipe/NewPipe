@@ -58,7 +58,8 @@ public class NavigationHelper {
                                          final String quality) {
         Intent intent = new Intent(context, targetClazz)
                 .putExtra(VideoPlayer.PLAY_QUEUE, playQueue);
-        if (quality != null) intent.putExtra(VideoPlayer.PLAYBACK_QUALITY, quality);
+        if (quality != null)
+            intent.putExtra(VideoPlayer.PLAYBACK_QUALITY, quality);
 
         return intent;
     }
@@ -231,7 +232,8 @@ public class NavigationHelper {
         ImageLoader.getInstance().clearMemoryCache();
 
         boolean popped = fragmentManager.popBackStackImmediate(MAIN_FRAGMENT_TAG, 0);
-        if (!popped) openMainFragment(fragmentManager);
+        if (!popped)
+            openMainFragment(fragmentManager);
     }
 
     public static void openMainFragment(FragmentManager fragmentManager) {
@@ -269,11 +271,14 @@ public class NavigationHelper {
 
     public static void openVideoDetailFragment(FragmentManager fragmentManager, int serviceId, String url, String title, boolean autoPlay, PlayQueue playQueue) {
         Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_holder);
-        if (title == null) title = "";
+        if (title == null)
+            title = "";
 
         if (fragment instanceof VideoDetailFragment && fragment.isVisible()) {
             VideoDetailFragment instance = (VideoDetailFragment) fragment;
-            if(autoPlay) instance.setAutoplay(true);
+            if (autoPlay)
+                instance.setAutoplay(true);
+
             instance.selectAndLoadVideo(serviceId, url, title, playQueue);
             return;
         }
@@ -284,11 +289,13 @@ public class NavigationHelper {
                 .replace(R.id.fragment_holder, instance)
                 .addToBackStack(null)
                 .commit();
-        if(autoPlay) instance.setAutoplay(true);
+        if (autoPlay)
+            instance.setAutoplay(true);
     }
 
     public static void openChannelFragment(FragmentManager fragmentManager, int serviceId, String url, String name) {
-        if (name == null) name = "";
+        if (name == null)
+            name = "";
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
                 .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, url, name))
@@ -297,7 +304,8 @@ public class NavigationHelper {
     }
 
     public static void openPlaylistFragment(FragmentManager fragmentManager, int serviceId, String url, String name) {
-        if (name == null) name = "";
+        if (name == null)
+            name = "";
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
                 .replace(R.id.fragment_holder, PlaylistFragment.getInstance(serviceId, url, name))
@@ -314,7 +322,7 @@ public class NavigationHelper {
     }
 
     public static void openKioskFragment(FragmentManager fragmentManager, int serviceId, String kioskId)
-        throws ExtractionException {
+            throws ExtractionException {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
                 .replace(R.id.fragment_holder, KioskFragment.getInstance(serviceId, kioskId))
@@ -340,7 +348,8 @@ public class NavigationHelper {
 
     public static void openChannel(Context context, int serviceId, String url, String name) {
         Intent openIntent = getOpenIntent(context, url, serviceId, StreamingService.LinkType.CHANNEL);
-        if (name != null && !name.isEmpty()) openIntent.putExtra(Constants.KEY_TITLE, name);
+        if (name != null && !name.isEmpty())
+            openIntent.putExtra(Constants.KEY_TITLE, name);
         context.startActivity(openIntent);
     }
 
@@ -350,7 +359,8 @@ public class NavigationHelper {
 
     public static void openVideoDetail(Context context, int serviceId, String url, String title) {
         Intent openIntent = getOpenIntent(context, url, serviceId, StreamingService.LinkType.STREAM);
-        if (title != null && !title.isEmpty()) openIntent.putExtra(Constants.KEY_TITLE, title);
+        if (title != null && !title.isEmpty())
+            openIntent.putExtra(Constants.KEY_TITLE, title);
         context.startActivity(openIntent);
     }
 
@@ -481,6 +491,7 @@ public class NavigationHelper {
 
     /**
      * Start an activity to install Kore
+     *
      * @param context the context
      */
     public static void installKore(Context context) {
@@ -489,13 +500,13 @@ public class NavigationHelper {
 
     /**
      * Start Kore app to show a video on Kodi
-     *
+     * <p>
      * For a list of supported urls see the
      * <a href="https://github.com/xbmc/Kore/blob/master/app/src/main/AndroidManifest.xml">
-     *     Kore source code
+     * Kore source code
      * </a>.
      *
-     * @param context the context to use
+     * @param context  the context to use
      * @param videoURL the url to the video
      */
     public static void playWithKore(Context context, Uri videoURL) {

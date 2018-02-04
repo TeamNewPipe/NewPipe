@@ -73,14 +73,18 @@ class ActionBarHandler {
     }
 
     public void setupStreamList(final List<VideoStream> videoStreams, Spinner toolbarSpinner) {
-        if (activity == null) return;
+        if (activity == null)
+            return;
 
-        if(selectedStreamResolution == null) selectedVideoStream = ListHelper.getDefaultResolutionIndex(activity, videoStreams);
-        else selectedVideoStream = ListHelper.getDefaultResolutionIndex(activity, videoStreams, selectedStreamResolution);
+        if (selectedStreamResolution == null) {
+            selectedVideoStream = ListHelper.getDefaultResolutionIndex(activity, videoStreams);
+        } else {
+            selectedVideoStream = ListHelper.getDefaultResolutionIndex(activity, videoStreams, selectedStreamResolution);
+        }
 
         boolean isExternalPlayerEnabled = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(activity.getString(R.string.use_external_video_player_key), false);
         toolbarSpinner.setAdapter(new SpinnerToolbarAdapter(activity, videoStreams, isExternalPlayerEnabled));
-        final int defaultSelection = selectedVideoStream >= videoStreams.size()? videoStreams.size()-1 : selectedVideoStream;
+        final int defaultSelection = selectedVideoStream >= videoStreams.size() ? videoStreams.size() - 1 : selectedVideoStream;
         selectedVideoStream = defaultSelection;
 
         toolbarSpinner.setSelection(defaultSelection);
@@ -88,13 +92,16 @@ class ActionBarHandler {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // Don't call methods twice with identical selection
-                if(selectedVideoStream == position) return;
-                else selectedVideoStream = position;
+                if (selectedVideoStream == position) {
+                    return;
+                } else {
+                    selectedVideoStream = position;
+                }
 
                 VideoStream preferredVideoStream = videoStreams.get(selectedVideoStream);
                 selectedStreamResolution = preferredVideoStream.resolution;
 
-                if(onStreamSelectedListener != null) {
+                if (onStreamSelectedListener != null) {
                     onStreamSelectedListener.onStreamResolutionSelected(preferredVideoStream.resolution);
                 }
             }
@@ -118,7 +125,7 @@ class ActionBarHandler {
         updateItemsVisibility();
     }
 
-    public void updateItemsVisibility(){
+    public void updateItemsVisibility() {
         showPlayWithKodiAction(defaultPreferences.getBoolean(activity.getString(R.string.show_play_with_kodi_key), false));
     }
 
@@ -157,17 +164,25 @@ class ActionBarHandler {
         return selectedVideoStream;
     }
 
-    public void setStreamResolution(String selectedResolution) { selectedStreamResolution = selectedResolution; }
+    public void setStreamResolution(String selectedResolution) {
+        selectedStreamResolution = selectedResolution;
+    }
 
-    public void setOnStreamSelectedListener(OnStreamChangesListener listener) { onStreamSelectedListener = listener; }
+    public void setOnStreamSelectedListener(OnStreamChangesListener listener) {
+        onStreamSelectedListener = listener;
+    }
 
     public void setOnShareListener(OnActionListener listener) {
         onShareListener = listener;
     }
 
-    public void setOnOpenInBrowserListener(OnActionListener listener) { onOpenInBrowserListener = listener; }
+    public void setOnOpenInBrowserListener(OnActionListener listener) {
+        onOpenInBrowserListener = listener;
+    }
 
-    public void setOnSearchListener(OnActionListener listener) { onSearchListener = listener; }
+    public void setOnSearchListener(OnActionListener listener) {
+        onSearchListener = listener;
+    }
 
     public void setOnDownloadListener(OnActionListener listener) {
         onDownloadListener = listener;

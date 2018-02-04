@@ -23,7 +23,7 @@ public class SettingsContentObserver extends ContentObserver {
     @Override
     public void onChange(boolean selfChange) {
         super.onChange(selfChange);
-        if(mListener != null)
+        if (mListener != null)
             mListener.onSettingsChanged();
     }
 }

@@ -97,13 +97,17 @@ public class MainPlayerService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        if(DEBUG) Log.d(TAG, "service in onBind");
+        if (DEBUG)
+            Log.d(TAG, "service in onBind");
+
         return mBinder;
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
-        if(DEBUG) Log.d(TAG, "service in onUnbind");
+        if (DEBUG)
+            Log.d(TAG, "service in onUnbind");
+
         return super.onUnbind(intent);
     }
 
@@ -124,7 +128,8 @@ public class MainPlayerService extends Service {
             Log.d(TAG, "onStartCommand() called with: intent = [" + intent + "], flags = [" + flags + "], startId = [" + startId + "]");
 
         // It's just a connection without action
-        if(intent.getExtras() == null) return Service.START_NOT_STICKY;
+        if (intent.getExtras() == null)
+            return Service.START_NOT_STICKY;
 
         playerImpl.handleIntent(intent);
 
@@ -135,7 +140,9 @@ public class MainPlayerService extends Service {
     public void onCreate() {
         super.onCreate();
         ThemeHelper.setTheme(this);
-        if(DEBUG) Log.d(TAG, "onCreate() called");
+        if (DEBUG)
+            Log.d(TAG, "onCreate() called");
+
         notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
         lockManager = new LockManager(this);
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
@@ -152,7 +159,8 @@ public class MainPlayerService extends Service {
     }
 
     public void stop() {
-        if (DEBUG) Log.d(TAG, "stop() called");
+        if (DEBUG)
+            Log.d(TAG, "stop() called");
 
         if (playerImpl.getPlayer() != null) {
             playerImpl.wasPlaying = playerImpl.getPlayer().getPlayWhenReady();
@@ -164,10 +172,13 @@ public class MainPlayerService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (DEBUG) Log.d(TAG, "onDestroy() called");
+        if (DEBUG)
+            Log.d(TAG, "onDestroy() called");
 
-        if (notificationManager != null) notificationManager.cancel(NOTIFICATION_ID);
-        if (lockManager != null) lockManager.releaseWifiAndCpu();
+        if (notificationManager != null)
+            notificationManager.cancel(NOTIFICATION_ID);
+        if (lockManager != null)
+            lockManager.releaseWifiAndCpu();
 
         if (playerImpl != null) {
             removeViewFromParent();
@@ -182,7 +193,8 @@ public class MainPlayerService extends Service {
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-        if(!playerImpl.popupPlayerSelected()) return;
+        if (!playerImpl.popupPlayerSelected())
+            return;
 
         playerImpl.updateScreenSize();
         playerImpl.updatePopupSize(playerImpl.getWindowLayoutParams(), playerImpl.getWindowLayoutParams().width, -1);
@@ -206,7 +218,8 @@ public class MainPlayerService extends Service {
 
     private void setLandScape(boolean v) {
         Activity parent = playerImpl.getParentActivity();
-        if(parent == null) return;
+        if (parent == null)
+            return;
 
         parent.setRequestedOrientation(v
                 ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
@@ -214,7 +227,7 @@ public class MainPlayerService extends Service {
     }
 
     public long getPlaybackPosition() {
-        return (playerImpl != null && playerImpl.getPlayer() != null)? playerImpl.getPlayer().getCurrentPosition() : 0;
+        return (playerImpl != null && playerImpl.getPlayer() != null) ? playerImpl.getPlayer().getCurrentPosition() : 0;
     }
 
     void setRepeatModeButton(final ImageButton imageButton, final int repeatMode) {
@@ -241,7 +254,8 @@ public class MainPlayerService extends Service {
     }
 
     public View getView() {
-        if(playerImpl == null) return null;
+        if (playerImpl == null)
+            return null;
 
         return playerImpl.getRootView();
     }
@@ -287,7 +301,8 @@ public class MainPlayerService extends Service {
         if (playerImpl == null)
             return;
 
-        if(playerImpl.getCachedImage() != null) remoteViews.setImageViewBitmap(R.id.notificationCover, playerImpl.getCachedImage());
+        if (playerImpl.getCachedImage() != null)
+            remoteViews.setImageViewBitmap(R.id.notificationCover, playerImpl.getCachedImage());
 
         remoteViews.setTextViewText(R.id.notificationSongName, playerImpl.getVideoTitle());
         remoteViews.setTextViewText(R.id.notificationArtist, playerImpl.getUploaderName());
@@ -329,8 +344,11 @@ public class MainPlayerService extends Service {
      * @param drawableId if != -1, sets the drawable with that id on the play/pause button
      */
     void updateNotification(int drawableId) {
-        if (DEBUG) Log.d(TAG, "updateNotification() called with: drawableId = [" + drawableId + "]");
-        if (notBuilder == null) return;
+        if (DEBUG)
+            Log.d(TAG, "updateNotification() called with: drawableId = [" + drawableId + "]");
+
+        if (notBuilder == null)
+            return;
         if (drawableId != -1) {
             if (notRemoteView != null)
                 notRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
@@ -341,18 +359,25 @@ public class MainPlayerService extends Service {
     }
 
     void setControlsOpacity(@IntRange(from = 0, to = 255) int opacity) {
-        if (notRemoteView != null) notRemoteView.setInt(R.id.notificationPlayPause, setAlphaMethodName, opacity);
-        if (bigNotRemoteView != null) bigNotRemoteView.setInt(R.id.notificationPlayPause, setAlphaMethodName, opacity);
-        if (notRemoteView != null) notRemoteView.setInt(R.id.notificationFForward, setAlphaMethodName, opacity);
-        if (bigNotRemoteView != null) bigNotRemoteView.setInt(R.id.notificationFForward, setAlphaMethodName, opacity);
-        if (notRemoteView != null) notRemoteView.setInt(R.id.notificationFRewind, setAlphaMethodName, opacity);
-        if (bigNotRemoteView != null) bigNotRemoteView.setInt(R.id.notificationFRewind, setAlphaMethodName, opacity);
+        if (notRemoteView != null)
+            notRemoteView.setInt(R.id.notificationPlayPause, setAlphaMethodName, opacity);
+        if (bigNotRemoteView != null)
+            bigNotRemoteView.setInt(R.id.notificationPlayPause, setAlphaMethodName, opacity);
+        if (notRemoteView != null)
+            notRemoteView.setInt(R.id.notificationFForward, setAlphaMethodName, opacity);
+        if (bigNotRemoteView != null)
+            bigNotRemoteView.setInt(R.id.notificationFForward, setAlphaMethodName, opacity);
+        if (notRemoteView != null)
+            notRemoteView.setInt(R.id.notificationFRewind, setAlphaMethodName, opacity);
+        if (bigNotRemoteView != null)
+            bigNotRemoteView.setInt(R.id.notificationFRewind, setAlphaMethodName, opacity);
     }
 
     private void setRepeatModeRemote(final RemoteViews remoteViews, final int repeatMode) {
         final String methodName = "setImageResource";
 
-        if (remoteViews == null) return;
+        if (remoteViews == null)
+            return;
 
         switch (repeatMode) {
             case Player.REPEAT_MODE_OFF:
@@ -369,11 +394,10 @@ public class MainPlayerService extends Service {
 
     private Intent getIntentForNotification() {
         Intent intent;
-        if(playerImpl.audioPlayerSelected() || playerImpl.popupPlayerSelected()) {
+        if (playerImpl.audioPlayerSelected() || playerImpl.popupPlayerSelected()) {
             // Means we play in popup or audio only. Let's show BackgroundPlayerActivity
             intent = NavigationHelper.getBackgroundPlayerActivityIntent(getApplicationContext());
-        }
-        else {
+        } else {
             // We are playing in fragment. Don't open another activity just show fragment. That's it
             intent = NavigationHelper.getPlayerIntent(
                     getApplicationContext(),

@@ -215,7 +215,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     private void unbind() {
-        if(serviceBound) {
+        if (serviceBound) {
             unbindService(serviceConnection);
             serviceBound = false;
             stopPlayerListener();
@@ -236,8 +236,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
                 if (service instanceof PlayerServiceBinder) {
                     player = ((PlayerServiceBinder) service).getPlayerInstance();
-                }
-                else if (service instanceof MainPlayerService.LocalBinder) {
+                } else if (service instanceof MainPlayerService.LocalBinder) {
                     player = ((MainPlayerService.LocalBinder) service).getPlayer();
                 }
 
@@ -323,7 +322,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     private void buildPlaybackSpeedMenu() {
-        if (playbackSpeedPopupMenu == null) return;
+        if (playbackSpeedPopupMenu == null)
+            return;
 
         playbackSpeedPopupMenu.getMenu().removeGroup(PLAYBACK_SPEED_POPUP_MENU_GROUP_ID);
         for (int i = 0; i < BasePlayer.PLAYBACK_SPEEDS.length; i++) {
@@ -331,16 +331,18 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             final String formattedSpeed = formatSpeed(playbackSpeed);
             final MenuItem item = playbackSpeedPopupMenu.getMenu().add(PLAYBACK_SPEED_POPUP_MENU_GROUP_ID, i, Menu.NONE, formattedSpeed);
             item.setOnMenuItemClickListener(menuItem -> {
-                    if (player == null) return false;
+                if (player == null)
+                    return false;
 
-                    player.setPlaybackSpeed(playbackSpeed);
-                    return true;
+                player.setPlaybackSpeed(playbackSpeed);
+                return true;
             });
         }
     }
 
     private void buildPlaybackPitchMenu() {
-        if (playbackPitchPopupMenu == null) return;
+        if (playbackPitchPopupMenu == null)
+            return;
 
         playbackPitchPopupMenu.getMenu().removeGroup(PLAYBACK_PITCH_POPUP_MENU_GROUP_ID);
         for (int i = 0; i < BasePlayer.PLAYBACK_PITCHES.length; i++) {
@@ -348,10 +350,11 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             final String formattedPitch = formatPitch(playbackPitch);
             final MenuItem item = playbackPitchPopupMenu.getMenu().add(PLAYBACK_PITCH_POPUP_MENU_GROUP_ID, i, Menu.NONE, formattedPitch);
             item.setOnMenuItemClickListener(menuItem -> {
-                    if (player == null) return false;
+                if (player == null)
+                    return false;
 
-                    player.setPlaybackPitch(playbackPitch);
-                    return true;
+                player.setPlaybackPitch(playbackPitch);
+                return true;
             });
         }
     }
@@ -360,17 +363,20 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         final PopupMenu menu = new PopupMenu(this, view);
         final MenuItem remove = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 0, Menu.NONE, R.string.play_queue_remove);
         remove.setOnMenuItemClickListener(menuItem -> {
-                if (player == null) return false;
+            if (player == null)
+                return false;
 
-                final int index = player.getPlayQueue().indexOf(item);
-                if (index != -1) player.getPlayQueue().remove(index);
-                return true;
+            final int index = player.getPlayQueue().indexOf(item);
+            if (index != -1)
+                player.getPlayQueue().remove(index);
+
+            return true;
         });
 
         final MenuItem detail = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 1, Menu.NONE, R.string.play_queue_stream_detail);
         detail.setOnMenuItemClickListener(menuItem -> {
-                onOpenDetail(item.getServiceId(), item.getUrl(), item.getTitle());
-                return true;
+            onOpenDetail(item.getServiceId(), item.getUrl(), item.getTitle());
+            return true;
         });
 
         menu.show();
@@ -403,7 +409,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
                 final int sourceIndex = source.getLayoutPosition();
                 final int targetIndex = target.getLayoutPosition();
-                if (player != null) player.getPlayQueue().move(sourceIndex, targetIndex);
+                if (player != null)
+                    player.getPlayQueue().move(sourceIndex, targetIndex);
+
                 return true;
             }
 
@@ -418,7 +426,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             }
 
             @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {}
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+            }
         };
     }
 
@@ -426,20 +435,24 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         return new PlayQueueItemBuilder.OnSelectedListener() {
             @Override
             public void selected(PlayQueueItem item, View view) {
-                if (player != null) player.onSelected(item);
+                if (player != null)
+                    player.onSelected(item);
             }
 
             @Override
             public void held(PlayQueueItem item, View view) {
-                if (player == null) return;
+                if (player == null)
+                    return;
 
                 final int index = player.getPlayQueue().indexOf(item);
-                if (index != -1) buildItemPopupMenu(item, view);
+                if (index != -1)
+                    buildItemPopupMenu(item, view);
             }
 
             @Override
             public void onStartDrag(PlayQueueItemHolder viewHolder) {
-                if (itemTouchHelper != null) itemTouchHelper.startDrag(viewHolder);
+                if (itemTouchHelper != null)
+                    itemTouchHelper.startDrag(viewHolder);
             }
         };
     }
@@ -449,7 +462,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     private void scrollToSelected() {
-        if (player == null) return;
+        if (player == null)
+            return;
 
         final int currentPlayingIndex = player.getPlayQueue().getIndex();
         final int currentVisibleIndex;
@@ -474,7 +488,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     @Override
     public void onClick(View view) {
-        if (player == null) return;
+        if (player == null)
+            return;
 
         if (view.getId() == repeatButton.getId()) {
             player.onRepeatClicked();
@@ -524,7 +539,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        if (player != null) player.simpleExoPlayer.seekTo(seekBar.getProgress());
+        if (player != null)
+            player.simpleExoPlayer.seekTo(seekBar.getProgress());
+
         seekDisplay.setVisibility(View.GONE);
         seeking = false;
     }
