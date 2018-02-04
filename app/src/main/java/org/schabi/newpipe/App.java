@@ -4,7 +4,9 @@ import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Build;
+import android.support.v4.util.ArraySet;
 import android.util.Log;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -16,6 +18,8 @@ import org.acra.config.ACRAConfigurationException;
 import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.ReportSenderFactory;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.services.youtube.YoutubeService;
 import org.schabi.newpipe.report.AcraReportSenderFactory;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
@@ -26,6 +30,7 @@ import org.schabi.newpipe.util.StateSaver;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.SocketException;
+import java.util.Set;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.exceptions.CompositeException;
@@ -81,6 +86,8 @@ public class App extends Application {
         ImageLoader.getInstance().init(config);
 
         configureRxJavaErrorHandler();
+
+        localizeYouTubeDatesParser();
     }
 
     private void configureRxJavaErrorHandler() {
@@ -148,5 +155,30 @@ public class App extends Application {
 
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.createNotificationChannel(mChannel);
+    }
+
+    private void localizeYouTubeDatesParser() {
+        Downloader.getInstance().setHttpAcceptLanguage(getString(R.string.downloader_http_accept_language));
+
+        YoutubeService youtubeService = (YoutubeService) ServiceList.YouTube.getService();
+        youtubeService.setTimeAgoParserPhrases(
+                getAllPluralForms(R.plurals.upload_date_seconds_ago_phrase),
+                getAllPluralForms(R.plurals.upload_date_minutes_ago_phrase),
+                getAllPluralForms(R.plurals.upload_date_hours_ago_phrase),
+                getAllPluralForms(R.plurals.upload_date_days_ago_phrase),
+                getAllPluralForms(R.plurals.upload_date_weeks_ago_phrase),
+                getAllPluralForms(R.plurals.upload_date_months_ago_phrase),
+                getAllPluralForms(R.plurals.upload_date_years_ago_phrase));
+    }
+
+    private Set<String> getAllPluralForms(int plural_id) {
+        Set<String> pluralForms = new ArraySet<>(4);
+        Resources resources = getResources();
+
+        for (int quantity = 0; quantity <= 20; quantity++) {
+            pluralForms.add(resources.getQuantityString(plural_id, quantity));
+        }
+
+        return pluralForms;
     }
 }

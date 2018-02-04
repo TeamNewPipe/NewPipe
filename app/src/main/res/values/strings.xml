@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" translatable="false">NewPipe</string>
     <string name="main_bg_subtitle">Tap search to get started</string>
     <string name="view_count_text">%1$s views</string>
@@ -32,8 +32,6 @@
 
     <string name="tab_main">Main</string>
     <string name="tab_subscriptions">Subscriptions</string>
-
-    <string name="fragment_whats_new">What\'s New</string>
 
     <string name="controls_background_title">Background</string>
     <string name="controls_popup_title">Popup</string>
@@ -356,4 +354,34 @@
     
     <string name="preferred_player_fetcher_notification_title">Getting info…</string>
     <string name="preferred_player_fetcher_notification_message">"The requested content is loading"</string>
+
+    <!-- "What's New" feed -->
+    <string name="fragment_whats_new">What\'s New</string>
+    <string name="feed_first_time_loading">Loading news for the first time</string>
+    <string name="feed_last_updated">Last updated: <xliff:g id="update_time">%s</xliff:g></string>
+    <string name="feed_new_items_available">New videos available. Click here.</string>
+
+    <!-- Parsing YouTube upload dates in the format '2 days ago' -->
+    <string name="downloader_http_accept_language">en</string>
+    <plurals name="upload_date_seconds_ago_phrase">
+        <item quantity="other">sec</item>
+    </plurals>
+    <plurals name="upload_date_minutes_ago_phrase">
+        <item quantity="other">min</item>
+    </plurals>
+    <plurals name="upload_date_hours_ago_phrase">
+        <item quantity="other">hour</item>
+    </plurals>
+    <plurals name="upload_date_days_ago_phrase">
+        <item quantity="other">day</item>
+    </plurals>
+    <plurals name="upload_date_weeks_ago_phrase">
+        <item quantity="other">week</item>
+    </plurals>
+    <plurals name="upload_date_months_ago_phrase">
+        <item quantity="other">month</item>
+    </plurals>
+    <plurals name="upload_date_years_ago_phrase">
+        <item quantity="other">year</item>
+    </plurals>
 </resources>
