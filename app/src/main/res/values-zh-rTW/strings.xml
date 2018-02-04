@@ -86,7 +86,7 @@
     <string name="error_report_title">錯誤回報</string>
     <string name="all">全部</string>
     <string name="channel">頻道</string>
-    <string name="yes">是</string>
+    <string name="yes">是的</string>
     <string name="later">稍後</string>
     <string name="disabled">已停用</string>
     <string name="filter">篩選器</string>
@@ -240,4 +240,24 @@
     <string name="history_cleared">已清除歷史紀錄</string>
     <string name="item_deleted">項目已刪除</string>
     <string name="delete_item_search_history">確定要刪除此項搜尋紀錄嗎？</string>
-</resources>
+<string name="no_player_found_toast">沒有找到串流播放器(你可以安裝 VLC播放器 來播放)</string>
+    <string name="show_hold_to_append_title">顯示鎖定到附加指引上</string>
+    <string name="default_content_country_title">預設內容國家</string>
+    <string name="service_title">服務</string>
+    <string name="background_player_append">在背景播放器上等候</string>
+    <string name="popup_playing_append">在懸浮視窗播放器上等候</string>
+    <string name="play_all">全部播放</string>
+    <string name="always">總是</string>
+    <string name="just_once">僅一次</string>
+
+    <string name="unknown_content">[未知]</string>
+
+    <string name="toggle_orientation">切換方向</string>
+    <string name="switch_to_background">切換到背景</string>
+    <string name="switch_to_popup">切換到懸浮視窗</string>
+    <string name="switch_to_main">切換到主介面</string>
+
+    <string name="player_stream_failure">無法播放此串流</string>
+    <string name="player_unrecoverable_failure">發生無法復原的播放器錯誤</string>
+    <string name="player_recoverable_failure">從播放器錯誤中恢復</string>
+    </resources>

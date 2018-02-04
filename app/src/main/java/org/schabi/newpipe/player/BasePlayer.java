@@ -113,6 +113,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     public static final String PLAYBACK_POSITION = "playback_position";
     public static final String APPEND_ONLY = "append_only";
     public static final String AUDIO_ONLY = "audio_only";
+    public static final String SELECT_ON_APPEND = "select_on_append";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Playback
@@ -220,7 +221,13 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
 
         // Resolve append intents
         if (intent.getBooleanExtra(APPEND_ONLY, false) && playQueue != null) {
+            int sizeBeforeAppend = playQueue.size();
             playQueue.append(queue.getStreams());
+
+            if (intent.getBooleanExtra(SELECT_ON_APPEND, false) && queue.getStreams().size() > 0) {
+                playQueue.setIndex(sizeBeforeAppend);
+            }
+
             return;
         }
 

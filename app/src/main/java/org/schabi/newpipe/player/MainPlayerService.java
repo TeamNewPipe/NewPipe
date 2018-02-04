@@ -23,14 +23,12 @@ import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Binder;
 import android.os.Build;
-import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.IntRange;
@@ -43,32 +41,15 @@ import android.widget.*;
 
 import com.google.android.exoplayer2.Player;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.ReCaptchaActivity;
-import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
-import org.schabi.newpipe.extractor.exceptions.ParsingException;
-import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
-import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
-import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.helper.LockManager;
-import org.schabi.newpipe.playlist.SinglePlayQueue;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.Constants;
-import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
-import java.io.IOException;
-
 /**
- * Player based on service implementing VideoPlayer
+ * Player based on service
  *
  * @authors mauriciocolli and avently
  */
@@ -78,7 +59,6 @@ public class MainPlayerService extends Service {
 
     private VideoPlayerImpl playerImpl;
 
-    private Disposable currentWorker;
     private WindowManager windowManager;
 
     private final IBinder mBinder = new MainPlayerService.LocalBinder();
@@ -146,23 +126,7 @@ public class MainPlayerService extends Service {
         // It's just a connection without action
         if(intent.getExtras() == null) return Service.START_NOT_STICKY;
 
-        playerImpl.setStartedFromNewPipe(intent.getSerializableExtra(BasePlayer.PLAY_QUEUE) != null);
-
-        // Means we already have PlayQueue
-        if(playerImpl.isStartedFromNewPipe()) {
-            playerImpl.handleIntent(intent);
-        }
-        else {
-            // We don't have PlayQueue. That's fine, download it and then we'll continue
-            final int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
-            final String url = intent.getStringExtra(Constants.KEY_URL);
-
-            final FetcherHandler fetcherRunnable = new FetcherHandler(this, serviceId, url);
-            currentWorker = ExtractorHelper.getStreamInfo(serviceId, url, false)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(fetcherRunnable::onReceive, fetcherRunnable::onError);
-        }
+        playerImpl.handleIntent(intent);
 
         return Service.START_NOT_STICKY;
     }
@@ -211,7 +175,6 @@ public class MainPlayerService extends Service {
             playerImpl.destroy();
             playerImpl = null;
         }
-        if (currentWorker != null) currentWorker.dispose();
         stopForeground(true);
         notificationManager.cancel(NOTIFICATION_ID);
         stopSelf();
@@ -446,64 +409,5 @@ public class MainPlayerService extends Service {
 
     public RemoteViews getNotRemoteView() {
         return notRemoteView;
-    }
-
-    /**
-     * Fetcher handler used if open by a link out of NewPipe
-     */
-    private class FetcherHandler {
-        private final int serviceId;
-        private final String url;
-
-        private final Context context;
-        private final Handler mainHandler;
-
-        private FetcherHandler(Context context, int serviceId, String url) {
-            this.mainHandler = new Handler(MainPlayerService.this.getMainLooper());
-            this.context = context;
-            this.url = url;
-            this.serviceId = serviceId;
-        }
-
-        private void onReceive(final StreamInfo info) {
-            mainHandler.post(() -> {
-                final Intent intent = NavigationHelper.getPlayerIntent(getApplicationContext(),
-                        MainPlayerService.class, new SinglePlayQueue(info));
-                intent.putExtra(Constants.POPUP_ONLY, true);
-                playerImpl.handleIntent(intent);
-            });
-        }
-
-        private void onError(final Throwable exception) {
-            if (DEBUG) Log.d(TAG, "onError() called with: exception = [" + exception + "]");
-            exception.printStackTrace();
-            mainHandler.post(() -> {
-                if (exception instanceof ReCaptchaException) {
-                    onReCaptchaException();
-                } else if (exception instanceof IOException) {
-                    Toast.makeText(context, R.string.network_error, Toast.LENGTH_LONG).show();
-                } else if (exception instanceof YoutubeStreamExtractor.GemaException) {
-                    Toast.makeText(context, R.string.blocked_by_gema, Toast.LENGTH_LONG).show();
-                } else if (exception instanceof YoutubeStreamExtractor.LiveStreamException) {
-                    Toast.makeText(context, R.string.live_streams_not_supported, Toast.LENGTH_LONG).show();
-                } else if (exception instanceof ContentNotAvailableException) {
-                    Toast.makeText(context, R.string.content_not_available, Toast.LENGTH_LONG).show();
-                } else {
-                    int errorId = exception instanceof YoutubeStreamExtractor.DecryptException ? R.string.youtube_signature_decryption_error :
-                            exception instanceof ParsingException ? R.string.parsing_error : R.string.general_error;
-                    ErrorActivity.reportError(mainHandler, context, exception, MainActivity.class, null, ErrorActivity.ErrorInfo.make(UserAction.REQUESTED_STREAM, NewPipe.getNameOfService(serviceId), url, errorId));
-                }
-            });
-            stopSelf();
-        }
-
-        private void onReCaptchaException() {
-            Toast.makeText(context, R.string.recaptcha_request_toast, Toast.LENGTH_LONG).show();
-            // Starting ReCaptcha Challenge Activity
-            Intent intent = new Intent(context, ReCaptchaActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
-            stopSelf();
-        }
     }
 }

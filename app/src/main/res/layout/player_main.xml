@@ -279,7 +279,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:scaleType="fitXY"
-                    android:src="?attr/options"
+                    android:src="@drawable/ic_more_vert_white_24dp"
                     android:visibility="gone"
                     tools:ignore="ContentDescription,RtlHardcoded"/>
 

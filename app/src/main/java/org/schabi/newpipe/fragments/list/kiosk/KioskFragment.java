@@ -57,6 +57,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
 
     @State
     protected String kioskId = "";
+    protected String kioskTranslatedName;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -87,16 +88,11 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onActivityCreated(Bundle savedState) {
-        super.onActivityCreated(savedState);
-        try {
-            activity.getSupportActionBar()
-                    .setTitle(KioskTranslator.getTranslatedKioskName(kioskId, getActivity()));
-        } catch (Exception e) {
-            onUnrecoverableError(e, UserAction.UI_ERROR,
-                    "none",
-                    "none", R.string.app_ui_crash);
-        }
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        kioskTranslatedName = KioskTranslator.getTranslatedKioskName(kioskId, activity);
+        name = kioskTranslatedName;
     }
 
     @Override
@@ -104,8 +100,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         super.setUserVisibleHint(isVisibleToUser);
         if(useAsFrontPage && isVisibleToUser && activity != null) {
             try {
-                activity.getSupportActionBar()
-                        .setTitle(KioskTranslator.getTranslatedKioskName(kioskId, getActivity()));
+                setTitle(kioskTranslatedName);
             } catch (Exception e) {
                 onUnrecoverableError(e, UserAction.UI_ERROR,
                         "none",
@@ -115,11 +110,8 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_kiosk, container, false);
-        activity.getSupportActionBar()
-                .setTitle(KioskTranslator.getTranslatedKioskName(kioskId, getActivity()));
-        return view;
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_kiosk, container, false);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -171,9 +163,8 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     public void handleResult(@NonNull final KioskInfo result) {
         super.handleResult(result);
 
-        String title = KioskTranslator.getTranslatedKioskName(result.id, getActivity());
-        ActionBar supportActionBar = activity.getSupportActionBar();
-        supportActionBar.setTitle(title);
+        name = kioskTranslatedName;
+        setTitle(kioskTranslatedName);
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(),

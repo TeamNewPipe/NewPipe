@@ -85,17 +85,6 @@ public abstract class BaseListInfoFragment<I extends ListInfo> extends BaseListF
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Utils
-    //////////////////////////////////////////////////////////////////////////*/
-
-    public void setTitle(String title) {
-        Log.d(TAG, "setTitle() called with: title = [" + title + "]");
-        if (activity.getSupportActionBar() != null) {
-            activity.getSupportActionBar().setTitle(title);
-        }
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
     // Load and handle
     //////////////////////////////////////////////////////////////////////////*/
 
@@ -124,20 +113,12 @@ public abstract class BaseListInfoFragment<I extends ListInfo> extends BaseListF
         currentWorker = loadResult(forceLoad)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<I>() {
-                    @Override
-                    public void accept(@NonNull I result) throws Exception {
-                        isLoading.set(false);
-                        currentInfo = result;
-                        currentNextItemsUrl = result.next_streams_url;
-                        handleResult(result);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) throws Exception {
-                        onError(throwable);
-                    }
-                });
+                .subscribe((@NonNull I result) -> {
+                    isLoading.set(false);
+                    currentInfo = result;
+                    currentNextItemsUrl = result.next_streams_url;
+                    handleResult(result);
+                }, (@NonNull Throwable throwable) -> onError(throwable));
     }
 
     /**
@@ -153,18 +134,12 @@ public abstract class BaseListInfoFragment<I extends ListInfo> extends BaseListF
         currentWorker = loadMoreItemsLogic()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<ListExtractor.NextItemsResult>() {
-                    @Override
-                    public void accept(@io.reactivex.annotations.NonNull ListExtractor.NextItemsResult nextItemsResult) throws Exception {
-                        isLoading.set(false);
-                        handleNextItems(nextItemsResult);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@io.reactivex.annotations.NonNull Throwable throwable) throws Exception {
-                        isLoading.set(false);
-                        onError(throwable);
-                    }
+                .subscribe((@io.reactivex.annotations.NonNull ListExtractor.NextItemsResult nextItemsResult) -> {
+                    isLoading.set(false);
+                    handleNextItems(nextItemsResult);
+                }, (@io.reactivex.annotations.NonNull Throwable throwable) -> {
+                    isLoading.set(false);
+                    onError(throwable);
                 });
     }
 

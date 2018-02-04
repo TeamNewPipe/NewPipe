@@ -30,8 +30,12 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -52,6 +56,7 @@ import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
+import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.history.HistoryListener;
@@ -60,6 +65,7 @@ import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.settings.SettingsContentObserver;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -72,9 +78,11 @@ import io.reactivex.subjects.PublishSubject;
 
 public class MainActivity extends AppCompatActivity implements HistoryListener, SettingsContentObserver.OnChangeListener {
     private static final String TAG = "MainActivity";
-    public static final boolean DEBUG = false;
+    public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
+
     private SharedPreferences sharedPreferences;
     private SettingsContentObserver mSettingsContentObserver;
+    private ActionBarDrawerToggle toggle = null;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity's LifeCycle
@@ -83,7 +91,10 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
-        ThemeHelper.setTheme(this);
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -91,14 +102,54 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
             initFragments();
         }
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
+        setSupportActionBar(findViewById(R.id.toolbar));
+        setupDrawer();
         initHistory();
 
         mSettingsContentObserver = new SettingsContentObserver(new Handler(), this);
         setupOrientation();
+    }
+
+    private void setupDrawer() {
+        final Toolbar toolbar = findViewById(R.id.toolbar);
+        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        final NavigationView drawerItems = findViewById(R.id.navigation);
+
+        //drawerItems.setItemIconTintList(null); // Set null to use the original icon
+        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
+
+        if (!BuildConfig.BUILD_TYPE.equals("release")) {
+            toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
+            toggle.syncState();
+            drawer.addDrawerListener(toggle);
+            drawer.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+                private int lastService;
+
+                @Override
+                public void onDrawerOpened(View drawerView) {
+                    lastService = ServiceHelper.getSelectedServiceId(MainActivity.this);
+                }
+
+                @Override
+                public void onDrawerClosed(View drawerView) {
+                    if (lastService != ServiceHelper.getSelectedServiceId(MainActivity.this)) {
+                        new Handler(Looper.getMainLooper()).post(MainActivity.this::recreate);
+                    }
+                }
+            });
+
+            drawerItems.setNavigationItemSelectedListener(item -> {
+                if (item.getGroupId() == R.id.menu_services_group) {
+                    drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(false);
+                    ServiceHelper.setSelectedServiceId(this, item.getTitle().toString());
+                    drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
+                }
+                drawer.closeDrawers();
+                return true;
+            });
+        } else {
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        }
     }
 
     @Override
@@ -121,12 +172,7 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
             sharedPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, false).apply();
             // https://stackoverflow.com/questions/10844112/runtimeexception-performing-pause-of-activity-that-is-not-resumed
             // Briefly, let the activity resume properly posting the recreate call to end of the message queue
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    MainActivity.this.recreate();
-                }
-            });
+            new Handler(Looper.getMainLooper()).post(MainActivity.this::recreate);
         }
 
         if(sharedPreferences.getBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false)) {
@@ -181,6 +227,38 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
         return false;
     }
 
+    /**
+     * Implement the following diagram behavior for the up button:
+     * <pre>
+     *              +---------------+
+     *              |  Main Screen  +----+
+     *              +-------+-------+    |
+     *                      |            |
+     *                      ▲ Up         | Search Button
+     *                      |            |
+     *                 +----+-----+      |
+     *    +------------+  Search  |◄-----+
+     *    |            +----+-----+
+     *    |   Open          |
+     *    |  something      ▲ Up
+     *    |                 |
+     *    |    +------------+-------------+
+     *    |    |                          |
+     *    |    |  Video    <->  Channel   |
+     *    +---►|  Channel  <->  Playlist  |
+     *         |  Video    <->  ....      |
+     *         |                          |
+     *         +--------------------------+
+     * </pre>
+     */
+    private void onHomeButtonPressed() {
+        // If search fragment wasn't found in the backstack...
+        if (!NavigationHelper.tryGotoSearchFragment(getSupportFragmentManager())) {
+            // ...go to the main fragment
+            NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+        }
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Menu
     //////////////////////////////////////////////////////////////////////////*/
@@ -206,6 +284,9 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(false);
         }
+
+        updateDrawerNavigation();
+
         return true;
     }
 
@@ -218,7 +299,7 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
         switch (id) {
             case android.R.id.home:
                 sendBackPressedEvent();
-                NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+                onHomeButtonPressed();
                 return true;
             case R.id.action_settings:
                 NavigationHelper.openSettings(this);
@@ -255,6 +336,27 @@ public class MainActivity extends AppCompatActivity implements HistoryListener, 
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
+
+    private void updateDrawerNavigation() {
+        if (getSupportActionBar() == null) return;
+
+        final Toolbar toolbar = findViewById(R.id.toolbar);
+        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
+        final Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+        if (fragment instanceof MainFragment) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            if (toggle != null) {
+                toggle.syncState();
+                toolbar.setNavigationOnClickListener(v -> drawer.openDrawer(GravityCompat.START));
+                drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED);
+            }
+        } else {
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            toolbar.setNavigationOnClickListener(v -> onHomeButtonPressed());
+        }
+    }
 
     private void handleIntent(Intent intent) {
         if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");

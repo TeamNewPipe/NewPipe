@@ -96,7 +96,6 @@ public abstract class VideoPlayer extends BasePlayer
 
     protected String playbackQuality;
 
-    private boolean startedFromNewPipe = true;
     protected boolean wasPlaying = false;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -690,14 +689,6 @@ public abstract class VideoPlayer extends BasePlayer
 
     public VideoStream getSelectedVideoStream() {
         return availableStreams.get(selectedStreamIndex);
-    }
-
-    public boolean isStartedFromNewPipe() {
-        return startedFromNewPipe;
-    }
-
-    public void setStartedFromNewPipe(boolean startedFromNewPipe) {
-        this.startedFromNewPipe = startedFromNewPipe;
     }
 
     public Handler getControlsVisibilityHandler() {

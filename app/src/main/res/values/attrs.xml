@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--TODO: preffix these with "ic_"-->
     <attr name="thumbs_up" format="reference"/>
     <attr name="thumbs_down" format="reference"/>
     <attr name="audio" format="reference"/>
@@ -22,10 +23,14 @@
     <attr name="selected" format="reference"/>
     <attr name="search_add" format="reference"/>
     <attr name="options" format="reference"/>
+    <attr name="play" format="reference"/>
+    <attr name="ic_hot" format="reference"/>
+    <attr name="ic_channel" format="reference"/>
 
     <!-- Can't refer to colors directly into drawable's xml-->
     <attr name="toolbar_shadow_drawable" format="reference"/>
     <attr name="selector_drawable" format="reference"/>
+    <attr name="checked_selector_drawable" format="reference"/>
 
     <attr name="separator_color" format="color"/>
     <attr name="queue_background_color" format="color"/>

@@ -43,7 +43,6 @@ import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.PermissionHelper;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -102,11 +101,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         if(activity != null
                 && useAsFrontPage
                 && isVisibleToUser) {
-            try {
-                activity.getSupportActionBar().setTitle(currentInfo.getName());
-            } catch (Exception e) {
-                onError(e);
-            }
+            setTitle(currentInfo != null ? currentInfo.getName() : name);
         }
     }
 

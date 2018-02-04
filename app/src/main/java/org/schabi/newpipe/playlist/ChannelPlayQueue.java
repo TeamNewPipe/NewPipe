@@ -15,6 +15,10 @@ public final class ChannelPlayQueue extends AbstractInfoPlayQueue<ChannelInfo, C
         super(item);
     }
 
+    public ChannelPlayQueue(final ChannelInfo info) {
+        this(info.getServiceId(), info.getUrl(), info.getNextStreamsUrl(), info.getRelatedStreams(), 0);
+    }
+
     public ChannelPlayQueue(final int serviceId,
                             final String url,
                             final String nextPageUrl,

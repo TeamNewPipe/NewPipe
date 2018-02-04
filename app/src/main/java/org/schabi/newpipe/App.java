@@ -1,9 +1,12 @@
 package org.schabi.newpipe;
 
+import android.app.AlarmManager;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 
@@ -116,7 +119,6 @@ public class App extends Application {
         });
     }
 
-
     private void initACRA() {
         try {
             final ACRAConfiguration acraConfig = new ConfigurationBuilder(this)
@@ -149,4 +151,5 @@ public class App extends Application {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.createNotificationChannel(mChannel);
     }
+
 }

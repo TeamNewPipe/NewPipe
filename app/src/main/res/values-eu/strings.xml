@@ -139,7 +139,7 @@
 
     <string name="start">Hasi</string>
     <string name="pause">Pausatu</string>
-    <string name="view">Ikusi</string>
+    <string name="view">Jo</string>
     <string name="delete">Ezabatu</string>
     <string name="checksum">Egiaztaketa-batura</string>
 
@@ -179,7 +179,7 @@
     <string name="app_license_title">NewPipe Lizentzia</string>
     <string name="contribution_encouragement">Ideiak, itzulpenak, diseinu aldaketak, kode garbiketak, kode aldaketa sakonak badituzu, laguntza beti da ongi etorria. Eginaz hobetzen da!</string>
     <string name="read_full_license">Irakurri lizentzia</string>
-    <string name="contribution_title">Parte hartzea</string>
+    <string name="contribution_title">Hartu parte</string>
 <string name="subscribe_button_title">Harpidetu</string>
     <string name="subscribed_button_title">Harpidetuta</string>
     <string name="channel_unsubscribed">Kanaletik harpidetza kenduta</string>
@@ -244,4 +244,77 @@
     <string name="history_empty">Historiala hutsik dago</string>
     <string name="history_cleared">Historiala garbitu da</string>
     <string name="item_deleted">Elementua ezabatuta</string>
+<string name="show_hold_to_append_title">Erakutsi \"Mantendu eransteko\" aholkua</string>
+    <string name="show_hold_to_append_summary">Erakutsi aholkua bigarren planoko eta laster-leihoko botoia sakatzean bideoaren xehetasunen orrian</string>
+    <string name="default_content_country_title">Lehenetsitako edukiaren herrialdea</string>
+    <string name="service_title">Zerbitzua</string>
+    <string name="background_player_append">Bigarren planoko erreproduzigailuaren ilaran</string>
+    <string name="popup_playing_append">Laster-leiho erreproduzigailuaren ilaran</string>
+    <string name="play_all">Jo denak</string>
+
+    <string name="unknown_content">[Ezezaguna]</string>
+
+    <string name="toggle_orientation">Txandakatu orientazioa</string>
+    <string name="switch_to_background">Aldatu bigarren planora</string>
+    <string name="switch_to_popup">Aldatu laster-leihora</string>
+    <string name="switch_to_main">Aldatu nagusira</string>
+
+    <string name="player_stream_failure">Huts egin du jario hau erreproduzitzean</string>
+    <string name="player_unrecoverable_failure">Erreproduzigailuaren errore berreskuraezina gertatu da</string>
+    <string name="player_recoverable_failure">Erreproduzigailuaren erroretik berreskuratzen</string>
+
+    <string name="donation_title">Dohaintza</string>
+    <string name="donation_encouragement">NewPipe bere denbora librea zuri esperientziarik onena ekartzeko ematen duten boluntarioek garatzen dute. Orain zerbait atzera emateko unea da, garatzaileek NewPipe hobetu ahal izan dezaten Javako kafe bat hartzen duten bitartean!</string>
+    <string name="give_back">Egin dohaintza</string>
+    <string name="website_title">Webgunea</string>
+    <string name="website_encouragement">NewPipe aplikazioari buruzko informazio gehiago eta azken berriak jasotzeko bisitatu gure webgunea.</string>
+    <string name="delete_item_search_history">Elementu hau bilaketen historialetik ezabatu nahi duzu?</string>
+
+    <string name="main_page_content">Orri nagusiko edukia</string>
+    <string name="blank_page_summary">Orri hutsa</string>
+    <string name="kiosk_page_summary">Kioskoaren orria</string>
+    <string name="subscription_page_summary">Harpidetza orria</string>
+    <string name="feed_page_summary">Jario-orria</string>
+    <string name="channel_page_summary">Kanal-orria</string>
+    <string name="select_a_channel">Hautatu kanal bat</string>
+    <string name="no_channel_subscribed_yet">Ez zara inolako kanalera harpidetu oraindik</string>
+    <string name="select_a_kiosk">Hautatu kiosko bat</string>
+
+    <string name="kiosk">Kioskoa</string>
+    <string name="trending">Joerak</string>
+    <string name="top_50">Lehen 50ak</string>
+    <string name="new_and_hot">Berria eta arrakastatsua</string>
+    <string name="title_activity_background_player">Bigarren planoko erreproduzigailua</string>
+    <string name="title_activity_popup_player">Laster-leiho erreproduzigailua</string>
+    <string name="play_queue_remove">Kendu</string>
+    <string name="play_queue_stream_detail">Xehetasunak</string>
+    <string name="play_queue_audio_settings">Audio ezarpenak</string>
+    <string name="hold_to_append">Mantendu ilaran jartzeko</string>
+    <string name="enqueue_on_background">Jarri ilaran bigarren planoan</string>
+    <string name="enqueue_on_popup">Jarri ilaran laster-leihoan</string>
+    <string name="start_here_on_main">Hasi hemen erreproduzitzen</string>
+    <string name="start_here_on_background">Hasi hemen bigarren planoan</string>
+    <string name="start_here_on_popup">Hasi hemen laster-leihoan</string>
+
+    <string name="drawer_open">"Ireki tiradera "</string>
+    <string name="drawer_close">Itxi tiradera</string>
+    <string name="no_player_found_toast">Ez da jarioen erreproduzigailurik aurkitu (VLC instalatu dezakezu)</string>
+    <string name="always">Beti</string>
+    <string name="just_once">Behin besterik ez</string>
+
+    <string name="external_player_unsupported_link_type">Kanpo erreproduzigailuek ez dituzte mota honetako estekak onartzen</string>
+    <string name="invalid_url_toast">URL baliogabea</string>
+    <string name="video_streams_empty">Ez da bideo jariorik aurkitu</string>
+    <string name="audio_streams_empty">Ez da audio jariorik aurkitu</string>
+
+    <string name="preferred_player_share_menu_dialog_title">Ireki gogoko erreproduzigailuarekin</string>
+    <string name="preferred_player_settings_title">Gogoko erreproduzigailua</string>
+
+    <string name="video_player">Bideo erreproduzigailua</string>
+    <string name="background_player">Bigarren planoko erreproduzigailua</string>
+    <string name="popup_player">Laster-leiho erreproduzigailua</string>
+    <string name="always_ask_player">Galdetu beti</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Informazioa eskuratzen…</string>
+    <string name="preferred_player_fetcher_notification_message">Eskatutako edukia kargatzen ari da</string>
 </resources>
