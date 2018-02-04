@@ -18,9 +18,9 @@ public class ServiceHelper {
     public static int getIcon(int serviceId) {
         switch (serviceId) {
             case 0:
-                return R.drawable.youtube;
+                return R.drawable.place_holder_youtube;
             case 1:
-                return R.drawable.soundcloud;
+                return R.drawable.place_holder_circle;
             default:
                 return R.drawable.service;
         }

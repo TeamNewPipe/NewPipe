@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         final NavigationView drawerItems = findViewById(R.id.navigation);
 
-        drawerItems.setItemIconTintList(null);
+        //drawerItems.setItemIconTintList(null); // Set null to use the original icon
         drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
 
         if (!BuildConfig.BUILD_TYPE.equals("release")) {
