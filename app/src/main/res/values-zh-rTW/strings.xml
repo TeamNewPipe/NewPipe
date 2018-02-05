@@ -260,4 +260,12 @@
     <string name="player_stream_failure">無法播放此串流</string>
     <string name="player_unrecoverable_failure">發生無法復原的播放器錯誤</string>
     <string name="player_recoverable_failure">從播放器錯誤中恢復</string>
+    <string name="show_hold_to_append_summary">在背景或是影片詳細資訊頁面上按下浮模按鈕時顯示提示</string>
+    <string name="external_player_unsupported_link_type">外部播放器不支援這類型的連結</string>
+    <string name="invalid_url_toast">無效的 URL</string>
+    <string name="video_streams_empty">找不到影片串流</string>
+    <string name="audio_streams_empty">找不到音訊串流</string>
+
+    <string name="donation_title">贊助</string>
+    <string name="website_title">網站</string>
     </resources>
