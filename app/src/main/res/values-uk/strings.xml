@@ -125,4 +125,24 @@
     <string name="msg_copied">Скопійовано до буферу обміну.</string>
     <string name="no_available_dir">Будь ласка, оберіть теку для завантаження.</string>
 
-</resources>
+<string name="no_player_found_toast">Потоковий програвач не знайдено (ви можете встановити VLC для відтворення)</string>
+    <string name="open_in_popup_mode">Відкрити у спливаючому вікні</string>
+    <string name="use_external_video_player_summary">Певні роздільності НЕ МАТИМУТЬ звуку якщо цей параметр увімкнено</string>
+    <string name="popup_mode_share_menu_title">NewPipe у спливаючому вікні</string>
+    <string name="subscribe_button_title">Підписатися</string>
+    <string name="subscribed_button_title">Ви підписалися</string>
+    <string name="channel_unsubscribed">Ви відписалися від каналу</string>
+    <string name="subscription_change_failed">Неможливо змінити підписку</string>
+    <string name="subscription_update_failed">Неможливо оновити підписку</string>
+
+    <string name="tab_main">Головна</string>
+    <string name="tab_subscriptions">Підписки</string>
+
+    <string name="fragment_whats_new">Новинки</string>
+
+    <string name="controls_background_title">Фон</string>
+    <string name="controls_popup_title">Спливаюче вікно</string>
+
+    <string name="default_popup_resolution_title">Роздільна здатність спливаючого вікна за замовчуванням</string>
+    <string name="show_higher_resolutions_summary">Не всі пристрої підтримують програвання 2K/4K відео</string>
+    </resources>
