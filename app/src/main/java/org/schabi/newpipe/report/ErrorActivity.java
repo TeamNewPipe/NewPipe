@@ -44,6 +44,7 @@ import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.TimeZone;
 import java.util.Vector;
 
@@ -144,12 +145,7 @@ public class ErrorActivity extends AppCompatActivity {
     // async call
     public static void reportError(Handler handler, final Context context, final List<Throwable> el,
                                    final Class returnActivity, final View rootView, final ErrorInfo errorInfo) {
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                reportError(context, el, returnActivity, rootView, errorInfo);
-            }
-        });
+        handler.post(() -> reportError(context, el, returnActivity, rootView, errorInfo));
     }
 
     public static void reportError(final Context context, final CrashReportData report, final ErrorInfo errorInfo) {
@@ -218,17 +214,13 @@ public class ErrorActivity extends AppCompatActivity {
         addGuruMeditaion();
         currentTimeStamp = getCurrentTimeStamp();
 
-        reportButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        reportButton.setOnClickListener((View v) -> {
+            Intent i = new Intent(Intent.ACTION_SENDTO);
+            i.setData(Uri.parse("mailto:" + ERROR_EMAIL_ADDRESS))
+                    .putExtra(Intent.EXTRA_SUBJECT, ERROR_EMAIL_SUBJECT)
+                    .putExtra(Intent.EXTRA_TEXT, buildJson());
 
-                Intent intent = new Intent(Intent.ACTION_SENDTO);
-                intent.setData(Uri.parse("mailto:" + ERROR_EMAIL_ADDRESS))
-                        .putExtra(Intent.EXTRA_SUBJECT, ERROR_EMAIL_SUBJECT)
-                        .putExtra(Intent.EXTRA_TEXT, buildJson());
-
-                startActivity(Intent.createChooser(intent, "Send Email"));
-            }
+            startActivity(Intent.createChooser(i, "Send Email"));
         });
         reportButton.setEnabled(false);
 

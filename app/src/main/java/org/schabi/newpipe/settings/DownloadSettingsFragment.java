@@ -46,7 +46,8 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
              Log.d(TAG, "onPreferenceTreeClick() called with: preference = [" + preference + "]");
         }
 
-        if (preference.getKey().equals(DOWNLOAD_PATH_PREFERENCE) || preference.getKey().equals(DOWNLOAD_PATH_AUDIO_PREFERENCE)) {
+        if (preference.getKey().equals(DOWNLOAD_PATH_PREFERENCE)
+                || preference.getKey().equals(DOWNLOAD_PATH_AUDIO_PREFERENCE)) {
             Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
