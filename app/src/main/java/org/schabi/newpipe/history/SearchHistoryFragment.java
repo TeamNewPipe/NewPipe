@@ -56,6 +56,11 @@ public class SearchHistoryFragment extends HistoryFragment<SearchHistoryEntry> {
         NavigationHelper.openSearch(getContext(), historyItem.getServiceId(), historyItem.getSearch());
     }
 
+    @Override
+    public boolean onHistoryItemLongClick(SearchHistoryEntry historyItem) {
+        return false;
+    }
+
     private static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView search;
         private final TextView time;

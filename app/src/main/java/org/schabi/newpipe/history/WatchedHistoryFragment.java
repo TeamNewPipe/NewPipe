@@ -20,6 +20,8 @@ import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.history.dao.HistoryDAO;
 import org.schabi.newpipe.database.history.model.WatchHistoryEntry;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -64,6 +66,13 @@ public class WatchedHistoryFragment extends HistoryFragment<WatchHistoryEntry> {
                 historyItem.getServiceId(),
                 historyItem.getUrl(),
                 historyItem.getTitle());
+    }
+
+    @Override
+    public boolean onHistoryItemLongClick(WatchHistoryEntry historyItem) {
+        StreamInfoItem item = new StreamInfoItem(historyItem.getServiceId(), historyItem.getUrl(), historyItem.getTitle(), StreamType.NONE);
+        showStreamDialog(item);
+        return true;
     }
 
     private static class WatchedHistoryAdapter extends HistoryEntryAdapter<WatchHistoryEntry, ViewHolder> {
