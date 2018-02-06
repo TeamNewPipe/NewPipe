@@ -49,7 +49,8 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
 
     private int feedLoadCount = MIN_ITEMS_INITIAL_LOAD;
 
-    private FeedSubscriptionService feedSubscriptionService = FeedSubscriptionService.getInstance();
+    private final FeedSubscriptionService feedSubscriptionService =
+            FeedSubscriptionService.getInstance();
     private Disposable subscriptionsDisposable;
 
     private FeedItemsSubscriber feedItemsSubscriber;
@@ -64,6 +65,7 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
     private Animation newItemsBlinking;
 
     private FeedInfoCache feedInfoCache;
+    private final Handler delayHandler = new Handler();
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle
@@ -149,7 +151,9 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
                 startLoading(true);
             }
 
-            updateViewState();
+            // Add a short delay to give the feed service some time to start loading new items
+            // before updating the view.
+            delayHandler.postDelayed(this::updateViewState, 100);
         });
     }
 
@@ -250,17 +254,15 @@ public class FeedFragment extends BaseListFragment<FeedInfo, Void> {
         if (DEBUG) Log.d(TAG, "loadMoreItems()");
         delayHandler.removeCallbacksAndMessages(null);
 
-        // Add a little of a delay when requesting more items because the cache is so fast,
-        // that the view seems stuck to the user when he scroll to the bottom
-        delayHandler.postDelayed(this::requestFeed, 300);
+        // Add a little of a delay when requesting more items to let the loading spinner appear
+        // because otherwise the view seems stuck to the user when he scroll to the bottom.
+        delayHandler.postDelayed(this::requestFeed, 200);
     }
 
     @Override
     protected boolean hasMoreItems() {
         return feedItemsSubscriber != null && feedItemsSubscriber.areMoreItemsAvailable();
     }
-
-    private final Handler delayHandler = new Handler();
 
     private void requestFeed() {
         if (DEBUG) Log.d(TAG, "requestFeed(); feedItemsSubscriber = " + feedItemsSubscriber);
