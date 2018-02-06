@@ -290,20 +290,4 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     public void handleNextItems(N result) {
         isLoading.set(false);
     }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Utils
-    //////////////////////////////////////////////////////////////////////////*/
-
-    protected void appendToPlaylist(final android.support.v4.app.FragmentManager manager,
-                                    final String tag) {
-        if (infoListAdapter == null) return;
-        List<StreamInfoItem> streams = new ArrayList<>();
-        for (final InfoItem item : infoListAdapter.getItemsList()) {
-            if (item instanceof StreamInfoItem) {
-                streams.add((StreamInfoItem) item);
-            }
-        }
-        PlaylistAppendDialog.fromStreamInfoItems(streams).show(manager, tag);
-    }
 }

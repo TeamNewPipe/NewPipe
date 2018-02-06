@@ -22,12 +22,4 @@
         android:icon="?attr/share"
         android:title="@string/share"
         app:showAsAction="ifRoom"/>
-
-    <item
-        android:id="@+id/menu_append_playlist"
-        android:icon="?attr/playlist_add"
-        android:title="@string/append_playlist"
-        android:visible="false"
-        app:showAsAction="ifRoom"
-        tools:visible="true"/>
 </menu>

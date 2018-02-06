@@ -9,8 +9,10 @@ import org.schabi.newpipe.database.history.dao.StreamHistoryDAO;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
 import org.schabi.newpipe.database.playlist.dao.PlaylistDAO;
+import org.schabi.newpipe.database.playlist.dao.PlaylistRemoteDAO;
 import org.schabi.newpipe.database.playlist.dao.PlaylistStreamDAO;
 import org.schabi.newpipe.database.playlist.model.PlaylistEntity;
+import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity;
 import org.schabi.newpipe.database.stream.dao.StreamDAO;
 import org.schabi.newpipe.database.stream.dao.StreamStateDAO;
@@ -26,7 +28,7 @@ import static org.schabi.newpipe.database.Migrations.DB_VER_12_0;
         entities = {
                 SubscriptionEntity.class, SearchHistoryEntry.class,
                 StreamEntity.class, StreamHistoryEntity.class, StreamStateEntity.class,
-                PlaylistEntity.class, PlaylistStreamEntity.class
+                PlaylistEntity.class, PlaylistStreamEntity.class, PlaylistRemoteEntity.class
         },
         version = DB_VER_12_0,
         exportSchema = false
@@ -48,4 +50,6 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract PlaylistDAO playlistDAO();
 
     public abstract PlaylistStreamDAO playlistStreamDAO();
+
+    public abstract PlaylistRemoteDAO playlistRemoteDAO();
 }

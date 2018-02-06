@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/action_append_playlist"
-        android:icon="?attr/playlist_add"
+        android:icon="?attr/ic_playlist_add"
         android:title="@string/append_playlist"
         android:visible="true"
         app:showAsAction="ifRoom"/>

@@ -84,7 +84,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     private LinearLayout headerBackgroundButton;
 
     private MenuItem menuRssButton;
-    private MenuItem playlistAppendButton;
 
     public static ChannelFragment getInstance(int serviceId, String url, String name) {
         ChannelFragment instance = new ChannelFragment();
@@ -203,12 +202,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
             if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu +
                     "], inflater = [" + inflater + "]");
             menuRssButton = menu.findItem(R.id.menu_item_rss);
-            playlistAppendButton = menu.findItem(R.id.menu_append_playlist);
-
-            if (currentInfo != null) {
-                menuRssButton.setVisible(!TextUtils.isEmpty(currentInfo.getFeedUrl()));
-                playlistAppendButton.setVisible(!currentInfo.getRelatedStreams().isEmpty());
-            }
         }
     }
 
@@ -231,9 +224,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 break;
             case R.id.menu_item_share:
                 shareUrl(name, url);
-                break;
-            case R.id.menu_append_playlist:
-                appendToPlaylist(getFragmentManager(), TAG);
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -434,8 +424,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         } else headerSubscribersTextView.setVisibility(View.GONE);
 
         if (menuRssButton != null) menuRssButton.setVisible(!TextUtils.isEmpty(result.getFeedUrl()));
-        if (playlistAppendButton != null) playlistAppendButton
-                .setVisible(!currentInfo.getRelatedStreams().isEmpty());
 
         playlistCtrl.setVisibility(View.VISIBLE);
 

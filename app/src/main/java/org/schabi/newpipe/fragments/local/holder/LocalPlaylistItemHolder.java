@@ -14,24 +14,10 @@ import org.schabi.newpipe.fragments.local.LocalItemBuilder;
 
 import java.text.DateFormat;
 
-public class LocalPlaylistItemHolder extends LocalItemHolder {
-    public final ImageView itemThumbnailView;
-    public final TextView itemStreamCountView;
-    public final TextView itemTitleView;
-    public final TextView itemUploaderView;
-
-    public LocalPlaylistItemHolder(LocalItemBuilder infoItemBuilder,
-                                   int layoutId, ViewGroup parent) {
-        super(infoItemBuilder, layoutId, parent);
-
-        itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
-        itemTitleView = itemView.findViewById(R.id.itemTitleView);
-        itemStreamCountView = itemView.findViewById(R.id.itemStreamCountView);
-        itemUploaderView = itemView.findViewById(R.id.itemUploaderView);
-    }
+public class LocalPlaylistItemHolder extends PlaylistItemHolder {
 
     public LocalPlaylistItemHolder(LocalItemBuilder infoItemBuilder, ViewGroup parent) {
-        this(infoItemBuilder, R.layout.list_playlist_mini_item, parent);
+        super(infoItemBuilder, parent);
     }
 
     @Override
@@ -45,29 +31,6 @@ public class LocalPlaylistItemHolder extends LocalItemHolder {
 
         itemBuilder.displayImage(item.thumbnailUrl, itemThumbnailView, DISPLAY_THUMBNAIL_OPTIONS);
 
-        itemView.setOnClickListener(view -> {
-            if (itemBuilder.getOnItemSelectedListener() != null) {
-                itemBuilder.getOnItemSelectedListener().selected(item);
-            }
-        });
-
-        itemView.setLongClickable(true);
-        itemView.setOnLongClickListener(view -> {
-            if (itemBuilder.getOnItemSelectedListener() != null) {
-                itemBuilder.getOnItemSelectedListener().held(item);
-            }
-            return true;
-        });
+        super.updateFromItem(localItem, dateFormat);
     }
-
-    /**
-     * Display options for playlist thumbnails
-     */
-    public static final DisplayImageOptions DISPLAY_THUMBNAIL_OPTIONS =
-            new DisplayImageOptions.Builder()
-                    .cloneFrom(BASE_DISPLAY_IMAGE_OPTIONS)
-                    .showImageOnLoading(R.drawable.dummy_thumbnail_playlist)
-                    .showImageForEmptyUri(R.drawable.dummy_thumbnail_playlist)
-                    .showImageOnFail(R.drawable.dummy_thumbnail_playlist)
-                    .build();
 }

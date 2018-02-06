@@ -11,12 +11,12 @@ import org.schabi.newpipe.fragments.local.holder.LocalItemHolder;
 import org.schabi.newpipe.fragments.local.holder.LocalPlaylistItemHolder;
 import org.schabi.newpipe.fragments.local.holder.LocalPlaylistStreamItemHolder;
 import org.schabi.newpipe.fragments.local.holder.LocalStatisticStreamItemHolder;
+import org.schabi.newpipe.fragments.local.holder.RemotePlaylistItemHolder;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.OnClickGesture;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /*
@@ -49,8 +49,9 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private static final int STREAM_STATISTICS_HOLDER_TYPE = 0x1000;
     private static final int STREAM_PLAYLIST_HOLDER_TYPE = 0x1001;
-    private static final int PLAYLIST_HOLDER_TYPE = 0x2000;
-    
+    private static final int LOCAL_PLAYLIST_HOLDER_TYPE = 0x2000;
+    private static final int REMOTE_PLAYLIST_HOLDER_TYPE = 0x2001;
+
     private final LocalItemBuilder localItemBuilder;
     private final ArrayList<LocalItem> localItems;
     private final DateFormat dateFormat;
@@ -187,7 +188,9 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         final LocalItem item = localItems.get(position);
 
         switch (item.getLocalItemType()) {
-            case PLAYLIST_ITEM: return PLAYLIST_HOLDER_TYPE;
+            case PLAYLIST_LOCAL_ITEM: return LOCAL_PLAYLIST_HOLDER_TYPE;
+            case PLAYLIST_REMOTE_ITEM: return REMOTE_PLAYLIST_HOLDER_TYPE;
+
             case PLAYLIST_STREAM_ITEM: return STREAM_PLAYLIST_HOLDER_TYPE;
             case STATISTIC_STREAM_ITEM: return STREAM_STATISTICS_HOLDER_TYPE;
             default:
@@ -206,8 +209,10 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                 return new HeaderFooterHolder(header);
             case FOOTER_TYPE:
                 return new HeaderFooterHolder(footer);
-            case PLAYLIST_HOLDER_TYPE:
+            case LOCAL_PLAYLIST_HOLDER_TYPE:
                 return new LocalPlaylistItemHolder(localItemBuilder, parent);
+            case REMOTE_PLAYLIST_HOLDER_TYPE:
+                return new RemotePlaylistItemHolder(localItemBuilder, parent);
             case STREAM_PLAYLIST_HOLDER_TYPE:
                 return new LocalPlaylistStreamItemHolder(localItemBuilder, parent);
             case STREAM_STATISTICS_HOLDER_TYPE:

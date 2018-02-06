@@ -314,7 +314,7 @@
                             android:clickable="true"
                             android:focusable="true"
                             android:contentDescription="@string/append_playlist"
-                            android:drawableTop="?attr/playlist_add"
+                            android:drawableTop="?attr/ic_playlist_add"
                             android:gravity="center"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp"
