@@ -10,6 +10,10 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.util.Localization;
 
+import java.util.Calendar;
+
+import static org.schabi.newpipe.MainActivity.DEBUG;
+
 /*
  * Created by Christian Schabesberger on 01.08.16.
  * <p>
@@ -55,7 +59,7 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
             viewsAndDate = Localization.shortViewCount(itemBuilder.getContext(), infoItem.view_count);
         }
 
-        String uploadDate = infoItem.getTextualUploadDate();
+        String uploadDate = getFormattedRelativeUploadDate(infoItem);
         if (!TextUtils.isEmpty(uploadDate)) {
             if (viewsAndDate.isEmpty()) {
                 viewsAndDate = uploadDate;
@@ -64,5 +68,21 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
             }
         }
         return viewsAndDate;
+    }
+
+    private String getFormattedRelativeUploadDate(final StreamInfoItem infoItem) {
+        Calendar uploadDate = infoItem.getUploadDate();
+
+        if (uploadDate != null) {
+            String formattedRelativeTime = Localization.relativeTime(uploadDate);
+
+            if (DEBUG) {
+                // In debug mode, show the actual date from the service as well.
+                formattedRelativeTime += " (" + infoItem.getTextualUploadDate() + ")";
+            }
+            return formattedRelativeTime;
+        } else {
+            return infoItem.getTextualUploadDate();
+        }
     }
 }

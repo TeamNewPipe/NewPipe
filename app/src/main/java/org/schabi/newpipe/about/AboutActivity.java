@@ -42,7 +42,8 @@ public class AboutActivity extends AppCompatActivity {
             new SoftwareComponent("ExoPlayer", "2014-2017", "Google Inc", "https://github.com/google/ExoPlayer", StandardLicenses.APACHE2),
             new SoftwareComponent("RxAndroid", "2015", "The RxAndroid authors", "https://github.com/ReactiveX/RxAndroid", StandardLicenses.APACHE2),
             new SoftwareComponent("RxJava", "2016-present", "RxJava Contributors", "https://github.com/ReactiveX/RxJava", StandardLicenses.APACHE2),
-            new SoftwareComponent("RxBinding", "2015", "Jake Wharton", "https://github.com/JakeWharton/RxBinding", StandardLicenses.APACHE2)
+            new SoftwareComponent("RxBinding", "2015", "Jake Wharton", "https://github.com/JakeWharton/RxBinding", StandardLicenses.APACHE2),
+            new SoftwareComponent("PrettyTime", "2012", "Lincoln Baxter, III", "https://github.com/ocpsoft/prettytime", StandardLicenses.APACHE2),
     };
 
     /**

@@ -74,6 +74,7 @@ dependencies {
     implementation 'com.github.nirhart:ParallaxScroll:dd53d1f9d1'
     implementation 'com.nononsenseapps:filepicker:3.0.1'
     implementation 'com.google.android.exoplayer:exoplayer:r2.5.4'
+    implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
 
     debugImplementation 'com.facebook.stetho:stetho:1.5.0'
     debugImplementation 'com.facebook.stetho:stetho-urlconnection:1.5.0'

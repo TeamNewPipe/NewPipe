@@ -6,14 +6,16 @@ import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.support.annotation.PluralsRes;
 import android.support.annotation.StringRes;
-import android.text.TextUtils;
 
+import org.ocpsoft.prettytime.PrettyTime;
+import org.ocpsoft.prettytime.units.Decade;
 import org.schabi.newpipe.R;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -39,7 +41,16 @@ import java.util.Locale;
 
 public class Localization {
 
+    private static final PrettyTime prettyTime = initPrettyTime();
+
     private Localization() {
+    }
+
+    private static PrettyTime initPrettyTime() {
+        PrettyTime prettyTime = new PrettyTime();
+        // Do not use decades as YouTube doesn't either.
+        prettyTime.removeUnit(Decade.class);
+        return prettyTime;
     }
 
     public static Locale getPreferredLocale(Context context) {
@@ -87,6 +98,16 @@ public class Localization {
 
         String formattedDate = formatDate(context, date);
         return String.format(dateString, formattedDate);
+    }
+
+    /**
+     * Gets a textual representation of a relative time, such as '2 days ago', by using
+     * <a href="https://github.com/ocpsoft/prettytime"><code>PrettyTime</code></a>.
+     * @param calendarTime The time in question
+     * @return The textual relative time
+     */
+    public static String relativeTime(Calendar calendarTime) {
+        return prettyTime.formatUnrounded(calendarTime);
     }
 
     public static String localizeViewCount(Context context, long viewCount) {

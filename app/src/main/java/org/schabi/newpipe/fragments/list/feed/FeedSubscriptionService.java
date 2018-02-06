@@ -4,6 +4,7 @@ package org.schabi.newpipe.fragments.list.feed;
  * Created by wojcik.online on 2018-01-21.
  */
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
@@ -47,9 +48,9 @@ final class FeedSubscriptionService {
 
     private static FeedSubscriptionService instance;
 
-    private final Calendar oldestUploadDate;
-
     private final Observable<FeedInfo> feedInfoObservable;
+
+    private Calendar oldestUploadDate;
 
     private Map<String, StreamInfoItem> baseStreamItems = Collections.emptyMap();
 
@@ -58,18 +59,18 @@ final class FeedSubscriptionService {
     private FeedSubscriptionService() {
         feedInfoObservable = subscriptionService.getSubscription()
                 .toObservable()
+                .observeOn(Schedulers.io())
                 .map(this::getFeedInfoFromSubscriptions)
                 .doOnSubscribe(disposable -> areSubscriptionsBeingLoaded = true)
-                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 
-        oldestUploadDate = Calendar.getInstance();
-        oldestUploadDate.add(Calendar.MONTH, -1);
+        oldestUploadDate = calculateOldestUploadDate();
     }
 
     /**
      * @return The instance of the service singleton.
      */
+    @NonNull
     public static FeedSubscriptionService getInstance() {
         if (instance == null) {
             instance = new FeedSubscriptionService();
@@ -82,6 +83,7 @@ final class FeedSubscriptionService {
      * @return An observable that will that will emit {@link FeedInfo}
      *         every time the subscriptions change.
      */
+    @NonNull
     Observable<FeedInfo> getFeedInfoObservable() {
         return feedInfoObservable;
     }
@@ -92,7 +94,7 @@ final class FeedSubscriptionService {
      * to recover the older and more accurate upload dates.
      * @param baseFeedInfo The older feed info (e.g. from cache)
      */
-    void setBaseFeedInfo(final FeedInfo baseFeedInfo) {
+    void setBaseFeedInfo(@NonNull final FeedInfo baseFeedInfo) {
         Schedulers.computation().scheduleDirect(() -> buildBaseFeedInfo(baseFeedInfo));
     }
 
@@ -165,6 +167,18 @@ final class FeedSubscriptionService {
         }
     }
 
+    @NonNull
+    private Calendar calculateOldestUploadDate() {
+        Calendar oldestUploadDate = Calendar.getInstance();
+
+        oldestUploadDate.add(Calendar.WEEK_OF_YEAR, -4);
+        oldestUploadDate.set(Calendar.HOUR_OF_DAY, 0);
+        oldestUploadDate.set(Calendar.MINUTE, 0);
+        oldestUploadDate.set(Calendar.SECOND, 0);
+        oldestUploadDate.set(Calendar.MILLISECOND, 0);
+        return oldestUploadDate;
+    }
+
     private <T> T getMaybeValue(Maybe<T> maybe) throws Exception {
         final Exception[] maybeInnerException = {null};
         T value = maybe.onErrorComplete(throwable -> {
@@ -191,6 +205,7 @@ final class FeedSubscriptionService {
         }
 
         this.baseStreamItems = baseStreamItems;
+        this.oldestUploadDate = calculateOldestUploadDate();
     }
 
     /**
