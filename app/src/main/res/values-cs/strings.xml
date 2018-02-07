@@ -307,4 +307,33 @@ otevření ve vyskakovacím okně</string>
 
     <string name="drawer_open">Otevřít Drawer</string>
     <string name="drawer_close">Zavřít Drawer</string>
-    </resources>
+    <string name="no_player_found_toast">Nenalezen přehrávač streamu (pro přehrání můžete nainstalovat např. VLC)</string>
+    <string name="always">Vždy</string>
+    <string name="just_once">Pouze jednou</string>
+
+    <string name="import_data_title">Importovat databázi</string>
+    <string name="export_data_title">Exportovat databázi</string>
+    <string name="import_data_summary">Přepíše vaši dosavadní historii a odběry</string>
+    <string name="export_data_summary">Exportuje historii, odběry a playlisty</string>
+    <string name="external_player_unsupported_link_type">Externí přehrávače nepodporují tyto druhy odkazů</string>
+    <string name="invalid_url_toast">Neplatná URL</string>
+    <string name="video_streams_empty">Nenalezeny žádné video streamy</string>
+    <string name="audio_streams_empty">Nenalezeny žádné audio streamy</string>
+
+    <string name="export_complete_toast">Export dokončen</string>
+    <string name="import_complete_toast">Import dokončen</string>
+    <string name="no_valid_zip_file">Bez platného Zip souboru</string>
+    <string name="could_not_import_all_files">UPOZORNĚNÍ: Nelze importovat všechny soubory.</string>
+    <string name="override_current_data">Tímto se anuluje vaše aktuální nastavení.</string>
+
+    <string name="preferred_player_share_menu_dialog_title">Otevřít preferovaným přehrávačem</string>
+    <string name="preferred_player_settings_title">Preferovaný přehrávač</string>
+
+    <string name="video_player">Video přehrávač</string>
+    <string name="background_player">Přehrávač na pozadí</string>
+    <string name="popup_player">Přehrávač v okně</string>
+    <string name="always_ask_player">Vždy se ptát</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Získávám informace…</string>
+    <string name="preferred_player_fetcher_notification_message">Požadovaný obsah se načítá</string>
+</resources>
