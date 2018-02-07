@@ -268,4 +268,40 @@
 
     <string name="donation_title">贊助</string>
     <string name="website_title">網站</string>
+    <string name="import_data_title">匯入資料庫</string>
+    <string name="export_data_title">匯出資料庫</string>
+    <string name="import_data_summary">將覆蓋您目前的歷史記錄和訂閱</string>
+    <string name="export_data_summary">匯出歷史記錄、訂閱和播放清單。</string>
+    <string name="give_back">返回</string>
+    <string name="website_encouragement">欲了解更多關於 NewPipe 的資訊和最新近況，請造訪我們的網站。</string>
+    <string name="main_page_content">首頁內容</string>
+    <string name="blank_page_summary">空白頁面</string>
+    <string name="kiosk_page_summary">互動導覽頁面</string>
+    <string name="subscription_page_summary">訂閱頁面</string>
+    <string name="feed_page_summary">提要頁面</string>
+    <string name="channel_page_summary">頻道頁面</string>
+    <string name="select_a_channel">選擇頻道</string>
+    <string name="no_channel_subscribed_yet">尚未訂閱頻道</string>
+    <string name="select_a_kiosk">選擇互動導覽</string>
+    <string name="export_complete_toast">匯出完成</string>
+    <string name="import_complete_toast">匯入完成</string>
+    <string name="no_valid_zip_file">無有效的 Zip 檔案</string>
+    <string name="could_not_import_all_files">警告：無法匯入所有檔案。</string>
+    <string name="override_current_data">這將覆蓋您目前的設定。</string>
+
+    <string name="kiosk">互動導覽</string>
+    <string name="trending">動向</string>
+    <string name="top_50">前 50</string>
+    <string name="new_and_hot">最新和熱門</string>
+    <string name="title_activity_background_player">背景播放</string>
+    <string name="title_activity_popup_player">懸浮視窗播放</string>
+    <string name="play_queue_remove">移除</string>
+    <string name="play_queue_stream_detail">詳細資訊</string>
+    <string name="play_queue_audio_settings">音訊設定</string>
+    <string name="enqueue_on_background">在背景佇列</string>
+    <string name="enqueue_on_popup">在懸浮視窗佇列</string>
+    <string name="start_here_on_main">在此開始播放</string>
+    <string name="start_here_on_background">在背景這裡開始</string>
+    <string name="start_here_on_popup">在懸浮視窗這裡開始</string>
+
     </resources>
