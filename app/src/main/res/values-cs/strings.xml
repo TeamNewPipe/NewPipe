@@ -314,7 +314,7 @@ otevření ve vyskakovacím okně</string>
     <string name="import_data_title">Importovat databázi</string>
     <string name="export_data_title">Exportovat databázi</string>
     <string name="import_data_summary">Přepíše vaši dosavadní historii a odběry</string>
-    <string name="export_data_summary">Exportuje historii, odběry a playlisty</string>
+    <string name="export_data_summary">Exportuje historii, odběry a playlisty.</string>
     <string name="external_player_unsupported_link_type">Externí přehrávače nepodporují tyto druhy odkazů</string>
     <string name="invalid_url_toast">Neplatná URL</string>
     <string name="video_streams_empty">Nenalezeny žádné video streamy</string>
