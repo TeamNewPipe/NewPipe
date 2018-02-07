@@ -36,7 +36,7 @@ import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.fragments.local.LocalPlaylistFragment;
 import org.schabi.newpipe.fragments.local.bookmark.MostPlayedFragment;
-import org.schabi.newpipe.fragments.local.bookmark.WatchHistoryFragment;
+import org.schabi.newpipe.fragments.local.bookmark.LastPlayedFragment;
 import org.schabi.newpipe.history.HistoryActivity;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BackgroundPlayerActivity;
@@ -335,10 +335,10 @@ public class NavigationHelper {
                 .commit();
     }
 
-    public static void openWatchHistoryFragment(FragmentManager fragmentManager) {
+    public static void openLastPlayedFragment(FragmentManager fragmentManager) {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
-                .replace(R.id.fragment_holder, new WatchHistoryFragment())
+                .replace(R.id.fragment_holder, new LastPlayedFragment())
                 .addToBackStack(null)
                 .commit();
     }

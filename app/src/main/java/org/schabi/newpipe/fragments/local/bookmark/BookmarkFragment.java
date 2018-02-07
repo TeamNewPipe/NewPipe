@@ -39,8 +39,8 @@ import io.reactivex.disposables.CompositeDisposable;
 public final class BookmarkFragment
         extends BaseLocalListFragment<List<PlaylistLocalItem>, Void> {
 
-    private View watchHistoryButton;
-    private View mostWatchedButton;
+    private View lastPlayedButton;
+    private View mostPlayedButton;
 
     @State
     protected Parcelable itemsListState;
@@ -96,8 +96,8 @@ public final class BookmarkFragment
     protected View getListHeader() {
         final View headerRootLayout = activity.getLayoutInflater()
                 .inflate(R.layout.bookmark_header, itemsList, false);
-        watchHistoryButton = headerRootLayout.findViewById(R.id.watchHistory);
-        mostWatchedButton = headerRootLayout.findViewById(R.id.mostWatched);
+        lastPlayedButton = headerRootLayout.findViewById(R.id.lastPlayed);
+        mostPlayedButton = headerRootLayout.findViewById(R.id.mostPlayed);
         return headerRootLayout;
     }
 
@@ -135,13 +135,13 @@ public final class BookmarkFragment
             }
         });
 
-        watchHistoryButton.setOnClickListener(view -> {
+        lastPlayedButton.setOnClickListener(view -> {
             if (getParentFragment() != null) {
-                NavigationHelper.openWatchHistoryFragment(getParentFragment().getFragmentManager());
+                NavigationHelper.openLastPlayedFragment(getParentFragment().getFragmentManager());
             }
         });
 
-        mostWatchedButton.setOnClickListener(view -> {
+        mostPlayedButton.setOnClickListener(view -> {
             if (getParentFragment() != null) {
                 NavigationHelper.openMostPlayedFragment(getParentFragment().getFragmentManager());
             }
@@ -178,8 +178,8 @@ public final class BookmarkFragment
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (mostWatchedButton != null) mostWatchedButton.setOnClickListener(null);
-        if (watchHistoryButton != null) watchHistoryButton.setOnClickListener(null);
+        if (mostPlayedButton != null) mostPlayedButton.setOnClickListener(null);
+        if (lastPlayedButton != null) lastPlayedButton.setOnClickListener(null);
 
         if (disposables != null) disposables.clear();
         if (databaseSubscription != null) databaseSubscription.cancel();

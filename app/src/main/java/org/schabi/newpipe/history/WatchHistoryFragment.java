@@ -33,11 +33,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 
 
-public class WatchedHistoryFragment extends HistoryFragment<StreamHistoryEntry> {
+public class WatchHistoryFragment extends HistoryFragment<StreamHistoryEntry> {
 
     @NonNull
-    public static WatchedHistoryFragment newInstance() {
-        return new WatchedHistoryFragment();
+    public static WatchHistoryFragment newInstance() {
+        return new WatchHistoryFragment();
     }
 
     @Override

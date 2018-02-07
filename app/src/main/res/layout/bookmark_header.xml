@@ -8,14 +8,14 @@
     android:background="?attr/selectableItemBackground">
 
     <RelativeLayout
-        android:id="@+id/watchHistory"
+        android:id="@+id/lastPlayed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true">
         <ImageView
-            android:id="@+id/watchHistoryIcon"
+            android:id="@+id/lastPlayedIcon"
             android:layout_width="48dp"
             android:layout_height="28dp"
             android:layout_alignParentLeft="true"
@@ -26,12 +26,12 @@
             tools:ignore="ContentDescription,RtlHardcoded"/>
 
         <TextView
-            android:id="@+id/watchHistoryText"
+            android:id="@+id/lastPlayedText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_toRightOf="@+id/watchHistoryIcon"
+            android:layout_toRightOf="@+id/lastPlayedIcon"
             android:gravity="left|center"
-            android:text="@string/title_watch_history"
+            android:text="@string/title_last_played"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="15sp"
             android:textStyle="bold"
@@ -39,15 +39,15 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/mostWatched"
+        android:id="@+id/mostPlayed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/watchHistory"
+        android:layout_below="@id/lastPlayed"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true">
         <ImageView
-            android:id="@+id/mostWatchedIcon"
+            android:id="@+id/mostPlayedIcon"
             android:layout_width="48dp"
             android:layout_height="28dp"
             android:layout_alignParentLeft="true"
@@ -58,10 +58,10 @@
             tools:ignore="ContentDescription,RtlHardcoded"/>
 
         <TextView
-            android:id="@+id/mostWatchedText"
+            android:id="@+id/mostPlayedText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_toRightOf="@+id/mostWatchedIcon"
+            android:layout_toRightOf="@+id/mostPlayedIcon"
             android:gravity="left|center"
             android:text="@string/title_most_played"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -73,7 +73,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/mostWatched"
+        android:layout_below="@+id/mostPlayed"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:background="?attr/separator_color"/>

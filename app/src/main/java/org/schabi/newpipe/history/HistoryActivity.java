@@ -9,10 +9,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -23,7 +21,6 @@ import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -116,7 +113,7 @@ public class HistoryActivity extends AppCompatActivity {
                     fragment = SearchHistoryFragment.newInstance();
                     break;
                 case 1:
-                    fragment = WatchedHistoryFragment.newInstance();
+                    fragment = WatchHistoryFragment.newInstance();
                     break;
                 default:
                     throw new IllegalArgumentException("position: " + position);
