@@ -84,7 +84,7 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
     private View.OnTouchListener getOnTouchListener(final PlaylistStreamEntry item) {
         return (view, motionEvent) -> {
             view.performClick();
-            if (itemBuilder != null &&
+            if (itemBuilder != null && itemBuilder.getOnItemSelectedListener() != null &&
                     motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN) {
                 itemBuilder.getOnItemSelectedListener().drag(item,
                         LocalPlaylistStreamItemHolder.this);

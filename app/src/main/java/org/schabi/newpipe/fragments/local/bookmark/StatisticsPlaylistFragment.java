@@ -140,6 +140,12 @@ public abstract class StatisticsPlaylistFragment
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+
+        if (itemListAdapter != null) itemListAdapter.unsetSelectedListener();
+        if (headerBackgroundButton != null) headerBackgroundButton.setOnClickListener(null);
+        if (headerPlayAllButton != null) headerPlayAllButton.setOnClickListener(null);
+        if (headerPopupButton != null) headerPopupButton.setOnClickListener(null);
+
         if (databaseSubscription != null) databaseSubscription.cancel();
         databaseSubscription = null;
     }

@@ -71,6 +71,10 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         localItemBuilder.setOnItemSelectedListener(listener);
     }
 
+    public void unsetSelectedListener() {
+        localItemBuilder.setOnItemSelectedListener(null);
+    }
+
     public void addItems(List<? extends LocalItem> data) {
         if (data != null) {
             if (DEBUG) {

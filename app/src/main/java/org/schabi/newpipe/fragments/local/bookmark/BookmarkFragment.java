@@ -178,6 +178,9 @@ public final class BookmarkFragment
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (mostWatchedButton != null) mostWatchedButton.setOnClickListener(null);
+        if (watchHistoryButton != null) watchHistoryButton.setOnClickListener(null);
+
         if (disposables != null) disposables.clear();
         if (databaseSubscription != null) databaseSubscription.cancel();
 
