@@ -95,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
         if (getSupportFragmentManager() != null && getSupportFragmentManager().getBackStackEntryCount() == 0) {
             initFragments();
         }
+        
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
         setSupportActionBar(findViewById(R.id.toolbar));
         setupDrawer();
