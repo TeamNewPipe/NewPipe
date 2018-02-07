@@ -36,7 +36,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceView;
@@ -75,7 +74,6 @@ import java.util.List;
 
 import static com.google.android.exoplayer2.C.SELECTION_FLAG_AUTOSELECT;
 import static com.google.android.exoplayer2.C.TIME_UNSET;
-import static com.google.android.exoplayer2.C.TRACK_TYPE_TEXT;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -204,9 +202,6 @@ public abstract class VideoPlayer extends BasePlayer
 
         ((ProgressBar) this.loadingPanel.findViewById(R.id.progressBarLoadingPanel))
                 .getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
-
-        subtitleView.setFixedTextSize(TypedValue.COMPLEX_UNIT_PX,
-                PlayerHelper.getCaptionSizePx(context));
     }
 
     @Override
@@ -281,8 +276,10 @@ public abstract class VideoPlayer extends BasePlayer
         captionPopupMenu.getMenu().removeGroup(captionPopupMenuGroupId);
 
         if (availableCaptions == null || trackSelector == null) return;
+
+        // Add option for turning off caption
         MenuItem captionOffItem = captionPopupMenu.getMenu().add(captionPopupMenuGroupId,
-                0, Menu.NONE, "Caption Off");
+                0, Menu.NONE, R.string.caption_none);
         captionOffItem.setOnMenuItemClickListener(menuItem -> {
             final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
             if (trackSelector != null && textRendererIndex != -1) {
@@ -291,6 +288,7 @@ public abstract class VideoPlayer extends BasePlayer
             return true;
         });
 
+        // Add all available captions
         for (int i = 0; i < availableCaptions.size(); i++) {
             final Subtitles subtitles = availableCaptions.get(i);
             final String captionLanguage = PlayerHelper.captionLanguageOf(subtitles);
@@ -306,7 +304,6 @@ public abstract class VideoPlayer extends BasePlayer
                 return true;
             });
         }
-        //captionPopupMenu.setOnMenuItemClickListener(this);
         captionPopupMenu.setOnDismissListener(this);
     }
     /*//////////////////////////////////////////////////////////////////////////
@@ -334,14 +331,14 @@ public abstract class VideoPlayer extends BasePlayer
                 selectedStreamIndex = getOverrideResolutionIndex(videos, getPlaybackQuality());
             }
 
+            availableCaptions = info.getSubtitles();
+
             buildQualityMenu();
             buildPlaybackSpeedMenu();
             buildCaptionMenu();
             qualityTextView.setVisibility(View.VISIBLE);
             playbackSpeedTextView.setVisibility(View.VISIBLE);
-
-            availableCaptions = info.getSubtitles();
-            if (!availableCaptions.isEmpty()) captionTextView.setVisibility(View.VISIBLE);
+            captionTextView.setVisibility(availableCaptions.isEmpty() ? View.GONE : View.VISIBLE);
         }
     }
 
@@ -472,11 +469,13 @@ public abstract class VideoPlayer extends BasePlayer
     @Override
     public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
         super.onTracksChanged(trackGroups, trackSelections);
-        if (trackSelector == null || captionTextView == null) return;
+        if (captionTextView == null) return;
 
-        if (trackSelector.getRendererDisabled(getRendererIndex(C.TRACK_TYPE_TEXT)) ||
+        if (trackSelector == null) {
+            captionTextView.setVisibility(View.GONE);
+        } else if (trackSelector.getRendererDisabled(getRendererIndex(C.TRACK_TYPE_TEXT)) ||
                 trackSelector.getParameters().preferredTextLanguage == null) {
-            captionTextView.setText("No Caption");
+            captionTextView.setText(R.string.caption_none);
         } else {
             final String preferredLanguage = trackSelector.getParameters().preferredTextLanguage;
             captionTextView.setText(preferredLanguage);
@@ -646,20 +645,7 @@ public abstract class VideoPlayer extends BasePlayer
         showControls(300);
     }
 
-    protected void onResizeClicked() {
-        if (aspectRatioFrameLayout != null && context != null) {
-            final int currentResizeMode = aspectRatioFrameLayout.getResizeMode();
-            final int newResizeMode;
-            if (currentResizeMode == AspectRatioFrameLayout.RESIZE_MODE_ZOOM) {
-                newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT;
-            } else {
-                newResizeMode = currentResizeMode + 1;
-            }
-
-            aspectRatioFrameLayout.setResizeMode(newResizeMode);
-            resizeView.setText(PlayerHelper.resizeTypeOf(context, newResizeMode));
-        }
-    }
+    protected abstract void onResizeClicked();
     /*//////////////////////////////////////////////////////////////////////////
     // SeekBar Listener
     //////////////////////////////////////////////////////////////////////////*/
@@ -899,4 +885,15 @@ public abstract class VideoPlayer extends BasePlayer
         return currentDisplaySeek;
     }
 
+    public SubtitleView getSubtitleView() {
+        return subtitleView;
+    }
+
+    public TextView getResizeView() {
+        return resizeView;
+    }
+
+    public TextView getCaptionTextView() {
+        return captionTextView;
+    }
 }

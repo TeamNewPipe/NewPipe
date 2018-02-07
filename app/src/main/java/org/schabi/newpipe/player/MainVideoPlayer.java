@@ -35,7 +35,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -48,6 +50,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -334,6 +337,8 @@ public final class MainVideoPlayer extends Activity {
             channelTextView.setSelected(true);
 
             getRootView().setKeepScreenOn(true);
+            getSubtitleView().setFixedTextSize(TypedValue.COMPLEX_UNIT_PX,
+                    getCaptionSizePx(context));
         }
 
         @Override
@@ -548,6 +553,24 @@ public final class MainVideoPlayer extends Activity {
         }
 
         @Override
+        protected void onResizeClicked() {
+            if (getAspectRatioFrameLayout() != null && context != null) {
+                final int currentResizeMode = getAspectRatioFrameLayout().getResizeMode();
+                final int newResizeMode;
+                if (currentResizeMode == AspectRatioFrameLayout.RESIZE_MODE_FIT) {
+                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL;
+                } else if (currentResizeMode == AspectRatioFrameLayout.RESIZE_MODE_FILL) {
+                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
+                } else {
+                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT;
+                }
+
+                getAspectRatioFrameLayout().setResizeMode(newResizeMode);
+                getResizeView().setText(PlayerHelper.resizeTypeOf(context, newResizeMode));
+            }
+        }
+
+        @Override
         protected int getDefaultResolutionIndex(final List<VideoStream> sortedVideos) {
             return ListHelper.getDefaultResolutionIndex(context, sortedVideos);
         }
@@ -745,6 +768,12 @@ public final class MainVideoPlayer extends Activity {
             };
         }
 
+        private float getCaptionSizePx(@NonNull Context context) {
+            final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+            final int minimumLength = Math.min(metrics.heightPixels, metrics.widthPixels);
+            // todo: expose size control to users
+            return (float) minimumLength / 20f;
+        }
         ///////////////////////////////////////////////////////////////////////////
         // Getters
         ///////////////////////////////////////////////////////////////////////////

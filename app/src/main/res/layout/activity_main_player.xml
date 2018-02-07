@@ -286,12 +286,13 @@
 
                 <TextView
                     android:id="@+id/captionTextView"
-                    android:layout_width="80dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/switchBackground"
                     android:layout_toRightOf="@id/resizeTextView"
-                    android:gravity="center"
+                    android:gravity="center|left"
                     android:minHeight="35dp"
                     android:minWidth="40dp"
                     android:paddingLeft="2dp"
@@ -299,7 +300,7 @@
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     android:background="?attr/selectableItemBackground"
-                    tools:ignore="RtlHardcoded"
+                    tools:ignore="RelativeOverlap,RtlHardcoded"
                     tools:text="English" />
 
                 <ImageButton

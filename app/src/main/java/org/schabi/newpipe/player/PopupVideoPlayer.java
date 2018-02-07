@@ -52,6 +52,7 @@ import android.widget.TextView;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
@@ -88,6 +89,8 @@ public final class PopupVideoPlayer extends Service {
     private static final String POPUP_SAVED_WIDTH = "popup_saved_width";
     private static final String POPUP_SAVED_X = "popup_saved_x";
     private static final String POPUP_SAVED_Y = "popup_saved_y";
+
+    private static final int MINIMUM_SHOW_EXTRA_WIDTH_DP = 300;
 
     private WindowManager windowManager;
     private WindowManager.LayoutParams windowLayoutParams;
@@ -359,9 +362,11 @@ public final class PopupVideoPlayer extends Service {
 
     ///////////////////////////////////////////////////////////////////////////
 
-    protected class VideoPlayerImpl extends VideoPlayer {
+    protected class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeListener {
         private TextView resizingIndicator;
         private ImageButton fullScreenButton;
+
+        private View extraOptionsView;
 
         @Override
         public void handleIntent(Intent intent) {
@@ -381,6 +386,17 @@ public final class PopupVideoPlayer extends Service {
             resizingIndicator = rootView.findViewById(R.id.resizing_indicator);
             fullScreenButton = rootView.findViewById(R.id.fullScreenButton);
             fullScreenButton.setOnClickListener(v -> onFullScreenButtonClicked());
+
+            extraOptionsView = rootView.findViewById(R.id.extraOptionsView);
+            rootView.addOnLayoutChangeListener(this);
+        }
+
+        @Override
+        public void onLayoutChange(final View view, int left, int top, int right, int bottom,
+                                   int oldLeft, int oldTop, int oldRight, int oldBottom) {
+            float widthDp = Math.abs(right - left) / getResources().getDisplayMetrics().density;
+            final int visibility = widthDp > MINIMUM_SHOW_EXTRA_WIDTH_DP ? View.VISIBLE : View.GONE;
+            extraOptionsView.setVisibility(visibility);
         }
 
         @Override
@@ -437,6 +453,22 @@ public final class PopupVideoPlayer extends Service {
         public void onDismiss(PopupMenu menu) {
             super.onDismiss(menu);
             if (isPlaying()) hideControls(500, 0);
+        }
+
+        @Override
+        protected void onResizeClicked() {
+            if (getAspectRatioFrameLayout() != null && context != null) {
+                final int currentResizeMode = getAspectRatioFrameLayout().getResizeMode();
+                final int newResizeMode;
+                if (currentResizeMode == AspectRatioFrameLayout.RESIZE_MODE_FILL) {
+                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT;
+                } else {
+                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL;
+                }
+
+                getAspectRatioFrameLayout().setResizeMode(newResizeMode);
+                getResizeView().setText(PlayerHelper.resizeTypeOf(context, newResizeMode));
+            }
         }
 
         @Override

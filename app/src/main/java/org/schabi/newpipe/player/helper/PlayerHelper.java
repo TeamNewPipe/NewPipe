@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.util.DisplayMetrics;
 
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.util.MimeTypes;
@@ -75,20 +74,11 @@ public class PlayerHelper {
     public static String resizeTypeOf(@NonNull final Context context,
                                       @AspectRatioFrameLayout.ResizeMode final int resizeMode) {
         switch (resizeMode) {
-            case RESIZE_MODE_FIT: return "FIT";
-            case RESIZE_MODE_FILL: return "FILL";
-            case RESIZE_MODE_FIXED_HEIGHT: return "HEIGHT";
-            case RESIZE_MODE_FIXED_WIDTH: return "WIDTH";
-            case RESIZE_MODE_ZOOM: return "ZOOM";
+            case RESIZE_MODE_FIT: return context.getResources().getString(R.string.resize_fit);
+            case RESIZE_MODE_FILL: return context.getResources().getString(R.string.resize_fill);
+            case RESIZE_MODE_ZOOM: return context.getResources().getString(R.string.resize_zoom);
             default: throw new IllegalArgumentException("Unrecognized resize mode: " + resizeMode);
         }
-    }
-
-    public static float getCaptionSizePx(@NonNull final Context context) {
-        final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-        final int minimumLength = Math.min(metrics.heightPixels, metrics.widthPixels);
-        // todo: expose size control to users
-        return (float) minimumLength / 20f;
     }
 
     public static boolean isResumeAfterAudioFocusGain(@NonNull final Context context) {
