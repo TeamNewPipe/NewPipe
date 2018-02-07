@@ -22,6 +22,7 @@ package org.schabi.newpipe;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -95,6 +96,8 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
         if (getSupportFragmentManager() != null && getSupportFragmentManager().getBackStackEntryCount() == 0) {
             initFragments();
         }
+        
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
         setSupportActionBar(findViewById(R.id.toolbar));
         setupDrawer();
