@@ -4,6 +4,10 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.facebook.stetho.Stetho;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
+
+import java.util.concurrent.TimeUnit;
 
 public class DebugApp extends App {
     private static final String TAG = DebugApp.class.toString();
@@ -40,5 +44,12 @@ public class DebugApp extends App {
 
         // Initialize Stetho with the Initializer
         Stetho.initialize(initializer);
+    }
+
+    @Override
+    protected RefWatcher installLeakCanary() {
+        return LeakCanary.refWatcher(this)
+                .watchDelay(5, TimeUnit.SECONDS)
+                .buildAndInstall();
     }
 }
