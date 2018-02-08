@@ -89,6 +89,4 @@ dependencies {
 
     implementation 'frankiesardo:icepick:3.2.0'
     annotationProcessor 'frankiesardo:icepick-processor:3.2.0'
-
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
 }
