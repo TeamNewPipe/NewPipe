@@ -278,4 +278,5 @@
     <string name="switch_to_popup">ポップアップ再生に変更</string>
     <string name="switch_to_main">メイン再生に変更</string>
 
+    <string name="no_player_found_toast">動画プレイヤーが見つかりません (VLCをインストールして再生できます)</string>
     </resources>
