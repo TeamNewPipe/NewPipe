@@ -111,6 +111,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         headerPopupButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_popup_button);
         headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_bg_button);
 
+
         return headerRootLayout;
     }
 
@@ -175,6 +176,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
         playlistBookmarkButton = menu.findItem(R.id.menu_item_bookmark);
         playlistUnbookmarkButton = menu.findItem(R.id.menu_item_unbookmark);
+
+        updateBookmarkButtonsVisibility();
     }
 
     @Override
@@ -338,11 +341,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
             @Override
             public void onNext(List<PlaylistRemoteEntity> playlist) {
-                if (playlistBookmarkButton == null || playlistUnbookmarkButton == null) return;
-
-                playlistBookmarkButton.setVisible(playlist.isEmpty());
-                playlistUnbookmarkButton.setVisible(!playlist.isEmpty());
                 playlistEntity = playlist.isEmpty() ? null : playlist.get(0);
+                updateBookmarkButtonsVisibility();
 
                 if (bookmarkReactor != null) bookmarkReactor.request(1);
             }
@@ -386,5 +386,12 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally(() -> playlistEntity = null)
                 .subscribe(ignored -> {/* Do nothing */}, this::onError);
+    }
+
+    private void updateBookmarkButtonsVisibility() {
+        if (playlistBookmarkButton == null || playlistUnbookmarkButton == null) return;
+
+        playlistBookmarkButton.setVisible(playlistEntity == null);
+        playlistUnbookmarkButton.setVisible(playlistEntity != null);
     }
 }
