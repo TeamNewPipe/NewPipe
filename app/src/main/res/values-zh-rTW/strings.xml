@@ -304,4 +304,5 @@
     <string name="start_here_on_background">在背景這裡開始</string>
     <string name="start_here_on_popup">在懸浮視窗這裡開始</string>
 
+    <string name="hold_to_append">維持在佇列</string>
     </resources>
