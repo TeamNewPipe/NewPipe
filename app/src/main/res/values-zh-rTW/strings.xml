@@ -305,4 +305,17 @@
     <string name="start_here_on_popup">在懸浮視窗這裡開始</string>
 
     <string name="hold_to_append">維持在佇列</string>
-    </resources>
+    <string name="donation_encouragement">NewPipe 由志願者所開發，他們花費了空閒時間將獲得的最佳體驗帶給您。現在是時候回過頭來，讓我們的開發人員可以能夠在享受一杯 java 的同時，使 NewPipe 更加的美好！</string>
+    <string name="drawer_open">打開抽屜</string>
+    <string name="drawer_close">關閉抽屜</string>
+    <string name="preferred_player_share_menu_dialog_title">開啟優先的播放器</string>
+    <string name="preferred_player_settings_title">優先播放機</string>
+
+    <string name="video_player">影片播放</string>
+    <string name="background_player">背景播放</string>
+    <string name="popup_player">懸浮視窗播放</string>
+    <string name="always_ask_player">總是詢問</string>
+    
+    <string name="preferred_player_fetcher_notification_title">正在取得資訊…</string>
+    <string name="preferred_player_fetcher_notification_message">正在載入要求的內容</string>
+</resources>
