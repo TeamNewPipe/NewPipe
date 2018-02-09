@@ -330,4 +330,7 @@
     <string name="preferred_player_fetcher_notification_message">Le contenu demandé est en chargement</string>
     <string name="import_data_title">Importer les données</string>
     <string name="export_data_title">Exporter les données</string>
+    <string name="import_data_summary">Cela effacera vos données actuelles</string>
+    <string name="export_data_summary">Exporter votre historique, vos abonnements et vos listes de lecture</string>
+    <string name="export_complete_toast">"Exportation terminée "</string>
     </resources>
