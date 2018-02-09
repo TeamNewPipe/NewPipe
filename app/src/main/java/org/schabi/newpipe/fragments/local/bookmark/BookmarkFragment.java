@@ -19,7 +19,6 @@ import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
-import org.schabi.newpipe.fragments.local.BaseLocalListFragment;
 import org.schabi.newpipe.fragments.local.LocalPlaylistManager;
 import org.schabi.newpipe.fragments.local.RemotePlaylistManager;
 import org.schabi.newpipe.report.UserAction;

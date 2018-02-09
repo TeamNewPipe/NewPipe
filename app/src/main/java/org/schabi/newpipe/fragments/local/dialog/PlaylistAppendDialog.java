@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.local;
+package org.schabi.newpipe.fragments.local.dialog;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -18,6 +18,8 @@ import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.fragments.local.LocalItemListAdapter;
+import org.schabi.newpipe.fragments.local.LocalPlaylistManager;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.util.OnClickGesture;
 

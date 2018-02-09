@@ -42,6 +42,7 @@ import java.util.List;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -371,9 +372,10 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         playlistBookmarkButton.setVisible(false);
         playlistUnbookmarkButton.setVisible(false);
 
-        remotePlaylistManager.onBookmark(currentInfo)
+        final Disposable disposable = remotePlaylistManager.onBookmark(currentInfo)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignored -> {/* Do nothing */}, this::onError);
+        disposables.add(disposable);
     }
 
     private void unbookmarkPlaylist() {
@@ -382,10 +384,11 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         playlistBookmarkButton.setVisible(false);
         playlistUnbookmarkButton.setVisible(false);
 
-        remotePlaylistManager.deletePlaylist(playlistEntity.getUid())
+        final Disposable disposable = remotePlaylistManager.deletePlaylist(playlistEntity.getUid())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally(() -> playlistEntity = null)
                 .subscribe(ignored -> {/* Do nothing */}, this::onError);
+        disposables.add(disposable);
     }
 
     private void updateBookmarkButtonsVisibility() {

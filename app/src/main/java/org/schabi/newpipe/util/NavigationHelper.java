@@ -34,7 +34,7 @@ import org.schabi.newpipe.fragments.list.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
-import org.schabi.newpipe.fragments.local.LocalPlaylistFragment;
+import org.schabi.newpipe.fragments.local.bookmark.LocalPlaylistFragment;
 import org.schabi.newpipe.fragments.local.bookmark.MostPlayedFragment;
 import org.schabi.newpipe.fragments.local.bookmark.LastPlayedFragment;
 import org.schabi.newpipe.history.HistoryActivity;

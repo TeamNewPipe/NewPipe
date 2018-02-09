@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.local;
+package org.schabi.newpipe.fragments.local.bookmark;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +13,7 @@ import android.view.View;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.list.ListViewContract;
+import org.schabi.newpipe.fragments.local.LocalItemListAdapter;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 

@@ -29,7 +29,7 @@ import com.google.android.exoplayer2.Player;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
-import org.schabi.newpipe.fragments.local.PlaylistAppendDialog;
+import org.schabi.newpipe.fragments.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
