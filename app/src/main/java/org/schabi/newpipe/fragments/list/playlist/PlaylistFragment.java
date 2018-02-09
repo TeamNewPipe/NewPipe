@@ -36,13 +36,16 @@ import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.disposables.Disposables;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -50,6 +53,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     private CompositeDisposable disposables;
     private Subscription bookmarkReactor;
+    private AtomicBoolean isBookmarkButtonReady;
 
     private RemotePlaylistManager remotePlaylistManager;
     private PlaylistRemoteEntity playlistEntity;
@@ -70,7 +74,6 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     private View headerBackgroundButton;
 
     private MenuItem playlistBookmarkButton;
-    private MenuItem playlistUnbookmarkButton;
 
     public static PlaylistFragment getInstance(int serviceId, String url, String name) {
         PlaylistFragment instance = new PlaylistFragment();
@@ -86,6 +89,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         disposables = new CompositeDisposable();
+        isBookmarkButtonReady = new AtomicBoolean(false);
         remotePlaylistManager = new RemotePlaylistManager(NewPipeDatabase.getInstance(getContext()));
     }
 
@@ -176,14 +180,14 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         inflater.inflate(R.menu.menu_playlist, menu);
 
         playlistBookmarkButton = menu.findItem(R.id.menu_item_bookmark);
-        playlistUnbookmarkButton = menu.findItem(R.id.menu_item_unbookmark);
-
-        updateBookmarkButtonsVisibility();
+        updateBookmarkButtons();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (isBookmarkButtonReady != null) isBookmarkButtonReady.set(false);
+
         if (disposables != null) disposables.clear();
         if (bookmarkReactor != null) bookmarkReactor.cancel();
 
@@ -199,6 +203,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         disposables = null;
         remotePlaylistManager = null;
         playlistEntity = null;
+        isBookmarkButtonReady = null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -225,10 +230,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 shareUrl(name, url);
                 break;
             case R.id.menu_item_bookmark:
-                bookmarkPlaylist();
-                break;
-            case R.id.menu_item_unbookmark:
-                unbookmarkPlaylist();
+                onBookmarkClicked();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -343,7 +345,9 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
             @Override
             public void onNext(List<PlaylistRemoteEntity> playlist) {
                 playlistEntity = playlist.isEmpty() ? null : playlist.get(0);
-                updateBookmarkButtonsVisibility();
+
+                updateBookmarkButtons();
+                isBookmarkButtonReady.set(true);
 
                 if (bookmarkReactor != null) bookmarkReactor.request(1);
             }
@@ -366,35 +370,39 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         headerTitleView.setText(title);
     }
 
-    private void bookmarkPlaylist() {
-        if (remotePlaylistManager == null || currentInfo == null) return;
+    private void onBookmarkClicked() {
+        if (isBookmarkButtonReady == null || !isBookmarkButtonReady.get() ||
+                remotePlaylistManager == null)
+            return;
 
-        playlistBookmarkButton.setVisible(false);
-        playlistUnbookmarkButton.setVisible(false);
+        final Disposable action;
 
-        final Disposable disposable = remotePlaylistManager.onBookmark(currentInfo)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(ignored -> {/* Do nothing */}, this::onError);
-        disposables.add(disposable);
+        if (currentInfo != null && playlistEntity == null) {
+            action = remotePlaylistManager.onBookmark(currentInfo)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(ignored -> {/* Do nothing */}, this::onError);
+        } else if (playlistEntity != null) {
+            action = remotePlaylistManager.deletePlaylist(playlistEntity.getUid())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doFinally(() -> playlistEntity = null)
+                    .subscribe(ignored -> {/* Do nothing */}, this::onError);
+        } else {
+            action = Disposables.empty();
+        }
+
+        disposables.add(action);
     }
 
-    private void unbookmarkPlaylist() {
-        if (remotePlaylistManager == null || playlistEntity == null) return;
+    private void updateBookmarkButtons() {
+        if (playlistBookmarkButton == null || activity == null) return;
 
-        playlistBookmarkButton.setVisible(false);
-        playlistUnbookmarkButton.setVisible(false);
+        final int iconAttr = playlistEntity == null ?
+                R.attr.ic_playlist_add : R.attr.ic_playlist_check;
 
-        final Disposable disposable = remotePlaylistManager.deletePlaylist(playlistEntity.getUid())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doFinally(() -> playlistEntity = null)
-                .subscribe(ignored -> {/* Do nothing */}, this::onError);
-        disposables.add(disposable);
-    }
+        final int titleRes = playlistEntity == null ?
+                R.string.bookmark_playlist : R.string.unbookmark_playlist;
 
-    private void updateBookmarkButtonsVisibility() {
-        if (playlistBookmarkButton == null || playlistUnbookmarkButton == null) return;
-
-        playlistBookmarkButton.setVisible(playlistEntity == null);
-        playlistUnbookmarkButton.setVisible(playlistEntity != null);
+        playlistBookmarkButton.setIcon(ThemeHelper.resolveResourceIdFromAttr(activity, iconAttr));
+        playlistBookmarkButton.setTitle(titleRes);
     }
 }

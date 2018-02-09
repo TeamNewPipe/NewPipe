@@ -18,15 +18,7 @@
         android:id="@+id/menu_item_bookmark"
         android:icon="?attr/ic_playlist_add"
         android:title="@string/bookmark_playlist"
-        android:visible="false"
-        app:showAsAction="always"
-        tools:visible="true"/>
-
-    <item
-        android:id="@+id/menu_item_unbookmark"
-        android:icon="?attr/ic_playlist_check"
-        android:title="@string/unbookmark_playlist"
-        android:visible="false"
-        app:showAsAction="always"
+        android:visible="true"
+        app:showAsAction="ifRoom"
         tools:visible="true"/>
 </menu>

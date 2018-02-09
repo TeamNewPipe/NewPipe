@@ -87,13 +87,6 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     // Lifecycle - Menu
     //////////////////////////////////////////////////////////////////////////*/
 
-    /** Determines if the fragment is part of the main fragment view pager.
-     * If so, then this method must be overriden to return true
-     * in order to show the hamburger menu. */
-    protected boolean isPartOfFrontPager() {
-        return false;
-    }
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -104,14 +97,6 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
         if (supportActionBar == null) return;
 
         supportActionBar.setDisplayShowTitleEnabled(true);
-
-        // Show up arrow icon if the fragment is not used as front page or part of the front pager
-        if (!useAsFrontPage && !isPartOfFrontPager()) {
-            // If set true, an up arrow icon will be displayed.
-            // If set false, no icon will be shown.
-            // If unset, show hamburger menu
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
-        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
