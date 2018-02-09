@@ -333,4 +333,5 @@
     <string name="import_data_summary">Cela effacera vos données actuelles</string>
     <string name="export_data_summary">Exporter votre historique, vos abonnements et vos listes de lecture</string>
     <string name="export_complete_toast">Exportation terminée</string>
+    <string name="import_complete_toast">Importation terminée</string>
     </resources>
