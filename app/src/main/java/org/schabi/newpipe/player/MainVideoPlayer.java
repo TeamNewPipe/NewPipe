@@ -51,6 +51,7 @@ import android.widget.Toast;
 
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.exoplayer2.ui.SubtitleView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -337,8 +338,24 @@ public final class MainVideoPlayer extends Activity {
             channelTextView.setSelected(true);
 
             getRootView().setKeepScreenOn(true);
-            getSubtitleView().setFixedTextSize(TypedValue.COMPLEX_UNIT_PX,
-                    getCaptionSizePx(context));
+        }
+
+        @Override
+        protected void setupSubtitleView(@NonNull SubtitleView view,
+                                         @NonNull String captionSizeKey) {
+            final float captionRatio;
+            if (captionSizeKey.equals(getString(R.string.smaller_caption_size_key))) {
+                captionRatio = 22f;
+            } else if (captionSizeKey.equals(getString(R.string.larger_caption_size_key))) {
+                captionRatio = 18f;
+            } else {
+                captionRatio = 20f;
+            }
+
+            final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+            final int minimumLength = Math.min(metrics.heightPixels, metrics.widthPixels);
+            view.setFixedTextSize(TypedValue.COMPLEX_UNIT_PX,
+                    (float) minimumLength / captionRatio);
         }
 
         @Override
@@ -768,12 +785,6 @@ public final class MainVideoPlayer extends Activity {
             };
         }
 
-        private float getCaptionSizePx(@NonNull Context context) {
-            final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-            final int minimumLength = Math.min(metrics.heightPixels, metrics.widthPixels);
-            // todo: expose size control to users
-            return (float) minimumLength / 20f;
-        }
         ///////////////////////////////////////////////////////////////////////////
         // Getters
         ///////////////////////////////////////////////////////////////////////////
