@@ -334,4 +334,6 @@
     <string name="export_data_summary">Exporter votre historique, vos abonnements et vos listes de lecture</string>
     <string name="export_complete_toast">Exportation terminée</string>
     <string name="import_complete_toast">Importation terminée</string>
+    <string name="no_valid_zip_file">Aucun fichier ZIP valide</string>
+    <string name="could_not_import_all_files">Avertissement : Impossible d\'importer tous les fichiers.</string>
     </resources>
