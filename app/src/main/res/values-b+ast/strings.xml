@@ -295,4 +295,42 @@
     <string name="give_back">Devolver favor</string>
     <string name="website_title">Sitiu web</string>
     <string name="website_encouragement">Pa consiguir información y les anuncies caberes tocante a NewPipe visita\'l nuesu sitiu web.</string>
-    </resources>
+    <string name="no_player_found_toast">Nun s\'alcontró un reproductor de fluxos (pues instalar VLC pa reproducilu)</string>
+    <string name="default_content_country_title">País predetermináu de conteníu</string>
+    <string name="service_title">Serviciu</string>
+    <string name="always">Siempres</string>
+    <string name="just_once">Namái un vegada</string>
+
+    <string name="toggle_orientation">Alternar orientación</string>
+    <string name="switch_to_background">Camudar a segundu planu</string>
+    <string name="switch_to_popup">Camudar a ventanu</string>
+    <string name="switch_to_main">Camudar a principal</string>
+
+    <string name="import_data_title">Importar base de datos</string>
+    <string name="export_data_title">Esportar base de datos</string>
+    <string name="import_data_summary">Va sobrescribise l\'historial y soscripciones actuales</string>
+    <string name="export_data_summary">Esporta l\'hisotorial, soscripciones y llistaos de reproducción.</string>
+    <string name="external_player_unsupported_link_type">Los reproductories esternos nun sofites estes tribes d\'enllaces</string>
+    <string name="invalid_url_toast">URL non válida</string>
+    <string name="video_streams_empty">Nun s\'alcontraron fluxos de videu</string>
+    <string name="audio_streams_empty">Nun s\'alcontraron fluxos de videu</string>
+
+    <string name="export_complete_toast">Esportación completada</string>
+    <string name="import_complete_toast">Importación completada</string>
+    <string name="no_valid_zip_file">Ficheru ZIP non válidu</string>
+    <string name="could_not_import_all_files">ALVERTENCIA: Nun pudieron importase tolos ficheros.</string>
+    <string name="override_current_data">Esto va sobrescribir la configuración actual.</string>
+
+    <string name="drawer_open">Abrir caxón</string>
+    <string name="drawer_close">Zarrar caxón</string>
+    <string name="preferred_player_share_menu_dialog_title">Abrir col reproductor preferíu</string>
+    <string name="preferred_player_settings_title">Reproductor preferíu</string>
+
+    <string name="video_player">Reproductor de videu</string>
+    <string name="background_player">Reproductor en segundu planu</string>
+    <string name="popup_player">Reproductor en ventanu</string>
+    <string name="always_ask_player">Entrugar siempres</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Consiguiendo información…</string>
+    <string name="preferred_player_fetcher_notification_message">Ta cargando\'l conteníu solicitáu</string>
+</resources>
