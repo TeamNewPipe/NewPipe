@@ -20,6 +20,7 @@
 
 package org.schabi.newpipe;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.fragments.BackPressable;
@@ -211,11 +213,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("ShowToast")
     private void onHeapDumpToggled(@NonNull MenuItem item) {
-        final boolean newToggleState = !item.isChecked();
-        sharedPreferences.edit().putBoolean(getString(R.string.allow_heap_dumping_key),
-                newToggleState).apply();
-        item.setChecked(newToggleState);
+        final boolean isHeapDumpEnabled = !item.isChecked();
+
+        sharedPreferences.edit().putBoolean(getString(R.string.allow_heap_dumping_key), isHeapDumpEnabled).apply();
+        item.setChecked(isHeapDumpEnabled);
+
+        final String heapDumpNotice;
+        if (isHeapDumpEnabled) {
+            heapDumpNotice = getString(R.string.enable_leak_canary_notice);
+        } else {
+            heapDumpNotice = getString(R.string.disable_leak_canary_notice);
+        }
+        Toast.makeText(getApplicationContext(), heapDumpNotice, Toast.LENGTH_SHORT).show();
     }
     /*//////////////////////////////////////////////////////////////////////////
     // Menu
