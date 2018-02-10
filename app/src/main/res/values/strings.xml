@@ -395,4 +395,7 @@
     <string name="playlist_add_stream_success">Added to playlist</string>
     <string name="playlist_thumbnail_change_success">Playlist thumbnail changed</string>
     <string name="playlist_delete_failure">Failed to delete playlist</string>
+
+    <!-- Debug Only -->
+    <string name="toggle_leak_canary">Leak Canary</string>
 </resources>

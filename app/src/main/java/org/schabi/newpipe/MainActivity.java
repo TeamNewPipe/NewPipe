@@ -211,6 +211,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void onHeapDumpToggled(@NonNull MenuItem item) {
+        final boolean newToggleState = !item.isChecked();
+        sharedPreferences.edit().putBoolean(getString(R.string.allow_heap_dumping_key),
+                newToggleState).apply();
+        item.setChecked(newToggleState);
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // Menu
     //////////////////////////////////////////////////////////////////////////*/
@@ -232,6 +238,10 @@ public class MainActivity extends AppCompatActivity {
             inflater.inflate(R.menu.main_menu, menu);
         }
 
+        if (DEBUG) {
+            getMenuInflater().inflate(R.menu.debug_menu, menu);
+        }
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(false);
@@ -240,6 +250,17 @@ public class MainActivity extends AppCompatActivity {
         updateDrawerNavigation();
 
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem heapDumpToggle = menu.findItem(R.id.action_toggle_heap_dump);
+        if (heapDumpToggle != null) {
+            final boolean isToggled = sharedPreferences.getBoolean(
+                    getString(R.string.allow_heap_dumping_key), false);
+            heapDumpToggle.setChecked(isToggled);
+        }
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -261,6 +282,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_history:
                 NavigationHelper.openHistory(this);
+                return true;
+            case R.id.action_toggle_heap_dump:
+                onHeapDumpToggled(item);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

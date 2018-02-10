@@ -1,12 +1,20 @@
 package org.schabi.newpipe;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
 
 import com.facebook.stetho.Stetho;
+import com.squareup.leakcanary.AndroidHeapDumper;
+import com.squareup.leakcanary.DefaultLeakDirectoryProvider;
+import com.squareup.leakcanary.HeapDumper;
 import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.LeakDirectoryProvider;
 import com.squareup.leakcanary.RefWatcher;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 public class DebugApp extends App {
@@ -49,7 +57,31 @@ public class DebugApp extends App {
     @Override
     protected RefWatcher installLeakCanary() {
         return LeakCanary.refWatcher(this)
-                .watchDelay(5, TimeUnit.SECONDS)
+                .heapDumper(new ToggleableHeapDumper(this))
+                // give each object 10 seconds to be gc'ed, before leak canary gets nosy on it
+                .watchDelay(10, TimeUnit.SECONDS)
                 .buildAndInstall();
+    }
+
+    public static class ToggleableHeapDumper implements HeapDumper {
+        private final HeapDumper dumper;
+        private final SharedPreferences preferences;
+        private final String dumpingAllowanceKey;
+
+        ToggleableHeapDumper(@NonNull final Context context) {
+            LeakDirectoryProvider leakDirectoryProvider = new DefaultLeakDirectoryProvider(context);
+            this.dumper = new AndroidHeapDumper(context, leakDirectoryProvider);
+            this.preferences = PreferenceManager.getDefaultSharedPreferences(context);
+            this.dumpingAllowanceKey = context.getString(R.string.allow_heap_dumping_key);
+        }
+
+        private boolean isDumpingAllowed() {
+            return preferences.getBoolean(dumpingAllowanceKey, false);
+        }
+
+        @Override
+        public File dumpHeap() {
+            return isDumpingAllowed() ? dumper.dumpHeap() : HeapDumper.RETRY_LATER;
+        }
     }
 }

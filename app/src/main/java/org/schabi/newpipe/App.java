@@ -5,6 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
@@ -167,6 +168,7 @@ public class App extends Application {
         mNotificationManager.createNotificationChannel(mChannel);
     }
 
+    @Nullable
     public static RefWatcher getRefWatcher(Context context) {
         final App application = (App) context.getApplicationContext();
         return application.refWatcher;
