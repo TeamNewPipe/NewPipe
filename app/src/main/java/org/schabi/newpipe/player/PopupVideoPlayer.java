@@ -469,18 +469,11 @@ public final class PopupVideoPlayer extends Service {
         }
 
         @Override
-        protected void onResizeClicked() {
-            if (getAspectRatioFrameLayout() != null && context != null) {
-                final int currentResizeMode = getAspectRatioFrameLayout().getResizeMode();
-                final int newResizeMode;
-                if (currentResizeMode == AspectRatioFrameLayout.RESIZE_MODE_FILL) {
-                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT;
-                } else {
-                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL;
-                }
-
-                getAspectRatioFrameLayout().setResizeMode(newResizeMode);
-                getResizeView().setText(PlayerHelper.resizeTypeOf(context, newResizeMode));
+        protected int nextResizeMode(int resizeMode) {
+            if (resizeMode == AspectRatioFrameLayout.RESIZE_MODE_FILL) {
+                return AspectRatioFrameLayout.RESIZE_MODE_FIT;
+            } else {
+                return AspectRatioFrameLayout.RESIZE_MODE_FILL;
             }
         }
 

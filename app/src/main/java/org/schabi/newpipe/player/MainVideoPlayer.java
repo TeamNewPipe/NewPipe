@@ -343,19 +343,19 @@ public final class MainVideoPlayer extends Activity {
         @Override
         protected void setupSubtitleView(@NonNull SubtitleView view,
                                          @NonNull String captionSizeKey) {
-            final float captionRatio;
+            final float captionRatioInverse;
             if (captionSizeKey.equals(getString(R.string.smaller_caption_size_key))) {
-                captionRatio = 22f;
+                captionRatioInverse = 22f;
             } else if (captionSizeKey.equals(getString(R.string.larger_caption_size_key))) {
-                captionRatio = 18f;
+                captionRatioInverse = 18f;
             } else {
-                captionRatio = 20f;
+                captionRatioInverse = 20f;
             }
 
             final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
             final int minimumLength = Math.min(metrics.heightPixels, metrics.widthPixels);
             view.setFixedTextSize(TypedValue.COMPLEX_UNIT_PX,
-                    (float) minimumLength / captionRatio);
+                    (float) minimumLength / captionRatioInverse);
         }
 
         @Override
@@ -570,20 +570,14 @@ public final class MainVideoPlayer extends Activity {
         }
 
         @Override
-        protected void onResizeClicked() {
-            if (getAspectRatioFrameLayout() != null && context != null) {
-                final int currentResizeMode = getAspectRatioFrameLayout().getResizeMode();
-                final int newResizeMode;
-                if (currentResizeMode == AspectRatioFrameLayout.RESIZE_MODE_FIT) {
-                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL;
-                } else if (currentResizeMode == AspectRatioFrameLayout.RESIZE_MODE_FILL) {
-                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
-                } else {
-                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT;
-                }
-
-                getAspectRatioFrameLayout().setResizeMode(newResizeMode);
-                getResizeView().setText(PlayerHelper.resizeTypeOf(context, newResizeMode));
+        protected int nextResizeMode(int currentResizeMode) {
+            switch (currentResizeMode) {
+                case AspectRatioFrameLayout.RESIZE_MODE_FIT:
+                    return AspectRatioFrameLayout.RESIZE_MODE_FILL;
+                case AspectRatioFrameLayout.RESIZE_MODE_FILL:
+                    return AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
+                default:
+                    return AspectRatioFrameLayout.RESIZE_MODE_FIT;
             }
         }
 

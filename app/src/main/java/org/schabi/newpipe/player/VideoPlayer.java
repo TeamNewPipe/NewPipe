@@ -519,8 +519,10 @@ public abstract class VideoPlayer extends BasePlayer
         String formattedPreferredLanguage = null;
         if (preferredLanguage != null) {
             for (final String language : availableLanguages) {
-                if (language.compareToIgnoreCase(preferredLanguage) == 0)
+                if (language.compareToIgnoreCase(preferredLanguage) == 0) {
                     formattedPreferredLanguage = language;
+                    break;
+                }
             }
         }
 
@@ -685,7 +687,16 @@ public abstract class VideoPlayer extends BasePlayer
         showControls(300);
     }
 
-    protected abstract void onResizeClicked();
+    private void onResizeClicked() {
+        if (getAspectRatioFrameLayout() != null && context != null) {
+            final int currentResizeMode = getAspectRatioFrameLayout().getResizeMode();
+            final int newResizeMode = nextResizeMode(currentResizeMode);
+            getAspectRatioFrameLayout().setResizeMode(newResizeMode);
+            getResizeView().setText(PlayerHelper.resizeTypeOf(context, newResizeMode));
+        }
+    }
+
+    protected abstract int nextResizeMode(@AspectRatioFrameLayout.ResizeMode final int resizeMode);
     /*//////////////////////////////////////////////////////////////////////////
     // SeekBar Listener
     //////////////////////////////////////////////////////////////////////////*/
