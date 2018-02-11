@@ -53,7 +53,6 @@ class ActionBarHandler {
     // those are edited directly. Typically VideoDetailFragment will implement those callbacks.
     private OnActionListener onShareListener;
     private OnActionListener onOpenInBrowserListener;
-    private OnActionListener onDownloadListener;
     private OnActionListener onPlayWithKodiListener;
 
     // Triggered when a stream related action is triggered.
@@ -117,11 +116,6 @@ class ActionBarHandler {
                 }
                 return true;
             }
-            case R.id.menu_item_download:
-                if (onDownloadListener != null) {
-                    onDownloadListener.onActionSelected(selectedVideoStream);
-                }
-                return true;
             case R.id.action_play_with_kodi:
                 if (onPlayWithKodiListener != null) {
                     onPlayWithKodiListener.onActionSelected(selectedVideoStream);
@@ -145,19 +139,12 @@ class ActionBarHandler {
         onOpenInBrowserListener = listener;
     }
 
-    public void setOnDownloadListener(OnActionListener listener) {
-        onDownloadListener = listener;
-    }
-
     public void setOnPlayWithKodiListener(OnActionListener listener) {
         onPlayWithKodiListener = listener;
-    }
-
-    public void showDownloadAction(boolean visible) {
-        menu.findItem(R.id.menu_item_download).setVisible(visible);
     }
 
     public void showPlayWithKodiAction(boolean visible) {
         menu.findItem(R.id.action_play_with_kodi).setVisible(visible);
     }
+
 }

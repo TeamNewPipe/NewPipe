@@ -354,6 +354,24 @@
                             android:paddingTop="6dp"
                             android:text="@string/controls_popup_title"
                             android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/detail_controls_download"
+                            android:layout_width="80dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:contentDescription="@string/controls_download_desg"
+                            android:drawableTop="?attr/download"
+                            android:gravity="center"
+                            android:paddingBottom="6dp"
+                            android:paddingTop="6dp"
+                            android:text="@string/download"
+                            android:textSize="12sp"/>
+
                     </LinearLayout>
 
                     <View
