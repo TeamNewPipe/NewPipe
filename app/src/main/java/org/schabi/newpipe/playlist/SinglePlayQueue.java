@@ -3,19 +3,29 @@ package org.schabi.newpipe.playlist;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public final class SinglePlayQueue extends PlayQueue {
     public SinglePlayQueue(final StreamInfoItem item) {
-        this(new PlayQueueItem(item));
+        super(0, Collections.singletonList(new PlayQueueItem(item)));
     }
 
     public SinglePlayQueue(final StreamInfo info) {
-        this(new PlayQueueItem(info));
+        super(0, Collections.singletonList(new PlayQueueItem(info)));
     }
 
-    private SinglePlayQueue(final PlayQueueItem playQueueItem) {
-        super(0, Collections.singletonList(playQueueItem));
+    public SinglePlayQueue(final List<StreamInfoItem> items, final int index) {
+        super(index, playQueueItemsOf(items));
+    }
+
+    private static List<PlayQueueItem> playQueueItemsOf(List<StreamInfoItem> items) {
+        List<PlayQueueItem> playQueueItems = new ArrayList<>(items.size());
+        for (final StreamInfoItem item : items) {
+            playQueueItems.add(new PlayQueueItem(item));
+        }
+        return playQueueItems;
     }
 
     @Override

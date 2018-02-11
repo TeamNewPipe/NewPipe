@@ -32,11 +32,13 @@
 
     <string name="tab_main">Main</string>
     <string name="tab_subscriptions">Subscriptions</string>
+    <string name="tab_bookmarks">Bookmarks</string>
 
     <string name="fragment_whats_new">What\'s New</string>
 
     <string name="controls_background_title">Background</string>
     <string name="controls_popup_title">Popup</string>
+    <string name="controls_add_to_playlist_title">Add To</string>
 
     <string name="download_path_title">Video download path</string>
     <string name="download_path_summary">Path to store downloaded videos in</string>
@@ -186,6 +188,7 @@
     <string name="search_no_results">No results</string>
     <string name="empty_view_no_videos" translatable="false">@string/no_videos</string>
     <string name="empty_subscription_feed_subtitle">Nothing Here But Crickets</string>
+    <string name="detail_drag_description">Drag to reorder</string>
 
     <string name="err_dir_create">Cannot create download directory \'%1$s\'</string>
     <string name="info_dir_created">Created download directory \'%1$s\'</string>
@@ -224,8 +227,13 @@
     <string name="start">Start</string>
     <string name="pause">Pause</string>
     <string name="view">Play</string>
+    <string name="create">Create</string>
     <string name="delete">Delete</string>
+    <string name="delete_one">Delete One</string>
+    <string name="delete_all">Delete All</string>
     <string name="checksum">Checksum</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="rename">Rename</string>
 
     <!-- Fragment -->
     <string name="add">New mission</string>
@@ -303,6 +311,10 @@
     <string name="history_cleared">History cleared</string>
     <string name="item_deleted">Item deleted</string>
     <string name="delete_item_search_history">Do you want to delete this item from search history?</string>
+    <string name="delete_stream_history_prompt">Do you want to delete this item from watch history?</string>
+    <string name="delete_all_history_prompt">Are you sure you want to delete all items from history?</string>
+    <string name="title_last_played">Last Played</string>
+    <string name="title_most_played">Most Played</string>
 
     <!-- Content -->
     <string name="main_page_content">Content of main page</string>
@@ -353,6 +365,7 @@
     <string name="youtube" translatable="false">YouTube</string>
     <string name="soundcloud" translatable="false">SoundCloud</string>
 
+
     <!-- Preferred player -->
     <string name="preferred_player_share_menu_title" translatable="false">@string/preferred_player_settings_title</string>
     <string name="preferred_player_share_menu_dialog_title">Open with preferred player</string>
@@ -365,4 +378,21 @@
     
     <string name="preferred_player_fetcher_notification_title">Getting info…</string>
     <string name="preferred_player_fetcher_notification_message">"The requested content is loading"</string>
+
+    <!-- Local Playlist -->
+    <string name="create_playlist">Create New Playlist</string>
+    <string name="delete_playlist">Delete Playlist</string>
+    <string name="rename_playlist">Rename Playlist</string>
+    <string name="playlist_name_input">Name</string>
+    <string name="append_playlist">Add To Playlist</string>
+    <string name="set_as_playlist_thumbnail">Set as Playlist Thumbnail</string>
+
+    <string name="bookmark_playlist">Bookmark Playlist</string>
+    <string name="unbookmark_playlist">Remove Bookmark</string>
+
+    <string name="delete_playlist_prompt">Do you want to delete this playlist?</string>
+    <string name="playlist_creation_success">Playlist successfully created</string>
+    <string name="playlist_add_stream_success">Added to playlist</string>
+    <string name="playlist_thumbnail_change_success">Playlist thumbnail changed</string>
+    <string name="playlist_delete_failure">Failed to delete playlist</string>
 </resources>

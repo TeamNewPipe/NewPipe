@@ -58,7 +58,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
-import org.schabi.newpipe.history.HistoryListener;
+import org.schabi.newpipe.fragments.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.player.MainVideoPlayer;
@@ -75,6 +75,7 @@ import org.schabi.newpipe.util.InfoCache;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -145,6 +146,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     private TextView detailControlsBackground;
     private TextView detailControlsPopup;
+    private TextView detailControlsAddToPlaylist;
     private TextView appendControlsDetail;
 
     private LinearLayout videoDescriptionRootLayout;
@@ -327,6 +329,12 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             case R.id.detail_controls_popup:
                 openPopupPlayer(false);
                 break;
+            case R.id.detail_controls_playlist_append:
+                if (getFragmentManager() != null && currentInfo != null) {
+                    PlaylistAppendDialog.fromStreamInfo(currentInfo)
+                            .show(getFragmentManager(), TAG);
+                }
+                break;
             case R.id.detail_uploader_root_layout:
                 if (TextUtils.isEmpty(currentInfo.getUploaderUrl())) {
                     Log.w(TAG, "Can't open channel because we got no channel URL");
@@ -429,6 +437,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         detailControlsBackground = rootView.findViewById(R.id.detail_controls_background);
         detailControlsPopup = rootView.findViewById(R.id.detail_controls_popup);
+        detailControlsAddToPlaylist = rootView.findViewById(R.id.detail_controls_playlist_append);
         appendControlsDetail = rootView.findViewById(R.id.touch_append_detail);
 
         videoDescriptionRootLayout = rootView.findViewById(R.id.detail_description_root_layout);
@@ -462,7 +471,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     protected void initListeners() {
         super.initListeners();
-        infoItemBuilder.setOnStreamSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<StreamInfoItem>() {
+        infoItemBuilder.setOnStreamSelectedListener(new OnClickGesture<StreamInfoItem>() {
             @Override
             public void selected(StreamInfoItem selectedItem) {
                 selectAndLoadVideo(selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
@@ -479,6 +488,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         thumbnailBackgroundButton.setOnClickListener(this);
         detailControlsBackground.setOnClickListener(this);
         detailControlsPopup.setOnClickListener(this);
+        detailControlsAddToPlaylist.setOnClickListener(this);
         relatedStreamExpandButton.setOnClickListener(this);
 
         detailControlsBackground.setLongClickable(true);
@@ -638,9 +648,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             public void onActionSelected(int selectedStreamId) {
                 try {
                     NavigationHelper.playWithKore(activity, Uri.parse(info.getUrl().replace("https", "http")));
-                    if(activity instanceof HistoryListener) {
-                        ((HistoryListener) activity).onVideoPlayed(info, null);
-                    }
                 } catch (Exception e) {
                     if(DEBUG) Log.i(TAG, "Failed to start kore", e);
                     showInstallKoreDialog(activity);
@@ -794,10 +801,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private void openBackgroundPlayer(final boolean append) {
         AudioStream audioStream = currentInfo.getAudioStreams().get(ListHelper.getDefaultAudioFormat(activity, currentInfo.getAudioStreams()));
 
-        if (activity instanceof HistoryListener) {
-            ((HistoryListener) activity).onAudioPlayed(currentInfo, audioStream);
-        }
-
         boolean useExternalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
 
@@ -814,10 +817,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             return;
         }
 
-        if (activity instanceof HistoryListener) {
-            ((HistoryListener) activity).onVideoPlayed(currentInfo, getSelectedVideoStream());
-        }
-
         final PlayQueue itemQueue = new SinglePlayQueue(currentInfo);
         if (append) {
             NavigationHelper.enqueueOnPopupPlayer(activity, itemQueue);
@@ -832,10 +831,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     private void openVideoPlayer() {
         VideoStream selectedVideoStream = getSelectedVideoStream();
-
-        if (activity instanceof HistoryListener) {
-            ((HistoryListener) activity).onVideoPlayed(currentInfo, selectedVideoStream);
-        }
 
         if (PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
             NavigationHelper.playOnExternalPlayer(activity, currentInfo.getName(), currentInfo.getUploaderName(), selectedVideoStream);
@@ -1033,6 +1028,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (!TextUtils.isEmpty(info.getUploaderName())) {
             uploaderTextView.setText(info.getUploaderName());
             uploaderTextView.setVisibility(View.VISIBLE);
+            uploaderTextView.setSelected(true);
         } else {
             uploaderTextView.setVisibility(View.GONE);
         }

@@ -33,6 +33,9 @@ import org.schabi.newpipe.fragments.list.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.fragments.local.bookmark.LocalPlaylistFragment;
+import org.schabi.newpipe.fragments.local.bookmark.MostPlayedFragment;
+import org.schabi.newpipe.fragments.local.bookmark.LastPlayedFragment;
 import org.schabi.newpipe.history.HistoryActivity;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BackgroundPlayerActivity;
@@ -322,6 +325,30 @@ public class NavigationHelper {
                 .commit();
     }
 
+    public static void openLocalPlaylistFragment(FragmentManager fragmentManager, long playlistId, String name) {
+        if (name == null) name = "";
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+                .replace(R.id.fragment_holder, LocalPlaylistFragment.getInstance(playlistId, name))
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public static void openLastPlayedFragment(FragmentManager fragmentManager) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+                .replace(R.id.fragment_holder, new LastPlayedFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public static void openMostPlayedFragment(FragmentManager fragmentManager) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+                .replace(R.id.fragment_holder, new MostPlayedFragment())
+                .addToBackStack(null)
+                .commit();
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // Through Intents
     //////////////////////////////////////////////////////////////////////////*/

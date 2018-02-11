@@ -1,15 +1,13 @@
 package org.schabi.newpipe;
 
-import android.app.AlarmManager;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 
+import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
@@ -80,8 +78,7 @@ public class App extends Application {
         initNotificationChannel();
 
         // Initialize image loader
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
-        ImageLoader.getInstance().init(config);
+        ImageLoader.getInstance().init(getImageLoaderConfigurations(10, 50));
 
         configureRxJavaErrorHandler();
     }
@@ -117,6 +114,14 @@ public class App extends Application {
                         IOException.class, SocketException.class, InterruptedException.class, InterruptedIOException.class);
             }
         });
+    }
+
+    private ImageLoaderConfiguration getImageLoaderConfigurations(final int memoryCacheSizeMb,
+                                                                  final int diskCacheSizeMb) {
+        return new ImageLoaderConfiguration.Builder(this)
+                .memoryCache(new LRULimitedMemoryCache(memoryCacheSizeMb * 1024 * 1024))
+                .diskCacheSize(diskCacheSizeMb * 1024 * 1024)
+                .build();
     }
 
     private void initACRA() {

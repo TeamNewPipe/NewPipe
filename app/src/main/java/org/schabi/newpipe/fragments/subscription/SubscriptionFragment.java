@@ -16,10 +16,10 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.fragments.BaseStateFragment;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.OnClickGesture;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -125,24 +125,17 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     protected void initListeners() {
         super.initListeners();
 
-        infoListAdapter.setOnChannelSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<ChannelInfoItem>() {
+        infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
             @Override
             public void selected(ChannelInfoItem selectedItem) {
                 // Requires the parent fragment to find holder for fragment replacement
-                NavigationHelper.openChannelFragment(getParentFragment().getFragmentManager(), selectedItem.getServiceId(), selectedItem.url, selectedItem.getName());
-
-            }
-
-            @Override
-            public void held(ChannelInfoItem selectedItem) {}
-        });
-
-        headerRootLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavigationHelper.openWhatsNewFragment(getParentFragment().getFragmentManager());
+                NavigationHelper.openChannelFragment(getParentFragment().getFragmentManager(),
+                        selectedItem.getServiceId(), selectedItem.url, selectedItem.getName());
             }
         });
+
+        headerRootLayout.setOnClickListener(view ->
+                NavigationHelper.openWhatsNewFragment(getParentFragment().getFragmentManager()));
     }
 
     private void resetFragment() {

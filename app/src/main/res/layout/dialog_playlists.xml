@@ -1,0 +1,57 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/newPlaylist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:focusable="true"
+        android:clickable="true">
+        <ImageView
+            android:id="@+id/newPlaylistIcon"
+            android:layout_width="48dp"
+            android:layout_height="28dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:src="?attr/ic_playlist_add"
+            tools:ignore="ContentDescription,RtlHardcoded"/>
+
+        <TextView
+            android:id="@+id/newPlaylistText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@+id/newPlaylistIcon"
+            android:gravity="left|center"
+            android:text="@string/create_playlist"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:ignore="RtlHardcoded"/>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/newPlaylist"
+        android:layout_marginLeft="@dimen/video_item_search_padding"
+        android:layout_marginRight="@dimen/video_item_search_padding"
+        android:background="?attr/separator_color"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/playlist_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/separator"
+        android:background="?android:windowBackground"
+        android:scrollbars="vertical"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:listitem="@layout/list_playlist_mini_item"/>
+</RelativeLayout>
