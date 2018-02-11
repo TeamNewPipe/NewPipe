@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -217,7 +218,8 @@ public class MainActivity extends AppCompatActivity {
     private void onHeapDumpToggled(@NonNull MenuItem item) {
         final boolean isHeapDumpEnabled = !item.isChecked();
 
-        sharedPreferences.edit().putBoolean(getString(R.string.allow_heap_dumping_key), isHeapDumpEnabled).apply();
+        PreferenceManager.getDefaultSharedPreferences(this).edit()
+                .putBoolean(getString(R.string.allow_heap_dumping_key), isHeapDumpEnabled).apply();
         item.setChecked(isHeapDumpEnabled);
 
         final String heapDumpNotice;
@@ -267,8 +269,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem heapDumpToggle = menu.findItem(R.id.action_toggle_heap_dump);
         if (heapDumpToggle != null) {
-            final boolean isToggled = sharedPreferences.getBoolean(
-                    getString(R.string.allow_heap_dumping_key), false);
+            final boolean isToggled = PreferenceManager.getDefaultSharedPreferences(this)
+                    .getBoolean(getString(R.string.allow_heap_dumping_key), false);
             heapDumpToggle.setChecked(isToggled);
         }
         return super.onPrepareOptionsMenu(menu);
