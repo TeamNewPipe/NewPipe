@@ -547,16 +547,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     private View.OnTouchListener getOnControlsTouchListener() {
         return (View view, MotionEvent motionEvent) -> {
-            view.performClick();
             if (!PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.show_hold_to_append_key), true)) return false;
 
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                animateView(appendControlsDetail, true, 250, 0, new Runnable() {
-                    @Override
-                    public void run() {
-                        animateView(appendControlsDetail, false, 1500, 1000);
-                    }
-                });
+                animateView(appendControlsDetail, true, 250, 0, () ->
+                        animateView(appendControlsDetail, false, 1500, 1000));
             }
             return false;
         };
