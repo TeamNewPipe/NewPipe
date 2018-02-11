@@ -66,7 +66,8 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
 
     @Ignore
     public PlaylistRemoteEntity(final PlaylistInfo info) {
-        this(info.getServiceId(), info.getName(), info.getUrl(), info.getThumbnailUrl(),
+        this(info.getServiceId(), info.getName(), info.getUrl(),
+                info.getThumbnailUrl() == null ? info.getUploaderAvatarUrl() : info.getThumbnailUrl(),
                 info.getUploaderName(), info.getStreamCount());
     }
 

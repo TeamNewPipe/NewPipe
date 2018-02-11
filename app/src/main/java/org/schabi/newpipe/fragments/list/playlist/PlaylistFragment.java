@@ -125,11 +125,6 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         super.initViews(rootView, savedInstanceState);
 
         infoListAdapter.useMiniItemVariants(true);
-
-        remotePlaylistManager.getPlaylist(serviceId, url)
-                .onBackpressureLatest()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getPlaylistBookmarkSubscriber());
     }
 
     @Override
@@ -279,6 +274,11 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
         }
+
+        remotePlaylistManager.getPlaylist(result)
+                .onBackpressureLatest()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getPlaylistBookmarkSubscriber());
 
         remotePlaylistManager.onUpdate(result)
                 .subscribeOn(AndroidSchedulers.mainThread())

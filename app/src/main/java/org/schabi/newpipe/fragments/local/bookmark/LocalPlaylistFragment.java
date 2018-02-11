@@ -43,7 +43,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import icepick.State;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.disposables.Disposables;
 import io.reactivex.subjects.PublishSubject;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -76,7 +78,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private Subscription databaseSubscription;
 
     private PublishSubject<Long> debouncedSaveSignal;
-    private Disposable debouncedSaver;
+    private CompositeDisposable disposables;
 
     /* Has the playlist been fully loaded from db */
     private AtomicBoolean isLoadingComplete;
@@ -98,6 +100,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         super.onCreate(savedInstanceState);
         playlistManager = new LocalPlaylistManager(NewPipeDatabase.getInstance(getContext()));
         debouncedSaveSignal = PublishSubject.create();
+
+        disposables = new CompositeDisposable();
 
         isLoadingComplete = new AtomicBoolean();
         isModified = new AtomicBoolean();
@@ -202,8 +206,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public void startLoading(boolean forceLoad) {
         super.startLoading(forceLoad);
 
-        if (debouncedSaver != null) debouncedSaver.dispose();
-        debouncedSaver = getDebouncedSaver();
+        if (disposables != null) disposables.clear();
+        disposables.add(getDebouncedSaver());
 
         isLoadingComplete.set(false);
         isModified.set(false);
@@ -237,10 +241,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         if (headerPopupButton != null) headerPopupButton.setOnClickListener(null);
 
         if (databaseSubscription != null) databaseSubscription.cancel();
-        if (debouncedSaver != null) debouncedSaver.dispose();
+        if (disposables != null) disposables.clear();
 
         databaseSubscription = null;
-        debouncedSaver = null;
         itemTouchHelper = null;
     }
 
@@ -248,9 +251,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     public void onDestroy() {
         super.onDestroy();
         if (debouncedSaveSignal != null) debouncedSaveSignal.onComplete();
+        if (disposables != null) disposables.dispose();
 
         debouncedSaveSignal = null;
         playlistManager = null;
+        disposables = null;
 
         isLoadingComplete = null;
         isModified = null;
@@ -358,26 +363,31 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 .setView(dialogView)
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.rename, (dialogInterface, i) ->
-                        changePlaylistName(nameEdit.getText().toString())
-                );
+                .setPositiveButton(R.string.rename, (dialogInterface, i) -> {
+                    changePlaylistName(nameEdit.getText().toString());
+                });
 
         dialogBuilder.show();
     }
 
     private void changePlaylistName(final String name) {
+        if (playlistManager == null) return;
+
         this.name = name;
         setTitle(name);
 
         Log.d(TAG, "Updating playlist id=[" + playlistId +
                 "] with new name=[" + name + "] items");
 
-        playlistManager.renamePlaylist(playlistId, name)
+        final Disposable disposable = playlistManager.renamePlaylist(playlistId, name)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(longs -> {/*Do nothing on success*/}, this::onError);
+        disposables.add(disposable);
     }
 
     private void changeThumbnailUrl(final String thumbnailUrl) {
+        if (playlistManager == null) return;
+
         final Toast successToast = Toast.makeText(getActivity(),
                 R.string.playlist_thumbnail_change_success,
                 Toast.LENGTH_SHORT);
@@ -385,9 +395,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         Log.d(TAG, "Updating playlist id=[" + playlistId +
                 "] with new thumbnail url=[" + thumbnailUrl + "]");
 
-        playlistManager.changePlaylistThumbnail(playlistId, thumbnailUrl)
+        final Disposable disposable = playlistManager
+                .changePlaylistThumbnail(playlistId, thumbnailUrl)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignore -> successToast.show(), this::onError);
+        disposables.add(disposable);
     }
 
     private void deleteItem(final PlaylistStreamEntry item) {
@@ -399,11 +411,15 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private void saveChanges() {
+        if (isModified == null || debouncedSaveSignal == null) return;
+
         isModified.set(true);
         debouncedSaveSignal.onNext(System.currentTimeMillis());
     }
 
     private Disposable getDebouncedSaver() {
+        if (debouncedSaveSignal == null) return Disposables.empty();
+
         return debouncedSaveSignal
                 .debounce(SAVE_DEBOUNCE_MILLIS, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -411,6 +427,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     }
 
     private void saveImmediate() {
+        if (playlistManager == null || itemListAdapter == null) return;
+
         // List must be loaded and modified in order to save
         if (isLoadingComplete == null || isModified == null ||
                 !isLoadingComplete.get() || !isModified.get()) {
@@ -430,12 +448,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         Log.d(TAG, "Updating playlist id=[" + playlistId +
                 "] with [" + streamIds.size() + "] items");
 
-        playlistManager.updateJoin(playlistId, streamIds)
+        final Disposable disposable = playlistManager.updateJoin(playlistId, streamIds)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         () -> { if (isModified != null) isModified.set(false); },
                         this::onError
                 );
+        disposables.add(disposable);
     }
 
 
