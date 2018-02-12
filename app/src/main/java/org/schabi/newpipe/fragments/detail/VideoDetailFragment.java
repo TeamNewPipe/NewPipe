@@ -495,7 +495,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         switch (v.getId()) {
             case R.id.detail_controls_background:
-                hideMainPlayer();
                 openBackgroundPlayer(false);
                 break;
             case R.id.detail_controls_popup:
@@ -560,7 +559,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         switch (v.getId()) {
             case R.id.detail_controls_background:
-                hideMainPlayer();
                 openBackgroundPlayer(true);
                 break;
             case R.id.detail_controls_popup:
@@ -834,7 +832,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             }
         });
 
-        actionBarHandler.setOnShareListener(selectedStreamId -> shareUrl(info.name, info.url));
+        actionBarHandler.setOnShareListener(selectedStreamId -> {
+            hideMainPlayer();
+            shareUrl(info.name, info.url);
+        });
 
         actionBarHandler.setOnOpenInBrowserListener((int selectedStreamId)-> {
             hideMainPlayer();
@@ -842,15 +843,16 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         });
 
         actionBarHandler.setOnPlayWithKodiListener((int selectedStreamId) -> {
-                try {
+            hideMainPlayer();
+            try {
                 NavigationHelper.playWithKore(activity, Uri.parse(
                         info.getUrl().replace("https", "http")));
-                } catch (Exception e) {
-                    if (DEBUG)
-                        Log.i(TAG, "Failed to start kore", e);
+            } catch (Exception e) {
+                if (DEBUG)
+                    Log.i(TAG, "Failed to start kore", e);
 
-                    showInstallKoreDialog(activity);
-                }
+                showInstallKoreDialog(activity);
+            }
         });
 
     }
@@ -906,7 +908,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (stack.size() <= 1) {
             // Don't stop player if user leaves fragment and if he is listening audio or watching video in popup
             if (player != null && player.videoPlayerSelected()) {
-                hideMainPlayer();
                 stopService();
             }
             return false;

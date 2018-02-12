@@ -47,6 +47,7 @@ import org.schabi.newpipe.player.event.PlayerGestureListener;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
+import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
 import org.schabi.newpipe.playlist.PlayQueueItemHolder;
@@ -122,10 +123,16 @@ public class VideoPlayerImpl extends VideoPlayer {
         if (intent.getSerializableExtra(BasePlayer.PLAY_QUEUE) == null)
             return;
 
+        PlayerType oldPlayerType = playerType;
         choosePlayerTypeFromIntent(intent);
         audioOnly = audioPlayerSelected();
         // We need to setup audioOnly before super()
         super.handleIntent(intent);
+
+        if (intent.getBooleanExtra(APPEND_ONLY, false) && oldPlayerType != playerType && playQueue != null) {
+            // BasePlayer will not rebuild player if append mode is used. But if playerType changes we should rebuild it
+            rebuildPlayer();
+        }
 
         service.resetNotification();
         if (service.getBigNotRemoteView() != null)
@@ -186,6 +193,7 @@ public class VideoPlayerImpl extends VideoPlayer {
             getRootView().findViewById(R.id.titleAndChannel).setVisibility(View.GONE);
             getQualityTextView().setVisibility(View.VISIBLE);
             spaceBeforeFullscreenButton.setVisibility(View.VISIBLE);
+            queueButton.setVisibility(View.GONE);
         } else {
             getFullScreenButton().setVisibility(View.GONE);
             screenRotationButton.setVisibility(View.VISIBLE);
@@ -314,7 +322,6 @@ public class VideoPlayerImpl extends VideoPlayer {
 
         if (popupPlayerSelected()) {
             setRecovery();
-            getPlayer().setPlayWhenReady(false);
             service.removeViewFromParent();
             Intent intent;
             if (!isUsingOldPlayer(service)) {
@@ -491,13 +498,17 @@ public class VideoPlayerImpl extends VideoPlayer {
 
     @Override
     protected int getDefaultResolutionIndex(final List<VideoStream> sortedVideos) {
-        return ListHelper.getDefaultResolutionIndex(context, sortedVideos);
+        return videoPlayerSelected()?
+                ListHelper.getDefaultResolutionIndex(context, sortedVideos) :
+                ListHelper.getPopupDefaultResolutionIndex(context, sortedVideos);
     }
 
     @Override
     protected int getOverrideResolutionIndex(final List<VideoStream> sortedVideos,
                                              final String playbackQuality) {
-        return ListHelper.getDefaultResolutionIndex(context, sortedVideos, playbackQuality);
+        return videoPlayerSelected() ?
+                ListHelper.getDefaultResolutionIndex(context, sortedVideos, playbackQuality) :
+                ListHelper.getPopupDefaultResolutionIndex(context, sortedVideos, playbackQuality);
     }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -950,6 +961,17 @@ public class VideoPlayerImpl extends VideoPlayer {
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
             }
         };
+    }
+
+    private void rebuildPlayer() {
+        setRecovery();
+        // Here we are restarting playback. This method will be called with audioOnly setting - sourceOf(final PlayQueueItem item, final StreamInfo info)
+        PlayQueue oldQueue = playQueue;
+        // Re-initialization
+        destroyPlayer();
+        initPlayer();
+        initPlayback(oldQueue);
+        getPlayer().setPlayWhenReady(true);
     }
 
     private PlayQueueItemBuilder.OnSelectedListener getOnSelectedListener() {

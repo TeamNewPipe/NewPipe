@@ -127,10 +127,6 @@ public class MainPlayerService extends Service {
         if (DEBUG)
             Log.d(TAG, "onStartCommand() called with: intent = [" + intent + "], flags = [" + flags + "], startId = [" + startId + "]");
 
-        // It's just a connection without action
-        if (intent.getExtras() == null)
-            return Service.START_NOT_STICKY;
-
         playerImpl.handleIntent(intent);
 
         return Service.START_NOT_STICKY;

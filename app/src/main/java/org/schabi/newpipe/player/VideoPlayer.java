@@ -207,6 +207,9 @@ public abstract class VideoPlayer extends BasePlayer
         if (intent.hasExtra(PLAYBACK_QUALITY)) {
             setPlaybackQuality(intent.getStringExtra(PLAYBACK_QUALITY));
         }
+        else {
+            setPlaybackQuality(null);
+        }
 
         super.handleIntent(intent);
     }
