@@ -155,6 +155,7 @@
     <string name="preferred_player_default" translatable="false">@string/always_ask_player_key</string>
     <string name="preferred_player_last_selected_key" translatable="false">preferred_player_last_selected</string>
 
+    <string name="info_screen_key" translatable="false">info_screen</string>
     <string name="video_player_key" translatable="false">video_player</string>
     <string name="background_player_key" translatable="false">background_player</string>
     <string name="popup_player_key" translatable="false">popup_player</string>

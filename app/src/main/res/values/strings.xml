@@ -30,6 +30,7 @@
     <string name="channel_unsubscribed">Channel unsubscribed</string>
     <string name="subscription_change_failed">Unable to change subscription</string>
     <string name="subscription_update_failed">Unable to update subscription</string>
+    <string name="show_info">Show info</string>
 
     <string name="tab_main">Main</string>
     <string name="tab_subscriptions">Subscriptions</string>
@@ -368,7 +369,7 @@
 
 
     <!-- Preferred player -->
-    <string name="preferred_player_share_menu_title" translatable="false">@string/preferred_player_settings_title</string>
+    <string name="preferred_player_share_menu_title" translatable="false">NewPipe</string>
     <string name="preferred_player_share_menu_dialog_title">Open with preferred player</string>
     <string name="preferred_player_settings_title">Preferred player</string>
 
