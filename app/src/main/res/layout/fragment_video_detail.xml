@@ -364,7 +364,7 @@
                             android:background="?attr/selectableItemBackground"
                             android:clickable="true"
                             android:focusable="true"
-                            android:contentDescription="@string/controls_download_desg"
+                            android:contentDescription="@string/controls_download_desc"
                             android:drawableTop="?attr/download"
                             android:gravity="center"
                             android:paddingBottom="6dp"
