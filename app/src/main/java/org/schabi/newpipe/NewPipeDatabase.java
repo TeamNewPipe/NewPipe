@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import org.schabi.newpipe.database.AppDatabase;
 
 import static org.schabi.newpipe.database.AppDatabase.DATABASE_NAME;
+import static org.schabi.newpipe.database.Migrations.MIGRATION_11_12;
 
 public final class NewPipeDatabase {
 
@@ -17,15 +18,24 @@ public final class NewPipeDatabase {
     }
 
     public static void init(Context context) {
-        databaseInstance = Room.databaseBuilder(context.getApplicationContext(),
-                AppDatabase.class, DATABASE_NAME
-        ).build();
+        databaseInstance = Room
+                .databaseBuilder(context, AppDatabase.class, DATABASE_NAME)
+                .addMigrations(MIGRATION_11_12)
+                .fallbackToDestructiveMigration()
+                .build();
     }
 
     @NonNull
+    @Deprecated
     public static AppDatabase getInstance() {
         if (databaseInstance == null) throw new RuntimeException("Database not initialized");
 
+        return databaseInstance;
+    }
+
+    @NonNull
+    public static AppDatabase getInstance(Context context) {
+        if (databaseInstance == null) init(context);
         return databaseInstance;
     }
 }

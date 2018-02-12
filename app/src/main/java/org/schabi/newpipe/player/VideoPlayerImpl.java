@@ -173,7 +173,6 @@ public class VideoPlayerImpl extends VideoPlayer {
         this.resizingIndicator = rootView.findViewById(R.id.resizing_indicator);
         this.spaceBeforeFullscreenButton = rootView.findViewById(R.id.spaceBeforeFullscreenButton);
 
-        getFullScreenButton().setOnClickListener(v -> onFullScreenButtonClicked());
         titleTextView.setSelected(true);
         channelTextView.setSelected(true);
 
@@ -332,7 +331,7 @@ public class VideoPlayerImpl extends VideoPlayer {
                 intent.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
                 intent.putExtra(Constants.KEY_URL, getVideoUrl());
                 intent.putExtra(Constants.KEY_TITLE, getVideoTitle());
-                intent.putExtra(VideoDetailFragment.AUTO_PLAY, PreferenceManager.getDefaultSharedPreferences(context)
+                intent.putExtra(BasePlayer.AUTO_PLAY, PreferenceManager.getDefaultSharedPreferences(context)
                         .getBoolean(context.getString(R.string.autoplay_through_intent_key), false));
             } else {
                 intent = new Intent(service, PlayVideoActivity.class)
@@ -545,7 +544,6 @@ public class VideoPlayerImpl extends VideoPlayer {
         });
         checkLandscape();
         getRootView().setKeepScreenOn(true);
-        getSurfaceView().setVisibility(View.VISIBLE);
         service.getLockManager().acquireWifiAndCpu();
         service.resetNotification();
         service.setControlsOpacity(255);
@@ -844,7 +842,7 @@ public class VideoPlayerImpl extends VideoPlayer {
 
     public void checkLandscape() {
         Activity parent = getParentActivity();
-        if (parent != null && service.isLandScape() && !isInFullscreen() && getCurrentState() != STATE_COMPLETED && !audioPlayerSelected())
+        if (parent != null && service.isLandScape() && !isInFullscreen() && getCurrentState() != STATE_COMPLETED && videoPlayerSelected())
             onFullScreenButtonClicked();
     }
 

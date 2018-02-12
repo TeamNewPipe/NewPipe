@@ -331,4 +331,14 @@ abrir en modo popup</string>
     
     <string name="preferred_player_fetcher_notification_title">Obteniendo información…</string>
     <string name="preferred_player_fetcher_notification_message">El contenido solicitado se está cargando</string>
-</resources>
+<string name="import_data_title">Importar base de datos</string>
+    <string name="export_data_title">Exportar base de datos</string>
+    <string name="import_data_summary">Reemplazará su historial actual y sus suscripciones</string>
+    <string name="export_data_summary">Exportar historial, suscripciones y listas de reproducción.</string>
+    <string name="export_complete_toast">Exportación completa</string>
+    <string name="import_complete_toast">Importación completa</string>
+    <string name="no_valid_zip_file">Archivo zip no válido</string>
+    <string name="could_not_import_all_files">ADVERTENCIA: no se pudieron importar todos los archivos.</string>
+    <string name="override_current_data">Esto reemplazará su configuración actual.</string>
+
+    </resources>

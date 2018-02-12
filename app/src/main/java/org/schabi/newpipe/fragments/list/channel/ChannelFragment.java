@@ -194,17 +194,14 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         ActionBar supportActionBar = activity.getSupportActionBar();
-        if(useAsFrontPage) {
+        if(useAsFrontPage && supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(false);
         } else {
             inflater.inflate(R.menu.menu_channel, menu);
 
-            if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "], inflater = [" + inflater + "]");
+            if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu +
+                    "], inflater = [" + inflater + "]");
             menuRssButton = menu.findItem(R.id.menu_item_rss);
-            if (currentInfo != null) {
-                menuRssButton.setVisible(!TextUtils.isEmpty(currentInfo.getFeedUrl()));
-            }
-
         }
     }
 
@@ -225,10 +222,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
             case R.id.menu_item_openInBrowser:
                 openUrlInBrowser(url);
                 break;
-            case R.id.menu_item_share: {
+            case R.id.menu_item_share:
                 shareUrl(name, url);
                 break;
-            }
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -428,6 +424,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         } else headerSubscribersTextView.setVisibility(View.GONE);
 
         if (menuRssButton != null) menuRssButton.setVisible(!TextUtils.isEmpty(result.getFeedUrl()));
+
         playlistCtrl.setVisibility(View.VISIBLE);
 
         if (!result.errors.isEmpty()) {

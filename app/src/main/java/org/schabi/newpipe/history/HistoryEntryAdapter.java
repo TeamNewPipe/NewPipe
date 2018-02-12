@@ -1,12 +1,12 @@
 package org.schabi.newpipe.history;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
-import org.schabi.newpipe.database.history.model.HistoryEntry;
+import org.schabi.newpipe.util.Localization;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -19,19 +19,20 @@ import java.util.Date;
  * @param <E> the type of the entries
  * @param <VH> the type of the view holder
  */
-public abstract class HistoryEntryAdapter<E extends HistoryEntry, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
+public abstract class HistoryEntryAdapter<E, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
     private final ArrayList<E> mEntries;
     private final DateFormat mDateFormat;
+    private final Context mContext;
     private OnHistoryItemClickListener<E> onHistoryItemClickListener = null;
 
 
     public HistoryEntryAdapter(Context context) {
         super();
+        mContext = context;
         mEntries = new ArrayList<>();
-        mDateFormat = android.text.format.DateFormat.getDateFormat(context.getApplicationContext());
-
-        setHasStableIds(true);
+        mDateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM,
+                Localization.getPreferredLocale(context));
     }
 
     public void setEntries(@NonNull Collection<E> historyEntries) {
@@ -53,9 +54,8 @@ public abstract class HistoryEntryAdapter<E extends HistoryEntry, VH extends Rec
         return mDateFormat.format(date);
     }
 
-    @Override
-    public long getItemId(int position) {
-        return mEntries.get(position).getId();
+    protected String getFormattedViewString(final long viewCount) {
+        return Localization.shortViewCount(mContext, viewCount);
     }
 
     @Override
@@ -66,15 +66,20 @@ public abstract class HistoryEntryAdapter<E extends HistoryEntry, VH extends Rec
     @Override
     public void onBindViewHolder(VH holder, int position) {
         final E entry = mEntries.get(position);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final OnHistoryItemClickListener<E> historyItemClickListener = onHistoryItemClickListener;
-                if(historyItemClickListener != null) {
-                    historyItemClickListener.onHistoryItemClick(entry);
-                }
+        holder.itemView.setOnClickListener(v -> {
+            if(onHistoryItemClickListener != null) {
+                onHistoryItemClickListener.onHistoryItemClick(entry);
             }
         });
+
+        holder.itemView.setOnLongClickListener(view -> {
+            if (onHistoryItemClickListener != null) {
+                onHistoryItemClickListener.onHistoryItemLongClick(entry);
+                return true;
+            }
+            return false;
+        });
+
         onBindViewHolder(holder, entry, position);
     }
 
@@ -94,13 +99,8 @@ public abstract class HistoryEntryAdapter<E extends HistoryEntry, VH extends Rec
         return mEntries.isEmpty();
     }
 
-    public E removeItemAt(int position) {
-        E entry = mEntries.remove(position);
-        notifyItemRemoved(position);
-        return entry;
-    }
-
-    public interface OnHistoryItemClickListener<E extends HistoryEntry> {
-        void onHistoryItemClick(E historyItem);
+    public interface OnHistoryItemClickListener<E> {
+        void onHistoryItemClick(E item);
+        void onHistoryItemLongClick(E item);
     }
 }

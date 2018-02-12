@@ -20,7 +20,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.about.AboutActivity;
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.AudioStream;
@@ -34,6 +33,9 @@ import org.schabi.newpipe.fragments.list.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.fragments.local.bookmark.LocalPlaylistFragment;
+import org.schabi.newpipe.fragments.local.bookmark.MostPlayedFragment;
+import org.schabi.newpipe.fragments.local.bookmark.LastPlayedFragment;
 import org.schabi.newpipe.history.HistoryActivity;
 import org.schabi.newpipe.player.*;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
@@ -330,6 +332,30 @@ public class NavigationHelper {
                 .commit();
     }
 
+    public static void openLocalPlaylistFragment(FragmentManager fragmentManager, long playlistId, String name) {
+        if (name == null) name = "";
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+                .replace(R.id.fragment_holder, LocalPlaylistFragment.getInstance(playlistId, name))
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public static void openLastPlayedFragment(FragmentManager fragmentManager) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+                .replace(R.id.fragment_holder, new LastPlayedFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public static void openMostPlayedFragment(FragmentManager fragmentManager) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+                .replace(R.id.fragment_holder, new MostPlayedFragment())
+                .addToBackStack(null)
+                .commit();
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // Through Intents
     //////////////////////////////////////////////////////////////////////////*/
@@ -428,10 +454,6 @@ public class NavigationHelper {
     }
 
     public static Intent getIntentByLink(Context context, StreamingService service, String url) throws ExtractionException {
-        if (service != ServiceList.YouTube.getService()) {
-            throw new ExtractionException("Service not supported at the moment");
-        }
-
         StreamingService.LinkType linkType = service.getLinkTypeByUrl(url);
 
         if (linkType == StreamingService.LinkType.NONE) {
@@ -443,7 +465,7 @@ public class NavigationHelper {
 
         switch (linkType) {
             case STREAM:
-                rIntent.putExtra(VideoDetailFragment.AUTO_PLAY, PreferenceManager.getDefaultSharedPreferences(context)
+                rIntent.putExtra(BasePlayer.AUTO_PLAY, PreferenceManager.getDefaultSharedPreferences(context)
                         .getBoolean(context.getString(R.string.autoplay_through_intent_key), false));
                 break;
         }

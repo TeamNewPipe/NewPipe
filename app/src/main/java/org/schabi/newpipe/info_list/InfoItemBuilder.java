@@ -16,8 +16,10 @@ import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.InfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamMiniInfoItemHolder;
+import org.schabi.newpipe.util.OnClickGesture;
 
 /*
  * Created by Christian Schabesberger on 26.09.16.
@@ -42,17 +44,12 @@ import org.schabi.newpipe.info_list.holder.StreamMiniInfoItemHolder;
 public class InfoItemBuilder {
     private static final String TAG = InfoItemBuilder.class.toString();
 
-    public interface OnInfoItemSelectedListener<T extends InfoItem> {
-        void selected(T selectedItem);
-        void held(T selectedItem);
-    }
-
     private final Context context;
     private ImageLoader imageLoader = ImageLoader.getInstance();
 
-    private OnInfoItemSelectedListener<StreamInfoItem> onStreamSelectedListener;
-    private OnInfoItemSelectedListener<ChannelInfoItem> onChannelSelectedListener;
-    private OnInfoItemSelectedListener<PlaylistInfoItem> onPlaylistSelectedListener;
+    private OnClickGesture<StreamInfoItem> onStreamSelectedListener;
+    private OnClickGesture<ChannelInfoItem> onChannelSelectedListener;
+    private OnClickGesture<PlaylistInfoItem> onPlaylistSelectedListener;
 
     public InfoItemBuilder(Context context) {
         this.context = context;
@@ -75,7 +72,7 @@ public class InfoItemBuilder {
             case CHANNEL:
                 return useMiniVariant ? new ChannelMiniInfoItemHolder(this, parent) : new ChannelInfoItemHolder(this, parent);
             case PLAYLIST:
-                return new PlaylistInfoItemHolder(this, parent);
+                return useMiniVariant ? new PlaylistMiniInfoItemHolder(this, parent) : new PlaylistInfoItemHolder(this, parent);
             default:
                 Log.e(TAG, "Trollolo");
                 throw new RuntimeException("InfoType not expected = " + infoType.name());
@@ -90,27 +87,27 @@ public class InfoItemBuilder {
         return imageLoader;
     }
 
-    public OnInfoItemSelectedListener<StreamInfoItem> getOnStreamSelectedListener() {
+    public OnClickGesture<StreamInfoItem> getOnStreamSelectedListener() {
         return onStreamSelectedListener;
     }
 
-    public void setOnStreamSelectedListener(OnInfoItemSelectedListener<StreamInfoItem> listener) {
+    public void setOnStreamSelectedListener(OnClickGesture<StreamInfoItem> listener) {
         this.onStreamSelectedListener = listener;
     }
 
-    public OnInfoItemSelectedListener<ChannelInfoItem> getOnChannelSelectedListener() {
+    public OnClickGesture<ChannelInfoItem> getOnChannelSelectedListener() {
         return onChannelSelectedListener;
     }
 
-    public void setOnChannelSelectedListener(OnInfoItemSelectedListener<ChannelInfoItem> listener) {
+    public void setOnChannelSelectedListener(OnClickGesture<ChannelInfoItem> listener) {
         this.onChannelSelectedListener = listener;
     }
 
-    public OnInfoItemSelectedListener<PlaylistInfoItem> getOnPlaylistSelectedListener() {
+    public OnClickGesture<PlaylistInfoItem> getOnPlaylistSelectedListener() {
         return onPlaylistSelectedListener;
     }
 
-    public void setOnPlaylistSelectedListener(OnInfoItemSelectedListener<PlaylistInfoItem> listener) {
+    public void setOnPlaylistSelectedListener(OnClickGesture<PlaylistInfoItem> listener) {
         this.onPlaylistSelectedListener = listener;
     }
 

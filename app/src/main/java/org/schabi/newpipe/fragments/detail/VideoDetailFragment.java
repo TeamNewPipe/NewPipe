@@ -68,7 +68,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
-import org.schabi.newpipe.history.HistoryListener;
+import org.schabi.newpipe.fragments.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.player.BasePlayer;
@@ -88,6 +88,7 @@ import org.schabi.newpipe.util.InfoCache;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -101,8 +102,6 @@ import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -110,7 +109,6 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
 public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implements BackPressable, SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener, View.OnLongClickListener, PlayerEventListener, PlayerServiceEventListener {
     private static final String TAG = ".VideoDetailFragment";
     private static final boolean DEBUG = BasePlayer.DEBUG;
-    public static final String AUTO_PLAY = "auto_play";
 
     // Amount of videos to show on start
     private static final int INITIAL_RELATED_VIDEOS = 8;
@@ -169,6 +167,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     private TextView detailControlsBackground;
     private TextView detailControlsPopup;
+    private TextView detailControlsAddToPlaylist;
+    private TextView detailControlsDownload;
     private TextView appendControlsDetail;
 
     private LinearLayout videoDescriptionRootLayout;
@@ -501,6 +501,30 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             case R.id.detail_controls_popup:
                 openPopupPlayer(false);
                 break;
+            case R.id.detail_controls_playlist_append:
+                if (getFragmentManager() != null && currentInfo != null) {
+                    PlaylistAppendDialog.fromStreamInfo(currentInfo)
+                            .show(getFragmentManager(), TAG);
+                }
+                break;
+            case R.id.detail_controls_download:
+                if (!PermissionHelper.checkStoragePermissions(activity)) {
+                    return;
+                }
+
+                try {
+                    DownloadDialog downloadDialog =
+                            DownloadDialog.newInstance(currentInfo,
+                                    sortedStreamVideosList,
+                                    actionBarHandler.getSelectedVideoStream());
+                    downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
+                } catch (Exception e) {
+                    Toast.makeText(activity,
+                            R.string.could_not_setup_download_menu,
+                            Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+                break;
             case R.id.detail_uploader_root_layout:
                 if (TextUtils.isEmpty(currentInfo.getUploaderUrl())) {
                     Log.w(TAG, "Can't open channel because we got no channel URL");
@@ -609,6 +633,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         detailControlsBackground = rootView.findViewById(R.id.detail_controls_background);
         detailControlsPopup = rootView.findViewById(R.id.detail_controls_popup);
+        detailControlsAddToPlaylist = rootView.findViewById(R.id.detail_controls_playlist_append);
+        detailControlsDownload = rootView.findViewById(R.id.detail_controls_download);
         appendControlsDetail = rootView.findViewById(R.id.touch_append_detail);
 
         videoDescriptionRootLayout = rootView.findViewById(R.id.detail_description_root_layout);
@@ -642,7 +668,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     protected void initListeners() {
         super.initListeners();
-        infoItemBuilder.setOnStreamSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<StreamInfoItem>() {
+        infoItemBuilder.setOnStreamSelectedListener(new OnClickGesture<StreamInfoItem>() {
             @Override
             public void selected(StreamInfoItem selectedItem) {
                 setAutoplay(isAutoplayPreferred());
@@ -662,6 +688,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         thumbnailBackgroundButton.setOnClickListener(this);
         detailControlsBackground.setOnClickListener(this);
         detailControlsPopup.setOnClickListener(this);
+        detailControlsAddToPlaylist.setOnClickListener(this);
+        detailControlsDownload.setOnClickListener(this);
         relatedStreamExpandButton.setOnClickListener(this);
 
         detailControlsBackground.setLongClickable(true);
@@ -682,9 +710,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 context.getResources().getString(R.string.enqueue_on_popup)
         };
 
-        final DialogInterface.OnClickListener actions = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+        final DialogInterface.OnClickListener actions = (DialogInterface dialogInterface, int i) -> {
                 switch (i) {
                     case 0:
                         NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
@@ -695,29 +721,20 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                     default:
                         break;
                 }
-            }
         };
 
         new InfoItemDialog(getActivity(), item, commands, actions).show();
     }
 
     private View.OnTouchListener getOnControlsTouchListener() {
-        return new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (!PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.show_hold_to_append_key), true))
-                    return false;
+        return (View view, MotionEvent motionEvent) -> {
+            if (!PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.show_hold_to_append_key), true)) return false;
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    animateView(appendControlsDetail, true, 250, 0, new Runnable() {
-                        @Override
-                        public void run() {
-                            animateView(appendControlsDetail, false, 1500, 1000);
-                        }
-                    });
+                    animateView(appendControlsDetail, true, 250, 0, () ->
+                            animateView(appendControlsDetail, false, 1500, 1000));
                 }
                 return false;
-            }
         };
     }
 
@@ -794,18 +811,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private static void showInstallKoreDialog(final Context context) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(R.string.kore_not_found)
-                .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        NavigationHelper.installKore(context);
-                    }
-                })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
+                .setPositiveButton(R.string.install, (DialogInterface dialog, int which) ->
+                        NavigationHelper.installKore(context))
+                .setNegativeButton(R.string.cancel, (DialogInterface dialog, int which) -> {});
         builder.create().show();
     }
 
@@ -828,48 +836,23 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         actionBarHandler.setOnShareListener(selectedStreamId -> shareUrl(info.name, info.url));
 
-        actionBarHandler.setOnOpenInBrowserListener(new ActionBarHandler.OnActionListener() {
-            @Override
-            public void onActionSelected(int selectedStreamId) {
-                hideMainPlayer();
-                openUrlInBrowser(info.getUrl());
-            }
+        actionBarHandler.setOnOpenInBrowserListener((int selectedStreamId)-> {
+            hideMainPlayer();
+            openUrlInBrowser(info.getUrl());
         });
 
-        actionBarHandler.setOnPlayWithKodiListener(new ActionBarHandler.OnActionListener() {
-            @Override
-            public void onActionSelected(int selectedStreamId) {
-                //untested
+        actionBarHandler.setOnPlayWithKodiListener((int selectedStreamId) -> {
                 try {
-                    NavigationHelper.playWithKore(activity, Uri.parse(info.getUrl().replace("https", "http")));
-                    if (activity instanceof HistoryListener) {
-                        ((HistoryListener) activity).onVideoPlayed(info, null);
-                    }
+                NavigationHelper.playWithKore(activity, Uri.parse(
+                        info.getUrl().replace("https", "http")));
                 } catch (Exception e) {
                     if (DEBUG)
                         Log.i(TAG, "Failed to start kore", e);
 
                     showInstallKoreDialog(activity);
                 }
-            }
         });
 
-        actionBarHandler.setOnDownloadListener(new ActionBarHandler.OnActionListener() {
-            @Override
-            public void onActionSelected(int selectedStreamId) {
-                if (!PermissionHelper.checkStoragePermissions(activity)) {
-                    return;
-                }
-
-                try {
-                    DownloadDialog downloadDialog = DownloadDialog.newInstance(info, sortedStreamVideosList, selectedStreamId);
-                    downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
-                } catch (Exception e) {
-                    Toast.makeText(activity, R.string.could_not_setup_download_menu, Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -998,22 +981,16 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         currentWorker = ExtractorHelper.getStreamInfo(serviceId, url, forceLoad)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<StreamInfo>() {
-                    @Override
-                    public void accept(@NonNull StreamInfo result) throws Exception {
+                .subscribe((@NonNull StreamInfo result) -> {
                         isLoading.set(false);
                         showContentWithAnimation(120, 0, 0);
                         handleResult(result);
                         if (isAutoplayEnabled()) {
                             openVideoPlayer();
                         }
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) throws Exception {
+                    }, (@NonNull Throwable throwable) -> {
                         isLoading.set(false);
                         onError(throwable);
-                    }
                 });
     }
 
@@ -1023,10 +1000,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     private void openBackgroundPlayer(final boolean append) {
         AudioStream audioStream = currentInfo.getAudioStreams().get(ListHelper.getDefaultAudioFormat(activity, currentInfo.getAudioStreams()));
-
-        if (activity instanceof HistoryListener) {
-            ((HistoryListener) activity).onAudioPlayed(currentInfo, audioStream);
-        }
 
         boolean useExternalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
@@ -1044,10 +1017,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             return;
         }
 
-        if (activity instanceof HistoryListener) {
-            ((HistoryListener) activity).onVideoPlayed(currentInfo, getSelectedVideoStream());
-        }
-
         PlayQueue queue = setupPlayQueueForIntent(append);
 
         if (append) {
@@ -1059,10 +1028,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     private void openVideoPlayer() {
         VideoStream selectedVideoStream = getSelectedVideoStream();
-
-        if (activity instanceof HistoryListener) {
-            ((HistoryListener) activity).onVideoPlayed(currentInfo, selectedVideoStream);
-        }
 
         if (PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
             NavigationHelper.playOnExternalPlayer(activity, currentInfo.getName(), currentInfo.getUploaderName(), selectedVideoStream);
@@ -1097,7 +1062,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
             addVideoPlayerView();
             mPlayerService.getView().setVisibility(View.GONE);
-            player.getSurfaceView().setVisibility(View.GONE);
+
+            if (player != null && player.getPlayer() != null)
+                player.getPlayer().clearVideoSurface();
+
             Intent playerIntent = NavigationHelper.getPlayerIntent(getContext(), MainPlayerService.class, queue, getSelectedVideoStream().getResolution());
             activity.startService(playerIntent);
 
@@ -1208,9 +1176,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
 
         disposables.add(Single.just(descriptionHtml)
-                .map(new Function<String, Spanned>() {
-                    @Override
-                    public Spanned apply(@io.reactivex.annotations.NonNull String description) throws Exception {
+                .map((@io.reactivex.annotations.NonNull String description) -> {
                         Spanned parsedDescription;
                         if (Build.VERSION.SDK_INT >= 24) {
                             parsedDescription = Html.fromHtml(description, 0);
@@ -1219,16 +1185,12 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                             parsedDescription = Html.fromHtml(description);
                         }
                         return parsedDescription;
-                    }
                 })
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Spanned>() {
-                    @Override
-                    public void accept(@io.reactivex.annotations.NonNull Spanned spanned) throws Exception {
+                .subscribe((@io.reactivex.annotations.NonNull Spanned spanned) -> {
                         videoDescriptionView.setText(spanned);
                         videoDescriptionView.setVisibility(View.VISIBLE);
-                    }
                 }));
     }
 
@@ -1366,6 +1328,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (!TextUtils.isEmpty(info.getUploaderName())) {
             uploaderTextView.setText(info.getUploaderName());
             uploaderTextView.setVisibility(View.VISIBLE);
+            uploaderTextView.setSelected(true);
         } else {
             uploaderTextView.setVisibility(View.GONE);
         }
@@ -1464,15 +1427,12 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         return true;
     }
 
-    private void onBlockedByGemaError() {
-        thumbnailBackgroundButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
+    public void onBlockedByGemaError() {
+        thumbnailBackgroundButton.setOnClickListener((View v) -> {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(getString(R.string.c3s_url)));
                 startActivity(intent);
-            }
         });
 
         showError(getString(R.string.blocked_by_gema), false, R.drawable.gruese_die_gema);
