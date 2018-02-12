@@ -30,6 +30,7 @@
     <string name="channel_unsubscribed">Channel unsubscribed</string>
     <string name="subscription_change_failed">Unable to change subscription</string>
     <string name="subscription_update_failed">Unable to update subscription</string>
+    <string name="info_screen">Info Screen</string>
 
     <string name="tab_main">Main</string>
     <string name="tab_subscriptions">Subscriptions</string>
