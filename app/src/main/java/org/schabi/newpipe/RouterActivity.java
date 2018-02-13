@@ -171,7 +171,7 @@ public class RouterActivity extends AppCompatActivity {
         }
 
         // TODO: Add some sort of "capabilities" field to services (audio only, video and audio, etc.)
-        if (currentService == ServiceList.SoundCloud.getService()) {
+        if (currentService == ServiceList.SoundCloud) {
             handleChoice(getString(R.string.background_player_key));
             return;
         }
@@ -196,7 +196,7 @@ public class RouterActivity extends AppCompatActivity {
         final RadioGroup radioGroup = rootLayout.findViewById(android.R.id.list);
 
         final AdapterChoiceItem[] choices = {
-                new AdapterChoiceItem(getString(R.string.info_screen_key), getString(R.string.info_screen),
+                new AdapterChoiceItem(getString(R.string.info_screen_key), getString(R.string.show_info),
                         resolveResourceIdFromAttr(themeWrapper, R.attr.info)),
                 new AdapterChoiceItem(getString(R.string.video_player_key), getString(R.string.video_player),
                         resolveResourceIdFromAttr(themeWrapper, R.attr.play)),

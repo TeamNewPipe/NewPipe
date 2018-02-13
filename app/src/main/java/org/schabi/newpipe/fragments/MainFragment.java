@@ -47,7 +47,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     // Constants
     //////////////////////////////////////////////////////////////////////////*/
 
-    private static final int FALLBACK_SERVICE_ID = ServiceList.YouTube.getId();
+    private static final int FALLBACK_SERVICE_ID = ServiceList.YouTube.getServiceId();
     private static final String FALLBACK_CHANNEL_URL = "https://www.youtube.com/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ";
     private static final String FALLBACK_CHANNEL_NAME = "Music";
     private static final String FALLBACK_KIOSK_ID = "Trending";

@@ -74,12 +74,6 @@
         android:layout="@layout/settings_category_header_layout"
         android:title="@string/settings_category_player_behavior_title">
 
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="@string/autoplay_through_intent_key"
-            android:summary="@string/autoplay_by_calling_app_summary"
-            android:title="@string/autoplay_by_calling_app_title"/>
-
         <ListPreference
             android:defaultValue="@string/preferred_player_default"
             android:entries="@array/preferred_player_description_list"

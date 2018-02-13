@@ -189,7 +189,7 @@
                 <data android:scheme="http"/>
                 <data android:scheme="https"/>
                 <data android:host="hooktube.com"/>
-                <data android:host="*.youtube.com"/>
+                <data android:host="*.hooktube.com"/>
                 <!-- video prefix -->
                 <data android:pathPrefix="/v/"/>
                 <data android:pathPrefix="/embed/"/>

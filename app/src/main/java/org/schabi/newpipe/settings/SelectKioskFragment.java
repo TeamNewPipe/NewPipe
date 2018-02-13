@@ -122,11 +122,11 @@ public class SelectKioskFragment extends DialogFragment {
 
             for(StreamingService service : NewPipe.getServices()) {
                 //TODO: Multi-service support
-                if (service.getServiceId() != ServiceList.YouTube.getId()) continue;
+                if (service.getServiceId() != ServiceList.YouTube.getServiceId()) continue;
 
                 for(String kioskId : service.getKioskList().getAvailableKiosks()) {
                     String name = String.format(getString(R.string.service_kiosk_string),
-                            service.getServiceInfo().name,
+                            service.getServiceInfo().getName(),
                             KioskTranslator.getTranslatedKioskName(kioskId, getContext()));
                     kioskList.add(new Entry(
                             ServiceHelper.getIcon(service.getServiceId()),
