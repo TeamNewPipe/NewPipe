@@ -506,6 +506,7 @@ public abstract class VideoPlayer extends BasePlayer
 
     public void onQualitySelectorClicked() {
         if (DEBUG) Log.d(TAG, "onQualitySelectorClicked() called");
+        hideSystemUIIfNeeded();
         qualityPopupMenu.show();
         isSomePopupMenuVisible = true;
         showControls(300);
@@ -518,6 +519,7 @@ public abstract class VideoPlayer extends BasePlayer
 
     private void onPlaybackSpeedClicked() {
         if (DEBUG) Log.d(TAG, "onPlaybackSpeedClicked() called");
+        hideSystemUIIfNeeded();
         playbackSpeedPopupMenu.show();
         isSomePopupMenuVisible = true;
         showControls(300);
@@ -665,6 +667,8 @@ public abstract class VideoPlayer extends BasePlayer
             }
         }, delay);
     }
+
+    public abstract void hideSystemUIIfNeeded();
 
     /*//////////////////////////////////////////////////////////////////////////
     // Getters and Setters

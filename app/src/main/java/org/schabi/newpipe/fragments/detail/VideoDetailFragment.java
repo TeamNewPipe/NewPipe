@@ -1590,6 +1590,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
     }
 
+    // Listener implementation
+    public void hideSystemUIIfNeeded() {
+        hideSystemUi();
+    }
+
     private void setupBrightness(boolean save) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();

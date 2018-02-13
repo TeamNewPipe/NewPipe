@@ -8,4 +8,6 @@ public interface PlayerServiceEventListener extends PlayerEventListener {
     void onPlayerError(ExoPlaybackException error);
 
     boolean isPaused();
+
+    void hideSystemUIIfNeeded();
 }

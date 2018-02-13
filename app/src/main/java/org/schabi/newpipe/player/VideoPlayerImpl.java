@@ -842,6 +842,12 @@ public class VideoPlayerImpl extends VideoPlayer {
             queueButton.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    public void hideSystemUIIfNeeded() {
+        if(fragmentListener != null)
+            fragmentListener.hideSystemUIIfNeeded();
+    }
+
     private void updatePlaybackButtons() {
         if (repeatButton == null || shuffleButton == null ||
                 simpleExoPlayer == null || playQueue == null)
