@@ -57,12 +57,11 @@ import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
 
-public class MainActivity extends AppCompatActivity implements SettingsContentObserver.OnChangeListener {
+public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
 
     private SharedPreferences sharedPreferences;
-    private SettingsContentObserver mSettingsContentObserver;
     private ActionBarDrawerToggle toggle = null;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -86,9 +85,6 @@ public class MainActivity extends AppCompatActivity implements SettingsContentOb
 
         setSupportActionBar(findViewById(R.id.toolbar));
         setupDrawer();
-
-        mSettingsContentObserver = new SettingsContentObserver(new Handler(), this);
-        setupOrientation();
     }
 
     private void setupDrawer() {
@@ -163,16 +159,6 @@ public class MainActivity extends AppCompatActivity implements SettingsContentOb
             sharedPreferences.edit().putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false).apply();
             NavigationHelper.openMainActivity(this);
         }
-
-        getContentResolver().registerContentObserver(
-                android.provider.Settings.System.CONTENT_URI, true,
-                mSettingsContentObserver);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        getContentResolver().unregisterContentObserver(mSettingsContentObserver);
     }
 
     @Override
@@ -387,34 +373,5 @@ public class MainActivity extends AppCompatActivity implements SettingsContentOb
         } else {
             NavigationHelper.gotoMainFragment(getSupportFragmentManager());
         }
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Utils
-    //////////////////////////////////////////////////////////////////////////*/
-
-    private boolean globalScreenOrientationLocked() {
-        // 1: Screen orientation changes using acelerometer
-        // 0: Screen orientatino is locked
-        return !(android.provider.Settings.System.getInt(getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 1);
-    }
-
-    private void setupOrientation() {
-        if (sharedPreferences == null)
-            return;
-
-        if (globalScreenOrientationLocked()) {
-            boolean lastOrientationWasLandscape
-                    = sharedPreferences.getBoolean(getString(R.string.last_orientation_landscape_key), false);
-            setRequestedOrientation(lastOrientationWasLandscape
-                    ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
-                    : ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
-        } else
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-    }
-
-    @Override
-    public void onSettingsChanged() {
-        setupOrientation();
     }
 }

@@ -202,13 +202,13 @@ public class MainPlayerService extends Service {
     //////////////////////////////////////////////////////////////////////////*/
 
     public void toggleOrientation() {
-        setLandScape(!isLandScape());
         defaultPreferences.edit()
                 .putBoolean(getString(R.string.last_orientation_landscape_key), !isLandScape())
                 .apply();
+        setLandScape(!isLandScape());
     }
 
-    boolean isLandScape() {
+    public boolean isLandScape() {
         return getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
     }
 

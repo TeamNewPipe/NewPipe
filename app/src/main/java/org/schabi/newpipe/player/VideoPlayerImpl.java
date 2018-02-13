@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -187,6 +188,7 @@ public class VideoPlayerImpl extends VideoPlayer {
     }
 
     public void setupElementsVisibility() {
+        boolean globalOrientationLocked = !(android.provider.Settings.System.getInt(service.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 1);
         if (popupPlayerSelected()) {
             getFullScreenButton().setVisibility(View.VISIBLE);
             screenRotationButton.setVisibility(View.GONE);
@@ -196,7 +198,7 @@ public class VideoPlayerImpl extends VideoPlayer {
             queueButton.setVisibility(View.GONE);
         } else {
             getFullScreenButton().setVisibility(View.GONE);
-            screenRotationButton.setVisibility(View.VISIBLE);
+            screenRotationButton.setVisibility(globalOrientationLocked? View.VISIBLE : View.GONE);
             getRootView().findViewById(R.id.titleAndChannel).setVisibility(View.VISIBLE);
             getQualityTextView().setVisibility(isInFullscreen() ? View.VISIBLE : View.INVISIBLE);
             spaceBeforeFullscreenButton.setVisibility(View.GONE);
@@ -863,6 +865,13 @@ public class VideoPlayerImpl extends VideoPlayer {
             onFullScreenButtonClicked();
     }
 
+    public void setupScreenRotationButton(boolean visible) {
+        if(!videoPlayerSelected())
+            return;
+
+        screenRotationButton.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
     private void buildMoreOptionsMenu() {
         if (moreOptionsPopupMenu == null)
             return;
@@ -1158,7 +1167,6 @@ public class VideoPlayerImpl extends VideoPlayer {
     /*package-private*/ void setActivityListener(PlayerEventListener listener) {
         activityListener = listener;
         updateMetadata();
-        updatePlayback();
         triggerProgressUpdate();
     }
 
