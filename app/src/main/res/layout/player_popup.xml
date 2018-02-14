@@ -28,6 +28,10 @@
             android:layout_height="match_parent"
             android:background="@android:color/black"/>
 
+        <com.google.android.exoplayer2.ui.SubtitleView
+            android:id="@+id/subtitleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
 
 
@@ -70,6 +74,7 @@
                 android:padding="5dp"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
+                android:background="?attr/selectableItemBackground"
                 tools:ignore="RtlHardcoded,RtlSymmetry"
                 tools:text="1080p60"/>
 
@@ -79,24 +84,61 @@
                 android:layout_height="30dp"
                 android:layout_toRightOf="@+id/qualityTextView"
                 android:gravity="center"
-                android:padding="6dp"
+                android:padding="5dp"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
+                android:background="?attr/selectableItemBackground"
                 tools:ignore="RelativeOverlap,RtlHardcoded,RtlSymmetry"
                 tools:text="1.75x"/>
+
+            <RelativeLayout
+                android:id="@+id/extraOptionsView"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@+id/playbackSpeed"
+                android:layout_toLeftOf="@id/fullScreenButton"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/resizeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center"
+                    android:minWidth="50dp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:background="?attr/selectableItemBackground"
+                    tools:ignore="HardcodedText,RtlHardcoded"
+                    tools:text="FIT"/>
+
+                <TextView
+                    android:id="@+id/captionTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
+                    android:layout_toRightOf="@id/resizeTextView"
+                    android:gravity="center|left"
+                    android:minWidth="40dp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:background="?attr/selectableItemBackground"
+                    tools:ignore="RelativeOverlap,RtlHardcoded,RtlSymmetry"
+                    tools:text="English" />
+            </RelativeLayout>
 
             <ImageButton
                 android:id="@+id/fullScreenButton"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
-                android:background="#00ffffff"
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitCenter"
+                android:background="?attr/selectableItemBackground"
                 android:src="@drawable/ic_fullscreen_white"
                 tools:ignore="ContentDescription,RtlHardcoded"/>
-
         </RelativeLayout>
 
         <!--Shadow Bottom Control-->

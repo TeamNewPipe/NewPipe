@@ -397,4 +397,17 @@
     <string name="playlist_add_stream_success">Added to playlist</string>
     <string name="playlist_thumbnail_change_success">Playlist thumbnail changed</string>
     <string name="playlist_delete_failure">Failed to delete playlist</string>
+
+    <!-- Players -->
+    <string name="caption_none">No Caption</string>
+
+    <string name="resize_fit">FIT</string>
+    <string name="resize_fill">FILL</string>
+    <string name="resize_zoom">ZOOM</string>
+
+    <string name="caption_font_size_settings_title">Caption Font Size</string>
+    <string name="smaller_caption_font_size">Smaller Font</string>
+    <string name="normal_caption_font_size">Normal Font</string>
+    <string name="larger_caption_font_size">Larger Font</string>
+
 </resources>
