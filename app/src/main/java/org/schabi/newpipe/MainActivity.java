@@ -20,12 +20,14 @@
 
 package org.schabi.newpipe;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -39,6 +41,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.fragments.BackPressable;
@@ -211,6 +214,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("ShowToast")
+    private void onHeapDumpToggled(@NonNull MenuItem item) {
+        final boolean isHeapDumpEnabled = !item.isChecked();
+
+        PreferenceManager.getDefaultSharedPreferences(this).edit()
+                .putBoolean(getString(R.string.allow_heap_dumping_key), isHeapDumpEnabled).apply();
+        item.setChecked(isHeapDumpEnabled);
+
+        final String heapDumpNotice;
+        if (isHeapDumpEnabled) {
+            heapDumpNotice = getString(R.string.enable_leak_canary_notice);
+        } else {
+            heapDumpNotice = getString(R.string.disable_leak_canary_notice);
+        }
+        Toast.makeText(getApplicationContext(), heapDumpNotice, Toast.LENGTH_SHORT).show();
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // Menu
     //////////////////////////////////////////////////////////////////////////*/
@@ -232,6 +251,10 @@ public class MainActivity extends AppCompatActivity {
             inflater.inflate(R.menu.main_menu, menu);
         }
 
+        if (DEBUG) {
+            getMenuInflater().inflate(R.menu.debug_menu, menu);
+        }
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(false);
@@ -240,6 +263,17 @@ public class MainActivity extends AppCompatActivity {
         updateDrawerNavigation();
 
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem heapDumpToggle = menu.findItem(R.id.action_toggle_heap_dump);
+        if (heapDumpToggle != null) {
+            final boolean isToggled = PreferenceManager.getDefaultSharedPreferences(this)
+                    .getBoolean(getString(R.string.allow_heap_dumping_key), false);
+            heapDumpToggle.setChecked(isToggled);
+        }
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -261,6 +295,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_history:
                 NavigationHelper.openHistory(this);
+                return true;
+            case R.id.action_toggle_heap_dump:
+                onHeapDumpToggled(item);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

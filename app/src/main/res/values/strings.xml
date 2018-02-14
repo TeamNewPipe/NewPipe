@@ -410,4 +410,8 @@
     <string name="normal_caption_font_size">Normal Font</string>
     <string name="larger_caption_font_size">Larger Font</string>
 
+    <!-- Debug Only -->
+    <string name="toggle_leak_canary">Monitor Leaks</string>
+    <string name="enable_leak_canary_notice">Memory leak monitoring enabled, app may become unresponsive when heap dumping</string>
+    <string name="disable_leak_canary_notice">Memory leak monitoring disabled</string>
 </resources>

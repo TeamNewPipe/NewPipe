@@ -83,6 +83,9 @@
 
     <string name="last_orientation_landscape_key" translatable="false">last_orientation_landscape_key</string>
 
+    <!-- DEBUG ONLY -->
+    <string name="allow_heap_dumping_key" translatable="false">allow_heap_dumping_key</string>
+
     <!-- THEMES -->
     <string name="theme_key" translatable="false">theme</string>
     <string name="light_theme_key" translatable="false">light_theme</string>
