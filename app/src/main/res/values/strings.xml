@@ -376,7 +376,7 @@
     <string name="video_player">Video player</string>
     <string name="background_player">Background player</string>
     <string name="popup_player">Popup player</string>
-    <string name="always_ask_player">Always ask</string>
+    <string name="always_ask_open_action">Always ask</string>
     
     <string name="preferred_player_fetcher_notification_title">Getting info…</string>
     <string name="preferred_player_fetcher_notification_message">"The requested content is loading"</string>

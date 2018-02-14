@@ -150,28 +150,30 @@
 
     <string name="default_file_charset_value" translatable="false">@string/charset_most_special_characters_value</string>
 
-    <!-- Preferred player -->
-    <string name="preferred_player_key" translatable="false">preferred_player_key</string>
-    <string name="preferred_player_default" translatable="false">@string/always_ask_player_key</string>
-    <string name="preferred_player_last_selected_key" translatable="false">preferred_player_last_selected</string>
+    <!-- Preferred action on open (open from external app) -->
+    <string name="preferred_open_action_key" translatable="false">preferred_open_action_key</string>
+    <string name="preferred_open_action_default" translatable="false">@string/always_ask_open_action_key</string>
+    <string name="preferred_open_action_last_selected_key" translatable="false">preferred_open_action_last_selected</string>
 
-    <string name="info_screen_key" translatable="false">info_screen</string>
+    <string name="show_info_key" translatable="false">show_info</string>
     <string name="video_player_key" translatable="false">video_player</string>
     <string name="background_player_key" translatable="false">background_player</string>
     <string name="popup_player_key" translatable="false">popup_player</string>
-    <string name="always_ask_player_key" translatable="false">always_ask_player</string>
+    <string name="always_ask_open_action_key" translatable="false">always_ask_player</string>
 
-    <string-array name="preferred_player_description_list" translatable="false">
+    <string-array name="preferred_open_action_description_list" translatable="false">
+        <item>@string/show_info</item>
         <item>@string/video_player</item>
         <item>@string/background_player</item>
         <item>@string/popup_player</item>
-        <item>@string/always_ask_player</item>
+        <item>@string/always_ask_open_action</item>
     </string-array>
-    <string-array name="preferred_player_values_list" translatable="false">
+    <string-array name="preferred_open_action_values_list" translatable="false">
+        <item>@string/show_info_key</item>
         <item>@string/video_player_key</item>
         <item>@string/background_player_key</item>
         <item>@string/popup_player_key</item>
-        <item>@string/always_ask_player_key</item>
+        <item>@string/always_ask_open_action_key</item>
     </string-array>
 
     <!-- alternatively, load these from some local android data store -->

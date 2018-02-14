@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
@@ -13,7 +12,6 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -176,8 +174,10 @@ public class RouterActivity extends AppCompatActivity {
             return;
         }
 
-        final String playerChoiceKey = preferences.getString(getString(R.string.preferred_player_key), getString(R.string.preferred_player_default));
-        final String alwaysAskKey = getString(R.string.always_ask_player_key);
+        final String playerChoiceKey = preferences.getString(
+                getString(R.string.preferred_open_action_key),
+                getString(R.string.preferred_open_action_default));
+        final String alwaysAskKey = getString(R.string.always_ask_open_action_key);
 
         if (playerChoiceKey.equals(alwaysAskKey)) {
             showDialog();
@@ -196,7 +196,7 @@ public class RouterActivity extends AppCompatActivity {
         final RadioGroup radioGroup = rootLayout.findViewById(android.R.id.list);
 
         final AdapterChoiceItem[] choices = {
-                new AdapterChoiceItem(getString(R.string.info_screen_key), getString(R.string.show_info),
+                new AdapterChoiceItem(getString(R.string.show_info_key), getString(R.string.show_info),
                         resolveResourceIdFromAttr(themeWrapper, R.attr.info)),
                 new AdapterChoiceItem(getString(R.string.video_player_key), getString(R.string.video_player),
                         resolveResourceIdFromAttr(themeWrapper, R.attr.play)),
@@ -214,7 +214,7 @@ public class RouterActivity extends AppCompatActivity {
             handleChoice(choice.key);
 
             if (which == DialogInterface.BUTTON_POSITIVE) {
-                preferences.edit().putString(getString(R.string.preferred_player_key), choice.key).apply();
+                preferences.edit().putString(getString(R.string.preferred_open_action_key), choice.key).apply();
             }
         };
 
@@ -257,7 +257,7 @@ public class RouterActivity extends AppCompatActivity {
         }
 
         if (selectedRadioPosition == -1) {
-            final String lastSelectedPlayer = preferences.getString(getString(R.string.preferred_player_last_selected_key), null);
+            final String lastSelectedPlayer = preferences.getString(getString(R.string.preferred_open_action_last_selected_key), null);
             if (!TextUtils.isEmpty(lastSelectedPlayer)) {
                 for (int i = 0; i < choices.length; i++) {
                     AdapterChoiceItem c = choices[i];
@@ -288,12 +288,16 @@ public class RouterActivity extends AppCompatActivity {
     }
 
     private void handleChoice(final String playerChoiceKey) {
-        if (Arrays.asList(getResources().getStringArray(R.array.preferred_player_values_list)).contains(playerChoiceKey)) {
+        if (Arrays.asList(getResources()
+                .getStringArray(R.array.preferred_open_action_values_list))
+                .contains(playerChoiceKey)) {
             PreferenceManager.getDefaultSharedPreferences(this).edit()
-                    .putString(getString(R.string.preferred_player_last_selected_key), playerChoiceKey).apply();
+                    .putString(getString(R.string.preferred_open_action_last_selected_key),
+                            playerChoiceKey).apply();
         }
 
-        if (playerChoiceKey.equals(getString(R.string.popup_player_key)) && !PermissionHelper.isPopupEnabled(this)) {
+        if (playerChoiceKey.equals(getString(R.string.popup_player_key))
+                && !PermissionHelper.isPopupEnabled(this)) {
             PermissionHelper.showPopupEnablementToast(this);
             finish();
             return;
@@ -301,7 +305,7 @@ public class RouterActivity extends AppCompatActivity {
 
         // stop and bypass FetcherService if InfoScreen was selected since
         // StreamDetailFragment can fetch data itself
-        if(playerChoiceKey.equals(getString(R.string.info_screen_key))) {
+        if(playerChoiceKey.equals(getString(R.string.show_info_key))) {
             disposables.add(Observable
                     .fromCallable(() -> NavigationHelper.getIntentByLink(this, currentUrl))
                     .subscribeOn(Schedulers.io())
