@@ -30,6 +30,7 @@
     <string name="channel_unsubscribed">Channel unsubscribed</string>
     <string name="subscription_change_failed">Unable to change subscription</string>
     <string name="subscription_update_failed">Unable to update subscription</string>
+    <string name="show_info">Show info</string>
 
     <string name="tab_main">Main</string>
     <string name="tab_subscriptions">Subscriptions</string>
@@ -372,14 +373,14 @@
 
 
     <!-- Preferred player -->
-    <string name="preferred_player_share_menu_title" translatable="false">@string/preferred_player_settings_title</string>
+    <string name="preferred_player_share_menu_title" translatable="false">NewPipe</string>
     <string name="preferred_player_share_menu_dialog_title">Open with preferred player</string>
     <string name="preferred_player_settings_title">Preferred player</string>
 
     <string name="video_player">Video player</string>
     <string name="background_player">Background player</string>
     <string name="popup_player">Popup player</string>
-    <string name="always_ask_player">Always ask</string>
+    <string name="always_ask_open_action">Always ask</string>
     
     <string name="preferred_player_fetcher_notification_title">Getting info…</string>
     <string name="preferred_player_fetcher_notification_message">"The requested content is loading"</string>
@@ -400,4 +401,21 @@
     <string name="playlist_add_stream_success">Added to playlist</string>
     <string name="playlist_thumbnail_change_success">Playlist thumbnail changed</string>
     <string name="playlist_delete_failure">Failed to delete playlist</string>
+
+    <!-- Players -->
+    <string name="caption_none">No Caption</string>
+
+    <string name="resize_fit">FIT</string>
+    <string name="resize_fill">FILL</string>
+    <string name="resize_zoom">ZOOM</string>
+
+    <string name="caption_font_size_settings_title">Caption Font Size</string>
+    <string name="smaller_caption_font_size">Smaller Font</string>
+    <string name="normal_caption_font_size">Normal Font</string>
+    <string name="larger_caption_font_size">Larger Font</string>
+
+    <!-- Debug Only -->
+    <string name="toggle_leak_canary">Monitor Leaks</string>
+    <string name="enable_leak_canary_notice">Memory leak monitoring enabled, app may become unresponsive when heap dumping</string>
+    <string name="disable_leak_canary_notice">Memory leak monitoring disabled</string>
 </resources>

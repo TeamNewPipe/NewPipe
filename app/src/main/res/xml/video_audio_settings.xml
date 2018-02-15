@@ -75,22 +75,16 @@
         android:title="@string/settings_category_player_behavior_title">
 
         <SwitchPreference
-                android:defaultValue="false"
-                android:key="@string/autoplay_always_key"
-                android:summary="@string/autoplay_always_summary"
-                android:title="@string/autoplay_always_title"/>
-
-        <SwitchPreference
             android:defaultValue="false"
-            android:key="@string/autoplay_through_intent_key"
-            android:summary="@string/autoplay_by_calling_app_summary"
-            android:title="@string/autoplay_by_calling_app_title"/>
+            android:key="@string/autoplay_always_key"
+            android:summary="@string/autoplay_always_summary"
+            android:title="@string/autoplay_always_title"/>
 
         <ListPreference
-            android:defaultValue="@string/preferred_player_default"
-            android:entries="@array/preferred_player_description_list"
-            android:entryValues="@array/preferred_player_values_list"
-            android:key="@string/preferred_player_key"
+            android:defaultValue="@string/preferred_open_action_default"
+            android:entries="@array/preferred_open_action_description_list"
+            android:entryValues="@array/preferred_open_action_values_list"
+            android:key="@string/preferred_open_action_key"
             android:summary="%s"
             android:title="@string/preferred_player_settings_title"/>
 

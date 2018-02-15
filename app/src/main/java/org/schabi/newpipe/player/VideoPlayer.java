@@ -29,8 +29,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -41,23 +43,32 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
+import com.google.android.exoplayer2.source.SingleSampleMediaSource;
+import com.google.android.exoplayer2.source.TrackGroup;
+import com.google.android.exoplayer2.source.TrackGroupArray;
+import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.exoplayer2.ui.SubtitleView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
+import org.schabi.newpipe.extractor.Subtitles;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
@@ -65,6 +76,8 @@ import org.schabi.newpipe.util.ListHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.google.android.exoplayer2.C.SELECTION_FLAG_AUTOSELECT;
+import static com.google.android.exoplayer2.C.TIME_UNSET;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -89,6 +102,7 @@ public abstract class VideoPlayer extends BasePlayer
     // Player
     //////////////////////////////////////////////////////////////////////////*/
 
+    protected static final int RENDERER_UNAVAILABLE = -1;
     public static final int DEFAULT_CONTROLS_HIDE_TIME = 2000;  // 2 Seconds
 
     private ArrayList<VideoStream> availableStreams;
@@ -121,9 +135,16 @@ public abstract class VideoPlayer extends BasePlayer
     private TextView playbackEndTime;
     private TextView playbackSpeedTextView;
 
-    private View topControlsRoot;
+    private LinearLayout topControlsRoot;
+    private LinearLayout primaryControlsRoot;
+    private LinearLayout secondaryControlsRoot;
     private TextView qualityTextView;
     private ImageButton fullScreenButton;
+
+    private SubtitleView subtitleView;
+
+    private TextView resizeView;
+    private TextView captionTextView;
 
     private ValueAnimator controlViewAnimator;
     private Handler controlsVisibilityHandler = new Handler();
@@ -134,6 +155,9 @@ public abstract class VideoPlayer extends BasePlayer
 
     private int playbackSpeedPopupMenuGroupId = 79;
     private PopupMenu playbackSpeedPopupMenu;
+
+    private int captionPopupMenuGroupId = 89;
+    private PopupMenu captionPopupMenu;
 
     ///////////////////////////////////////////////////////////////////////////
 
@@ -164,8 +188,21 @@ public abstract class VideoPlayer extends BasePlayer
         this.playbackSpeedTextView = rootView.findViewById(R.id.playbackSpeed);
         this.bottomControlsRoot = rootView.findViewById(R.id.bottomControls);
         this.topControlsRoot = rootView.findViewById(R.id.topControls);
+        this.primaryControlsRoot = rootView.findViewById(R.id.primaryControls);
+        this.secondaryControlsRoot = rootView.findViewById(R.id.secondaryControls);
         this.qualityTextView = rootView.findViewById(R.id.qualityTextView);
         this.fullScreenButton = rootView.findViewById(R.id.fullScreenButton);
+
+        this.subtitleView = rootView.findViewById(R.id.subtitleView);
+        final String captionSizeKey = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.caption_size_key),
+                        context.getString(R.string.caption_size_default));
+        setupSubtitleView(subtitleView, captionSizeKey);
+
+        this.resizeView =  rootView.findViewById(R.id.resizeTextView);
+        resizeView.setText(PlayerHelper.resizeTypeOf(context, aspectRatioFrameLayout.getResizeMode()));
+
+        this.captionTextView = rootView.findViewById(R.id.captionTextView);
 
         //this.aspectRatioFrameLayout.setAspectRatio(16.0f / 9.0f);
 
@@ -175,10 +212,14 @@ public abstract class VideoPlayer extends BasePlayer
 
         this.qualityPopupMenu = new PopupMenu(context, qualityTextView);
         this.playbackSpeedPopupMenu = new PopupMenu(context, playbackSpeedTextView);
+        this.captionPopupMenu = new PopupMenu(context, captionTextView);
 
-        ((ProgressBar) this.loadingPanel.findViewById(R.id.progressBarLoadingPanel)).getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
-
+        ((ProgressBar) this.loadingPanel.findViewById(R.id.progressBarLoadingPanel))
+                .getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
     }
+
+    protected abstract void setupSubtitleView(@NonNull SubtitleView view,
+                                              @NonNull String captionSizeKey);
 
     @Override
     public void initListeners() {
@@ -187,14 +228,22 @@ public abstract class VideoPlayer extends BasePlayer
         playbackSpeedTextView.setOnClickListener(this);
         qualityTextView.setOnClickListener(this);
         fullScreenButton.setOnClickListener(this);
+        captionTextView.setOnClickListener(this);
+        resizeView.setOnClickListener(this);
     }
 
     @Override
     public void initPlayer() {
         super.initPlayer();
+
+        // Setup video view
         simpleExoPlayer.setVideoSurfaceView(surfaceView);
         simpleExoPlayer.addVideoListener(this);
 
+        // Setup subtitle view
+        simpleExoPlayer.addTextOutput(cues -> subtitleView.onCues(cues));
+
+        // Setup audio session with onboard equalizer
         if (Build.VERSION.SDK_INT >= 21) {
             trackSelector.setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context));
         }
@@ -243,6 +292,38 @@ public abstract class VideoPlayer extends BasePlayer
         playbackSpeedPopupMenu.setOnDismissListener(this);
     }
 
+    private void buildCaptionMenu(final List<String> availableLanguages) {
+        if (captionPopupMenu == null) return;
+        captionPopupMenu.getMenu().removeGroup(captionPopupMenuGroupId);
+
+        // Add option for turning off caption
+        MenuItem captionOffItem = captionPopupMenu.getMenu().add(captionPopupMenuGroupId,
+                0, Menu.NONE, R.string.caption_none);
+        captionOffItem.setOnMenuItemClickListener(menuItem -> {
+            final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
+            if (trackSelector != null && textRendererIndex != RENDERER_UNAVAILABLE) {
+                trackSelector.setRendererDisabled(textRendererIndex, true);
+            }
+            return true;
+        });
+
+        // Add all available captions
+        for (int i = 0; i < availableLanguages.size(); i++) {
+            final String captionLanguage = availableLanguages.get(i);
+            MenuItem captionItem = captionPopupMenu.getMenu().add(captionPopupMenuGroupId,
+                    i + 1, Menu.NONE, captionLanguage);
+            captionItem.setOnMenuItemClickListener(menuItem -> {
+                final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
+                if (trackSelector != null && textRendererIndex != RENDERER_UNAVAILABLE) {
+                    trackSelector.setParameters(trackSelector.getParameters()
+                            .withPreferredTextLanguage(captionLanguage));
+                    trackSelector.setRendererDisabled(textRendererIndex, false);
+                }
+                return true;
+            });
+        }
+        captionPopupMenu.setOnDismissListener(this);
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // Playback Listener
     //////////////////////////////////////////////////////////////////////////*/
@@ -257,7 +338,8 @@ public abstract class VideoPlayer extends BasePlayer
         playbackSpeedTextView.setVisibility(View.GONE);
 
         if (info != null) {
-            final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
+            final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
+                    info.video_streams, info.video_only_streams, false);
             availableStreams = new ArrayList<>(videos);
             if (playbackQuality == null) {
                 selectedStreamIndex = getDefaultResolutionIndex(videos);
@@ -285,13 +367,39 @@ public abstract class VideoPlayer extends BasePlayer
         if (index < 0 || index >= videos.size()) return null;
         final VideoStream video = videos.get(index);
 
-        final MediaSource streamSource = buildMediaSource(video.getUrl(), MediaFormat.getSuffixById(video.format));
-        final AudioStream audio = ListHelper.getHighestQualityAudio(info.audio_streams);
-        if (!video.isVideoOnly || audio == null) return streamSource;
+        List<MediaSource> mediaSources = new ArrayList<>();
+        // Create video stream source
+        final MediaSource streamSource = buildMediaSource(video.getUrl(),
+                MediaFormat.getSuffixById(video.getFormatId()));
+        mediaSources.add(streamSource);
 
-        // Merge with audio stream in case if video does not contain audio
-        final MediaSource audioSource = buildMediaSource(audio.getUrl(), MediaFormat.getSuffixById(audio.format));
-        return new MergingMediaSource(streamSource, audioSource);
+        // Create optional audio stream source
+        final AudioStream audio = ListHelper.getHighestQualityAudio(info.audio_streams);
+        if (video.isVideoOnly && audio != null) {
+            // Merge with audio stream in case if video does not contain audio
+            final MediaSource audioSource = buildMediaSource(audio.getUrl(),
+                    MediaFormat.getSuffixById(audio.getFormatId()));
+            mediaSources.add(audioSource);
+        }
+
+        // Create subtitle sources
+        for (final Subtitles subtitle : info.getSubtitles()) {
+            final String mimeType = PlayerHelper.mimeTypesOf(subtitle.getFileType());
+            if (mimeType == null) continue;
+
+            final Format textFormat = Format.createTextSampleFormat(null, mimeType,
+                    SELECTION_FLAG_AUTOSELECT, PlayerHelper.captionLanguageOf(subtitle));
+            final MediaSource textSource = new SingleSampleMediaSource(
+                    Uri.parse(subtitle.getURL()), cacheDataSourceFactory, textFormat, TIME_UNSET);
+            mediaSources.add(textSource);
+        }
+
+        if (mediaSources.size() == 1) {
+            return mediaSources.get(0);
+        } else {
+            return new MergingMediaSource(mediaSources.toArray(
+                    new MediaSource[mediaSources.size()]));
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -370,6 +478,12 @@ public abstract class VideoPlayer extends BasePlayer
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
+    public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
+        super.onTracksChanged(trackGroups, trackSelections);
+        onTextTrackUpdate();
+    }
+
+    @Override
     public void onVideoSizeChanged(int width, int height, int unappliedRotationDegrees, float pixelWidthHeightRatio) {
         if (DEBUG) {
             Log.d(TAG, "onVideoSizeChanged() called with: width / height = [" + width + " / " + height + " = " + (((float) width) / height) + "], unappliedRotationDegrees = [" + unappliedRotationDegrees + "], pixelWidthHeightRatio = [" + pixelWidthHeightRatio + "]");
@@ -380,6 +494,57 @@ public abstract class VideoPlayer extends BasePlayer
     @Override
     public void onRenderedFirstFrame() {
         animateView(surfaceForeground, false, 100);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // ExoPlayer Track Updates
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private void onTextTrackUpdate() {
+        final int textRenderer = getRendererIndex(C.TRACK_TYPE_TEXT);
+
+        if (captionTextView == null) return;
+        if (trackSelector == null || trackSelector.getCurrentMappedTrackInfo() == null ||
+                textRenderer == RENDERER_UNAVAILABLE) {
+            captionTextView.setVisibility(View.GONE);
+            return;
+        }
+
+        final TrackGroupArray textTracks = trackSelector.getCurrentMappedTrackInfo()
+                .getTrackGroups(textRenderer);
+
+        // Extract all loaded languages
+        List<String> availableLanguages = new ArrayList<>(textTracks.length);
+        for (int i = 0; i < textTracks.length; i++) {
+            final TrackGroup textTrack = textTracks.get(i);
+            if (textTrack.length > 0 && textTrack.getFormat(0) != null) {
+                availableLanguages.add(textTrack.getFormat(0).language);
+            }
+        }
+
+        // Normalize mismatching language strings
+        final String preferredLanguage = trackSelector.getParameters().preferredTextLanguage;
+        // Because ExoPlayer normalizes the preferred language string but not the text track
+        // language strings, some preferred language string will have the language name in lowercase
+        String formattedPreferredLanguage = null;
+        if (preferredLanguage != null) {
+            for (final String language : availableLanguages) {
+                if (language.compareToIgnoreCase(preferredLanguage) == 0) {
+                    formattedPreferredLanguage = language;
+                    break;
+                }
+            }
+        }
+
+        // Build UI
+        buildCaptionMenu(availableLanguages);
+        if (trackSelector.getRendererDisabled(textRenderer) || formattedPreferredLanguage == null ||
+                !availableLanguages.contains(formattedPreferredLanguage)) {
+            captionTextView.setText(R.string.caption_none);
+        } else {
+            captionTextView.setText(formattedPreferredLanguage);
+        }
+        captionTextView.setVisibility(availableLanguages.isEmpty() ? View.GONE : View.VISIBLE);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -460,6 +625,10 @@ public abstract class VideoPlayer extends BasePlayer
             onQualitySelectorClicked();
         } else if (v.getId() == playbackSpeedTextView.getId()) {
             onPlaybackSpeedClicked();
+        } else if (v.getId() == resizeView.getId()) {
+            onResizeClicked();
+        } else if (v.getId() == captionTextView.getId()) {
+            onCaptionClicked();
         }
     }
 
@@ -525,6 +694,23 @@ public abstract class VideoPlayer extends BasePlayer
         showControls(300);
     }
 
+    private void onCaptionClicked() {
+        if (DEBUG) Log.d(TAG, "onCaptionClicked() called");
+        captionPopupMenu.show();
+        isSomePopupMenuVisible = true;
+        showControls(300);
+    }
+
+    private void onResizeClicked() {
+        if (getAspectRatioFrameLayout() != null && context != null) {
+            final int currentResizeMode = getAspectRatioFrameLayout().getResizeMode();
+            final int newResizeMode = nextResizeMode(currentResizeMode);
+            getAspectRatioFrameLayout().setResizeMode(newResizeMode);
+            getResizeView().setText(PlayerHelper.resizeTypeOf(context, newResizeMode));
+        }
+    }
+
+    protected abstract int nextResizeMode(@AspectRatioFrameLayout.ResizeMode final int resizeMode);
     /*//////////////////////////////////////////////////////////////////////////
     // SeekBar Listener
     //////////////////////////////////////////////////////////////////////////*/
@@ -566,16 +752,16 @@ public abstract class VideoPlayer extends BasePlayer
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    public int getVideoRendererIndex() {
-        if (simpleExoPlayer == null) return -1;
+    public int getRendererIndex(final int trackIndex) {
+        if (simpleExoPlayer == null) return RENDERER_UNAVAILABLE;
 
         for (int t = 0; t < simpleExoPlayer.getRendererCount(); t++) {
-            if (simpleExoPlayer.getRendererType(t) == C.TRACK_TYPE_VIDEO) {
+            if (simpleExoPlayer.getRendererType(t) == trackIndex) {
                 return t;
             }
         }
 
-        return -1;
+        return RENDERER_UNAVAILABLE;
     }
 
     public boolean isControlsVisible() {
@@ -742,8 +928,16 @@ public abstract class VideoPlayer extends BasePlayer
         return playbackEndTime;
     }
 
-    public View getTopControlsRoot() {
+    public LinearLayout getTopControls() {
         return topControlsRoot;
+    }
+
+    public LinearLayout getPrimaryControls() {
+        return primaryControlsRoot;
+    }
+
+    public LinearLayout getSecondaryControls() {
+        return secondaryControlsRoot;
     }
 
     public TextView getQualityTextView() {
@@ -768,4 +962,15 @@ public abstract class VideoPlayer extends BasePlayer
         return currentDisplaySeek;
     }
 
+    public SubtitleView getSubtitleView() {
+        return subtitleView;
+    }
+
+    public TextView getResizeView() {
+        return resizeView;
+    }
+
+    public TextView getCaptionTextView() {
+        return captionTextView;
+    }
 }

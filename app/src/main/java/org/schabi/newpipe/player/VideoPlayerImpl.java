@@ -16,6 +16,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.View;
@@ -24,6 +25,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.RemoteViews;
@@ -34,6 +36,8 @@ import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.exoplayer2.ui.SubtitleView;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
@@ -42,7 +46,6 @@ import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
-import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.event.PlayerGestureListener;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
@@ -57,8 +60,6 @@ import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.List;
 
 import static org.schabi.newpipe.player.MainPlayerService.*;
@@ -67,7 +68,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.isUsingOldPlayer;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
-public class VideoPlayerImpl extends VideoPlayer {
+public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeListener {
     private TextView titleTextView;
     private TextView channelTextView;
     private TextView volumeTextView;
@@ -77,7 +78,6 @@ public class VideoPlayerImpl extends VideoPlayer {
     private ImageButton repeatButton;
     private ImageButton shuffleButton;
     private ImageButton screenRotationButton;
-    private Space spaceBeforeFullscreenButton;
 
     private ImageButton playPauseButton;
     private ImageButton playPreviousButton;
@@ -96,8 +96,6 @@ public class VideoPlayerImpl extends VideoPlayer {
     private boolean shouldUpdateOnProgress;
 
     private ImageButton moreOptionsButton;
-    public int moreOptionsPopupMenuGroupId = 89;
-    public PopupMenu moreOptionsPopupMenu;
 
     private Bitmap cachedImage;
 
@@ -112,6 +110,7 @@ public class VideoPlayerImpl extends VideoPlayer {
     static final String POPUP_SAVED_WIDTH = "popup_saved_width";
     static final String POPUP_SAVED_X = "popup_saved_x";
     static final String POPUP_SAVED_Y = "popup_saved_y";
+    private static final int MINIMUM_SHOW_EXTRA_WIDTH_DP = 300;
     private float screenWidth, screenHeight;
     private float popupWidth, popupHeight;
     private float minimumWidth, minimumHeight;
@@ -176,13 +175,7 @@ public class VideoPlayerImpl extends VideoPlayer {
         this.playPreviousButton = rootView.findViewById(R.id.playPreviousButton);
         this.playNextButton = rootView.findViewById(R.id.playNextButton);
         this.moreOptionsButton = rootView.findViewById(R.id.moreOptionsButton);
-        this.moreOptionsPopupMenu = new PopupMenu(context, moreOptionsButton);
-        this.moreOptionsPopupMenu.getMenuInflater().inflate(R.menu.menu_videooptions, moreOptionsPopupMenu.getMenu());
         this.resizingIndicator = rootView.findViewById(R.id.resizing_indicator);
-        this.spaceBeforeFullscreenButton = rootView.findViewById(R.id.spaceBeforeFullscreenButton);
-
-        titleTextView.setSelected(true);
-        channelTextView.setSelected(true);
 
         getRootView().setKeepScreenOn(true);
     }
@@ -192,16 +185,24 @@ public class VideoPlayerImpl extends VideoPlayer {
         if (popupPlayerSelected()) {
             getFullScreenButton().setVisibility(View.VISIBLE);
             screenRotationButton.setVisibility(View.GONE);
-            getRootView().findViewById(R.id.titleAndChannel).setVisibility(View.GONE);
+            getRootView().findViewById(R.id.metadataView).setVisibility(View.GONE);
             getQualityTextView().setVisibility(View.VISIBLE);
-            spaceBeforeFullscreenButton.setVisibility(View.VISIBLE);
             queueButton.setVisibility(View.GONE);
+            moreOptionsButton.setVisibility(View.GONE);
+            getTopControls().setOrientation(LinearLayout.HORIZONTAL);
+            getPrimaryControls().getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
+            getSecondaryControls().setVisibility(View.VISIBLE);
         } else {
             getFullScreenButton().setVisibility(View.GONE);
             screenRotationButton.setVisibility(globalOrientationLocked? View.VISIBLE : View.GONE);
-            getRootView().findViewById(R.id.titleAndChannel).setVisibility(View.VISIBLE);
+            getRootView().findViewById(R.id.metadataView).setVisibility(View.VISIBLE);
             getQualityTextView().setVisibility(isInFullscreen() ? View.VISIBLE : View.INVISIBLE);
-            spaceBeforeFullscreenButton.setVisibility(View.GONE);
+            moreOptionsButton.setVisibility(View.VISIBLE);
+            getTopControls().setOrientation(LinearLayout.VERTICAL);
+            getPrimaryControls().getLayoutParams().width = LinearLayout.LayoutParams.MATCH_PARENT;
+            getSecondaryControls().setVisibility(View.GONE);
+            moreOptionsButton.setImageDrawable(service.getResources().getDrawable(
+                    R.drawable.ic_expand_more_white_24dp));
         }
     }
 
@@ -212,6 +213,7 @@ public class VideoPlayerImpl extends VideoPlayer {
         PlayerGestureListener listener = new PlayerGestureListener(this, service);
         gestureDetector = new GestureDetector(context, listener);
         getRootView().setOnTouchListener(listener);
+        getRootView().addOnLayoutChangeListener(this);
 
         queueButton.setOnClickListener(this);
         repeatButton.setOnClickListener(this);
@@ -231,6 +233,59 @@ public class VideoPlayerImpl extends VideoPlayer {
 
         ViewGroup parent = (ViewGroup) getRootView().getParent();
         return (Activity) parent.getContext();
+    }
+
+    @Override
+    protected void setupSubtitleView(@NonNull SubtitleView view,
+                                     @NonNull String captionSizeKey) {
+        if (popupPlayerSelected()) {
+            float captionRatio = SubtitleView.DEFAULT_TEXT_SIZE_FRACTION;
+            if (captionSizeKey.equals(service.getString(R.string.smaller_caption_size_key))) {
+                captionRatio *= 0.9;
+            } else if (captionSizeKey.equals(service.getString(R.string.larger_caption_size_key))) {
+                captionRatio *= 1.1;
+            }
+            view.setFractionalTextSize(captionRatio);
+        } else {
+            final float captionRatioInverse;
+            if (captionSizeKey.equals(service.getString(R.string.smaller_caption_size_key))) {
+                captionRatioInverse = 22f;
+            }
+            else if (captionSizeKey.equals(service.getString(R.string.larger_caption_size_key))) {
+                captionRatioInverse = 18f;
+            }
+            else {
+                captionRatioInverse = 20f;
+            }
+
+            final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+            final int minimumLength = Math.min(metrics.heightPixels, metrics.widthPixels);
+            view.setFixedTextSize(TypedValue.COMPLEX_UNIT_PX,
+                                  (float) minimumLength / captionRatioInverse);
+        }
+    }
+
+    @Override
+    public void onLayoutChange(final View view, int left, int top, int right, int bottom,
+                               int oldLeft, int oldTop, int oldRight, int oldBottom) {
+        if (!popupPlayerSelected())
+            return;
+
+        float widthDp = Math.abs(right - left) / service.getResources().getDisplayMetrics().density;
+        final int visibility = widthDp > MINIMUM_SHOW_EXTRA_WIDTH_DP ? View.VISIBLE : View.GONE;
+        getSecondaryControls().setVisibility(visibility);
+    }
+
+    @Override
+    protected int nextResizeMode(int currentResizeMode) {
+        switch (currentResizeMode) {
+            case AspectRatioFrameLayout.RESIZE_MODE_FIT:
+                return AspectRatioFrameLayout.RESIZE_MODE_FILL;
+            case AspectRatioFrameLayout.RESIZE_MODE_FILL:
+                return AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
+            default:
+                return AspectRatioFrameLayout.RESIZE_MODE_FIT;
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -404,12 +459,15 @@ public class VideoPlayerImpl extends VideoPlayer {
         } else if (v.getId() == queueButton.getId()) {
             onQueueClicked();
             return;
+
         } else if (v.getId() == repeatButton.getId()) {
             onRepeatClicked();
             return;
+
         } else if (v.getId() == shuffleButton.getId()) {
             onShuffleClicked();
             return;
+
         } else if (v.getId() == moreOptionsButton.getId()) {
             onMoreOptionsClicked();
         }
@@ -451,27 +509,16 @@ public class VideoPlayerImpl extends VideoPlayer {
         if (DEBUG)
             Log.d(TAG, "onMoreOptionsClicked() called");
 
-        buildMoreOptionsMenu();
-
-        try {
-            Field[] fields = moreOptionsPopupMenu.getClass().getDeclaredFields();
-            for (Field field : fields) {
-                if ("mPopup".equals(field.getName())) {
-                    field.setAccessible(true);
-                    Object menuPopupHelper = field.get(moreOptionsPopupMenu);
-                    Class<?> classPopupHelper = Class.forName(menuPopupHelper
-                            .getClass().getName());
-                    Method setForceIcons = classPopupHelper.getMethod(
-                            "setForceShowIcon", boolean.class);
-                    setForceIcons.invoke(menuPopupHelper, true);
-                    break;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        // Don't use animateView. It gives unexpected result when switching from main to popup
+        if (getSecondaryControls().getVisibility() == View.VISIBLE) {
+            moreOptionsButton.setImageDrawable(service.getResources().getDrawable(
+                    R.drawable.ic_expand_more_white_24dp));
+            getSecondaryControls().setVisibility(View.GONE);
+        } else {
+            moreOptionsButton.setImageDrawable(service.getResources().getDrawable(
+                    R.drawable.ic_expand_less_white_24dp));
+            getSecondaryControls().setVisibility(View.VISIBLE);
         }
-        moreOptionsPopupMenu.show();
-        isSomePopupMenuVisible = true;
         showControls(300);
     }
 
@@ -872,26 +919,6 @@ public class VideoPlayerImpl extends VideoPlayer {
         screenRotationButton.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
-    private void buildMoreOptionsMenu() {
-        if (moreOptionsPopupMenu == null)
-            return;
-
-        moreOptionsPopupMenu.setOnMenuItemClickListener(menuItem -> {
-            switch (menuItem.getItemId()) {
-                case R.id.toggleOrientation:
-                    onScreenRotationClicked();
-                    break;
-                case R.id.switchPopup:
-                    onFullScreenButtonClicked();
-                    break;
-                case R.id.switchBackground:
-                    onPlayBackgroundButtonClicked();
-                    break;
-            }
-            return false;
-        });
-    }
-
     private void buildQueue() {
         queueLayout = getRootView().findViewById(R.id.playQueuePanel);
 
@@ -1080,6 +1107,9 @@ public class VideoPlayerImpl extends VideoPlayer {
     //////////////////////////////////////////////////////////////////////////*/
 
     public void updateViewLayout(View view, WindowManager.LayoutParams windowLayoutParams) {
+        if (view.getParent() == null)
+            return;
+
         windowManager.updateViewLayout(view, windowLayoutParams);
     }
 

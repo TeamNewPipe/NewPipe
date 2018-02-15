@@ -21,15 +21,20 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"/>
 
-
         <View
             android:id="@+id/surfaceForeground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/black"/>
 
-    </com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
+        <com.google.android.exoplayer2.ui.SubtitleView
+                android:id="@+id/subtitleView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"/>
 
+    </com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
 
     <ImageView
         android:id="@+id/endScreen"
@@ -125,160 +130,222 @@
         android:visibility="gone"
         tools:visibility="visible">
 
+        <!-- All top controls in this layout -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="false">
+            android:fitsSystemWindows="false"
+            android:background="@drawable/player_top_controls_bg">
 
             <LinearLayout
-                android:id="@+id/topControls"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:background="@drawable/player_top_controls_bg"
-                android:baselineAligned="false"
-                android:gravity="top"
-                android:paddingLeft="2dp"
-                android:paddingRight="6dp"
-                android:paddingTop="4dp"
-                android:orientation="horizontal"
-                tools:ignore="RtlHardcoded">
+                    android:id="@+id/topControls"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:baselineAligned="false"
+                    android:layout_toLeftOf="@+id/fullScreenButton"
+                    android:layout_toStartOf="@id/fullScreenButton">
 
                 <LinearLayout
-                        android:id="@+id/titleAndChannel"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/primaryControls"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:baselineAligned="false"
                         android:gravity="top"
-                        android:orientation="vertical"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        tools:ignore="RtlHardcoded"
-                        android:layout_weight="1">
+                        android:paddingTop="4dp"
+                        android:paddingBottom="7dp"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="6dp"
+                        tools:ignore="RtlHardcoded">
 
-                    <TextView
-                            android:id="@+id/titleTextView"
+                    <LinearLayout
+                            android:id="@+id/metadataView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:ellipsize="marquee"
-                            android:fadingEdge="horizontal"
-                            android:marqueeRepeatLimit="marquee_forever"
-                            android:scrollHorizontally="true"
-                            android:singleLine="true"
-                            android:textColor="@android:color/white"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:clickable="true"
-                            android:focusable="true"
+                            android:gravity="top"
+                            android:orientation="vertical"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp"
                             tools:ignore="RtlHardcoded"
-                            tools:text="The Video Title LONG very LONVideo Title LONG very LONG"/>
+                            android:layout_weight="1">
+
+                        <TextView
+                                android:id="@+id/titleTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="marquee"
+                                android:fadingEdge="horizontal"
+                                android:marqueeRepeatLimit="marquee_forever"
+                                android:scrollHorizontally="true"
+                                android:singleLine="true"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:clickable="true"
+                                android:focusable="true"
+                                tools:ignore="RtlHardcoded"
+                                tools:text="The Video Title LONG very LONVideo Title LONG very LONG"/>
+
+                        <TextView
+                                android:id="@+id/channelTextView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="marquee"
+                                android:fadingEdge="horizontal"
+                                android:marqueeRepeatLimit="marquee_forever"
+                                android:scrollHorizontally="true"
+                                android:singleLine="true"
+                                android:textColor="@android:color/white"
+                                android:textSize="12sp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                tools:text="The Video Artist  LONG very LONG very Long"/>
+                    </LinearLayout>
 
                     <TextView
-                            android:id="@+id/channelTextView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="marquee"
-                            android:fadingEdge="horizontal"
-                            android:marqueeRepeatLimit="marquee_forever"
-                            android:scrollHorizontally="true"
-                            android:singleLine="true"
+                            android:id="@+id/qualityTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:gravity="center"
+                            android:minWidth="50dp"
+                            android:text="720p"
                             android:textColor="@android:color/white"
-                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:background="?attr/selectableItemBackground"
+                            android:visibility="gone"
+                            tools:ignore="HardcodedText,RtlHardcoded"/>
+
+                    <TextView
+                            android:id="@+id/playbackSpeed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="2dp"
+                            android:gravity="center"
+                            android:minHeight="35dp"
+                            android:minWidth="40dp"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:background="?attr/selectableItemBackground"
+                            tools:ignore="RtlHardcoded,RtlSymmetry"
+                            tools:text="1x"/>
+
+                    <ImageButton
+                            android:id="@+id/queueButton"
+                            android:layout_width="30dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
                             android:clickable="true"
                             android:focusable="true"
-                            tools:text="The Video Artist  LONG very LONG very Long"/>
+                            android:padding="5dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/list"
+                            android:background="?attr/selectableItemBackground"
+                            tools:ignore="ContentDescription,RtlHardcoded"
+                            android:visibility="gone" />
+
+                    <ImageButton
+                            android:id="@+id/moreOptionsButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:padding="8dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_expand_more_white_24dp"
+                            android:background="?attr/selectableItemBackground"
+                            tools:ignore="ContentDescription,RtlHardcoded"/>
+
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/qualityTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                    android:gravity="center"
-                    android:minWidth="50dp"
-                    android:text="720p"
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                    tools:ignore="HardcodedText,RtlHardcoded"/>
-
-                <TextView
-                    android:id="@+id/playbackSpeed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="2dp"
-                    android:gravity="center"
-                    android:minHeight="35dp"
-                    android:minWidth="40dp"
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold"
-                    tools:ignore="RtlHardcoded,RtlSymmetry"
-                    tools:text="1x"/>
-
-                <ImageButton
-                    android:id="@+id/screenRotationButton"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                    android:background="#00ffffff"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:padding="8dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_screen_rotation_white"
-                    tools:ignore="ContentDescription,RtlHardcoded"/>
-
-                <ImageButton
-                    android:id="@+id/queueButton"
-                    android:layout_width="30dp"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                    android:background="#00ffffff"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:padding="5dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/list"
-                    tools:ignore="ContentDescription,RtlHardcoded"
-                    android:visibility="gone" />
-
-                <Space
-                        android:id="@+id/spaceBeforeFullscreenButton"
+                <LinearLayout
+                        android:id="@+id/secondaryControls"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"/>
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="7dp"
+                        android:visibility="gone"
+                        tools:ignore="RtlHardcoded"
+                        tools:visibility="visible">
 
-                <ImageButton
+                    <TextView
+                            android:id="@+id/resizeTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="8dp"
+                            android:gravity="center"
+                            android:minHeight="35dp"
+                            android:minWidth="40dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:background="?attr/selectableItemBackground"
+                            tools:ignore="HardcodedText,RtlHardcoded"
+                            tools:text="FIT"/>
+
+                    <TextView
+                            android:id="@+id/captionTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:gravity="center|left"
+                            android:minHeight="35dp"
+                            android:minWidth="50dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:background="?attr/selectableItemBackground"
+                            tools:ignore="RelativeOverlap,RtlHardcoded"
+                            tools:text="English"/>
+
+                    <Space
+                            android:id="@+id/spaceBeforeButton"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="3"/>
+
+                    <ImageButton
+                            android:id="@+id/screenRotationButton"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:padding="6dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_screen_rotation_white"
+                            android:background="?attr/selectableItemBackground"
+                            android:contentDescription="@string/toggle_orientation"
+                            tools:ignore="RtlHardcoded"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageButton
                     android:id="@+id/fullScreenButton"
-                    android:layout_width="30dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="end"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:padding="4dp"
+                    android:layout_alignParentRight="true"
                     android:background="#00ffffff"
                     android:clickable="true"
                     android:focusable="true"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_fullscreen_white"
-                    tools:ignore="ContentDescription,RtlHardcoded"/>
-
-                <ImageButton
-                    android:id="@+id/moreOptionsButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginLeft="2dp"
-					android:padding="5dp"
-                    android:background="#00ffffff"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_more_vert_white_24dp"
+                    tools:ignore="ContentDescription,RtlHardcoded"
                     android:visibility="gone"
-                    tools:ignore="ContentDescription,RtlHardcoded"/>
-
-            </LinearLayout>
+                    tools:visibility="visible"/>
 
             <LinearLayout
                 android:id="@+id/bottomControls"
@@ -297,7 +364,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:minHeight="40dp"
+                    android:minHeight="30dp"
                     android:text="-:--:--"
                     android:textColor="@android:color/white"
                     tools:ignore="HardcodedText"
@@ -420,61 +487,61 @@
             tools:ignore="RtlHardcoded">
 
         <TextView
-                android:id="@+id/volumeTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="20dp"
-                android:background="#64000000"
-                android:paddingBottom="10dp"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                android:paddingTop="10dp"
-                android:textColor="@android:color/white"
-                android:textSize="35sp"
-                android:visibility="gone"
-                tools:ignore="RtlHardcoded"
-                tools:text="Volume 0"
-                tools:visibility="visible"/>
+            android:id="@+id/volumeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:background="#64000000"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="10dp"
+            android:textColor="@android:color/white"
+            android:textSize="35sp"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded"
+            tools:text="Volume 0"
+            tools:visibility="visible" />
 
         <TextView
-                android:id="@+id/brightnessTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
-                android:layout_marginRight="20dp"
-                android:background="#64000000"
-                android:paddingBottom="10dp"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                android:paddingTop="10dp"
-                android:textColor="@android:color/white"
-                android:textSize="35sp"
-                android:visibility="gone"
-                tools:ignore="RtlHardcoded"
-                tools:text="Brightness  0"
-                tools:visibility="visible"/>
+            android:id="@+id/brightnessTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="20dp"
+            android:background="#64000000"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="10dp"
+            android:textColor="@android:color/white"
+            android:textSize="35sp"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded"
+            tools:text="Brightness  0"
+            tools:visibility="visible" />
 
         <TextView
-                android:id="@+id/currentDisplaySeek"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginBottom="58dp"
-                android:background="#64000000"
-                android:paddingBottom="10dp"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                android:paddingTop="10dp"
-                android:textColor="@android:color/white"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                android:visibility="gone"
-                tools:ignore="RtlHardcoded"
-                tools:text="1:06:29"
-                tools:visibility="visible"/>
+            android:id="@+id/currentDisplaySeek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="58dp"
+            android:background="#64000000"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="10dp"
+            android:textColor="@android:color/white"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded"
+            tools:text="1:06:29"
+            tools:visibility="visible" />
     </RelativeLayout>
 
     <TextView
@@ -492,5 +559,4 @@
             android:visibility="gone"
             tools:ignore="RtlHardcoded"
             tools:visibility="gone"/>
-
 </RelativeLayout>

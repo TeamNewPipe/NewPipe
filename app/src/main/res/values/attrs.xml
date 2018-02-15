@@ -3,6 +3,7 @@
     <!--TODO: preffix these with "ic_"-->
     <attr name="thumbs_up" format="reference"/>
     <attr name="thumbs_down" format="reference"/>
+    <attr name="info" format="reference"/>
     <attr name="audio" format="reference"/>
     <attr name="download" format="reference"/>
     <attr name="share" format="reference"/>
