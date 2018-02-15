@@ -395,8 +395,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
                 intent.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
                 intent.putExtra(Constants.KEY_URL, getVideoUrl());
                 intent.putExtra(Constants.KEY_TITLE, getVideoTitle());
-                intent.putExtra(BasePlayer.AUTO_PLAY, PreferenceManager.getDefaultSharedPreferences(context)
-                        .getBoolean(context.getString(R.string.autoplay_through_intent_key), false));
+                intent.putExtra(BasePlayer.AUTO_PLAY, true);
             } else {
                 intent = new Intent(service, PlayVideoActivity.class)
                         .putExtra(PlayVideoActivity.VIDEO_TITLE, getVideoTitle())
@@ -527,6 +526,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
             Log.d(TAG, "onScreenRotationClicked() called");
 
         service.toggleOrientation();
+        onMoreOptionsClicked();
         showControlsThenHide();
     }
 

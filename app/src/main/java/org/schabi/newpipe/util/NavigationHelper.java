@@ -465,8 +465,7 @@ public class NavigationHelper {
 
         switch (linkType) {
             case STREAM:
-                rIntent.putExtra(BasePlayer.AUTO_PLAY, PreferenceManager.getDefaultSharedPreferences(context)
-                        .getBoolean(context.getString(R.string.autoplay_through_intent_key), false));
+                rIntent.putExtra(BasePlayer.AUTO_PLAY, true);
                 break;
         }
 

@@ -481,7 +481,7 @@ public class RouterActivity extends AppCompatActivity {
         private void openMainPlayer(PlayQueue playQueue, Choice choice) {
             Intent intent = NavigationHelper.getPlayerIntent(this, MainActivity.class, playQueue);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
+            intent.putExtra(Constants.KEY_LINK_TYPE, choice.linkType);
             intent.putExtra(Constants.KEY_URL, choice.url);
             intent.putExtra(Constants.KEY_TITLE, "");
             intent.putExtra(BasePlayer.AUTO_PLAY, true);
