@@ -293,4 +293,6 @@ odpiranje v pojavnem načinu</string>
     <string name="play_queue_audio_settings">Nastavitve zvoka</string>
     <string name="donation_title">Donacija</string>
     <string name="website_title">Spletišče</string>
+    <string name="service_title">Storitev</string>
+    <string name="invalid_url_toast">Neveljaven naslov URL</string>
     </resources>
