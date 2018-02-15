@@ -268,12 +268,17 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
     @Override
     public void onLayoutChange(final View view, int left, int top, int right, int bottom,
                                int oldLeft, int oldTop, int oldRight, int oldBottom) {
-        if (!popupPlayerSelected())
-            return;
-
-        float widthDp = Math.abs(right - left) / service.getResources().getDisplayMetrics().density;
-        final int visibility = widthDp > MINIMUM_SHOW_EXTRA_WIDTH_DP ? View.VISIBLE : View.GONE;
-        getSecondaryControls().setVisibility(visibility);
+        if (popupPlayerSelected()) {
+            float widthDp = Math.abs(right - left) / service.getResources().getDisplayMetrics().density;
+            final int visibility = widthDp > MINIMUM_SHOW_EXTRA_WIDTH_DP ? View.VISIBLE : View.GONE;
+            getSecondaryControls().setVisibility(visibility);
+        }
+        else if (videoPlayerSelected()
+                && !isInFullscreen()
+                && getAspectRatioFrameLayout().getMeasuredHeight() > service.getResources().getDisplayMetrics().heightPixels * 0.8) {
+            // Resize mode is ZOOM probably. In this mode video will grow down and it will be weird. So let's open it in fullscreen
+            onFullScreenButtonClicked();
+        }
     }
 
     @Override
@@ -282,7 +287,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
             case AspectRatioFrameLayout.RESIZE_MODE_FIT:
                 return AspectRatioFrameLayout.RESIZE_MODE_FILL;
             case AspectRatioFrameLayout.RESIZE_MODE_FILL:
-                return AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
+                return videoPlayerSelected()? AspectRatioFrameLayout.RESIZE_MODE_ZOOM : AspectRatioFrameLayout.RESIZE_MODE_FIT;
             default:
                 return AspectRatioFrameLayout.RESIZE_MODE_FIT;
         }
@@ -411,6 +416,10 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
             playerInFullscreenNow(!isInFullscreen());
             getQualityTextView().setVisibility(isInFullscreen() ? View.VISIBLE : View.GONE);
             fragmentListener.onFullScreenButtonClicked(isInFullscreen());
+
+            // When user presses back button in landscape mode and in fullscreen and uses ZOOM mode a video can be larger than screen. Prevent it like this
+            if (getAspectRatioFrameLayout().getResizeMode() == AspectRatioFrameLayout.RESIZE_MODE_ZOOM && !isInFullscreen() && service.isLandScape())
+                onResizeClicked();
         }
 
     }
@@ -1095,6 +1104,9 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
 
         service.removeViewFromParent();
         windowManager.addView(service.getView(), windowLayoutParams);
+
+        if (getAspectRatioFrameLayout().getResizeMode() == AspectRatioFrameLayout.RESIZE_MODE_ZOOM)
+            onResizeClicked();
     }
 
     private void initVideoPlayer() {

@@ -701,7 +701,7 @@ public abstract class VideoPlayer extends BasePlayer
         showControls(300);
     }
 
-    private void onResizeClicked() {
+    protected void onResizeClicked() {
         if (getAspectRatioFrameLayout() != null && context != null) {
             final int currentResizeMode = getAspectRatioFrameLayout().getResizeMode();
             final int newResizeMode = nextResizeMode(currentResizeMode);
