@@ -31,6 +31,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -106,7 +107,6 @@ public class VideoDetailFragment
     // Amount of videos to show on start
     private static final int INITIAL_RELATED_VIDEOS = 8;
 
-    private ActionBarHandler actionBarHandler;
     private ArrayList<VideoStream> sortedStreamVideosList;
 
     private InfoItemBuilder infoItemBuilder = null;
@@ -131,9 +131,12 @@ public class VideoDetailFragment
     private Disposable currentWorker;
     private CompositeDisposable disposables = new CompositeDisposable();
 
+    private int selectedVideoStream = -1;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
+    private Menu menu;
 
     private Spinner spinnerToolbar;
 
@@ -173,6 +176,7 @@ public class VideoDetailFragment
     private LinearLayout relatedStreamRootLayout;
     private LinearLayout relatedStreamsView;
     private ImageButton relatedStreamExpandButton;
+
 
     /*////////////////////////////////////////////////////////////////////////*/
 
@@ -215,12 +219,12 @@ public class VideoDetailFragment
         if (updateFlags != 0) {
             if (!isLoading.get() && currentInfo != null) {
                 if ((updateFlags & RELATED_STREAMS_UPDATE_FLAG) != 0) initRelatedVideos(currentInfo);
-                if ((updateFlags & RESOLUTIONS_MENU_UPDATE_FLAG) != 0) setupActionBarHandler(currentInfo);
+                if ((updateFlags & RESOLUTIONS_MENU_UPDATE_FLAG) != 0) setupActionBar(currentInfo);
             }
 
             if ((updateFlags & TOOLBAR_ITEMS_UPDATE_FLAG) != 0
-                    && actionBarHandler != null) {
-                actionBarHandler.updateItemsVisibility();
+                    && menu != null) {
+                updateMenuItemVisibility();
             }
             updateFlags = 0;
         }
@@ -357,7 +361,7 @@ public class VideoDetailFragment
                     DownloadDialog downloadDialog =
                             DownloadDialog.newInstance(currentInfo,
                                     sortedStreamVideosList,
-                                    actionBarHandler.getSelectedVideoStream());
+                                    selectedVideoStream);
                     downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
                 } catch (Exception e) {
                     Toast.makeText(activity,
@@ -499,7 +503,6 @@ public class VideoDetailFragment
 
         relatedStreamExpandButton = rootView.findViewById(R.id.detail_related_streams_expand);
 
-        actionBarHandler = new ActionBarHandler(activity);
         infoItemBuilder = new InfoItemBuilder(activity);
         setHeightThumbnail();
     }
@@ -644,7 +647,15 @@ public class VideoDetailFragment
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        actionBarHandler.setupMenu(menu, inflater);
+        this.menu = menu;
+
+        // CAUTION set item properties programmatically otherwise it would not be accepted by
+        // appcompat itemsinflater.inflate(R.menu.videoitem_detail, menu);
+
+        inflater.inflate(R.menu.video_detail_menu, menu);
+
+        updateMenuItemVisibility();
+
         ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(true);
@@ -652,10 +663,47 @@ public class VideoDetailFragment
         }
     }
 
+    private void updateMenuItemVisibility() {
+
+        // show kodi if set in settings
+        menu.findItem(R.id.action_play_with_kodi).setVisible(
+                PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(
+                        activity.getString(R.string.show_play_with_kodi_key), false));
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return (!isLoading.get() && actionBarHandler.onItemSelected(item))
-                || super.onOptionsItemSelected(item);
+        if(isLoading.get()) {
+            // if is still loading block menu
+            return true;
+        }
+
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.menu_item_share: {
+                if(currentInfo != null) {
+                    shareUrl(currentInfo.name, url);
+                } else {
+                    shareUrl(url, url);
+                }
+                return true;
+            }
+            case R.id.menu_item_openInBrowser: {
+                openUrlInBrowser(url);
+                return true;
+            }
+            case R.id.action_play_with_kodi:
+                try {
+                    NavigationHelper.playWithKore(activity, Uri.parse(
+                            url.replace("https", "http")));
+                } catch (Exception e) {
+                    if(DEBUG) Log.i(TAG, "Failed to start kore", e);
+                    showInstallKoreDialog(activity);
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private static void showInstallKoreDialog(final Context context) {
@@ -667,23 +715,31 @@ public class VideoDetailFragment
         builder.create().show();
     }
 
-    private void setupActionBarHandler(final StreamInfo info) {
+    private void setupActionBarOnError(final String url) {
+        if (DEBUG) Log.d(TAG, "setupActionBarHandlerOnError() called with: url = [" + url + "]");
+        Log.e("-----", "missing code");
+    }
+
+    private void setupActionBar(final StreamInfo info) {
         if (DEBUG) Log.d(TAG, "setupActionBarHandler() called with: info = [" + info + "]");
         sortedStreamVideosList = new ArrayList<>(ListHelper.getSortedStreamVideosList(
                 activity, info.getVideoStreams(), info.getVideoOnlyStreams(), false));
-        actionBarHandler.setupStreamList(sortedStreamVideosList, spinnerToolbar);
-        actionBarHandler.setOnShareListener(selectedStreamId -> shareUrl(info.name, info.url));
 
-        actionBarHandler.setOnOpenInBrowserListener((int selectedStreamId)->
-                openUrlInBrowser(info.getUrl()));
+        selectedVideoStream = ListHelper.getDefaultResolutionIndex(activity, sortedStreamVideosList);
 
-        actionBarHandler.setOnPlayWithKodiListener((int selectedStreamId) -> {
-            try {
-                NavigationHelper.playWithKore(activity, Uri.parse(
-                        info.getUrl().replace("https", "http")));
-            } catch (Exception e) {
-                if(DEBUG) Log.i(TAG, "Failed to start kore", e);
-                showInstallKoreDialog(activity);
+        boolean isExternalPlayerEnabled = PreferenceManager.getDefaultSharedPreferences(activity)
+                .getBoolean(activity.getString(R.string.use_external_video_player_key), false);
+        spinnerToolbar.setAdapter(new SpinnerToolbarAdapter(activity, sortedStreamVideosList,
+                isExternalPlayerEnabled));
+        spinnerToolbar.setSelection(selectedVideoStream);
+        spinnerToolbar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedVideoStream = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
 
@@ -899,7 +955,7 @@ public class VideoDetailFragment
     }
 
     private VideoStream getSelectedVideoStream() {
-        return sortedStreamVideosList.get(actionBarHandler.getSelectedVideoStream());
+        return sortedStreamVideosList.get(selectedVideoStream);
     }
 
     private void prepareDescription(final String descriptionHtml) {
@@ -1119,7 +1175,7 @@ public class VideoDetailFragment
         prepareDescription(info.getDescription());
 
         animateView(spinnerToolbar, true, 500);
-        setupActionBarHandler(info);
+        setupActionBar(info);
         initThumbnailViews(info);
         initRelatedVideos(info);
         if (wasRelatedStreamsExpanded) {
