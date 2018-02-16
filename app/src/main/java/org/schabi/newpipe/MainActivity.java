@@ -37,12 +37,14 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.schabi.newpipe.extractor.StreamingService;
@@ -61,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
 
     private ActionBarDrawerToggle toggle = null;
+    private DrawerLayout drawer = null;
+    private NavigationView drawerItems = null;
+    private TextView headerServiceView = null;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity's LifeCycle
@@ -81,13 +86,12 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(findViewById(R.id.toolbar));
         setupDrawer();
-        setupDrawerFooter();
     }
 
     private void setupDrawer() {
         final Toolbar toolbar = findViewById(R.id.toolbar);
-        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        final NavigationView drawerItems = findViewById(R.id.navigation);
+        drawer = findViewById(R.id.drawer_layout);
+        drawerItems = findViewById(R.id.navigation);
 
         //drawerItems.setItemIconTintList(null); // Set null to use the original icon
         drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
@@ -112,18 +116,26 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            drawerItems.setNavigationItemSelectedListener(item -> {
-                if (item.getGroupId() == R.id.menu_services_group) {
-                    drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(false);
-                    ServiceHelper.setSelectedServiceId(this, item.getTitle().toString());
-                    drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
-                }
-                drawer.closeDrawers();
-                return true;
-            });
+            drawerItems.setNavigationItemSelectedListener(this::changeService);
+
+            setupDrawerFooter();
+            setupDrawerHeader();
         } else {
             drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         }
+    }
+
+    private boolean changeService(MenuItem item) {
+        if (item.getGroupId() == R.id.menu_services_group) {
+            drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(false);
+            ServiceHelper.setSelectedServiceId(this, item.getTitle().toString());
+            drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
+            headerServiceView.setText("gurken");
+        } else {
+            return false;
+        }
+        drawer.closeDrawers();
+        return true;
     }
 
     private void setupDrawerFooter() {
@@ -131,9 +143,16 @@ public class MainActivity extends AppCompatActivity {
         ImageButton downloads = findViewById(R.id.drawer_downloads);
         ImageButton history = findViewById(R.id.drawer_history);
 
-        settings.setOnClickListener(view -> NavigationHelper.openSettings(this) );
-        downloads.setOnClickListener(view -> NavigationHelper.openDownloads(this));
+        settings.setOnClickListener(view -> NavigationHelper.openSettings(this));
+        downloads.setOnClickListener(view ->NavigationHelper.openDownloads(this));
         history.setOnClickListener(view -> NavigationHelper.openHistory(this));
+    }
+
+    private void setupDrawerHeader() {
+        headerServiceView = findViewById(R.id.drawer_header_service_view);
+        Button action = findViewById(R.id.drawer_header_action_button);
+        action.setOnClickListener(view -> Toast.makeText(this,
+                R.string.drawer_header_action_paceholder_text, Toast.LENGTH_SHORT).show());
     }
 
     @Override
@@ -147,6 +166,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        // close drawer on return, and don't show animation, so its looks like the drawer isn't open
+        // when the user returns to MainActivity
+        drawer.closeDrawer(Gravity.START, false);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getBoolean(Constants.KEY_THEME_CHANGE, false)) {

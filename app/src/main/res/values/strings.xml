@@ -366,6 +366,7 @@
     <string name="drawer_close">Close Drawer</string>
     <string name="youtube" translatable="false">YouTube</string>
     <string name="soundcloud" translatable="false">SoundCloud</string>
+    <string name="drawer_header_action_paceholder_text">Something will come here soon ;D</string>
 
 
     <!-- Preferred player -->
