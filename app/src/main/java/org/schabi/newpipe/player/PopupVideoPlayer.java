@@ -49,8 +49,11 @@ import android.widget.RemoteViews;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.exoplayer2.ui.SubtitleView;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
@@ -87,6 +90,8 @@ public final class PopupVideoPlayer extends Service {
     private static final String POPUP_SAVED_WIDTH = "popup_saved_width";
     private static final String POPUP_SAVED_X = "popup_saved_x";
     private static final String POPUP_SAVED_Y = "popup_saved_y";
+
+    private static final int MINIMUM_SHOW_EXTRA_WIDTH_DP = 300;
 
     private WindowManager windowManager;
     private WindowManager.LayoutParams windowLayoutParams;
@@ -358,9 +363,11 @@ public final class PopupVideoPlayer extends Service {
 
     ///////////////////////////////////////////////////////////////////////////
 
-    protected class VideoPlayerImpl extends VideoPlayer {
+    protected class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeListener {
         private TextView resizingIndicator;
         private ImageButton fullScreenButton;
+
+        private View extraOptionsView;
 
         @Override
         public void handleIntent(Intent intent) {
@@ -380,6 +387,29 @@ public final class PopupVideoPlayer extends Service {
             resizingIndicator = rootView.findViewById(R.id.resizing_indicator);
             fullScreenButton = rootView.findViewById(R.id.fullScreenButton);
             fullScreenButton.setOnClickListener(v -> onFullScreenButtonClicked());
+
+            extraOptionsView = rootView.findViewById(R.id.extraOptionsView);
+            rootView.addOnLayoutChangeListener(this);
+        }
+
+        @Override
+        protected void setupSubtitleView(@NonNull SubtitleView view,
+                                         @NonNull String captionSizeKey) {
+            float captionRatio = SubtitleView.DEFAULT_TEXT_SIZE_FRACTION;
+            if (captionSizeKey.equals(getString(R.string.smaller_caption_size_key))) {
+                captionRatio *= 0.9;
+            } else if (captionSizeKey.equals(getString(R.string.larger_caption_size_key))) {
+                captionRatio *= 1.1;
+            }
+            view.setFractionalTextSize(captionRatio);
+        }
+
+        @Override
+        public void onLayoutChange(final View view, int left, int top, int right, int bottom,
+                                   int oldLeft, int oldTop, int oldRight, int oldBottom) {
+            float widthDp = Math.abs(right - left) / getResources().getDisplayMetrics().density;
+            final int visibility = widthDp > MINIMUM_SHOW_EXTRA_WIDTH_DP ? View.VISIBLE : View.GONE;
+            extraOptionsView.setVisibility(visibility);
         }
 
         @Override
@@ -436,6 +466,15 @@ public final class PopupVideoPlayer extends Service {
         public void onDismiss(PopupMenu menu) {
             super.onDismiss(menu);
             if (isPlaying()) hideControls(500, 0);
+        }
+
+        @Override
+        protected int nextResizeMode(int resizeMode) {
+            if (resizeMode == AspectRatioFrameLayout.RESIZE_MODE_FILL) {
+                return AspectRatioFrameLayout.RESIZE_MODE_FIT;
+            } else {
+                return AspectRatioFrameLayout.RESIZE_MODE_FILL;
+            }
         }
 
         @Override
@@ -642,8 +681,8 @@ public final class PopupVideoPlayer extends Service {
         //////////////////////////////////////////////////////////////////////////*/
 
         /*package-private*/ void enableVideoRenderer(final boolean enable) {
-            final int videoRendererIndex = getVideoRendererIndex();
-            if (trackSelector != null && videoRendererIndex != -1) {
+            final int videoRendererIndex = getRendererIndex(C.TRACK_TYPE_VIDEO);
+            if (trackSelector != null && videoRendererIndex != RENDERER_UNAVAILABLE) {
                 trackSelector.setRendererDisabled(videoRendererIndex, !enable);
             }
         }

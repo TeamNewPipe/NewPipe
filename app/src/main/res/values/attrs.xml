@@ -3,6 +3,7 @@
     <!--TODO: preffix these with "ic_"-->
     <attr name="thumbs_up" format="reference"/>
     <attr name="thumbs_down" format="reference"/>
+    <attr name="info" format="reference"/>
     <attr name="audio" format="reference"/>
     <attr name="download" format="reference"/>
     <attr name="share" format="reference"/>
@@ -26,6 +27,9 @@
     <attr name="play" format="reference"/>
     <attr name="ic_hot" format="reference"/>
     <attr name="ic_channel" format="reference"/>
+    <attr name="ic_bookmark" format="reference"/>
+    <attr name="ic_playlist_add" format="reference"/>
+    <attr name="ic_playlist_check" format="reference"/>
 
     <!-- Can't refer to colors directly into drawable's xml-->
     <attr name="toolbar_shadow_drawable" format="reference"/>

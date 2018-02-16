@@ -73,7 +73,7 @@ public class ThemeHelper {
         else if (selectedTheme.equals(blackTheme)) themeName = "BlackTheme";
         else if (selectedTheme.equals(darkTheme)) themeName = "DarkTheme";
 
-        themeName += "." + service.getServiceInfo().name;
+        themeName += "." + service.getServiceInfo().getName();
         int resourceId = context.getResources().getIdentifier(themeName, "style", context.getPackageName());
 
         if (resourceId > 0) {

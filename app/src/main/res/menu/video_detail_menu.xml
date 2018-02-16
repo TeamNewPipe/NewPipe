@@ -3,12 +3,6 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_item_download"
-        android:icon="?attr/download"
-        android:title="@string/download"
-        app:showAsAction="always"/>
-
-    <item
         android:id="@+id/action_play_with_kodi"
         android:icon="?attr/cast"
         android:title="@string/play_with_kodi_title"

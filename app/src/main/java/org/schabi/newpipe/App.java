@@ -1,17 +1,18 @@
 package org.schabi.newpipe;
 
-import android.app.AlarmManager;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 import org.acra.ACRA;
 import org.acra.config.ACRAConfiguration;
@@ -56,6 +57,7 @@ import io.reactivex.plugins.RxJavaPlugins;
 
 public class App extends Application {
     protected static final String TAG = App.class.toString();
+    private RefWatcher refWatcher;
 
     @SuppressWarnings("unchecked")
     private static final Class<? extends ReportSenderFactory>[] reportSenderFactoryClasses = new Class[]{AcraReportSenderFactory.class};
@@ -71,6 +73,13 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        refWatcher = installLeakCanary();
+
         // Initialize settings first because others inits can use its values
         SettingsActivity.initSettings(this);
 
@@ -80,8 +89,7 @@ public class App extends Application {
         initNotificationChannel();
 
         // Initialize image loader
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
-        ImageLoader.getInstance().init(config);
+        ImageLoader.getInstance().init(getImageLoaderConfigurations(10, 50));
 
         configureRxJavaErrorHandler();
     }
@@ -119,6 +127,14 @@ public class App extends Application {
         });
     }
 
+    private ImageLoaderConfiguration getImageLoaderConfigurations(final int memoryCacheSizeMb,
+                                                                  final int diskCacheSizeMb) {
+        return new ImageLoaderConfiguration.Builder(this)
+                .memoryCache(new LRULimitedMemoryCache(memoryCacheSizeMb * 1024 * 1024))
+                .diskCacheSize(diskCacheSizeMb * 1024 * 1024)
+                .build();
+    }
+
     private void initACRA() {
         try {
             final ACRAConfiguration acraConfig = new ConfigurationBuilder(this)
@@ -152,4 +168,13 @@ public class App extends Application {
         mNotificationManager.createNotificationChannel(mChannel);
     }
 
+    @Nullable
+    public static RefWatcher getRefWatcher(Context context) {
+        final App application = (App) context.getApplicationContext();
+        return application.refWatcher;
+    }
+
+    protected RefWatcher installLeakCanary() {
+        return RefWatcher.DISABLED;
+    }
 }

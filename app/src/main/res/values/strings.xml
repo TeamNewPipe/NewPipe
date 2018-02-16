@@ -13,6 +13,7 @@
     <string name="open_in_popup_mode">Open in popup mode</string>
     <string name="share">Share</string>
     <string name="download">Download</string>
+    <string name="controls_download_desc">Download stream file.</string>
     <string name="search">Search</string>
     <string name="settings">Settings</string>
     <string name="did_you_mean">Did you mean: %1$s ?</string>
@@ -29,14 +30,17 @@
     <string name="channel_unsubscribed">Channel unsubscribed</string>
     <string name="subscription_change_failed">Unable to change subscription</string>
     <string name="subscription_update_failed">Unable to update subscription</string>
+    <string name="show_info">Show info</string>
 
     <string name="tab_main">Main</string>
     <string name="tab_subscriptions">Subscriptions</string>
+    <string name="tab_bookmarks">Bookmarks</string>
 
     <string name="fragment_whats_new">What\'s New</string>
 
     <string name="controls_background_title">Background</string>
     <string name="controls_popup_title">Popup</string>
+    <string name="controls_add_to_playlist_title">Add To</string>
 
     <string name="download_path_title">Video download path</string>
     <string name="download_path_summary">Path to store downloaded videos in</string>
@@ -186,6 +190,7 @@
     <string name="search_no_results">No results</string>
     <string name="empty_view_no_videos" translatable="false">@string/no_videos</string>
     <string name="empty_subscription_feed_subtitle">Nothing Here But Crickets</string>
+    <string name="detail_drag_description">Drag to reorder</string>
 
     <string name="err_dir_create">Cannot create download directory \'%1$s\'</string>
     <string name="info_dir_created">Created download directory \'%1$s\'</string>
@@ -224,8 +229,13 @@
     <string name="start">Start</string>
     <string name="pause">Pause</string>
     <string name="view">Play</string>
+    <string name="create">Create</string>
     <string name="delete">Delete</string>
+    <string name="delete_one">Delete One</string>
+    <string name="delete_all">Delete All</string>
     <string name="checksum">Checksum</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="rename">Rename</string>
 
     <!-- Fragment -->
     <string name="add">New mission</string>
@@ -303,6 +313,10 @@
     <string name="history_cleared">History cleared</string>
     <string name="item_deleted">Item deleted</string>
     <string name="delete_item_search_history">Do you want to delete this item from search history?</string>
+    <string name="delete_stream_history_prompt">Do you want to delete this item from watch history?</string>
+    <string name="delete_all_history_prompt">Are you sure you want to delete all items from history?</string>
+    <string name="title_last_played">Last Played</string>
+    <string name="title_most_played">Most Played</string>
 
     <!-- Content -->
     <string name="main_page_content">Content of main page</string>
@@ -323,8 +337,8 @@
     <string name="select_a_kiosk">Select a kiosk</string>
     <string name="export_complete_toast">Export complete</string>
     <string name="import_complete_toast">Import complete</string>
-    <string name="no_valid_zip_file">No valid Zip file</string>
-    <string name="could_not_import_all_files">WARNING: Could not import all files.</string>
+    <string name="no_valid_zip_file">No valid ZIP file</string>
+    <string name="could_not_import_all_files">Warning: Could not import all files.</string>
     <string name="override_current_data">This will override your current setup.</string>
 
     <!-- Kiosk Names -->
@@ -353,16 +367,51 @@
     <string name="youtube" translatable="false">YouTube</string>
     <string name="soundcloud" translatable="false">SoundCloud</string>
 
+
     <!-- Preferred player -->
-    <string name="preferred_player_share_menu_title" translatable="false">@string/preferred_player_settings_title</string>
+    <string name="preferred_player_share_menu_title" translatable="false">NewPipe</string>
     <string name="preferred_player_share_menu_dialog_title">Open with preferred player</string>
     <string name="preferred_player_settings_title">Preferred player</string>
 
     <string name="video_player">Video player</string>
     <string name="background_player">Background player</string>
     <string name="popup_player">Popup player</string>
-    <string name="always_ask_player">Always ask</string>
+    <string name="always_ask_open_action">Always ask</string>
     
     <string name="preferred_player_fetcher_notification_title">Getting info…</string>
     <string name="preferred_player_fetcher_notification_message">"The requested content is loading"</string>
+
+    <!-- Local Playlist -->
+    <string name="create_playlist">Create New Playlist</string>
+    <string name="delete_playlist">Delete Playlist</string>
+    <string name="rename_playlist">Rename Playlist</string>
+    <string name="playlist_name_input">Name</string>
+    <string name="append_playlist">Add To Playlist</string>
+    <string name="set_as_playlist_thumbnail">Set as Playlist Thumbnail</string>
+
+    <string name="bookmark_playlist">Bookmark Playlist</string>
+    <string name="unbookmark_playlist">Remove Bookmark</string>
+
+    <string name="delete_playlist_prompt">Do you want to delete this playlist?</string>
+    <string name="playlist_creation_success">Playlist successfully created</string>
+    <string name="playlist_add_stream_success">Added to playlist</string>
+    <string name="playlist_thumbnail_change_success">Playlist thumbnail changed</string>
+    <string name="playlist_delete_failure">Failed to delete playlist</string>
+
+    <!-- Players -->
+    <string name="caption_none">No Caption</string>
+
+    <string name="resize_fit">FIT</string>
+    <string name="resize_fill">FILL</string>
+    <string name="resize_zoom">ZOOM</string>
+
+    <string name="caption_font_size_settings_title">Caption Font Size</string>
+    <string name="smaller_caption_font_size">Smaller Font</string>
+    <string name="normal_caption_font_size">Normal Font</string>
+    <string name="larger_caption_font_size">Larger Font</string>
+
+    <!-- Debug Only -->
+    <string name="toggle_leak_canary">Monitor Leaks</string>
+    <string name="enable_leak_canary_notice">Memory leak monitoring enabled, app may become unresponsive when heap dumping</string>
+    <string name="disable_leak_canary_notice">Memory leak monitoring disabled</string>
 </resources>

@@ -30,6 +30,12 @@
 
     </com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
 
+    <com.google.android.exoplayer2.ui.SubtitleView
+        android:id="@+id/subtitleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"/>
 
     <ImageView
         android:id="@+id/endScreen"
@@ -139,13 +145,14 @@
                 android:layout_alignParentTop="true"
                 android:background="@drawable/player_top_controls_bg"
                 android:gravity="top"
-                android:paddingBottom="70dp"
-                android:paddingLeft="2dp"
-                android:paddingRight="10dp"
                 android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 tools:ignore="RtlHardcoded">
 
                 <LinearLayout
+                    android:id="@+id/metadataView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -202,6 +209,7 @@
                     android:text="720p"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
+                    android:background="?attr/selectableItemBackground"
                     tools:ignore="HardcodedText,RtlHardcoded"/>
 
                 <TextView
@@ -215,6 +223,7 @@
                     android:minWidth="40dp"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
+                    android:background="?attr/selectableItemBackground"
                     tools:ignore="RtlHardcoded,RtlSymmetry"
                     tools:text="1x" />
 
@@ -225,12 +234,12 @@
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
                     android:layout_toLeftOf="@+id/moreOptionsButton"
-                    android:background="#00ffffff"
                     android:clickable="true"
                     android:focusable="true"
                     android:padding="5dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/list"
+                    android:background="?attr/selectableItemBackground"
                     tools:ignore="ContentDescription,RtlHardcoded"/>
 
                 <ImageButton
@@ -240,13 +249,109 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginLeft="2dp"
 					android:padding="5dp"
-                    android:background="#00ffffff"
                     android:clickable="true"
                     android:focusable="true"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ic_more_vert_white_24dp"
+                    android:src="@drawable/ic_expand_more_white_24dp"
+                    android:background="?attr/selectableItemBackground"
                     tools:ignore="ContentDescription,RtlHardcoded"/>
+            </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/secondaryControls"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/topControls"
+                android:gravity="top"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:visibility="gone"
+                tools:ignore="RtlHardcoded"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/resizeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center"
+                    android:minWidth="50dp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:background="?attr/selectableItemBackground"
+                    tools:ignore="HardcodedText,RtlHardcoded"
+                    tools:text="FIT"/>
+
+                <TextView
+                    android:id="@+id/captionTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/switchBackground"
+                    android:layout_toRightOf="@id/resizeTextView"
+                    android:gravity="center|left"
+                    android:minHeight="35dp"
+                    android:minWidth="40dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:background="?attr/selectableItemBackground"
+                    tools:ignore="RelativeOverlap,RtlHardcoded"
+                    tools:text="English" />
+
+                <ImageButton
+                    android:id="@+id/toggleOrientation"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_screen_rotation_white"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="@string/toggle_orientation"
+                    tools:ignore="RtlHardcoded"/>
+
+                <ImageButton
+                    android:id="@+id/switchPopup"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_toLeftOf="@id/toggleOrientation"
+                    android:layout_centerVertical="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_fullscreen_exit_white"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="@string/switch_to_popup"
+                    tools:ignore="RtlHardcoded"/>
+
+                <ImageButton
+                    android:id="@+id/switchBackground"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_toLeftOf="@id/switchPopup"
+                    android:layout_centerVertical="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_headset_white_24dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="@string/switch_to_background"
+                    tools:ignore="RtlHardcoded"/>
             </RelativeLayout>
 
             <LinearLayout
@@ -293,7 +398,6 @@
                     tools:ignore="HardcodedText"
                     tools:text="1:23:49"/>
             </LinearLayout>
-
         </RelativeLayout>
 
         <ImageButton
@@ -379,7 +483,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
         android:layout_gravity="center"
+        android:layout_toEndOf="@+id/loading_panel"
+        android:layout_toRightOf="@+id/loading_panel"
         tools:ignore="RtlHardcoded">
 
         <TextView
@@ -399,7 +506,7 @@
             android:visibility="gone"
             tools:ignore="RtlHardcoded"
             tools:text="Volume 0"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/brightnessTextView"
@@ -418,7 +525,7 @@
             android:visibility="gone"
             tools:ignore="RtlHardcoded"
             tools:text="Brightness  0"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/currentDisplaySeek"
@@ -437,7 +544,7 @@
             android:visibility="gone"
             tools:ignore="RtlHardcoded"
             tools:text="1:06:29"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
     </RelativeLayout>
 
 </RelativeLayout>

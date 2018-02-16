@@ -83,6 +83,9 @@
 
     <string name="last_orientation_landscape_key" translatable="false">last_orientation_landscape_key</string>
 
+    <!-- DEBUG ONLY -->
+    <string name="allow_heap_dumping_key" translatable="false">allow_heap_dumping_key</string>
+
     <!-- THEMES -->
     <string name="theme_key" translatable="false">theme</string>
     <string name="light_theme_key" translatable="false">light_theme</string>
@@ -98,6 +101,25 @@
         <item>@string/light_theme_title</item>
         <item>@string/dark_theme_title</item>
         <item>@string/black_theme_title</item>
+    </string-array>
+
+    <!-- Caption Size -->
+    <string name="caption_size_key" translatable="false">caption_size_key</string>
+    <string name="caption_size_default" translatable="false">@string/normal_caption_size_key</string>
+
+    <string name="smaller_caption_size_key" translatable="false">smaller_caption_size</string>
+    <string name="normal_caption_size_key" translatable="false">normal_caption_size</string>
+    <string name="larger_caption_size_key" translatable="false">larger_caption_size</string>
+
+    <string-array name="caption_size_descriptions_list" translatable="false">
+        <item>@string/smaller_caption_font_size</item>
+        <item>@string/normal_caption_font_size</item>
+        <item>@string/larger_caption_font_size</item>
+    </string-array>
+    <string-array name="caption_size_values_list" translatable="false">
+        <item>@string/smaller_caption_size_key</item>
+        <item>@string/normal_caption_size_key</item>
+        <item>@string/larger_caption_size_key</item>
     </string-array>
 
     <!-- Content & History -->
@@ -150,27 +172,30 @@
 
     <string name="default_file_charset_value" translatable="false">@string/charset_most_special_characters_value</string>
 
-    <!-- Preferred player -->
-    <string name="preferred_player_key" translatable="false">preferred_player_key</string>
-    <string name="preferred_player_default" translatable="false">@string/always_ask_player_key</string>
-    <string name="preferred_player_last_selected_key" translatable="false">preferred_player_last_selected</string>
+    <!-- Preferred action on open (open from external app) -->
+    <string name="preferred_open_action_key" translatable="false">preferred_open_action_key</string>
+    <string name="preferred_open_action_default" translatable="false">@string/always_ask_open_action_key</string>
+    <string name="preferred_open_action_last_selected_key" translatable="false">preferred_open_action_last_selected</string>
 
+    <string name="show_info_key" translatable="false">show_info</string>
     <string name="video_player_key" translatable="false">video_player</string>
     <string name="background_player_key" translatable="false">background_player</string>
     <string name="popup_player_key" translatable="false">popup_player</string>
-    <string name="always_ask_player_key" translatable="false">always_ask_player</string>
+    <string name="always_ask_open_action_key" translatable="false">always_ask_player</string>
 
-    <string-array name="preferred_player_description_list" translatable="false">
+    <string-array name="preferred_open_action_description_list" translatable="false">
+        <item>@string/show_info</item>
         <item>@string/video_player</item>
         <item>@string/background_player</item>
         <item>@string/popup_player</item>
-        <item>@string/always_ask_player</item>
+        <item>@string/always_ask_open_action</item>
     </string-array>
-    <string-array name="preferred_player_values_list" translatable="false">
+    <string-array name="preferred_open_action_values_list" translatable="false">
+        <item>@string/show_info_key</item>
         <item>@string/video_player_key</item>
         <item>@string/background_player_key</item>
         <item>@string/popup_player_key</item>
-        <item>@string/always_ask_player_key</item>
+        <item>@string/always_ask_open_action_key</item>
     </string-array>
 
     <!-- alternatively, load these from some local android data store -->

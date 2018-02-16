@@ -11,7 +11,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -22,7 +21,6 @@ import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -50,8 +48,10 @@ public class HistoryActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.title_activity_history);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(R.string.title_activity_history);
+        }
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -66,17 +66,11 @@ public class HistoryActivity extends AppCompatActivity {
         final FloatingActionButton fab = findViewById(R.id.fab);
         RxView.clicks(fab)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) {
-                        int currentItem = mViewPager.getCurrentItem();
-                        HistoryFragment fragment = (HistoryFragment) mSectionsPagerAdapter.instantiateItem(mViewPager, currentItem);
-                        if(fragment != null) {
-                            fragment.onHistoryCleared();
-                        } else {
-                            Log.w(TAG, "Couldn't find current fragment");
-                        }
-                    }
+                .subscribe(ignored -> {
+                    int currentItem = mViewPager.getCurrentItem();
+                    HistoryFragment fragment = (HistoryFragment) mSectionsPagerAdapter
+                            .instantiateItem(mViewPager, currentItem);
+                    fragment.onHistoryCleared();
                 });
     }
 
@@ -119,7 +113,7 @@ public class HistoryActivity extends AppCompatActivity {
                     fragment = SearchHistoryFragment.newInstance();
                     break;
                 case 1:
-                    fragment = WatchedHistoryFragment.newInstance();
+                    fragment = WatchHistoryFragment.newInstance();
                     break;
                 default:
                     throw new IllegalArgumentException("position: " + position);
