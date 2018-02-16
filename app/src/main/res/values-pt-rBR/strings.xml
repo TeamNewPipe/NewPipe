@@ -316,8 +316,60 @@ abrir em modo popup</string>
     <string name="export_data_summary">Exportar histórico, inscrições e listas de reprodução.</string>
     <string name="export_complete_toast">Exportação completa</string>
     <string name="import_complete_toast">Importação completa</string>
-    <string name="no_valid_zip_file">Não há nenhum arquivo Zip válido</string>
+    <string name="no_valid_zip_file">Não há nenhum arquivo ZIP válido</string>
     <string name="could_not_import_all_files">Aviso: Não foi possível importar todos arquivos.</string>
     <string name="override_current_data">Isso irá sobrescrever suas configurações atuais.</string>
 
-    </resources>
+    <string name="controls_download_desc">Baixar arquivo de stream.</string>
+    <string name="show_info">Mostrar informações</string>
+
+    <string name="tab_bookmarks">Favoritos</string>
+
+    <string name="controls_add_to_playlist_title">Adicionar a</string>
+
+    <string name="detail_drag_description">Arraste para ordenar</string>
+
+    <string name="create">Criar</string>
+    <string name="delete_one">Deletar um</string>
+    <string name="delete_all">Deletar todos</string>
+    <string name="dismiss">Dispensar</string>
+    <string name="rename">Renomear</string>
+
+    <string name="delete_stream_history_prompt">Deseja apagar este item do seu histórico de visualizações?</string>
+    <string name="delete_all_history_prompt">Tem certeza que deseja apagar todos itens do histórico?</string>
+    <string name="title_last_played">Reproduzido anteriormente</string>
+    <string name="title_most_played">Mais vezes reproduzido</string>
+
+    <string name="always_ask_open_action">Sempre perguntar</string>
+    
+    <string name="create_playlist">Criar nova Lista de Reprodução</string>
+    <string name="delete_playlist">Apagar Lista de Reprodução</string>
+    <string name="rename_playlist">Renomear Lista de Reprodução</string>
+    <string name="playlist_name_input">Nome</string>
+    <string name="append_playlist">Adicionar a Lista de Reprodução</string>
+    <string name="set_as_playlist_thumbnail">Definir como Miniatura da Lista de Reprodução</string>
+
+    <string name="bookmark_playlist">Favoritar Lista de Reprodução</string>
+    <string name="unbookmark_playlist">Remover Favorito</string>
+
+    <string name="delete_playlist_prompt">Deseja remover esta lista de reprodução?</string>
+    <string name="playlist_creation_success">Lista de Reprodução Criada</string>
+    <string name="playlist_add_stream_success">Adicionado a lista de reprodução</string>
+    <string name="playlist_thumbnail_change_success">Miniatura para a lista de reprodução alterada</string>
+    <string name="playlist_delete_failure">Falha ao apagar lista de reprodução</string>
+
+    <string name="caption_none">Sem Legenda</string>
+
+    <string name="resize_fit">FIT</string>
+    <string name="resize_fill">Preencher</string>
+    <string name="resize_zoom">Zoom</string>
+
+    <string name="caption_font_size_settings_title">Tamanho da fonte da legenda</string>
+    <string name="smaller_caption_font_size">Fonte menor</string>
+    <string name="normal_caption_font_size">Fonte normal</string>
+    <string name="larger_caption_font_size">Maior fonte</string>
+
+    <string name="toggle_leak_canary">Monitorar vazamentos de memória</string>
+    <string name="enable_leak_canary_notice">Monitoramento de vazamentos de memória habilitado, o aplicativo pode ficar sem responder quando estiver descarregando pilha de memória</string>
+    <string name="disable_leak_canary_notice">Monitoramento de vazamentos de memória desabilitado</string>
+</resources>
