@@ -342,8 +342,60 @@
     <string name="export_data_summary">Esporta la cronologia, le iscrizioni e le playlist.</string>
     <string name="export_complete_toast">Esportazione completa</string>
     <string name="import_complete_toast">Importazione completa</string>
-    <string name="no_valid_zip_file">Nessun file Zip valido</string>
-    <string name="could_not_import_all_files">ATTENZIONE: Non posso importare tutti i file.</string>
+    <string name="no_valid_zip_file">Nessun file ZIP valido</string>
+    <string name="could_not_import_all_files">Attenzione: Non posso importare tutti i file.</string>
     <string name="override_current_data">Questo sovrascriverà le tue impostazioni attuali.</string>
 
-    </resources>
+    <string name="controls_download_desc">Download file del flusso.</string>
+    <string name="show_info">Mostra informazioni</string>
+
+    <string name="tab_bookmarks">Segnalibri</string>
+
+    <string name="controls_add_to_playlist_title">Aggiungi a</string>
+
+    <string name="detail_drag_description">Trascina per riordinare</string>
+
+    <string name="create">Crea</string>
+    <string name="delete_one">Elimina uno</string>
+    <string name="delete_all">Elimina tutti</string>
+    <string name="dismiss">Ignora</string>
+    <string name="rename">Rinomina</string>
+
+    <string name="delete_stream_history_prompt">Vuoi eliminare questo oggetto dalla cronologia delle visualizzazioni?</string>
+    <string name="delete_all_history_prompt">Sei sicuro di voler eliminare tutti gli elementi dalla cronologia?</string>
+    <string name="title_last_played">L\'ultimo riprodotto</string>
+    <string name="title_most_played">I più riprodotti</string>
+
+    <string name="always_ask_open_action">Chiedi sempre</string>
+    
+    <string name="create_playlist">Crea una nuova scaletta</string>
+    <string name="delete_playlist">Elimina scaletta</string>
+    <string name="rename_playlist">Rinomina scaletta</string>
+    <string name="playlist_name_input">Nome</string>
+    <string name="append_playlist">Aggiunti alla scaletta</string>
+    <string name="set_as_playlist_thumbnail">Imposta come miniatura della scaletta</string>
+
+    <string name="bookmark_playlist">Segna scaletta</string>
+    <string name="unbookmark_playlist">Rimuovi segnalibro</string>
+
+    <string name="delete_playlist_prompt">Vuoi eliminarlo dalla scaletta?</string>
+    <string name="playlist_creation_success">Scaletta correttamente creata</string>
+    <string name="playlist_add_stream_success">Aggiunti alla scaletta</string>
+    <string name="playlist_thumbnail_change_success">Miniatura della scaletta cambiata</string>
+    <string name="playlist_delete_failure">L\'eliminazione della scaletta non è andata a buon fine</string>
+
+    <string name="caption_none">No sottotitoli</string>
+
+    <string name="resize_fit">Rientrato</string>
+    <string name="resize_fill">Pieno</string>
+    <string name="resize_zoom">Ingrandito</string>
+
+    <string name="caption_font_size_settings_title">Dimensione dei caratteri dei sottotitoli</string>
+    <string name="smaller_caption_font_size">Carattere più piccolo</string>
+    <string name="normal_caption_font_size">Carattere normale</string>
+    <string name="larger_caption_font_size">Carattere più grande</string>
+
+    <string name="toggle_leak_canary">Controllo delle perdite</string>
+    <string name="enable_leak_canary_notice">Controllo delle perdite di memoria abilitato, l\'applicazione può non rispondere mentre effettua il dumping dell\'heap</string>
+    <string name="disable_leak_canary_notice">Controllo delle perdite di memoria disabilitato</string>
+</resources>
