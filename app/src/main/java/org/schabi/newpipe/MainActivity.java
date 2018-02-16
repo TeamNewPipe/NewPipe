@@ -41,6 +41,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import org.schabi.newpipe.extractor.StreamingService;
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(findViewById(R.id.toolbar));
         setupDrawer();
+        setupDrawerFooter();
     }
 
     private void setupDrawer() {
@@ -121,6 +124,16 @@ public class MainActivity extends AppCompatActivity {
         } else {
             drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         }
+    }
+
+    private void setupDrawerFooter() {
+        ImageButton settings = findViewById(R.id.drawer_settings);
+        ImageButton downloads = findViewById(R.id.drawer_downloads);
+        ImageButton history = findViewById(R.id.drawer_history);
+
+        settings.setOnClickListener(view -> NavigationHelper.openSettings(this) );
+        downloads.setOnClickListener(view -> NavigationHelper.openDownloads(this));
+        history.setOnClickListener(view -> NavigationHelper.openHistory(this));
     }
 
     @Override
