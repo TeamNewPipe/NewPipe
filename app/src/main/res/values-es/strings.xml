@@ -341,4 +341,46 @@ abrir en modo popup</string>
     <string name="could_not_import_all_files">ADVERTENCIA: no se pudieron importar todos los archivos.</string>
     <string name="override_current_data">Esto reemplazará su configuración actual.</string>
 
+    <string name="controls_download_desc">Descargar archivo stream.</string>
+    <string name="show_info">Mostrar info</string>
+
+    <string name="tab_bookmarks">Marcadores</string>
+
+    <string name="controls_add_to_playlist_title">Añadir a</string>
+
+    <string name="detail_drag_description">Arrastrar para reordenar</string>
+
+    <string name="create">Crear</string>
+    <string name="delete_one">Eliminar uno</string>
+    <string name="delete_all">Eliminar todos</string>
+    <string name="dismiss">Descartar</string>
+    <string name="rename">Renombrar</string>
+
+    <string name="delete_stream_history_prompt">¿Desea eliminar este elemento del historial de reproducciones?</string>
+    <string name="delete_all_history_prompt">¿Seguro que desea eliminar todos los elementos del historial?</string>
+    <string name="title_last_played">Última reproducción</string>
+    <string name="title_most_played">Más reproducido</string>
+
+    <string name="always_ask_open_action">Preguntar siempre</string>
+    
+    <string name="create_playlist">Crear nueva lista de reproducción</string>
+    <string name="delete_playlist">Eliminar lista de reproducción</string>
+    <string name="rename_playlist">Renombrar lista de reproducción</string>
+    <string name="playlist_name_input">Nombre</string>
+    <string name="append_playlist">Añadir a la lista de reproducción</string>
+    <string name="set_as_playlist_thumbnail">Definir como miniatura de lista de reproducción</string>
+
+    <string name="bookmark_playlist">Marcar lista de reproducción</string>
+    <string name="unbookmark_playlist">Remover marcador</string>
+
+    <string name="delete_playlist_prompt">¿Desea eliminar esta lista de reproducción?</string>
+    <string name="playlist_creation_success">Lista de reproducción creada exitosamente</string>
+    <string name="playlist_add_stream_success">Añadido a la lista de reproducción</string>
+    <string name="playlist_thumbnail_change_success">Miniatura de lista de reproducción cambiada</string>
+    <string name="playlist_delete_failure">Error al eliminar la lista de reproducción</string>
+
+    <string name="smaller_caption_font_size">Fuente más pequeña</string>
+    <string name="normal_caption_font_size">Fuente normal</string>
+    <string name="larger_caption_font_size">Fuente más grande</string>
+
     </resources>
