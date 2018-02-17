@@ -104,17 +104,9 @@ public class PlayQueueItem implements Serializable {
 
     @NonNull
     private Single<StreamInfo> getInfo() {
-        final Consumer<Throwable> onError = new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-                error = throwable;
-            }
-        };
-
         return ExtractorHelper.getStreamInfo(this.serviceId, this.url, false)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnError(onError);
+                .doOnError(throwable -> error = throwable);
     }
 
     ////////////////////////////////////////////////////////////////////////////

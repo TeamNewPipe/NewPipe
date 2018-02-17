@@ -73,6 +73,10 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         playQueueItemBuilder.setOnSelectedListener(listener);
     }
 
+    public void unsetSelectedListener() {
+        playQueueItemBuilder.setOnSelectedListener(null);
+    }
+
     private void startReactor() {
         final Observer<PlayQueueEvent> observer = new Observer<PlayQueueEvent>() {
             @Override

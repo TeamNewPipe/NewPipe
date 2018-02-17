@@ -113,12 +113,8 @@ public class PlayerHelper {
         return 30000;
     }
 
-    public static long getBufferForPlaybackMs(@NonNull final Context context) {
-        return 2500L;
-    }
-
-    public static long getBufferForPlaybackAfterRebufferMs(@NonNull final Context context) {
-        return 5000L;
+    public static int getBufferForPlaybackMs(@NonNull final Context context) {
+        return 2500;
     }
 
     public static boolean isUsingDSP(@NonNull final Context context) {
