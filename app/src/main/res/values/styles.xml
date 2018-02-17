@@ -15,6 +15,7 @@
         <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
         <item name="colorAccent">@color/light_youtube_accent_color</item>
         <item name="android:windowBackground">@color/light_background_color</item>
+        <item name="windowBackground">@color/light_background_color</item>
 
         <item name="thumbs_up">@drawable/ic_thumb_up_black_24dp</item>
         <item name="thumbs_down">@drawable/ic_thumb_down_black_24dp</item>
@@ -40,6 +41,7 @@
         <item name="search_add">@drawable/ic_arrow_top_left_black_24dp</item>
         <item name="options">@drawable/ic_more_vert_black_24dp</item>
         <item name="play">@drawable/ic_play_arrow_black_24dp</item>
+        <item name="settings">@drawable/ic_settings_black_24dp</item>
         <item name="ic_hot">@drawable/ic_whatshot_black_24dp</item>
         <item name="ic_channel">@drawable/ic_channel_black_24dp</item>
         <item name="ic_bookmark">@drawable/ic_bookmark_black_24dp</item>
@@ -66,6 +68,7 @@
         <item name="colorPrimaryDark">@color/dark_youtube_dark_color</item>
         <item name="colorAccent">@color/dark_youtube_accent_color</item>
         <item name="android:windowBackground">@color/dark_background_color</item>
+        <item name="windowBackground">@color/dark_background_color</item>
 
         <item name="thumbs_up">@drawable/ic_thumb_up_white_24dp</item>
         <item name="thumbs_down">@drawable/ic_thumb_down_white_24dp</item>
@@ -91,6 +94,7 @@
         <item name="search_add">@drawable/ic_arrow_top_left_white_24dp</item>
         <item name="options">@drawable/ic_more_vert_white_24dp</item>
         <item name="play">@drawable/ic_play_arrow_white_24dp</item>
+        <item name="settings">@drawable/ic_settings_white_24dp</item>
         <item name="ic_hot">@drawable/ic_whatshot_white_24dp</item>
         <item name="ic_channel">@drawable/ic_channel_white_24dp</item>
         <item name="ic_bookmark">@drawable/ic_bookmark_white_24dp</item>
@@ -114,6 +118,7 @@
 
     <style name="BlackTheme" parent="DarkTheme">
         <item name="android:windowBackground">@color/black_background_color</item>
+        <item name="windowBackground">@color/black_background_color</item>
 
         <item name="separator_color">@color/black_separator_color</item>
         <item name="contrast_background_color">@color/black_contrast_background_color</item>
