@@ -105,6 +105,7 @@ public class MediaSourceManager {
 
         playQueueReactor = null;
         syncReactor = null;
+        syncedItem = null;
         sources = null;
     }
 
@@ -124,6 +125,8 @@ public class MediaSourceManager {
      * */
     public void reset() {
         tryBlock();
+
+        syncedItem = null;
         populateSources();
     }
     /*//////////////////////////////////////////////////////////////////////////
@@ -243,20 +246,20 @@ public class MediaSourceManager {
             syncInternal(currentItem, null);
         };
 
-        final Disposable sync = currentItem.getStream()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(onSuccess, onError);
-        syncReactor.add(sync);
+        if (syncedItem != currentItem) {
+            syncedItem = currentItem;
+            final Disposable sync = currentItem.getStream()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(onSuccess, onError);
+            syncReactor.add(sync);
+        }
     }
 
     private void syncInternal(@android.support.annotation.NonNull final PlayQueueItem item,
                               @Nullable final StreamInfo info) {
         if (playQueue == null || playbackListener == null) return;
-
-        // Sync each new item once only and ensure the current item is up to date
-        // with the play queue
-        if (playQueue.getItem() != syncedItem && playQueue.getItem() == item) {
-            syncedItem = item;
+        // Ensure the current item is up to date with the play queue
+        if (playQueue.getItem() == item && playQueue.getItem() == syncedItem) {
             playbackListener.sync(syncedItem,info);
         }
     }

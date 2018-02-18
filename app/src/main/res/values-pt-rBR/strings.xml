@@ -369,7 +369,6 @@ abrir em modo popup</string>
     <string name="normal_caption_font_size">Fonte normal</string>
     <string name="larger_caption_font_size">Maior fonte</string>
 
-    <string name="toggle_leak_canary">Monitorar vazamentos de memória</string>
     <string name="enable_leak_canary_notice">Monitoramento de vazamentos de memória habilitado, o aplicativo pode ficar sem responder quando estiver descarregando pilha de memória</string>
     <string name="disable_leak_canary_notice">Monitoramento de vazamentos de memória desabilitado</string>
 </resources>

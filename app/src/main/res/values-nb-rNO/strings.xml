@@ -383,7 +383,6 @@
     <string name="normal_caption_font_size">Normal skrift</string>
     <string name="larger_caption_font_size">Større skrift</string>
 
-    <string name="toggle_leak_canary">Hold oppsyn med lekkasjer</string>
     <string name="enable_leak_canary_notice">Oppsyn med minnelekasjer påslått, programmet kan slutte å svare under haug-dumping</string>
     <string name="disable_leak_canary_notice">Oppsyn med minnelekasjer slått av</string>
 </resources>
