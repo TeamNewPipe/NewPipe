@@ -338,4 +338,17 @@
     <string name="could_not_import_all_files">Avertissement : Impossible d\'importer tous les fichiers.</string>
     <string name="override_current_data">Cela effacera vos paramètres actuels</string>
 
+    <string name="show_info">Afficher les infos</string>
+
+    <string name="tab_bookmarks">Marque-pages</string>
+
+    <string name="controls_add_to_playlist_title">Ajouter à</string>
+
+    <string name="detail_drag_description">Faites glisser pour réorganiser</string>
+
+    <string name="create">Créer</string>
+    <string name="dismiss">Ignorer</string>
+    <string name="rename">Renommer</string>
+
+    <string name="title_last_played">Dernière lecture</string>
     </resources>
