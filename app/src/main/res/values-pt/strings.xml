@@ -298,4 +298,8 @@ o modo “popup“</string>
     <string name="export_data_summary">Exportar histórico, subscrições e listas de reprodução.</string>
     <string name="background_player_append">Em lista de espera no reprodutor em segundo plano</string>
     <string name="popup_playing_append">Em lista de espera no reprodutor popup</string>
+    <string name="switch_to_background">Mudar para segundo plano</string>
+    <string name="switch_to_popup">Mudar para popup</string>
+    <string name="switch_to_main">Mudar para primeiro plano</string>
+
     </resources>
