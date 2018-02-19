@@ -47,11 +47,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
@@ -151,8 +153,11 @@ public class MainActivity extends AppCompatActivity {
     private void setupDrawerHeader() {
         headerServiceView = findViewById(R.id.drawer_header_service_view);
         Button action = findViewById(R.id.drawer_header_action_button);
-        action.setOnClickListener(view -> Toast.makeText(this,
-                R.string.drawer_header_action_paceholder_text, Toast.LENGTH_SHORT).show());
+        action.setOnClickListener(view -> {
+            Toast.makeText(this,
+                    R.string.drawer_header_action_paceholder_text, Toast.LENGTH_SHORT).show();
+            drawer.closeDrawers();
+        });
     }
 
     @Override
@@ -170,6 +175,13 @@ public class MainActivity extends AppCompatActivity {
         // close drawer on return, and don't show animation, so its looks like the drawer isn't open
         // when the user returns to MainActivity
         drawer.closeDrawer(Gravity.START, false);
+        try {
+            String selectedServiceName = NewPipe.getService(
+                    ServiceHelper.getSelectedServiceId(this)).getServiceInfo().getName();
+            headerServiceView.setText(selectedServiceName);
+        } catch (Exception e) {
+            ErrorActivity.reportUiError(this, e);
+        }
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getBoolean(Constants.KEY_THEME_CHANGE, false)) {
