@@ -303,4 +303,14 @@ o modo “popup“</string>
     <string name="switch_to_main">Mudar para primeiro plano</string>
 
     <string name="player_stream_failure">Incapaz de reproduzir este vídeo</string>
+    <string name="external_player_unsupported_link_type">Reprodutores externos não suportam este tipo de hiperligações</string>
+    <string name="invalid_url_toast">Endereço inválido</string>
+    <string name="detail_drag_description">Arraste para reordenar</string>
+
+    <string name="create">Criar</string>
+    <string name="delete_one">Eliminar um</string>
+    <string name="delete_all">Eliminar todos</string>
+    <string name="rename">Alterar nome</string>
+
+    <string name="donation_title">Doar</string>
     </resources>
