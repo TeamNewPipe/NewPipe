@@ -283,4 +283,17 @@ o modo “popup“</string>
     <string name="start_here_on_main">Começar a reproduzir aqui</string>
     <string name="start_here_on_background">Começar aqui em Segundo Plano</string>
     <string name="start_here_on_popup">Começar aqui em Popup</string>
-</resources>
+<string name="show_info">Mostrar informação</string>
+
+    <string name="tab_bookmarks">Favoritos</string>
+
+    <string name="service_title">Serviço</string>
+    <string name="always">Sempre</string>
+    <string name="just_once">Apenas uma vez</string>
+
+    <string name="toggle_orientation">Mudar orientação</string>
+    <string name="import_data_title">Importar base de dados</string>
+    <string name="export_data_title">Exportar base de dados</string>
+    <string name="import_data_summary">Irá sobrepor o seu histórico atual e subscrições</string>
+    <string name="export_data_summary">Exportar histórico, subscrições e listas de reprodução.</string>
+    </resources>
