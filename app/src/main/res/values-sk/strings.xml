@@ -231,7 +231,7 @@ otvorenie okna na popredí</string>
     <string name="title_history_view">Pozreté</string>
     <string name="history_disabled">História je zakázaná</string>
     <string name="action_history">História</string>
-    <string name="history_empty">História je prázdna.</string>
+    <string name="history_empty">História je prázdna</string>
     <string name="history_cleared">História bola vyčistená</string>
 
 <string name="settings_category_player_title">Prehrávač</string>
