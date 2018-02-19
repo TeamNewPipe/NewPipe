@@ -302,4 +302,5 @@ o modo “popup“</string>
     <string name="switch_to_popup">Mudar para popup</string>
     <string name="switch_to_main">Mudar para primeiro plano</string>
 
+    <string name="player_stream_failure">Incapaz de reproduzir este vídeo</string>
     </resources>
