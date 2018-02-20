@@ -337,7 +337,7 @@ abrir en modo popup</string>
     <string name="export_data_summary">Exportar historial, suscripciones y listas de reproducción.</string>
     <string name="export_complete_toast">Exportación completa</string>
     <string name="import_complete_toast">Importación completa</string>
-    <string name="no_valid_zip_file">Archivo zip no válido</string>
+    <string name="no_valid_zip_file">Archivo ZIP no válido</string>
     <string name="could_not_import_all_files">ADVERTENCIA: no se pudieron importar todos los archivos.</string>
     <string name="override_current_data">Esto reemplazará su configuración actual.</string>
 
@@ -383,4 +383,17 @@ abrir en modo popup</string>
     <string name="normal_caption_font_size">Fuente normal</string>
     <string name="larger_caption_font_size">Fuente más grande</string>
 
-    </resources>
+    <string name="drawer_header_action_paceholder_text">Algo vendrá aquí pronto ;D</string>
+
+
+    <string name="caption_none">Sin subtítulos</string>
+
+    <string name="resize_fit">AJUSTAR</string>
+    <string name="resize_fill">RELLENAR</string>
+    <string name="resize_zoom">ZOOM</string>
+
+    <string name="caption_font_size_settings_title">Tamaño de fuente de subtítulos</string>
+    <string name="toggle_leak_canary">Monitoreo de fugas</string>
+    <string name="enable_leak_canary_notice">Monitorización de fugas de memoria activada, la app puede dejar de responder cuando hay volcado de almacenamiento</string>
+    <string name="disable_leak_canary_notice">Monitorización de fugas de memoria desactivada</string>
+</resources>
