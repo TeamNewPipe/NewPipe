@@ -398,4 +398,7 @@
     <string name="toggle_leak_canary">Controllo delle perdite</string>
     <string name="enable_leak_canary_notice">Controllo delle perdite di memoria abilitato, l\'applicazione può non rispondere mentre effettua il dumping dell\'heap</string>
     <string name="disable_leak_canary_notice">Controllo delle perdite di memoria disabilitato</string>
-</resources>
+<string name="drawer_header_action_paceholder_text">A breve qualcosa si troverà qui ;D</string>
+
+
+    </resources>
