@@ -93,4 +93,7 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     betaImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+
+    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    debugImplementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
 }
