@@ -384,7 +384,4 @@
     <string name="smaller_caption_font_size">Küçük Yazı Tipi</string>
     <string name="normal_caption_font_size">Olağan Yazı Tipi</string>
     <string name="larger_caption_font_size">Büyük Yazı Tipi</string>
-
-    <string name="enable_leak_canary_notice">Bellek sızıntısı gözlemleme etkinleştirildi, uygulama yığın atımı sırasında yanıtsız kalabilir</string>
-    <string name="disable_leak_canary_notice">Bellek sızıntısı gözlemleme devre dışı</string>
 </resources>

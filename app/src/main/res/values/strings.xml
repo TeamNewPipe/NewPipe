@@ -98,6 +98,7 @@
     <string name="settings_category_popup_title">Popup</string>
     <string name="settings_category_appearance_title">Appearance</string>
     <string name="settings_category_other_title">Other</string>
+    <string name="settings_category_debug_title">Debug</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="background_player_append">Queued on background player</string>
@@ -412,8 +413,7 @@
     <string name="normal_caption_font_size">Normal Font</string>
     <string name="larger_caption_font_size">Larger Font</string>
 
-    <!-- Debug Only -->
-    <string name="toggle_leak_canary" translatable="false">LeakCanary</string>
-    <string name="enable_leak_canary_notice">Memory leak monitoring enabled, app may become unresponsive when heap dumping</string>
-    <string name="disable_leak_canary_notice">Memory leak monitoring disabled</string>
+    <!-- Debug Settings -->
+    <string name="enable_leak_canary_title">Enable LeakCanary</string>
+    <string name="enable_leak_canary_summary">Memory leak monitoring may cause app to become unresponsive when heap dumping</string>
 </resources>
