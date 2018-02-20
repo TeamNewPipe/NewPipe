@@ -276,4 +276,5 @@
     <string name="start_here_on_main">यंहा से चलाना शुरू करे</string>
     <string name="start_here_on_background">बैकग्राउंड में चलाना शुरू करे</string>
     <string name="start_here_on_popup">पॉपअप में चलाना शुरू करे</string>
-</resources>
+<string name="no_player_found_toast">स्ट्रीम प्लेयर उपलब्ध नहीं है (आप इसे चलाने के लिए VLC इंस्टॉल कर सकते हैं)</string>
+    </resources>
