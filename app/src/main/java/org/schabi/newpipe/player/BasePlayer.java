@@ -617,12 +617,12 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     public void onPositionDiscontinuity(int reason) {
         if (DEBUG) Log.d(TAG, "onPositionDiscontinuity() called with reason = [" + reason + "]");
         // Refresh the playback if there is a transition to the next video
-        final int newWindowIndex = simpleExoPlayer.getCurrentPeriodIndex();
+        final int newPeriodIndex = simpleExoPlayer.getCurrentPeriodIndex();
 
         /* Discontinuity reasons!! Thank you ExoPlayer lords */
         switch (reason) {
             case DISCONTINUITY_REASON_PERIOD_TRANSITION:
-                if (newWindowIndex == playQueue.getIndex()) {
+                if (newPeriodIndex == playQueue.getIndex()) {
                     registerView();
                 } else {
                     playQueue.offsetIndex(+1);

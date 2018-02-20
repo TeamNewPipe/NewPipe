@@ -406,6 +406,7 @@
     <string name="resize_fill">FILL</string>
     <string name="resize_zoom">ZOOM</string>
 
+    <string name="caption_auto_generated">Auto-generated</string>
     <string name="caption_font_size_settings_title">Caption Font Size</string>
     <string name="smaller_caption_font_size">Smaller Font</string>
     <string name="normal_caption_font_size">Normal Font</string>
