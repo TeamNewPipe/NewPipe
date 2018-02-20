@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
 
 import com.facebook.stetho.Stetho;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.squareup.leakcanary.AndroidHeapDumper;
 import com.squareup.leakcanary.DefaultLeakDirectoryProvider;
 import com.squareup.leakcanary.HeapDumper;
@@ -16,6 +17,8 @@ import com.squareup.leakcanary.RefWatcher;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 
 public class DebugApp extends App {
     private static final String TAG = DebugApp.class.toString();
@@ -30,6 +33,7 @@ public class DebugApp extends App {
     public void onCreate() {
         super.onCreate();
         initStetho();
+        Downloader.client = new OkHttpClient.Builder().addNetworkInterceptor(new StethoInterceptor()).readTimeout(30, TimeUnit.SECONDS).build();
     }
 
     private void initStetho() {
