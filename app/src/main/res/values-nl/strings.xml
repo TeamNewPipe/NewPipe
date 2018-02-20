@@ -165,7 +165,7 @@ te openen in pop-upmodus</string>
     <string name="clear">Wissen</string>
 
     <string name="popup_remember_size_pos_title">Onthoud grootte en positie van pop-up</string>
-    <string name="popup_remember_size_pos_summary">Onthou laatste grootte en positie van pop-up</string>
+    <string name="popup_remember_size_pos_summary">Onthoud laatste grootte en positie van pop-up</string>
 
     <string name="settings_category_popup_title">Pop-up</string>
     <string name="popup_resizing_indicator_title">Bezig met schalen</string>
