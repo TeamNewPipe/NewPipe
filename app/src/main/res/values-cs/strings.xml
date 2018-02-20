@@ -322,8 +322,8 @@ otevření ve vyskakovacím okně</string>
 
     <string name="export_complete_toast">Export dokončen</string>
     <string name="import_complete_toast">Import dokončen</string>
-    <string name="no_valid_zip_file">Bez platného Zip souboru</string>
-    <string name="could_not_import_all_files">UPOZORNĚNÍ: Nelze importovat všechny soubory.</string>
+    <string name="no_valid_zip_file">Žádný platný soubor ZIP</string>
+    <string name="could_not_import_all_files">Upozornění: Nelze importovat všechny soubory.</string>
     <string name="override_current_data">Tímto se anuluje vaše aktuální nastavení.</string>
 
     <string name="preferred_player_share_menu_dialog_title">Otevřít preferovaným přehrávačem</string>
@@ -336,4 +336,58 @@ otevření ve vyskakovacím okně</string>
     
     <string name="preferred_player_fetcher_notification_title">Získávám informace…</string>
     <string name="preferred_player_fetcher_notification_message">Požadovaný obsah se načítá</string>
+<string name="controls_download_desc">Stáhnout soubor streamu.</string>
+    <string name="show_info">Ukázat informace</string>
+
+    <string name="tab_bookmarks">Záložky</string>
+
+    <string name="controls_add_to_playlist_title">Přidat do</string>
+
+    <string name="detail_drag_description">Přetáhnout pro přeskupení</string>
+
+    <string name="create">Vytvořit</string>
+    <string name="delete_one">Smazat jeden</string>
+    <string name="delete_all">Smazat vše</string>
+    <string name="dismiss">Zahodit</string>
+    <string name="rename">Přejmenovat</string>
+
+    <string name="delete_stream_history_prompt">Přejete si smazat tuto položku z historie shlédnutí?</string>
+    <string name="delete_all_history_prompt">Jste si jisti, že chcete odstranit všechny položky z historie?</string>
+    <string name="title_last_played">Poslední přehráno</string>
+    <string name="title_most_played">Nejvíce přehráno</string>
+
+    <string name="drawer_header_action_paceholder_text">Zde něco brzy bude ;D</string>
+
+
+    <string name="always_ask_open_action">Vždy se zeptat</string>
+    
+    <string name="create_playlist">Vytvořit nový playlist</string>
+    <string name="delete_playlist">Vymazat playlist</string>
+    <string name="rename_playlist">Přejmenovat playlist</string>
+    <string name="playlist_name_input">Jméno</string>
+    <string name="append_playlist">Přidat do playlistu</string>
+    <string name="set_as_playlist_thumbnail">Nastavit jako náhled playlistu</string>
+
+    <string name="bookmark_playlist">Založit playlist</string>
+    <string name="unbookmark_playlist">Smazat záložku</string>
+
+    <string name="delete_playlist_prompt">Přejete si smazat tento playlist?</string>
+    <string name="playlist_creation_success">Playlist úspěšně vytvořen</string>
+    <string name="playlist_add_stream_success">Přidáno do playlistu</string>
+    <string name="playlist_thumbnail_change_success">Náhled playlistu změněn</string>
+    <string name="playlist_delete_failure">Nezdařilo se smazat playlist</string>
+
+    <string name="caption_none">Žádný popis</string>
+
+    <string name="resize_fit">PŘIZPŮSOBIT</string>
+    <string name="resize_fill">VYPLNIT</string>
+    <string name="resize_zoom">ZVĚTŠIT</string>
+
+    <string name="caption_font_size_settings_title">Velikost písma titulků</string>
+    <string name="smaller_caption_font_size">Menší písmo</string>
+    <string name="normal_caption_font_size">Normální písmo</string>
+    <string name="larger_caption_font_size">Větší písmo</string>
+
+    <string name="toggle_leak_canary">Sledovat únik paměti</string>
+    <string name="disable_leak_canary_notice">Sledování úniku paměti vypnuto</string>
 </resources>
