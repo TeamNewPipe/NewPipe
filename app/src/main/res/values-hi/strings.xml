@@ -43,7 +43,7 @@
     <string name="view_on_github">GitHub में देखें</string>
     <string name="app_license_title">न्यूपाइप का लाइसेंस</string>
     <string name="read_full_license">लाइसेंस पढ़ें</string>
-    <string name="contribution_title">योगदान</string>
+    <string name="contribution_title">योगदान करें</string>
 
     <string name="title_activity_history">इतिहास</string>
     <string name="title_history_search">खोजा जा चूका है</string>
@@ -103,7 +103,7 @@
     <string name="resume_on_audio_focus_gain_title">जब फोकस मिले तो विडियो resume हो</string>
     <string name="resume_on_audio_focus_gain_summary">रूकावट आने पर भी विडियो को जारी रखे (जैसे - फ़ोन कॉल आये)</string>
     <string name="show_next_and_similar_title">आगे ऐसा ही विडियो दिखाए जैसा पहले देखा था</string>
-    <string name="show_hold_to_append_title">tip को विस्तार करने के hold को दिखाए</string>
+    <string name="show_hold_to_append_title">"\"संलग्न करने के लिए पकड़ें\" देखायें "</string>
     <string name="show_hold_to_append_summary">जब बैकग्राउंड और पॉपअप बटन विडियो के विवरण पन्ने में दबाई जाए तो tip को दिखाए</string>
     <string name="url_not_supported_toast">ये वाला URL इसमें नहीं चलेगा</string>
     <string name="search_language_title">डिफ़ॉल्ट विषय की भाषा</string>
@@ -276,5 +276,101 @@
     <string name="start_here_on_main">यंहा से चलाना शुरू करे</string>
     <string name="start_here_on_background">बैकग्राउंड में चलाना शुरू करे</string>
     <string name="start_here_on_popup">पॉपअप में चलाना शुरू करे</string>
-<string name="no_player_found_toast">स्ट्रीम प्लेयर उपलब्ध नहीं है (आप इसे चलाने के लिए VLC इंस्टॉल कर सकते हैं)</string>
-    </resources>
+<string name="no_player_found_toast">स्ट्रीम करने के लिए प्लेयर उपलब्ध नहीं है (आप इसे चलाने के लिए VLC इंस्टॉल कर सकते हैं)</string>
+    <string name="controls_download_desc">स्ट्रीम डाउनलोड करें।</string>
+    <string name="show_info">जानकारी दिखाएं</string>
+
+    <string name="tab_bookmarks">बुकमार्क्स</string>
+
+    <string name="controls_add_to_playlist_title">में जोड़े</string>
+
+    <string name="default_content_country_title">डिफ़ॉल्ट देश का विषय</string>
+    <string name="service_title">सर्विस</string>
+    <string name="always">हमेशा के लिए</string>
+    <string name="just_once">सिर्फ एक बार के लिए</string>
+
+    <string name="toggle_orientation">टॉगल ओरिएंटेशन</string>
+    <string name="switch_to_background">बैकग्राउंड में स्विच करें</string>
+    <string name="switch_to_popup">पॉपअप मोड में जाएं</string>
+    <string name="switch_to_main">मुख्य पर स्विच करें</string>
+
+    <string name="import_data_title">डेटाबेस आयात करें</string>
+    <string name="export_data_title">डेटाबेस निर्यात करें</string>
+    <string name="import_data_summary">आपके वर्तमान इतिहास और सब्सक्रिप्शन को ओवरराइड करेगा</string>
+    <string name="export_data_summary">इतिहास, सब्सक्रिप्शन और प्लेलिस्ट निर्यात करें ।</string>
+    <string name="external_player_unsupported_link_type">एक्सटर्नल प्लेयर इन प्रकार के लिंक सपोर्ट नहीं करता</string>
+    <string name="invalid_url_toast">अमान्य URL</string>
+    <string name="video_streams_empty">कोई वीडियो स्ट्रीम नहीं मिला</string>
+    <string name="audio_streams_empty">कोई वीडियो स्ट्रीम नहीं मिला</string>
+
+    <string name="detail_drag_description">फिर से क्रम देने के लिए खींचें</string>
+
+    <string name="create">बनाइये</string>
+    <string name="delete_one">एक को हटाएं</string>
+    <string name="delete_all">सभी को हटाएँ</string>
+    <string name="dismiss">ख़ारिज करें</string>
+    <string name="rename">नाम बदलें</string>
+
+    <string name="donation_title">दान करें</string>
+    <string name="donation_encouragement">NewPipe स्वयंसेवकों द्वारा विकसित किया जाता है जो आपको अच्छा अनुभव देने के लिए अपना खाली समय व्यतीत करते हैं। अब यह सुनिश्चित करने का समय है कि हमारे डेवलपर्स जावा के कप का आनंद लेते समय NewPipe को और भी बेहतर बना सके!</string>
+    <string name="give_back">वापस दे</string>
+    <string name="website_title">वेबसाइट</string>
+    <string name="website_encouragement">अधिक जानकारी और NewPipe के बारे में नवीनतम समाचार प्राप्त करने के लिए हमारी वेबसाइट पर जाएं ।</string>
+    <string name="delete_stream_history_prompt">क्या आप इस आइटम को वॉच इतिहास से हटाना चाहते हैं?</string>
+    <string name="delete_all_history_prompt">क्या आप वाकई इतिहास से सभी आइटंस हटाना चाहते हैं?</string>
+    <string name="title_last_played">पिछला चलाया गया</string>
+    <string name="title_most_played">अधिकतम चलाए गए</string>
+
+    <string name="export_complete_toast">निर्यात पूर्ण हुआ</string>
+    <string name="import_complete_toast">आयात पूर्ण हुआ</string>
+    <string name="no_valid_zip_file">कोई मांय ज़िप फ़ाइल नहीं</string>
+    <string name="could_not_import_all_files">चेतावनी: सभी फ़ाइलों को आयात नहीं किया जा सका।</string>
+    <string name="override_current_data">यह आपके वर्तमान सेटअप को ओवरराइड करेगा ।</string>
+
+    <string name="drawer_open">ड्रावर खोलें</string>
+    <string name="drawer_close">ड्रावर बंद करें</string>
+    <string name="drawer_header_action_paceholder_text">जल्द ही यहां पर कुछ आएगा ;D</string>
+
+
+    <string name="preferred_player_share_menu_dialog_title">पसंदीदा प्लेयर से खोलें</string>
+    <string name="preferred_player_settings_title">पसंदीदा प्लेयर</string>
+
+    <string name="video_player">वीडियो प्लेयर</string>
+    <string name="background_player">बैकग्राउंड प्लेयर</string>
+    <string name="popup_player">पॉपअप प्लेयर</string>
+    <string name="always_ask_open_action">हमेशा पूछें</string>
+    
+    <string name="preferred_player_fetcher_notification_title">जानकारी प्राप्त की जा रही है…</string>
+    <string name="preferred_player_fetcher_notification_message">अनुरोधित कंटेंट लोड हो रहा है</string>
+
+    <string name="create_playlist">नई प्लेलिस्ट बनाएं</string>
+    <string name="delete_playlist">प्लेलिस्ट हटाएं</string>
+    <string name="rename_playlist">प्लेलिस्ट का नाम बदलें</string>
+    <string name="playlist_name_input">नाम</string>
+    <string name="append_playlist">प्लेलिस्ट में जोड़ें</string>
+    <string name="set_as_playlist_thumbnail">प्लेलिस्ट थंबनेल के रूप में सेट करें</string>
+
+    <string name="bookmark_playlist">प्लेलिस्ट बुकमार्क करें</string>
+    <string name="unbookmark_playlist">बुकमार्क हटायें</string>
+
+    <string name="delete_playlist_prompt">क्या आप इस प्लेलिस्ट को हटाना चाहते हैं?</string>
+    <string name="playlist_creation_success">प्लेलिस्ट सफलतापूर्वक बनाई गई</string>
+    <string name="playlist_add_stream_success">प्लेलिस्ट में जोड़ा गया</string>
+    <string name="playlist_thumbnail_change_success">प्लेलिस्ट का थंबनेल बदल दिया गया है</string>
+    <string name="playlist_delete_failure">प्लेलिस्ट हटाने में असफल</string>
+
+    <string name="caption_none">कोई कैप्शन नहीं</string>
+
+    <string name="resize_fit">फिट</string>
+    <string name="resize_fill">भरें</string>
+    <string name="resize_zoom">ज़ूम करें</string>
+
+    <string name="caption_font_size_settings_title">कैप्शन फ़ॉंट आकार</string>
+    <string name="smaller_caption_font_size">छोटे फ़ॉंट</string>
+    <string name="normal_caption_font_size">सामांय फ़ॉंट</string>
+    <string name="larger_caption_font_size">बड़ा फ़ॉंट</string>
+
+    <string name="toggle_leak_canary">मॉनिटर लीक</string>
+    <string name="enable_leak_canary_notice">मेमोरी लीक मॉनिटरिंग सक्षम है, हीप डंपिंग के समय ऐप अप्रतिसादी हो सकती है</string>
+    <string name="disable_leak_canary_notice">मेमोरी लीक मॉनिटरिंग अक्षम है</string>
+</resources>
