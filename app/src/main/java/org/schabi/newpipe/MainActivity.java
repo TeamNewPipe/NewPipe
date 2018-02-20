@@ -23,6 +23,7 @@ package org.schabi.newpipe;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -154,8 +155,9 @@ public class MainActivity extends AppCompatActivity {
         headerServiceView = findViewById(R.id.drawer_header_service_view);
         Button action = findViewById(R.id.drawer_header_action_button);
         action.setOnClickListener(view -> {
-            Toast.makeText(this,
-                    R.string.drawer_header_action_paceholder_text, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://newpipe.schabi.org/blog/"));
+            startActivity(intent);
             drawer.closeDrawers();
         });
     }
