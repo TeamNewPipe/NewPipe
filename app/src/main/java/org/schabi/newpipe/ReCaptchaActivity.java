@@ -107,7 +107,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
             // find cookies : s_gl & goojf and Add cookies to Downloader
             if (find_access_cookies(cookies)) {
                 // Give cookies to Downloader class
-                Downloader.setCookies(mCookies);
+                Downloader.getInstance().setCookies(mCookies);
 
                 // Closing activity and return to parent
                 setResult(RESULT_OK);

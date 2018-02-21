@@ -19,6 +19,7 @@ import org.acra.config.ACRAConfiguration;
 import org.acra.config.ACRAConfigurationException;
 import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.ReportSenderFactory;
+import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.report.AcraReportSenderFactory;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -83,7 +84,7 @@ public class App extends Application {
         // Initialize settings first because others inits can use its values
         SettingsActivity.initSettings(this);
 
-        NewPipe.init(Downloader.getInstance());
+        NewPipe.init(getDownloader());
         NewPipeDatabase.init(this);
         StateSaver.init(this);
         initNotificationChannel();
@@ -92,6 +93,10 @@ public class App extends Application {
         ImageLoader.getInstance().init(getImageLoaderConfigurations(10, 50));
 
         configureRxJavaErrorHandler();
+    }
+
+    protected Downloader getDownloader() {
+        return org.schabi.newpipe.Downloader.init(null);
     }
 
     private void configureRxJavaErrorHandler() {
