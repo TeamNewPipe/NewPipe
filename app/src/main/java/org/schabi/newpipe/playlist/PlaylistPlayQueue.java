@@ -15,6 +15,10 @@ public final class PlaylistPlayQueue extends AbstractInfoPlayQueue<PlaylistInfo,
         super(item);
     }
 
+    public PlaylistPlayQueue(final PlaylistInfo info) {
+        this(info.getServiceId(), info.getUrl(), info.getNextStreamsUrl(), info.getRelatedStreams(), 0);
+    }
+
     public PlaylistPlayQueue(final int serviceId,
                              final String url,
                              final String nextPageUrl,

@@ -9,6 +9,8 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -21,6 +23,10 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.Stream;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
@@ -36,16 +42,21 @@ import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayerActivity;
 import org.schabi.newpipe.player.VideoPlayer;
+import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.settings.SettingsActivity;
+
+import java.util.ArrayList;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NavigationHelper {
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
+    public static final String SEARCH_FRAGMENT_TAG = "search_fragment_tag";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Players
     //////////////////////////////////////////////////////////////////////////*/
+
     public static Intent getPlayerIntent(final Context context,
                                          final Class targetClazz,
                                          final PlayQueue playQueue,
@@ -65,9 +76,11 @@ public class NavigationHelper {
 
     public static Intent getPlayerEnqueueIntent(final Context context,
                                                 final Class targetClazz,
-                                                final PlayQueue playQueue) {
+                                                final PlayQueue playQueue,
+                                                final boolean selectOnAppend) {
         return getPlayerIntent(context, targetClazz, playQueue)
-                .putExtra(BasePlayer.APPEND_ONLY, true);
+                .putExtra(BasePlayer.APPEND_ONLY, true)
+                .putExtra(BasePlayer.SELECT_ON_APPEND, selectOnAppend);
     }
 
     public static Intent getPlayerIntent(final Context context,
@@ -84,16 +97,39 @@ public class NavigationHelper {
     }
 
     public static void playOnMainPlayer(final Context context, final PlayQueue queue) {
-        context.startActivity(getPlayerIntent(context, MainVideoPlayer.class, queue));
+        final Intent playerIntent = getPlayerIntent(context, MainVideoPlayer.class, queue);
+        playerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(playerIntent);
     }
 
-    public static void playOnPopupPlayer(final Activity activity, final PlayQueue queue) {
-        if (!PermissionHelper.isPopupEnabled(activity)) {
-            PermissionHelper.showPopupEnablementToast(activity);
+    public static void playOnOldVideoPlayer(Context context, StreamInfo info) {
+        ArrayList<VideoStream> videoStreamsList = new ArrayList<>(ListHelper.getSortedStreamVideosList(context, info.getVideoStreams(), null, false));
+        int index = ListHelper.getDefaultResolutionIndex(context, videoStreamsList);
+
+        if (index == -1) {
+            Toast.makeText(context, R.string.video_streams_empty, Toast.LENGTH_SHORT).show();
             return;
         }
-        Toast.makeText(activity, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
-        activity.startService(getPlayerIntent(activity, PopupVideoPlayer.class, queue));
+
+        VideoStream videoStream = videoStreamsList.get(index);
+        Intent intent = new Intent(context, PlayVideoActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .putExtra(PlayVideoActivity.VIDEO_TITLE, info.getName())
+                .putExtra(PlayVideoActivity.STREAM_URL, videoStream.getUrl())
+                .putExtra(PlayVideoActivity.VIDEO_URL, info.getUrl())
+                .putExtra(PlayVideoActivity.START_POSITION, info.getStartPosition());
+
+        context.startActivity(intent);
+    }
+
+    public static void playOnPopupPlayer(final Context context, final PlayQueue queue) {
+        if (!PermissionHelper.isPopupEnabled(context)) {
+            PermissionHelper.showPopupEnablementToast(context);
+            return;
+        }
+
+        Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
+        context.startService(getPlayerIntent(context, PopupVideoPlayer.class, queue));
     }
 
     public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue) {
@@ -101,19 +137,92 @@ public class NavigationHelper {
         context.startService(getPlayerIntent(context, BackgroundPlayer.class, queue));
     }
 
-    public static void enqueueOnPopupPlayer(final Activity activity, final PlayQueue queue) {
-        if (!PermissionHelper.isPopupEnabled(activity)) {
-            PermissionHelper.showPopupEnablementToast(activity);
+    public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue) {
+        enqueueOnPopupPlayer(context, queue, false);
+    }
+
+    public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue, boolean selectOnAppend) {
+        if (!PermissionHelper.isPopupEnabled(context)) {
+            PermissionHelper.showPopupEnablementToast(context);
             return;
         }
-        Toast.makeText(activity, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
-        activity.startService(getPlayerEnqueueIntent(activity, PopupVideoPlayer.class, queue));
+
+        Toast.makeText(context, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
+        context.startService(getPlayerEnqueueIntent(context, PopupVideoPlayer.class, queue, selectOnAppend));
     }
 
     public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue) {
-        Toast.makeText(context, R.string.background_player_append, Toast.LENGTH_SHORT).show();
-        context.startService(getPlayerEnqueueIntent(context, BackgroundPlayer.class, queue));
+        enqueueOnBackgroundPlayer(context, queue, false);
     }
+
+    public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue, boolean selectOnAppend) {
+        Toast.makeText(context, R.string.background_player_append, Toast.LENGTH_SHORT).show();
+        context.startService(getPlayerEnqueueIntent(context, BackgroundPlayer.class, queue, selectOnAppend));
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // External Players
+    //////////////////////////////////////////////////////////////////////////*/
+
+    public static void playOnExternalAudioPlayer(Context context, StreamInfo info) {
+        final int index = ListHelper.getDefaultAudioFormat(context, info.getAudioStreams());
+
+        if (index == -1) {
+            Toast.makeText(context, R.string.audio_streams_empty, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        AudioStream audioStream = info.getAudioStreams().get(index);
+        playOnExternalPlayer(context, info.getName(), info.getUploaderName(), audioStream);
+    }
+
+    public static void playOnExternalVideoPlayer(Context context, StreamInfo info) {
+        ArrayList<VideoStream> videoStreamsList = new ArrayList<>(ListHelper.getSortedStreamVideosList(context, info.getVideoStreams(), null, false));
+        int index = ListHelper.getDefaultResolutionIndex(context, videoStreamsList);
+
+        if (index == -1) {
+            Toast.makeText(context, R.string.video_streams_empty, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        VideoStream videoStream = videoStreamsList.get(index);
+        playOnExternalPlayer(context, info.getName(), info.getUploaderName(), videoStream);
+    }
+
+    public static void playOnExternalPlayer(Context context, String name, String artist, Stream stream) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.parse(stream.getUrl()), stream.getFormat().getMimeType());
+        intent.putExtra(Intent.EXTRA_TITLE, name);
+        intent.putExtra("title", name);
+        intent.putExtra("artist", artist);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        resolveActivityOrAskToInstall(context, intent);
+    }
+
+    public static void resolveActivityOrAskToInstall(Context context, Intent intent) {
+        if (intent.resolveActivity(context.getPackageManager()) != null) {
+            context.startActivity(intent);
+        } else {
+            if (context instanceof Activity) {
+                new AlertDialog.Builder(context)
+                        .setMessage(R.string.no_player_found)
+                        .setPositiveButton(R.string.install, (dialog, which) -> {
+                            Intent i = new Intent();
+                            i.setAction(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse(context.getString(R.string.fdroid_vlc_url)));
+                            context.startActivity(i);
+                        })
+                        .setNegativeButton(R.string.cancel, (dialog, which) -> Log.i("NavigationHelper", "You unlocked a secret unicorn."))
+                        .show();
+                //Log.e("NavigationHelper", "Either no Streaming player for audio was installed, or something important crashed:");
+            } else {
+                Toast.makeText(context, R.string.no_player_found_toast, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Through FragmentManager
     //////////////////////////////////////////////////////////////////////////*/
@@ -136,11 +245,21 @@ public class NavigationHelper {
                 .commit();
     }
 
+    public static boolean tryGotoSearchFragment(FragmentManager fragmentManager) {
+        if (MainActivity.DEBUG) {
+            for (int i = 0; i < fragmentManager.getBackStackEntryCount(); i++) {
+                Log.d("NavigationHelper", "tryGoToSearchFragment() [" + i + "] = [" + fragmentManager.getBackStackEntryAt(i) + "]");
+            }
+        }
+
+        return fragmentManager.popBackStackImmediate(SEARCH_FRAGMENT_TAG, 0);
+    }
+
     public static void openSearchFragment(FragmentManager fragmentManager, int serviceId, String query) {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
                 .replace(R.id.fragment_holder, SearchFragment.getInstance(serviceId, query))
-                .addToBackStack(null)
+                .addToBackStack(SEARCH_FRAGMENT_TAG)
                 .commit();
     }
 
@@ -287,19 +406,6 @@ public class NavigationHelper {
     // Link handling
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static boolean openByLink(Context context, String url) {
-        Intent intentByLink;
-        try {
-            intentByLink = getIntentByLink(context, url);
-        } catch (ExtractionException e) {
-            return false;
-        }
-        intentByLink.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intentByLink.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        context.startActivity(intentByLink);
-        return true;
-    }
-
     private static Intent getOpenIntent(Context context, String url, int serviceId, StreamingService.LinkType type) {
         Intent mIntent = new Intent(context, MainActivity.class);
         mIntent.putExtra(Constants.KEY_SERVICE_ID, serviceId);
@@ -317,15 +423,14 @@ public class NavigationHelper {
             throw new ExtractionException("Service not supported at the moment");
         }
 
-        int serviceId = service.getServiceId();
         StreamingService.LinkType linkType = service.getLinkTypeByUrl(url);
 
         if (linkType == StreamingService.LinkType.NONE) {
-            throw new ExtractionException("Url not known to service. service=" + serviceId + " url=" + url);
+            throw new ExtractionException("Url not known to service. service=" + service + " url=" + url);
         }
 
         url = getCleanUrl(service, url, linkType);
-        Intent rIntent = getOpenIntent(context, url, serviceId, linkType);
+        Intent rIntent = getOpenIntent(context, url, service.getServiceId(), linkType);
 
         switch (linkType) {
             case STREAM:
@@ -337,7 +442,7 @@ public class NavigationHelper {
         return rIntent;
     }
 
-    private static String getCleanUrl(StreamingService service, String dirtyUrl, StreamingService.LinkType linkType) throws ExtractionException {
+    public static String getCleanUrl(StreamingService service, String dirtyUrl, StreamingService.LinkType linkType) throws ExtractionException {
         switch (linkType) {
             case STREAM:
                 return service.getStreamUrlIdHandler().cleanUrl(dirtyUrl);
@@ -350,7 +455,6 @@ public class NavigationHelper {
         }
         return null;
     }
-
 
     private static Uri openMarketUrl(String packageName) {
         return Uri.parse("market://details")

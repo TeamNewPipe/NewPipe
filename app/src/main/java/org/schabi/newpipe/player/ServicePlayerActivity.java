@@ -183,7 +183,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 this.player.getPlaybackSpeed(),
                 this.player.getPlaybackPitch(),
                 null
-        );
+        ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
     ////////////////////////////////////////////////////////////////////////////
     // Service Connection

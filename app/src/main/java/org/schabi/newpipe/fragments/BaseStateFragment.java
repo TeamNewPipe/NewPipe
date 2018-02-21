@@ -19,7 +19,6 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
-import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -247,6 +246,12 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
+    public void setTitle(String title) {
+        if (DEBUG) Log.d(TAG, "setTitle() called with: title = [" + title + "]");
+        if (activity != null && activity.getSupportActionBar() != null) {
+            activity.getSupportActionBar().setTitle(title);
+        }
+    }
 
     protected void openUrlInBrowser(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));

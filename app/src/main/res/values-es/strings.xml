@@ -59,7 +59,7 @@
     <string name="youtube_signature_decryption_error">No se pudo descifrar la URL del vídeo</string>
     <string name="parsing_error">No se pudo analizar el sitio web</string>
     <string name="show_next_and_similar_title">Mostrar vídeos siguientes y similares</string>
-    <string name="search_language_title">Idioma por defecto del contenido</string>
+    <string name="search_language_title">Idioma del contenido por defecto</string>
     <string name="list_thumbnail_view_description">Vista previa del vídeo</string>
     <string name="detail_thumbnail_view_description">Vista previa del vídeo</string>
     <string name="detail_likes_img_view_description">Me gusta</string>
@@ -284,7 +284,7 @@ abrir en modo popup</string>
 
     <string name="title_activity_background_player">Reproductor de fondo</string>
     <string name="title_activity_popup_player">Reproductor popup</string>
-    <string name="play_queue_remove">Remover</string>
+    <string name="play_queue_remove">Quitar</string>
     <string name="play_queue_stream_detail">Detalles</string>
     <string name="play_queue_audio_settings">Ajustes de audio</string>
     <string name="unknown_content">[Desconocido]</string>
@@ -294,9 +294,9 @@ abrir en modo popup</string>
     <string name="start_here_on_main">Comenzar a reproducir aquí</string>
     <string name="start_here_on_background">Comenzar aquí en segundo plano</string>
     <string name="start_here_on_popup">Comenzar aquí en popup</string>
-<string name="show_hold_to_append_title">Desplegar consejo \"Mantener para poner en la fila\"</string>
+<string name="show_hold_to_append_title">Mostrar consejo \"Mantener para poner en la cola\"</string>
     <string name="new_and_hot">Nuevo y popular</string>
-    <string name="hold_to_append">Mantener para poner en la fila</string>
+    <string name="hold_to_append">Mantener para poner en la cola</string>
     <string name="donation_title">Donar</string>
     <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que emplean su tiempo libre en mejorar tu experiencia. ¡ Ahora puedes devolver el favor para asegurar que los desarrolladores puedan crear un NewPipe aún mejor mientras saborean una taza de Java !</string>
     <string name="give_back">Donar</string>
@@ -308,4 +308,27 @@ abrir en modo popup</string>
     <string name="switch_to_popup">Cambiar a popup</string>
     <string name="switch_to_main">Cambiar a principal</string>
 
-    </resources>
+    <string name="service_title">Servicio</string>
+    <string name="drawer_open">Abrir cajón</string>
+    <string name="drawer_close">Cerrar cajón</string>
+    <string name="no_player_found_toast">No se ha encontrado ningún reproductor de streaming (puede instalar VLC para reproducirlo)</string>
+    <string name="always">Siempre</string>
+    <string name="just_once">Sólo una vez</string>
+
+    <string name="external_player_unsupported_link_type">Los reproductores externos no soportan este tipo de enlaces</string>
+    <string name="invalid_url_toast">URL no válida</string>
+    <string name="video_streams_empty">No se encontraron transmisiones de vídeo</string>
+    <string name="audio_streams_empty">No se encontraron transmisiones de audio</string>
+
+    <string name="preferred_player_share_menu_title">\@string/preferred_player_settings_title</string>
+    <string name="preferred_player_share_menu_dialog_title">Abrir con el reproductor preferido</string>
+    <string name="preferred_player_settings_title">Reproductor preferido</string>
+
+    <string name="video_player">Reproductor de vídeo</string>
+    <string name="background_player">Reproductor de fondo</string>
+    <string name="popup_player">Reproductor de popup</string>
+    <string name="always_ask_player">Preguntar siempre</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Obteniendo información…</string>
+    <string name="preferred_player_fetcher_notification_message">El contenido solicitado se está cargando</string>
+</resources>

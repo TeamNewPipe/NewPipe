@@ -42,7 +42,7 @@
     <string name="light_theme_title">Jasny</string>
 
     <string name="download_dialog_title">Pobrane</string>
-    <string name="next_video_title">Następne video</string>
+    <string name="next_video_title">Następne wideo</string>
     <string name="show_next_and_similar_title">Pokaż następne i podobne filmy</string>
     <string name="url_not_supported_toast">URL nie obsługiwany</string>
     <string name="search_language_title">Preferowany język zawartości</string>
@@ -296,4 +296,27 @@
     <string name="start_here_on_main">Zacznij Odtwarzanie Tutaj</string>
     <string name="start_here_on_background">Zacznij Odwarzanie Tutaj — w Tle</string>
     <string name="start_here_on_popup">Zacznij Odtwarzanie Tutaj — w Okienku</string>
+<string name="no_player_found_toast">Nie znaleziono odtwarzacza strumieniowego (żeby odtworzyć możesz zainstalować VLC)</string>
+    <string name="default_content_country_title">Domyślny kraj zawartości</string>
+    <string name="service_title">Usługa</string>
+    <string name="always">Zawsze</string>
+    <string name="just_once">Tylko raz</string>
+
+    <string name="toggle_orientation">Przełącz orientację</string>
+    <string name="switch_to_background">Odtwarzaj w tle</string>
+    <string name="external_player_unsupported_link_type">Zewnętrzne odtwarzacze nie obsługują linków tego typu</string>
+    <string name="invalid_url_toast">Nieprawidłowy URL</string>
+    <string name="video_streams_empty">Nie znaleziono strumieni wideo</string>
+    <string name="audio_streams_empty">Nie znaleziono strumieni audio</string>
+
+    <string name="preferred_player_share_menu_title">Preferowany odtwarzacz</string>
+    <string name="preferred_player_share_menu_dialog_title">Otwórz za pomocą preferowanego odtwarzacza</string>
+    <string name="preferred_player_settings_title">Preferowany odtwarzacz</string>
+
+    <string name="video_player">Odtwarzacz wideo</string>
+    <string name="background_player">Odtwarzacz w tle</string>
+    <string name="always_ask_player">Pytaj za każdym razem</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Informacje…</string>
+    <string name="preferred_player_fetcher_notification_message">Ładuję żądaną zawartość</string>
 </resources>

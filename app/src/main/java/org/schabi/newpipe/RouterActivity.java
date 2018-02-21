@@ -3,14 +3,25 @@ package org.schabi.newpipe;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.widget.Toast;
 
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.Collection;
 import java.util.HashSet;
 
-/**
+import icepick.Icepick;
+import icepick.State;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
+
+/*
  * Copyright (C) Christian Schabesberger 2017 <chris.schabesberger@mailbox.org>
  * RouterActivity.java is part of NewPipe.
  *
@@ -34,21 +45,69 @@ import java.util.HashSet;
  */
 public class RouterActivity extends AppCompatActivity {
 
+    @State
+    protected String currentUrl;
+    protected CompositeDisposable disposables = new CompositeDisposable();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Icepick.restoreInstanceState(this, savedInstanceState);
 
-        String videoUrl = getUrl(getIntent());
-        handleUrl(videoUrl);
+        if (TextUtils.isEmpty(currentUrl)) {
+            currentUrl = getUrl(getIntent());
+
+            if (TextUtils.isEmpty(currentUrl)) {
+                Toast.makeText(this, R.string.invalid_url_toast, Toast.LENGTH_LONG).show();
+                finish();
+            }
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Icepick.saveInstanceState(this, outState);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        handleUrl(currentUrl);
     }
 
     protected void handleUrl(String url) {
-        boolean success = NavigationHelper.openByLink(this, url);
-        if (!success) {
+        disposables.add(Observable
+                .fromCallable(() -> NavigationHelper.getIntentByLink(this, url))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(intent -> {
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+
+                    finish();
+                }, this::handleError)
+        );
+    }
+
+    protected void handleError(Throwable error) {
+        error.printStackTrace();
+
+        if (error instanceof ExtractionException) {
             Toast.makeText(this, R.string.url_not_supported_toast, Toast.LENGTH_LONG).show();
+        } else {
+            ExtractorHelper.handleGeneralException(this, -1, null, error, UserAction.SOMETHING_ELSE, null);
         }
 
         finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        disposables.clear();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -71,7 +130,8 @@ public class RouterActivity extends AppCompatActivity {
         } else if (intent.getStringExtra(Intent.EXTRA_TEXT) != null) {
             //this means that vidoe was called through share menu
             String extraText = intent.getStringExtra(Intent.EXTRA_TEXT);
-            videoUrl = getUris(extraText)[0];
+            final String[] uris = getUris(extraText);
+            videoUrl = uris.length > 0 ? uris[0] : null;
         }
 
         return videoUrl;

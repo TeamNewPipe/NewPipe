@@ -176,13 +176,13 @@
 
     <string name="no_subscribers">صفر لا تقم با الإختيار (في بعض اللغات) لأنها ليست \"حالة خاصة\" للأندرويد</string>
     <plurals name="subscribers">
-	    <item quantity="zero">صفر</item>
-	    <item quantity="one">واحد</item>
-	    <item quantity="two">اثنان</item>
-	    <item quantity="few">قليل</item>
-	    <item quantity="many">كثير</item>
-	    <item quantity="other">أخرى</item>
-    </plurals>
+	<item quantity="zero">صفر</item>
+	<item quantity="one">%s مشترك</item>
+	<item quantity="two">اثنان</item>
+	<item quantity="few">قليل</item>
+	<item quantity="many">كثير</item>
+	<item quantity="other">%s مشتركون</item>
+</plurals>
 
     <string name="no_views">لاتوجد مشاهدات</string>
     <string name="no_videos">لاتوجد فديوهات</string>
@@ -226,13 +226,13 @@
     <string name="tab_licenses">التراخيص</string>
     <string name="app_description">واجهة أمامية لليوتوب مجانية مفتوحة المصدر و خفيفة الوزن لنظام التشغيل أندرويد.</string>
     <string name="contribution_title">ساهم</string>
-    <string name="contribution_encouragement">إذا كان لديك أفكار؛ او ترجمة، او تغييرات على التصميم، او تنظيف وتحسين الكود البرمجي ، أو تغييرات ثقيلة على الكود البرمجي، مساعدتك دائما موضع ترحيب. وكلما تم ذلك كلما كان ذلك أفضل!</string>
+    <string name="contribution_encouragement">إذا كانت لديك أفكار؛ أو ترجمة، أو تغييرات تخص التصميم، أو تنظيف و تحسين الشفرة البرمجية ، أو تعديلات عميقة عليها، فتذكر أنّ مساعدتك دائما موضع ترحيب. وكلما أتممنا شيئا كلما كان ذلك أفضل !</string>
     <string name="view_on_github">عرض على GitHub</string>
     <string name="donation_title">تبرع</string>
     <string name="donation_encouragement">يتم تطوير NewPipe من قبل المتطوعين الذين يقضون وقت فراغهم لتقديم أفضل تجربة لك. الآن حان الوقت لإعطاء مرة أخرى للتأكد من المطورين لدينا يمكن أن تجعل NewPipe أكثر و أفضل بينما نتمتع بكوب من جافا!</string>
     <string name="give_back">تبرع</string>
     <string name="website_title">الموقع</string>
-    <string name="website_encouragement">للحصول على مزيد من المعلومات وآخر الأخبار حول NewPipe الرجاء زيارة موقعنا على الانترنت.</string>
+    <string name="website_encouragement">للحصول على مزيد من المعلومات و آخر الأخبار حول NewPipe الرجاء زيارة موقعنا على الانترنت.</string>
     <string name="app_license_title">تراخيص NewPipe</string>
     <string name="read_full_license">قراءة الترخيص</string>
 
@@ -266,20 +266,20 @@
     <string name="hold_to_append">اضغط للإدراج بقائمة الانتظار</string>
     <plurals name="views">
 	<item quantity="zero">صفر</item>
-	<item quantity="one">واحد</item>
+	<item quantity="one">%s مشاهدة</item>
 	<item quantity="two">اثنان</item>
 	<item quantity="few">قليل</item>
 	<item quantity="many">كثير</item>
-	<item quantity="other">أخرى</item>
+	<item quantity="other">%s مشاهدات</item>
 </plurals>
 
     <plurals name="videos">
 	<item quantity="zero">صفر</item>
-	<item quantity="one">واحد</item>
+	<item quantity="one">%s فيديو</item>
 	<item quantity="two">اثنان</item>
 	<item quantity="few">قليل</item>
 	<item quantity="many">كثير</item>
-	<item quantity="other">أخرى</item>
+	<item quantity="other">%s فيديوهات</item>
 </plurals>
 
     <string name="recaptcha_request_toast">إعادة طلب كلمة التحقق</string>
@@ -292,4 +292,18 @@
     <string name="enqueue_on_background">إدراج بقائمة الانتظار على خلفية</string>
     <string name="enqueue_on_popup">إدراج بقائمة الانتظار على المنبثقة</string>
     <string name="start_here_on_background">ابدأ هنا على خلفية المصدر</string>
-</resources>
+<string name="default_content_country_title">المحتوى الإفتراضي حسب البلد</string>
+    <string name="toggle_orientation">تغيير الإتجاه</string>
+    <string name="switch_to_background">الإنتقال إلى الخلفية</string>
+    <string name="switch_to_popup">الإنتقال إلى نافذة منبثقة</string>
+    <string name="switch_to_main">التحول إلى الرئيسية</string>
+
+    <string name="service_title">الخدمة</string>
+    <string name="drawer_open">فتح الدرج</string>
+    <string name="drawer_close">إغلاق الدرج</string>
+    <string name="always">دائمًا</string>
+    <string name="just_once">مرة واحدة فقط</string>
+
+    <string name="invalid_url_toast">العنوان خاطئ</string>
+    <string name="preferred_player_share_menu_title">\@string/preferred_player_settings_title</string>
+    </resources>

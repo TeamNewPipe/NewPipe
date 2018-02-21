@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources translatable="false">
     <!-- Service -->
-    <string name="current_service_key" translatable="false">current_service</string>
+    <string-array name="service_list" translatable="false">
+        <item>@string/youtube</item>
+        <item>@string/soundcloud</item>
+    </string-array>
+    <string name="current_service_key" translatable="false">service</string>
+    <string name="default_service_value" translatable="false">@string/youtube</string>
 
     <!-- Key values -->
     <string name="download_path_key" translatable="false">download_path</string>
@@ -46,12 +51,6 @@
         <item>144p</item>
     </string-array>
 
-    <string-array name="service_list" translatable="false">
-        <item>@string/youtube</item>
-        <item>@string/soundcloud</item>
-    </string-array>
-    <string name="service_key" translatable="false">service</string>
-    <string name="default_service_value" translatable="false">@string/youtube</string>
 
     <string name="video_mp4_key" translatable="false">video_mp4</string>
     <string name="video_webm_key" translatable="false">video_webm</string>
@@ -131,6 +130,8 @@
     <string name="main_page_selected_channel_name" translatable="false">main_page_selected_channel_name</string>
     <string name="main_page_selected_channel_url" translatable="false">main_page_selected_channel_url</string>
     <string name="main_page_selectd_kiosk_id" translatable="false">main_page_selectd_kiosk_id</string>
+    <string name="import_data">import_data</string>
+    <string name="export_data">export_data</string>
 
     <!-- FileName Downloads  -->
     <string name="settings_file_charset_key" translatable="false">file_rename</string>
@@ -148,6 +149,29 @@
     </string-array>
 
     <string name="default_file_charset_value" translatable="false">@string/charset_most_special_characters_value</string>
+
+    <!-- Preferred player -->
+    <string name="preferred_player_key" translatable="false">preferred_player_key</string>
+    <string name="preferred_player_default" translatable="false">@string/always_ask_player_key</string>
+    <string name="preferred_player_last_selected_key" translatable="false">preferred_player_last_selected</string>
+
+    <string name="video_player_key" translatable="false">video_player</string>
+    <string name="background_player_key" translatable="false">background_player</string>
+    <string name="popup_player_key" translatable="false">popup_player</string>
+    <string name="always_ask_player_key" translatable="false">always_ask_player</string>
+
+    <string-array name="preferred_player_description_list" translatable="false">
+        <item>@string/video_player</item>
+        <item>@string/background_player</item>
+        <item>@string/popup_player</item>
+        <item>@string/always_ask_player</item>
+    </string-array>
+    <string-array name="preferred_player_values_list" translatable="false">
+        <item>@string/video_player_key</item>
+        <item>@string/background_player_key</item>
+        <item>@string/popup_player_key</item>
+        <item>@string/always_ask_player_key</item>
+    </string-array>
 
     <!-- alternatively, load these from some local android data store -->
     <string-array name="language_codes" translatable="false">

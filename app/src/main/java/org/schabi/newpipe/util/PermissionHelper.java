@@ -20,7 +20,6 @@ import org.schabi.newpipe.R;
 public class PermissionHelper {
     public static final int PERMISSION_WRITE_STORAGE = 778;
     public static final int PERMISSION_READ_STORAGE = 777;
-    public static final int PERMISSION_SYSTEM_ALERT_WINDOW = 779;
 
 
     public static boolean checkStoragePermissions(Activity activity) {
@@ -80,27 +79,25 @@ public class PermissionHelper {
      * In order to be able to draw over other apps, the permission android.permission.SYSTEM_ALERT_WINDOW have to be granted.
      * <p>
      * On < API 23 (MarshMallow) the permission was granted when the user installed the application (via AndroidManifest),
-     * on > 23, however, it have to start a activity asking the user if he agree.
+     * on > 23, however, it have to start a activity asking the user if he agrees.
      * <p>
-     * This method just return if canDraw over other apps, if it doesn't, try to get the permission,
-     * it does not get the result of the startActivityForResult, if the user accept, the next time that he tries to open
-     * it will return true.
+     * This method just return if the app has permission to draw over other apps, and if it doesn't, it will try to get the permission.
      *
-     * @param activity context to startActivityForResult
      * @return returns {@link Settings#canDrawOverlays(Context)}
      **/
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public static boolean checkSystemAlertWindowPermission(Activity activity) {
-        if (!Settings.canDrawOverlays(activity)) {
-            Intent i = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + activity.getPackageName()));
-            activity.startActivityForResult(i, PERMISSION_SYSTEM_ALERT_WINDOW);
+    public static boolean checkSystemAlertWindowPermission(Context context) {
+        if (!Settings.canDrawOverlays(context)) {
+            Intent i = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + context.getPackageName()));
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(i);
             return false;
         }else return true;
     }
 
-    public static boolean isPopupEnabled(Activity activity) {
+    public static boolean isPopupEnabled(Context context) {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
-                PermissionHelper.checkSystemAlertWindowPermission(activity);
+                PermissionHelper.checkSystemAlertWindowPermission(context);
     }
 
     public static void showPopupEnablementToast(Context context) {

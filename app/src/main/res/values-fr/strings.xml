@@ -5,8 +5,8 @@
     <string name="default_resolution_title">Résolution par défaut</string>
     <string name="did_you_mean">Vouliez-vous dire : %1$s ?</string>
     <string name="download">Télécharger</string>
-    <string name="download_path_title">Chemin de téléchargement</string>
-    <string name="download_path_dialog_title">Entrer le chemin de téléchargement des vidéos</string>
+    <string name="download_path_title">Chemin de téléchargement vidéo</string>
+    <string name="download_path_dialog_title">Entrez le chemin de téléchargement des vidéos</string>
     <string name="download_path_summary">Chemin de stockage des vidéos téléchargées</string>
     <string name="install">Installer</string>
     <string name="kore_not_found">L’application Kore est introuvable. L\'installer ?</string>
@@ -29,7 +29,7 @@
     <string name="download_dialog_title">Télécharger</string>
     <string name="next_video_title">Vidéo suivante</string>
     <string name="show_next_and_similar_title">Afficher les vidéos suivantes et similaires</string>
-    <string name="url_not_supported_toast">URL non pris en charge</string>
+    <string name="url_not_supported_toast">Lien non pris en charge</string>
     <string name="settings_category_video_audio_title">Vidéo et audio</string>
     <string name="settings_category_other_title">Autre</string>
 
@@ -37,7 +37,7 @@
     <string name="detail_thumbnail_view_description">Miniature d’aperçu vidéo</string>
     <string name="detail_dislikes_img_view_description">Je n’aime pas</string>
     <string name="detail_likes_img_view_description">J’aime</string>
-    <string name="search_language_title">Langue par défaut du contenu</string>
+    <string name="search_language_title">Langue du contenu par défaut</string>
     <string name="detail_uploader_thumbnail_view_description">Miniature de l’avatar de l’utilisateur</string>
     <string name="use_external_video_player_title">Utiliser un lecteur vidéo externe</string>
     <string name="use_external_audio_player_title">Utiliser un lecteur audio externe</string>
@@ -53,7 +53,7 @@
     <string name="settings_category_appearance_title">Apparence</string>
     <string name="network_error">Erreur réseau</string>
 
-    <string name="download_path_audio_title">Chemin de téléchargement</string>
+    <string name="download_path_audio_title">Chemin de téléchargement audio</string>
     <string name="download_path_audio_summary">Chemin de stockage des fichiers audio téléchargés</string>
     <string name="download_path_audio_dialog_title">Entrez le chemin de téléchargement des fichiers audio</string>
 
@@ -70,7 +70,7 @@
     <string name="duration_live">Direct</string>
 
     <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
-    <string name="youtube_signature_decryption_error">Erreur lors du décryptage du lien</string>
+    <string name="youtube_signature_decryption_error">Impossible de déchiffrer la signature du lien</string>
     <string name="light_parsing_error">Impossible d\'analyser complètement le site web</string>
     <string name="live_streams_not_supported">Il s\'agit d\'un direct, non supporté pour le moment.</string>
     <string name="sorry_string">Désolé, une erreur inattendue s\'est produite.</string>
@@ -109,15 +109,15 @@
     <string name="finish">OK</string>
 
     <string name="msg_name">Nom du fichier</string>
-    <string name="msg_threads">Discussions</string>
+    <string name="msg_threads">Threads</string>
     <string name="msg_error">Erreur</string>
     <string name="msg_server_unsupported">Serveur non supporté</string>
     <string name="msg_exists">Fichier déjà existant</string>
-    <string name="msg_url_malform">URL malformée ou internet indisponible</string>
+    <string name="msg_url_malform">Lien malformé ou internet indisponible</string>
     <string name="msg_running">Téléchargement NewPipe</string>
     <string name="msg_running_detail">Appuyer pour plus de détails</string>
     <string name="msg_wait">Veuillez patienter…</string>
-    <string name="msg_copied">Copié dans le presse-papier</string>
+    <string name="msg_copied">Copié dans le presse-papiers</string>
     <string name="no_available_dir">Sélectionner un dossier de téléchargement disponible</string>
 
     <string name="could_not_load_image">Impossible de charger l\'image</string>
@@ -136,7 +136,7 @@
     <string name="open_in_popup_mode">Ouvrir en mode fenêtré</string>
     <string name="popup_mode_share_menu_title">Mode fenêtré NewPipe</string>
 
-    <string name="popup_playing_toast">Lire en mode fenêtré</string>
+    <string name="popup_playing_toast">Lecture en mode fenêtré</string>
     <string name="yes">Oui</string>
     <string name="later">Plus tard</string>
     <string name="disabled">Désactivé</string>
@@ -153,7 +153,7 @@
     <string name="controls_background_title">Arrière-plan</string>
     <string name="controls_popup_title">Fenêtre</string>
 
-    <string name="default_popup_resolution_title">Résolution par défaut de la fenêtre</string>
+    <string name="default_popup_resolution_title">Résolution de la fenêtre par défaut</string>
     <string name="show_higher_resolutions_title">Afficher des résolutions plus élevées</string>
     <string name="show_higher_resolutions_summary">Certains appareils uniquement supportent la lecture 2K/4K</string>
     <string name="default_video_format_title">Format vidéo par défaut</string>
@@ -212,7 +212,7 @@
     <string name="settings_file_replacement_character_title">Caractère de remplacement</string>
 
     <string name="enable_search_history_title">Historique de recherche</string>
-    <string name="enable_search_history_summary">Sauvegarder les recherches sur l\'appareil</string>
+    <string name="enable_search_history_summary">Conserver les recherches sur l\'appareil</string>
     <string name="enable_watch_history_title">Historique</string>
     <string name="title_activity_history">Historique</string>
     <string name="title_history_search">Recherché</string>
@@ -268,17 +268,17 @@
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Nouveau &amp; populaire</string>
 <string name="background_player_append">Mis en file d\'attente du lecteur en arrière-plan</string>
-    <string name="popup_playing_append">Mis en file d\'attente du lecteur fenêtré</string>
+    <string name="popup_playing_append">Mis en file d\'attente du lecteur en fenêtré</string>
     <string name="play_all">Tout lire</string>
 
     <string name="player_stream_failure">Échec de la lecture de ce flux</string>
     <string name="player_unrecoverable_failure">Une erreur irrécupérable du lecteur s\'est produite</string>
     <string name="no_channel_subscribed_yet">Encore aucune chaîne souscrite</string>
     <string name="title_activity_background_player">Lecteur en arrière-plan</string>
-    <string name="title_activity_popup_player">Lecteur fenêtré</string>
+    <string name="title_activity_popup_player">Lecteur en fenêtré</string>
     <string name="play_queue_remove">Retirer</string>
     <string name="play_queue_stream_detail">Détails</string>
-    <string name="play_queue_audio_settings">Réglages audio</string>
+    <string name="play_queue_audio_settings">Paramètres audio</string>
     <string name="show_hold_to_append_title">Afficher l\'aide \"Appui long pour mettre en file d\'attente\"</string>
     <string name="show_hold_to_append_summary">Afficher l\'aide en appuyant sur les boutons \"Arrière-plan\" et \"Fenêtre\" sur la page de détails d\'une vidéo</string>
     <string name="unknown_content">[Inconnu]</string>
@@ -291,7 +291,7 @@
     <string name="kiosk">Kiosque</string>
     <string name="hold_to_append">Appui long pour mettre en file d\'attente</string>
     <string name="enqueue_on_background">Mettre en file d\'attente en arrière-plan</string>
-    <string name="enqueue_on_popup">Mettre en file d\'attente du lecteur fenêtré</string>
+    <string name="enqueue_on_popup">Mettre en file d\'attente en fenêtré</string>
     <string name="start_here_on_main">Démarrer ici</string>
     <string name="start_here_on_background">Démarrer ici en arrière-plan</string>
     <string name="start_here_on_popup">Démarrer ici en fenêtré</string>
@@ -301,9 +301,31 @@
     <string name="website_encouragement">Pour obtenir plus d\'informations et les dernières nouvelles à propos de NewPipe, visitez notre site Internet.</string>
     <string name="give_back">Donner en retour</string>
     <string name="default_content_country_title">Pays du contenu par défaut</string>
-    <string name="toggle_orientation">Orientation</string>
+    <string name="toggle_orientation">Rotation</string>
     <string name="switch_to_background">Basculer en arrière-plan</string>
     <string name="switch_to_popup">Basculer en fenêtré</string>
     <string name="switch_to_main">Basculer en normal</string>
 
+    <string name="service_title">Service</string>
+    <string name="drawer_open">Ouvrir le menu</string>
+    <string name="drawer_close">Fermer le menu</string>
+    <string name="no_player_found_toast">Aucun lecteur de flux trouvé (vous pouvez installer VLC pour le lire)</string>
+    <string name="always">Toujours</string>
+    <string name="just_once">Une seule fois</string>
+
+    <string name="external_player_unsupported_link_type">Les lecteurs externes ne supportent pas ces types de liens</string>
+    <string name="invalid_url_toast">Lien non valide</string>
+    <string name="video_streams_empty">Aucun flux vidéo trouvé</string>
+    <string name="audio_streams_empty">Aucun flux audio trouvé</string>
+
+    <string name="preferred_player_share_menu_dialog_title">Ouvrir avec le lecteur préféré</string>
+    <string name="preferred_player_settings_title">Lecteur préféré</string>
+
+    <string name="video_player">Lecteur vidéo</string>
+    <string name="background_player">Lecteur en arrière-plan</string>
+    <string name="popup_player">Lecteur en fenêtré</string>
+    <string name="always_ask_player">Toujours demander</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Obtention des infos…</string>
+    <string name="preferred_player_fetcher_notification_message">Le contenu demandé est en chargement</string>
     </resources>
