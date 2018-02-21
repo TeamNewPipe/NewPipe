@@ -343,7 +343,7 @@ otevření ve vyskakovacím okně</string>
 
     <string name="controls_add_to_playlist_title">Přidat do</string>
 
-    <string name="detail_drag_description">Přetáhnout pro přeskupení</string>
+    <string name="detail_drag_description">Táhnout pro přeskupení</string>
 
     <string name="create">Vytvořit</string>
     <string name="delete_one">Smazat jeden</string>
@@ -390,4 +390,5 @@ otevření ve vyskakovacím okně</string>
 
     <string name="toggle_leak_canary">Sledovat únik paměti</string>
     <string name="disable_leak_canary_notice">Sledování úniku paměti vypnuto</string>
-</resources>
+<string name="enable_leak_canary_notice">Sledování úniku paměti povoleno, aplikace může při zátěži přestat reagovat</string>
+    </resources>
