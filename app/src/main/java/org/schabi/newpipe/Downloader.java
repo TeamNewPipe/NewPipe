@@ -1,20 +1,15 @@
 package org.schabi.newpipe;
 
-import android.util.Log;
-
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
-import org.schabi.newpipe.util.ExtractorHelper;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.InterruptedIOException;
-import java.net.URL;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
-import javax.net.ssl.HttpsURLConnection;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 /*
@@ -43,6 +38,8 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
     private static String mCookies = "";
 
     private static Downloader instance = null;
+
+    protected static OkHttpClient client = new OkHttpClient.Builder().readTimeout(30, TimeUnit.SECONDS).build();
 
     private Downloader() {
     }
@@ -92,14 +89,22 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
      */
     @Override
     public String download(String siteUrl, Map<String, String> customProperties) throws IOException, ReCaptchaException {
-        URL url = new URL(siteUrl);
-        HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
-        Iterator it = customProperties.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry) it.next();
-            con.setRequestProperty((String) pair.getKey(), (String) pair.getValue());
+        Request.Builder requestBuilder = new Request.Builder().url(siteUrl).addHeader("User-Agent", USER_AGENT).method("GET", null);
+        for (Map.Entry<String, String> header : customProperties.entrySet()) {
+            requestBuilder = requestBuilder.addHeader(header.getKey(), header.getValue());
         }
-        return dl(con);
+        if (getCookies().length() > 0) {
+            requestBuilder = requestBuilder.addHeader("Cookie", getCookies());
+        }
+        Request request = requestBuilder.build();
+
+        Response response = client.newCall(request).execute();
+
+        if (response.code() == 429) {
+            throw new ReCaptchaException("reCaptcha Challenge requested");
+        }
+
+        return response.body().string();
     }
 
     /**
@@ -111,57 +116,6 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
      */
     @Override
     public String download(String siteUrl) throws IOException, ReCaptchaException {
-        URL url = new URL(siteUrl);
-        HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
-        //HttpsURLConnection con = NetCipher.getHttpsURLConnection(url);
-        return dl(con);
-    }
-
-    /**
-     * Common functionality between download(String url) and download(String url, String language)
-     */
-    private static String dl(HttpsURLConnection con) throws IOException, ReCaptchaException {
-        StringBuilder response = new StringBuilder();
-        BufferedReader in = null;
-
-        try {
-            con.setReadTimeout(30 * 1000);// 30s
-            con.setRequestMethod("GET");
-            con.setRequestProperty("User-Agent", USER_AGENT);
-
-            if (getCookies().length() > 0) {
-                con.setRequestProperty("Cookie", getCookies());
-            }
-
-            in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-            String inputLine;
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-        } catch (Exception e) {
-            Log.e("Downloader", "dl() ----- Exception thrown → " + e.getClass().getName());
-
-            if (ExtractorHelper.isInterruptedCaused(e)) {
-                throw new InterruptedIOException(e.getMessage());
-            }
-
-            /*
-             * HTTP 429 == Too Many Request
-             * Receive from Youtube.com = ReCaptcha challenge request
-             * See : https://github.com/rg3/youtube-dl/issues/5138
-             */
-            if (con.getResponseCode() == 429) {
-                throw new ReCaptchaException("reCaptcha Challenge requested");
-            }
-
-            throw new IOException(con.getResponseCode() + " " + con.getResponseMessage(), e);
-        } finally {
-            if (in != null) {
-                in.close();
-            }
-        }
-
-        return response.toString();
+        return download(siteUrl, new HashMap<>());
     }
 }
