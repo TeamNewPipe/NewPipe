@@ -210,6 +210,6 @@ public class App extends Application {
     }
 
     protected boolean isDisposedRxExceptionsReported() {
-        return true;
+        return false;
     }
 }
