@@ -20,6 +20,7 @@
         <item name="thumbs_up">@drawable/ic_thumb_up_black_24dp</item>
         <item name="thumbs_down">@drawable/ic_thumb_down_black_24dp</item>
         <item name="info">@drawable/ic_info_outline_black_24dp</item>
+        <item name="bug">@drawable/ic_bug_report_black_24dp</item>
         <item name="audio">@drawable/ic_headset_black_24dp</item>
         <item name="clear_history">@drawable/ic_delete_sweep_white_24dp</item>
         <item name="download">@drawable/ic_file_download_black_24dp</item>
@@ -74,6 +75,7 @@
         <item name="thumbs_down">@drawable/ic_thumb_down_white_24dp</item>
         <item name="audio">@drawable/ic_headset_white_24dp</item>
         <item name="info">@drawable/ic_info_outline_white_24dp</item>
+        <item name="bug">@drawable/ic_bug_report_white_24dp</item>
         <item name="clear_history">@drawable/ic_delete_sweep_black_24dp</item>
         <item name="download">@drawable/ic_file_download_white_24dp</item>
         <item name="share">@drawable/ic_share_white_24dp</item>
