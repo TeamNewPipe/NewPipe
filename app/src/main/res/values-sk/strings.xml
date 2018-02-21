@@ -391,8 +391,4 @@ otvorenie okna na popredí</string>
     <string name="smaller_caption_font_size">Menšie Písmo</string>
     <string name="normal_caption_font_size">Normálne Písmo</string>
     <string name="larger_caption_font_size">Väčšie Písmo</string>
-
-    <string name="toggle_leak_canary">Monitorovanie pretečenia</string>
-    <string name="enable_leak_canary_notice">Monitorovanie pretečenia pamäte je povolené, pri hromadnom zbere môže aplikácia prestať reagovať</string>
-    <string name="disable_leak_canary_notice">Monitorovanie pretečenia pamäte je vypnuté</string>
 </resources>

@@ -66,6 +66,12 @@ public class DebugApp extends App {
     }
 
     @Override
+    protected boolean isDisposedRxExceptionsReported() {
+        return PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean(getString(R.string.allow_disposed_exceptions_key), true);
+    }
+
+    @Override
     protected RefWatcher installLeakCanary() {
         return LeakCanary.refWatcher(this)
                 .heapDumper(new ToggleableHeapDumper(this))

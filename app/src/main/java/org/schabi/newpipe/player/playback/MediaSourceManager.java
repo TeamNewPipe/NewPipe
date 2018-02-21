@@ -4,7 +4,6 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.google.android.exoplayer2.source.DynamicConcatenatingMediaSource;
-import com.google.android.exoplayer2.source.MediaSource;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -21,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.disposables.SerialDisposable;
 import io.reactivex.functions.Consumer;
@@ -47,6 +47,8 @@ public class MediaSourceManager {
 
     private Subscription playQueueReactor;
     private SerialDisposable syncReactor;
+
+    private PlayQueueItem syncedItem;
 
     private boolean isBlocked;
 
@@ -86,12 +88,7 @@ public class MediaSourceManager {
     //////////////////////////////////////////////////////////////////////////*/
 
     private DeferredMediaSource.Callback getSourceBuilder() {
-        return new DeferredMediaSource.Callback() {
-            @Override
-            public MediaSource sourceOf(PlayQueueItem item, StreamInfo info) {
-                return playbackListener.sourceOf(item, info);
-            }
-        };
+        return playbackListener::sourceOf;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -109,6 +106,7 @@ public class MediaSourceManager {
 
         playQueueReactor = null;
         syncReactor = null;
+        syncedItem = null;
         sources = null;
     }
 
@@ -128,6 +126,8 @@ public class MediaSourceManager {
      * */
     public void reset() {
         tryBlock();
+
+        syncedItem = null;
         populateSources();
     }
     /*//////////////////////////////////////////////////////////////////////////
@@ -241,22 +241,28 @@ public class MediaSourceManager {
         final PlayQueueItem currentItem = playQueue.getItem();
         if (currentItem == null) return;
 
-        final Consumer<StreamInfo> syncPlayback = new Consumer<StreamInfo>() {
-            @Override
-            public void accept(StreamInfo streamInfo) throws Exception {
-                playbackListener.sync(currentItem, streamInfo);
-            }
+        final Consumer<StreamInfo> onSuccess = info -> syncInternal(currentItem, info);
+        final Consumer<Throwable> onError = throwable -> {
+            Log.e(TAG, "Sync error:", throwable);
+            syncInternal(currentItem, null);
         };
 
-        final Consumer<Throwable> onError = new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-                Log.e(TAG, "Sync error:", throwable);
-                playbackListener.sync(currentItem,null);
-            }
-        };
+        if (syncedItem != currentItem) {
+            syncedItem = currentItem;
+            final Disposable sync = currentItem.getStream()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(onSuccess, onError);
+            syncReactor.set(sync);
+        }
+    }
 
-        syncReactor.set(currentItem.getStream().subscribe(syncPlayback, onError));
+    private void syncInternal(@android.support.annotation.NonNull final PlayQueueItem item,
+                              @Nullable final StreamInfo info) {
+        if (playQueue == null || playbackListener == null) return;
+        // Ensure the current item is up to date with the play queue
+        if (playQueue.getItem() == item && playQueue.getItem() == syncedItem) {
+            playbackListener.sync(syncedItem,info);
+        }
     }
 
     private void loadDebounced() {
@@ -313,12 +319,7 @@ public class MediaSourceManager {
         return debouncedLoadSignal
                 .debounce(loadDebounceMillis, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Long>() {
-            @Override
-            public void accept(Long timestamp) throws Exception {
-                loadImmediate();
-            }
-        });
+                .subscribe(timestamp -> loadImmediate());
     }
     /*//////////////////////////////////////////////////////////////////////////
     // Media Source List Manipulation

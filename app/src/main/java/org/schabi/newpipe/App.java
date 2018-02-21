@@ -31,9 +31,13 @@ import org.schabi.newpipe.util.StateSaver;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.SocketException;
+import java.util.Collections;
+import java.util.List;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.exceptions.CompositeException;
+import io.reactivex.exceptions.MissingBackpressureException;
+import io.reactivex.exceptions.OnErrorNotImplementedException;
 import io.reactivex.exceptions.UndeliverableException;
 import io.reactivex.functions.Consumer;
 import io.reactivex.plugins.RxJavaPlugins;
@@ -104,30 +108,57 @@ public class App extends Application {
         RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
             @Override
             public void accept(@NonNull Throwable throwable) throws Exception {
-                Log.e(TAG, "RxJavaPlugins.ErrorHandler called with -> : throwable = [" + throwable.getClass().getName() + "]");
+                Log.e(TAG, "RxJavaPlugins.ErrorHandler called with -> : " +
+                        "throwable = [" + throwable.getClass().getName() + "]");
 
                 if (throwable instanceof UndeliverableException) {
                     // As UndeliverableException is a wrapper, get the cause of it to get the "real" exception
                     throwable = throwable.getCause();
                 }
 
+                final List<Throwable> errors;
                 if (throwable instanceof CompositeException) {
-                    for (Throwable element : ((CompositeException) throwable).getExceptions()) {
-                        if (checkThrowable(element)) return;
+                    errors = ((CompositeException) throwable).getExceptions();
+                } else {
+                    errors = Collections.singletonList(throwable);
+                }
+
+                for (final Throwable error : errors) {
+                    if (isThrowableIgnored(error)) return;
+                    if (isThrowableCritical(error)) {
+                        reportException(error);
+                        return;
                     }
                 }
 
-                if (checkThrowable(throwable)) return;
+                // Out-of-lifecycle exceptions should only be reported if a debug user wishes so,
+                // When exception is not reported, log it
+                if (isDisposedRxExceptionsReported()) {
+                    reportException(throwable);
+                } else {
+                    Log.e(TAG, "RxJavaPlugin: Undeliverable Exception received: ", throwable);
+                }
+            }
 
+            private boolean isThrowableIgnored(@NonNull final Throwable throwable) {
+                // Don't crash the application over a simple network problem
+                return ExtractorHelper.hasAssignableCauseThrowable(throwable,
+                        IOException.class, SocketException.class, // network api cancellation
+                        InterruptedException.class, InterruptedIOException.class); // blocking code disposed
+            }
+
+            private boolean isThrowableCritical(@NonNull final Throwable throwable) {
+                // Though these exceptions cannot be ignored
+                return ExtractorHelper.hasAssignableCauseThrowable(throwable,
+                        NullPointerException.class, IllegalArgumentException.class, // bug in app
+                        OnErrorNotImplementedException.class, MissingBackpressureException.class,
+                        IllegalStateException.class); // bug in operator
+            }
+
+            private void reportException(@NonNull final Throwable throwable) {
                 // Throw uncaught exception that will trigger the report system
                 Thread.currentThread().getUncaughtExceptionHandler()
                         .uncaughtException(Thread.currentThread(), throwable);
-            }
-
-            private boolean checkThrowable(@NonNull Throwable throwable) {
-                // Don't crash the application over a simple network problem
-                return ExtractorHelper.hasAssignableCauseThrowable(throwable,
-                        IOException.class, SocketException.class, InterruptedException.class, InterruptedIOException.class);
             }
         });
     }
@@ -181,5 +212,9 @@ public class App extends Application {
 
     protected RefWatcher installLeakCanary() {
         return RefWatcher.DISABLED;
+    }
+
+    protected boolean isDisposedRxExceptionsReported() {
+        return true;
     }
 }
