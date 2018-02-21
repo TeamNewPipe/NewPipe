@@ -22,6 +22,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.disposables.SerialDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.subjects.PublishSubject;
 
@@ -45,7 +46,7 @@ public class MediaSourceManager {
     private DynamicConcatenatingMediaSource sources;
 
     private Subscription playQueueReactor;
-    private CompositeDisposable syncReactor;
+    private SerialDisposable syncReactor;
 
     private PlayQueueItem syncedItem;
 
@@ -69,7 +70,7 @@ public class MediaSourceManager {
         this.windowSize = windowSize;
         this.loadDebounceMillis = loadDebounceMillis;
 
-        this.syncReactor = new CompositeDisposable();
+        this.syncReactor = new SerialDisposable();
         this.debouncedLoadSignal = PublishSubject.create();
         this.debouncedLoader = getDebouncedLoader();
 
@@ -251,7 +252,7 @@ public class MediaSourceManager {
             final Disposable sync = currentItem.getStream()
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(onSuccess, onError);
-            syncReactor.add(sync);
+            syncReactor.set(sync);
         }
     }
 

@@ -10,4 +10,9 @@
         android:title="@string/enable_leak_canary_title"
         android:summary="@string/enable_leak_canary_summary"/>
 
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/allow_disposed_exceptions_key"
+        android:title="@string/enable_disposed_exceptions_title"
+        android:summary="@string/enable_disposed_exceptions_summary"/>
 </PreferenceScreen>

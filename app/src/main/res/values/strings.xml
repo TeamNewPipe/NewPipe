@@ -416,4 +416,8 @@
     <!-- Debug Settings -->
     <string name="enable_leak_canary_title">Enable LeakCanary</string>
     <string name="enable_leak_canary_summary">Memory leak monitoring may cause app to become unresponsive when heap dumping</string>
+
+    <string name="enable_disposed_exceptions_title">Report Out-of-Lifecycle Errors</string>
+    <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions occurring outside of fragment or activity lifecycle after dispose</string>
+
 </resources>
