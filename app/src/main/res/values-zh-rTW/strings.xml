@@ -367,4 +367,10 @@
     <string name="normal_caption_font_size">正常字體</string>
     <string name="larger_caption_font_size">加大字體</string>
 
-    </resources>
+    <string name="drawer_header_action_paceholder_text">某些東西很快就會到來 ;D</string>
+
+
+    <string name="toggle_leak_canary">監測流失</string>
+    <string name="enable_leak_canary_notice">啟用記憶體流失監測技術，當 heap dump 時，應用程式可能會反應遲鈍</string>
+    <string name="disable_leak_canary_notice">已停用記憶體流失監測</string>
+</resources>
