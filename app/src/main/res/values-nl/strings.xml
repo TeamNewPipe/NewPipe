@@ -392,4 +392,12 @@ te openen in pop-upmodus</string>
     <string name="larger_caption_font_size">Groter lettertype</string>
 
 	<string name="drawer_header_action_paceholder_text">Hier zal binnenkort iets verschijnen ;D</string>
+<string name="settings_category_debug_title">Foutopsporing</string>
+    <string name="caption_auto_generated">Automatisch gegenereerd</string>
+    <string name="enable_leak_canary_title">LeakCanary inschakelen</string>
+    <string name="enable_leak_canary_summary">Het monitoren van geheugenlekken kan ervoor zorgen dat de app niet goed meer reageert</string>
+
+    <string name="enable_disposed_exceptions_title">Ouf-of-Lifecycle-fouten melden</string>
+    <string name="enable_disposed_exceptions_summary">Forceer het melden van niet-bezorgbare Rx-uitzonderingen die gebeuren buten fragment of activiteitscyclus</string>
+
 </resources>
