@@ -33,6 +33,8 @@ public interface PlaybackListener {
      * Signals to the listener to synchronize the player's window to the manager's
      * window.
      *
+     * Occurs once only per play queue item change.
+     *
      * May be called only after unblock is called.
      * */
     void sync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info);

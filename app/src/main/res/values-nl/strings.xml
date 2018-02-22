@@ -391,10 +391,5 @@ te openen in pop-upmodus</string>
     <string name="normal_caption_font_size">Normaal lettertype</string>
     <string name="larger_caption_font_size">Groter lettertype</string>
 
-    <string name="toggle_leak_canary">Controleren op lekken</string>
-    <string name="enable_leak_canary_notice">Controleren op geheugenlekken ingeschakeld, tijdens heapdumping kan de app tijdelijk niet reageren</string>
-    <string name="disable_leak_canary_notice">Controleren op geheugenlekken uitgeschakeld</string>
-<string name="drawer_header_action_paceholder_text">Hier zal binnenkort iets verschijnen ;D</string>
-
-
-    </resources>
+	<string name="drawer_header_action_paceholder_text">Hier zal binnenkort iets verschijnen ;D</string>
+</resources>

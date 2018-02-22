@@ -373,5 +373,4 @@
     <string name="caption_none">Keine Untertitel</string>
 
     <string name="caption_font_size_settings_title">Schriftgröße der Untertitel</string>
-    <string name="toggle_leak_canary">"Speicherlecks nachverfolgen "</string>
     </resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="general_preferences"
+    android:title="@string/settings_category_debug_title">
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/allow_heap_dumping_key"
+        android:title="@string/enable_leak_canary_title"
+        android:summary="@string/enable_leak_canary_summary"/>
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/allow_disposed_exceptions_key"
+        android:title="@string/enable_disposed_exceptions_title"
+        android:summary="@string/enable_disposed_exceptions_summary"/>
+</PreferenceScreen>

@@ -15,6 +15,8 @@ import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.LeakDirectoryProvider;
 import com.squareup.leakcanary.RefWatcher;
 
+import org.schabi.newpipe.extractor.Downloader;
+
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
@@ -33,7 +35,12 @@ public class DebugApp extends App {
     public void onCreate() {
         super.onCreate();
         initStetho();
-        Downloader.client = new OkHttpClient.Builder().addNetworkInterceptor(new StethoInterceptor()).readTimeout(30, TimeUnit.SECONDS).build();
+    }
+
+    @Override
+    protected Downloader getDownloader() {
+        return org.schabi.newpipe.Downloader.init(new OkHttpClient.Builder()
+                .addNetworkInterceptor(new StethoInterceptor()));
     }
 
     private void initStetho() {
@@ -56,6 +63,12 @@ public class DebugApp extends App {
 
         // Initialize Stetho with the Initializer
         Stetho.initialize(initializer);
+    }
+
+    @Override
+    protected boolean isDisposedRxExceptionsReported() {
+        return PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean(getString(R.string.allow_disposed_exceptions_key), false);
     }
 
     @Override

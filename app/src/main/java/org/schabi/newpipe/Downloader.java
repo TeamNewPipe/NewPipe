@@ -1,8 +1,12 @@
 package org.schabi.newpipe;
 
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
+
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -10,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 
 /*
@@ -33,34 +38,38 @@ import okhttp3.Response;
  */
 
 public class Downloader implements org.schabi.newpipe.extractor.Downloader {
-
     public static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0";
-    private static String mCookies = "";
 
-    private static Downloader instance = null;
+    private static Downloader instance;
+    private String mCookies;
+    private OkHttpClient client;
 
-    protected static OkHttpClient client = new OkHttpClient.Builder().readTimeout(30, TimeUnit.SECONDS).build();
+    private Downloader(OkHttpClient.Builder builder) {
+        this.client = builder
+                .readTimeout(30, TimeUnit.SECONDS)
+                //.cache(new Cache(new File(context.getExternalCacheDir(), "okhttp"), 16 * 1024 * 1024))
+                .build();
+    }
 
-    private Downloader() {
+    /**
+     * It's recommended to call exactly once in the entire lifetime of the application.
+     *
+     * @param builder if null, default builder will be used
+     */
+    public static Downloader init(@Nullable OkHttpClient.Builder builder) {
+        return instance = new Downloader(builder != null ? builder : new OkHttpClient.Builder());
     }
 
     public static Downloader getInstance() {
-        if (instance == null) {
-            synchronized (Downloader.class) {
-                if (instance == null) {
-                    instance = new Downloader();
-                }
-            }
-        }
         return instance;
     }
 
-    public static synchronized void setCookies(String cookies) {
-        Downloader.mCookies = cookies;
+    public String getCookies() {
+        return mCookies;
     }
 
-    public static synchronized String getCookies() {
-        return Downloader.mCookies;
+    public void setCookies(String cookies) {
+        mCookies = cookies;
     }
 
     /**
@@ -89,22 +98,32 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
      */
     @Override
     public String download(String siteUrl, Map<String, String> customProperties) throws IOException, ReCaptchaException {
-        Request.Builder requestBuilder = new Request.Builder().url(siteUrl).addHeader("User-Agent", USER_AGENT).method("GET", null);
-        for (Map.Entry<String, String> header : customProperties.entrySet()) {
-            requestBuilder = requestBuilder.addHeader(header.getKey(), header.getValue());
-        }
-        if (getCookies().length() > 0) {
-            requestBuilder = requestBuilder.addHeader("Cookie", getCookies());
-        }
-        Request request = requestBuilder.build();
+        final Request.Builder requestBuilder = new Request.Builder()
+                .method("GET", null).url(siteUrl)
+                .addHeader("User-Agent", USER_AGENT);
 
-        Response response = client.newCall(request).execute();
+        for (Map.Entry<String, String> header : customProperties.entrySet()) {
+            requestBuilder.addHeader(header.getKey(), header.getValue());
+        }
+
+        if (!TextUtils.isEmpty(mCookies)) {
+            requestBuilder.addHeader("Cookie", mCookies);
+        }
+
+        final Request request = requestBuilder.build();
+        final Response response = client.newCall(request).execute();
+        final ResponseBody body = response.body();
 
         if (response.code() == 429) {
             throw new ReCaptchaException("reCaptcha Challenge requested");
         }
 
-        return response.body().string();
+        if (body == null) {
+            response.close();
+            return null;
+        }
+
+        return body.string();
     }
 
     /**
@@ -116,6 +135,6 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
      */
     @Override
     public String download(String siteUrl) throws IOException, ReCaptchaException {
-        return download(siteUrl, new HashMap<>());
+        return download(siteUrl, Collections.emptyMap());
     }
 }

@@ -114,32 +114,10 @@ public final class DeferredMediaSource implements MediaSource {
 
         Log.d(TAG, "Loading: [" + stream.getTitle() + "] with url: " + stream.getUrl());
 
-        final Function<StreamInfo, MediaSource> onReceive = new Function<StreamInfo, MediaSource>() {
-            @Override
-            public MediaSource apply(StreamInfo streamInfo) throws Exception {
-                return onStreamInfoReceived(stream, streamInfo);
-            }
-        };
-
-        final Consumer<MediaSource> onSuccess = new Consumer<MediaSource>() {
-            @Override
-            public void accept(MediaSource mediaSource) throws Exception {
-                onMediaSourceReceived(mediaSource);
-            }
-        };
-
-        final Consumer<Throwable> onError = new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-                onStreamInfoError(throwable);
-            }
-        };
-
         loader = stream.getStream()
-                .observeOn(Schedulers.io())
-                .map(onReceive)
+                .map(streamInfo -> onStreamInfoReceived(stream, streamInfo))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(onSuccess, onError);
+                .subscribe(this::onMediaSourceReceived, this::onStreamInfoError);
     }
 
     private MediaSource onStreamInfoReceived(@NonNull final PlayQueueItem item,

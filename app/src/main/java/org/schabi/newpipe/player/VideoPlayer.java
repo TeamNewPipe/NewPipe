@@ -263,7 +263,9 @@ public abstract class VideoPlayer extends BasePlayer
             VideoStream videoStream = availableStreams.get(i);
             qualityPopupMenu.getMenu().add(qualityPopupMenuGroupId, i, Menu.NONE, MediaFormat.getNameById(videoStream.format) + " " + videoStream.resolution);
         }
-        qualityTextView.setText(getSelectedVideoStream().resolution);
+        if (getSelectedVideoStream() != null) {
+            qualityTextView.setText(getSelectedVideoStream().resolution);
+        }
         qualityPopupMenu.setOnMenuItemClickListener(this);
         qualityPopupMenu.setOnDismissListener(this);
     }
@@ -326,7 +328,7 @@ public abstract class VideoPlayer extends BasePlayer
         qualityTextView.setVisibility(View.GONE);
         playbackSpeedTextView.setVisibility(View.GONE);
 
-        if (info != null) {
+        if (info != null && info.video_streams.size() + info.video_only_streams.size() > 0) {
             final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
                     info.video_streams, info.video_only_streams, false);
             availableStreams = new ArrayList<>(videos);
@@ -337,48 +339,62 @@ public abstract class VideoPlayer extends BasePlayer
             }
 
             buildQualityMenu();
-            buildPlaybackSpeedMenu();
             qualityTextView.setVisibility(View.VISIBLE);
-            playbackSpeedTextView.setVisibility(View.VISIBLE);
+            surfaceView.setVisibility(View.VISIBLE);
+        } else {
+            surfaceView.setVisibility(View.GONE);
         }
+
+        buildPlaybackSpeedMenu();
+        playbackSpeedTextView.setVisibility(View.VISIBLE);
     }
 
     @Override
     @Nullable
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
-        final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
+        List<MediaSource> mediaSources = new ArrayList<>();
 
+        // Create video stream source
+        final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
+                info.video_streams, info.video_only_streams, false);
         final int index;
-        if (playbackQuality == null) {
+        if (videos.isEmpty()) {
+            index = -1;
+        } else if (playbackQuality == null) {
             index = getDefaultResolutionIndex(videos);
         } else {
             index = getOverrideResolutionIndex(videos, getPlaybackQuality());
         }
-        if (index < 0 || index >= videos.size()) return null;
-        final VideoStream video = videos.get(index);
-
-        List<MediaSource> mediaSources = new ArrayList<>();
-        // Create video stream source
-        final MediaSource streamSource = buildMediaSource(video.getUrl(),
-                MediaFormat.getSuffixById(video.getFormatId()));
-        mediaSources.add(streamSource);
+        final VideoStream video = index >= 0 && index < videos.size() ? videos.get(index) : null;
+        if (video != null) {
+            final MediaSource streamSource = buildMediaSource(video.getUrl(),
+                    MediaFormat.getSuffixById(video.getFormatId()));
+            mediaSources.add(streamSource);
+        }
 
         // Create optional audio stream source
-        final AudioStream audio = ListHelper.getHighestQualityAudio(info.audio_streams);
-        if (video.isVideoOnly && audio != null) {
-            // Merge with audio stream in case if video does not contain audio
+        final List<AudioStream> audioStreams = info.getAudioStreams();
+        final AudioStream audio = audioStreams.isEmpty() ? null : audioStreams.get(
+                ListHelper.getDefaultAudioFormat(context, audioStreams));
+        // Use the audio stream if there is no video stream, or
+        // Merge with audio stream in case if video does not contain audio
+        if (audio != null && ((video != null && video.isVideoOnly) || video == null)) {
             final MediaSource audioSource = buildMediaSource(audio.getUrl(),
                     MediaFormat.getSuffixById(audio.getFormatId()));
             mediaSources.add(audioSource);
         }
 
+        // If there is no audio or video sources, then this media source cannot be played back
+        if (mediaSources.isEmpty()) return null;
+        // Below are auxiliary media sources
+
         // Create subtitle sources
         for (final Subtitles subtitle : info.getSubtitles()) {
             final String mimeType = PlayerHelper.mimeTypesOf(subtitle.getFileType());
-            if (mimeType == null) continue;
+            if (mimeType == null || context == null) continue;
 
             final Format textFormat = Format.createTextSampleFormat(null, mimeType,
-                    SELECTION_FLAG_AUTOSELECT, PlayerHelper.captionLanguageOf(subtitle));
+                    SELECTION_FLAG_AUTOSELECT, PlayerHelper.captionLanguageOf(context, subtitle));
             final MediaSource textSource = new SingleSampleMediaSource(
                     Uri.parse(subtitle.getURL()), cacheDataSourceFactory, textFormat, TIME_UNSET);
             mediaSources.add(textSource);
@@ -658,7 +674,9 @@ public abstract class VideoPlayer extends BasePlayer
     public void onDismiss(PopupMenu menu) {
         if (DEBUG) Log.d(TAG, "onDismiss() called with: menu = [" + menu + "]");
         isSomePopupMenuVisible = false;
-        qualityTextView.setText(getSelectedVideoStream().resolution);
+        if (getSelectedVideoStream() != null) {
+            qualityTextView.setText(getSelectedVideoStream().resolution);
+        }
     }
 
     public void onQualitySelectorClicked() {
@@ -668,8 +686,12 @@ public abstract class VideoPlayer extends BasePlayer
         showControls(300);
 
         final VideoStream videoStream = getSelectedVideoStream();
-        final String qualityText = MediaFormat.getNameById(videoStream.format) + " " + videoStream.resolution;
-        qualityTextView.setText(qualityText);
+        if (videoStream != null) {
+            final String qualityText = MediaFormat.getNameById(videoStream.getFormatId()) + " "
+                    + videoStream.resolution;
+            qualityTextView.setText(qualityText);
+        }
+
         wasPlaying = simpleExoPlayer.getPlayWhenReady();
     }
 
@@ -864,8 +886,11 @@ public abstract class VideoPlayer extends BasePlayer
         return wasPlaying;
     }
 
+    @Nullable
     public VideoStream getSelectedVideoStream() {
-        return availableStreams.get(selectedStreamIndex);
+        return (selectedStreamIndex >= 0 && availableStreams != null &&
+                availableStreams.size() > selectedStreamIndex) ?
+                availableStreams.get(selectedStreamIndex) : null;
     }
 
     public Handler getControlsVisibilityHandler() {
