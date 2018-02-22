@@ -1,13 +1,17 @@
 package org.schabi.newpipe.player.playback;
 
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.google.android.exoplayer2.source.DynamicConcatenatingMediaSource;
+import com.google.android.exoplayer2.source.MediaSource;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.player.mediasource.FailedMediaSource;
+import org.schabi.newpipe.player.mediasource.LoadedMediaSource;
+import org.schabi.newpipe.player.mediasource.ManagedMediaSource;
+import org.schabi.newpipe.player.mediasource.PlaceholderMediaSource;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.events.MoveEvent;
@@ -18,15 +22,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.disposables.SerialDisposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.subjects.PublishSubject;
 
-public class MediaSourceManager {
-    private final String TAG = "MediaSourceManager@" + Integer.toHexString(hashCode());
+public class MediaSourceManagerAlt {
     // One-side rolling window size for default loading
     // Effectively loads windowSize * 2 + 1 streams per call to load, must be greater than 0
     private final int windowSize;
@@ -40,26 +43,24 @@ public class MediaSourceManager {
     private final PublishSubject<Long> debouncedLoadSignal;
     private final Disposable debouncedLoader;
 
-    private final DeferredMediaSource.Callback sourceBuilder;
-
     private DynamicConcatenatingMediaSource sources;
 
     private Subscription playQueueReactor;
-    private SerialDisposable syncReactor;
+    private CompositeDisposable loaderReactor;
 
     private PlayQueueItem syncedItem;
 
     private boolean isBlocked;
 
-    public MediaSourceManager(@NonNull final PlaybackListener listener,
-                              @NonNull final PlayQueue playQueue) {
+    public MediaSourceManagerAlt(@NonNull final PlaybackListener listener,
+                                 @NonNull final PlayQueue playQueue) {
         this(listener, playQueue, 1, 400L);
     }
 
-    private MediaSourceManager(@NonNull final PlaybackListener listener,
-                               @NonNull final PlayQueue playQueue,
-                               final int windowSize,
-                               final long loadDebounceMillis) {
+    private MediaSourceManagerAlt(@NonNull final PlaybackListener listener,
+                                  @NonNull final PlayQueue playQueue,
+                                  final int windowSize,
+                                  final long loadDebounceMillis) {
         if (windowSize <= 0) {
             throw new UnsupportedOperationException("MediaSourceManager window size must be greater than 0");
         }
@@ -69,25 +70,15 @@ public class MediaSourceManager {
         this.windowSize = windowSize;
         this.loadDebounceMillis = loadDebounceMillis;
 
-        this.syncReactor = new SerialDisposable();
+        this.loaderReactor = new CompositeDisposable();
         this.debouncedLoadSignal = PublishSubject.create();
         this.debouncedLoader = getDebouncedLoader();
-
-        this.sourceBuilder = getSourceBuilder();
 
         this.sources = new DynamicConcatenatingMediaSource();
 
         playQueue.getBroadcastReceiver()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getReactor());
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // DeferredMediaSource listener
-    //////////////////////////////////////////////////////////////////////////*/
-
-    private DeferredMediaSource.Callback getSourceBuilder() {
-        return playbackListener::sourceOf;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -100,11 +91,11 @@ public class MediaSourceManager {
         if (debouncedLoadSignal != null) debouncedLoadSignal.onComplete();
         if (debouncedLoader != null) debouncedLoader.dispose();
         if (playQueueReactor != null) playQueueReactor.cancel();
-        if (syncReactor != null) syncReactor.dispose();
+        if (loaderReactor != null) loaderReactor.dispose();
         if (sources != null) sources.releaseSource();
 
         playQueueReactor = null;
-        syncReactor = null;
+        loaderReactor = null;
         syncedItem = null;
         sources = null;
     }
@@ -214,7 +205,8 @@ public class MediaSourceManager {
     //////////////////////////////////////////////////////////////////////////*/
 
     private boolean isPlayQueueReady() {
-        return playQueue.isComplete() || playQueue.size() - playQueue.getIndex() > windowSize;
+        final boolean isWindowLoaded = playQueue.size() - playQueue.getIndex() > windowSize;
+        return playQueue.isComplete() || isWindowLoaded;
     }
 
     private boolean tryBlock() {
@@ -236,31 +228,14 @@ public class MediaSourceManager {
         return false;
     }
 
-    private void sync() {
+    private void sync(final PlayQueueItem item, final StreamInfo info) {
         final PlayQueueItem currentItem = playQueue.getItem();
-        if (currentItem == null) return;
+        if (currentItem != item || syncedItem == item || playbackListener == null) return;
 
-        final Consumer<StreamInfo> onSuccess = info -> syncInternal(currentItem, info);
-        final Consumer<Throwable> onError = throwable -> {
-            Log.e(TAG, "Sync error:", throwable);
-            syncInternal(currentItem, null);
-        };
-
-        if (syncedItem != currentItem) {
-            syncedItem = currentItem;
-            final Disposable sync = currentItem.getStream()
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(onSuccess, onError);
-            syncReactor.set(sync);
-        }
-    }
-
-    private void syncInternal(@android.support.annotation.NonNull final PlayQueueItem item,
-                              @Nullable final StreamInfo info) {
-        if (playQueue == null || playbackListener == null) return;
+        syncedItem = currentItem;
         // Ensure the current item is up to date with the play queue
-        if (playQueue.getItem() == item && playQueue.getItem() == syncedItem) {
-            playbackListener.sync(syncedItem,info);
+        if (playQueue.getItem() == currentItem && playQueue.getItem() == syncedItem) {
+            playbackListener.sync(syncedItem, info);
         }
     }
 
@@ -289,16 +264,25 @@ public class MediaSourceManager {
     }
 
     private void loadItem(@Nullable final PlayQueueItem item) {
-        if (item == null) return;
+        if (sources == null || item == null) return;
 
         final int index = playQueue.indexOf(item);
         if (index > sources.getSize() - 1) return;
 
-        final DeferredMediaSource mediaSource = (DeferredMediaSource) sources.getMediaSource(playQueue.indexOf(item));
-        if (mediaSource.state() == DeferredMediaSource.STATE_PREPARED) mediaSource.load();
+        if (((ManagedMediaSource) sources.getMediaSource(index)).canReplace()) {
+            final Disposable loader = getMediaSource(item)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(mediaSource -> update(playQueue.indexOf(item), mediaSource));
+            loaderReactor.add(loader);
+        }
 
         tryUnblock();
-        if (!isBlocked) sync();
+        if (!isBlocked) {
+            final MediaSource mediaSource = sources.getMediaSource(playQueue.indexOf(item));
+            final StreamInfo info = mediaSource instanceof LoadedMediaSource ?
+                    ((LoadedMediaSource) mediaSource).getStreamInfo() : null;
+            sync(item, info);
+        }
     }
 
     private void resetSources() {
@@ -310,7 +294,7 @@ public class MediaSourceManager {
         if (sources == null) return;
 
         for (final PlayQueueItem item : playQueue.getStreams()) {
-            insert(playQueue.indexOf(item), new DeferredMediaSource(item, sourceBuilder));
+            insert(playQueue.indexOf(item), new PlaceholderMediaSource());
         }
     }
 
@@ -320,9 +304,35 @@ public class MediaSourceManager {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(timestamp -> loadImmediate());
     }
+
+    private Single<ManagedMediaSource> getMediaSource(@NonNull final PlayQueueItem stream) {
+        return stream.getStream().map(streamInfo -> {
+            if (playbackListener == null) {
+                return new FailedMediaSource(stream, new IllegalStateException(
+                        "MediaSourceManager playback listener unavailable"));
+            }
+
+            final MediaSource source = playbackListener.sourceOf(stream, streamInfo);
+            if (source == null) {
+                return new FailedMediaSource(stream, new IllegalStateException(
+                        "MediaSource resolution is null"));
+            }
+
+            return new LoadedMediaSource(stream, streamInfo, source,
+                    TimeUnit.MILLISECONDS.convert(2, TimeUnit.HOURS));
+        }).onErrorReturn(throwable -> new FailedMediaSource(stream, throwable));
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // Media Source List Manipulation
     //////////////////////////////////////////////////////////////////////////*/
+
+    private void update(final int queueIndex, final MediaSource source) {
+        if (sources == null) return;
+        if (queueIndex < 0 || queueIndex < sources.getSize()) return;
+
+        sources.addMediaSource(queueIndex + 1, source);
+        sources.removeMediaSource(queueIndex);
+    }
 
     /**
      * Inserts a source into {@link DynamicConcatenatingMediaSource} with position
@@ -330,7 +340,7 @@ public class MediaSourceManager {
      *
      * If the play queue index already exists, then the insert is ignored.
      * */
-    private void insert(final int queueIndex, final DeferredMediaSource source) {
+    private void insert(final int queueIndex, final PlaceholderMediaSource source) {
         if (sources == null) return;
         if (queueIndex < 0 || queueIndex < sources.getSize()) return;
 

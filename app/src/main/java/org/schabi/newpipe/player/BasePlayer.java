@@ -46,6 +46,7 @@ import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.SingleSampleMediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
 import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource;
@@ -67,7 +68,7 @@ import org.schabi.newpipe.history.HistoryRecordManager;
 import org.schabi.newpipe.player.helper.AudioReactor;
 import org.schabi.newpipe.player.helper.CacheFactory;
 import org.schabi.newpipe.player.helper.LoadController;
-import org.schabi.newpipe.player.playback.MediaSourceManager;
+import org.schabi.newpipe.player.playback.MediaSourceManagerAlt;
 import org.schabi.newpipe.player.playback.PlaybackListener;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueAdapter;
@@ -124,7 +125,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     protected static final float[] PLAYBACK_SPEEDS = {0.5f, 0.75f, 1f, 1.25f, 1.5f, 1.75f, 2f};
     protected static final float[] PLAYBACK_PITCHES = {0.8f, 0.9f, 0.95f, 1f, 1.05f, 1.1f, 1.2f};
 
-    protected MediaSourceManager playbackManager;
+    protected MediaSourceManagerAlt playbackManager;
     protected PlayQueue playQueue;
 
     protected StreamInfo currentInfo;
@@ -149,6 +150,12 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     protected DefaultTrackSelector trackSelector;
     protected DataSource.Factory cacheDataSourceFactory;
     protected DefaultExtractorsFactory extractorsFactory;
+
+    protected SsMediaSource.Factory ssMediaSourceFactory;
+    protected HlsMediaSource.Factory hlsMediaSourceFactory;
+    protected DashMediaSource.Factory dashMediaSourceFactory;
+    protected ExtractorMediaSource.Factory extractorMediaSourceFactory;
+    protected SingleSampleMediaSource.Factory sampleMediaSourceFactory;
 
     protected Disposable progressUpdateReactor;
     protected CompositeDisposable databaseUpdateReactor;
@@ -191,6 +198,14 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         trackSelector = new DefaultTrackSelector(trackSelectionFactory);
         extractorsFactory = new DefaultExtractorsFactory();
         cacheDataSourceFactory = new CacheFactory(context);
+
+        ssMediaSourceFactory = new SsMediaSource.Factory(
+                new DefaultSsChunkSource.Factory(cacheDataSourceFactory), cacheDataSourceFactory);
+        hlsMediaSourceFactory = new HlsMediaSource.Factory(cacheDataSourceFactory);
+        dashMediaSourceFactory = new DashMediaSource.Factory(
+                new DefaultDashChunkSource.Factory(cacheDataSourceFactory), cacheDataSourceFactory);
+        extractorMediaSourceFactory = new ExtractorMediaSource.Factory(cacheDataSourceFactory);
+        sampleMediaSourceFactory = new SingleSampleMediaSource.Factory(cacheDataSourceFactory);
 
         simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(renderFactory, trackSelector, loadControl);
         audioReactor = new AudioReactor(context, simpleExoPlayer);
@@ -247,7 +262,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     protected void initPlayback(final PlayQueue queue) {
         playQueue = queue;
         playQueue.init();
-        playbackManager = new MediaSourceManager(this, playQueue);
+        playbackManager = new MediaSourceManagerAlt(this, playQueue);
 
         if (playQueueAdapter != null) playQueueAdapter.dispose();
         playQueueAdapter = new PlayQueueAdapter(context, playQueue);
@@ -310,16 +325,16 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         MediaSource mediaSource;
         switch (type) {
             case C.TYPE_SS:
-                mediaSource = new SsMediaSource(uri, cacheDataSourceFactory, new DefaultSsChunkSource.Factory(cacheDataSourceFactory), null, null);
+                mediaSource = ssMediaSourceFactory.createMediaSource(uri);
                 break;
             case C.TYPE_DASH:
-                mediaSource = new DashMediaSource(uri, cacheDataSourceFactory, new DefaultDashChunkSource.Factory(cacheDataSourceFactory), null, null);
+                mediaSource = dashMediaSourceFactory.createMediaSource(uri);
                 break;
             case C.TYPE_HLS:
-                mediaSource = new HlsMediaSource(uri, cacheDataSourceFactory, null, null);
+                mediaSource = hlsMediaSourceFactory.createMediaSource(uri);
                 break;
             case C.TYPE_OTHER:
-                mediaSource = new ExtractorMediaSource(uri, cacheDataSourceFactory, extractorsFactory, null, null);
+                mediaSource = extractorMediaSourceFactory.createMediaSource(uri);
                 break;
             default: {
                 throw new IllegalStateException("Unsupported type: " + type);
@@ -489,7 +504,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     }
 
     @Override
-    public void onTimelineChanged(Timeline timeline, Object manifest) {
+    public void onTimelineChanged(Timeline timeline, Object manifest, int reason) {
         if (DEBUG) Log.d(TAG, "onTimelineChanged(), timeline size = " + timeline.getWindowCount());
 
         if (playbackManager != null) {

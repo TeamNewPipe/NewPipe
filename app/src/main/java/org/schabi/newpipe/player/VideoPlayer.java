@@ -305,8 +305,8 @@ public abstract class VideoPlayer extends BasePlayer
             captionItem.setOnMenuItemClickListener(menuItem -> {
                 final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
                 if (trackSelector != null && textRendererIndex != RENDERER_UNAVAILABLE) {
-                    trackSelector.setParameters(trackSelector.getParameters()
-                            .withPreferredTextLanguage(captionLanguage));
+                    trackSelector.setParameters(trackSelector.getParameters().buildUpon()
+                            .setPreferredTextLanguage(captionLanguage).build());
                     trackSelector.setRendererDisabled(textRendererIndex, false);
                 }
                 return true;
@@ -395,8 +395,8 @@ public abstract class VideoPlayer extends BasePlayer
 
             final Format textFormat = Format.createTextSampleFormat(null, mimeType,
                     SELECTION_FLAG_AUTOSELECT, PlayerHelper.captionLanguageOf(context, subtitle));
-            final MediaSource textSource = new SingleSampleMediaSource(
-                    Uri.parse(subtitle.getURL()), cacheDataSourceFactory, textFormat, TIME_UNSET);
+            final MediaSource textSource = sampleMediaSourceFactory.createMediaSource(
+                    Uri.parse(subtitle.getURL()), textFormat, TIME_UNSET);
             mediaSources.add(textSource);
         }
 

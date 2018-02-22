@@ -12,6 +12,8 @@ import com.google.android.exoplayer2.upstream.Allocator;
 import com.google.android.exoplayer2.upstream.DefaultAllocator;
 
 import static com.google.android.exoplayer2.DefaultLoadControl.DEFAULT_BUFFER_FOR_PLAYBACK_AFTER_REBUFFER_MS;
+import static com.google.android.exoplayer2.DefaultLoadControl.DEFAULT_PRIORITIZE_TIME_OVER_SIZE_THRESHOLDS;
+import static com.google.android.exoplayer2.DefaultLoadControl.DEFAULT_TARGET_BUFFER_BYTES;
 
 public class LoadController implements LoadControl {
 
@@ -29,14 +31,14 @@ public class LoadController implements LoadControl {
                 PlayerHelper.getBufferForPlaybackMs(context));
     }
 
-    public LoadController(final int minBufferMs,
-                          final int maxBufferMs,
-                          final int bufferForPlaybackMs) {
+    private LoadController(final int minBufferMs, final int maxBufferMs,
+                           final int bufferForPlaybackMs) {
         final DefaultAllocator allocator = new DefaultAllocator(true,
                 C.DEFAULT_BUFFER_SEGMENT_SIZE);
 
         internalLoadControl = new DefaultLoadControl(allocator, minBufferMs, maxBufferMs,
-                bufferForPlaybackMs, DEFAULT_BUFFER_FOR_PLAYBACK_AFTER_REBUFFER_MS);
+                bufferForPlaybackMs, DEFAULT_BUFFER_FOR_PLAYBACK_AFTER_REBUFFER_MS,
+                DEFAULT_TARGET_BUFFER_BYTES, DEFAULT_PRIORITIZE_TIME_OVER_SIZE_THRESHOLDS);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -49,7 +51,8 @@ public class LoadController implements LoadControl {
     }
 
     @Override
-    public void onTracksSelected(Renderer[] renderers, TrackGroupArray trackGroupArray, TrackSelectionArray trackSelectionArray) {
+    public void onTracksSelected(Renderer[] renderers, TrackGroupArray trackGroupArray,
+                                 TrackSelectionArray trackSelectionArray) {
         internalLoadControl.onTracksSelected(renderers, trackGroupArray, trackSelectionArray);
     }
 
@@ -69,12 +72,24 @@ public class LoadController implements LoadControl {
     }
 
     @Override
-    public boolean shouldStartPlayback(long l, boolean b) {
-        return internalLoadControl.shouldStartPlayback(l, b);
+    public long getBackBufferDurationUs() {
+        return internalLoadControl.getBackBufferDurationUs();
     }
 
     @Override
-    public boolean shouldContinueLoading(long l) {
-        return internalLoadControl.shouldContinueLoading(l);
+    public boolean retainBackBufferFromKeyframe() {
+        return internalLoadControl.retainBackBufferFromKeyframe();
+    }
+
+    @Override
+    public boolean shouldContinueLoading(long bufferedDurationUs, float playbackSpeed) {
+        return internalLoadControl.shouldContinueLoading(bufferedDurationUs, playbackSpeed);
+    }
+
+    @Override
+    public boolean shouldStartPlayback(long bufferedDurationUs, float playbackSpeed,
+                                       boolean rebuffering) {
+        return internalLoadControl.shouldStartPlayback(bufferedDurationUs, playbackSpeed,
+                rebuffering);
     }
 }
