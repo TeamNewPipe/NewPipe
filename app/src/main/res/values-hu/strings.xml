@@ -142,4 +142,5 @@
     <string name="show_higher_resolutions_title">Mutassa a magasabb felbontásokat</string>
     <string name="show_higher_resolutions_summary">Csak néhány eszköz támogatja a 2K/4K videók lejátszását</string>
     <string name="default_video_format_title">Alapértelmezett videó formátum</string>
+    <string name="black_theme_title">Fekete</string>
     </resources>
