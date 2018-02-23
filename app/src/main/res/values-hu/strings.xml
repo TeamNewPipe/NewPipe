@@ -139,4 +139,5 @@
     <string name="show_info">Több infó</string>
 
     <string name="default_popup_resolution_title">Alapértelmezett felugró ablak felbontása</string>
+    <string name="show_higher_resolutions_title">Mutassa a magasabb felbontásokat</string>
     </resources>
