@@ -119,4 +119,9 @@
 
     <string name="msg_server_unsupported">Nem támogatott szerver</string>
     <string name="add">Új küldetés</string>
-</resources>
+<string name="channel_unsubscribed">Csatornáról leiratkozva</string>
+    <string name="subscription_change_failed">Nem lehet megváltoztatni a feliratozást</string>
+    <string name="subscription_update_failed">"Nem lehet frissíteni a feliratkozást "</string>
+    <string name="tab_main">Főoldal</string>
+    <string name="tab_subscriptions">Feliratkozások</string>
+    </resources>
