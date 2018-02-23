@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -98,6 +99,18 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
      */
     @Override
     public String download(String siteUrl, Map<String, String> customProperties) throws IOException, ReCaptchaException {
+        return getBody(siteUrl, customProperties).string();
+    }
+
+    public InputStream stream(String siteUrl) throws IOException {
+        try {
+            return getBody(siteUrl, Collections.emptyMap()).byteStream();
+        } catch (ReCaptchaException e) {
+            throw new IOException(e.getMessage(), e.getCause());
+        }
+    }
+
+    private ResponseBody getBody(String siteUrl, Map<String, String> customProperties) throws IOException, ReCaptchaException {
         final Request.Builder requestBuilder = new Request.Builder()
                 .method("GET", null).url(siteUrl)
                 .addHeader("User-Agent", USER_AGENT);
@@ -123,7 +136,7 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
             return null;
         }
 
-        return body.string();
+        return body;
     }
 
     /**
