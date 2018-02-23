@@ -332,8 +332,8 @@
     <string name="export_data_title">Datenbank exportieren</string>
     <string name="import_data_summary">Wird deinen Verlauf und deine Abos überschreiben</string>
     <string name="export_data_summary">Verlauf, Abos und Playlists exportieren.</string>
-    <string name="no_valid_zip_file">Keine gültige Zip-Datei</string>
-    <string name="could_not_import_all_files">WARNUNG: Nicht alle Dateien konnten importiert werden.</string>
+    <string name="no_valid_zip_file">Keine gültige ZIP-Datei</string>
+    <string name="could_not_import_all_files">Warnung: Nicht alle Dateien konnten importiert werden.</string>
     <string name="override_current_data">Dies wird deine aktuellen Einstellungen überschreiben.</string>
 
     <string name="show_info">Info anzeigen</string>
@@ -373,4 +373,6 @@
     <string name="caption_none">Keine Untertitel</string>
 
     <string name="caption_font_size_settings_title">Schriftgröße der Untertitel</string>
+    <string name="dismiss">Abbrechen</string>
+    <string name="normal_caption_font_size">Normale Schriftgröße</string>
     </resources>
