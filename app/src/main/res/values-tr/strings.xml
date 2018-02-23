@@ -384,4 +384,15 @@
     <string name="smaller_caption_font_size">Küçük Yazı Tipi</string>
     <string name="normal_caption_font_size">Olağan Yazı Tipi</string>
     <string name="larger_caption_font_size">Büyük Yazı Tipi</string>
+<string name="settings_category_debug_title">Hata Ayıklama</string>
+    <string name="drawer_header_action_paceholder_text">Buraya yakında bir şeyler gelecek ;D</string>
+
+
+    <string name="caption_auto_generated">Kendiliğinden Oluşturulmuş</string>
+    <string name="enable_leak_canary_title">LeakCanary\'i Etkinleştir</string>
+    <string name="enable_leak_canary_summary">Bellek sızıntı gözlemlemesi, yığın boşaltımı sırasında uygulamanın tepkisiz kalmasına neden olabilir</string>
+
+    <string name="enable_disposed_exceptions_title">Out-of-Lifecycle Hatalarını Bildir</string>
+    <string name="enable_disposed_exceptions_summary">Parçanın dışında veya atımdan sonraki etkinlik yaşam döngüsünde meydana gelen ve teslim edilemeyen Rx beklentilerinin bildirimini zorla</string>
+
 </resources>
