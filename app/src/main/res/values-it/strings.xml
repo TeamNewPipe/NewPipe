@@ -397,4 +397,12 @@
 
 	<string name="drawer_header_action_paceholder_text">A breve qualcosa si troverà qui ;D</string>
 
+<string name="settings_category_debug_title">Debug</string>
+    <string name="caption_auto_generated">Generato automaticamente</string>
+    <string name="enable_leak_canary_title">Abilita LeakCanary</string>
+    <string name="enable_leak_canary_summary">Il controllo dei buchi di memoria potrebbe causare l\'applicazione a diventare non reattiva mentre effettua lo scarico dell\'heap</string>
+
+    <string name="enable_disposed_exceptions_title">Riporta gli errori \"fuori dal ciclo di vita\"</string>
+    <string name="enable_disposed_exceptions_summary">Forza il riporto delle eccezioni Rx non consegnabili verificate fuori dal frammento o dall\'attività del \"ciclo di vita\"</string>
+
 </resources>
