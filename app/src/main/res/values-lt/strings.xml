@@ -96,11 +96,11 @@
     <string name="could_not_get_stream">Negalima gauti jokio srauto</string>
     <string name="could_not_load_image">Negalima įkelti jokio paveikslėlio</string>
     <string name="app_ui_crash">Programėlė/ vartotojo sąsaja nulūžo</string>
-    <string name="sorry_string">Atsiprašome, taip neturėjo įvykti</string>
+    <string name="sorry_string">Atsiprašome, taip neturėjo įvykti.</string>
     <string name="error_report_button_text">Raportuoti apie klaidą e- paštu</string>
     <string name="error_snackbar_message">Atsiprašome, ištiko keletas klaidų.</string>
     <string name="error_snackbar_action">ATASKAITA</string>
-    <string name="what_device_headline">Informacija</string>
+    <string name="what_device_headline">Informacija:</string>
     <string name="what_happened_headline">Kas nutiko:</string>
     <string name="info_labels">Kas:\\nUžklausa:\\nTurinys Kalba:\\nPaslauga:\\nGMT Time:\\nPaketas:\\nVersija:\\nOperacinė Sistema versija:\\nGlob. IP diapazonas:</string>
     <string name="your_comment">Jūsų komentaras (abglų kalba):</string>
@@ -117,7 +117,7 @@
     <string name="report_error">Pranešti apie klaidą</string>
     <string name="user_report">Naudoti raportavimą</string>
     <string name="err_dir_create">Negalima sukurti atsisiuntimų aplanko \'%1$s\'</string>
-    <string name="info_dir_created">Sukurtas atsisiuntimų apkankas \'%1$s\'</string>
+    <string name="info_dir_created">Sukurtas atsisiuntimų aplankas \'%1$s\'</string>
 
     <string name="video">Vaizdas</string>
     <string name="audio">Muzika</string>
@@ -153,7 +153,7 @@
     <string name="msg_url_malform">Neteisingas adresas arba negalimas internetas</string>
     <string name="msg_running">NewPipe Atsiunčiama</string>
     <string name="msg_running_detail">Palieskite, kad peržiūrėtumėte detales</string>
-    <string name="msg_wait">Prašome palaukti...</string>
+    <string name="msg_wait">Prašome palaukti…</string>
     <string name="msg_copied">Nukopijuota į iškarpinę</string>
     <string name="no_available_dir">Prašome pasirinkti galimą atsisiuntimų aplankalą</string>
     <string name="msg_popup_permission">Šis leidimas nereikalingas, kad atidarytiviššokančio lango rėžime</string>
@@ -238,7 +238,7 @@
     <string name="tab_licenses">Leidimai</string>
     <string name="app_description">Nemokama, atviro kodo Youtube peržiūros programėlė Android sistemai.</string>
     <string name="contribution_title">Prisidėti</string>
-    <string name="contribution_encouragement">Jei turite įdėjų dėl- vertimų, išvaizdos pakeitimų, kodo supaprastinimo, arba rimtų kodo pakeitimų- pagalba visada laukiama.</string>
+    <string name="contribution_encouragement">Jei turite idėjų dėl- vertimų, išvaizdos pakeitimų, kodo supaprastinimo, arba rimtų kodo pakeitimų- pagalba visada laukiama!</string>
     <string name="view_on_github">Peržiūrėti per GitHub</string>
     <string name="donation_title">Paremti</string>
     <string name="donation_encouragement">NewPipe yra vystoma savanorių, kurie praleidžia savo laisvą laiką, kad sukurtų geriausią patirtį Jums. Dabar yra laikas paremti juos, kad kūrėjai galėtų NewPipe paversti dar geresne programėle!</string>
