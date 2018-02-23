@@ -136,4 +136,6 @@
     <string name="popup_mode_share_menu_title">NewPipe felugró ablak mód</string>
     <string name="subscribe_button_title">Feliratkozás</string>
     <string name="subscribed_button_title">Feliratkozva</string>
+    <string name="show_info">Több infó</string>
+
     </resources>
