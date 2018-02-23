@@ -124,4 +124,6 @@
     <string name="subscription_update_failed">"Nem lehet frissíteni a feliratkozást "</string>
     <string name="tab_main">Főoldal</string>
     <string name="tab_subscriptions">Feliratkozások</string>
+    <string name="tab_bookmarks">Könyvjelzők</string>
+
     </resources>
