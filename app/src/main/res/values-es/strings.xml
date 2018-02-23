@@ -396,4 +396,7 @@ abrir en modo popup</string>
     <string name="toggle_leak_canary">Monitoreo de fugas</string>
     <string name="enable_leak_canary_notice">Monitorización de fugas de memoria activada, la app puede dejar de responder cuando hay volcado de almacenamiento</string>
     <string name="disable_leak_canary_notice">Monitorización de fugas de memoria desactivada</string>
-</resources>
+<string name="settings_category_debug_title">Depuración</string>
+    <string name="caption_auto_generated">Auto generados</string>
+    <string name="enable_leak_canary_title">Activar LeakCanary</string>
+    </resources>
