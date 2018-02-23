@@ -138,4 +138,5 @@
     <string name="subscribed_button_title">Feliratkozva</string>
     <string name="show_info">Több infó</string>
 
+    <string name="default_popup_resolution_title">Alapértelmezett felugró ablak felbontás</string>
     </resources>
