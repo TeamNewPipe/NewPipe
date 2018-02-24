@@ -373,4 +373,10 @@
     <string name="toggle_leak_canary">मॉनिटर लीक</string>
     <string name="enable_leak_canary_notice">मेमोरी लीक मॉनिटरिंग सक्षम है, हीप डंपिंग के समय ऐप अप्रतिसादी हो सकती है</string>
     <string name="disable_leak_canary_notice">मेमोरी लीक मॉनिटरिंग अक्षम है</string>
-</resources>
+<string name="settings_category_debug_title">डीबग करें</string>
+    <string name="caption_auto_generated">ऑटो-जनरेटेड</string>
+    <string name="enable_leak_canary_title">LeakCanary सक्षम करें</string>
+    <string name="enable_leak_canary_summary">हीप डंप करने के दौरान मेमोरी लीक मॉनिटरिंग app को अनुत्तरदायी बना सकता है</string>
+
+    <string name="enable_disposed_exceptions_title">Out-of-Lifecycle त्रुटियों की रिपोर्ट करें</string>
+    </resources>
