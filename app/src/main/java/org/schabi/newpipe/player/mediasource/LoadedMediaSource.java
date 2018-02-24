@@ -14,33 +14,14 @@ import java.io.IOException;
 
 public class LoadedMediaSource implements ManagedMediaSource {
 
-    private final PlayQueueItem playQueueItem;
-    private final StreamInfo streamInfo;
     private final MediaSource source;
 
     private final long expireTimestamp;
 
-    public LoadedMediaSource(@NonNull final PlayQueueItem playQueueItem,
-                             @NonNull final StreamInfo streamInfo,
-                             @NonNull final MediaSource source,
-                             final long expireTimestamp) {
-        this.playQueueItem = playQueueItem;
-        this.streamInfo = streamInfo;
+    public LoadedMediaSource(@NonNull final MediaSource source, final long expireTimestamp) {
         this.source = source;
 
         this.expireTimestamp = expireTimestamp;
-    }
-
-    public PlayQueueItem getPlayQueueItem() {
-        return playQueueItem;
-    }
-
-    public StreamInfo getStreamInfo() {
-        return streamInfo;
-    }
-
-    public boolean isExpired() {
-        return System.currentTimeMillis() >= expireTimestamp;
     }
 
     @Override
@@ -70,6 +51,6 @@ public class LoadedMediaSource implements ManagedMediaSource {
 
     @Override
     public boolean canReplace() {
-        return isExpired();
+        return System.currentTimeMillis() >= expireTimestamp;
     }
 }

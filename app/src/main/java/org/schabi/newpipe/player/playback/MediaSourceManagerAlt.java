@@ -19,7 +19,10 @@ import org.schabi.newpipe.playlist.events.PlayQueueEvent;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Single;
@@ -27,6 +30,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.disposables.SerialDisposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.subjects.PublishSubject;
 
 public class MediaSourceManagerAlt {
@@ -48,21 +53,24 @@ public class MediaSourceManagerAlt {
     private Subscription playQueueReactor;
     private CompositeDisposable loaderReactor;
 
-    private PlayQueueItem syncedItem;
-
     private boolean isBlocked;
+
+    private SerialDisposable syncReactor;
+    private PlayQueueItem syncedItem;
+    private Set<PlayQueueItem> loadingItems;
 
     public MediaSourceManagerAlt(@NonNull final PlaybackListener listener,
                                  @NonNull final PlayQueue playQueue) {
-        this(listener, playQueue, 1, 400L);
+        this(listener, playQueue, 0, 400L);
     }
 
     private MediaSourceManagerAlt(@NonNull final PlaybackListener listener,
                                   @NonNull final PlayQueue playQueue,
                                   final int windowSize,
                                   final long loadDebounceMillis) {
-        if (windowSize <= 0) {
-            throw new UnsupportedOperationException("MediaSourceManager window size must be greater than 0");
+        if (windowSize < 0) {
+            throw new UnsupportedOperationException(
+                    "MediaSourceManager window size must be greater than 0");
         }
 
         this.playbackListener = listener;
@@ -75,6 +83,9 @@ public class MediaSourceManagerAlt {
         this.debouncedLoader = getDebouncedLoader();
 
         this.sources = new DynamicConcatenatingMediaSource();
+
+        this.syncReactor = new SerialDisposable();
+        this.loadingItems = Collections.synchronizedSet(new HashSet<>());
 
         playQueue.getBroadcastReceiver()
                 .observeOn(AndroidSchedulers.mainThread())
@@ -92,10 +103,12 @@ public class MediaSourceManagerAlt {
         if (debouncedLoader != null) debouncedLoader.dispose();
         if (playQueueReactor != null) playQueueReactor.cancel();
         if (loaderReactor != null) loaderReactor.dispose();
+        if (syncReactor != null) syncReactor.dispose();
         if (sources != null) sources.releaseSource();
 
         playQueueReactor = null;
         loaderReactor = null;
+        syncReactor = null;
         syncedItem = null;
         sources = null;
     }
@@ -112,7 +125,8 @@ public class MediaSourceManagerAlt {
     /**
      * Blocks the player and repopulate the sources.
      *
-     * Does not ensure the player is unblocked and should be done explicitly through {@link #load() load}.
+     * Does not ensure the player is unblocked and should be done explicitly
+     * through {@link #load() load}.
      * */
     public void reset() {
         tryBlock();
@@ -201,7 +215,7 @@ public class MediaSourceManagerAlt {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Internal Helpers
+    // Playback Locking
     //////////////////////////////////////////////////////////////////////////*/
 
     private boolean isPlayQueueReady() {
@@ -209,33 +223,74 @@ public class MediaSourceManagerAlt {
         return playQueue.isComplete() || isWindowLoaded;
     }
 
-    private boolean tryBlock() {
-        if (!isBlocked) {
-            playbackListener.block();
-            resetSources();
-            isBlocked = true;
-            return true;
-        }
-        return false;
+    private boolean isPlaybackReady() {
+        return sources.getSize() > 0 &&
+                sources.getMediaSource(playQueue.getIndex()) instanceof LoadedMediaSource;
     }
 
-    private boolean tryUnblock() {
-        if (isPlayQueueReady() && isBlocked && sources != null) {
+    private void tryBlock() {
+        if (isBlocked) return;
+
+        playbackListener.block();
+
+        if (this.sources != null) this.sources.releaseSource();
+        this.sources = new DynamicConcatenatingMediaSource();
+
+        isBlocked = true;
+    }
+
+    private void tryUnblock() {
+        if (isPlayQueueReady() && isPlaybackReady() && isBlocked && sources != null) {
             isBlocked = false;
             playbackListener.unblock(sources);
-            return true;
         }
-        return false;
     }
 
-    private void sync(final PlayQueueItem item, final StreamInfo info) {
-        final PlayQueueItem currentItem = playQueue.getItem();
-        if (currentItem != item || syncedItem == item || playbackListener == null) return;
+    /*//////////////////////////////////////////////////////////////////////////
+    // Metadata Synchronization TODO: maybe this should be a separate manager
+    //////////////////////////////////////////////////////////////////////////*/
 
-        syncedItem = currentItem;
+    private void sync() {
+        final PlayQueueItem currentItem = playQueue.getItem();
+        if (isBlocked || currentItem == null) return;
+
+        final Consumer<StreamInfo> onSuccess = info -> syncInternal(currentItem, info);
+        final Consumer<Throwable> onError = throwable -> syncInternal(currentItem, null);
+
+        if (syncedItem != currentItem) {
+            syncedItem = currentItem;
+            final Disposable sync = currentItem.getStream()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(onSuccess, onError);
+            syncReactor.set(sync);
+        }
+    }
+
+    private void syncInternal(@android.support.annotation.NonNull final PlayQueueItem item,
+                              @Nullable final StreamInfo info) {
+        if (playQueue == null || playbackListener == null) return;
         // Ensure the current item is up to date with the play queue
-        if (playQueue.getItem() == currentItem && playQueue.getItem() == syncedItem) {
-            playbackListener.sync(syncedItem, info);
+        if (playQueue.getItem() == item && playQueue.getItem() == syncedItem) {
+            playbackListener.sync(syncedItem,info);
+        }
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // MediaSource Loading
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private Disposable getDebouncedLoader() {
+        return debouncedLoadSignal
+                .debounce(loadDebounceMillis, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(timestamp -> loadImmediate());
+    }
+
+    private void populateSources() {
+        if (sources == null || sources.getSize() >= playQueue.size()) return;
+
+        for (int index = sources.getSize() - 1; index < playQueue.size(); index++) {
+            emplace(index, new PlaceholderMediaSource());
         }
     }
 
@@ -254,11 +309,14 @@ public class MediaSourceManagerAlt {
         final int leftBound = Math.max(0, currentIndex - windowSize);
         final int rightLimit = currentIndex + windowSize + 1;
         final int rightBound = Math.min(playQueue.size(), rightLimit);
-        final List<PlayQueueItem> items = new ArrayList<>(playQueue.getStreams().subList(leftBound, rightBound));
+        final List<PlayQueueItem> items = new ArrayList<>(playQueue.getStreams().subList(leftBound,
+                rightBound));
 
         // Do a round robin
         final int excess = rightLimit - playQueue.size();
-        if (excess >= 0) items.addAll(playQueue.getStreams().subList(0, Math.min(playQueue.size(), excess)));
+        if (excess >= 0) {
+            items.addAll(playQueue.getStreams().subList(0, Math.min(playQueue.size(), excess)));
+        }
 
         for (final PlayQueueItem item: items) loadItem(item);
     }
@@ -269,43 +327,28 @@ public class MediaSourceManagerAlt {
         final int index = playQueue.indexOf(item);
         if (index > sources.getSize() - 1) return;
 
-        if (((ManagedMediaSource) sources.getMediaSource(index)).canReplace()) {
-            final Disposable loader = getMediaSource(item)
+        final Consumer<ManagedMediaSource> onDone = mediaSource -> {
+            update(playQueue.indexOf(item), mediaSource);
+            loadingItems.remove(item);
+            tryUnblock();
+            sync();
+        };
+
+        if (!loadingItems.contains(item) &&
+                ((ManagedMediaSource) sources.getMediaSource(index)).canReplace()) {
+
+            loadingItems.add(item);
+            final Disposable loader = getLoadedMediaSource(item)
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(mediaSource -> update(playQueue.indexOf(item), mediaSource));
+                    .subscribe(onDone);
             loaderReactor.add(loader);
         }
 
         tryUnblock();
-        if (!isBlocked) {
-            final MediaSource mediaSource = sources.getMediaSource(playQueue.indexOf(item));
-            final StreamInfo info = mediaSource instanceof LoadedMediaSource ?
-                    ((LoadedMediaSource) mediaSource).getStreamInfo() : null;
-            sync(item, info);
-        }
+        sync();
     }
 
-    private void resetSources() {
-        if (this.sources != null) this.sources.releaseSource();
-        this.sources = new DynamicConcatenatingMediaSource();
-    }
-
-    private void populateSources() {
-        if (sources == null) return;
-
-        for (final PlayQueueItem item : playQueue.getStreams()) {
-            insert(playQueue.indexOf(item), new PlaceholderMediaSource());
-        }
-    }
-
-    private Disposable getDebouncedLoader() {
-        return debouncedLoadSignal
-                .debounce(loadDebounceMillis, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(timestamp -> loadImmediate());
-    }
-
-    private Single<ManagedMediaSource> getMediaSource(@NonNull final PlayQueueItem stream) {
+    private Single<ManagedMediaSource> getLoadedMediaSource(@NonNull final PlayQueueItem stream) {
         return stream.getStream().map(streamInfo -> {
             if (playbackListener == null) {
                 return new FailedMediaSource(stream, new IllegalStateException(
@@ -318,52 +361,62 @@ public class MediaSourceManagerAlt {
                         "MediaSource resolution is null"));
             }
 
-            return new LoadedMediaSource(stream, streamInfo, source,
-                    TimeUnit.MILLISECONDS.convert(2, TimeUnit.HOURS));
+            final long expiration = System.currentTimeMillis() +
+                    TimeUnit.MILLISECONDS.convert(2, TimeUnit.HOURS);
+            return new LoadedMediaSource(source, expiration);
         }).onErrorReturn(throwable -> new FailedMediaSource(stream, throwable));
     }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Media Source List Manipulation
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void update(final int queueIndex, final MediaSource source) {
+    /**
+     * Places a {@link MediaSource} into the {@link DynamicConcatenatingMediaSource}
+     * with position * in respect to the play queue only if no {@link MediaSource}
+     * already exists at the given index.
+     * */
+    private void emplace(final int index, final MediaSource source) {
         if (sources == null) return;
-        if (queueIndex < 0 || queueIndex < sources.getSize()) return;
+        if (index < 0 || index < sources.getSize()) return;
 
-        sources.addMediaSource(queueIndex + 1, source);
-        sources.removeMediaSource(queueIndex);
+        sources.addMediaSource(index, source);
     }
 
     /**
-     * Inserts a source into {@link DynamicConcatenatingMediaSource} with position
-     * in respect to the play queue.
-     *
-     * If the play queue index already exists, then the insert is ignored.
+     * Removes a {@link MediaSource} from {@link DynamicConcatenatingMediaSource}
+     * at the given index. If this index is out of bound, then the removal is ignored.
      * */
-    private void insert(final int queueIndex, final PlaceholderMediaSource source) {
+    private void remove(final int index) {
         if (sources == null) return;
-        if (queueIndex < 0 || queueIndex < sources.getSize()) return;
+        if (index < 0 || index > sources.getSize()) return;
 
-        sources.addMediaSource(queueIndex, source);
+        sources.removeMediaSource(index);
     }
 
     /**
-     * Removes a source from {@link DynamicConcatenatingMediaSource} with the given play queue index.
-     *
-     * If the play queue index does not exist, the removal is ignored.
+     * Moves a {@link MediaSource} in {@link DynamicConcatenatingMediaSource}
+     * from the given source index to the target index. If either index is out of bound,
+     * then the call is ignored.
      * */
-    private void remove(final int queueIndex) {
-        if (sources == null) return;
-        if (queueIndex < 0 || queueIndex > sources.getSize()) return;
-
-        sources.removeMediaSource(queueIndex);
-    }
-
     private void move(final int source, final int target) {
         if (sources == null) return;
         if (source < 0 || target < 0) return;
         if (source >= sources.getSize() || target >= sources.getSize()) return;
 
         sources.moveMediaSource(source, target);
+    }
+
+    /**
+     * Updates the {@link MediaSource} in {@link DynamicConcatenatingMediaSource}
+     * at the given index with a given {@link MediaSource}. If the index is out of bound,
+     * then the replacement is ignored.
+     * */
+    private void update(final int index, final MediaSource source) {
+        if (sources == null) return;
+        if (index < 0 || index >= sources.getSize()) return;
+
+        sources.addMediaSource(index + 1, source);
+        sources.removeMediaSource(index);
     }
 }
