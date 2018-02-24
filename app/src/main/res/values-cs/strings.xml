@@ -391,4 +391,12 @@ otevření ve vyskakovacím okně</string>
     <string name="toggle_leak_canary">Sledovat únik paměti</string>
     <string name="disable_leak_canary_notice">Sledování úniku paměti vypnuto</string>
 <string name="enable_leak_canary_notice">Sledování úniku paměti povoleno, aplikace může při zátěži přestat reagovat</string>
-    </resources>
+    <string name="settings_category_debug_title">Ladění</string>
+    <string name="caption_auto_generated">"Automaticky generováno "</string>
+    <string name="enable_leak_canary_title">Povolit službu LeakCanary</string>
+    <string name="enable_leak_canary_summary">Monitoring úniku paměti může vést k nereagování aplikace při zátěži</string>
+
+    <string name="enable_disposed_exceptions_title">Nahlásit mimocyklické chyby</string>
+    <string name="enable_disposed_exceptions_summary">Vynutit vykazování výjimek Rx, které se vyskytnou mimo fragment nebo životnost cyklu po odstranění</string>
+
+</resources>

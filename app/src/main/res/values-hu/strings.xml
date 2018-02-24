@@ -119,4 +119,28 @@
 
     <string name="msg_server_unsupported">Nem támogatott szerver</string>
     <string name="add">Új küldetés</string>
-</resources>
+<string name="channel_unsubscribed">Csatornáról leiratkozva</string>
+    <string name="subscription_change_failed">Nem lehet megváltoztatni a feliratozást</string>
+    <string name="subscription_update_failed">"Nem lehet frissíteni a feliratkozást "</string>
+    <string name="tab_main">Főoldal</string>
+    <string name="tab_subscriptions">Feliratkozások</string>
+    <string name="tab_bookmarks">Könyvjelzők</string>
+
+    <string name="fragment_whats_new">Újdonságok</string>
+
+    <string name="controls_background_title">Háttér</string>
+    <string name="controls_popup_title">Felugró ablak</string>
+    <string name="no_player_found_toast">Nem található lejátszó alkalmazás(Feltelepítheti a VLC a lejátszáshoz)</string>
+    <string name="open_in_popup_mode">Megnyitás felugró ablakként</string>
+    <string name="use_external_video_player_summary">Néhány felbontásnál NEM lesz hang ha ez a beállítás be van kapcsolva</string>
+    <string name="popup_mode_share_menu_title">NewPipe felugró ablak mód</string>
+    <string name="subscribe_button_title">Feliratkozás</string>
+    <string name="subscribed_button_title">Feliratkozva</string>
+    <string name="show_info">Több infó</string>
+
+    <string name="default_popup_resolution_title">Alapértelmezett felugró ablak felbontása</string>
+    <string name="show_higher_resolutions_title">Mutassa a magasabb felbontásokat</string>
+    <string name="show_higher_resolutions_summary">Csak néhány eszköz támogatja a 2K/4K videók lejátszását</string>
+    <string name="default_video_format_title">Alapértelmezett videó formátum</string>
+    <string name="black_theme_title">Fekete</string>
+    </resources>

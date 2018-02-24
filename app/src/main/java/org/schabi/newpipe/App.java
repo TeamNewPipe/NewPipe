@@ -168,6 +168,7 @@ public class App extends Application {
         return new ImageLoaderConfiguration.Builder(this)
                 .memoryCache(new LRULimitedMemoryCache(memoryCacheSizeMb * 1024 * 1024))
                 .diskCacheSize(diskCacheSizeMb * 1024 * 1024)
+                .imageDownloader(new ImageDownloader(getApplicationContext()))
                 .build();
     }
 

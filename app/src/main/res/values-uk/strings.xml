@@ -113,7 +113,7 @@
     <string name="delete">Видалити</string>
     <string name="checksum">Контрольна сума</string>
 
-    <string name="finish">Гаразд</string>
+    <string name="finish">ОК</string>
     <string name="msg_name">Назва файлу</string>
     <string name="msg_threads">Потоки</string>
     <string name="msg_error">Помилка</string>
@@ -122,8 +122,8 @@
     <string name="msg_running">NewPipe завантажує</string>
     <string name="msg_running_detail">Натисніть для подробиць</string>
     <string name="msg_wait">Будь ласка, зачекайте…</string>
-    <string name="msg_copied">Скопійовано до буферу обміну.</string>
-    <string name="no_available_dir">Будь ласка, оберіть теку для завантаження.</string>
+    <string name="msg_copied">Скопійовано до буферу обміну</string>
+    <string name="no_available_dir">Будь ласка, оберіть теку для завантаження</string>
 
 <string name="no_player_found_toast">Потоковий програвач не знайдено (ви можете встановити VLC для відтворення)</string>
     <string name="open_in_popup_mode">Відкрити у спливаючому вікні</string>
@@ -206,7 +206,7 @@
     <string name="msg_popup_permission">Цей дозвіл має бути відкритим 
 \nу спливаючому вікні</string>
 
-    <string name="reCaptchaActivity"></string>
+    <string name="reCaptchaActivity">«reCAPTCHA»</string>
     <string name="settings_category_downloads_title">Завантажити</string>
     <string name="settings_file_charset_title">Допустимі символи у іменах файлів</string>
     <string name="settings_file_replacement_character_summary">"Невірні символи будуть скоректовані цим "</string>
@@ -241,4 +241,46 @@
     
     <string name="preferred_player_fetcher_notification_title">Отримую інформацію…</string>
     <string name="preferred_player_fetcher_notification_message">Контент завантажується</string>
+<string name="controls_download_desc">Завантажити файл стріму.</string>
+    <string name="show_info">Показати інфо</string>
+
+    <string name="tab_bookmarks">Закладки</string>
+
+    <string name="controls_add_to_playlist_title">Додати до</string>
+
+    <string name="show_hold_to_append_summary">Показувати підказку коли фонова чи спливаюча кнопка натиснути на сторінці відео деталей</string>
+    <string name="toggle_orientation">Перемкнути орієнтацію</string>
+    <string name="player_unrecoverable_failure">Фатальна помилка програвача</string>
+    <string name="external_player_unsupported_link_type">Зовнішні програвачі не підтримують такі види посилань</string>
+    <string name="info_labels">Що:\\nЗапит:\\nМова змісту:\\nСервіс:\\nЧас GMT:\\nПакунок:\\nВерсія:\\nВерсія ОС:\\nГлоб. діапазон IP :</string>
+    <string name="detail_uploader_thumbnail_view_description">Мініатюра аватару користувача</string>
+    <string name="detail_likes_img_view_description">Сподобалося</string>
+    <string name="detail_dislikes_img_view_description">Не сподобалося</string>
+    <string name="search_no_results">Без результатно</string>
+    <string name="detail_drag_description">Перетягніть для зміни порядку</string>
+
+    <plurals name="subscribers">
+	<item quantity="one">%s підписник</item>
+	<item quantity="few">%s підписники</item>
+	<item quantity="many">n &gt; 1</item>
+</plurals>
+
+    <plurals name="videos">
+	<item quantity="one">%s відео</item>
+	<item quantity="few"></item>
+	<item quantity="many"></item>
+</plurals>
+
+    <string name="create">Створити</string>
+    <string name="delete_one">Видалити один</string>
+    <string name="delete_all">Видалити всі</string>
+    <string name="dismiss">Відхилити</string>
+    <string name="rename">Перейменувати</string>
+
+    <string name="title_licenses">Сторонні ліцензії</string>
+    <string name="action_open_website">Перейти до сайту</string>
+    <string name="tab_about">Про</string>
+    <string name="app_description">Легкий YouTube фронтенд застосунок для Android.</string>
+    <string name="contribution_encouragement">Які б не були Ваші ідеї: переклад, дизайн, легкий чи глобальний рефакторінг - будь яка допомога вітається. Чим більше зроблено тим краще він стає!</string>
+    <string name="disable_leak_canary_notice">Моніторинг витоку памяті вимкнено</string>
 </resources>
