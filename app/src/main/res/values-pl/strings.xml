@@ -11,28 +11,28 @@
     <string name="did_you_mean">Miałeś na myśli: %1$s ?</string>
     <string name="share_dialog_title">Udostępnij przez</string>
     <string name="choose_browser">Wybierz przeglądarkę</string>
-    <string name="screen_rotation">rotacja</string>
-    <string name="use_external_video_player_title">Użyj zewnętrznego odtwarzacza video</string>
+    <string name="screen_rotation">obrót</string>
+    <string name="use_external_video_player_title">Użyj zewnętrznego odtwarzacza wideo</string>
     <string name="use_external_audio_player_title">Użyj zewnętrznego odtwarzacza audio</string>
 
     <string name="view_count_text">%1$s wyświetleń</string>
     <string name="upload_date_text">Opublikowano %1$s</string>
     <string name="no_player_found">Nie znaleziono odtwarzacza strumieni. Zainstalować VLC?</string>
-    <string name="download_path_title">Ścieżka zapisu video</string>
-    <string name="download_path_summary">Ścieżka zapisu pobranych video</string>
-    <string name="download_path_dialog_title">Podaj ścieżkę zapisu video</string>
+    <string name="download_path_title">Ścieżka zapisu wideo</string>
+    <string name="download_path_summary">Ścieżka zapisu pobranych wideo</string>
+    <string name="download_path_dialog_title">Podaj ścieżkę zapisu wideo</string>
 
     <string name="download_path_audio_title">Ścieżka zapisu audio</string>
     <string name="download_path_audio_summary">Ścieżka zapisu pobranych audio</string>
     <string name="download_path_audio_dialog_title">Podaj ścieżkę zapisu audio</string>
 
     <string name="autoplay_by_calling_app_title">Autoodtwarzanie</string>
-    <string name="autoplay_by_calling_app_summary">Automatycznie odtwórz video, kiedy NewPipe zostanie wywołany z innej aplikacji</string>
+    <string name="autoplay_by_calling_app_summary">Automatycznie odtwórz wideo, kiedy NewPipe zostanie wywołany z innej aplikacji</string>
     <string name="default_resolution_title">Domyślna rozdzielczość</string>
     <string name="play_with_kodi_title">Odtwórz w Kodi</string>
     <string name="kore_not_found">Aplikacja Kore nie została znaleziona. Zainstalować ją?</string>
-    <string name="show_play_with_kodi_title">Pokaż opcję \"Odtwórz z Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Wyświetl opcję, aby odtworzyć video przez Kodi</string>
+    <string name="show_play_with_kodi_title">Pokaż opcję „Odtwórz z Kodi”</string>
+    <string name="show_play_with_kodi_summary">Wyświetl opcję, aby odtworzyć wideo przez Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Domyślny format audio</string>
     <string name="webm_description">WebM — otwarty i darmowy format</string>
@@ -130,8 +130,8 @@
     <string name="controls_background_title">W tle</string>
     <string name="default_popup_resolution_title">Domyślna rozdzielczość dla trybu okienkowego</string>
     <string name="show_higher_resolutions_title">Pokaż wyższe rozdzielczości</string>
-    <string name="show_higher_resolutions_summary">Tylko niektóre urządzenia wspierają odtwarzanie video 2K/4K</string>
-    <string name="default_video_format_title">Preferowany format video</string>
+    <string name="show_higher_resolutions_summary">Tylko niektóre urządzenia wspierają odtwarzanie wideo 2K/4K</string>
+    <string name="default_video_format_title">Preferowany format wideo</string>
     <string name="black_theme_title">Czarny</string>
     <string name="popup_remember_size_pos_title">Zapamiętaj rozmiar i pozycję trybu okienkowego</string>
     <string name="popup_remember_size_pos_summary">Zapamiętaj ostatni rozmiar i pozycję trybu okienkowego</string>
@@ -252,13 +252,15 @@
 
     <plurals name="views">
 	<item quantity="one">%s odtworzenie</item>
-	<item quantity="other">%s odtworzeń</item>
+	<item quantity="few">%s odtworzenia</item>
+	<item quantity="many">%s odtworzeń</item>
 </plurals>
 
     <string name="no_videos">Brak filmów</string>
     <plurals name="videos">
 	<item quantity="one">%s film</item>
-	<item quantity="few">%s filmów</item>
+	<item quantity="few">%s filmy</item>
+	<item quantity="many">%s filmów</item>
 </plurals>
 
     <string name="charset_most_special_characters">Większość znaków specjalnych</string>
@@ -319,4 +321,9 @@
     
     <string name="preferred_player_fetcher_notification_title">Informacje…</string>
     <string name="preferred_player_fetcher_notification_message">Ładuję żądaną zawartość</string>
-</resources>
+<string name="controls_download_desc">Pobierz plik strumienia.</string>
+    <string name="show_info">Pokaż informacje</string>
+
+    <string name="controls_add_to_playlist_title">Dodaj do</string>
+
+    </resources>
