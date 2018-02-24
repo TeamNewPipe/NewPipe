@@ -329,7 +329,7 @@
     <string name="tab_bookmarks">Zakładki</string>
 
     <string name="settings_category_debug_title">Debugowanie</string>
-    <string name="switch_to_popup">Odtwarzaj w tle</string>
+    <string name="switch_to_popup">Odtwarzaj w okienku</string>
     <string name="switch_to_main">Odtwarzaj na pierwszym planie</string>
 
     <string name="import_data_title">Importuj dane</string>
