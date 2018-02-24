@@ -295,4 +295,31 @@ odpiranje v pojavnem načinu</string>
     <string name="website_title">Spletišče</string>
     <string name="service_title">Storitev</string>
     <string name="invalid_url_toast">Neveljaven naslov URL</string>
+    <string name="controls_download_desc">Prejmi datoteko pretoka.</string>
+    <string name="show_info">Pokaži podrobnosti</string>
+
+    <string name="tab_bookmarks">Zaznamki</string>
+
+    <string name="controls_add_to_playlist_title">Dodaj k</string>
+
+    <string name="settings_category_debug_title">Razhroščevanje</string>
+    <string name="always">Vedno</string>
+    <string name="just_once">Le enkrat</string>
+
+    <string name="toggle_orientation">Preklopi usmerjenost</string>
+    <string name="switch_to_background">Preklopi na ozadje</string>
+    <string name="switch_to_popup">Preklopi na pojavno</string>
+    <string name="switch_to_main">Preklopi na osnovno okno</string>
+
+    <string name="import_data_title">Uvozi podatkovno zbirko</string>
+    <string name="export_data_title">Izvozi podatkovno zbirko</string>
+    <string name="video_streams_empty">Ni najdenega video pretoka</string>
+    <string name="audio_streams_empty">Ni najdenega zvočnega pretoka</string>
+
+    <string name="create">Ustvari</string>
+    <string name="delete_one">Izbriši eno</string>
+    <string name="delete_all">Izbriši vse</string>
+    <string name="dismiss">Opusti</string>
+    <string name="rename">Preimenuj</string>
+
     </resources>
