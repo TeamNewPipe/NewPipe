@@ -399,4 +399,9 @@ abrir en modo popup</string>
 <string name="settings_category_debug_title">Depuración</string>
     <string name="caption_auto_generated">Auto generados</string>
     <string name="enable_leak_canary_title">Activar LeakCanary</string>
-    </resources>
+    <string name="enable_leak_canary_summary">La monitorización de fugas de memoria puede causar que la app no responda cuando hay volcado de almacenamiento</string>
+
+    <string name="enable_disposed_exceptions_title">Reportar errores fuera del ciclo de duración</string>
+    <string name="enable_disposed_exceptions_summary">Forzar la notificación de excepciones no entregables de RX que ocurren fuera del fragmento o del ciclo de actividad después de disponer</string>
+
+</resources>
