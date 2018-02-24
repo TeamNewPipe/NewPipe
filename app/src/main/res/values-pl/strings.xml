@@ -304,7 +304,7 @@
     <string name="always">Zawsze</string>
     <string name="just_once">Tylko raz</string>
 
-    <string name="toggle_orientation">Przełącz orientację</string>
+    <string name="toggle_orientation">Przełącz orientację ekranu</string>
     <string name="switch_to_background">Odtwarzaj w tle</string>
     <string name="external_player_unsupported_link_type">Zewnętrzne odtwarzacze nie obsługują linków tego typu</string>
     <string name="invalid_url_toast">Nieprawidłowy URL</string>
