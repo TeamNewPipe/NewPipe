@@ -29,7 +29,7 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.extractor.Info;
-import org.schabi.newpipe.extractor.ListExtractor.NextItemsResult;
+import org.schabi.newpipe.extractor.ListExtractor.InfoItemPage;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
@@ -78,7 +78,7 @@ public final class ExtractorHelper {
         );
     }
 
-    public static Single<NextItemsResult> getMoreSearchItems(final int serviceId,
+    public static Single<InfoItemPage> getMoreSearchItems(final int serviceId,
                                                              final String query,
                                                              final int nextPageNumber,
                                                              final String searchLanguage,
@@ -86,7 +86,7 @@ public final class ExtractorHelper {
         checkServiceId(serviceId);
         return searchFor(serviceId, query, nextPageNumber, searchLanguage, filter)
                 .map((@NonNull SearchResult searchResult) ->
-                        new NextItemsResult(searchResult.resultList,
+                        new InfoItemPage(searchResult.resultList,
                                 nextPageNumber + "",
                                 searchResult.errors));
     }
@@ -117,7 +117,7 @@ public final class ExtractorHelper {
                 ChannelInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
 
-    public static Single<NextItemsResult> getMoreChannelItems(final int serviceId,
+    public static Single<InfoItemPage> getMoreChannelItems(final int serviceId,
                                                               final String url,
                                                               final String nextStreamsUrl) {
         checkServiceId(serviceId);
@@ -133,7 +133,7 @@ public final class ExtractorHelper {
                 PlaylistInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
 
-    public static Single<NextItemsResult> getMorePlaylistItems(final int serviceId,
+    public static Single<InfoItemPage> getMorePlaylistItems(final int serviceId,
                                                                final String url,
                                                                final String nextStreamsUrl) {
         checkServiceId(serviceId);
@@ -149,7 +149,7 @@ public final class ExtractorHelper {
                 KioskInfo.getInfo(NewPipe.getService(serviceId), url, contentCountry)));
     }
 
-    public static Single<NextItemsResult> getMoreKioskItems(final int serviceId,
+    public static Single<InfoItemPage> getMoreKioskItems(final int serviceId,
                                                             final String url,
                                                             final String nextStreamsUrl,
                                                             final String contentCountry) {

@@ -16,7 +16,7 @@ public final class PlaylistPlayQueue extends AbstractInfoPlayQueue<PlaylistInfo,
     }
 
     public PlaylistPlayQueue(final PlaylistInfo info) {
-        this(info.getServiceId(), info.getUrl(), info.getNextStreamsUrl(), info.getRelatedStreams(), 0);
+        this(info.getServiceId(), info.getUrl(), info.getNextPageUrl(), info.getRelatedStreams(), 0);
     }
 
     public PlaylistPlayQueue(final int serviceId,
@@ -43,7 +43,7 @@ public final class PlaylistPlayQueue extends AbstractInfoPlayQueue<PlaylistInfo,
             ExtractorHelper.getMorePlaylistItems(this.serviceId, this.baseUrl, this.nextUrl)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(getNextItemsObserver());
+                    .subscribe(getNextPageObserver());
         }
     }
 }

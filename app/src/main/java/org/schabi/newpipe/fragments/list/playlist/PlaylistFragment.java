@@ -206,8 +206,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected Single<ListExtractor.NextItemsResult> loadMoreItemsLogic() {
-        return ExtractorHelper.getMorePlaylistItems(serviceId, url, currentNextItemsUrl);
+    protected Single<ListExtractor.InfoItemPage> loadMoreItemsLogic() {
+        return ExtractorHelper.getMorePlaylistItems(serviceId, url, currentNextPageUrl);
     }
 
     @Override
@@ -300,14 +300,14 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         return new PlaylistPlayQueue(
                 currentInfo.getServiceId(),
                 currentInfo.getUrl(),
-                currentInfo.getNextStreamsUrl(),
+                currentInfo.getNextPageUrl(),
                 infoListAdapter.getItemsList(),
                 index
         );
     }
 
     @Override
-    public void handleNextItems(ListExtractor.NextItemsResult result) {
+    public void handleNextItems(ListExtractor.InfoItemPage result) {
         super.handleNextItems(result);
 
         if (!result.getErrors().isEmpty()) {

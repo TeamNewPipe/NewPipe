@@ -71,7 +71,7 @@ import io.reactivex.subjects.PublishSubject;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor.NextItemsResult> implements BackPressable {
+public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor.InfoItemPage> implements BackPressable {
 
     /*//////////////////////////////////////////////////////////////////////////
     // Search
@@ -725,9 +725,9 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
         searchDisposable = ExtractorHelper.getMoreSearchItems(serviceId, searchQuery, currentNextPage, contentCountry, filter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<ListExtractor.NextItemsResult>() {
+                .subscribe(new Consumer<ListExtractor.InfoItemPage>() {
                     @Override
-                    public void accept(@NonNull ListExtractor.NextItemsResult result) throws Exception {
+                    public void accept(@NonNull ListExtractor.InfoItemPage result) throws Exception {
                         isLoading.set(false);
                         handleNextItems(result);
                     }
@@ -841,9 +841,9 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     }
 
     @Override
-    public void handleNextItems(ListExtractor.NextItemsResult result) {
+    public void handleNextItems(ListExtractor.InfoItemPage result) {
         showListFooter(false);
-        currentPage = Integer.parseInt(result.getNextItemsUrl());
+        currentPage = Integer.parseInt(result.getNextPageUrl());
         infoListAdapter.addInfoItemList(result.getNextItemsList());
 
         if (!result.getErrors().isEmpty()) {
