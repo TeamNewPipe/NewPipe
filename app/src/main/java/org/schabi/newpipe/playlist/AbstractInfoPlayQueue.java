@@ -83,8 +83,8 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
         };
     }
 
-    SingleObserver<ListExtractor.NextItemsResult> getNextItemsObserver() {
-        return new SingleObserver<ListExtractor.NextItemsResult>() {
+    SingleObserver<ListExtractor.InfoItemPage> getNextPageObserver() {
+        return new SingleObserver<ListExtractor.InfoItemPage>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
                 if (isComplete || isInitial || (fetchReactor != null && !fetchReactor.isDisposed())) {
@@ -95,11 +95,11 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
             }
 
             @Override
-            public void onSuccess(@NonNull ListExtractor.NextItemsResult result) {
-                if (!result.hasMoreStreams()) isComplete = true;
-                nextUrl = result.nextItemsUrl;
+            public void onSuccess(@NonNull ListExtractor.InfoItemPage result) {
+                if (!result.hasNextPage()) isComplete = true;
+                nextUrl = result.nextPageUrl;
 
-                append(extractListItems(result.nextItemsList));
+                append(extractListItems(result.infoItemList));
 
                 fetchReactor.dispose();
                 fetchReactor = null;

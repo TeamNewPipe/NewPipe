@@ -388,8 +388,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected Single<ListExtractor.NextItemsResult> loadMoreItemsLogic() {
-        return ExtractorHelper.getMoreChannelItems(serviceId, url, currentNextItemsUrl);
+    protected Single<ListExtractor.InfoItemPage> loadMoreItemsLogic() {
+        return ExtractorHelper.getMoreChannelItems(serviceId, url, currentNextPageUrl);
     }
 
     @Override
@@ -464,14 +464,14 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         return new ChannelPlayQueue(
                 currentInfo.getServiceId(),
                 currentInfo.getUrl(),
-                currentInfo.getNextStreamsUrl(),
+                currentInfo.getNextPageUrl(),
                 infoListAdapter.getItemsList(),
                 index
         );
     }
 
     @Override
-    public void handleNextItems(ListExtractor.NextItemsResult result) {
+    public void handleNextItems(ListExtractor.InfoItemPage result) {
         super.handleNextItems(result);
 
         if (!result.getErrors().isEmpty()) {

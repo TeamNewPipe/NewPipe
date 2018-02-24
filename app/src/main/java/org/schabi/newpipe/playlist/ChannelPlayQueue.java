@@ -16,7 +16,7 @@ public final class ChannelPlayQueue extends AbstractInfoPlayQueue<ChannelInfo, C
     }
 
     public ChannelPlayQueue(final ChannelInfo info) {
-        this(info.getServiceId(), info.getUrl(), info.getNextStreamsUrl(), info.getRelatedStreams(), 0);
+        this(info.getServiceId(), info.getUrl(), info.getNextPageUrl(), info.getRelatedStreams(), 0);
     }
 
     public ChannelPlayQueue(final int serviceId,
@@ -43,7 +43,7 @@ public final class ChannelPlayQueue extends AbstractInfoPlayQueue<ChannelInfo, C
             ExtractorHelper.getMoreChannelItems(this.serviceId, this.baseUrl, this.nextUrl)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(getNextItemsObserver());
+                    .subscribe(getNextPageObserver());
         }
     }
 }
