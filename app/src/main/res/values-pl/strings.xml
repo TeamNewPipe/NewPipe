@@ -42,7 +42,7 @@
     <string name="light_theme_title">Jasny</string>
 
     <string name="download_dialog_title">Pobrane</string>
-    <string name="next_video_title">Następne wideo</string>
+    <string name="next_video_title">Następny film</string>
     <string name="show_next_and_similar_title">Pokaż następne i podobne filmy</string>
     <string name="url_not_supported_toast">URL nie obsługiwany</string>
     <string name="search_language_title">Preferowany język zawartości</string>
