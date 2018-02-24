@@ -246,8 +246,8 @@
     <string name="no_subscribers">Brak subskrybentów</string>
     <plurals name="subscribers">
 	<item quantity="one">%s subskrybent</item>
-	<item quantity="few">%s subskrybentów</item>
-	<item quantity="other">%s subskrybentów</item>
+	<item quantity="few"></item>
+	<item quantity="many">%s subskrybentów</item>
 </plurals>
 
     <plurals name="views">
