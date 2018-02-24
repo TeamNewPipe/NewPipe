@@ -229,7 +229,7 @@
 
     <string name="search_no_results">Brak wyników</string>
     <string name="no_views">Brak wyświetleń</string>
-    <string name="show_hold_to_append_title">Pokaż wskazówkę „Przytrzymaj, aby Dodać”</string>
+    <string name="show_hold_to_append_title">Pokaż wskazówkę „Przytrzymaj, aby dodać”</string>
     <string name="show_hold_to_append_summary">Pokaż wskazówkę podczas naciśnięcia odtwarzania na stronie szczegółów filmu</string>
     <string name="background_player_append">W kolejce odtwarzania w tle</string>
     <string name="popup_playing_append">W kolejce odtwarzania okienkowego</string>
