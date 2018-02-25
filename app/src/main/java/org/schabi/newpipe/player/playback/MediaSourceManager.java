@@ -219,13 +219,16 @@ public class MediaSourceManager {
     //////////////////////////////////////////////////////////////////////////*/
 
     private boolean isPlayQueueReady() {
+        if (playQueue == null) return false;
+
         final boolean isWindowLoaded = playQueue.size() - playQueue.getIndex() > windowSize;
         return playQueue.isComplete() || isWindowLoaded;
     }
 
+    // Checks if the current playback media source is a placeholder, if so, then it is not ready
     private boolean isPlaybackReady() {
-        return sources.getSize() > 0 &&
-                sources.getMediaSource(playQueue.getIndex()) instanceof LoadedMediaSource;
+        return sources != null && playQueue != null && sources.getSize() > playQueue.getIndex() &&
+                !(sources.getMediaSource(playQueue.getIndex()) instanceof PlaceholderMediaSource);
     }
 
     private void tryBlock() {
