@@ -56,6 +56,7 @@ import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
@@ -1192,11 +1193,20 @@ public class VideoDetailFragment
                     0);
         }
 
-        if (info.video_streams.isEmpty() && info.video_only_streams.isEmpty()) {
-            detailControlsBackground.setVisibility(View.GONE);
-            detailControlsPopup.setVisibility(View.GONE);
-            spinnerToolbar.setVisibility(View.GONE);
-            thumbnailPlayButton.setImageResource(R.drawable.ic_headset_white_24dp);
+        switch (info.getStreamType()) {
+            case LIVE_STREAM:
+            case AUDIO_LIVE_STREAM:
+                detailControlsDownload.setVisibility(View.GONE);
+                spinnerToolbar.setVisibility(View.GONE);
+                break;
+            default:
+                if (!info.video_streams.isEmpty() || !info.video_only_streams.isEmpty()) break;
+
+                detailControlsBackground.setVisibility(View.GONE);
+                detailControlsPopup.setVisibility(View.GONE);
+                spinnerToolbar.setVisibility(View.GONE);
+                thumbnailPlayButton.setImageResource(R.drawable.ic_headset_white_24dp);
+                break;
         }
 
         if (autoPlayEnabled) {
@@ -1216,8 +1226,6 @@ public class VideoDetailFragment
 
         if (exception instanceof YoutubeStreamExtractor.GemaException) {
             onBlockedByGemaError();
-        } else if (exception instanceof YoutubeStreamExtractor.LiveStreamException) {
-            showError(getString(R.string.live_streams_not_supported), false);
         } else if (exception instanceof ContentNotAvailableException) {
             showError(getString(R.string.content_not_available), false);
         } else {

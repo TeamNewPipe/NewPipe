@@ -43,7 +43,6 @@ import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.SingleSampleMediaSource;
@@ -54,21 +53,23 @@ import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.source.smoothstreaming.DefaultSsChunkSource;
 import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
+import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.history.HistoryRecordManager;
 import org.schabi.newpipe.player.helper.AudioReactor;
 import org.schabi.newpipe.player.helper.CacheFactory;
 import org.schabi.newpipe.player.helper.LoadController;
-import org.schabi.newpipe.player.playback.MediaSourceManagerAlt;
+import org.schabi.newpipe.player.playback.CustomTrackSelector;
+import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueAdapter;
@@ -125,7 +126,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     protected static final float[] PLAYBACK_SPEEDS = {0.5f, 0.75f, 1f, 1.25f, 1.5f, 1.75f, 2f};
     protected static final float[] PLAYBACK_PITCHES = {0.8f, 0.9f, 0.95f, 1f, 1.05f, 1.1f, 1.2f};
 
-    protected MediaSourceManagerAlt playbackManager;
+    protected MediaSourceManager playbackManager;
     protected PlayQueue playQueue;
 
     protected StreamInfo currentInfo;
@@ -147,9 +148,9 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
 
     protected boolean isPrepared = false;
 
-    protected DefaultTrackSelector trackSelector;
+    protected CustomTrackSelector trackSelector;
     protected DataSource.Factory cacheDataSourceFactory;
-    protected DefaultExtractorsFactory extractorsFactory;
+    protected DataSource.Factory cachelessDataSourceFactory;
 
     protected SsMediaSource.Factory ssMediaSourceFactory;
     protected HlsMediaSource.Factory hlsMediaSourceFactory;
@@ -190,23 +191,25 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         if (databaseUpdateReactor != null) databaseUpdateReactor.dispose();
         databaseUpdateReactor = new CompositeDisposable();
 
+        final String userAgent = Downloader.USER_AGENT;
         final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
-        final AdaptiveTrackSelection.Factory trackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
-        final LoadControl loadControl = new LoadController(context);
-        final RenderersFactory renderFactory = new DefaultRenderersFactory(context);
+        final AdaptiveTrackSelection.Factory trackSelectionFactory =
+                new AdaptiveTrackSelection.Factory(bandwidthMeter);
 
-        trackSelector = new DefaultTrackSelector(trackSelectionFactory);
-        extractorsFactory = new DefaultExtractorsFactory();
-        cacheDataSourceFactory = new CacheFactory(context);
+        trackSelector = new CustomTrackSelector(trackSelectionFactory);
+        cacheDataSourceFactory = new CacheFactory(context, userAgent, bandwidthMeter);
+        cachelessDataSourceFactory = new DefaultHttpDataSourceFactory(userAgent, bandwidthMeter);
 
         ssMediaSourceFactory = new SsMediaSource.Factory(
-                new DefaultSsChunkSource.Factory(cacheDataSourceFactory), cacheDataSourceFactory);
-        hlsMediaSourceFactory = new HlsMediaSource.Factory(cacheDataSourceFactory);
+                new DefaultSsChunkSource.Factory(cachelessDataSourceFactory), cachelessDataSourceFactory);
+        hlsMediaSourceFactory = new HlsMediaSource.Factory(cachelessDataSourceFactory);
         dashMediaSourceFactory = new DashMediaSource.Factory(
-                new DefaultDashChunkSource.Factory(cacheDataSourceFactory), cacheDataSourceFactory);
+                new DefaultDashChunkSource.Factory(cachelessDataSourceFactory), cachelessDataSourceFactory);
         extractorMediaSourceFactory = new ExtractorMediaSource.Factory(cacheDataSourceFactory);
         sampleMediaSourceFactory = new SingleSampleMediaSource.Factory(cacheDataSourceFactory);
 
+        final LoadControl loadControl = new LoadController(context);
+        final RenderersFactory renderFactory = new DefaultRenderersFactory(context);
         simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(renderFactory, trackSelector, loadControl);
         audioReactor = new AudioReactor(context, simpleExoPlayer);
 
@@ -262,7 +265,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     protected void initPlayback(final PlayQueue queue) {
         playQueue = queue;
         playQueue.init();
-        playbackManager = new MediaSourceManagerAlt(this, playQueue);
+        playbackManager = new MediaSourceManager(this, playQueue);
 
         if (playQueueAdapter != null) playQueueAdapter.dispose();
         playQueueAdapter = new PlayQueueAdapter(context, playQueue);
@@ -316,6 +319,10 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         recordManager = null;
     }
 
+    public MediaSource buildMediaSource(String url) {
+        return buildMediaSource(url, "");
+    }
+
     public MediaSource buildMediaSource(String url, String overrideExtension) {
         if (DEBUG) {
             Log.d(TAG, "buildMediaSource() called with: url = [" + url + "], overrideExtension = [" + overrideExtension + "]");
@@ -360,7 +367,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         if (intent == null || intent.getAction() == null) return;
         switch (intent.getAction()) {
             case AudioManager.ACTION_AUDIO_BECOMING_NOISY:
-                if (isPlaying()) simpleExoPlayer.setPlayWhenReady(false);
+                if (isPlaying()) onVideoPlayPause();
                 break;
         }
     }
@@ -719,6 +726,18 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
 
         registerView();
         initThumbnail(info == null ? item.getThumbnailUrl() : info.thumbnail_url);
+    }
+
+    @Nullable
+    @Override
+    public MediaSource sourceOf(PlayQueueItem item, StreamInfo info) {
+        if (!info.getHlsUrl().isEmpty()) {
+            return buildMediaSource(info.getHlsUrl());
+        } else if (!info.getDashMpdUrl().isEmpty()) {
+            return buildMediaSource(info.getDashMpdUrl());
+        }
+
+        return null;
     }
 
     @Override

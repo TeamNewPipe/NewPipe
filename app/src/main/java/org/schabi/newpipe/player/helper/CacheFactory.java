@@ -4,11 +4,14 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.upstream.FileDataSource;
+import com.google.android.exoplayer2.upstream.TransferListener;
 import com.google.android.exoplayer2.upstream.cache.CacheDataSink;
 import com.google.android.exoplayer2.upstream.cache.CacheDataSource;
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor;
@@ -33,18 +36,21 @@ public class CacheFactory implements DataSource.Factory {
     // todo: make this a singleton?
     private static SimpleCache cache;
 
-    public CacheFactory(@NonNull final Context context) {
-        this(context, PlayerHelper.getPreferredCacheSize(context), PlayerHelper.getPreferredFileSize(context));
+    public CacheFactory(@NonNull final Context context,
+                        @NonNull final String userAgent,
+                        @NonNull final TransferListener<? super DataSource> transferListener) {
+        this(context, userAgent, transferListener, PlayerHelper.getPreferredCacheSize(context),
+                PlayerHelper.getPreferredFileSize(context));
     }
 
-    CacheFactory(@NonNull final Context context, final long maxCacheSize, final long maxFileSize) {
-        super();
+    private CacheFactory(@NonNull final Context context,
+                         @NonNull final String userAgent,
+                         @NonNull final TransferListener<? super DataSource> transferListener,
+                         final long maxCacheSize,
+                         final long maxFileSize) {
         this.maxFileSize = maxFileSize;
 
-        final String userAgent = Downloader.USER_AGENT;
-        final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
-        dataSourceFactory = new DefaultDataSourceFactory(context, userAgent, bandwidthMeter);
-
+        dataSourceFactory = new DefaultDataSourceFactory(context, userAgent, transferListener);
         cacheDir = new File(context.getExternalCacheDir(), CACHE_FOLDER_NAME);
         if (!cacheDir.exists()) {
             //noinspection ResultOfMethodCallIgnored

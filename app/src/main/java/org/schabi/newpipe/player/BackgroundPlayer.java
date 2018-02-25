@@ -391,6 +391,9 @@ public final class BackgroundPlayer extends Service {
         @Override
         @Nullable
         public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
+            final MediaSource liveSource = super.sourceOf(item, info);
+            if (liveSource != null) return liveSource;
+
             final int index = ListHelper.getDefaultAudioFormat(context, info.audio_streams);
             if (index < 0 || index >= info.audio_streams.size()) return null;
 

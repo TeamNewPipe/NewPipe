@@ -53,7 +53,6 @@ import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
-import com.google.android.exoplayer2.source.SingleSampleMediaSource;
 import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
@@ -65,6 +64,7 @@ import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.Subtitles;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.playlist.PlayQueueItem;
@@ -305,8 +305,7 @@ public abstract class VideoPlayer extends BasePlayer
             captionItem.setOnMenuItemClickListener(menuItem -> {
                 final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
                 if (trackSelector != null && textRendererIndex != RENDERER_UNAVAILABLE) {
-                    trackSelector.setParameters(trackSelector.getParameters().buildUpon()
-                            .setPreferredTextLanguage(captionLanguage).build());
+                    trackSelector.setPreferredTextLanguage(captionLanguage);
                     trackSelector.setRendererDisabled(textRendererIndex, false);
                 }
                 return true;
@@ -328,21 +327,32 @@ public abstract class VideoPlayer extends BasePlayer
         qualityTextView.setVisibility(View.GONE);
         playbackSpeedTextView.setVisibility(View.GONE);
 
-        if (info != null && info.video_streams.size() + info.video_only_streams.size() > 0) {
-            final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
-                    info.video_streams, info.video_only_streams, false);
-            availableStreams = new ArrayList<>(videos);
-            if (playbackQuality == null) {
-                selectedStreamIndex = getDefaultResolutionIndex(videos);
-            } else {
-                selectedStreamIndex = getOverrideResolutionIndex(videos, getPlaybackQuality());
-            }
+        final StreamType streamType = info == null ? StreamType.NONE : info.getStreamType();
 
-            buildQualityMenu();
-            qualityTextView.setVisibility(View.VISIBLE);
-            surfaceView.setVisibility(View.VISIBLE);
-        } else {
-            surfaceView.setVisibility(View.GONE);
+        switch (streamType) {
+            case VIDEO_STREAM:
+                if (info.video_streams.size() + info.video_only_streams.size() == 0) break;
+
+                final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
+                        info.video_streams, info.video_only_streams, false);
+                availableStreams = new ArrayList<>(videos);
+                if (playbackQuality == null) {
+                    selectedStreamIndex = getDefaultResolutionIndex(videos);
+                } else {
+                    selectedStreamIndex = getOverrideResolutionIndex(videos, getPlaybackQuality());
+                }
+
+                buildQualityMenu();
+                qualityTextView.setVisibility(View.VISIBLE);
+                surfaceView.setVisibility(View.VISIBLE);
+                break;
+
+            case AUDIO_STREAM:
+            case AUDIO_LIVE_STREAM:
+                surfaceView.setVisibility(View.GONE);
+                break;
+            default:
+                break;
         }
 
         buildPlaybackSpeedMenu();
@@ -352,6 +362,9 @@ public abstract class VideoPlayer extends BasePlayer
     @Override
     @Nullable
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
+        final MediaSource liveSource = super.sourceOf(item, info);
+        if (liveSource != null) return liveSource;
+
         List<MediaSource> mediaSources = new ArrayList<>();
 
         // Create video stream source
@@ -529,26 +542,15 @@ public abstract class VideoPlayer extends BasePlayer
         }
 
         // Normalize mismatching language strings
-        final String preferredLanguage = trackSelector.getParameters().preferredTextLanguage;
-        // Because ExoPlayer normalizes the preferred language string but not the text track
-        // language strings, some preferred language string will have the language name in lowercase
-        String formattedPreferredLanguage = null;
-        if (preferredLanguage != null) {
-            for (final String language : availableLanguages) {
-                if (language.compareToIgnoreCase(preferredLanguage) == 0) {
-                    formattedPreferredLanguage = language;
-                    break;
-                }
-            }
-        }
+        final String preferredLanguage = trackSelector.getPreferredTextLanguage();
 
         // Build UI
         buildCaptionMenu(availableLanguages);
-        if (trackSelector.getRendererDisabled(textRenderer) || formattedPreferredLanguage == null ||
-                !availableLanguages.contains(formattedPreferredLanguage)) {
+        if (trackSelector.getRendererDisabled(textRenderer) || preferredLanguage == null ||
+                !availableLanguages.contains(preferredLanguage)) {
             captionTextView.setText(R.string.caption_none);
         } else {
-            captionTextView.setText(formattedPreferredLanguage);
+            captionTextView.setText(preferredLanguage);
         }
         captionTextView.setVisibility(availableLanguages.isEmpty() ? View.GONE : View.VISIBLE);
     }
