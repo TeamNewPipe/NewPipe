@@ -373,4 +373,12 @@
     <string name="toggle_leak_canary">監測流失</string>
     <string name="enable_leak_canary_notice">啟用記憶體流失監測技術，當 heap dump 時，應用程式可能會反應遲鈍</string>
     <string name="disable_leak_canary_notice">已停用記憶體流失監測</string>
+<string name="settings_category_debug_title">除錯</string>
+    <string name="caption_auto_generated">自動產生</string>
+    <string name="enable_leak_canary_title">啟用 LeakCanary</string>
+    <string name="enable_leak_canary_summary">記憶體洩漏監測，在 heap dumping 時可能導致應用程式無法回應</string>
+
+    <string name="enable_disposed_exceptions_title">報告週期不足錯誤</string>
+    <string name="enable_disposed_exceptions_summary">強制報告在處理完片段或活動週期外發生的無法傳遞的 Rx 異常</string>
+
 </resources>
