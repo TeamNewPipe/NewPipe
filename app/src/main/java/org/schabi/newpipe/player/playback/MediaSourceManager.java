@@ -40,6 +40,8 @@ public class MediaSourceManager {
     private final int windowSize;
     private final PlaybackListener playbackListener;
     private final PlayQueue playQueue;
+    private final long expirationTimeMillis;
+    private final TimeUnit expirationTimeUnit;
 
     // Process only the last load order when receiving a stream of load orders (lessens I/O)
     // The higher it is, the less loading occurs during rapid noncritical timeline changes
@@ -61,13 +63,15 @@ public class MediaSourceManager {
 
     public MediaSourceManager(@NonNull final PlaybackListener listener,
                               @NonNull final PlayQueue playQueue) {
-        this(listener, playQueue, 1, 400L);
+        this(listener, playQueue, 1, 400L, 2, TimeUnit.HOURS);
     }
 
     private MediaSourceManager(@NonNull final PlaybackListener listener,
                                @NonNull final PlayQueue playQueue,
                                final int windowSize,
-                               final long loadDebounceMillis) {
+                               final long loadDebounceMillis,
+                               final long expirationTimeMillis,
+                               @NonNull final TimeUnit expirationTimeUnit) {
         if (windowSize <= 0) {
             throw new UnsupportedOperationException(
                     "MediaSourceManager window size must be greater than 0");
@@ -77,6 +81,8 @@ public class MediaSourceManager {
         this.playQueue = playQueue;
         this.windowSize = windowSize;
         this.loadDebounceMillis = loadDebounceMillis;
+        this.expirationTimeMillis = expirationTimeMillis;
+        this.expirationTimeUnit = expirationTimeUnit;
 
         this.loaderReactor = new CompositeDisposable();
         this.debouncedLoadSignal = PublishSubject.create();
@@ -87,9 +93,11 @@ public class MediaSourceManager {
         this.syncReactor = new SerialDisposable();
         this.loadingItems = Collections.synchronizedSet(new HashSet<>());
 
-        playQueue.getBroadcastReceiver()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getReactor());
+        if (playQueue.getBroadcastReceiver() != null) {
+            playQueue.getBroadcastReceiver()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(getReactor());
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -225,7 +233,7 @@ public class MediaSourceManager {
         return playQueue.isComplete() || isWindowLoaded;
     }
 
-    // Checks if the current playback media source is a placeholder, if so, then it is not ready
+    // Checks if the current playback media source is a placeholder, if so, then it is not ready.
     private boolean isPlaybackReady() {
         return sources != null && playQueue != null && sources.getSize() > playQueue.getIndex() &&
                 !(sources.getMediaSource(playQueue.getIndex()) instanceof PlaceholderMediaSource);
@@ -351,11 +359,11 @@ public class MediaSourceManager {
             final MediaSource source = playbackListener.sourceOf(stream, streamInfo);
             if (source == null) {
                 return new FailedMediaSource(stream, new IllegalStateException(
-                        "MediaSource resolution is null"));
+                        "MediaSource cannot be resolved"));
             }
 
             final long expiration = System.currentTimeMillis() +
-                    TimeUnit.MILLISECONDS.convert(2, TimeUnit.HOURS);
+                    TimeUnit.MILLISECONDS.convert(expirationTimeMillis, expirationTimeUnit);
             return new LoadedMediaSource(source, expiration);
         }).onErrorReturn(throwable -> new FailedMediaSource(stream, throwable));
     }

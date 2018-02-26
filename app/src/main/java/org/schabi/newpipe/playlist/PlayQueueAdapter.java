@@ -99,7 +99,9 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
         };
 
-        playQueue.getBroadcastReceiver().toObservable().subscribe(observer);
+        if (playQueue.getBroadcastReceiver() != null) {
+            playQueue.getBroadcastReceiver().toObservable().subscribe(observer);
+        }
     }
 
     private void onPlayQueueChanged(final PlayQueueEvent message) {

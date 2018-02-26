@@ -59,23 +59,20 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         itemBuilder.getImageLoader()
                 .displayImage(item.thumbnail_url, itemThumbnailView, StreamInfoItemHolder.DISPLAY_THUMBNAIL_OPTIONS);
 
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (itemBuilder.getOnStreamSelectedListener() != null) {
-                    itemBuilder.getOnStreamSelectedListener().selected(item);
-                }
+        itemView.setOnClickListener(view -> {
+            if (itemBuilder.getOnStreamSelectedListener() != null) {
+                itemBuilder.getOnStreamSelectedListener().selected(item);
             }
         });
 
         switch (item.stream_type) {
             case AUDIO_STREAM:
             case VIDEO_STREAM:
-            case FILE:
-                enableLongClick(item);
-                break;
             case LIVE_STREAM:
             case AUDIO_LIVE_STREAM:
+                enableLongClick(item);
+                break;
+            case FILE:
             case NONE:
             default:
                 disableLongClick();
@@ -85,14 +82,11 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
 
     private void enableLongClick(final StreamInfoItem item) {
         itemView.setLongClickable(true);
-        itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                if (itemBuilder.getOnStreamSelectedListener() != null) {
-                    itemBuilder.getOnStreamSelectedListener().held(item);
-                }
-                return true;
+        itemView.setOnLongClickListener(view -> {
+            if (itemBuilder.getOnStreamSelectedListener() != null) {
+                itemBuilder.getOnStreamSelectedListener().held(item);
             }
+            return true;
         });
     }
 

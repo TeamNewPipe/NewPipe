@@ -319,35 +319,27 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         recordManager = null;
     }
 
-    public MediaSource buildMediaSource(String url) {
-        return buildMediaSource(url, "");
-    }
-
     public MediaSource buildMediaSource(String url, String overrideExtension) {
         if (DEBUG) {
-            Log.d(TAG, "buildMediaSource() called with: url = [" + url + "], overrideExtension = [" + overrideExtension + "]");
+            Log.d(TAG, "buildMediaSource() called with: url = [" + url +
+                    "], overrideExtension = [" + overrideExtension + "]");
         }
         Uri uri = Uri.parse(url);
-        int type = TextUtils.isEmpty(overrideExtension) ? Util.inferContentType(uri) : Util.inferContentType("." + overrideExtension);
-        MediaSource mediaSource;
+        int type = TextUtils.isEmpty(overrideExtension) ? Util.inferContentType(uri) :
+                Util.inferContentType("." + overrideExtension);
         switch (type) {
             case C.TYPE_SS:
-                mediaSource = ssMediaSourceFactory.createMediaSource(uri);
-                break;
+                return ssMediaSourceFactory.createMediaSource(uri);
             case C.TYPE_DASH:
-                mediaSource = dashMediaSourceFactory.createMediaSource(uri);
-                break;
+                return dashMediaSourceFactory.createMediaSource(uri);
             case C.TYPE_HLS:
-                mediaSource = hlsMediaSourceFactory.createMediaSource(uri);
-                break;
+                return hlsMediaSourceFactory.createMediaSource(uri);
             case C.TYPE_OTHER:
-                mediaSource = extractorMediaSourceFactory.createMediaSource(uri);
-                break;
+                return extractorMediaSourceFactory.createMediaSource(uri);
             default: {
                 throw new IllegalStateException("Unsupported type: " + type);
             }
         }
-        return mediaSource;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -514,8 +506,13 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     public void onTimelineChanged(Timeline timeline, Object manifest, int reason) {
         if (DEBUG) Log.d(TAG, "onTimelineChanged(), timeline size = " + timeline.getWindowCount());
 
-        if (playbackManager != null) {
-            playbackManager.load();
+        switch (reason) {
+            case Player.TIMELINE_CHANGE_REASON_PREPARED:
+            case Player.TIMELINE_CHANGE_REASON_RESET:
+            case Player.TIMELINE_CHANGE_REASON_DYNAMIC:
+            default:
+                if (playbackManager != null) playbackManager.load();
+                break;
         }
     }
 
@@ -526,7 +523,8 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
 
     @Override
     public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
-        if (DEBUG) Log.d(TAG, "playbackParameters(), speed: " + playbackParameters.speed + ", pitch: " + playbackParameters.pitch);
+        if (DEBUG) Log.d(TAG, "playbackParameters(), speed: " + playbackParameters.speed +
+                ", pitch: " + playbackParameters.pitch);
     }
 
     @Override
@@ -732,9 +730,9 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     @Override
     public MediaSource sourceOf(PlayQueueItem item, StreamInfo info) {
         if (!info.getHlsUrl().isEmpty()) {
-            return buildMediaSource(info.getHlsUrl());
+            return buildMediaSource(info.getHlsUrl(), "m3u8");
         } else if (!info.getDashMpdUrl().isEmpty()) {
-            return buildMediaSource(info.getDashMpdUrl());
+            return buildMediaSource(info.getDashMpdUrl(), "mpd");
         }
 
         return null;

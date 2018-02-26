@@ -1,6 +1,7 @@
 package org.schabi.newpipe.playlist;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.reactivestreams.Subscriber;
@@ -170,7 +171,7 @@ public abstract class PlayQueue implements Serializable {
      * Returns the play queue's update broadcast.
      * May be null if the play queue message bus is not initialized.
      * */
-    @NonNull
+    @Nullable
     public Flowable<PlayQueueEvent> getBroadcastReceiver() {
         return broadcastReceiver;
     }

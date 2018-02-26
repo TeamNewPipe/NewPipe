@@ -25,6 +25,10 @@ public class FailedMediaSource implements ManagedMediaSource {
         this.retryTimestamp = retryTimestamp;
     }
 
+    /**
+     * Permanently fail the play queue item associated with this source, with no hope of retrying.
+     * The error will always be propagated to ExoPlayer.
+     * */
     public FailedMediaSource(@NonNull final PlayQueueItem playQueueItem,
                              @NonNull final Throwable error) {
         this.playQueueItem = playQueueItem;
