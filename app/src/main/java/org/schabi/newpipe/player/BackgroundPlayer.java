@@ -46,6 +46,7 @@ import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.helper.LockManager;
+import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -398,7 +399,8 @@ public final class BackgroundPlayer extends Service {
             if (index < 0 || index >= info.audio_streams.size()) return null;
 
             final AudioStream audio = info.audio_streams.get(index);
-            return buildMediaSource(audio.getUrl(), MediaFormat.getSuffixById(audio.getFormatId()));
+            return buildMediaSource(audio.getUrl(), PlayerHelper.cacheKeyOf(info, audio),
+                    MediaFormat.getSuffixById(audio.getFormatId()));
         }
 
         @Override

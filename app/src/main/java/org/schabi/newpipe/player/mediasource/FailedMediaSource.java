@@ -1,6 +1,7 @@
 package org.schabi.newpipe.player.mediasource;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.source.MediaPeriod;
@@ -11,6 +12,7 @@ import org.schabi.newpipe.playlist.PlayQueueItem;
 import java.io.IOException;
 
 public class FailedMediaSource implements ManagedMediaSource {
+    private final String TAG = "ManagedMediaSource@" + Integer.toHexString(hashCode());
 
     private final PlayQueueItem playQueueItem;
     private final Throwable error;
@@ -36,7 +38,7 @@ public class FailedMediaSource implements ManagedMediaSource {
         this.retryTimestamp = Long.MAX_VALUE;
     }
 
-    public PlayQueueItem getPlayQueueItem() {
+    public PlayQueueItem getStream() {
         return playQueueItem;
     }
 
@@ -44,12 +46,14 @@ public class FailedMediaSource implements ManagedMediaSource {
         return error;
     }
 
-    public boolean canRetry() {
+    private boolean canRetry() {
         return System.currentTimeMillis() >= retryTimestamp;
     }
 
     @Override
-    public void prepareSource(ExoPlayer player, boolean isTopLevelSource, Listener listener) {}
+    public void prepareSource(ExoPlayer player, boolean isTopLevelSource, Listener listener) {
+        Log.e(TAG, "Loading failed source: ", error);
+    }
 
     @Override
     public void maybeThrowSourceInfoRefreshError() throws IOException {
@@ -68,7 +72,7 @@ public class FailedMediaSource implements ManagedMediaSource {
     public void releaseSource() {}
 
     @Override
-    public boolean canReplace() {
-        return canRetry();
+    public boolean canReplace(@NonNull final PlayQueueItem newIdentity) {
+        return newIdentity != playQueueItem || canRetry();
     }
 }

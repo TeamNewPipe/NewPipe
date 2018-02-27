@@ -7,7 +7,6 @@ import com.google.android.exoplayer2.source.MediaPeriod;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.upstream.Allocator;
 
-import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 
 import java.io.IOException;
@@ -15,13 +14,23 @@ import java.io.IOException;
 public class LoadedMediaSource implements ManagedMediaSource {
 
     private final MediaSource source;
-
+    private final PlayQueueItem stream;
     private final long expireTimestamp;
 
-    public LoadedMediaSource(@NonNull final MediaSource source, final long expireTimestamp) {
+    public LoadedMediaSource(@NonNull final MediaSource source,
+                             @NonNull final PlayQueueItem stream,
+                             final long expireTimestamp) {
         this.source = source;
-
+        this.stream = stream;
         this.expireTimestamp = expireTimestamp;
+    }
+
+    public PlayQueueItem getStream() {
+        return stream;
+    }
+
+    private boolean isExpired() {
+        return System.currentTimeMillis() >= expireTimestamp;
     }
 
     @Override
@@ -50,7 +59,7 @@ public class LoadedMediaSource implements ManagedMediaSource {
     }
 
     @Override
-    public boolean canReplace() {
-        return System.currentTimeMillis() >= expireTimestamp;
+    public boolean canReplace(@NonNull final PlayQueueItem newIdentity) {
+        return newIdentity != stream || isExpired();
     }
 }

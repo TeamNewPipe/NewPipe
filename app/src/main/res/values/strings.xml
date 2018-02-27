@@ -413,6 +413,8 @@
     <string name="normal_caption_font_size">Normal Font</string>
     <string name="larger_caption_font_size">Larger Font</string>
 
+    <string name="live_sync">SYNC</string>
+
     <!-- Debug Settings -->
     <string name="enable_leak_canary_title">Enable LeakCanary</string>
     <string name="enable_leak_canary_summary">Memory leak monitoring may cause app to become unresponsive when heap dumping</string>

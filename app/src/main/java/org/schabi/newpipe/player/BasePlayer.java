@@ -43,20 +43,11 @@ import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.SingleSampleMediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
-import com.google.android.exoplayer2.source.dash.DashMediaSource;
-import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource;
-import com.google.android.exoplayer2.source.hls.HlsMediaSource;
-import com.google.android.exoplayer2.source.smoothstreaming.DefaultSsChunkSource;
-import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
-import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
@@ -66,8 +57,8 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.history.HistoryRecordManager;
 import org.schabi.newpipe.player.helper.AudioReactor;
-import org.schabi.newpipe.player.helper.CacheFactory;
 import org.schabi.newpipe.player.helper.LoadController;
+import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.playback.CustomTrackSelector;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
@@ -149,14 +140,8 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     protected boolean isPrepared = false;
 
     protected CustomTrackSelector trackSelector;
-    protected DataSource.Factory cacheDataSourceFactory;
-    protected DataSource.Factory cachelessDataSourceFactory;
 
-    protected SsMediaSource.Factory ssMediaSourceFactory;
-    protected HlsMediaSource.Factory hlsMediaSourceFactory;
-    protected DashMediaSource.Factory dashMediaSourceFactory;
-    protected ExtractorMediaSource.Factory extractorMediaSourceFactory;
-    protected SingleSampleMediaSource.Factory sampleMediaSourceFactory;
+    protected PlayerDataSource dataSource;
 
     protected Disposable progressUpdateReactor;
     protected CompositeDisposable databaseUpdateReactor;
@@ -193,20 +178,11 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
 
         final String userAgent = Downloader.USER_AGENT;
         final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
+        dataSource = new PlayerDataSource(context, userAgent, bandwidthMeter);
+
         final AdaptiveTrackSelection.Factory trackSelectionFactory =
                 new AdaptiveTrackSelection.Factory(bandwidthMeter);
-
         trackSelector = new CustomTrackSelector(trackSelectionFactory);
-        cacheDataSourceFactory = new CacheFactory(context, userAgent, bandwidthMeter);
-        cachelessDataSourceFactory = new DefaultHttpDataSourceFactory(userAgent, bandwidthMeter);
-
-        ssMediaSourceFactory = new SsMediaSource.Factory(
-                new DefaultSsChunkSource.Factory(cachelessDataSourceFactory), cachelessDataSourceFactory);
-        hlsMediaSourceFactory = new HlsMediaSource.Factory(cachelessDataSourceFactory);
-        dashMediaSourceFactory = new DashMediaSource.Factory(
-                new DefaultDashChunkSource.Factory(cachelessDataSourceFactory), cachelessDataSourceFactory);
-        extractorMediaSourceFactory = new ExtractorMediaSource.Factory(cacheDataSourceFactory);
-        sampleMediaSourceFactory = new SingleSampleMediaSource.Factory(cacheDataSourceFactory);
 
         final LoadControl loadControl = new LoadController(context);
         final RenderersFactory renderFactory = new DefaultRenderersFactory(context);
@@ -319,26 +295,56 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         recordManager = null;
     }
 
-    public MediaSource buildMediaSource(String url, String overrideExtension) {
+    /*//////////////////////////////////////////////////////////////////////////
+    // MediaSource Building
+    //////////////////////////////////////////////////////////////////////////*/
+
+    public MediaSource buildLiveMediaSource(@NonNull final String sourceUrl,
+                                            @C.ContentType final int type) {
         if (DEBUG) {
-            Log.d(TAG, "buildMediaSource() called with: url = [" + url +
-                    "], overrideExtension = [" + overrideExtension + "]");
+            Log.d(TAG, "buildLiveMediaSource() called with: url = [" + sourceUrl +
+                    "], content type = [" + type + "]");
         }
-        Uri uri = Uri.parse(url);
-        int type = TextUtils.isEmpty(overrideExtension) ? Util.inferContentType(uri) :
-                Util.inferContentType("." + overrideExtension);
+        if (dataSource == null) return null;
+
+        final Uri uri = Uri.parse(sourceUrl);
         switch (type) {
             case C.TYPE_SS:
-                return ssMediaSourceFactory.createMediaSource(uri);
+                return dataSource.getLiveSsMediaSourceFactory().createMediaSource(uri);
             case C.TYPE_DASH:
-                return dashMediaSourceFactory.createMediaSource(uri);
+                return dataSource.getLiveDashMediaSourceFactory().createMediaSource(uri);
             case C.TYPE_HLS:
-                return hlsMediaSourceFactory.createMediaSource(uri);
-            case C.TYPE_OTHER:
-                return extractorMediaSourceFactory.createMediaSource(uri);
-            default: {
+                return dataSource.getLiveHlsMediaSourceFactory().createMediaSource(uri);
+            default:
                 throw new IllegalStateException("Unsupported type: " + type);
-            }
+        }
+    }
+
+    public MediaSource buildMediaSource(@NonNull final String sourceUrl,
+                                        @NonNull final String cacheKey,
+                                        @NonNull final String overrideExtension) {
+        if (DEBUG) {
+            Log.d(TAG, "buildMediaSource() called with: url = [" + sourceUrl +
+                    "], cacheKey = [" + cacheKey + "]" +
+                    "], overrideExtension = [" + overrideExtension + "]");
+        }
+        if (dataSource == null) return null;
+
+        final Uri uri = Uri.parse(sourceUrl);
+        @C.ContentType final int type = TextUtils.isEmpty(overrideExtension) ?
+                Util.inferContentType(uri) : Util.inferContentType("." + overrideExtension);
+
+        switch (type) {
+            case C.TYPE_SS:
+                return dataSource.getLiveSsMediaSourceFactory().createMediaSource(uri);
+            case C.TYPE_DASH:
+                return dataSource.getDashMediaSourceFactory().createMediaSource(uri);
+            case C.TYPE_HLS:
+                return dataSource.getHlsMediaSourceFactory().createMediaSource(uri);
+            case C.TYPE_OTHER:
+                return dataSource.getExtractorMediaSourceFactory(cacheKey).createMediaSource(uri);
+            default:
+                throw new IllegalStateException("Unsupported type: " + type);
         }
     }
 
@@ -478,7 +484,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     // ExoPlayer Listener
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void recover() {
+    private void maybeRecover() {
         final int currentSourceIndex = playQueue.getIndex();
         final PlayQueueItem currentSourceItem = playQueue.getItem();
 
@@ -554,7 +560,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
                 }
                 break;
             case Player.STATE_READY: //3
-                recover();
+                maybeRecover();
                 if (!isPrepared) {
                     isPrepared = true;
                     onPrepared(playWhenReady);
@@ -566,7 +572,8 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
             case Player.STATE_ENDED: // 4
                 // Ensure the current window has actually ended
                 // since single windows that are still loading may produce an ended state
-                if (isCurrentWindowValid() && simpleExoPlayer.getCurrentPosition() >= simpleExoPlayer.getDuration()) {
+                if (isCurrentWindowValid() &&
+                        simpleExoPlayer.getCurrentPosition() >= simpleExoPlayer.getDuration()) {
                     changeState(STATE_COMPLETED);
                     isPrepared = false;
                 }
@@ -730,9 +737,9 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     @Override
     public MediaSource sourceOf(PlayQueueItem item, StreamInfo info) {
         if (!info.getHlsUrl().isEmpty()) {
-            return buildMediaSource(info.getHlsUrl(), "m3u8");
+            return buildLiveMediaSource(info.getHlsUrl(), C.TYPE_HLS);
         } else if (!info.getDashMpdUrl().isEmpty()) {
-            return buildMediaSource(info.getDashMpdUrl(), "mpd");
+            return buildLiveMediaSource(info.getDashMpdUrl(), C.TYPE_DASH);
         }
 
         return null;
@@ -852,8 +859,11 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
 
     public void seekBy(int milliSeconds) {
         if (DEBUG) Log.d(TAG, "seekBy() called with: milliSeconds = [" + milliSeconds + "]");
-        if (simpleExoPlayer == null || (isCompleted() && milliSeconds > 0) || ((milliSeconds < 0 && simpleExoPlayer.getCurrentPosition() == 0)))
+        if (simpleExoPlayer == null || (isCompleted() && milliSeconds > 0) ||
+                ((milliSeconds < 0 && simpleExoPlayer.getCurrentPosition() == 0))) {
             return;
+        }
+
         int progress = (int) (simpleExoPlayer.getCurrentPosition() + milliSeconds);
         if (progress < 0) progress = 0;
         simpleExoPlayer.seekTo(progress);
@@ -862,6 +872,10 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     public boolean isCurrentWindowValid() {
         return simpleExoPlayer != null && simpleExoPlayer.getDuration() >= 0
                 && simpleExoPlayer.getCurrentPosition() >= 0;
+    }
+
+    public void seekToDefault() {
+        if (simpleExoPlayer != null) simpleExoPlayer.seekToDefaultPosition();
     }
 
     /*//////////////////////////////////////////////////////////////////////////

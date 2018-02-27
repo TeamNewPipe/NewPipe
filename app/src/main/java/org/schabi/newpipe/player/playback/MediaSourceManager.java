@@ -1,6 +1,7 @@
 package org.schabi.newpipe.player.playback;
 
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.google.android.exoplayer2.source.DynamicConcatenatingMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
@@ -34,7 +35,11 @@ import io.reactivex.disposables.SerialDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.subjects.PublishSubject;
 
+import static org.schabi.newpipe.playlist.PlayQueue.DEBUG;
+
 public class MediaSourceManager {
+    private final String TAG = "MediaSourceManager";
+
     // One-side rolling window size for default loading
     // Effectively loads windowSize * 2 + 1 streams per call to load, must be greater than 0
     private final int windowSize;
@@ -233,10 +238,16 @@ public class MediaSourceManager {
         return playQueue.isComplete() || isWindowLoaded;
     }
 
-    // Checks if the current playback media source is a placeholder, if so, then it is not ready.
     private boolean isPlaybackReady() {
-        return sources != null && playQueue != null && sources.getSize() > playQueue.getIndex() &&
-                !(sources.getMediaSource(playQueue.getIndex()) instanceof PlaceholderMediaSource);
+        if (sources == null || playQueue == null || sources.getSize() != playQueue.size()) {
+            return false;
+        }
+
+        final MediaSource mediaSource = sources.getMediaSource(playQueue.getIndex());
+        if (!(mediaSource instanceof LoadedMediaSource)) return false;
+
+        final PlayQueueItem playQueueItem = playQueue.getItem();
+        return playQueueItem == ((LoadedMediaSource) mediaSource).getStream();
     }
 
     private void tryBlock() {
@@ -280,7 +291,7 @@ public class MediaSourceManager {
         if (playQueue == null || playbackListener == null) return;
         // Ensure the current item is up to date with the play queue
         if (playQueue.getItem() == item && playQueue.getItem() == syncedItem) {
-            playbackListener.sync(syncedItem,info);
+            playbackListener.sync(syncedItem, info);
         }
     }
 
@@ -329,14 +340,19 @@ public class MediaSourceManager {
         if (index > sources.getSize() - 1) return;
 
         final Consumer<ManagedMediaSource> onDone = mediaSource -> {
-            update(playQueue.indexOf(item), mediaSource);
+            if (DEBUG) Log.d(TAG, " Loaded: [" + item.getTitle() +
+                    "] with url: " + item.getUrl());
+
+            if (isCorrectionNeeded(item)) update(playQueue.indexOf(item), mediaSource);
+
             loadingItems.remove(item);
             tryUnblock();
             sync();
         };
 
-        if (!loadingItems.contains(item) &&
-                ((ManagedMediaSource) sources.getMediaSource(index)).canReplace()) {
+        if (!loadingItems.contains(item) && isCorrectionNeeded(item)) {
+            if (DEBUG) Log.d(TAG, "Loading: [" + item.getTitle() +
+                    "] with url: " + item.getUrl());
 
             loadingItems.add(item);
             final Disposable loader = getLoadedMediaSource(item)
@@ -358,14 +374,30 @@ public class MediaSourceManager {
 
             final MediaSource source = playbackListener.sourceOf(stream, streamInfo);
             if (source == null) {
-                return new FailedMediaSource(stream, new IllegalStateException(
-                        "MediaSource cannot be resolved"));
+                final Exception exception = new IllegalStateException(
+                        "Unable to resolve source from stream info." +
+                                " URL: " + stream.getUrl() +
+                                ", audio count: " + streamInfo.audio_streams.size() +
+                                ", video count: " + streamInfo.video_only_streams.size() +
+                                streamInfo.video_streams.size());
+                return new FailedMediaSource(stream, new IllegalStateException(exception));
             }
 
             final long expiration = System.currentTimeMillis() +
                     TimeUnit.MILLISECONDS.convert(expirationTimeMillis, expirationTimeUnit);
-            return new LoadedMediaSource(source, expiration);
+            return new LoadedMediaSource(source, stream, expiration);
         }).onErrorReturn(throwable -> new FailedMediaSource(stream, throwable));
+    }
+
+    private boolean isCorrectionNeeded(@NonNull final PlayQueueItem item) {
+        if (playQueue == null || sources == null) return false;
+
+        final int index = playQueue.indexOf(item);
+        if (index == -1 || index >= sources.getSize()) return false;
+
+        final MediaSource mediaSource = sources.getMediaSource(index);
+        return !(mediaSource instanceof ManagedMediaSource) ||
+                ((ManagedMediaSource) mediaSource).canReplace(item);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

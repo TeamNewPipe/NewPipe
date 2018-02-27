@@ -21,7 +21,7 @@ import org.schabi.newpipe.Downloader;
 
 import java.io.File;
 
-public class CacheFactory implements DataSource.Factory {
+/* package-private */ class CacheFactory implements DataSource.Factory {
     private static final String TAG = "CacheFactory";
     private static final String CACHE_FOLDER_NAME = "exoplayer";
     private static final int CACHE_FLAGS = CacheDataSource.FLAG_BLOCK_ON_CACHE | CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR;

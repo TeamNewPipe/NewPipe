@@ -50,7 +50,6 @@ import android.widget.TextView;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
 import com.google.android.exoplayer2.source.TrackGroup;
@@ -58,6 +57,7 @@ import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
+import com.google.android.exoplayer2.video.VideoListener;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
@@ -87,7 +87,7 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class VideoPlayer extends BasePlayer
-        implements SimpleExoPlayer.VideoListener,
+        implements VideoListener,
         SeekBar.OnSeekBarChangeListener,
         View.OnClickListener,
         Player.EventListener,
@@ -131,6 +131,7 @@ public abstract class VideoPlayer extends BasePlayer
     private SeekBar playbackSeekBar;
     private TextView playbackCurrentTime;
     private TextView playbackEndTime;
+    private TextView playbackLiveSync;
     private TextView playbackSpeedTextView;
 
     private View topControlsRoot;
@@ -180,6 +181,7 @@ public abstract class VideoPlayer extends BasePlayer
         this.playbackSeekBar = rootView.findViewById(R.id.playbackSeekBar);
         this.playbackCurrentTime = rootView.findViewById(R.id.playbackCurrentTime);
         this.playbackEndTime = rootView.findViewById(R.id.playbackEndTime);
+        this.playbackLiveSync = rootView.findViewById(R.id.playbackLiveSync);
         this.playbackSpeedTextView = rootView.findViewById(R.id.playbackSpeed);
         this.bottomControlsRoot = rootView.findViewById(R.id.bottomControls);
         this.topControlsRoot = rootView.findViewById(R.id.topControls);
@@ -221,6 +223,7 @@ public abstract class VideoPlayer extends BasePlayer
         qualityTextView.setOnClickListener(this);
         captionTextView.setOnClickListener(this);
         resizeView.setOnClickListener(this);
+        playbackLiveSync.setOnClickListener(this);
     }
 
     @Override
@@ -261,7 +264,8 @@ public abstract class VideoPlayer extends BasePlayer
         qualityPopupMenu.getMenu().removeGroup(qualityPopupMenuGroupId);
         for (int i = 0; i < availableStreams.size(); i++) {
             VideoStream videoStream = availableStreams.get(i);
-            qualityPopupMenu.getMenu().add(qualityPopupMenuGroupId, i, Menu.NONE, MediaFormat.getNameById(videoStream.format) + " " + videoStream.resolution);
+            qualityPopupMenu.getMenu().add(qualityPopupMenuGroupId, i, Menu.NONE,
+                    MediaFormat.getNameById(videoStream.getFormatId()) + " " + videoStream.resolution);
         }
         if (getSelectedVideoStream() != null) {
             qualityTextView.setText(getSelectedVideoStream().resolution);
@@ -327,9 +331,22 @@ public abstract class VideoPlayer extends BasePlayer
         qualityTextView.setVisibility(View.GONE);
         playbackSpeedTextView.setVisibility(View.GONE);
 
+        playbackEndTime.setVisibility(View.GONE);
+        playbackLiveSync.setVisibility(View.GONE);
+
         final StreamType streamType = info == null ? StreamType.NONE : info.getStreamType();
 
         switch (streamType) {
+            case AUDIO_STREAM:
+                surfaceView.setVisibility(View.GONE);
+                break;
+
+            case AUDIO_LIVE_STREAM:
+                surfaceView.setVisibility(View.GONE);
+            case LIVE_STREAM:
+                playbackLiveSync.setVisibility(View.VISIBLE);
+                break;
+
             case VIDEO_STREAM:
                 if (info.video_streams.size() + info.video_only_streams.size() == 0) break;
 
@@ -344,14 +361,10 @@ public abstract class VideoPlayer extends BasePlayer
 
                 buildQualityMenu();
                 qualityTextView.setVisibility(View.VISIBLE);
-                surfaceView.setVisibility(View.VISIBLE);
-                break;
 
-            case AUDIO_STREAM:
-            case AUDIO_LIVE_STREAM:
-                surfaceView.setVisibility(View.GONE);
-                break;
+                surfaceView.setVisibility(View.VISIBLE);
             default:
+                playbackEndTime.setVisibility(View.VISIBLE);
                 break;
         }
 
@@ -381,6 +394,7 @@ public abstract class VideoPlayer extends BasePlayer
         final VideoStream video = index >= 0 && index < videos.size() ? videos.get(index) : null;
         if (video != null) {
             final MediaSource streamSource = buildMediaSource(video.getUrl(),
+                    PlayerHelper.cacheKeyOf(info, video),
                     MediaFormat.getSuffixById(video.getFormatId()));
             mediaSources.add(streamSource);
         }
@@ -393,6 +407,7 @@ public abstract class VideoPlayer extends BasePlayer
         // Merge with audio stream in case if video does not contain audio
         if (audio != null && ((video != null && video.isVideoOnly) || video == null)) {
             final MediaSource audioSource = buildMediaSource(audio.getUrl(),
+                    PlayerHelper.cacheKeyOf(info, audio),
                     MediaFormat.getSuffixById(audio.getFormatId()));
             mediaSources.add(audioSource);
         }
@@ -408,8 +423,8 @@ public abstract class VideoPlayer extends BasePlayer
 
             final Format textFormat = Format.createTextSampleFormat(null, mimeType,
                     SELECTION_FLAG_AUTOSELECT, PlayerHelper.captionLanguageOf(context, subtitle));
-            final MediaSource textSource = sampleMediaSourceFactory.createMediaSource(
-                    Uri.parse(subtitle.getURL()), textFormat, TIME_UNSET);
+            final MediaSource textSource = dataSource.getSampleMediaSourceFactory()
+                    .createMediaSource(Uri.parse(subtitle.getURL()), textFormat, TIME_UNSET);
             mediaSources.add(textSource);
         }
 
@@ -635,6 +650,8 @@ public abstract class VideoPlayer extends BasePlayer
             onResizeClicked();
         } else if (v.getId() == captionTextView.getId()) {
             onCaptionClicked();
+        } else if (v.getId() == playbackLiveSync.getId()) {
+            seekToDefault();
         }
     }
 

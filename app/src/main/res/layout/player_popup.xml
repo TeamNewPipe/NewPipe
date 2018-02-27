@@ -190,6 +190,17 @@
                 android:textColor="@android:color/white"
                 tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"
                 tools:text="1:23:49"/>
+
+            <TextView
+                android:id="@+id/playbackLiveSync"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/live_sync"
+                android:textColor="@android:color/white"
+                android:visibility="gone"
+                android:background="?attr/selectableItemBackground"
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
         </LinearLayout>
     </RelativeLayout>
 
