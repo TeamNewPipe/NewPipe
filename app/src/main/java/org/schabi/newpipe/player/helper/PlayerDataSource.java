@@ -16,6 +16,7 @@ import com.google.android.exoplayer2.upstream.TransferListener;
 
 public class PlayerDataSource {
     private static final int MANIFEST_MINIMUM_RETRY = 5;
+    private static final int EXTRACTOR_MINIMUM_RETRY = Integer.MAX_VALUE;
     private static final int LIVE_STREAM_EDGE_GAP_MILLIS = 10000;
 
     private final DataSource.Factory cacheDataSourceFactory;
@@ -63,11 +64,12 @@ public class PlayerDataSource {
     }
 
     public ExtractorMediaSource.Factory getExtractorMediaSourceFactory() {
-        return new ExtractorMediaSource.Factory(cacheDataSourceFactory);
+        return new ExtractorMediaSource.Factory(cacheDataSourceFactory)
+                .setMinLoadableRetryCount(EXTRACTOR_MINIMUM_RETRY);
     }
 
     public ExtractorMediaSource.Factory getExtractorMediaSourceFactory(@NonNull final String key) {
-        return new ExtractorMediaSource.Factory(cacheDataSourceFactory).setCustomCacheKey(key);
+        return getExtractorMediaSourceFactory().setCustomCacheKey(key);
     }
 
     public SingleSampleMediaSource.Factory getSampleMediaSourceFactory() {

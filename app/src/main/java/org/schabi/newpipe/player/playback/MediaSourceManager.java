@@ -38,11 +38,12 @@ import io.reactivex.subjects.PublishSubject;
 import static org.schabi.newpipe.playlist.PlayQueue.DEBUG;
 
 public class MediaSourceManager {
-    private final String TAG = "MediaSourceManager";
+    private final static String TAG = "MediaSourceManager";
 
-    // One-side rolling window size for default loading
-    // Effectively loads windowSize * 2 + 1 streams per call to load, must be greater than 0
-    private final int windowSize;
+    // WINDOW_SIZE determines how many streams AFTER the current stream should be loaded.
+    // The default value (1) ensures seamless playback under typical network settings.
+    private final static int WINDOW_SIZE = 1;
+
     private final PlaybackListener playbackListener;
     private final PlayQueue playQueue;
     private final long expirationTimeMillis;
@@ -68,23 +69,19 @@ public class MediaSourceManager {
 
     public MediaSourceManager(@NonNull final PlaybackListener listener,
                               @NonNull final PlayQueue playQueue) {
-        this(listener, playQueue, 1, 400L, 2, TimeUnit.HOURS);
+        this(listener, playQueue,
+                /*loadDebounceMillis=*/400L,
+                /*expirationTimeMillis=*/2,
+                /*expirationTimeUnit=*/TimeUnit.HOURS);
     }
 
     private MediaSourceManager(@NonNull final PlaybackListener listener,
                                @NonNull final PlayQueue playQueue,
-                               final int windowSize,
                                final long loadDebounceMillis,
                                final long expirationTimeMillis,
                                @NonNull final TimeUnit expirationTimeUnit) {
-        if (windowSize <= 0) {
-            throw new UnsupportedOperationException(
-                    "MediaSourceManager window size must be greater than 0");
-        }
-
         this.playbackListener = listener;
         this.playQueue = playQueue;
-        this.windowSize = windowSize;
         this.loadDebounceMillis = loadDebounceMillis;
         this.expirationTimeMillis = expirationTimeMillis;
         this.expirationTimeUnit = expirationTimeUnit;
@@ -234,7 +231,7 @@ public class MediaSourceManager {
     private boolean isPlayQueueReady() {
         if (playQueue == null) return false;
 
-        final boolean isWindowLoaded = playQueue.size() - playQueue.getIndex() > windowSize;
+        final boolean isWindowLoaded = playQueue.size() - playQueue.getIndex() > WINDOW_SIZE;
         return playQueue.isComplete() || isWindowLoaded;
     }
 
@@ -244,10 +241,14 @@ public class MediaSourceManager {
         }
 
         final MediaSource mediaSource = sources.getMediaSource(playQueue.getIndex());
-        if (!(mediaSource instanceof LoadedMediaSource)) return false;
-
         final PlayQueueItem playQueueItem = playQueue.getItem();
-        return playQueueItem == ((LoadedMediaSource) mediaSource).getStream();
+
+        if (mediaSource instanceof LoadedMediaSource) {
+            return playQueueItem == ((LoadedMediaSource) mediaSource).getStream();
+        } else if (mediaSource instanceof FailedMediaSource) {
+            return playQueueItem == ((FailedMediaSource) mediaSource).getStream();
+        }
+        return false;
     }
 
     private void tryBlock() {
@@ -318,11 +319,11 @@ public class MediaSourceManager {
         loadItem(currentItem);
 
         // The rest are just for seamless playback
-        final int leftBound = Math.max(0, currentIndex - windowSize);
-        final int rightLimit = currentIndex + windowSize + 1;
+        final int leftBound = currentIndex + 1;
+        final int rightLimit = leftBound + WINDOW_SIZE;
         final int rightBound = Math.min(playQueue.size(), rightLimit);
-        final List<PlayQueueItem> items = new ArrayList<>(playQueue.getStreams().subList(leftBound,
-                rightBound));
+        final List<PlayQueueItem> items = new ArrayList<>(
+                playQueue.getStreams().subList(leftBound,rightBound));
 
         // Do a round robin
         final int excess = rightLimit - playQueue.size();
