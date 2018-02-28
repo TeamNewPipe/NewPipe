@@ -97,13 +97,13 @@
     <string name="could_not_load_image">Negalima įkelti jokio paveikslėlio</string>
     <string name="app_ui_crash">Programėlė/ vartotojo sąsaja nulūžo</string>
     <string name="sorry_string">Atsiprašome, taip neturėjo įvykti.</string>
-    <string name="error_report_button_text">Raportuoti apie klaidą e- paštu</string>
+    <string name="error_report_button_text">Raportuoti apie klaidą el. paštu</string>
     <string name="error_snackbar_message">Atsiprašome, ištiko keletas klaidų.</string>
     <string name="error_snackbar_action">ATASKAITA</string>
     <string name="what_device_headline">Informacija:</string>
     <string name="what_happened_headline">Kas nutiko:</string>
     <string name="info_labels">Kas:\\nUžklausa:\\nTurinys Kalba:\\nPaslauga:\\nGMT Time:\\nPaketas:\\nVersija:\\nOperacinė Sistema versija:\\nGlob. IP diapazonas:</string>
-    <string name="your_comment">Jūsų komentaras (abglų kalba):</string>
+    <string name="your_comment">Jūsų komentaras (anglų kalba):</string>
     <string name="error_details_headline">Detalės:</string>
 
 
@@ -126,15 +126,15 @@
     <string name="use_old_player_summary">Senas įtaisytas media grotuvas</string>
 
     <plurals name="subscribers">
-	<item quantity="one">% prenumeratorius</item>
-	<item quantity="few">% prenumeratoriai</item>
-	<item quantity="other">% prenumeratorių</item>
+	<item quantity="one">%s prenumeratorius</item>
+	<item quantity="few">%s prenumeratoriai</item>
+	<item quantity="other">%s prenumeratorių</item>
 </plurals>
 
     <plurals name="videos">
-	<item quantity="one">% vaizdo įrašas</item>
-	<item quantity="few">% vaizdo įrašai</item>
-	<item quantity="other">% vaizdo įrašų</item>
+	<item quantity="one">%s vaizdo įrašas</item>
+	<item quantity="few">%s vaizdo įrašai</item>
+	<item quantity="other">%s vaizdo įrašų</item>
 </plurals>
 
     <string name="start">Pradėti</string>
@@ -211,9 +211,9 @@
     <string name="no_subscribers">Nėra prenumeratorių</string>
     <string name="no_views">Nėra peržiūrų</string>
     <plurals name="views">
-	<item quantity="one">% peržiūra</item>
-	<item quantity="few">% peržiūros</item>
-	<item quantity="other">% peržiūrų</item>
+	<item quantity="one">%s peržiūra</item>
+	<item quantity="few">%s peržiūros</item>
+	<item quantity="other">%s peržiūrų</item>
 </plurals>
 
     <string name="no_videos">Nėra vaizdo įrašų</string>
