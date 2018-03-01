@@ -84,6 +84,7 @@ public abstract class PlayQueue implements Serializable {
         if (eventBroadcast != null) eventBroadcast.onComplete();
         if (reportingReactor != null) reportingReactor.cancel();
 
+        eventBroadcast = null;
         broadcastReceiver = null;
         reportingReactor = null;
     }

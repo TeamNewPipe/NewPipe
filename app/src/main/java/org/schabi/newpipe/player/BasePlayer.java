@@ -65,8 +65,8 @@ import org.schabi.newpipe.player.playback.PlaybackListener;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueAdapter;
 import org.schabi.newpipe.playlist.PlayQueueItem;
+import org.schabi.newpipe.util.SerializedCache;
 
-import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -106,7 +106,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     public static final String PLAYBACK_PITCH = "playback_pitch";
     public static final String PLAYBACK_SPEED = "playback_speed";
     public static final String PLAYBACK_QUALITY = "playback_quality";
-    public static final String PLAY_QUEUE = "play_queue";
+    public static final String PLAY_QUEUE_KEY = "play_queue_key";
     public static final String APPEND_ONLY = "append_only";
     public static final String SELECT_ON_APPEND = "select_on_append";
 
@@ -207,10 +207,10 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         if (intent == null) return;
 
         // Resolve play queue
-        if (!intent.hasExtra(PLAY_QUEUE)) return;
-        final Serializable playQueueCandidate = intent.getSerializableExtra(PLAY_QUEUE);
-        if (!(playQueueCandidate instanceof PlayQueue)) return;
-        final PlayQueue queue = (PlayQueue) playQueueCandidate;
+        if (!intent.hasExtra(PLAY_QUEUE_KEY)) return;
+        final String intentCacheKey = intent.getStringExtra(PLAY_QUEUE_KEY);
+        final PlayQueue queue = SerializedCache.getInstance().take(intentCacheKey, PlayQueue.class);
+        if (queue == null) return;
 
         // Resolve append intents
         if (intent.getBooleanExtra(APPEND_ONLY, false) && playQueue != null) {

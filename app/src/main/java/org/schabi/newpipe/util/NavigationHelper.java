@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
@@ -33,9 +35,9 @@ import org.schabi.newpipe.fragments.list.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.fragments.local.bookmark.LastPlayedFragment;
 import org.schabi.newpipe.fragments.local.bookmark.LocalPlaylistFragment;
 import org.schabi.newpipe.fragments.local.bookmark.MostPlayedFragment;
-import org.schabi.newpipe.fragments.local.bookmark.LastPlayedFragment;
 import org.schabi.newpipe.history.HistoryActivity;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BackgroundPlayerActivity;
@@ -59,39 +61,41 @@ public class NavigationHelper {
     // Players
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static Intent getPlayerIntent(final Context context,
-                                         final Class targetClazz,
-                                         final PlayQueue playQueue,
-                                         final String quality) {
-        Intent intent = new Intent(context, targetClazz)
-                .putExtra(VideoPlayer.PLAY_QUEUE, playQueue);
+    public static Intent getPlayerIntent(@NonNull final Context context,
+                                         @NonNull final Class targetClazz,
+                                         @NonNull final PlayQueue playQueue,
+                                         @Nullable final String quality) {
+        Intent intent = new Intent(context, targetClazz);
+
+        final String cacheKey = SerializedCache.getInstance().put(playQueue, PlayQueue.class);
+        if (cacheKey != null) intent.putExtra(VideoPlayer.PLAY_QUEUE_KEY, cacheKey);
         if (quality != null) intent.putExtra(VideoPlayer.PLAYBACK_QUALITY, quality);
 
         return intent;
     }
 
-    public static Intent getPlayerIntent(final Context context,
-                                         final Class targetClazz,
-                                         final PlayQueue playQueue) {
+    public static Intent getPlayerIntent(@NonNull final Context context,
+                                         @NonNull final Class targetClazz,
+                                         @NonNull final PlayQueue playQueue) {
         return getPlayerIntent(context, targetClazz, playQueue, null);
     }
 
-    public static Intent getPlayerEnqueueIntent(final Context context,
-                                                final Class targetClazz,
-                                                final PlayQueue playQueue,
+    public static Intent getPlayerEnqueueIntent(@NonNull final Context context,
+                                                @NonNull final Class targetClazz,
+                                                @NonNull final PlayQueue playQueue,
                                                 final boolean selectOnAppend) {
         return getPlayerIntent(context, targetClazz, playQueue)
                 .putExtra(BasePlayer.APPEND_ONLY, true)
                 .putExtra(BasePlayer.SELECT_ON_APPEND, selectOnAppend);
     }
 
-    public static Intent getPlayerIntent(final Context context,
-                                         final Class targetClazz,
-                                         final PlayQueue playQueue,
+    public static Intent getPlayerIntent(@NonNull final Context context,
+                                         @NonNull final Class targetClazz,
+                                         @NonNull final PlayQueue playQueue,
                                          final int repeatMode,
                                          final float playbackSpeed,
                                          final float playbackPitch,
-                                         final String playbackQuality) {
+                                         @Nullable final String playbackQuality) {
         return getPlayerIntent(context, targetClazz, playQueue, playbackQuality)
                 .putExtra(BasePlayer.REPEAT_MODE, repeatMode)
                 .putExtra(BasePlayer.PLAYBACK_SPEED, playbackSpeed)
