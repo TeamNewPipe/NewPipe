@@ -45,7 +45,7 @@ public abstract class PlayQueue implements Serializable {
 
     private ArrayList<PlayQueueItem> backup;
     private ArrayList<PlayQueueItem> streams;
-    private final AtomicInteger queueIndex;
+    @NonNull private final AtomicInteger queueIndex;
 
     private transient BehaviorSubject<PlayQueueEvent> eventBroadcast;
     private transient Flowable<PlayQueueEvent> broadcastReceiver;
@@ -133,7 +133,7 @@ public abstract class PlayQueue implements Serializable {
      * Returns the index of the given item using referential equality.
      * May be null despite play queue contains identical item.
      * */
-    public int indexOf(final PlayQueueItem item) {
+    public int indexOf(@NonNull final PlayQueueItem item) {
         // referential equality, can't think of a better way to do this
         // todo: better than this
         return streams.indexOf(item);
@@ -213,7 +213,7 @@ public abstract class PlayQueue implements Serializable {
      *
      * @see #append(List items)
      * */
-    public synchronized void append(final PlayQueueItem... items) {
+    public synchronized void append(@NonNull final PlayQueueItem... items) {
         append(Arrays.asList(items));
     }
 
@@ -225,7 +225,7 @@ public abstract class PlayQueue implements Serializable {
      *
      * Will emit a {@link AppendEvent} on any given context.
      * */
-    public synchronized void append(final List<PlayQueueItem> items) {
+    public synchronized void append(@NonNull final List<PlayQueueItem> items) {
         List<PlayQueueItem> itemList = new ArrayList<>(items);
 
         if (isShuffled()) {
@@ -393,7 +393,7 @@ public abstract class PlayQueue implements Serializable {
     // Rx Broadcast
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void broadcast(final PlayQueueEvent event) {
+    private void broadcast(@NonNull final PlayQueueEvent event) {
         if (eventBroadcast != null) {
             eventBroadcast.onNext(event);
         }

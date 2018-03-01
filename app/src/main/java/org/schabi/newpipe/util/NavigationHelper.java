@@ -61,6 +61,7 @@ public class NavigationHelper {
     // Players
     //////////////////////////////////////////////////////////////////////////*/
 
+    @NonNull
     public static Intent getPlayerIntent(@NonNull final Context context,
                                          @NonNull final Class targetClazz,
                                          @NonNull final PlayQueue playQueue,
@@ -74,12 +75,14 @@ public class NavigationHelper {
         return intent;
     }
 
+    @NonNull
     public static Intent getPlayerIntent(@NonNull final Context context,
                                          @NonNull final Class targetClazz,
                                          @NonNull final PlayQueue playQueue) {
         return getPlayerIntent(context, targetClazz, playQueue, null);
     }
 
+    @NonNull
     public static Intent getPlayerEnqueueIntent(@NonNull final Context context,
                                                 @NonNull final Class targetClazz,
                                                 @NonNull final PlayQueue playQueue,
@@ -89,6 +92,7 @@ public class NavigationHelper {
                 .putExtra(BasePlayer.SELECT_ON_APPEND, selectOnAppend);
     }
 
+    @NonNull
     public static Intent getPlayerIntent(@NonNull final Context context,
                                          @NonNull final Class targetClazz,
                                          @NonNull final PlayQueue playQueue,

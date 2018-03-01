@@ -326,8 +326,10 @@ public class MediaSourceManager {
         maybeLoadItem(currentItem);
 
         // The rest are just for seamless playback
-        final int leftBound = currentIndex + 1;
-        final int rightLimit = leftBound + WINDOW_SIZE;
+        // Although timeline is not updated prior to the current index, these sources are still
+        // loaded into the cache for faster retrieval at a potentially later time.
+        final int leftBound = Math.max(0, currentIndex - WINDOW_SIZE);
+        final int rightLimit = currentIndex + WINDOW_SIZE + 1;
         final int rightBound = Math.min(playQueue.size(), rightLimit);
         final List<PlayQueueItem> items = new ArrayList<>(
                 playQueue.getStreams().subList(leftBound,rightBound));
@@ -343,10 +345,9 @@ public class MediaSourceManager {
         }
     }
 
-    private void maybeLoadItem(@Nullable final PlayQueueItem item) {
+    private void maybeLoadItem(@NonNull final PlayQueueItem item) {
         if (DEBUG) Log.d(TAG, "maybeLoadItem() called.");
-
-        if (sources == null || item == null) return;
+        if (sources == null) return;
 
         final int index = playQueue.indexOf(item);
         if (index > sources.getSize() - 1) return;
@@ -355,7 +356,11 @@ public class MediaSourceManager {
             if (DEBUG) Log.d(TAG, " Loaded: [" + item.getTitle() +
                     "] with url: " + item.getUrl());
 
-            if (isCorrectionNeeded(item)) update(playQueue.indexOf(item), mediaSource);
+            final int itemIndex = playQueue.indexOf(item);
+            // Only update the playlist timeline for items at the current index or after.
+            if (itemIndex >= playQueue.getIndex() && isCorrectionNeeded(item)) {
+                update(itemIndex, mediaSource);
+            }
 
             loadingItems.remove(item);
             tryUnblock();
@@ -449,7 +454,7 @@ public class MediaSourceManager {
      * with position * in respect to the play queue only if no {@link MediaSource}
      * already exists at the given index.
      * */
-    private void emplace(final int index, final MediaSource source) {
+    private void emplace(final int index, @NonNull final MediaSource source) {
         if (sources == null) return;
         if (index < 0 || index < sources.getSize()) return;
 
@@ -489,7 +494,7 @@ public class MediaSourceManager {
      * this will modify the playback timeline prior to the index and cause desynchronization
      * on the playing item between {@link PlayQueue} and {@link DynamicConcatenatingMediaSource}.
      * */
-    private synchronized void update(final int index, final MediaSource source) {
+    private synchronized void update(final int index, @NonNull final MediaSource source) {
         if (sources == null) return;
         if (index < 0 || index >= sources.getSize()) return;
 
