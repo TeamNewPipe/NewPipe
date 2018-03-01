@@ -511,15 +511,6 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     @Override
     public void onTimelineChanged(Timeline timeline, Object manifest, int reason) {
         if (DEBUG) Log.d(TAG, "onTimelineChanged(), timeline size = " + timeline.getWindowCount());
-
-        switch (reason) {
-            case Player.TIMELINE_CHANGE_REASON_PREPARED:
-            case Player.TIMELINE_CHANGE_REASON_RESET:
-            case Player.TIMELINE_CHANGE_REASON_DYNAMIC:
-            default:
-                if (playbackManager != null) playbackManager.load();
-                break;
-        }
     }
 
     @Override
@@ -654,6 +645,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
                 } else {
                     playQueue.offsetIndex(+1);
                 }
+                playbackManager.load();
                 break;
             case DISCONTINUITY_REASON_SEEK:
             case DISCONTINUITY_REASON_SEEK_ADJUSTMENT:
@@ -661,7 +653,6 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
             default:
                 break;
         }
-        playbackManager.load();
     }
 
     @Override
@@ -724,8 +715,9 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
                     "], queue index=[" + playQueue.getIndex() + "]");
         } else if (simpleExoPlayer.getCurrentPeriodIndex() != currentSourceIndex || !isPlaying()) {
             final long startPos = info != null ? info.start_position : 0;
-            if (DEBUG) Log.d(TAG, "Rewinding to correct window: " + currentSourceIndex +
-                    " at: " + getTimeString((int)startPos));
+            if (DEBUG) Log.d(TAG, "Rewinding to correct window=[" + currentSourceIndex + "]," +
+                    " at=[" + getTimeString((int)startPos) + "]," +
+                    " from=[" + simpleExoPlayer.getCurrentPeriodIndex() + "].");
             simpleExoPlayer.seekTo(currentSourceIndex, startPos);
         }
 
@@ -974,7 +966,9 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     }
 
     public boolean isPlaying() {
-        return simpleExoPlayer.getPlaybackState() == Player.STATE_READY && simpleExoPlayer.getPlayWhenReady();
+        final int state = simpleExoPlayer.getPlaybackState();
+        return (state == Player.STATE_READY || state == Player.STATE_BUFFERING)
+                && simpleExoPlayer.getPlayWhenReady();
     }
 
     public int getRepeatMode() {

@@ -117,16 +117,27 @@ public class PlayerHelper {
         return 512 * 1024L;
     }
 
-    public static int getMinBufferMs(@NonNull final Context context) {
-        return 15000;
+    /**
+     * Returns the number of milliseconds the player buffers for before starting playback.
+     * */
+    public static int getPlaybackStartBufferMs(@NonNull final Context context) {
+        return 500;
     }
 
-    public static int getMaxBufferMs(@NonNull final Context context) {
-        return 30000;
+    /**
+     * Returns the minimum number of milliseconds the player always buffers to after starting
+     * playback.
+     * */
+    public static int getPlaybackMinimumBufferMs(@NonNull final Context context) {
+        return 25000;
     }
 
-    public static int getBufferForPlaybackMs(@NonNull final Context context) {
-        return 2500;
+    /**
+     * Returns the maximum/optimal number of milliseconds the player will buffer to once the buffer
+     * hits the point of {@link #getPlaybackMinimumBufferMs(Context)}.
+     * */
+    public static int getPlaybackOptimalBufferMs(@NonNull final Context context) {
+        return 60000;
     }
 
     public static boolean isUsingDSP(@NonNull final Context context) {

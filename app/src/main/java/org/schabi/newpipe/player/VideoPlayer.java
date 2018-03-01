@@ -339,11 +339,16 @@ public abstract class VideoPlayer extends BasePlayer
         switch (streamType) {
             case AUDIO_STREAM:
                 surfaceView.setVisibility(View.GONE);
+                playbackEndTime.setVisibility(View.VISIBLE);
                 break;
 
             case AUDIO_LIVE_STREAM:
                 surfaceView.setVisibility(View.GONE);
+                playbackLiveSync.setVisibility(View.VISIBLE);
+                break;
+
             case LIVE_STREAM:
+                surfaceView.setVisibility(View.VISIBLE);
                 playbackLiveSync.setVisibility(View.VISIBLE);
                 break;
 

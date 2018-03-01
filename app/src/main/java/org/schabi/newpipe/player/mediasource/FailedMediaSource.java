@@ -12,7 +12,7 @@ import org.schabi.newpipe.playlist.PlayQueueItem;
 import java.io.IOException;
 
 public class FailedMediaSource implements ManagedMediaSource {
-    private final String TAG = "ManagedMediaSource@" + Integer.toHexString(hashCode());
+    private final String TAG = "FailedMediaSource@" + Integer.toHexString(hashCode());
 
     private final PlayQueueItem playQueueItem;
     private final Throwable error;
