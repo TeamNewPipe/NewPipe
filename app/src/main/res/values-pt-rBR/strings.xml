@@ -368,4 +368,15 @@ abrir em modo popup</string>
     <string name="smaller_caption_font_size">Fonte menor</string>
     <string name="normal_caption_font_size">Fonte normal</string>
     <string name="larger_caption_font_size">Maior fonte</string>
+<string name="settings_category_debug_title">Depurar</string>
+    <string name="drawer_header_action_paceholder_text">Algo irá aparecer aqui em breve ;D</string>
+
+
+    <string name="caption_auto_generated">Gerado automaticamente</string>
+    <string name="enable_leak_canary_title">Habilitar LeakCanary</string>
+    <string name="enable_leak_canary_summary">Monitoramento de vazamento de memória pode fazer com que o app fique sem responder quando estiver despejando a pilha</string>
+
+    <string name="enable_disposed_exceptions_title">Reportar Erros fora do ciclo de vida</string>
+    <string name="enable_disposed_exceptions_summary">Forçar o report de exceções Rx não entregáveis ocorrendo fora do fragmento ou ciclo de vida da atividade após o dispose</string>
+
 </resources>
