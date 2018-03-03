@@ -315,4 +315,5 @@
 
     <string name="unknown_content">[непознато]</string>
 
+    <string name="show_hold_to_append_title">Прикажи поруку \"задржи ради стављања у ред\"</string>
     </resources>
